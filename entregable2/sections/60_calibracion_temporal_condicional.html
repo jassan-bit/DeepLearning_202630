@@ -613,7 +613,12 @@
 </div>
 <p><a class="reference download internal" download="" href="../_downloads/30bdd2e85c158de788148701867cd728/model_metrics.csv"><span class="xref download myst">Métricas por modelo</span></a> · <a class="reference download internal" download="" href="../_downloads/b6a7c9293f4fb9feb7cc073824aa51db/predictor_metrics.csv"><span class="xref download myst">243 filas predictor-política</span></a>.</p>
 <p>En el Top 3 observado, SAE pasa de 96,52 % de cobertura a 89,94 % con ACI; GRU32 de 96,90 % a 90,46 %; ARIMA de 94,57 % a 90,30 %. iTransformer pasa de 85,03 % a 89,97 %. Son descripciones retrospectivas, no una comparación confirmatoria de superioridad entre políticas.</p>
-<p><img alt="Cobertura global y longitud de intervalos del Top 3" src="../_images/top3_global_coverage_width.svg" /></p>
+<p><img alt="Cobertura con IC temporal guardado y anchura puntual del Top 3 observado" src="../_images/top3_coverage_width.svg" /></p>
+<p>La cobertura conserva los IC95 % temporales marginales ya publicados (B=10.000, bloque14 y semillas fijas). La anchura se muestra como estimación puntual: no hay IC publicado para ella. Esta presentación copia los nueve resúmenes del Top3 y sus intervalos de cobertura; no recalcula métricas ni pruebas. <a class="reference download internal" download="" href="../_downloads/8dda62247f1a3afbf5c8a20c2184a87c/calibration_plot_readout.json"><span class="xref download myst">Fuentes y valores exactos</span></a>.</p>
+<p>:::{dropdown} Figura anterior conservada: cobertura y anchura
+<img alt="Cobertura global y longitud de intervalos del Top 3" src="../_images/top3_global_coverage_width.svg" /></p>
+<p>Versión anterior preservada con sus valores originales. La presentación vigente distingue explícitamente los IC de cobertura de las anchuras sin IC.
+:::</p>
 <p>El score de intervalo al 90 % penaliza tanto anchura como errores fuera del intervalo:</p>
 <div class="math notranslate nohighlight">
 \[IS_{0,10}(l,u;y)=(u-l)+20(l-y)\mathbf 1\{y&lt;l\}+20(y-u)\mathbf 1\{y&gt;u\}.\]</div>

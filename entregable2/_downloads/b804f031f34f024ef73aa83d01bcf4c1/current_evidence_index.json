@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "version": "e2-repro-prereg-current-evidence-v1",
+  "reviewed_source_commit": "35a770a8a53e4a5d6692b7383e2c9a93649f0733",
+  "guide_sections": [
+    "8",
+    "8.1",
+    "9.1",
+    "9.2",
+    "9.3"
+  ],
+  "guide_pages": [
+    40,
+    41,
+    42,
+    43,
+    44
+  ],
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "scope": "Current reproduction,ethics,communication,preregistration,power and exploratory-policy evidence;original scientific bytes retained",
+  "operations": {
+    "new_model_fits": 0,
+    "new_inference_calls": 0,
+    "new_predictive_scores": 0,
+    "new_hypothesis_tests": 0,
+    "new_bootstrap_draws": 0,
+    "new_power_calculations": 0,
+    "new_environment_installations": 0,
+    "new_external_license_document_reads": 1,
+    "descriptive_pilot_effect_ratio": 1,
+    "new_calibration_presentations_from_stored_values": 1,
+    "original_scientific_artifacts_modified": false
+  },
+  "reproducibility": {
+    "systems": 16,
+    "predictors": 81,
+    "neural_fits": 78,
+    "deterministic_predictors": 3,
+    "additional_ablation_fits": 18,
+    "clean_environment_alternative_accepted_by_guide": true,
+    "prediction_discrepancy_max": 0,
+    "main_table_arithmetic_discrepancy_max": 2.6020852139652106e-18,
+    "observed_Python_distributions": 44,
+    "observed_lock_sha256": "6d02a90c8551905126417f6c92c5248b66d249c8b5930babb96c7f60e6f93716",
+    "all_scientific_tables_figures_rebuilt_by_one_command": false,
+    "Docker_required_in_E2": false,
+    "historical_OS_image_release_and_digest_complete": false
+  },
+  "power": {
+    "method": "one-sided noncentral paired-t,conditional development planning",
+    "null_gain": 0.00025772842664981106,
+    "alternative_gain": 0.0005154568532996221,
+    "pilot_pairs": 5,
+    "representative_models": 2,
+    "development_dates": 53,
+    "operative_R": 6,
+    "planning_alpha": 0.0025,
+    "d_delta_over_SD": 1.0206808291620046,
+    "power_at_planned_2delta_gain": 0.1229533091842126,
+    "power_target": 0.8,
+    "minimum_total_gain_at80pct": 0.0008786736025621022,
+    "new_required_R_computed": false,
+    "bootstrap_or_Holm_exact_power_claimed": false,
+    "planning_effect_is_final_model_Cohen_or_Cliff_with_CI": false
+  },
+  "bibliography_format_check": {
+    "entries": 29,
+    "with_DOI": 26,
+    "with_arXiv_preprint_DOI": 8,
+    "with_URL": 29,
+    "without_both_DOI_and_URL": 0,
+    "duplicate_keys_or_format_errors": 0,
+    "all_DOIs_live_resolved_by_this_check": false
+  },
+  "interpretation": [
+    "Original E1metric,delta,unit andpartition inheritance is accepted;known calendar is not a new blind test.",
+    "Prior delta_g is documented;its current comparable formal test remains a separate requirement.",
+    "Three original procedures per primary pair andHolm control are acknowledged without creating an additional global-test obligation.",
+    "Current planning power is for gain2delta against boundarydelta and is not the guide bilateral illustrative formula or bootstrap power.",
+    "License identity by component and primary source does not certify all redistribution obligations.",
+    "Coverage intervals are copied marginal temporal CIs;mean widths are explicitly point estimates without published CIs.",
+    "Checklist counts are not weights,grades or a guarantee of full methodological compliance."
+  ],
+  "evidence_sources": [
+    {
+      "id": "benchmark",
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "bytes": 2596,
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+      "scope": "Original16-system A2, unchanged mean individual-seed RMSE"
+    },
+    {
+      "id": "freeze",
+      "path": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "bytes": 69457,
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+      "scope": "81predictors and concrete analysis definition frozen before current scoring,not before all prior fits"
+    },
+    {
+      "id": "analysis_engine",
+      "path": "scripts/e2_reduced_final_analysis.py",
+      "bytes": 15604,
+      "sha256": "f33a063c3c2478263fbd3cbee11d949b106a392e9a66eb14575f3a1638768fe9",
+      "scope": "Original analysis registration,primary20 families and one-sided noncentral-t planning implementation"
+    },
+    {
+      "id": "analysis_results",
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "bytes": 54683,
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637",
+      "scope": "Original4,999 primary resamples and two conditional seed diagnostics,three real procedures per pair"
+    },
+    {
+      "id": "data_admission",
+      "path": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "bytes": 15173,
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c",
+      "scope": "Inherited known E1test,common608dates,no retuning after current scoring"
+    },
+    {
+      "id": "pilot",
+      "path": "book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+      "bytes": 1997,
+      "sha256": "63f0f960f27f669380f9e336064f0274b026ed7a31d595a6c8df465c4781fcd4",
+      "scope": "Five paired seeds,two representatives,53dates;power at alternative2delta,not generic power atdelta"
+    },
+    {
+      "id": "reduced_protocol",
+      "path": "book_e2/_static/reduced_protocol_20261112/protocol.json",
+      "bytes": 17086,
+      "sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+      "scope": "Current reduced catalogue and constraints; flags describe registration cut before implementation"
+    },
+    {
+      "id": "configurations",
+      "path": "book_e2/_static/reduced_protocol_20261112/hpo_configurations_registered_bytes_v2.csv",
+      "bytes": 17975,
+      "sha256": "e96635a60de976ef312d9fa5205f57333842bb40e5ad55933bc1fb1beed8d9c4",
+      "scope": "Six registered configuration slots per13networks,not exhaustive historical search exposure"
+    },
+    {
+      "id": "partition",
+      "path": "book_e2/_static/e2_eda_current_v1/partition_audit.json",
+      "bytes": 47671,
+      "sha256": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f",
+      "scope": "CurrentthreeHPO folds and655/53/608,seeds/targets/shared causal supports"
+    },
+    {
+      "id": "margin_lineage",
+      "path": "book_e2/_static/e2_point1_review_v1/margin_lineage.json",
+      "bytes": 4283,
+      "sha256": "20085e68d66eff8b0c2d003dead9b3ecc9750421fe3310e6b43e549fddcd830e",
+      "scope": "Earlier delta_g acknowledged;current formal comparable gap test not established"
+    },
+    {
+      "id": "questions",
+      "path": "book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "bytes": 8751,
+      "sha256": "172e24bcb29209a05176ae2c6ed0c9afaac9eba52d7609466f752137b4f787b9",
+      "scope": "RQ2/3later operational clarifications,not newly confirmed or retrospectively preregistered"
+    },
+    {
+      "id": "reproduction",
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/reproduction.csv",
+      "bytes": 9325,
+      "sha256": "cc8639b83de29bfc28aee7d33f8e13e0fe8e4d70c633e7bd009d28f00bf373a5",
+      "scope": "81clean predictor reproductions,observed max prediction discrepancy0"
+    },
+    {
+      "id": "reproduction_by_model",
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/reproduction_by_model.csv",
+      "bytes": 1386,
+      "sha256": "80a72c1877df5e0a2518403ae60e90549a74ffacb0c833aad5d591ebe6ed7132",
+      "scope": "Six seeds per13network and three deterministic references; no fake seed replication"
+    },
+    {
+      "id": "clean_runtime",
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/historical_clean_runtime.json",
+      "bytes": 2308,
+      "sha256": "54c175598ac1e32d391e5ca8160832e96fb689bdaf3897835567b64729b57f5a",
+      "scope": "New checkout/venv,44installed distributions,Python3.12.12/Torch2.8cu126/A100;OS image version absent"
+    },
+    {
+      "id": "clean_runtime_producer",
+      "path": "scripts/e2_posthoc_fit_reproduction.py",
+      "bytes": 64391,
+      "sha256": "5d8ce059f96f86a35b7e2d2530e3fb776827240fcb29df920b4d05374f139fe9",
+      "scope": "Installed distribution inventory from importlib.metadata,exact lock reconstruction and clean profile equality checks"
+    },
+    {
+      "id": "reproduction_summary",
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/producer_summary.json",
+      "bytes": 6087,
+      "sha256": "c430ac4ff165370382a98921fb31e7af6dc34c04dfbba64a81b992f95b8ff340",
+      "scope": "Producer numerical checks and18actual trained ablations;summary budget is earlier than final balance"
+    },
+    {
+      "id": "final_budget",
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/budget_final.json",
+      "bytes": 1154,
+      "sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+      "scope": "84hours authorized cumulative,80.2561charged,campaign wall time not active GPU hours"
+    },
+    {
+      "id": "delivery_audit",
+      "path": "book_e2/_static/e2_delivery_reproduction_20261114/delivery_audit.json",
+      "bytes": 4468,
+      "sha256": "b6d9bc0ed6067bc707197fa3f160e5aaaafb284c3ac947cb95439abb4286166a",
+      "scope": "195published manifest files;CPU arithmetic A2 reconstruction maxdifference2.602e-18,no model replay"
+    },
+    {
+      "id": "delivery_auditor",
+      "path": "scripts/audit_e2_delivery.py",
+      "bytes": 13648,
+      "sha256": "a76f8745211fcdc1952b6dc9a475e9068ce69031f345392e2af6dff4dfe16bf6",
+      "scope": "Offline standard-library one-command integrity/main-table audit,not regeneration of all experiments/figures"
+    },
+    {
+      "id": "appendix_B",
+      "path": "book_e2/_static/e2_point1_review_v1/appendix_B_clarified.json",
+      "bytes": 15302,
+      "sha256": "11cb98d64b4b8823282be9a2d0316d0aa28b6d3805fe91ad768696dfae3cf172",
+      "scope": "21literal requirements with honest complete/partial/NA states,not a percentage grade"
+    },
+    {
+      "id": "GPU_requirements",
+      "path": "requirements-e2-training-gpu.lock.txt",
+      "bytes": 1493,
+      "sha256": "5201f687d8c600ae9458444dbc46e5bc97bdedf938ddb21801887f6f9d4508d9",
+      "scope": "Pinned GPU dependency list and Linuxx86_64 target;not an exact OS image"
+    },
+    {
+      "id": "CPU_requirements",
+      "path": "requirements-e2-f2a-audit.lock.txt",
+      "bytes": 153,
+      "sha256": "9fa42cd90b7783233cfd269ec97e9826b2c069f6d8c9bbd1924716598c80820e",
+      "scope": "Separate CPU audit environment,not identical GPUtraining stack"
+    },
+    {
+      "id": "paper_requirements",
+      "path": "requirements-paper-guide.lock.txt",
+      "bytes": 406,
+      "sha256": "54d0d6eed31e11fc95ba98558425bb44ac47d4f85964fd50cfc3cf67a4007772",
+      "scope": "Separate externalETTh1 replication environment"
+    },
+    {
+      "id": "book_requirements",
+      "path": "requirements-book.lock.txt",
+      "bytes": 1801,
+      "sha256": "343203e122e1eafe2867915071a442937287ce68546d1d543feffd09adf7c3b4",
+      "scope": "Editorial book environment,not scientific training environment"
+    },
+    {
+      "id": "book_build_instructions",
+      "path": "BUILD.md",
+      "bytes": 99736,
+      "sha256": "0b04582f8fa508e5457cc8ed2a741eaa1f667f2441fe7aacdd30898860a13967",
+      "scope": "Documented rendering commands do not regenerate all scientific results"
+    },
+    {
+      "id": "seed_implementation",
+      "path": "scripts/e2_staged_training.py",
+      "bytes": 23487,
+      "sha256": "b66ac8d2beb3748f4934e55e99514f53c52eada4a4dbd2e4b597d080c9f4722b",
+      "scope": "Python/Torch seeding path;no global NumPy seed inferred"
+    },
+    {
+      "id": "cuda_policy",
+      "path": "scripts/e2_cuda_training.py",
+      "bytes": 26800,
+      "sha256": "45b5697e1dfbd98106703fe8646bdcdc21f8423110886be5b6e2f2c419aa7433",
+      "scope": "Deterministic CUDA requests,FP32/AMP/TF32/workspace policy;not universal cross-device bitwise guarantee"
+    },
+    {
+      "id": "paper_runtime",
+      "path": "book_e2/_static/paper_guide_evidence/runtime_versions.json",
+      "bytes": 615,
+      "sha256": "b9a1b35a7ca9e03011a65f561bab6ca6625cdc1d51837d031d400378005d5d03",
+      "scope": "Observed external CPU stack,not original author historical environment or A100"
+    },
+    {
+      "id": "paper_dataset",
+      "path": "book_e2/_static/paper_guide_evidence/dataset_card.json",
+      "bytes": 3297,
+      "sha256": "fdf380ab26a25860dc15e3ffd6e7d51a42732d9ab21df42a4da8b9a575a1f0db",
+      "scope": "ETTh1 original source commit and declaredCCBY-ND4data terms;not rawCSV redistribution"
+    },
+    {
+      "id": "data_terms",
+      "path": "book/_static/data_source/TERMS_AND_CONDITIONS.md",
+      "bytes": 9807,
+      "sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+      "scope": "Preserved BinanceVision Terms1.0,CCBY-NC-SA4.0exceptdesignation/additional conditions"
+    },
+    {
+      "id": "data_terms_receipt",
+      "path": "book/_static/data_source/terms_snapshot.json",
+      "bytes": 408,
+      "sha256": "e1f9b801799b5ccdb293e98945ca0fae942d74f3d14eb018ca88aba4d74029b5",
+      "scope": "Historical snapshot provenance,not a new timestamp or a universal license clearance"
+    },
+    {
+      "id": "dataset_card",
+      "path": "book_e2/_static/e2_point1_review_v1/dataset_card_current.json",
+      "bytes": 32543,
+      "sha256": "43330913c2baf935fd02111f54c651f9c5bc7f99bf5ffcb4067eb5942042d14d",
+      "scope": "Existing terms verification/provenance,single-market privacy/bias and admitted data scope"
+    },
+    {
+      "id": "TiDE_license",
+      "path": "experiments/e2_tide_published_r0_20261112/LICENSE.TiDE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "scope": "Apache2.0source-license text preserved,not MIT or license for all components"
+    },
+    {
+      "id": "TiDE_source",
+      "path": "experiments/e2_tide_published_r0_20261112/source_parity.json",
+      "bytes": 6957,
+      "sha256": "684e710fc6ee94cb4bab3bde482a147ac0f4af9932b86a21062dd18478fedd9a",
+      "scope": "Pinned author source and preserved license binding"
+    },
+    {
+      "id": "bibliography",
+      "path": "book_e2/references.bib",
+      "bytes": 13257,
+      "sha256": "3fbd58f27062306daa41a8f40f24f62d19cdf3aedde2853a1069dd16f998a806",
+      "scope": "29BibTeXentries,26DOIincluding8arXiv,29URLs;format parse,not live resolution of every reference"
+    },
+    {
+      "id": "calibration_summaries",
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv",
+      "bytes": 14471,
+      "sha256": "463bfe0466764330cf35d91cd44f0ca637684cf1ce00e83c73286aac8e0b1d22",
+      "scope": "Stored global coverage/width,three policies,not new calibration or selected replacement of A2"
+    },
+    {
+      "id": "calibration_intervals",
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_coverage_CI.csv",
+      "bytes": 384026,
+      "sha256": "6349ec7fb84ce5b8397036702d4c0d0659b9d7fc33e61b8add3213a665bf2844",
+      "scope": "Stored10,000-draw marginal temporal coverage CIs atblock14 for9Top3policy rows;no width CI"
+    },
+    {
+      "id": "temporal_summary",
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/summary.json",
+      "bytes": 1093,
+      "sha256": "d8cc2b2195463475a760f0dfc1a26375a68dfe4cfc1c4c353d0bab4d72010613",
+      "scope": "Same primary refined20,000 and separate posterior GR diagnostics"
+    },
+    {
+      "id": "calibration_plotter",
+      "path": "scripts/plot_e2_calibration_communication.py",
+      "bytes": 9323,
+      "sha256": "72d754a4fcc87d968f305a8306a525bc692965641eba4a41bfc5c81323628dda",
+      "scope": "New presentation copies9published rows/CIs without resampling,scoring or fitting"
+    },
+    {
+      "id": "calibration_readout",
+      "path": "book_e2/_static/e2_repro_prereg_current_v1/calibration_plot_readout.json",
+      "bytes": 7004,
+      "sha256": "de203f8659037a61387a757e561d03cd4148e2ca6b4b4d6db667d9403ce79ccb",
+      "scope": "New plot metadata,exact copied values and scopes;width explicitly point-only"
+    },
+    {
+      "id": "environment_lock",
+      "path": "book_e2/_static/e2_repro_prereg_current_v1/environment_observed.lock.txt",
+      "bytes": 970,
+      "sha256": "6d02a90c8551905126417f6c92c5248b66d249c8b5930babb96c7f60e6f93716",
+      "scope": "Recovered44-distribution lock byteidentical to original installed lock SHA6d02..."
+    },
+    {
+      "id": "environment_readout",
+      "path": "book_e2/_static/e2_repro_prereg_current_v1/environment_observed.json",
+      "bytes": 1741,
+      "sha256": "f7f5a5c62504ed2342d639ce488f75202f7a3df1cc4e2b196ee61f0277e4cc13",
+      "scope": "Exact reconstruction method,scope and missing OS/driver/image identities"
+    },
+    {
+      "id": "power_readout",
+      "path": "book_e2/_static/e2_repro_prereg_current_v1/power_design_readout.json",
+      "bytes": 2408,
+      "sha256": "06fc0082e9ab8ee21a5c095ce1ed89513cb2b8633c4e6faf2db7370ee9c83206",
+      "scope": "Original planning values plus descriptive delta/SD ratio1.020680829;no new power or requiredR"
+    },
+    {
+      "id": "licenses",
+      "path": "book_e2/_static/e2_repro_prereg_current_v1/license_register.csv",
+      "bytes": 2591,
+      "sha256": "510426e75e349a491652371fe09ae5bffc43efb1ef8710d17389f0f8b62b7dee",
+      "scope": "Five component-scope records;remaining licensing coverage identified"
+    },
+    {
+      "id": "license_sources",
+      "path": "book_e2/_static/e2_repro_prereg_current_v1/license_sources.json",
+      "bytes": 1940,
+      "sha256": "5b812488c7646e881807ee5b57ab02b74035e9254afdf87545796e1b9a771968",
+      "scope": "One new primary read ofETDataset license at same immutable data commit;other stated license sources pinned"
+    },
+    {
+      "id": "ETDataset_license",
+      "path": "book_e2/_static/e2_repro_prereg_current_v1/LICENSE.ETDataset.txt",
+      "bytes": 17818,
+      "sha256": "83cbb5c31415b1d0ee1d20d35dae3fda3a045b85fae9364cc57facc9cd6e0946",
+      "scope": "ExactCCBY-ND4.0upstream license text at1d16c8,Gitblobbbf5362553802d33a9ab499ae77754cdc3b86195"
+    }
+  ]
+}

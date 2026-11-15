@@ -61,7 +61,15 @@ Las cifras son medias sobre las emisiones individuales de las semillas, en el mi
 
 En el Top 3 observado, SAE pasa de 96,52 % de cobertura a 89,94 % con ACI; GRU32 de 96,90 % a 90,46 %; ARIMA de 94,57 % a 90,30 %. iTransformer pasa de 85,03 % a 89,97 %. Son descripciones retrospectivas, no una comparación confirmatoria de superioridad entre políticas.
 
+![Cobertura con IC temporal guardado y anchura puntual del Top 3 observado](../_static/e2_repro_prereg_current_v1/top3_coverage_width.svg)
+
+La cobertura conserva los IC95 % temporales marginales ya publicados (B=10.000, bloque14 y semillas fijas). La anchura se muestra como estimación puntual: no hay IC publicado para ella. Esta presentación copia los nueve resúmenes del Top3 y sus intervalos de cobertura; no recalcula métricas ni pruebas. [Fuentes y valores exactos](../_static/e2_repro_prereg_current_v1/calibration_plot_readout.json).
+
+:::{dropdown} Figura anterior conservada: cobertura y anchura
 ![Cobertura global y longitud de intervalos del Top 3](../_static/e2_conditional_calibration_20261114/top3_global_coverage_width.svg)
+
+Versión anterior preservada con sus valores originales. La presentación vigente distingue explícitamente los IC de cobertura de las anchuras sin IC.
+:::
 
 El score de intervalo al 90 % penaliza tanto anchura como errores fuera del intervalo:
 

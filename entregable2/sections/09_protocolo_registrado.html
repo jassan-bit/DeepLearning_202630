@@ -61,6 +61,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/09_protocolo_registrado';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -438,11 +440,21 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registros-que-definen-la-entrega">9.1 Registros que definen la entrega</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-y-analisis-posteriores">9.2 Familia primaria y análisis posteriores</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-repeticiones-y-desviaciones">9.3 Potencia, repeticiones y desviaciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-y-trazabilidad">9.4 Cierre y trazabilidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plantilla-de-preregistro-aplicada-al-protocolo-ejecutado">9.1 Plantilla de preregistro aplicada al protocolo ejecutado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#campos-valores-y-alcance-temporal">9.1.1 Campos, valores y alcance temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-registro-antes-de-cada-etapa">9.1.2 Qué se registró antes de cada etapa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq-hipotesis-y-respuesta-ante-los-supuestos">9.1.3 RQ, hipótesis y respuesta ante los supuestos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-numero-de-ejecuciones-resultado-publicado">9.2 Potencia y número de ejecuciones: resultado publicado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-y-regla-de-parada">Recursos y regla de parada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politica-de-hallazgos-exploratorios-y-decisiones">9.3 Política de hallazgos exploratorios y decisiones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inventario-por-alcance-de-modelos-configuraciones-y-analisis">9.3.1 Inventario por alcance de modelos, configuraciones y análisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-interpretacion-que-se-mantienen">9.3.2 Reglas de interpretación que se mantienen</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -456,9 +468,244 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="preregistro-potencia-estadistica-y-control-de-decisiones">
 <span id="registros-enmiendas-y-cierre-de-la-ejecucion"></span><h1>9. Preregistro, Potencia Estadística y Control de Decisiones<a class="headerlink" href="#preregistro-potencia-estadistica-y-control-de-decisiones" title="Link to this heading">#</a></h1>
+<p><strong>Lectura vigente:</strong> el registro reducido gobierna un benchmark ejecutado de <strong>16 sistemas, 81 predictores y 608 fechas comunes</strong>. Este capítulo aplica los campos de §§9.1–9.3 de la guía y separa lo registrado antes de cada etapa, la congelación anterior al scoring actual y los análisis posteriores. El piloto no alcanzó la potencia objetivo: <strong>R=6 se conservó por recursos</strong>, con la limitación y el efecto mínimo detectable publicados. La existencia de registros, resultados o reproducciones no acredita por sí sola adecuación estadística conjunta.</p>
+<p>La métrica, δ, unidad temporal y partición heredadas de E1 se mantienen como exige la guía. El test <strong>01/01/2025–31/08/2026 ya era conocido</strong>; su herencia no obliga a inventar otro holdout ni recupera cegamiento. La <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión de datos</span></a> y la <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación</span></a> acreditan la separación de las etapas de esta campaña, con ese alcance retrospectivo.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/cbd885f4a852e58501936e577fcef584/guide_checklist.csv"><span class="xref download myst">lista verificable</span></a>, la <a class="reference download internal" download="" href="../_downloads/8591a07caaed175dd85f9e04c18d7ee7/decision_traceability.csv"><span class="xref download myst">trazabilidad</span></a>, el <a class="reference download internal" download="" href="../_downloads/b804f031f34f024ef73aa83d01bcf4c1/current_evidence_index.json"><span class="xref download myst">índice de evidencias</span></a> y el <a class="reference download internal" download="" href="../_downloads/2e9884d04bdb6f95d29878fb57d88259/manifest.json"><span class="xref download myst">manifiesto</span></a> acompañan la lectura. El <a class="reference download internal" download="" href="../_downloads/c43b74badd14d7917f8e339cf6557da2/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> identifica las descargas. La <a class="reference download internal" download="" href="../_downloads/c1d34cd76a9ef876edd0ead6052e1bdd/09_protocolo_registrado_before_update.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">del</span> <span class="pre">capítulo</span> <span class="pre">9</span></code></a> y el bloque documental al final conservan sus estados, encabezados y enlaces.</p>
+<section id="plantilla-de-preregistro-aplicada-al-protocolo-ejecutado">
+<span id="e2-preregistro-vigente"></span><h2>9.1 Plantilla de preregistro aplicada al protocolo ejecutado<a class="headerlink" href="#plantilla-de-preregistro-aplicada-al-protocolo-ejecutado" title="Link to this heading">#</a></h2>
+<section id="campos-valores-y-alcance-temporal">
+<h3>9.1.1 Campos, valores y alcance temporal<a class="headerlink" href="#campos-valores-y-alcance-temporal" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo de la guía</p></th>
+<th class="head"><p>Valor y evidencia actuales</p></th>
+<th class="head"><p>Cronología y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Tarea y unidad de independencia</strong></p></td>
+<td><p>F2a: pronóstico diario de σ₇ poblacional, h=1, entrada D7×5 OHLCV. Una serie BTCUSDT con etiquetas y ventanas dependientes. <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">Contrato y RQ</span></a> · <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">ruta</span></a>.</p></td>
+<td><p>Las semillas son inicializaciones del optimizador, no nuevas series. La reclasificación temporal conserva X/Y y la unidad heredada.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Métrica primaria y secundarias</strong></p></td>
+<td><p>Media de las RMSE individuales en unidades originales. <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">A2</span></a> añade MAE, sMAPE, R², cobertura al 90 % y anchura.</p></td>
+<td><p>La primaria se hereda de E1; no se sustituye por RMSE de un ensemble. sMAPE no acredita MAPE o MASE. Los suplementos identifican sus métricas y no las promueven retrospectivamente a primaria.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Margen de relevancia δ</strong></p></td>
+<td><p><strong>0,00025772842664981106</strong> unidades de σ₇: tolerancia académica equivalente al 5 % de la RMSE CV inicial de GRU/D7. <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">§1</span></a> · <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">linaje</span></a>.</p></td>
+<td><p>No se recalcula como el 5 % del nuevo ganador ni representa rentabilidad o utilidad financiera demostradas.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Margen de sobreajuste δg</strong></p></td>
+<td><p><strong>0,00025772842664981106</strong>, explícito en <code class="docutils literal notranslate"><span class="pre">599a29f</span></code>; <code class="docutils literal notranslate"><span class="pre">ef2be289</span></code> registra la dirección de tolerancia. Para RMSE, g=RMSE_validación−RMSE_train; H₀:θg≥δg frente a H₁:θg&lt;δg. <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">Linaje</span></a>.</p></td>
+<td><p>El margen previo existe. θg corresponde a la mediana para Wilcoxon o a la media para t, bajo sus respectivos supuestos. El registro no transfiere automáticamente familias/resultados antiguos ni establece la prueba formal comparable actual.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Familia confirmatoria</strong></p></td>
+<td><p><strong>20 pares:</strong> cada uno de los diez candidatos frente a GRU32 y Persistence; ganancia G=RMSE_referencia−RMSE_candidato, H₀:G≤δ, H₁:G&gt;δ. <strong>Holm20, α familiar=0,05.</strong> <a class="reference download internal" download="" href="../_downloads/7b22e6d5d614eb9ce5b4169d2514cc3f/protocol.json"><span class="xref download myst">Protocolo reducido</span></a>.</p></td>
+<td><p>RQ1 conserva esa familia. RQ2 y RQ3 son secundarias exploratorias con reglas aclaradas posteriormente; sus pruebas específicas no se presentan como ejecutadas ni como nuevos preregistros históricos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Pruebas y supuestos</strong></p></td>
+<td><p>Bootstrap pareado de semillas/calendario, bloques de 14 días, original B=4.999; t pareada y 64 cambios de signo, con un Holm20 separado por procedimiento. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_reduced_final_analysis.py">Motor registrado</a> · <a class="reference download internal" download="" href="../_downloads/aa93406d223038cc0d62455de8b9e45e/contrast_battery_map.csv"><span class="xref download myst">mapa de los 20 pares</span></a>.</p></td>
+<td><p>Los tres métodos están ejecutados. La definición concreta quedó congelada antes del scoring actual; no se atribuye a antes de todos los ajustes. t y signos son diagnósticos condicionados al calendario. Normalidad, simetría y validez de bloques no se demuestran por contarlos.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Número de ejecuciones R</strong></p></td>
+<td><p><strong>Seis semillas 271801–271806 por red</strong>, 78 ajustes; tres comparadores deterministas con R=1. Diez ajustes piloto: cinco semillas de iTransformer y cinco de GRU32. <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">Freeze</span></a> · <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">piloto</span></a>.</p></td>
+<td><p>R=6 es operativo y acotado por recursos. §9.2 conserva potencia 0,122953 frente al objetivo 0,80. Los clásicos no reciben repeticiones ficticias.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Reglas de exclusión</strong></p></td>
+<td><p>Fallos/divergencia se conservan con motivo; una oportunidad fallida no se reemplaza por otra configuración o semilla. Máscaras y soporte común anteriores al scoring. <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> · <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión</span></a>.</p></td>
+<td><p><strong>234 oportunidades HPO: 231 válidas, dos fallidas y una de desenlace desconocido.</strong> No se descartan fechas por error observado ni se convierten ausencias en ceros.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reglas de parada y ajuste</strong></p></td>
+<td><p>Seis plazas C01–C06 por red, tres folds y semilla HPO 271201; máximo 200 épocas y paciencia 20. La receta minimiza RMSE sobre 249 validaciones concatenadas; empate por ID estable. Final con épocas fijas: techo de la mediana de las tres mejores épocas ganadoras. <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</p></td>
+<td><p>El dominio y las reglas comunes no prueban igualdad de coste. SAE conserva AE1/AE2/supervisado. Las políticas de recursos y los cortes anteriores tienen fechas propias; no se escogen épocas con el test.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Espacio de arquitectura</strong></p></td>
+<td><p>Los trece cuerpos seleccionados y sus adaptaciones están identificados en <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y las <a class="reference download internal" download="" href="../_downloads/03331ecd4c8ddbd951d148fe6c64cf63/frozen_architecture_inputs.json"><span class="xref download myst">entradas congeladas</span></a>; TiDE vigente es <code class="docutils literal notranslate"><span class="pre">TIDE-D7-PUBLISHED-R0-v2</span></code>.</p></td>
+<td><p>El bloqueo inicial de TiDE se cerró con evidencia de fuente antes de sus ajustes. NAS es condicional a cuerpos sin arquitectura definida. Seis plazas HPO no se renombran como 1.000 arquitecturas ni borran obligaciones de variantes propias históricas.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Análisis exploratorios permitidos</strong></p></td>
+<td><p>Sensibilidades y diagnósticos identificados en el registro; residuos, DM/MCS, robustez, explicaciones, ablaciones, calibración y errores conservan planes y familias posteriores. <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a> · <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">§7.3</span></a>.</p></td>
+<td><p>§9.3 registra su alcance. Un plan previo a su propio cálculo, pero posterior a conocer A2, no los vuelve confirmatorios ni autoriza seleccionar otro modelo final.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Congelamiento de datos</strong></p></td>
+<td><p>Entrenamiento final de 655 ejemplos hasta el 31/10/2024; calibración de 53 fechas del 08/11 al 30/12/2024; evaluación de 608 del 01/01/2025 al 31/08/2026. <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">Admisión</span></a> identifica SHA256 del mercado diario y soporte; el <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">análisis</span></a> fija la máscara común.</p></td>
+<td><p>El freeze vincula pesos, escaladores, calibradores, protocolo y análisis antes de admitir los datos finales actuales. El puente del 31/12 y la historia compartida calibración/test son causales; no implican refit ni independencia. Los hashes no constituyen una auditoría global de todos los archivos privados.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="que-se-registro-antes-de-cada-etapa">
+<h3>9.1.2 Qué se registró antes de cada etapa<a class="headerlink" href="#que-se-registro-antes-de-cada-etapa" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Registro o transición</p></th>
+<th class="head"><p>Qué acredita</p></th>
+<th class="head"><p>Qué conserva su alcance propio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>E1 y registros del 06/11/2026</strong></p></td>
+<td><p>Contrato heredado y registro explícito de δg en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0"><code class="docutils literal notranslate"><span class="pre">599a29f</span></code></a>; dirección y familia histórica en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/ef2be289903517e9d6f3b70bd72981990d58479a"><code class="docutils literal notranslate"><span class="pre">ef2be289</span></code></a>.</p></td>
+<td><p>P0 y el catálogo anterior conservan sus recetas, cohortes y decisiones. No acreditan los ajustes ni las pruebas del catálogo reducido por transferencia automática.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Registro reducido del 12/11/2026</strong></p></td>
+<td><p>Dieciséis sistemas, seis plazas HPO, tres folds, calendario y R=6 en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/experiments/e2_reduced_protocol_20261112/protocol.json">protocolo versionado</a>. Las extensiones de cuerpo y recursos preceden a los trabajos que autorizan.</p></td>
+<td><p>Los campos iniciales <code class="docutils literal notranslate"><span class="pre">pending</span></code> o <code class="docutils literal notranslate"><span class="pre">test_battery_implementation_verified=false</span></code> describen ese corte de registro, no el resultado de la ejecución posterior.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Congelación antes del scoring actual</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">analysis_frozen=true</span></code>, 81 identidades físicas y vínculo al registro concreto de análisis en <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">final_freeze.json</span></a>.</p></td>
+<td><p>Es anterior al acceso/scoring actuales; no se presenta como anterior a todos los fits ni como recuperación del test ciego de E1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Planes posteriores y refinamiento</strong></p></td>
+<td><p>El plan <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/60cd2bb23f6da22797e2c3a7bf8225250753f903"><code class="docutils literal notranslate"><span class="pre">60cd2bb</span></code></a> precede al refinamiento de 20.000, que cotejó exactamente los veinte resultados originales. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>.</p></td>
+<td><p>Conserva hipótesis, δ, semillas y Holm; los veinte p ajustados siguen en 1. B=4.999 y B=20.000 son el mismo método con distinta resolución, no dos pruebas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El archivo denominado <a class="reference download internal" download="" href="../_downloads/4a49b5ec37489a8779fc384328e14343/current_protocol.json"><span class="xref download myst">current_protocol.json</span></a> conserva un <strong>protocolo anterior de 20 sistemas y familias con α=0,02</strong>. Su nombre no lo convierte en el ejecutor reducido vigente. El alcance actual se obtiene de §48, el protocolo reducido, el freeze y los recibos finales. Los comandos de P0 en archivos históricos corresponden a aquellos estudios; la reproducción actual entra por <a class="reference internal" href="08_reproducibilidad.html"><span class="std std-doc">§8</span></a> y <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
+<p>Holm aporta el control múltiple junto a los <strong>tres procedimientos reales por cada par</strong>. No es una cuarta prueba, y la alternativa de la guía «global o con control de comparaciones múltiples» no obliga a añadir otro global por ese solo motivo. Tampoco se exige independencia entre los tres métodos. Se distinguen sus supuestos y fuentes de incertidumbre; los suplementos globales no se suman como confirmaciones retrospectivas del mismo H₀ práctico.</p>
+</section>
+<section id="rq-hipotesis-y-respuesta-ante-los-supuestos">
+<h3>9.1.3 RQ, hipótesis y respuesta ante los supuestos<a class="headerlink" href="#rq-hipotesis-y-respuesta-ante-los-supuestos" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/a9ee3f80adf4a235028a455bed15bf52/rq_specification.json"><span class="xref download myst">especificación de RQ</span></a> conserva las reglas documentales actuales y su cronología. Las secundarias no heredan automáticamente la potencia o el control familiar de RQ1.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pregunta</p></th>
+<th class="head"><p>Hipótesis, procedimiento y estado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>RQ1 · Ganancia relevante</strong></p></td>
+<td><p>H₀:G≤δ frente a H₁:G&gt;δ, Top 10 frente a GRU32/Persistence, Holm20. Bootstrap pareado de semillas y bloques del calendario; t y signos como diagnósticos condicionados. <strong>Ejecutada, cero rechazos.</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RQ2 · Erosión de ventaja en alta volatilidad</strong></p></td>
+<td><p>Frente a GRU32, d=G_normal−G_alta; H₀:d≤δ frente a H₁:d&gt;δ. Régimen causal definido con σ₇(t−1) y umbral de entrenamiento; bootstrap temporal pareado recalculando RMSE por estrato. Si se informan los diez candidatos, Holm10 propio. <strong>Especificación secundaria aclarada después del scoring; contraste no ejecutado bajo esas reglas.</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>RQ3 · Mejora conjunta de error y coste</strong></p></td>
+<td><p>H₀:(G≤δ) o (c≥0), frente a G&gt;δ y c&lt;0; c es latencia del candidato menos GRU32. Intersección–unión, p conjunto=max(p_ganancia,p_coste), con costes crudos comparables y emparejados; Holm10 si se informan diez candidatos. <strong>No ejecutada; los perfiles agregados y Pareto no la sustituyen.</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para RQ1 se declaran dependencia temporal suficientemente corta, longitud de bloque adecuada e intercambiabilidad de trayectorias; los diagnósticos t/signos tienen supuestos adicionales de normalidad aproximada o simetría. Las sensibilidades no seleccionan el bloque que produzca un p favorable. Ante un supuesto no acreditado o soporte insuficiente se limita la interpretación y se declara lo no estimable; no se cambia retrospectivamente la nula, el margen, la familia o el método para declarar éxito. RQ2 requiere soporte temporal por estrato y RQ3 sesiones de latencia comparables; su ausencia no se rellena con otros suplementos.</p>
+</section>
+</section>
+<section id="potencia-y-numero-de-ejecuciones-resultado-publicado">
+<span id="e2-potencia-vigente"></span><h2>9.2 Potencia y número de ejecuciones: resultado publicado<a class="headerlink" href="#potencia-y-numero-de-ejecuciones-resultado-publicado" title="Link to this heading">#</a></h2>
+<p>La guía propone un piloto de al menos cinco semillas sobre dos o tres representantes y el efecto estandarizado d=δ/σ̂d. Su fórmula ilustrativa para una <strong>t bilateral</strong> es:</p>
+<div class="math notranslate nohighlight">
+\[
+R\approx\left(\frac{z_{1-\alpha'/2}+z_{1-\beta}}{d}\right)^2,
+\qquad d=\frac{\delta}{\widehat\sigma_d},\qquad 1-\beta\ge0,80.
+\]</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">piloto ejecutado</span></a> usa una planificación distinta y explícita: <strong>t no central unilateral</strong>, con frontera nula de ganancia δ y alternativa planificada <strong>2δ</strong>. Por ello, la señal por encima de la nula es 2δ−δ=δ. No se atribuye a la fórmula bilateral anterior la potencia publicada, ni se interpreta ésta como potencia para rechazar en la propia frontera nula.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento del piloto o de la planificación</p></th>
+<th class="head"><p>Valor publicado o derivación descriptiva</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Representantes y semillas</p></td>
+<td><p>iTransformer y GRU32; cinco pares 271701–271705, diez ajustes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fechas de desarrollo</p></td>
+<td><p>53 fechas, 08/11–30/12/2024; sus etiquetas no entraron en HPO</p></td>
+</tr>
+<tr class="row-even"><td><p>σ̂d, DE muestral de las ganancias pareadas</p></td>
+<td><p><strong>0,00025250638523446184</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>δ heredado</p></td>
+<td><p><strong>0,00025772842664981106</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>d=δ/σ̂d</p></td>
+<td><p><strong>≈1,02068</strong>, cociente descriptivo de los dos valores anteriores; la señal planificada (2δ−δ)/σ̂d coincide numéricamente</p></td>
+</tr>
+<tr class="row-odd"><td><p>R operativo / gl de la planificación</p></td>
+<td><p><strong>6 / 5</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>α usado para planificar</p></td>
+<td><p><strong>0,0025=0,05/20</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Potencia para la ganancia planificada 2δ</p></td>
+<td><p><strong>0,1229533091842126</strong>; objetivo <strong>0,80 no alcanzado</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Exceso mínimo detectable sobre δ al 80 %</p></td>
+<td><p><strong>0,0006209451759122912</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Ganancia total mínima al 80 % en esa planificación</p></td>
+<td><p><strong>0,0008786736025621022</strong>=δ+exceso mínimo detectable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/381b46b5a5f7d7092738522555bc0645/power_design_readout.json"><span class="xref download myst">desglose de diseño de potencia</span></a> distingue los valores originales de las divisiones descriptivas. El piloto publicado fija R=6 y obtiene su MDE; <strong>no publica un R mínimo que alcance 0,80</strong>. No se inventa ese número ni se traslada un R de P0 u otro protocolo. α=0,0025 es la referencia conservadora de planificación; no es una simulación exacta del procedimiento escalonado Holm20 ni una estimación de la potencia del bootstrap temporal primario.</p>
+<p>La desviación se estima con sólo <strong>cinco pares y dos representantes</strong>, sobre un calendario de 53 fechas. La aproximación t no central condiciona en esa desviación estimada y en su modelo de ganancias; no incorpora toda su incertidumbre ni garantiza potencia para cada candidato, RQ2/RQ3 o cambios temporales. La ausencia de significancia con esa capacidad no demuestra equivalencia o ausencia de efecto. <code class="docutils literal notranslate"><span class="pre">automatic_R_increase=false</span></code> conserva R=6 después del piloto y del scoring, sin perseguir un p favorable mediante nuevas semillas.</p>
+<p>Se distinguen <strong>variación de inicialización, variación por partición y dependencia temporal</strong>. Las seis semillas finales comparten entrenamiento de 655 y las 608 fechas; los tres folds HPO tienen entrenamiento expansivo solapado y sirven para seleccionar una receta. No se multiplican semillas × folds para afirmar 18 réplicas independientes. La inferencia sobre estas trayectorias y este calendario no identifica la variación de un algoritmo entre particiones o mercados; variar ambas fuentes requeriría otro diseño declarado, no renombrar los registros existentes.</p>
+<section id="recursos-y-regla-de-parada">
+<h3>Recursos y regla de parada<a class="headerlink" href="#recursos-y-regla-de-parada" title="Link to this heading">#</a></h3>
+<p>El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">cierre presupuestario</span></a> registra <strong>80 → 84 horas acumuladas</strong>, una ampliación de <strong>cuatro horas</strong>, <code class="docutils literal notranslate"><span class="pre">budget_reset=false</span></code> y cero reservas abiertas. El cargo cerrado es <strong>80,2561354201 horas</strong>, con <strong>13.477,9125 segundos de saldo</strong> en ese corte. Son cargos de reloj de pared acumulados, con historia y gestión; <strong>no GPU-horas activas</strong>, energía o importe monetario. La ampliación autorizada no cambia δ, familias, R o épocas y no convierte su saldo histórico en una orden de ejecutar nuevos trabajos.</p>
+<p>La política de fases nuevas fijó <strong>1.800 segundos por fase</strong>, con reservas completas de <strong>1.860 segundos</strong> para un ajuste normal y <strong>5.460</strong> para SAE. Es un techo de admisión, no su duración observada. Los resultados históricos conservan el límite y los cargos con que se obtuvieron, según <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</p>
+</section>
+</section>
+<section id="politica-de-hallazgos-exploratorios-y-decisiones">
+<span id="e2-exploratorios-vigente"></span><h2>9.3 Política de hallazgos exploratorios y decisiones<a class="headerlink" href="#politica-de-hallazgos-exploratorios-y-decisiones" title="Link to this heading">#</a></h2>
+<p>Los análisis no incluidos en la definición previa que gobierna su etapa se identifican como <strong>exploratorios</strong>. Un plan guardado antes de su cálculo mejora la trazabilidad del suplemento, pero no lo vuelve anterior al conocimiento de A2. Sus hallazgos generan hipótesis y no seleccionan otro modelo final con el periodo evaluado. Las <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">RQ de §1</span></a> y su <a class="reference download internal" download="" href="../_downloads/a9ee3f80adf4a235028a455bed15bf52/rq_specification.json"><span class="xref download myst">especificación documental</span></a> mantienen separados RQ1, RQ2 y RQ3.</p>
+<section id="inventario-por-alcance-de-modelos-configuraciones-y-analisis">
+<h3>9.3.1 Inventario por alcance de modelos, configuraciones y análisis<a class="headerlink" href="#inventario-por-alcance-de-modelos-configuraciones-y-analisis" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ámbito</p></th>
+<th class="head"><p>Cantidad y estado verificados</p></th>
+<th class="head"><p>Interpretación para el control de decisiones</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Selección neuronal reducida</p></td>
+<td><p><strong>13 redes × seis plazas × tres folds × una semilla = 234 oportunidades</strong>: 231 válidas, dos fallidas y una desconocida. Son 78 pares modelo–plaza antes de repetir por fold. <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>.</p></td>
+<td><p>El dominio reducido y sus fallos se conservan. Las reutilizaciones no se cuentan como entrenamientos GPU nuevos ni las recetas ganadoras como todo el esfuerzo de búsqueda.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selección de clásicos</p></td>
+<td><p>SeasonalNaive: tres periodos y nueve validaciones válidas. ARIMA: 18 órdenes × tres folds = 54 oportunidades; 51 válidas, dos no convergencias y un fallo de implementación; 15 órdenes con los tres folds válidos. <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>.</p></td>
+<td><p>Es otro dominio de búsqueda, no otras 54 oportunidades neuronales ni un motivo para sustituir fallos. Persistence tiene regla fija.</p></td>
+</tr>
+<tr class="row-even"><td><p>Ajustes y medidas finales</p></td>
+<td><p><strong>78 ajustes neuronales + 3 clásicos = 81 predictores</strong>, más los diez ajustes piloto. A2 publica seis medidas de desempeño: RMSE, MAE, sMAPE, R², cobertura y anchura; DE, R y n documentan variación/soporte.</p></td>
+<td><p>Los pilotos no aumentan el R final. Métricas secundarias, semillas y fechas no son configuraciones alternativas ni permiten cambiar la primaria después de ver el ranking.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Familia primaria y variantes</p></td>
+<td><p>Veinte pares, tres procedimientos originales por par, cada familia Holm20; refinamiento de 4.999 a 20.000 y sensibilidades de bloques de 7/28 días identificados. <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">§7.3</span></a>.</p></td>
+<td><p>No se cuentan variantes de resolución o bloques como métodos nuevos. La primaria mantiene <strong>cero rechazos</strong> de mejora mayor que δ.</p></td>
+</tr>
+<tr class="row-even"><td><p>Diagnósticos posteriores</p></td>
+<td><p>Residuos: 826 hipótesis; DM: 120 pares; MCS: un conjunto de 16; rangos: 13 redes y 78 Wilcoxon; GR/constancia: 40 hipótesis. Cada familia tiene estimando y control propios. <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> · <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a> · <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>.</p></td>
+<td><p>Sus p-valores no se agregan como votos de superioridad práctica ni como una sola familia confirmatoria global. MSE diaria y ganancia de RMSE&gt;δ responden a nulas distintas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Robustez, explicaciones y complementos</p></td>
+<td><p>Trece redes × cuatro perturbaciones × tres severidades; 52 áreas. Top 3 explicado en 24 fechas. <strong>81 reproducciones + 18 ajustes de tres ablaciones</strong>; tres contrastes Holm3. Calibración y ensemble mantienen planes posteriores. <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a> · <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> · <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a> · <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">§63</span></a>.</p></td>
+<td><p>Las reproducciones verifican los mismos predictores; las ablaciones son variantes experimentales separadas. No amplían el catálogo A2 ni autorizan retuning de su ganador.</p></td>
+</tr>
+<tr class="row-even"><td><p>Selección histórica anterior</p></td>
+<td><p><a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a> conserva <strong>1.484 registros nuevos completed</strong> de aquel corte y diseño, con su incidente físico original desconocido documentado.</p></td>
+<td><p>No son 1.484 ajustes adicionales del dominio reducido ni sistemas finales. Se preservan los IDs y el alcance de caché/contabilidad; no se suman a 231 como si fueran ensayos nuevos de una misma campaña.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Este inventario informa las cantidades que permiten las fuentes de cada ámbito; <strong>no reconstruye un total único y exhaustivo de todas las configuraciones, variantes y métricas históricas examinadas</strong>. Los diseños anteriores, P0, la réplica externa ETTh1 y los suplementos conservan sus identidades. Las sumas de cortes o recibos reutilizados no ofrecen por sí solas el número de decisiones independientes ni corrigen el efecto de explorar múltiples caminos.</p>
+</section>
+<section id="reglas-de-interpretacion-que-se-mantienen">
+<h3>9.3.2 Reglas de interpretación que se mantienen<a class="headerlink" href="#reglas-de-interpretacion-que-se-mantienen" title="Link to this heading">#</a></h3>
+<p>La ganancia de RMSE, su IC y el p ajustado se leen respecto a <strong>δ fijo</strong>. Ninguna comparación primaria demuestra mejora práctica tras Holm20; el menor valor observado de SAE no se convierte en superioridad universal. Los resultados negativos y los fallos permanecen accesibles. Un no rechazo de GR, Wilcoxon o una ablación no prueba estabilidad, equivalencia o contribución nula.</p>
+<p>RQ2/RQ3 conservan sus aclaraciones posteriores y sus requisitos de datos; no reciben automáticamente p-valores, potencia o control familiar de RQ1. La calibración temporal, el ensemble y el proxy de techo tienen reglas propias y no sustituyen A2. El δg previo se reconoce, mientras su cumplimiento formal actual y la consistencia validación–prueba siguen sin establecerse. La <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">discusión de §6</span></a> y la <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">decisión de §7.5</span></a> separan benchmark ejecutado de adecuación conjunta.</p>
+<p>Esta actualización utiliza registros guardados y aritmética descriptiva identificada. Mantiene modelos, semillas, recetas, datos y presupuesto; no incorpora nuevos ajustes, inferencia, pruebas de hipótesis o remuestreos. Las tareas pendientes conservan su diseño y alcance propios; no se presentan como análisis ya realizados.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Archivo documental: contenido anterior del capítulo 9</p>
+<p>Este bloque conserva íntegramente el contenido anterior y sus encabezados. Sus fechas, estados y enlaces corresponden a esos cortes; la lectura vigente sigue los apartados 9.1–9.3 anteriores.</p>
 <p><strong>Estado vigente del 14/11/2026:</strong> están cerrados la selección reducida, los <strong>78 ajustes finales neuronales</strong>, los <strong>diez pilotos</strong>, los <strong>tres comparadores</strong> y la evaluación común de los <strong>16 sistemas</strong>. Se completaron además <strong>81 reproducciones y 18 ablaciones</strong>. <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> reúne los registros y transiciones del ejecutor; <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>, los recibos del cierre complementario.</p>
-<section id="registros-que-definen-la-entrega">
-<h2>9.1 Registros que definen la entrega<a class="headerlink" href="#registros-que-definen-la-entrega" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="registros-que-definen-la-entrega">9.1 Registros que definen la entrega</h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Elemento</p></th>
@@ -488,24 +735,18 @@
 </table>
 </div>
 <p>Las enmiendas conservan sus fechas reales. Los cambios de adquisición, respaldo y recursos tienen recibos propios y no se renombran como cambios de receta científica. El registro original de P0, de noviembre de 2026, sigue disponible como antecedente y no acredita por sí solo los modelos incorporados posteriormente.</p>
-</section>
-<section id="familia-primaria-y-analisis-posteriores">
-<h2>9.2 Familia primaria y análisis posteriores<a class="headerlink" href="#familia-primaria-y-analisis-posteriores" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="familia-primaria-y-analisis-posteriores">9.2 Familia primaria y análisis posteriores</h2>
 <p>La familia primaria contiene <strong>20 pares</strong>: cada candidato frente a GRU32 y frente a Persistence, con margen δ heredado y ajuste Holm. La evaluación original usó 4.999 sorteos. El <a class="reference download internal" download="" href="../_downloads/d79ed0dea95edbbce5dd1b3f2a6e6f59/analysis_plan.json"><span class="xref download myst">plan posterior</span></a>, registrado antes de sus cálculos en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/60cd2bb23f6da22797e2c3a7bf8225250753f903"><code class="docutils literal notranslate"><span class="pre">60cd2bb</span></code></a>, amplió <strong>la misma familia</strong> a 20.000. Reprodujo exactamente los veinte resultados originales antes del refinamiento; todos los p Holm siguen siendo 1. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> distingue esa precisión Monte Carlo de un preregistro anterior al conocimiento del test.</p>
 <p>Los diagnósticos F2a, DM/MCS, robustez, explicaciones, ablaciones y taxonomía se identifican como suplementos posteriores. Sus familias y estimandos no se presentan como confirmaciones adicionales de cada contraste primario. Se conservan las hipótesis, recetas, semillas y resultados negativos.</p>
-</section>
-<section id="potencia-repeticiones-y-desviaciones">
-<h2>9.3 Potencia, repeticiones y desviaciones<a class="headerlink" href="#potencia-repeticiones-y-desviaciones" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="potencia-repeticiones-y-desviaciones">9.3 Potencia, repeticiones y desviaciones</h2>
 <p>El piloto midió cinco semillas pareadas de iTransformer y GRU32. Con R=6 y el efecto planificado, su potencia condicional estimada fue <strong>0,123</strong>, inferior a 0,80. Se conservó R=6 por recursos y se declaró la limitación; no se amplió R tras ver el test para buscar significación. El <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">informe de potencia y MDE</span></a> conserva supuestos y alcance.</p>
 <p>La partición se hereda de E1 conforme a la guía. La congelación anterior al scoring de E2 acredita el orden de esta campaña; el calendario conserva su condición histórica conocida. <strong>δg=0,00025772842664981106 sí estaba registrado en el commit <code class="docutils literal notranslate"><span class="pre">599a29f</span></code> del 6 de noviembre</strong>, antes de la campaña actual, y la ampliación <code class="docutils literal notranslate"><span class="pre">ef2be289</span></code> definió la dirección de la prueba de tolerancia. El <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">linaje registrado de δg</span></a> distingue ese antecedente de la prueba formal aún no acreditada para los modelos actuales. El <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B actual</span></a> recoge esta aclaración sin alterar los registros ni los análisis guardados.</p>
-</section>
-<section id="cierre-y-trazabilidad">
-<h2>9.4 Cierre y trazabilidad<a class="headerlink" href="#cierre-y-trazabilidad" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="cierre-y-trazabilidad">9.4 Cierre y trazabilidad</h2>
 <p>El <a class="reference download internal" download="" href="../_downloads/ebf8916e830254b68c2d6fa14a7a1adc/status.json"><span class="xref download myst">estado final</span></a> documenta 99/99 ajustes complementarios cerrados, sin reservas abiertas. Los fallos HPO, el desenlace desconocido T4, las incidencias ARIMA y las pausas de transporte conservan sus cargos y recibos. Un build del libro comprueba presentación; una auditoría aritmética comprueba los resultados guardados; los recibos de reajuste acreditan el entrenamiento realmente repetido. Sus alcances se separan en <a class="reference internal" href="08_reproducibilidad.html"><span class="std std-doc">§8</span></a>.</p>
-</section>
-<section id="archivo-de-la-version-anterior">
-<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="archivo-de-la-version-anterior">Archivo de la versión anterior</h2>
 <p>La <a class="reference download internal" download="" href="../_downloads/cd1852b58420e573d27c754a3a5073ce/09_protocolo_registrado.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con sus estados y fechas históricos. El <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a> fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ni su Apéndice B actual de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
+</div>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -577,11 +818,21 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registros-que-definen-la-entrega">9.1 Registros que definen la entrega</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-y-analisis-posteriores">9.2 Familia primaria y análisis posteriores</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-repeticiones-y-desviaciones">9.3 Potencia, repeticiones y desviaciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-y-trazabilidad">9.4 Cierre y trazabilidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plantilla-de-preregistro-aplicada-al-protocolo-ejecutado">9.1 Plantilla de preregistro aplicada al protocolo ejecutado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#campos-valores-y-alcance-temporal">9.1.1 Campos, valores y alcance temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-registro-antes-de-cada-etapa">9.1.2 Qué se registró antes de cada etapa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rq-hipotesis-y-respuesta-ante-los-supuestos">9.1.3 RQ, hipótesis y respuesta ante los supuestos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-numero-de-ejecuciones-resultado-publicado">9.2 Potencia y número de ejecuciones: resultado publicado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-y-regla-de-parada">Recursos y regla de parada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politica-de-hallazgos-exploratorios-y-decisiones">9.3 Política de hallazgos exploratorios y decisiones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inventario-por-alcance-de-modelos-configuraciones-y-analisis">9.3.1 Inventario por alcance de modelos, configuraciones y análisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-interpretacion-que-se-mantienen">9.3.2 Reglas de interpretación que se mantienen</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

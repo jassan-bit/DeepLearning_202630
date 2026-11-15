@@ -438,12 +438,20 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punto-de-entrada-de-la-entrega">8.1 Punto de entrada de la entrega</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-y-fuentes-cientificas">8.2 Entorno y fuentes científicas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-analisis-de-pronosticos-guardados">8.3 Reconstrucción y análisis de pronósticos guardados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-del-entrenamiento-y-presupuesto">8.4 Reproducción del entrenamiento y presupuesto</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-la-reproduccion">8.5 Límites de la reproducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-fijado-y-reproducibilidad-minima">8.1 Entorno fijado y reproducibilidad mínima</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repositorio-instalacion-y-versiones-por-etapa">8.1.1 Repositorio, instalación y versiones por etapa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas-configuraciones-particiones-y-determinismo">8.1.2 Semillas, configuraciones, particiones y determinismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-comando-para-auditar-y-reconstruir-la-tabla-principal">8.1.3 Un comando para auditar y reconstruir la tabla principal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-entorno-limpio-y-discrepancias">8.1.4 Prueba de entorno limpio y discrepancias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etica-privacidad-sesgos-y-licencias">8.2 Ética, privacidad, sesgos y licencias</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-subgrupos-y-consecuencias-del-error">8.2.1 Datos, subgrupos y consecuencias del error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-licencias-estan-respaldadas">8.2.2 Qué licencias están respaldadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-cientifica-verificable">8.3 Comunicación científica verificable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice-b-y-alcance-del-cierre">8.4 Apéndice B y alcance del cierre</a></li>
 </ul>
             </nav>
         </div>
@@ -457,18 +465,175 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reproducibilidad-etica-y-comunicacion-cientifica">
 <span id="e2-reproducibilidad"></span><span id="reproducibilidad-de-la-entrega-vigente"></span><h1>8. Reproducibilidad, Ética y Comunicación Científica<a class="headerlink" href="#reproducibilidad-etica-y-comunicacion-cientifica" title="Link to this heading">#</a></h1>
+<p><strong>Lectura vigente:</strong> la tabla principal de <strong>16 sistemas sobre 608 fechas</strong> tiene una reproducción registrada de sus <strong>81 predictores en un checkout y un entorno Python nuevos</strong>, con discrepancia máxima absoluta de predicción <strong>0</strong> en calibración y prueba. La guía admite reproducción por otra persona <strong>o en un entorno limpio</strong>: la segunda vía está ejecutada. Se conservan el método, las discrepancias y los límites de <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>, sin exigir ambos mecanismos ni atribuir una réplica a otro equipo que no está documentada.</p>
+<p>Este capítulo desarrolla los requisitos de <strong>§8 y §8.1 de la guía, pp. 40–41</strong>: entorno, instalación, semillas, evidencia reproducible, uso responsable y comunicación de resultados. La <a class="reference download internal" download="" href="../_downloads/cbd885f4a852e58501936e577fcef584/guide_checklist.csv"><span class="xref download myst">lista verificable</span></a>, la <a class="reference download internal" download="" href="../_downloads/8591a07caaed175dd85f9e04c18d7ee7/decision_traceability.csv"><span class="xref download myst">trazabilidad</span></a>, el <a class="reference download internal" download="" href="../_downloads/b804f031f34f024ef73aa83d01bcf4c1/current_evidence_index.json"><span class="xref download myst">índice de evidencias</span></a> y el <a class="reference download internal" download="" href="../_downloads/2e9884d04bdb6f95d29878fb57d88259/manifest.json"><span class="xref download myst">manifiesto</span></a> distinguen el alcance acreditado de los puntos parciales. El <a class="reference download internal" download="" href="../_downloads/c43b74badd14d7917f8e339cf6557da2/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> enlaza los insumos; la <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">tabla A2 original</span></a> y sus resultados científicos conservan su identidad.</p>
+<section id="entorno-fijado-y-reproducibilidad-minima">
+<span id="e2-entorno-reproduccion-minima-vigente"></span><h2>8.1 Entorno fijado y reproducibilidad mínima<a class="headerlink" href="#entorno-fijado-y-reproducibilidad-minima" title="Link to this heading">#</a></h2>
+<section id="repositorio-instalacion-y-versiones-por-etapa">
+<h3>8.1.1 Repositorio, instalación y versiones por etapa<a class="headerlink" href="#repositorio-instalacion-y-versiones-por-etapa" title="Link to this heading">#</a></h3>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630">repositorio del proyecto</a> conserva código, configuraciones, registros y manifiestos. El motor científico ejecutado está fijado en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/1e8745497b484518f766b6da5c19be8362d9add7"><code class="docutils literal notranslate"><span class="pre">1e8745497b484518f766b6da5c19be8362d9add7</span></code></a>; el cierre complementario conserva su procedencia en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. Los puntos de entrada actuales son este capítulo, <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">el protocolo ejecutado</span></a> y <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">el Apéndice B</span></a>. Los comandos históricos E1/P0 del README y de otros capítulos conservan su alcance y no describen la ejecución del catálogo actual.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Etapa</p></th>
+<th class="head"><p>Versiones y archivo de instalación</p></th>
+<th class="head"><p>Alcance comprobado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Benchmark Bitcoin y reproducción limpia</strong></p></td>
+<td><p><strong>Python 3.12.12, Torch 2.8.0+cu126, CUDA 12.6, NVIDIA A100-SXM4-80GB</strong>; <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/requirements-e2-training-gpu.lock.txt">requirements GPU</a></p></td>
+<td><p>El <a class="reference download internal" download="" href="../_downloads/6011ed2c7a68b2874269fc1bef4ecb8a/historical_clean_runtime.json"><span class="xref download myst">recibo del entorno limpio</span></a> conserva perfil de paquetes, hash del lock, instalación en venv nuevo sin paquetes del sistema y checkout del commit científico.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Diagnósticos CPU de pronósticos guardados</strong></p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/requirements-e2-f2a-audit.lock.txt">requirements F2a</a>: NumPy 2.3.5, pandas 2.2.3, SciPy 1.16.3, statsmodels 0.14.5, Matplotlib 3.10.8</p></td>
+<td><p>Es otro entorno. El <a class="reference download internal" download="" href="../_downloads/6f881bc6ffc1ddf9e9e85d272adde956/runtime.json"><span class="xref download myst">runtime del refinamiento temporal</span></a> informa Python 3.12.14 y análisis CPU, sin entrenamiento ni inferencia de modelos.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Paper guía, ETTh1</strong></p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/requirements-paper-guide.lock.txt">requirements de la réplica</a>; Python 3.12.14, Torch 2.15.0+cpu, NumPy 2.5.4, pandas 3.1.0, SciPy 1.18.1</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/fbc91d017fbdde44dfac807741db64d1/runtime_versions.json"><span class="xref download myst">Runtime observado</span></a>, CPU. No es el entorno histórico de los autores ni el entrenamiento A100 de Bitcoin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Auditor de entrega</strong></p></td>
+<td><p>Python 3.12 o posterior, biblioteca estándar; no necesita instalar NumPy ni Torch</p></td>
+<td><p>Verifica integridad y reconstruye A2 desde predicciones ya guardadas. El informe registra el intérprete con el que se invoca.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Construcción editorial</strong></p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/requirements-book.lock.txt">requirements del libro</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/BUILD.md">BUILD.md</a></p></td>
+<td><p>Renderiza la documentación; compilar el libro no reproduce los entrenamientos ni acredita sus supuestos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El archivo GPU fija versiones de las dependencias listadas, incluidas bibliotecas CUDA transitivas. El perfil observado del entorno limpio permite cotejarlas con lo instalado; un lock con otro alcance no se presenta como equivalente. Por ejemplo, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/requirements-e2-dated-core.lock.txt">dated-core</a> declara únicamente dependencias directas, no un cierre transitivo completo. Los locks CPU y del paper guía también conservan sus listas propias.</p>
+<p>Se recuperó además el <strong>inventario completo de las 44 distribuciones Python observadas</strong> mediante <code class="docutils literal notranslate"><span class="pre">importlib.metadata.distributions()</span></code>, conservado en el recibo original y cotejado por el productor en el entorno limpio. El <a class="reference download internal" download="" href="../_downloads/3662227d4a49accebd134996d1a283fc/environment_observed.lock.txt"><code class="xref download docutils literal notranslate"><span class="pre">lock</span> <span class="pre">observado</span> <span class="pre">reconstruido</span></code></a> reproduce exactamente el hash <code class="docutils literal notranslate"><span class="pre">6d02a90c8551905126417f6c92c5248b66d249c8b5930babb96c7f60e6f93716</span></code> registrado como <code class="docutils literal notranslate"><span class="pre">package_lock_sha256</span></code>. Los <a class="reference download internal" download="" href="../_downloads/54d518447e0f73bf3c330ea1b6d6f743/environment_observed.json"><span class="xref download myst">metadatos de recuperación</span></a> explican el orden de nombres, versiones y saltos de línea usado por el generador original. Es recuperación verificable de un inventario instalado, sin nueva instalación; no equivale a fijar el driver o la imagen del sistema operativo.</p>
+<p>La plataforma objetivo del lock GPU es <strong>Linux x86_64</strong>. El recibo limpio no fija una versión de distribución/imagen Colab y del sistema operativo con digest reproducible; no se la sustituye por la versión del equipo usado para compilar o auditar el libro. Por tanto, la fijación del entorno a nivel de imagen/SO conserva ese límite, aunque la reproducción observada esté acreditada. <strong>El contenedor es opcional en E2</strong>; la guía lo exige para E3, como requisito de ese futuro entregable, sin convertir su ausencia en un incumplimiento obligatorio de E2.</p>
+<p>Para preparar el entorno de paquetes GPU desde la raíz de un checkout versionado, sin iniciar ajustes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.12<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv-e2-gpu
+.venv-e2-gpu/bin/python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-e2-training-gpu.lock.txt
+</pre></div>
+</div>
+<p>Esta instalación requiere la plataforma y compatibilidad CUDA indicadas; no ejecuta el benchmark. La reproducción de entrenamiento registrada ya está cerrada y se consulta en §55. Los pesos, escaladores, fuentes y recibos permanecen en <strong>GitHub</strong>, con ubicaciones y hashes en sus manifiestos; <code class="docutils literal notranslate"><span class="pre">/content</span></code> fue almacenamiento temporal. La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/results/e2-reduced-delivery-v1">rama de resultados</a> y la <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/releases/tag/e2-reduced-results-20261112-v1">release original</a> son puntos de entrada; las releases particionadas se resuelven por el manifiesto de cada artefacto.</p>
+</section>
+<section id="semillas-configuraciones-particiones-y-determinismo">
+<h3>8.1.2 Semillas, configuraciones, particiones y determinismo<a class="headerlink" href="#semillas-configuraciones-particiones-y-determinismo" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento conservado</p></th>
+<th class="head"><p>Evidencia y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Semillas de ajuste</p></td>
+<td><p>HPO <strong>271201</strong>; finales neuronales <strong>271801–271806</strong>, seis inicializaciones por cada una de trece redes. Los tres clásicos deterministas tienen una trayectoria cada uno.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Configuraciones</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/44d9c7465abdc0e827c825eb7222e73e/hpo_configurations_registered_bytes_v2.csv"><span class="xref download myst">Tuplas registradas</span></a>, recetas ganadoras y épocas derivadas de validación. SAE conserva AE1/AE2/supervisión; no se descartan etapas auxiliares al contar ajustes o costes.</p></td>
+</tr>
+<tr class="row-even"><td><p>Particiones</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">Auditoría de soportes</span></a>: tres folds HPO, <strong>253/435/527 train y 83 validación</strong>; final <strong>655 train, 53 calibración y 608 prueba</strong>; embargo y puente causal explícitos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Predictores y datos</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">Congelación de 81 predictores</span></a>, máscaras/firmas, <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión de datos</span></a> y <a class="reference download internal" download="" href="../_downloads/756f78194f862137773983a9f95d8911/manifest.json"><span class="xref download myst">manifiesto de insumos públicos</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Tracking</p></td>
+<td><p>JSON/JSONL, hashes SHA-256, recibos por intento, checkpoints y diarios aditivos. Se conservan fallos, reutilizaciones y estados terminales, sin atribuir el registro propio a MLflow o W&amp;B.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El núcleo establece semillas de <strong>Python y Torch, incluida CUDA</strong>, y generadores explícitos para el orden de los lotes. Los análisis NumPy usan generadores y semillas propios registrados: <strong>no se afirma una semilla global NumPy que el núcleo no establece</strong>. El código de <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_staged_training.py">semillas</a> y la <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_cuda_training.py">política CUDA</a> permiten comprobar la distinción.</p>
+<p>La política ejecutada solicita algoritmos deterministas de Torch, <strong>FP32; AMP y TF32 desactivados, cuDNN benchmark desactivado</strong>, y <code class="docutils literal notranslate"><span class="pre">CUBLAS_WORKSPACE_CONFIG=:4096:8</span></code> antes de inicializar CUDA. Es una configuración explícita, no una garantía universal de igualdad entre dispositivos, drivers o versiones. La igualdad numérica comunicada corresponde a los recibos de las ejecuciones observadas. Las semillas controlan aleatoriedad computacional sobre una misma cronología; no constituyen mercados independientes ni resuelven potencia o fuga por sí solas.</p>
+</section>
+<section id="un-comando-para-auditar-y-reconstruir-la-tabla-principal">
+<h3>8.1.3 Un comando para auditar y reconstruir la tabla principal<a class="headerlink" href="#un-comando-para-auditar-y-reconstruir-la-tabla-principal" title="Link to this heading">#</a></h3>
+<p>Desde la raíz del repositorio, el comando actual es:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/audit_e2_delivery.py<span class="w"> </span>--require-supplements<span class="w"> </span>--output<span class="w"> </span>work/e2_delivery_audit.json
+</pre></div>
+</div>
+<p>Funciona <strong>sin red, GPU ni paquetes externos</strong> cuando el checkout contiene los insumos publicados. Si se desea aislar también este auditor en un venv nuevo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.12<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv-e2-audit
+.venv-e2-audit/bin/python<span class="w"> </span>scripts/audit_e2_delivery.py<span class="w"> </span>--require-supplements<span class="w"> </span>--output<span class="w"> </span>work/e2_delivery_audit.json
+</pre></div>
+</div>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/scripts/audit_e2_delivery.py">código del auditor</a> comprueba los archivos enumerados en los manifiestos que admite, hashes, calendario, máscaras y semillas. <strong>Reconstruye 81 RMSE individuales y 16 medias A2 a partir de pronósticos congelados</strong>; el <a class="reference download internal" download="" href="../_downloads/eca0703c606c87ab8f1af8e7d3c69ea6/delivery_audit.json"><span class="xref download myst">informe publicado</span></a> registra discrepancia máxima <strong>2,6020852139652106×10⁻¹⁸</strong>. También coteja informes y vínculos de 81 reproducciones/18 ablaciones, cierre contable y veinte contrastes refinados a 20.000 remuestreos.</p>
+<p>El comando reconstruye aritmética y verifica integridad; <strong>no vuelve a entrenar, ejecutar inferencia, repetir sorteos bootstrap o comparar tensores deserializados</strong>. Tampoco se presenta como un único comando que regenere todas las tablas y figuras de todos los capítulos. Los análisis y visualizaciones tienen scripts e insumos identificados en sus páginas: <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">inferencia temporal</span></a>, <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">taxonomía</span></a>, <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">galería de curvas</span></a>, <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark</span></a> y <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">ruta temporal</span></a>. La automatización integral de todos esos productos mantiene alcance parcial en B21 del Apéndice B.</p>
+<p>La A2 conserva SHA-256 <code class="docutils literal notranslate"><span class="pre">879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1</span></code>. Su estimando es la <strong>media de las RMSE individuales</strong>, no la RMSE del promedio de predicciones. Las comprobaciones de manipulación de hashes, calendario, semillas, estimando y sorteos están documentadas en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>; esta actualización no vuelve a ejecutarlas.</p>
+</section>
+<section id="prueba-de-entorno-limpio-y-discrepancias">
+<h3>8.1.4 Prueba de entorno limpio y discrepancias<a class="headerlink" href="#prueba-de-entorno-limpio-y-discrepancias" title="Link to this heading">#</a></h3>
+<p>La <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">reproducción registrada</span></a> repitió <strong>78 ajustes neuronales y reconstruyó tres clásicos</strong>, en un nuevo checkout del motor y venv sin <code class="docutils literal notranslate"><span class="pre">system-site-packages</span></code>. Reutilizar una caché de distribución de paquetes no significa reutilizar el entorno instalado. Los <a class="reference download internal" download="" href="../_downloads/3d1c86bef8dfc14555329e1d68e4d9c9/reproduction.csv"><span class="xref download myst">81 recibos por predictor</span></a> y el <a class="reference download internal" download="" href="../_downloads/229a68f08ddc2283c273a8a90141f047/reproduction_by_model.csv"><span class="xref download myst">resumen por sistema</span></a> documentan <strong>81/81 comprobaciones aprobadas</strong>, diferencia máxima de pronóstico <strong>0</strong> en las 53 fechas de calibración y 608 de prueba; los productores también registraron igualdad de los 78 estados neuronales y parámetros exactos de los 3 clásicos.</p>
+<p>La discrepancia cero de esta reproducción y el pequeño residuo aritmético del auditor CPU son comprobaciones distintas. La primera fue ejecutada por los workers A100; la segunda recalcula métricas de archivos ya guardados, sin repetir aquellos ajustes o comparaciones tensoriales. No se atribuye la ejecución a un segundo equipo ni a hardware distinto del documentado.</p>
+<p>Las <strong>18 ejecuciones de ablación</strong> pertenecen a tres variantes SAE por seis semillas, con sus propias comparaciones; no amplían el número de predictores principales ni sustituyen la prueba de entorno limpio. El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">diario final</span></a> conserva el cierre de 84 horas autorizadas, <strong>80,2561 h contabilizadas</strong> y cero reservas abiertas. Son horas de campaña, no consumo energético ni GPU activa. La guía no exige 99 ajustes adicionales: ese fue el plan particular de reproducción y ablación ejecutado.</p>
+<p>La reproducción numérica conserva recetas, datos y periodo heredado de E1. Acredita trazabilidad y repetición bajo esas condiciones; no demuestra ausencia de sobreajuste, potencia suficiente, cobertura universal o nueva generalización prospectiva. No se relanza aquí un controlador cerrado.</p>
+</section>
+</section>
+<section id="etica-privacidad-sesgos-y-licencias">
+<span id="e2-etica-uso-responsable-vigente"></span><h2>8.2 Ética, privacidad, sesgos y licencias<a class="headerlink" href="#etica-privacidad-sesgos-y-licencias" title="Link to this heading">#</a></h2>
+<section id="datos-subgrupos-y-consecuencias-del-error">
+<h3>8.2.1 Datos, subgrupos y consecuencias del error<a class="headerlink" href="#datos-subgrupos-y-consecuencias-del-error" title="Link to this heading">#</a></h3>
+<p>La fuente es <strong>BTCUSDT de Binance Spot</strong>, con velas de mercado agregadas y sin identificadores personales en los datos utilizados. El uso declarado es académico y no comercial; no se intenta identificar operadores. Esa ausencia de datos personales no elimina los sesgos de un único proveedor, activo, mercado y periodo, ni acredita representatividad de otros mercados.</p>
+<p>El <a class="reference internal" href="02_eda.html"><span class="std std-doc">EDA</span></a>, los <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">errores por trimestre</span></a>, la <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">taxonomía</span></a> y la <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">cobertura por grupos</span></a> desagregan resultados por calendario, rango de pronóstico y régimen disponible al origen. Los grupos definidos con el objetivo ya realizado se señalan como descripciones retrospectivas. Las diferencias de soporte y cobertura no se ocultan: una cobertura global cercana al 90 % puede coexistir con infracobertura en pronósticos altos. <strong>Estos grupos temporales no son una evaluación de equidad demográfica</strong>; no hay atributos personales que permitan demostrarla, ni se afirma que sea innecesaria en otra aplicación.</p>
+<p>Subestimar volatilidad podría infravalorar riesgo; sobreestimarla podría restringir una decisión de exposición. Son consecuencias potenciales, no pérdidas o beneficios económicos medidos por este benchmark. Se pronostica σ₇, no rentabilidad, decisión de inversión o VaR. No se han validado utilidad financiera, costes de transacción ni un sistema de negociación; las explicaciones por oclusión tampoco identifican causas económicas. Los resultados adversos, fallos e infracoberturas se conservan junto a los favorables.</p>
+</section>
+<section id="que-licencias-estan-respaldadas">
+<h3>8.2.2 Qué licencias están respaldadas<a class="headerlink" href="#que-licencias-estan-respaldadas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Material</p></th>
+<th class="head"><p>Evidencia y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Datos Binance Vision</strong></p></td>
+<td><p><a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">§1</span></a> conserva <strong>Vision Dataset Terms v1.0</strong>, actualizados 26/08/2026 y revisados en E1, con atribución <strong>CC BY-NC-SA 4.0 salvo designación específica y condiciones adicionales</strong>. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/TERMS_AND_CONDITIONS.md">Texto conservado</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/94a4b0324e93361e8928d708fdfeb50110e3686f/book/_static/data_source/terms_snapshot.json">procedencia</a>. No se atribuye MIT a los precios.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Datos ETTh1 de la réplica</strong></p></td>
+<td><p>La <a class="reference download internal" download="" href="../_downloads/224307f475a23b9c0ef4bc313cd7b11e/LICENSE.ETDataset.txt"><span class="xref download myst">licencia primaria de ETDataset</span></a>, conservada exactamente desde <code class="docutils literal notranslate"><span class="pre">zhouhaoyi/ETDataset&#64;1d16c8f4f943005d613b5bc962e9eeb06058cf07</span></code>, identifica <strong>CC BY-ND 4.0</strong>, con atribución y condición de no distribuir material adaptado. Esta prueba no se interpreta como autorización nueva para redistribuir los CSV transformados.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Código de autores y bibliotecas</strong></p></td>
+<td><p>Fuentes fijadas y adaptaciones identificadas en <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a>. Se conserva, por ejemplo, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/experiments/e2_tide_published_r0_20261112/LICENSE.TiDE">Apache 2.0 de TiDE</a>. Esa licencia no se extiende automáticamente a todos los ports, dependencias o datos. La comprobación exhaustiva de permisos por componente mantiene alcance parcial.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Pesos y preentrenamiento</strong></p></td>
+<td><p>Los predictores E2 se ajustaron con sus propias semillas y datos admisibles; SAE preentrena sus encoders con train. No se declara uso de un checkpoint fundacional externo como si su licencia ya estuviera auditada. La procedencia del código y sus condiciones siguen siendo independientes de quién ajustó los pesos.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Artículos, PDF y figuras de terceros</strong></p></td>
+<td><p>DOI, versión, localizadores y fuentes se conservan en <a class="reference internal" href="03_literatura.html"><span class="std std-doc">la revisión</span></a> y <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">el paper guía</span></a>. Acceso o lectura no equivalen a permiso uniforme de redistribución. Los esquemas propios se identifican como tales; no se atribuye una licencia abierta común a los originales.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/c78fb44e1cb3f5ac02403538ee242a87/license_register.csv"><span class="xref download myst">registro de licencias y alcances</span></a> y las <a class="reference download internal" download="" href="../_downloads/d63e748299a8652c7d5f0d2d327a1a14/license_sources.json"><span class="xref download myst">fuentes primarias con sus hashes</span></a> conservan estas comprobaciones por material; no extienden una licencia a los componentes que carecen de adjudicación completa.</p>
+<p><strong>Un repositorio público no demuestra por sí solo permiso de reutilización o redistribución.</strong> La evidencia anterior identifica condiciones verificadas y sus límites; no se declara una auditoría legal completa a partir de citas o hashes. Datos, código, pesos y materiales editoriales conservan condiciones diferenciadas.</p>
+</section>
+</section>
+<section id="comunicacion-cientifica-verificable">
+<span id="e2-comunicacion-cientifica-vigente"></span><h2>8.3 Comunicación científica verificable<a class="headerlink" href="#comunicacion-cientifica-verificable" title="Link to this heading">#</a></h2>
+<p>Las afirmaciones se vinculan a datos, estimandos y pruebas concretos, con bibliografía BibTeX en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/35a770a8a53e4a5d6692b7383e2c9a93649f0733/book_e2/references.bib">references.bib</a>. Los registros distinguen DOI editorial, DOI de preprint, versión leída y repositorio de autores; un identificador <code class="docutils literal notranslate"><span class="pre">10.48550/arXiv...</span></code> no se presenta como DOI de revista ni como prueba de cuartil. La <a class="reference internal" href="03_literatura.html"><span class="std std-doc">revisión sistemática</span></a> conserva sus límites de acceso y comparabilidad, sin sustituir referencias verificables por afirmaciones generales.</p>
+<p>Las tablas y figuras actuales explicitan unidades, agregación, número de ejecuciones y alcance de las bandas:</p>
+<ul class="simple">
+<li><p>La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">galería de las trece redes</span></a> muestra <strong>78 curvas finales individuales</strong> y <strong>29 curvas HPO disponibles de 39</strong>, con diez ausencias de caché identificadas. Distingue RMSE original, épocas reales y fases SAE; no es sólo TimeMixer ni traslada la MSE estandarizada ETTh1 a Bitcoin.</p></li>
+<li><p>El <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark</span></a> identifica barras <strong>±1 DE entre semillas</strong>, IC95 % con su método y clásicos R=1 sin barras ficticias. No se confunden DE, IC del score e intervalos predictivos; los gráficos de barras de comparación mantienen la variación registrada.</p></li>
+<li><p>El panel de calibración del Top 3 de <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a> utiliza los IC temporales de cobertura ya guardados. Las anchuras son puntos descriptivos sin IC disponibles: se identifican como tales, sin barras de incertidumbre inventadas ni una afirmación de superioridad entre políticas.</p></li>
+<li><p>Los Pareto y <a class="reference internal" href="07_ruta_temporal.html"><span class="std std-doc">rangos de la ruta temporal</span></a> explican coste, hardware, FLOPs core y exclusiones; las conexiones de no rechazo Wilcoxon–Holm no demuestran equivalencia ni una distancia crítica única de Nemenyi.</p></li>
+</ul>
+<p>Se reportan p brutos y ajustados, efectos e intervalos según sus familias. El menor RMSE observado no se convierte en superioridad práctica confirmada: los veinte p Holm primarios siguen en 1. El test y δ heredados se aceptan como continuidad E1–E2–E3, con exposición previa declarada; δg sí estaba registrado y su prueba comparable actual sigue sin establecerse. Los refinamientos numéricos y análisis posteriores conservan sus identidades, sin atribuirles una fecha previa ni seleccionar una conclusión por el contraste más favorable.</p>
+</section>
+<section id="apendice-b-y-alcance-del-cierre">
+<span id="e2-estado-reproduccion-vigente"></span><h2>8.4 Apéndice B y alcance del cierre<a class="headerlink" href="#apendice-b-y-alcance-del-cierre" title="Link to this heading">#</a></h2>
+<p>El <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B vigente</span></a> publica los 21 ítems literales, sus estados y fuentes, con descargas <a class="reference download internal" download="" href="../_downloads/4cb8d50a93603ae654e28c490b3364d5/appendix_B_clarified.csv"><span class="xref download myst">CSV</span></a> y <a class="reference download internal" download="" href="../_downloads/885aab622bb7353628082f124d92eb45/appendix_B_clarified.json"><span class="xref download myst">JSON</span></a>. <strong>La lista está publicada; eso no significa que todos los ítems estén completos.</strong> No se crea un porcentaje global ni se infiere cumplimiento de una compilación correcta.</p>
+<p>La reproducción en entorno limpio está acreditada dentro de sus condiciones. El comando único reconstruye A2 y verifica la entrega, mientras la regeneración integral de todos los productos continúa parcial. La auditoría de fuga completa, la prueba formal de δg, la potencia objetivo, costes exhaustivos y límites de incertidumbre requieren evidencias distintas de la discrepancia cero. En este punto también se distinguen la fijación de imagen/SO no completa y la revisión no exhaustiva de licencias por componente. El contenedor sigue siendo opcional para E2.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/cbd885f4a852e58501936e577fcef584/guide_checklist.csv"><span class="xref download myst">lista de requisitos de esta consolidación</span></a> mantiene esos alcances junto con los del <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">preregistro</span></a>. Los comandos y recibos originales se preservan: esta actualización organiza evidencia existente y no añade experimentos, entrenamiento, inferencia ni una nueva evaluación de mercado.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Archivo documental: contenido anterior del capítulo 8</p>
+<p>Este bloque conserva íntegramente el texto anterior, sus encabezados y enlaces. Sus fechas y estados pertenecen a sus cortes originales; la lectura vigente de reproducibilidad, ética y comunicación se presenta arriba.</p>
 <p><strong>Estado documental del 14/11/2026:</strong> la tabla principal compara <strong>16 sistemas sobre 608 fechas</strong>. La reproducción registrada de sus <strong>81 predictores</strong> se completó en un checkout remoto y un entorno Python nuevos, con discrepancia máxima absoluta de predicción <strong>0</strong> en calibración y prueba. También se completaron <strong>18 ablaciones</strong>. Los recibos y sus límites se presentan en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. El Apéndice B vigente está en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>, con estados completos, parciales, no aplicables e incumplimientos identificados.</p>
-<section id="punto-de-entrada-de-la-entrega">
-<h2>8.1 Punto de entrada de la entrega<a class="headerlink" href="#punto-de-entrada-de-la-entrega" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="punto-de-entrada-de-la-entrega">8.1 Punto de entrada de la entrega</h2>
 <p>Desde la raíz del repositorio, con Python 3.12 o posterior:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/audit_e2_delivery.py<span class="w"> </span>--require-supplements<span class="w"> </span>--output<span class="w"> </span>work/e2_delivery_audit.json
 </pre></div>
 </div>
 <p>Este comando funciona <strong>sin red, GPU ni paquetes externos</strong>. Verifica los manifiestos y archivos publicados, reconstruye las 81 RMSE a partir de los pronósticos congelados y las 16 medias de A2, valida calendario/semillas, comprueba los informes de 81 reproducciones y 18 ablaciones y el refinamiento de los veinte contrastes a 20.000 remuestreos. El informe registra el entorno de esta ejecución y sus discrepancias.</p>
 <p>El comando ejecuta una auditoría aritmética y de integridad. <strong>No vuelve a entrenar ni a generar pronósticos, no repite los sorteos bootstrap y no deserializa pesos.</strong> La repetición de los 81 ajustes y las comparaciones tensoriales ya fueron ejecutadas por los workers A100 y están acreditadas separadamente en §55. La auditoría no declara aprobados los requisitos metodológicos pendientes.</p>
-</section>
-<section id="entorno-y-fuentes-cientificas">
-<h2>8.2 Entorno y fuentes científicas<a class="headerlink" href="#entorno-y-fuentes-cientificas" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="entorno-y-fuentes-cientificas">8.2 Entorno y fuentes científicas</h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Etapa</p></th>
@@ -498,28 +663,21 @@
 </table>
 </div>
 <p>No se promete igualdad numérica entre hardware o versiones distintos. Los recibos acreditan la reproducción efectivamente observada, condicionada a esas versiones y a la misma cronología. El <a class="reference download internal" download="" href="../_downloads/afee7b04698a67089fe9282e1e5017f4/manifest.json"><span class="xref download myst">manifiesto de resultados</span></a> y la <a class="reference download internal" download="" href="../_downloads/d9b02dc823cad6ab2e06f54c1a0ece3f/source_evidence.json"><span class="xref download myst">procedencia por ajuste</span></a> enlazan las tablas con los resultados productores.</p>
-</section>
-<section id="reconstruccion-y-analisis-de-pronosticos-guardados">
-<h2>8.3 Reconstrucción y análisis de pronósticos guardados<a class="headerlink" href="#reconstruccion-y-analisis-de-pronosticos-guardados" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="reconstruccion-y-analisis-de-pronosticos-guardados">8.3 Reconstrucción y análisis de pronósticos guardados</h2>
 <p>Los <a class="reference download internal" download="" href="../_downloads/756f78194f862137773983a9f95d8911/manifest.json"><span class="xref download myst">insumos congelados públicos</span></a> permiten repetir cálculos sin descargar precios nuevos. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> incluye el comando completo para recalcular los veinte contrastes con 20.000 réplicas y la fluctuación Giacomini–Rossi. <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> incluye el comando de la taxonomía y las referencias de dificultad. Sus resultados son posteriores y no reemplazan los originales ni modifican recetas o calibradores.</p>
 <p>La <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">tabla A2</span></a> conserva su SHA256 <code class="docutils literal notranslate"><span class="pre">879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1</span></code>. El auditor de entrega comprueba ese digest antes de reconstruir sus métricas. Las métricas son medias de RMSE individuales, no la RMSE de promediar pronósticos.</p>
-</section>
-<section id="reproduccion-del-entrenamiento-y-presupuesto">
-<h2>8.4 Reproducción del entrenamiento y presupuesto<a class="headerlink" href="#reproduccion-del-entrenamiento-y-presupuesto" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="reproduccion-del-entrenamiento-y-presupuesto">8.4 Reproducción del entrenamiento y presupuesto</h2>
 <p>La ejecución original y los 81 reajustes de reproducción están cerrados. El límite autorizado fue <strong>84 horas acumuladas</strong>, conservando todos los cargos previos; el diario final contiene <strong>351 eventos</strong>, <strong>80,2561 horas cargadas</strong> y ninguna reserva abierta. Es contabilidad de tiempo de campaña, no GPU activa, energía o dinero. El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">balance cerrado</span></a> conserva sus hashes.</p>
 <p>Las instrucciones antiguas P0/OOF y sus comandos <code class="docutils literal notranslate"><span class="pre">--stage</span> <span class="pre">all</span></code> se archivan al final de esta página; corresponden a otros modelos y otro periodo. No se presentan como un comando para reproducir el benchmark actual ni se propone relanzar el controlador cerrado. Un replay futuro del entrenamiento requeriría una salida independiente y autorización presupuestaria propia, conservando los resultados anteriores.</p>
-</section>
-<section id="limites-de-la-reproduccion">
-<h2>8.5 Límites de la reproducción<a class="headerlink" href="#limites-de-la-reproduccion" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="limites-de-la-reproduccion">8.5 Límites de la reproducción</h2>
 <p>La guía acepta reproducción por otra persona <strong>o en un entorno limpio</strong>. Los 81 reajustes acreditan la segunda vía; no crean un test nuevo. El periodo 2025–2026 ya se conocía desde E1. La prueba formal respecto al δg heredado, la potencia objetivo y otras condiciones del Apéndice B requieren evidencia propia; la discrepancia numérica cero no las demuestra. La calibración y los análisis estadísticos requieren sus propios supuestos y evidencias.</p>
 <p>El programa de auditoría se comprueba con pruebas de manipulación de hashes, calendarios, semillas, estimando y número de remuestreos:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>tests.test_audit_e2_delivery<span class="w"> </span>-v
 </pre></div>
 </div>
-</section>
-<section id="archivo-de-la-version-anterior">
-<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="archivo-de-la-version-anterior">Archivo de la versión anterior</h2>
 <p>La <a class="reference download internal" download="" href="../_downloads/1582b19f1e8b917c397bc982ca6d9c9b/08_reproducibilidad.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con sus estados y fechas históricos. El <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a> fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ni su Apéndice B actual de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
+</div>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -591,12 +749,20 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punto-de-entrada-de-la-entrega">8.1 Punto de entrada de la entrega</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-y-fuentes-cientificas">8.2 Entorno y fuentes científicas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruccion-y-analisis-de-pronosticos-guardados">8.3 Reconstrucción y análisis de pronósticos guardados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-del-entrenamiento-y-presupuesto">8.4 Reproducción del entrenamiento y presupuesto</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-de-la-reproduccion">8.5 Límites de la reproducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-fijado-y-reproducibilidad-minima">8.1 Entorno fijado y reproducibilidad mínima</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repositorio-instalacion-y-versiones-por-etapa">8.1.1 Repositorio, instalación y versiones por etapa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas-configuraciones-particiones-y-determinismo">8.1.2 Semillas, configuraciones, particiones y determinismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-comando-para-auditar-y-reconstruir-la-tabla-principal">8.1.3 Un comando para auditar y reconstruir la tabla principal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-entorno-limpio-y-discrepancias">8.1.4 Prueba de entorno limpio y discrepancias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etica-privacidad-sesgos-y-licencias">8.2 Ética, privacidad, sesgos y licencias</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-subgrupos-y-consecuencias-del-error">8.2.1 Datos, subgrupos y consecuencias del error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-licencias-estan-respaldadas">8.2.2 Qué licencias están respaldadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comunicacion-cientifica-verificable">8.3 Comunicación científica verificable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice-b-y-alcance-del-cierre">8.4 Apéndice B y alcance del cierre</a></li>
 </ul>
   </nav></div>
 

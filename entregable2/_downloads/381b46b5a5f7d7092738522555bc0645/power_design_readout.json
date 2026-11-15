@@ -1,0 +1,53 @@
+{
+  "version": "e2-pilot-power-design-readout-v1",
+  "reviewed_source_commit": "35a770a8a53e4a5d6692b7383e2c9a93649f0733",
+  "source": {
+    "path": "book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+    "bytes": 1997,
+    "sha256": "63f0f960f27f669380f9e336064f0274b026ed7a31d595a6c8df465c4781fcd4"
+  },
+  "original_engine": "scripts/e2_reduced_final_analysis.py",
+  "recorded_method": "noncentral paired-t planning using five-seed development SD; conditional on same53dates",
+  "planning_test_direction": "one-sided gain greater than practical null delta",
+  "planning_null_gain": 0.00025772842664981106,
+  "planning_alternative_gain": 0.0005154568532996221,
+  "planning_signal_above_null": 0.00025772842664981106,
+  "pilot_gain_SD": 0.00025250638523446184,
+  "descriptive_d_delta_over_SD": 1.0206808291620046,
+  "descriptive_d_signal_above_null_over_SD": 1.0206808291620046,
+  "descriptive_ratio_formula": "delta / original_pilot_gain_SD; no new variance,power or requiredR is estimated",
+  "R_operative": 6,
+  "pilot_seeds": [
+    271701,
+    271702,
+    271703,
+    271704,
+    271705
+  ],
+  "pilot_models": [
+    "iTransformer",
+    "GRU32"
+  ],
+  "pilot_calendar_dates": 53,
+  "alpha_family": 0.05,
+  "number_primary_pairs": 20,
+  "conservative_planning_test_alpha": 0.0025,
+  "planning_alpha_is_exact_Holm_or_bootstrap_power": false,
+  "power_at_alternative_2delta": 0.1229533091842126,
+  "power_target": 0.8,
+  "minimum_total_gain_at_80pct": 0.0008786736025621022,
+  "minimum_excess_above_null_delta_at_80pct": 0.0006209451759122912,
+  "guide_formula_scope": "Section9.2 displays an approximate bilateral normal-quantile formula. The recorded numerical planning instead uses one-sided noncentral paired-t with df5 at R6 and alternative2delta; do not relabel its12.3%as power to establish a positive excess when true gain equals boundarydelta.",
+  "assumptions_and_limits": [
+    "SD estimated from only five paired pilot seeds",
+    "No independent market replication or temporal power guarantee",
+    "At most two model representatives measured; power does not establish capability for every Top10 contrast",
+    "Resource-bound R6 is retained even when target is unmet; no equivalence claim"
+  ],
+  "required_R_newly_computed": false,
+  "automatic_R_increase": false,
+  "new_power_calculations": 0,
+  "new_hypothesis_tests": 0,
+  "new_bootstrap_draws": 0,
+  "new_model_fits": 0
+}
