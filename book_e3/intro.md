@@ -2,7 +2,7 @@
 
 **Autor del proyecto:** Jassan Arteta · **Curso:** Deep Learning 2026-30
 
-**Estado al 15 de noviembre de 2026:** diagnóstico y plan de trabajo preparados, con avance verificable en los bloques A y B a partir de los artefactos de E2. No se ha entrenado ni evaluado el modelo original de E3; las mediciones actuales verifican artefactos heredados de E2.
+**Estado al 15 de noviembre de 2026:** avances verificables en los bloques A y B y un candidato del Bloque C con formulación, demostración de la cabeza latente, código y pruebas sobre datos artificiales. No hay entrenamiento ni evaluación confirmatoria del candidato sobre mercado.
 
 ## Problema y punto de partida
 
@@ -14,12 +14,13 @@ E2 ya ejecutó 16 sistemas sobre 608 fechas, con seis semillas por cada una de l
 
 La guía exige cerrar las correcciones de E2, exportar las mejores configuraciones, construir un modelo neuronal original con una propiedad formal demostrada y verificada, evaluarlo rigurosamente y entregar un dashboard en Dash Plotly desplegado en Render junto con el Jupyter Book reproducible.
 
-El candidato temático continúa siendo CNN causal + LSTM unidireccional + atención temporal. La combinación de bloques no acredita por sí sola originalidad. El [diseño preliminar](sections/07_diseno_preliminar.md) propone una línea de investigación y conserva abierta su admisibilidad.
+El candidato temático continúa siendo CNN causal + LSTM unidireccional + atención temporal. La combinación de bloques no acredita por sí sola originalidad. El [Bloque C](sections/09_modelo_original.md) desarrolla la formulación y la implementación; su novedad y superioridad siguen por acreditar.
 
 ## Primer avance
 
 | Documento | Para qué sirve |
 |---|---|
+| [Bloque C](sections/09_modelo_original.md) | Candidato neuronal, demostración, código, 35 pruebas y antecedentes con sus límites. |
 | [Bloques A y B](sections/08_bloques_a_b.md) | Auditoría de artefactos, selección de configuraciones y exportación con evidencia. |
 | [Alcance y matriz de requisitos](sections/01_alcance_requisitos.md) | Relaciona cada exigencia de la guía con evidencia y criterio de cierre. |
 | [Plan de trabajo](sections/02_planificacion.md) | Ordena tareas y dependencias antes de entrenar. |
