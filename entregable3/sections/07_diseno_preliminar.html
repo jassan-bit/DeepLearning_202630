@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Diseño preliminar del modelo original &#8212; Entregable 3 · Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/07_diseno_preliminar';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="Trazabilidad de correcciones de E2" href="06_trazabilidad_correcciones.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3 · Deep Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_alcance_requisitos.html">1 Alcance y requisitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_planificacion.html">2 Plan de trabajo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_desarrollo_evidencias.html">3 Desarrollo y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_resultados_discusion.html">4 Resultados y discusión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">5 Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad de correcciones de E2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diseño preliminar del modelo original</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 3 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/07_diseno_preliminar.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diseño preliminar del modelo original</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-que-podria-abordar">Problema que podría abordar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-provisional">Hipótesis provisional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-candidata">Formulación candidata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-que-se-investigara">Propiedad que se investigará</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimentos-de-desarrollo-necesarios">Experimentos de desarrollo necesarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-de-novedad-prevista">Revisión de novedad prevista</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diseno-preliminar-del-modelo-original">
+<h1>Diseño preliminar del modelo original<a class="headerlink" href="#diseno-preliminar-del-modelo-original" title="Link to this heading">#</a></h1>
+<section id="problema-que-podria-abordar">
+<h2>Problema que podría abordar<a class="headerlink" href="#problema-que-podria-abordar" title="Link to this heading">#</a></h2>
+<p>Se mantiene la continuidad CNN causal → LSTM unidireccional → atención temporal para BTCUSDT, D7×5 → σ₇ con h=1. La contribución candidata debe residir en una modificación algorítmica que resuelva una limitación pertinente; apilar estos bloques no acredita R1.</p>
+<p>El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html">paper guía TimeMixer</a> tiene una limitación operativa de alineación de calendario medida en ETTh1 que no se traslada al adaptador BTC sin marcadores de calendario. La limitación predictiva por régimen quedó inconclusa tras Holm. Por ello, ninguna se afirma aquí como defecto predictivo de Bitcoin demostrado.</p>
+<p>Una motivación alternativa proviene del <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/54_robustez_interpretabilidad.html">estrés de entradas de E2</a>: con 10 % de celdas desplazadas ±5 DE, la RMSE aumentó 585,40 % en SAE, 513,98 % en GRU32 y 1.552,52 % en TimeMixer. Es un resultado retrospectivo bajo corrupción sintética de tensores; puede romper coherencia OHLCV y no caracteriza necesariamente errores de mercado plausibles. Sirve para formular una hipótesis de desarrollo, no para garantizar una mejora.</p>
+</section>
+<section id="hipotesis-provisional">
+<h2>Hipótesis provisional<a class="headerlink" href="#hipotesis-provisional" title="Link to this heading">#</a></h2>
+<p>Penalizar discordancia entre escalas en la atención y acotar sus valores podría reducir sensibilidad a corrupción de entradas frente al mismo híbrido con atención convencional, sin deterioro limpio mayor que el margen heredado. La hipótesis fallaría si la mejora desaparece bajo perturbaciones plausibles, degrada extremos reales o no se mantiene con las ablaciones. Mejorar robustez no sustituye la superioridad primaria exigida frente a todos los rivales.</p>
+</section>
+<section id="formulacion-candidata">
+<h2>Formulación candidata<a class="headerlink" href="#formulacion-candidata" title="Link to this heading">#</a></h2>
+<p>Para siete estados latentes <span class="math notranslate nohighlight">\(H\in\mathbb{R}^{7\times d}\)</span>, una matriz de promedio causal fija <span class="math notranslate nohighlight">\(P\)</span>, independiente de <span class="math notranslate nohighlight">\(H\)</span>, y el estado <span class="math notranslate nohighlight">\(h_j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+d_j(H)=\sqrt{\|h_j-(PH)_j\|_2^2+\varepsilon^2},\qquad
+s_j=q^\top h_j-\lambda d_j(H),\qquad
+a=\operatorname{softmax}(s/\tau).
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+v_j=\frac{B h_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
+c=\sum_{j=1}^{7}a_jv_j,\qquad
+f(H)=\operatorname{softplus}(w^\top c+b).
+\]</div>
+<p><span class="math notranslate nohighlight">\(B&gt;0\)</span> es un radio de saturación escalar, no una matriz; <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span>, <span class="math notranslate nohighlight">\(\lambda\ge0\)</span> y <span class="math notranslate nohighlight">\(\tau&gt;0\)</span>. La salida recupera la escala original con la media positiva del objetivo de entrenamiento. La regla candidata combina penalización de discordancia y saturación radial; su procedencia y su novedad deben contrastarse con trabajos cercanos antes de adoptarla.</p>
+</section>
+<section id="propiedad-que-se-investigara">
+<h2>Propiedad que se investigará<a class="headerlink" href="#propiedad-que-se-investigara" title="Link to this heading">#</a></h2>
+<p>Para pesos de inferencia fijos, <span class="math notranslate nohighlight">\(\|q\|_2\le Q\)</span>, <span class="math notranslate nohighlight">\(0\le\lambda\le\Lambda\)</span>, <span class="math notranslate nohighlight">\(\tau\ge\tau_{\min}&gt;0\)</span> y <span class="math notranslate nohighlight">\(\|w\|_2\le W\)</span>, se propone demostrar la siguiente cota del módulo:</p>
+<div class="math notranslate nohighlight">
+\[
+|f(H)-f(H')|\le
+W\left[1+\frac{B\sqrt7}{2\tau_{\min}}
+\left(Q+\Lambda\|I-P\|_2\right)\right]\|H-H'\|_F.
+\]</div>
+<p>La ruta de demostración usa que la saturación radial y Softplus son 1-Lipschitz, cada valor tiene norma acotada por <span class="math notranslate nohighlight">\(B\)</span>, la discordancia tiene constante <span class="math notranslate nohighlight">\(\|I-P\|_2\)</span> y el jacobiano de softmax tiene norma espectral a lo sumo <span class="math notranslate nohighlight">\(1/2\)</span>. Antes de presentarla como resultado teórico se requiere demostración completa, revisión y verificación numérica.</p>
+<p>La cota se refiere a estados latentes. No demuestra por sí sola estabilidad del predictor respecto a OHLCV crudo. Extenderla exige controlar CNN, LSTM, preprocesamiento y reescalado de la salida; la constante en escala original se multiplica por la media del objetivo usada al entrenar.</p>
+</section>
+<section id="experimentos-de-desarrollo-necesarios">
+<h2>Experimentos de desarrollo necesarios<a class="headerlink" href="#experimentos-de-desarrollo-necesarios" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Buscar antecedentes de atención robusta, discordancia multiescala, saturación e influencia acotada en volatilidad financiera y en otras aplicaciones. Registrar fuentes, fechas y diferencias; descartar la propuesta como original si la evidencia no sostiene R1.</p></li>
+<li><p>Comparar con el mismo híbrido convencional bajo preprocesamiento y capacidad comparables. Registrar cada variante evaluada y el esfuerzo de diseño, usando sólo desarrollo.</p></li>
+<li><p>Verificar cota, gradientes, causalidad y exportación. Probar perturbaciones controladas, restricciones cercanas a sus límites y extremos genuinos de volatilidad.</p></li>
+<li><p>Diseñar al menos tres ablaciones aisladas y sustantivas conforme a la guía. Esta propuesta contiene dos modificaciones evidentes; el requisito de tres ablaciones aún no está resuelto y no se completa añadiendo un bloque sin motivación.</p></li>
+</ol>
+<p>La penalización podría atenuar un salto de volatilidad legítimo al considerarlo discordante. Deben examinarse especialmente errores de cola y cobertura condicional. No se han fijado anchos, operador <span class="math notranslate nohighlight">\(P\)</span>, radios, temperaturas, semillas, datasets adicionales o tag de protocolo, ni se ha comprobado la novedad de esta combinación.</p>
+</section>
+<section id="revision-de-novedad-prevista">
+<h2>Revisión de novedad prevista<a class="headerlink" href="#revision-de-novedad-prevista" title="Link to this heading">#</a></h2>
+<p>La búsqueda requiere al menos tres bases y cinco cadenas, consulta hacia atrás/adelante desde tres a cinco trabajos cercanos, búsqueda de implementaciones y revisión externa de al menos dos cadenas. Los términos iniciales incluirán robust attention, bounded influence, temporal attention, multiscale disagreement, realized volatility, Bitcoin y sus equivalentes en español. Son términos de planificación, no consultas ejecutadas ni una declaración de ausencia de antecedentes.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_trazabilidad_correcciones.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Trazabilidad de correcciones de E2</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-que-podria-abordar">Problema que podría abordar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-provisional">Hipótesis provisional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-candidata">Formulación candidata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-que-se-investigara">Propiedad que se investigará</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimentos-de-desarrollo-necesarios">Experimentos de desarrollo necesarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-de-novedad-prevista">Revisión de novedad prevista</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

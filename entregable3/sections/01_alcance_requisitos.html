@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Alcance y requisitos &#8212; Entregable 3 · Deep Learning</title>
+    <title>1 Alcance y requisitos &#8212; Entregable 3 · Deep Learning</title>
   
   
   
@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="2. Planificación" href="02_planificacion.html" />
-    <link rel="prev" title="Entregable 3 · Deep Learning" href="../intro.html" />
+    <link rel="next" title="2 Plan de trabajo" href="02_planificacion.html" />
+    <link rel="prev" title="Entregable 3 de Deep Learning" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -207,11 +207,13 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Alcance y requisitos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_planificacion.html">2. Planificación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_desarrollo_evidencias.html">3. Desarrollo y evidencias</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_resultados_discusion.html">4. Resultados y discusión</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">5. Reproducibilidad y entrega</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1 Alcance y requisitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_planificacion.html">2 Plan de trabajo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_desarrollo_evidencias.html">3 Desarrollo y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_resultados_discusion.html">4 Resultados y discusión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">5 Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad de correcciones de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del modelo original</a></li>
 </ul>
 
     </div>
@@ -341,7 +343,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1. Alcance y requisitos</h1>
+    <h1>1 Alcance y requisitos</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -351,8 +353,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-por-incorporar">Información por incorporar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-compartida">Referencia compartida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandar-exigido">Estándar exigido</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-requisitos-y-evidencia">Matriz de requisitos y evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-heredadas">Condiciones heredadas</a></li>
 </ul>
             </nav>
         </div>
@@ -365,41 +368,149 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="alcance-y-requisitos">
-<h1>1. Alcance y requisitos<a class="headerlink" href="#alcance-y-requisitos" title="Link to this heading">#</a></h1>
-<p>La definición académica del Entregable 3 está <strong>pendiente de su guía específica</strong>. La información de E1 y E2 no sustituye esa guía. El autor eligió como continuidad temática el candidato CNN-1D + LSTM + atención temporal para el mismo problema de volatilidad Bitcoin; no se presenta esa elección como requisito oficial ni como receta definitiva.</p>
-<section id="informacion-por-incorporar">
-<h2>Información por incorporar<a class="headerlink" href="#informacion-por-incorporar" title="Link to this heading">#</a></h2>
+<h1>1 Alcance y requisitos<a class="headerlink" href="#alcance-y-requisitos" title="Link to this heading">#</a></h1>
+<p>La guía oficial <em>Entregable3DeepLearningProject.pdf</em>, aportada por el usuario, exige un dashboard predictivo, un modelo neuronal original con sustento teórico, evaluación rigurosa y un informe reproducible. La presente matriz organiza el trabajo; sus estados corresponden a revisión documental, no a una nueva ejecución de los artefactos.</p>
+<section id="estandar-exigido">
+<h2>Estándar exigido<a class="headerlink" href="#estandar-exigido" title="Link to this heading">#</a></h2>
+<p>El modelo debe demostrar formalmente al menos una propiedad y verificarla numéricamente; evaluarse en tres datasets adicionales de naturaleza distinta; compararse con todo el Top 10 y todos los baselines fuertes; usar al menos diez semillas o más según potencia; alcanzar potencia por contraste de al menos 0,90 y reportar la conjunta; y aplicar tres pruebas distintas por contraste con control familiar de Holm. Las condiciones completas de R3 incluyen relevancia práctica, tamaño de efecto, adecuación y consistencia en los datasets adicionales (§8.4).</p>
+<p>Estos son requisitos de evaluación. La superioridad será un resultado por comprobar y puede no alcanzarse. Un resultado no concluyente debe conservarse.</p>
+</section>
+<section id="matriz-de-requisitos-y-evidencia">
+<h2>Matriz de requisitos y evidencia<a class="headerlink" href="#matriz-de-requisitos-y-evidencia" title="Link to this heading">#</a></h2>
+<p>P0 identifica decisiones o controles que condicionan la campaña definitiva. P1 identifica productos de implementación y entrega. Las páginas son las impresas en el PDF.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Elemento</p></th>
-<th class="head"><p>Estado actual</p></th>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Guía y páginas</p></th>
+<th class="head"><p>Exigencia</p></th>
+<th class="head"><p>Estado al arranque</p></th>
+<th class="head"><p>Criterio de cierre</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Enunciado y objetivo de E3</p></td>
-<td><p>Pendientes de guía</p></td>
+<tr class="row-even"><td><p>E3-01 (P0)</p></td>
+<td><p>§4, pp. 4–5</p></td>
+<td><p>Correcciones E2 y tabla de trazabilidad</p></td>
+<td><p>Diagnóstico interno preparado; sin observaciones docentes. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/38_cumplimiento_guia.md">Referencia</a></p></td>
+<td><p>Resolver cada fila aplicable con evidencia e impacto; no confundir pendientes con fallos demostrados.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Criterios y pesos de evaluación</p></td>
-<td><p>Pendientes de guía</p></td>
+<tr class="row-odd"><td><p>E3-02 (P0)</p></td>
+<td><p>§4, pp. 5</p></td>
+<td><p>Auditoría de fuga y determinismo</p></td>
+<td><p>Auditoría final parcial; determinismo documentado. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/10_auditoria_datos.md">Referencia</a></p></td>
+<td><p>Completar cotejo de contenido/vecinos, atributos, transformaciones sobre todos los pipelines reales, auditoría adversarial y etiquetas aleatorias; registrar alcance por pipeline.</p></td>
 </tr>
-<tr class="row-even"><td><p>Productos exigidos y formato de entrega</p></td>
-<td><p>Pendientes de guía</p></td>
+<tr class="row-even"><td><p>E3-03 (P0)</p></td>
+<td><p>§4, pp. 5</p></td>
+<td><p>Congelar benchmarks con hash después del Bloque A</p></td>
+<td><p>Congelación E2 existente; cierre A de E3 pendiente. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/_static/e2_benchmark_final_20261113/final_freeze.json">Referencia</a></p></td>
+<td><p>Inventario y hashes verificables de resultados, recetas, pesos, escaladores y calibradores; cambios sólo por errores documentados.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Relación requerida con E1 y E2</p></td>
-<td><p>Por verificar en la guía</p></td>
+<tr class="row-odd"><td><p>E3-04 (P1)</p></td>
+<td><p>§5.1, pp. 5–6</p></td>
+<td><p>Selección por media en validación y tabla maestra</p></td>
+<td><p>Recetas E2 disponibles; inventario de exportación pendiente. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/06_benchmark_final.md">Referencia</a></p></td>
+<td><p>Vincular ganador por modelo a validación, media/DE/IC, parámetros, FLOPs y latencia; no seleccionar por test.</p></td>
 </tr>
-<tr class="row-even"><td><p>Fechas y condiciones de entrega</p></td>
-<td><p>Por confirmar</p></td>
+<tr class="row-even"><td><p>E3-05 (P1)</p></td>
+<td><p>§5.2, pp. 6–7</p></td>
+<td><p>Exportación y prueba de ida y vuelta</p></td>
+<td><p>Pendiente E3. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/61_reproduccion_consolidada.md">Referencia</a></p></td>
+<td><p>Exportaciones CPU, metadata.json, tolerancia numérica declarada y diferencia de métrica; política de ajuste final común.</p></td>
+</tr>
+<tr class="row-odd"><td><p>E3-06 (P0)</p></td>
+<td><p>§6.1–6.3, pp. 8–12</p></td>
+<td><p>Novedad del mecanismo y procedencia</p></td>
+<td><p>Híbrido propuesto sin novedad acreditada. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/05_paper_guia.md">Referencia</a></p></td>
+<td><p>Búsqueda focal en al menos tres bases, cinco cadenas, snowballing, matriz de cercanos, fuente y verificación externa de dos cadenas.</p></td>
+</tr>
+<tr class="row-even"><td><p>E3-07 (P0)</p></td>
+<td><p>§2 y 7.3, pp. 3 y 19–20</p></td>
+<td><p>Propiedad formal con supuestos y verificación numérica</p></td>
+<td><p>Propiedad candidata delimitada al módulo de atención. <a class="reference internal" href="07_diseno_preliminar.html"><span class="std std-doc">Referencia</span></a></p></td>
+<td><p>Demostración completa, plausibilidad de supuestos y verificación; delimitar módulo frente a predictor completo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>E3-08 (P1)</p></td>
+<td><p>§6.5 y 7.4, pp. 13–14 y 20</p></td>
+<td><p>Implementación propia y ablaciones</p></td>
+<td><p>Prototipo E2 reutilizable; implementación E3 pendiente. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/18_integracion_sintetica.md">Referencia</a></p></td>
+<td><p>Mecanismo escrito desde formulación, tests, complejidad y al menos tres ablaciones aisladas justificadas.</p></td>
+</tr>
+<tr class="row-even"><td><p>E3-09 (P0)</p></td>
+<td><p>§7.2 y 8.1, pp. 18 y 21–22</p></td>
+<td><p>Separación desarrollo/confirmación y preregistro</p></td>
+<td><p>Pendiente; este arranque no es preregistro. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/17_contrato_sincronizado.md">Referencia</a></p></td>
+<td><p>Identificar exposición previa, particiones, hipótesis, Nd, semillas y presupuesto; tag real anterior a experimentos definitivos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>E3-10 (P0)</p></td>
+<td><p>§2 y 8.7.2, pp. 3 y 27</p></td>
+<td><p>Potencia al menos 0,90 y R al menos 10</p></td>
+<td><p>E2 R6 no satisface el nuevo estándar. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json">Referencia</a></p></td>
+<td><p>Piloto de al menos cinco semillas por rival en desarrollo; fijar R antes de confirmar y reportar potencia conjunta y temporal.</p></td>
+</tr>
+<tr class="row-even"><td><p>E3-11 (P0)</p></td>
+<td><p>§8.2, pp. 22–23</p></td>
+<td><p>Comparación justa</p></td>
+<td><p>Evidencia E2 con límites de coste; campaña E3 pendiente. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/38_cumplimiento_guia.md">Referencia</a></p></td>
+<td><p>Registrar igual esfuerzo, tiempo/fases/fallos, capacidad, variables, preprocesamiento y particiones; tratar deterministas sin pseudorreplicación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>E3-12 (P0)</p></td>
+<td><p>§8.3, pp. 23</p></td>
+<td><p>Tres datasets adicionales</p></td>
+<td><p>Sin selección ni evaluación E3. <a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Referencia</span></a></p></td>
+<td><p>Misma tarea y primaria; diferencia en dos ejes por dataset, fuentes/licencias/hashes, elección previa y todos los rivales en cada uno.</p></td>
+</tr>
+<tr class="row-even"><td><p>E3-13 (P0)</p></td>
+<td><p>§8.4–8.7, pp. 23–28</p></td>
+<td><p>Familia completa y tres pruebas por contraste</p></td>
+<td><p>Batería E2 no sustituye protocolo E3. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/38_cumplimiento_guia.md">Referencia</a></p></td>
+<td><p>Registrar todos los rivales, estimandos y tres pruebas temporales válidas, Holm, efectos/IC y regla de todas las pruebas; incluir adecuación y consistencia externa.</p></td>
+</tr>
+<tr class="row-odd"><td><p>E3-14 (P1)</p></td>
+<td><p>§8.8–8.9, pp. 28–30</p></td>
+<td><p>Robustez, calibración e interpretabilidad</p></td>
+<td><p>Suplementos E2 reutilizables con alcance retrospectivo. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/54_robustez_interpretabilidad.md">Referencia</a></p></td>
+<td><p>Evaluar originales y rivales bajo mismo estrés, incertidumbre, extremos reales, sensibilidad, fidelidad y estabilidad; no equiparar atención con explicación causal.</p></td>
+</tr>
+<tr class="row-even"><td><p>E3-15 (P1)</p></td>
+<td><p>§9.1–9.4, pp. 30–34</p></td>
+<td><p>Dashboard Contexto, EDA y Modelos</p></td>
+<td><p>Pendiente E3. <a class="reference internal" href="03_desarrollo_evidencias.html"><span class="std std-doc">Referencia</span></a></p></td>
+<td><p>Dash Plotly con callbacks, diagnóstico temporal, leaderboard completo, inferencia, explicación local, incertidumbre, fuera de dominio y resultados precalculados justificados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>E3-16 (P1)</p></td>
+<td><p>§9.5 y 10, pp. 34–37</p></td>
+<td><p>Ingeniería y despliegue Render</p></td>
+<td><p>Pendiente E3. <a class="reference internal" href="05_reproducibilidad_entrega.html"><span class="std std-doc">Referencia</span></a></p></td>
+<td><p>CPU, memoria/latencia medidas, versiones exactas, validaciones, CI, prueba de humo y respaldo; no entrenar en la app.</p></td>
+</tr>
+<tr class="row-even"><td><p>E3-17 (P1)</p></td>
+<td><p>§11 y Cuadro 7, pp. 38–39 y 58</p></td>
+<td><p>Informe científico completo</p></td>
+<td><p>Libro inicial adaptado; estructura final pendiente. <a class="reference internal" href="../intro.html"><span class="std std-doc">Referencia</span></a></p></td>
+<td><p>Completar capítulos 0–11 de la guía con evidencia, figuras interpretadas, bibliografía y resumen final de máximo 250 palabras.</p></td>
+</tr>
+<tr class="row-odd"><td><p>E3-18 (P1)</p></td>
+<td><p>§12, pp. 39–40</p></td>
+<td><p>Reproducibilidad y paquete de entrega</p></td>
+<td><p>Procedencia inicial preparada. <a class="reference internal" href="05_reproducibilidad_entrega.html"><span class="std std-doc">Referencia</span></a></p></td>
+<td><p>Docker probado, reproducción independiente, tabla maestra, MODEL_CARD, DATA_STATEMENT, DOI y URLs públicas.</p></td>
+</tr>
+<tr class="row-even"><td><p>E3-19 (P1)</p></td>
+<td><p>§13 y 15, pp. 40–41 y 47–48</p></td>
+<td><p>Sustentación y declaración de autoría/IA</p></td>
+<td><p>Asistencia documental identificada. <a class="reference internal" href="05_reproducibilidad_entrega.html"><span class="std std-doc">Referencia</span></a></p></td>
+<td><p>Declarar aportes y herramientas; comprender, explicar y modificar código y demostración durante sustentación.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Al recibir el documento se identificarán sus requisitos y la evidencia que corresponda a cada uno. Esta tabla distingue información pendiente de trabajo realizado; sus filas no se presentan como exigencias ya confirmadas del profesor.</p>
-<p>Si E3 utiliza antecedentes de otro entregable, se indicará su versión y procedencia. Los resultados previos seguirán identificados con el estudio que los produjo.</p>
 </section>
-<section id="referencia-compartida">
-<h2>Referencia compartida<a class="headerlink" href="#referencia-compartida" title="Link to this heading">#</a></h2>
-<p>El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato sincronizado</a> distingue las condiciones de E1 actual de los registros históricos y de las decisiones todavía pendientes de E2/E3. MLP, LSTM y GRU de E1 permanecen referencias separadas; los diez modelos de E2 no se convierten automáticamente en requisitos adicionales de E3.</p>
+<section id="condiciones-heredadas">
+<h2>Condiciones heredadas<a class="headerlink" href="#condiciones-heredadas" title="Link to this heading">#</a></h2>
+<p>Se conserva BTCUSDT, D7×5, h=1, σ₇ poblacional y la RMSE en escala original. El margen práctico heredado es δ=0,00025772842664981106. δg corresponde al margen de sobreajuste y debe recuperarse de su registro original; no se supone que sea igual a δ.</p>
+<p>La familia de trabajo propuesta incluye los 16 sistemas de E2: diez candidatos, MLP16/LSTM32/GRU32 y Persistence/SeasonalNaive/ARIMA. El número final de contrastes se enumerará antes del preregistro; el m≈12 de la guía es ilustrativo, no un permiso para retirar rivales. Los comparadores deterministas aportan trayectorias, no semillas independientes ficticias.</p>
+<p>No se han recibido observaciones del docente. La tabla de correcciones identifica por separado los hallazgos de revisión interna.</p>
 </section>
 </section>
 
@@ -439,7 +550,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Entregable 3 · Deep Learning</p>
+        <p class="prev-next-title">Entregable 3 de Deep Learning</p>
       </div>
     </a>
     <a class="right-next"
@@ -447,7 +558,7 @@
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">2. Planificación</p>
+        <p class="prev-next-title">2 Plan de trabajo</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -469,8 +580,9 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-por-incorporar">Información por incorporar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-compartida">Referencia compartida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandar-exigido">Estándar exigido</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-requisitos-y-evidencia">Matriz de requisitos y evidencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-heredadas">Condiciones heredadas</a></li>
 </ul>
   </nav></div>
 

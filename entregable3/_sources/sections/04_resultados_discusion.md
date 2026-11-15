@@ -1,18 +1,13 @@
-# 4. Resultados y discusión
+# 4 Resultados y discusión
 
-**Todavía no hay resultados del Entregable 3.** No se han efectuado experimentos, mediciones o comparaciones que puedan atribuirse a esta entrega.
+Todavía no hay resultados experimentales propios de E3. El diagnóstico inicial es documental y no produce métricas de desempeño del modelo propuesto.
 
-Cuando existan resultados se presentarán junto con su procedimiento, versión y evidencia de respaldo. La discusión responderá al objetivo de E3 y separará lo observado de las interpretaciones, los supuestos y los límites.
+## Antecedentes de E2
 
-## Criterios para incorporar resultados
+La [tabla A2 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_benchmark_final_20261113/benchmark_A2.csv) reúne 16 sistemas y 608 fechas. El LSTM-autoencoder obtiene la menor RMSE media observada (0,00380343). Las veinte comparaciones primarias no acreditan una mejora mayor que δ tras Holm. El piloto de E2 tiene potencia condicional insuficiente para su efecto planificado; su cálculo sobre dos modelos no representa potencia de toda la familia de E3.
 
-- Cada resultado deberá enlazar la evidencia que lo respalda.
-- Las comparaciones deberán identificar qué se compara y bajo qué condiciones.
-- Los antecedentes de E1 o E2 conservarán su identidad y su periodo de evaluación.
-- Un resultado adverso, indefinido o inconcluso se documentará con su estado real.
+## Evidencia que deberá incorporarse
 
-Si la guía exige análisis estadístico, este se adecuará a la tarea y a sus unidades de observación. El libro inicial no declara pruebas ejecutadas, significancia obtenida, equivalencia ni mejora de desempeño.
+Los resultados nuevos identificarán protocolo, versión, dataset, partición y semilla. Se reportarán métricas individuales, incertidumbre temporal y entre semillas, tamaños de efecto, p crudos/ajustados y veredicto frente a δ. La conclusión de R3 debe considerar todas las pruebas exigidas, adecuación del modelo y consistencia adicional; mejorar una RMSE puntual o sólo la robustez no basta.
 
-Las conclusiones se redactarán después del desarrollo y la evaluación pertinentes.
-
-El candidato CNN-1D + LSTM + atención temporal no tiene métricas propias. Ninguna tabla de E1, prueba sintética previa de E2 o resultado bibliográfico se presenta como evaluación del híbrido. Su eventual comparación puede ser favorable, nula o desfavorable.
+Las comparaciones sobre periodos ya conocidos se conservarán como históricas o exploratorias. No rechazo no prueba equivalencia; los resultados adversos y desviaciones se documentarán con su alcance real.

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Entregable 3 · Deep Learning &#8212; Entregable 3 · Deep Learning</title>
+    <title>Entregable 3 de Deep Learning &#8212; Entregable 3 · Deep Learning</title>
   
   
   
@@ -61,11 +61,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="1. Alcance y requisitos" href="sections/01_alcance_requisitos.html" />
+    <link rel="next" title="1 Alcance y requisitos" href="sections/01_alcance_requisitos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -208,11 +210,13 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="sections/01_alcance_requisitos.html">1. Alcance y requisitos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/02_planificacion.html">2. Planificación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/03_desarrollo_evidencias.html">3. Desarrollo y evidencias</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/04_resultados_discusion.html">4. Resultados y discusión</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/05_reproducibilidad_entrega.html">5. Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/01_alcance_requisitos.html">1 Alcance y requisitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/02_planificacion.html">2 Plan de trabajo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/03_desarrollo_evidencias.html">3 Desarrollo y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/04_resultados_discusion.html">4 Resultados y discusión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/05_reproducibilidad_entrega.html">5 Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/06_trazabilidad_correcciones.html">Trazabilidad de correcciones de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/07_diseno_preliminar.html">Diseño preliminar del modelo original</a></li>
 </ul>
 
     </div>
@@ -342,7 +346,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Entregable 3 · Deep Learning</h1>
+    <h1>Entregable 3 de Deep Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -352,10 +356,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuidad-elegida-con-e1-y-e2">Continuidad elegida con E1 y E2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrido-del-libro">Recorrido del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-y-punto-de-partida">Problema y punto de partida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-y-productos-de-e3">Objetivo y productos de E3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primer-avance">Primer avance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libros-del-curso">Libros del curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avance-reutilizable-de-e2">Avance reutilizable de E2</a></li>
 </ul>
             </nav>
         </div>
@@ -367,65 +371,62 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="entregable-3-deep-learning">
-<h1>Entregable 3 · Deep Learning<a class="headerlink" href="#entregable-3-deep-learning" title="Link to this heading">#</a></h1>
-<p><strong>Autor:</strong> Jassan Arteta</p>
-<p><strong>Curso:</strong> Deep Learning · 2026-30</p>
-<p><strong>Estado:</strong> continuidad propuesta con CNN-1D + LSTM + atención temporal; guía específica y alcance académico pendientes. Sin implementación ni resultados propios.</p>
-<p>Este es el Jupyter Book del <strong>Entregable 3</strong>, con portada, índice y configuración propios. Comparte el repositorio del curso con los otros entregables y dispone de una dirección web separada.</p>
-<p>La guía de E3 todavía no se ha incorporado. Los capítulos siguientes constituyen una <strong>organización inicial orientativa</strong>, no una transcripción de requisitos oficiales. El objetivo específico, el desarrollo y los productos se definirán al revisar esa guía. No se han registrado ejecuciones ni resultados de E3.</p>
-<section id="continuidad-elegida-con-e1-y-e2">
-<h2>Continuidad elegida con E1 y E2<a class="headerlink" href="#continuidad-elegida-con-e1-y-e2" title="Link to this heading">#</a></h2>
-<p>Por decisión del autor, el candidato activo compartido es <strong>CNN-1D + LSTM + atención temporal</strong>. Sustituye la propuesta HAR residual, que queda como antecedente inactivo. La propuesta combina extracción convolucional causal, memoria recurrente unidireccional y ponderación de estados temporales ya observados; no hay superioridad demostrada ni receta congelada.</p>
-<p>El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato sincronizado de E1/E2/E3</a> fija la referencia: BTCUSDT, siete días y cinco canales derivados de OHLCV mediante <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, objetivo σ₇ poblacional y horizonte de un día. La comparación principal ya ejecutada en E1 usa 608 fechas de 01/01/2025 a 31/08/2026. Su calendario es conocido: reutilizarlo sería evaluación histórica exploratoria, no un test nuevo independiente. Las métricas, pesos y R=309 de E1 no se atribuyen a E3.</p>
-<p>Esta continuidad temática <strong>no sustituye la guía oficial de E3</strong>. El alcance evaluable, productos exigidos, receta del híbrido, HPO, semillas, dimensionamiento y evaluación nueva siguen pendientes. Compilar este libro sólo publica documentación.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="entregable-3-de-deep-learning">
+<h1>Entregable 3 de Deep Learning<a class="headerlink" href="#entregable-3-de-deep-learning" title="Link to this heading">#</a></h1>
+<p><strong>Autor del proyecto:</strong> Jassan Arteta · <strong>Curso:</strong> Deep Learning 2026-30</p>
+<p><strong>Estado al 15 de noviembre de 2026:</strong> diagnóstico inicial y plan de trabajo preparados a partir de la guía oficial aportada y de la evidencia de E2. No se han realizado entrenamientos ni evaluaciones propios de E3.</p>
+<section id="problema-y-punto-de-partida">
+<h2>Problema y punto de partida<a class="headerlink" href="#problema-y-punto-de-partida" title="Link to this heading">#</a></h2>
+<p>El proyecto pronostica la volatilidad diaria de Bitcoin, BTCUSDT de Binance Spot: siete barras diarias OHLCV anteriores al día objetivo, cinco canales transformados mediante <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, horizonte de un día y desviación poblacional σ₇ de siete retornos logarítmicos de Close, sin anualización. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato vigente de E2</a> define disponibilidad, escalas y máscaras.</p>
+<p>E2 ya ejecutó 16 sistemas sobre 608 fechas, con seis semillas por cada una de las trece redes y una trayectoria por comparador determinista. El LSTM-autoencoder obtuvo la menor RMSE media observada, 0,00380343; las veinte comparaciones primarias no acreditaron la mejora práctica registrada tras Holm. Estos son antecedentes de E2, no resultados de E3.</p>
 </section>
-<section id="recorrido-del-libro">
-<h2>Recorrido del libro<a class="headerlink" href="#recorrido-del-libro" title="Link to this heading">#</a></h2>
+<section id="objetivo-y-productos-de-e3">
+<h2>Objetivo y productos de E3<a class="headerlink" href="#objetivo-y-productos-de-e3" title="Link to this heading">#</a></h2>
+<p>La guía exige cerrar las correcciones de E2, exportar las mejores configuraciones, construir un modelo neuronal original con una propiedad formal demostrada y verificada, evaluarlo rigurosamente y entregar un dashboard en Dash Plotly desplegado en Render junto con el Jupyter Book reproducible.</p>
+<p>El candidato temático continúa siendo CNN causal + LSTM unidireccional + atención temporal. La combinación de bloques no acredita por sí sola originalidad. El <a class="reference internal" href="sections/07_diseno_preliminar.html"><span class="std std-doc">diseño preliminar</span></a> propone una línea de investigación y conserva abierta su admisibilidad.</p>
+</section>
+<section id="primer-avance">
+<h2>Primer avance<a class="headerlink" href="#primer-avance" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Capítulo</p></th>
-<th class="head"><p>Contenido inicial</p></th>
-<th class="head"><p>Estado</p></th>
+<tr class="row-odd"><th class="head"><p>Documento</p></th>
+<th class="head"><p>Para qué sirve</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="sections/01_alcance_requisitos.html"><span class="std std-doc">1. Alcance y requisitos</span></a></p></td>
-<td><p>Enunciado, criterios y productos que deberá precisar la guía</p></td>
-<td><p>Pendiente de guía</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/01_alcance_requisitos.html"><span class="std std-doc">Alcance y matriz de requisitos</span></a></p></td>
+<td><p>Relaciona cada exigencia de la guía con evidencia y criterio de cierre.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="sections/02_planificacion.html"><span class="std std-doc">2. Planificación</span></a></p></td>
-<td><p>Decisiones, versiones y secuencia de trabajo</p></td>
-<td><p>Propuesta temática elegida; diseño pendiente</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="sections/02_planificacion.html"><span class="std std-doc">Plan de trabajo</span></a></p></td>
+<td><p>Ordena tareas y dependencias antes de entrenar.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="sections/03_desarrollo_evidencias.html"><span class="std std-doc">3. Desarrollo y evidencias</span></a></p></td>
-<td><p>Material que se producirá para E3</p></td>
-<td><p>Diseño propuesto; sin implementación</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/06_trazabilidad_correcciones.html"><span class="std std-doc">Trazabilidad de correcciones</span></a></p></td>
+<td><p>Registra pendientes de la auditoría interna; no se han recibido observaciones docentes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="sections/04_resultados_discusion.html"><span class="std std-doc">4. Resultados y discusión</span></a></p></td>
-<td><p>Hallazgos propios y sus límites</p></td>
-<td><p>Sin resultados E3</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="sections/07_diseno_preliminar.html"><span class="std std-doc">Diseño preliminar del modelo</span></a></p></td>
+<td><p>Presenta hipótesis, propiedad candidata y pruebas necesarias.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="sections/05_reproducibilidad_entrega.html"><span class="std std-doc">5. Reproducibilidad y entrega</span></a></p></td>
-<td><p>Construcción del libro y futuras evidencias</p></td>
-<td><p>Libro inicial</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/03_desarrollo_evidencias.html"><span class="std std-doc">Desarrollo y evidencias</span></a></p></td>
+<td><p>Distingue código reutilizable de productos nuevos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="sections/04_resultados_discusion.html"><span class="std std-doc">Resultados y discusión</span></a></p></td>
+<td><p>Conserva el estado sin resultados propios.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/05_reproducibilidad_entrega.html"><span class="std std-doc">Reproducibilidad y entrega</span></a></p></td>
+<td><p>Fija procedencia, verificaciones y estructura final prevista.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>La primera tarea ejecutable es inventariar los artefactos de E2 y completar sus controles de datos pendientes. Los periodos ya evaluados en E1/E2 siguen siendo conocidos; repetirlos no crea una confirmación independiente.</p>
 </section>
 <section id="libros-del-curso">
 <h2>Libros del curso<a class="headerlink" href="#libros-del-curso" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/intro.html">Entregable 1</a>.</p></li>
 <li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html">Entregable 2</a>.</p></li>
-<li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregables.html">Índice de los tres entregables</a>.</p></li>
+<li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregables.html">Selector de entregables</a>.</p></li>
 </ul>
-<p>Los enlaces a E1 y E2 son referencias externas. La compilación de este libro utiliza sus propias fuentes y no incorpora sus páginas o resultados como si pertenecieran a E3.</p>
-</section>
-<section id="avance-reutilizable-de-e2">
-<h2>Avance reutilizable de E2<a class="headerlink" href="#avance-reutilizable-de-e2" title="Link to this heading">#</a></h2>
-<p>El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/18_integracion_sintetica.html">prototipo integrado y las pruebas sintéticas de E2</a> ya incluyen CNN-1D + LSTM + atención temporal. Son evidencia de software de E2, no una ejecución, evaluación o resultado propio de E3; su guía sigue pendiente.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -466,7 +467,7 @@
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">1. Alcance y requisitos</p>
+        <p class="prev-next-title">1 Alcance y requisitos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -488,10 +489,10 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuidad-elegida-con-e1-y-e2">Continuidad elegida con E1 y E2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrido-del-libro">Recorrido del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-y-punto-de-partida">Problema y punto de partida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-y-productos-de-e3">Objetivo y productos de E3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primer-avance">Primer avance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libros-del-curso">Libros del curso</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avance-reutilizable-de-e2">Avance reutilizable de E2</a></li>
 </ul>
   </nav></div>
 

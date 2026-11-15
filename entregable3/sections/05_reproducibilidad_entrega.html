@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5. Reproducibilidad y entrega &#8212; Entregable 3 · Deep Learning</title>
+    <title>5 Reproducibilidad y entrega &#8212; Entregable 3 · Deep Learning</title>
   
   
   
@@ -65,7 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="prev" title="4. Resultados y discusión" href="04_resultados_discusion.html" />
+    <link rel="next" title="Trazabilidad de correcciones de E2" href="06_trazabilidad_correcciones.html" />
+    <link rel="prev" title="4 Resultados y discusión" href="04_resultados_discusion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -206,11 +207,13 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_alcance_requisitos.html">1. Alcance y requisitos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_planificacion.html">2. Planificación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_desarrollo_evidencias.html">3. Desarrollo y evidencias</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_resultados_discusion.html">4. Resultados y discusión</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_alcance_requisitos.html">1 Alcance y requisitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_planificacion.html">2 Plan de trabajo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_desarrollo_evidencias.html">3 Desarrollo y evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_resultados_discusion.html">4 Resultados y discusión</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5 Reproducibilidad y entrega</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad de correcciones de E2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del modelo original</a></li>
 </ul>
 
     </div>
@@ -340,7 +343,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>5. Reproducibilidad y entrega</h1>
+    <h1>5 Reproducibilidad y entrega</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -350,8 +353,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-informe">Construcción del informe</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-entrega">Estado de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-del-arranque">Procedencia del arranque</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-final-del-informe">Estructura final del informe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-libro">Construcción del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-experimental-pendiente">Reproducibilidad experimental pendiente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-herramientas-de-ia">Uso de herramientas de IA</a></li>
 </ul>
             </nav>
         </div>
@@ -364,43 +370,82 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reproducibilidad-y-entrega">
-<h1>5. Reproducibilidad y entrega<a class="headerlink" href="#reproducibilidad-y-entrega" title="Link to this heading">#</a></h1>
-<p>Este libro dispone de <strong>configuración e índice propios</strong> en <code class="docutils literal notranslate"><span class="pre">book_e3/</span></code>. La publicación reúne los tres libros del curso bajo un repositorio común y sirve E3 en <code class="docutils literal notranslate"><span class="pre">/DeepLearning_202630/entregable3/intro.html</span></code>.</p>
-<section id="construccion-del-informe">
-<h2>Construcción del informe<a class="headerlink" href="#construccion-del-informe" title="Link to this heading">#</a></h2>
-<p>Desde la raíz del repositorio, con el entorno Jupyter Book instalado mediante <code class="docutils literal notranslate"><span class="pre">requirements-book.lock.txt</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.venv/bin/jupyter-book<span class="w"> </span>build<span class="w"> </span>book_e3<span class="w"> </span>--all<span class="w"> </span>--warningiserror<span class="w"> </span>--keep-going
-.venv/bin/python<span class="w"> </span>scripts/check_book_links.py<span class="w"> </span>--book-dir<span class="w"> </span>book_e3
+<h1>5 Reproducibilidad y entrega<a class="headerlink" href="#reproducibilidad-y-entrega" title="Link to this heading">#</a></h1>
+<section id="procedencia-del-arranque">
+<h2>Procedencia del arranque<a class="headerlink" href="#procedencia-del-arranque" title="Link to this heading">#</a></h2>
+<p>La revisión usa una instantánea del repositorio en el commit <code class="docutils literal notranslate"><span class="pre">0bdbc42bd724c6ffbbb1dec67564327adedb9883</span></code> y la guía <em>Entregable3DeepLearningProject.pdf</em> aportada en la conversación. Su SHA-256 es:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364
 </pre></div>
 </div>
-<p>La construcción genera HTML a partir de estas fuentes y no entrena modelos, ejecuta experimentos ni adquiere datos. Las referencias web a otros entregables no son entradas necesarias para compilar E3.</p>
+<p>El manifiesto <code class="docutils literal notranslate"><span class="pre">experiments/e3_inicio_20261115/fuentes.json</span></code> identifica las fuentes revisadas. Las tablas editables de requisitos y correcciones están en esa misma carpeta. El arranque contiene decisiones de planificación; no genera tag de preregistro, métricas nuevas, pesos o exportaciones.</p>
 </section>
-<section id="estado-de-la-entrega">
-<h2>Estado de la entrega<a class="headerlink" href="#estado-de-la-entrega" title="Link to this heading">#</a></h2>
+<section id="estructura-final-del-informe">
+<h2>Estructura final del informe<a class="headerlink" href="#estructura-final-del-informe" title="Link to this heading">#</a></h2>
+<p>La organización actual conserva las direcciones existentes y añade diagnóstico y diseño preliminar. Antes de la entrega se reorganizará según el Cuadro 7 de la guía (p. 58), conservando enlaces o concordancia:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Componente</p></th>
-<th class="head"><p>Estado</p></th>
+<tr class="row-odd"><th class="head"><p>Capítulo</p></th>
+<th class="head"><p>Contenido final</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Libro con portada, índice y configuración propios</p></td>
-<td><p>Preparado como estructura inicial</p></td>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Introducción, resumen ≤250 palabras, contribuciones y URL del dashboard.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Guía específica y requisitos de E3</p></td>
-<td><p>Pendientes de incorporación</p></td>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Trazabilidad de correcciones.</p></td>
 </tr>
-<tr class="row-even"><td><p>Desarrollo y resultados de E3</p></td>
-<td><p>Diseño conceptual documentado; sin implementación ni resultados</p></td>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Datos, EDA y auditoría.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Artefactos académicos y archivos de entrega</p></td>
-<td><p>Por definir con la guía</p></td>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Modelos benchmark y exportación.</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Revisión de literatura y novedad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Diseño del modelo y demostración formal.</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Implementación, pruebas y ablaciones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Protocolo y validación estadística.</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Evaluación ampliada y robustez.</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>Dashboard y despliegue.</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Conclusiones, limitaciones, autoría y uso de IA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Reproducibilidad y bibliografía.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Los futuros productos se identificarán por nombre, versión y evidencia. La disponibilidad de esta estructura no se interpreta como ejecución del trabajo académico ni como una entrega final terminada.</p>
-<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630">repositorio del curso</a> conserva las fuentes; el <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregables.html">índice de entregables</a> permite acceder a cada libro por su dirección correspondiente.</p>
+</section>
+<section id="construccion-del-libro">
+<h2>Construcción del libro<a class="headerlink" href="#construccion-del-libro" title="Link to this heading">#</a></h2>
+<p>Desde la raíz del repositorio, en el entorno fijado por <code class="docutils literal notranslate"><span class="pre">requirements-book.lock.txt</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.venv/bin/jupyter-book<span class="w"> </span>build<span class="w"> </span>book_e3<span class="w"> </span>--all<span class="w"> </span>--warningiserror<span class="w"> </span>--keep-going
+.venv/bin/python<span class="w"> </span>scripts/check_book_links.py<span class="w"> </span>--book-dir<span class="w"> </span>book_e3
+</pre></div>
+</div>
+<p>Estos comandos construyen y comprueban documentación. La ejecución de notebooks permanece desactivada en la configuración. La construcción no entrena modelos ni descarga mercado. El reporte de verificación del PR deberá distinguir revisión estructural de una compilación real.</p>
+</section>
+<section id="reproducibilidad-experimental-pendiente">
+<h2>Reproducibilidad experimental pendiente<a class="headerlink" href="#reproducibilidad-experimental-pendiente" title="Link to this heading">#</a></h2>
+<p>Se requieren versiones exactas, semillas, configuración de determinismo, tablas maestras, tests y contenedor Docker probado. La reproducción de E2 se conserva con su alcance; no sustituye reproducción del modelo E3, sus tres datasets adicionales, exportaciones y dashboard.</p>
+<p>La entrega final incluirá <code class="docutils literal notranslate"><span class="pre">MODEL_CARD.md</span></code>, <code class="docutils literal notranslate"><span class="pre">DATA_STATEMENT.md</span></code>, fuentes y artefactos autorizados, registro con DOI, URL Render y prueba de humo con contingencia. No se copiarán a la publicación pesos o datos cuya distribución no esté autorizada.</p>
+</section>
+<section id="uso-de-herramientas-de-ia">
+<h2>Uso de herramientas de IA<a class="headerlink" href="#uso-de-herramientas-de-ia" title="Link to this heading">#</a></h2>
+<p>Este arranque se preparó con asistencia de IA para revisar documentación, organizar requisitos, redactar el diagnóstico y formular una hipótesis técnica preliminar. La propuesta no se presenta como invención verificada del autor ni como experimento ejecutado. Se mantendrá una declaración actualizada de los usos efectivamente realizados; el autor deberá comprender y poder defender el código, la formulación y las demostraciones que finalmente entregue, conforme a §§6.5 y 15 de la guía.</p>
 </section>
 </section>
 
@@ -440,8 +485,17 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">4. Resultados y discusión</p>
+        <p class="prev-next-title">4 Resultados y discusión</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="06_trazabilidad_correcciones.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Trazabilidad de correcciones de E2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -461,8 +515,11 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-informe">Construcción del informe</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-de-la-entrega">Estado de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-del-arranque">Procedencia del arranque</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-final-del-informe">Estructura final del informe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-libro">Construcción del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-experimental-pendiente">Reproducibilidad experimental pendiente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-herramientas-de-ia">Uso de herramientas de IA</a></li>
 </ul>
   </nav></div>
 
