@@ -440,18 +440,28 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-a2-metricas-finales-medidas">Tabla A2: métricas finales medidas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-practicas-incertidumbre-y-multiplicidad">Diferencias prácticas, incertidumbre y multiplicidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-y-resultados-negativos">Calibración y resultados negativos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-calendario-y-desviaciones-documentadas">Ejecución, calendario y desviaciones documentadas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-actuales-y-cortes-historicos">Archivos actuales y cortes históricos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-opcional-del-candidato-11">6.3 Estudio opcional del candidato 11</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-eficiencia-y-limites">6.4 Incertidumbre, eficiencia y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-cierre-tabla-historica-del-08-11">6.5 Condiciones de cierre: tabla histórica del 08/11</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-historica-separada">6.6 Evidencia histórica separada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-tabular">6.1 Comparación tabular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-sobre-el-calendario-comun">6.1.1 Métricas sobre el calendario común</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-incertidumbre-describe-cada-intervalo">6.1.2 Qué incertidumbre describe cada intervalo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-anchura-y-robustez">6.1.3 Calibración, anchura y robustez</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranking-y-analisis-de-eficiencia">6.2 Ranking y análisis de eficiencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ranking-descriptivo-y-rangos-entre-ejecuciones">6.2.1 Ranking descriptivo y rangos entre ejecuciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-y-alcance-de-los-costes">6.2.2 Pareto y alcance de los costes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-y-pruebas-de-hipotesis">6.3 Análisis estadístico y pruebas de hipótesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-mejora-relevante-de-rmse">6.3.1 Familia primaria: mejora relevante de RMSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-temporales-y-rangos-hipotesis-diferentes">6.3.2 Comparaciones temporales y rangos: hipótesis diferentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-adecuacion-residual-y-potencia">6.3.3 Supuestos, adecuación residual y potencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-critica-y-decisiones">6.4 Discusión crítica y decisiones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-las-preguntas-de-investigacion">6.4.1 Respuesta a las preguntas de investigación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez-y-trabajo-pendiente">6.4.2 Amenazas a la validez y trabajo pendiente</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -465,13 +475,576 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="benchmark-final">
 <span id="benchmark-obligatorio-dieciseis-sistemas"></span><h1>6. Benchmark Final<a class="headerlink" href="#benchmark-final" title="Link to this heading">#</a></h1>
+<p><strong>Lectura vigente:</strong> el benchmark de <strong>16 sistemas y 81 predictores congelados</strong> está completado sobre las mismas <strong>608 fechas, del 01/01/2025 al 31/08/2026</strong>. El LSTM-autoencoder con predictor (SAE) obtiene la menor RMSE media observada; Persistence obtiene el menor MAE y la menor sMAPE. <strong>Ninguna de las veinte comparaciones primarias demuestra una mejora mayor que δ después de Holm</strong>, tanto en el cálculo original como en el refinamiento posterior de 20.000 remuestreos. Esta sección reúne los resultados y responde a los apartados 6.1–6.4 de la guía, con sus incertidumbres y resultados negativos.</p>
+<p>El catálogo vigente reúne diez modelos principales —FCN-1D, ResNet-1D, Inception-1D, SAE, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer—, las referencias E1 MLP16, LSTM32 y GRU32, y Persistence, SeasonalNaive y ARIMA. Son <strong>78 ajustes finales neuronales</strong>, seis por red, y tres comparadores deterministas. El híbrido adicional y Ridge conservan alcance opcional o histórico. La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación</span></a>, el <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">protocolo ejecutado</span></a> y el <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B vigente</span></a> documentan recetas, selección y reproducción.</p>
+<p>La <strong>métrica, δ, unidad temporal y partición heredadas de E1 se aceptan conforme a la continuidad E1–E2–E3 exigida por la guía</strong>. La exposición previa al periodo se declara en la <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión de datos</span></a>: limita el alcance prospectivo de las conclusiones, sin convertir la mera herencia de la partición en una infracción. Los suplementos conservan sus identidades y no se usan para cambiar la selección o el resultado original.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/5a081d23c28a4c3b4b47f1bcec3691fd/comparison_current.csv"><code class="xref download docutils literal notranslate"><span class="pre">comparación</span> <span class="pre">consolidada</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">16</span> <span class="pre">sistemas</span></code></a> integra métricas A2, DE, IC entre semillas, rangos y recursos disponibles, manteniendo el origen y alcance de cada columna. El <a class="reference download internal" download="" href="../_downloads/27783502a42d5f2de05feb5b6abcd10b/comparison_schema.json"><span class="xref download myst">diccionario de las 38 columnas y sus unidades</span></a> permite interpretar esa tabla. La <a class="reference download internal" download="" href="../_downloads/4cfb98e9cf47b54fb6b0449042b7d728/guide_checklist.csv"><span class="xref download myst">lista de requisitos del punto 6</span></a>, la <a class="reference download internal" download="" href="../_downloads/9dc637ec2de346a2ab8cba7c1b5c9055/decision_traceability.csv"><span class="xref download myst">trazabilidad de decisiones</span></a>, el <a class="reference download internal" download="" href="../_downloads/5c90ab1b9ad63dc3c55f15b09e6935d6/current_evidence_index.json"><span class="xref download myst">índice de fuentes</span></a> y el <a class="reference download internal" download="" href="../_downloads/398cd6527729a5ea8e771c72a6b988b4/manifest.json"><span class="xref download myst">manifiesto</span></a> permiten revisar qué está ejecutado y qué sigue limitado. El <a class="reference download internal" download="" href="../_downloads/788f95c8e66adb14f7c0d8f6ff129a65/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> describe las descargas; la <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">A2 original</span></a> conserva sus valores y su identidad.</p>
+<section id="comparacion-tabular">
+<span id="benchmark-comparacion-tabular-vigente"></span><h2>6.1 Comparación tabular<a class="headerlink" href="#comparacion-tabular" title="Link to this heading">#</a></h2>
+<section id="metricas-sobre-el-calendario-comun">
+<h3>6.1.1 Métricas sobre el calendario común<a class="headerlink" href="#metricas-sobre-el-calendario-comun" title="Link to this heading">#</a></h3>
+<p>La entrada neuronal común es una ventana D7 de cinco variables OHLCV; se pronostica σ₇ a un día, sin anualización y en unidades originales. La estadística primaria es <strong>la media de las RMSE individuales de las seis semillas</strong>, y no la RMSE de sus predicciones promediadas:</p>
+<div class="math notranslate nohighlight">
+\[
+q_{m,s}=\sqrt{\frac{1}{608}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
+\qquad \widehat\mu_m=\frac{1}{R_m}\sum_{s=1}^{R_m}q_{m,s}.
+\]</div>
+<p>Las trece redes tienen <span class="math notranslate nohighlight">\(R_m=6\)</span>; cada clásico tiene una trayectoria, <span class="math notranslate nohighlight">\(R_m=1\)</span>. Todas las filas usan las mismas 608 fechas. Ordenar por RMSE facilita la lectura y no constituye una nueva selección. sMAPE y cobertura se expresan en porcentaje; la anchura se expresa en unidades de σ₇.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>RMSE media</p></th>
+<th class="head text-right"><p>DE entre semillas</p></th>
+<th class="head text-right"><p>MAE</p></th>
+<th class="head text-right"><p>sMAPE (%)</p></th>
+<th class="head text-right"><p>R² medio</p></th>
+<th class="head text-right"><p>Cobertura 90 % (%)</p></th>
+<th class="head text-right"><p>Anchura media</p></th>
+<th class="head text-right"><p>R</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>0,003803430</p></td>
+<td class="text-right"><p>0,000245424</p></td>
+<td class="text-right"><p>0,002776358</p></td>
+<td class="text-right"><p>16,336</p></td>
+<td class="text-right"><p>0,851816</p></td>
+<td class="text-right"><p>96,519</p></td>
+<td class="text-right"><p>0,016126309</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>ARIMA</p></td>
+<td class="text-right"><p>0,003921625</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>0,002499710</p></td>
+<td class="text-right"><p>14,277</p></td>
+<td class="text-right"><p>0,843008</p></td>
+<td class="text-right"><p>94,572</p></td>
+<td class="text-right"><p>0,015443316</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0,004001162</p></td>
+<td class="text-right"><p>0,000177508</p></td>
+<td class="text-right"><p>0,003033701</p></td>
+<td class="text-right"><p>17,906</p></td>
+<td class="text-right"><p>0,836307</p></td>
+<td class="text-right"><p>96,902</p></td>
+<td class="text-right"><p>0,017453497</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistence</p></td>
+<td class="text-right"><p>0,004085596</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>0,002353164</p></td>
+<td class="text-right"><p>13,229</p></td>
+<td class="text-right"><p>0,829605</p></td>
+<td class="text-right"><p>93,257</p></td>
+<td class="text-right"><p>0,015117306</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>0,004362441</p></td>
+<td class="text-right"><p>0,000304390</p></td>
+<td class="text-right"><p>0,003175615</p></td>
+<td class="text-right"><p>18,192</p></td>
+<td class="text-right"><p>0,804942</p></td>
+<td class="text-right"><p>91,365</p></td>
+<td class="text-right"><p>0,014553549</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>0,004481091</p></td>
+<td class="text-right"><p>0,000722658</p></td>
+<td class="text-right"><p>0,003433893</p></td>
+<td class="text-right"><p>19,636</p></td>
+<td class="text-right"><p>0,790577</p></td>
+<td class="text-right"><p>93,640</p></td>
+<td class="text-right"><p>0,015716682</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>0,004517496</p></td>
+<td class="text-right"><p>0,000242434</p></td>
+<td class="text-right"><p>0,003484249</p></td>
+<td class="text-right"><p>19,799</p></td>
+<td class="text-right"><p>0,791175</p></td>
+<td class="text-right"><p>96,464</p></td>
+<td class="text-right"><p>0,019781805</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>0,004543602</p></td>
+<td class="text-right"><p>0,000534018</p></td>
+<td class="text-right"><p>0,003215392</p></td>
+<td class="text-right"><p>17,984</p></td>
+<td class="text-right"><p>0,786834</p></td>
+<td class="text-right"><p>91,036</p></td>
+<td class="text-right"><p>0,013405047</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>0,004566151</p></td>
+<td class="text-right"><p>0,000264664</p></td>
+<td class="text-right"><p>0,003026539</p></td>
+<td class="text-right"><p>16,743</p></td>
+<td class="text-right"><p>0,786567</p></td>
+<td class="text-right"><p>90,269</p></td>
+<td class="text-right"><p>0,012210834</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>0,004664330</p></td>
+<td class="text-right"><p>0,000097866</p></td>
+<td class="text-right"><p>0,003713159</p></td>
+<td class="text-right"><p>21,341</p></td>
+<td class="text-right"><p>0,777831</p></td>
+<td class="text-right"><p>97,094</p></td>
+<td class="text-right"><p>0,019656346</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>0,004805500</p></td>
+<td class="text-right"><p>0,000591479</p></td>
+<td class="text-right"><p>0,003501517</p></td>
+<td class="text-right"><p>19,450</p></td>
+<td class="text-right"><p>0,761290</p></td>
+<td class="text-right"><p>92,516</p></td>
+<td class="text-right"><p>0,016313454</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>0,004975357</p></td>
+<td class="text-right"><p>0,000458730</p></td>
+<td class="text-right"><p>0,003541890</p></td>
+<td class="text-right"><p>19,389</p></td>
+<td class="text-right"><p>0,745516</p></td>
+<td class="text-right"><p>92,763</p></td>
+<td class="text-right"><p>0,018125754</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td class="text-right"><p>0,005254319</p></td>
+<td class="text-right"><p>0,000055107</p></td>
+<td class="text-right"><p>0,003973499</p></td>
+<td class="text-right"><p>21,926</p></td>
+<td class="text-right"><p>0,718150</p></td>
+<td class="text-right"><p>85,033</p></td>
+<td class="text-right"><p>0,014448571</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td class="text-right"><p>0,005771842</p></td>
+<td class="text-right"><p>0,001119206</p></td>
+<td class="text-right"><p>0,004122466</p></td>
+<td class="text-right"><p>23,440</p></td>
+<td class="text-right"><p>0,649269</p></td>
+<td class="text-right"><p>92,462</p></td>
+<td class="text-right"><p>0,019351808</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>0,010139304</p></td>
+<td class="text-right"><p>0,000239935</p></td>
+<td class="text-right"><p>0,007666813</p></td>
+<td class="text-right"><p>39,020</p></td>
+<td class="text-right"><p>-0,049941</p></td>
+<td class="text-right"><p>92,873</p></td>
+<td class="text-right"><p>0,030684902</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>SeasonalNaive</p></td>
+<td class="text-right"><p>0,012148568</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>0,008520579</p></td>
+<td class="text-right"><p>42,129</p></td>
+<td class="text-right"><p>-0,506593</p></td>
+<td class="text-right"><p>92,928</p></td>
+<td class="text-right"><p>0,037180183</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="RMSE de los dieciséis sistemas y variación entre semillas" src="../_images/rmse_comparison.svg" /></p>
+<p>Las barras representan <strong>±1 DE entre semillas</strong>, no IC95 %. «—» en un clásico significa que no existe dispersión entre entrenamientos repetidos; no significa incertidumbre temporal nula. PatchTST y SeasonalNaive conservan sus R² negativos y no reciben otra configuración tras observar estos resultados. Los datos completos están en <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">A2</span></a> y el <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">análisis original</span></a>.</p>
+</section>
+<section id="que-incertidumbre-describe-cada-intervalo">
+<h3>6.1.2 Qué incertidumbre describe cada intervalo<a class="headerlink" href="#que-incertidumbre-describe-cada-intervalo" title="Link to this heading">#</a></h3>
+<p>Los <strong>IC t del 95 % ya publicados</strong> describen la media de seis ejecuciones condicionada a esta cronología. Su interpretación requiere independencia de las inicializaciones y una aproximación adecuada para la media; con seis observaciones esa aproximación tiene límites. No representan seis mercados, no incorporan incertidumbre de la selección y no sustituyen los IC temporales pareados de las diferencias de §6.3.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema neuronal</p></th>
+<th class="head"><p>IC95 % t de la RMSE media entre semillas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>[0,003545873; 0,004060986]</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td><p>[0,003814880; 0,004187445]</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>[0,004043004; 0,004681879]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>[0,003722708; 0,005239475]</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td><p>[0,004263076; 0,004771915]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td><p>[0,003983184; 0,005104019]</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>[0,004288403; 0,004843900]</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td><p>[0,004561626; 0,004767035]</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p>[0,004184780; 0,005426219]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>[0,004493949; 0,005456765]</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td><p>[0,005196487; 0,005312151]</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td><p>[0,004597307; 0,006946377]</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>[0,009887508; 0,010391100]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para Persistence, SeasonalNaive y ARIMA no se calcula un IC t entre semillas con una sola trayectoria ni se crean repeticiones ficticias. Los trece intervalos anteriores y sus valores completos se conservan en la <a class="reference download internal" download="" href="../_downloads/5a081d23c28a4c3b4b47f1bcec3691fd/comparison_current.csv"><span class="xref download myst">comparación consolidada</span></a>. Los IC de ganancia de §6.3 remuestrean calendario y semillas; los IC de cobertura y de estrés tienen sus propios alcances. <strong>Un IC de RMSE no es un intervalo predictivo del próximo σ₇.</strong></p>
+</section>
+<section id="calibracion-anchura-y-robustez">
+<h3>6.1.3 Calibración, anchura y robustez<a class="headerlink" href="#calibracion-anchura-y-robustez" title="Link to this heading">#</a></h3>
+<p>La A2 conserva los intervalos nominales del 90 % cuyo radio se fijó en <strong>53 fechas de calibración, 08/11–30/12/2024</strong>, antes de puntuar la prueba. SAE cubre 96,52 % con anchura 0,016126309; FCN-1D cubre 90,27 % con anchura 0,012210834; iTransformer cubre 85,03 % con anchura 0,014448571. La cercanía al nominal y la anchura deben interpretarse conjuntamente: una sobrecobertura elevada no demuestra mayor precisión ni una garantía condicional.</p>
+<p>El <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">suplemento de calibración temporal</span></a> compara por separado el radio original, una ventana móvil de 53 residuos y ACI53, usando únicamente residuos anteriores a cada emisión. ACI acerca la cobertura global de SAE a <strong>89,94 %</strong>, GRU32 a <strong>90,46 %</strong> y ARIMA a <strong>90,30 %</strong>, pero en el rango alto del pronóstico quedan <strong>87,21 %, 83,65 % y 86,08 %</strong>, respectivamente. Son resultados retrospectivos; no sustituyen los calibradores de A2 ni acreditan cobertura condicional universal. Sus <a class="reference download internal" download="" href="../_downloads/30bdd2e85c158de788148701867cd728/model_metrics.csv"><span class="xref download myst">métricas por sistema y política</span></a> incluyen longitud, score de intervalo y pinball; no se fabrica una CDF, PIT o CRPS a partir de dos extremos.</p>
+<p><img alt="Cobertura y longitud de intervalos del Top 3 observado" src="../_images/top3_global_coverage_width.svg" /></p>
+<p>La <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">robustez ejecutada</span></a> comprende <strong>13 redes × cuatro perturbaciones × tres severidades</strong>. Con extremos en el 10 % de las celdas, la RMSE aumenta <strong>585,40 % en SAE, 513,98 % en GRU32 y 1.552,52 % en TimeMixer</strong>; sus coberturas caen a <strong>22,12 %, 32,07 % y 19,13 %</strong>. El <a class="reference download internal" download="" href="../_downloads/1cc86cf0adb83be55bcd4c9863d779fb/robustness.csv"><span class="xref download myst">CSV de estrés</span></a> y las <a class="reference download internal" download="" href="../_downloads/1997e810ce1f73239345003221f24838/normalized_degradation_areas.csv"><span class="xref download myst">áreas normalizadas de degradación</span></a> conservan las condiciones y sensibilidades. Son entradas alteradas sintéticamente, con objetivos y radios fijos; no son otro mercado ni certifican robustez frente a un quiebre económico real. Los IC de estrés usan 2.000 remuestreos circulares por configuración, con bloques de 7, 14 o 28 días, y no son contrastes primarios ni intervalos simultáneos. La anchura nominal del productor de estrés es 2q sin recorte inferior en cero; se conserva separada de la anchura truncada de A2.</p>
+<p><img alt="Degradación normalizada por perturbación y sistema neuronal" src="../_images/robustness_areas.svg" /></p>
+</section>
+</section>
+<section id="ranking-y-analisis-de-eficiencia">
+<span id="benchmark-ranking-eficiencia-vigente"></span><h2>6.2 Ranking y análisis de eficiencia<a class="headerlink" href="#ranking-y-analisis-de-eficiencia" title="Link to this heading">#</a></h2>
+<section id="ranking-descriptivo-y-rangos-entre-ejecuciones">
+<h3>6.2.1 Ranking descriptivo y rangos entre ejecuciones<a class="headerlink" href="#ranking-descriptivo-y-rangos-entre-ejecuciones" title="Link to this heading">#</a></h3>
+<p>El orden de las <strong>16 RMSE medias</strong> de §6.1 incluye todos los sistemas. La tabla siguiente añade los <strong>rangos medios dentro de las trece redes</strong>, calculados previamente sobre seis identificadores comunes de semilla. Son dos resúmenes diferentes: ordenar medias no equivale a promediar rangos, y los clásicos no se duplican seis veces para incluirlos artificialmente en el segundo. SAE alcanza rango medio <strong>1,500</strong>, GRU32 <strong>2,167</strong> y PatchTST <strong>13 en cada semilla</strong>. Los <a class="reference download internal" download="" href="../_downloads/5b0f9aadd7f7ac5228803e5e2b008ea4/conditional_seed_ranks.csv"><span class="xref download myst">rangos completos</span></a> incluyen mínimo, máximo y RMSE media.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Rango medio entre 13</p></th>
+<th class="head text-right"><p>Tiempo final/semilla, s: media ± DE</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+<th class="head text-right"><p>FLOPs core/ventana</p></th>
+<th class="head text-right"><p>Latencia forward, ms</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>1,500</p></td>
+<td class="text-right"><p>157,08 ± 1,07</p></td>
+<td class="text-right"><p>8 739</p></td>
+<td class="text-right"><p>116 308</p></td>
+<td class="text-right"><p>0,84019</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td class="text-right"><p>2,167</p></td>
+<td class="text-right"><p>45,20 ± 0,16</p></td>
+<td class="text-right"><p>3 777</p></td>
+<td class="text-right"><p>49 792</p></td>
+<td class="text-right"><p>0,42854</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>5,500</p></td>
+<td class="text-right"><p>52,09 ± 0,31</p></td>
+<td class="text-right"><p>490 561</p></td>
+<td class="text-right"><p>6 837 632</p></td>
+<td class="text-right"><p>4,55987</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>6,000</p></td>
+<td class="text-right"><p>49,72 ± 0,55</p></td>
+<td class="text-right"><p>522 955</p></td>
+<td class="text-right"><p>7 265 920</p></td>
+<td class="text-right"><p>3,38347</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>6,000</p></td>
+<td class="text-right"><p>142,72 ± 0,54</p></td>
+<td class="text-right"><p>9 447</p></td>
+<td class="text-right"><p>960 650</p></td>
+<td class="text-right"><p>7,65790</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>6,333</p></td>
+<td class="text-right"><p>22,28 ± 0,18</p></td>
+<td class="text-right"><p>268 929</p></td>
+<td class="text-right"><p>3 741 952</p></td>
+<td class="text-right"><p>1,10541</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>6,333</p></td>
+<td class="text-right"><p>9,98 ± 0,13</p></td>
+<td class="text-right"><p>593</p></td>
+<td class="text-right"><p>1 152</p></td>
+<td class="text-right"><p>0,32324</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>7,333</p></td>
+<td class="text-right"><p>8,90 ± 0,14</p></td>
+<td class="text-right"><p>5 025</p></td>
+<td class="text-right"><p>66 368</p></td>
+<td class="text-right"><p>0,45158</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>7,667</p></td>
+<td class="text-right"><p>271,95 ± 2,21</p></td>
+<td class="text-right"><p>1 173 099</p></td>
+<td class="text-right"><p>56 242 762</p></td>
+<td class="text-right"><p>9,13152</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>8,833</p></td>
+<td class="text-right"><p>37,92 ± 0,28</p></td>
+<td class="text-right"><p>35 044</p></td>
+<td class="text-right"><p>433 110</p></td>
+<td class="text-right"><p>3,80928</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>10,000</p></td>
+<td class="text-right"><p>33,62 ± 0,20</p></td>
+<td class="text-right"><p>163 384</p></td>
+<td class="text-right"><p>1 622 816</p></td>
+<td class="text-right"><p>2,05747</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>10,333</p></td>
+<td class="text-right"><p>53,01 ± 0,23</p></td>
+<td class="text-right"><p>795 403</p></td>
+<td class="text-right"><p>7 936 020</p></td>
+<td class="text-right"><p>3,00425</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>13,000</p></td>
+<td class="text-right"><p>76,38 ± 0,36</p></td>
+<td class="text-right"><p>16 388</p></td>
+<td class="text-right"><p>632 330</p></td>
+<td class="text-right"><p>5,28205</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los tiempos proceden de <a class="reference download internal" download="" href="../_downloads/267bbd7cb577bfab772e9b78f2144298/model_efficiency.csv"><span class="xref download myst">las fases finales instrumentadas</span></a>, los FLOPs del <a class="reference download internal" download="" href="../_downloads/c92e850d53c08daf58496b876d04d9bd/flops_by_model.csv"><span class="xref download myst">conteo core</span></a> y las latencias de los <a class="reference download internal" download="" href="../_downloads/4a2e3fdcb5bed843a2453eca99dc979f/inference_profiles_by_model.csv"><span class="xref download myst">perfiles A100</span></a>. Los espacios en parámetros y FLOPs separan millares; las columnas decimales usan coma. El rango no prueba una diferencia significativa entre dos redes.</p>
+</section>
+<section id="pareto-y-alcance-de-los-costes">
+<h3>6.2.2 Pareto y alcance de los costes<a class="headerlink" href="#pareto-y-alcance-de-los-costes" title="Link to this heading">#</a></h3>
+<p>Al minimizar RMSE y tiempo final medio por semilla, la frontera observada contiene <strong>LSTM32, MLP16, GRU32 y SAE</strong>. Al minimizar RMSE y parámetros, contiene <strong>MLP16, GRU32 y SAE</strong>. La <a class="reference internal" href="51_eficiencia_costes.html"><span class="std std-doc">auditoría de costes</span></a> conserva los <strong>5.765,09 s</strong> de las 78 ejecuciones finales instrumentadas; el coste SAE incluye sus dos fases auxiliares y la supervisada. Son recetas y épocas congeladas distintas, no una comparación a igual número de actualizaciones ni el coste exhaustivo de HPO.</p>
+<p><img alt="Compromisos descriptivos entre RMSE, tiempo final y parámetros" src="../_images/quality_cost_pareto.svg" /></p>
+<p>La frontera RMSE–<strong>FLOPs core</strong> también contiene <strong>MLP16, GRU32 y SAE</strong>. Se cuentan matrices, convoluciones, compuertas recurrentes y productos de atención con <strong>1 MAC = 2 FLOPs</strong>, en batch1 y D7. Se excluyen FFT, activaciones, normalizaciones, pooling, sumas de sesgo y movimientos de memoria. El <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">inventario de operadores</span></a> explicita además las rutas sintéticas sondeadas de TimesNet; tres sondas con pesos iniciales no acotan todas sus rutas dependientes de los valores. <strong>La cifra es parcial, no el total de operaciones de todos los kernels.</strong></p>
+<p><img alt="Compromiso descriptivo entre RMSE y FLOPs core" src="../_images/pareto_core_flops_rmse.svg" /></p>
+<p>La latencia es la <strong>media de las seis medianas por semilla</strong>: 32 pasadas de calentamiento y 100 repeticiones, entrada residente en A100, batch1 y eventos CUDA durante el forward. Excluye carga, transferencia, preprocesamiento y servicio completo. SAE tarda 0,84019 ms, GRU32 0,42854 ms y MLP16 0,32324 ms. Menos parámetros no garantiza menos latencia: TimeMixer tarda más que PatchTST bajo este protocolo.</p>
+<p><img alt="Latencia forward GPU de las trece redes" src="../_images/inference_latency.svg" /></p>
+<p>La frontera <strong>RMSE–latencia</strong> se reconstruye con los trece puntos publicados: RMSE media A2 y media de las seis medianas de forward. La frontera puntual contiene <strong>MLP16, GRU32 y SAE</strong>. El <a class="reference download internal" download="" href="../_downloads/6658d783fed4d66e115e64d3c58e7542/latency_pareto.csv"><span class="xref download myst">CSV de puntos y pertenencia</span></a> y los <a class="reference download internal" download="" href="../_downloads/2ac84d9ec0f4d7b6443bec34f554dac5/summary_plots.json"><span class="xref download myst">metadatos de las figuras de síntesis</span></a> conservan sus insumos. Esta presentación no incorpora nuevas mediciones y no estima la incertidumbre conjunta de error y coste ni resuelve RQ3.</p>
+<p><img alt="Frontera descriptiva entre RMSE y latencia forward de las trece redes" src="../_images/latency_pareto.svg" /></p>
+<p>La dominancia de estas fronteras se calcula sobre estimaciones puntuales, sin incertidumbre conjunta ni nueva selección. Los recursos comparables de los clásicos permanecen <strong>no medidos</strong>, sin asignarles cero. El coste total de búsqueda no está atribuido exhaustivamente; la memoria original de entrenamiento es un máximo del proceso no aislado por modelo, y la memoria de inferencia posterior tiene otro alcance. La energía y el importe monetario siguen sin medirse. Las fronteras orientan el compromiso observado entre precisión y coste; no resuelven la prueba conjunta RQ3.</p>
+</section>
+</section>
+<section id="analisis-estadistico-y-pruebas-de-hipotesis">
+<span id="benchmark-pruebas-hipotesis-vigente"></span><h2>6.3 Análisis estadístico y pruebas de hipótesis<a class="headerlink" href="#analisis-estadistico-y-pruebas-de-hipotesis" title="Link to this heading">#</a></h2>
+<section id="familia-primaria-mejora-relevante-de-rmse">
+<h3>6.3.1 Familia primaria: mejora relevante de RMSE<a class="headerlink" href="#familia-primaria-mejora-relevante-de-rmse" title="Link to this heading">#</a></h3>
+<p>Se contrasta, para cada uno de los diez candidatos, una ganancia <span class="math notranslate nohighlight">\(g=\mu_{referencia}-\mu_{candidato}\)</span> mayor que el margen heredado <strong>δ = 0,00025772842664981106</strong>, frente a <strong>GRU32 y Persistence</strong>. Son <strong>veinte hipótesis</strong>, con α familiar 0,05 y Holm20. La distribución nula se centra en la frontera <span class="math notranslate nohighlight">\(g=\delta\)</span>; probar diferencia contra cero responde a otra pregunta.</p>
+<p>El análisis original usa <strong>4.999 remuestreos</strong> pareados de semillas y calendario, con bloques de 14 días. El <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">refinamiento posterior</span></a> comprobó exactamente los veinte resultados originales y amplió las mismas hipótesis a <strong>20.000 réplicas</strong>, conservando métrica, δ, pares, semillas del generador y Holm. No reentrenó, recalibró ni cambió los pronósticos. El original permanece disponible; el refinamiento satisface el número de sorteos del nuevo cálculo sin atribuir 20.000 a la ejecución inicial.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>SAE frente a</p></th>
+<th class="head text-right"><p>Ganancia RMSE</p></th>
+<th class="head"><p>IC95 % marginal B=20.000</p></th>
+<th class="head text-right"><p>p unilateral</p></th>
+<th class="head text-right"><p>p Holm20</p></th>
+<th class="head text-center"><p>Rechazo a 0,05</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0,000197733</p></td>
+<td><p>[−0,000134704; 0,000550757]</p></td>
+<td class="text-right"><p>0,646118</p></td>
+<td class="text-right"><p>1,000000</p></td>
+<td class="text-center"><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistence</p></td>
+<td class="text-right"><p>0,000282166</p></td>
+<td><p>[−0,000169219; 0,000720013]</p></td>
+<td class="text-right"><p>0,442778</p></td>
+<td class="text-right"><p>1,000000</p></td>
+<td class="text-center"><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Los veinte p ajustados siguen siendo 1.</strong> SAE mejora puntualmente un <strong>4,94 %</strong> frente a GRU32, con ganancia menor que δ, y un <strong>6,91 %</strong> frente a Persistence, con ganancia mayor que δ pero IC que incluye cero. Ninguno demuestra superioridad práctica con el control familiar registrado. ARIMA ocupa el segundo lugar puntual; SAE–ARIMA no pertenece a estos veinte contrastes. Los <a class="reference download internal" download="" href="../_downloads/f211a7f0ff0fed486ceb4ad9aa0b8722/primary_contrasts.csv"><span class="xref download myst">resultados originales</span></a>, los <a class="reference download internal" download="" href="../_downloads/ade8c2cd1865a24134a7aa488a525658/original_4999_exact_checks.csv"><span class="xref download myst">veinte cotejos</span></a> y el <a class="reference download internal" download="" href="../_downloads/8ebda3c2fb61b64a3ae7de5e2fffcbf0/primary_refinement_20000.csv"><span class="xref download myst">refinamiento completo</span></a> conservan efectos, IC y p sin ajustar/ajustados.</p>
+<p>Los IC son individuales, no simultáneos. El bootstrap supone dependencia temporal suficientemente corta, longitud de bloque adecuada e intercambiabilidad de trayectorias de semillas. La persistencia conserva su única trayectoria determinista al emparejarse; no recibe seis entrenamientos ficticios. <strong>Falta de rechazo no demuestra equivalencia ni ausencia de efectos.</strong> No se ha establecido equivalencia mediante TOST o ROPE.</p>
+</section>
+<section id="comparaciones-temporales-y-rangos-hipotesis-diferentes">
+<h3>6.3.2 Comparaciones temporales y rangos: hipótesis diferentes<a class="headerlink" href="#comparaciones-temporales-y-rangos-hipotesis-diferentes" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Procedimiento ejecutado</p></th>
+<th class="head"><p>Unidad, hipótesis y familia</p></th>
+<th class="head"><p>Resultado e interpretación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>t pareada y cambios de signo</p></td>
+<td><p>Veinte diagnósticos por procedimiento, sobre seis diferencias entre semillas condicionadas al calendario; t con 5 gl y enumeración de 64 signos</p></td>
+<td><p>Ningún rechazo después de sus ajustes Holm. No sustituyen la incertidumbre temporal; la enumeración no demuestra simetría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Diebold–Mariano con HLN</p></td>
+<td><p>120 parejas de 16 sistemas; igualdad bilateral de <strong>MSE diaria media de las trayectorias fijas</strong>, h=1, HAC Bartlett14, HLN y referencia t607</p></td>
+<td><p><strong>35/120 rechazos Holm120</strong>. SAE frente a GRU32, Persistence o ARIMA no rechaza tras Holm. Una diferencia de MSE no acredita el margen δ expresado en RMSE.</p></td>
+</tr>
+<tr class="row-even"><td><p>Model Confidence Set, T_R</p></td>
+<td><p>Mismas pérdidas; 10.000 bloques circulares de 14 días, procedimiento conjunto al 90 %</p></td>
+<td><p>Permanecen <strong>FCN-1D, SAE, GRU32, Persistence y ARIMA</strong>. Pertenecer al conjunto no prueba equivalencia ni superioridad universal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Friedman e Iman–Davenport</p></td>
+<td><p>Seis vectores de semillas × trece redes, condicionados a datos y recetas; independencia entre vectores e intercambiabilidad de rangos bajo la nula</p></td>
+<td><p>Q=46,98901, pχ²=0,000004682; F(12,60)=9,39367, p=7,02787×10⁻¹⁰. Comprobación de 10.000 permutaciones: p=0,00009999. Son tres evaluaciones del mismo diagnóstico global.</p></td>
+</tr>
+<tr class="row-even"><td><p>Wilcoxon pareado exacto</p></td>
+<td><p>78 parejas entre las trece redes, seis pares por comparación; Holm78</p></td>
+<td><p><strong>Cero rechazos, todos los p Holm=1</strong>. El mínimo bilateral posible con seis pares sin empates es 0,03125; esta familia no tiene resolución para declarar una pareja significativa.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Giacomini–Rossi y constancia</p></td>
+<td><p>Veinte pares primarios para cada diagnóstico, sobre diferencias de pérdida; ventanas de 182 días, HAC14 y adaptación bootstrap B=20.000; Holm40 conjunto</p></td>
+<td><p>Cero rechazos. El estadístico GR no centrado contrasta igualdad predictiva; el diagnóstico separado centrado contrasta constancia. No rechazo no garantiza estabilidad universal.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">comparación temporal y de rangos</span></a> conserva las fórmulas, el <a class="reference download internal" download="" href="../_downloads/fc73bb571707ea537075beaf411483b4/analysis_plan.json"><span class="xref download myst">plan</span></a>, los <a class="reference download internal" download="" href="../_downloads/e87d9a64699ab6813f5a76f7cbc59e70/dm_hln_hac14_all120.csv"><span class="xref download myst">120 DM</span></a>, la <a class="reference download internal" download="" href="../_downloads/66caeedbd46cf2ff3e34fb7b1831f8fa/mcs_membership.csv"><span class="xref download myst">pertenencia MCS</span></a> y los <a class="reference download internal" download="" href="../_downloads/722fe93c1acc57b81292325c42591619/conditional_wilcoxon_holm78.csv"><span class="xref download myst">78 Wilcoxon</span></a>. El <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">suplemento de estabilidad</span></a> publica los <a class="reference download internal" download="" href="../_downloads/3cb3e99e8fe7ddc0239842c21eef7a99/relative_fluctuation_tests.csv"><span class="xref download myst">contrastes GR y de constancia</span></a>. Sus familias son posteriores y exploratorias, separadas de Holm20. No se combinan sus rechazos para declarar confirmación de RQ1.</p>
+<p>DM y MCS agregan <strong>errores cuadrados individuales</strong>, sin promediar antes los pronósticos. La pérdida media temporal es la media de RMSE² de las semillas y difiere de la media primaria de RMSE. HLN con HAC14 es una aproximación declarada ante el solapamiento de σ₇, no una prueba exacta de muestra finita. La interpretación temporal requiere dependencia débil o estacionariedad local y una longitud de bloque adecuada.</p>
+<p>En Friedman/Wilcoxon las seis semillas no son seis mercados. Compartir identificador numérico tampoco demuestra un efecto aleatorio común entre arquitecturas; el emparejamiento y, para Wilcoxon, la simetría de diferencias son supuestos. No se presenta un Friedman poblacional entre series u orígenes independientes; trimestres y ventanas solapadas no se convierten en réplicas iid. El post-hoc usa Wilcoxon–Holm como alternativa de la guía; no se ejecutó Nemenyi. La heterogeneidad global no permite señalar una pareja sin superar su post-hoc.</p>
+<p><img alt="Rangos medios de las trece redes con conexiones de no rechazo Wilcoxon–Holm78" src="../_images/conditional_rank_groups.svg" /></p>
+<p><strong>Diagrama de rangos medios con conexiones de no rechazo, en estilo de diferencia crítica.</strong> Se representan los rangos y los 78 resultados Wilcoxon–Holm ya publicados: las trece redes quedan conectadas porque ningún par rechaza después de Holm. No se calcula otra prueba ni una distancia crítica única de Nemenyi. La conexión <strong>no demuestra equivalencia</strong>, y debe leerse junto con la resolución limitada de seis pares y los supuestos de emparejamiento; no significa que las trece redes tengan igual desempeño. Los <a class="reference download internal" download="" href="../_downloads/2ac84d9ec0f4d7b6443bec34f554dac5/summary_plots.json"><span class="xref download myst">metadatos de la figura</span></a> identifican las tablas originales utilizadas.</p>
+</section>
+<section id="supuestos-adecuacion-residual-y-potencia">
+<h3>6.3.3 Supuestos, adecuación residual y potencia<a class="headerlink" href="#supuestos-adecuacion-residual-y-potencia" title="Link to this heading">#</a></h3>
+<p>La <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">auditoría de residuos</span></a> ejecutó una familia separada de <strong>826 hipótesis</strong>, con <strong>707 rechazos Holm</strong> sobre 81 trayectorias:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Diagnóstico</p></th>
+<th class="head text-right"><p>Rechazos después de Holm826</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ljung–Box, residuos, rezago 7 y 14</p></td>
+<td class="text-right"><p>81/81 en cada rezago</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ljung–Box, residuos cuadrados, rezago 7 y 14</p></td>
+<td class="text-right"><p>80/81 en cada rezago</p></td>
+</tr>
+<tr class="row-even"><td><p>ARCH-LM, rezago 7</p></td>
+<td class="text-right"><p>78/81</p></td>
+</tr>
+<tr class="row-odd"><td><p>BDS, dimensiones 2 y 3</p></td>
+<td class="text-right"><p>79/81 en cada dimensión</p></td>
+</tr>
+<tr class="row-even"><td><p>Jarque–Bera, normalidad residual</p></td>
+<td class="text-right"><p>81/81</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <a class="reference download internal" download="" href="../_downloads/1fd4da1929319988cae12221837526dc/tests.csv"><span class="xref download myst">p-valores completos</span></a> incluyen las decisiones no rechazadas. Los resultados impiden tratar los días como iid; BDS por sí solo no prueba señal no lineal aprovechable. No se confunde normalidad residual con normalidad de las seis diferencias usadas por una t pareada.</p>
+<p>La ruta principal usa bootstrap por bloques, HAC y rangos para representar esas dependencias; no depende de asumir días normales e independientes. <strong>No se documentan Shapiro–Wilk, Levene ni una ANOVA de medidas repetidas ejecutadas para esta comparación actual.</strong> Tampoco se publicaron d de Cohen o δ de Cliff con IC: se conservan los efectos en unidades originales —ganancia de RMSE y diferencia MSE con IC— y el indicador estandarizado descriptivo de DM, que no sustituye esos tamaños estandarizados con intervalo. Estas omisiones no se presentan como comprobaciones superadas. Ejecutar todas las alternativas paramétricas del catálogo no es necesario para justificar la elección temporal; sí lo es hacer explícitos sus supuestos y límites.</p>
+<p>Los tres folds HPO tienen entrenamiento solapado y no se usan como tres replicaciones independientes del benchmark final. No se aplicó una corrección Nadeau–Bengio: no se efectuó aquí una t sobre puntuaciones de esos folds ni se atribuye a las semillas la independencia entre particiones. La inferencia actual combina una sola cronología con repeticiones de optimización, bajo los supuestos declarados, sin eliminar todas las fuentes de dependencia.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">piloto de potencia y MDE</span></a> estimó potencia condicional aproximada de <strong>12,3 %</strong> en su alternativa, inferior al objetivo del 80 %. R=6 fue una decisión documentada por recursos, no una garantía de potencia suficiente, y no se aumentó tras consultar los contrastes. Los p-valores sin ajustar y ajustados, efectos y cantidades de comparaciones permanecen disponibles; un resultado negativo no demuestra equivalencia. Los p numéricos cero del auditor residual se conservan como salidas de biblioteca por precisión, no como probabilidades matemáticamente nulas.</p>
+</section>
+</section>
+<section id="discusion-critica-y-decisiones">
+<span id="benchmark-discusion-critica-vigente"></span><h2>6.4 Discusión crítica y decisiones<a class="headerlink" href="#discusion-critica-y-decisiones" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pregunta de la guía</p></th>
+<th class="head"><p>Respuesta sustentada y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>¿Qué modelo funciona mejor y por qué?</p></td>
+<td><p><strong>SAE obtiene la menor RMSE puntual</strong>, mientras Persistence gana MAE y sMAPE. Las tres ablaciones SAE usan seis semillas y 10.000 remuestreos pareados: retirar dropout supervisado aumenta RMSE 13,90 %, diferencia 0,000528565, IC95 % [0,000299895;0,000771366], p Holm3=0,00059994. Retirar preentrenamiento o segundo encoder no rechaza; no demuestra contribución nula. La evidencia respalda un componente de esa receta, no superioridad confirmada sobre todas las alternativas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>¿Qué generaliza y calibra mejor?</p></td>
+<td><p>La evaluación común permite comparar este calendario heredado. La cobertura global y la anchura difieren; ACI las modifica favorablemente en varios sistemas, pero persisten déficits por grupo y no existe garantía condicional universal. No hay otro activo o periodo independiente para ordenar generalización externa.</p></td>
+</tr>
+<tr class="row-even"><td><p>¿Qué resiste mejor las perturbaciones?</p></td>
+<td><p>La degradación depende del modelo, tipo y severidad. El estrés de extremos deteriora fuertemente SAE, GRU32 y TimeMixer; ninguna menor RMSE original garantiza robustez. Las áreas de escalas de estrés distintas no son intercambiables ni definen un ganador universal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>¿Las diferencias son significativas y relevantes?</p></td>
+<td><p>Holm20 no confirma ninguna ganancia mayor que δ; los 35 rechazos DM responden a igualdad de MSE en otra familia. Un efecto puntual o un IC marginal favorable no sustituye el ajuste familiar ni una prueba de equivalencia.</p></td>
+</tr>
+<tr class="row-even"><td><p>¿Qué compromiso entre precisión, coste y explicabilidad es relevante?</p></td>
+<td><p>MLP16 minimiza parámetros y coste core; GRU32 ofrece menor error que las otras referencias E1 con baja latencia; SAE reduce puntualmente RMSE con más tiempo de ajuste y forward. Los Pareto son descriptivos y parciales. La oclusión para SAE, ARIMA y GRU32 aporta respuesta del predictor, no causalidad económica.</p></td>
+</tr>
+<tr class="row-odd"><td><p>¿Qué tan cerca está el mejor modelo del techo?</p></td>
+<td><p>El ensemble ajustado sólo en calibración alcanza RMSE puntual 0,003689532; γ empírico=0,287574, IC algebraico [−1,49210;2,37128]. Ninguna ganancia frente a SAE o Persistence rechaza Holm2. Es una referencia alcanzable condicionada, no riesgo Bayes ni techo óptimo identificado; no se afirma que quede exactamente 28,8 % de margen real.</p></td>
+</tr>
+<tr class="row-even"><td><p>¿Qué errores sistemáticos quedan?</p></td>
+<td><p>La taxonomía automática etiqueta 6.080 casos fecha-modelo y conserva <strong>100 fechas distintas/600 residuos individuales por cada modelo principal</strong>. Se distinguen magnitud y signo, con IC temporales; no sustituye una taxonomía semántica revisada por expertos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">ablaciones y su reproducción</span></a>, la <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">interpretabilidad</span></a>, la <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">taxonomía</span></a> y la <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">referencia de ensemble calibrado</span></a> permiten revisar estas afirmaciones. Los <strong>81 recibos de reproducción</strong> en checkout y entorno limpios conservan diferencia máxima cero en calibración y prueba; las <strong>18 ejecuciones de ablación corresponden a tres variantes × seis semillas</strong>, no a dieciocho contrastes. Es reproducción numérica con mismo código, recetas y entorno tecnológico, no validación externa por otro equipo o mercado.</p>
+<p>La oclusión se aplicó al <strong>Top 3 observado SAE, ARIMA y GRU32</strong>, en 24 fechas equiespaciadas. SAE y GRU32 muestran correlación media de Spearman entre semillas de 0,73102 y 0,83815; para ARIMA, R=1, no es estimable. La fidelidad reutiliza esas fechas y compara con un único orden aleatorio fijado: informa sobre respuesta y coherencia de esos predictores, con independencia limitada. Los residuos serialmente dependientes y la infracobertura observada se conservan entre los resultados negativos.</p>
+<section id="respuesta-a-las-preguntas-de-investigacion">
+<h3>6.4.1 Respuesta a las preguntas de investigación<a class="headerlink" href="#respuesta-a-las-preguntas-de-investigacion" title="Link to this heading">#</a></h3>
+<p>Las <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">preguntas e hipótesis de §1</span></a> mantienen sus identidades:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pregunta</p></th>
+<th class="head"><p>Decisión con la evidencia actual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>RQ1: mejora predictiva relevante</strong></p></td>
+<td><p>Ejecutada en los veinte contrastes primarios. No se rechaza ninguna nula de ganancia ≤δ tras Holm20; SAE es el mejor valor observado, sin superioridad práctica confirmada.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RQ2: deterioro de ventaja en alta volatilidad</strong></p></td>
+<td><p>La especificación secundaria y su multiplicidad están explicitadas como aclaración documental posterior. Los diagnósticos por régimen y estrés aportan contexto, pero <strong>no ejecutan ese contraste de erosión de ventaja</strong>; no se declara confirmada ni refutada.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>RQ3: mejora conjunta de error y coste</strong></p></td>
+<td><p>Las mediciones y Pareto son descriptivos. <strong>No se ejecutó la prueba conjunta de intersección-unión</strong> con costes crudos comparables y su multiplicidad; no se declara resuelta.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="amenazas-a-la-validez-y-trabajo-pendiente">
+<h3>6.4.2 Amenazas a la validez y trabajo pendiente<a class="headerlink" href="#amenazas-a-la-validez-y-trabajo-pendiente" title="Link to this heading">#</a></h3>
+<p><strong>Validez interna y temporal.</strong> La selección se hizo por validación y las <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">81 identidades finales se congelaron</span></a> antes de puntuar. La partición heredada se mantiene como exige la guía y su conocimiento previo limita la confirmación prospectiva. El <strong>δg previo sí está documentado</strong>, con valor 0,00025772842664981106 y <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">linaje verificable</span></a>; no se le atribuye ausencia de definición. Sigue sin establecerse su cumplimiento formal para los predictores actuales: las brechas guardadas comparan riesgos de entrenamiento evaluados con su lote configurado y calibración de otro periodo con lote1, sin soporte para la nueva prueba temporal comparable. Una curva favorable o falta de rechazo no subsana esa inferencia.</p>
+<p><strong>Validez externa y de constructo.</strong> Se observa una sola cronología BTCUSDT, con objetivo σ₇ y ventanas solapadas. La volatilidad definida a partir de precios no equivale a utilidad de inversión, rentabilidad ni ausencia de riesgos operativos. Las perturbaciones no reconstruyen trayectorias OHLCV económicamente coherentes; la taxonomía y las explicaciones son diagnósticas. Los suplementos de calibración y ensemble se planificaron antes de sus cálculos respectivos, después de conocer el test original; no se convierten en comparaciones confirmatorias retrospectivamente.</p>
+<p><strong>Validez estadística y de coste.</strong> La potencia es limitada; las aproximaciones HAC, bootstrap y rangos tienen los supuestos expuestos. El MCS, un no rechazo o una cobertura global cercana al nominal no demuestran equivalencia. El coste de selección completo, los FLOPs excluidos y la energía no se han identificado. El cociente γ conserva su intervalo amplio, incluidos cambios de orden y denominador; no se trunca para aparentar un techo preciso.</p>
+<p>El cierre del punto 6 distingue los resultados acreditados de los requisitos pendientes en la <a class="reference download internal" download="" href="../_downloads/4cfb98e9cf47b54fb6b0449042b7d728/guide_checklist.csv"><span class="xref download myst">lista verificable</span></a>. Quedan como trabajo concreto la inferencia comparable respecto a δg, la ejecución específica RQ2/RQ3 con sus entradas requeridas, los tamaños estandarizados con IC aún no publicados, la atribución exhaustiva del coste de selección y la validación externa del techo y la calibración. La síntesis utiliza resultados ya existentes; no añade entrenamientos ni nuevas pruebas para completar casillas. Los registros históricos, enlaces y estados anteriores se preservan a continuación.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Archivo documental: versiones y estados anteriores del capítulo 6</p>
+<p>Este bloque conserva íntegramente el contenido previo y sus encabezados para mantener los enlaces históricos. Sus fechas y estados corresponden a sus cortes originales; los apartados 6.1–6.4 de lectura vigente se presentan arriba. Las cifras y descargas científicas originales no se modifican.</p>
 <p><strong>Resultados finales verificados al 13/11/2026, 11:58:36 de Bogotá.</strong> Se completaron los <strong>78 ajustes finales</strong> de las trece redes, los <strong>10 pilotos</strong>, los tres comparadores y la congelación de <strong>81 predictores</strong>. La evaluación común ya aporta resultados de los <strong>16 sistemas sobre las mismas 608 fechas elegibles</strong>, del 01/01/2025 al 31/08/2026. <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">Tabla A2 original, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis completo</span></a> · <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">Admisión de datos</span></a>.</p>
 <p><strong>Cierre complementario verificado al 13/11/2026, 22:42:55 de Bogotá.</strong> Se completaron los <strong>99 ajustes adicionales del plan: 81 reproducciones en entorno limpio y 18 ablaciones entrenadas del autoencoder</strong>. Los 81 recibos de reproducción aprobaron sus comprobaciones numéricas registradas, con diferencia absoluta máxima <strong>0</strong> en las 53 fechas de calibración y las 608 de prueba; el <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">informe y las comparaciones de las tres ablaciones (§55)</span></a> conservan sus resultados y límites. Esta etapa reutiliza recetas, épocas y semillas fijadas y no sustituye la A2 ni sus veinte contrastes primarios. El límite autorizado vigente es de <strong>84 horas acumuladas</strong>, con todos los cargos anteriores conservados.</p>
 <p>El <strong>LSTM-autoencoder con predictor tiene la menor RMSE media observada</strong>, seguido de ARIMA y GRU32. La persistencia presenta el menor MAE y la menor sMAPE. Este orden descriptivo no demuestra superioridad universal: <strong>ninguno de los 20 contrastes primarios de mejora práctica rechazó su hipótesis nula tras Holm</strong>. La discusión, los resultados negativos y las limitaciones forman parte de la entrega.</p>
 <p><strong>Alcance:</strong> diez candidatos, tres referencias E1 y tres comparadores: <strong>16 sistemas</strong>. El híbrido adicional y Ridge conservan alcance opcional/histórico. Las reglas y decisiones previas siguen en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>; el <a class="reference internal" href="47_entrega_consolidada.html"><span class="std std-doc">informe consolidado y su actualización final</span></a> separan estos resultados de los antecedentes de selección y de E1.</p>
 <p><strong>Verificación numérica posterior:</strong> <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> reproduce exactamente los veinte resultados originales de 4.999 remuestreos y recalcula las mismas hipótesis, δ, semillas y Holm con <strong>20.000 réplicas</strong>. Los veinte p ajustados siguen siendo 1,0. Es un refinamiento posterior de precisión, separado del archivo primario original y sin nueva selección.</p>
-<section id="tabla-a2-metricas-finales-medidas">
-<h2>Tabla A2: métricas finales medidas<a class="headerlink" href="#tabla-a2-metricas-finales-medidas" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="tabla-a2-metricas-finales-medidas">Tabla A2: métricas finales medidas</h2>
 <p><strong>Auditoría complementaria del 13/11/2026:</strong> <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> añade curvas de ajuste y diagnósticos de residuos, calibración y estabilidad temporal usando las predicciones congeladas. Es un análisis exploratorio posterior, con su propia familia Holm de 826 hipótesis. No altera esta A2, sus veinte contrastes primarios ni la selección de modelos; tampoco acredita adecuación por falta de rechazo.</p>
 <p>La métrica primaria es la <strong>media de las RMSE individuales de las seis semillas</strong>, en unidades originales de σ₇; <strong>no es la RMSE de un ensamble</strong>. Las redes tienen R=6 y cada comparador determinista una trayectoria, R=1. La tabla se ordena por RMSE ascendente para facilitar la lectura, sin una nueva selección ni ajuste tras observar la evaluación. Todas las filas utilizan <strong>n=608</strong>; sMAPE y cobertura se muestran en porcentaje.</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -675,9 +1248,7 @@
 </table>
 </div>
 <p>Los otros intervalos entre semillas están en el <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">análisis completo</span></a>.</p>
-</section>
-<section id="diferencias-practicas-incertidumbre-y-multiplicidad">
-<h2>Diferencias prácticas, incertidumbre y multiplicidad<a class="headerlink" href="#diferencias-practicas-incertidumbre-y-multiplicidad" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="diferencias-practicas-incertidumbre-y-multiplicidad">Diferencias prácticas, incertidumbre y multiplicidad</h2>
 <p>La familia primaria contiene <strong>20 comparaciones</strong>: cada uno de los diez candidatos frente a <strong>GRU32</strong> y frente a <strong>Persistence</strong>. La ganancia se define como RMSE del comparador menos RMSE del candidato; se contrasta una mejora mayor que <strong>δ=0,00025772842664981106</strong>. El procedimiento principal usa <strong>bootstrap móvil pareado de semillas y posiciones del calendario</strong>, bloques de <strong>14 días</strong>, <strong>4.999 réplicas</strong> y corrección <strong>Holm</strong> sobre la familia. Conserva los supuestos de dependencia local y trayectorias de semillas intercambiables; no se presenta como una prueba exacta de tamaño finito.</p>
 <p><strong>Los veinte p ajustados son 1,0000: no se rechaza la ausencia de mejora práctica en ninguna comparación primaria.</strong> El mejor valor puntual de RMSE no basta para una afirmación confirmatoria. Para el LSTM-autoencoder:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -710,14 +1281,10 @@
 </div>
 <p>Frente a persistencia, la mejora puntual es de aproximadamente <strong>6,91 %</strong>, y la ganancia supera δ; sin embargo, su intervalo incluye cero y no queda respaldada tras la corrección de multiplicidad. Frente a GRU32, la mejora puntual es aproximadamente <strong>4,94 %</strong>, pero la diferencia es menor que δ y su intervalo también incluye cero. <strong>Ausencia de rechazo no demuestra equivalencia ni ausencia de efectos.</strong> ARIMA ocupa el segundo lugar descriptivo, pero SAE frente a ARIMA no pertenece a estos veinte contrastes primarios.</p>
 <p>La batería registrada también publica una t pareada entre semillas y una enumeración de cambios de signo como <strong>diagnósticos condicionados al calendario</strong>, además de sensibilidades temporales con bloques de 7 y 28 días. Los dos diagnósticos entre semillas tampoco producen rechazos tras sus correcciones reportadas. La enumeración no demuestra por sí misma el supuesto de simetría; las sensibilidades temporales de 7 y 28 días se presentan sin ajuste y no sustituyen la inferencia primaria. <a class="reference download internal" download="" href="../_downloads/f211a7f0ff0fed486ceb4ad9aa0b8722/primary_contrasts.csv"><span class="xref download myst">Veinte contrastes primarios, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Batería y sensibilidades completas</span></a>.</p>
-</section>
-<section id="calibracion-y-resultados-negativos">
-<h2>Calibración y resultados negativos<a class="headerlink" href="#calibracion-y-resultados-negativos" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="calibracion-y-resultados-negativos">Calibración y resultados negativos</h2>
 <p>Los intervalos predictivos nominales del 90 % se calibraron en desarrollo y permanecieron congelados durante la evaluación. La cobertura media de <strong>iTransformer es 85,03 %</strong>, inferior al nominal; la de <strong>LSTM32 es 97,09 %</strong> y la de SAE <strong>96,52 %</strong>. La sobrecobertura no implica automáticamente una mejor predicción: debe leerse junto con la anchura de los intervalos. FCN-1D queda cerca del nominal, con 90,27 %.</p>
 <p><strong>Persistence obtiene el menor MAE, 0,002353164, y la menor sMAPE, 13,23 %.</strong> SAE mejora el orden por RMSE, no todas las métricas. PatchTST y SeasonalNaive tienen R² medios negativos en este soporte; se conservan como resultados del protocolo, sin elegir otra configuración o recalibrar a partir del periodo evaluado.</p>
-</section>
-<section id="ejecucion-calendario-y-desviaciones-documentadas">
-<h2>Ejecución, calendario y desviaciones documentadas<a class="headerlink" href="#ejecucion-calendario-y-desviaciones-documentadas" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="ejecucion-calendario-y-desviaciones-documentadas">Ejecución, calendario y desviaciones documentadas</h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Etapa</p></th>
@@ -756,14 +1323,10 @@
 <p>La búsqueda ARIMA programó <strong>18 órdenes × 3 folds = 54 oportunidades</strong>: 51 aportaron una validación válida, dos no convergieron y una falló por implementación. <strong>ARIMA(0,0,0) en el fold de enero de 2024 consumió esa oportunidad y no se repitió</strong>. Quedaron <strong>15 de 18 órdenes con los tres folds válidos</strong>; la receta seleccionada fue <strong>ARIMA(2,0,1)</strong>. No se presenta el dominio completo como exitoso ni se borra la incidencia. SeasonalNaive seleccionó periodo <strong>7</strong> entre tres periodos, con sus nueve validaciones válidas. La <a class="reference download internal" download="" href="../_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">procedencia final</span></a> conserva los recibos y decisiones.</p>
 <p>La evaluación hereda las <strong>608 fechas ya conocidas de E1</strong>, del 01/01/2025 al 31/08/2026. La <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión</span></a> declara exposición previa, puente causal del 31/12/2024, ausencia de refit o retuning tras acceder al periodo evaluado y congelación previa. <strong>No es una prueba ciega recuperada ni una confirmación prospectiva independiente.</strong> El análisis sigue siendo retrospectivo, aunque la selección y la calibración actuales permanezcan separadas de estas fechas.</p>
 <p>El benchmark y sus suplementos no certifican todos los requisitos de E2. <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§§49–54</span></a> documentan los diagnósticos, comparaciones, costes y literatura; <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> añade la reproducción en entorno limpio y las tres ablaciones entrenadas. La <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz de la guía</span></a> conserva los requisitos y límites que siguen abiertos, sin convertir métricas no medidas en ceros ni atribuir cumplimiento integral a la existencia de A2.</p>
-</section>
-<section id="archivos-actuales-y-cortes-historicos">
-<h2>Archivos actuales y cortes históricos<a class="headerlink" href="#archivos-actuales-y-cortes-historicos" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="archivos-actuales-y-cortes-historicos">Archivos actuales y cortes históricos</h2>
 <p><a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">Tabla A2, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis JSON</span></a> · <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">Admisión de datos</span></a> · <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">Congelación</span></a> · <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">Piloto y MDE</span></a> · <a class="reference download internal" download="" href="../_downloads/52f2fcae145fe2461705ed2322b492ea/source_evidence.json"><span class="xref download myst">Fuentes</span></a> · <a class="reference download internal" download="" href="../_downloads/9977a2d95f86d9baa43380cbba292294/manifest.json"><span class="xref download myst">Manifiesto de descargas</span></a>.</p>
 <p>Se conservan la <a class="reference download internal" download="" href="../_downloads/f531ace1494720cbbc47c0c77186fd01/benchmark_A2_template.csv"><span class="xref download myst">plantilla histórica de A2</span></a>, vacía en su corte original, y las descargas de avance de las <a class="reference download internal" download="" href="../_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">trece redes a las 09:40</span></a> con sus <a class="reference download internal" download="" href="../_downloads/ce2322748961f074d4caa1cadf35d2af/source_evidence.json"><span class="xref download myst">fuentes congeladas</span></a>. Sus estados pendientes describen aquellas fechas y no reemplazan la tabla medida de esta actualización.</p>
-</section>
-<section id="antecedentes-documentales-del-diseno-de-dieciocho-sistemas">
-<h2>Antecedentes documentales del diseño de dieciocho sistemas<a class="headerlink" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</h2>
 <p>Los párrafos y tablas siguientes conservan la evolución del diseño anterior. Sus once candidatos, el estudio del híbrido y las obligaciones asociadas no amplían el catálogo obligatorio vigente de dieciséis sistemas.</p>
 <p><strong>Corte anterior a la enmienda de alcance (12/11/2026):</strong> existe selección HPO/NAS registrada para el catálogo anterior, con ejecución parcial documentada; las afirmaciones de ausencia de HPO o de falta de registro de selección corresponden a cortes anteriores. En aquel corte, el benchmark final, R y su cierre inferencial seguían pendientes. <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">Registro y alcance actuales (§9)</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario (§40)</span></a> · <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">Corte de resultados (§41)</span></a> · <a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html"><span class="std std-doc">Auditoría y trabajo paralelo (§42)</span></a>.</p>
 <p><strong>Corte histórico anterior del 12/11/2026:</strong> hay selección CUDA parcial documentada en <a class="reference internal" href="36_avance_campana_cuda.html"><span class="std std-doc">§36</span></a> y un corte con 1.484 ajustes HPO nuevos completados en <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>. El corte de entrega posterior se resume en §47. La campaña quedó pausada por límite de sesión en ese corte; el benchmark final, R y el ranking seguían pendientes en aquel corte. Los estados «sin HPO» de abajo pertenecen al corte del 08/11/2026, no al estado actual. <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">Matriz de exigencias y evidencia</span></a> · <a class="reference internal" href="40_calendario_original.html"><span class="std std-doc">Calendario histórico de once orígenes</span></a>.</p>
@@ -771,9 +1334,7 @@
 <p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. En ese corte sintético todavía no se había ejecutado la selección parcial posterior de §41; el benchmark seguía pendiente en aquel corte.</p>
 <p><strong>Estado al 08/11/2026: sin resultados de mercado del nuevo catálogo.</strong> La presentación de E2 considera únicamente los diez modelos indicados abajo y CNN-1D + LSTM + atención temporal como candidato 11. La expresión «modelo superior» representa la mejora que se desea investigar; no es una conclusión respaldada por evidencia.</p>
 <p>Se conservan cuatro prototipos compactos y un corrector con HAR externo, ahora histórico inactivo, con diez pruebas sintéticas documentadas. El nuevo híbrido tiene receta provisional: está implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado. Las diez pruebas anteriores no lo validan; sus nuevos controles están en §18. Los seis adaptadores existentes se integraron sin reducir sus mecanismos y pasaron el smoke sintético; la auditoría del flujo de mercado seguía pendiente en aquel corte. En ese corte del 08/11 no se habían ejecutado el HPO, el dimensionamiento ni la evaluación de ese conjunto. La selección histórica posterior se documenta en §41. Las métricas de E1, P0 o ETTh1 y las de artículos externos no rellenan sus resultados.</p>
-</section>
-<section id="tabla-historica-de-los-once-candidatos">
-<h2>6.1 Tabla histórica de los once candidatos<a class="headerlink" href="#tabla-historica-de-los-once-candidatos" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>N.º</p></th>
@@ -842,9 +1403,7 @@
 </table>
 </div>
 <p><strong>No medido no significa cero ni un empate.</strong> Esta tabla es el catálogo y su estado, no un ranking. Los controles CNN sola, LSTM sola y CNN–LSTM sin atención se reportarán dentro del estudio del candidato 11 cuando se definan; no reintroducen el catálogo descartado ni acreditan ensayos ya realizados.</p>
-</section>
-<section id="que-debe-medir-una-comparacion-valida">
-<h2>6.2 Qué debe medir una comparación válida<a class="headerlink" href="#que-debe-medir-una-comparacion-valida" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</h2>
 <p>La tarea común conserva D7×5 derivado de OHLCV mediante <code class="docutils literal notranslate"><span class="pre">relative_window</span></code> y predicción a un día de σ₇ poblacional, sin anualización, en unidades originales, según el <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">contrato sincronizado E1–E2–E3</span></a>. El híbrido no recibe historia adicional ni rezagos del objetivo. Las fechas comunes y las exclusiones se fijan antes de comparar; no se eliminan fechas a conveniencia según el modelo o el error observado.</p>
 <p>La métrica primaria es la <strong>media de las RMSE de cada trayectoria/semilla</strong>, calculadas sobre el mismo calendario elegible:</p>
 <div class="math notranslate nohighlight">
@@ -855,9 +1414,7 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 <p>La expresión define la agregación, <strong>no fija R</strong>. No se reemplaza por la RMSE de predicciones promediadas, una raíz de errores mezclados entre semillas ni una media no ponderada de RMSE mensuales. Si una receta usa un ensemble, deben definirse de antemano sus miembros y qué constituye una réplica de esa receta.</p>
 <p>Las métricas secundarias y diagnósticos se fijarán en el nuevo preregistro. Al informar MAE, MSE, R², MAPE o MASE, se declararán denominadores, cobertura y valores no estimables. MAPE no oculta objetivos cero; MASE usa únicamente pares temporales elegibles del entrenamiento, sin comprimir huecos. Si se evalúan varianza o QLIKE, debe registrarse la transformación de σ₇ y cualquier suelo numérico antes de puntuar.</p>
 <p>Cada resultado debe acompañarse de receta, origen, semilla, número de fechas, escala, fallos y procedencia de los pesos. Repetir una predicción determinista para una resta pareada no crea entrenamientos independientes.</p>
-</section>
-<section id="estudio-opcional-del-candidato-11">
-<h2>6.3 Estudio opcional del candidato 11<a class="headerlink" href="#estudio-opcional-del-candidato-11" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="estudio-opcional-del-candidato-11">6.3 Estudio opcional del candidato 11</h2>
 <p>CNN-1D + LSTM + atención temporal sólo podrá presentarse como mejor bajo una comparación definida y respaldada por datos. El diseño enlaza convoluciones 1D causales que conservan siete posiciones, LSTM unidireccional con <code class="docutils literal notranslate"><span class="pre">return_sequences=True</span></code>, atención temporal sobre esos siete estados observados, vector de contexto y cabeza escalar de σ₇. Este estudio queda fuera del alcance obligatorio. Si se retoma, antes de entrenar se necesitan:</p>
 <ol class="arabic simple">
 <li><p><strong>Receta y salida:</strong> definir dimensiones, kernels, profundidad, función de atención, enlace y pérdida sin presentarlos como hiperparámetros ya elegidos. Es una adaptación propuesta, no una reproducción exacta verificada del curso o de una publicación.</p></li>
@@ -867,17 +1424,13 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 <li><p><strong>Decisión previa:</strong> comparador, mejora mínima relevante, familia de contrastes, multiplicidad, incertidumbre y criterio de coste definidos antes de resultados.</p></li>
 </ol>
 <p>Combinar mecanismos no acredita novedad ni mejora garantizada. Se aceptarán resultados nulos o peores; no se seleccionará retrospectivamente la métrica o cohorte que favorezca al candidato. HAR + red residual y sus exigencias de soporte adicional/cross-fitting quedan como antecedente inactivo, no como obligaciones del nuevo diseño.</p>
-</section>
-<section id="incertidumbre-eficiencia-y-limites">
-<h2>6.4 Incertidumbre, eficiencia y límites<a class="headerlink" href="#incertidumbre-eficiencia-y-limites" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="incertidumbre-eficiencia-y-limites">6.4 Incertidumbre, eficiencia y límites</h2>
 <p><strong>Calendario y semillas representan incertidumbres distintas.</strong> Los remuestreos temporales deben usar bloques comunes de fechas y recalcular cada RMSE antes de agregar. La variación entre semillas describe el entrenamiento condicionado a un calendario; no equivale a observar más mercados. Longitudes de bloque, sensibilidades, número de remuestreos y familias requieren especificación propia, no copia automática del diseño retirado.</p>
 <p>Los intervalos del score no son intervalos predictivos de σ₇. Una rama de calibración exige separación del ajuste y de la selección, un predictor congelado y reglas anteriores al ranking. Su diseño y ejecución para aquellos once candidatos estaban pendientes en ese registro histórico.</p>
 <p>Los costes se medirán con hardware, precisión y protocolo comunes: búsqueda, preentrenamiento, ajuste final, preprocesamiento e inferencia separados. Parámetros, memoria, latencia y FLOPs/MACs deben indicar método y operaciones omitidas. Una magnitud no medida es ausente, no cero. Las fronteras de Pareto y la dominancia puntual tampoco demuestran superioridad con incertidumbre.</p>
 <p>La comparación temporal puede requerir DM y Model Confidence Set conforme a la guía, con pérdidas y unidades apropiadas. DM sobre pérdidas cuadráticas no prueba por sí mismo una ganancia práctica de RMSE. El MCS no establece equivalencia. No se fabricarán datasets independientes usando semillas o meses solapados para pruebas globales entre datasets.</p>
 <p>La reserva ya consultada en etapas anteriores conserva carácter <strong>exploratorio</strong>. Registrar nuevos ajustes no elimina esa exposición. No hay evidencia actual para afirmar generalización a otros activos o regímenes.</p>
-</section>
-<section id="condiciones-de-cierre-tabla-historica-del-08-11">
-<h2>6.5 Condiciones de cierre: tabla histórica del 08/11<a class="headerlink" href="#condiciones-de-cierre-tabla-historica-del-08-11" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="condiciones-de-cierre-tabla-historica-del-08-11">6.5 Condiciones de cierre: tabla histórica del 08/11</h2>
 <p>Los estados de implementación/HPO de esta tabla son antecedentes. Para selección ejecutada consultar <a class="reference internal" href="41_avance_optimizacion_11_origenes.html"><span class="std std-doc">§41</span></a>; el benchmark y los análisis finales seguían pendientes en aquel corte. La tabla medida actual se presenta al inicio de esta sección.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -915,10 +1468,10 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 </table>
 </div>
 <p>La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación</span></a>, el <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">preregistro histórico</span></a>, la <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">equidad de HPO</span></a> y las <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">arquitecturas</span></a> desarrollan estas condiciones. El <a class="reference download internal" download="" href="../_downloads/011de7ff547e4a661fbe452900458403/next_phases.json"><span class="xref download myst">plan editorial de fases</span></a> es una ayuda de trabajo, no un preregistro ni un recibo de ejecución.</p>
-</section>
-<section id="evidencia-historica-separada">
-<h2>6.6 Evidencia histórica separada<a class="headerlink" href="#evidencia-historica-separada" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="evidencia-historica-separada">6.6 Evidencia histórica separada</h2>
 <p>El <a class="reference download internal" download="" href="../_downloads/ffb6cca2e10be87b868950e0c777e030/execution_summary.json"><span class="xref download myst">recibo P0/OOF</span></a> conserva 220 trayectorias y 440 ajustes de desarrollo anteriores; sus <a class="reference download internal" download="" href="../_downloads/a2c4f2fd91bd6708aa0c31612606c810/aggregate_metrics.csv"><span class="xref download myst">métricas</span></a> y <a class="reference download internal" download="" href="../_downloads/64cc59fd0b8a6b3964c55f7e75a32a4a/summary.json"><span class="xref download myst">análisis</span></a> no son la tabla de este benchmark. El <a class="reference download internal" download="" href="../_downloads/769cadb5d12b34f5212c498756de1fcb/execution_progress.json"><span class="xref download myst">recibo HPO del 06/11/2026</span></a> acredita un inicio parcial histórico, no una búsqueda actual del catálogo vigente. Se preservan protocolos y resultados originales sin reproducir aquí el catálogo retirado ni comprometer su continuación.</p>
+</div>
+</section>
 </section>
 </section>
 
@@ -988,18 +1541,28 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-a2-metricas-finales-medidas">Tabla A2: métricas finales medidas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-practicas-incertidumbre-y-multiplicidad">Diferencias prácticas, incertidumbre y multiplicidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-y-resultados-negativos">Calibración y resultados negativos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-calendario-y-desviaciones-documentadas">Ejecución, calendario y desviaciones documentadas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-actuales-y-cortes-historicos">Archivos actuales y cortes históricos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-documentales-del-diseno-de-dieciocho-sistemas">Antecedentes documentales del diseño de dieciocho sistemas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-historica-de-los-once-candidatos">6.1 Tabla histórica de los once candidatos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-debe-medir-una-comparacion-valida">6.2 Qué debe medir una comparación válida</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-opcional-del-candidato-11">6.3 Estudio opcional del candidato 11</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-eficiencia-y-limites">6.4 Incertidumbre, eficiencia y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-cierre-tabla-historica-del-08-11">6.5 Condiciones de cierre: tabla histórica del 08/11</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-historica-separada">6.6 Evidencia histórica separada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-tabular">6.1 Comparación tabular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-sobre-el-calendario-comun">6.1.1 Métricas sobre el calendario común</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-incertidumbre-describe-cada-intervalo">6.1.2 Qué incertidumbre describe cada intervalo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-anchura-y-robustez">6.1.3 Calibración, anchura y robustez</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranking-y-analisis-de-eficiencia">6.2 Ranking y análisis de eficiencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ranking-descriptivo-y-rangos-entre-ejecuciones">6.2.1 Ranking descriptivo y rangos entre ejecuciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-y-alcance-de-los-costes">6.2.2 Pareto y alcance de los costes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-estadistico-y-pruebas-de-hipotesis">6.3 Análisis estadístico y pruebas de hipótesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-primaria-mejora-relevante-de-rmse">6.3.1 Familia primaria: mejora relevante de RMSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaciones-temporales-y-rangos-hipotesis-diferentes">6.3.2 Comparaciones temporales y rangos: hipótesis diferentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-adecuacion-residual-y-potencia">6.3.3 Supuestos, adecuación residual y potencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-critica-y-decisiones">6.4 Discusión crítica y decisiones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-las-preguntas-de-investigacion">6.4.1 Respuesta a las preguntas de investigación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez-y-trabajo-pendiente">6.4.2 Amenazas a la validez y trabajo pendiente</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

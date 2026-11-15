@@ -1,0 +1,99 @@
+{
+  "version": "e2-published-benchmark-summary-plots-v1",
+  "scope": "new_presentation_of_pinned_published_aggregates_no_new_experiment",
+  "input_sha256": {
+    "book_e2/_static/e2_f2a_s8_20261113/conditional_seed_ranks.csv": "40229ce75e8449c2829740efbd3d62b70f1900c9cbb48f42ce4fdcba34612c4b",
+    "book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv": "1c2c399eb925636ced5db6b7ea3c953bee72286d653e7b1be32e096f4b7007ed",
+    "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+    "book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv": "9a517bdc60282fa6d2362477f2ec5799451cd0b74d96c88ab188b2ff66a1fd1f"
+  },
+  "script_sha256": "97c17c512e107845360d10d7481b42f08d9eeb8b69bb333531085796fcef8ea3",
+  "software": {
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "conditional_rank_groups": {
+    "models": 13,
+    "seed_vectors": 6,
+    "common_dates_per_vector": 608,
+    "mean_ranks_copied_from": "book_e2/_static/e2_f2a_s8_20261113/conditional_seed_ranks.csv",
+    "pair_decisions_copied_from": "book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv",
+    "published_pair_count": 78,
+    "published_all_p_Holm78": 1.0,
+    "published_reject_count": 0,
+    "nonrejection_group": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "single_numeric_critical_difference": null,
+    "Nemenyi_executed": false,
+    "new_pairwise_tests": 0,
+    "interpretation": "One group displays the complete published Holm nonrejection pattern, not equivalence or a common critical-distance threshold.",
+    "limits": "Six seed-level vectors share one chronology; conditional algorithmic variability does not create six independent temporal test datasets. Exact bilateral p minimum for six nonzero pairs is 0.03125, above Holm's first threshold for 78 comparisons."
+  },
+  "latency_pareto": {
+    "models": 13,
+    "source_RMSE_field": "RMSE",
+    "source_latency_field": "mean_latency_gpu_median_ms",
+    "source_values_copied_exactly_as_csv_strings": true,
+    "latency_scope": "Mean of six saved seed-level medians of CUDA-event model-forward resident-input latency; transfer and preprocessing excluded. Not a pooled latency distribution or end-to-end latency.",
+    "hardware_scope": "NVIDIA A100-SXM4-80GB from verified root summary; individual profile receipts do not record device name.",
+    "dominance_rule": "A point is dominated when another published point is no worse in both objectives and strictly better in at least one. Both RMSE and latency are minimized.",
+    "frontier_in_increasing_latency_order": [
+      "MLP16",
+      "GRU32",
+      "LSTM-autoencoder con predictor"
+    ],
+    "classical_comparators_excluded": [
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA"
+    ],
+    "classical_exclusion_reason": "No comparable published GPU profile; missing latency is not zero.",
+    "limits": "Observed point frontier only; no confidence region or statistical superiority claim about the frontier. Original RMSE and latency aggregation scopes are retained."
+  },
+  "operations": {
+    "source_result_tables_read": 4,
+    "published_numeric_strings_copied": true,
+    "new_operations": [
+      "deterministic pointwise dominance comparisons",
+      "figure layout and rendering",
+      "hashes and coverage checks"
+    ],
+    "market_data_archives_opened": 0,
+    "prediction_arrays_loaded": 0,
+    "checkpoint_weights_loaded": 0,
+    "model_fits": 0,
+    "model_inference_calls": 0,
+    "predictive_scores_computed": 0,
+    "latency_measurements": 0,
+    "bootstrap_resamples": 0,
+    "statistical_tests_computed": 0,
+    "published_source_artifacts_modified": false
+  },
+  "drawing": {
+    "SVG_Date_omitted": true,
+    "stable_svg_hashsalt": "e2-published-benchmark-summary-plots-v1",
+    "latency_log_x_axis": true,
+    "rank_values_recomputed": false,
+    "new_error_bars_or_bands": false
+  },
+  "output_sha256": {
+    "conditional_rank_groups.png": "b5399715854e80bd4116f28d3f34507346c2dfb39df7f084b5a5a8c7d9b8f201",
+    "conditional_rank_groups.svg": "594a2bf580831e4912ea222cc1ad9807bcdfbf62f12a2d126eba0d13bc002d15",
+    "latency_pareto.png": "8da69a5c212bd3a4141c87515137170e48b57286d43505b8471b10a6e9a0c6ab",
+    "latency_pareto.svg": "4e19c029b3cfaab3dcdb45ad5afeb73e559587d1386e2c7009e314518d9bd8f2",
+    "latency_pareto.csv": "53fb0e9bf57f53346d3259d285be6bc20416011f8955d36d6d4e2246d9009c49"
+  }
+}
