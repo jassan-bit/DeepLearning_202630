@@ -2,6 +2,28 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
+(e2-entregables-portada)=
+## Entregables
+
+La lista de la guía de E2, páginas 58–59, se incluye completa a continuación, con enlaces a los componentes del informe. La [entrega consolidada](sections/47_entrega_consolidada.md) detalla su ubicación, evidencia y estado actual.
+
+- **Informe en Jupyter Book** con ejecución reproducible de celdas. [Informe y reproducción](sections/08_reproducibilidad.md).
+- **Código completo y documentado**: EDA, diez modelos, *baselines*, pruebas de ajuste y sobreajuste, análisis estadístico, robustez, incertidumbre e interpretabilidad. [Implementación](sections/04_implementacion.md) · [Repositorio](https://github.com/jassan-bit/DeepLearning_202630).
+- **Dataset o instrucciones verificables para obtenerlo**, junto con la **Data Card** y el contrato de datos. [Datos y fuentes](sections/01_punto_partida.md) · [Data Card](_static/e2_point1_review_v1/dataset_card_current.json) · [Contrato de datos](sections/10_auditoria_datos.md).
+- **Preregistro fechado y versionado** (sección 9) y **reporte de auditoría de fuga** (sección 10). [Preregistro](sections/09_protocolo_registrado.md) · [Auditoría](sections/10_auditoria_datos.md).
+- **Ficha de ruta metodológica** que indique el tipo de problema elegido, la ruta seguida de la sección 7.4 y la evidencia —tabla de p-valores, tamaños del efecto e IC— de cada prueba de las Tablas A, B y C. [Ruta F2a: series de tiempo](sections/07_ruta_temporal.md) · [Pruebas y evidencia disponible](sections/61_reproduccion_consolidada.md).
+- **Tabla comparativa** con métricas, costos computacionales e inferencia estadística, siguiendo las plantillas del Apéndice A. [Benchmark](sections/06_benchmark_final.md) · [Apéndice A](sections/61_reproduccion_consolidada.md).
+- **Registro de experimentos** —configuraciones, semillas y resultados por ejecución— y fichas de modelo (sección 11.3). [Registro y fichas](sections/11_hpo_equidad.md).
+- **Reporte de techo de desempeño y de incertidumbre** (sección 12). [Techo, incertidumbre y errores](sections/12_incertidumbre_errores.md).
+- **Reporte de la búsqueda de arquitectura** (sección 14) para cada modelo sin diseño predefinido: listado de las 1.000 arquitecturas, resultados de las dos fases, finalistas, regla de selección, análisis de efectos y frente de Pareto. **No aplica al catálogo actual de arquitecturas definidas**, incluida TiDE R0-v2. [Justificación](sections/14_arquitecturas.md).
+- **Paper guía**: réplica parcial y limitación identificada (sección 5), que sirve de insumo al Entregable 3. [Paper guía y replicación](sections/05_paper_guia.md).
+- **Lista de verificación de reproducibilidad completada** (Apéndice B). [Lista de 21 ítems con sus estados y evidencias](sections/61_reproduccion_consolidada.md).
+- **Presentación oral con defensa técnica de las decisiones metodológicas**. La [entrega consolidada](sections/47_entrega_consolidada.md) reúne el soporte para la defensa; su realización y evaluación oral siguen pendientes de acreditar.
+
+Los enlaces permiten revisar lo disponible y sus límites. Incluir un componente en esta lista no lo declara íntegramente aprobado: el [Apéndice B](sections/61_reproduccion_consolidada.md) y la [matriz de requisitos](sections/38_cumplimiento_guia.md) conservan las condiciones parciales y pendientes.
+
+## Estado del benchmark y suplementos
+
 **Evaluación final y experimentos complementarios completados. Cierre A100 verificado: 13/11/2026, 22:42:55 de Bogotá; suplementos estadísticos y documentales del 13/11, posteriores a las 23:17.** La tabla A2 reúne **16 sistemas sobre las mismas 608 fechas**. El plan complementario cerró **99/99 ajustes: 81 reproducciones y 18 ablaciones**, con todas las comprobaciones de reproducción aprobadas y sin reservas abiertas. Se conservan los resultados originales y los respaldos en **GitHub**.
 
 **[Resultados finales (§6)](sections/06_benchmark_final.md)** · **[Tabla A2 medida, CSV](_static/e2_benchmark_final_20261113/benchmark_A2.csv)** · **[Reproducción y ablaciones (§55)](sections/55_reproduccion_ablaciones.md)** · **[Estado y presupuesto final](_static/e2_reproduction_ablations_20261113/status.json)**
