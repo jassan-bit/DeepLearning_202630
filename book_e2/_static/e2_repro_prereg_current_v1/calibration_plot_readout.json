@@ -1,0 +1,199 @@
+{
+  "version": "e2-saved-calibration-communication-v1",
+  "scope": "presentation_only_of_published_aggregate_results",
+  "input_sha256": {
+    "book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv": "463bfe0466764330cf35d91cd44f0ca637684cf1ce00e83c73286aac8e0b1d22",
+    "book_e2/_static/e2_conditional_calibration_20261114/conditional_coverage_CI.csv": "6349ec7fb84ce5b8397036702d4c0d0659b9d7fc33e61b8add3213a665bf2844"
+  },
+  "script_sha256": "72d754a4fcc87d968f305a8306a525bc692965641eba4a41bfc5c81323628dda",
+  "software": {
+    "matplotlib": "3.10.8"
+  },
+  "published_rows_copied_exactly": [
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "model_label": "SAE",
+      "policy": "original_frozen",
+      "policy_label": "Original congelado",
+      "coverage": "0.9651864035087719",
+      "mean_width": "0.016126308868508056",
+      "R": "6",
+      "CI95_low": "0.9402412280701754",
+      "CI95_high": "0.9832785087719297",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "model_label": "SAE",
+      "policy": "rolling53_fixed_alpha",
+      "policy_label": "Móvil 53, α=0,10",
+      "coverage": "0.9002192982456139",
+      "mean_width": "0.011848670727637308",
+      "R": "6",
+      "CI95_low": "0.8722587719298246",
+      "CI95_high": "0.9251644736842105",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "model_label": "SAE",
+      "policy": "ACI53_gamma005",
+      "policy_label": "ACI53, γ=0,005",
+      "coverage": "0.8993969298245613",
+      "mean_width": "0.011964908322022526",
+      "R": "6",
+      "CI95_low": "0.8739035087719301",
+      "CI95_high": "0.9229714912280703",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "GRU32",
+      "model_label": "GRU32",
+      "policy": "original_frozen",
+      "policy_label": "Original congelado",
+      "coverage": "0.9690241228070174",
+      "mean_width": "0.017453496654553344",
+      "R": "6",
+      "CI95_low": "0.9511992872807016",
+      "CI95_high": "0.9835594846491229",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "GRU32",
+      "model_label": "GRU32",
+      "policy": "rolling53_fixed_alpha",
+      "policy_label": "Móvil 53, α=0,10",
+      "coverage": "0.9070723684210527",
+      "mean_width": "0.012803878850537775",
+      "R": "6",
+      "CI95_low": "0.8826754385964911",
+      "CI95_high": "0.9295504385964913",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "GRU32",
+      "model_label": "GRU32",
+      "policy": "ACI53_gamma005",
+      "policy_label": "ACI53, γ=0,005",
+      "coverage": "0.9046052631578947",
+      "mean_width": "0.012834226096755483",
+      "R": "6",
+      "CI95_low": "0.8799342105263159",
+      "CI95_high": "0.9276384320175439",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "ARIMA",
+      "model_label": "ARIMA",
+      "policy": "original_frozen",
+      "policy_label": "Original congelado",
+      "coverage": "0.9457236842105263",
+      "mean_width": "0.015443316329941448",
+      "R": "1",
+      "CI95_low": "0.9259868421052632",
+      "CI95_high": "0.9638157894736842",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "ARIMA",
+      "model_label": "ARIMA",
+      "policy": "rolling53_fixed_alpha",
+      "policy_label": "Móvil 53, α=0,10",
+      "coverage": "0.9111842105263158",
+      "mean_width": "0.012895190218156332",
+      "R": "1",
+      "CI95_low": "0.8848684210526315",
+      "CI95_high": "0.9358552631578947",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    },
+    {
+      "model": "ARIMA",
+      "model_label": "ARIMA",
+      "policy": "ACI53_gamma005",
+      "policy_label": "ACI53, γ=0,005",
+      "coverage": "0.9029605263157895",
+      "mean_width": "0.013062248764507341",
+      "R": "1",
+      "CI95_low": "0.8766447368421053",
+      "CI95_high": "0.9276726973684205",
+      "draws": "10000",
+      "block_days": "14",
+      "CI_status": "marginal_temporal_percentile",
+      "resampling_scope": "full608calendar_joint_methods_and_seeds_fixed",
+      "width_interval_available": false
+    }
+  ],
+  "selection": {
+    "models": [
+      "LSTM-autoencoder con predictor",
+      "GRU32",
+      "ARIMA"
+    ],
+    "policies": [
+      "original_frozen",
+      "rolling53_fixed_alpha",
+      "ACI53_gamma005"
+    ],
+    "group": "global",
+    "coverage_CI_block_days": "14",
+    "row_count": 9
+  },
+  "uncertainty": {
+    "coverage": "Existing marginal temporal percentile CI; 10000 joint calendar-block draws, 14-day blocks, fixed seeds and realized adaptive paths; not simultaneous and not a new run of ACI feedback.",
+    "width": "Only published point means available. No CI, zero error bar, SD or equivalence claim is invented.",
+    "individual_CIs_averaged": false,
+    "CI_endpoints_recomputed": false
+  },
+  "operations": {
+    "source_CSV_tables_read": 2,
+    "display_only_coverage_fraction_to_percent": true,
+    "new_model_fits": 0,
+    "new_model_inference": 0,
+    "new_latency_measurements": 0,
+    "new_predictive_scores": 0,
+    "new_bootstrap_resamples": 0,
+    "new_statistical_tests": 0,
+    "published_sources_modified": false
+  },
+  "drawing": {
+    "SVG_Date_omitted": true,
+    "stable_svg_hashsalt": "e2-saved-calibration-communication-v1",
+    "width_error_bars": false
+  },
+  "output_sha256": {
+    "top3_coverage_width.png": "ad735e9c9b8a8bb0f852f2250db78cbfee946bf25a540008e065694ca9b8a005",
+    "top3_coverage_width.svg": "acb07eb729b0d8ac95c6d0d681c33d950866862bc0bf4505afdb3d6c5cdcc020"
+  }
+}

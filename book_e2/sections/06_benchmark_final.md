@@ -74,7 +74,15 @@ La A2 conserva los intervalos nominales del 90 % cuyo radio se fijó en **53 fec
 
 El [suplemento de calibración temporal](60_calibracion_temporal_condicional.md) compara por separado el radio original, una ventana móvil de 53 residuos y ACI53, usando únicamente residuos anteriores a cada emisión. ACI acerca la cobertura global de SAE a **89,94 %**, GRU32 a **90,46 %** y ARIMA a **90,30 %**, pero en el rango alto del pronóstico quedan **87,21 %, 83,65 % y 86,08 %**, respectivamente. Son resultados retrospectivos; no sustituyen los calibradores de A2 ni acreditan cobertura condicional universal. Sus [métricas por sistema y política](../_static/e2_conditional_calibration_20261114/model_metrics.csv) incluyen longitud, score de intervalo y pinball; no se fabrica una CDF, PIT o CRPS a partir de dos extremos.
 
+![Cobertura con IC temporal guardado y anchura puntual del Top 3 observado](../_static/e2_repro_prereg_current_v1/top3_coverage_width.svg)
+
+La cobertura conserva los IC95 % temporales marginales ya publicados (B=10.000, bloque14 y semillas fijas). La anchura se muestra como estimación puntual: no hay IC publicado para ella. Esta presentación copia los nueve resúmenes del Top3 y sus intervalos de cobertura; no recalcula métricas ni pruebas. [Fuentes y valores exactos](../_static/e2_repro_prereg_current_v1/calibration_plot_readout.json).
+
+:::{dropdown} Figura anterior conservada: cobertura y anchura
 ![Cobertura y longitud de intervalos del Top 3 observado](../_static/e2_conditional_calibration_20261114/top3_global_coverage_width.svg)
+
+Versión anterior preservada con sus valores originales. La presentación vigente distingue explícitamente los IC de cobertura de las anchuras sin IC.
+:::
 
 La [robustez ejecutada](54_robustez_interpretabilidad.md) comprende **13 redes × cuatro perturbaciones × tres severidades**. Con extremos en el 10 % de las celdas, la RMSE aumenta **585,40 % en SAE, 513,98 % en GRU32 y 1.552,52 % en TimeMixer**; sus coberturas caen a **22,12 %, 32,07 % y 19,13 %**. El [CSV de estrés](../_static/e2_posthoc_gpu_20261113/robustness.csv) y las [áreas normalizadas de degradación](../_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv) conservan las condiciones y sensibilidades. Son entradas alteradas sintéticamente, con objetivos y radios fijos; no son otro mercado ni certifican robustez frente a un quiebre económico real. Los IC de estrés usan 2.000 remuestreos circulares por configuración, con bloques de 7, 14 o 28 días, y no son contrastes primarios ni intervalos simultáneos. La anchura nominal del productor de estrés es 2q sin recorte inferior en cero; se conserva separada de la anchura truncada de A2.
 
