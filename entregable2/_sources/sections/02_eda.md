@@ -156,7 +156,11 @@ La ECDF compara **655/53/608 etiquetas** en su escala original. Las distancias K
 
 ## 2.2 EDA temporal: covariables y diagnóstico de la ruta F2a
 
-Se conserva el análisis de covariables del bloque C que originó el diagnóstico. La autocorrelación residual fuerte activa RT1 (PDF p32) y la reclasificación a F2a, ahora resuelta. Los apartados siguientes desarrollan **C, regresión temporal con covariables**, y **B, series de tiempo**. La {ref}`sección 7 <e2-ruta-temporal>` enlaza esa evidencia con el protocolo ejecutado. Los diagnósticos E1 y la referencia inicial del EDA conservan su fecha; los de las 81 trayectorias finales en [§49](49_diagnosticos_f2a.md) son posteriores al benchmark.
+**La ruta metodológica adoptada es F2a: series de tiempo.** La autocorrelación residual fuerte de la referencia Ridge activa la regla RT1 de la guía (p.32), que exige esa reclasificación. La {ref}`sección 7 <e2-ruta-temporal>` enlaza el diagnóstico con el protocolo ejecutado.
+
+Los apartados siguientes desarrollan el **EDA de series de tiempo del bloque B** y conservan las **comprobaciones complementarias de covariables del bloque C**: disponibilidad, desfases y relación con el objetivo. **B y C son bloques del EDA; utilizar el análisis del bloque C no significa adoptar la ruta F2b.** La tarea predictiva es una regresión porque estima un valor continuo de σ₇, dentro de la ruta F2a.
+
+Los diagnósticos E1 y la referencia inicial del EDA conservan su fecha; los de las 81 trayectorias finales en [§49](49_diagnosticos_f2a.md) son posteriores al benchmark.
 
 ### 2.2.1 Estructura y disponibilidad temporal de covariables
 
