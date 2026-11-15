@@ -1,0 +1,131 @@
+{
+  "version": "e2-corrections-delivery-readouts-v1",
+  "appendix_B_counts": {
+    "completo": 9,
+    "parcial": 10,
+    "no_cumple": 0,
+    "no_aplica": 2
+  },
+  "primary_pairs": 20,
+  "primary_raw_and_Holm_p_preserved": true,
+  "all_original_primary_fields_preserved_except_filled_effect_placeholders": true,
+  "effects": {
+    "version": "e2-effects-rq2-closure-v1",
+    "effect_pairs": 20,
+    "effects_with_estimable_CI": 20,
+    "RQ2_primary_pairs": 10,
+    "RQ2_estimable_pairs": 10,
+    "RQ2_rejections_Holm10": 7,
+    "RQ2_rejected_candidates": [
+      "FCN-1D",
+      "ResNet-1D",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "PatchTST",
+      "iTransformer"
+    ],
+    "high_dates": 121,
+    "normal_dates": 487,
+    "bootstrap_draws": 20000,
+    "primary_block_days": 14,
+    "sensitivity_blocks": [
+      7,
+      28
+    ],
+    "A2_replaced": false,
+    "RQ1_replaced": false,
+    "new_model_fits": 0,
+    "new_model_inference": false,
+    "interpretation": "RQ2 rejection supports erosion greater than delta; non-rejection does not establish robustness or equivalence.",
+    "limitations": [
+      "The analysis is exploratory after A2 on the already known E1 calendar, not restored prospective confirmation.",
+      "One BTC series and fixed fitted trajectories; no market-population or HPO-selection uncertainty.",
+      "Moving-block inference is approximate under suitable weak dependence/local stationarity;14 days is not universally adequate.",
+      "Only six optimization pairs inform dz; its bootstrap can be unstable and undefined samples are disclosed.",
+      "No demonstrated RQ2-specific power; non-rejection does not establish robustness or equivalence.",
+      "A causal regime available at issue time is distinct from grouping by realized same-day target."
+    ]
+  },
+  "HPO": {
+    "version": "e2-hpo-coverage-closure-v1",
+    "opportunities": 234,
+    "completed": 231,
+    "known_failed": 2,
+    "outcome_unknown": 1,
+    "configuration_count": 78,
+    "eligible_complete_configurations": 76,
+    "recorded_winners_reproduced": 13,
+    "reused_outcomes": 61,
+    "original_cached_fit_cost_receipts": 61,
+    "measured_phase_time_receipts": 170,
+    "campaign_budget_charge_receipts": 173,
+    "known_training_phase_seconds": 20526.75792988201,
+    "campaign_budget_charge_seconds": 25976.93557340999,
+    "unknown_allocation_is_not_measured_training_time": true,
+    "cost_categories_not_added_into_one_total": true,
+    "new_fits": 0,
+    "new_model_inference": false,
+    "NAS_executed": false,
+    "TiDE_recipe": "TIDE-D7-PUBLISHED-R0-v2",
+    "isolated_hyperparameter_importance_identified": false,
+    "limitations": [
+      "Only six covarying configurations and one optimization seed per fold; parameter effects are confounded.",
+      "The same validation folds selected the winner; performance curves do not estimate selection uncertainty or external generalization.",
+      "The lost T4 session retains unknown scientific outcome and conservative budget charge, never reconstructed metrics or optimizer steps.",
+      "Failed configurations retain their available fold scores but are ineligible for pooled selection.",
+      "Recorded applicable dimensions may remain fixed; this inventory does not close missing search breadth or family-specific minima.",
+      "Current campaign charges, original cached-fit cost and phase elapsed have different scopes and must not be added indiscriminately."
+    ]
+  },
+  "data_audit": {
+    "status": "PARTIAL",
+    "control_counts": {
+      "PASS": 8,
+      "PARTIAL": 7,
+      "NA": 1
+    },
+    "actual_cohorts_audited": {
+      "training": 655,
+      "calibration": 53
+    },
+    "data_ready_for_bounded_controls": false
+  },
+  "control_readiness": {
+    "status": "BLOCKED_INPUTS",
+    "new_fits_executed": 0
+  },
+  "frozen_inference_statistics": {
+    "status": "PARTIAL",
+    "gap_reporting_valid": false,
+    "RQ3_reporting_valid": false,
+    "all78_parity_valid": false,
+    "reason": "No completed statistical summary with valid78-predictor parity",
+    "historical_failed_attempts": [
+      {
+        "path": "book_e2/_static/e2_corrections_20261115/frozen_inference/eager_predictions/failure_report.json",
+        "status": "failed",
+        "stage": "predictions",
+        "error_type": "ValueError",
+        "error": "CPU calibration parity exceeds fixed tolerance: ('LSTM-autoencoder con predictor', 271804, 1.1920928955078125e-07)"
+      },
+      {
+        "path": "book_e2/_static/e2_corrections_20261115/frozen_inference/predictions/failure_report.json",
+        "status": "failed",
+        "stage": "predictions",
+        "error_type": "ValueError",
+        "error": "CPU calibration parity exceeds fixed tolerance: ('LSTM-autoencoder con predictor', 271804, 1.1920928955078125e-07)"
+      }
+    ]
+  },
+  "percentage_complete_or_grade_reported": false,
+  "limits": [
+    "Post-benchmark documentary joins do not restore prospective preregistration or blindness.",
+    "One market series; initialization uncertainty is not uncertainty across markets or all partitions.",
+    "The 12.3 percent pilot power is conditional on its two representatives/alternative, not universal power.",
+    "dz and its seed CI do not replace the temporal practical-margin contrast or prove gain greater than delta.",
+    "RQ2 rejection means erosion of advantage; non-rejection is not robustness/equivalence.",
+    "Period differences can reflect drift; operational gap tests do not certify universal absence of overfitting.",
+    "Default standalone ZIP execution is not full historical market training replay."
+  ]
+}

@@ -1,0 +1,1053 @@
+{
+  "version": "e2-current-data-closure-v1",
+  "completed_at_utc": "2026-11-15T22:27:38.091579+00:00",
+  "elapsed_compute_wall_seconds": 1.0690731220020098,
+  "specification": {
+    "path": "audit_specification.json",
+    "sha256": "e0075a9c94a8e2c328439aed71d6ac7a64f0da175f01d166354ba2c9380a8e9a"
+  },
+  "status": "PARTIAL",
+  "control_counts": {
+    "PASS": 8,
+    "PARTIAL": 7,
+    "NA": 1
+  },
+  "data_ready_for_bounded_controls": false,
+  "arrays_npz_path": "book_e2/_static/e2_corrections_20261115/data_audit/current_cohort_arrays.npz",
+  "arrays_npz_sha256": "9fbb9b4326ea4c458300ccab522ec8982b74d5cf0fbca282a4b4c55362eea19f",
+  "array_keys": {
+    "training": {
+      "dates": "training_dates",
+      "X_scaled": "training_X",
+      "X_relative": "training_relative",
+      "raw": "training_raw",
+      "y_original": "training_y_original",
+      "y_scaled": "training_y_scaled"
+    },
+    "calibration": {
+      "dates": "calibration_dates",
+      "X_scaled": "calibration_X",
+      "X_relative": "calibration_relative",
+      "raw": "calibration_raw",
+      "y_original": "calibration_y_original",
+      "y_scaled": "calibration_y_scaled"
+    }
+  },
+  "training_target_scale_key": "training_target_scale",
+  "reconstructed_scaler_path": "book_e2/_static/e2_corrections_20261115/data_audit/reconstructed_training_scaler.json",
+  "reconstructed_scaler_sha256": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959",
+  "original_frozen_neural_scaler_sha256_values": [
+    "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585"
+  ],
+  "actual_cohorts_audited": {
+    "training": 655,
+    "calibration": 53
+  },
+  "controls": [
+    {
+      "id": "D01",
+      "status": "PASS",
+      "scope": "current protocol and declared source identities",
+      "observed": {
+        "systems": 16,
+        "frozen_predictors": 81,
+        "HPO_folds": 3,
+        "unchanged_scientific_data_source_files": 7
+      },
+      "remaining": "",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D02",
+      "status": "PASS",
+      "scope": "actual development CSV calendar and OHLCV",
+      "observed": {
+        "calendar_rows": 731,
+        "complete_daily_bars": 730,
+        "incomplete_dates": [
+          "2023-03-24"
+        ],
+        "imputation": false,
+        "calendar_compression": false
+      },
+      "remaining": "",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D03",
+      "status": "PASS",
+      "scope": "actual train/calibration target construction and IDs",
+      "observed": {
+        "training": 655,
+        "calibration": 53,
+        "population_sigma7_ddof": 0,
+        "independent_direct8close_reconstruction_matches": true,
+        "all81_saved_calibration_target_vectors_match": true
+      },
+      "remaining": "",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D04",
+      "status": "PARTIAL",
+      "scope": "actual608 evaluation features and target reconstruction",
+      "observed": {
+        "saved_target_vector_and_IDs_available": true,
+        "daily_OHLCV_available": false
+      },
+      "remaining": "Recover the original daily cache or20 hash-pinned raw archives; do not fabricate X",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D05",
+      "status": "PASS",
+      "scope": "outcome IDs, embargo and rolling raw supports",
+      "observed": {
+        "pairs": 3,
+        "all_outcome_IDs_disjoint": true,
+        "train_raw_supports_disjoint": true,
+        "cal_test_shared_target_closes": 6,
+        "cal_test_shared_input_bars": 5,
+        "cal_test_shared_returns": 5,
+        "independence_of_calibration_and_test_claimed": false
+      },
+      "remaining": "",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D06",
+      "status": "PARTIAL",
+      "scope": "all available actual D7 input windows",
+      "observed": {
+        "real_windows_checked": 708,
+        "current_or_future_outcome_features": 0,
+        "target_channel_added": false,
+        "representation": "relative_window, five OHLCV channels"
+      },
+      "remaining": "Evaluation windows still require actual daily features",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D07",
+      "status": "PASS",
+      "scope": "actual common final preprocessing, reconstructed only from655train",
+      "observed": {
+        "training_window_positions": 4585,
+        "parameter_comparison": {
+          "matches": true,
+          "training_identity_matches": true,
+          "maximum_numeric_absolute_difference": 0.0,
+          "absolute_tolerance": 1e-12
+        },
+        "training_scaler_signature_independently_rehashed_from_actual_arrays": true,
+        "float32_input_matrices_verified": [
+          "training",
+          "calibration"
+        ],
+        "target_scale_inverse_matches": true,
+        "optimizer_or_predictor_fit_performed": false
+      },
+      "remaining": "",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D08",
+      "status": "PASS",
+      "scope": "common pipeline metamorphic check on copies of actual data",
+      "observed": {
+        "post_Oct31_values_changed": true,
+        "training_signature_unchanged": true,
+        "training_scaler_unchanged": true,
+        "model_fit_or_inference": false
+      },
+      "remaining": "This checks common preparation, not all author-port behavior",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D09",
+      "status": "PASS",
+      "scope": "current78 historical final-fit input signatures",
+      "observed": {
+        "matched_saved_final_rows": 78,
+        "training_signature": "7077ed2c3da26013c018727b32efc168efba478c7397e81cfd4302195b825ff3",
+        "original_fit_or_weights_reexecuted": false
+      },
+      "remaining": "",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D10",
+      "status": "PARTIAL",
+      "scope": "exact numerical D7 raw window fingerprints",
+      "observed": {
+        "cohort_scopes": 3,
+        "exact_duplicate_query_alerts": 0,
+        "same_ID_excluded": true,
+        "candidate_hash_matches_confirmed_by_array_equality": true
+      },
+      "remaining": "Evaluation content unavailable",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D11",
+      "status": "PARTIAL",
+      "scope": "actual available fixed-threshold near-window diagnostic",
+      "observed": {
+        "scopes": 3,
+        "query_rows_across_scopes": 761,
+        "near_query_alerts": 0,
+        "RMS_threshold": 0.01,
+        "scaler_source": "training655 only",
+        "target_or_current_day_used_as_covariate": false
+      },
+      "remaining": "Review alerts if present; the threshold is descriptive and does not certify absence of leakage",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D12",
+      "status": "PASS",
+      "scope": "all81 physical frozen scaler records and current training cutoff",
+      "observed": {
+        "neural_scalers_numerically_and_identity_checked": 78,
+        "classical_scaler_hashes_and_cutoffs_checked": 3,
+        "checkpoint_weights_deserialized": false
+      },
+      "remaining": "The recovered checkpoint files belong to the documented reproduction; this audit only reads JSON scalers",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D13",
+      "status": "PARTIAL",
+      "scope": "model-port behavior beyond common preprocessing",
+      "observed": {
+        "common_real_data_preparation_verified": true,
+        "all_ports_executed_in_this_audit": false
+      },
+      "remaining": "Port-specific learned behavior/negative controls require a separately recorded audit; this result is not an all-port leakage certificate",
+      "new_model_fit_needed_for_remaining": false
+    },
+    {
+      "id": "D14",
+      "status": "PARTIAL",
+      "scope": "real permuted-target training negative control",
+      "observed": {
+        "executed_by_this_data_only_audit": false
+      },
+      "remaining": "Requires a separately registered bounded training control",
+      "new_model_fit_needed_for_remaining": true
+    },
+    {
+      "id": "D15",
+      "status": "PARTIAL",
+      "scope": "adversarial train/test domain classifier",
+      "observed": {
+        "executed_by_this_data_only_audit": false
+      },
+      "remaining": "A classifier fit is a separate diagnostic of distribution difference, not proof of leakage",
+      "new_model_fit_needed_for_remaining": true
+    },
+    {
+      "id": "D16",
+      "status": "NA",
+      "scope": "inter-annotator agreement/classification label-noise tests",
+      "observed": {
+        "target": "deterministic continuous sigma7",
+        "human_annotators": false
+      },
+      "remaining": "External measurement noise and a Bayes floor remain unidentified; arithmetic reconstruction is not their estimate",
+      "new_model_fit_needed_for_remaining": false
+    }
+  ],
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "torch": "2.8.0+cpu",
+    "scipy": "1.17.0",
+    "device": "CPU"
+  },
+  "causal_supports": [
+    {
+      "pair": [
+        "training",
+        "calibration"
+      ],
+      "outcome_ID_intersection": [],
+      "target_close_support_intersection": [],
+      "D7_input_support_intersection": [],
+      "target_return_support_intersection": [],
+      "interpretation": "embargo keeps target-close and D7 input supports disjoint"
+    },
+    {
+      "pair": [
+        "training",
+        "evaluation"
+      ],
+      "outcome_ID_intersection": [],
+      "target_close_support_intersection": [],
+      "D7_input_support_intersection": [],
+      "target_return_support_intersection": [],
+      "interpretation": "embargo keeps target-close and D7 input supports disjoint"
+    },
+    {
+      "pair": [
+        "calibration",
+        "evaluation"
+      ],
+      "outcome_ID_intersection": [],
+      "target_close_support_intersection": [
+        "2024-12-25",
+        "2024-12-26",
+        "2024-12-27",
+        "2024-12-28",
+        "2024-12-29",
+        "2024-12-30"
+      ],
+      "D7_input_support_intersection": [
+        "2024-12-25",
+        "2024-12-26",
+        "2024-12-27",
+        "2024-12-28",
+        "2024-12-29"
+      ],
+      "target_return_support_intersection": [
+        "2024-12-26",
+        "2024-12-27",
+        "2024-12-28",
+        "2024-12-29",
+        "2024-12-30"
+      ],
+      "interpretation": "legitimate past rolling history, no reused fit outcome IDs"
+    }
+  ],
+  "declared_code_source_identity": [
+    {
+      "path": "scripts/e2_development_data.py",
+      "sha256": "056dc0eff0722bed0b65ecd9b27b3c0c5a2a2bab2d44a8cfd9730fdb38b87d5d",
+      "identical_to_scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7"
+    },
+    {
+      "path": "scripts/e2_reduced_final_data.py",
+      "sha256": "693842a92386cd3c49ed3e10a9296428e900010df7ae7db373a80d625e851867",
+      "identical_to_scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7"
+    },
+    {
+      "path": "scripts/e2_reduced_final.py",
+      "sha256": "033e4bf7db0d4f69624063830d116a1b5cf159a401c310a79979aa46307dad19",
+      "identical_to_scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7"
+    },
+    {
+      "path": "scripts/e2_temporal_training.py",
+      "sha256": "3e62a12135b47414ac11038f5bd931076c2c12c7fdd8edcbd3b46eae4dc90ac9",
+      "identical_to_scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7"
+    },
+    {
+      "path": "scripts/e2_real_executor.py",
+      "sha256": "0a5aef1d56bfb86c34fda2a3078612eb54434e2c395d6394202c147f9a8b7bf1",
+      "identical_to_scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7"
+    },
+    {
+      "path": "scripts/audit_e2_common_availability.py",
+      "sha256": "8863429e58592910ab5cd05ede092f30322c3b8e5696b6e28f40d61905c25b53",
+      "identical_to_scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7"
+    },
+    {
+      "path": "scripts/load_filipe_reserved_test.py",
+      "sha256": "6f253b063cbb8482e325d7fb846bd58b5480c30bc2e6d4aa2ce4d9c4b8d0b908",
+      "identical_to_scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7"
+    }
+  ],
+  "provenance": [
+    {
+      "path": "experiments/e2_reduced_protocol_20261112/protocol.json",
+      "bytes": 17086,
+      "sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+      "role": "input",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "bytes": 69457,
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+      "role": "published frozen evidence at 0bdbc42bd724c6ffbbb1dec67564327adedb9883",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json",
+      "bytes": 1371654,
+      "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+      "role": "published frozen evidence at 0bdbc42bd724c6ffbbb1dec67564327adedb9883",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/partition_audit.json",
+      "bytes": 47671,
+      "sha256": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f",
+      "role": "published frozen evidence at 0bdbc42bd724c6ffbbb1dec67564327adedb9883",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/fit_overfit_summary.csv",
+      "bytes": 83131,
+      "sha256": "cdf824822ad33a3bd877cd838c0126508f0ff7a7e93cb359a10599927a940343",
+      "role": "published frozen evidence at 0bdbc42bd724c6ffbbb1dec67564327adedb9883",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "bytes": 15173,
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c",
+      "role": "published frozen evidence at 0bdbc42bd724c6ffbbb1dec67564327adedb9883",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "scripts/e2_development_data.py",
+      "bytes": 10358,
+      "sha256": "056dc0eff0722bed0b65ecd9b27b3c0c5a2a2bab2d44a8cfd9730fdb38b87d5d",
+      "role": "unchanged scientific data/preprocessing function source",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "scripts/e2_reduced_final_data.py",
+      "bytes": 20034,
+      "sha256": "693842a92386cd3c49ed3e10a9296428e900010df7ae7db373a80d625e851867",
+      "role": "unchanged scientific data/preprocessing function source",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "scripts/e2_reduced_final.py",
+      "bytes": 34401,
+      "sha256": "033e4bf7db0d4f69624063830d116a1b5cf159a401c310a79979aa46307dad19",
+      "role": "unchanged scientific data/preprocessing function source",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "scripts/e2_temporal_training.py",
+      "bytes": 25516,
+      "sha256": "3e62a12135b47414ac11038f5bd931076c2c12c7fdd8edcbd3b46eae4dc90ac9",
+      "role": "unchanged scientific data/preprocessing function source",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "scripts/e2_real_executor.py",
+      "bytes": 31425,
+      "sha256": "0a5aef1d56bfb86c34fda2a3078612eb54434e2c395d6394202c147f9a8b7bf1",
+      "role": "unchanged scientific data/preprocessing function source",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "scripts/audit_e2_common_availability.py",
+      "bytes": 11022,
+      "sha256": "8863429e58592910ab5cd05ede092f30322c3b8e5696b6e28f40d61905c25b53",
+      "role": "unchanged scientific data/preprocessing function source",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "scripts/load_filipe_reserved_test.py",
+      "bytes": 16767,
+      "sha256": "6f253b063cbb8482e325d7fb846bd58b5480c30bc2e6d4aa2ce4d9c4b8d0b908",
+      "role": "unchanged scientific data/preprocessing function source",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "results/eda_development/daily_market_development.csv",
+      "bytes": 60427,
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "role": "input",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "results/eda_development/daily_volatility_development.csv",
+      "bytes": 76492,
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+      "role": "input",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/metadata/checkpoint_index.json",
+      "bytes": 449449,
+      "sha256": "1993a4bdcdae6445033b2b223239d435d5fe2db9886df6523f2170d584c81a63",
+      "role": "recovered reproduction artifact index",
+      "expected_sha256_matched": false
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-01d13eb8389ed596a8dcad9c/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-031a998d0b7adf0f710a8e7f/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-09aa908ddeba397a5b1713b5/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-0d1c2cd3466cb35e7bc1fa61/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-0d59b59157186a18751bbcc0/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-0e4b9d8336e92402f13904c1/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-17a5b88d06ac6f8cf753807d/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-2280bca62e4b317652b30538/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-25261817b65405ff5e255dd7/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-26f04accac1c928efd1b9c18/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-28c2307c97e575af654a25be/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-29c9ea2c7634d0c9c67b1153/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-2c15e3ce1cb49e5d0a3cd22e/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-2e3154842b131cb1cdaa69dc/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-2ee82b4c31c5d7698bf406e9/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-32ebdbae60b9e91a391d4933/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-33838bc0074b0e2edf027951/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-3bef9792903c16a86501c683/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-3fd8514c5914d5e83cf223a6/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-46825676592f7a544463805a/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-498f38db5b6a571d9cb1a13e/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-4afb4ec03f8bc3f6f5288565/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-4c68122ac52114fdd4f9dab6/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-4e98e19c8c4ac7a5c5f09a33/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-4ea85250789c277c76b30795/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-4f73dfa6624fc77132f16cab/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-518927fc17ad9ad99617e0ec/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-53529141a99354e2e697cf17/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-53cddcff7260fbc44b4d2478/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-560c9c21db73bda3b26c1fa4/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-572dedcea427273520bcb7ba/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-599ce29a8cf02f8e14013a89/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-5c604b986031dbc4b0de3c40/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-602ee9c32db21c0952b18b4d/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-631e1c02d6a0933575518684/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-6374b775380d150bde967fc8/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-66b4786c6ffdb2ee1dce6fe5/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-6702711c244c896cd19c0346/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-67c1b8836706f3e6900c2b74/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-6e32be9227c6bbe842728134/fresh/scaler.json",
+      "bytes": 64,
+      "sha256": "c01fb95992eb8d6130f581bdc9884ba10df000703d43f1eb0c136b2acc0481ac",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-6f545f30d0b7341df6c555c2/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-6f898bbea0c419e7f8c77a2a/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-76af70d560f5872fad403164/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-7defc06a7f6be3ec596a0492/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-84c65930a93cd5e3525f06a1/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-86a39ed5aded199169f86a74/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-8cbd50316d3138e8b7aafa13/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-8f23095d5971a3ea70e99c76/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-9dd9435d53b813c54771cc58/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-9e518e159c850acd83015267/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-a75f7469bf3b86ef142cc5fc/fresh/scaler.json",
+      "bytes": 64,
+      "sha256": "c01fb95992eb8d6130f581bdc9884ba10df000703d43f1eb0c136b2acc0481ac",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-aadbba12e0dc868c30a1f32a/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-ae3fec6eb175fe5c68c5c831/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-b108a2304ec6de650e7b88fc/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-b32b36f2e8d1d2fc6776384d/fresh/scaler.json",
+      "bytes": 73,
+      "sha256": "118da154f426bd24ad185c472176a2bfab8e7654771141287a68b4cee42435ec",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-b86ba6abe1ba1a0387ad1b4f/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-b8d85fd6f8c1126dbb93c149/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-c1762110dfa36b8168fce29e/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-c4908b82f5e2ef8b185285cd/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-c6b1b1f479f7bda1fd84cb3e/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-c8e0ef421c4d4a51a10c30be/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-c8f03270242acdd33094339b/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-cf5018ee38cfcaf0a113032a/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-d0e054e3481f323eb8830175/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-d654f6fbfcc2540a4bd440ac/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-d8acf940547127952ef3db57/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-dd56da2968601783b2bd678c/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-dff3bdf935e0b4ca66a540c9/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-e19b959e54b71fd6be98e16d/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-e34bd510eafa7c6123a1df0f/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-e86628a4c2c10e2a46b80040/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-e8f60840d125a0d8fc7ff45f/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-ecbeb8f402eb631cc9608788/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-edce0b8dde257ac4da21d068/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-ee00265410583adfc4aac111/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-f2da54d58f10a405e457143b/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-f35980779bfe6f17c23ee958/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-f4ce82fb6aab493775fc54da/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-fa5d229c7b054b00065bd561/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-fa82feb8430152cce58012c7/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "work/e2-corrections-assets/attempts/posthoc-reproduction-fce0becc4a2d8f1eef0956fc/fresh/scaler.json",
+      "bytes": 8879,
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "role": "recovered physically verified scaler JSON",
+      "expected_sha256_matched": true
+    }
+  ],
+  "program_sha256": "5032df01268c6d4962a042d7a462bb676c08462669f29499f8f14d9a20132222",
+  "operations": {
+    "model_fits": 0,
+    "model_inference_calls": 0,
+    "new_predictive_scores": 0,
+    "hypothesis_tests": 0,
+    "bootstrap_draws": 0,
+    "training_scaler_algebraic_reconstructions": 2,
+    "actual_raw_archives_aggregated_this_run": 0,
+    "frozen_scientific_files_modified": false,
+    "new_blind_test_claimed": false
+  }
+}

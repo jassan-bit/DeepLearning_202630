@@ -1,0 +1,152 @@
+{
+  "version": "e2-current-data-closure-v1",
+  "file": "current_cohort_arrays.npz",
+  "sha256": "9fbb9b4326ea4c458300ccab522ec8982b74d5cf0fbca282a4b4c55362eea19f",
+  "arrays": {
+    "training_raw": {
+      "shape": [
+        655,
+        7,
+        5
+      ],
+      "dtype": "<f8",
+      "array_sha256": "6f9ec51077b02312feadad400ada4dce0fcf3c50a1fefeed48050aed9cfdb2e0"
+    },
+    "training_relative": {
+      "shape": [
+        655,
+        7,
+        5
+      ],
+      "dtype": "<f8",
+      "array_sha256": "96d242db52bfaceaf77f62fcd709b8431775d3d0cb9f6e80a0f67858c4d5cdb8"
+    },
+    "training_X": {
+      "shape": [
+        655,
+        7,
+        5
+      ],
+      "dtype": "<f4",
+      "array_sha256": "8e956cacca26891c8abce1028bc4d95c5fc102c3f1025ccfa24622179d9f9812"
+    },
+    "training_y_original": {
+      "shape": [
+        655
+      ],
+      "dtype": "<f8",
+      "array_sha256": "93304458cdff0e5e8a7bdbda56b2c22eca15d53ef5a02c97b7ee0a396aa1684d"
+    },
+    "training_y_scaled": {
+      "shape": [
+        655
+      ],
+      "dtype": "<f4",
+      "array_sha256": "46da3881b80f673a280affd16743f9a3ba97d516b88f935611f1a3f63958ac1d"
+    },
+    "training_dates": {
+      "shape": [
+        655
+      ],
+      "dtype": "<U10",
+      "array_sha256": "b79ef5f6e7d7117a49bc8eda943a7c1eb85d128820159389a24f2f6a91ef9309"
+    },
+    "calibration_raw": {
+      "shape": [
+        53,
+        7,
+        5
+      ],
+      "dtype": "<f8",
+      "array_sha256": "7a7c427cd6a26c7469b60c1d8508355141b65135e093964eabdcabad3ad837fb"
+    },
+    "calibration_relative": {
+      "shape": [
+        53,
+        7,
+        5
+      ],
+      "dtype": "<f8",
+      "array_sha256": "7e8df9528949d2233ab604df068430a292915d3c76f7778769da28850ceb8acf"
+    },
+    "calibration_X": {
+      "shape": [
+        53,
+        7,
+        5
+      ],
+      "dtype": "<f4",
+      "array_sha256": "159b06caa39d58dd0fef603dcf90d5006227ece448f51cfe2a8db885959f9efe"
+    },
+    "calibration_y_original": {
+      "shape": [
+        53
+      ],
+      "dtype": "<f8",
+      "array_sha256": "1eeb6189aefbcf1ca4cf77c73ddd46e111dfd34ccc0c754a6c1d545216d35bb8"
+    },
+    "calibration_y_scaled": {
+      "shape": [
+        53
+      ],
+      "dtype": "<f4",
+      "array_sha256": "0ecede9b798be6823a945611b495e500371c4bca23d80f270552b1b329567c2b"
+    },
+    "calibration_dates": {
+      "shape": [
+        53
+      ],
+      "dtype": "<U10",
+      "array_sha256": "90ba1aa82893a712219e52a8b25a998bf6cd4f2dbf5f35723f8fd9b8160204e5"
+    },
+    "training_target_scale": {
+      "shape": [],
+      "dtype": "<f8",
+      "array_sha256": "1c64c112fb59aefe78137a41bbc2ae03485b39df90bf52c36d6c8eefd421da1b"
+    },
+    "training_channel_mean": {
+      "shape": [
+        5
+      ],
+      "dtype": "<f8",
+      "array_sha256": "989e12c1fbe927859a2fb69cae43f0bd1998d8862cbb6fc5ed069f9c53a52376"
+    },
+    "training_channel_std": {
+      "shape": [
+        5
+      ],
+      "dtype": "<f8",
+      "array_sha256": "fbd5d366f12a617fb43e200ffc751f9d00bb398db04acb6ec10617ad3689e46b"
+    }
+  },
+  "source_inputs": [
+    {
+      "path": "experiments/e2_reduced_protocol_20261112/protocol.json",
+      "bytes": 17086,
+      "sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+      "role": "input",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "results/eda_development/daily_market_development.csv",
+      "bytes": 60427,
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "role": "input",
+      "expected_sha256_matched": true
+    },
+    {
+      "path": "results/eda_development/daily_volatility_development.csv",
+      "bytes": 76492,
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+      "role": "input",
+      "expected_sha256_matched": true
+    }
+  ],
+  "scope": "Actual common data inputs for13 neural ports; classical references have declared endogenous histories.",
+  "representation": "X=float32((relative_window(raw)-train_mean)/train_std); scaler from655 only; y_scaled=float32(y_original/train_target_mean)",
+  "training_signature_matches_all78_saved_fits": true,
+  "final_X_is_reconstructed_from_real_pinned_source_not_fabricated": false,
+  "chronology_is_known_inherited_E1": true,
+  "future_data_or_target_covariates_added": false,
+  "original_predictor_training_or_inference": false
+}

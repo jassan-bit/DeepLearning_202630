@@ -1,0 +1,23 @@
+{
+  "status": "PARTIAL",
+  "gap_reporting_valid": false,
+  "RQ3_reporting_valid": false,
+  "all78_parity_valid": false,
+  "reason": "No completed statistical summary with valid78-predictor parity",
+  "historical_failed_attempts": [
+    {
+      "path": "book_e2/_static/e2_corrections_20261115/frozen_inference/eager_predictions/failure_report.json",
+      "status": "failed",
+      "stage": "predictions",
+      "error_type": "ValueError",
+      "error": "CPU calibration parity exceeds fixed tolerance: ('LSTM-autoencoder con predictor', 271804, 1.1920928955078125e-07)"
+    },
+    {
+      "path": "book_e2/_static/e2_corrections_20261115/frozen_inference/predictions/failure_report.json",
+      "status": "failed",
+      "stage": "predictions",
+      "error_type": "ValueError",
+      "error": "CPU calibration parity exceeds fixed tolerance: ('LSTM-autoencoder con predictor', 271804, 1.1920928955078125e-07)"
+    }
+  ]
+}

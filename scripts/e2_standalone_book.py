@@ -25,7 +25,6 @@ import tarfile
 import tempfile
 from urllib.parse import unquote, urlsplit
 
-SOURCE_COMMIT = "204a8543234aac1614e0b76914bd914e28567eb9"
 PAYLOAD_NAME = "payload.tar.xz"
 MANIFEST_NAME = "bundle_manifest.json"
 MAX_FILES = 30000
@@ -76,13 +75,23 @@ def reject_symlinks(root: Path) -> None:
             raise ValueError(f"Enlace simbólico no permitido en la salida: {path.relative_to(root)}")
 
 
-def verify_files(root: Path) -> dict:
+def advertised_source_commit() -> str:
+    """The extracted package declares its immutable source, without Git."""
+    package = Path(__file__).resolve().parent / "package.json"
+    value = json.loads(package.read_text(encoding="utf-8")).get("source_commit")
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{40}", value):
+        raise ValueError("package.json debe declarar un commit completo de fuente")
+    return value
+
+
+def verify_files(root: Path, source_commit: str | None = None) -> dict:
     reject_symlinks(root)
     manifest_path = root / MANIFEST_NAME
     if manifest_path.is_symlink():
         raise ValueError("El manifiesto no puede ser un enlace simbólico")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("source_commit") != SOURCE_COMMIT:
+    expected_commit = source_commit or advertised_source_commit()
+    if manifest.get("source_commit") != expected_commit:
         raise ValueError("El paquete no corresponde al commit de fuente anunciado")
     entries = manifest.get("files")
     if not isinstance(entries, dict) or not entries or len(entries) > MAX_FILES:
@@ -96,10 +105,10 @@ def verify_files(root: Path) -> dict:
             raise ValueError(f"Contenido modificado: {name}")
         total += record["bytes"]
     return {"verified_files": len(entries), "verified_bytes": total,
-            "source_commit": SOURCE_COMMIT, "mathjax_version": MATHJAX_VERSION}
+            "source_commit": expected_commit, "mathjax_version": MATHJAX_VERSION}
 
 
-def extract_payload(payload: Path, output: Path) -> dict:
+def extract_payload(payload: Path, output: Path, source_commit: str | None = None) -> dict:
     if not payload.is_file() or payload.is_symlink():
         raise ValueError(f"Falta el archivo regular {payload}")
     if output.is_symlink():
@@ -107,7 +116,7 @@ def extract_payload(payload: Path, output: Path) -> dict:
     if output.exists():
         if not output.is_dir() or not (output / MANIFEST_NAME).is_file():
             raise ValueError("La salida ya existe y no es una extracción D01; elija otra carpeta")
-        return verify_files(output)
+        return verify_files(output, source_commit)
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix=".d01-extract-", dir=output.parent))
     try:
@@ -137,7 +146,7 @@ def extract_payload(payload: Path, output: Path) -> dict:
                 with stream, target.open("xb") as destination:
                     shutil.copyfileobj(stream, destination)
                 target.chmod(0o755 if member.mode & 0o111 else 0o644)
-        report = verify_files(temporary)
+        report = verify_files(temporary, source_commit)
         temporary.rename(output)
         return report
     finally:
@@ -280,7 +289,7 @@ a{{color:#125b91}}code{{background:#f0f3f6;padding:.15em .3em}}li{{margin:.6em 0
 <h1>Libro del Entregable 2</h1><p>El libro completo y sus fuentes están en esta carpeta.
 La lectura del contenido, las figuras, la navegación y las fórmulas no necesita el sitio web.</p>
 <p><strong><a href="site/intro.html">Abrir el libro completo</a></strong></p>{rebuilt_link}
-<ul><li>Instantánea de fuente: <code>{SOURCE_COMMIT}</code>.</li>
+<ul><li>Instantánea de fuente: <code>{report['source_commit']}</code>.</li>
 <li>Archivos verificados: {report['verified_files']}. Páginas HTML: {report['html_pages']}.</li>
 <li>Las fórmulas usan MathJax {MATHJAX_VERSION}, incluido con su
 <a href="site/_static/vendor/mathjax/LICENSE">licencia</a> y

@@ -1,0 +1,33 @@
+{
+  "version": "e2-hpo-coverage-closure-v1",
+  "registered_at_utc": "2026-11-15T22:18:14.126769+00:00",
+  "scope": "posthoc_documentary_and_descriptive_HPO_reconciliation_no_new_fits",
+  "script_sha256": "345c14ef838cbee4f54156b12e136335691e617ce871571d355ed21d0a33b838",
+  "source_recovery_manifest_sha256": "814742fbdd3c0e365a66df230b4858680c891a5725fb34414443c2b077abe0f6",
+  "terminal_receipts_provenance_sha256": "be795953835de3dd32f3e3fcd48935d4d63670c9fe95caadd0010bb2c322646a",
+  "source_commit": "6a8000022d2f374731faacc8a5c66f9b9d46b465",
+  "expected_opportunities": 234,
+  "expected_completed": 231,
+  "expected_known_failures": 2,
+  "expected_unknown_outcomes": 1,
+  "folds": [
+    "2024-01-01",
+    "2024-07-01",
+    "2024-10-01"
+  ],
+  "selection_metric": "sqrt(sum(83*fold_RMSE^2)/249)",
+  "catalogue": "13current neural recipes, including TIDE-D7-PUBLISHED-R0-v2; no NAS",
+  "configuration_metric": "only complete3fold configurations eligible; no imputation for missing/failed/unknown outcomes",
+  "cost_policy": "separate actual phase elapsed, campaign budget charges, conservative unknown allocation, and original cached-fit charges; no double-counted grand total",
+  "importance_policy": "no isolated causal importance or fANOVA estimated from six covarying tuples; publish performance curves and exact parameter-level coverage",
+  "new_fits": 0,
+  "new_model_inference": false,
+  "A2_unchanged": true,
+  "software": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "recovered_source_files": 952
+}

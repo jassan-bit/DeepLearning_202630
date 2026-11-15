@@ -15,6 +15,7 @@ import html
 import json
 import math
 from pathlib import Path
+import shutil
 import statistics
 import subprocess
 import sys
@@ -222,7 +223,52 @@ def full_uncertainty(out):
     return {"original_programs_executed":2,"models_retrained":False,"output_folders":["calibracion_completa","errores_completos"]}
 
 
-def slides(rows, payload, plot):
+def recorded_corrections(config, out):
+    """Expose included posthoc findings, without rerunning them by default."""
+    records=[];body=""
+    for area in config.get("corrections",[]):
+        files=area.get("files",[]);name=area["area"]
+        body+='<h2>Correcciones: '+html.escape(name)+'</h2>'
+        if not files:
+            body+='<p>No disponible en esta instantánea; no se declara ejecutada.</p>'
+            records.append({"area":name,"availability":"not_available_in_this_snapshot","files":0});continue
+        summaries=[]
+        for item in files:
+            if item.get("render_in_report") is False:continue
+            source=BASE/item["path"]
+            target=out/"export"/item["path"];target.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(source,target)
+            link='export/'+item["path"]
+            title=html.escape(Path(item["path"]).name)
+            if source.suffix==".csv":
+                stored=csv_rows(source)
+                body+='<details><summary>'+title+' · '+str(len(stored))+' filas</summary><p><a href="'+html.escape(link)+'">CSV completo incluido</a></p>'+table(stored[:60])+'</details>'
+            elif source.suffix==".json":
+                value=read_json(source)
+                if isinstance(value,dict):
+                    scope={k:value[k] for k in ("status","version","scope","effect_pairs","RQ2_rejections_Holm10","RQ2_rejected_candidates","A2_replaced","new_model_fits","training_performed",
+                                               "CPU_gap_tests","CPU_within_tolerance_conditionally","CPU_cost_tests","CPU_cost_reductions_Holm10",
+                                               "projection_comparisons_reported","projection_alerts","maximum_CPU_original_GPU_projection_difference",
+                                               "original_parity_gate_passed","old714statistics_executed","original_RQ3_IUT_executed") if k in value}
+                    if scope:summaries.append({"file":source.name,"recorded":scope})
+                body+='<details><summary>'+title+'</summary><p><a href="'+html.escape(link)+'">JSON completo incluido</a></p><pre>'+html.escape(json.dumps(value,ensure_ascii=False,indent=2))+'</pre></details>'
+            else:
+                body+='<p><a href="'+html.escape(link)+'">'+title+'</a></p>'
+        records.append({"area":name,"availability":"included","files":len(files),"recorded_summaries":summaries})
+    if records:
+        body='<h2>Ampliaciones posteriores conservadas</h2><p>Se muestran planes, recibos y resultados incluidos con sus propios estimandos y límites. El modo predeterminado no los recalcula, no sustituye A2 y no acredita una ejecución integral de entrenamiento o una defensa oral.</p>'+body
+    return records,body
+
+
+def full_corrections(out):
+    adapter=BASE/"reanalysis/run.py"
+    require(adapter.is_file(),"Este paquete no contiene un reanálisis de correcciones compatible")
+    destination=out/"corrections_replay"
+    subprocess.run([sys.executable,str(adapter),"--output",str(destination)],check=True,cwd=BASE)
+    return read_json(destination/"replay_report.json")
+
+
+def slides(rows, payload, plot, corrections=()):
     best = rows[0]
     contrasts = payload["original_analysis"]["primary_contrasts"]
     gain = next(r for r in contrasts if r["model"]==SAE and r["baseline"]=="Persistence")
@@ -243,6 +289,31 @@ def slides(rows, payload, plot):
         ("Límites que se mantienen", "<p>Test heredado conocido; una serie y una cronología. Potencia piloto 0,123 frente a objetivo 0,80. Auditoría integral de fuga y prueba formal comparable de δg pendientes.</p><p>Proxy de techo incierto; no es riesgo Bayes. No hay TOST/ROPE que acredite equivalencia.</p>"),
         ("Conclusiones y defensa", "<p>SAE tiene la menor RMSE observada; no se confirma mejora mayor que δ. Persistence mantiene una referencia exigente por MAE.</p><p>Separar inicialización, dependencia temporal, relevancia práctica y coste. E3 requiere una hipótesis propia y evidencia: la limitación de batch de ETTh1 no confirma transferencia predictiva a Bitcoin.</p><p>Preguntas: ¿qué unidad se remuestrea?, ¿qué queda sin acreditar?, ¿qué coste mide cada cifra?</p>"),
     ]
+    if corrections:
+        eda_title,eda_body=contents[2]
+        contents[2]=(eda_title,eda_body.replace("La auditoría integral sigue parcial.","La auditoría actual se reporta por control y conserva los alcances de las correcciones incluidas."))
+        overview=[]
+        for area in corrections:
+            summaries=area.get("recorded_summaries",[])
+            values=[item for item in summaries if item["file"] in ("summary.json","inference_report.json","controls_summary.json","hpo_summary.json","audit_summary.json")]
+            overview.append({"area":area["area"],"estado":area["availability"],"evidencia":values or "Fuentes y estados detallados en el informe independiente"})
+        for area in corrections:
+            for item in area.get("recorded_summaries",[]):
+                value=item["recorded"]
+                if area["area"]=="statistics" and "RQ2_rejections_Holm10" in value:
+                    title,body=contents[9]
+                    contents[9]=(title,body+"<p>RQ2 posterior: "+str(value["RQ2_rejections_Holm10"])+"/10 erosiones de ventaja frente a GRU32 mayores que δ, con Holm10. Es exploratoria, condicionada a las trayectorias y al calendario; no rechazo no prueba robustez.</p>")
+                if area["area"]=="cpu_diagnostic" and "CPU_gap_tests" in value:
+                    title,body=contents[10]
+                    contents[10]=(title,body+"<p>Nuevo diagnóstico CPU: "+str(value["CPU_cost_reductions_Holm10"])+"/"+str(value["CPU_cost_tests"])+" ahorros de forward respaldados con Holm10. No sustituye el coste A100 ni acredita la IUT/RQ3 original.</p>")
+                    title,body=contents[11]
+                    contents[11]=(title,body+"<p>Suplemento CPU: "+str(value["projection_comparisons_reported"])+" pesos congelados; "+str(value["projection_alerts"])+" alertas frente a CUDA, todas incluidas. "+str(value["CPU_within_tolerance_conditionally"])+"/"+str(value["CPU_gap_tests"])+" tolerancias operativas condicionadas. La paridad original y la ausencia de sobreajuste original siguen sin acreditarse.</p>")
+        title,body=contents[11]
+        contents[11]=(title,body.replace("Son otras ejecuciones sobre el mismo calendario.","Son recibos históricos de otras ejecuciones sobre el mismo calendario; este ZIP no reentrena esos 81 predictores."))
+        title,body=contents[-2]
+        body=body.replace("Auditoría integral de fuga y prueba formal comparable de δg pendientes.","El estado actual de auditoría y δg se distingue en los suplementos posteriores incluidos.")
+        body=body.replace("No hay TOST/ROPE que acredite equivalencia.","El benchmark original no acreditó equivalencia; los suplementos conservan sus pruebas y límites propios.")
+        contents[-2]=("Alcance original y correcciones",body+table(overview)+"<p>Incluir evidencia no acredita cumplimiento global. Los resultados adversos y no estimables se conservan.</p>")
     sections = ''.join('<section class="slide"><h1>'+html.escape(title)+'</h1>'+body+'</section>' for title,body in contents)
     style = CSS+".slide{display:none;min-height:76vh;padding:35px;box-sizing:border-box;font-size:clamp(18px,2.2vw,30px)}.slide.active{display:block}.slide h1{font-size:1.5em}.slide table{font-size:.7em}.slide img{max-height:58vh}.controls{position:fixed;bottom:0;left:0;right:0;background:#153b62;color:white;padding:10px;display:flex;justify-content:space-between;gap:20px}.controls button{font-size:18px;padding:7px 18px;cursor:pointer}.counter{align-self:center}@media print{.slide{display:block;break-after:page;min-height:0;font-size:17px;padding:20px}.controls{display:none}}"
     script = "const s=[...document.querySelectorAll('.slide')];let i=0;function show(v){i=Math.max(0,Math.min(s.length-1,v));s.forEach((x,k)=>x.classList.toggle('active',k===i));document.querySelector('.counter').textContent=(i+1)+' / '+s.length;}document.querySelector('#prev').onclick=()=>show(i-1);document.querySelector('#next').onclick=()=>show(i+1);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();show(i+1)}if(e.key==='ArrowLeft')show(i-1)});show(0);"
@@ -257,6 +328,7 @@ def main():
     parser.add_argument("--full-primary",action="store_true",help="Repetir los tests originales; requiere requirements_analysis.txt")
     parser.add_argument("--draws",type=int,default=4999)
     parser.add_argument("--full-uncertainty",action="store_true",help="Repetir calibración/taxonomía con sus programas y planes originales")
+    parser.add_argument("--full-corrections",action="store_true",help="Repetir los suplementos analíticos disponibles desde planes e insumos incluidos; requiere requirements_corrections.txt")
     args=parser.parse_args()
     config=read_json(BASE/"package.json")
     verified=verify_files()
@@ -282,8 +354,11 @@ def main():
                 stored=csv_rows(f)
                 selected=[r for r in stored if r.get("model") in (SAE,"GRU32","ARIMA")]
                 body+='<h2>'+title+'</h2><p>Valores guardados, no otra garantía de cobertura. Los intervalos por grupo y supuestos se conservan en los archivos fuente.</p>'+table(selected[:150],[c for c in ["model","policy","group","coverage","mean_width","mean_interval_score"] if c in stored[0]])
+    correction_records,correction_body=recorded_corrections(config,out)
+    result["recorded_corrections"]=correction_records
+    body+=correction_body
     if config["id"]=="D12":
-        deck,notes=slides(rows,payload,"comparacion_rmse.svg")
+        deck,notes=slides(rows,payload,"comparacion_rmse.svg",correction_records)
         (out/"presentacion.html").write_text(deck,encoding="utf-8")
         (out/"notas_orador.md").write_text(notes,encoding="utf-8")
         body='<p><a href="presentacion.html">Abrir las 14 diapositivas</a> · <a href="notas_orador.md">Notas del orador</a>. Flechas para navegar; imprimir para guardar PDF. La preparación del archivo no acredita una defensa oral ya realizada.</p>'+body
@@ -292,6 +367,8 @@ def main():
         result["full_primary"]=full_primary(payload,out,args.draws)
     if args.full_uncertainty:
         result["full_uncertainty"]=full_uncertainty(out)
+    if args.full_corrections:
+        result["full_corrections"]=full_corrections(out)
     for document in config.get("documents",[]):
         path=BASE/document["path"]
         body+='<details><summary>'+html.escape(document["title"])+': texto fuente incluido</summary><pre>'+html.escape(path.read_text(encoding="utf-8"))+'</pre></details>'

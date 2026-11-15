@@ -28,6 +28,7 @@ from pathlib import Path, PurePosixPath
 import re
 import shutil
 import statistics
+import subprocess
 import sys
 from collections import Counter
 from urllib.parse import quote, unquote, urlsplit
@@ -357,6 +358,78 @@ VALIDATORS = {"D04": validate_preregistration, "D05": validate_route,
               "D07": validate_training, "D09": validate_nas, "D11": validate_appendix}
 
 
+def validate_corrections(package, inputs, review):
+    """Check recorded correction structure, without turning findings into passes."""
+    areas = package.get("corrections", [])
+    if not areas: return
+    review.check("Suplementos separados de A2", package.get("corrections_are_posthoc") is True and
+                 package.get("original_A2_replaced") is False and
+                 package.get("full_original_training_replay_claimed") is False,
+                 "Las ampliaciones conservan sus planes, resultados y límites; no certifican toda la campaña.")
+    known = {item["path"]: item for item in inputs}
+    for area in areas:
+        files = area.get("files", [])
+        name = area.get("area", "?")
+        review.note("Corrección " + name,
+                    str(len(files)) + " archivos incluidos" if files else "No disponible en esta instantánea; no se declara ejecutada.")
+        for entry in files:
+            item = known.get(entry["path"])
+            if item is None: continue  # Figures/code are checked by the package manifest.
+            if item["kind"] == "json_files" and isinstance(item["data"], dict):
+                data = item["data"]
+                states = {key: data[key] for key in ("status", "scope", "A2_replaced", "original_A2_unchanged",
+                                                    "new_model_fits", "training_performed", "oral_defense_performed",
+                                                    "original_parity_gate_passed", "old714statistics_executed",
+                                                    "original_RQ3_IUT_executed", "mixed_CPU_GPU_period_test_executed") if key in data}
+                if states: review.note(name + " / " + Path(entry["path"]).name, states)
+                if name == "cpu_diagnostic" and "CPU_gap_tests" in data:
+                    review.check("Alcance del diagnóstico CPU conservado",
+                                 data.get("CPU_gap_tests") == 13 and data.get("CPU_cost_tests") == 10 and
+                                 data.get("projection_comparisons_reported") == 78 and
+                                 data.get("all78included_regardless_projection_alert") is True and
+                                 data.get("original_parity_gate_passed") is False and
+                                 data.get("old714statistics_executed") is False and
+                                 data.get("original_RQ3_IUT_executed") is False and
+                                 data.get("mixed_CPU_GPU_period_test_executed") is False and
+                                 data.get("new_fits") == 0 and data.get("A2_or_RQ1_changed") is False,
+                                 "Suplemento CPU independiente con todas las proyecciones y alertas; sin cierre de la puerta CUDA ni la IUT original.", item["path"])
+            if item["kind"] != "tables": continue
+            filename, rows, fields = Path(entry["path"]).name, item["rows"], set(item["fields"])
+            required_counts = {"standardized_effects_20.csv":20, "paired_seed_gains_120.csv":120,
+                               "causal_regime_labels_608.csv":608, "rq2_primary_Holm10.csv":10,
+                               "risks_by_predictor.csv":78, "calibration_agreement.csv":78,
+                               "predictions_train.csv":51090, "predictions_calibration.csv":4134,
+                               "raw_cpu_latency.csv":12000, "CPU_delta_g_Holm13.csv":13,
+                               "CPU_cost_only_Holm10.csv":10, "CPU_latency_block_means_1000.csv":1000,
+                               "configurations_78.csv":78, "opportunities_234.csv":234,
+                               "model_reconciliation_13.csv":13, "parameter_coverage_65.csv":65}
+            if filename in required_counts:
+                partial = entry.get("partial_execution") is True
+                review.check("Filas de " + filename,
+                             0 <= len(rows) <= required_counts[filename] if partial else len(rows) == required_counts[filename],
+                             "Ejecución parcial con fallo preservado; no se usa como cierre del diseño." if partial else
+                             "Recuento del diseño declarado, sin convertirlo en nota o aprobación metodológica.", item["path"])
+                if partial:review.note("Ejecución parcial / " + filename,
+                                       str(len(rows)) + " filas conservadas; no alimentan los contrastes que exigen la cohorte completa.")
+            if filename == "calibration_agreement.csv" and {"max_absolute_prediction_difference", "absolute_tolerance", "passed"}.issubset(fields):
+                coherent = all((finite_number(row["max_absolute_prediction_difference"]) <= finite_number(row["absolute_tolerance"])) ==
+                               (row["passed"].lower() == "true") for row in rows)
+                review.check("Coherencia de tolerancia registrada", coherent,
+                             "La bandera de cada fila coincide con su diferencia y tolerancia; se conserva también un eventual fallo.", item["path"])
+            if filename == "calibration_agreement.csv" and {"max_absolute_prediction_difference", "absolute_tolerance", "within_alert_tolerance", "projection_alert"}.issubset(fields):
+                coherent = all((finite_number(row["max_absolute_prediction_difference"]) <= finite_number(row["absolute_tolerance"])) ==
+                               (row["within_alert_tolerance"].lower() == "true") and
+                               (row["projection_alert"].lower() == "true") != (row["within_alert_tolerance"].lower() == "true")
+                               for row in rows)
+                review.check("Alertas CPU completas y coherentes", coherent,
+                             "La alerta describe la diferencia frente a CUDA; una alerta no elimina una trayectoria ni acredita paridad.", item["path"])
+            if filename == "risks_by_predictor.csv" and {"state_before_sha256", "state_after_sha256", "train_count", "calibration_count", "batch_size"}.issubset(fields):
+                review.check("Predictores congelados y soporte comparable", all(
+                    row["state_before_sha256"] == row["state_after_sha256"] and
+                    int(row["train_count"]) == 655 and int(row["calibration_count"]) == 53 and int(row["batch_size"]) == 1
+                    for row in rows), "Mismos pesos, 655/53 ejemplos y batch 1 en el riesgo guardado.", item["path"])
+
+
 def manifest_entries(value):
     if isinstance(value, dict):
         value = value.get("files", value)
@@ -661,6 +734,7 @@ def main(argv=None):
     parser.add_argument("--output", default="output", help="Carpeta de salida; por defecto output junto a run.py.")
     parser.add_argument("--package", default="package.json", help="Descriptor relativo al directorio de run.py.")
     parser.add_argument("--table-limit", type=int, default=300, help="Filas mostradas por tabla; los CSV exportados se conservan completos.")
+    parser.add_argument("--full-corrections", action="store_true", help="Repetir el suplemento estadístico incluido; requiere requirements_corrections.txt y salida nueva.")
     args = parser.parse_args(argv)
     root = Path(__file__).resolve().parent
     if args.table_limit < 1:
@@ -675,14 +749,28 @@ def main(argv=None):
         verify_integrity(root, package, inputs, review)
         try:
             VALIDATORS[package["id"]](inputs, review)
+            validate_corrections(package, inputs, review)
         except (KeyError, TypeError, ValueError, IndexError, AttributeError) as exc:
             review.check("Esquema específico del entregable", False, str(exc))
+        replay = None
+        if args.full_corrections:
+            if not review.passed:
+                raise PackageError("La integridad o coherencia del paquete no aprobó; no se inicia el reanálisis opcional")
+            adapter = local_path(root, "reanalysis/run.py")
+            destination = output / "corrections_replay"
+            subprocess.run([sys.executable, str(adapter), "--output", str(destination)], check=True, cwd=root)
+            replay = load_json(destination / "replay_report.json")
+            review.note("Reanálisis opcional", "Programa original ejecutado desde plan e insumos incluidos; recibo separado de la validación documental.")
         report = generate(root, package, inputs, review, output, args.table_limit)
+        if replay is not None:
+            report["optional_correction_reanalysis"] = replay
+            report["operations_scope"] = "operations describes this report generator; numerical replay operations and results are recorded separately"
+            (output / "resultado.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
         print(f"{package['id']}: {report['status']}")
         print(f"Informe: {output / 'informe.html'}")
         print(f"Datos y controles: {output / 'resultado.json'}")
         return 0 if review.passed else 2
-    except (PackageError, OSError, UnicodeError) as exc:
+    except (PackageError, OSError, UnicodeError, subprocess.CalledProcessError) as exc:
         print(f"No se pudo generar el informe: {exc}", file=sys.stderr)
         return 2
 

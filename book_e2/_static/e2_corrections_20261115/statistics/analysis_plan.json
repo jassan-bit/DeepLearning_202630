@@ -1,0 +1,197 @@
+{
+  "version": "e2-effects-rq2-closure-v1",
+  "registered_at_utc": "2026-11-15T22:04:43.443664+00:00",
+  "registration_role": "posthoc_plan_after_A2_and_before_this_new_statistical_execution",
+  "historical_preregistration_claimed": false,
+  "source_parent_commit": "0bdbc42bd724c6ffbbb1dec67564327adedb9883",
+  "script": {
+    "repository_path": "scripts/e2_effects_rq2_closure.py",
+    "sha256": "aea2b9e1353d6379c1e8d60c404da8ae518949ae5ad2a370856e5a067daa1290"
+  },
+  "inputs": {
+    "e2_f2a_input.json": {
+      "repository_path": "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json",
+      "bytes": 1371654,
+      "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187"
+    },
+    "daily_volatility_development.csv": {
+      "repository_path": "book_e2/_static/e2_final_audit_inputs_20261114/daily_volatility_development.csv",
+      "bytes": 76492,
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+    },
+    "rq_specification.json": {
+      "repository_path": "book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "bytes": 8751,
+      "sha256": "172e24bcb29209a05176ae2c6ed0c9afaac9eba52d7609466f752137b4f787b9"
+    },
+    "benchmark_A2.csv": {
+      "repository_path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "bytes": 2596,
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+    }
+  },
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "implementation": "CPython",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "draws": 20000,
+  "alpha_family": 0.05,
+  "minimum_valid_fraction": 0.95,
+  "effects": {
+    "pairs": [
+      [
+        "FCN-1D",
+        "GRU32"
+      ],
+      [
+        "FCN-1D",
+        "Persistence"
+      ],
+      [
+        "ResNet-1D",
+        "GRU32"
+      ],
+      [
+        "ResNet-1D",
+        "Persistence"
+      ],
+      [
+        "Inception-1D",
+        "GRU32"
+      ],
+      [
+        "Inception-1D",
+        "Persistence"
+      ],
+      [
+        "LSTM-autoencoder con predictor",
+        "GRU32"
+      ],
+      [
+        "LSTM-autoencoder con predictor",
+        "Persistence"
+      ],
+      [
+        "TimesNet",
+        "GRU32"
+      ],
+      [
+        "TimesNet",
+        "Persistence"
+      ],
+      [
+        "TSMixer",
+        "GRU32"
+      ],
+      [
+        "TSMixer",
+        "Persistence"
+      ],
+      [
+        "TiDE",
+        "GRU32"
+      ],
+      [
+        "TiDE",
+        "Persistence"
+      ],
+      [
+        "TimeMixer",
+        "GRU32"
+      ],
+      [
+        "TimeMixer",
+        "Persistence"
+      ],
+      [
+        "PatchTST",
+        "GRU32"
+      ],
+      [
+        "PatchTST",
+        "Persistence"
+      ],
+      [
+        "iTransformer",
+        "GRU32"
+      ],
+      [
+        "iTransformer",
+        "Persistence"
+      ]
+    ],
+    "gain": "reference RMSE minus candidate RMSE, per seed; raw gains, not gain-minus-delta",
+    "effect": "paired Cohen dz = mean(raw six-seed gains)/sample_SD(raw gains,ddof=1)",
+    "CI": "95 percent percentile bootstrap of six paired seed gains",
+    "seed_resampling": true,
+    "calendar_resampling": false,
+    "random_seed_base": 202611150100,
+    "inference_scope": "optimization conditional on fixed calendar",
+    "zero_variance_policy": "undefined point effect/CI; invalid bootstrap draws counted and disclosed",
+    "deterministic_reference": "Persistence has one fixed trajectory reused in six gains; only candidate optimization variability is sampled",
+    "new_effect_p_values": false
+  },
+  "RQ2": {
+    "candidates": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer"
+    ],
+    "reference": "GRU32",
+    "delta": 0.00025772842664981106,
+    "regime": "sigma7(t-1)>q75_2023",
+    "q75_2023": 0.024247163097617024,
+    "first_lag_source": "development CSV sigma7 on2024-12-31; later lags are preceding dated y_true",
+    "effect": "(GRU normal RMSE minus candidate normal RMSE)-(GRU high RMSE minus candidate high RMSE)",
+    "metric_aggregation": "compute RMSE per trajectory inside each sampled regime, then average six RMSEs",
+    "H0": "erosion<=delta",
+    "H1": "erosion>delta",
+    "bootstrap": "ordinary non-circular moving blocks from entire ordered608-date calendar; uniform starts0..N-L; concatenate and truncate toN",
+    "retain_regime_membership_with_sampled_date": true,
+    "fixed_seed_trajectories": true,
+    "resample_optimization_seeds": false,
+    "primary_block_days": 14,
+    "diagnostic_block_days": [
+      7,
+      28
+    ],
+    "random_seed_base": 202611150200,
+    "null_frontier": "Tnull_star=delta+(Tstar-Tobserved)",
+    "p_greater": "(1+count(Tnull_star>=Tobserved))/(Bvalid+1)",
+    "CI": "95 percent marginal percentile interval of valid bootstrap effects",
+    "multiplicity": "Holm10 at0.05 for block14 only; sensitivity p-values unadjusted and nondecisory",
+    "invalid_replicate": "absent normal or high stratum; no redraw, no zero imputation",
+    "support_report": "dated regime labels, maximal runs, overlapping eligible block counts, valid/invalid replicas"
+  },
+  "invariants": {
+    "original_A2_unchanged": true,
+    "original_RQ1_unchanged": true,
+    "new_model_fits": 0,
+    "new_model_inference": false,
+    "new_market_data": false,
+    "RQ3_executed": false
+  },
+  "limitations": [
+    "The analysis is exploratory after A2 on the already known E1 calendar, not restored prospective confirmation.",
+    "One BTC series and fixed fitted trajectories; no market-population or HPO-selection uncertainty.",
+    "Moving-block inference is approximate under suitable weak dependence/local stationarity;14 days is not universally adequate.",
+    "Only six optimization pairs inform dz; its bootstrap can be unstable and undefined samples are disclosed.",
+    "No demonstrated RQ2-specific power; non-rejection does not establish robustness or equivalence.",
+    "A causal regime available at issue time is distinct from grouping by realized same-day target."
+  ]
+}

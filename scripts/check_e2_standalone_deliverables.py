@@ -47,7 +47,10 @@ def execute_case(item, archives, work, python, torch_python):
     out=package/"output"
     if item["id"]=="D01":
         record=load(out/"extraction_report.json")
-        if not (out/"site/intro.html").is_file() or record.get("html_pages")!=70:
+        manifest=load(out/"bundle_manifest.json")
+        expected=manifest.get("html_validation",{}).get("html_pages")
+        if (not (out/"site/intro.html").is_file() or not isinstance(expected,int)
+                or expected<1 or record.get("html_pages")!=expected):
             raise ValueError("D01 book was not materialized")
     elif item["id"]=="D03":
         record=load(out/"dataset_audit.json")
