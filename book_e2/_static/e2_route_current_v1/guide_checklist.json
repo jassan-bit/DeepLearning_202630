@@ -1,0 +1,1366 @@
+{
+  "version": "e2-route-current-guide-review-v1",
+  "scope": "Documentary reconciliation of guide7 with current F2a route; extraction of published contrast procedures without new scientific execution",
+  "reviewed_repository_commit": "ccadd3a0088606f6705616395348b6179da8a814",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "guide_pages": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "primary_route": "F2a",
+  "complementary_controls": "EDA C/F2b RT1–RT4 causal availability and temporal classification; F2b is not a second independently benchmarked route",
+  "operations": {
+    "model_fits": 0,
+    "model_inferences": 0,
+    "predictive_scores_computed": 0,
+    "new_statistical_tests": 0,
+    "new_bootstrap_draws": 0,
+    "market_archives_opened": 0,
+    "checkpoint_weights_loaded": 0,
+    "published_result_tables_extracted": true,
+    "historical_artifacts_modified": false
+  },
+  "status_definitions": {
+    "verificado": "Evidencia o regla de interpretación cubierta dentro del alcance explícito; no significa que la hipótesis de adecuación haya sido aceptada.",
+    "parcial": "Hay evidencia útil pero no queda acreditada toda la condición o su cobertura requerida.",
+    "no_ejecutado": "Falta el contraste/producto específico que se invoca para acreditar un requisito aplicable.",
+    "no_aplica_justificado": "Corresponde a otra tarea,condición ausente o alternativa no seleccionada del catálogo; no se usa para borrar requisitos obligatorios."
+  },
+  "interpretation": [
+    "Las filas son subcondiciones auditables; no representan pesos de rúbrica o un porcentaje de nota.",
+    "La guía hereda de E1 métrica, δ, unidad y partición; la exposición previa se declara sin exigir por ella un test distinto.",
+    "δg sí preexiste. Su definición y el contraste formal actual son evidencias distintas.",
+    "Los once pasos, las cuatro condiciones simultáneas y la combinación mínima de tres métodos se distinguen del catálogo de alternativas.",
+    "El recuento original de tres corresponde a bootstrap, t y sign-flip; la congelación registra el análisis antes del scoring actual. Su existencia no acredita automáticamente admisibilidad o supuestos verificados.",
+    "Holm20 cubre control múltiple sin ser una cuarta prueba. No se exige agregar otro global ni independencia entre los tres métodos.",
+    "El original de4999 y su refinamiento de20000 son la misma prueba; bloques7/14/28 y las expresiones Friedman/Iman/permutación no son métodos nuevos.",
+    "MCS estudia MSE diaria de semillas fijas en16 sistemas; Friedman/Wilcoxon son diagnósticos de13 redes×6 semillas y excluyen Persistence.",
+    "La normalidad o simetría requerida por los diagnósticos de semillas no queda demostrada por ejecutarlos.",
+    "La adecuación conjunta no queda establecida: no hay mejora práctica primaria ajustada, ni contraste formal actual δg/validación–test, y se detecta estructura residual.",
+    "PIT y CRPS requieren una CDF completa; los intervalos90% no la definen. No se fabrican clases o coordenadas para rutas ajenas.",
+    "No se imponen todas las alternativas del catálogo; tampoco se eliminan requisitos explícitos con la palabra opcional.",
+    "Las razones RMSE frente a Persistence y SeasonalNaive se derivan de A2 y cumplen la alternativa de contextualización frente al naive. No son MASE ni pruebas de superioridad.",
+    "No se ejecutan modelos, nueva puntuación, inferencia o remuestreos, ni se cambia presupuesto o catálogo."
+  ],
+  "requirement_count": 72,
+  "status_counts": {
+    "verificado": 45,
+    "no_aplica_justificado": 8,
+    "parcial": 14,
+    "no_ejecutado": 5
+  },
+  "contrast_battery_map": "contrast_battery_map.csv",
+  "contrast_map_scope": {
+    "pairs": 20,
+    "bootstrap20k_present": 20,
+    "seed_t_present": 20,
+    "seed_sign_flip_present": 20,
+    "wilcoxon_pair_present": 10,
+    "dm_pair_present": 20,
+    "mcs_both_members_present": 20,
+    "friedman_both_members_present": 10,
+    "three_confirmatory_tests_with_verified_assumptions_established": 0,
+    "warning": "A zero in the last field is a documentary non-establishment verdict, not a recalculated hypothesis test or a claim that fewer than three related procedures exist."
+  },
+  "decision_traceability": "decision_traceability.csv",
+  "traceability_count": 14,
+  "evidence_files": [
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/conditional_rank_groups.svg",
+      "bytes": 93821,
+      "sha256": "594a2bf580831e4912ea222cc1ad9807bcdfbf62f12a2d126eba0d13bc002d15"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/summary_plots.json",
+      "bytes": 4667,
+      "sha256": "a0728921021606b8f8ad7a2e60f1eb41a3c773011ec044947f830a0166dfe258"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "bytes": 2596,
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "bytes": 54683,
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "bytes": 15173,
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "bytes": 69457,
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+      "bytes": 1997,
+      "sha256": "63f0f960f27f669380f9e336064f0274b026ed7a31d595a6c8df465c4781fcd4"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/primary_contrasts.csv",
+      "bytes": 7686,
+      "sha256": "7d351621c4a326bc717787bbc2f631f04acb015fe2ab09a7f516e4221ab9cb7f"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/selection_ARIMA.json",
+      "bytes": 11736,
+      "sha256": "70478650b91ed96931b50f2d5fbefc79f0598e4f9541b0f7cbf3c41b780d8ca5"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/selection_SeasonalNaive.json",
+      "bytes": 1992,
+      "sha256": "c00bb4230cec1336477502bfa78c1e4a7df09a5607fc6374a59500cb2ecfd445"
+    },
+    {
+      "path": "book_e2/_static/e2_calibration_ensemble_20261114/contrasts.csv",
+      "bytes": 464,
+      "sha256": "15aaf1428da50f773a2b25f34d6d11018ad4c8226072589c98e312add508e5ec"
+    },
+    {
+      "path": "book_e2/_static/e2_calibration_ensemble_20261114/summary.json",
+      "bytes": 4745,
+      "sha256": "49198e0f561d8cc70b4faadc6914dacdc69e9fa9bf0422f882e63bc45e220e21"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/analysis_plan.json",
+      "bytes": 4972,
+      "sha256": "2852cf0ed1cbdb7e3287d62b8410b23b945b3113fc717a401e5c3ca3f32cb702"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_coverage_CI.csv",
+      "bytes": 384026,
+      "sha256": "6349ec7fb84ce5b8397036702d4c0d0659b9d7fc33e61b8add3213a665bf2844"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv",
+      "bytes": 203305,
+      "sha256": "8bac90712c72b38dcaf95fa7d1754a19b4ecd848d4441683abc1eda92731ac27"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/coverage_HAC_Holm1344.csv",
+      "bytes": 159572,
+      "sha256": "4088d1249081e2e84e956a3e5c956138a07324d2e015e221c6f187c7ee1818a0"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv",
+      "bytes": 14471,
+      "sha256": "463bfe0466764330cf35d91cd44f0ca637684cf1ce00e83c73286aac8e0b1d22"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/source_evidence.json",
+      "bytes": 1436,
+      "sha256": "fcc1b2d3a28722e0e5f2c950448be5b1b2b4e3e45b09ef0cf0ae070ab5d0c10f"
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/decision_traceability.csv",
+      "bytes": 23721,
+      "sha256": "1e1a3b7e6ac37a039dab5257302527eff60837913a23d8483cb1c15994bba2f2"
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/guide_checklist.csv",
+      "bytes": 11656,
+      "sha256": "b614afaff57192f1f253e3052609b138c63199b9b073bc97ead5a3e0bd7ddd31"
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/inherited_annual_profiles.csv",
+      "bytes": 9080,
+      "sha256": "60dd1a4fb48f3239752988115985e6cdb14d22f194ecf713de5344b54375ab7c"
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/partition_audit.json",
+      "bytes": 47671,
+      "sha256": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f"
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/target_profiles.csv",
+      "bytes": 4659,
+      "sha256": "d24612c50586bf9b065a543054aabaf42bb529b9a012c3794be9ea0d2540ffea"
+    },
+    {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv",
+      "bytes": 6407,
+      "sha256": "973e54a8c56ca3fd113accd26413d5322bb4b72dbcc5caa73950a77c52129567"
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/ceiling_gamma_references.json",
+      "bytes": 2719,
+      "sha256": "8d02cc1fb8fcb347c3900e6eea3260d0b2cdaa2e6512430977d82d9e8aabb95c"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/calibration_final_comparison.csv",
+      "bytes": 40466,
+      "sha256": "0f752719f13c0c513a73169d3e595cdff89c6df740d359216a84f2b071bc5284"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv",
+      "bytes": 1297,
+      "sha256": "6b140f107e6ad85aeccd1cb0f4d59689d79001883cfc1289ff4dc90aad5e286f"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/quarterly_metrics.csv",
+      "bytes": 22787,
+      "sha256": "95830aed3d4e4db0014b5d8633e5f98866d83f87c549bdf918452e9bea28ca2b"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/tests.csv",
+      "bytes": 461463,
+      "sha256": "102e2e9ee069259a48fc772c01d149f797232902677fe57de133de7745329de2"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json",
+      "bytes": 3309,
+      "sha256": "cc4acd3e18cc1d00a445f7a9dc37800c4456fc4f290e4b54c862f499052aad87"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "bytes": 15431,
+      "sha256": "a6e791e90de6738dbca7d4b9aa1684acdeeb76d072d4b0ae68e76c3c5aa9b4e4"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/conditional_seed_ranks.csv",
+      "bytes": 738,
+      "sha256": "40229ce75e8449c2829740efbd3d62b70f1900c9cbb48f42ce4fdcba34612c4b"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv",
+      "bytes": 5681,
+      "sha256": "1c2c399eb925636ced5db6b7ea3c953bee72286d653e7b1be32e096f4b7007ed"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv",
+      "bytes": 32112,
+      "sha256": "b5cfd633fcf4e65613a578b1b17adfb7c69aa812a948692aa77884eda3c3415e"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/mcs_membership.csv",
+      "bytes": 1138,
+      "sha256": "38f118090eb50c1ecf357c3078588eaa12befee4f9c26aaae255260a8eceed54"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/mcs_steps.csv",
+      "bytes": 3653,
+      "sha256": "56055615997787242884e17131917da50fe95bbae4df44283a76051f7d10d06f"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/system_loss_summary.csv",
+      "bytes": 1778,
+      "sha256": "992d3c62af734159d2b2db13755291b8ce416e36f52faff3582d5522ea7b4bff"
+    },
+    {
+      "path": "book_e2/_static/e2_implementation_current_v1/guide_checklist.csv",
+      "bytes": 50763,
+      "sha256": "c1b2ffbd6c0b08bbcda1f98068fb67bef85bffab9067ec32966b85fb0d63d857"
+    },
+    {
+      "path": "book_e2/_static/e2_learning_curves_v1/coverage.csv",
+      "bytes": 29591,
+      "sha256": "b9d68b29bbcbdd6cc530da36ba4a6b597e3b3ba91eccb3d37750ba496f47f766"
+    },
+    {
+      "path": "book_e2/_static/e2_learning_curves_v1/learning_curves.json",
+      "bytes": 10222,
+      "sha256": "684e625147cb8b67a4ea5d9d850f7d5594bda79a82993ac84958e1141f79fa01"
+    },
+    {
+      "path": "book_e2/_static/e2_point1_review_v1/margin_lineage.json",
+      "bytes": 4283,
+      "sha256": "20085e68d66eff8b0c2d003dead9b3ecc9750421fe3310e6b43e549fddcd830e"
+    },
+    {
+      "path": "book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "bytes": 8751,
+      "sha256": "172e24bcb29209a05176ae2c6ed0c9afaac9eba52d7609466f752137b4f787b9"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/explanation_stability.csv",
+      "bytes": 500,
+      "sha256": "3fa08ed25d045f5547900908beadf2a3f948c1a8018e7fe3d4206c02bbfa8489"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv",
+      "bytes": 5917,
+      "sha256": "871000659803d5dcd83b04ccf442cddbc6e914d75e0caf52eb6638f89d2a4825"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/robustness.csv",
+      "bytes": 127455,
+      "sha256": "cefdb4d439465e63cb9418d5b3d6ee8389a157278469f4a29887011b1f5f32c7"
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "bytes": 938,
+      "sha256": "d9d4a6dfad269aecd8eadd106714f855706e5cec6fb2d9dc0b5a710e2d4fa0da"
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/reproduction.csv",
+      "bytes": 9325,
+      "sha256": "cc8639b83de29bfc28aee7d33f8e13e0fe8e4d70c633e7bd009d28f00bf373a5"
+    },
+    {
+      "path": "book_e2/_static/e2_route_current_v1/ratio_provenance.json",
+      "bytes": 1401,
+      "sha256": "54895e7e3649b136044d3f9a5950369fa519b6438c5a896439f7b6ce096a34c3"
+    },
+    {
+      "path": "book_e2/_static/e2_route_current_v1/relative_error_vs_naive.csv",
+      "bytes": 2029,
+      "sha256": "060b27c6a7c51d9fc146d0be3d5ff271043660a469f9c8bf42597a847facb38a"
+    },
+    {
+      "path": "book_e2/_static/e2_route_current_v1/route_decision.json",
+      "bytes": 3581,
+      "sha256": "ee53f42564e52a1229e57bf629cbe55f36a703b38b50cb7b1d3227eed0d4da8f"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/analysis_plan.json",
+      "bytes": 3048,
+      "sha256": "b7c71ece7718b7e535afeaa2f52aa7af037173647a146b5314afda250968d0a4"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/gap_tolerance_sensitivity_descriptive.csv",
+      "bytes": 16062,
+      "sha256": "60bdc497818cc216702db3f277b0a1ec6566bc8907328e8e18090e23d9886c38"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/original_4999_exact_checks.csv",
+      "bytes": 814,
+      "sha256": "512ebd775c5956fbdc912576bf91828164fb9b797e7365ac57cd233cfe51e6b0"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv",
+      "bytes": 9628,
+      "sha256": "9575d02dfad5bb3e2cfd4836217893a73e876cedbc2e250affa8e615351796cf"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_paths.csv",
+      "bytes": 701812,
+      "sha256": "9c391a0a65347c4f3d6fc67fdf8716777e08d1d02b0f7eba1f9839b3522ebd22"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv",
+      "bytes": 8269,
+      "sha256": "fe594b61b093063144acffc1d9e0d426db5ad7a7ef9c750c6200ee767cb1dea7"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv",
+      "bytes": 7480,
+      "sha256": "cac1557638484b9127a406dec855c4de375e021866fe610c5fd84edf6008f778"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/source_evidence.json",
+      "bytes": 3078,
+      "sha256": "db408c40c4814aa0d8b8bce7a5e352d1b317ef7cab6af948ad9c9c62a1668203"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/summary.json",
+      "bytes": 1093,
+      "sha256": "d8cc2b2195463475a760f0dfc1a26375a68dfe4cfc1c4c353d0bab4d72010613"
+    },
+    {
+      "path": "book_e2/_static/eda_traceability/decisiones_vigentes.csv",
+      "bytes": 923,
+      "sha256": "55b11a10188464f36480e94ac1101a404aabc02d6d890cae0674fdd3200b9262"
+    },
+    {
+      "path": "experiments/e2_completion_20261106/analysis_additions.json",
+      "bytes": 15801,
+      "sha256": "1dc6c3eb0a3e4deb9321044a481583515d04155762a376ad6b35e575f9f55f9d"
+    },
+    {
+      "path": "experiments/e2_reduced_protocol_20261112/protocol.json",
+      "bytes": 17086,
+      "sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc"
+    },
+    {
+      "path": "experiments/e2_remediation_20261106/preregistration.json",
+      "bytes": 62608,
+      "sha256": "b8c84979fccec4fc282810e489d2d666f7f0562d587403e04bf3c2e923073cb3"
+    },
+    {
+      "path": "results/eda_development/stationarity_daily.csv",
+      "bytes": 1053,
+      "sha256": "f54bb0ea660a232aca9797d9170037fae514db28282d3dc0d15a11ecb99541b1"
+    },
+    {
+      "path": "results/eda_development/stationarity_volatility.csv",
+      "bytes": 1068,
+      "sha256": "7b1bd0593d6c6da97456852d92744a3285d37edd187dc02802338f4f56662317"
+    },
+    {
+      "path": "results/eda_development/summary.json",
+      "bytes": 24864,
+      "sha256": "ef5f5fed830147aceffd1fa5aefdbcdb8cc034e48bdf33301cc5d862554b78d1"
+    },
+    {
+      "path": "scripts/e2_reduced_final_analysis.py",
+      "bytes": 15604,
+      "sha256": "f33a063c3c2478263fbd3cbee11d949b106a392e9a66eb14575f3a1638768fe9"
+    },
+    {
+      "path": "scripts/e2_training_bindings.py",
+      "bytes": 18460,
+      "sha256": "5acc9c53abec6a0c219fb01516106434b9609beec6102162053626c9dac5354c"
+    }
+  ],
+  "requirements": [
+    {
+      "requirement_id": "RTE-00",
+      "guide_section": "7–7.1",
+      "requirement": "Identificar el problema y seleccionar su ruta metodológica.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "La ruta vigente es F2a: series de tiempo. Conserva D7×5 OHLCV → σ7 poblacional, h=1; el diagnóstico residual de referencia motivó la reclasificación.",
+      "limitation": "No incluir rezagos explícitos del objetivo no hace que la serie sea iid. Reclasificar no obliga a añadir canales nuevos.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/guide_checklist.csv; book_e2/_static/eda_traceability/decisiones_vigentes.csv; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar F2a y el contrato heredado."
+    },
+    {
+      "requirement_id": "RTE-01",
+      "guide_section": "7.1–7.4",
+      "requirement": "Aplicar sólo las rutas correspondientes a las modalidades presentes.",
+      "status": "no_aplica_justificado",
+      "applicability": "otras_rutas_no_aplicables",
+      "finding": "Se pronostica una serie de mercado con covariables temporales; no hay imágenes, texto, coordenadas ni salidas de clasificación.",
+      "limitation": "F1, F3, F4 y F5 no generan aquí requisitos de Moran, DeLong, McNemar, Dice, CRF o bootstrap por paciente/documento.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener justificadas las rutas no aplicables; no crear tareas adicionales."
+    },
+    {
+      "requirement_id": "RTE-02",
+      "guide_section": "7.2 Paso1",
+      "requirement": "Registrar tarea, métricas, δ, comparaciones, R y α antes de la ejecución que gobiernan.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "El protocolo reducido y la congelación fijan contrato, dieciséis sistemas, R=6, δ=0,00025772842664981106, veinte comparaciones y α=0,05 antes del scoring actual.",
+      "limitation": "El calendario ya era conocido desde E1. Los suplementos posteriores no recuperan preregistro prospectivo integral.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_benchmark_final_20261113/final_freeze.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar la cronología real de cada registro y su alcance."
+    },
+    {
+      "requirement_id": "RTE-03",
+      "guide_section": "7.2 Paso2",
+      "requirement": "Auditar duplicados, identificadores, soportes y posibles fugas.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "La auditoría distingue 655 ejemplos finales, 53 de calibración y 608 de evaluación, con identificadores disjuntos y soportes temporales compartidos.",
+      "limitation": "Identificadores distintos no implican independencia o ausencia de cierres compartidos. La auditoría consulta contratos y registros guardados.",
+      "source": "book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar controles de soporte, disponibilidad y máscaras."
+    },
+    {
+      "requirement_id": "RTE-04",
+      "guide_section": "7.2 Paso3",
+      "requirement": "Particionar por la unidad adecuada y preservar la cronología.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay tres folds internos con 253/435/527 ejemplos train y 83 validaciones cada uno; luego 655 de ajuste, 53 de calibración y 608 de prueba.",
+      "limitation": "Los entrenamientos expansivos y las ventanas de σ7 se solapan. La partición heredada de E1 es admisible y no produce réplicas iid.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener la partición heredada y representar su dependencia temporal."
+    },
+    {
+      "requirement_id": "RTE-05",
+      "guide_section": "7.2 Paso3 yPaso9",
+      "requirement": "Congelar los predictores y separar la evaluación de la selección actual.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Los 81 pesos, escaladores y calibradores quedaron congelados antes del scoring actual; se declara ausencia de retuning desde A2.",
+      "limitation": "La congelación actual no recupera el cegamiento de un periodo conocido desde E1. Los suplementos no son una primera exposición independiente.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar congelación y exposición previa; no seleccionar con el test."
+    },
+    {
+      "requirement_id": "RTE-06",
+      "guide_section": "7.2 Paso4",
+      "requirement": "Aprender el preprocesamiento sólo con el train de cada fold.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "El contrato separa representación causal, escaladores de entrenamiento y reversión a unidades originales, sin usar calibración o test para elegir recetas.",
+      "limitation": "La normalización por ventana y el escalador global del objetivo tienen alcances distintos. No se vuelven a certificar todos los tensores privados.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; scripts/e2_training_bindings.py; book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener separadas las operaciones de ajuste y la información disponible."
+    },
+    {
+      "requirement_id": "RTE-07",
+      "guide_section": "7.2 Paso5",
+      "requirement": "Incluir referencia trivial, clásica fuerte y los tres modelos de E1.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Persistence, SeasonalNaive y ARIMA(2,0,1), más MLP16, LSTM32 y GRU32, acompañan a los diez candidatos en A2.",
+      "limitation": "Incluir referencias no demuestra que las redes las superen. Los clásicos tienen una trayectoria determinista, no seis ejecuciones.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_benchmark_final_20261113/selection_ARIMA.json; book_e2/_static/e2_benchmark_final_20261113/selection_SeasonalNaive.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar todos los modelos y los resultados favorables a las referencias."
+    },
+    {
+      "requirement_id": "RTE-08",
+      "guide_section": "7.2 Paso6",
+      "requirement": "Igualar oportunidades, particiones y reglas de selección.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Las trece redes usan seis plazas de configuración y tres folds comunes: 234 oportunidades, 231 válidas, dos fallos conocidos y un desenlace desconocido.",
+      "limitation": "Mismas oportunidades no equivalen a igual cómputo total: hay cachés, hardware mixto y fases auxiliares del SAE. El coste completo por modelo no está reconstruido.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_implementation_current_v1/guide_checklist.csv; book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar fallos y reglas; recuperar contabilidad comparable si existe."
+    },
+    {
+      "requirement_id": "RTE-09",
+      "guide_section": "7.2 Paso7",
+      "requirement": "Repetir al menos cinco ejecuciones y guardar resultados individuales.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Las trece redes tienen seis semillas, 271801–271806, y 78 ajustes finales con métricas individuales; los clásicos conservan R=1.",
+      "limitation": "Son inicializaciones sobre un mismo mercado, no seis series independientes. R=6 no acredita potencia del 80%.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_benchmark_final_20261113/final_freeze.json; book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar semillas y trayectorias; no duplicar los clásicos."
+    },
+    {
+      "requirement_id": "RTE-10",
+      "guide_section": "7.2 Paso8",
+      "requirement": "Diagnosticar ajuste y sobreajuste antes de declarar adecuación.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay diagnósticos finales de residuos, calibración y estabilidad, curvas originales y evidencia del registro previo de δg.",
+      "limitation": "Los diagnósticos finales son posteriores al scoring. No queda acreditada la no inferioridad train–validación ni una comparación formal actual validación–test.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/tests.csv; book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv; book_e2/_static/e2_point1_review_v1/margin_lineage.json; book_e2/_static/e2_learning_curves_v1/coverage.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Separar el margen previo de su cumplimiento; no retocar el modelo desde el test."
+    },
+    {
+      "requirement_id": "RTE-11",
+      "guide_section": "7.2 Paso9 y7.3 TablaC",
+      "requirement": "Evaluar con IC95% y remuestreo apropiado para la dependencia.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "La primaria original usa 4.999 remuestreos pareados con bloques de 14 días; el refinamiento usa 20.000 con los mismos pares, estimando y δ.",
+      "limitation": "El mínimo general de 2.000 no rebaja el específico de 10.000 de Tabla C. Faltan IC temporales marginales para todas las métricas y sistemas de A2.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_temporal_final_audit_20261114/original_4999_exact_checks.csv; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Distinguir incertidumbre entre semillas y temporal; no contar el refinamiento como otra prueba."
+    },
+    {
+      "requirement_id": "RTE-12",
+      "guide_section": "7.2 Paso10",
+      "requirement": "Comparar con Tabla C, corrección múltiple y efectos con IC.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Existen veinte contrastes de ganancia RMSE>δ con Holm20, y suplementos DM, MCS, Friedman y Wilcoxon; se publican efectos originales con IC.",
+      "limitation": "El recuento de tres métodos no demuestra por sí solo admisibilidad y supuestos verificados. No se encontró Cohen, Cliff o A12 con IC.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Auditar por pareja métodos, supuestos, unidades y alcance."
+    },
+    {
+      "requirement_id": "RTE-13",
+      "guide_section": "7.2 Paso11",
+      "requirement": "Analizar robustez, calibración, incertidumbre e interpretabilidad.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay cuatro perturbaciones con tres severidades para trece redes, calibración temporal para dieciséis sistemas, oclusiones del top3 y 18 ablaciones entrenadas del SAE.",
+      "limitation": "Cada suplemento tiene cronología, familia y supuestos propios. Estrés sintético no equivale a mercado externo; la oclusión no demuestra causalidad.",
+      "source": "book_e2/_static/e2_posthoc_gpu_20261113/robustness.csv; book_e2/_static/e2_posthoc_gpu_20261113/explanation_stability.csv; book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conectar las conclusiones con sus fuentes y conservar hallazgos adversos."
+    },
+    {
+      "requirement_id": "RTE-14",
+      "guide_section": "7.2 Criterio(i)",
+      "requirement": "Superar al baseline trivial con p ajustado<0,05 y mejora mayor que δ.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Los diez candidatos se compararon con Persistence en la familia primaria; ninguna de esas diez comparaciones rechaza después de Holm20.",
+      "limitation": "SAE mejora puntualmente 0,000282166, pero su IC incluye cero. No se cumple la condición conjunta ni se demuestra ausencia de todo efecto.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Registrar la condición no acreditada; conservar el resultado negativo."
+    },
+    {
+      "requirement_id": "RTE-15",
+      "guide_section": "7.2 Criterio(ii)",
+      "requirement": "Demostrar brecha train–validación menor que el δg previamente definido.",
+      "status": "no_ejecutado",
+      "applicability": "aplicable_F2a",
+      "finding": "δg=0,00025772842664981106 sí estaba registrado; se conservan 78 brechas descriptivas de calibración menos entrenamiento.",
+      "limitation": "Calibración no es nueva validación independiente y se usaron lotes distintos. No hay contraste formal actual que acredite g<δg.",
+      "source": "book_e2/_static/e2_point1_review_v1/margin_lineage.json; book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv; book_e2/_static/e2_temporal_final_audit_20261114/gap_tolerance_sensitivity_descriptive.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Se requiere un contraste admisible sobre soporte comparable, con δg fijo."
+    },
+    {
+      "requirement_id": "RTE-16",
+      "guide_section": "7.2 Criterio(iii)",
+      "requirement": "Acreditar calibración y ausencia de estructura residual remanente.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Ljung–Box rechaza en 81/81 residuos, ARCH en 78/81 y BDS en 79/81 por dimensión. También se publican MZ, cobertura y ACI53.",
+      "limitation": "La condición no está acreditada: persisten dependencia y cobertura condicional adversa. No rechazar una celda no demuestra calibración universal.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_f2a_audit_20261113/tests.csv; book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv; book_e2/_static/e2_conditional_calibration_20261114/coverage_HAC_Holm1344.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar los diagnósticos y la falta de adecuación conjunta."
+    },
+    {
+      "requirement_id": "RTE-17",
+      "guide_section": "7.2 Criterio(iv)",
+      "requirement": "Verificar consistencia de desempeño entre validación y prueba.",
+      "status": "no_ejecutado",
+      "applicability": "aplicable_F2a",
+      "finding": "Se publican métricas de selección, calibración y prueba, brechas descriptivas y estabilidad temporal retrospectiva.",
+      "limitation": "No se ejecutó una comparación formal actual validación–test sobre soporte comparable. Calibración menos train y Giacomini–Rossi no la sustituyen.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/calibration_final_comparison.csv; book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv; book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Separar cambios entre periodos y optimismo de selección; no inventar una validación independiente."
+    },
+    {
+      "requirement_id": "RTE-18",
+      "guide_section": "7.2 Criterio conjunto",
+      "requirement": "Declarar adecuación sólo si se cumplen las cuatro condiciones simultáneas.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "La síntesis conserva que la ejecución del benchmark no acredita las cuatro condiciones; el ranking no se presenta como declaración de adecuación.",
+      "limitation": "Completar ajustes, reproducir predicciones o añadir suplementos no elimina las condiciones no acreditadas.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_point1_review_v1/margin_lineage.json; book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener explícito el dictamen de adecuación no establecida."
+    },
+    {
+      "requirement_id": "RTE-19",
+      "guide_section": "7.3 Mínimo por contraste",
+      "requirement": "Evaluar cada comparación confirmatoria con tres pruebas distintas admisibles.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Los veinte pares tienen bootstrap, t pareada y sign-flip originales, con recuento declarado de tres; la congelación registra el análisis antes del scoring actual.",
+      "limitation": "T y sign-flip se declaran diagnósticos condicionados. La presencia y registro de tres métodos no acreditan automáticamente sus supuestos ni la combinación confirmatoria completa.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; scripts/e2_reduced_final_analysis.py; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Justificar por pareja admisibilidad, supuestos, unidad, multiplicidad y cronología."
+    },
+    {
+      "requirement_id": "RTE-20",
+      "guide_section": "7.3 Componente(i)",
+      "requirement": "Incluir una prueba paramétrica o de remuestreo pareado.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Los veinte pares tienen bootstrap pareado de semillas y calendario, con bloque de 14 días y refinamiento a 20.000; la t se conserva como diagnóstico.",
+      "limitation": "El bootstrap requiere dependencia suficientemente corta, estacionariedad local e intercambiabilidad de semillas. No se afirma exactitud finita.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Identificar el refinamiento como la misma prueba original."
+    },
+    {
+      "requirement_id": "RTE-21",
+      "guide_section": "7.3 Componente(ii)",
+      "requirement": "Incluir una prueba no paramétrica o bayesiana admisible para cada par.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay sign-flip en veinte pares y Wilcoxon bilateral en diez parejas candidatos–GRU32; no hay Wilcoxon frente a Persistence.",
+      "limitation": "Sign-flip requiere simetría de ganancia−δ. Wilcoxon contrasta cero bilateral entre semillas, con hipótesis y familia distintas; su presencia no acredita por sí sola el componente confirmatorio.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener ausencias y supuestos sin crear réplicas de Persistence."
+    },
+    {
+      "requirement_id": "RTE-22",
+      "guide_section": "7.3 Componente(iii)",
+      "requirement": "Incluir un procedimiento global o con control de comparaciones múltiples.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Los métodos originales tienen corrección Holm20. Además existen MCS global de dieciséis sistemas y Friedman/Wilcoxon–Holm de trece redes.",
+      "limitation": "Holm cubre el control múltiple, pero no es una cuarta prueba. No se exige agregar un global si tres métodos admisibles ya tienen control; la justificación conjunta sigue limitada por sus supuestos.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/mcs_membership.csv; book_e2/_static/e2_f2a_s8_20261113/mcs_steps.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar el control existente; no exigir un cuarto método global."
+    },
+    {
+      "requirement_id": "RTE-23",
+      "guide_section": "7.3 Supuestos yrecuento",
+      "requirement": "Justificar la combinación y no contar variantes como métodos nuevos.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Se distinguen calendario y semillas, RMSE y MSE, margen δ y cero, una cronología y las familias de cada procedimiento.",
+      "limitation": "Bloques 7/14/28, 4.999/20.000 réplicas, Holm y las expresiones Friedman/Iman/permutación no se suman como pruebas distintas. No se exige independencia entre los tres métodos.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_temporal_final_audit_20261114/analysis_plan.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener trazabilidad por pareja y un dictamen limitado por los supuestos reales."
+    },
+    {
+      "requirement_id": "RTE-24",
+      "guide_section": "7.3 TablaA",
+      "requirement": "Examinar relación predictiva frente a la referencia ingenua temporal.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "A2 incluye Persistence y SeasonalNaive; la primaria compara con Persistence y DM incluye ambas referencias entre sus 120 parejas.",
+      "limitation": "Tabla A admite comparación con ingenuo como alternativa temporal a permutar etiquetas. Los contrastes no confirman mejora práctica de los diez candidatos.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Usar la alternativa admisible sin exigir reentrenamientos de permutación automáticamente."
+    },
+    {
+      "requirement_id": "RTE-25",
+      "guide_section": "7.3 TablaA",
+      "requirement": "Evaluar calibración puntual mediante Mincer–Zarnowitz con HAC.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "MZ contrasta intercepto 0 y pendiente 1 con HAC14; 37/81 trayectorias rechazan dentro de Holm826.",
+      "limitation": "No rechazo no demuestra calibración; son aproximaciones asintóticas en una serie dependiente.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/tests.csv; book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Publicar configuración y decisiones sin prometer calibración universal."
+    },
+    {
+      "requirement_id": "RTE-26",
+      "guide_section": "7.3 TablaA",
+      "requirement": "Diagnosticar distribución, heterocedasticidad e independencia residual.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Jarque–Bera rechaza en 81/81, ARCH en 78/81 y Ljung–Box/BDS detectan dependencia. Se utiliza HAC y remuestreo en bloques.",
+      "limitation": "No se ejecutaron todos los alternativos Shapiro, Breusch–Pagan, White, Durbin–Watson o Breusch–Godfrey. El catálogo no obliga a ejecutar todas las alternativas simultáneamente.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_f2a_audit_20261113/tests.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar las violaciones y justificar incertidumbre robusta en la unidad correcta."
+    },
+    {
+      "requirement_id": "RTE-27",
+      "guide_section": "7.3 TablaA",
+      "requirement": "Ejecutar Ljung–Box, ARCH y BDS de residuos temporales.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Lags 7/14: 81/81 rechazos de residuos y 80/81 de cuadrados; ARCH 78/81; BDS dimensiones 2/3: 79/81 en cada una.",
+      "limitation": "Rechazar iid no demuestra exclusivamente no linealidad aprovechable ni una arquitectura que vaya a capturarla.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_f2a_audit_20261113/tests.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener los resultados adversos y la dependencia en la inferencia."
+    },
+    {
+      "requirement_id": "RTE-28",
+      "guide_section": "7.3 TablaA",
+      "requirement": "Evaluar cobertura de intervalos y dependencia temporal.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Cobertura y anchura al 90% existen para dieciséis sistemas; el suplemento añade original/móvil53/ACI53, IC con 10.000 remuestreos e hipótesis HAC/Holm1344.",
+      "limitation": "Las políticas posteriores no sustituyen A2. Persisten grupos con cobertura menor del 90%; no rechazo no prueba equivalencia.",
+      "source": "book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv; book_e2/_static/e2_conditional_calibration_20261114/conditional_coverage_CI.csv; book_e2/_static/e2_conditional_calibration_20261114/coverage_HAC_Holm1344.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar todas las políticas y los resultados desfavorables por grupo."
+    },
+    {
+      "requirement_id": "RTE-29",
+      "guide_section": "7.3 TablaA y7.4 F2a",
+      "requirement": "Aplicar PIT cuando el predictor entrega una distribución completa.",
+      "status": "no_aplica_justificado",
+      "applicability": "condicional_CDF_no_disponible",
+      "finding": "Los predictores entregan pronóstico puntual e intervalos al 90%, no una CDF predictiva completa; se evalúan cobertura y pinball en los extremos.",
+      "limitation": "Dos extremos no definen CDF, PIT o CRPS únicos. PIT sería aplicable si se especifica una distribución predictiva.",
+      "source": "book_e2/_static/e2_conditional_calibration_20261114/source_evidence.json; book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv; experiments/e2_reduced_protocol_20261112/protocol.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Explicar la condición ausente sin fabricar una densidad."
+    },
+    {
+      "requirement_id": "RTE-30",
+      "guide_section": "7.3 TablaA",
+      "requirement": "Aplicar tests de clasificación o espaciales sólo cuando corresponden.",
+      "status": "no_aplica_justificado",
+      "applicability": "otras_tareas_no_aplicables",
+      "finding": "No hay clases, probabilidades de evento, coordenadas ni unidades espaciales en la tarea actual.",
+      "limitation": "Binomial, AUC, MCC, kappa, Hosmer–Lemeshow, Spiegelhalter y Moran no tienen aquí el estimando correspondiente.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "No crear clases o coordenadas para llenar el catálogo."
+    },
+    {
+      "requirement_id": "RTE-31",
+      "guide_section": "7.3 TablaB",
+      "requirement": "Conservar el margen de sobreajuste previamente definido.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "El linaje identifica δg=0,00025772842664981106 y su hipótesis de tolerancia antes de la campaña vigente.",
+      "limitation": "Los null de resúmenes históricos no borran ese registro. Definir el margen y probar su cumplimiento son evidencias distintas.",
+      "source": "book_e2/_static/e2_point1_review_v1/margin_lineage.json; experiments/e2_remediation_20261106/preregistration.json; experiments/e2_completion_20261106/analysis_additions.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Usar el δg heredado sin redefinirlo desde el test."
+    },
+    {
+      "requirement_id": "RTE-32",
+      "guide_section": "7.3 TablaB",
+      "requirement": "Contrastar unilateralmente la brecha train–validación contra δg.",
+      "status": "no_ejecutado",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay 78 brechas descriptivas de calibración−train y sensibilidades a δ, 2δ, 5δ y 10δ.",
+      "limitation": "No se ha ejecutado el contraste formal actual. Train usó lote configurado y calibración lote1, en periodos distintos; calibración no es nueva validación.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv; book_e2/_static/e2_temporal_final_audit_20261114/gap_tolerance_sensitivity_descriptive.csv; book_e2/_static/e2_point1_review_v1/margin_lineage.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Evaluar soporte comparable y el contraste apropiado con δg fijo."
+    },
+    {
+      "requirement_id": "RTE-33",
+      "guide_section": "7.3 TablaB",
+      "requirement": "Comparar formalmente validación y prueba al interpretar generalización.",
+      "status": "no_ejecutado",
+      "applicability": "aplicable_F2a",
+      "finding": "La comparación calibración/final está etiquetada como descriptiva; estabilidad temporal y brechas conservan sus alcances propios.",
+      "limitation": "Las 53 fechas de calibración no constituyen nueva validación independiente. Remuestrear dos periodos no prueba igual dificultad ni identifica la causa de una diferencia.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/calibration_final_comparison.csv; book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv; book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Separar diferencia temporal y optimismo de selección."
+    },
+    {
+      "requirement_id": "RTE-34",
+      "guide_section": "7.3 TablaB",
+      "requirement": "Distinguir alternativas de optimismo, nested o curvas según tamaño de datos.",
+      "status": "no_aplica_justificado",
+      "applicability": "alternativas_no_seleccionadas_no_acreditan_criterios_pendientes",
+      "finding": "El protocolo elegido usa selección temporal interna, épocas fijas, curvas por época y diagnósticos de predictores congelados.",
+      "limitation": "No se ejecutaron .632+, nested externo, curvas por tamaño o clasificador adversarial para este catálogo. Son opciones; las curvas por época no son curvas por N.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_learning_curves_v1/learning_curves.json; book_e2/_static/e2_eda_current_v1/guide_checklist.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "No acreditar opciones no ejecutadas ni exigir todas; conservar los criterios obligatorios pendientes."
+    },
+    {
+      "requirement_id": "RTE-35",
+      "guide_section": "7.3 TablaB",
+      "requirement": "Examinar estabilidad temporal con la hipótesis correspondiente.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "GR de igualdad predictiva y constancia relativa: 20+20 hipótesis, Holm40, 20.000 remuestreos, bloques14 y ventanas182; sin rechazos ajustados.",
+      "limitation": "No se reestiman parámetros por ventana. No rechazo no prueba estabilidad universal; igualdad predictiva y constancia de media relativa no nula son hipótesis distintas.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv; book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_paths.csv; book_e2/_static/e2_temporal_final_audit_20261114/summary.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar las dos nulidades y la política de pesos fijos."
+    },
+    {
+      "requirement_id": "RTE-36",
+      "guide_section": "7.3 TablaB",
+      "requirement": "Documentar sensibilidad a semillas y capacidad del número de ejecuciones.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "A2 conserva seis RMSE individuales y DE; el piloto de cinco pares con R=6 estimó potencia 0,123 frente al objetivo 0,80.",
+      "limitation": "No hay tolerancia universal demostrada de varianza. Semillas no añaden mercados; la potencia no se transfiere automáticamente a RQ2/RQ3.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener dispersión y potencia insuficiente sin aumentar R para perseguir significancia."
+    },
+    {
+      "requirement_id": "RTE-37",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Remuestrear diferencias pareadas respetando dependencia y métricas no lineales.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Los veinte bootstrap recalculan RMSE por trayectoria antes de agregar; se conservan bloque14, sensibilidades7/28 y refinamiento20.000.",
+      "limitation": "No se consideran los 608 días iid ni se comprimen huecos. Las 4.999 réplicas originales y las 20.000 refinadas son el mismo procedimiento.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/primary_contrasts.csv; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_temporal_final_audit_20261114/original_4999_exact_checks.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener índices temporales comunes, efecto y familia Holm20."
+    },
+    {
+      "requirement_id": "RTE-38",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Presentar Friedman/Iman y post-hoc con alcance explícito de los bloques.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Friedman13× 6: Q=46,98901; p=4,682e−6; Iman F=9,39367. Las 78 parejas Wilcoxon–Holm no rechazan; existe diagrama de rangos/grupos.",
+      "limitation": "La guía general admite ejecuciones, con supuestos de independencia de vectores e intercambiabilidad. No se convierten en seis mercados ni en un CD numérico común de Nemenyi.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_benchmark_current_v1/conditional_rank_groups.svg; book_e2/_static/e2_benchmark_current_v1/summary_plots.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar el diagnóstico condicionado; no exigir Nemenyi además de Holm o ANOVA además de Friedman."
+    },
+    {
+      "requirement_id": "RTE-39",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Reportar DM–HLN con pérdida, horizonte y covarianza de largo plazo.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "DM120 usa MSE diaria media de semillas fijas, h1, HAC Bartlett14, HLN√(607/608) y t607; hay 35 rechazos tras Holm120.",
+      "limitation": "No contrasta ganancia>δ en RMSE. La combinación HLN+HAC14 es una aproximación exploratoria, no exactitud finita demostrada.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar signo A−B, IC marginales y p brutos/ajustados."
+    },
+    {
+      "requirement_id": "RTE-40",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Presentar MCS con nivel, eliminación y regla de remuestreo.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "MCS90%, T_R, 10.000 remuestreos con bloques14 conserva FCN, SAE, GRU32, Persistence y ARIMA entre dieciséis sistemas.",
+      "limitation": "No demuestra equivalencia, éxito futuro ni mejora pareada>δ. Las trayectorias de semillas permanecen fijas durante el remuestreo temporal.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/mcs_membership.csv; book_e2/_static/e2_f2a_s8_20261113/mcs_steps.csv; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar nivel 0,10 y secuencia de exclusiones; no contarlo veinte veces."
+    },
+    {
+      "requirement_id": "RTE-41",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Aplicar Clark–West/Giacomini–White sólo ante su condición de uso.",
+      "status": "no_aplica_justificado",
+      "applicability": "condicional_modelos_anidados_o_esquema_condicional_no_invocado",
+      "finding": "Los pares no se presentan como modelos anidados ni se reestiman parámetros en ventanas móviles para un contraste condicional GW.",
+      "limitation": "Clark–West/GW no están ejecutados; GR es otra prueba. El catálogo no obliga a ejecutar todas las alternativas sin sus condiciones.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json; book_e2/_static/e2_temporal_final_audit_20261114/source_evidence.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Justificar anidamiento o esquema antes de proponer esos contrastes."
+    },
+    {
+      "requirement_id": "RTE-42",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Reportar Cohen, Cliff o A12 con IC para el requisito de efecto estandarizado.",
+      "status": "no_ejecutado",
+      "applicability": "aplicable_F2a",
+      "finding": "Se publican efectos de RMSE/MSE y porcentuales con IC; DM incluye un indicador diario estandarizado descriptivo.",
+      "limitation": "No se encontró Cohen, Cliff o A12 con IC. El indicador DM no se renombra como ese efecto ni constituye otra prueba.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Definir efecto y unidad pareada, con IC dependiente, en un análisis posterior declarado."
+    },
+    {
+      "requirement_id": "RTE-43",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Distinguir no rechazo de equivalencia y utilizar el margen apropiado.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Los veinte pares primarios y 78 post-hoc no rechazan; se conservan efectos e IC sin declarar equivalencia.",
+      "limitation": "No se ejecutaron TOST/ROPE para equivalencia entre sistemas de A2. No es obligatorio afirmar equivalencia ni ejecutar ambas alternativas.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener la conclusión inconclusa; una equivalencia futura requiere margen y procedimiento propios."
+    },
+    {
+      "requirement_id": "RTE-44",
+      "guide_section": "7.3 TablaC",
+      "requirement": "Omitir tests de otras tareas o diseños no utilizados.",
+      "status": "no_aplica_justificado",
+      "applicability": "otros_diseno_y_tareas_no_aplicables",
+      "finding": "McNemar, DeLong, Cochran, bootstrap espacial y 5×2cv no responden al diseño temporal actual.",
+      "limitation": "Nadeau–Bengio no se ejecutó. Los tres folds HPO solapados no son réplicas iid de la primaria; HAC y bloques abordan la dependencia sólo aproximadamente.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "No fabricar particiones aleatorias ni atribuir correcciones no ejecutadas."
+    },
+    {
+      "requirement_id": "RTE-45",
+      "guide_section": "7.4 F2aS1",
+      "requirement": "Definir horizonte, frecuencia, estrategia y disponibilidad exógena.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Frecuencia diaria UTC, h=1 y predicción directa de σ7; D7×5 contiene OHLCV cerradas antes del origen, sin requerir covariables futuras.",
+      "limitation": "No es predicción multi-salida. D7 de entrada, n7 del objetivo y h1 de horizonte son conceptos distintos.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar contrato, instante de emisión y disponibilidad por canal."
+    },
+    {
+      "requirement_id": "RTE-46",
+      "guide_section": "7.4 F2aS2",
+      "requirement": "Desarrollar EDA temporal y traducir hallazgos a decisiones.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Se heredan STL, ADF/KPSS, ACF/PACF, ARCH y continuidad de E1; E2 añade diagnóstico forward, perfiles actuales y trazabilidad.",
+      "limitation": "Los resultados heredados tienen otro tramo o frecuencia; no se desechan ni recalculan automáticamente. STL con periodo7 no demuestra estacionalidad.",
+      "source": "results/eda_development/stationarity_daily.csv; results/eda_development/stationarity_volatility.csv; results/eda_development/summary.json; book_e2/_static/e2_eda_current_v1/decision_traceability.csv; book_e2/_static/e2_eda_current_v1/guide_checklist.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener escalado causal y máscaras sin diferenciación automática ni garantía de estacionariedad futura."
+    },
+    {
+      "requirement_id": "RTE-47",
+      "guide_section": "7.4 F2aS3",
+      "requirement": "Seleccionar cronológicamente con origen móvil y embargo.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay tres orígenes internos expansivos de 2024, embargo de 7 días tras el ajuste final, calibración53 y prueba608 con historia previa admisible.",
+      "limitation": "Rolling origin en HPO no implica reentrenar cada día del test. Los orígenes comparten pasado y no son réplicas independientes.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar los orígenes y declarar la política de actualización."
+    },
+    {
+      "requirement_id": "RTE-48",
+      "guide_section": "7.4 F2aS4",
+      "requirement": "Ajustar transformaciones y rezagos sólo con información previa al origen.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay escalado train-only y soporte causal; el 31/12/2024 aporta historia disponible sin reajustar pesos o calibradores.",
+      "limitation": "ARIMA actualiza estado con observaciones previas sin reestimar coeficientes. σ7 requiere ocho cierres, no sólo la fecha nominal.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_benchmark_final_20261113/selection_ARIMA.json; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Auditar disponibilidad, huecos y soporte; conservar diferencias informativas entre referencias y redes."
+    },
+    {
+      "requirement_id": "RTE-49",
+      "guide_section": "7.4 F2aS5",
+      "requirement": "Incluir naive, naive estacional y ARIMA/ETS bajo selección documentada.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Se evaluaron Persistence, SeasonalNaive7 y ARIMA(2,0,1); las redes comparten tres orígenes de validación.",
+      "limitation": "ARIMA consumió 54 oportunidades: 51 válidas, dos no convergencias y un fallo de implementación. No todos los órdenes tuvieron tres folds válidos ni igual coste.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/selection_ARIMA.json; book_e2/_static/e2_benchmark_final_20261113/selection_SeasonalNaive.json; book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; experiments/e2_reduced_protocol_20261112/protocol.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar incidencias y referencias; ARIMA o ETS son alternativas."
+    },
+    {
+      "requirement_id": "RTE-50",
+      "guide_section": "7.4 F2aS6",
+      "requirement": "Evaluar por horizonte/origen y reportar agregados y desagregados.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Para h1 hay 81 trayectorias sobre 608 fechas, métricas individuales, pérdidas diarias y desglose en siete trimestres.",
+      "limitation": "No se fabrican horizontes adicionales; 2026Q3 sólo incluye julio/agosto. Trimestres consecutivos no son datasets iid.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_f2a_audit_20261113/quarterly_metrics.csv; book_e2/_static/e2_f2a_s8_20261113/system_loss_summary.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar fechas y escala sin sustituir la primaria por una media mensual de RMSE."
+    },
+    {
+      "requirement_id": "RTE-51",
+      "guide_section": "7.4 F2aS7",
+      "requirement": "Diagnosticar residuos, calibración y estabilidad del pronóstico.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Se ejecutan LB, ARCH, BDS, JB, MZ, cobertura y GR/constancia; la calibración condicional conserva resultados adversos.",
+      "limitation": "Ejecutar diagnósticos no satisface automáticamente las condiciones de adecuación. Un intervalo aislado no define PIT.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/tests.csv; book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv; book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener hipótesis, hallazgos negativos y cronología posterior."
+    },
+    {
+      "requirement_id": "RTE-52",
+      "guide_section": "7.4 F2a S8 y pruebas específicas de p31",
+      "requirement": "Comparar mediante DM, MCS, Friedman y robustez temporal.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "DM120, MCS16, Friedman de trece redes por seis semillas y cuatro perturbaciones con tres severidades están ejecutados.",
+      "limitation": "La formulación específica de p31 pide Friedman con post-hoc sobre series u orígenes. No hay ese contraste con series/orígenes como bloques; existe el diagnóstico por semillas válido en el catálogo general. No se exige por ello otro mercado.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_posthoc_gpu_20261113/robustness.csv; book_e2/_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Justificar y documentar una unidad temporal admisible y su dependencia bajo un diseño declarado; no crear réplicas iid mediante meses o semillas."
+    },
+    {
+      "requirement_id": "RTE-53",
+      "guide_section": "7.4 F2a Detalles",
+      "requirement": "No barajar la partición temporal ni usar validación aleatoria.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Se conserva el calendario en partición y selección, con bloques temporales comunes en el remuestreo.",
+      "limitation": "Barajar minibatches de train no es barajar particiones. El bloque circular une extremos como convención, no como continuidad económica observada.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Distinguir entrenamiento, partición y remuestreo; conservar los huecos."
+    },
+    {
+      "requirement_id": "RTE-54",
+      "guide_section": "7.4 F2a Detalles",
+      "requirement": "Usar covariables disponibles al predecir y rezagos del pasado.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "X_t contiene las siete barras OHLCV de t−7 a t−1; la barra del día objetivo t no entra en X_t.",
+      "limitation": "Los perfiles anuales con variables del mismo día son descriptivos, no entradas D7 causales. Una agregación centrada no es información observada al origen.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_eda_current_v1/partition_audit.json; book_e2/_static/e2_eda_current_v1/inherited_annual_profiles.csv; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener disponibilidad por tiempo y canal sin incorporar información posterior."
+    },
+    {
+      "requirement_id": "RTE-55",
+      "guide_section": "7.4 F2a Detalles y métricas",
+      "requirement": "Contextualizar el error con MASE o una razón frente al naive.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "El CSV vigente publica dieciséis filas con RMSE_m/RMSE_Persistence y RMSE_m/RMSE_SeasonalNaive, derivados de los agregados de A2.",
+      "limitation": "Son cocientes puntuales de RMSE media individual, no MASE, IC pareados, equivalencia o mejora>δ demostrada. No cambian la primaria heredada.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_point1_review_v1/rq_specification.json; book_e2/_static/e2_route_current_v1/relative_error_vs_naive.csv; book_e2/_static/e2_route_current_v1/ratio_provenance.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar ambos cocientes y su procedencia; no exigir MASE adicional para la alternativa admitida."
+    },
+    {
+      "requirement_id": "RTE-56",
+      "guide_section": "7.4 F2a Detalles",
+      "requirement": "Declarar una política común de reentrenamiento y actualización.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Pesos, escaladores y calibradores originales están fijos en las 608 fechas; ARIMA actualiza su estado sin reestimar coeficientes.",
+      "limitation": "Móvil53 y ACI53 son políticas posteriores con identidad propia; no describen el calibrador original A2.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_conditional_calibration_20261114/analysis_plan.json; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Separar estado, parámetros y calibración; no atribuir refits inexistentes."
+    },
+    {
+      "requirement_id": "RTE-57",
+      "guide_section": "7.4 F2a Detalles",
+      "requirement": "Comparar modelos locales/globales si existen múltiples series.",
+      "status": "no_aplica_justificado",
+      "applicability": "condicional_series_multiples_no_presentes",
+      "finding": "Sólo hay una serie BTCUSDT; se reportan sus fechas, trayectorias y semillas.",
+      "limitation": "No se evaluó una población de activos o ubicaciones. Trece arquitecturas o seis semillas no son múltiples series.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json; experiments/e2_reduced_protocol_20261112/protocol.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar el alcance de una serie sin añadir modalidades ajenas."
+    },
+    {
+      "requirement_id": "RTE-58",
+      "guide_section": "7.4 F2a Métricas",
+      "requirement": "Elegir métricas apropiadas y conservar la primaria heredada.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "La primaria es RMSE media individual; MAE, sMAPE, R² y cobertura complementan A2; se añaden score de intervalo y pinball.",
+      "limitation": "QLIKE, varianza realizada, dirección, VaR, CRPS y anomalías son opciones de otros estimandos, no obligaciones simultáneas para σ7 puntual.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_point1_review_v1/rq_specification.json; book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar unidades y denominadores; no transformar retrospectivamente σ7 en varianza."
+    },
+    {
+      "requirement_id": "RTE-59",
+      "guide_section": "7.4 F2a Métricas",
+      "requirement": "Cautelar ceros y escalas en métricas porcentuales.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "A2 publica sMAPE como secundaria; los perfiles actuales y la cohorte común hacen visibles rangos y volatilidades pequeñas.",
+      "limitation": "MAPE es problemática con ceros o valores cercanos a cero; sMAPE también requiere interpretar el denominador. No se fabrica otra métrica.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_eda_current_v1/target_profiles.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener cautelas de escala y valores no estimables explícitos."
+    },
+    {
+      "requirement_id": "RTE-60",
+      "guide_section": "7.4 F2bRT1",
+      "requirement": "Usar el diagnóstico residual para decidir F2a frente a F2b.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Ridge forward mostró autocorrelación fuerte; siguiendo RT1 se adoptó la ruta F2a.",
+      "limitation": "Es evidencia histórica en 305 fechas de 2024, no un resultado actual de Ridge ni prueba de que añadir rezagos de Y mejore el modelo.",
+      "source": "book_e2/_static/e2_eda_current_v1/guide_checklist.csv; book_e2/_static/eda_traceability/decisiones_vigentes.csv; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar la reclasificación; modificar entradas sólo bajo un diseño nuevo."
+    },
+    {
+      "requirement_id": "RTE-61",
+      "guide_section": "7.4 F2bRT2–RT4",
+      "requirement": "Documentar disponibilidad y desfases de covariables como control complementario.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "EDA C aborda estructura diaria, huecos, asociaciones rezagadas y relaciones móviles; sus controles causales se conservan en F2a.",
+      "limitation": "C es complementario y no declara una segunda ruta independiente. D7 es contrato fijo, no óptimo probado por máximos correlacionales.",
+      "source": "book_e2/_static/e2_eda_current_v1/decision_traceability.csv; book_e2/_static/e2_eda_current_v1/guide_checklist.csv; book_e2/_static/e2_eda_current_v1/partition_audit.json; experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_route_current_v1/route_decision.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener disponibilidad, máscaras, embargo y trazabilidad sin retocar D desde el test."
+    },
+    {
+      "requirement_id": "RTE-62",
+      "guide_section": "7.4 F2bRT5–RT7",
+      "requirement": "Exigir catálogo y tests F2b sólo si se conserva esa ruta.",
+      "status": "no_aplica_justificado",
+      "applicability": "F2b_reclasificada_F2a_controles_C_complementarios",
+      "finding": "Se reclasificó a F2a; Ridge queda como diagnóstico EDA y referencia opcional/histórica, no como un 17.º sistema obligatorio.",
+      "limitation": "RT5 no obliga aquí a un Ridge actual o media móvil adicional. Los tests compartidos se reportan en la unidad que realmente tienen.",
+      "source": "experiments/e2_reduced_protocol_20261112/protocol.json; book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_eda_current_v1/guide_checklist.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener los dieciséis sistemas y referencias F2a."
+    },
+    {
+      "requirement_id": "RTE-63",
+      "guide_section": "7.5 Decisión score",
+      "requirement": "No declarar relevante una red sólo por un promedio mejor.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Ningún candidato rechaza ganancia>δ frente a Persistence tras Holm20; SAE tiene el menor RMSE observado.",
+      "limitation": "No se eliminan resultados desfavorables ni se concluye efecto cero. La condición de adecuación(i) no está acreditada.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar la conclusión negativa sin retuning desde el test."
+    },
+    {
+      "requirement_id": "RTE-64",
+      "guide_section": "7.5 Decisión brecha",
+      "requirement": "Revisar brechas superiores a δg usando sólo desarrollo.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "δg preexiste; hay brechas descriptivas y 18 ablaciones. Retirar dropout empeora SAE y rechaza después de Holm3.",
+      "limitation": "Una ablación no es una prueba formal de ausencia de sobreajuste. El test no autoriza elegir retrospectivamente otra regularización.",
+      "source": "book_e2/_static/e2_point1_review_v1/margin_lineage.json; book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar margen y receta; evaluar formalmente la brecha sobre soporte admisible."
+    },
+    {
+      "requirement_id": "RTE-65",
+      "guide_section": "7.5 Decisión validación–test",
+      "requirement": "Considerar selección, fuga o cambio de distribución ante diferencias temporales.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "Se publican evaluación por periodos y comparaciones descriptivas entre calibración y prueba.",
+      "limitation": "Sin contraste formal actual validación–test no se atribuye la diferencia a una causa específica ni se prueba ausencia de fuga.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/calibration_final_comparison.csv; book_e2/_static/e2_f2a_audit_20261113/quarterly_metrics.csv; book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener causas alternativas y no invocar validación adversarial no ejecutada."
+    },
+    {
+      "requirement_id": "RTE-66",
+      "guide_section": "7.5 Decisión calibración",
+      "requirement": "Evaluar calibración con desarrollo y reportar antes y después.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "El suplemento compara original, móvil53 y ACI53; los métodos online usan residuos ya observados y conservan resultados adversos por rango.",
+      "limitation": "No se aplica temperature scaling de clasificación a σ7 ni se reescribe A2. Las políticas posteriores no recuperan confirmación ciega.",
+      "source": "book_e2/_static/e2_conditional_calibration_20261114/analysis_plan.json; book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv; book_e2/_static/e2_conditional_calibration_20261114/source_evidence.json; book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mostrar cobertura, anchura y score junto con política y cronología."
+    },
+    {
+      "requirement_id": "RTE-67",
+      "guide_section": "7.5 Decisión residuos",
+      "requirement": "Responder a autocorrelación con la ruta temporal y propuestas justificadas.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "La reclasificación F2a y los diagnósticos actuales identifican dependencia residual; D7 OHLCV permanece congelado.",
+      "limitation": "BDS y Ljung–Box no indican por sí solos cuántos rezagos o qué arquitectura mejorarán el desempeño futuro.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_eda_current_v1/guide_checklist.csv; experiments/e2_reduced_protocol_20261112/protocol.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar el benchmark y registrar cualquier adaptación como diseño nuevo."
+    },
+    {
+      "requirement_id": "RTE-68",
+      "guide_section": "7.5 Decisión rangos",
+      "requirement": "Interpretar Friedman y post-hoc sin concluir igualdad.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Friedman condicionado rechaza globalmente; ninguna de las 78 parejas Wilcoxon rechaza con Holm. El diagrama muestra un grupo de no rechazo.",
+      "limitation": "No es el caso de Friedman sin rechazo. La falta de parejas no prueba equivalencia; con seis pares la resolución exacta es insuficiente para Holm78.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_benchmark_current_v1/conditional_rank_groups.svg",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar ambas etapas sin presentar coste o interpretabilidad como prueba de empate."
+    },
+    {
+      "requirement_id": "RTE-69",
+      "guide_section": "7.5 Decisión efecto",
+      "requirement": "Separar significancia estadística y margen práctico δ.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "La primaria contrasta ganancia>δ y todos sus p Holm son 1; DM detecta otras diferencias en MSE con nulidad distinta.",
+      "limitation": "Un p bruto<0,05 o IC marginal que excluye cero no demuestra rechazo ajustado ni mejora económica.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar efecto, unidades, margen y p del contraste correspondiente."
+    },
+    {
+      "requirement_id": "RTE-70",
+      "guide_section": "7.5 Decisión semillas",
+      "requirement": "Reportar dispersión y evitar decisiones basadas en una sola semilla.",
+      "status": "verificado",
+      "applicability": "aplicable_F2a",
+      "finding": "Hay seis semillas por red, DE e IC t condicionados y piloto de potencia; las decisiones primarias usan las mismas seis trayectorias.",
+      "limitation": "R=6 no alcanza la potencia planeada del 80%. No se añaden réplicas para perseguir significancia después del test.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Mantener dispersión y regla de recursos; una ampliación requiere diseño propio."
+    },
+    {
+      "requirement_id": "RTE-71",
+      "guide_section": "7.5 Decisión techo",
+      "requirement": "No justificar complejidad por ruido irreducible no identificado.",
+      "status": "parcial",
+      "applicability": "aplicable_F2a",
+      "finding": "El ensemble calibrado ofrece RMSE 0,003689532 y γemp 0,287574, con IC [−1,49210;2,37128]; ninguno de dos contrastes rechaza tras Holm.",
+      "limitation": "No se identifica riesgo Bayes ni techo real. Entropía ordinal no es límite de error; el proxy no prueba un 28,8% estable de margen pendiente.",
+      "source": "book_e2/_static/e2_calibration_ensemble_20261114/summary.json; book_e2/_static/e2_calibration_ensemble_20261114/contrasts.csv; book_e2/_static/e2_error_ceiling_final_audit_20261114/ceiling_gamma_references.json",
+      "scope": "Ruta F2a vigente y evidencia congelada existente; cotejo documental sin nuevos modelos, puntuación, remuestreos o pruebas",
+      "chapter": "book_e2/sections/07_ruta_temporal.md",
+      "closure_action": "Conservar referencia e incertidumbre sin afirmar un techo identificado."
+    }
+  ]
+}

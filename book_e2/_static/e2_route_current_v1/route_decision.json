@@ -1,0 +1,88 @@
+{
+  "version": "e2-route-current-application-v1",
+  "reviewed_source_commit": "ccadd3a0088606f6705616395348b6179da8a814",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "family": "F2 temporal",
+  "adopted_route": "F2a time series",
+  "historical_decision_id": "E2-F2a-route-resolution-v1",
+  "historical_decision_date_utc": "2026-11-06",
+  "historical_documentary_entry_date": "2026-11-08",
+  "guide_rule": "7.4F2bRT1,page32:strong reference residual autocorrelation requires reclassifying as time series.",
+  "diagnostic": {
+    "model": "Ridge D7 alpha1 forward development reference,not a current benchmark member",
+    "scope": "pooled_Jan_Oct2024",
+    "dates": 305,
+    "ACF_lag1": 0.63222832426275,
+    "Ljung_Box_lag7_Q": 266.4062090403312,
+    "p_value_display": "8.88182587e-54",
+    "p_Holm66_display": "5.77318682e-52",
+    "interpretation": "Pooled residuals of ten monthly development fits,not three currentHPO folds; exploratory chi-square approximation subject to temporal overlap and changing fit. Not proof that adding target lags is useful or causal."
+  },
+  "current_frozen_contract": {
+    "inputs": "D7x5 closed dailyOHLCV,relative_window",
+    "target": "population sigma7 of seven daily log returns,ddof0,not annualized",
+    "horizon_days": 1,
+    "explicit_target_lag_channel_added": false,
+    "calendar_channel_added": false,
+    "primary_metric": "mean individual-seed original-unit RMSE",
+    "delta": 0.00025772842664981106,
+    "E1_partition_inheritance_permitted": true,
+    "selection_train_sizes": [
+      253,
+      435,
+      527
+    ],
+    "selection_validation_dates_each": 83,
+    "final_train_examples": 655,
+    "calibration_dates": 53,
+    "evaluation_dates": 608,
+    "systems": 16,
+    "frozen_predictors": 81,
+    "weights_refit_during_evaluation": false,
+    "ARIMA_fixed_parameter_causal_state_updates_allowed": true
+  },
+  "F2b_role": "Availability/lag checks of covariates remain relevant; F2b is not the governing alternative afterRT1. Matrix-valued inputs do not activate tabularF1.",
+  "historical_route_fields_not_carried_into_current_protocol": [
+    "former20-system catalogue",
+    "earlier HPO grid/budget/allocation",
+    "former final-fit and evaluation calendars"
+  ],
+  "operations": {
+    "new_model_fits": 0,
+    "new_inference_calls": 0,
+    "new_hypothesis_tests": 0,
+    "contract_changed": false
+  },
+  "sources": [
+    {
+      "path": "experiments/e2_remediation_20261106/route.json",
+      "bytes": 6773,
+      "sha256": "1eeb3f8a713c47d261f8f2e37a3704eb256daf326149b47dbec7647bf65c6f4c"
+    },
+    {
+      "path": "book_e2/_static/eda_decisions/forward_reference_metrics.csv",
+      "bytes": 5083,
+      "sha256": "99a9538eba3a22523b95afcc777a1ae2154c01ba8ac0b2108ad04d6bba955d0f"
+    },
+    {
+      "path": "book_e2/_static/eda_decisions/forward_reference_ljung_box.csv",
+      "bytes": 17986,
+      "sha256": "6ae8fef28495d5e58624797a82477c01ed17d7f400d8380f785d24975f375cbd"
+    },
+    {
+      "path": "book_e2/_static/eda_traceability/decisiones_vigentes.csv",
+      "bytes": 923,
+      "sha256": "55b11a10188464f36480e94ac1101a404aabc02d6d890cae0674fdd3200b9262"
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/partition_audit.json",
+      "bytes": 47671,
+      "sha256": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "bytes": 15173,
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c"
+    }
+  ]
+}
