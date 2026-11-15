@@ -257,6 +257,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estrategia de Agregación y Modelado Estadístico</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="64_correcciones_metodologicas.html">Correcciones posteriores: auditoría, efectos y regímenes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="50_comparaciones_f2a.html">Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
 <li class="toctree-l2"><a class="reference internal" href="56_inferencia_estabilidad_final.html">Inferencia refinada y estabilidad temporal</a></li>
 </ul>
@@ -634,7 +635,7 @@ H_{0,m}:g_m\le\delta,\qquad H_{1,m}:g_m&gt;\delta.
 H_{0,m}:d_m\le\delta,\qquad H_{1,m}:d_m&gt;\delta.
 \]</div>
 <p>El efecto mínimo es una erosión absoluta δ de la ventaja. El contraste es un bootstrap temporal pareado de <span class="math notranslate nohighlight">\(d_m\)</span>, conservando las etiquetas causales de régimen y recalculando la RMSE de cada trayectoria dentro de cada estrato antes de promediar entre semillas. La referencia secundaria se fija en GRU32. La distribución nula se centra en <span class="math notranslate nohighlight">\(d_m=\delta\)</span>; no se prueba sólo una diferencia contra cero. Se reportan fechas y bloques útiles por estrato; si el soporte no permite estimar la incertidumbre, se declara no estimable o inconcluso. Rechazar indica deterioro relevante; <strong>no rechazar no demuestra robustez ni equivalencia</strong>.</p>
-<p><strong>Aclaración documental posterior:</strong> el nivel nominal es 0,05 para un contraste individual identificado de antemano. Si se comunican los diez candidatos, se aplica Holm a sus diez p-valores de RQ2 y se decide con p ajustado ≤0,05. Esta precisión y la especificación descargable de §1.2.4 no se atribuyen a la ejecución pasada. No se declara un resultado RQ2 ni potencia específica demostrada.</p>
+<p><strong>Aclaración documental posterior:</strong> el nivel nominal es 0,05 para un contraste individual identificado de antemano. Si se comunican los diez candidatos, se aplica Holm a sus diez p-valores de RQ2 y se decide con p ajustado ≤0,05. Esta precisión y la especificación descargable de §1.2.4 no se atribuyen a la ejecución pasada. La <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">ampliación del 15/11/2026</span></a> sí ejecuta esa especificación sobre pronósticos guardados: siete contrastes rechazan tras Holm10. Es evidencia exploratoria posterior, sin potencia específica demostrada; el no rechazo de SAE, Inception y TimeMixer no demuestra robustez.</p>
 </section>
 <section id="rq3-mejora-conjunta-de-error-y-coste">
 <h3>1.2.3 RQ3 · Mejora conjunta de error y coste<a class="headerlink" href="#rq3-mejora-conjunta-de-error-y-coste" title="Link to this heading">#</a></h3>
@@ -672,7 +673,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 </tbody>
 </table>
 </div>
-<p>La <a class="reference download internal" download="" href="../_downloads/a9ee3f80adf4a235028a455bed15bf52/rq_specification.json"><span class="xref download myst">especificación focal en JSON</span></a> fija los detalles de remuestreo y requisitos de datos de estas aclaraciones. Su estado es documental, sin nueva ejecución ni resultados RQ2/RQ3. La potencia específica de ambas preguntas no está demostrada.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/a9ee3f80adf4a235028a455bed15bf52/rq_specification.json"><span class="xref download myst">especificación focal en JSON</span></a> fija los detalles de remuestreo y requisitos de datos de estas aclaraciones y conserva su fecha documental original. La <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">ejecución posterior de RQ2</span></a> tiene plan, recibo y resultados propios; no se reescribe ese JSON histórico para atribuirle cálculos anteriores. La potencia específica de ambas preguntas no está demostrada.</p>
 <p>El margen absoluto δ conserva su valor y finalidad. <strong>δg sí existía en el registro del 6 de noviembre</strong>, commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0/experiments/e2_remediation_20261106/preregistration.json"><code class="docutils literal notranslate"><span class="pre">599a29f</span></code></a>: el campo <code class="docutils literal notranslate"><span class="pre">generalization_gap</span></code> fijó δg=δ para la brecha RMSE de validación menos entrenamiento en modo inferencia, con unidades y justificación. Reconocer ese linaje no demuestra ausencia de sobreajuste de los diez candidatos ni convierte las sensibilidades posteriores de <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> en aquella prueba ejecutada. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0 histórico de §9</span></a> completó 220 trayectorias y 440 ajustes de desarrollo, pero no selecciona ni dimensiona el catálogo vigente. El registro y el control de multiplicidad no recuperan el cegamiento histórico.</p>
 </section>
 </section>
@@ -782,7 +783,7 @@ H_{1,m}:(g_m&gt;\delta)\ \text{y}\ (c_m&lt;0).
 <td><p>Tres referencias de contexto citadas; no sustituyen la revisión sistemática</p></td>
 </tr>
 <tr class="row-even"><td><p>Tres RQ, hipótesis, efecto y reglas</p></td>
-<td><p>RQ1 ejecutada con veinte contrastes; refinamiento B=20.000 de §56. RQ2/RQ3 exploratorias, con α y decisiones explicitados como aclaración documental posterior, sin resultados inferenciales nuevos; potencia piloto insuficiente y declarada</p></td>
+<td><p>RQ1 ejecutada con veinte contrastes; refinamiento B=20.000 de §56. RQ2 ejecutada posteriormente en §64 con siete rechazos Holm10; RQ3 conserva sus requisitos específicos de latencia e IUT. Ambas son exploratorias, con potencia específica no demostrada; el piloto de RQ1 sigue insuficiente y declarado.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Justificación y Data Card</p></td>
 <td><p>Ficha vigente con procedencia, versión, hashes, calendario ejecutado, calidad y límites; ficha histórica conservada</p></td>

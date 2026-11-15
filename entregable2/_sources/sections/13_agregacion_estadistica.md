@@ -89,7 +89,7 @@ La ganancia frente a GRU32 es menor que **δ=0,00025772842664981106**. Frente a 
 
 ### 13.3.2 Efectos estandarizados y superioridad descriptiva
 
-La familia primaria publica **efectos en unidades originales e IC de ganancia**, con p brutos/ajustados. **No hay d de Cohen pareado, δ de Cliff o A12 con IC acreditados para esos veinte contrastes**. No se derivan de un p o una t para rellenar la plantilla sin declarar nueva estimación y supuestos.
+La familia primaria publica **efectos en unidades originales e IC de ganancia**, con p brutos/ajustados. La [ampliación ejecutada el 15/11/2026](64_correcciones_metodologicas.md) añade **d de Cohen pareado e IC percentiles para los veinte contrastes**, calculados directamente de las seis ganancias brutas por semilla, con 20.000 remuestreos de pares. Esta nueva estimación es posterior y describe variación de optimización condicionada al calendario; no reemplaza los IC temporales ni las decisiones primarias. El [CSV completo](../_static/e2_corrections_20261115/statistics/standardized_effects_20.csv) conserva los sorteos no definidos por varianza nula y sus límites; no se exige calcular simultáneamente Cohen, Cliff y A12.
 
 El CSV de DM sí conserva dos campos descriptivos adicionales. Con $d_t=L_{A,t}-L_{B,t}$:
 
@@ -139,7 +139,7 @@ El reporte por contraste debe identificar par, unidad, dirección, estimando, ma
 
 Los diagnósticos alternativos t/signos no producen rechazos tras sus Holm y no cambian la conclusión primaria. Las sensibilidades temporales con bloques 7/28 están guardadas como diagnósticos **sin ajuste**, y el refinamiento a 20.000 conserva las veinte decisiones; ninguno autoriza elegir el bloque, método o familia con el p menor. La corrección Nadeau–Bengio se considera para comparaciones pertinentes de particiones con entrenamiento solapado, no como una opción que deba ejecutarse automáticamente en todas las trayectorias temporales.
 
-La [potencia](09_protocolo_registrado.md) es limitada: 0,122953 en la alternativa planificada de 2δ, con R=6, dos representantes y 53 fechas de desarrollo. No se aumenta R tras observar la prueba. El [δg previo](../_static/e2_point1_review_v1/margin_lineage.json) se reconoce; las brechas train–calibración guardadas no establecen su cumplimiento formal actual ni la consistencia validación–prueba. No se heredan análisis de varianza o p del P0 para cerrar esas condiciones.
+La [potencia](09_protocolo_registrado.md) es limitada: 0,122953 en la alternativa planificada de 2δ, con R=6, dos representantes y 53 fechas de desarrollo. No se aumenta R tras observar la prueba. El [δg previo](../_static/e2_point1_review_v1/margin_lineage.json) se reconoce; las brechas anteriores no establecían su cumplimiento. [§64](64_correcciones_metodologicas.md) añade trece contrastes comparables en CPU, con dos tolerancias condicionales; no certifica ausencia de sobreajuste original ni consistencia validación–prueba. No se heredan análisis de varianza o p del P0 para cerrar esas condiciones.
 
 La conclusión se expresa según el criterio fijado: **menor RMSE observada y ausencia de superioridad práctica confirmada**. No se escribe «tendencia a la significancia», ni se equipara no rechazo con equivalencia. TOST/ROPE no están ejecutados; la reproducción numérica, un IC amplio o permanecer en MCS no los sustituyen. Las limitaciones estadísticas y los resultados negativos se mantienen junto a los favorables.
 

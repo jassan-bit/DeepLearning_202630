@@ -1,0 +1,38 @@
+{
+  "version": "e2-effects-rq2-closure-v1",
+  "effect_pairs": 20,
+  "effects_with_estimable_CI": 20,
+  "RQ2_primary_pairs": 10,
+  "RQ2_estimable_pairs": 10,
+  "RQ2_rejections_Holm10": 7,
+  "RQ2_rejected_candidates": [
+    "FCN-1D",
+    "ResNet-1D",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "PatchTST",
+    "iTransformer"
+  ],
+  "high_dates": 121,
+  "normal_dates": 487,
+  "bootstrap_draws": 20000,
+  "primary_block_days": 14,
+  "sensitivity_blocks": [
+    7,
+    28
+  ],
+  "A2_replaced": false,
+  "RQ1_replaced": false,
+  "new_model_fits": 0,
+  "new_model_inference": false,
+  "interpretation": "RQ2 rejection supports erosion greater than delta; non-rejection does not establish robustness or equivalence.",
+  "limitations": [
+    "The analysis is exploratory after A2 on the already known E1 calendar, not restored prospective confirmation.",
+    "One BTC series and fixed fitted trajectories; no market-population or HPO-selection uncertainty.",
+    "Moving-block inference is approximate under suitable weak dependence/local stationarity;14 days is not universally adequate.",
+    "Only six optimization pairs inform dz; its bootstrap can be unstable and undefined samples are disclosed.",
+    "No demonstrated RQ2-specific power; non-rejection does not establish robustness or equivalence.",
+    "A causal regime available at issue time is distinct from grouping by realized same-day target."
+  ]
+}

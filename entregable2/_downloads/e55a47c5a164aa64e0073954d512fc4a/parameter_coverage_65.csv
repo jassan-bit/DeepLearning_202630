@@ -1,0 +1,66 @@
+model,parameter,applicable,observed_registered_values,distinct_registered_values,variation,winner_value,winner_configuration_id,winner_parent_index,winner_value_sorted_level_position,position_is_value_order_not_performance_rank,six_joint_tuples_not_full_factorial,warmup_missing_key_means_registered_default_zero
+FCN-1D,learning_rate,True,"[1.3331370652565684e-05, 3.2201157575957645e-05, 0.00015764686044128154, 0.00040751412650063304, 0.0005695394539643588, 0.0007600041627971225]",6,varied,0.0005695394539643588,C02,7,5,True,True,False
+FCN-1D,weight_decay,True,"[0.0, 0.0003985951962340943, 0.0006727128479554311, 0.0010040757709281222, 0.0017890200929826002, 0.0029812845271693787]",6,varied,0.0010040757709281222,C02,7,4,True,True,False
+FCN-1D,batch_size,True,"[16, 32, 64]",3,varied,16,C02,7,1,True,True,False
+FCN-1D,dropout,True,[0],1,fixed,0,C02,7,1,True,True,False
+FCN-1D,warmup_fraction,True,[0],1,fixed,0,C02,7,1,True,True,True
+ResNet-1D,learning_rate,True,"[1.0678656079024838e-05, 2.9286129628872324e-05, 3.655918318651416e-05, 0.00024300620580624188, 0.00034536096423970876, 0.0007579440150228985]",6,varied,0.0007579440150228985,C05,10,6,True,True,False
+ResNet-1D,weight_decay,True,"[0.0, 1.954090265812887e-06, 0.00013285045866136166, 0.0001522112818561787, 0.002529506274421198, 0.004327510847544302]",6,varied,0.0,C05,10,1,True,True,False
+ResNet-1D,batch_size,True,"[16, 32, 64]",3,varied,16,C05,10,1,True,True,False
+ResNet-1D,dropout,True,[0],1,fixed,0,C05,10,1,True,True,False
+ResNet-1D,warmup_fraction,True,[0],1,fixed,0,C05,10,1,True,True,True
+Inception-1D,learning_rate,True,"[1.664317028350178e-05, 2.387655473494465e-05, 3.051819851356225e-05, 3.8841883352108925e-05, 4.9269359123385386e-05, 0.0007394620646713903]",6,varied,0.0007394620646713903,C05,10,6,True,True,False
+Inception-1D,weight_decay,True,"[0.0, 1.818489584292255e-06, 2.1424075578039624e-06, 2.244040181039936e-05, 0.000253635564038529, 0.006322293368724575]",6,varied,1.818489584292255e-06,C05,10,2,True,True,False
+Inception-1D,batch_size,True,"[16, 32, 64]",3,varied,32,C05,10,2,True,True,False
+Inception-1D,dropout,True,[0],1,fixed,0,C05,10,1,True,True,False
+Inception-1D,warmup_fraction,True,[0],1,fixed,0,C05,10,1,True,True,True
+LSTM-autoencoder con predictor,learning_rate,True,"[2.841525659696087e-05, 4.643027516532317e-05, 8.210409179846646e-05, 0.0001235258627001771, 0.0001747128258745707, 0.0017219847334995647]",6,varied,0.0017219847334995647,C06,15,6,True,True,False
+LSTM-autoencoder con predictor,weight_decay,True,"[0.0, 9.625720698367467e-06, 0.00040802594505725534, 0.0005771664784542875, 0.002593603165890561, 0.004859132847576032]",6,varied,0.002593603165890561,C06,15,5,True,True,False
+LSTM-autoencoder con predictor,batch_size,True,"[16, 32, 64]",3,varied,16,C06,15,1,True,True,False
+LSTM-autoencoder con predictor,dropout,True,[0.3],1,fixed,0.3,C06,15,1,True,True,False
+LSTM-autoencoder con predictor,warmup_fraction,True,[0],1,fixed,0,C06,15,1,True,True,True
+TimesNet,learning_rate,True,"[1.5306581638308008e-05, 3.117136113657281e-05, 0.00015786300995625333, 0.0002138959887079244, 0.0009698285023751574, 0.0028381684707835583]",6,varied,0.0028381684707835583,C05,10,6,True,True,False
+TimesNet,weight_decay,True,"[0.0, 1.1922133659036039e-05, 5.696555291912717e-05, 0.0001493929804279169, 0.0011615697940631701]",5,varied,1.1922133659036039e-05,C05,10,2,True,True,False
+TimesNet,batch_size,True,"[16, 32, 64]",3,varied,16,C05,10,1,True,True,False
+TimesNet,dropout,True,[0.1],1,fixed,0.1,C05,10,1,True,True,False
+TimesNet,warmup_fraction,True,[0],1,fixed,0,C05,10,1,True,True,True
+TSMixer,learning_rate,True,"[1.1415576632956228e-05, 4.144794606679335e-05, 7.633299402975148e-05, 0.00010032315240656989, 0.00013084800998542384, 0.0011417384292299172]",6,varied,0.0011417384292299172,C03,8,6,True,True,False
+TSMixer,weight_decay,True,"[0.0, 2.2458272416174787e-06, 7.976479621456176e-06, 3.250138736046478e-05, 0.0014134930973714796, 0.0036804541676999066]",6,varied,7.976479621456176e-06,C03,8,3,True,True,False
+TSMixer,batch_size,True,"[16, 32, 64]",3,varied,32,C03,8,2,True,True,False
+TSMixer,dropout,True,"[0.1, 0.3, 0.5, 0.7, 0.9]",5,varied,0.3,C03,8,2,True,True,False
+TSMixer,warmup_fraction,True,[0],1,fixed,0,C03,8,1,True,True,True
+TiDE,learning_rate,True,"[1.003456649564975e-05, 1.691312752608352e-05, 0.00013961276714916928, 0.00023797136337089318, 0.0005093252911456113, 0.0014371954117794454]",6,varied,0.00013961276714916928,C01,5,3,True,True,False
+TiDE,weight_decay,True,"[0.0, 1.0985029467862372e-05, 2.7796158898151984e-05, 5.131786561847019e-05, 0.0009861047689517666, 0.002155517324362708]",6,varied,2.7796158898151984e-05,C01,5,3,True,True,False
+TiDE,batch_size,True,"[16, 32, 64]",3,varied,16,C01,5,1,True,True,False
+TiDE,dropout,True,[0.0],1,fixed,0.0,C01,5,1,True,True,False
+TiDE,warmup_fraction,True,[0],1,fixed,0,C01,5,1,True,True,True
+TimeMixer,learning_rate,True,"[1.5459755703628305e-05, 3.196367078251621e-05, 0.00011818877892887743, 0.00020943723251664947, 0.0003204957470168257, 0.0006677459949385749]",6,varied,0.0006677459949385749,C01,5,6,True,True,False
+TimeMixer,weight_decay,True,"[0.0, 1.8542743270047029e-06, 2.0903286086513016e-05, 4.2408922330143675e-05, 0.005445840140597001]",5,varied,2.0903286086513016e-05,C01,5,3,True,True,False
+TimeMixer,batch_size,True,"[16, 32, 64]",3,varied,16,C01,5,1,True,True,False
+TimeMixer,dropout,True,[0.1],1,fixed,0.1,C01,5,1,True,True,False
+TimeMixer,warmup_fraction,True,[0],1,fixed,0,C01,5,1,True,True,True
+PatchTST,learning_rate,True,"[3.0959461963169886e-05, 0.00016343215291208203, 0.00022804225232733564, 0.0003948310542835339, 0.0005117541987718546, 0.0014458517173583036]",6,varied,0.0014458517173583036,C02,7,6,True,True,False
+PatchTST,weight_decay,True,"[0.0, 2.303487774686163e-06, 0.00016986402051335622, 0.002796710655246532, 0.007619591647730729]",5,varied,0.0,C02,7,1,True,True,False
+PatchTST,batch_size,True,"[16, 32, 64]",3,varied,16,C02,7,1,True,True,False
+PatchTST,dropout,True,[0.3],1,fixed,0.3,C02,7,1,True,True,False
+PatchTST,warmup_fraction,True,"[0, 0.1]",2,varied,0.1,C02,7,2,True,True,True
+iTransformer,learning_rate,True,"[1.2798270461568602e-05, 2.2722819659996804e-05, 2.9570513111324686e-05, 8.685318367380824e-05, 0.00029935095576708937, 0.0024351218185910935]",6,varied,0.0024351218185910935,C02,7,6,True,True,False
+iTransformer,weight_decay,True,"[0.0, 6.542614740083567e-05, 7.663881208835997e-05, 0.0009190165913202242, 0.002293098647196615, 0.004953353551407153]",6,varied,0.0009190165913202242,C02,7,4,True,True,False
+iTransformer,batch_size,True,"[16, 32, 64]",3,varied,16,C02,7,1,True,True,False
+iTransformer,dropout,True,"[0, 0.1, 0.3, 0.5]",4,varied,0.3,C02,7,3,True,True,False
+iTransformer,warmup_fraction,True,"[0, 0.05, 0.1]",3,varied,0,C02,7,1,True,True,True
+MLP16,learning_rate,True,"[1.2744132043688253e-05, 3.0350482654475715e-05, 0.0003440806652053162, 0.0005705684698010593, 0.0008226960218164469, 0.0015009848657423612]",6,varied,0.0015009848657423612,C05,10,6,True,True,False
+MLP16,weight_decay,True,"[0.0, 0.0001851350216392475, 0.00029520791631387186, 0.00074420992767983, 0.002981048123001655, 0.00903818197216887]",6,varied,0.00074420992767983,C05,10,4,True,True,False
+MLP16,batch_size,True,"[16, 32, 64]",3,varied,32,C05,10,2,True,True,False
+MLP16,dropout,True,"[0, 0.1, 0.2, 0.5]",4,varied,0,C05,10,1,True,True,False
+MLP16,warmup_fraction,True,[0],1,fixed,0,C05,10,1,True,True,True
+LSTM32,learning_rate,True,"[1.0234733176022878e-05, 3.6228441802354886e-05, 9.834924563879036e-05, 0.0002930527310141737, 0.0006271730521697078, 0.002356406147809842]",6,varied,0.002356406147809842,C01,5,6,True,True,False
+LSTM32,weight_decay,True,"[0.0, 1.0180488741379117e-06, 2.6793889078257184e-06, 4.064258532457841e-06, 0.0013548332657070334, 0.00218577875183807]",6,varied,0.0,C01,5,1,True,True,False
+LSTM32,batch_size,True,"[16, 32, 64]",3,varied,64,C01,5,3,True,True,False
+LSTM32,dropout,True,"[0.1, 0.2, 0.3, 0.5]",4,varied,0.3,C01,5,3,True,True,False
+LSTM32,warmup_fraction,True,[0],1,fixed,0,C01,5,1,True,True,True
+GRU32,learning_rate,True,"[1.3340594173129105e-05, 2.292301045659204e-05, 4.737625783643204e-05, 7.886165283800759e-05, 0.0003289663786622452, 0.00045773135527551936]",6,varied,0.00045773135527551936,C03,8,6,True,True,False
+GRU32,weight_decay,True,"[0.0, 5.4295514463536e-06, 1.8125314969260685e-05, 0.0005131684107458111, 0.003826709680329908, 0.006658367249304354]",6,varied,0.006658367249304354,C03,8,6,True,True,False
+GRU32,batch_size,True,"[16, 32, 64]",3,varied,16,C03,8,1,True,True,False
+GRU32,dropout,True,"[0.1, 0.2, 0.3, 0.5]",4,varied,0.1,C03,8,1,True,True,False
+GRU32,warmup_fraction,True,[0],1,fixed,0,C03,8,1,True,True,True

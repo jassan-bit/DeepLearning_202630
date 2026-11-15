@@ -1,0 +1,80 @@
+{
+  "version": "e2-corrections-inference-statistics-v1",
+  "registered_at_utc": "2026-11-15T22:14:57.570537+00:00",
+  "scope": "New exploratory diagnostics after the known benchmark, planned before corrective CPU inference and timing; no historical preregistration or new blind test claimed",
+  "inputs": {
+    "book_e2/_static/e2_point1_review_v1/rq_specification.json": "172e24bcb29209a05176ae2c6ed0c9afaac9eba52d7609466f752137b4f787b9",
+    "book_e2/_static/e2_point1_review_v1/margin_lineage.json": "20085e68d66eff8b0c2d003dead9b3ecc9750421fe3310e6b43e549fddcd830e",
+    "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+    "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+  },
+  "delta": 0.00025772842664981106,
+  "delta_g": 0.00025772842664981106,
+  "alpha_family": 0.05,
+  "seed_ids": [
+    271801,
+    271802,
+    271803,
+    271804,
+    271805,
+    271806
+  ],
+  "delta_g_test": {
+    "family": "13 neural models, one test per model, Holm13",
+    "gap": "original-scale batch-one eval-mode calibration RMSE minus training RMSE per fitted seed",
+    "null": "mean gap >= delta_g",
+    "alternative": "mean gap < delta_g",
+    "statistic": "t=(mean(six gaps)-delta_g)/(sample_SD(six gaps,ddof1)/sqrt6)",
+    "p": "Student t CDF with df5; if zero sample variance or missing/nonfinite pair report not estimable, never p=0",
+    "CI": "95 percent two-sided Student t interval for mean gap across six fitted seeds; marginal, not simultaneous",
+    "decision": "Within operational tolerance conditionally on these periods and assumed seed-difference approximation only when valid p_Holm13<=0.05; otherwise not established",
+    "stricter_alpha_sensitivity": 0.005,
+    "scope": "Optimization uncertainty on fixed train655 and calibration53, which was already used for pilot and interval calibration; not iid dates, population absence of overfitting, or independent selection validation",
+    "assumptions": "Independent initialization repetitions and adequate small-sample t approximation; approximation is not established by testing daily residual normality"
+  },
+  "validation_test_diagnostic": {
+    "quantity": "mean individual-trajectory test608 RMSE minus calibration53 RMSE for same fixed predictor",
+    "method": "two-sided Student t test of mean six-seed difference zero, df5, separate Holm13 family; marginal95% CI",
+    "scope": "Descriptive/exploratory period-consistency diagnostic conditional on these calendars; nonrejection is not agreement/equivalence and change can reflect drift rather than overfitting"
+  },
+  "RQ3": {
+    "candidates": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer"
+    ],
+    "reference": "GRU32",
+    "family": "10 separate secondary IUT contrasts, Holm10",
+    "gain": "GRU mean individual-trajectory RMSE minus candidate mean individual-trajectory RMSE on608 frozen dates",
+    "gain_null": "gain<=delta",
+    "gain_alternative": "gain>delta",
+    "gain_resampling": "Non-circular moving-block calendar bootstrap, length14, uniform valid starts0..608-14; concatenate and truncate to608; six trained trajectories remain fixed",
+    "gain_seed": 202611152301,
+    "gain_replicates": 20000,
+    "gain_p": "(1+count(delta+(gain_star-gain_observed)>=gain_observed))/(B_valid+1)",
+    "cost": "Equal-seed mean forward latency candidate minus GRU in seconds, each based on100 common paired session blocks with all six seeds; CPU FP32 batch1 only",
+    "cost_null": "mean latency difference>=0",
+    "cost_alternative": "mean latency difference<0",
+    "cost_resampling": "Resample100 whole paired global measurement blocks with replacement; retain each block entire six-seed candidate/reference mapping; no independent draw of individual elapsed rows",
+    "cost_seed": 202611152302,
+    "cost_replicates": 20000,
+    "cost_p": "(1+count(0+(cost_star-cost_observed)<=cost_observed))/(B_valid+1)",
+    "CI": "95 percent marginal percentile intervals separately for gain and cost; report magnitudes and raw times",
+    "joint_p": "max(p_gain,p_cost), only if both valid; form all10 before Holm10",
+    "invalid_policy": "Any missing duplicate nonfinite timing pair or failed78-predictor parity gate blocks cost/IUT inference; never fill unknown cost with zero",
+    "scope": "New CPU measurements on development windows, not replacement of historical A100 costs and not new market observations"
+  },
+  "common_limits": [
+    "One market series; no HPO-selection uncertainty or market population sample.",
+    "All tests are exploratory after the known primary benchmark.",
+    "Do not update weights, calibrators, margin, primary hypothesis family or A2.",
+    "Nonrejection does not establish equivalence or robustness."
+  ]
+}

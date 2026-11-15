@@ -1,0 +1,125 @@
+{
+  "status": "verified",
+  "scope": "Numerical replay of included posthoc correction plans; no new registration or model fitting",
+  "source_commit": "ad8f163c1bbed55348c4af3d3c71b71f57bc7c55",
+  "records": [
+    {
+      "program": "statistics",
+      "original_program_bytes_unchanged": true,
+      "summary": {
+        "version": "e2-effects-rq2-closure-v1",
+        "effect_pairs": 20,
+        "effects_with_estimable_CI": 20,
+        "RQ2_primary_pairs": 10,
+        "RQ2_estimable_pairs": 10,
+        "RQ2_rejections_Holm10": 7,
+        "RQ2_rejected_candidates": [
+          "FCN-1D",
+          "ResNet-1D",
+          "TimesNet",
+          "TSMixer",
+          "TiDE",
+          "PatchTST",
+          "iTransformer"
+        ],
+        "high_dates": 121,
+        "normal_dates": 487,
+        "bootstrap_draws": 20000,
+        "primary_block_days": 14,
+        "sensitivity_blocks": [
+          7,
+          28
+        ],
+        "A2_replaced": false,
+        "RQ1_replaced": false,
+        "new_model_fits": 0,
+        "new_model_inference": false,
+        "interpretation": "RQ2 rejection supports erosion greater than delta; non-rejection does not establish robustness or equivalence.",
+        "limitations": [
+          "The analysis is exploratory after A2 on the already known E1 calendar, not restored prospective confirmation.",
+          "One BTC series and fixed fitted trajectories; no market-population or HPO-selection uncertainty.",
+          "Moving-block inference is approximate under suitable weak dependence/local stationarity;14 days is not universally adequate.",
+          "Only six optimization pairs inform dz; its bootstrap can be unstable and undefined samples are disclosed.",
+          "No demonstrated RQ2-specific power; non-rejection does not establish robustness or equivalence.",
+          "A causal regime available at issue time is distinct from grouping by realized same-day target."
+        ]
+      },
+      "comparisons": [
+        {
+          "file": "standardized_effects_20.csv",
+          "rows": 20,
+          "maximum_absolute_difference": 0.0
+        },
+        {
+          "file": "paired_seed_gains_120.csv",
+          "rows": 120,
+          "maximum_absolute_difference": 0.0
+        },
+        {
+          "file": "causal_regime_labels_608.csv",
+          "rows": 608,
+          "maximum_absolute_difference": 0.0
+        },
+        {
+          "file": "rq2_primary_Holm10.csv",
+          "rows": 10,
+          "maximum_absolute_difference": 0.0
+        },
+        {
+          "file": "rq2_block_sensitivity.csv",
+          "rows": 30,
+          "maximum_absolute_difference": 0.0
+        }
+      ]
+    },
+    {
+      "program": "cpu_diagnostic_statistics",
+      "original_program_bytes_unchanged": true,
+      "summary": {
+        "version": "e2-cpu-diagnostic-statistics-v1",
+        "scope": "new CPU-only posterior diagnosis; not original benchmark reproduction or adequacy",
+        "CPU_gap_tests": 13,
+        "CPU_within_tolerance_conditionally": 2,
+        "CPU_gap_not_estimable": 0,
+        "CPU_cost_tests": 10,
+        "CPU_cost_reductions_Holm10": 0,
+        "projection_comparisons_reported": 78,
+        "projection_alert_threshold": 1e-07,
+        "projection_alerts": 10,
+        "maximum_CPU_original_GPU_projection_difference": 2.1606683731079102e-07,
+        "all78included_regardless_projection_alert": true,
+        "original_parity_gate_passed": false,
+        "old714statistics_executed": false,
+        "original_RQ3_IUT_executed": false,
+        "mixed_CPU_GPU_period_test_executed": false,
+        "new_fits": 0,
+        "A2_or_RQ1_changed": false,
+        "limits": [
+          "All diagnoses are posterior exploratory evidence; neither the original1e-7gate nor original benchmark adequacy is certified.",
+          "The same numerical weights/scalers do not establish equivalence of CPU/GPU predictions; every deviation is retained.",
+          "Six optimization pairs and the small-sample t approximation do not model calendar, HPO-selection or market-population uncertainty.",
+          "Calibration53 was already used for pilot and intervals; it is not independent HPO validation and a small gap is not causal proof of absence of overfitting.",
+          "Timer blocks require sufficiently stable/exchangeable session measurements; clock repeats do not create independent markets.",
+          "A cost reduction alone is not joint predictive improvement, operational utility or equivalence to GPU deployment."
+        ]
+      },
+      "comparisons": [
+        {
+          "file": "CPU_delta_g_Holm13.csv",
+          "rows": 13,
+          "maximum_absolute_difference": 0.0
+        },
+        {
+          "file": "CPU_cost_only_Holm10.csv",
+          "rows": 10,
+          "maximum_absolute_difference": 0.0
+        },
+        {
+          "file": "CPU_latency_block_means_1000.csv",
+          "rows": 1000,
+          "maximum_absolute_difference": 0.0
+        }
+      ]
+    }
+  ]
+}

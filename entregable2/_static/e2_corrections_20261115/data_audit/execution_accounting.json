@@ -1,0 +1,72 @@
+{
+  "version": "e2-current-data-audit-accounting-v1",
+  "observed_at_utc": "2026-11-15T22:28:31.306047+00:00",
+  "ledger": "../compute_ledger.jsonl",
+  "ledger_sha256_at_snapshot": "33bcc196a34840c1015e5f8bdc6b34bffa553129b4be616a0a7f7286587a5812",
+  "phase": "data_audit",
+  "runs_completed": 3,
+  "charged_process_wall_seconds": 11.473774178004533,
+  "records": [
+    {
+      "at_utc": "2026-11-15T22:18:24.714410+00:00",
+      "cap_seconds": 600.0,
+      "event": "reserve",
+      "phase": "data_audit",
+      "previous_record_sha256": "d49c05fc270196fbd6f73152445d5d9712cf1a2c915ef885c58d234704c6eeb4",
+      "reservation_id": "ae30ead6-e8c1-4f73-a6f1-d981f2236f30"
+    },
+    {
+      "at_utc": "2026-11-15T22:18:28.704581+00:00",
+      "cap_seconds": 600.0,
+      "elapsed_seconds": 3.988071192994539,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "data_audit",
+      "previous_record_sha256": "63fd6f2bb02192a1918f47c5fc5c7f5b78f634355914f88727aa1e03d9b50a40",
+      "reservation_id": "ae30ead6-e8c1-4f73-a6f1-d981f2236f30",
+      "returncode": 0
+    },
+    {
+      "at_utc": "2026-11-15T22:23:10.503919+00:00",
+      "cap_seconds": 600.0,
+      "event": "reserve",
+      "phase": "data_audit",
+      "previous_record_sha256": "f264ffc0618369cc20aea54c9874b4ec26242ef12ed919b20f75fe1b69b19855",
+      "reservation_id": "598e6ad0-5608-4bfe-8dfb-8b8cd9e3ff68"
+    },
+    {
+      "at_utc": "2026-11-15T22:23:13.960383+00:00",
+      "cap_seconds": 600.0,
+      "elapsed_seconds": 3.452957168003195,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "data_audit",
+      "previous_record_sha256": "9fbf736e158f734967dfcadbb00e8199829dd47c8fb097a7a13c81bbd3de0cad",
+      "reservation_id": "598e6ad0-5608-4bfe-8dfb-8b8cd9e3ff68",
+      "returncode": 0
+    },
+    {
+      "at_utc": "2026-11-15T22:27:34.415142+00:00",
+      "cap_seconds": 600.0,
+      "event": "reserve",
+      "phase": "data_audit",
+      "previous_record_sha256": "6a58fa139d96ce1aa4331033ae174282bc069c3ebfb0467093862a5dc2685f1e",
+      "reservation_id": "f0cc38e8-692b-4b33-bc35-967937fc32c8"
+    },
+    {
+      "at_utc": "2026-11-15T22:27:38.450082+00:00",
+      "cap_seconds": 600.0,
+      "elapsed_seconds": 4.0327458170067985,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "data_audit",
+      "previous_record_sha256": "58b603b2b2d235711abadcadc4f3dde8777643a5565f95538bbf683be2754821",
+      "reservation_id": "f0cc38e8-692b-4b33-bc35-967937fc32c8",
+      "returncode": 0
+    }
+  ],
+  "model_fits": 0,
+  "model_inference_calls": 0,
+  "budget_reset": false,
+  "scope": "Scientific data aggregation/audit subprocess time is charged by the shared append-only ledger. File inventory/network metadata recovery follows the separately documented I/O scope."
+}

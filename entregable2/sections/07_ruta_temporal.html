@@ -255,6 +255,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estrategia de Agregación y Modelado Estadístico</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="64_correcciones_metodologicas.html">Correcciones posteriores: auditoría, efectos y regímenes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="50_comparaciones_f2a.html">Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
 <li class="toctree-l2"><a class="reference internal" href="56_inferencia_estabilidad_final.html">Inferencia refinada y estabilidad temporal</a></li>
 </ul>
@@ -522,7 +523,7 @@
 <tbody>
 <tr class="row-even"><td><p><strong>1. Preregistrar</strong></p></td>
 <td><p><a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">§1</span></a>, <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">§9</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> conservan contrato, δ, semillas, comparaciones y enmiendas previas a sus ajustes. RQ1 se concreta en veinte pares, Holm20, α familiar 0,05.</p></td>
-<td><p>No se atribuye carácter prospectivo al test conocido ni a los suplementos posteriores. RQ2/RQ3 tienen aclaraciones documentales y no resultados inferenciales nuevos.</p></td>
+<td><p>No se atribuye carácter prospectivo al test conocido ni a los suplementos posteriores. RQ2/RQ3 conservan su alcance posterior; RQ2 ya fue ejecutada en <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a>, sin recuperar confirmación prospectiva.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>2. Auditar datos</strong></p></td>
 <td><p><a class="reference internal" href="02_eda.html"><span class="std std-doc">EDA vigente</span></a> y <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría de partición</span></a>: máscaras, disponibilidad, IDs, soporte y hashes comprobados mediante registros guardados.</p></td>
@@ -550,7 +551,7 @@
 </tr>
 <tr class="row-odd"><td><p><strong>8. Diagnosticar ajuste/sobreajuste</strong></p></td>
 <td><p><a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> recupera curvas y ejecuta residuos/calibración; <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> añade estabilidad y brechas descriptivas.</p></td>
-<td><p>Hay evidencia residual adversa; δg previo está reconocido, pero su prueba formal comparable actual no está establecida. Los diagnósticos posteriores no se presentan como filtro anterior al entrenamiento.</p></td>
+<td><p>Hay evidencia residual adversa. <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> añade trece contrastes de brecha en CPU con dos tolerancias condicionales; no certifica adecuación del benchmark CUDA. Los diagnósticos posteriores no se presentan como filtro anterior al entrenamiento.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>9. Evaluar en prueba con IC</strong></p></td>
 <td><p>A2 común en <strong>608 fechas</strong>, 81 predictores previamente congelados, sin retuning. Original B=4.999; <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">refinamiento B=20.000</span></a> conserva exactamente hipótesis y conclusiones.</p></td>
@@ -562,7 +563,7 @@
 </tr>
 <tr class="row-even"><td><p><strong>11. Analizar y discutir</strong></p></td>
 <td><p>Robustez/oclusión en <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>, tres ablaciones en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>, errores/techo en <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a>/<a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">§63</span></a>, calibración temporal en <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a>.</p></td>
-<td><p>Son evidencias diferenciadas y mayoritariamente posteriores; no prueban causalidad, adecuación universal, techo Bayes ni RQ2/RQ3 resueltas.</p></td>
+<td><p>Son evidencias diferenciadas y mayoritariamente posteriores; no prueban causalidad, adecuación universal o techo Bayes. <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> ejecuta RQ2 con su alcance exploratorio propio.</p></td>
 </tr>
 </tbody>
 </table>
@@ -582,7 +583,7 @@
 <td><p>Ninguno de los diez candidatos rechaza la nula de ganancia ≤δ frente a Persistence en Holm20. SAE tiene la mejor ganancia puntual, pero p Holm=1 e IC que incluye cero. <strong>No acreditado.</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>ii. Brecha train–validación menor que δg con evidencia estadística</strong></p></td>
-<td><p><strong>δg sí fue registrado previamente</strong>: 0,00025772842664981106. Las brechas guardadas y su sensibilidad no ejecutan una prueba temporal comparable de no inferioridad para los predictores actuales. <strong>No establecido.</strong></p></td>
+<td><p><strong>δg sí fue registrado previamente</strong>: 0,00025772842664981106. <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> ejecuta una prueba de media de brecha en CPU, con seis semillas y Holm13: dos tolerancias condicionales y once no establecidas. La ausencia general de sobreajuste y la adecuación conjunta siguen <strong>no establecidas</strong>.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>iii. Calibración y ausencia de estructura residual</strong></p></td>
 <td><p>Mincer–Zarnowitz rechaza 37/81 restricciones de calibración puntual; Ljung–Box rechaza en <strong>81/81 trayectorias</strong> a lag7 y lag14 tras Holm826. La cobertura también depende de modelo/grupo. <strong>No se acredita ausencia de estructura ni calibración universal.</strong></p></td>
@@ -614,16 +615,16 @@
 </tr>
 <tr class="row-odd"><td><p><strong>B · Ausencia de sobreajuste</strong></p></td>
 <td><p>Curvas de época: <strong>78 finales y 29 HPO</strong>, con diez HPO sin pérdidas originales; comparación calibración–prueba y brechas descriptivas. GR y constancia: veinte diagnósticos de cada tipo, <strong>cero rechazos Holm40</strong>, B=20.000. <a class="reference download internal" download="" href="../_downloads/536f8d3b93c861394cb6aa46527a9104/saved_training_calibration_gaps.csv"><span class="xref download myst">Brechas guardadas</span></a>.</p></td>
-<td><p>Sigue pendiente la inferencia comparable respecto a δg y la comprobación validación–prueba pertinente al ajuste actual. Las curvas por época <strong>no son curvas por tamaño de entrenamiento</strong>. Bootstrap de optimismo con reentrenamiento, curvas 10–100 % y otras alternativas de Tabla B no se atribuyen a estos artefactos ni se ordenan como una lista íntegramente obligatoria.</p></td>
+<td><p><a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> publica trece pruebas de δg en CPU, con riesgos train/cal comparables y alcance condicional. La paridad CUDA de ese suplemento y la consistencia validación–prueba original no están acreditadas. Las curvas por época <strong>no son curvas por tamaño de entrenamiento</strong>. Bootstrap de optimismo con reentrenamiento, curvas 10–100 % y otras alternativas de Tabla B no se atribuyen a estos artefactos ni se ordenan como una lista íntegramente obligatoria.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>C · Diferencias entre modelos</strong></p></td>
 <td><p>Bootstrap primario pareado; t y cambios de signo condicionales; DM–HLN <strong>35/120 rechazos Holm120</strong>; MCS90 % de cinco sistemas; Friedman/Iman–Davenport condicionado a seis semillas y trece redes; <strong>78 Wilcoxon exactos, cero rechazos Holm78</strong> y <a class="reference download internal" download="" href="../_downloads/3a69921438c41b4218e856b2186cf87e/conditional_rank_groups.svg"><span class="xref download myst">diagrama de rangos</span></a>.</p></td>
-<td><p>Los tres métodos por par están ejecutados; su contador no acredita automáticamente los supuestos ni el cumplimiento integral. Faltan tamaños estandarizados Cohen/Cliff/A12 con IC; se publican efectos RMSE/MSE e IC en unidades originales. TOST/ROPE no están ejecutados: no se afirma equivalencia. Nemenyi es alternativa a Wilcoxon–Holm, no otra prueba obligatoria adicional. Clark–West requiere anidamiento pertinente; no se inventa.</p></td>
+<td><p>Los tres métodos por par están ejecutados; su contador no acredita automáticamente los supuestos ni el cumplimiento integral. <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> añade d de Cohen pareado e IC entre semillas para los veinte pares; permanecen los efectos e IC temporales RMSE/MSE en sus unidades originales. TOST/ROPE no están ejecutados: no se afirma equivalencia. Nemenyi es alternativa a Wilcoxon–Holm, no otra prueba obligatoria adicional. Clark–West requiere anidamiento pertinente; no se inventa.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Para una pérdida, la orientación del margen de Tabla B es <strong>g = RMSE_validación − RMSE_train</strong>, con nula de sobreajuste inaceptable <strong>mediana(g)≥δg</strong> y alternativa <strong>mediana(g)&lt;δg</strong> al usar Wilcoxon. Una t sobre ejecuciones evaluaría la <strong>media</strong> de las brechas, con sus propios supuestos y unidad justificados. El <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">linaje de δg</span></a> fija su existencia previa en <code class="docutils literal notranslate"><span class="pre">599a29f</span></code> y la dirección en <code class="docutils literal notranslate"><span class="pre">ef2be289</span></code>; campos históricos <code class="docutils literal notranslate"><span class="pre">delta_g=null</span></code> no prueban ausencia del registro. Los riesgos de entrenamiento guardados se evaluaron con el lote configurado; los pronósticos de calibración, con lote1 y otro periodo. No hay predicciones de entrenamiento por fecha comparables para atribuirles una nueva prueba temporal. Los resultados del P0 histórico tampoco sustituyen el catálogo vigente.</p>
+<p>Para una pérdida, la orientación del margen de Tabla B es <strong>g = RMSE_validación − RMSE_train</strong>, con nula de sobreajuste inaceptable <strong>mediana(g)≥δg</strong> y alternativa <strong>mediana(g)&lt;δg</strong> al usar Wilcoxon. Una t sobre ejecuciones evaluaría la <strong>media</strong> de las brechas, con sus propios supuestos y unidad justificados. El <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">linaje de δg</span></a> fija su existencia previa en <code class="docutils literal notranslate"><span class="pre">599a29f</span></code> y la dirección en <code class="docutils literal notranslate"><span class="pre">ef2be289</span></code>; campos históricos <code class="docutils literal notranslate"><span class="pre">delta_g=null</span></code> no prueban ausencia del registro. Los riesgos de entrenamiento guardados se evaluaron con el lote configurado; los pronósticos de calibración, con lote1 y otro periodo. El suplemento posterior <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> sí genera predicciones por fecha train/cal comparables en CPU y contrasta la media entre semillas, sin atribuirles incertidumbre temporal o paridad CUDA. Los resultados del P0 histórico tampoco sustituyen el catálogo vigente.</p>
 </section>
 <section id="minimo-de-tres-pruebas-por-comparacion-confirmatoria">
 <h3>7.3.2 Mínimo de tres pruebas por comparación confirmatoria<a class="headerlink" href="#minimo-de-tres-pruebas-por-comparacion-confirmatoria" title="Link to this heading">#</a></h3>
@@ -676,7 +677,7 @@
 </tr>
 <tr class="row-even"><td><p><strong>S7. Residuos, calibración y estabilidad</strong></p></td>
 <td><p>Ljung–Box, ARCH, BDS, JB, Mincer–Zarnowitz y cobertura; <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">GR</span></a> y <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">calibración temporal</span></a>.</p></td>
-<td><p>Residuos con estructura; δg formal pendiente; no PIT ni garantía condicional universal.</p></td>
+<td><p>Residuos con estructura; δg evaluado posteriormente en CPU con alcance propio; no PIT ni garantía condicional universal.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>S8. Comparación y robustez</strong></p></td>
 <td><p><a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">DM–HLN/MCS/rangos</span></a>; perturbaciones de ruido, extremos, faltantes y nivel, tres severidades. <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>.</p></td>

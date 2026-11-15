@@ -1,0 +1,127 @@
+{
+  "schema_version": "e2-corrections-controls-readiness-v1",
+  "status": "BLOCKED_INPUTS",
+  "data_ready_for_bounded_controls": false,
+  "actual_cohorts_available": {
+    "training": 655,
+    "calibration": 53
+  },
+  "required_current_cohorts": {
+    "training": 655,
+    "calibration": 53,
+    "evaluation": 608
+  },
+  "blocker": "Audited OHLCV input windows for the fixed evaluation cohort of 608 dates are unavailable. Training 655 and calibration 53 are verified; no test inputs are inferred from frozen predictions or targets.",
+  "source_audit_status": "PARTIAL",
+  "source_audit_path": "book_e2/_static/e2_corrections_20261115/data_audit/audit_result.json",
+  "source_audit_sha256": "956c207ad883924e48d3362f66fc81b3707e45d33a398e1a81fe081a541cc60e",
+  "source_arrays_path": "book_e2/_static/e2_corrections_20261115/data_audit/current_cohort_arrays.npz",
+  "source_arrays_sha256": "9fbb9b4326ea4c458300ccab522ec8982b74d5cf0fbca282a4b4c55362eea19f",
+  "pre_fit_specification_status": "Not prepared until the complete canonical input cohort is admitted. The planned methods are implemented and root-reviewed before any new control fit.",
+  "adversarial": {
+    "status": "not_executed",
+    "needed": "Real audited relative windows from the training cohort of 655 dates and evaluation cohort of 608 dates.",
+    "design": "35 relative OHLCV features; balanced L2 logistic regression; five contiguous folds with seven calendar days of purging; scaling fitted on each training fold; 999 cross-cohort block-label permutations with refitting; 10,000 calendar-block bootstrap draws for fixed OOF predictions.",
+    "interpretation": "A rejection can indicate covariate distribution discrimination under block assumptions; it does not establish leakage."
+  },
+  "negative_neural": {
+    "status": "not_executed",
+    "planned_family_size": 13,
+    "diagnostic_seed": 271801,
+    "train_label_permutation_seed": 2026111501,
+    "training_label_block_days": 7,
+    "HPO": false,
+    "backend": "New dedicated CPU diagnostic using frozen constructors and registered optimization arithmetic; no original CPU/CUDA numerical reproduction is claimed.",
+    "numerical_backend_parity_checked": false,
+    "planned_inference": "Gain over the true training-mean constant above inherited delta AND positive Spearman association; centered block bootstrap; intersection-union test followed by Holm correction over 13 models; any flag requires causal investigation.",
+    "models": [
+      {
+        "model": "FCN-1D",
+        "status": "not_executed"
+      },
+      {
+        "model": "ResNet-1D",
+        "status": "not_executed"
+      },
+      {
+        "model": "Inception-1D",
+        "status": "not_executed"
+      },
+      {
+        "model": "LSTM-autoencoder con predictor",
+        "status": "not_executed"
+      },
+      {
+        "model": "TimesNet",
+        "status": "not_executed"
+      },
+      {
+        "model": "TSMixer",
+        "status": "not_executed"
+      },
+      {
+        "model": "TiDE",
+        "status": "not_executed"
+      },
+      {
+        "model": "TimeMixer",
+        "status": "not_executed"
+      },
+      {
+        "model": "PatchTST",
+        "status": "not_executed"
+      },
+      {
+        "model": "iTransformer",
+        "status": "not_executed"
+      },
+      {
+        "model": "MLP16",
+        "status": "not_executed"
+      },
+      {
+        "model": "LSTM32",
+        "status": "not_executed"
+      },
+      {
+        "model": "GRU32",
+        "status": "not_executed"
+      }
+    ]
+  },
+  "classical": {
+    "status": "not_executed",
+    "models": [
+      "Persistence",
+      "SeasonalNaive7",
+      "ARIMA"
+    ],
+    "scope": "Endogenous predictors do not receive an invented supervised label fit. Actual-history prefix invariance needs an admitted cohort and frozen-parameter ARIMA state; no refit is authorized by this report."
+  },
+  "alternative_calibration_only_design_active": false,
+  "pure_guard_tests": {
+    "status": "PASS",
+    "tests_run": 14,
+    "failures": 0,
+    "errors": 0,
+    "receipt_path": "book_e2/_static/e2_corrections_20261115/controls/pure_guard_tests.json",
+    "receipt_sha256": "36d0c90dc96bea9fbab94e798870613bbb3228218c327dd3e3964a66ad5cf1f1"
+  },
+  "sources_sha256": {
+    "scripts/e2_corrections_controls.py": "1d5606526f676e9aef0d83ebb95150ba8ee117d3ac3715de22c81e5a2b63129c",
+    "tests/test_e2_corrections_controls.py": "37e9da8c9a1669ce5e18f309f2ffdea1794fbb12342b5871c615999c12aa652d"
+  },
+  "operations": {
+    "new_model_fits": 0,
+    "domain_classifier_fits": 0,
+    "real_data_inference_calls": 0,
+    "new_predictive_scores": 0,
+    "new_scientific_bootstrap_draws": 0,
+    "new_scientific_hypothesis_tests": 0,
+    "control_budget_reservations": 0,
+    "frozen_primary_modified": false,
+    "new_blind_test_claimed": false,
+    "budget_reset": false
+  },
+  "closure_status": "The unit guards pass. Actual adversarial and permuted-label controls on 608 evaluation dates remain unexecuted; this receipt does not certify their absence of leakage."
+}

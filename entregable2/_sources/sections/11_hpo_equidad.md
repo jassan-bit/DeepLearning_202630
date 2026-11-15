@@ -26,6 +26,8 @@ La métrica, δ y partición se heredan de E1 conforme a la guía. La [congelaci
 
 ### 11.1.2 Oportunidades, resultados y fallos conservados
 
+**Recuperación adicional del 15/11/2026:** [§64](64_correcciones_metodologicas.md) publica los recibos de las 234 oportunidades, 78 configuraciones, cobertura por parámetro y trece ganadores reproducidos. Distingue 61 reutilizaciones, 170 duraciones medidas y 173 cargos de campaña, con ámbitos que no se suman entre sí. La [tabla por oportunidad](../_static/e2_corrections_20261115/hpo/opportunities_234.csv) mejora la atribución anterior sin inventar el desenlace perdido de TSMixer ni presentar el subtotal como coste integral.
+
 Se conservan **231 resultados válidos de 234 oportunidades**, dos fallos conocidos y un desenlace desconocido. Cada una de las trece recetas ganadoras tiene tres folds completos. Las reutilizaciones admitidas no se cuentan como entrenamientos nuevos, y un fallo no se sustituye por una oportunidad adicional favorable. El intento TSMixer C02 del origen julio de 2024 perdido con la sesión T4 conserva desenlace desconocido y cargo conservador, sin inventar métricas o pasos del optimizador.
 
 Este cotejo verifica los resultados y disposiciones publicados, **sin reconstruir la atribución exhaustiva caché/nuevo del diario**. Los contadores históricos y candidatos de caché conservan su corte; no se transforman en una medición independiente de todos los entrenamientos nuevos. Los 39 ajustes HPO de recetas finalmente elegidas son una selección del dominio completo, no los 234 intentos. Hay curvas recuperadas para 29/39 y diez ausencias explícitas; los 78 finales sí conservan sus curvas. [Galería de curvas](04_implementacion.md) · [Auditoría de entrenamiento](49_diagnosticos_f2a.md).

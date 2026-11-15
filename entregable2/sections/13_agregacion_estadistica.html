@@ -67,7 +67,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Comparaciones F2a posteriores: DM, MCS y rangos por semilla" href="50_comparaciones_f2a.html" />
+    <link rel="next" title="Correcciones metodológicas posteriores al benchmark" href="64_correcciones_metodologicas.html" />
     <link rel="prev" title="Referencia empírica mediante un ensemble ajustado en calibración" href="63_ensamble_calibracion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -257,6 +257,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">13. Estrategia de Agregación y Modelado Estadístico</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="64_correcciones_metodologicas.html">Correcciones posteriores: auditoría, efectos y regímenes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="50_comparaciones_f2a.html">Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
 <li class="toctree-l2"><a class="reference internal" href="56_inferencia_estabilidad_final.html">Inferencia refinada y estabilidad temporal</a></li>
 </ul>
@@ -597,7 +598,7 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 </section>
 <section id="efectos-estandarizados-y-superioridad-descriptiva">
 <h3>13.3.2 Efectos estandarizados y superioridad descriptiva<a class="headerlink" href="#efectos-estandarizados-y-superioridad-descriptiva" title="Link to this heading">#</a></h3>
-<p>La familia primaria publica <strong>efectos en unidades originales e IC de ganancia</strong>, con p brutos/ajustados. <strong>No hay d de Cohen pareado, δ de Cliff o A12 con IC acreditados para esos veinte contrastes</strong>. No se derivan de un p o una t para rellenar la plantilla sin declarar nueva estimación y supuestos.</p>
+<p>La familia primaria publica <strong>efectos en unidades originales e IC de ganancia</strong>, con p brutos/ajustados. La <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">ampliación ejecutada el 15/11/2026</span></a> añade <strong>d de Cohen pareado e IC percentiles para los veinte contrastes</strong>, calculados directamente de las seis ganancias brutas por semilla, con 20.000 remuestreos de pares. Esta nueva estimación es posterior y describe variación de optimización condicionada al calendario; no reemplaza los IC temporales ni las decisiones primarias. El <a class="reference download internal" download="" href="../_downloads/156b138b455234c0ab4d4e81c0983177/standardized_effects_20.csv"><span class="xref download myst">CSV completo</span></a> conserva los sorteos no definidos por varianza nula y sus límites; no se exige calcular simultáneamente Cohen, Cliff y A12.</p>
 <p>El CSV de DM sí conserva dos campos descriptivos adicionales. Con <span class="math notranslate nohighlight">\(d_t=L_{A,t}-L_{B,t}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -681,7 +682,7 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 <h3>13.4.2 Reporte mínimo y sensibilidad de la conclusión<a class="headerlink" href="#reporte-minimo-y-sensibilidad-de-la-conclusion" title="Link to this heading">#</a></h3>
 <p>El reporte por contraste debe identificar par, unidad, dirección, estimando, margen, efecto, IC95 %, p sin ajustar, p ajustado, regla y familia. Las tablas conservan los campos efectivamente publicados; los IC o tamaños de efecto ausentes se marcan como tales, sin afirmar que todas las familias estén completas. Los CSV conservan la precisión disponible; «p exacto» en el reporte <strong>no convierte una aproximación asintótica o Monte Carlo en una prueba exacta de muestra finita</strong>. En el auditor residual existen 35 salidas <code class="docutils literal notranslate"><span class="pre">p_raw=0.0</span></code> por precisión/subdesbordamiento: no se interpretan como probabilidades matemáticas nulas. Las ausencias de IC o efecto estandarizado permanecen señaladas.</p>
 <p>Los diagnósticos alternativos t/signos no producen rechazos tras sus Holm y no cambian la conclusión primaria. Las sensibilidades temporales con bloques 7/28 están guardadas como diagnósticos <strong>sin ajuste</strong>, y el refinamiento a 20.000 conserva las veinte decisiones; ninguno autoriza elegir el bloque, método o familia con el p menor. La corrección Nadeau–Bengio se considera para comparaciones pertinentes de particiones con entrenamiento solapado, no como una opción que deba ejecutarse automáticamente en todas las trayectorias temporales.</p>
-<p>La <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">potencia</span></a> es limitada: 0,122953 en la alternativa planificada de 2δ, con R=6, dos representantes y 53 fechas de desarrollo. No se aumenta R tras observar la prueba. El <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">δg previo</span></a> se reconoce; las brechas train–calibración guardadas no establecen su cumplimiento formal actual ni la consistencia validación–prueba. No se heredan análisis de varianza o p del P0 para cerrar esas condiciones.</p>
+<p>La <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">potencia</span></a> es limitada: 0,122953 en la alternativa planificada de 2δ, con R=6, dos representantes y 53 fechas de desarrollo. No se aumenta R tras observar la prueba. El <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">δg previo</span></a> se reconoce; las brechas anteriores no establecían su cumplimiento. <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> añade trece contrastes comparables en CPU, con dos tolerancias condicionales; no certifica ausencia de sobreajuste original ni consistencia validación–prueba. No se heredan análisis de varianza o p del P0 para cerrar esas condiciones.</p>
 <p>La conclusión se expresa según el criterio fijado: <strong>menor RMSE observada y ausencia de superioridad práctica confirmada</strong>. No se escribe «tendencia a la significancia», ni se equipara no rechazo con equivalencia. TOST/ROPE no están ejecutados; la reproducción numérica, un IC amplio o permanecer en MCS no los sustituyen. Las limitaciones estadísticas y los resultados negativos se mantienen junto a los favorables.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Archivo documental: contenido anterior del capítulo 13</p>
@@ -748,11 +749,11 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
       </div>
     </a>
     <a class="right-next"
-       href="50_comparaciones_f2a.html"
+       href="64_correcciones_metodologicas.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Comparaciones F2a posteriores: DM, MCS y rangos por semilla</p>
+        <p class="prev-next-title">Correcciones metodológicas posteriores al benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
