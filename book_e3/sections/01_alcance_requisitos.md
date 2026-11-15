@@ -1,21 +1,43 @@
-# 1. Alcance y requisitos
+# 1 Alcance y requisitos
 
-La definición académica del Entregable 3 está **pendiente de su guía específica**. La información de E1 y E2 no sustituye esa guía. El autor eligió como continuidad temática el candidato CNN-1D + LSTM + atención temporal para el mismo problema de volatilidad Bitcoin; no se presenta esa elección como requisito oficial ni como receta definitiva.
+La guía oficial *Entregable3DeepLearningProject.pdf*, aportada por el usuario, exige un dashboard predictivo, un modelo neuronal original con sustento teórico, evaluación rigurosa y un informe reproducible. La presente matriz organiza el trabajo; sus estados corresponden a revisión documental, no a una nueva ejecución de los artefactos.
 
-## Información por incorporar
+## Estándar exigido
 
-| Elemento | Estado actual |
-|---|---|
-| Enunciado y objetivo de E3 | Pendientes de guía |
-| Criterios y pesos de evaluación | Pendientes de guía |
-| Productos exigidos y formato de entrega | Pendientes de guía |
-| Relación requerida con E1 y E2 | Por verificar en la guía |
-| Fechas y condiciones de entrega | Por confirmar |
+El modelo debe demostrar formalmente al menos una propiedad y verificarla numéricamente; evaluarse en tres datasets adicionales de naturaleza distinta; compararse con todo el Top 10 y todos los baselines fuertes; usar al menos diez semillas o más según potencia; alcanzar potencia por contraste de al menos 0,90 y reportar la conjunta; y aplicar tres pruebas distintas por contraste con control familiar de Holm. Las condiciones completas de R3 incluyen relevancia práctica, tamaño de efecto, adecuación y consistencia en los datasets adicionales (§8.4).
 
-Al recibir el documento se identificarán sus requisitos y la evidencia que corresponda a cada uno. Esta tabla distingue información pendiente de trabajo realizado; sus filas no se presentan como exigencias ya confirmadas del profesor.
+Estos son requisitos de evaluación. La superioridad será un resultado por comprobar y puede no alcanzarse. Un resultado no concluyente debe conservarse.
 
-Si E3 utiliza antecedentes de otro entregable, se indicará su versión y procedencia. Los resultados previos seguirán identificados con el estudio que los produjo.
+## Matriz de requisitos y evidencia
 
-## Referencia compartida
+P0 identifica decisiones o controles que condicionan la campaña definitiva. P1 identifica productos de implementación y entrega. Las páginas son las impresas en el PDF.
 
-El [contrato sincronizado](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html) distingue las condiciones de E1 actual de los registros históricos y de las decisiones todavía pendientes de E2/E3. MLP, LSTM y GRU de E1 permanecen referencias separadas; los diez modelos de E2 no se convierten automáticamente en requisitos adicionales de E3.
+| ID | Guía y páginas | Exigencia | Estado al arranque | Criterio de cierre |
+|---|---|---|---|---|
+| E3-01 (P0) | §4, pp. 4–5 | Correcciones E2 y tabla de trazabilidad | Diagnóstico interno preparado; sin observaciones docentes. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/38_cumplimiento_guia.md) | Resolver cada fila aplicable con evidencia e impacto; no confundir pendientes con fallos demostrados. |
+| E3-02 (P0) | §4, pp. 5 | Auditoría de fuga y determinismo | Auditoría final parcial; determinismo documentado. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/10_auditoria_datos.md) | Completar cotejo de contenido/vecinos, atributos, transformaciones sobre todos los pipelines reales, auditoría adversarial y etiquetas aleatorias; registrar alcance por pipeline. |
+| E3-03 (P0) | §4, pp. 5 | Congelar benchmarks con hash después del Bloque A | Congelación E2 existente; cierre A de E3 pendiente. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/_static/e2_benchmark_final_20261113/final_freeze.json) | Inventario y hashes verificables de resultados, recetas, pesos, escaladores y calibradores; cambios sólo por errores documentados. |
+| E3-04 (P1) | §5.1, pp. 5–6 | Selección por media en validación y tabla maestra | Recetas E2 disponibles; inventario de exportación pendiente. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/06_benchmark_final.md) | Vincular ganador por modelo a validación, media/DE/IC, parámetros, FLOPs y latencia; no seleccionar por test. |
+| E3-05 (P1) | §5.2, pp. 6–7 | Exportación y prueba de ida y vuelta | Pendiente E3. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/61_reproduccion_consolidada.md) | Exportaciones CPU, metadata.json, tolerancia numérica declarada y diferencia de métrica; política de ajuste final común. |
+| E3-06 (P0) | §6.1–6.3, pp. 8–12 | Novedad del mecanismo y procedencia | Híbrido propuesto sin novedad acreditada. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/05_paper_guia.md) | Búsqueda focal en al menos tres bases, cinco cadenas, snowballing, matriz de cercanos, fuente y verificación externa de dos cadenas. |
+| E3-07 (P0) | §2 y 7.3, pp. 3 y 19–20 | Propiedad formal con supuestos y verificación numérica | Propiedad candidata delimitada al módulo de atención. [Referencia](../sections/07_diseno_preliminar.md) | Demostración completa, plausibilidad de supuestos y verificación; delimitar módulo frente a predictor completo. |
+| E3-08 (P1) | §6.5 y 7.4, pp. 13–14 y 20 | Implementación propia y ablaciones | Prototipo E2 reutilizable; implementación E3 pendiente. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/18_integracion_sintetica.md) | Mecanismo escrito desde formulación, tests, complejidad y al menos tres ablaciones aisladas justificadas. |
+| E3-09 (P0) | §7.2 y 8.1, pp. 18 y 21–22 | Separación desarrollo/confirmación y preregistro | Pendiente; este arranque no es preregistro. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/17_contrato_sincronizado.md) | Identificar exposición previa, particiones, hipótesis, Nd, semillas y presupuesto; tag real anterior a experimentos definitivos. |
+| E3-10 (P0) | §2 y 8.7.2, pp. 3 y 27 | Potencia al menos 0,90 y R al menos 10 | E2 R6 no satisface el nuevo estándar. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json) | Piloto de al menos cinco semillas por rival en desarrollo; fijar R antes de confirmar y reportar potencia conjunta y temporal. |
+| E3-11 (P0) | §8.2, pp. 22–23 | Comparación justa | Evidencia E2 con límites de coste; campaña E3 pendiente. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/38_cumplimiento_guia.md) | Registrar igual esfuerzo, tiempo/fases/fallos, capacidad, variables, preprocesamiento y particiones; tratar deterministas sin pseudorreplicación. |
+| E3-12 (P0) | §8.3, pp. 23 | Tres datasets adicionales | Sin selección ni evaluación E3. [Referencia](../sections/02_planificacion.md) | Misma tarea y primaria; diferencia en dos ejes por dataset, fuentes/licencias/hashes, elección previa y todos los rivales en cada uno. |
+| E3-13 (P0) | §8.4–8.7, pp. 23–28 | Familia completa y tres pruebas por contraste | Batería E2 no sustituye protocolo E3. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/38_cumplimiento_guia.md) | Registrar todos los rivales, estimandos y tres pruebas temporales válidas, Holm, efectos/IC y regla de todas las pruebas; incluir adecuación y consistencia externa. |
+| E3-14 (P1) | §8.8–8.9, pp. 28–30 | Robustez, calibración e interpretabilidad | Suplementos E2 reutilizables con alcance retrospectivo. [Referencia](https://github.com/jassan-bit/DeepLearning_202630/blob/0bdbc42bd724c6ffbbb1dec67564327adedb9883/book_e2/sections/54_robustez_interpretabilidad.md) | Evaluar originales y rivales bajo mismo estrés, incertidumbre, extremos reales, sensibilidad, fidelidad y estabilidad; no equiparar atención con explicación causal. |
+| E3-15 (P1) | §9.1–9.4, pp. 30–34 | Dashboard Contexto, EDA y Modelos | Pendiente E3. [Referencia](../sections/03_desarrollo_evidencias.md) | Dash Plotly con callbacks, diagnóstico temporal, leaderboard completo, inferencia, explicación local, incertidumbre, fuera de dominio y resultados precalculados justificados. |
+| E3-16 (P1) | §9.5 y 10, pp. 34–37 | Ingeniería y despliegue Render | Pendiente E3. [Referencia](../sections/05_reproducibilidad_entrega.md) | CPU, memoria/latencia medidas, versiones exactas, validaciones, CI, prueba de humo y respaldo; no entrenar en la app. |
+| E3-17 (P1) | §11 y Cuadro 7, pp. 38–39 y 58 | Informe científico completo | Libro inicial adaptado; estructura final pendiente. [Referencia](../intro.md) | Completar capítulos 0–11 de la guía con evidencia, figuras interpretadas, bibliografía y resumen final de máximo 250 palabras. |
+| E3-18 (P1) | §12, pp. 39–40 | Reproducibilidad y paquete de entrega | Procedencia inicial preparada. [Referencia](../sections/05_reproducibilidad_entrega.md) | Docker probado, reproducción independiente, tabla maestra, MODEL_CARD, DATA_STATEMENT, DOI y URLs públicas. |
+| E3-19 (P1) | §13 y 15, pp. 40–41 y 47–48 | Sustentación y declaración de autoría/IA | Asistencia documental identificada. [Referencia](../sections/05_reproducibilidad_entrega.md) | Declarar aportes y herramientas; comprender, explicar y modificar código y demostración durante sustentación. |
+
+## Condiciones heredadas
+
+Se conserva BTCUSDT, D7×5, h=1, σ₇ poblacional y la RMSE en escala original. El margen práctico heredado es δ=0,00025772842664981106. δg corresponde al margen de sobreajuste y debe recuperarse de su registro original; no se supone que sea igual a δ.
+
+La familia de trabajo propuesta incluye los 16 sistemas de E2: diez candidatos, MLP16/LSTM32/GRU32 y Persistence/SeasonalNaive/ARIMA. El número final de contrastes se enumerará antes del preregistro; el m≈12 de la guía es ilustrativo, no un permiso para retirar rivales. Los comparadores deterministas aportan trayectorias, no semillas independientes ficticias.
+
+No se han recibido observaciones del docente. La tabla de correcciones identifica por separado los hallazgos de revisión interna.

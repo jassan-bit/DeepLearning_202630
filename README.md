@@ -5,20 +5,20 @@ Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configurac
 | Entregable | Fuentes | Dirección del libro | Estado |
 |---|---|---|---|
 | E1 | [`book/`](book/) | [Abrir E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) | Informe y estudios realizados |
-| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Diez modelos vigentes y candidato CNN-LSTM con atención; benchmark vigente pendiente |
-| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Continuidad CNN-LSTM con atención propuesta; guía específica pendiente |
+| E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Benchmark ejecutado: 16 sistemas y 608 fechas; requisitos pendientes documentados |
+| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Guía incorporada al plan; diagnóstico interno y diseño preliminar; sin resultados propios |
 
 [Selector de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html). La infraestructura de compilación es común; cada JBook se construye desde su propia carpeta. Los apartados experimentales que siguen corresponden a **E1**.
 
 La [sección 5 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) contiene la réplica externa de TimeMixer y el piloto sobre tres modelos en ETTh1. Su [paquete descargable](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip) reúne código y evidencias; estas ejecuciones no modifican los resultados de E1 ni completan el benchmark Bitcoin D7.
 
-La [sección 6 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/06_benchmark_final.html) prepara la comparación tabular, la eficiencia, la inferencia y la discusión del benchmark. Su [paquete de análisis y plantillas](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/benchmark_analysis_download/Benchmark_E2_analisis_plantillas.zip) contiene código verificable y pruebas con fixtures sintéticos. Las métricas y el ranking Bitcoin continúan pendientes de ejecuciones válidas.
+La [sección 6 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/06_benchmark_final.html) presenta la comparación tabular, la eficiencia, la inferencia y la discusión del benchmark. La [tabla A2 medida](book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv) contiene el benchmark ejecutado de 16 sistemas sobre 608 fechas. Los paquetes anteriores conservan su alcance histórico; el [estado vigente de E2](book_e2/intro.md) documenta el cierre y sus limitaciones.
 
 
-Los [protocolos históricos de E2](book_e2/sections/09_protocolo_registrado.md) conservan sus registros y recibos. No definen el catálogo actual ni acreditan el nuevo híbrido. La nueva especificación, implementación, presupuesto y preregistro siguen pendientes; no se alteran los datos o resultados previos.
+Los [protocolos históricos de E2](book_e2/sections/09_protocolo_registrado.md) conservan sus registros y recibos. No definen el catálogo actual ni acreditan el nuevo híbrido. La nueva especificación del mecanismo E3, su implementación, presupuesto y preregistro siguen pendientes; no se alteran los datos o resultados previos.
 
 
-Proyecto de Deep Learning, 2026-30: **E1 principal con GRU32, LSTM32 y MLP16; E2/E3 proponen CNN-1D + LSTM + atención temporal**.
+Proyecto de Deep Learning, 2026-30: **E1 con GRU32, LSTM32 y MLP16; E2 con benchmark ejecutado de 16 sistemas; E3 con candidato CNN-LSTM-atención en revisión de novedad**.
 
 [Jupyter Book](https://jassan-bit.github.io/DeepLearning_202630/intro.html) · [Estudio D7 planificado](https://jassan-bit.github.io/DeepLearning_202630/sections/09_estudio_planificado.html) · [Entregables descargables](https://jassan-bit.github.io/DeepLearning_202630/sections/08_entregables.html#descargar-entregable-1) · [Reproducción](BUILD.md).
 
