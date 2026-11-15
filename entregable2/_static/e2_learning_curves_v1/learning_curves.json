@@ -1,0 +1,330 @@
+{
+  "version": "e2-saved-benchmark-learning-curves-v1",
+  "scope": "posthoc_visualization_of_immutable_saved_epoch_losses_no_new_model_result",
+  "input_sha256": {
+    "book_e2/_static/e2_f2a_audit_20261113/training_evidence.zip": "daaf2cfcf050a37dbc992260011cfbb919a5d577c14f9003aaf6cf1c8be1900d",
+    "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+    "experiments/e2_reduced_protocol_20261112/protocol.json": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+    "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+  },
+  "archive_members": {
+    "auxiliary_curves.csv": {
+      "bytes": 1699104,
+      "sha256": "a724f58cc3c32fd3819c3c275afc446a9e6cd744a63cf8d724f0da1f0e8e5e7b"
+    },
+    "fit_overfit_summary.csv": {
+      "bytes": 83131,
+      "sha256": "cdf824822ad33a3bd877cd838c0126508f0ff7a7e93cb359a10599927a940343"
+    },
+    "source_evidence.json": {
+      "bytes": 177018,
+      "sha256": "c56e462896e159824062ad5192cb83af40ae5406a27dd01849de61c60920a04f"
+    },
+    "training_curves.csv": {
+      "bytes": 3014603,
+      "sha256": "dcdbda5c7a0a90c5352e12c4db3d2b857fec1157848638b82fd48e1f68ee4cc4"
+    }
+  },
+  "script_sha256": "a0d80fbb8e0b251d265ae02417c60f68ca20546822a50fef1c38b77599a21e58",
+  "software": {
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "catalogue_order": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA"
+  ],
+  "neural_models": 13,
+  "classical_models": [
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA"
+  ],
+  "final_seed_ids": [
+    271801,
+    271802,
+    271803,
+    271804,
+    271805,
+    271806
+  ],
+  "HPO_seed": 271201,
+  "HPO_fold_origins": [
+    "2024-01-01",
+    "2024-07-01",
+    "2024-10-01"
+  ],
+  "coverage": {
+    "final_supervised_fits_with_curves": 78,
+    "selected_HPO_fits": 39,
+    "selected_HPO_fits_with_curves": 29,
+    "selected_HPO_cached_fits_without_curves": 10,
+    "supervised_epoch_rows": 6440,
+    "final_supervised_epoch_rows": 4356,
+    "HPO_supervised_epoch_rows": 2084,
+    "auxiliary_epoch_rows": 3250,
+    "auxiliary_histories": 18,
+    "coverage_csv_rows": 120,
+    "coverage_csv_scope": "117supervised fit metadata records plus3classical not-applicable records; auxiliary histories separately in thisJSON",
+    "missing_HPO": [
+      {
+        "model": "FCN-1D",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "43"
+      },
+      {
+        "model": "FCN-1D",
+        "fold_origin": "2024-07-01",
+        "best_epoch_metadata": "32"
+      },
+      {
+        "model": "GRU32",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "143"
+      },
+      {
+        "model": "Inception-1D",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "89"
+      },
+      {
+        "model": "LSTM32",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "62"
+      },
+      {
+        "model": "MLP16",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "186"
+      },
+      {
+        "model": "ResNet-1D",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "45"
+      },
+      {
+        "model": "ResNet-1D",
+        "fold_origin": "2024-07-01",
+        "best_epoch_metadata": "28"
+      },
+      {
+        "model": "TSMixer",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "42"
+      },
+      {
+        "model": "iTransformer",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "41"
+      }
+    ]
+  },
+  "auxiliary_history_coverage": [
+    {
+      "stage": "hpo",
+      "fold_origin": "2024-01-01",
+      "seed": 271201,
+      "phase": "ae1",
+      "recorded_epochs": 192,
+      "validation_values": 192
+    },
+    {
+      "stage": "hpo",
+      "fold_origin": "2024-07-01",
+      "seed": 271201,
+      "phase": "ae1",
+      "recorded_epochs": 200,
+      "validation_values": 200
+    },
+    {
+      "stage": "hpo",
+      "fold_origin": "2024-10-01",
+      "seed": 271201,
+      "phase": "ae1",
+      "recorded_epochs": 176,
+      "validation_values": 176
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271801,
+      "phase": "ae1",
+      "recorded_epochs": 172,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271802,
+      "phase": "ae1",
+      "recorded_epochs": 172,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271803,
+      "phase": "ae1",
+      "recorded_epochs": 172,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271804,
+      "phase": "ae1",
+      "recorded_epochs": 172,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271805,
+      "phase": "ae1",
+      "recorded_epochs": 172,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271806,
+      "phase": "ae1",
+      "recorded_epochs": 172,
+      "validation_values": 0
+    },
+    {
+      "stage": "hpo",
+      "fold_origin": "2024-01-01",
+      "seed": 271201,
+      "phase": "ae2",
+      "recorded_epochs": 197,
+      "validation_values": 197
+    },
+    {
+      "stage": "hpo",
+      "fold_origin": "2024-07-01",
+      "seed": 271201,
+      "phase": "ae2",
+      "recorded_epochs": 200,
+      "validation_values": 200
+    },
+    {
+      "stage": "hpo",
+      "fold_origin": "2024-10-01",
+      "seed": 271201,
+      "phase": "ae2",
+      "recorded_epochs": 191,
+      "validation_values": 191
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271801,
+      "phase": "ae2",
+      "recorded_epochs": 177,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271802,
+      "phase": "ae2",
+      "recorded_epochs": 177,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271803,
+      "phase": "ae2",
+      "recorded_epochs": 177,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271804,
+      "phase": "ae2",
+      "recorded_epochs": 177,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271805,
+      "phase": "ae2",
+      "recorded_epochs": 177,
+      "validation_values": 0
+    },
+    {
+      "stage": "final",
+      "fold_origin": "",
+      "seed": 271806,
+      "phase": "ae2",
+      "recorded_epochs": 177,
+      "validation_values": 0
+    }
+  ],
+  "metrics": {
+    "supervised": "Saved epoch-boundary full-training and HPO validation RMSE in original sigma7 units; not ETTh1 standardized MSE",
+    "auxiliary": "Saved RMSE reconstruction of scaled original inputs, separate ae1/ae2 panels; not sigma7",
+    "risk_evaluation": "Original durable fitting histories, epoch-boundary model.eval/no_grad; no new risk computed here",
+    "final_validation": "Intentionally absent under frozen fixed-epoch protocol; no calibration/test curve substituted",
+    "aggregation": "None. Every recorded history is shown individually; no fold or seed averaging, smoothing or uncertainty band.",
+    "selection_marker": "Saved HPO best epoch only; final epochs were previously fixed"
+  },
+  "drawing": {
+    "per_panel_y_scale": true,
+    "y_axis_starts_at_zero": true,
+    "complete_epoch_range": true,
+    "all_available_individual_histories_drawn": true,
+    "selected_favourable_epoch_subsets": false,
+    "SVG_Date_omitted": true,
+    "stable_svg_hashsalt": "e2-saved-benchmark-learning-curves-v1"
+  },
+  "access": {
+    "training_metadata_archive_opened": 1,
+    "raw_market_archives_opened": 0,
+    "checkpoint_weights_loaded": 0,
+    "model_fits": 0,
+    "model_inference_calls": 0,
+    "predictive_scores_computed": 0,
+    "hypothesis_tests_computed": 0,
+    "saved_source_artifacts_modified": false
+  },
+  "limits": [
+    "Epoch risks use the configured batch; saved final forecasts used batch1. They are not guaranteed numerically identical, especially for batch-dependent period selection.",
+    "Expanding HPO folds are not independent repetitions and are not averaged. The HPO curves concern the chosen recipe, not all234opportunities.",
+    "Final curves show training only. Calibration and test were not new epoch-selection validation sets.",
+    "A visual train/validation gap is not the formal absence-of-overfit test. Historical audit delta_g=null is not interpreted as proof that no prior margin existed.",
+    "No unavailable cache curve is reconstructed. Classical comparators have no comparable neural epoch history.",
+    "Local y scales improve readability; absolute panel heights do not rank model performance. Auxiliary reconstruction phases have a different target/scale from supervised risk."
+  ],
+  "output_sha256": {
+    "final_supervised.png": "4c42a57eb0a288e4548ed1bfef2b1a5eed471ad0b4215d5f5eb16a03c8308881",
+    "final_supervised.svg": "ee39926d636cf35972b1ce70f82ab617909f4d11c82cce91b5cf22436b52102a",
+    "hpo_2024-01-01.png": "d99f32785ae0a0ad55ca1e8cb2aa6b2390c46f846d556d917ad36f3dc12a9daf",
+    "hpo_2024-01-01.svg": "5956d086b69b58d98cf60def3c51f75e167b1044c939008cbf592a667e6eab79",
+    "hpo_2024-07-01.png": "0c5861dc83909dd39dc64a53d04031574126effc3ec4dd50faba25d070a55f4c",
+    "hpo_2024-07-01.svg": "610819f723d0b43ca45a47e56881ef51e1e13392a6a4ba522ff6ba9c513cb1ec",
+    "hpo_2024-10-01.png": "a1b1ce150ea4a8ecf31ad890253814233e698dc35df546d0e58121473aa75fa5",
+    "hpo_2024-10-01.svg": "76b93152b66de5e0442fe6074de7874dd6e3e794537f963f643fbf739af5989d",
+    "sae_auxiliary.png": "55e17d9fcfd40ca0a9f955433b3958d23b99f9ee3ea7758e31746cf965277576",
+    "sae_auxiliary.svg": "81dd680498b5e7bca257838373787f5339dec1d541f5e98235fafcdb15956350",
+    "coverage.csv": "b9d68b29bbcbdd6cc530da36ba4a6b597e3b3ba91eccb3d37750ba496f47f766"
+  }
+}

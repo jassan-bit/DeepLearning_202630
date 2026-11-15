@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "version": "e2-learning-curves-presentation-v1",
+  "reviewed_source_commit": "3e6bb888841e4ca54eefd5564eec06302bed1371",
+  "scope": "Display existing Bitcoin benchmark learning curves, retaining missing-history and phase limits",
+  "operations": {
+    "training_metadata_archive_opened": 1,
+    "raw_market_archives_opened": 0,
+    "checkpoint_weights_loaded": 0,
+    "model_fits": 0,
+    "model_inference_calls": 0,
+    "predictive_scores_computed": 0,
+    "hypothesis_tests_computed": 0,
+    "saved_source_artifacts_modified": false
+  },
+  "coverage": {
+    "final_supervised_fits_with_curves": 78,
+    "selected_HPO_fits": 39,
+    "selected_HPO_fits_with_curves": 29,
+    "selected_HPO_cached_fits_without_curves": 10,
+    "supervised_epoch_rows": 6440,
+    "final_supervised_epoch_rows": 4356,
+    "HPO_supervised_epoch_rows": 2084,
+    "auxiliary_epoch_rows": 3250,
+    "auxiliary_histories": 18,
+    "coverage_csv_rows": 120,
+    "coverage_csv_scope": "117supervised fit metadata records plus3classical not-applicable records; auxiliary histories separately in thisJSON",
+    "missing_HPO": [
+      {
+        "model": "FCN-1D",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "43"
+      },
+      {
+        "model": "FCN-1D",
+        "fold_origin": "2024-07-01",
+        "best_epoch_metadata": "32"
+      },
+      {
+        "model": "GRU32",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "143"
+      },
+      {
+        "model": "Inception-1D",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "89"
+      },
+      {
+        "model": "LSTM32",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "62"
+      },
+      {
+        "model": "MLP16",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "186"
+      },
+      {
+        "model": "ResNet-1D",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "45"
+      },
+      {
+        "model": "ResNet-1D",
+        "fold_origin": "2024-07-01",
+        "best_epoch_metadata": "28"
+      },
+      {
+        "model": "TSMixer",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "42"
+      },
+      {
+        "model": "iTransformer",
+        "fold_origin": "2024-01-01",
+        "best_epoch_metadata": "41"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4059,
+      "sha256": "99adde2289a60b7024530bea85cba88a5471af9d44e261c862e63b73f52c9834"
+    },
+    {
+      "path": "coverage.csv",
+      "bytes": 29591,
+      "sha256": "b9d68b29bbcbdd6cc530da36ba4a6b597e3b3ba91eccb3d37750ba496f47f766"
+    },
+    {
+      "path": "final_supervised.png",
+      "bytes": 448479,
+      "sha256": "4c42a57eb0a288e4548ed1bfef2b1a5eed471ad0b4215d5f5eb16a03c8308881"
+    },
+    {
+      "path": "final_supervised.svg",
+      "bytes": 333669,
+      "sha256": "ee39926d636cf35972b1ce70f82ab617909f4d11c82cce91b5cf22436b52102a"
+    },
+    {
+      "path": "hpo_2024-01-01.png",
+      "bytes": 259599,
+      "sha256": "d99f32785ae0a0ad55ca1e8cb2aa6b2390c46f846d556d917ad36f3dc12a9daf"
+    },
+    {
+      "path": "hpo_2024-01-01.svg",
+      "bytes": 202453,
+      "sha256": "5956d086b69b58d98cf60def3c51f75e167b1044c939008cbf592a667e6eab79"
+    },
+    {
+      "path": "hpo_2024-07-01.png",
+      "bytes": 321611,
+      "sha256": "0c5861dc83909dd39dc64a53d04031574126effc3ec4dd50faba25d070a55f4c"
+    },
+    {
+      "path": "hpo_2024-07-01.svg",
+      "bytes": 237166,
+      "sha256": "610819f723d0b43ca45a47e56881ef51e1e13392a6a4ba522ff6ba9c513cb1ec"
+    },
+    {
+      "path": "hpo_2024-10-01.png",
+      "bytes": 338077,
+      "sha256": "a1b1ce150ea4a8ecf31ad890253814233e698dc35df546d0e58121473aa75fa5"
+    },
+    {
+      "path": "hpo_2024-10-01.svg",
+      "bytes": 255488,
+      "sha256": "76b93152b66de5e0442fe6074de7874dd6e3e794537f963f643fbf739af5989d"
+    },
+    {
+      "path": "learning_curves.json",
+      "bytes": 10222,
+      "sha256": "684e625147cb8b67a4ea5d9d850f7d5594bda79a82993ac84958e1141f79fa01"
+    },
+    {
+      "path": "sae_auxiliary.png",
+      "bytes": 240244,
+      "sha256": "55e17d9fcfd40ca0a9f955433b3958d23b99f9ee3ea7758e31746cf965277576"
+    },
+    {
+      "path": "sae_auxiliary.svg",
+      "bytes": 288192,
+      "sha256": "81dd680498b5e7bca257838373787f5339dec1d541f5e98235fafcdb15956350"
+    }
+  ],
+  "scripts": [
+    {
+      "path": "scripts/plot_e2_benchmark_learning_curves.py",
+      "sha256": "a0d80fbb8e0b251d265ae02417c60f68ca20546822a50fef1c38b77599a21e58"
+    }
+  ],
+  "interpretation": "Stored epoch risks are descriptive evidence, not new model fits, validation histories, scores, or formal absence-of-overfit tests."
+}
