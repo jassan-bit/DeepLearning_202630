@@ -4,6 +4,15 @@
 
 La [lista verificable](../_static/e2_agregacion_entrega_current_v1/guide_checklist.csv), la [trazabilidad](../_static/e2_agregacion_entrega_current_v1/decision_traceability.csv), el [índice de evidencias](../_static/e2_agregacion_entrega_current_v1/current_evidence_index.json) y el [manifiesto](../_static/e2_agregacion_entrega_current_v1/manifest.json) enlazan esta lectura con sus fuentes. El {download}`índice de la consolidación <../_static/e2_agregacion_entrega_current_v1/README.md>` identifica los productos; la {download}`versión anterior íntegra de este complemento <../_static/e2_agregacion_entrega_current_v1/61_reproduccion_consolidada_before_update.md>` y el bloque documental final mantienen las descargas y encabezados anteriores.
 
+
+## Archivos independientes para descarga y ejecución local
+
+Los doce componentes están disponibles como ZIP separados en {ref}`la portada de descargas <e2-entregables-portada>`. Cada archivo contiene su propio punto de entrada, datos/fuentes e instrucciones; no necesita copiar otro paquete ni clonar el repositorio. Los doce comandos predeterminados se prueban después de extraer los ZIP en carpetas ajenas al proyecto.
+
+D01 incluye el libro offline completo y su fuente reconstruible; D02 ejecuta las trece arquitecturas en CPU y ofrece refit CUDA opcional; D03 reconstruye el dataset de desarrollo; D06/D08 reproducen métricas, cobertura y errores desde las trayectorias incluidas; D10 ofrece reanálisis agregado y entrenamiento CPU opcional; D12 prepara diapositivas y notas. Los demás paquetes generan sus informes y registros localmente. Esta comprobación de portabilidad tiene un alcance distinto del replay integral de toda la campaña científica y no cambia por sí sola los estados del Apéndice B.
+
+[Inventario de archivos](../_static/entregables_independientes_v1/index.json) · [Ejecuciones de los ZIP extraídos](../_static/entregables_independientes_v1/execution_report.json) · {download}`Instrucciones generales <../_static/entregables_independientes_v1/LEEME.md>`.
+
 (e2-entrega-reproduccion-vigente)=
 ## Reproducción observada y auditoría disponible
 
