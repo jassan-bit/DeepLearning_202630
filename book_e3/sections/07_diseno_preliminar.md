@@ -1,5 +1,7 @@
 # Diseño preliminar del modelo original
 
+La especificación inicial se desarrolla ahora en el [Bloque C](09_modelo_original.md), con demostración e implementación verificadas sobre datos artificiales. Este antecedente conserva la motivación y distingue las decisiones iniciales de resultados de mercado todavía inexistentes.
+
 ## Problema que podría abordar
 
 Se mantiene la continuidad CNN causal → LSTM unidireccional → atención temporal para BTCUSDT, D7×5 → σ₇ con h=1. La contribución candidata debe residir en una modificación algorítmica que resuelva una limitación pertinente; apilar estos bloques no acredita R1.
@@ -40,7 +42,7 @@ W\left[1+\frac{B\sqrt7}{2\tau_{\min}}
 \left(Q+\Lambda\|I-P\|_2\right)\right]\|H-H'\|_F.
 $$
 
-La ruta de demostración usa que la saturación radial y Softplus son 1-Lipschitz, cada valor tiene norma acotada por $B$, la discordancia tiene constante $\|I-P\|_2$ y el jacobiano de softmax tiene norma espectral a lo sumo $1/2$. Antes de presentarla como resultado teórico se requiere demostración completa, revisión y verificación numérica.
+La ruta de demostración usa que la saturación radial y Softplus son 1-Lipschitz, cada valor tiene norma acotada por $B$, la discordancia tiene constante $\|I-P\|_2$ y el jacobiano de softmax tiene norma espectral a lo sumo $1/2$. La demostración completa y la verificación numérica de la cabeza latente se presentan en el Bloque C; no se extienden automáticamente al predictor desde OHLCV crudo.
 
 La cota se refiere a estados latentes. No demuestra por sí sola estabilidad del predictor respecto a OHLCV crudo. Extenderla exige controlar CNN, LSTM, preprocesamiento y reescalado de la salida; la constante en escala original se multiplica por la media del objetivo usada al entrenar.
 
@@ -49,7 +51,7 @@ La cota se refiere a estados latentes. No demuestra por sí sola estabilidad del
 1. Buscar antecedentes de atención robusta, discordancia multiescala, saturación e influencia acotada en volatilidad financiera y en otras aplicaciones. Registrar fuentes, fechas y diferencias; descartar la propuesta como original si la evidencia no sostiene R1.
 2. Comparar con el mismo híbrido convencional bajo preprocesamiento y capacidad comparables. Registrar cada variante evaluada y el esfuerzo de diseño, usando sólo desarrollo.
 3. Verificar cota, gradientes, causalidad y exportación. Probar perturbaciones controladas, restricciones cercanas a sus límites y extremos genuinos de volatilidad.
-4. Diseñar al menos tres ablaciones aisladas y sustantivas conforme a la guía. Esta propuesta contiene dos modificaciones evidentes; el requisito de tres ablaciones aún no está resuelto y no se completa añadiendo un bloque sin motivación.
+4. Diseñar al menos tres ablaciones aisladas y sustantivas conforme a la guía. Se implementaron tres ablaciones funcionales: sin penalización, sin saturación y sin contenido. La tercera examina un componente convencional, no una tercera innovación; su suficiencia académica y sus efectos en datos reales siguen por evaluar.
 
 La penalización podría atenuar un salto de volatilidad legítimo al considerarlo discordante. Deben examinarse especialmente errores de cola y cobertura condicional. No se han fijado anchos, operador $P$, radios, temperaturas, semillas, datasets adicionales o tag de protocolo, ni se ha comprobado la novedad de esta combinación.
 

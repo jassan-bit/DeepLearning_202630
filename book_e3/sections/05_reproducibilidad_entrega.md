@@ -14,6 +14,10 @@ El manifiesto `experiments/e3_inicio_20261115/fuentes.json` identifica las fuent
 
 El [avance A y B](08_bloques_a_b.md) enlaza inventarios, tabla maestra y paridad de tres artefactos TorchScript heredados. Sus verificaciones offline están automatizadas en `.github/workflows/verify-e3-handoff.yml`; el código y las fuentes de cada informe se conservan en `experiments/e3_bloques_ab_20261115/`. Los controles de fuga completos, la prueba formal de δg y la exportación de los demás sistemas siguen pendientes.
 
+## Evidencia del candidato del Bloque C
+
+La implementación y sus pruebas se encuentran en `src/original_model.py` y `tests/test_original_model.py`. `experiments/e3_bloque_c_20261115/` conserva configuración, bitácora, procedencia, derivación, antecedentes e informe de software. El lock CPU y `verify-e3-original.yml` permiten ejecutar las comprobaciones. Los reportes no se presentan como entrenamiento de mercado, HPO ni protocolo confirmatorio.
+
 ## Estructura final del informe
 
 La organización actual conserva las direcciones existentes y añade diagnóstico y diseño preliminar. Antes de la entrega se reorganizará según el Cuadro 7 de la guía (p. 58), conservando enlaces o concordancia:
