@@ -1,0 +1,108 @@
+{
+  "version": "e2-targeted-existing-data-guard-checks-v1",
+  "reviewed_source_commit": "5c78f32b763450df583693547e59784cc23ebe7a",
+  "scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "scope": "New execution of five existing synthetic unit checks against unchanged current common data/final-worker code. Not a market experiment or full leakage certification.",
+  "status": "passed",
+  "tests_run": 5,
+  "failures": 0,
+  "errors": 0,
+  "selected_tests": [
+    "tests.test_e2_reduced_final_executor.FinalExecutorTests.test_calibration_changes_cannot_change_final_fit_or_scaler",
+    "tests.test_e2_reduced_final_executor.FinalExecutorTests.test_final_refit_never_receives_calibration_validation",
+    "tests.test_e2_reduced_final_executor.FinalExecutorTests.test_known_daily_network_is_unreachable_before_full_freeze",
+    "tests.test_e2_reduced_final_data.AdmissionTests.test_dec31_bridges_first_forecast_and_target_is_population_seven_returns",
+    "tests.test_e2_reduced_final_data.AdmissionTests.test_missing_day_not_compressed_and_invalid_geometry_rejected"
+  ],
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "execution_device": "CPU",
+    "installation_performed": false
+  },
+  "checks": [
+    {
+      "id": "train_only_transform",
+      "result": "passed",
+      "meaning": "Changing synthetic observations after31Oct leaves final training signature/scaler unchanged."
+    },
+    {
+      "id": "fixed_epoch_final_worker",
+      "result": "passed",
+      "meaning": "With fit/inference mocked,the current final worker passes no calibration validation into fit,uses fixed epochs and binds calibrator/checkpoint."
+    },
+    {
+      "id": "access_gate",
+      "result": "passed",
+      "meaning": "Market downloader is not called when full physical freeze validation fails."
+    },
+    {
+      "id": "causal_bridge",
+      "result": "passed",
+      "meaning": "Synthetic first evaluation window uses31Dec as observable history,and target is populationSTD of seven logreturns."
+    },
+    {
+      "id": "calendar_geometry_guard",
+      "result": "passed",
+      "meaning": "Missing evaluation days and nonfinite geometry are rejected rather than calendar-compressed."
+    }
+  ],
+  "sources": [
+    {
+      "path": "scripts/e2_reduced_final.py",
+      "bytes": 34401,
+      "sha256": "033e4bf7db0d4f69624063830d116a1b5cf159a401c310a79979aa46307dad19",
+      "identical_to_scientific_commit": true
+    },
+    {
+      "path": "scripts/e2_reduced_final_data.py",
+      "bytes": 20034,
+      "sha256": "693842a92386cd3c49ed3e10a9296428e900010df7ae7db373a80d625e851867",
+      "identical_to_scientific_commit": true
+    },
+    {
+      "path": "scripts/e2_temporal_training.py",
+      "bytes": 25516,
+      "sha256": "3e62a12135b47414ac11038f5bd931076c2c12c7fdd8edcbd3b46eae4dc90ac9",
+      "identical_to_scientific_commit": true
+    },
+    {
+      "path": "tests/test_e2_reduced_final_executor.py",
+      "bytes": 6994,
+      "sha256": "472fe09a1a038f3c7e65b70df83665f4ad4a87ee83078076c2de2be781ab0814",
+      "identical_to_scientific_commit": true
+    },
+    {
+      "path": "tests/test_e2_reduced_final_data.py",
+      "bytes": 9575,
+      "sha256": "8be8835c69830e738919d822bc3d18b3416f48a70eecd37ade3d4eefa22af6a2",
+      "identical_to_scientific_commit": true
+    },
+    {
+      "path": "scripts/e2_real_executor.py",
+      "bytes": 31425,
+      "sha256": "0a5aef1d56bfb86c34fda2a3078612eb54434e2c395d6394202c147f9a8b7bf1",
+      "identical_to_scientific_commit": true
+    }
+  ],
+  "operations": {
+    "existing_unit_check_executions": 5,
+    "new_unit_tests_written": 0,
+    "market_data_files_read": 0,
+    "new_model_optimizer_fits": 0,
+    "real_model_inference_calls": 0,
+    "hypothesis_tests": 0,
+    "bootstrap_draws": 0,
+    "original_scientific_files_modified": false
+  },
+  "limits": [
+    "Uses synthetic panels,mocked optimizer/inference and temporary fixtures;not a real randomized-label training control.",
+    "Verifies these common guards and branch wiring,not every author port or all learned transformations in every actual final checkpoint.",
+    "Does not inspect actual final input tensors for exact/near-duplicate content or run an adversarial classifier.",
+    "Executed after the benchmark;not relabelled as a pre-fit audit."
+  ],
+  "log": "targeted_data_guard_checks.log",
+  "log_sha256": "4f1261a389c16031a0d291ab6a82783ed6eb9f724428bcbc19efcde0653753c1"
+}

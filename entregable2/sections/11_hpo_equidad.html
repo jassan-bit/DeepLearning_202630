@@ -61,6 +61,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/11_hpo_equidad';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -438,12 +440,28 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dominio-y-oportunidades-conservadas">11.1 Dominio y oportunidades conservadas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-comun-y-diferencias-estructurales">11.2 Presupuesto común y diferencias estructurales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-definida-y-nas-condicional">11.3 Arquitectura definida y NAS condicional</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustes-finales-y-alcance-de-las-comparaciones">11.4 Ajustes finales y alcance de las comparaciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-entorno-y-cierre-de-recursos">11.5 Registro, entorno y cierre de recursos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-equidad-para-los-modelos">11.1 Reglas de equidad para los modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-mantuvo-comun-y-que-difiere">11.1.1 Qué se mantuvo común y qué difiere</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oportunidades-resultados-y-fallos-conservados">11.1.2 Oportunidades, resultados y fallos conservados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-hiperparametros-y-reajuste-final">11.2 Búsqueda de hiperparámetros y reajuste final</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dominio-finito-registrado-y-cobertura-real">11.2.1 Dominio finito registrado y cobertura real</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-epocas-y-politica-final">11.2.2 Validación, épocas y política final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-por-modelo-y-receta-seleccionada">11.3 Registro por modelo y receta seleccionada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ganadores-valores-y-epocas">11.3.1 Ganadores, valores y épocas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-cubren-los-campos-de-la-plantilla">11.3.2 Cómo se cubren los campos de la plantilla</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia-coste-y-sostenibilidad">11.4 Eficiencia, coste y sostenibilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-por-red-y-que-significan">11.4.1 Medidas por red y qué significan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fronteras-de-pareto-observadas">11.4.2 Fronteras de Pareto observadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-por-mejora-y-equivalencia-practica">11.4.3 Coste por mejora y equivalencia práctica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balance-y-sostenibilidad">11.4.4 Balance y sostenibilidad</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -457,35 +475,444 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="protocolo-de-entrenamiento-ajuste-y-costo-computacional">
 <span id="seleccion-hpo-ejecutada-y-equidad"></span><h1>11. Protocolo de Entrenamiento, Ajuste y Costo Computacional<a class="headerlink" href="#protocolo-de-entrenamiento-ajuste-y-costo-computacional" title="Link to this heading">#</a></h1>
+<p><strong>Lectura vigente:</strong> la selección reducida y el benchmark están ejecutados para <strong>dieciséis sistemas</strong>: diez candidatos, las referencias E1 MLP16/LSTM32/GRU32 y Persistence, SeasonalNaive y ARIMA. Las trece redes aportan <strong>78 ajustes finales, seis semillas por receta</strong>; los tres clásicos completan <strong>81 predictores sobre 608 fechas comunes</strong>. Las reproducciones y ablaciones posteriores conservan sus propias identidades y no aumentan el número de predictores originales de A2.</p>
+<p>Este capítulo sigue <strong>11.1–11.4 de la guía, pp. 46–48</strong>. El <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">protocolo ejecutado</span></a>, la <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación</span></a>, el <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark</span></a>, la <a class="reference download internal" download="" href="../_downloads/2aa906be675b40692ccf0d820b541cbe/guide_checklist.csv"><span class="xref download myst">lista verificable</span></a>, la <a class="reference download internal" download="" href="../_downloads/3f6fcef1d5cd9240638bc7111f9b2cd7/decision_traceability.csv"><span class="xref download myst">trazabilidad</span></a> y el <a class="reference download internal" download="" href="../_downloads/8ada73f4c74b4db80c16a750d6d6445d/current_evidence_index.json"><span class="xref download myst">índice de evidencias</span></a> permiten revisar los datos, recetas, oportunidades, fallos y costes. El <a class="reference download internal" download="" href="../_downloads/f7f3284376e09e1b06e3115c907c3641/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/8e4ca4173c72705268897181d126332e/manifest.json"><span class="xref download myst">manifiesto</span></a> mantienen separados los resultados comprobados de los requisitos parciales.</p>
+<section id="reglas-de-equidad-para-los-modelos">
+<span id="e2-equidad-modelos-vigente"></span><h2>11.1 Reglas de equidad para los modelos<a class="headerlink" href="#reglas-de-equidad-para-los-modelos" title="Link to this heading">#</a></h2>
+<section id="que-se-mantuvo-comun-y-que-difiere">
+<h3>11.1.1 Qué se mantuvo común y qué difiere<a class="headerlink" href="#que-se-mantuvo-comun-y-que-difiere" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Regla de la guía</p></th>
+<th class="head"><p>Evidencia de la ejecución actual</p></th>
+<th class="head"><p>Alcance o límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Datos y preprocesamiento base</strong></p></td>
+<td><p>Las trece redes reciben <strong>D7×5 OHLCV</strong>, objetivo σ₇ poblacional sin anualización y h=1. Ventanas relativas, normalización de atributos y escala del objetivo se ajustan sólo con el train admisible. Todas las métricas finales usan las mismas 608 fechas.</p></td>
+<td><p>La adaptación de cada cuerpo y su cabeza escalar están documentadas en <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a>. Las referencias temporales usan objetivos pasados y, en ARIMA, una historia endógena más larga; ser causal no significa tener información idéntica a D7×5.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Presupuesto de ajuste</strong></p></td>
+<td><p><strong>Seis plazas C01–C06 por red, los mismos tres folds y semilla HPO 271201:</strong> 234 oportunidades.</p></td>
+<td><p>Igual número de plazas no acredita igual coste total. SAE tiene tres fases; los registros de selección incluyen T4/A100 y reutilizaciones con políticas históricas. Los clásicos tienen dominios distintos.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parada y validación</strong></p></td>
+<td><p>Mismos tres orígenes de selección; máximo 200 épocas, paciencia 20 y mejora estricta de validación bajo la política aplicable a fases nuevas. La receta y sus épocas finales se fijan desde la validación.</p></td>
+<td><p>Los resultados reutilizados conservan las políticas con que se obtuvieron. La regla común no significa el mismo número final de épocas o actualizaciones para arquitecturas distintas.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Esfuerzo arquitectónico</strong></p></td>
+<td><p>Los cuerpos publicados y sus adaptaciones están adjudicados, incluida <strong>TIDE-D7-PUBLISHED-R0-v2</strong>.</p></td>
+<td><p>La NAS de 1.000 diseños y dos fases es condicional a un cuerpo no definido. Seis plazas HPO no constituyen NAS; las variantes propias históricas conservan sus obligaciones y no reciben una exención retroactiva.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Preentrenamiento</strong></p></td>
+<td><p>No se importaron pesos preentrenados ajenos en el benchmark. SAE realiza AE1 y AE2 con las entradas de su propio train antes de la fase supervisada.</p></td>
+<td><p>Se incluye el coste de esas dos fases. Las tres ablaciones entrenadas de <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>, incluida retirar preentrenamiento, tienen seis semillas y familias posteriores propias; un no rechazo no demuestra contribución nula.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Implementación de referencia</strong></p></td>
+<td><p>Código de autores fijado y desviaciones D7 identificadas en §44; TiDE tiene paridad funcional documentada. <a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">§5</span></a> conserva una réplica parcial de TimeMixer/ETTh1.</p></td>
+<td><p>La réplica externa y una comprobación estructural no acreditan una reproducción numérica de todos los artículos. La repetición de los 81 predictores verifica el pipeline congelado, con su propio propósito.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Línea base fuerte</strong></p></td>
+<td><p>ARIMA recibió 18 órdenes × 3 folds: 51 resultados válidos, dos no convergencias y un fallo de implementación; 15 órdenes fueron elegibles y ganó (2,0,1). SeasonalNaive evaluó tres periodos y eligió 7; Persistence tiene lag 1 fijo.</p></td>
+<td><p>R=1 en un clásico determinista no significa un baseline sin ajustar. Tampoco se presenta su dominio como idéntico en coste al neuronal ni se asigna cero a los recursos no medidos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los folds usan <strong>253/435/527 ejemplos de entrenamiento y 83 de validación cada uno</strong>. El ajuste final usa <strong>655 ejemplos</strong> hasta el 31/10/2024, después embargo del 01–07/11, calibración de 53 fechas del 08/11–30/12 y evaluación de 608 fechas del 01/01/2025–31/08/2026. El 31/12 aporta historia causal con parámetros fijos. La <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría de soportes</span></a> distingue IDs y la historia compartida legítima de calibración/test; no se afirma independencia entre ventanas o particiones expansivas solapadas.</p>
+<p>La métrica, δ y partición se heredan de E1 conforme a la guía. La <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación</span></a> y la <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión</span></a> documentan el orden del scoring actual, con periodo histórico ya conocido. Ese orden no se convierte en una evaluación prospectiva nueva ni autoriza elegir otra receta a partir del ranking final.</p>
+</section>
+<section id="oportunidades-resultados-y-fallos-conservados">
+<h3>11.1.2 Oportunidades, resultados y fallos conservados<a class="headerlink" href="#oportunidades-resultados-y-fallos-conservados" title="Link to this heading">#</a></h3>
+<p>Se conservan <strong>231 resultados válidos de 234 oportunidades</strong>, dos fallos conocidos y un desenlace desconocido. Cada una de las trece recetas ganadoras tiene tres folds completos. Las reutilizaciones admitidas no se cuentan como entrenamientos nuevos, y un fallo no se sustituye por una oportunidad adicional favorable. El intento TSMixer C02 del origen julio de 2024 perdido con la sesión T4 conserva desenlace desconocido y cargo conservador, sin inventar métricas o pasos del optimizador.</p>
+<p>Este cotejo verifica los resultados y disposiciones publicados, <strong>sin reconstruir la atribución exhaustiva caché/nuevo del diario</strong>. Los contadores históricos y candidatos de caché conservan su corte; no se transforman en una medición independiente de todos los entrenamientos nuevos. Los 39 ajustes HPO de recetas finalmente elegidas son una selección del dominio completo, no los 234 intentos. Hay curvas recuperadas para 29/39 y diez ausencias explícitas; los 78 finales sí conservan sus curvas. <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">Galería de curvas</span></a> · <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">Auditoría de entrenamiento</span></a>.</p>
+</section>
+</section>
+<section id="busqueda-de-hiperparametros-y-reajuste-final">
+<span id="e2-hpo-vigente"></span><h2>11.2 Búsqueda de hiperparámetros y reajuste final<a class="headerlink" href="#busqueda-de-hiperparametros-y-reajuste-final" title="Link to this heading">#</a></h2>
+<section id="dominio-finito-registrado-y-cobertura-real">
+<h3>11.2.1 Dominio finito registrado y cobertura real<a class="headerlink" href="#dominio-finito-registrado-y-cobertura-real" title="Link to this heading">#</a></h3>
+<p>La continuación reducida evalúa seis tuplas por red, con procedencia en las posiciones padre <strong>5/7/8/9/10/15</strong>. Se eligieron por cobertura de metadatos: batches 16/32/64, presencia de weight decay cero/positivo y separación en logLR, con desempate determinista, <strong>sin usar RMSE o tiempos observados para escoger esas plazas</strong>. No se presenta esta reducción como exploración exhaustiva ni como búsqueda bayesiana nueva. La guía admite cuadrícula en espacios pequeños; la amplitud y cobertura efectiva de este dominio reducido siguen declaradas.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/44d9c7465abdc0e827c825eb7222e73e/hpo_configurations_registered_bytes_v2.csv"><span class="xref download myst">CSV completo de configuración</span></a> conserva las seis plazas por modelo y todos sus valores originales. <strong>TiDE requiere su extensión específica:</strong> <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/5c78f32b763450df583693547e59784cc23ebe7a/experiments/e2_tide_published_r0_20261112/configurations.json">configuraciones publicadas R0-v2</a>, con dropout 0, sin reutilizar resultados de la antigua variante NAS. Las filas TiDE antiguas son procedencia; su dropout vacío no se interpreta como una búsqueda ejecutada de ese parámetro. Los flags <code class="docutils literal notranslate"><span class="pre">pending</span></code> de un registro inicial describen aquel corte, no el cierre posterior de la selección.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dimensión indicada por la guía</p></th>
+<th class="head"><p>Cobertura efectivamente registrada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Learning rate, weight decay y batch</strong></p></td>
+<td><p>Valores por arquitectura en las seis tuplas. LR conserva la procedencia logarítmica; batch recorre 16/32/64 y existe WD cero/positivo. Las tuplas numéricas no son idénticas entre cuerpos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Dropout</strong></p></td>
+<td><p>Varía en TSMixer, iTransformer y MLP16/LSTM32/GRU32. Se mantiene fijo en FCN/ResNet/Inception (0), SAE (0,3 supervisado), TimesNet/TimeMixer (0,1), PatchTST (0,3) y TiDE R0-v2 (0). No se afirma que todo el catálogo exploró dropout ni que todo quedó fijo.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Profundidad, ancho y parámetros familiares</strong></p></td>
+<td><p>Las dimensiones de los cuerpos, cabezas, kernels y normalizaciones conservan la adjudicación de fuente. No se acredita exploración uniforme de esas dimensiones en estas seis plazas. Un cuerpo definido evita NAS condicional, pero no demuestra por sí solo toda la cobertura mínima HPO de §11.2.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Warmup y contexto Transformer</strong></p></td>
+<td><p>PatchTST varía warmup 0/0,1; iTransformer 0/0,05/0,1. Contexto D7 y cabezas/dimensiones están fijados por el contrato y el cuerpo seleccionado. No se registra aquí una búsqueda completa de todos los mínimos familiares.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Opciones condicionadas por la tarea</strong></p></td>
+<td><p>No hay fine-tuning de un Transformer externo ni decodificación multi-paso con teacher forcing. Esas opciones se distinguen de las dimensiones aplicables que sí permanecieron fijas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los mejores valores y su identidad discreta se publican en §11.3; el dominio completo permite localizar cada ganador entre sus seis plazas. <strong>No hay curvas actuales de importancia de hiperparámetros ni una estimación completa de la varianza de selección</strong> acreditadas por este inventario. Tener una tabla de ganadores no subsana esas condiciones ni una amplitud insuficiente del espacio.</p>
+</section>
+<section id="validacion-epocas-y-politica-final">
+<h3>11.2.2 Validación, épocas y política final<a class="headerlink" href="#validacion-epocas-y-politica-final" title="Link to this heading">#</a></h3>
+<p>Se minimiza el RMSE de los <strong>249 pronósticos internos concatenados</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+q_{\mathrm{HPO}}=\sqrt{\frac{\sum_f n_f\,q_f^2}{\sum_f n_f}},
+\qquad n_f=83.
+\]</div>
+<p>No es una media simple de tres RMSE. El desempate registrado usa la identidad de configuración. Las mejores épocas son las primeras que mejoran estrictamente la validación; después se fija <strong>ceil(mediana de las tres mejores épocas ganadoras)</strong>, por separado para AE1/AE2/supervisión en SAE. El <a class="reference download internal" download="" href="../_downloads/7b22e6d5d614eb9ce5b4169d2514cc3f/protocol.json"><span class="xref download myst">protocolo reducido</span></a> conserva esos criterios y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> enlaza los cierres y enmiendas aplicados.</p>
+<p>Cada semilla final reinicia pesos y optimizador con su receta elegida. <strong>El ajuste final usa train hasta el 31/10/2024 y épocas fijas</strong>: no se incorpora las 53 fechas de calibración al train ni se hace early stopping con calibración o test. Los datos usados para la selección HPO ya anteriores al corte final quedan incluidos sólo cuando cumplen la máscara del entrenamiento final. La política es común y no equivale a afirmar que se concatenaron todos los conjuntos denominados «validación» en registros históricos.</p>
+<p>El entrenamiento conserva AdamW, betas (0,9; 0,999), ε=10⁻⁸, MSE del objetivo normalizado, clipping de norma 1 y coseno con warmup registrado. El horizonte del scheduler es <strong>200×batches_por_época</strong>, aunque las épocas finales sean menores; no se comprime retrospectivamente. La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación</span></a> detalla grupos de decay y fases. Las pérdidas por época usan el batch configurado; scoring y predicciones guardadas usan batch 1. Esa diferencia, relevante en TimesNet, impide tratar una curva como si fuese exactamente la vía numérica de A2 o una prueba formal de δg.</p>
+<p>Las fases nuevas tuvieron tope de 1.800 s, máximo 200 épocas y paciencia 20; las reservas ordinarias fueron 1.860 s y SAE 5.460 s por sus tres fases. Son techos de admisión y no duraciones consumidas. Las reutilizaciones conservan sus límites y procedencia; igualar ahora el relato no cambia la política histórica con la que se obtuvieron.</p>
+</section>
+</section>
+<section id="registro-por-modelo-y-receta-seleccionada">
+<span id="e2-registro-modelo-vigente"></span><h2>11.3 Registro por modelo y receta seleccionada<a class="headerlink" href="#registro-por-modelo-y-receta-seleccionada" title="Link to this heading">#</a></h2>
+<section id="ganadores-valores-y-epocas">
+<h3>11.3.1 Ganadores, valores y épocas<a class="headerlink" href="#ganadores-valores-y-epocas" title="Link to this heading">#</a></h3>
+<p>La tabla transcribe los valores de las <a class="reference download internal" download="" href="../_downloads/03331ecd4c8ddbd951d148fe6c64cf63/frozen_architecture_inputs.json"><span class="xref download myst">recetas efectivamente reproducidas</span></a>. C01–C06 se corresponden con los índices padre 5/7/8/9/10/15; no son posiciones de un ranking de test. Los decimales completos, receta y <code class="docutils literal notranslate"><span class="pre">trial_id</span></code> permanecen en el JSON. El <a class="reference download internal" download="" href="../_downloads/46b5713a8674d2ff9826704a9dbe364e/model_training_register.csv"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">descargable</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">trece</span> <span class="pre">redes</span></code></a> reúne las tuplas ganadoras, épocas por fase, parámetros, recursos y RMSE por semilla; su <a class="reference download internal" download="" href="../_downloads/0b73092f555abc4968d1f9d65b848b74/model_training_register_provenance.json"><span class="xref download myst">procedencia y ámbitos</span></a> fijan fuentes y hashes. <strong>SAE</strong> abrevia LSTM-autoencoder con predictor; 172/177/78 son sus épocas AE1/AE2/supervisadas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head"><p>Plaza / índice padre</p></th>
+<th class="head text-right"><p>LR inicial</p></th>
+<th class="head text-right"><p>Weight decay</p></th>
+<th class="head text-right"><p>Batch</p></th>
+<th class="head text-right"><p>Dropout / warmup</p></th>
+<th class="head text-right"><p>Épocas finales</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>C02 / 7</p></td>
+<td class="text-right"><p>0,000569539454</p></td>
+<td class="text-right"><p>0,00100407577</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0 / 0</p></td>
+<td class="text-right"><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td><p>C05 / 10</p></td>
+<td class="text-right"><p>0,000757944015</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0 / 0</p></td>
+<td class="text-right"><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>C05 / 10</p></td>
+<td class="text-right"><p>0,000739462065</p></td>
+<td class="text-right"><p>1,81848958e-06</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>0 / 0</p></td>
+<td class="text-right"><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>SAE</p></td>
+<td><p>C06 / 15</p></td>
+<td class="text-right"><p>0,00172198473</p></td>
+<td class="text-right"><p>0,00259360317</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0,3 / 0</p></td>
+<td class="text-right"><p>172 / 177 / 78</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p>C05 / 10</p></td>
+<td class="text-right"><p>0,00283816847</p></td>
+<td class="text-right"><p>1,19221337e-05</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0,1 / 0</p></td>
+<td class="text-right"><p>35</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>C03 / 8</p></td>
+<td class="text-right"><p>0,00114173843</p></td>
+<td class="text-right"><p>7,97647962e-06</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>0,3 / 0</p></td>
+<td class="text-right"><p>42</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td><p>C01 / 5</p></td>
+<td class="text-right"><p>0,000139612767</p></td>
+<td class="text-right"><p>2,77961589e-05</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0 / 0</p></td>
+<td class="text-right"><p>41</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>C01 / 5</p></td>
+<td class="text-right"><p>0,000667745995</p></td>
+<td class="text-right"><p>2,09032861e-05</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0,1 / 0</p></td>
+<td class="text-right"><p>66</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>C02 / 7</p></td>
+<td class="text-right"><p>0,00144585172</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0,3 / 0,1</p></td>
+<td class="text-right"><p>47</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>C02 / 7</p></td>
+<td class="text-right"><p>0,00243512182</p></td>
+<td class="text-right"><p>0,000919016591</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0,3 / 0</p></td>
+<td class="text-right"><p>45</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td><p>C05 / 10</p></td>
+<td class="text-right"><p>0,00150098487</p></td>
+<td class="text-right"><p>0,000744209928</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>0 / 0</p></td>
+<td class="text-right"><p>57</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td><p>C01 / 5</p></td>
+<td class="text-right"><p>0,00235640615</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>64</p></td>
+<td class="text-right"><p>0,3 / 0</p></td>
+<td class="text-right"><p>62</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td><p>C03 / 8</p></td>
+<td class="text-right"><p>0,000457731355</p></td>
+<td class="text-right"><p>0,00665836725</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0,1 / 0</p></td>
+<td class="text-right"><p>143</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las listas históricas <code class="docutils literal notranslate"><span class="pre">[271201,271202]</span></code> presentes en algunas tuplas describen el origen del dominio, no dos semillas HPO ejecutadas en la continuación: la semilla efectiva fue <strong>271201</strong>. El registro final guarda <strong>271801–271806</strong> para cada red. Los tres clásicos aportan una trayectoria determinista cada uno.</p>
+</section>
+<section id="como-se-cubren-los-campos-de-la-plantilla">
+<h3>11.3.2 Cómo se cubren los campos de la plantilla<a class="headerlink" href="#como-se-cubren-los-campos-de-la-plantilla" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo de §11.3</p></th>
+<th class="head"><p>Registro vigente y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Identificación</strong></p></td>
+<td><p><a class="reference internal" href="03_literatura.html"><span class="std std-doc">Fichas y referencias con DOI</span></a>, <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">arquitecturas/ports y commits</span></a>, motor científico <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/1e8745497b484518f766b6da5c19be8362d9add7"><code class="docutils literal notranslate"><span class="pre">1e8745497b484518f766b6da5c19be8362d9add7</span></code></a>. Las fuentes distinguen DOI editorial de preprint y código propio de autor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Preentrenamiento</strong></p></td>
+<td><p>Ningún checkpoint preentrenado ajeno; SAE preentrena sus dos encoders con train. <a class="reference internal" href="08_reproducibilidad.html"><span class="std std-doc">§8</span></a> identifica licencias y su cobertura parcial por componente; un repositorio público no es licencia uniforme.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Arquitectura y operaciones</strong></p></td>
+<td><p>Dimensiones, enlaces, parámetros y trial en <a class="reference download internal" download="" href="../_downloads/03331ecd4c8ddbd951d148fe6c64cf63/frozen_architecture_inputs.json"><span class="xref download myst">frozen_architecture_inputs.json</span></a>; matrices/convoluciones y exclusiones en <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">§58</span></a>. FLOPs core no se renombran como FLOPs totales.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Hiperparámetros finales y T</strong></p></td>
+<td><p>Tabla de ganadores anterior, seis tuplas por red, tres folds y dominio original conservado. TiDE usa la extensión publicada indicada. Los fallos siguen formando parte de sus oportunidades.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Arquitectura seleccionada por NAS</strong></p></td>
+<td><p>Campo condicional: los cuerpos actuales están definidos. No se inventan tripletas de anchos, conjuntos de finalistas indistinguibles, correlación entre fases o corrección del sesgo del ganador no ejecutados. La incertidumbre de seleccionar hiperparámetros sigue sin quedar completamente cuantificada.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Entrenamiento</strong></p></td>
+<td><p>Optimizador/scheduler/pérdida/épocas y precisión en §11.2 y <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">§4</span></a>; <a class="reference download internal" download="" href="../_downloads/93d5104f8f5efe13c7e3e5941200893d/fit_overfit_summary.csv"><span class="xref download myst">117 resúmenes de ajustes</span></a> y <a class="reference download internal" download="" href="../_downloads/2947ec6064534a5f9a6abb2f2acfb14b/training_evidence.zip"><span class="xref download myst">curvas originales</span></a>. Las diez historias HPO ausentes se conservan como tales.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Cómputo</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/267bbd7cb577bfab772e9b78f2144298/model_efficiency.csv"><span class="xref download myst">Tiempos y parámetros por modelo</span></a>, <a class="reference download internal" download="" href="../_downloads/e63015ddc7b521892fad7e8decdef46a/phase_resources.csv"><span class="xref download myst">recursos por fase</span></a>, perfiles <a class="reference download internal" download="" href="../_downloads/fb9d69c8ad83d1f3beef79ee9cf5794b/inference_profiles_per_predictor.csv"><span class="xref download myst">por predictor</span></a> y <a class="reference download internal" download="" href="../_downloads/4a2e3fdcb5bed843a2453eca99dc979f/inference_profiles_by_model.csv"><span class="xref download myst">por modelo</span></a>. El CSV de fases contiene 135 filas: 90 con <code class="docutils literal notranslate"><span class="pre">stage=final</span></code> y 45 de HPO seleccionado; las primeras corresponden a los 78 ajustes finales, con las fases auxiliares SAE incluidas. Los ámbitos de tiempo y memoria están declarados en §11.4.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Resultados por ejecución</strong></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis A2</span></a>, RMSE individuales por semilla y métricas sobre 608 fechas; validación interna por fold en los recibos de selección. No se reemplazan todas las ejecuciones por el promedio.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Incidencias y decisiones</strong></p></td>
+<td><p>Dos fallos neuronales conocidos, un desconocido conservado y tres incidencias ARIMA; <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> registra fallos de adquisición, pausas y correcciones de transporte, sin convertirlos en nuevos resultados científicos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El tracking utiliza <strong>configuraciones versionadas, JSON/JSONL, manifiestos, hashes, checkpoints y diarios aditivos en GitHub</strong>. Permite seguir intentos y estados sin atribuir el registro a MLflow o W&amp;B. La <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">reproducción en entorno limpio</span></a> aprobó 81/81 comprobaciones con discrepancia máxima de pronóstico 0; no acredita por sí sola equidad integral, adecuación o generalización externa.</p>
+</section>
+</section>
+<section id="eficiencia-coste-y-sostenibilidad">
+<span id="e2-eficiencia-vigente"></span><h2>11.4 Eficiencia, coste y sostenibilidad<a class="headerlink" href="#eficiencia-coste-y-sostenibilidad" title="Link to this heading">#</a></h2>
+<section id="medidas-por-red-y-que-significan">
+<h3>11.4.1 Medidas por red y qué significan<a class="headerlink" href="#medidas-por-red-y-que-significan" title="Link to this heading">#</a></h3>
+<p>Los 78 ajustes finales se ejecutaron en <strong>NVIDIA A100-SXM4-80GB, Python 3.12.12, Torch 2.8.0+cu126 y CUDA 12.6</strong>, FP32, dos hilos CPU, determinismo solicitado y AMP/TF32 desactivados. La tabla combina únicamente las magnitudes publicadas de las mismas recetas congeladas; los otros entornos de selección o análisis no se presentan como idénticos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>Parámetros del predictor</p></th>
+<th class="head text-right"><p>Tiempo final/semilla, s: media ± DE</p></th>
+<th class="head text-right"><p>FLOPs core observados/ventana</p></th>
+<th class="head text-right"><p>Latencia forward, ms</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>268 929</p></td>
+<td class="text-right"><p>22,28 ± 0,18</p></td>
+<td class="text-right"><p>3 741 952</p></td>
+<td class="text-right"><p>1,10541</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>522 955</p></td>
+<td class="text-right"><p>49,72 ± 0,55</p></td>
+<td class="text-right"><p>7 265 920</p></td>
+<td class="text-right"><p>3,38347</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>490 561</p></td>
+<td class="text-right"><p>52,09 ± 0,31</p></td>
+<td class="text-right"><p>6 837 632</p></td>
+<td class="text-right"><p>4,55987</p></td>
+</tr>
+<tr class="row-odd"><td><p>SAE</p></td>
+<td class="text-right"><p>8 739</p></td>
+<td class="text-right"><p>157,08 ± 1,07</p></td>
+<td class="text-right"><p>116 308</p></td>
+<td class="text-right"><p>0,84019</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>1 173 099</p></td>
+<td class="text-right"><p>271,95 ± 2,21</p></td>
+<td class="text-right"><p>56 242 762</p></td>
+<td class="text-right"><p>9,13152</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>35 044</p></td>
+<td class="text-right"><p>37,92 ± 0,28</p></td>
+<td class="text-right"><p>433 110</p></td>
+<td class="text-right"><p>3,80928</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>163 384</p></td>
+<td class="text-right"><p>33,62 ± 0,20</p></td>
+<td class="text-right"><p>1 622 816</p></td>
+<td class="text-right"><p>2,05747</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>9 447</p></td>
+<td class="text-right"><p>142,72 ± 0,54</p></td>
+<td class="text-right"><p>960 650</p></td>
+<td class="text-right"><p>7,65790</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td class="text-right"><p>16 388</p></td>
+<td class="text-right"><p>76,38 ± 0,36</p></td>
+<td class="text-right"><p>632 330</p></td>
+<td class="text-right"><p>5,28205</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td class="text-right"><p>795 403</p></td>
+<td class="text-right"><p>53,01 ± 0,23</p></td>
+<td class="text-right"><p>7 936 020</p></td>
+<td class="text-right"><p>3,00425</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>593</p></td>
+<td class="text-right"><p>9,98 ± 0,13</p></td>
+<td class="text-right"><p>1 152</p></td>
+<td class="text-right"><p>0,32324</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>5 025</p></td>
+<td class="text-right"><p>8,90 ± 0,14</p></td>
+<td class="text-right"><p>66 368</p></td>
+<td class="text-right"><p>0,45158</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>3 777</p></td>
+<td class="text-right"><p>45,20 ± 0,16</p></td>
+<td class="text-right"><p>49 792</p></td>
+<td class="text-right"><p>0,42854</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El tiempo es <strong>reloj de pared de las fases finales</strong>: incluye actualización, evaluación de riesgo y checkpoints; excluye HPO completo, controlador y scoring persistido. SAE incluye AE1, AE2 y supervisión, mientras el recuento de parámetros cuenta sólo el predictor desplegado y excluye decodificadores auxiliares. La DE de los tiempos en la tabla describe seis tiempos de entrenamiento, <strong>no dispersión entre fechas de mercado</strong>. Las 78 ejecuciones suman <strong>5.765,09 s</strong>. Los 39 ajustes de las recetas HPO finalmente elegidas suman <strong>3.007,84 s</strong> y mezclan T4/A100/caché; ese subtotal no es el coste completo de seleccionar cada arquitectura. <code class="docutils literal notranslate"><span class="pre">full_selection_seconds</span></code> permanece desconocido.</p>
+<p>La latencia es la <strong>media de seis medianas registradas por semilla</strong>, con <strong>32 calentamientos y 100 repeticiones</strong>, eventos CUDA, batch 1 y entrada D7 residente. Excluye transferencia, preprocesamiento, carga y servicio. El throughput serial guardado promedia las métricas registradas por predictor; no se deduce como 1.000 dividido por la media de medianas ni equivale a rendimiento de un sistema por lotes. La <a class="reference download internal" download="" href="../_downloads/044ef94cec20df12654a8e92d4456752/inference_latency.svg"><span class="xref download myst">figura original de latencia</span></a> muestra el rango mínimo–máximo de aquellas medianas, no un IC del 95 %.</p>
+<p>Los <strong>FLOPs core</strong> usan 2 FLOPs/MAC y cuentan productos matriciales y convoluciones, incluidas compuertas recurrentes y atención. Excluyen FFT, activaciones, normalizaciones, pooling, sesgos y movimiento de memoria. En TimesNet las tres sondas con pesos iniciales coinciden, pero <strong>no acotan todas las rutas dependientes de los valores</strong>; la tabla no afirma coste total de todos los kernels o de los pesos entrenados sobre cualquier ventana. <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">Conteo y alcance</span></a>.</p>
+<p>La memoria de entrenamiento original es un máximo del proceso desde el último reset del llamador (<code class="docutils literal notranslate"><span class="pre">since_callers_last_reset</span></code>), <strong>no un pico aislado por modelo</strong>. Los perfiles posteriores de inferencia registran memoria asignada/reservada tras calentamiento y sus incrementos, con otro alcance. No se equiparan ambos campos ni se confunde el límite del allocator con memoria medida. Los recursos comparables de <strong>Persistence, SeasonalNaive y ARIMA no se midieron</strong> en estos inventarios; permanecen ausentes y no se les asigna cero.</p>
+</section>
+<section id="fronteras-de-pareto-observadas">
+<h3>11.4.2 Fronteras de Pareto observadas<a class="headerlink" href="#fronteras-de-pareto-observadas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dos objetivos que se minimizan</p></th>
+<th class="head"><p>Sistemas no dominados bajo las magnitudes publicadas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RMSE–tiempo final medio por semilla</p></td>
+<td><p><strong>LSTM32, MLP16, GRU32 y SAE</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>RMSE–parámetros del predictor</p></td>
+<td><p><strong>MLP16, GRU32 y SAE</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>RMSE–FLOPs core observados</p></td>
+<td><p><strong>MLP16, GRU32 y SAE</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>RMSE–latencia media de medianas</p></td>
+<td><p><strong>MLP16, GRU32 y SAE</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="Compromisos de RMSE frente a tiempo final y parámetros" src="../_images/quality_cost_pareto.svg" /></p>
+<p><img alt="Compromiso descriptivo RMSE y FLOPs core" src="../_images/pareto_core_flops_rmse.svg" /></p>
+<p><img alt="Compromiso descriptivo RMSE y latencia A100" src="../_images/latency_pareto.svg" /></p>
+<p>Las fronteras usan <strong>estimaciones puntuales</strong>, épocas y recetas distintas, sin incertidumbre conjunta ni nueva selección. Los clásicos quedan fuera de las fronteras de recursos por falta de medidas comparables, no por coste cero. No hay una frontera completa de coste de selección ni un pico de memoria comparable que permita extender esas conclusiones; el throughput conserva sus datos, sin atribuirle aquí una frontera no publicada. Menor número de parámetros no garantiza menor latencia ni robustez.</p>
+</section>
+<section id="coste-por-mejora-y-equivalencia-practica">
+<h3>11.4.3 Coste por mejora y equivalencia práctica<a class="headerlink" href="#coste-por-mejora-y-equivalencia-practica" title="Link to this heading">#</a></h3>
+<p>Con pérdida menor=mejor, una orientación explícita del cociente de la guía sería</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_k=\frac{\mathrm{RMSE}_{\mathrm{base}}-\mathrm{RMSE}_k}
+{c_k-c_{\mathrm{base}}}.
+\]</div>
+<p><strong>No está ejecutado un análisis de η con incertidumbre bootstrap propagada.</strong> ARIMA es la mejor referencia puntual por RMSE, pero carece de coste comparable; Persistence también carece de esas medidas. GRU32 sí tiene coste final por semilla, por lo que no se declara una imposibilidad matemática para cualquier comparación: un eventual análisis debe definir coste, comparador, orientación, unidad de remuestreo y distribución conjunta sin confundir fases finales con selección completa. Interpretar η como ganancia por coste adicional requiere un incremento de coste positivo; su signo no ordena de forma universal las combinaciones de mejora y ahorro. Si el incremento es nulo o incierto cerca de cero, el cociente no se interpreta como una eficiencia estable.</p>
+<p><strong>TOST/ROPE no están ejecutados para demostrar equivalencia práctica entre un modelo más barato y el mejor.</strong> El no rechazo de los contrastes primarios, permanecer en MCS o compartir una frontera no acredita equivalencia dentro de ±δ. <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a> conserva los efectos e IC de las comparaciones realmente realizadas; el piloto de <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">§9</span></a> no convierte su potencia en una prueba de equivalencia ni resuelve RQ3 de error y coste conjunto.</p>
+</section>
+<section id="balance-y-sostenibilidad">
+<h3>11.4.4 Balance y sostenibilidad<a class="headerlink" href="#balance-y-sostenibilidad" title="Link to this heading">#</a></h3>
+<p>El cierre complementario conserva <strong>84 h autorizadas acumuladas, 80,2561 h contabilizadas, 13.477,91 s de saldo y cero reservas abiertas</strong>. El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">balance final</span></a> incluye los cargos previos y no reinicia el presupuesto. El cierre original de 74,9530 h frente a 80 h pertenece a otro corte; las reservas sucesivas son techos de admisión, no horas consumidas.</p>
+<p>Los cargos son tiempo de campaña, <strong>no GPU-horas activas, energía o importe monetario</strong>. No hay telemetría energética, factores de emisión o tarifa verificados para convertirlos en kWh, CO₂ o dinero. La huella energética es una recomendación condicionada a disponibilidad; esta entrega no fabrica esos valores ni hace una afirmación de sostenibilidad desde el menor número de parámetros. La incertidumbre del coste y los compromisos con precisión, robustez e interpretabilidad permanecen explícitos.</p>
+<p>El estado es <strong>selección y entrenamiento completados con recursos medidos y límites de equidad declarados</strong>. Quedan parciales la amplitud e importancia del espacio HPO, la atribución completa de selección, ciertos recursos comparables y los análisis η/equivalencia. Ninguna de esas ausencias se rellena repitiendo resultados históricos o llamando entrenamiento a la recuperación de archivos. Los antecedentes se preservan a continuación.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Archivo documental: contenido anterior del capítulo 11</p>
+<p>Este bloque conserva íntegramente el texto anterior y sus encabezados. Sus fechas, estados y enlaces corresponden a sus cortes originales; la lectura vigente sigue 11.1–11.4 presentados arriba.</p>
 <p><strong>Lectura vigente:</strong> la selección reducida de las <strong>trece redes obligatorias</strong> está cerrada. La comparación final utiliza los diez candidatos, las tres referencias E1 y los comparadores Persistence, SeasonalNaive y ARIMA. No hay un candidato 11 adicional activo dentro de la obligación de E2. Las recetas y recibos se consultan en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación vigente</span></a> y la <a class="reference download internal" download="" href="../_downloads/bbf01c0f5ce6adc501ee8cdb0530cb71/guide_checklist.csv"><span class="xref download myst">lista del punto 4</span></a> relacionan diseño, entrenamiento, recursos y evidencia de evaluación con la guía.</p>
-<section id="dominio-y-oportunidades-conservadas">
-<h2>11.1 Dominio y oportunidades conservadas<a class="headerlink" href="#dominio-y-oportunidades-conservadas" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="dominio-y-oportunidades-conservadas">11.1 Dominio y oportunidades conservadas</h2>
 <p>Cada red recibió <strong>seis configuraciones y los mismos tres orígenes internos</strong>: enero, julio y octubre de 2024, con semilla HPO 271201. Son <strong>234 oportunidades</strong>: 231 resultados válidos, dos fallos conocidos y un desenlace desconocido. Cada ganador dispone de tres folds completos. Se mantuvieron las incidencias sin sustituirlas para favorecer un modelo. Las 231 oportunidades válidas incluyen reutilizaciones admitidas; no equivalen a 231 entrenamientos nuevos. El plan identificó 61 candidatos de caché sujetos a sus controles de identidad; este cotejo verifica el total de resultados y disposiciones, sin reconstruir una atribución exhaustiva caché/nuevo del diario. El dominio original no se sustituye por un supuesto de cobertura exhaustiva.</p>
 <p>La selección usa exclusivamente las métricas de validación de los folds admitidos. Los dominios de seis plazas proceden de una reducción explícita de la búsqueda histórica, no de una afirmación de exploración exhaustiva. Cada reutilización requiere identidad de receta, configuración, firma de datos y trabajador compatible; no se convierte en un nuevo ajuste. La cobertura de curvas HPO seleccionadas permanece incompleta: se recuperaron 29 de 39 registros, mientras los 78 ajustes finales sí conservan sus curvas en <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>.</p>
 <p>La <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría del calendario ejecutado</span></a> identifica <strong>253/435/527 ejemplos de entrenamiento y 83 de validación en cada fold</strong>. Los 249 resultados de selección preceden a la evaluación externa. Después se usan <strong>655 ejemplos de entrenamiento final, 53 fechas de calibración y 608 de evaluación</strong>; los entrenamientos expansivos se solapan y los folds no son réplicas independientes.</p>
-</section>
-<section id="presupuesto-comun-y-diferencias-estructurales">
-<h2>11.2 Presupuesto común y diferencias estructurales<a class="headerlink" href="#presupuesto-comun-y-diferencias-estructurales" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="presupuesto-comun-y-diferencias-estructurales">11.2 Presupuesto común y diferencias estructurales</h2>
 <p>El número de plazas y folds es común para las redes. SAE conserva sus fases de preentrenamiento y supervisión propias; igualdad de oportunidades no implica igual número de parámetros, pasos o segundos. Los límites de admisión y la transición T4–A100 se registraron por separado. La política de recursos para fases nuevas fijó <strong>1.800 segundos, máximo 200 épocas y paciencia 20</strong>; las reservas fueron 1.860 segundos por ajuste ordinario y 5.460 para las tres fases SAE. Los resultados reutilizados conservan la política con la que se obtuvieron. Estos límites y un número común de plazas no demuestran igual coste acumulado de optimización. Los <a class="reference internal" href="51_eficiencia_costes.html"><span class="std std-doc">costes medidos</span></a>, el <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">perfil A100</span></a> y los <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">FLOPs core</span></a> describen magnitudes diferentes.</p>
 <p>ARIMA evaluó <strong>18 órdenes × tres folds</strong>, con 51 resultados válidos, dos no convergencias y un fallo de implementación que consumió su oportunidad. Quince órdenes tuvieron tres folds válidos y ganó (2,0,1). SeasonalNaive eligió periodo 7 entre tres periodos. Los comparadores deterministas aportan una trayectoria cada uno, sin duplicarlos como seis entrenamientos independientes. El ajuste clásico y el neuronal tienen dominios diferentes; no se certifica igualdad de coste global únicamente por compartir la cohorte final.</p>
-</section>
-<section id="arquitectura-definida-y-nas-condicional">
-<h2>11.3 Arquitectura definida y NAS condicional<a class="headerlink" href="#arquitectura-definida-y-nas-condicional" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="arquitectura-definida-y-nas-condicional">11.3 Arquitectura definida y NAS condicional</h2>
 <p>Los cuerpos actuales están adjudicados en <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">§44</span></a> y la actualización TiDE r=0 de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. Sus identidades y adaptaciones D7 se preservan. La exigencia de <strong>1.000 arquitecturas y dos fases NAS</strong> corresponde a cuerpos no definidos por sus fuentes. Las seis plazas HPO no se presentan como cumplimiento de NAS. Introducir una arquitectura indefinida nueva exigiría su protocolo propio; no se hace en este cierre.</p>
-</section>
-<section id="ajustes-finales-y-alcance-de-las-comparaciones">
-<h2>11.4 Ajustes finales y alcance de las comparaciones<a class="headerlink" href="#ajustes-finales-y-alcance-de-las-comparaciones" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="ajustes-finales-y-alcance-de-las-comparaciones">11.4 Ajustes finales y alcance de las comparaciones</h2>
 <p>Cada red se reinicializó con <strong>seis semillas, 271801–271806</strong>, después de elegir su configuración por validación. La A2 promedia las seis RMSE individuales sobre las mismas 608 fechas; la fase de selección no se mezcla con las ejecuciones finales. El piloto de cinco pares iTransformer/GRU32 sobre 53 fechas estimó potencia condicional <strong>0,122953</strong> con R=6 y α=0,0025 para una ganancia de 2δ; el objetivo de 0,80 no se alcanzó. Su MDE fue <strong>0,000878674</strong>, con los supuestos y límites del <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">recibo del piloto</span></a>. La ausencia de rechazo se interpreta como resultado no concluyente y no como equivalencia; no se aumenta R después de observar la prueba.</p>
 <p>El periodo evaluado ya se conocía en E1. Se declara su alcance retrospectivo y no se elige una receta distinta usando el ranking final. La <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz de cumplimiento</span></a> mantiene las condiciones metodológicas parciales, incluida la auditoría integral de fuga y la cobertura del dominio reducido.</p>
-</section>
-<section id="registro-entorno-y-cierre-de-recursos">
-<h2>11.5 Registro, entorno y cierre de recursos<a class="headerlink" href="#registro-entorno-y-cierre-de-recursos" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="registro-entorno-y-cierre-de-recursos">11.5 Registro, entorno y cierre de recursos</h2>
 <p>Los 78 ajustes finales y los diez pilotos se ejecutaron en <strong>NVIDIA A100-SXM4-80GB, Python 3.12.12, Torch 2.8.0+cu126 y CUDA 12.6</strong>, con FP32 determinista, AMP y TF32 desactivados y dos hilos CPU. El historial T4 pertenece a selección/caché; no se atribuye igualdad numérica entre GPU distintas. Los máximos de memoria de entrenamiento y los perfiles de inferencia posteriores tienen ámbitos distintos, declarados en §§51/54.</p>
 <p>El seguimiento usa <strong>configuraciones versionadas, eventos, manifiestos, hashes, checkpoints y diarios aditivos respaldados en GitHub</strong>, como herramienta de tracking del proyecto. Se registran semillas, intentos/fallos, curvas, costes y estados terminales; no se exige atribuir el seguimiento a MLflow o W&amp;B. La reproducción posterior cerró <strong>81 predictores y 18 ablaciones</strong>, conservando recetas y cargos. El límite final fue <strong>84 horas totales</strong>, con <strong>80,2561 horas contabilizadas</strong>, <strong>3 h 44 min 38 s de saldo</strong> y cero reservas abiertas. Son horas contables de campaña, no GPU-horas activas ni dinero. <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">Cierre verificado</span></a>.</p>
-</section>
-<section id="archivo-de-la-version-anterior">
-<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="archivo-de-la-version-anterior">Archivo de la versión anterior</h2>
 <p>La <a class="reference download internal" download="" href="../_downloads/486fa9034a75adba826b807e028f054d/11_hpo_equidad.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con sus estados y fechas históricos. El <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a> fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ni su Apéndice B actual de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
+</div>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -557,12 +984,28 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dominio-y-oportunidades-conservadas">11.1 Dominio y oportunidades conservadas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-comun-y-diferencias-estructurales">11.2 Presupuesto común y diferencias estructurales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-definida-y-nas-condicional">11.3 Arquitectura definida y NAS condicional</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustes-finales-y-alcance-de-las-comparaciones">11.4 Ajustes finales y alcance de las comparaciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-entorno-y-cierre-de-recursos">11.5 Registro, entorno y cierre de recursos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-de-equidad-para-los-modelos">11.1 Reglas de equidad para los modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-mantuvo-comun-y-que-difiere">11.1.1 Qué se mantuvo común y qué difiere</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oportunidades-resultados-y-fallos-conservados">11.1.2 Oportunidades, resultados y fallos conservados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-hiperparametros-y-reajuste-final">11.2 Búsqueda de hiperparámetros y reajuste final</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dominio-finito-registrado-y-cobertura-real">11.2.1 Dominio finito registrado y cobertura real</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-epocas-y-politica-final">11.2.2 Validación, épocas y política final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-por-modelo-y-receta-seleccionada">11.3 Registro por modelo y receta seleccionada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ganadores-valores-y-epocas">11.3.1 Ganadores, valores y épocas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-cubren-los-campos-de-la-plantilla">11.3.2 Cómo se cubren los campos de la plantilla</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia-coste-y-sostenibilidad">11.4 Eficiencia, coste y sostenibilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-por-red-y-que-significan">11.4.1 Medidas por red y qué significan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fronteras-de-pareto-observadas">11.4.2 Fronteras de Pareto observadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coste-por-mejora-y-equivalencia-practica">11.4.3 Coste por mejora y equivalencia práctica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balance-y-sostenibilidad">11.4.4 Balance y sostenibilidad</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

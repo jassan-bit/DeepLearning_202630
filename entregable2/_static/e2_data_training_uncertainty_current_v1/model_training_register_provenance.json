@@ -1,0 +1,66 @@
+{
+  "version": "e2-model-training-register-current-v1",
+  "source_repository_commit": "5c78f32b763450df583693547e59784cc23ebe7a",
+  "purpose": "Join of existing registered winning tuples, frozen architectures, final phase records, resource profiles and A2 metrics. No training, inference, metric recomputation or statistical analysis.",
+  "scope": {
+    "rows": 13,
+    "neural_candidates": 10,
+    "E1_references": 3,
+    "final_seeds_per_model": 6,
+    "classical_models_included": false,
+    "classical_resource_values": "not measured; excluded rather than filled with zero"
+  },
+  "sources": {
+    "registered_domain": {
+      "path": "book_e2/_static/reduced_protocol_20261112/hpo_configurations_registered_bytes_v2.csv",
+      "sha256": "e96635a60de976ef312d9fa5205f57333842bb40e5ad55933bc1fb1beed8d9c4"
+    },
+    "tide_domain": {
+      "path": "experiments/e2_tide_published_r0_20261112/configurations.json",
+      "sha256": "de8215b331a9ce88aacb01f4e6dc5b650b1c083c33cb1c87f02456134093f68c"
+    },
+    "frozen_recipe": {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/frozen_architecture_inputs.json",
+      "sha256": "da004139cfc4663ce1d9a13c88a422df8865b53f6448fbdf015da0244f9f51cf"
+    },
+    "resources": {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv",
+      "sha256": "973e54a8c56ca3fd113accd26413d5322bb4b72dbcc5caa73950a77c52129567"
+    },
+    "phases": {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/phase_resources.csv",
+      "sha256": "4f24cee5a9be865dd51ebafba2c5957961c5b2303276941472ceab55af04e99e"
+    },
+    "latency": {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv",
+      "sha256": "9a517bdc60282fa6d2362477f2ec5799451cd0b74d96c88ab188b2ff66a1fd1f"
+    },
+    "flops": {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/flops_by_model.csv",
+      "sha256": "dc87d3c6d2e9d880fe62fcfd6448abb4c4126ff106accf49bd2875e4547c5dc0"
+    },
+    "benchmark": {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637"
+    }
+  },
+  "output": {
+    "path": "book_e2/_static/e2_data_training_uncertainty_current_v1/model_training_register.csv",
+    "sha256": "e0c13b18cc20b161fc1f7abe8ff8ae3b1a42d5b6ea07916e45e098d99c66c072",
+    "rows": 13
+  },
+  "field_scopes": {
+    "configuration": "Winner matches registered CSV by model and slot; TiDE uses its published R0-v2 domain. Frozen trial numeric values are cross-checked against the applicable domain.",
+    "warmup_fraction": "Absent in a fixed recipe means zero according to the recorded training policy; TiDE published domain has fixed zero warmup.",
+    "fixed_epochs": "Copied from final phase_resources.csv stage=final; all six seeds have identical recorded epochs within each model and phase. Blank auxiliary epochs mean phase not applicable.",
+    "parameters": "Deployed predictor only; SAE auxiliary decoders excluded.",
+    "core_forward_flops": "Observed core count, not full-operation FLOPs; 2 FLOPs per MAC; excludes FFT, activations, normalization, pooling, bias and memory movement.",
+    "final_phase_seconds": "Published mean and sample SD across six final seeds. SAE includes AE1, AE2 and supervised phase; excludes full HPO, controller and persisted final scoring.",
+    "latency": "Published mean of six seed-level median CUDA-event forward latencies, 32 warmup and 100 repetitions, batch 1 resident input; excludes transfer, preprocessing, model load and serving.",
+    "primary_RMSE": "A2 mean of six individual-seed RMSE values on 608 common dates, not RMSE of an ensemble. SD describes seed variation conditional on the same observed chronology. Per-seed JSON follows final_seeds_json.",
+    "full_selection_seconds": "Unknown; retained as an empty field, not zero.",
+    "author_source": "Author repository and commit copied from frozen architecture when recorded. Empty fields remain unknown/not separately recorded. DOI and adaptation details remain in linked catalogue/source sections.",
+    "source_result_sha256": "Hash of the result record bound to the frozen architecture example; not a new hash over all six checkpoints."
+  },
+  "verification": "Static identity and field checks only. No fits, inference, FLOPs probes, bootstrap, power calculations or hypothesis tests were executed."
+}

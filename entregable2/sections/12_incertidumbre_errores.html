@@ -440,11 +440,23 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-y-calibracion-originales">12.1 Intervalos y calibración originales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-y-explicaciones">12.2 Robustez y explicaciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomia-operativa-y-muestra-auditable">12.3 Taxonomía operativa y muestra auditable</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-y-distancia">12.4 Techo y distancia γ</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-de-desempeno-y-margen-de-mejora-real">12.1 Techo de desempeño y margen de mejora real</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-empirica-y-orientacion-de">12.1.1 Referencia empírica y orientación de γ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictibilidad-ruido-y-referencias-que-no-estan-identificadas">12.1.2 Predictibilidad, ruido y referencias que no están identificadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-de-incertidumbre">12.2 Cuantificación de incertidumbre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-del-score-y-de-las-diferencias">12.2.1 Incertidumbre del score y de las diferencias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-predictivos-originales-y-adaptacion-temporal">12.2.2 Intervalos predictivos originales y adaptación temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-condicional-y-calibracion-por-grupos">12.2.3 Cobertura condicional y calibración por grupos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-errores-y-evaluacion-por-segmentos">12.3 Análisis de errores y evaluación por segmentos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorias-exclusivas-muestra-y-frecuencia">12.3.1 Categorías exclusivas, muestra y frecuencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-compartidos-y-diversidad">12.3.2 Errores compartidos y diversidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentos-casos-de-frontera-y-diagnostico-de-atajos">12.3.3 Segmentos, casos de frontera y diagnóstico de atajos</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -458,32 +470,310 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="techo-de-desempeno-incertidumbre-y-analisis-de-errores">
 <span id="incertidumbre-errores-y-referencias-de-dificultad"></span><h1>12. Techo de Desempeño, Incertidumbre y Análisis de Errores<a class="headerlink" href="#techo-de-desempeno-incertidumbre-y-analisis-de-errores" title="Link to this heading">#</a></h1>
+<p><strong>Lectura vigente:</strong> el benchmark compara <strong>16 sistemas y 81 predictores sobre las mismas 608 fechas</strong>. Hay referencias de predictibilidad, intervalos originales y adaptados al tiempo, cobertura por grupos y una taxonomía automática de los diez modelos principales. Esta sección sigue <strong>12.1–12.3 de la guía</strong> y distingue resultados medidos de garantías no acreditadas: el proxy de techo no identifica riesgo Bayes, la cobertura global no garantiza cobertura condicional y las etiquetas de errores no son una revisión experta.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/2aa906be675b40692ccf0d820b541cbe/guide_checklist.csv"><span class="xref download myst">lista verificable</span></a>, la <a class="reference download internal" download="" href="../_downloads/3f6fcef1d5cd9240638bc7111f9b2cd7/decision_traceability.csv"><span class="xref download myst">trazabilidad</span></a>, el <a class="reference download internal" download="" href="../_downloads/8ada73f4c74b4db80c16a750d6d6445d/current_evidence_index.json"><span class="xref download myst">índice de evidencias</span></a> y el <a class="reference download internal" download="" href="../_downloads/8e4ca4173c72705268897181d126332e/manifest.json"><span class="xref download myst">manifiesto</span></a> identifican fuentes y límites. El <a class="reference download internal" download="" href="../_downloads/f7f3284376e09e1b06e3115c907c3641/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> acompaña la lectura. La <a class="reference download internal" download="" href="../_downloads/625a43bb4cd005f37507a76b893526ff/12_incertidumbre_errores_before_update.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">anterior</span> <span class="pre">del</span> <span class="pre">capítulo</span></code></a> y el bloque documental final conservan sus encabezados, enlaces y resultados.</p>
+<section id="techo-de-desempeno-y-margen-de-mejora-real">
+<span id="e2-techo-margen-vigente"></span><h2>12.1 Techo de desempeño y margen de mejora real<a class="headerlink" href="#techo-de-desempeno-y-margen-de-mejora-real" title="Link to this heading">#</a></h2>
+<section id="referencia-empirica-y-orientacion-de">
+<h3>12.1.1 Referencia empírica y orientación de γ<a class="headerlink" href="#referencia-empirica-y-orientacion-de" title="Link to this heading">#</a></h3>
+<p>SAE tiene la menor <strong>media de las seis RMSE individuales</strong> del catálogo original. Las RMSE siguientes usan las unidades originales de σ₇, sin anualización. El <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">ensemble de §63</span></a> proporciona otra referencia: una combinación convexa de los dieciséis sistemas cuyos pesos se aprendieron <strong>sólo con los 53 pronósticos de calibración</strong>. Los pesos son comunes a las seis trayectorias emparejadas; los clásicos conservan una trayectoria determinista. Se efectuó un ajuste estadístico de combinación, sin reentrenar los predictores ni generar inferencias nuevas con sus pesos. Su plan precede a ese ajuste, después de conocer el test y A2; es una referencia retrospectiva, no un nuevo candidato incorporado al ranking original.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Referencia guardada</p></th>
+<th class="head text-right"><p>RMSE en las 608 fechas</p></th>
+<th class="head"><p>Papel y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SAE original</p></td>
+<td class="text-right"><p><strong>0,003803430</strong></p></td>
+<td><p>Mejor valor individual observado; media de seis RMSE, no RMSE del pronóstico medio.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ensemble ajustado en calibración</p></td>
+<td class="text-right"><p><strong>0,003689532</strong></p></td>
+<td><p>Proxy alcanzable mediante esa combinación concreta, con pesos fijos durante la evaluación.</p></td>
+</tr>
+<tr class="row-even"><td><p>Persistence</p></td>
+<td class="text-right"><p><strong>0,004085596</strong></p></td>
+<td><p>Baseline de una trayectoria, usado como referencia del margen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ensemble uniforme de los diez principales</p></td>
+<td class="text-right"><p><strong>0,004120056</strong></p></td>
+<td><p>Resultado previo negativo: queda por encima de SAE y Persistence; no es un techo empírico válido.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para una métrica de pérdida menor = mejor, sea Q la RMSE agregada anterior. La fórmula de la guía para scores mayores = mejores se aplica tomando s=−Q:</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma_{emp}=\frac{Q_{SAE}-Q_{proxy}}{Q_{Persistence}-Q_{proxy}}=0,287574.
+\]</div>
+<p>El valor puntual expresa qué fracción del margen Persistence–proxy separa todavía al SAE de <strong>esa referencia</strong>. Su IC95 % algebraico, con bloques de 14 días, es <strong>[−1,49210; 2,37128]</strong>. Sólo <strong>6.588 de 10.000</strong> réplicas conservan el orden proxy&lt;SAE&lt;Persistence. Se mantienen las réplicas definidas que cambian el orden o el signo del denominador; el intervalo no se trunca a [0,1]. Por tanto, <strong>no se concluye que quede exactamente un 28,8 % de mejora real</strong> ni que el proxy sea un techo óptimo.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/f07bd5eef18582d03a6f1887af5c59b7/contrasts.csv"><span class="xref download myst">dos contrastes del ensemble</span></a> evalúan ganancia mayor que cero frente a SAE y Persistence: p Holm2 <strong>0,243776</strong> y <strong>0,063794</strong>, respectivamente; ninguno rechaza a 0,05. No contrastan superar δ ni sustituyen Holm20. Los IC y γ condicionan en los pesos ya aprendidos: no incluyen la incertidumbre de volver a estimarlos en otra calibración. <a class="reference download internal" download="" href="../_downloads/1b38ed1bbe9d03d2d4f0f57bc5e9e083/summary.json"><span class="xref download myst">Resumen y sensibilidad</span></a>.</p>
+</section>
+<section id="predictibilidad-ruido-y-referencias-que-no-estan-identificadas">
+<h3>12.1.2 Predictibilidad, ruido y referencias que no están identificadas<a class="headerlink" href="#predictibilidad-ruido-y-referencias-que-no-estan-identificadas" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/ddb158c20dfb0b8377eb6cc1a34606da/permutation_entropy.csv"><span class="xref download myst">entropía de permutación</span></a> describe complejidad ordinal con órdenes 3/4/5, retardo 1 y sin atravesar huecos. En desarrollo sus valores normalizados son 0,971268/0,934492/0,897266; en el test conocido, 0,954079/0,918404/0,875382. No se convierten en porcentaje de predictibilidad, error Bayes o RMSE mínimo. El ensemble uniforme aporta evidencia negativa sobre una combinación sencilla; una correlación de errores o una entropía alta tampoco identifica el ruido irreducible.</p>
+<p>La cota matemática ideal Q=0 produce <strong>γ_ideal=0,930936</strong>, IC temporal <strong>[0,844480; 1,029743]</strong>. Es una comparación con predicción perfecta, no un desempeño humano, experto o alcanzable demostrado. El cociente del ensemble uniforme, 9,188146, tiene denominador negativo y no se interpreta como fracción pendiente. Ambas referencias se conservan en <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> y en <a class="reference download internal" download="" href="../_downloads/398616b2fc3fd428b1d0e877bf31027b/ceiling_gamma_references.json"><span class="xref download myst">sus valores originales</span></a>.</p>
+<p>σ₇ es una etiqueta determinista construida con siete retornos de ocho cierres, con denominador 7 y sin anualización. <strong>Acuerdo entre anotadores humanos no aplica a esta construcción</strong>; no existe una anotación humana que deba sustituirse por kappa o Dice. Las comprobaciones de reconstrucción y calidad verifican el contrato, pero no estiman el error de medición del proveedor ni un piso de ruido del mercado. No se ha identificado una cota Bayes o de ruido irreducible independiente, ni una reevaluación con etiquetas corregidas que establezca un cambio de ranking. Esos límites impiden presentar un techo óptimo como un requisito ya cerrado.</p>
+</section>
+</section>
+<section id="cuantificacion-de-incertidumbre">
+<span id="e2-incertidumbre-vigente"></span><h2>12.2 Cuantificación de incertidumbre<a class="headerlink" href="#cuantificacion-de-incertidumbre" title="Link to this heading">#</a></h2>
+<section id="incertidumbre-del-score-y-de-las-diferencias">
+<h3>12.2.1 Incertidumbre del score y de las diferencias<a class="headerlink" href="#incertidumbre-del-score-y-de-las-diferencias" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Resultado publicado</p></th>
+<th class="head"><p>Unidad y método</p></th>
+<th class="head"><p>Interpretación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ganancias primarias de RMSE</p></td>
+<td><p>Veinte pares; bootstrap pareado de semillas y calendario, bloques de 14 días. Original B=4.999; refinamiento posterior B=20.000, con la misma métrica, δ y Holm20. <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>.</p></td>
+<td><p>Los veinte p ajustados siguen en 1. Los IC de las ganancias son marginales, no simultáneos; no equivalen al IC de cada modelo por separado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RMSE media de las trece redes</p></td>
+<td><p>IC t95 % sobre seis RMSE por red, condicionados al calendario y a los supuestos entre inicializaciones. <a class="reference download internal" download="" href="../_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">Análisis original</span></a>.</p></td>
+<td><p>Describen variación de optimización. No son incertidumbre de nuevos mercados; R=1 no permite inventar DE o IC entre semillas para los clásicos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Ensemble y distancia γ</p></td>
+<td><p>10.000 remuestreos de semillas y bloques del calendario, con los pesos de combinación aprendidos conservados. <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">§63</span></a>.</p></td>
+<td><p>La incertidumbre es condicional a esa calibración; un IC algebraico fuera de [0,1] no se recorta para aparentar un margen estable.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cobertura y frecuencias de errores</p></td>
+<td><p>10.000 remuestreos circulares; bloque principal de 14 días y sensibilidades de 7/28 días, con sus unidades y predictores fijos. <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a> · <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a>.</p></td>
+<td><p>Los calendarios se mantienen, sin comprimir huecos o convertir ventanas solapadas en muestras independientes. Son sensibilidades temporales bajo dependencia corta y estacionariedad aproximada.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un IC de RMSE o de ganancia no es un intervalo para el próximo σ₇. La incertidumbre por semillas, la dependencia de fechas y la incertidumbre de selección tampoco son intercambiables. Los métodos, niveles y familias de cada suplemento permanecen separados; el refinamiento de 20.000 no se atribuye al cálculo original de 4.999.</p>
+</section>
+<section id="intervalos-predictivos-originales-y-adaptacion-temporal">
+<h3>12.2.2 Intervalos predictivos originales y adaptación temporal<a class="headerlink" href="#intervalos-predictivos-originales-y-adaptacion-temporal" title="Link to this heading">#</a></h3>
+<p>Los <strong>81 predictores</strong>, incluidos los tres sistemas mejor situados SAE, ARIMA y GRU32, conservan un calibrador original por trayectoria. Se fijó con los residuos absolutos de <strong>53 fechas, 08/11–30/12/2024</strong>, disjuntas de los objetivos de entrenamiento y prueba. El radio q es el estadístico de orden 49, según ceil((53+1)×0,90), y el intervalo es:</p>
+<div class="math notranslate nohighlight">
+\[
+C_t=[\max(0,\widehat Y_t-q),\widehat Y_t+q].
+\]</div>
+<p>La separación de etiquetas no crea intercambiabilidad: σ₇ y las ventanas comparten historia, y el mercado puede cambiar. Los pesos y escaladores se mantienen entre calibración y prueba. El método original informa cobertura empírica y anchura de intervalos con nivel nominal del 90 %, sin garantía exacta distribucional en esta cronología.</p>
+<p>El <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">suplemento temporal</span></a> ejecutó dos variantes sobre los pronósticos guardados: <strong>móvil de 53 con α=0,10</strong> y <strong>ACI53 con tasa de adaptación γ=0,005</strong>, distinta del cociente de margen de §12.1. Ambas utilizan sólo residuos disponibles antes de emitir; ACI actualiza α después de observar el resultado, para el día siguiente. El primer pronóstico de enero usa los 53 residuos originales: no se inventa un residuo o pronóstico del 31/12. Estas políticas tienen identidad posterior y no reemplazan los calibradores A2 ni prueban cobertura exacta por cualquier régimen.</p>
+<p><img alt="Cobertura temporal e intervalos guardados frente a anchura puntual del Top 3" src="../_images/top3_coverage_width.svg" /></p>
+<p>La figura copia nueve resúmenes y sus IC95 % de cobertura ya publicados: B=10.000, bloques de 14 días y semillas fijas. <strong>La anchura se muestra como punto, sin IC disponible</strong>; no se añade incertidumbre inventada ni se promedian IC individuales. <a class="reference download internal" download="" href="../_downloads/8dda62247f1a3afbf5c8a20c2184a87c/calibration_plot_readout.json"><span class="xref download myst">Valores y procedencia de la presentación</span></a>.</p>
+</section>
+<section id="cobertura-condicional-y-calibracion-por-grupos">
+<h3>12.2.3 Cobertura condicional y calibración por grupos<a class="headerlink" href="#cobertura-condicional-y-calibracion-por-grupos" title="Link to this heading">#</a></h3>
+<p>La cobertura global ACI se aproxima al 90 % en SAE <strong>89,94 %</strong>, GRU32 <strong>90,46 %</strong> y ARIMA <strong>90,30 %</strong>. En el rango alto de sus pronósticos persiste infracobertura observada:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>Cobertura ACI en pronósticos altos</p></th>
+<th class="head"><p>IC95 % temporal marginal, bloques de 14 días</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SAE</p></td>
+<td class="text-right"><p>87,21 %</p></td>
+<td><p>[76,92 %; 94,88 %]</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRU32</p></td>
+<td class="text-right"><p>83,65 %</p></td>
+<td><p>[74,04 %; 92,09 %]</p></td>
+</tr>
+<tr class="row-even"><td><p>ARIMA</p></td>
+<td class="text-right"><p>86,08 %</p></td>
+<td><p>[76,74 %; 94,44 %]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los grupos predictivos se definen con <strong>rangos del pronóstico</strong> y <strong>volatilidad del día anterior</strong>, usando umbrales de calibración/desarrollo fijados antes del cálculo. Están disponibles al origen. Los grupos por el objetivo realizado se publican aparte como descripciones retrospectivas; no eran información disponible para adaptar el intervalo del mismo día. Las frecuencias condicionales son razones de emisiones cubiertas y pertenecientes al grupo, agregando semillas fijas, no medias sin ponderación de sus coberturas.</p>
+<p>El análisis conserva <strong>672 celdas = 16 sistemas × tres políticas × 14 grupos</strong> y dos hipótesis por celda: igualdad al 90 % y cobertura mínima al 90 %. La familia <strong>Holm1344</strong>, con influencia de la razón y HAC Bartlett de 14 rezagos, mantiene 1.336 contrastes estimables y ocho no estimables con estado propio. Es distinta de los IC bootstrap y de Holm20; la falta de rechazo no acredita calibración universal. Los IC guardados usan B=10.000 y bloques de 7/14/28 días, sin volver a simular la retroalimentación ACI en cada réplica. <a class="reference download internal" download="" href="../_downloads/3ae4cb31fdfd4e6e9a4182156678c0bf/coverage_HAC_Holm1344.csv"><span class="xref download myst">Familia completa</span></a> · <a class="reference download internal" download="" href="../_downloads/d0d24b46cd5821b64a4db29051ccae4f/conditional_coverage_CI.csv"><span class="xref download myst">IC por grupo</span></a>.</p>
+<p>Se reportan anchura, <strong>score de intervalo</strong> y pérdidas <strong>pinball</strong> de los extremos 0,05/0,95. Acercar cobertura al 90 % no mejora automáticamente el score: en ARIMA, ACI obtiene 0,019918 frente a 0,019900 original. La calibración puntual Mincer–Zarnowitz se conserva en <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>; no se acredita aquí una pendiente de calibración ejecutada para cada subgrupo. <strong>ECE y Brier de clasificación no corresponden al pronóstico continuo de σ₇.</strong> Dos extremos de intervalo no definen una CDF: PIT y CRPS no se fabrican con ellos, y su evaluación no está disponible para estos predictores sin especificar una distribución pertinente.</p>
+</section>
+</section>
+<section id="analisis-de-errores-y-evaluacion-por-segmentos">
+<span id="e2-errores-segmentos-vigente"></span><h2>12.3 Análisis de errores y evaluación por segmentos<a class="headerlink" href="#analisis-de-errores-y-evaluacion-por-segmentos" title="Link to this heading">#</a></h2>
+<section id="categorias-exclusivas-muestra-y-frecuencia">
+<h3>12.3.1 Categorías exclusivas, muestra y frecuencia<a class="headerlink" href="#categorias-exclusivas-muestra-y-frecuencia" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/e5b2981c2c1cff63e149a337d2342c46/taxonomy_protocol.json"><span class="xref download myst">taxonomía operativa</span></a> usa e=media de los seis pronósticos−observado por modelo-fecha. Ese predictor medio es diagnóstico: <strong>no sustituye la media de RMSE individuales de A2</strong>. Los cortes L=<strong>0,00130577631562305</strong> y H=<strong>0,00728725980318611</strong> son Q50/Q90 de 714 cambios absolutos consecutivos de σ₇ en desarrollo 2023–2024, sin atravesar huecos. Son escalas descriptivas; no se interpretan como δ, δg o ruido irreducible.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Categoría mutuamente exclusiva</p></th>
+<th class="head"><p>Regla</p></th>
+<th class="head"><p>SAE: frecuencia e IC95 % temporal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Banda pequeña</p></td>
+<td><p>abs(e)≤L</p></td>
+<td><p>31,1 % [26,0 %;36,2 %]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subestimación moderada</p></td>
+<td><p>L&lt;abs(e)≤H y e&lt;0</p></td>
+<td><p>17,9 % [13,7 %;22,4 %]</p></td>
+</tr>
+<tr class="row-even"><td><p>Sobreestimación moderada</p></td>
+<td><p>L&lt;abs(e)≤H y e≥0</p></td>
+<td><p>46,9 % [40,1 %;53,8 %]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subestimación grande</p></td>
+<td><p>abs(e)&gt;H y e&lt;0</p></td>
+<td><p>3,9 % [1,8 %;6,7 %]</p></td>
+</tr>
+<tr class="row-even"><td><p>Sobreestimación grande</p></td>
+<td><p>abs(e)&gt;H y e≥0</p></td>
+<td><p>0,2 % [0,0 %;0,5 %]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las reglas se fijaron <strong>antes del etiquetado automático</strong>, después de conocer A2, en el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/4361275cbc52e2f6362349557b471cda110bbefc/experiments/e2_error_ceiling_final_audit_20261114/analysis_plan.json">plan 4361275</a>. No es una taxonomía semántica experta ni un preregistro anterior al benchmark. El propio plan declara una inspección preliminar ya hecha del ensemble uniforme; no se atribuye anterioridad a todos sus resultados.</p>
+<p>Se etiquetaron <strong>6.080 claves modelo-fecha = 10 principales × 608 fechas</strong>. La muestra estratificada contiene <strong>100 fechas únicas comunes a los diez modelos</strong>, con seis residuos por fecha: <strong>600 casos individuales por principal</strong>. No son 100 fallos graves por modelo ni 6.000 fechas independientes. Los estratos combinan año y régimen realizado del objetivo; Q25/Q75 se obtuvieron sólo de desarrollo y la selección no usa errores. Se conservan probabilidades y pesos N_h/n_h, por lo que una frecuencia muestral sin ponderar no sustituye la frecuencia del calendario completo. <a class="reference download internal" download="" href="../_downloads/03bf41957b51795a454c8c89ca61ad78/sampling_design.json"><span class="xref download myst">Diseño</span></a> · <a class="reference download internal" download="" href="../_downloads/fda29f9b7f389457d438bab9d8ff2c0f/audit_100_dates_per_main_model.csv"><span class="xref download myst">100 fechas por modelo</span></a> · <a class="reference download internal" download="" href="../_downloads/a4cb19026730fdd61ad9fa7d744ad667/audit_600_seed_cases_per_main_model.csv"><span class="xref download myst">600 residuos por modelo</span></a>.</p>
+<p>Las frecuencias completas son recuentos exactos de este calendario. Sus IC marginales usan 10.000 remuestreos circulares, bloque de 14 días y sensibilidad de 7/28 días; describen variación temporal bajo sus supuestos, no incertidumbre de contar esos casos ni cobertura simultánea de todas las categorías. Una categoría ausente puede producir IC empírico [0,0], sin demostrar probabilidad poblacional cero. Las <a class="reference download internal" download="" href="../_downloads/3b7295a3965c020f82d9f1c1d28b1b40/error_category_frequencies.csv"><span class="xref download myst">frecuencias de los diez principales</span></a> y la <a class="reference download internal" download="" href="../_downloads/80dbc3d863456b6e8a0c368cca42f1bc/model_annotation_coverage.csv"><span class="xref download myst">concordancia entre semillas</span></a> mantienen las diferencias que puede ocultar la media de pronósticos.</p>
+</section>
+<section id="errores-compartidos-y-diversidad">
+<h3>12.3.2 Errores compartidos y diversidad<a class="headerlink" href="#errores-compartidos-y-diversidad" title="Link to this heading">#</a></h3>
+<p>El <a class="reference download internal" download="" href="../_downloads/52524b1f12d00e6e79afe3226e4a1252/shared_error_diversity.csv"><span class="xref download myst">CSV de diversidad</span></a> conserva los <strong>45 pares</strong> de los diez pronósticos medios, cada uno sobre 608 fechas. Mide Pearson de residuos firmados, intersección de errores grandes abs(e)&gt;H y Jaccard de sus conjuntos. Son descripciones de los mismos casos, sin IC o contraste de correlación publicado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Par</p></th>
+<th class="head text-right"><p>Correlación de residuos</p></th>
+<th class="head text-right"><p>Fechas con error grande compartido</p></th>
+<th class="head text-right"><p>Jaccard de errores grandes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN–ResNet</p></td>
+<td class="text-right"><p>0,954761</p></td>
+<td class="text-right"><p>26 de 608</p></td>
+<td class="text-right"><p>0,764706</p></td>
+</tr>
+<tr class="row-odd"><td><p>SAE–TimeMixer</p></td>
+<td class="text-right"><p>0,710466</p></td>
+<td class="text-right"><p>13 de 608</p></td>
+<td class="text-right"><p>0,382353</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jaccard divide la intersección por la unión de fechas con errores grandes, no por 608; los conteos compartidos tienen otro denominador. La coincidencia puede reflejar dificultad común, especificación o datos compartidos, sin identificar su causa como ruido de etiqueta. Tampoco una correlación menor demuestra por sí sola un ensemble útil: la combinación uniforme de §57 conserva su RMSE peor que SAE y Persistence. El ensemble ajustado en calibración de §63 tiene otra identidad y sus dos ganancias no superan Holm2. No se elige entre ambas combinaciones usando el test para declarar un techo confirmado.</p>
+</section>
+<section id="segmentos-casos-de-frontera-y-diagnostico-de-atajos">
+<h3>12.3.3 Segmentos, casos de frontera y diagnóstico de atajos<a class="headerlink" href="#segmentos-casos-de-frontera-y-diagnostico-de-atajos" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente de la guía</p></th>
+<th class="head"><p>Evidencia y límite actuales</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Segmentación temporal y de dominio</strong></p></td>
+<td><p>Existen 112 filas sistema-trimestre, ventanas móviles descriptivas de 90 días y grupos de pronóstico/volatilidad previa con IC y familia propia. Los regímenes del objetivo realizado son retrospectivos. Una serie y h=1 no generan clases, regiones, grupos demográficos ni varios horizontes que no existen en los datos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Casos de mayor pérdida y fronteras</strong></p></td>
+<td><p>Los <a class="reference download internal" download="" href="../_downloads/0971a98e34892f2ced453e82e9ddb397/all_6080_date_model_labels.csv"><span class="xref download myst">6.080 registros completos</span></a> guardan fecha, residuo, categoría y estrato. La revisión descriptiva siguiente presenta tres extremos por modelo, con criterio explícito y valores existentes. Seleccionar errores extremos no equivale a seleccionar cercanía a L/H ni a explicar su causa.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Confianza en regresión</strong></p></td>
+<td><p>Los intervalos y aciertos de cobertura permiten estudiar errores del pronóstico continuo. No hay una probabilidad de «clase correcta» que permita trasladar literalmente la selección de menor confianza correcta de clasificación. La DE entre semillas, la anchura y la cobertura no se renombran como probabilidades calibradas de corrección; el criterio de menor confianza queda sin definir para esta selección.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Señales espurias y controles negativos</strong></p></td>
+<td><p>Disponibilidad causal, máscaras y auditorías de datos están documentadas; <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a> ejecutó oclusión, borrado/inserción con un orden aleatorio y cuatro tipos de estrés. No son un contraste específico con/sin una señal espuria identificada en el EDA. Ese diagnóstico de atajos no consta ejecutado para el catálogo actual; no se marca como no aplicable ni se sustituye por controles históricos o sólo implementados.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <a class="reference download internal" download="" href="../_downloads/74ed70ae2ee30d91b6d1d2758800ca13/border_cases.csv"><span class="xref download myst">30 extremos guardados</span></a> seleccionan los <strong>tres mayores errores absolutos medios entre semillas por cada uno de los diez principales</strong>. El orden usa el campo ya publicado <code class="docutils literal notranslate"><span class="pre">mean_absolute_individual_seed_error</span></code>, descendente y con fecha ascendente para desempatar; se copian sus valores, sin recalcular pronósticos o scores. Es una inspección dirigida posterior al benchmark, distinta de la muestra estratificada de 100 fechas. Sus 30 filas corresponden a <strong>nueve fechas distintas</strong> y no heredan las probabilidades ni los pesos de aquella muestra. El <a class="reference download internal" download="" href="../_downloads/586eef965f429677630eb4e5b165ba25/border_case_readout.json"><span class="xref download myst">registro de selección y alcance</span></a> conserva el criterio y las filas de origen.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo</p></th>
+<th class="head"><p>Fecha del máximo según ese criterio</p></th>
+<th class="head text-right"><p>Error absoluto medio entre semillas</p></th>
+<th class="head"><p>Categoría del pronóstico medio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>2026-02-06</p></td>
+<td class="text-right"><p>0,029631638</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td><p>2026-02-06</p></td>
+<td class="text-right"><p>0,029910370</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>2026-02-05</p></td>
+<td class="text-right"><p>0,022324874</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-odd"><td><p>SAE</p></td>
+<td><p>2026-02-06</p></td>
+<td class="text-right"><p>0,024996688</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p>2026-02-09</p></td>
+<td class="text-right"><p>0,029015165</p></td>
+<td><p>Sobreestimación grande</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>2026-02-06</p></td>
+<td class="text-right"><p>0,027798253</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td><p>2026-02-06</p></td>
+<td class="text-right"><p>0,030231168</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>2026-02-05</p></td>
+<td class="text-right"><p>0,019210912</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>2026-02-11</p></td>
+<td class="text-right"><p>0,050406359</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p>2026-02-11</p></td>
+<td class="text-right"><p>0,025426704</p></td>
+<td><p>Subestimación grande</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En estos máximos, el régimen realizado del objetivo es alto y predominan las subestimaciones; TimesNet conserva una sobreestimación. Esa coincidencia es una descripción retrospectiva de casos seleccionados, sin atribución a un evento económico o señal espuria. El criterio medio de error absoluto individual difiere del residuo del pronóstico medio usado para la categoría y de la contribución a la RMSE primaria: <strong>no cambia A2</strong>. No se infieren frecuencias poblacionales o IC a partir de estos extremos ni se presenta la concordancia entre semillas como confianza predictiva calibrada.</p>
+<p>La oclusión del Top 3 utiliza 24 fechas y la misma muestra para ordenar y evaluar su fidelidad; ARIMA usa rezagos de σ₇ y las redes coordenadas OHLCV diferentes. Las tres ablaciones SAE de <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> sí reentrenaron variantes: retirar dropout empeora RMSE con Holm3; las otras dos comparaciones no son concluyentes. Estas evidencias tienen funciones distintas y no prueban ausencia de atajos, causalidad económica o validez universal de una explicación.</p>
+<p>El estado actual reúne incertidumbre y errores medidos, con sus resultados adversos, y una inspección descriptiva de extremos. Permanecen sin identificar un piso de ruido o techo óptimo y una confianza calibrada para seleccionar casos; el contraste específico de atajos no consta ejecutado. Sin una CDF predictiva pertinente, PIT y CRPS conservan el límite de definición indicado en §12.2. Esta consolidación mantiene A2, modelos, calibradores, muestras y cálculos originales; reorganiza evidencias y copia casos existentes, sin nuevos ajustes, scores, pruebas o remuestreos.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Archivo documental: contenido anterior del capítulo 12</p>
+<p>Este bloque conserva íntegramente el contenido anterior y sus encabezados. Sus fechas, estados y enlaces corresponden a aquellos cortes; la lectura vigente sigue los apartados 12.1–12.3 anteriores.</p>
 <p><strong>Estado vigente del 14/11/2026:</strong> existen intervalos y cobertura empírica para los 16 sistemas, diagnósticos F2a, robustez, explicaciones, tres ablaciones entrenadas y una taxonomía de residuos de los diez modelos principales. Los artefactos actuales están en <a class="reference internal" href="53_cierre_requisitos.html"><span class="std std-doc">§§49–59</span></a>. Esta página distingue los resultados existentes de las garantías que no están acreditadas.</p>
-<section id="intervalos-y-calibracion-originales">
-<h2>12.1 Intervalos y calibración originales<a class="headerlink" href="#intervalos-y-calibracion-originales" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="intervalos-y-calibracion-originales">12.1 Intervalos y calibración originales</h2>
 <p>Los predictores neuronales conservan seis trayectorias y los comparadores una. Antes del scoring se fijó por predictor un cuantil de residuos absolutos sobre <strong>53 fechas de calibración</strong>. Se reportan cobertura nominal del 90 % y anchura de intervalos. El <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">benchmark</span></a> y la <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">auditoría de calibración</span></a> mantienen los calibradores y sus resultados adversos.</p>
 <p>El uso de una cronología dependiente limita la garantía de un calibrador basado en intercambiabilidad. Cuantificar cobertura observada no demuestra cobertura condicional ni validez para cualquier régimen futuro. Los intervalos de cobertura por bloques reflejan sensibilidad temporal bajo sus propios supuestos; no convierten el procedimiento de calibración original en uno adaptado por bloques. Tampoco se inventa PIT sin una CDF predictiva completa. El suplemento de <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a> añade cobertura por condiciones y variantes temporales causales sin modificar los calibradores originales; conserva las infracoberturas observadas y no selecciona una variante usando el test.</p>
-</section>
-<section id="robustez-y-explicaciones">
-<h2>12.2 Robustez y explicaciones<a class="headerlink" href="#robustez-y-explicaciones" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="robustez-y-explicaciones">12.2 Robustez y explicaciones</h2>
 <p><a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a> publica cuatro tipos de perturbación, cada uno con tres severidades, sobre los predictores congelados. Se conservan objetivos, pesos y calibradores. Las alteraciones de ventanas independientes son escenarios de estrés de entrada; pueden romper la coherencia de una trayectoria OHLCV y no se describen como intervenciones económicas reales.</p>
 <p>SAE, GRU32 y ARIMA, el Top 3 observado por RMSE, tienen diagnósticos de oclusión, borrado/inserción y un orden aleatorio de referencia en 24 fechas. Las redes disponen de seis semillas; ARIMA determinista no tiene variación de optimización por semilla. La fidelidad medida sobre esas fechas no se interpreta como causalidad ni validación independiente del explicador.</p>
 <p>Las <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">18 ablaciones de §55</span></a> retiran tres componentes de SAE, con seis semillas por variante. Retirar el dropout empeora la RMSE con evidencia ajustada; las otras dos comparaciones son no concluyentes. No se vuelve a elegir el modelo a partir de estas pruebas posteriores.</p>
-</section>
-<section id="taxonomia-operativa-y-muestra-auditable">
-<h2>12.3 Taxonomía operativa y muestra auditable<a class="headerlink" href="#taxonomia-operativa-y-muestra-auditable" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="taxonomia-operativa-y-muestra-auditable">12.3 Taxonomía operativa y muestra auditable</h2>
 <p><a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> etiqueta <strong>6.080 fechas-modelo</strong> y publica <strong>100 fechas distintas por modelo</strong>, con sus seis residuos individuales: 600 casos por modelo. Las categorías de magnitud/signo usan umbrales de desarrollo y reglas registradas antes del etiquetado automático, después de conocer el test. No se presentan como anotaciones humanas o causas semánticas.</p>
 <p>Las frecuencias y sus IC temporales se calculan con 10.000 remuestreos y bloques de 7/14/28 días. Las categorías no observadas pueden producir IC empíricos [0,0], que no implican probabilidad poblacional cero. Se conservan los pesos de muestreo y la concordancia entre semillas.</p>
-</section>
-<section id="techo-y-distancia">
-<h2>12.4 Techo y distancia γ<a class="headerlink" href="#techo-y-distancia" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="techo-y-distancia">12.4 Techo y distancia γ</h2>
 <p>Se calculó entropía ordinal como referencia de complejidad. El ensemble uniforme de los diez modelos resultó peor que SAE y Persistence, por lo que no aporta un techo empírico válido. Frente a la cota matemática de RMSE cero, γ ideal es <strong>0,93094</strong>, con IC temporal <strong>[0,84448; 1,02974]</strong>. Ese cociente no identifica ruido irreducible ni un error mínimo alcanzable; se conserva el resultado negativo sin buscar otra combinación favorable sobre el test.</p>
 <p>El nuevo <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">proxy empírico de §63</span></a> ajusta una combinación convexa sólo con los 53 pronósticos de calibración guardados, sin reentrenar las redes. Su RMSE puntual es 0,00368953 y γ del proxy 0,28757; el IC algebraico [−1,49210; 2,37128] y el orden favorable en 6.588/10.000 remuestreos muestran que no es una referencia estable. No se estima riesgo Bayes ni se cambia A2.</p>
 <p>El alcance de las referencias anteriores está documentado en <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a>. El <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B actual</span></a> mantiene este requisito parcial, junto con la aplicación formal pendiente del margen δg previamente registrado y las limitaciones de calibración temporal.</p>
-</section>
-<section id="archivo-de-la-version-anterior">
-<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="archivo-de-la-version-anterior">Archivo de la versión anterior</h2>
 <p>La <a class="reference download internal" download="" href="../_downloads/b908eebaffc860bef9b93249bf6a2208/12_incertidumbre_errores.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con sus estados y fechas históricos. El <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a> fija su commit y SHA256. Esos antecedentes no sustituyen el protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> ni su Apéndice B actual de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>.</p>
+</div>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -555,11 +845,23 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-y-calibracion-originales">12.1 Intervalos y calibración originales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-y-explicaciones">12.2 Robustez y explicaciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomia-operativa-y-muestra-auditable">12.3 Taxonomía operativa y muestra auditable</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-y-distancia">12.4 Techo y distancia γ</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#techo-de-desempeno-y-margen-de-mejora-real">12.1 Techo de desempeño y margen de mejora real</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-empirica-y-orientacion-de">12.1.1 Referencia empírica y orientación de γ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictibilidad-ruido-y-referencias-que-no-estan-identificadas">12.1.2 Predictibilidad, ruido y referencias que no están identificadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-de-incertidumbre">12.2 Cuantificación de incertidumbre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incertidumbre-del-score-y-de-las-diferencias">12.2.1 Incertidumbre del score y de las diferencias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-predictivos-originales-y-adaptacion-temporal">12.2.2 Intervalos predictivos originales y adaptación temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-condicional-y-calibracion-por-grupos">12.2.3 Cobertura condicional y calibración por grupos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-errores-y-evaluacion-por-segmentos">12.3 Análisis de errores y evaluación por segmentos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorias-exclusivas-muestra-y-frecuencia">12.3.1 Categorías exclusivas, muestra y frecuencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-compartidos-y-diversidad">12.3.2 Errores compartidos y diversidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentos-casos-de-frontera-y-diagnostico-de-atajos">12.3.3 Segmentos, casos de frontera y diagnóstico de atajos</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

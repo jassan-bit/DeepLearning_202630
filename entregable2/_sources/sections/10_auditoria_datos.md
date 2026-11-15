@@ -2,6 +2,126 @@
 (e2-auditoria-datos)=
 # 10. Contrato de Datos y Auditoría Formal de Fuga de Información
 
+**Lectura vigente:** el contrato de datos y la auditoría actual describen la ejecución de **16 sistemas sobre 608 fechas**, con **655 ejemplos de entrenamiento final, 53 de calibración y tres folds HPO**. Hay evidencia de calendario, máscaras, firmas, disponibilidad y congelación; **la auditoría integral de la tabla 10.1 sigue parcial**. Los controles pendientes no se presentan como aprobados ni como fallos demostrados, y los recibos P0/OOF históricos no se transfieren al pipeline final.
+
+La [admisión ejecutada](../_static/e2_benchmark_final_20261113/data_admission.json), la [congelación](../_static/e2_benchmark_final_20261113/final_freeze.json), la [Data Card vigente](../_static/e2_point1_review_v1/dataset_card_current.json) y la [auditoría de partición](../_static/e2_eda_current_v1/partition_audit.json) son las fuentes actuales. La [lista verificable](../_static/e2_data_training_uncertainty_current_v1/guide_checklist.csv), la [trazabilidad](../_static/e2_data_training_uncertainty_current_v1/decision_traceability.csv), el [índice de evidencias](../_static/e2_data_training_uncertainty_current_v1/current_evidence_index.json) y el [manifiesto](../_static/e2_data_training_uncertainty_current_v1/manifest.json) distinguen los alcances de los puntos 10–12. El {download}`índice de esta consolidación <../_static/e2_data_training_uncertainty_current_v1/README.md>` y la {download}`versión exacta anterior de este capítulo <../_static/e2_data_training_uncertainty_current_v1/10_auditoria_datos_before_update.md>` conservan la procedencia.
+
+```{important}
+**Regla de oro de la guía, p.46:** si una verificación de la tabla 10.1 falla, **el resultado del benchmark no es válido hasta corregir la causa y repetir todo el experimento afectado**. Una nota al pie no subsana ese fallo. Un control no ejecutado es una comprobación pendiente, no evidencia de aprobación ni prueba automática de fuga.
+```
+
+La herencia del test y del margen de E1 se acepta conforme a la continuidad E1–E2–E3. Su conocimiento previo se declara y limita la confirmación prospectiva; **no se considera fuga por la mera herencia de la partición**. A la vez, ni los hashes ni la reproducción numérica acreditan por sí solos todas las verificaciones exigidas.
+
+(e2-auditoria-verificaciones-vigentes)=
+## 10.1 Verificaciones obligatorias: evidencia y acción concreta
+
+| Verificación de la guía | Evidencia actual y estado | Qué falta o cómo debe interpretarse |
+|---|---|---|
+| **Intersección de identificadores** | **Verificada en el alcance de metadatos:** IDs de objetivo train–validación disjuntos en los tres folds y train/calibración/prueba finales disjuntos. [Auditoría actual](../_static/e2_eda_current_v1/partition_audit.json). | El identificador es la fecha UTC del objetivo. Que BTCUSDT aparezca en todas las fases es legítimo en una serie; no se inventan activos disjuntos. IDs separados no prueban independencia ni soportes brutos totalmente distintos. |
+| **Duplicados exactos** | **Parcial:** EDA de desarrollo sin claves diarias ni filas OHLCV completas idénticas; preflight P0/OOF sin colisiones D7 en sus once separaciones. | No consta en esos recibos un nuevo cotejo de contenido entre los tensores finales 655/53/608. Debe cerrarse esa comprobación en la cohorte efectiva; las identidades de fecha no la sustituyen. |
+| **Casi duplicados** | **Parcial:** [EDA de vecinos](02_eda.md), umbral descriptivo 0,01, train inicial 343 y desarrollo 2024 de 366 casos, sin alertas bajo esa regla. | Ese ámbito no es la prueba de 608 fechas. No se acredita la sensibilidad de desempeño con/sin los casos pertinentes de la cohorte final. No se eliminan ventanas legítimas por su proximidad temporal. |
+| **Fuga temporal** | **Verificada para fechas, firmas y soportes declarados:** embargo 7 en train–validación/calibración, transformaciones train-only y predictores congelados antes del scoring. | La revisión guardada no reabre todos los tensores privados ni audita cada lectura histórica. El soporte causal compartido calibración–prueba se declara abajo; no es por sí solo fuga. |
+| **Fuga espacial** | **No aplica:** una serie de mercado sin coordenadas o unidades espaciales. | No se sustituye por un test espacial ficticio ni se elimina por ello la auditoría temporal. |
+| **Fuga por transformaciones** | **Parcial:** pipeline modular, reglas train-only, guardas de datos y **cinco comprobaciones unitarias comunes aprobadas**, con paneles sintéticos y mocks; [informe de alcance](../_static/e2_data_training_uncertainty_current_v1/targeted_data_guard_checks.json). Fuentes/recibos de ejecución en [§4](04_implementacion.md) y [§48](48_protocolo_reducido.md). | Falta una aprobación integral documentada de todos los controles de transformación sobre el pipeline final. Pasar pruebas sintéticas o reproducir pesos no demuestra ausencia de todos los ajustes indebidos. |
+| **Atributos posteriores al evento** | **Disponibilidad documentada; cierre parcial:** sólo OHLCV de días completos anteriores a t; diccionario y análisis de rezagos del [EDA](02_eda.md). | Completar los controles de atributos sospechosos pertinentes a regresión y su justificación causal. Las correlaciones marginales no equivalen a validación univariada; para σ₇ continuo no se atribuye una AUC de clasificación del objetivo. |
+| **Validación adversarial** | **Pendiente para la ejecución actual:** existe diseño/código histórico; no un recibo de ese experimento sobre el pipeline final. KS/Wasserstein describen desplazamiento con otros alcances. | El control es un clasificador de **dominio train/test**, con AUC, partición temporal y ajuste causal. AUC>0,5 puede reflejar cambio de distribución; la guía admite diferencia explicada y tratada. No se etiqueta automáticamente como fuga ni se sustituye por un KS. |
+| **Fuga por preentrenamiento** | **Sin checkpoint fundacional externo declarado:** las redes finales tienen inicializaciones propias. SAE sí realiza preentrenamiento auxiliar con train, con fases y recibos separados. | La contaminación de un corpus externo no aplica a un modelo base no usado; el corte train-only de SAE sí debe conservarse. Código público, caché HPO y licencia de una fuente no certifican ausencia de contaminación. |
+| **Sanidad con etiquetas aleatorias** | **Pendiente de ejecución para el pipeline actual:** el código de controles negativos históricos no acredita entrenamiento aleatorizado del catálogo vigente. | Requiere un control entrenado con etiquetas permutadas, manteniendo el pipeline y una regla adecuada al objetivo continuo y su dependencia. Una prueba de formas, gradientes o memorización sintética no equivale a ese experimento. |
+
+**El estado parcial no se convierte en una certificación de validez integral del benchmark.** También se mantiene la diferencia entre una comprobación de fuga y un diagnóstico residual: Ljung–Box/BDS desfavorables cuestionan adecuación o dependencia, pero no demuestran automáticamente que entraran datos futuros al entrenamiento.
+
+### 10.1.1 Qué separaciones están comprobadas
+
+| Ámbito actual | Entrenamiento admisible | Validación/calibración o evaluación | Evidencia |
+|---|---|---|---|
+| HPO, origen 01/01/2024 | **253** ejemplos, hasta 25/09/2023 | **83**, 03/10–24/12/2023 | IDs train–validación disjuntos y embargo 7 |
+| HPO, origen 01/07/2024 | **435**, hasta 25/03/2024 | **83**, 02/04–23/06/2024 | IDs train–validación disjuntos y embargo 7 |
+| HPO, origen 01/10/2024 | **527**, hasta 25/06/2024 | **83**, 03/07–23/09/2024 | IDs train–validación disjuntos y embargo 7 |
+| Ajuste final | **655**, 08/01/2023–31/10/2024 | **53 calibración**, 08/11–30/12/2024 | Embargo 01–07/11; soportes de cierres de etiquetas separados |
+| Prueba heredada común | Pesos/escaladores/calibradores ya fijados | **608**, 01/01/2025–31/08/2026 | Mismo calendario guardado para 16 sistemas/81 trayectorias |
+
+Las cuentas y fechas se cotejan con [registros y máscaras actuales](../_static/e2_eda_current_v1/partition_audit.json). Las 83 fechas de cada fold no son las 305 fechas del EDA forward de diez folds ni las 60 del antiguo P0. Los 78 recibos finales neuronales reportan 655 ejemplos; en HPO parte de las reutilizaciones carece del contador train directo y se coteja mediante firmas y metadatos de disponibilidad. No se presenta esa reconstrucción como una reapertura de todos los tensores originales.
+
+La máscara de entrenamiento neuronal exige entrada D7 y objetivo válidos. La evaluación usa además la disponibilidad de los rezagos causales necesarios para los comparadores registrados; las 608 fechas resultan elegibles para todos. La disponibilidad adicional de una referencia endógena se declara, sin atribuir a todas las redes historia que no recibieron.
+
+### 10.1.2 IDs, ventanas y disponibilidad no son la misma comprobación
+
+Para emitir al inicio de t, $X_t$ usa OHLCV de **[t−7,t−1]**; $Y_t$ usa **ocho cierres [t−7,t]** para siete retornos. El embargo separa los soportes de etiquetas en cada train–validación HPO y en train final–calibración. En cambio, calibración y test tienen IDs distintos pero sus soportes comparten **seis cierres y cinco retornos**, del cierre de calibración 30/12/2024 al primer objetivo 01/01/2025. El 31/12 es historia causal, no fecha de ajuste o recalibración.
+
+Esa reutilización de historia ya observable es legítima al avanzar el origen con parámetros congelados. También los folds expansivos pueden incorporar observaciones que eran validación de un origen anterior y ya son pasadas en el siguiente. **No equivale a reutilizar etiquetas futuras para seleccionar recetas**, ni convierte las fechas o semillas en observaciones iid. La [auditoría de soportes](../_static/e2_eda_current_v1/partition_audit.json) distingue ambas situaciones; no afirma intersección cero de todo el dato bruto entre todas las etapas.
+
+### 10.1.3 Guardas comunes verificadas con fixtures
+
+Se reejecutaron **cinco tests unitarios existentes del código científico común: 5/5 aprobados, cero fallos y cero errores**. El [informe detallado](../_static/e2_data_training_uncertainty_current_v1/targeted_data_guard_checks.json) y el {download}`registro de ejecución <../_static/e2_data_training_uncertainty_current_v1/targeted_data_guard_checks.log>` identifican los seis archivos de fuente/pruebas cotejados, idénticos al commit científico `1e8745497b484518f766b6da5c19be8362d9add7`.
+
+| Guarda comprobada | Resultado en los fixtures |
+|---|---|
+| Transformación train-only | Alterar observaciones sintéticas posteriores al 31/10 no cambia la firma de entrenamiento final ni su escalador. |
+| Ajuste final con épocas fijas | El worker común, con ajuste/inferencia simulados, no recibe calibración como validación para entrenar y conserva el vínculo predictor/calibrador. |
+| Puerta de acceso | El descargador de mercado no se invoca si falla la comprobación de congelación física completa. |
+| Puente causal y objetivo | La primera ventana de prueba sintética utiliza 31/12 como historia observable y σ₇ se construye como desviación poblacional de siete retornos logarítmicos. |
+| Calendario y geometría | Los días ausentes y las geometrías OHLCV inválidas se rechazan; no se comprime el calendario para ocultarlos. |
+
+La ejecución usó **CPU, Python 3.12.14 y Torch 2.8.0+cpu**, sin nuevas instalaciones, lectura de mercado, optimización de modelos reales o inferencia real. Fue una comprobación **posterior al benchmark**; no se la atribuye a una auditoría anterior a los ajustes. Acredita estas guardas y conexiones del ejecutor común, **no todos los ports ni todas las transformaciones aprendidas de los trece modelos**. Tampoco ejecuta el clasificador adversarial, el cotejo de contenido de los tensores privados o el control real de entrenamiento con etiquetas aleatorias. La auditoría integral conserva alcance parcial.
+
+### 10.1.4 Límites de los controles históricos y acciones de cierre
+
+El [preflight P0/OOF](../_static/remediation_preflight/data_support_audit.json) auditó desarrollo 2023–2024 y once orígenes, con su propia cohorte. Su reconstrucción de etiquetas y ausencia de colisiones pertenecen a ese recibo. Los controles negativos de `scripts/e2_leakage_controls.py`, incluidos el clasificador de dominio y las etiquetas permutadas del diseño anterior, conservan su implementación y sus hipótesis históricas; **no se declaran ejecutados para los dieciséis sistemas actuales**.
+
+Las acciones pendientes son cerrar el cotejo de contenido y vecinos de la cohorte final, completar la auditoría de transformaciones/atributos y disponer de resultados actuales de los controles adversarial y de etiquetas aleatorias. Los dos últimos implican sus propios ajustes de control: no se simulan mediante documentación o hashes ni se atribuyen a esta actualización sin entrenamiento. Para regresión, la referencia de sanidad y el tamaño de efecto deben ser pertinentes a una pérdida continua; «azar» no se redefine como 50 % de exactitud.
+
+Si una comprobación aplicable detecta un fallo, se identifica su causa y todo el alcance afectado, se corrige el pipeline y **se repite el experimento afectado antes de sostener su validez**. No basta anotar la incidencia, borrar fechas desfavorables o elegir otro diagnóstico que no rechace. Un control no estimable o aún no ejecutado permanece identificado como tal; no se confunde con un fallo ya demostrado.
+
+(e2-contrato-datos-vigente)=
+## 10.2 Contrato de datos: esquema, disponibilidad, linaje y filtros
+
+### 10.2.1 Esquema versionado y diccionario de atributos
+
+La [Data Card actual, schema_version 2](../_static/e2_point1_review_v1/dataset_card_current.json), el [manifiesto de adquisición heredado](../_static/dataset_manifest_e1.json) y el [contrato vigente](17_contrato_sincronizado.md) fijan fuente, tipos, unidades y reglas. La ficha histórica `dataset_card.json` conserva sus bytes; sus antiguos estados no describen el cierre actual. La ruta es **F2a**, sin crear una ruta tabular por representar entradas como una matriz ni añadir Y rezagada como sexto canal.
+
+| Cantidad | Tipo, unidad y validación | Fuente y disponibilidad |
+|---|---|---|
+| `open_time`, `close_time` | Marcas enteras; milisegundos antes de 2025 y microsegundos desde 2025 según el proveedor; normalización a UTC y controles de secuencia | CSV oficial de velas de 1 minuto; no confundir cambio de unidad con cambio de frecuencia |
+| OHLC | Valores numéricos positivos, finitos y geometría coherente; **USDT por BTC** antes de transformar | Binance Spot; la barra completa del día t−k es observable al inicio de t−k+1 |
+| `volume` | Numérico finito y no negativo; **BTC** | Volumen del activo base, agregado por día completo |
+| Otros campos crudos | CSV de **12 columnas**: volumen cotizado, número de operaciones, volúmenes taker y campo ignorado, además de los anteriores | Documentados en la ficha; no se convierten en canales neuronales adicionales |
+| Fecha diaria / ID de ejemplo | Medianoche UTC, única y con posición conservada en el calendario | Fecha del objetivo t; h=1, sin comprimir huecos |
+| Entrada D7 | Tensor **7×5**, barras completas t−7…t−1 y máscara de calidad | Cinco canales OHLCV disponibles antes de emitir; excluye la barra completa de t |
+| σ₇(t) | Desviación poblacional, `ddof=0`, siete retornos logarítmicos; **adimensional y sin anualizar**; finita y no negativa cuando el soporte es válido | Requiere cierres t−7…t; sólo se conoce al terminar t. No es varianza realizada intradiaria ni una etiqueta de clase |
+
+El [cargador de desarrollo](https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_development_data.py) y la [admisión final](https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_reduced_final_data.py) contienen comprobaciones de hashes, calendario UTC, valores finitos, geometría OHLCV y coherencia de σ₇. Son reglas ejecutables de carga, con recibos existentes y las guardas sintéticas comunes verificadas en §10.1.3; esta revisión no vuelve a abrir ZIP ni revalida los datos brutos mediante esos cargadores. El [diccionario de disponibilidad](../_static/eda_decisions/heredado/eda_temporal_specific/availability_contract.csv) diferencia OHLCV futuro, σ₇(t) y el rezago observable σ₇(t−1) usado en referencias o regímenes.
+
+### 10.2.2 Transformaciones y trazabilidad desde el dato original
+
+El linaje conserva este orden:
+
+1. **Fuente:** ZIP oficiales y checksums, identificados por ruta, tamaño y SHA-256 en el manifiesto. Se conservan los brutos y sus fechas.
+2. **Agregación diaria UTC:** primera apertura, máximo de máximos, mínimo de mínimos, último cierre y suma del volumen. Una barra incompleta no se rellena usando el futuro.
+3. **Objetivo y máscaras:** retornos logarítmicos diarios y σ₇ de siete retornos con ocho cierres consecutivos; la invalidez se propaga a etiquetas y ventanas dependientes.
+4. **Representación causal:** precios como `log(P)−log(C[t−1])`, anclados al último cierre observable de la ventana, y `log1p(volume)`.
+5. **Escalado aprendido:** media/DE poblacional de cada canal sobre las posiciones N×7 de train; DE cero se sustituye por 1. Y se divide por su media positiva de train, sin centrar. Cada fold ajusta sus parámetros sólo con train.
+6. **Congelación y scoring:** los escaladores finales, pesos y calibradores se fijan antes de puntuar; las métricas invierten la escala de Y y conservan las mismas fechas. Las actualizaciones causales de estado ARIMA no reestiman sus coeficientes.
+
+La [admisión](../_static/e2_benchmark_final_20261113/data_admission.json) identifica los derivados de evaluación y el puente 31/12; [§48](48_protocolo_reducido.md) registra la política de cada etapa. Un SHA identifica bytes concretos, no permisos de acceso causal o independencia. El hash de un CSV serializado de nuevo tampoco se equipara silenciosamente al de otro formato o dominio tensorial.
+
+### 10.2.3 Poblaciones y exclusiones con denominadores explícitos
+
+| Ámbito y fuente del recuento | Población, filtros y resultado |
+|---|---|
+| **Calidad de desarrollo 2023–2024** | De **731 días de calendario**, el 24/03/2023 está incompleto; quedan **730 barras completas**. La fuente identifica **80 minutos ausentes y una fila presente con cierre temporal irregular**, no 81 filas ausentes. Se conservan 350/366 etiquetas σ₇ válidas de 2023/2024: **716** en total. [Calidad por año](../_static/eda_decisions/heredado/eda_general_quality/quality_by_year.csv). |
+| **Entrenamiento final hasta 31/10/2024** | **670 posiciones de calendario y 655 ejemplos admisibles**. Los 15 IDs excluidos son 01–07/01/2023 por historia inicial insuficiente y 24–31/03/2023 por el día incompleto y sus soportes dependientes. No se presentan como 15 días OHLCV incompletos. [Máscaras y fechas actuales](../_static/e2_eda_current_v1/partition_audit.json). |
+| **Embargo, calibración y puente** | 01–07/11 se excluye del ajuste/calibración por diseño; **53 fechas de calibración, 08/11–30/12**, y 31/12 sólo como puente. El embargo es una regla temporal, no un filtro de calidad ni un error eliminado por su pérdida. |
+| **Admisión de prueba actual** | **20 ZIP, 875.520 minutos registrados/esperados y 608 días completos**, sin minutos ausentes/irregulares ni barras diarias excluidas en ese recibo; **608/608 fechas comunes elegibles**. [Data Card actual](../_static/e2_point1_review_v1/dataset_card_current.json) y [recibo por archivo](../_static/e2_benchmark_final_20261113/data_admission.json). |
+
+Estos denominadores no se suman como una cascada única: calendario, minutos, barras, etiquetas, ventanas y cortes de protocolo son objetos diferentes. No se borran eventos extremos legítimos ni se seleccionan fechas por la magnitud del error. La admisión actual no abrió septiembre–octubre de 2026 para su scoring; el inventario heredado completo puede contener archivos de ese periodo con otro alcance.
+
+Las cuentas anteriores se leen de metadatos y recibos conservados. La [auditoría actual](../_static/e2_eda_current_v1/partition_audit.json) no reabre los archivos privados para volver a certificar su calidad minuto a minuto. Los controles y sus límites permanecen revisables; **la aprobación integral no se deduce de que los archivos existan o A2 se pueda reconstruir**. Los pendientes de §10.1 y el [Apéndice B](61_reproduccion_consolidada.md) mantienen acciones de cierre específicas, sin confundir evidencia ausente con fallo demostrado ni el resultado observado con validez certificada.
+
+````{admonition} Archivo documental: contenido anterior del capítulo 10
+:class: dropdown
+
+Este bloque conserva íntegramente el texto anterior, sus encabezados y enlaces. Sus recibos, fechas y estados corresponden a sus cortes originales; el protocolo reducido y las verificaciones actuales se presentan arriba.
+
 **Orientación de entrega del 14/11/2026:** el protocolo ejecutado es [§48](48_protocolo_reducido.md), los resultados comunes están en [§6](06_benchmark_final.md), la reproducción registrada en [§55](55_reproduccion_ablaciones.md) y el Apéndice B actual en [§61](61_reproduccion_consolidada.md). Las cifras científicas y los recibos históricos conservan su fecha y su alcance.
 **Alcance vigente:** esta página separa el preflight histórico P0 de los controles de la ejecución final. La [admisión actual](../_static/e2_benchmark_final_20261113/data_admission.json), la [congelación](../_static/e2_benchmark_final_20261113/final_freeze.json) y el [protocolo de §48](48_protocolo_reducido.md) acreditan soporte, identidades y secuencia de la campaña de dieciséis sistemas. No equivalen a la aprobación de todos los criterios de la auditoría integral de fuga.
 
@@ -126,3 +246,6 @@ El scoring actual está cerrado y sus predictores, cohortes y checkpoints tienen
 ## Archivo de la versión anterior
 
 La {download}`versión exacta anterior a esta consolidación <../_static/e2_delivery_reproduction_20261114/archived_chapters/10_auditoria_datos.md>` se conserva con su SHA256 en el [manifiesto de archivo](../_static/e2_delivery_reproduction_20261114/chapter_archive_manifest.json). Sus estados pendientes describen el corte original.
+
+
+````
