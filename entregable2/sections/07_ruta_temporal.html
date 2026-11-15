@@ -438,12 +438,23 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivo-de-la-reclasificacion-y-contrato-que-se-conserva">7.1 Motivo de la reclasificación y contrato que se conserva</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-endogena-y-alcance-de-los-controles">7.2 Información endógena y alcance de los controles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politica-causal-de-ajuste-y-actualizacion">7.3 Política causal de ajuste y actualización</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura">7.4 EDA temporal heredado: evidencia reutilizada y cobertura</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-y-estado">7.5 Verificación y estado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapa-de-rutas-y-justificacion-de-f2a">7.1 Mapa de rutas y justificación de F2a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#protocolo-comun-once-pasos-y-criterios-de-adecuacion">7.2 Protocolo común: once pasos y criterios de adecuación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-ejecuto-cada-paso">7.2.1 Cómo se ejecutó cada paso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-cuatro-condiciones-deben-cumplirse-simultaneamente">7.2.2 Las cuatro condiciones deben cumplirse simultáneamente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bateria-de-pruebas-aplicacion-ejecucion-y-limites">7.3 Batería de pruebas: aplicación, ejecución y límites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-a-b-y-c-aplicadas-a-este-problema">7.3.1 Tablas A, B y C aplicadas a este problema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimo-de-tres-pruebas-por-comparacion-confirmatoria">7.3.2 Mínimo de tres pruebas por comparación confirmatoria</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-f2a-y-controles-complementarios-de-f2b">7.4 Ruta F2a y controles complementarios de F2b</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f2a-aplicacion-de-s1s8">7.4.1 F2a: aplicación de S1–S8</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f2b-que-conserva-la-comprobacion-de-covariables">7.4.2 F2b: qué conserva la comprobación de covariables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-decision-aplicada-al-estado-actual">7.5 Guía de decisión aplicada al estado actual</a></li>
 </ul>
             </nav>
         </div>
@@ -457,6 +468,323 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ruta-metodologica-segun-el-tipo-de-problema">
 <span id="e2-ruta-temporal"></span><span id="ruta-metodologica-series-de-tiempo-y-controles-causales"></span><h1>7. Ruta Metodológica según el Tipo de Problema<a class="headerlink" href="#ruta-metodologica-segun-el-tipo-de-problema" title="Link to this heading">#</a></h1>
+<p><strong>Lectura vigente:</strong> corresponde la familia <strong>F2 temporal y la ruta F2a de series de tiempo</strong>, con controles de disponibilidad de covariables desarrollados también en F2b. Aunque las redes reciben D7×5 OHLCV sin un canal explícito de Y rezagada, el diagnóstico de referencia mostró autocorrelación residual fuerte: la regla <strong>RT1 de F2b exige reclasificar a series de tiempo</strong>. Esta decisión conserva el contrato E1–E2–E3; no añade variables, cambia la partición ni ordena entrenamientos nuevos.</p>
+<p>El benchmark de <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a> está ejecutado: <strong>16 sistemas, 81 predictores congelados y 608 fechas comunes</strong>. La selección, el ajuste y sus incidencias se conservan en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>; <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>, <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a>, <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> y <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a> aportan diagnósticos posteriores con hipótesis y alcances propios. <strong>Ejecución del benchmark y adecuación estadística de un modelo son conclusiones distintas:</strong> los resultados actuales no satisfacen conjuntamente los cuatro criterios de adecuación de la guía.</p>
+<p>Este capítulo sigue el orden <strong>7.1–7.5 de la guía, pp. 20–40</strong>. La <a class="reference download internal" download="" href="../_downloads/65367fc42cdde344d909bfe0693dc8ca/guide_checklist.csv"><span class="xref download myst">lista verificable</span></a>, la <a class="reference download internal" download="" href="../_downloads/9706b30a17c6cfd80ce29e6dedb8fe1b/decision_traceability.csv"><span class="xref download myst">trazabilidad de decisiones</span></a>, el <a class="reference download internal" download="" href="../_downloads/aa93406d223038cc0d62455de8b9e45e/contrast_battery_map.csv"><span class="xref download myst">mapa de batería por cada uno de los veinte pares primarios</span></a>, el <a class="reference download internal" download="" href="../_downloads/656a4f055ac2e4586f11edec4fcc759d/current_evidence_index.json"><span class="xref download myst">índice de evidencias</span></a> y el <a class="reference download internal" download="" href="../_downloads/5da1ef32d875143d8b48b27659be8f18/manifest.json"><span class="xref download myst">manifiesto</span></a> distinguen pruebas ejecutadas, requisitos pendientes y alternativas no aplicables. El <a class="reference download internal" download="" href="../_downloads/593852ff43ac2fb8feda500715a2b9c3/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> y la <a class="reference download internal" download="" href="../_downloads/dad34d1d7194aacdea0b1f21323bc790/07_ruta_temporal_before_update.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span></code></a> conservan sus fuentes; no se recalculan resultados.</p>
+<section id="mapa-de-rutas-y-justificacion-de-f2a">
+<span id="e2-ruta-mapa-vigente"></span><h2>7.1 Mapa de rutas y justificación de F2a<a class="headerlink" href="#mapa-de-rutas-y-justificacion-de-f2a" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Familia de la guía</p></th>
+<th class="head"><p>Tipos que agrupa</p></th>
+<th class="head"><p>Aplicación al proyecto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>F1 · Tabular</p></td>
+<td><p>Clasificación y regresión tabular</p></td>
+<td><p>No es la ruta principal: presentar covariables como una matriz no elimina el orden, la dependencia ni el objetivo temporal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>F2 · Temporal</strong></p></td>
+<td><p><strong>Series de tiempo y regresión temporal</strong></p></td>
+<td><p><strong>Aplica F2a</strong> por el diagnóstico RT1. Los controles causales de covariables de F2b complementan la justificación.</p></td>
+</tr>
+<tr class="row-even"><td><p>F3 · Espacial</p></td>
+<td><p>Regresión espacial y espacio-temporal</p></td>
+<td><p>No aplica: no hay unidades geográficas o una dimensión espacial que deban bloquearse.</p></td>
+</tr>
+<tr class="row-odd"><td><p>F4 · Imágenes</p></td>
+<td><p>Clasificación y segmentación de imágenes</p></td>
+<td><p>No aplica: las arquitecturas transferidas no convierten las entradas OHLCV en imágenes.</p></td>
+</tr>
+<tr class="row-even"><td><p>F5 · Lenguaje y secuencias</p></td>
+<td><p>Clasificación de texto; etiquetado secuencial o secuencia a secuencia</p></td>
+<td><p>No aplica como ruta de lenguaje: no hay documentos, etiquetas por token ni una salida textual/secuencial de esa naturaleza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">referencia Ridge forward de desarrollo</span></a> utilizó las cinco covariables D7, α=1 fijado y diez folds históricos de 2024, con <strong>305 fechas</strong>. Sus residuos mostraron <strong>ACF(1)=0,632228</strong> y Ljung–Box lag7 <strong>Q=266,4062, p≈8,88183×10⁻⁵⁴</strong>, p Holm≈5,77319×10⁻⁵² dentro de 66 diagnósticos de EDA. La regla RT1 y el EDA temporal de la guía conducen a F2a, decisión documentada del 06/11/2026. La <a class="reference download internal" download="" href="../_downloads/6f98046ca8470b7fbafed7eb2a4a8e9c/decisiones_vigentes.csv"><span class="xref download myst">trazabilidad histórica de la reclasificación</span></a> distingue esa decisión de su incorporación editorial posterior. La <a class="reference download internal" download="" href="../_downloads/1a93bc3bf0dbcccdb75e55283b03d39e/route_decision.json"><span class="xref download myst">resolución de ruta y alcance vigentes</span></a> conserva ese linaje sin importar los catálogos o calendarios anteriores como protocolo actual.</p>
+<p>Ridge fue una referencia diagnóstica de desarrollo, no un cuarto modelo base E1 ni un sistema obligatorio adicional. Ese resultado no demuestra no linealidad, que añadir Y rezagada mejore la predicción ni que todos los residuos futuros se comporten igual. El objetivo σ₇ comparte seis retornos entre fechas consecutivas, lo que también contribuye a la dependencia.</p>
+<p>Se conserva <strong>D7×5 OHLCV → σ₇ poblacional de siete retornos, h=1</strong>, sin anualización, y la <strong>media de las RMSE individuales por semilla</strong>. El margen práctico es <strong>δ=0,00025772842664981106</strong>. La <a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">herencia de métrica, margen, unidad y partición</span></a> se acepta conforme a la guía: el conocimiento previo del test de E1 limita la confirmación prospectiva, sin exigir otro holdout por la mera continuidad del trabajo.</p>
+</section>
+<section id="protocolo-comun-once-pasos-y-criterios-de-adecuacion">
+<span id="e2-ruta-protocolo-comun-vigente"></span><h2>7.2 Protocolo común: once pasos y criterios de adecuación<a class="headerlink" href="#protocolo-comun-once-pasos-y-criterios-de-adecuacion" title="Link to this heading">#</a></h2>
+<section id="como-se-ejecuto-cada-paso">
+<h3>7.2.1 Cómo se ejecutó cada paso<a class="headerlink" href="#como-se-ejecuto-cada-paso" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso de la guía</p></th>
+<th class="head"><p>Evidencia y resultado actuales</p></th>
+<th class="head"><p>Alcance o límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>1. Preregistrar</strong></p></td>
+<td><p><a class="reference internal" href="01_punto_partida.html"><span class="std std-doc">§1</span></a>, <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">§9</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a> conservan contrato, δ, semillas, comparaciones y enmiendas previas a sus ajustes. RQ1 se concreta en veinte pares, Holm20, α familiar 0,05.</p></td>
+<td><p>No se atribuye carácter prospectivo al test conocido ni a los suplementos posteriores. RQ2/RQ3 tienen aclaraciones documentales y no resultados inferenciales nuevos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>2. Auditar datos</strong></p></td>
+<td><p><a class="reference internal" href="02_eda.html"><span class="std std-doc">EDA vigente</span></a> y <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría de partición</span></a>: máscaras, disponibilidad, IDs, soporte y hashes comprobados mediante registros guardados.</p></td>
+<td><p>El cotejo documental no reabre todos los archivos privados ni certifica por sí solo ausencia integral de fuga.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>3. Particionar por la unidad correcta</strong></p></td>
+<td><p>Tres folds HPO cronológicos: <strong>253/435/527</strong> ejemplos de entrenamiento y <strong>83</strong> de validación cada uno. Final: <strong>655 entrenamiento, 53 calibración y 608 prueba</strong>. Embargo heredado de siete días en train–validación/calibración.</p></td>
+<td><p>La unidad inferencial es el calendario de una serie; semillas y ventanas solapadas no son mercados independientes. Calibración y prueba comparten historia causal, sin compartir IDs de objetivos ajustados.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>4. Pipeline causal</strong></p></td>
+<td><p><a class="reference internal" href="04_implementacion.html"><span class="std std-doc">Implementación</span></a>: transformaciones ajustadas sólo con train de cada fold; ventanas hasta t−1, máscaras sin comprimir huecos y recetas finales congeladas.</p></td>
+<td><p>La normalización relativa de la ventana y el escalador aprendido son operaciones diferentes; no se usa OHLCV completo de t al emitir.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>5. Referencias</strong></p></td>
+<td><p>MLP16, LSTM32 y GRU32 de E1, más Persistence, SeasonalNaive y ARIMA, evaluados junto al Top 10.</p></td>
+<td><p>Son 16 sistemas; los clásicos aportan R=1. No superar significativamente al ingenuo impide declarar valor añadido demostrado, pero sus resultados se conservan.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>6. Igualar ajuste</strong></p></td>
+<td><p><a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">§11</span></a>: seis configuraciones por red, mismos tres folds y semilla HPO 271201; <strong>231/234 oportunidades válidas</strong>, incidencias conservadas.</p></td>
+<td><p>Igual número de plazas no demuestra igual coste total: SAE tiene tres fases; existen políticas históricas y hardware distintos en selección. Las seis plazas no son la NAS condicional de 1.000 arquitecturas.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>7. Repetir y guardar cada ejecución</strong></p></td>
+<td><p><strong>Seis semillas 271801–271806 por red</strong>, 78 ajustes finales, más tres clásicos; pesos y trayectorias identificados.</p></td>
+<td><p>R=6 supera el mínimo numérico; el piloto estimó potencia condicional <strong>12,3 %</strong>, inferior a 80 %. Una trayectoria determinista no se convierte en seis entrenamientos al emparejarla.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>8. Diagnosticar ajuste/sobreajuste</strong></p></td>
+<td><p><a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> recupera curvas y ejecuta residuos/calibración; <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a> añade estabilidad y brechas descriptivas.</p></td>
+<td><p>Hay evidencia residual adversa; δg previo está reconocido, pero su prueba formal comparable actual no está establecida. Los diagnósticos posteriores no se presentan como filtro anterior al entrenamiento.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>9. Evaluar en prueba con IC</strong></p></td>
+<td><p>A2 común en <strong>608 fechas</strong>, 81 predictores previamente congelados, sin retuning. Original B=4.999; <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">refinamiento B=20.000</span></a> conserva exactamente hipótesis y conclusiones.</p></td>
+<td><p>El calendario se hereda de E1 y sigue siendo conocido. Los remuestreos reutilizan pronósticos fijos; no son nuevas evaluaciones de recetas seleccionadas con test.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>10. Comparar y controlar multiplicidad</strong></p></td>
+<td><p><a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a> y <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a>: efectos, IC y p brutos/ajustados; Holm20 primario, DM–HLN120, MCS y rangos condicionados con familias separadas.</p></td>
+<td><p>Se ejecutaron tres procedimientos por cada par primario, con sus ajustes Holm20. §7.3 identifica los supuestos y dominios de incertidumbre que deben justificar su validez, sin certificarla por un contador.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>11. Analizar y discutir</strong></p></td>
+<td><p>Robustez/oclusión en <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>, tres ablaciones en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>, errores/techo en <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a>/<a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">§63</span></a>, calibración temporal en <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a>.</p></td>
+<td><p>Son evidencias diferenciadas y mayoritariamente posteriores; no prueban causalidad, adecuación universal, techo Bayes ni RQ2/RQ3 resueltas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El ajuste final usa objetivos hasta <strong>31/10/2024</strong>; el embargo es <strong>01–07/11</strong>, la calibración <strong>08/11–30/12</strong> y el <strong>31/12</strong> sólo aporta historia causal antes del test <strong>01/01/2025–31/08/2026</strong>. La <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría de soportes</span></a> verifica separación train–calibración y train–prueba. Entre calibración y prueba hay <strong>seis cierres y cinco retornos históricos compartidos</strong>, con IDs de objetivo distintos. Ese uso causal no equivale a reajustar parámetros, pero impide afirmar independencia o soportes globalmente disjuntos. El avance de estado ARIMA con coeficientes congelados se distingue de un nuevo ajuste.</p>
+</section>
+<section id="las-cuatro-condiciones-deben-cumplirse-simultaneamente">
+<h3>7.2.2 Las cuatro condiciones deben cumplirse simultáneamente<a class="headerlink" href="#las-cuatro-condiciones-deben-cumplirse-simultaneamente" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criterio de adecuación de la guía</p></th>
+<th class="head"><p>Evidencia actual y decisión</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>i. Superar al trivial con mejora &gt;δ y p ajustado &lt;0,05</strong></p></td>
+<td><p>Ninguno de los diez candidatos rechaza la nula de ganancia ≤δ frente a Persistence en Holm20. SAE tiene la mejor ganancia puntual, pero p Holm=1 e IC que incluye cero. <strong>No acreditado.</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ii. Brecha train–validación menor que δg con evidencia estadística</strong></p></td>
+<td><p><strong>δg sí fue registrado previamente</strong>: 0,00025772842664981106. Las brechas guardadas y su sensibilidad no ejecutan una prueba temporal comparable de no inferioridad para los predictores actuales. <strong>No establecido.</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>iii. Calibración y ausencia de estructura residual</strong></p></td>
+<td><p>Mincer–Zarnowitz rechaza 37/81 restricciones de calibración puntual; Ljung–Box rechaza en <strong>81/81 trayectorias</strong> a lag7 y lag14 tras Holm826. La cobertura también depende de modelo/grupo. <strong>No se acredita ausencia de estructura ni calibración universal.</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>iv. Prueba consistente con validación</strong></p></td>
+<td><p>Existen IC descriptivos de <strong>calibración53 frente a prueba608</strong>, con calendarios remuestreados por separado. No son validación interna de los mismos ajustes ni una demostración de ausencia de deterioro por selección. <strong>La comprobación formal comparable actual no está establecida.</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>No se declara adecuado a un candidato por su menor RMSE o por un no rechazo aislado. El benchmark aporta resultados ejecutados, incluidos los desfavorables; la falta de adecuación conjunta no se confunde con falta de ejecución del trabajo.</p>
+</section>
+</section>
+<section id="bateria-de-pruebas-aplicacion-ejecucion-y-limites">
+<span id="e2-ruta-bateria-vigente"></span><h2>7.3 Batería de pruebas: aplicación, ejecución y límites<a class="headerlink" href="#bateria-de-pruebas-aplicacion-ejecucion-y-limites" title="Link to this heading">#</a></h2>
+<section id="tablas-a-b-y-c-aplicadas-a-este-problema">
+<h3>7.3.1 Tablas A, B y C aplicadas a este problema<a class="headerlink" href="#tablas-a-b-y-c-aplicadas-a-este-problema" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tabla de la guía</p></th>
+<th class="head"><p>Evidencia aplicable ejecutada</p></th>
+<th class="head"><p>Pendientes y alternativas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A · Ajuste y adecuación</strong></p></td>
+<td><p>Comparación con ingenuo; Mincer–Zarnowitz HAC14; Ljung–Box de residuos y cuadrados lag7/14; ARCH-LM7; BDS2/3; Jarque–Bera; cobertura con IC temporales. La familia residual tiene <strong>707/826 rechazos</strong>. <a class="reference download internal" download="" href="../_downloads/1fd4da1929319988cae12221837526dc/tests.csv"><span class="xref download myst">Resultados completos</span></a>.</p></td>
+<td><p>La permutación de etiquetas no se exige además del contraste temporal con ingenuo como si fueran ambos obligatorios. No se ejecutaron Shapiro/Breusch–Pagan/White; JB y diagnósticos temporales sí tienen resultados, sin equivalencia entre sus nulas. PIT no es estimable con un solo intervalo90 %; Kupiec/Christoffersen no están implementados. La cobertura HAC/ACI no los sustituye. Pruebas de clasificación y espaciales no aplican.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B · Ausencia de sobreajuste</strong></p></td>
+<td><p>Curvas de época: <strong>78 finales y 29 HPO</strong>, con diez HPO sin pérdidas originales; comparación calibración–prueba y brechas descriptivas. GR y constancia: veinte diagnósticos de cada tipo, <strong>cero rechazos Holm40</strong>, B=20.000. <a class="reference download internal" download="" href="../_downloads/536f8d3b93c861394cb6aa46527a9104/saved_training_calibration_gaps.csv"><span class="xref download myst">Brechas guardadas</span></a>.</p></td>
+<td><p>Sigue pendiente la inferencia comparable respecto a δg y la comprobación validación–prueba pertinente al ajuste actual. Las curvas por época <strong>no son curvas por tamaño de entrenamiento</strong>. Bootstrap de optimismo con reentrenamiento, curvas 10–100 % y otras alternativas de Tabla B no se atribuyen a estos artefactos ni se ordenan como una lista íntegramente obligatoria.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>C · Diferencias entre modelos</strong></p></td>
+<td><p>Bootstrap primario pareado; t y cambios de signo condicionales; DM–HLN <strong>35/120 rechazos Holm120</strong>; MCS90 % de cinco sistemas; Friedman/Iman–Davenport condicionado a seis semillas y trece redes; <strong>78 Wilcoxon exactos, cero rechazos Holm78</strong> y <a class="reference download internal" download="" href="../_downloads/3a69921438c41b4218e856b2186cf87e/conditional_rank_groups.svg"><span class="xref download myst">diagrama de rangos</span></a>.</p></td>
+<td><p>Los tres métodos por par están ejecutados; su contador no acredita automáticamente los supuestos ni el cumplimiento integral. Faltan tamaños estandarizados Cohen/Cliff/A12 con IC; se publican efectos RMSE/MSE e IC en unidades originales. TOST/ROPE no están ejecutados: no se afirma equivalencia. Nemenyi es alternativa a Wilcoxon–Holm, no otra prueba obligatoria adicional. Clark–West requiere anidamiento pertinente; no se inventa.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para una pérdida, la orientación del margen de Tabla B es <strong>g = RMSE_validación − RMSE_train</strong>, con nula de sobreajuste inaceptable <strong>mediana(g)≥δg</strong> y alternativa <strong>mediana(g)&lt;δg</strong> al usar Wilcoxon. Una t sobre ejecuciones evaluaría la <strong>media</strong> de las brechas, con sus propios supuestos y unidad justificados. El <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">linaje de δg</span></a> fija su existencia previa en <code class="docutils literal notranslate"><span class="pre">599a29f</span></code> y la dirección en <code class="docutils literal notranslate"><span class="pre">ef2be289</span></code>; campos históricos <code class="docutils literal notranslate"><span class="pre">delta_g=null</span></code> no prueban ausencia del registro. Los riesgos de entrenamiento guardados se evaluaron con el lote configurado; los pronósticos de calibración, con lote1 y otro periodo. No hay predicciones de entrenamiento por fecha comparables para atribuirles una nueva prueba temporal. Los resultados del P0 histórico tampoco sustituyen el catálogo vigente.</p>
+</section>
+<section id="minimo-de-tres-pruebas-por-comparacion-confirmatoria">
+<h3>7.3.2 Mínimo de tres pruebas por comparación confirmatoria<a class="headerlink" href="#minimo-de-tres-pruebas-por-comparacion-confirmatoria" title="Link to this heading">#</a></h3>
+<p>La guía, p.23, exige <strong>al menos tres pruebas distintas de Tabla C por cada contraste confirmatorio</strong>, con: <strong>i)</strong> una paramétrica o de remuestreo pareado; <strong>ii)</strong> una no paramétrica o bayesiana; <strong>iii)</strong> un procedimiento global o con control de comparaciones múltiples, justificando sus supuestos. No basta aplicar Holm a una sola prueba. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/experiments/e2_reduced_protocol_20261112/protocol.json">protocolo registrado</a> lo explicita: <strong>«Holm alone is not a third test»</strong>.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_reduced_final_analysis.py">motor original</a> publica <strong>tres procedimientos realmente ejecutados en los veinte pares</strong>: bootstrap temporal/semillas, t pareada y cambios de signo. Comparten la ganancia puntual y δ; cada lista recibe su <strong>Holm20 separado</strong>. El <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">recibo de congelación</span></a> registra <code class="docutils literal notranslate"><span class="pre">analysis_frozen=true</span></code> y el hash del análisis antes del scoring de esta campaña. Se reconoce esa evidencia, sin convertir el test conocido desde E1 en confirmación prospectiva nueva.</p>
+<ul class="simple">
+<li><p>El <strong>bootstrap pareado</strong> representa la ganancia de RMSE&gt;δ, variando semillas y bloques del calendario. El refinamiento B=20.000 conserva las veinte decisiones; cambiar B o la longitud de bloque no crea pruebas adicionales.</p></li>
+<li><p>La <strong>t pareada</strong> y la <strong>enumeración de signos</strong> también están ejecutadas con ese margen, condicionadas al calendario fijo. La primera requiere independencia entre trayectorias y una aproximación normal adecuada de seis ganancias; la segunda, simetría respecto a la nula. Enumerar64 signos no demuestra ese supuesto ni transforma la variación entre semillas en incertidumbre entre mercados.</p></li>
+<li><p><strong>Holm aporta el control de comparaciones múltiples previsto por la guía</strong>, junto a los tres métodos existentes. No se cuenta como una cuarta prueba ni se exige Friedman/MCS adicional para sustituir la alternativa explícita «global o con control de comparaciones múltiples». Tampoco se exige independencia entre los tres métodos como un requisito añadido.</p></li>
+</ul>
+<p>El <a class="reference download internal" download="" href="../_downloads/aa93406d223038cc0d62455de8b9e45e/contrast_battery_map.csv"><span class="xref download myst">mapa de los veinte pares</span></a> conserva la presencia de cada método, margen, familia y alcance. Hay tres procedimientos, pero el contador <strong>no demuestra sus supuestos ni tres confirmaciones temporales homogéneas</strong>: bootstrap y diagnósticos de semillas representan fuentes de incertidumbre distintas. La normalidad residual no verifica la normalidad de seis diferencias, y la validez de la aproximación temporal requiere dependencia suficientemente corta y bloques adecuados. Estas limitaciones impiden certificar el cumplimiento integral y la adecuación por la mera cantidad de salidas; no se informa que los tres métodos falten.</p>
+<p>DM y MCS posteriores usan <strong>MSE diaria media de trayectorias fijas e igualdad contra cero</strong>; Friedman/Wilcoxon describen rangos o diferencias entre seis semillas, excluyendo clásicos de esos bloques. Son comparaciones exploratorias adicionales con hipótesis y familias propias, no tres confirmaciones retrospectivas del margen δ ni votos para cambiar la decisión primaria. Correcciones como Nadeau–Bengio pertenecen a comparaciones pertinentes con particiones solapadas; no se trasladan automáticamente a esta batería de calendario y semillas.</p>
+</section>
+</section>
+<section id="ruta-f2a-y-controles-complementarios-de-f2b">
+<span id="e2-ruta-detalle-temporal-vigente"></span><h2>7.4 Ruta F2a y controles complementarios de F2b<a class="headerlink" href="#ruta-f2a-y-controles-complementarios-de-f2b" title="Link to this heading">#</a></h2>
+<section id="f2a-aplicacion-de-s1s8">
+<h3>7.4.1 F2a: aplicación de S1–S8<a class="headerlink" href="#f2a-aplicacion-de-s1s8" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso F2a</p></th>
+<th class="head"><p>Aplicación y evidencia</p></th>
+<th class="head"><p>Límite actual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>S1. Horizonte, frecuencia y exógenas</strong></p></td>
+<td><p>Frecuencia diaria UTC, <strong>h=1</strong>, una salida σ₇; ventana de siete días completos hasta t−1. <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">Contrato</span></a>.</p></td>
+<td><p>No hay varios horizontes ni covariables futuras conocidas que se hayan incorporado.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>S2. EDA temporal y transformaciones</strong></p></td>
+<td><p><a class="reference internal" href="02_eda.html"><span class="std std-doc">§2</span></a> amplía E1: STL, ADF/KPSS, ACF/PACF, heterocedasticidad, continuidad y cambios, con fechas y decisiones.</p></td>
+<td><p>Evidencia de tramos distintos no prueba estacionariedad global ni ruido irreducible; no se diferencia Y por automatismo.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>S3. Origen móvil y embargo</strong></p></td>
+<td><p>Tres orígenes internos de selección con embargo7; final train655/cal53/test608. <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">Auditoría de soportes</span></a>.</p></td>
+<td><p>Son tres folds HPO, no diez folds actuales. El test diario usa política de pesos fijos, sin reajuste en cada fecha.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>S4. Ajustes sólo con el pasado</strong></p></td>
+<td><p>Transformaciones por train, ventanas y rezagos causales; sin imputación con futuro ni compresión de huecos.</p></td>
+<td><p>El historial compartido entre ventanas es dependencia; no se presenta como intersección de información cero.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>S5. Baselines y presupuesto</strong></p></td>
+<td><p>Persistence, SeasonalNaive7 y ARIMA(2,0,1), Top10 y tres redes E1. Misma selección interna de las redes; oportunidades y fallos conservados.</p></td>
+<td><p>ARIMA satisface la alternativa ARIMA/ETS; ETS no es un requisito adicional automático. Igualdad de oportunidades no acredita igualdad total de cómputo.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>S6. Evaluación por horizonte/origen</strong></p></td>
+<td><p>Un horizonte y <strong>608 fechas de emisión</strong>; A2, métricas por trimestre y ventanas temporales guardadas.</p></td>
+<td><p>Trimestres y ventanas solapadas no son series independientes. No se mezclan medias mensuales con el estimando primario por trayectoria.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>S7. Residuos, calibración y estabilidad</strong></p></td>
+<td><p>Ljung–Box, ARCH, BDS, JB, Mincer–Zarnowitz y cobertura; <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">GR</span></a> y <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">calibración temporal</span></a>.</p></td>
+<td><p>Residuos con estructura; δg formal pendiente; no PIT ni garantía condicional universal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>S8. Comparación y robustez</strong></p></td>
+<td><p><a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">DM–HLN/MCS/rangos</span></a>; perturbaciones de ruido, extremos, faltantes y nivel, tres severidades. <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>.</p></td>
+<td><p>Friedman es condicionado a semillas, no poblacional sobre series/orígenes independientes. Estrés sintético no demuestra resistencia a otro mercado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La guía permite <strong>MASE o una razón frente al ingenuo</strong>. La <a class="reference download internal" download="" href="../_downloads/430ece59431ae119705270e8c46e9b9e/relative_error_vs_naive.csv"><span class="xref download myst">tabla de error relativo de los dieciséis sistemas</span></a> añade una presentación aritmética de las RMSE ya publicadas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head text-right"><p>RMSE media / RMSE Persistence</p></th>
+<th class="head text-right"><p>RMSE media / RMSE SeasonalNaive</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SAE</p></td>
+<td class="text-right"><p>0,930936</p></td>
+<td class="text-right"><p>0,313076</p></td>
+</tr>
+<tr class="row-odd"><td><p>ARIMA</p></td>
+<td class="text-right"><p>0,959866</p></td>
+<td class="text-right"><p>0,322806</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0,979334</p></td>
+<td class="text-right"><p>0,329353</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un cociente menor que 1 indica menor RMSE puntual que esa referencia. Son <strong>cocientes de la media de las RMSE individuales respecto a la RMSE del comparador R=1</strong>, sobre las mismas 608 fechas; no son MASE, nuevas pruebas ni una demostración de mejora mayor que δ. La <a class="reference download internal" download="" href="../_downloads/693ee5a32f764d1431d620d1acf619a7/ratio_provenance.json"><span class="xref download myst">procedencia del cálculo descriptivo</span></a> identifica los datos A2. No se cambia la primaria ni se añade SeasonalNaive a Holm20.</p>
+<p>La primaria <strong>RMSE heredada</strong> se mantiene; las métricas recomendadas de F2a no autorizan cambiarla tras ver la prueba. Se reportan MAE, R², sMAPE, cobertura, anchura y ganancias frente a naive. Pinball y score de intervalo están en §60. QLIKE, CRPS o acierto direccional no se presentan como calculados; su uso depende de la cantidad pronosticada y de una distribución o decisión pertinente. El proyecto no emite VaR por disponer de intervalos de σ₇. Las comparaciones locales/globales entre múltiples series y el control por múltiples horizontes no aplican a una sola serie y h=1.</p>
+</section>
+<section id="f2b-que-conserva-la-comprobacion-de-covariables">
+<h3>7.4.2 F2b: qué conserva la comprobación de covariables<a class="headerlink" href="#f2b-que-conserva-la-comprobacion-de-covariables" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso F2b de la captura de la guía</p></th>
+<th class="head"><p>Resolución para el contrato actual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>RT1. Confirmar regresión temporal o reclasificar</strong></p></td>
+<td><p>Las entradas excluyen un canal explícito Y rezagada, pero la referencia Ridge deja autocorrelación fuerte: <strong>se sigue F2a</strong>, con la evidencia de §7.1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RT2. Disponibilidad y desfases</strong></p></td>
+<td><p>OHLCV completo de t−k, k≥1, disponible al emitir; OHLCV completo de t y σ₇(t), aún no. σ₇(t−1) puede usarse en referencias/regímenes causales, sin añadirlo a las redes. <a class="reference download internal" download="" href="../_downloads/c2fdf5f746d277c361ec31a91aad1f57/availability_contract.csv"><span class="xref download myst">Contrato de disponibilidad</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>RT3. Ventana y asociaciones rezagadas</strong></p></td>
+<td><p>Se conservan D7 heredado y las 140 asociaciones de rezagos 1–28 sobre cohorte común de 308 resultados de 2023. Los máximos marginales no se presentan como selección optimizada ni causal de una nueva ventana.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RT4. Partición y embargo</strong></p></td>
+<td><p>Cronología, embargo7 entre train y validación/calibración y transformaciones sólo con pasado; soportes y puente 31/12 explícitos. No se traslada a F1 por el formato de matriz.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>RT5. Referencias y presupuesto</strong></p></td>
+<td><p>La referencia Ridge de desarrollo documenta RT1. <strong>No se añade Ridge ni una media móvil al catálogo obligatorio vigente</strong>: los baselines finales corresponden a F2a.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RT6. Error, residuos y deriva</strong></p></td>
+<td><p>RMSE/MAE/R² finales; Ljung–Box y ARCH de 81 trayectorias, 112 filas trimestrales y 8.304 ventanas de 90 días. Descripciones dependientes, no miles de nuevas réplicas.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>RT7. Comparar</strong></p></td>
+<td><p>DM–HLN, Wilcoxon y Friedman–Holm disponibles con los alcances de §7.3; bootstrap temporal emparejado y familias declaradas. No se considera una segunda batería confirmatoria independiente.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Estos controles conservan la disponibilidad de las covariables y la interpretación de la dependencia. La reclasificación no requiere cambiar silenciosamente X, Y o los comparadores ya congelados. Una sensibilidad con rezagos de Y necesitaría su diseño y evaluación de desarrollo propios; no es un resultado nuevo de esta actualización documental.</p>
+</section>
+</section>
+<section id="guia-de-decision-aplicada-al-estado-actual">
+<span id="e2-ruta-decision-vigente"></span><h2>7.5 Guía de decisión aplicada al estado actual<a class="headerlink" href="#guia-de-decision-aplicada-al-estado-actual" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Situación observada</p></th>
+<th class="head"><p>Decisión que permite la evidencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>No hay superioridad práctica ajustada frente a naive</p></td>
+<td><p>Conservar A2 y resultados negativos; describir SAE como menor RMSE observada, sin declarar valor añadido confirmado ni seleccionar otra receta con test.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brechas y δg previo</p></td>
+<td><p>Conservar el margen y la orientación correcta. No afirmar ausencia de sobreajuste por una brecha pequeña, negativa o un umbral exploratorio más amplio; falta la prueba comparable.</p></td>
+</tr>
+<tr class="row-even"><td><p>Residuos autocorrelacionados y heterocedásticos</p></td>
+<td><p>Mantener F2a, incertidumbre temporal robusta y limitaciones. La recomendación de revisar rezagos/capacidad es trabajo de desarrollo con protocolo propio; no modifica los predictores publicados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cobertura global próxima a 90 %, pero desigual por grupos</p></td>
+<td><p>Reportar longitud y score junto a cobertura; no confundir adaptación ACI con garantía condicional, PIT completo ni cumplimiento universal.</p></td>
+</tr>
+<tr class="row-even"><td><p>Heterogeneidad Friedman, sin pares Wilcoxon ajustados</p></td>
+<td><p>Mostrar rangos y sus conexiones de no rechazo. Con seis pares, la resolución es limitada; ni significancia global ni no rechazo justifican una pareja superior o equivalente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Potencia y variación entre semillas limitadas</p></td>
+<td><p>Reportar R=6, DE, IC y potencia piloto 12,3 %. No aumentar R automáticamente después de observar prueba ni crear repeticiones clásicas ficticias.</p></td>
+</tr>
+<tr class="row-even"><td><p>Proxy de techo y costes parciales</p></td>
+<td><p>Mantener la incertidumbre de γ y distinguir recursos medidos de desconocidos; no justificar más complejidad con un techo óptimo no identificado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La siguiente decisión sobre un modelo requiere evidencia de desarrollo y un protocolo compatible con la continuidad del proyecto. <strong>Esta consolidación mantiene congelados modelos, recetas, pronósticos y calibradores originales</strong>; los suplementos de calibración/ensemble conservan sus reglas y familias separadas. El estado es <strong>ruta F2a justificada y benchmark ejecutado, con adecuación conjunta no demostrada y requisitos inferenciales concretos pendientes</strong>, no ausencia de trabajo ni aprobación automática de todos los requisitos. Los capítulos y recibos históricos se conservan íntegros a continuación.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Archivo documental: contenido anterior del capítulo 7</p>
+<p>Este bloque conserva el texto anterior y sus encabezados para mantener sus enlaces. Sus fechas y estados describen sus cortes originales; la lectura vigente sigue los apartados 7.1–7.5 presentados arriba.</p>
 <p><strong>Lectura vigente:</strong> el protocolo ejecutado es <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, los resultados comunes están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, la reproducción registrada en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> y el Apéndice B actual en <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>. Las cifras científicas y los recibos históricos conservan su fecha y su alcance.</p>
 <p><strong>Estado:</strong> el benchmark reducido está completado en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>, con el calendario efectivamente ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. La auditoría posterior de ajuste, residuos, calibración y estabilidad temporal está en <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>; las comparaciones S8 se documentan en <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a>, mientras robustez y otros requisitos conservan su estado en <a class="reference internal" href="53_cierre_requisitos.html"><span class="std std-doc">§53</span></a>. Los estados y calendarios anteriores son antecedentes, no trabajos finales pendientes.</p>
 <p><strong>Antecedente de planificación del 12/11/2026:</strong> ese corte fue sustituido por la ejecución documentada en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.</p>
@@ -464,27 +792,20 @@
 <p><strong>Guía y aplicación:</strong> los controles F2a actuales están en §§49–57. La NAS es condicional a cuerpos sin arquitectura definida; las seis plazas HPO de §48 no constituyen NAS. Los planes anteriores se conservan como antecedentes y no ordenan nuevas corridas.</p>
 <p>La ruta vigente es <strong>F2a, series de tiempo</strong>, decidida el 06/11/2026 tras recibir la guía completa de 65 páginas. El <a class="reference internal" href="43_catalogo_obligatorio.html"><span class="std std-doc">catálogo obligatorio de 16 sistemas</span></a> conserva esa clasificación, el objetivo y las precauciones causales. El protocolo efectivamente ejecutado y sus enmiendas están en §48, y los recibos finales en §§6/55. El híbrido adicional y Ridge son opcionales/históricos, sin superioridad demostrada.</p>
 <p>El <a class="reference download internal" download="" href="../_downloads/6f98046ca8470b7fbafed7eb2a4a8e9c/decisiones_vigentes.csv"><span class="xref download myst">registro de decisiones del EDA</span></a> conserva la procedencia de la reclasificación y la fila histórica <code class="docutils literal notranslate"><span class="pre">RESID</span></code>. Su incorporación documental el 08/11/2026 no es una decisión experimental retroactiva.</p>
-<section id="motivo-de-la-reclasificacion-y-contrato-que-se-conserva">
-<h2>7.1 Motivo de la reclasificación y contrato que se conserva<a class="headerlink" href="#motivo-de-la-reclasificacion-y-contrato-que-se-conserva" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="motivo-de-la-reclasificacion-y-contrato-que-se-conserva">7.1 Motivo de la reclasificación y contrato que se conserva</h2>
 <p>La <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">referencia Ridge forward</span></a> dejó ACF(1)=0,632228 en 305 fechas de validación de 2024. Ljung–Box de lag7 dio Q=266,4062 y p≈8,88×10⁻⁵⁴, con sus limitaciones asintóticas y de dependencia. Es evidencia histórica del EDA, no un modelo adicional del catálogo vigente. La regla RT1 (PDF p32) y el diagnóstico del EDA C (p6) determinan seguir F2a; excluir Y rezagada de las entradas no convierte por sí solo la tarea en regresión iid.</p>
 <p>Se conservan <strong>D7×5 OHLCV → σ₇, horizonte h=1</strong>, escala, primaria RMSE media por trayectoria y <strong>δ=0,00025772842664981106</strong>. Los periodos ya evaluados mantienen su condición de conocidos. Las referencias obligatorias de E1 son MLP16, LSTM32 y GRU32, adicionales a los diez modelos; Persistence, SeasonalNaive y ARIMA completan los 16 sistemas.</p>
 <p>La dependencia entre etiquetas σ₇ consecutivas, con seis retornos compartidos, contribuye a la autocorrelación. Ese diagnóstico no demuestra que un canal nuevo mejore fuera de muestra ni prueba no linealidad. Reclasificar la ruta tampoco añade automáticamente Y rezagada como sexto canal de las diez redes.</p>
-</section>
-<section id="informacion-endogena-y-alcance-de-los-controles">
-<h2>7.2 Información endógena y alcance de los controles<a class="headerlink" href="#informacion-endogena-y-alcance-de-los-controles" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="informacion-endogena-y-alcance-de-los-controles">7.2 Información endógena y alcance de los controles</h2>
 <p>Los controles temporales actuales se vinculan al protocolo ejecutado de <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, a la <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión de datos</span></a> y a los diagnósticos posteriores de <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a>. Persistence, SeasonalNaive y ARIMA ya aportan resultados de Bitcoin en la cohorte común. Los controles del diseño sustituido quedan en el <a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><span class="xref download myst">archivo del protocolo</span></a>, sin trasladar su catálogo o presupuesto al actual.</p>
 <p>El objetivo σ₇ necesita ocho cierres consecutivos para siete retornos. Usar una etiqueta histórica exige auditar todos esos cierres, no solo la fecha nominal de la etiqueta. Una referencia con mayor historia puede ser causal y, aun así, disponer de información distinta de las redes D7×5. Las comparaciones deben informar esa diferencia y usar una cohorte elegible común sin comprimir huecos.</p>
 <p>El último objetivo de calibración, 30/12/2024, y el primero de evaluación, 01/01/2025, comparten seis cierres y cinco retornos. Sus IDs son distintos; la historia compartida y el puente del 31/12 son admisibles al avanzar el origen con parámetros congelados. Esa dependencia debe conservarse en la incertidumbre temporal. La <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría de soportes</span></a> no declara intersección cero entre todas las etapas.</p>
 <p><strong>Antecedente opcional:</strong> CNN–LSTM–atención conservó el mismo soporte D7×5 y controles causales propuestos. El híbrido y Ridge no amplían los 16 sistemas obligatorios ni aportan superioridad acreditada. Sus ablaciones propuestas no se confunden con las tres ablaciones entrenadas del autoencoder que sí publica <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">Contrato vigente</span></a>.</p>
-</section>
-<section id="politica-causal-de-ajuste-y-actualizacion">
-<h2>7.3 Política causal de ajuste y actualización<a class="headerlink" href="#politica-causal-de-ajuste-y-actualizacion" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="politica-causal-de-ajuste-y-actualizacion">7.3 Política causal de ajuste y actualización</h2>
 <p>El protocolo ejecutado distingue selección de hiperparámetros, ajuste de pesos, escalado, actualización de estado y scoring. Cada operación identifica las fechas que puede usar. El horizonte h=1 no elimina el embargo heredado ni permite ajustar escaladores con validación o test. Los tres folds HPO preceden a la evaluación externa; su receta global no se atribuye a pronósticos externos de enero–octubre de 2024.</p>
 <p>El ajuste final usa etiquetas hasta el <strong>31/10/2024</strong>; el embargo es <strong>01–07/11</strong>, la calibración <strong>08/11–30/12</strong>, y el <strong>31/12</strong> aporta sólo historia causal. Los pesos, escaladores y calibradores permanecen fijos en las <strong>608 fechas de 01/01/2025–31/08/2026</strong>. La incorporación de una observación ya disponible al estado de ARIMA con coeficientes congelados no equivale a reestimar sus parámetros. Las fechas faltantes permanecen en el calendario y la elegibilidad se decide por soporte, no por el error obtenido.</p>
 <p>Las restricciones de salida y la gestión de fallos conservan las reglas registradas. Una predicción no finita se registra como fallo; no se sustituye por cero ni se elimina una fecha favorablemente. La auditoría actual consulta registros guardados y no vuelve a certificar mediante ejecución los kernels de los modelos.</p>
-</section>
-<section id="eda-temporal-heredado-evidencia-reutilizada-y-cobertura">
-<h2>7.4 EDA temporal heredado: evidencia reutilizada y cobertura<a class="headerlink" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="eda-temporal-heredado-evidencia-reutilizada-y-cobertura">7.4 EDA temporal heredado: evidencia reutilizada y cobertura</h2>
 <p>El EDA de E1 se amplía, como exige la guía; no se desecha ni se repite automáticamente. Los siguientes resultados ya existen en el <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/sections/02_eda.html">capítulo EDA de E1</a>. El <a class="reference internal" href="02_eda.html#e2-eda-series-heredado"><span class="std std-ref">bloque B del EDA actual</span></a> explicita para cada uno la decisión de preprocesamiento, arquitectura, validación y riesgos. Se distinguen de los diagnósticos finales ya ejecutados en §49, posteriores al benchmark.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -528,15 +849,12 @@
 <p>Los CSV heredados de <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/stationarity_daily.csv">estacionariedad diaria</a>, <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/stationarity_volatility.csv">estacionariedad de σ₇ y sensibilidades</a> y el <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/main/results/eda_development/summary.json">resumen de E1</a> contienen especificaciones, rangos y advertencias; el capítulo fuente conserva sus figuras. No se exige recalcularlos por cambiar el nombre de la ruta. El <a class="reference internal" href="02_eda.html#e2-diagnostico-forward"><span class="std std-ref">diagnóstico forward de E2</span></a> amplía esta evidencia con Ridge/persistencia sobre 305 fechas de 2024.</p>
 <p>El <strong>bloque C</strong> permanece desarrollado en §2.2.1–2.2.3: estructura diaria y huecos, disponibilidad de cada covariable, asociaciones rezagadas sobre cohorte común, relaciones móviles y diagnóstico residual de referencia. La <a class="reference download internal" download="" href="../_downloads/0a2eab76f76eb444b160b02d9efd84c3/decision_traceability.csv"><span class="xref download myst">trazabilidad actual</span></a> y la <a class="reference download internal" download="" href="../_downloads/570546555c0771d2610a4aaa09d07c76/guide_checklist.csv"><span class="xref download myst">lista de cotejo</span></a> cubren conjuntamente 2.1, B y C. El <a class="reference download internal" download="" href="../_downloads/9cb9c5126694ce9a1d266238ff2c7719/target_profiles.csv"><span class="xref download myst">perfil actual del objetivo</span></a> y su <a class="reference download internal" download="" href="../_downloads/6a5399829cf4c795cbd872797d872d49/target_ecdf.svg"><span class="xref download myst">ECDF</span></a> describen la partición ejecutada sin inferencia iid. La <a class="reference download internal" download="" href="../_downloads/5f33c8f768171cba4a8fe6971d55365f/inherited_annual_profiles.csv"><span class="xref download myst">copia anual de covariables E1</span></a> conserva variables del mismo día y referencia hasta el 03/12/2024; no representa entradas causales D7×5 ni se mezcla con las distancias actuales.</p>
 <p><strong>Decisión de preprocesamiento:</strong> mantener escalado causal, máscaras y calendario, sin diferenciación automática ni imputación de observaciones. <strong>Impacto en arquitectura y validación:</strong> mantener F2a y las operaciones causales de §48; discutir por separado los residuos finales de §49 y la predictibilidad informal del EDA. <strong>Riesgos:</strong> heredar conclusiones de otra frecuencia/tramo, confundir un contraste iid con prueba exclusiva de no linealidad o tratar el error naive como techo de Bayes. La entropía ordinal posterior de <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> y el proxy empírico de <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">§63</span></a> conservan sus supuestos: ni identifican ruido externo de σ₇ ni cierran un techo de desempeño.</p>
-</section>
-<section id="verificacion-y-estado">
-<h2>7.5 Verificación y estado<a class="headerlink" href="#verificacion-y-estado" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="verificacion-y-estado">7.5 Verificación y estado</h2>
 <p>El módulo histórico <code class="docutils literal notranslate"><span class="pre">scripts/e2_temporal_baselines.py</span></code> y sus pruebas sintéticas se conservan sin cambios. Los resultados actuales de Persistence, SeasonalNaive y ARIMA están en §6, con su selección y congelación en §48; la evidencia sintética anterior mantiene un papel distinto de esas ejecuciones de Bitcoin.</p>
 <p>Estado: <strong>ruta F2a definida, benchmark de 16 sistemas completado y partición ejecutada comprobada mediante registros guardados</strong>. La <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría actual</span></a> distingue el soporte compartido legítimo de las etiquetas de ajuste. <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> publica diagnósticos de las 81 trayectorias finales; no se presentan como análisis anteriores al entrenamiento. El <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">P0</span></a> conserva su identidad histórica. La herencia del test de E1 se acepta con exposición previa declarada; las limitaciones de ruido externo, cegamiento y otros pendientes de <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a> impiden atribuir cierre integral a esta actualización.</p>
-</section>
-<section id="archivo-de-la-version-anterior">
-<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
+<h2 class="rubric" id="archivo-de-la-version-anterior">Archivo de la versión anterior</h2>
 <p>La <a class="reference download internal" download="" href="../_downloads/5136eff260bc113c16e56fe200b2d109/07_ruta_temporal.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con su SHA256 en el <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a>. Sus estados pendientes describen el corte original.</p>
+</div>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -608,12 +926,23 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivo-de-la-reclasificacion-y-contrato-que-se-conserva">7.1 Motivo de la reclasificación y contrato que se conserva</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-endogena-y-alcance-de-los-controles">7.2 Información endógena y alcance de los controles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politica-causal-de-ajuste-y-actualizacion">7.3 Política causal de ajuste y actualización</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-temporal-heredado-evidencia-reutilizada-y-cobertura">7.4 EDA temporal heredado: evidencia reutilizada y cobertura</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-y-estado">7.5 Verificación y estado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapa-de-rutas-y-justificacion-de-f2a">7.1 Mapa de rutas y justificación de F2a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#protocolo-comun-once-pasos-y-criterios-de-adecuacion">7.2 Protocolo común: once pasos y criterios de adecuación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-ejecuto-cada-paso">7.2.1 Cómo se ejecutó cada paso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-cuatro-condiciones-deben-cumplirse-simultaneamente">7.2.2 Las cuatro condiciones deben cumplirse simultáneamente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bateria-de-pruebas-aplicacion-ejecucion-y-limites">7.3 Batería de pruebas: aplicación, ejecución y límites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-a-b-y-c-aplicadas-a-este-problema">7.3.1 Tablas A, B y C aplicadas a este problema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimo-de-tres-pruebas-por-comparacion-confirmatoria">7.3.2 Mínimo de tres pruebas por comparación confirmatoria</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruta-f2a-y-controles-complementarios-de-f2b">7.4 Ruta F2a y controles complementarios de F2b</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f2a-aplicacion-de-s1s8">7.4.1 F2a: aplicación de S1–S8</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f2b-que-conserva-la-comprobacion-de-covariables">7.4.2 F2b: qué conserva la comprobación de covariables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-decision-aplicada-al-estado-actual">7.5 Guía de decisión aplicada al estado actual</a></li>
 </ul>
   </nav></div>
 

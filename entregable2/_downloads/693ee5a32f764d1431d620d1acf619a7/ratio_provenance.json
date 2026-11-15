@@ -1,0 +1,31 @@
+{
+  "version": "e2-route-published-RMSE-ratios-v1",
+  "reviewed_source_commit": "ccadd3a0088606f6705616395348b6179da8a814",
+  "source": {
+    "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+    "bytes": 2596,
+    "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+  },
+  "rows": 16,
+  "common_dates": 608,
+  "numerator": "Published mean of individual-seed original-unit RMSE; R=6 for neural networks and R=1 for deterministic references.",
+  "denominators": [
+    "Persistence original RMSE on same608dates",
+    "SeasonalNaive original RMSE on same608dates"
+  ],
+  "formula": "float(numerator_RMSE)/float(reference_RMSE); no predictions, new scoring or resampling",
+  "interpretation": "Dimensionless ratio below1 means lower observed RMSE than the reference; equals1 is same numerical score; above1 means higher observed RMSE. It is a ratio of published aggregated RMSE, not MASE, a paired effect CI, statistical equivalence, or proof of gain exceeding delta.",
+  "primary_metric_changed": false,
+  "operations": {
+    "new_model_fits": 0,
+    "new_inference_calls": 0,
+    "new_predictive_scores": 0,
+    "new_hypothesis_tests": 0,
+    "new_bootstrap_draws": 0,
+    "descriptive_RMSE_quotients": 32
+  },
+  "output": {
+    "path": "relative_error_vs_naive.csv",
+    "sha256": "060b27c6a7c51d9fc146d0be3d5ff271043660a469f9c8bf42597a847facb38a"
+  }
+}
