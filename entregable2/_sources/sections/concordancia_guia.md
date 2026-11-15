@@ -2,6 +2,8 @@
 
 El informe sigue los catorce capítulos de la guía. Cada complemento se encuentra bajo su tema; los documentos de planificación y los cortes anteriores están en el archivo de antecedentes. Esta organización conserva el contenido científico y las direcciones de los documentos.
 
+**El capítulo 14 documenta una no aplicabilidad:** el catálogo actual utiliza arquitecturas definidas, incluida TiDE publicada R0-v2. La búsqueda NAS de 1.000 diseños y dos fases no es un requisito pendiente. El capítulo se conserva para justificar esa decisión y enlazar las fuentes; el HPO ejecutado se evalúa en el capítulo 11.
+
 Los identificadores **§15–§63** que aparecen en enlaces y recibos históricos permiten seguir su procedencia. No se suman a los catorce capítulos del informe.
 
 ## Capítulos del informe
@@ -21,7 +23,7 @@ Los identificadores **§15–§63** que aparecen en enlaces y recibos histórico
 | 11 | [Protocolo de Entrenamiento, Ajuste y Costo Computacional](11_hpo_equidad.md) |
 | 12 | [Techo de Desempeño, Incertidumbre y Análisis de Errores](12_incertidumbre_errores.md) |
 | 13 | [Estrategia de Agregación y Modelado Estadístico](13_agregacion_estadistica.md) |
-| 14 | [Búsqueda de Arquitectura cuando No Hay Diseño Predefinido](14_arquitecturas.md) |
+| 14 | [Arquitecturas definidas: búsqueda NAS no aplicable](14_arquitecturas.md) |
 
 ## Correspondencia de los documentos anteriores
 
