@@ -1,0 +1,326 @@
+{
+  "version": "e2-paper-current-evidence-index-v1",
+  "reviewed_source_commit": "27faa35f30123f3f640bff86cfa627de0e5f9ed5",
+  "guide_section": "5",
+  "guide_pages": [
+    16,
+    17
+  ],
+  "scope": "Documentary update of the completed externalTimeMixer replication and three-model pilot, with current Bitcoin andE3 context",
+  "operations": {
+    "new_database_queries": 0,
+    "new_model_fits": 0,
+    "new_inference_calls": 0,
+    "new_predictive_scores": 0,
+    "new_hypothesis_tests": 0,
+    "new_bootstrap_draws": 0,
+    "original_scientific_artifacts_modified": false
+  },
+  "paper": {
+    "title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+    "venue": "ICLR2024",
+    "read_version": "2405.14616v1",
+    "identifier": "10.48550/arXiv.2405.14616",
+    "identifier_scope": "preprint DOI, not editorial DOI or journal quartile evidence",
+    "author_code_commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460"
+  },
+  "registration": {
+    "source_commit": "329b0a6c8238d632dd00537c5cefab91360bafd1",
+    "registered_at_utc": "2026-11-06T12:01:42.507100+00:00",
+    "dataset_fits_before_registration": 0,
+    "amendment_scope": "Reporting implementation duringfits, before firstscoring; original hypotheses and success criterion retained"
+  },
+  "replication": {
+    "reference": {
+      "paper": "TimeMixer",
+      "dataset": "ETTh1",
+      "context": 96,
+      "horizon": 96,
+      "channels": 7,
+      "table": "13",
+      "physical_PDF_page": 17,
+      "MSE": 0.375,
+      "MAE": 0.4,
+      "publication_dispersion_of_selected_row": "NR",
+      "reference_treated_as_fixed_rounded_value": true
+    },
+    "MSE": {
+      "mean": 0.37783761620521544,
+      "sample_sd": 0.0028701700685373776,
+      "n_seeds": 5,
+      "ci95": [
+        0.37427382936239056,
+        0.3814014030480403
+      ],
+      "method": "Student-t over fitted-seed metrics; conditional fixed retained calendar",
+      "assumption": "Independent initialization/training randomizations; approximate normality of seed metrics",
+      "does_not_estimate_market_or_original_paper_variance": true,
+      "difference_from_paper": 0.002837616205215443,
+      "relative_difference_percent": 0.7566976547241255,
+      "difference_ci95": [
+        -0.0007261706376094357,
+        0.006401403048040322
+      ]
+    },
+    "MAE": {
+      "mean": 0.4010817587375641,
+      "sample_sd": 0.0034731733035474875,
+      "n_seeds": 5,
+      "ci95": [
+        0.3967692444870267,
+        0.40539427298810143
+      ],
+      "method": "Student-t over fitted-seed metrics; conditional fixed retained calendar",
+      "assumption": "Independent initialization/training randomizations; approximate normality of seed metrics",
+      "does_not_estimate_market_or_original_paper_variance": true,
+      "difference_from_paper": 0.0010817587375640536,
+      "relative_difference_percent": 0.27043968439102173,
+      "difference_ci95": [
+        -0.0032307555129733045,
+        0.005394272988101412
+      ],
+      "role": "secondary descriptive; not selected after observing the MSE decision"
+    },
+    "registered_success_rule": {
+      "metric": "mean seed MSE",
+      "absolute_margin": 0.018750000000000003,
+      "relative_tolerance": 0.05,
+      "rule": "Entire conditional 95% difference interval contained in [-0.01875,0.01875]",
+      "numerical_compatibility": true,
+      "does_not_by_itself_establish_identical_historical_row_conditions": true
+    },
+    "scope": "Partial author-preset replication; historical paper tail coverage not independently established",
+    "Bitcoin_margin_used": false,
+    "test_retained_origins_per_seed": 2688,
+    "test_eligible_origins": 2785,
+    "test_omitted_origins": 97,
+    "same_dataset_and_author_partition": true,
+    "exact_historical_paper_tail_coverage_known": false,
+    "original_author_environment_reproduced_exactly": false
+  },
+  "execution": {
+    "primary_replication_fits": 5,
+    "pilot_fits": 15,
+    "pilot_models": 3,
+    "training_seeds": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "all_twenty_checkpoints_closed_before_first_test_scoring": true,
+    "new_Bitcoin_fits": 0,
+    "new_Bitcoin_results": 0
+  },
+  "pilot": {
+    "models": [
+      "TimeMixer",
+      "iTransformer",
+      "PatchTST"
+    ],
+    "seeds": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "fitted_epochs_per_model_seed": 2,
+    "optimizer_steps_per_model_seed": 32,
+    "validation_origins": 2785,
+    "L1_queries": 512,
+    "bootstrap": {
+      "unit": "hourly forecast origin; retain complete horizons/channels and paired seed trajectories",
+      "method": "circular moving-block bootstrap on the original dense hourly calendar",
+      "primary_block_hours": 192,
+      "sensitivity_blocks_hours": [
+        96,
+        384
+      ],
+      "draws": 4999,
+      "seed": 20261106,
+      "seeds_resampled_as_markets": false,
+      "assumptions_and_limits": "Approximate weak temporal dependence; finite roughly14.5 primary blocks; no exact coverage claim under distribution shift",
+      "sparse_query_calendar_not_compressed": true
+    },
+    "L1_scope": "Implementation-specific calendar-index/batch consistency; not a forecast-accuracy claim or general multiscale-family defect",
+    "L2_scope": "Principal192-hour analysis inconclusive afterHolm3; iTransformer96-hour sensitivity rejection retained, not substituted for principal block",
+    "multiplicity": "Separate three-contrast families forL1 andL2; no global six-hypothesis control claimed",
+    "later_Bitcoin_20000_draws_replace_this_analysis": false
+  },
+  "transfer": {
+    "current_Bitcoin_D7_adaptation_implemented_and_evaluated": true,
+    "current_D7_calendar_markers": false,
+    "E3_original_architecture_selected": false,
+    "bug_correction_alone_is_E3_originality": false,
+    "posterior_Bitcoin_diagnostics_relabelled_as_original_ETTh1_preregistration": false
+  },
+  "bibliometrics": {
+    "TimeMixer_EID": "2-s2.0-85186508140",
+    "selection_snapshot_citations": 609,
+    "later_uniform_snapshot_citations": 619,
+    "snapshots_summed_or_overwritten": false
+  },
+  "evidence_sources": [
+    {
+      "id": "design",
+      "path": "experiments/e2_paper_guide_20261106/design.json",
+      "bytes": 20094,
+      "sha256": "db278e235bea127820f3cd8bec1407865fc9ac98962e6c4964098719fa567235",
+      "scope": "Original pre-fit design, selection, seeds, tolerance and limitations; scientific bytes retained"
+    },
+    {
+      "id": "registration",
+      "path": "book_e2/_static/paper_guide_evidence/registration.json",
+      "bytes": 4638,
+      "sha256": "3fa8c9f55eb271786c130b678c7d381b8d4096bc865319d6e47ab4c3b488411a",
+      "scope": "329b0a6 registration with zero dataset fits before registration"
+    },
+    {
+      "id": "amendments",
+      "path": "experiments/e2_paper_guide_20261106/analysis_amendments.json",
+      "bytes": 1204,
+      "sha256": "fc4cff703f687aaaf87164cb48c9b7f069974d3ff5e5457b84d9589fd6be763b",
+      "scope": "Reporting/implementation amendments during fits and before scoring; no new hypothesis or threshold"
+    },
+    {
+      "id": "selection",
+      "path": "book_e2/_static/paper_guide_evidence/paper_selection.json",
+      "bytes": 1773,
+      "sha256": "502faf149eabeb6f2f4154801762103541b46deba052a124a3a2839d188e91d7",
+      "scope": "Historical reason for selecting TimeMixer and609-citation receipt; not a current citation query"
+    },
+    {
+      "id": "author_sources",
+      "path": "book_e2/_static/paper_guide_evidence/source_receipts.json",
+      "bytes": 8698,
+      "sha256": "4db28e63b18423471ef86fe317b3fbfc650ee24731e93772a64e0a87ec97693f",
+      "scope": "Pinned author code, presets and source SHA receipts"
+    },
+    {
+      "id": "dataset",
+      "path": "book_e2/_static/paper_guide_evidence/dataset_card.json",
+      "bytes": 3297,
+      "sha256": "fdf380ab26a25860dc15e3ffd6e7d51a42732d9ab21df42a4da8b9a575a1f0db",
+      "scope": "ETTh1 official hourly data, fixed source and train-only scaling; not the Bitcoin dataset"
+    },
+    {
+      "id": "original_conditions",
+      "path": "book_e2/_static/paper_guide_evidence/original_conditions.json",
+      "bytes": 2871,
+      "sha256": "18759e384f60f3440cfda1d4fd916298ce6f72be978a9ca59e015fcfcf736e75",
+      "scope": "Unified ETTh1L96/H96 author preset and known deviations; historical paper tail coverage not identified"
+    },
+    {
+      "id": "runtime",
+      "path": "book_e2/_static/paper_guide_evidence/runtime_versions.json",
+      "bytes": 615,
+      "sha256": "b9a1b35a7ca9e03011a65f561bab6ca6625cdc1d51837d031d400378005d5d03",
+      "scope": "Observed external CPU environment, not original historical environment or A100Bitcoin runtime"
+    },
+    {
+      "id": "registered_limitations",
+      "path": "book_e2/_static/paper_guide_evidence/limitations_registered.json",
+      "bytes": 3168,
+      "sha256": "f1cc904e646b9b9883c21eb71d96c0504a88fa5aa1fda89865f273b229f630fe",
+      "scope": "L1/L2 estimands, primary block and pre-fit hypotheses"
+    },
+    {
+      "id": "execution",
+      "path": "book_e2/_static/paper_guide_evidence/execution_receipt.json",
+      "bytes": 21751,
+      "sha256": "6c2eb1b14fbf48fc02273c364caecf029f23b047afd740b0bd12b36dd5f0fe77",
+      "scope": "Five complete replication fits and fifteen pilot fits, checkpoints closed before first test scoring"
+    },
+    {
+      "id": "seed_metrics",
+      "path": "book_e2/_static/paper_guide_results/replication_seed_metrics.csv",
+      "bytes": 584,
+      "sha256": "18aa5654ddf871365a7cac56fe228e19c103276d51102665e7a5b7827579213c",
+      "scope": "Five retained seed results; no replacement or re-selection of seed outcomes"
+    },
+    {
+      "id": "replication",
+      "path": "book_e2/_static/paper_guide_results/replication_summary.json",
+      "bytes": 3415,
+      "sha256": "19f7fd9a0df667f85498ce2f88c27ed478679a6c37a605ea5d47df27a229a165",
+      "scope": "MSE/MAE and Student-t conditional seed uncertainty, registered compatibility and separate temporal intervals"
+    },
+    {
+      "id": "pilot_limitations",
+      "path": "book_e2/_static/paper_guide_results/limitation_summary.json",
+      "bytes": 31363,
+      "sha256": "f2948c0afd99ac60fcf9921229c0b6f62d23412abbfed288c33764039ea90089",
+      "scope": "L1/L2 with4,999-draw original paired temporal bootstrap and96/192/384-hour block choices"
+    },
+    {
+      "id": "L1_error_secondary",
+      "path": "book_e2/_static/paper_guide_results/pilot_batch_MSE_change.csv",
+      "bytes": 1358,
+      "sha256": "f422e431ab19b6024532a62b180ffb26d06f564500a43dd9866d59f8cd7133fd",
+      "scope": "Preregistered error change, distinct from absolute prediction sensitivity"
+    },
+    {
+      "id": "L2_inference",
+      "path": "book_e2/_static/paper_guide_results/pilot_regime_inference.csv",
+      "bytes": 1171,
+      "sha256": "54cc7d8ad64f8edf1ecd89d5196f3aedbca7fa875847afccb255b8b326d9d3ff",
+      "scope": "Primary high-input-variability question and sensitivity, including non-rejections"
+    },
+    {
+      "id": "curves",
+      "path": "book_e2/_static/paper_guide_evidence/training_curve_summary.csv",
+      "bytes": 955,
+      "sha256": "7d06431c852dce744f48faff064848681e5f38f79c0b9350fd5f16ca1fe6bc5c",
+      "scope": "Existing replication learning curves, mean and sample SD across seeds"
+    },
+    {
+      "id": "analysis_provenance",
+      "path": "book_e2/_static/paper_guide_results/provenance.json",
+      "bytes": 4764,
+      "sha256": "c71be48abc55672050dd9cfe8b20b5b03eb040bd303ba5af364f84ffcc91f03d",
+      "scope": "Frozen source/input and method provenance for original analyses"
+    },
+    {
+      "id": "download_manifest",
+      "path": "book_e2/_static/paper_guide_download/MANIFIESTO.json",
+      "bytes": 7321,
+      "sha256": "6d5f2a25652741ef58e38bcfc416696729e2a6a9c8672acb5789371e093094a9",
+      "scope": "Original reproducibility package manifest, unchanged"
+    },
+    {
+      "id": "current_citation_snapshot",
+      "path": "book_e2/_static/e2_literature_delivery_closure_20261114_v3/citation_snapshot/records.csv",
+      "bytes": 3004,
+      "sha256": "cae7d21d924a908158e8ebd9ac422031ad81413ed1d55c8651e190861aa7784b",
+      "scope": "Uniform later Scopus snapshot619 for TimeMixer same EID; not original selection criterion"
+    },
+    {
+      "id": "current_architecture",
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/frozen_architecture_inputs.json",
+      "bytes": 43950,
+      "sha256": "da004139cfc4663ce1d9a13c88a422df8865b53f6448fbdf015da0244f9f51cf",
+      "scope": "Executed D7 body identities, distinct from the externalL96/H96 preset"
+    },
+    {
+      "id": "Bitcoin_results",
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "bytes": 2596,
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+      "scope": "Frozen16-system Bitcoin result table; not an ETTh1 replication result"
+    },
+    {
+      "id": "Bitcoin_reproduction",
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/status.json",
+      "bytes": 1731,
+      "sha256": "a39ac53daff461688aa22db80460dc402b3f064b2c9437c938438ff219a191f8",
+      "scope": "Completed81numerical reproductions and18ablations, separate from the20external fits"
+    }
+  ],
+  "editorial_archive": {
+    "path": "05_paper_guia_before_update.md",
+    "sha256": "e8aa93de5eb93b7f21329f82a999bfb5b39a744c9de4510b9f4b0a524d44cd64",
+    "scope": "Exact priorchapter; historical future-tense statements are superseded by current documentary context"
+  }
+}
