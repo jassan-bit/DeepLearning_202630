@@ -1,0 +1,14 @@
+id,control,status,scope
+A-H01,"A2, freeze and source lineage hashes",passed,published bytes and declared lineage
+A-H02,81 predictor identities and A2 counts,passed,78 neural plus three deterministic; no synthetic replication
+A-H03,245 frozen hashes reconciled with backup,passed,"manifest hash equality, distinct from byte verification"
+A-H04,79 weight release assets,passed,"GitHub release API listing, uploaded state, ID, name, URL and bytes"
+A-H05,Downloaded scaler/calibrator/predictor metadata,passed,167/167 metadata files; 81/81 bindings
+A-H06,Chronology and objective ID separation,passed,"655/53/608 saved IDs, training scaler dates and three HPO fold metadata; not tensor content"
+A-H07,Determinism and seeds,documented,historical runtime and explicit policies in E2 §8; not a new reproduction
+A-P01,Exact/near-duplicate final tensors,pending,needs effective final tensors and prespecified sensitivity analysis
+A-P02,All real pipeline transformations and attributes,pending,scaler dates alone cannot reconstruct or certify fitting logic for every author port
+A-P03,Adversarial domain validation,pending,requires real final cohorts and trained domain classifier; AUC difference is not automatically leakage
+A-P04,Randomized-label negative control,pending,requires trained current-pipeline control; synthetic guard receipt is insufficient
+A-P05,Formal current train-validation gap with inherited delta_g,pending,"recover margin, comparable cohorts, estimand and dependent inference; no retrospective preregistration"
+A-P06,Block A closure and new benchmark freeze,pending,do not issue closure until applicable controls and impact traceability are resolved

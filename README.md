@@ -6,7 +6,7 @@ Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configurac
 |---|---|---|---|
 | E1 | [`book/`](book/) | [Abrir E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) | Informe y estudios realizados |
 | E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Benchmark ejecutado: 16 sistemas y 608 fechas; requisitos pendientes documentados |
-| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Guía incorporada al plan; diagnóstico interno y diseño preliminar; sin resultados propios |
+| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Guía incorporada; diagnóstico y avance verificable de bloques A/B; modelo original sin resultados |
 
 [Selector de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html). La infraestructura de compilación es común; cada JBook se construye desde su propia carpeta. Los apartados experimentales que siguen corresponden a **E1**.
 

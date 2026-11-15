@@ -10,6 +10,10 @@ d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364
 
 El manifiesto `experiments/e3_inicio_20261115/fuentes.json` identifica las fuentes revisadas. Las tablas editables de requisitos y correcciones están en esa misma carpeta. El arranque contiene decisiones de planificación; no genera tag de preregistro, métricas nuevas, pesos o exportaciones.
 
+## Evidencia ejecutable de los bloques A y B
+
+El [avance A y B](08_bloques_a_b.md) enlaza inventarios, tabla maestra y paridad de tres artefactos TorchScript heredados. Sus verificaciones offline están automatizadas en `.github/workflows/verify-e3-handoff.yml`; el código y las fuentes de cada informe se conservan en `experiments/e3_bloques_ab_20261115/`. Los controles de fuga completos, la prueba formal de δg y la exportación de los demás sistemas siguen pendientes.
+
 ## Estructura final del informe
 
 La organización actual conserva las direcciones existentes y añade diagnóstico y diseño preliminar. Antes de la entrega se reorganizará según el Cuadro 7 de la guía (p. 58), conservando enlaces o concordancia:
@@ -48,4 +52,4 @@ La entrega final incluirá `MODEL_CARD.md`, `DATA_STATEMENT.md`, fuentes y artef
 
 ## Uso de herramientas de IA
 
-Este arranque se preparó con asistencia de IA para revisar documentación, organizar requisitos, redactar el diagnóstico y formular una hipótesis técnica preliminar. La propuesta no se presenta como invención verificada del autor ni como experimento ejecutado. Se mantendrá una declaración actualizada de los usos efectivamente realizados; el autor deberá comprender y poder defender el código, la formulación y las demostraciones que finalmente entregue, conforme a §§6.5 y 15 de la guía.
+Este arranque se preparó con asistencia de IA para revisar documentación, organizar requisitos, redactar el diagnóstico, formular una hipótesis técnica preliminar y programar las herramientas de auditoría y exportación heredada de los bloques A y B. La propuesta no se presenta como invención verificada del autor ni como experimento ejecutado. Se mantendrá una declaración actualizada de los usos efectivamente realizados; el autor deberá comprender y poder defender el código, la formulación y las demostraciones que finalmente entregue, conforme a §§6.5 y 15 de la guía.

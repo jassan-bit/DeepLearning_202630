@@ -1,0 +1,70 @@
+{
+  "version": "e3-export-readiness-v1",
+  "rows": [
+    {
+      "model": "MLP16",
+      "seed": 271801,
+      "format": "TorchScript",
+      "artifact_bytes": 14187,
+      "checkpoint_sha256": "0cd28c59d6b8bdc008bae49e7fc40fb733941b2adef86f58f784e9d1e989b4c2",
+      "export_sha256": "896c08ecf1f3ac0fc64c5fb9afde1afd9b7e2e973fd767ddec41048e1ad5356a",
+      "cohort_role": "historical_calibration_53",
+      "RMSE_memory": 0.005391776471674792,
+      "RMSE_export": 0.005391776471674792,
+      "delta_RMSE": 0.0,
+      "max_abs_error_sigma7": 0.0,
+      "tolerance_abs_sigma7": 1e-06,
+      "latency_median_ms_CPU_forward": 0.0089985,
+      "latency_p95_ms_CPU_forward": 0.009874,
+      "process_peak_RSS_MiB": 248.921875,
+      "parameters": 593,
+      "A2_test_608_metric_verified": false
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271801,
+      "format": "TorchScript",
+      "artifact_bytes": 30413,
+      "checkpoint_sha256": "15fe5c6d527a56fa002b8fbd207a7316a59bd228e471cdf4411d68b44275cc54",
+      "export_sha256": "38432c020b4316f362777dbda2d7e961ed96d698c471bcc97c4a9050cfcf7206",
+      "cohort_role": "historical_calibration_53",
+      "RMSE_memory": 0.006199391665248764,
+      "RMSE_export": 0.006199391665248764,
+      "delta_RMSE": 0.0,
+      "max_abs_error_sigma7": 0.0,
+      "tolerance_abs_sigma7": 1e-06,
+      "latency_median_ms_CPU_forward": 0.058608,
+      "latency_p95_ms_CPU_forward": 0.130486,
+      "process_peak_RSS_MiB": 257.5078125,
+      "parameters": 5025,
+      "A2_test_608_metric_verified": false
+    },
+    {
+      "model": "GRU32",
+      "seed": 271801,
+      "format": "TorchScript",
+      "artifact_bytes": 25511,
+      "checkpoint_sha256": "aa0601e3b77f9fccd3a0d9ea83932c7aa0af3826e068b9f59ce56cacddb016af",
+      "export_sha256": "b47e06ab01f2ff26d2da9a7348007b0b67ea3df3f065017bfc6094af9d9cec56",
+      "cohort_role": "historical_calibration_53",
+      "RMSE_memory": 0.0045468774284688354,
+      "RMSE_export": 0.0045468774284688354,
+      "delta_RMSE": 0.0,
+      "max_abs_error_sigma7": 0.0,
+      "tolerance_abs_sigma7": 1e-06,
+      "latency_median_ms_CPU_forward": 0.077021,
+      "latency_p95_ms_CPU_forward": 0.101142,
+      "process_peak_RSS_MiB": 251.75,
+      "parameters": 3777,
+      "A2_test_608_metric_verified": false
+    }
+  ],
+  "tests": {
+    "integrity_unittest": 14,
+    "serving_guarded_real_artifacts": 3
+  },
+  "retraining_performed": false,
+  "calibration_refit_performed": false,
+  "memory_scope": "Each model isolated process, includes CPU runtime; not incremental model RAM",
+  "remaining": "No 608-date A2 test input cohort supplied; 10 Top10 and ARIMA/naive production exports not completed by this runner."
+}
