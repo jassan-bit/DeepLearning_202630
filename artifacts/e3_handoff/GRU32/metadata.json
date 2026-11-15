@@ -1,0 +1,163 @@
+{
+  "schema_version": "e3-export-readiness-v1",
+  "model": "GRU32",
+  "seed": 271801,
+  "format": "TorchScript",
+  "libraries": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "system": "Linux",
+    "machine": "x86_64"
+  },
+  "hyperparameters": {
+    "batch_size": 16,
+    "dropout": 0.1,
+    "learning_rate": 0.00045773135527551936,
+    "optimization_seeds": [
+      271201,
+      271202
+    ],
+    "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+    "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+    "weight_decay": 0.006658367249304354
+  },
+  "fixed_phase_epochs": {
+    "supervised": 143
+  },
+  "preprocessing": {
+    "name": "relative_window",
+    "input_history_days": 7,
+    "features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "price_transform": "log(P)-log(last_known_close)",
+    "volume_transform": "log1p(V)",
+    "channel_mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "channel_std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "training_dates_min": "2023-01-08",
+    "training_dates_max": "2024-10-31",
+    "training_dates_count": 655,
+    "target_scale": 0.020953875259434797,
+    "scaler_sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585"
+  },
+  "input_schema": {
+    "shape": [
+      null,
+      7,
+      5
+    ],
+    "dtype": "float32",
+    "representation": "standardized relative_window OHLCV",
+    "finite_required": true,
+    "domain_ranges": "not estimated by export; serving OOD checks pending",
+    "validation": "serving app must validate shape/dtype/finiteness before TorchScript invocation"
+  },
+  "output_schema": {
+    "shape": [
+      null
+    ],
+    "meaning": "positive sigma7/target_scale; multiply by target_scale outside artifact"
+  },
+  "calibration": {
+    "calibration_predictions_sha256": "20b59e75997c73f50597541c545baa115daead15d6a66e7b4890d61d15902bfb",
+    "calibration_targets_sha256": "3401d6557cac39166c887b8595dae84342f72ce64e58f2d781ecb5710867deb7",
+    "dates": [
+      "2024-11-08",
+      "2024-11-09",
+      "2024-11-10",
+      "2024-11-11",
+      "2024-11-12",
+      "2024-11-13",
+      "2024-11-14",
+      "2024-11-15",
+      "2024-11-16",
+      "2024-11-17",
+      "2024-11-18",
+      "2024-11-19",
+      "2024-11-20",
+      "2024-11-21",
+      "2024-11-22",
+      "2024-11-23",
+      "2024-11-24",
+      "2024-11-25",
+      "2024-11-26",
+      "2024-11-27",
+      "2024-11-28",
+      "2024-11-29",
+      "2024-11-30",
+      "2024-12-01",
+      "2024-12-02",
+      "2024-12-03",
+      "2024-12-04",
+      "2024-12-05",
+      "2024-12-06",
+      "2024-12-07",
+      "2024-12-08",
+      "2024-12-09",
+      "2024-12-10",
+      "2024-12-11",
+      "2024-12-12",
+      "2024-12-13",
+      "2024-12-14",
+      "2024-12-15",
+      "2024-12-16",
+      "2024-12-17",
+      "2024-12-18",
+      "2024-12-19",
+      "2024-12-20",
+      "2024-12-21",
+      "2024-12-22",
+      "2024-12-23",
+      "2024-12-24",
+      "2024-12-25",
+      "2024-12-26",
+      "2024-12-27",
+      "2024-12-28",
+      "2024-12-29",
+      "2024-12-30"
+    ],
+    "exact_exchangeable_coverage_claimed": false,
+    "method": "absolute residual order statistic; lower endpoint clipped to0",
+    "n": 53,
+    "nominal_coverage": 0.9,
+    "predictor_sha256": "aa0601e3b77f9fccd3a0d9ea83932c7aa0af3826e068b9f59ce56cacddb016af",
+    "q": 0.008742432407899556,
+    "rank": 49,
+    "same_weights_and_scaler_through_evaluation": true,
+    "sha256": "09a0ace9af7abe5d77fb7373efcfc78ea28b0f854982812dea3479b8306f5bee",
+    "version": "e2-reduced-final-analysis-v1"
+  },
+  "validation": {
+    "winner_pooled_cv_RMSE_original": 0.005636652097482681,
+    "selection_scope": "one_global_recipe_for_post_HPO_final_cohort"
+  },
+  "historical_calibration_roundtrip": {
+    "n": 53,
+    "absolute_tolerance_original_sigma7": 1e-06,
+    "maximum_absolute_prediction_error_original": 0.0,
+    "RMSE_memory_original": 0.0045468774284688354,
+    "RMSE_export_original": 0.0045468774284688354,
+    "RMSE_export_minus_memory": 0.0,
+    "within_tolerance": true
+  },
+  "A2_exported_test_metric": null,
+  "A2_exported_test_metric_status": "pending: no 608-date test input cohort supplied to this command",
+  "inference_artifact_sha256": "b47e06ab01f2ff26d2da9a7348007b0b67ea3df3f065017bfc6094af9d9cec56",
+  "source_checkpoint_sha256": "aa0601e3b77f9fccd3a0d9ea83932c7aa0af3826e068b9f59ce56cacddb016af"
+}

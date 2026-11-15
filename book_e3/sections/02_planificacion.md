@@ -18,7 +18,11 @@ El arranque utiliza el benchmark existente de E2 y la guía oficial recibida. El
 
 El inventario de exportación puede avanzar durante la investigación. El dashboard puede diseñarse con esquema de datos y pruebas sintéticas claramente identificadas, pero no publicarse como producto final sin sus artefactos y resultados.
 
-## Primera tarea operativa
+## Avance de la primera tarea
+
+El [inventario y la selección](08_bloques_a_b.md) ya se ejecutaron sobre las evidencias disponibles. Se verificaron los metadatos y se exportaron tres referencias; todavía faltan los controles funcionales de datos y el cierre formal del Bloque A. Los pasos siguientes son condiciones de cierre, no se declaran cumplidos por la existencia del inventario.
+
+## Alcance del inventario
 
 Crear un registro por cada predictor congelado con: modelo, receta elegida en validación, semilla cuando aplique, checkpoint, escalador, calibrador, métricas, predicciones, ubicación, hash y estado de acceso. Las 81 trayectorias documentadas son el universo inicial a conciliar; una mención en el libro no verifica por sí sola que los pesos estén disponibles aquí.
 

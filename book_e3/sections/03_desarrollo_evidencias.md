@@ -9,6 +9,8 @@
 | Prototipo CNN-LSTM-atención y pruebas sintéticas | [Integración de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/18_integracion_sintetica.html) | Reutilización de software atribuida; no demuestra novedad, propiedad teórica ni desempeño del mecanismo nuevo. |
 | Robustez, calibración, explicaciones y reproducción | E2, §§54–63 | Motivación y formatos reutilizables con su alcance posterior e histórico. |
 
+El [avance de los bloques A y B](08_bloques_a_b.md) presenta el inventario y la evidencia de ingeniería obtenida de estos componentes. La comprobación de un archivo, su exportación o su paridad no acredita por sí sola ausencia de fuga ni superioridad predictiva.
+
 ## Productos nuevos necesarios
 
 El mecanismo original deberá programarse desde su formulación, con docstrings, pseudocódigo, complejidad y trazabilidad de procedencia. El [diseño preliminar](07_diseno_preliminar.md) delimita una hipótesis que aún debe superar la búsqueda de novedad y los experimentos de desarrollo.

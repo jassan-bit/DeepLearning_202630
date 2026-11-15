@@ -2,7 +2,7 @@
 
 **Autor del proyecto:** Jassan Arteta · **Curso:** Deep Learning 2026-30
 
-**Estado al 15 de noviembre de 2026:** diagnóstico inicial y plan de trabajo preparados a partir de la guía oficial aportada y de la evidencia de E2. No se han realizado entrenamientos ni evaluaciones propios de E3.
+**Estado al 15 de noviembre de 2026:** diagnóstico y plan de trabajo preparados, con avance verificable en los bloques A y B a partir de los artefactos de E2. No se ha entrenado ni evaluado el modelo original de E3; las mediciones actuales verifican artefactos heredados de E2.
 
 ## Problema y punto de partida
 
@@ -20,6 +20,7 @@ El candidato temático continúa siendo CNN causal + LSTM unidireccional + atenc
 
 | Documento | Para qué sirve |
 |---|---|
+| [Bloques A y B](sections/08_bloques_a_b.md) | Auditoría de artefactos, selección de configuraciones y exportación con evidencia. |
 | [Alcance y matriz de requisitos](sections/01_alcance_requisitos.md) | Relaciona cada exigencia de la guía con evidencia y criterio de cierre. |
 | [Plan de trabajo](sections/02_planificacion.md) | Ordena tareas y dependencias antes de entrenar. |
 | [Trazabilidad de correcciones](sections/06_trazabilidad_correcciones.md) | Registra pendientes de la auditoría interna; no se han recibido observaciones docentes. |
@@ -28,7 +29,7 @@ El candidato temático continúa siendo CNN causal + LSTM unidireccional + atenc
 | [Resultados y discusión](sections/04_resultados_discusion.md) | Conserva el estado sin resultados propios. |
 | [Reproducibilidad y entrega](sections/05_reproducibilidad_entrega.md) | Fija procedencia, verificaciones y estructura final prevista. |
 
-La primera tarea ejecutable es inventariar los artefactos de E2 y completar sus controles de datos pendientes. Los periodos ya evaluados en E1/E2 siguen siendo conocidos; repetirlos no crea una confirmación independiente.
+El inventario de artefactos y la revisión de configuraciones ya tienen evidencia ejecutable en los bloques A y B. El cierre de los controles de datos pendientes sigue condicionando el congelamiento definitivo de E3. Los periodos ya evaluados en E1/E2 siguen siendo conocidos; repetirlos no crea una confirmación independiente.
 
 ## Libros del curso
 

@@ -1,6 +1,6 @@
 # 4 Resultados y discusión
 
-Todavía no hay resultados experimentales propios de E3. El diagnóstico inicial es documental y no produce métricas de desempeño del modelo propuesto.
+Todavía no hay resultados de desempeño del modelo original de E3. Los [bloques A y B](08_bloques_a_b.md) añaden verificaciones de artefactos, selección y paridad de exportación del benchmark heredado; esas mediciones no evalúan la propuesta neuronal nueva.
 
 ## Antecedentes de E2
 

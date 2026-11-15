@@ -1,0 +1,32 @@
+name: Verificar evidencias de E3 A y B
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/e3_*.py'
+      - 'tests/test_e3_*.py'
+      - 'experiments/e3_bloques_ab_20261115/**'
+      - 'artifacts/e3_handoff/**'
+      - 'book_e3/**'
+      - '.github/workflows/verify-e3-handoff.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  handoff-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Comprobar evidencia sin red ni entrenamiento
+        run: |
+          python -m unittest discover -s tests -p 'test_e3_*.py' -v
+          python scripts/e3_audit_e2_handoff.py --check
+          python scripts/e3_select_e2_configurations.py --root . --check
+          python scripts/e3_build_handoff_book.py --check
