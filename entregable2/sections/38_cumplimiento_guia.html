@@ -510,7 +510,7 @@
 </tr>
 <tr class="row-odd"><td><p>Coste</p></td>
 <td><p>Estimar antes de buscar; declarar y justificar desviaciones</p></td>
-<td><p><strong>84 horas totales autorizadas para la continuación</strong>, con el límite anterior de 80 horas y sus cargos conservados. La selección original conserva 173 intentos nuevos (170 exitosos y tres incidencias) y 61 reutilizaciones; los ajustes finales, pilotos y comparadores tienen registros propios. <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> documenta la ampliación única de cuatro horas y el cierre complementario; límite autorizado y consumo medido son magnitudes distintas</p></td>
+<td><p><strong>84 horas totales autorizadas para la continuación</strong>, con el límite anterior de 80 horas y sus cargos conservados. La selección original conserva 234 oportunidades: 231 resultados válidos y tres incidencias terminales; los ajustes finales, pilotos y comparadores tienen registros propios. El plan de caché no se interpreta aquí como una atribución exhaustiva de los costes ejecutados. <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> documenta la ampliación única de cuatro horas y el cierre complementario; límite autorizado y consumo medido son magnitudes distintas</p></td>
 </tr>
 </tbody>
 </table>
@@ -614,20 +614,20 @@
 <tr class="row-even"><td><p>G09</p></td>
 <td><p>§§4.3, 9, pp. 14, 42–43</p></td>
 <td><p>Preregistro real, repeticiones y potencia ≥0,80 o limitación/MDE</p></td>
-<td><p><strong>Piloto ejecutado; potencia limitada</strong></p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">Piloto y MDE</span></a>: cinco pares de semillas, dos representantes y 53 fechas de desarrollo. Con R=6 y α=0,0025, potencia condicional <strong>0,123</strong> para una ganancia de 2δ; ganancia mínima para potencia 0,80 <strong>0,000878674</strong>. Se declara la limitación; no se generaliza esa potencia a todos los contrastes ni se amplía R tras ver prueba.</p></td>
+<td><p><strong>Seis semillas finales por red; piloto y limitación de potencia documentados</strong></p></td>
+<td><p><a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">Protocolo ejecutado</span></a> y <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">piloto/MDE</span></a>: cinco pares de semillas, dos representantes y 53 fechas de desarrollo. R=6 supera el mínimo de cinco ejecuciones, pero con α=0,0025 la potencia condicional fue <strong>0,123</strong> para una ganancia de 2δ; MDE para potencia 0,80 <strong>0,000878674</strong>. No se generaliza a todos los contrastes ni se amplía R tras ver prueba. A2 distingue media/DE/IC entre semillas de incertidumbre temporal.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G10</p></td>
-<td><p>§11, pp. 46–48</p></td>
+<td><p>§§4.1–4.3, 11, pp. 12–14, 46–48</p></td>
 <td><p>Mismo esfuerzo de HPO y registro de tiempo, fallos y recetas</p></td>
-<td><p><strong>Selección reducida cerrada; justificación parcial</strong></p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/0ae100cd2a0619f54f0c8946be08669a/progress_snapshot.json"><span class="xref download myst">Evidencia del corte</span></a>: trece ganadores de seis plazas × tres folds. Conservar la justificación de rangos/ejes y la reducción del dominio, la caché auditada, los costes y los tres intentos sin resultado válido. No convertirlos en éxitos ni reemplazarlos silenciosamente.</p></td>
+<td><p><strong>Selección reducida cerrada; oportunidades comunes y límites de equidad explícitos</strong></p></td>
+<td><p><a class="reference internal" href="04_implementacion.html"><span class="std std-doc">Punto 4</span></a>, <a class="reference download internal" download="" href="../_downloads/bbf01c0f5ce6adc501ee8cdb0530cb71/guide_checklist.csv"><span class="xref download myst">lista de requisitos</span></a> y <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">§11</span></a>: 13 redes × seis plazas × tres folds = 234 oportunidades; 231 válidas, dos fallos conocidos y un desenlace desconocido. Las reutilizaciones no se cuentan como ajustes nuevos; el cotejo no reconstruye el desglose completo del diario. Los ganadores tienen tres folds completos. Curvas recuperadas: 29/39 HPO elegidos y 78/78 finales. El dominio reducido, la mezcla T4/A100 y las tres fases SAE impiden atribuir igualdad de coste global sólo por compartir plazas y límites; el coste completo de selección no está atribuido por modelo.</p></td>
 </tr>
 <tr class="row-even"><td><p>G11</p></td>
-<td><p>§14, pp. 52–58</p></td>
+<td><p>§§4.1, 14, pp. 13, 52–58</p></td>
 <td><p>NAS condicional: 1.000 diseños, dos fases, finalistas y selección sólo con validación</p></td>
-<td><p><strong>Fuentes y adaptaciones documentadas; revisión condicional</strong></p></td>
-<td><p><a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">Fuentes de §44</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">actualización de §48</span></a>, incluida la receta TiDE publicada r=0 y su paridad funcional. Justificar que cada cuerpo adaptado está suficientemente definido; si no lo está, la NAS de la guía sigue siendo exigible. El HPO reducido no acredita NAS exhaustiva ni una confirmación de finalistas.</p></td>
+<td><p><strong>Cuerpos actuales definidos; condición NAS separada de variantes históricas</strong></p></td>
+<td><p><a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">Adjudicación de §44</span></a> y <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">ejecución de §48</span></a>, incluida <strong>TIDE-D7-PUBLISHED-R0-v2</strong> y su paridad funcional. Las diez fuentes/cuerpos actuales tienen definición y adaptaciones registradas; las variantes propias anteriores conservan sus obligaciones y antecedentes. Las seis plazas HPO no se presentan como 1.000 arquitecturas ni como confirmación NAS de finalistas. Un cuerpo nuevo no definido por su fuente requeriría el protocolo de §14.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G12</p></td>
 <td><p>§5, pp. 16–17</p></td>
@@ -636,10 +636,10 @@
 <td><p><a class="reference internal" href="05_paper_guia.html"><span class="std std-doc">Evidencia documentada</span></a>. Conservar réplica TimeMixer/ETTh1; documentar métrica, magnitud e IC de la limitación y sus límites de transferencia a Bitcoin. No convertir el híbrido en solución validada.</p></td>
 </tr>
 <tr class="row-even"><td><p>G13</p></td>
-<td><p>§6 y Apéndice A, pp. 17–20, 61–62</p></td>
+<td><p>§§4.2, 6 y Apéndice A, pp. 13, 17–20, 61–62</p></td>
 <td><p>Tabla de benchmark con medias, DE, IC y costes; ranking y Pareto</p></td>
-<td><p><strong>A2, costes, Pareto, perfil A100 y FLOPs core publicados</strong></p></td>
-<td><p><a class="reference internal" href="51_eficiencia_costes.html"><span class="std std-doc">§51</span></a> conserva parámetros y tiempos de 78 ajustes; <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a> aporta 78 perfiles A100. <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">§58</span></a> cuenta matrices y convoluciones para las 13 recetas D7×5 con 2 FLOPs/MAC, operadores y formas auditables. FFT, activaciones, normalización y otras operaciones se excluyen; energía, dinero y latencia del servicio completo no se midieron.</p></td>
+<td><p><strong>A2, costes, Pareto, perfil A100 y FLOPs core publicados con ámbitos distintos</strong></p></td>
+<td><p><a class="reference internal" href="51_eficiencia_costes.html"><span class="std std-doc">§51</span></a>: parámetros, tiempos y recursos de 78 ajustes finales; los 5.765,09 s son fases instrumentadas, no todo el HPO ni horas contables de campaña. <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>: 78 perfiles A100 B1 con memoria y latencia de forward residente. <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">§58</span></a>: matrices y convoluciones de 13 recetas D7×5 con 2 FLOPs/MAC. FFT, activaciones y otros kernels se excluyen; máximos de entrenamiento, picos de inferencia y VRAM del proceso no son la misma medida. Energía, dinero y servicio completo no se midieron.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G14</p></td>
 <td><p>§§6.3,7.3,7.4 F 2 a</p></td>
@@ -656,20 +656,20 @@
 <tr class="row-odd"><td><p>G16</p></td>
 <td><p>§4.6, p. 16</p></td>
 <td><p>Robustez con ≥3 severidades por perturbación y cambio de distribución</p></td>
-<td><p><strong>Estrés de entradas ejecutado; alcance sintético delimitado</strong></p></td>
-<td><p><a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>: 13 sistemas × 6 semillas, cuatro condiciones con tres severidades, objetivos/calibradores conservados, degradación e IC por bloques de 7/14/28 días. Las ventanas se alteran independientemente: no representan una trayectoria OHLCV coherente ni un quiebre real del mercado.</p></td>
+<td><p><strong>Cuatro perturbaciones con tres severidades; degradación y áreas publicadas</strong></p></td>
+<td><p><a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>: 13 redes × seis semillas, doce condiciones de estrés, <strong>468 filas</strong> para bloques de 7/14/28 días y <strong>52 áreas</strong> de degradación normalizada. Objetivos y calibradores se conservan, con referencias de escala/imputación de entrenamiento. Los IC no son simultáneos; las ventanas se alteran independientemente y no representan una trayectoria OHLCV coherente, un quiebre real ni una cohorte externa independiente.</p></td>
 </tr>
 <tr class="row-even"><td><p>G17</p></td>
 <td><p>§4.6, p. 16</p></td>
 <td><p>Explicabilidad del Top 3, fidelidad y estabilidad entre semillas</p></td>
-<td><p><strong>Ejecutado como diagnóstico de respuesta de predictores</strong></p></td>
-<td><p><a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>: oclusión, borrado/inserción y orden aleatorio en 24 fechas para SAE, GRU32 y ARIMA. Las redes tienen seis semillas y quince correlaciones descriptivas; ARIMA R=1 no tiene estabilidad entre semillas estimable. El orden se explica/evalúa sobre las mismas fechas; no acredita causalidad ni validación independiente.</p></td>
+<td><p><strong>Top 3 explicado con controles de fidelidad y estabilidad descriptiva</strong></p></td>
+<td><p><a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">§54</span></a>: oclusión, borrado/inserción y orden aleatorio en 24 fechas para SAE, ARIMA y GRU32, según sus entradas efectivas. Cada red tiene seis semillas y quince parejas de Spearman; ARIMA R=1 no tiene estabilidad entre semillas estimable. Las curvas conservan casos adversos; ordenar y evaluar sobre las mismas fechas no acredita causalidad ni validación independiente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G18</p></td>
 <td><p>§4.6, p. 16</p></td>
 <td><p>Ablación del mejor modelo con ≥3 componentes e inferencia</p></td>
-<td><p><strong>Tres ablaciones entrenadas completadas; inferencia posterior reportada</strong></p></td>
-<td><p><a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>: 18 ajustes, tres variantes del autoencoder y seis semillas por variante frente al modelo completo reproducido, con bootstrap pareado temporal de 10.000 remuestreos y Holm. Retirar el dropout empeora la RMSE con evidencia ajustada; retirar el preentrenamiento o el segundo encoder produce diferencias no concluyentes, no equivalencia. Se conserva el carácter posterior y no se vuelve a seleccionar la receta con la prueba.</p></td>
+<td><p><strong>Tres ablaciones entrenadas con las seis semillas e inferencia pareada posterior</strong></p></td>
+<td><p><a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>: <strong>18/18 ajustes</strong>, sin preentrenamiento auxiliar, sin segundo encoder y sin dropout supervisado, frente al SAE completo reproducido. Se conservan recetas/épocas, seis semillas por variante y bootstrap pareado temporal de <strong>10.000</strong> remuestreos con Holm para tres contrastes. Retirar dropout empeora RMSE con evidencia ajustada; las otras dos diferencias son no concluyentes, no equivalentes. Las oclusiones de §54 no se cuentan como estas ablaciones entrenadas.</p></td>
 </tr>
 <tr class="row-even"><td><p>G19</p></td>
 <td><p>§12, pp.48–50</p></td>
@@ -678,10 +678,10 @@
 <td><p><a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">§57</span></a> contiene 100 fechas y 600 casos individuales por modelo. <a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a>:cobertura condicional,1344 H 0 con Holm e IC 10.000 bloques, conservando infracobertura del rango alto. <a class="reference internal" href="63_ensamble_calibracion.html"><span class="std std-doc">§63</span></a> aporta una referencia empírica ajustada sólo en calibración, γ=0,28757 e IC algebraico[−1,49210;2,37128]. No demuestra cobertura condicional general ni un techo Bayes.</p></td>
 </tr>
 <tr class="row-odd"><td><p>G20</p></td>
-<td><p>§8, pp.40–41; Entregables</p></td>
-<td><p>Entorno, código y reproducción integral</p></td>
-<td><p><strong>81 reproducciones aprobadas; auditoría de un comando y Apéndice B actual</strong></p></td>
-<td><p><a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>:81 reajustes, discrepancia máxima 0 y 18 ablaciones. <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a>:comando CPU sin red/GPU que valida 195 archivos de 12 manifiestos y reconstruye A2; diferencia máxima 2,60e−18. Sus 21 filas distinguen cumplimiento de límites pendientes; el auditor no sustituye un replay del entrenamiento.</p></td>
+<td><p>§§4.3, 8, pp. 13–14, 40–41; Entregables</p></td>
+<td><p>Entorno, código, seguimiento y reproducción integral</p></td>
+<td><p><strong>Registro versionado; 81 reproducciones aprobadas y auditoría documental</strong></p></td>
+<td><p><a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">§11</span></a> y <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>: entorno aislado Python 3.12.12/Torch 2.8.0+cu126/A100, eventos/configuraciones/manifiestos/checkpoints/diarios respaldados en GitHub; 81 reproducciones con discrepancia máxima 0 y 18 ablaciones. <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">§61</span></a> valida 195 archivos de doce manifiestos y reconstruye A2 con diferencia máxima 2,60e−18, sin red/GPU. El checkout y entorno nuevos no equivalen a un equipo externo, otra GPU o nuevas fechas; el auditor no reejecuta entrenamiento.</p></td>
 </tr>
 <tr class="row-even"><td><p>G21</p></td>
 <td><p>§6.4, p.20; estructura p.62</p></td>
@@ -692,6 +692,7 @@
 </tbody>
 </table>
 </div>
+<p>La <a class="reference download internal" download="" href="../_downloads/bbf01c0f5ce6adc501ee8cdb0530cb71/guide_checklist.csv"><span class="xref download myst">lista del punto 4</span></a> y su <a class="reference download internal" download="" href="../_downloads/99a33b4177f0c6281990e83824420ebd/decision_traceability.csv"><span class="xref download myst">trazabilidad</span></a> desarrollan las condiciones de §§4.1–4.6 sin convertir el número de ajustes, recibos o casillas en una certificación integral.</p>
 </section>
 <section id="cierre-prioritario-con-los-artefactos-disponibles">
 <h2>Cierre prioritario con los artefactos disponibles<a class="headerlink" href="#cierre-prioritario-con-los-artefactos-disponibles" title="Link to this heading">#</a></h2>

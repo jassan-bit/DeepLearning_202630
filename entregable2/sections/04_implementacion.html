@@ -61,6 +61,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/04_implementacion';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -438,15 +440,38 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-de-implementacion-corte-del-0811-11-2026">Antecedentes de implementación, corte del 08–11/11/2026</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-preliminar-y-alcance">4.0 Implementación preliminar y alcance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-de-informacion">4.1 Contrato de información</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seis-adaptadores-integrados-controles-antes-de-mercado">4.2 Seis adaptadores integrados: controles antes de mercado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sinteticas-historicas-que-acreditan-y-que-no">4.3 Pruebas sintéticas históricas: qué acreditan y qué no</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardas-temporales-antes-de-cualquier-ajuste">4.4 Guardas temporales antes de cualquier ajuste</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-historica-propuesta-para-el-experimento-anterior">4.5 Secuencia histórica propuesta para el experimento anterior</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-sin-reactivar-el-catalogo-retirado">4.6 Trazabilidad sin reactivar el catálogo retirado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-experimental">4.1 Diseño Experimental</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entradas-objetivo-y-pipeline-causal">Entradas, objetivo y pipeline causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-ejecutada-y-validacion-interna">Partición ejecutada y validación interna</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-presupuesto-y-arquitectura-definida">HPO, presupuesto y arquitectura definida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-de-modelos">4.2 Implementación de Modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuerpos-versiones-y-adaptaciones-ejecutadas">Cuerpos, versiones y adaptaciones ejecutadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-y-estrategia-de-entrenamiento">Hiperparámetros y estrategia de entrenamiento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registros-originales-recursos-e-inferencia">Registros originales, recursos e inferencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-experimentales">4.3 Requisitos Experimentales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas-determinismo-y-tracking">Semillas, determinismo y tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeticiones-potencia-y-equidad-de-computo">Repeticiones, potencia y equidad de cómputo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-independiente-en-entorno-limpio">Reproducción independiente en entorno limpio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-y-prevencion-de-fuga">4.4 Buenas Prácticas y Prevención de Fuga</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-y-analisis-de-resultados">4.5 Evaluación y Análisis de Resultados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-incertidumbre-y-comparacion-justa">Métricas, incertidumbre y comparación justa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-sobreajuste-y-calibracion">Ajuste, sobreajuste y calibración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicciones-taxonomia-y-subgrupos">Predicciones, taxonomía y subgrupos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-interpretabilidad-y-ablacion">4.6 Robustez, Interpretabilidad y Ablación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perturbaciones-y-degradacion">Perturbaciones y degradación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explicaciones-del-top-3-y-sus-limites">Explicaciones del Top 3 y sus límites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-componentes-del-mejor-modelo-ablaciones-reales">Tres componentes del mejor modelo: ablaciones reales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-reproduccion-documental">Antecedentes y reproducción documental</a></li>
 </ul>
             </nav>
         </div>
@@ -460,132 +485,453 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="implementacion-de-modelos-benchmark">
 <span id="implementacion-catalogo-obligatorio-y-antecedentes"></span><h1>4. Implementación de Modelos Benchmark<a class="headerlink" href="#implementacion-de-modelos-benchmark" title="Link to this heading">#</a></h1>
-<p><strong>Estado de ejecución al 13/11/2026:</strong> se completaron las trece recetas neuronales, sus 78 ajustes finales y los tres comparadores del catálogo obligatorio. Las implementaciones y cuerpos publicados vigentes se identifican en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>, y los resultados medidos están en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a>. Los prototipos y estados de integración conservados más abajo corresponden a sus fechas históricas.</p>
-<p><strong>Antecedente de planificación del 12/11/2026:</strong> ese corte fue sustituido por la ejecución documentada en <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">§48</span></a>. Su texto exacto se conserva en el archivo enlazado al final; no describe trabajos finales pendientes.</p>
-<p>El híbrido adicional y Ridge se conservan como opcionales/históricos. Este capítulo archiva los prototipos e integraciones anteriores; el inventario vigente se consulta en §§43–44 y el protocolo efectivamente ejecutado en §48.</p>
-<section id="antecedentes-de-implementacion-corte-del-0811-11-2026">
-<h2>Antecedentes de implementación, corte del 08–11/11/2026<a class="headerlink" href="#antecedentes-de-implementacion-corte-del-0811-11-2026" title="Link to this heading">#</a></h2>
-<p><strong>Integración posterior:</strong> <a class="reference internal" href="24_ejecutor_comun.html"><span class="std std-doc">§24 comprueba el recorrido sintético común de 18 sistemas</span></a>, con referencias separadas y sin ajustes de mercado.</p>
-<p><strong>Avance posterior:</strong> <a class="reference internal" href="23_implementacion_recetas.html"><span class="std std-doc">§23 implementa los cuerpos de §22 y los controles temporales</span></a>, con pruebas exclusivamente sintéticas y preservación de los prototipos anteriores. No es un benchmark de mercado.</p>
-<p><strong>Avance de software:</strong> fábrica de los once candidatos, híbrido y flujo sintético implementados y verificados; recetas provisionales, sin datos de mercado. Véase <a class="reference internal" href="18_integracion_sintetica.html"><span class="std std-doc">§18: integración y pruebas sintéticas</span></a>. En el corte sintético de §18 todavía no se había ejecutado la selección posterior de §41; el benchmark de aquel diseño aún no estaba terminado; el catálogo actual se cerró en §6.</p>
-<p><strong>Catálogo histórico al 08/11/2026:</strong> FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer. En ese corte, el modelo 11 propuesto era <strong>CNN-1D + LSTM + atención temporal</strong>, un diseño editorial propuesto, implementado provisionalmente y probado con datos sintéticos, sin entrenamiento de mercado y sin superioridad demostrada. HAR + red residual queda como prototipo histórico inactivo. Esta selección sustituye el catálogo anterior en la presentación de E2; sus registros experimentales se conservan sólo como trazabilidad.</p>
-<p><strong>Estado del prototipo al 08/11/2026:</strong> se conservan cuatro prototipos compactos y el corrector HAR anterior, aislados del ejecutor histórico, con diez pruebas sintéticas documentadas. Esas pruebas no cubren el nuevo híbrido CNN-1D + LSTM + atención temporal. Los otros seis modelos tienen código histórico que necesita integración y validación en el nuevo diseño. <strong>Ese corte no incluía entrenamiento de mercado, HPO, dimensionamiento ni resultados finales de esos prototipos.</strong> La selección parcial posterior permanece separada de este antecedente.</p>
+<p><strong>Lectura vigente.</strong> Se implementaron y evaluaron <strong>dieciséis sistemas: diez modelos principales, tres referencias neuronales de E1 y tres comparadores deterministas</strong>. Las trece redes tienen <strong>78 ajustes finales, seis semillas por receta</strong>; junto con los clásicos forman <strong>81 predictores congelados sobre 608 fechas comunes</strong>. La reproducción posterior completó otros <strong>81 ajustes y 18 ablaciones, 99/99</strong>. Son fases diferentes: no se suman las reproducciones al número de predictores de A2.</p>
+<p>Este capítulo presenta el diseño y la implementación ejecutados conforme a §§4.1–4.6 de la guía. El <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">protocolo reducido</span></a>, los <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">cuerpos y adaptaciones</span></a>, la <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">A2 medida</span></a> y la <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">reproducción</span></a> conservan sus recibos. El <a class="reference download internal" download="" href="../_downloads/27f372abf6b26a1947f820abd3a00967/README.md"><code class="xref download docutils literal notranslate"><span class="pre">índice</span> <span class="pre">de</span> <span class="pre">evidencias</span></code></a>, la <a class="reference download internal" download="" href="../_downloads/bbf01c0f5ce6adc501ee8cdb0530cb71/guide_checklist.csv"><span class="xref download myst">lista de requisitos</span></a>, la <a class="reference download internal" download="" href="../_downloads/99a33b4177f0c6281990e83824420ebd/decision_traceability.csv"><span class="xref download myst">trazabilidad</span></a> y el <a class="reference download internal" download="" href="../_downloads/add311b0f11945f2d6da7a99596c38d7/manifest.json"><span class="xref download myst">manifiesto</span></a> distinguen lo acreditado de sus límites. Los prototipos compactos, Ridge y CNN–LSTM–atención permanecen como antecedentes; no son modelos activos adicionales.</p>
+<section id="diseno-experimental">
+<h2>4.1 Diseño Experimental<a class="headerlink" href="#diseno-experimental" title="Link to this heading">#</a></h2>
+<section id="entradas-objetivo-y-pipeline-causal">
+<h3>Entradas, objetivo y pipeline causal<a class="headerlink" href="#entradas-objetivo-y-pipeline-causal" title="Link to this heading">#</a></h3>
+<p>La tarea es pronosticar al inicio del día UTC <span class="math notranslate nohighlight">\(t\)</span> la <strong>σ₇ poblacional de los siete retornos logarítmicos de Close que terminan en <span class="math notranslate nohighlight">\(t\)</span></strong>, <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>, sin anualización, horizonte <strong>h=1</strong>. La entrada neural usa exclusivamente los <strong>siete días completos <span class="math notranslate nohighlight">\(t-7,\ldots,t-1\)</span> y cinco canales OHLCV</strong>. <code class="docutils literal notranslate"><span class="pre">relative_window</span></code> representa OHLC como logaritmos relativos al último cierre observado y volumen como <code class="docutils literal notranslate"><span class="pre">log1p(V)</span></code>; no son niveles brutos ni un sexto canal con Y rezagada.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Fuentes/hash y calendario UTC → máscara de soportes válidos
+  → ventanas causales D7×5 → transformaciones ajustadas sólo con train
+  → HPO interno y receta/épocas seleccionadas
+  → reinicialización de cada semilla final → entrenamiento hasta 31/10/2024
+  → calibración 53 fechas con pesos/escaladores fijos → congelación
+  → 608 pronósticos y evaluación común → diagnósticos posteriores separados
+</pre></div>
+</div>
+<p>La estandarización de atributos usa media/DE del entrenamiento admisible de cada fold. La etiqueta se divide por su <strong>media positiva de entrenamiento</strong> y se invierte antes de puntuar. La cabeza neural es escalar con Softplus; ninguna desnormalización de OHLCV se interpreta directamente como escala de σ₇. El autoencoder añade dos preentrenamientos sobre las entradas admisibles, con su propia escala auxiliar aprendida sólo en train. Cada fase conserva pesos, transformaciones, firmas y fechas en sus recibos.</p>
 </section>
-<section id="implementacion-preliminar-y-alcance">
-<h2>4.0 Implementación preliminar y alcance<a class="headerlink" href="#implementacion-preliminar-y-alcance" title="Link to this heading">#</a></h2>
-<p>El código previo se conserva en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_models.py">redes propuestas</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e2_proposed_temporal.py">guardas temporales</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_e2_proposed_benchmark.py">pruebas sintéticas</a>. No implementa un ejecutor completo de entrenamiento, selección y evaluación ni contiene el híbrido histórico opcional.</p>
-<p>Las <a class="reference internal" href="16_fichas_nuevas.html"><span class="std std-doc">fichas bibliográficas</span></a> describen fuentes y adaptaciones posibles. No son la receta de los prototipos compactos ni configuraciones ya seleccionadas:</p>
+<section id="particion-ejecutada-y-validacion-interna">
+<h3>Partición ejecutada y validación interna<a class="headerlink" href="#particion-ejecutada-y-validacion-interna" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Modelo o componente</p></th>
-<th class="head"><p>Implementación disponible</p></th>
-<th class="head"><p>Límite que debe resolverse</p></th>
+<tr class="row-odd"><th class="head"><p>Origen HPO</p></th>
+<th class="head text-right"><p>Ejemplos train</p></th>
+<th class="head"><p>Última etiqueta train</p></th>
+<th class="head"><p>Validación interna, inclusive</p></th>
+<th class="head text-right"><p>n validación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>01/01/2024</p></td>
+<td class="text-right"><p>253</p></td>
+<td><p>25/09/2023</p></td>
+<td><p>03/10–24/12/2023</p></td>
+<td class="text-right"><p>83</p></td>
+</tr>
+<tr class="row-odd"><td><p>01/07/2024</p></td>
+<td class="text-right"><p>435</p></td>
+<td><p>25/03/2024</p></td>
+<td><p>02/04–23/06/2024</p></td>
+<td class="text-right"><p>83</p></td>
+</tr>
+<tr class="row-even"><td><p>01/10/2024</p></td>
+<td class="text-right"><p>527</p></td>
+<td><p>25/06/2024</p></td>
+<td><p>03/07–23/09/2024</p></td>
+<td class="text-right"><p>83</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La selección usa <strong>249 fechas internas concatenadas</strong>. Se minimiza <code class="docutils literal notranslate"><span class="pre">sqrt(sum(n_fold</span> <span class="pre">×</span> <span class="pre">RMSE_fold²)</span> <span class="pre">/</span> <span class="pre">sum(n_fold))</span></code>, no la media simple de las tres RMSE. Los tres entrenamientos expansivos se solapan; no son tres mercados independientes. Es validación temporal interna para una receta global aplicada al periodo externo posterior: no una evaluación externa anidada de pronósticos de enero–octubre de 2024.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Etapa final</p></th>
+<th class="head"><p>Fechas de etiquetas</p></th>
+<th class="head"><p>Ejemplos / regla</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entrenamiento</p></td>
+<td><p>08/01/2023–31/10/2024</p></td>
+<td><p><strong>655</strong> elegibles tras máscara de calidad</p></td>
+</tr>
+<tr class="row-odd"><td><p>Embargo</p></td>
+<td><p>01–07/11/2024</p></td>
+<td><p>Sin etiquetas de ajuste o calibración</p></td>
+</tr>
+<tr class="row-even"><td><p>Calibración/piloto</p></td>
+<td><p>08/11–30/12/2024</p></td>
+<td><p><strong>53</strong>, sin reapertura de HPO</p></td>
+</tr>
+<tr class="row-odd"><td><p>Puente causal</p></td>
+<td><p>31/12/2024</p></td>
+<td><p>Historia disponible, sin refit ni recalibración</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluación heredada de E1</p></td>
+<td><p>01/01/2025–31/08/2026</p></td>
+<td><p><strong>608</strong>, máscara y predictores comunes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/45b782999a6cc36148dfe4b5de22a508/partition_audit.json"><span class="xref download myst">auditoría vigente de partición</span></a> vincula estas fechas, máscaras y firmas. La partición cronológica es determinista, <strong>sin semilla de barajado</strong>. La <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión</span></a> y la <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación de 81 predictores</span></a> identifican el ciclo final de E2. La guía pide heredar la partición de E1: su exposición previa se declara y no se exige otra reserva por esa herencia. Los mismos predictores congelados se utilizaron en el scoring completado; las reproducciones y diagnósticos posteriores no constituyen un test prospectivo nuevo.</p>
+</section>
+<section id="hpo-presupuesto-y-arquitectura-definida">
+<h3>HPO, presupuesto y arquitectura definida<a class="headerlink" href="#hpo-presupuesto-y-arquitectura-definida" title="Link to this heading">#</a></h3>
+<p>Las trece redes reciben <strong>C01–C06</strong>, una semilla efectiva <strong>271201</strong> y tres folds: <strong>234 oportunidades lógicas</strong>. Las plazas provienen de las posiciones 5/7/8/9/10/15 del dominio original de cada receta, escogidas por cobertura de metadatos sin usar RMSE o tiempos observados. Las tuplas numéricas dependen de la arquitectura; el <a class="reference download internal" download="" href="../_downloads/44d9c7465abdc0e827c825eb7222e73e/hpo_configurations_registered_bytes_v2.csv"><span class="xref download myst">CSV registrado completo</span></a> publica los espacios y valores. Sus bytes científicos, incluidos saltos de línea, se preservan.</p>
+<p>Se contabilizaron <strong>231 oportunidades exitosas de 234</strong>, dos fallos conocidos y un desenlace desconocido. Las trece recetas ganadoras tienen sus tres folds; un fallo consume su oportunidad y no se reemplaza por otra semilla o configuración. Las listas históricas de dos semillas presentes en algunas tuplas describen su procedencia; el calendario efectivo de esta selección usa sólo 271201.</p>
+<p><strong>Igual número de plazas no demuestra igual coste de optimización.</strong> La caché/HPO incluye T4 y A100 y políticas históricas distintas; SAE añade <strong>36 fases auxiliares al plan</strong>, para <strong>270 etapas optimizadoras lógicas previstas antes de reutilización y fallos</strong>. Los comparadores tienen dominios propios: ARIMA recibió 18 órdenes × tres folds, 51/54 RMSE válidas y 15 órdenes elegibles; ganó <strong>(2,0,1)</strong>. SeasonalNaive completó nueve oportunidades y eligió periodo 7; Persistence conserva lag 1. Sus entradas endógenas causales y estados se declaran aparte del contrato neural D7×5.</p>
+<p>La búsqueda de <strong>1.000 arquitecturas en dos fases</strong> aplica cuando el artículo no define el cuerpo usado. Los cuerpos publicados actuales y sus adaptaciones están adjudicados en §44 y §48; <strong>seis plazas HPO no equivalen a la NAS de la guía</strong>. TiDE ejecutado es <strong>TIDE-D7-PUBLISHED-R0-v2</strong>, con grafo fuente y rama r=0 inactiva conservados y paridad funcional registrada. Las variantes propias retiradas mantienen sus identidades y sus obligaciones NAS históricas; esta actualización no declara ejecutadas sus búsquedas ni las transfiere al cuerpo publicado.</p>
+</section>
+</section>
+<section id="implementacion-de-modelos">
+<h2>4.2 Implementación de Modelos<a class="headerlink" href="#implementacion-de-modelos" title="Link to this heading">#</a></h2>
+<section id="cuerpos-versiones-y-adaptaciones-ejecutadas">
+<h3>Cuerpos, versiones y adaptaciones ejecutadas<a class="headerlink" href="#cuerpos-versiones-y-adaptaciones-ejecutadas" title="Link to this heading">#</a></h3>
+<p>El motor científico está fijado en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/1e8745497b484518f766b6da5c19be8362d9add7"><code class="docutils literal notranslate"><span class="pre">1e8745497b484518f766b6da5c19be8362d9add7</span></code></a>. Los ports y bibliotecas se justifican mediante código de autor fijado, recibos de fuentes y pruebas de correspondencia; no se presenta el cambio de tarea a σ₇ como réplica de los artículos. El <a class="reference download internal" download="" href="../_downloads/03331ecd4c8ddbd951d148fe6c64cf63/frozen_architecture_inputs.json"><span class="xref download myst">inventario de las arquitecturas seleccionadas</span></a> vincula cada cuerpo con su trial y parámetros. Los <a class="reference internal" href="44_arquitecturas_publicadas.html"><span class="std std-doc">fuentes fijados y adaptaciones</span></a> precisan capas, ejes, padding, normalización y cabezas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head"><p>Identidad de receta</p></th>
+<th class="head"><p>Capas / dimensiones conservadas</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>FCN-1D</p></td>
-<td><p>Tres convoluciones con kernels 3/3/1, ancho predeterminado 16, ReLU y pooling promedio</p></td>
-<td><p>No replica los anchos, kernels ni normalización de la fuente de clasificación</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fcn1d_wang_d7_v1_proposed__hpo_v1</span></code></p></td>
+<td><p>3 convoluciones 128/256/128, kernels 8/5/3, BN/ReLU, GAP</p></td>
 </tr>
 <tr class="row-odd"><td><p>ResNet-1D</p></td>
-<td><p>Dos bloques de convoluciones 3/3 con proyección de atajo y ancho 16</p></td>
-<td><p>No reproduce la profundidad de la arquitectura fuente</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resnet1d_wang_d7_v1_proposed__hpo_v1</span></code></p></td>
+<td><p>3 bloques residuales 64/128/128, 9 convoluciones y atajos</p></td>
 </tr>
 <tr class="row-even"><td><p>Inception-1D</p></td>
-<td><p>Bottleneck, ramas 1/3/5 y max-pooling, una red compacta</p></td>
-<td><p>No reproduce los módulos ni el ensemble de InceptionTime</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">inception1d_single_d7_v1_proposed__hpo_v1</span></code></p></td>
+<td><p>1 red, 6 módulos multirrama; kernels 40/20/10, bottleneck 32</p></td>
 </tr>
 <tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
-<td><p>Encoder LSTM, decoder de latente repetido y cabeza escalar; reconstrucción y predicción separadas</p></td>
-<td><p>Sin política integrada de preentrenamiento, congelado, selección de épocas o ajuste supervisado</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SAE-D7-PUBLISHED-v1</span></code></p></td>
+<td><p>2 encoders LSTM 25/26; AE1 → AE2 → predictor</p></td>
 </tr>
-<tr class="row-even"><td><p>HAR + red residual, histórico inactivo</p></td>
-<td><p>Corrección firmada de D7×5 añadida a un pronóstico HAR externo; truncamiento a cero en inferencia</p></td>
-<td><p>Se conserva sin activarlo ni transferir sus pruebas al nuevo candidato</p></td>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TN-D7-PUBLISHED-v1</span></code></p></td>
+<td><p>2 TimesBlocks, d32/FF32, 6 kernels, top-k 3; longitud FFT 8</p></td>
 </tr>
-<tr class="row-odd"><td><p>CNN-1D + LSTM + atención temporal, candidato histórico opcional</p></td>
-<td><p>Prototipo y pruebas sintéticas disponibles</p></td>
-<td><p>Construir y verificar el flujo causal, la atención sobre siete estados y la cabeza de σ₇ antes de entrenar</p></td>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TSM-D7-r1__hpo_v1</span></code></p></td>
+<td><p>6 bloques de mezcla; MLP de variables 5→512→5, residuales/BN</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TIDE-D7-PUBLISHED-R0-v2</span></code></p></td>
+<td><p>Encoder/decoder densos 256/256; encoder temporal 64/4, decoder final 64; r=0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TM-D7-PUBLISHED-v1</span></code></p></td>
+<td><p>4 PDM, d32/FF32, 1 descenso medio ×2, escalas 7/3, FMM</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PT-D7-PUBLISHED-v1</span></code></p></td>
+<td><p>3 capas, d16/FF128, 4 cabezas; patch3/stride2/padding2, 4 parches</p></td>
+</tr>
+<tr class="row-odd"><td><p>iTransformer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IT-D7-r1__hpo_v1</span></code></p></td>
+<td><p>2 capas, d256/FF256, 8 cabezas, 5 tokens de variables</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MLP16-E1-ref-E2-HPO-v1</span></code></p></td>
+<td><p>Referencia E1, capa oculta de 16 unidades</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LSTM32-E1-ref-E2-HPO-v1</span></code></p></td>
+<td><p>Referencia E1, capa recurrente de 32 unidades</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GRU32-E1-ref-E2-HPO-v1</span></code></p></td>
+<td><p>Referencia E1, capa recurrente de 32 unidades</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Las cuatro redes reciben <code class="docutils literal notranslate"><span class="pre">(batch,7,5)</span></code> y producen <code class="docutils literal notranslate"><span class="pre">(batch,)</span></code> mediante Softplus. Son decisiones del prototipo, no valores atribuidos a los artículos. El padding simétrico opera dentro de una ventana ya observada: no añade historia ni constituye por sí mismo una convolución causal intraventana.</p>
+<p>Todos reciben D7×5. Los kernels mayores que siete usan padding declarado, sin aportar días extra. TimesNet mantiene FFT promediada por batch al entrenar y <strong>una ventana por llamada en evaluación</strong>, evitando que otra ventana altere la selección de periodos. PatchTST normaliza los siete días reales antes del padding final. TSMixer/iTransformer conservan sus interfaces escalares y los momentos de la misma ventana declarados. En SAE, AE2 usa encoder 1 congelado; los pesos se transfieren después al predictor supervisado, sin pérdida conjunta de reconstrucción en esa etapa. Los flags de una comprobación estructural sin mercado no sustituyen los recibos de entrenamiento ya ejecutado.</p>
 </section>
-<section id="contrato-de-informacion">
-<h2>4.1 Contrato de información<a class="headerlink" href="#contrato-de-informacion" title="Link to this heading">#</a></h2>
-<p>Los diez modelos y el híbrido activo comparten el <a class="reference internal" href="17_contrato_sincronizado.html"><span class="std std-doc">contrato sincronizado E1–E2–E3</span></a>: <strong>D7×5 derivado de OHLCV mediante <code class="docutils literal notranslate"><span class="pre">relative_window</span></code> → σ₇, con h=1</strong>. No son niveles OHLCV crudos. σ₇ es la desviación poblacional de siete retornos logarítmicos diarios, <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>, sin anualización. La evaluación debe usar unidades originales y cualquier transformación aprendida se ajusta exclusivamente en el entrenamiento permitido de cada fold. No se añaden rezagos del objetivo ni historia adicional.</p>
-<p>El flujo propuesto es <strong>convoluciones 1D causales que conservan siete posiciones → LSTM unidireccional con <code class="docutils literal notranslate"><span class="pre">return_sequences=True</span></code> → atención temporal sólo sobre los siete estados observados → vector de contexto → cabeza escalar de σ₇</strong>. La convolución utiliza padding sólo a la izquierda cuando sea necesario; no incorpora días anteriores a D7 como datos nuevos. La atención resume la ventana disponible y no consulta la etiqueta futura. Anchos, kernels, profundidad, función de atención, enlace de salida e hiperparámetros definitivos quedan pendientes de definición y registro.</p>
-<p>Los controles propuestos son <strong>CNN sola</strong>, <strong>LSTM sola</strong> y <strong>CNN–LSTM sin atención</strong>, con el mismo soporte y calendario. Son ablaciones del híbrido, no nuevas posiciones del catálogo. El soporte HAR 1/7/22 y el cross-fitting residual pertenecen al prototipo anterior y dejan de ser requisitos del candidato histórico opcional.</p>
-</section>
-<section id="seis-adaptadores-integrados-controles-antes-de-mercado">
-<h2>4.2 Seis adaptadores integrados: controles antes de mercado<a class="headerlink" href="#seis-adaptadores-integrados-controles-antes-de-mercado" title="Link to this heading">#</a></h2>
+<section id="hiperparametros-y-estrategia-de-entrenamiento">
+<h3>Hiperparámetros y estrategia de entrenamiento<a class="headerlink" href="#hiperparametros-y-estrategia-de-entrenamiento" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Modelo vigente</p></th>
-<th class="head"><p>Verificación que debe conservar el pipeline registrado</p></th>
+<tr class="row-odd"><th class="head"><p>Red</p></th>
+<th class="head text-right"><p>LR inicial</p></th>
+<th class="head text-right"><p>Weight decay</p></th>
+<th class="head text-right"><p>Batch</p></th>
+<th class="head text-right"><p>Dropout supervisado</p></th>
+<th class="head text-right"><p>Warmup / horizonte</p></th>
+<th class="head text-right"><p>Épocas finales</p></th>
 </tr>
 </thead>
 <tbody>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>0.000569539454</p></td>
+<td class="text-right"><p>0.00100407577</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>0.000757944015</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>0.000739462065</p></td>
+<td class="text-right"><p>1.81848958e-06</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>0.00172198473</p></td>
+<td class="text-right"><p>0.00259360317</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0.3</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>172 / 177 / 78</p></td>
+</tr>
 <tr class="row-even"><td><p>TimesNet</p></td>
-<td><p>Frecuencias disponibles con D7, selección por origen, extensión temporal y cabeza de σ₇</p></td>
+<td class="text-right"><p>0.00283816847</p></td>
+<td class="text-right"><p>1.19221337e-05</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0.1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>35</p></td>
 </tr>
 <tr class="row-odd"><td><p>TSMixer</p></td>
-<td><p>Orden de mezclas temporal/canal, normalización, independencia de acompañantes del batch y lectura escalar</p></td>
+<td class="text-right"><p>0.00114173843</p></td>
+<td class="text-right"><p>7.97647962e-06</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>0.3</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>42</p></td>
 </tr>
 <tr class="row-even"><td><p>TiDE</p></td>
-<td><p>Encoder/decoder y conexiones residuales; ausencia de covariables futuras y escala correcta del objetivo</p></td>
+<td class="text-right"><p>0.000139612767</p></td>
+<td class="text-right"><p>2.77961589e-05</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0.0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>41</p></td>
 </tr>
 <tr class="row-odd"><td><p>TimeMixer</p></td>
-<td><p>Escalas no vacías con siete observaciones, descomposición y combinación de salidas</p></td>
+<td class="text-right"><p>0.000667745995</p></td>
+<td class="text-right"><p>2.09032861e-05</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0.1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>66</p></td>
 </tr>
 <tr class="row-even"><td><p>PatchTST</p></td>
-<td><p>Parches y padding explícitos; normalización sólo de lo observado y proyección a σ₇</p></td>
+<td class="text-right"><p>0.00144585172</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0.3</p></td>
+<td class="text-right"><p>0.1</p></td>
+<td class="text-right"><p>47</p></td>
 </tr>
 <tr class="row-odd"><td><p>iTransformer</p></td>
-<td><p>Tokens de variables, atención, normalización y cabeza que no desnormalice OHLCV como volatilidad</p></td>
+<td class="text-right"><p>0.00243512182</p></td>
+<td class="text-right"><p>0.000919016591</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0.3</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>45</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>0.00150098487</p></td>
+<td class="text-right"><p>0.000744209928</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>57</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>0.00235640615</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>64</p></td>
+<td class="text-right"><p>0.3</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>62</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0.000457731355</p></td>
+<td class="text-right"><p>0.00665836725</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>0.1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>143</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>La <a class="reference download internal" download="" href="../_downloads/727d67ab94e2789eab7eb179543e9d7f/architecture_review.json"><span class="xref download myst">revisión arquitectónica histórica</span></a> permite localizar decisiones anteriores. La integración sintética nueva se verifica por separado en §18; ninguna revisión congela todavía las recetas para mercado. Las verificaciones se repetirán sobre la fuente, el entorno y el pipeline que efectivamente se registren.</p>
-</section>
-<section id="pruebas-sinteticas-historicas-que-acreditan-y-que-no">
-<h2>4.3 Pruebas sintéticas históricas: qué acreditan y qué no<a class="headerlink" href="#pruebas-sinteticas-historicas-que-acreditan-y-que-no" title="Link to this heading">#</a></h2>
-<p>Para los cuatro prototipos compactos y el corrector HAR anterior se documentaron <strong>diez pruebas sintéticas</strong> el 08/11/2026 con Python 3.12.14, torch 2.15.0+cpu, numpy 2.3.5 y un hilo CPU. Cubren formas y finitez, gradientes, invariancia de batch, roundtrip de pesos en memoria, entradas inválidas, reducción de pérdida artificial y restricciones de calendario/alcance. Incluyen iteradores de residuos válidos, inválidos y vacíos.</p>
-<p>No se abrieron datos de mercado. Pasar esta suite no demuestra rendimiento, robustez, potencia ni ausencia de toda fuga. Tampoco acredita que los once candidatos estén integrados o listos para entrenar. <strong>Ninguna de estas diez pruebas valida CNN-1D + LSTM + atención temporal</strong>, que dispone de pruebas nuevas separadas en §18.</p>
-<p>El corrector HAR histórico inactivo calcula <code class="docutils literal notranslate"><span class="pre">max(0,</span> <span class="pre">HAR</span> <span class="pre">+</span> <span class="pre">corrección)</span></code>. Si la suma es negativa, el truncamiento tiene gradiente cero; la prueba específica confirma esta limitación. Por ello, su <code class="docutils literal notranslate"><span class="pre">forward</span></code> es un enlace provisional de inferencia, <strong>no una pérdida validada para entrenar con datos reales</strong>. La generación de residuos OOF y el enlace pendiente se documentan como límites de ese prototipo retirado, no como próximos pasos del híbrido vigente.</p>
-</section>
-<section id="guardas-temporales-antes-de-cualquier-ajuste">
-<h2>4.4 Guardas temporales antes de cualquier ajuste<a class="headerlink" href="#guardas-temporales-antes-de-cualquier-ajuste" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Ámbito de entrenamiento:</strong> validar orígenes antes de ajustar transformaciones, reconstruir con el autoencoder o entrenar la cabeza supervisada. Preentrenar sin etiquetas sobre todo desarrollo también expondría datos posteriores al fold.</p></li>
-<li><p><strong>Reinicio por fold:</strong> pesos, estado recurrente y transformaciones nuevos; ningún checkpoint posterior se reutiliza hacia el pasado.</p></li>
-<li><p><strong>Disponibilidad:</strong> conservar días calendario, huecos y soportes completos de atributos y etiquetas según el contrato sincronizado. La referencia E1 conserva etiquetas hasta o−8 y embargo de siete días por origen o; los cortes deben comprobarse sobre los datos realmente disponibles. Esta separación no se confunde con el soporte extendido del antiguo estimador HAR.</p></li>
-<li><p><strong>Causalidad del híbrido:</strong> verificar la convolución con padding izquierdo, la dirección de la LSTM y la atención restringida a siete estados observados. No usar ventanas centradas, etiquetas futuras ni estados recurrentes de otro origen.</p></li>
-<li><p><strong>Auditoría integral:</strong> comprobar construcción de ventanas, <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, ajustes de transformaciones y selección dentro de cada fold. Las utilidades previas sólo comprueban los metadatos que reciben; no acreditan el futuro pipeline del híbrido.</p></li>
-</ol>
-<p>Las pruebas nuevas deberán cubrir formas, gradientes, independencia de los acompañantes del batch, checkpoint y causalidad, además de duplicados pertinentes y controles negativos. Son verificaciones propuestas, todavía no ejecutadas para el híbrido. Un fallo requiere corrección y nueva verificación; no se resuelve describiéndolo como limitación menor.</p>
-</section>
-<section id="secuencia-historica-propuesta-para-el-experimento-anterior">
-<h2>4.5 Secuencia histórica propuesta para el experimento anterior<a class="headerlink" href="#secuencia-historica-propuesta-para-el-experimento-anterior" title="Link to this heading">#</a></h2>
+<p>Las cifras se transcriben de las tuplas ganadoras guardadas; la <a class="reference download internal" download="" href="../_downloads/03331ecd4c8ddbd951d148fe6c64cf63/frozen_architecture_inputs.json"><span class="xref download myst">fuente de precisión completa</span></a> preserva todos sus decimales. Las épocas finales proceden de la mediana de las mejores épocas de los tres folds ganadores. <strong>172/177/78 de SAE</strong> corresponden a AE1/AE2/supervisión. Su dropout auxiliar es cero; 0,3 pertenece a los módulos supervisados existentes. Las <a class="reference download internal" download="" href="../_downloads/2947ec6064534a5f9a6abb2f2acfb14b/training_evidence.zip"><span class="xref download myst">curvas y metadatos originales</span></a> separan esas fases.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_cuda_training.py">backend CUDA</a> conserva la semántica de <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/1e8745497b484518f766b6da5c19be8362d9add7/scripts/e2_staged_training.py"><code class="docutils literal notranslate"><span class="pre">e2_staged_training.py</span></code></a>:</p>
 <ul class="simple">
-<li><p>Fijar fuentes, correspondencia con el curso y recetas de los diez modelos y del candidato 11; distinguir adaptación propia de reproducción. Resolver la condición NAS conforme a <a class="reference internal" href="14_arquitecturas.html"><span class="std std-doc">§14</span></a>.</p></li>
-<li><p>Implementar CNN-1D + LSTM + atención temporal y sus ablaciones conforme al contrato común. Integrar los seis adaptadores en un ejecutor nuevo sin modificar el código ni los protocolos históricos.</p></li>
-<li><p>Cerrar calendario, elegibilidad, transformaciones, hipótesis, comparaciones, presupuesto completo y reglas de fallos. El preentrenamiento del autoencoder, el ajuste conjunto del híbrido y todas sus ablaciones cuentan en el coste.</p></li>
-<li><p>Validar el pipeline y publicar su propio preregistro antes de ajustes de mercado. Definir selección temporal, congelación de recetas y dimensionamiento sin trasladar un R o presupuesto anterior.</p></li>
-<li><p>Cerrar pesos y, cuando correspondan, calibradores antes de evaluar; publicar resultados y costes medidos, también fallos y desenlaces desfavorables.</p></li>
+<li><p><strong>AdamW</strong>, betas (0,9; 0,999), ε=10⁻⁸, con grupos de decay y exenciones registradas para sesgos/normalización; optimizador nuevo por fase.</p></li>
+<li><p><strong>MSE</strong> para el objetivo escalado; reconstrucción MSE de entradas en las fases auxiliares SAE, separada de la selección supervisada.</p></li>
+<li><p>LR <strong>coseno</strong> con warmup registrado; horizonte <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">×</span> <span class="pre">batches_por_época</span></code>, conservado aunque el reajuste final termine antes. No se comprime el scheduler a las épocas finales.</p></li>
+<li><p><strong>Clipping de norma 1</strong>, comprobaciones de finitez, gradientes y límites; no se sustituyen pérdidas no finitas por cero.</p></li>
+<li><p>Selección con máximo <strong>200 épocas</strong>, paciencia <strong>20</strong> y mejora estricta de validación; límite nuevo de <strong>1.800 s por fase</strong>. Los resultados históricos conservan sus límites anteriores.</p></li>
+<li><p>Ajuste final con <strong>épocas fijas</strong>, sin consultar validación para detenerlo y sin generar otra curva de validación. AE1, AE2 y supervisado conservan sus duraciones seleccionadas.</p></li>
+<li><p><strong>FP32</strong>, determinismo estricto, AMP y TF32 desactivados; batches con redistribución del singleton final cuando procede, sin omitir ejemplos.</p></li>
 </ul>
-<p>La secuencia anterior se conserva como antecedente, sin instruir nuevas corridas para el cierre documental actual. El desarrollo y la reserva histórica ya observados no recuperan cegamiento al cambiar los modelos. Una evaluación sobre esa reserva mantendrá alcance exploratorio.</p>
 </section>
-<section id="trazabilidad-sin-reactivar-el-catalogo-retirado">
-<h2>4.6 Trazabilidad sin reactivar el catálogo retirado<a class="headerlink" href="#trazabilidad-sin-reactivar-el-catalogo-retirado" title="Link to this heading">#</a></h2>
-<p>El <a class="reference download internal" download="" href="../_downloads/ffb6cca2e10be87b868950e0c777e030/execution_summary.json"><span class="xref download myst">recibo P0/OOF</span></a> documenta <strong>220 trayectorias y 440 ajustes históricos</strong>. El <a class="reference download internal" download="" href="../_downloads/769cadb5d12b34f5212c498756de1fcb/execution_progress.json"><span class="xref download myst">recibo HPO del 06/11/2026</span></a> documenta un inicio parcial de una ejecución anterior, no actividad actual ni cierre. Ninguno corresponde al catálogo vigente.</p>
-<p>Los protocolos, fuentes, candidatos y resultados originales permanecen intactos: <a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><span class="xref download myst">registro P0</span></a>, <a class="reference download internal" download="" href="../_downloads/e6afa871de0ad5cd8543ef14d185c3c4/registration.json"><span class="xref download myst">registro de la enmienda histórica</span></a> y <a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><span class="xref download myst">paquete histórico de implementación</span></a>. Se enlazan para auditar lo que ocurrió, no como obligaciones futuras ni resultados transferibles. El estado del nuevo preregistro está en <a class="reference internal" href="09_protocolo_registrado.html"><span class="std std-doc">§9</span></a>, la comparación en <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">§6</span></a> y la equidad del ajuste en <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">§11</span></a>.</p>
+<section id="registros-originales-recursos-e-inferencia">
+<h3>Registros originales, recursos e inferencia<a class="headerlink" href="#registros-originales-recursos-e-inferencia" title="Link to this heading">#</a></h3>
+<p>Se recuperaron <strong>6.440 registros de épocas supervisadas</strong> y <strong>3.250 auxiliares SAE</strong> de 78 ajustes finales y 39 ejecuciones HPO seleccionadas. <strong>29/39 HPO</strong> tienen curvas completas; diez reutilizaciones históricas conservan mejor época, predicciones e identidad tensorial, pero carecen de pérdidas por época. Esa ausencia no se rellena con curvas de otro ajuste. Los 78 finales sí conservan curvas de train y no tienen curva de validación por diseño de épocas fijas. <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">Auditoría de curvas y brechas</span></a> · <a class="reference download internal" download="" href="../_downloads/93d5104f8f5efe13c7e3e5941200893d/fit_overfit_summary.csv"><span class="xref download myst">resumen de 117 ajustes</span></a>.</p>
+<p>El entorno de ajustes finales fue <strong>NVIDIA A100-SXM4-80GB</strong>, <strong>Python 3.12.12</strong>, <strong>Torch 2.8.0+cu126</strong>, <strong>CUDA 12.6</strong>, dos hilos CPU y un hilo interop. El <a class="reference download internal" download="" href="../_downloads/6011ed2c7a68b2874269fc1bef4ecb8a/historical_clean_runtime.json"><span class="xref download myst">entorno limpio de reproducción</span></a> conserva lock, versiones de paquetes y fuentes; ese entorno no sustituye los recibos originales. El HPO mezcló hardware/caché históricos y no acredita igualdad numérica T4–A100.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/267bbd7cb577bfab772e9b78f2144298/model_efficiency.csv"><span class="xref download myst">costes por modelo</span></a> y <a class="reference download internal" download="" href="../_downloads/e63015ddc7b521892fad7e8decdef46a/phase_resources.csv"><span class="xref download myst">recursos por fase</span></a> publican parámetros, pasos, tiempo y hardware. Las fases de los <strong>78 ajustes finales sumaron 5.765,09 s</strong>; SAE incluye AE1, AE2 y supervisado. El tiempo de fases incluye evaluación de riesgo y checkpoints, y excluye selección completa y controlador: no son GPU-horas activas ni tiempo puro de optimizador. Los máximos CUDA originales son del proceso desde el último reset, no memoria aislada por predictor.</p>
+<p>La <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">medición posterior A100</span></a> añade <strong>78 perfiles reales de inferencia batch 1</strong>, con entrada residente, calentamiento y eventos CUDA; no mide la latencia completa de adquisición/preprocesamiento/servicio. Los <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">FLOPs core de las trece redes</span></a> cuentan matrices y convoluciones con <strong>2 FLOPs/MAC</strong>; excluyen FFT, activaciones, normalización, pooling y movimiento de memoria, sin afirmar coste total de todos los kernels. Los recursos de clásicos no medidos bajo esa convención permanecen desconocidos, no cero. Energía y coste monetario no tienen telemetría/tarifa verificadas.</p>
 </section>
-<section id="archivo-de-la-version-anterior">
-<h2>Archivo de la versión anterior<a class="headerlink" href="#archivo-de-la-version-anterior" title="Link to this heading">#</a></h2>
-<p>La <a class="reference download internal" download="" href="../_downloads/4b8240dcb1b03748f5f7cc46e2fc9d61/04_implementacion.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">exacta</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">consolidación</span></code></a> se conserva con su SHA256 en el <a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><span class="xref download myst">manifiesto de archivo</span></a>. Sus estados pendientes describen el corte original.</p>
+</section>
+<section id="requisitos-experimentales">
+<h2>4.3 Requisitos Experimentales<a class="headerlink" href="#requisitos-experimentales" title="Link to this heading">#</a></h2>
+<section id="semillas-determinismo-y-tracking">
+<h3>Semillas, determinismo y tracking<a class="headerlink" href="#semillas-determinismo-y-tracking" title="Link to this heading">#</a></h3>
+<p>Las trece redes se reajustaron con <strong>271801, 271802, 271803, 271804, 271805 y 271806</strong>, desde inicializaciones nuevas; los clásicos deterministas tienen <strong>una trayectoria</strong> cada uno. No se fabrican seis copias idénticas para simular repeticiones. Las semillas describen variación de optimización sobre una misma cronología, no seis mercados independientes. Python y Torch/CUDA tienen semillas explícitas; los remuestreos NumPy usan generadores y semillas propios registrados. No se atribuye al núcleo un flag global NumPy no verificado ni se mezclan semillas históricas de HPO con finales.</p>
+<p>El tracking implementado usa <strong>JSON/JSONL, manifiestos SHA-256, diarios de recursos, recibos por intento y checkpoints versionados</strong>, con GitHub como único destino persistente. <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/results/e2-reduced-delivery-v1">Rama de resultados</a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/releases/tag/e2-reduced-results-20261112-v1">release de pesos</a>. <code class="docutils literal notranslate"><span class="pre">/content</span></code> fue espacio temporal. Este registro propio permite auditar fases, fallos, reutilizaciones y cargos; no se declara uso de MLflow o W&amp;B.</p>
+</section>
+<section id="repeticiones-potencia-y-equidad-de-computo">
+<h3>Repeticiones, potencia y equidad de cómputo<a class="headerlink" href="#repeticiones-potencia-y-equidad-de-computo" title="Link to this heading">#</a></h3>
+<p><strong>R=6</strong> satisface la cantidad mínima de inicializaciones neuronales y permite los diagnósticos por rangos, pero no acredita potencia suficiente. El piloto emparejado de <strong>cinco semillas de iTransformer y GRU32</strong> sobre 53 fechas de desarrollo estimó potencia <strong>0,122953</strong> para la ganancia planificada 2δ, con α=0,0025 y R=6; el objetivo era 0,80. <a class="reference download internal" download="" href="../_downloads/04053dcd40476adcda1aecc3977915e8/pilot_power_MDE.json"><span class="xref download myst">Piloto/MDE</span></a>. El tamaño se mantuvo como decisión operativa acotada por recursos; no se amplió tras ver el scoring ni se interpreta un no rechazo como equivalencia.</p>
+<p>La equidad conserva espacios/oportunidades y calendario comunes, sin afirmar igualdad integral de coste: distintas épocas, complejidades, fases SAE, hardware HPO y dominios clásicos siguen declarados. El coste total exhaustivo de HPO por modelo no está atribuido en el inventario de las recetas elegidas. Los límites de tiempo se verificaron en fronteras sincronizadas; una reserva es techo de admisión, no duración observada ni cuota física de VRAM.</p>
+<p>El límite autorizado final fue <strong>84 horas acumuladas</strong>, sin reiniciar cargos. El cierre complementario conserva <strong>288.922,09 s cargados (80,2561 h)</strong>, <strong>13.477,91 s de saldo</strong> y <strong>cero reservas abiertas</strong>. El antiguo cierre de 74,9530 h frente a 80 h pertenece al benchmark original, no es el saldo vigente después de los complementos. El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">diario final</span></a> y §48 distinguen cargos históricos, fases instrumentadas, preparación, transporte y análisis. No se convierten esos cargos en consumo eléctrico ni se relanza una campaña cerrada.</p>
+</section>
+<section id="reproduccion-independiente-en-entorno-limpio">
+<h3>Reproducción independiente en entorno limpio<a class="headerlink" href="#reproduccion-independiente-en-entorno-limpio" title="Link to this heading">#</a></h3>
+<p>Se completaron <strong>81/81 reproducciones</strong> y <strong>18/18 ablaciones</strong> en checkout y venv nuevos, con recetas/épocas/semillas congeladas. Las predicciones de calibración y test tuvieron discrepancia máxima observada <strong>0</strong>, dentro de tolerancia 10⁻¹⁰; los recibos verifican igualdad de los 78 estados neuronales y parámetros exactos de tres clásicos. Es reproducción numérica en otro entorno de software limpio con el tipo de GPU A100 y las mismas fechas, no otro mercado ni equipo humano externo. <a class="reference download internal" download="" href="../_downloads/3d1c86bef8dfc14555329e1d68e4d9c9/reproduction.csv"><span class="xref download myst">Resultados por predictor</span></a> · <a class="reference download internal" download="" href="../_downloads/9e296a6c53c1818e0b504250ad7174e1/producer_summary.json"><span class="xref download myst">estado productor</span></a>.</p>
+<p>La <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">auditoría CPU de la entrega</span></a> reconstruye aritmética y verifica recibos/hashes con un comando. Ese auditor no constituye un replay completo de entrenamiento desde cero; la condición de ejecución integral conserva su alcance propio.</p>
+</section>
+</section>
+<section id="buenas-practicas-y-prevencion-de-fuga">
+<h2>4.4 Buenas Prácticas y Prevención de Fuga<a class="headerlink" href="#buenas-practicas-y-prevencion-de-fuga" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Control</p></th>
+<th class="head"><p>Evidencia actual y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Separar roles</p></td>
+<td><p>IDs finales de entrenamiento, calibración y test disjuntos; selección interna anterior a la evaluación externa. No se confunden predicciones HPO con las de pesos finales.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aprender sólo en train</p></td>
+<td><p>Atributos, escala de σ₇ y escala auxiliar SAE ajustados con el entrenamiento admisible; reinicio por fold/semilla y sin checkpoint del futuro hacia el pasado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Causalidad y embargo</p></td>
+<td><p>D7 hasta t−1, objetivo en t, embargo de siete fechas entre ajuste y validación/calibración; huecos y soportes completos preservados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Historia compartida</p></td>
+<td><p>Calibración y test comparten seis cierres pasados, cinco retornos y cinco días OHLCV por las ventanas móviles. Es reutilización causal con parámetros fijos; IDs disjuntos no prueban independencia o soportes disjuntos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Estado de comparadores</p></td>
+<td><p>ARIMA puede actualizar estado con observaciones pasadas y coeficientes congelados; esa operación no es refit de parámetros. La información endógena adicional se declara.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Test y selección</p></td>
+<td><p>No se usó el scoring final de esta campaña para escoger plazas, épocas, pesos o umbrales. La exposición de E1 sigue declarada; la herencia no equivale a cegamiento nuevo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Igual validación</p></td>
+<td><p>Tres folds y cohorte final comunes, fallos conservados sin reemplazo favorable; todas las métricas comparan el mismo soporte de 608 fechas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Auditoría integral</p></td>
+<td><p><a class="reference internal" href="10_auditoria_datos.html"><span class="std std-doc">Auditoría de datos</span></a> y <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B</span></a>: hay controles de calendario, firmas, disponibilidad y fuentes; no está acreditada aprobación de todos los controles negativos del pipeline final.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La fuga espacial, la partición por paciente/documento y duplicados semánticos de imágenes/texto no aplican a esta única serie OHLCV. Esto no elimina los controles temporales, de adquisición o de ventanas similares. Los <a class="reference internal" href="02_eda.html"><span class="std std-doc">controles EDA vigentes</span></a> se interpretan con sus denominadores. Pasar hashes, pruebas sintéticas o reproducción numérica no certifica ausencia global de fuga.</p>
+</section>
+<section id="evaluacion-y-analisis-de-resultados">
+<h2>4.5 Evaluación y Análisis de Resultados<a class="headerlink" href="#evaluacion-y-analisis-de-resultados" title="Link to this heading">#</a></h2>
+<section id="metricas-incertidumbre-y-comparacion-justa">
+<h3>Métricas, incertidumbre y comparación justa<a class="headerlink" href="#metricas-incertidumbre-y-comparacion-justa" title="Link to this heading">#</a></h3>
+<p>La primaria es <strong>la media de seis RMSE individuales</strong> en unidades originales de σ₇, con <strong>δ=0,00025772842664981106</strong> heredado de E1; no la RMSE de la predicción media. La <a class="reference download internal" download="" href="../_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">A2 original</span></a> publica RMSE, DE entre semillas, MAE, sMAPE, R², cobertura y anchura; los clásicos tienen R=1. La tabla de <a class="reference internal" href="06_benchmark_final.html"><span class="std std-doc">resultados</span></a> añade IC95 % entre semillas, condicionados a esta cronología. MAPE, MASE u otras métricas no se presentan como calculadas si no constan en este cierre. Las métricas de clasificación, segmentación y ECE/Brier probabilísticos no aplican a esta regresión; intervalos residuales no definen una CDF para PIT.</p>
+<p>El LSTM-autoencoder tiene la menor RMSE media observada, <strong>0,00380343</strong>; Persistence obtiene el menor MAE, <strong>0,002353164</strong>, y sMAPE, <strong>13,23 %</strong>. Ese orden no demuestra superioridad universal. Los <strong>20 contrastes primarios</strong>, Top 10 frente a GRU32 y Persistence, no rechazan tras Holm. El cálculo original de 4.999 réplicas permanece inmutable; el <a class="reference internal" href="56_inferencia_estabilidad_final.html"><span class="std std-doc">refinamiento posterior de 20.000</span></a> conserva estimando, margen y familia, sin cambiar la conclusión. DM–HLN, MCS y rangos de <a class="reference internal" href="50_comparaciones_f2a.html"><span class="std std-doc">§50</span></a> tienen hipótesis y familias posteriores propias.</p>
+<p>La comparación declara calendario, entradas, transformaciones, receta, esfuerzo y ámbito de recursos; igual soporte de test no borra las diferencias de información endógena, fases o coste. Se reporta DE entre semillas y trayectoria temporal. <strong>Una descomposición formal vigente de componentes de varianza entre modelos/semillas/fechas no está acreditada por estos artefactos</strong>; las ANOVA o análisis del P0 histórico no la sustituyen.</p>
+</section>
+<section id="ajuste-sobreajuste-y-calibracion">
+<h3>Ajuste, sobreajuste y calibración<a class="headerlink" href="#ajuste-sobreajuste-y-calibracion" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">§49</span></a> recupera curvas, riesgos y residuos de los predictores ejecutados. Sus <strong>826 contrastes exploratorios</strong> sobre 81 trayectorias y 16 sistemas producen <strong>707 rechazos tras Holm</strong>; son evidencia adversa conservada, no ausencia de diagnósticos. Los finales tienen train registrado y calibración posterior, pero no una nueva curva de validación ni predicciones de entrenamiento por fecha con lote 1 comparables con los pronósticos guardados.</p>
+<p><strong>δg sí tenía registro previo</strong>, con el mismo valor numérico que δ y linaje documentado. Su reconocimiento no acredita que las brechas actuales lo cumplan: la prueba formal comparable de ausencia de sobreajuste sigue sin establecerse. Las brechas descriptivas train–calibración, sus periodos y tamaños de batch son distintos; una brecha pequeña o negativa no demuestra adecuación, tampoco descarta underfitting. <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">Linaje δg</span></a> · <a class="reference download internal" download="" href="../_downloads/536f8d3b93c861394cb6aa46527a9104/saved_training_calibration_gaps.csv"><span class="xref download myst">brechas guardadas</span></a>.</p>
+<p><a class="reference internal" href="60_calibracion_temporal_condicional.html"><span class="std std-doc">§60</span></a> amplía la calibración temporal sobre los 81 predictores, con políticas original, móvil y ACI, cobertura condicional y 10.000 remuestreos. ACI aproxima el 90 % global, pero persiste infracobertura en rangos altos; no garantiza cobertura condicional ni un PIT uniforme. Estas políticas son diagnósticos posteriores, no calibradores escogidos para sustituir A2 tras ver el test.</p>
+</section>
+<section id="predicciones-taxonomia-y-subgrupos">
+<h3>Predicciones, taxonomía y subgrupos<a class="headerlink" href="#predicciones-taxonomia-y-subgrupos" title="Link to this heading">#</a></h3>
+<p><img alt="Pronósticos individuales congelados y objetivo observado en las 608 fechas comunes; visualización posterior sin crear un ensamble" src="../_images/prediction_trajectories.png" /></p>
+<p>La <a class="reference download internal" download="" href="../_downloads/0e301221f7c8007883f308afa490134d/prediction_trajectories.json"><span class="xref download myst">procedencia de la visualización</span></a> y <code class="docutils literal notranslate"><span class="pre">scripts/plot_e2_saved_predictions.py</span></code> identifican las mismas predicciones guardadas. La <a class="reference download internal" download="" href="../_downloads/9e868e6dffdf345f7b548c1ae9406d01/prediction_trajectories.svg"><span class="xref download myst">versión SVG descargable</span></a> conserva los dieciséis paneles, escala vertical común y las 49.248 predicciones individuales, sin suavizado. Cada red muestra sus seis trayectorias y cada clásico la suya; no se calculan nuevos scores ni se combinan predicciones para reemplazar la primaria.</p>
+<p>La <a class="reference internal" href="57_errores_techo.html"><span class="std std-doc">taxonomía actual</span></a> etiqueta <strong>6.080 casos fecha–modelo</strong>, diez principales ×608. Conserva <strong>100 fechas y 600 errores individuales por modelo</strong> al mostrar sus seis semillas. La selección estratificada por año/régimen usa semilla 272101 y no depende de los errores. Las etiquetas son categorías automáticas de residuos, no adjudicación semántica experta. Se publican además errores por trimestre, ventanas móviles y regímenes, con sus denominadores; el promedio de pronósticos usado en parte del diagnóstico no sustituye A2. Las 112 filas trimestrales y 8.304 ventanas móviles de §49 son descripciones dependientes, no nuevas replicaciones.</p>
+</section>
+</section>
+<section id="robustez-interpretabilidad-y-ablacion">
+<h2>4.6 Robustez, Interpretabilidad y Ablación<a class="headerlink" href="#robustez-interpretabilidad-y-ablacion" title="Link to this heading">#</a></h2>
+<section id="perturbaciones-y-degradacion">
+<h3>Perturbaciones y degradación<a class="headerlink" href="#perturbaciones-y-degradacion" title="Link to this heading">#</a></h3>
+<p>La <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">auditoría GPU posterior</span></a> conserva <strong>79 predictores diagnósticos: 78 neuronales y ARIMA</strong>. El CSV de estrés cubre las <strong>trece redes</strong>, incluidos los diez modelos principales y las tres referencias E1; no se atribuye su batería de perturbaciones a los tres clásicos. Cada perturbación tiene tres severidades y parámetros estimados sólo en train:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Perturbación de las ventanas D7×5</p></th>
+<th class="head"><p>Severidades registradas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ruido gaussiano</p></td>
+<td><p>0,10 / 0,30 / 0,50 DE</p></td>
+</tr>
+<tr class="row-odd"><td><p>Extremos de ±5 DE</p></td>
+<td><p>Probabilidad 0,01 / 0,05 / 0,10</p></td>
+</tr>
+<tr class="row-even"><td><p>Faltantes, sustitución por mediana train</p></td>
+<td><p>Probabilidad 0,05 / 0,15 / 0,30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cambio de nivel desde 01/01/2026</p></td>
+<td><p>0,25 / 0,50 / 1 DE</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La semilla de estrés es <strong>271901</strong>. Se publican curvas, <strong>468 filas =13×4×3 severidades×3 bloques</strong>, <strong>52 áreas de degradación normalizadas</strong> y 2.000 remuestreos circulares con bloques 7/14/28; sus IC individuales no forman una familia inferencial corregida. Las ventanas se alteran independientemente: no se garantiza coherencia OHLC de una serie sintética ni una intervención económica causal. La evaluación de <a class="reference internal" href="02_eda.html"><span class="std std-doc">desplazamiento temporal</span></a> y regímenes usa el calendario disponible; no existe aquí otro mercado externo validado. Los radios q y objetivos permanecen congelados.</p>
+</section>
+<section id="explicaciones-del-top-3-y-sus-limites">
+<h3>Explicaciones del Top 3 y sus límites<a class="headerlink" href="#explicaciones-del-top-3-y-sus-limites" title="Link to this heading">#</a></h3>
+<p>El Top 3 por RMSE global es <strong>SAE, ARIMA y GRU32</strong>, no necesariamente los tres mejores del subconjunto Top 10. Se aplicó <strong>oclusión</strong> en 24 fechas equiespaciadas: 35 coordenadas D7×5 para las redes y siete rezagos históricos de σ₇ para ARIMA. Las <a class="reference internal" href="54_robustez_interpretabilidad.html"><span class="std std-doc">celdas, fidelidad y estabilidad</span></a> distinguen esos soportes. Borrado/inserción comparan el orden de importancia con un orden aleatorio fijo; cuantifican coherencia del predictor bajo esas intervenciones, no validación causal del mercado.</p>
+<p>Con seis semillas hay 15 parejas por red: Spearman medio de explicaciones <strong>0,73102 en SAE</strong> y <strong>0,83815 en GRU32</strong>, con mínimos <strong>0,35518</strong> y <strong>0,65882</strong>. La explicación cambia entre inicializaciones y se conserva esa variabilidad. ARIMA tiene R=1: su estabilidad entre semillas <strong>no es estimable</strong>, sin atribuirle estabilidad perfecta. La coherencia del método en estas fechas no equivale a una explicación causal o semántica independiente.</p>
+</section>
+<section id="tres-componentes-del-mejor-modelo-ablaciones-reales">
+<h3>Tres componentes del mejor modelo: ablaciones reales<a class="headerlink" href="#tres-componentes-del-mejor-modelo-ablaciones-reales" title="Link to this heading">#</a></h3>
+<p>Se completaron <strong>18 ajustes de tres variantes SAE: tres ablaciones×seis semillas</strong>: sin preentrenamiento auxiliar, sin segundo encoder y sin dropout supervisado. Conservan las recetas y épocas de las fases restantes y no reabren HPO. <a class="reference download internal" download="" href="../_downloads/c907b0b1a5e4f5796b6e1bbdd643090b/ablation_fits.csv"><span class="xref download myst">Ajustes por semilla</span></a> · <a class="reference download internal" download="" href="../_downloads/6bd7888a320c7011ca1ee6b21a10e7d6/ablation_comparisons.csv"><span class="xref download myst">tres contrastes completos</span></a>.</p>
+<p>La inferencia usa <strong>10.000 remuestreos pareados de semillas y calendario</strong>, bloques de 14 días y <strong>Holm3</strong>, α=0,05. Retirar dropout aumenta RMSE en <strong>0,000528565, +13,90 %</strong>, con <strong>p Holm=0,00059994</strong>. Retirar preentrenamiento tiene p Holm <strong>0,447655</strong> y retirar el segundo encoder <strong>0,323168</strong>; sus no rechazos no acreditan equivalencia ni inutilidad. Estas son tres diferencias frente al modelo completo, no dieciocho contrastes independientes. La <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">reproducción y ablaciones finales</span></a> tienen precedencia sobre copias anteriores de cero ajustes completados, sin reescribir sus bytes.</p>
+<p>Los complementos son posteriores sobre la cronología conocida y no seleccionan otra receta ganadora de A2. La potencia, la auditoría integral de fuga, la prueba formal de δg, la atribución exhaustiva del coste HPO y la descomposición actual de varianza conservan sus límites en la <a class="reference internal" href="38_cumplimiento_guia.html"><span class="std std-doc">matriz general</span></a> y en el <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B vigente</span></a>.</p>
+</section>
+</section>
+<section id="antecedentes-y-reproduccion-documental">
+<h2>Antecedentes y reproducción documental<a class="headerlink" href="#antecedentes-y-reproduccion-documental" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/c4569c65bcb1e2c5be50d56f3d8353b6/04_implementacion_before_update.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">anterior</span> <span class="pre">a</span> <span class="pre">esta</span> <span class="pre">actualización</span></code></a> conserva los prototipos, recetas retiradas, pruebas y estados originales. La <a class="reference download internal" download="" href="../_downloads/4b8240dcb1b03748f5f7cc46e2fc9d61/04_implementacion.md"><code class="xref download docutils literal notranslate"><span class="pre">instantánea</span> <span class="pre">histórica</span> <span class="pre">ya</span> <span class="pre">publicada</span></code></a> mantiene su URL y bytes. Las diez pruebas sintéticas del prototipo no se presentan como toda la verificación de los cuerpos actuales; los recibos posteriores de ajuste, inferencia y reproducción se consultan en §48/§55.</p>
+<p>:::{dropdown} Descargas históricas conservadas
+Los archivos siguientes mantienen su alcance anterior; no sustituyen el estado vigente ni instruyen nuevas corridas.</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/5c39a73befc06b6ac68a0ab1b13e5ac7/completion_bundle.zip"><code class="xref download docutils literal notranslate"><span class="pre">completion_download/completion_bundle.zip</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/769cadb5d12b34f5212c498756de1fcb/execution_progress.json"><code class="xref download docutils literal notranslate"><span class="pre">completion_preflight/execution_progress.json</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/e6afa871de0ad5cd8543ef14d185c3c4/registration.json"><code class="xref download docutils literal notranslate"><span class="pre">completion_preflight/registration.json</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/727d67ab94e2789eab7eb179543e9d7f/architecture_review.json"><code class="xref download docutils literal notranslate"><span class="pre">completion_protocol/architecture_review.json</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/a375c47d06b822516dc7b9dafd245bd1/chapter_archive_manifest.json"><code class="xref download docutils literal notranslate"><span class="pre">e2_delivery_reproduction_20261114/chapter_archive_manifest.json</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/ffb6cca2e10be87b868950e0c777e030/execution_summary.json"><code class="xref download docutils literal notranslate"><span class="pre">remediation_preflight/execution_summary.json</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c43ed0c31c71b99655b1063c15477973/preregistration.json"><code class="xref download docutils literal notranslate"><span class="pre">remediation_protocol/preregistration.json</span></code></a>
+:::</p></li>
+</ul>
+<!-- Compatibilidad de los fragmentos de los antecedentes archivados. -->
+<p><span id="antecedentes-de-implementacion-corte-del-0811-11-2026"></span>
+<span id="implementacion-preliminar-y-alcance"></span>
+<span id="contrato-de-informacion"></span>
+<span id="seis-adaptadores-integrados-controles-antes-de-mercado"></span>
+<span id="pruebas-sinteticas-historicas-que-acreditan-y-que-no"></span>
+<span id="guardas-temporales-antes-de-cualquier-ajuste"></span>
+<span id="secuencia-historica-propuesta-para-el-experimento-anterior"></span>
+<span id="trazabilidad-sin-reactivar-el-catalogo-retirado"></span>
+<span id="archivo-de-la-version-anterior"></span></p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -657,15 +1003,38 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-de-implementacion-corte-del-0811-11-2026">Antecedentes de implementación, corte del 08–11/11/2026</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-preliminar-y-alcance">4.0 Implementación preliminar y alcance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrato-de-informacion">4.1 Contrato de información</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seis-adaptadores-integrados-controles-antes-de-mercado">4.2 Seis adaptadores integrados: controles antes de mercado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sinteticas-historicas-que-acreditan-y-que-no">4.3 Pruebas sintéticas históricas: qué acreditan y qué no</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardas-temporales-antes-de-cualquier-ajuste">4.4 Guardas temporales antes de cualquier ajuste</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-historica-propuesta-para-el-experimento-anterior">4.5 Secuencia histórica propuesta para el experimento anterior</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-sin-reactivar-el-catalogo-retirado">4.6 Trazabilidad sin reactivar el catálogo retirado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-de-la-version-anterior">Archivo de la versión anterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-experimental">4.1 Diseño Experimental</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entradas-objetivo-y-pipeline-causal">Entradas, objetivo y pipeline causal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#particion-ejecutada-y-validacion-interna">Partición ejecutada y validación interna</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-presupuesto-y-arquitectura-definida">HPO, presupuesto y arquitectura definida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-de-modelos">4.2 Implementación de Modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuerpos-versiones-y-adaptaciones-ejecutadas">Cuerpos, versiones y adaptaciones ejecutadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-y-estrategia-de-entrenamiento">Hiperparámetros y estrategia de entrenamiento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registros-originales-recursos-e-inferencia">Registros originales, recursos e inferencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-experimentales">4.3 Requisitos Experimentales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semillas-determinismo-y-tracking">Semillas, determinismo y tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeticiones-potencia-y-equidad-de-computo">Repeticiones, potencia y equidad de cómputo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduccion-independiente-en-entorno-limpio">Reproducción independiente en entorno limpio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-y-prevencion-de-fuga">4.4 Buenas Prácticas y Prevención de Fuga</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-y-analisis-de-resultados">4.5 Evaluación y Análisis de Resultados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-incertidumbre-y-comparacion-justa">Métricas, incertidumbre y comparación justa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-sobreajuste-y-calibracion">Ajuste, sobreajuste y calibración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicciones-taxonomia-y-subgrupos">Predicciones, taxonomía y subgrupos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-interpretabilidad-y-ablacion">4.6 Robustez, Interpretabilidad y Ablación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perturbaciones-y-degradacion">Perturbaciones y degradación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explicaciones-del-top-3-y-sus-limites">Explicaciones del Top 3 y sus límites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-componentes-del-mejor-modelo-ablaciones-reales">Tres componentes del mejor modelo: ablaciones reales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-reproduccion-documental">Antecedentes y reproducción documental</a></li>
 </ul>
   </nav></div>
 

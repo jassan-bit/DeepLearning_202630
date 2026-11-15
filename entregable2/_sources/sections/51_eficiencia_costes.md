@@ -2,7 +2,9 @@
 
 > **Ubicación:** complemento del [capítulo 11](11_hpo_equidad.md). Identificador documental anterior: **§51**; [ver concordancia](concordancia_guia.md).
 
-Los registros originales permiten cuantificar el coste de las fases de entrenamiento de los **78 ajustes finales**: **5 765,09 s (1,6014 h)**, sumados sobre 13 modelos y seis semillas. Esta cantidad corresponde a fases instrumentadas del entrenamiento final. El presupuesto contable cerrado de la campaña es **74,9530 h de 80 h autorizadas** e incluye historia previa, trabajos y tiempo del controlador. Las dos cifras describen ámbitos diferentes y no se suman.
+Los registros originales permiten cuantificar el coste de las fases de entrenamiento de los **78 ajustes finales**: **5 765,09 s (1,6014 h)**, sumados sobre 13 modelos y seis semillas. Esta cantidad corresponde a fases instrumentadas del entrenamiento final. El presupuesto contable del **cierre original del benchmark** fue **74,9530 h de 80 h autorizadas** e incluye historia previa, trabajos y tiempo del controlador. Las dos cifras describen ámbitos diferentes y no se suman.
+
+**Cierre complementario vigente:** el límite se amplió una sola vez de 80 a **84 horas totales**, conservando todos los cargos. El cierre de [§55](55_reproduccion_ablaciones.md) registra **80,2561 horas contabilizadas**, **3 h 44 min 38 s de saldo** y cero reservas abiertas, después de las 81 reproducciones y 18 ablaciones. La tabla contable de este capítulo conserva el corte original; no representa ese saldo posterior ni horas de GPU activa.
 
 Esta auditoría es posterior al cierre: lee metadatos, verifica hashes y conserva la tabla A2 original. No entrena modelos, descarga pesos, ejecuta inferencias ni vuelve a calcular sus métricas. Los resultados siguen vinculados al commit científico `1e8745497b484518f766b6da5c19be8362d9add7` y al commit inmutable de resultados `50cb634e9eb163b09f9607982842144ba9f74c87`.
 
@@ -55,7 +57,7 @@ Persistence, SeasonalNaive y ARIMA conservan sus resultados A2 originales y una 
 
 ## Presupuesto medido y reservas
 
-La auditoría vuelve a verificar los **1 368 eventos** de la cadena del ledger y su último hash `9cef7a0b5a295c55051fd3279cfd7493efe3cedde53545dee8fb3398971db9ba`. Las **329 reservas** están cerradas. El total autorizado de 80 h constituye un límite, no una medición del consumo.
+La auditoría de este **corte original** verifica los **1 368 eventos** de la cadena del ledger y su último hash `9cef7a0b5a295c55051fd3279cfd7493efe3cedde53545dee8fb3398971db9ba`. Las **329 reservas** están cerradas. El total autorizado de 80 h de aquel corte constituye un límite, no una medición del consumo. El diario complementario posterior, con su ancla propia, se informa en §55; no se suman eventos o reservas de ambos cortes como consumo adicional.
 
 | Componente contable | Segundos | Horas | Interpretación |
 |---|---:|---:|---|

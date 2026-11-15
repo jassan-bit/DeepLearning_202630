@@ -1,0 +1,580 @@
+{
+  "version": "e2-saved-prediction-trajectories-v1",
+  "scope": "posthoc_saved_vector_visualization_no_retuning",
+  "input_sha256": {
+    "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+    "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+    "experiments/e2_reduced_protocol_20261112/protocol.json": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc"
+  },
+  "script_sha256": "1cf3d8faa12db0b1cdfc167dcbec6a5325618f5f0ba11eb9d465b15315eaeed4",
+  "software": {
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "calendar": {
+    "first": "2025-01-01",
+    "last": "2026-08-31",
+    "dates": 608,
+    "common_mask_true": 608,
+    "timezone": "UTC"
+  },
+  "systems_in_protocol_order": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA"
+  ],
+  "systems": 16,
+  "neural_systems": 13,
+  "deterministic_systems": 3,
+  "frozen_predictors": 81,
+  "neural_seed_ids": [
+    271801,
+    271802,
+    271803,
+    271804,
+    271805,
+    271806
+  ],
+  "plotted_target_count_per_panel": 608,
+  "plotted_prediction_points": 49248,
+  "predictor_mapping": [
+    {
+      "model": "FCN-1D",
+      "seed": 271801,
+      "checkpoint_sha256": "8d64ff057a66fd9f82b209a16bb2927aad118a9e8fee46e9baf5fc97b9f1ecc0",
+      "prediction_count": 608
+    },
+    {
+      "model": "FCN-1D",
+      "seed": 271802,
+      "checkpoint_sha256": "89316d1bcf093341aadc4ed6ace0336f5f4ced02c74d98ccf6d6d0d262329027",
+      "prediction_count": 608
+    },
+    {
+      "model": "FCN-1D",
+      "seed": 271803,
+      "checkpoint_sha256": "acbd575d9689d28a62c7cf5f641788e6368b6d52af017b102f1f2db008c8e22e",
+      "prediction_count": 608
+    },
+    {
+      "model": "FCN-1D",
+      "seed": 271804,
+      "checkpoint_sha256": "3d1e1f1ea4f7024bbb38abfb5f78678a7f3b266a4e23a3dc8b9df361436e9612",
+      "prediction_count": 608
+    },
+    {
+      "model": "FCN-1D",
+      "seed": 271805,
+      "checkpoint_sha256": "55bac51058996cc5a3dc01a1eb7ad90a1741a30c809a89abf724e99368c11e67",
+      "prediction_count": 608
+    },
+    {
+      "model": "FCN-1D",
+      "seed": 271806,
+      "checkpoint_sha256": "3041e0d63ae8af79b17d0c6d7b96376de9f59649dc863dfc02832c06635b471b",
+      "prediction_count": 608
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271801,
+      "checkpoint_sha256": "f3332149da587f1c9af5ce4cb302298c2a5f8361a5986062e5cfbcc7ac8ca253",
+      "prediction_count": 608
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271802,
+      "checkpoint_sha256": "7ce98b96533ca8a7f0a43bcf819be166431115b0742e207e7e499e1855f775c3",
+      "prediction_count": 608
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271803,
+      "checkpoint_sha256": "f4cff13eae56e79c01dce1dda641e5180a645fe19410ea6655e0a1fed60cc3cc",
+      "prediction_count": 608
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271804,
+      "checkpoint_sha256": "d8fe9ad7360a6ffafe1352166b03c12a46ab2e0662719bb6aad7929c306b0c5f",
+      "prediction_count": 608
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271805,
+      "checkpoint_sha256": "2a7185382054439bdc43020436511697287aabeb008068489334b54c3efca079",
+      "prediction_count": 608
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271806,
+      "checkpoint_sha256": "4a6536f2ed806d4d65a33defcd9f49b2c111130b9e9f05cdeb47329be95540c4",
+      "prediction_count": 608
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271801,
+      "checkpoint_sha256": "47fcee9055df2ca911cd080d871c66b3e6764b166e2b592ad6abe57e83321d97",
+      "prediction_count": 608
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271802,
+      "checkpoint_sha256": "1cc3f1a76171c722ff584a3b639af5e76ccca5211cef11668f9a05e5f34779f2",
+      "prediction_count": 608
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271803,
+      "checkpoint_sha256": "953ac4250fdb17cc70a2ea12bb7e83ac32e44cdac26b26fc02ac4e1712f71ae4",
+      "prediction_count": 608
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271804,
+      "checkpoint_sha256": "aab9df444343e054cd7fe61ba36e84a23cc6b1fbb66dd5a30ad4ca815199e852",
+      "prediction_count": 608
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271805,
+      "checkpoint_sha256": "431b573dd107d5e8e153ebf394b6b454f9799e921fda02008d5a78f7c9b88d6d",
+      "prediction_count": 608
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271806,
+      "checkpoint_sha256": "617201b4108b10235f8d7cee221b2d9aefd8a48c2297aeda69248965010f4dc1",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271801,
+      "checkpoint_sha256": "75210b30963879444901e3e9df6764108146d235f656b2b7aa8a390d2b932ebd",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271802,
+      "checkpoint_sha256": "009a1999ca6dd47e01b57a86b97d39713eb7bdf1ed8839aedefb29be203e355f",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271803,
+      "checkpoint_sha256": "73aef15a7c0e97bab74f41b4cf0b2c26556198cea6a2a98ab21da6d84bc3e95f",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271804,
+      "checkpoint_sha256": "d31ee0ffcdaf85ca3e2f56e3140583a2fd4a709a1975223fb8c15003d6ddade1",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271805,
+      "checkpoint_sha256": "24ea568e20979daa21f809a03cffd022fabd1d3da2f6551da938e08d720a855c",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271806,
+      "checkpoint_sha256": "ef413ba94c993434f0d817465f0ecf24bf10a1f592775251cfa005dd00e15df8",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimesNet",
+      "seed": 271801,
+      "checkpoint_sha256": "352da41eff4e7193b5c527a7c483458318f114f087779cedcd0e9a539090af0d",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimesNet",
+      "seed": 271802,
+      "checkpoint_sha256": "b4b13f14fa21103e65548415856b3af67b5b364c4a86e1541c592183fd46233a",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimesNet",
+      "seed": 271803,
+      "checkpoint_sha256": "fe45050b4d18be6d0c21fbe836205e295be2c965ce3ece804302aaceedad3c03",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimesNet",
+      "seed": 271804,
+      "checkpoint_sha256": "e7efe53f5f16994d8ee6f9bea29ce9353a7ad9b48ed4442a0292af02fd0de4d3",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimesNet",
+      "seed": 271805,
+      "checkpoint_sha256": "8509518af03da11c8f9d7d450c9725f095da9579f25175e939363b4308795256",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimesNet",
+      "seed": 271806,
+      "checkpoint_sha256": "5924143c0857129af3aa644ba18f9960e982a1407937031458589c4575e5c6db",
+      "prediction_count": 608
+    },
+    {
+      "model": "TSMixer",
+      "seed": 271801,
+      "checkpoint_sha256": "9ead27bd519975e8a62abc79c92ee326aec8bece71170828666b9964ae454be7",
+      "prediction_count": 608
+    },
+    {
+      "model": "TSMixer",
+      "seed": 271802,
+      "checkpoint_sha256": "93c96f7a2d3335fb4b401fae8fcc5e1787734bfba0744ff2dfcbbbca620e2a63",
+      "prediction_count": 608
+    },
+    {
+      "model": "TSMixer",
+      "seed": 271803,
+      "checkpoint_sha256": "9cdc06f7330e4d86a993b81a55ab4786d66daf7e2d8618f8a3164ceb848cb5b4",
+      "prediction_count": 608
+    },
+    {
+      "model": "TSMixer",
+      "seed": 271804,
+      "checkpoint_sha256": "e2d705c6ed5d050b911dcbe0b179386920550b6bc43baf753239e9a567a6a604",
+      "prediction_count": 608
+    },
+    {
+      "model": "TSMixer",
+      "seed": 271805,
+      "checkpoint_sha256": "dead7dfe0f0c1d3939e20119e4aa53c5230abac0d46c6d5fc98bc20ea48ab21f",
+      "prediction_count": 608
+    },
+    {
+      "model": "TSMixer",
+      "seed": 271806,
+      "checkpoint_sha256": "55f96d5a539c860d7f4c067547180ae372878b3f0df5fdd964f30ecd8c457937",
+      "prediction_count": 608
+    },
+    {
+      "model": "TiDE",
+      "seed": 271801,
+      "checkpoint_sha256": "59f1f529d0f0b86dc77a78284b5452a56e5fd6567e741a8ca8cef08a42aeb507",
+      "prediction_count": 608
+    },
+    {
+      "model": "TiDE",
+      "seed": 271802,
+      "checkpoint_sha256": "9055b5463757ff289b210f0b773110d89ddecc83fdefea870db926ac5a3757d5",
+      "prediction_count": 608
+    },
+    {
+      "model": "TiDE",
+      "seed": 271803,
+      "checkpoint_sha256": "8dbd8ffae602ab5acd567834fc58f469ea4fc836560d99500ddddd46b2b82d5c",
+      "prediction_count": 608
+    },
+    {
+      "model": "TiDE",
+      "seed": 271804,
+      "checkpoint_sha256": "abb6be5817e12d220cc8634bb56e36b2e8b56fbdef17bc8d9c40654e8babcd67",
+      "prediction_count": 608
+    },
+    {
+      "model": "TiDE",
+      "seed": 271805,
+      "checkpoint_sha256": "ff5c294dafcae9dbd5e7dc1cb2684d865b4f302f993059d38933f9d3a454106f",
+      "prediction_count": 608
+    },
+    {
+      "model": "TiDE",
+      "seed": 271806,
+      "checkpoint_sha256": "3d2527cbd88ab306bc540793ae6136ce2e4fc3c8026f1e6cd1d5ca92746d4664",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimeMixer",
+      "seed": 271801,
+      "checkpoint_sha256": "7725d0908a5506a2419ca894e32664c658d529d25f2b61da5db5fd5ae275a764",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimeMixer",
+      "seed": 271802,
+      "checkpoint_sha256": "9fd0762152c514e8b5fba20c033e1f8fd5d50acc3d6c70f20afb3f4c478dda33",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimeMixer",
+      "seed": 271803,
+      "checkpoint_sha256": "b66df8d959ff0c74e1063d450bbc295df03f7e8dab4ce02214025caab1d64aeb",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimeMixer",
+      "seed": 271804,
+      "checkpoint_sha256": "d836a7d46af959d67048f03450acb3dde5d865df0c76c7e607b8f5b159161574",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimeMixer",
+      "seed": 271805,
+      "checkpoint_sha256": "0eca929dba33d2753fa73d05c7d75cd7c243f186edc88f6304b64a6747960819",
+      "prediction_count": 608
+    },
+    {
+      "model": "TimeMixer",
+      "seed": 271806,
+      "checkpoint_sha256": "e9d6f8d09bc211e122acc480ab792106349d9915d60a940664addb94703b346e",
+      "prediction_count": 608
+    },
+    {
+      "model": "PatchTST",
+      "seed": 271801,
+      "checkpoint_sha256": "94e51bec39a881f7d1eb142ffb0ab32dc9ef5ccef0ae7606e3d38c5196a0d6d7",
+      "prediction_count": 608
+    },
+    {
+      "model": "PatchTST",
+      "seed": 271802,
+      "checkpoint_sha256": "3a7892d5261c36b2cd0651699fabd5e0968795f7a38e37cc794c0bdf550b18d4",
+      "prediction_count": 608
+    },
+    {
+      "model": "PatchTST",
+      "seed": 271803,
+      "checkpoint_sha256": "aea3fbfae8c67d34f19a95c9072b0fc979a8ba9f3b11ec66997207bd47aa644d",
+      "prediction_count": 608
+    },
+    {
+      "model": "PatchTST",
+      "seed": 271804,
+      "checkpoint_sha256": "9804c527248d5edff83e306700ae23e952b18bd992c505498700f10a3545da0e",
+      "prediction_count": 608
+    },
+    {
+      "model": "PatchTST",
+      "seed": 271805,
+      "checkpoint_sha256": "99d21c9b2bf7c86c1173be0a391d801f99d57ef063baaffb8598fbb660a597a9",
+      "prediction_count": 608
+    },
+    {
+      "model": "PatchTST",
+      "seed": 271806,
+      "checkpoint_sha256": "426a22d85a8e39ddcfdc936f9a059d4996cfb4f8761b931fb139f097c8b26ed7",
+      "prediction_count": 608
+    },
+    {
+      "model": "iTransformer",
+      "seed": 271801,
+      "checkpoint_sha256": "67c6e1910d40fdcf3fd069d8cc33a2a1498e4646977ded50a98a238e5c98233f",
+      "prediction_count": 608
+    },
+    {
+      "model": "iTransformer",
+      "seed": 271802,
+      "checkpoint_sha256": "6deb67b30fefded9ffd9b7d5196fed48ac427fa9072e1a2d8ac49def387c212a",
+      "prediction_count": 608
+    },
+    {
+      "model": "iTransformer",
+      "seed": 271803,
+      "checkpoint_sha256": "700b9611fa361af874b02f865a1c2353c1771ed9342c1e14a94a7b649f58046d",
+      "prediction_count": 608
+    },
+    {
+      "model": "iTransformer",
+      "seed": 271804,
+      "checkpoint_sha256": "114880b208ed242b72411bd4825e8917eb779dcd16225b371079e287114fd1fb",
+      "prediction_count": 608
+    },
+    {
+      "model": "iTransformer",
+      "seed": 271805,
+      "checkpoint_sha256": "67ebf84feb7aea8bc77b5cfebcebec9032e8e712242e583b57405f3c14c368f7",
+      "prediction_count": 608
+    },
+    {
+      "model": "iTransformer",
+      "seed": 271806,
+      "checkpoint_sha256": "04188cc1cd30333ec4e988f16e183e41f05aac5e8bc74aad2a0661ea101c2c92",
+      "prediction_count": 608
+    },
+    {
+      "model": "MLP16",
+      "seed": 271801,
+      "checkpoint_sha256": "0cd28c59d6b8bdc008bae49e7fc40fb733941b2adef86f58f784e9d1e989b4c2",
+      "prediction_count": 608
+    },
+    {
+      "model": "MLP16",
+      "seed": 271802,
+      "checkpoint_sha256": "6a24e375301f9716b080414cae6b22e86177077966273ac73a8673d7b3f6d298",
+      "prediction_count": 608
+    },
+    {
+      "model": "MLP16",
+      "seed": 271803,
+      "checkpoint_sha256": "baeac98c1523c7eea61fffb342f451e2333e3959bd0e62dea81e78b34ef5c478",
+      "prediction_count": 608
+    },
+    {
+      "model": "MLP16",
+      "seed": 271804,
+      "checkpoint_sha256": "2d7a4ed83e69aa4f1de5ffc404c9325014ecb0a330a36a983b6a0242ae290260",
+      "prediction_count": 608
+    },
+    {
+      "model": "MLP16",
+      "seed": 271805,
+      "checkpoint_sha256": "9c4dd8b36f5a9e7c8404ecdd339b7e68cc896b02e3188d63fdd00b2c63cf7150",
+      "prediction_count": 608
+    },
+    {
+      "model": "MLP16",
+      "seed": 271806,
+      "checkpoint_sha256": "7a097497bae92a0e40be1816a90d25d87091124bc009fc3ad2378d8dcc9b0ad3",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271801,
+      "checkpoint_sha256": "15fe5c6d527a56fa002b8fbd207a7316a59bd228e471cdf4411d68b44275cc54",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271802,
+      "checkpoint_sha256": "ac34f745b275ba1b387dc396aa94bd6703dea9c5dce7b5455493fcb4fabc4a30",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271803,
+      "checkpoint_sha256": "8728bc333a1c2ffe0501f01dc49eba7b0afdf2fb9d1ef03c18986823de51957f",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271804,
+      "checkpoint_sha256": "eb5240bb87af57e24a9f962ac56a695b42f7f6a744c0187a0fea4cd60d99dad4",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271805,
+      "checkpoint_sha256": "5ab4ea42662143209f03a231eac9c5c5607de92ea36ceb29fd5bd4b34c1d1d7d",
+      "prediction_count": 608
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271806,
+      "checkpoint_sha256": "c9907f7eb3a058081af51ff7e422737c6b2173658998aa46c6f8fab2af0facda",
+      "prediction_count": 608
+    },
+    {
+      "model": "GRU32",
+      "seed": 271801,
+      "checkpoint_sha256": "aa0601e3b77f9fccd3a0d9ea83932c7aa0af3826e068b9f59ce56cacddb016af",
+      "prediction_count": 608
+    },
+    {
+      "model": "GRU32",
+      "seed": 271802,
+      "checkpoint_sha256": "18b2bddf734e40442c8ae3c01722496241cc1e363e95100df513d2116b837f19",
+      "prediction_count": 608
+    },
+    {
+      "model": "GRU32",
+      "seed": 271803,
+      "checkpoint_sha256": "9bffe9602bc7a2c64c4ec2f110086d7b4d72121ecba4d38481a03c4a36d536d3",
+      "prediction_count": 608
+    },
+    {
+      "model": "GRU32",
+      "seed": 271804,
+      "checkpoint_sha256": "344a013cb59d564d12b6c49567ecfa609df083900266f10dd6e5ec0a35638b3e",
+      "prediction_count": 608
+    },
+    {
+      "model": "GRU32",
+      "seed": 271805,
+      "checkpoint_sha256": "13375526b0a8b192a0111111a0371c9b75a3ea2396dc951af08f8169079a52de",
+      "prediction_count": 608
+    },
+    {
+      "model": "GRU32",
+      "seed": 271806,
+      "checkpoint_sha256": "f8252b0a801a2ac5409162e9e95a857ac032d8070ebd5fd78d281829231c177d",
+      "prediction_count": 608
+    },
+    {
+      "model": "Persistence",
+      "seed": "deterministic",
+      "checkpoint_sha256": "759c144ebec8f43c5ce403da21670b3e442ffcf8fc7a6181890632ec385a782c",
+      "prediction_count": 608
+    },
+    {
+      "model": "SeasonalNaive",
+      "seed": "deterministic",
+      "checkpoint_sha256": "b1c1d46d85a0da4516cbc5d0053fdb6a9feae1415b5480e4840dca031dcfeaac",
+      "prediction_count": 608
+    },
+    {
+      "model": "ARIMA",
+      "seed": "deterministic",
+      "checkpoint_sha256": "9414132fa53733f34c16a933ef10974392e40564efa6cb3eb6a7e80751affa93",
+      "prediction_count": 608
+    }
+  ],
+  "drawing": {
+    "panels": [
+      4,
+      4
+    ],
+    "shared_axes": true,
+    "target": "unchanged observed sigma7 in each panel, black",
+    "predictions": "every individual saved predictor, blue; six neural seeds or one deterministic trajectory",
+    "global_y_extent_uses": "all targets and predictions, no clipping of extremes",
+    "full_calendar": true,
+    "smoothing": false,
+    "ensemble_or_seed_mean": false,
+    "seed_selection": false,
+    "score_based_system_order": false,
+    "SVG_Date_omitted": true,
+    "SVG_hashsalt": "e2-saved-prediction-trajectories-v1"
+  },
+  "access": {
+    "cached_observed_targets_read": true,
+    "cached_predictions_read": true,
+    "checkpoint_identity_metadata_read": true,
+    "checkpoint_weights_loaded": false,
+    "raw_archives_opened": 0,
+    "new_model_fits": 0,
+    "new_inference_calls": 0,
+    "predictive_scoring": false,
+    "new_inferential_tests": 0,
+    "hyperparameters_changed": false
+  },
+  "limits": [
+    "The already known E1 evaluation calendar is not a new prospective confirmation.",
+    "A visual overlap is not a test of fit, equivalence, calibration or absence of overfitting.",
+    "The six neural trajectories are initialization variants on one shared calendar, not independent markets.",
+    "This figure does not supply variance-component inference or a formal delta_g test."
+  ],
+  "output_sha256": {
+    "prediction_trajectories.svg": "4722a9d88de8fdbb51afa5b9aab15444fd8009bbe64a22860295ff0eda200b1f",
+    "prediction_trajectories.png": "ed9cc9eeac55aaf8d39cc978a7018de1ecd04c684a8dcbced326b0aca7de8705"
+  }
+}
