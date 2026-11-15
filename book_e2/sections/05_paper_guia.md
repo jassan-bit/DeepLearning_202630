@@ -150,6 +150,8 @@ El bootstrap temporal circular de 4.999 remuestreos, bloque principal 192 oríge
 
 Las bandas muestran desviación estándar entre trayectorias, no intervalos de confianza. La [tabla de curvas](../_static/paper_guide_evidence/training_curve_summary.csv) conserva los agregados por época.
 
+Esta figura corresponde exclusivamente a **las cinco réplicas externas de TimeMixer en ETTh1, con diez épocas**. Las {ref}`curvas de las trece redes del benchmark Bitcoin <e2-curvas-benchmark>` están en el punto 4, con sus seis semillas finales y sus ajustes HPO separados. iTransformer y PatchTST participaron aquí en un piloto reducido de dos épocas, descrito en §5.4; esas trayectorias tienen otro presupuesto y estimando, y no se mezclan con las réplicas completas de TimeMixer ni con el entrenamiento D7.
+
 ### 5.3.2 Posibles causas y alcance de la validación
 
 La discrepancia no se atribuye causalmente a una única diferencia. Hay cambios documentados de framework y dispositivo, semillas distintas a las no publicadas de la fila, generadores de loaders independientes y una implementación mínima del escalado poblacional. Se conserva el preset original, sin corregir su tratamiento de marcadores ni su omisión de la cola test para acercarse al valor publicado. Comparar causalmente las versiones o recuperar la varianza original requeriría experimentos y evidencias adicionales.

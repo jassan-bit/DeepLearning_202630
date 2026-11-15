@@ -106,6 +106,49 @@ El [backend CUDA](https://github.com/jassan-bit/DeepLearning_202630/blob/1e87454
 - Ajuste final con **épocas fijas**, sin consultar validación para detenerlo y sin generar otra curva de validación. AE1, AE2 y supervisado conservan sus duraciones seleccionadas.
 - **FP32**, determinismo estricto, AMP y TF32 desactivados; batches con redistribución del singleton final cuando procede, sin omitir ejemplos.
 
+(e2-curvas-benchmark)=
+### Curvas de las trece redes: selección y ajuste final
+
+La galería muestra las **trece recetas neuronales ganadoras del benchmark Bitcoin**, incluidas las tres referencias de E1. Sus curvas proceden de los registros originales de [training_evidence.zip](../_static/e2_f2a_audit_20261113/training_evidence.zip), con [cobertura por ajuste](../_static/e2_learning_curves_v1/coverage.csv), [procedencia y controles](../_static/e2_learning_curves_v1/learning_curves.json) y [manifiesto](../_static/e2_learning_curves_v1/manifest.json). El {download}`método de reproducción de las figuras <../_static/e2_learning_curves_v1/README.md>` y `scripts/plot_e2_benchmark_learning_curves.py` permiten reconstruir la visualización sin entrenar ni ejecutar inferencia.
+
+**Ajuste final: 78 curvas, seis semillas por red.** Cada trazo es una inicialización individual sobre los mismos 655 ejemplos de entrenamiento, con las épocas fijadas antes del ajuste final. Se representa la **RMSE supervisada en unidades originales de σ₇**, evaluada al terminar cada época con `model.eval()`, sin gradientes y sobre todo train. No es la pérdida de un minibatch ni la MSE estandarizada de la réplica ETTh1. Los paneles conservan las épocas reales y su rango vertical propio, visible en los ejes; no hay promedios entre semillas, suavizado ni bandas de confianza.
+
+![Curvas finales de entrenamiento de las trece redes Bitcoin, seis semillas individuales por modelo y épocas registradas](../_static/e2_learning_curves_v1/final_supervised.png)
+
+{download}`Ampliar las curvas finales en SVG <../_static/e2_learning_curves_v1/final_supervised.svg>`.
+
+El protocolo final usa **épocas fijas**: no consulta validación para detener el ajuste y no genera otra curva de validación o de test por época. Para examinar entrenamiento frente a validación se usan los ajustes HPO siguientes, que tienen otro papel y otros periodos.
+
+**Selección HPO: tres orígenes, una semilla 271201.** Las figuras corresponden a las 39 ejecuciones de las trece recetas finalmente elegidas, con **29 curvas completas y diez registros de caché sin pérdidas por época**. Cada panel disponible muestra el par train–validación y la mejor época registrada. Se mantienen separados los tres orígenes: sus entrenamientos se solapan, sus ventanas de validación cambian y no se promedian como tres semillas. Los paneles de caché identifican la ausencia de curva sin reconstruir valores a partir de la métrica final. Esta galería no representa las 234 oportunidades HPO completas.
+
+:::{dropdown} HPO: origen 01/01/2024
+![Entrenamiento y validación de las recetas ganadoras en el origen enero de 2024; las ocho curvas no disponibles quedan señaladas](../_static/e2_learning_curves_v1/hpo_2024-01-01.png)
+
+{download}`Ampliar HPO de enero en SVG <../_static/e2_learning_curves_v1/hpo_2024-01-01.svg>`.
+:::
+
+:::{dropdown} HPO: origen 01/07/2024
+![Entrenamiento y validación de las recetas ganadoras en el origen julio de 2024; dos curvas de caché no están disponibles](../_static/e2_learning_curves_v1/hpo_2024-07-01.png)
+
+{download}`Ampliar HPO de julio en SVG <../_static/e2_learning_curves_v1/hpo_2024-07-01.svg>`.
+:::
+
+**Entrenamiento y validación de las trece redes, origen 01/10/2024.** Este origen conserva todas las curvas y se muestra completo; los otros dos orígenes se consultan en los desplegables anteriores.
+
+![Entrenamiento y validación de las trece recetas ganadoras en el origen octubre de 2024](../_static/e2_learning_curves_v1/hpo_2024-10-01.png)
+
+{download}`Ampliar HPO de octubre en SVG <../_static/e2_learning_curves_v1/hpo_2024-10-01.svg>`.
+
+:::{dropdown} SAE: fases auxiliares AE1 y AE2, separadas del objetivo σ₇
+![Curvas auxiliares SAE de reconstrucción, AE1 y AE2, por origen HPO y seis ajustes finales](../_static/e2_learning_curves_v1/sae_auxiliary.png)
+
+{download}`Ampliar las fases auxiliares en SVG <../_static/e2_learning_curves_v1/sae_auxiliary.svg>`.
+
+AE1 y AE2 reconstruyen las mismas entradas originales escaladas por una cantidad calculada sólo con train; AE2 recibe la representación del primer encoder, cuyo estado se conserva. Se grafica la **RMSE de reconstrucción auxiliar registrada**, con fases y orígenes separados. No es la RMSE del objetivo σ₇ ni se suma a la pérdida supervisada. Las fases finales tienen 172 y 177 épocas, respectivamente, en cada una de las seis semillas; no tienen validación por época.
+:::
+
+Los riesgos por época usan el tamaño de batch configurado; las predicciones persistidas de validación y A2 utilizan batch 1. Esa diferencia importa para las comprobaciones de consistencia, especialmente en TimesNet: una curva no se interpreta como si fuese la misma vía numérica de scoring de A2. La separación visual train–validación es descriptiva y no reemplaza la prueba formal de δg. **Persistence, SeasonalNaive y ARIMA no tienen curvas neuronales de entrenamiento por época**; sus ajustes y resultados se documentan como comparadores deterministas.
+
 ### Registros originales, recursos e inferencia
 
 Se recuperaron **6.440 registros de épocas supervisadas** y **3.250 auxiliares SAE** de 78 ajustes finales y 39 ejecuciones HPO seleccionadas. **29/39 HPO** tienen curvas completas; diez reutilizaciones históricas conservan mejor época, predicciones e identidad tensorial, pero carecen de pérdidas por época. Esa ausencia no se rellena con curvas de otro ajuste. Los 78 finales sí conservan curvas de train y no tienen curva de validación por diseño de épocas fijas. [Auditoría de curvas y brechas](49_diagnosticos_f2a.md) · [resumen de 117 ajustes](../_static/e2_f2a_audit_20261113/fit_overfit_summary.csv).
