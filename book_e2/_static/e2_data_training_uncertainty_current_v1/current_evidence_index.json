@@ -1,0 +1,584 @@
+{
+  "schema_version": 1,
+  "version": "e2-data-training-uncertainty-current-evidence-v1",
+  "reviewed_source_commit": "5c78f32b763450df583693547e59784cc23ebe7a",
+  "scientific_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "guide_sections": [
+    "10",
+    "10.1",
+    "10.2",
+    "11",
+    "11.1",
+    "11.2",
+    "11.3",
+    "11.4",
+    "12",
+    "12.1",
+    "12.2",
+    "12.3"
+  ],
+  "guide_pages": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "scope": "Current data contract/leakage audit,training and HPO/resources,ceiling/uncertainty/error evidence. Existing scientific artifacts retained; documentary joins, targeted illustrative cases and five existing synthetic checks are distinguished from scientific experiments.",
+  "operations": {
+    "existing_unit_check_executions": 5,
+    "new_unit_tests_written": 0,
+    "new_model_fits": 0,
+    "real_model_inference_calls": 0,
+    "new_predictive_scores": 0,
+    "new_hypothesis_tests": 0,
+    "new_bootstrap_draws": 0,
+    "new_random_draws": 0,
+    "new_power_calculations": 0,
+    "new_environment_installations": 0,
+    "existing_error_rows_sorted": 6080,
+    "existing_error_rows_copied": 30,
+    "neural_model_records_joined": 13,
+    "original_scientific_artifacts_modified": false
+  },
+  "audit": {
+    "route": "F2a time series",
+    "train_final": 655,
+    "calibration": 53,
+    "evaluation_dates": 608,
+    "systems": 16,
+    "predictors": 81,
+    "HPO_folds": 3,
+    "target_ID_intersections_empty": true,
+    "shared_calibration_test_close_support": 6,
+    "shared_calibration_test_return_support": 5,
+    "integral_leakage_audit_complete": false,
+    "existing_common_guard_checks_passed": 5,
+    "guard_checks_are_post_benchmark": true,
+    "final_content_duplicate_and_near_duplicate_checks_complete": false,
+    "current_adversarial_and_random_label_experiments_executed": false,
+    "actual_failed_required_check_requires_correction_and_repeat_of_affected_experiment": true,
+    "pending_check_is_proven_failure": false
+  },
+  "training": {
+    "neural_models": 13,
+    "registered_opportunities": 234,
+    "valid_opportunities": 231,
+    "known_failures": 2,
+    "unknown_outcomes": 1,
+    "final_neural_fits": 78,
+    "final_resource_phase_rows": 90,
+    "all_resource_phase_rows": 135,
+    "available_selected_HPO_histories": 29,
+    "selected_HPO_histories": 39,
+    "available_final_histories": 78,
+    "dropout_varies_in_some_domains": true,
+    "warmup_varies_in_some_Transformer_domains": true,
+    "full_minimum_HPO_space_certified": false,
+    "full_selection_cost_per_model_known": false,
+    "GRU_final_cost_available": true,
+    "classic_comparable_resources_available": false,
+    "cost_per_gain_with_bootstrap_executed": false,
+    "TOST_or_ROPE_equivalence_executed": false,
+    "energy_or_monetary_cost_measured": false
+  },
+  "uncertainty_and_errors": {
+    "ceiling_proxy_is_Bayes_bound": false,
+    "gamma_empirical_point": 0.287574,
+    "gamma_algebraic_temporal_CI95": [
+      -1.4921,
+      2.37128
+    ],
+    "global_coverage_is_conditional_guarantee": false,
+    "full_predictive_CDF_specified": false,
+    "automatic_exclusive_error_categories": 5,
+    "full_model_date_labels": 6080,
+    "stratified_unique_dates_per_main_model": 100,
+    "individual_seed_cases_per_main_model": 600,
+    "targeted_extreme_rows": 30,
+    "targeted_distinct_dates": 9,
+    "targeted_extremes_are_probability_sample": false,
+    "targeted_criterion": "Existing mean absolute individual-seed error, descending; date ascending tie-break",
+    "seed_dispersion_is_calibrated_confidence": false,
+    "expert_semantic_annotation_claimed": false,
+    "specific_shortcut_control_executed": false
+  },
+  "interpretation": [
+    "IDs, raw support, causal availability and independence are different checks. Legitimate rolling history is not automatically leakage.",
+    "Historical P0 receipts and synthetic fixtures do not certify final content checks or all author ports.",
+    "The five existing synthetic checks use CPU fixtures and mocks; they neither train real models nor execute adversarial or randomized-label scientific controls.",
+    "Fixed bodies make NAS conditional, without proving full minimum family HPO coverage or granting retroactive exceptions to older variants.",
+    "Final-phase wall time, full selection time, forward latency, throughput, core FLOPs and process memory have different scopes.",
+    "Failure to reject improvement does not establish practical equivalence; eta with propagated uncertainty and TOST/ROPE remain unexecuted.",
+    "The empirical ensemble reference and broad gamma interval do not identify optimal predictability or a Bayes noise floor.",
+    "Thirty selected existing rows illustrate extremes without changing A2, the original stratified sample, calibrators or predictive scores.",
+    "Checklist counts are neither grades nor weighted compliance percentages."
+  ],
+  "evidence_sources": [
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/latency_pareto.csv",
+      "bytes": 3883,
+      "sha256": "53fb0e9bf57f53346d3259d285be6bc20416011f8955d36d6d4e2246d9009c49",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/summary_plots.json",
+      "bytes": 4667,
+      "sha256": "a0728921021606b8f8ad7a2e60f1eb41a3c773011ec044947f830a0166dfe258",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "bytes": 2596,
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "bytes": 54683,
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637",
+      "scope": "Exact existing benchmark values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "bytes": 15173,
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "bytes": 69457,
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/selection_ARIMA.json",
+      "bytes": 11736,
+      "sha256": "70478650b91ed96931b50f2d5fbefc79f0598e4f9541b0f7cbf3c41b780d8ca5",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/selection_SeasonalNaive.json",
+      "bytes": 1992,
+      "sha256": "c00bb4230cec1336477502bfa78c1e4a7df09a5607fc6374a59500cb2ecfd445",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/source_evidence.json",
+      "bytes": 9010,
+      "sha256": "362a680ea9a66a27e34233195ba93f34a2c39c017a4744acf94cda6021b2cceb",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_calibration_ensemble_20261114/contrasts.csv",
+      "bytes": 464,
+      "sha256": "15aaf1428da50f773a2b25f34d6d11018ad4c8226072589c98e312add508e5ec",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_calibration_ensemble_20261114/summary.json",
+      "bytes": 4745,
+      "sha256": "49198e0f561d8cc70b4faadc6914dacdc69e9fa9bf0422f882e63bc45e220e21",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/analysis_plan.json",
+      "bytes": 4972,
+      "sha256": "2852cf0ed1cbdb7e3287d62b8410b23b945b3113fc717a401e5c3ca3f32cb702",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_coverage_CI.csv",
+      "bytes": 384026,
+      "sha256": "6349ec7fb84ce5b8397036702d4c0d0659b9d7fc33e61b8add3213a665bf2844",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv",
+      "bytes": 203305,
+      "sha256": "8bac90712c72b38dcaf95fa7d1754a19b4ecd848d4441683abc1eda92731ac27",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/coverage_HAC_Holm1344.csv",
+      "bytes": 159572,
+      "sha256": "4088d1249081e2e84e956a3e5c956138a07324d2e015e221c6f187c7ee1818a0",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv",
+      "bytes": 14471,
+      "sha256": "463bfe0466764330cf35d91cd44f0ca637684cf1ce00e83c73286aac8e0b1d22",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/source_evidence.json",
+      "bytes": 1436,
+      "sha256": "fcc1b2d3a28722e0e5f2c950448be5b1b2b4e3e45b09ef0cf0ae070ab5d0c10f",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/summary.json",
+      "bytes": 1752,
+      "sha256": "69b524c45165fab9edc15ae66370dbd233bb56e665dd657da45c87aa1db0827d",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_data_training_uncertainty_current_v1/border_case_readout.json",
+      "bytes": 7765,
+      "sha256": "65ac675a5eff3b06be5e1caa8bb0a3c8aaeb5a9cb86cdd7088d1b20d0100bbc7",
+      "scope": "Posthoc sorting rule, source hash, scope and top case per model; no calibrated low-confidence criterion."
+    },
+    {
+      "path": "book_e2/_static/e2_data_training_uncertainty_current_v1/border_cases.csv",
+      "bytes": 4865,
+      "sha256": "19f6f8d33cb2461fcc155fe66adff417580c9f978bcbc439276953f32f74d295",
+      "scope": "Thirty targeted rows, three per main model on nine distinct dates; original numerical strings retained."
+    },
+    {
+      "path": "book_e2/_static/e2_data_training_uncertainty_current_v1/model_training_register.csv",
+      "bytes": 14924,
+      "sha256": "e0c13b18cc20b161fc1f7abe8ff8ae3b1a42d5b6ea07916e45e098d99c66c072",
+      "scope": "Thirteen neural winners with 41 fields, per-phase epochs, exact existing resources and six individual RMSE values."
+    },
+    {
+      "path": "book_e2/_static/e2_data_training_uncertainty_current_v1/model_training_register_provenance.json",
+      "bytes": 4420,
+      "sha256": "1f1d33069cf82eb016b52cfefc2ee55e7080d4ed1164298617468b010fbdd651",
+      "scope": "Sources, hashes, field units, exclusions and verification of the joined training register."
+    },
+    {
+      "path": "book_e2/_static/e2_data_training_uncertainty_current_v1/targeted_data_guard_checks.json",
+      "bytes": 4470,
+      "sha256": "3001037430ea2b843cfd6af2cddda7d03d074e106f09e3ffff5d9e75feb3d439",
+      "scope": "Five existing CPU synthetic/mocked checks passed; not a complete leakage certification."
+    },
+    {
+      "path": "book_e2/_static/e2_data_training_uncertainty_current_v1/targeted_data_guard_checks.log",
+      "bytes": 1023,
+      "sha256": "4f1261a389c16031a0d291ab6a82783ed6eb9f724428bcbc19efcde0653753c1",
+      "scope": "Original stdout/stderr log of the five targeted existing checks."
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/decision_traceability.csv",
+      "bytes": 23721,
+      "sha256": "1e1a3b7e6ac37a039dab5257302527eff60837913a23d8483cb1c15994bba2f2",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/guide_checklist.csv",
+      "bytes": 11656,
+      "sha256": "b614afaff57192f1f253e3052609b138c63199b9b073bc97ead5a3e0bd7ddd31",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/inherited_annual_profiles.csv",
+      "bytes": 9080,
+      "sha256": "60dd1a4fb48f3239752988115985e6cdb14d22f194ecf713de5344b54375ab7c",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/partition_audit.json",
+      "bytes": 47671,
+      "sha256": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv",
+      "bytes": 6407,
+      "sha256": "973e54a8c56ca3fd113accd26413d5322bb4b72dbcc5caa73950a77c52129567",
+      "scope": "Exact existing resources values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/phase_resources.csv",
+      "bytes": 75699,
+      "sha256": "4f24cee5a9be865dd51ebafba2c5957961c5b2303276941472ceab55af04e99e",
+      "scope": "Exact existing phases values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/all_6080_date_model_labels.csv",
+      "bytes": 1142271,
+      "sha256": "1adc29d7310553ef1423ad7106ae3be4ce6ad77b0ba7e3a23db40ef811197a2f",
+      "scope": "Published 6080 model-date rows; sorted for targeted illustrative extremes only."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/audit_100_dates_per_main_model.csv",
+      "bytes": 199005,
+      "sha256": "a12a44ec733e247219aea11cb486ddf70750f8fd7f066127683a030df0614600",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/audit_600_seed_cases_per_main_model.csv",
+      "bytes": 593760,
+      "sha256": "4ac545a3321ba5c5c025e257edec99d067c4a7a9cbe6ade5edae5e63449e5bdb",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/ceiling_gamma_references.json",
+      "bytes": 2719,
+      "sha256": "8d02cc1fb8fcb347c3900e6eea3260d0b2cdaa2e6512430977d82d9e8aabb95c",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/error_category_frequencies.csv",
+      "bytes": 10572,
+      "sha256": "7a34ec6fd15945f8f1f08c38d45eb261378c356e55747aff78c367c94fd8d655",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/model_annotation_coverage.csv",
+      "bytes": 831,
+      "sha256": "12c3f2d23aa4d7f3044d80fc3786bb1b88e664e6c346482a42af2ee5d3676137",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/permutation_entropy.csv",
+      "bytes": 1058,
+      "sha256": "63eaeec286e519fbd23c4bbb54365e21cfc234e066af95ca2758ca29c5d4199b",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/sampling_design.json",
+      "bytes": 1337,
+      "sha256": "a975dbd0ce2186c1ad64bfad5422f49543edd844ecec3eb655c107a89f1ea2f8",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/shared_error_diversity.csv",
+      "bytes": 4390,
+      "sha256": "9e1574fb1c4e456a1464c68cf58fe17a31981079dcbb05e71200575a151b8ec2",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/taxonomy_protocol.json",
+      "bytes": 3631,
+      "sha256": "204c7de5d30c9f64023f8a63833a35d76413a0e29e6f0b5746ef5850fddbd2a1",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/quarterly_metrics.csv",
+      "bytes": 22787,
+      "sha256": "95830aed3d4e4db0014b5d8633e5f98866d83f87c549bdf918452e9bea28ca2b",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/system_metrics.csv",
+      "bytes": 2833,
+      "sha256": "0f41b7899d4c834df162fdca19f8258c0c8130952c620d9bbafe3bba86dc2bd0",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/tests.csv",
+      "bytes": 461463,
+      "sha256": "102e2e9ee069259a48fc772c01d149f797232902677fe57de133de7745329de2",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/flops_audit.json",
+      "bytes": 532921,
+      "sha256": "3a2b3398770f615b4e1fba24c3b5570a770c807269d44fd6062ea24be97b5453",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/flops_by_model.csv",
+      "bytes": 1347,
+      "sha256": "dc87d3c6d2e9d880fe62fcfd6448abb4c4126ff106accf49bd2875e4547c5dc0",
+      "scope": "Exact existing flops values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/frozen_architecture_inputs.json",
+      "bytes": 43950,
+      "sha256": "da004139cfc4663ce1d9a13c88a422df8865b53f6448fbdf015da0244f9f51cf",
+      "scope": "Exact existing frozen_recipe values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/pareto_core_flops_rmse.csv",
+      "bytes": 755,
+      "sha256": "d5d99d3c72354f568fd923ab946a5f9937ea6eb69e18b194240b670605e49c9c",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_implementation_current_v1/guide_checklist.csv",
+      "bytes": 50763,
+      "sha256": "c1b2ffbd6c0b08bbcda1f98068fb67bef85bffab9067ec32966b85fb0d63d857",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_learning_curves_v1/coverage.csv",
+      "bytes": 29591,
+      "sha256": "b9d68b29bbcbdd6cc530da36ba4a6b597e3b3ba91eccb3d37750ba496f47f766",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_learning_curves_v1/learning_curves.json",
+      "bytes": 10222,
+      "sha256": "684e625147cb8b67a4ea5d9d850f7d5594bda79a82993ac84958e1141f79fa01",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_point1_review_v1/margin_lineage.json",
+      "bytes": 4283,
+      "sha256": "20085e68d66eff8b0c2d003dead9b3ecc9750421fe3310e6b43e549fddcd830e",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "bytes": 8751,
+      "sha256": "172e24bcb29209a05176ae2c6ed0c9afaac9eba52d7609466f752137b4f787b9",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/explanation_stability.csv",
+      "bytes": 500,
+      "sha256": "3fa08ed25d045f5547900908beadf2a3f948c1a8018e7fe3d4206c02bbfa8489",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/fidelity_producer_summary.csv",
+      "bytes": 23923,
+      "sha256": "8b8290070025208bd0767427ee2560c14cbf45a7005404838363948abd662a95",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv",
+      "bytes": 4876,
+      "sha256": "9a517bdc60282fa6d2362477f2ec5799451cd0b74d96c88ab188b2ff66a1fd1f",
+      "scope": "Exact existing latency values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_per_predictor.csv",
+      "bytes": 21381,
+      "sha256": "269cf313e8b8a5bbfec0880cb95ba20a645b3842237c19be1b0e8775a8296483",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "bytes": 938,
+      "sha256": "d9d4a6dfad269aecd8eadd106714f855706e5cec6fb2d9dc0b5a710e2d4fa0da",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/ablation_fits.csv",
+      "bytes": 2601,
+      "sha256": "c5e5fe74f279f786a4e0e147b79bec49f3492116d744c6df305ef405b74729df",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/budget_final.json",
+      "bytes": 1154,
+      "sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/source_evidence.json",
+      "bytes": 101720,
+      "sha256": "343135143506e7f47d5eb0ca9f59df64bc44befc43388860db60211bef2738f5",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv",
+      "bytes": 9628,
+      "sha256": "9575d02dfad5bb3e2cfd4836217893a73e876cedbc2e250affa8e615351796cf",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/paper_guide_results/replication_summary.json",
+      "bytes": 3415,
+      "sha256": "19f7fd9a0df667f85498ce2f88c27ed478679a6c37a605ea5d47df27a229a165",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/published_architectures_20261112/verification.json",
+      "bytes": 3098,
+      "sha256": "9be094773ab2e35ce3a07c36e4ff48226598360e65df127b7769701fe0c24296",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/reduced_protocol_20261112/configurations.json",
+      "bytes": 69776,
+      "sha256": "c6ce4f740e2492e2d6735f1ef85cbcadaa62f10e4af6a1ccee91281664ec435c",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "book_e2/_static/reduced_protocol_20261112/hpo_configurations_registered_bytes_v2.csv",
+      "bytes": 17975,
+      "sha256": "e96635a60de976ef312d9fa5205f57333842bb40e5ad55933bc1fb1beed8d9c4",
+      "scope": "Exact existing registered_domain values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "book_e2/_static/remediation_preflight/data_support_audit.json",
+      "bytes": 7505,
+      "sha256": "5ab4e447a4b47734f4fbf0ddae86430979be28ecb24112bccbe8e4c804d5ede1",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "experiments/e2_reduced_protocol_20261112/prepared_context.json",
+      "bytes": 7757,
+      "sha256": "2c494054af6be8219356158937062d9ee13cdffe01d1260e72672ea7227b7f01",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "experiments/e2_reduced_protocol_20261112/protocol.json",
+      "bytes": 17086,
+      "sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "experiments/e2_tide_published_r0_20261112/configurations.json",
+      "bytes": 6378,
+      "sha256": "de8215b331a9ce88aacb01f4e6dc5b650b1c083c33cb1c87f02456134093f68c",
+      "scope": "Exact existing tide_domain values joined in the 13-neural-model register; no refitting or predictive metric recomputation."
+    },
+    {
+      "path": "scripts/e2_leakage_controls.py",
+      "bytes": 25541,
+      "sha256": "0a822afa9dfdad6cb850672af47c73c93d1c9f25b14e17fd6fdfdfba345783a0",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "scripts/e2_real_executor.py",
+      "bytes": 31425,
+      "sha256": "0a5aef1d56bfb86c34fda2a3078612eb54434e2c395d6394202c147f9a8b7bf1",
+      "scope": "Existing common executor/data code or unit checks; byte identity to scientific commit verified by targeted_data_guard_checks.json."
+    },
+    {
+      "path": "scripts/e2_reduced_final.py",
+      "bytes": 34401,
+      "sha256": "033e4bf7db0d4f69624063830d116a1b5cf159a401c310a79979aa46307dad19",
+      "scope": "Existing common executor/data code or unit checks; byte identity to scientific commit verified by targeted_data_guard_checks.json."
+    },
+    {
+      "path": "scripts/e2_reduced_final_data.py",
+      "bytes": 20034,
+      "sha256": "693842a92386cd3c49ed3e10a9296428e900010df7ae7db373a80d625e851867",
+      "scope": "Existing common executor/data code or unit checks; byte identity to scientific commit verified by targeted_data_guard_checks.json."
+    },
+    {
+      "path": "scripts/e2_temporal_training.py",
+      "bytes": 25516,
+      "sha256": "3e62a12135b47414ac11038f5bd931076c2c12c7fdd8edcbd3b46eae4dc90ac9",
+      "scope": "Existing common executor/data code or unit checks; byte identity to scientific commit verified by targeted_data_guard_checks.json."
+    },
+    {
+      "path": "scripts/e2_training_bindings.py",
+      "bytes": 18460,
+      "sha256": "5acc9c53abec6a0c219fb01516106434b9609beec6102162053626c9dac5354c",
+      "scope": "Source cited by an explicitly scoped guide requirement; see guide_checklist.json for interpretation."
+    },
+    {
+      "path": "tests/test_e2_reduced_final_data.py",
+      "bytes": 9575,
+      "sha256": "8be8835c69830e738919d822bc3d18b3416f48a70eecd37ade3d4eefa22af6a2",
+      "scope": "Existing common executor/data code or unit checks; byte identity to scientific commit verified by targeted_data_guard_checks.json."
+    },
+    {
+      "path": "tests/test_e2_reduced_final_executor.py",
+      "bytes": 6994,
+      "sha256": "472fe09a1a038f3c7e65b70df83665f4ad4a87ee83078076c2de2be781ab0814",
+      "scope": "Existing common executor/data code or unit checks; byte identity to scientific commit verified by targeted_data_guard_checks.json."
+    }
+  ]
+}
