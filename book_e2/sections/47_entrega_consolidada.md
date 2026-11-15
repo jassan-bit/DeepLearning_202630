@@ -2,6 +2,80 @@
 
 > **Ubicación:** complemento del [capítulo 8](08_reproducibilidad.md). Identificador documental anterior: **§47**; [ver concordancia](concordancia_guia.md).
 
+**Lectura vigente:** el informe entrega el benchmark de **16 sistemas, 81 predictores y 608 fechas**, junto con sus fuentes, límites y suplementos. La ruta metodológica es **F2a, series de tiempo**. **La búsqueda NAS del capítulo 14 no aplica al catálogo actual de arquitecturas definidas**, incluida TiDE publicada R0-v2. No constituye un experimento pendiente ni se sustituye por las seis configuraciones HPO.
+
+La [lista verificable](../_static/e2_agregacion_entrega_current_v1/guide_checklist.csv), la [trazabilidad](../_static/e2_agregacion_entrega_current_v1/decision_traceability.csv), el [índice de evidencias](../_static/e2_agregacion_entrega_current_v1/current_evidence_index.json) y el [manifiesto](../_static/e2_agregacion_entrega_current_v1/manifest.json) relacionan esta entrega con las páginas 58–65 de la guía. El {download}`índice de esta consolidación <../_static/e2_agregacion_entrega_current_v1/README.md>` explica su alcance. El {download}`texto anterior exacto <../_static/e2_agregacion_entrega_current_v1/47_entrega_consolidada_before_update.md>` también permanece íntegro en el archivo final.
+
+(e2-entrega-resumen-vigente)=
+## Resumen de la entrega
+
+Se pronostica diariamente la volatilidad de Bitcoin con siete días completos de OHLCV y horizonte de un día. El objetivo es la desviación poblacional de siete retornos logarítmicos, sin anualizar. La ruta es F2a por su dependencia temporal. El benchmark compara diez candidatos, tres referencias neuronales de E1 y tres comparadores clásicos en 608 fechas comunes. Cada red tiene seis semillas; los clásicos deterministas, una trayectoria. SAE registra la menor media de RMSE individuales, 0,003803430, frente a 0,003921625 de ARIMA y 0,004001162 de GRU32. Ninguno de los veinte contrastes primarios de mejora práctica rechaza tras Holm; los resultados son no concluyentes, sin demostrar equivalencia. Se entregan auditorías de datos, calibración temporal, robustez, explicaciones, tres ablaciones y 81 reproducciones en entorno limpio con discrepancia máxima de predicción cero. Las arquitecturas actuales están definidas y la NAS condicional no aplica. Persisten límites de auditoría integral de fuga, potencia, prueba formal comparable del margen de sobreajuste, cobertura HPO y costes completos. El test heredado ya era conocido; la evidencia es retrospectiva. Se conserva la tabla original y se distinguen los análisis posteriores, sin seleccionar otra receta por el ranking final.
+
+Los valores e IC se consultan en el [benchmark vigente](06_benchmark_final.md) y sus fuentes; no se deduce incertidumbre de nuevos mercados a partir de seis inicializaciones. Los capítulos [12](12_incertidumbre_errores.md) y [13](13_agregacion_estadistica.md) separan predictibilidad, incertidumbre, unidades y familias estadísticas.
+
+(e2-entregables-guia-vigentes)=
+## Entregables de la guía: ubicación y estado
+
+| Entregable, pp. 58–59 | Evidencia disponible | Estado y límite |
+| --- | --- | --- |
+| **Informe en Jupyter Book y ejecución reproducible** | Este libro, [organización](concordancia_guia.md), [entorno e instrucciones](08_reproducibilidad.md). | Libro compilable y fuentes versionadas. La auditoría CPU de entrega no ejecuta todas las celdas, ajustes y remuestreos científicos de extremo a extremo. |
+| **Código completo y documentado** | [Repositorio](https://github.com/jassan-bit/DeepLearning_202630), [motor científico fijado](https://github.com/jassan-bit/DeepLearning_202630/tree/1e8745497b484518f766b6da5c19be8362d9add7), capítulos [4](04_implementacion.md), [7](07_ruta_temporal.md) y suplementos. | Hay implementaciones, configuraciones, tests y recibos; controles sólo implementados no se presentan como experimentos ejecutados. |
+| **Datos o instrucciones verificables, Data Card y contrato** | [Problema y fuentes](01_punto_partida.md), [EDA](02_eda.md), [contrato y auditoría](10_auditoria_datos.md). | Adquisición oficial, hashes y reglas documentados. Inventarios y hashes no equivalen a publicar bytes de todos los tensores o checkpoints. |
+| **Preregistro fechado y reporte de fuga** | [Capítulo 9](09_protocolo_registrado.md), [capítulo 10](10_auditoria_datos.md), congelación y linaje de márgenes. | Registros y enmiendas con fechas reales. Auditoría integral parcial; cinco guardas unitarias comunes aprobadas no reemplazan los controles pendientes. |
+| **Ficha de ruta y pruebas de tablas A/B/C** | [Ruta F2a](07_ruta_temporal.md), [mapa de veinte pares](../_static/e2_route_current_v1/contrast_battery_map.csv), [diagnósticos](49_diagnosticos_f2a.md) e [inferencia](13_agregacion_estadistica.md). | Pruebas y estimandos identificados. La prueba formal comparable de δg sigue pendiente; no se acreditan conjuntamente los cuatro criterios de adecuación. |
+| **Tabla comparativa según Apéndice A** | [Benchmark](06_benchmark_final.md), [comparación de dieciséis sistemas](../_static/e2_benchmark_current_v1/comparison_current.csv), [Apéndices A.1–A.4](61_reproduccion_consolidada.md). | Métricas, IC existentes, calibración, robustez y costes con sus ámbitos. No se inventan recursos clásicos, coste de selección completo o efectos estandarizados con IC ausentes. |
+| **Registro experimental y fichas de modelo** | [Capítulo 11](11_hpo_equidad.md), [registro de trece redes](../_static/e2_data_training_uncertainty_current_v1/model_training_register.csv), [protocolo y recibos](48_protocolo_reducido.md). | Configuraciones, semillas, ganadores y resultados preservados; fallos y reutilizaciones conservan su procedencia. |
+| **Techo e incertidumbre** | [Capítulo 12](12_incertidumbre_errores.md), [calibración condicional](60_calibracion_temporal_condicional.md), [proxy empírico](63_ensamble_calibracion.md). | Cuantificación publicada, incluidos resultados adversos. El proxy y su γ incierto no identifican techo óptimo ni ruido Bayes. |
+| **Búsqueda de arquitectura para modelos sin diseño predefinido** | [No aplicabilidad del capítulo 14](14_arquitecturas.md), [fuentes de los cuerpos](44_arquitecturas_publicadas.md) y TiDE publicada en [§48](48_protocolo_reducido.md). | **No aplica al catálogo actual.** No se exige listado de 1.000 arquitecturas, dos fases o finalistas NAS a estos cuerpos. HPO y registro de las adaptaciones sí se conservan. |
+| **Paper guía e insumo para E3** | [Réplica TimeMixer/ETTh1](05_paper_guia.md), limitación de batch y piloto sobre tres modelos. | Réplica parcial con criterio previo cumplido. El piloto no confirma una limitación predictiva transferible a Bitcoin; no se proclama originalidad para E3 desde ese resultado. |
+| **Lista de reproducibilidad completada** | [Apéndice B vigente](61_reproduccion_consolidada.md), [CSV de 21 ítems](../_static/e2_agregacion_entrega_current_v1/appendix_B_current.csv). | Cada literal tiene evidencia y límites; completar la lista significa reportar sus estados, sin marcar todos como aprobados. |
+| **Presentación oral con defensa técnica** | Las tablas, fuentes, decisiones y límites del libro sustentan la defensa. | Su ejecución y evaluación oral no se acreditan mediante la publicación del informe. |
+
+(e2-evaluacion-rubrica-vigente)=
+## Evaluación: pesos y evidencia para la revisión
+
+| Criterio literal de la guía, p. 59 | Peso | Ubicación principal |
+| --- | ---: | --- |
+| Definición del problema, hipótesis, preregistro y EDA orientado a decisiones | 15 % | [1](01_punto_partida.md), [2](02_eda.md), [9](09_protocolo_registrado.md) |
+| Revisión sistemática de literatura, paper guía y gap | 15 % | [3](03_literatura.md), [5](05_paper_guia.md), [literatura focal](62_cierre_literatura_focal.md) |
+| Implementación de los 10 modelos, búsqueda de arquitectura y rigor experimental | 25 % | [4](04_implementacion.md), [11](11_hpo_equidad.md), [14: NAS no aplicable](14_arquitecturas.md) |
+| Benchmark e inferencia estadística (diferencias significativas) | 20 % | [6](06_benchmark_final.md), [13](13_agregacion_estadistica.md) |
+| Ruta por tipo de problema: bondad de ajuste, sobreajuste, calibración, robustez, incertidumbre e interpretabilidad | 15 % | [7](07_ruta_temporal.md), [12](12_incertidumbre_errores.md), [robustez e interpretabilidad](54_robustez_interpretabilidad.md) |
+| Reproducibilidad, redacción científica y defensa | 10 % | [8](08_reproducibilidad.md), [Apéndice B](61_reproduccion_consolidada.md), defensa oral |
+| **Total** | **100 %** | Pesos originales, sin redistribución |
+
+**Que la NAS no aplique no elimina el criterio de implementación y rigor del 25 % ni redistribuye sus puntos.** La ponderación corresponde a la evaluación docente; contar modelos, pruebas, casillas o entrenamientos no produce una nota. Tampoco un resultado no significativo implica perder automáticamente el componente de inferencia: debe valorarse su método, reporte e interpretación, sin forzar un rechazo.
+
+### Niveles de desempeño y buenas prácticas
+
+Los niveles **sobresaliente, satisfactorio, en desarrollo e insuficiente** son descriptores de la rúbrica de la página 60, no un diagnóstico automático de esta entrega. El nivel sobresaliente reúne requisitos simultáneos de auditoría, preregistro, ruta completa, potencia, efectos, sensibilidad, gap y reproducción. Las condiciones parciales declaradas no se borran por una compilación o reproducción aprobada; no se asigna aquí un nivel o una calificación.
+
+La evidencia actual conserva seis semillas por red y resultados por ejecución; el piloto de potencia y su objetivo no alcanzado se reportan en [9](09_protocolo_registrado.md). Media, DE, IC y efectos se identifican por estimando y unidad. Las [familias y métodos](13_agregacion_estadistica.md) mantienen corrección múltiple y sensibilidad; el no rechazo no se interpreta como equivalencia. Los capítulos [10](10_auditoria_datos.md) y [11](11_hpo_equidad.md) separan causalidad, auditoría, equidad y presupuesto. El [techo e incertidumbre](12_incertidumbre_errores.md) incluyen sus límites. La regla de dos fases NAS queda expresamente **no aplicable** a los cuerpos actuales.
+
+(e2-entrega-acceso-vigente)=
+## Acceso, reproducción y límites del paquete
+
+El [repositorio versionado](https://github.com/jassan-bit/DeepLearning_202630) es la fuente de código y documentación. Las descargas se ofrecen junto a cada capítulo y el [índice de evidencia actual](../_static/e2_agregacion_entrega_current_v1/current_evidence_index.json) fija sus hashes. El ZIP enlazado en el archivo histórico conserva el corte del 12 de noviembre: **no es un paquete actualizado del benchmark final** y no se sobrescribe bajo la misma URL.
+
+Desde la raíz, el siguiente comando comprueba los artefactos científicos publicados y reconstruye A2:
+
+```bash
+python scripts/audit_e2_delivery.py --require-supplements --output work/e2_delivery_audit.json
+```
+
+Verifica 195 archivos de los manifiestos científicos vinculados, dieciséis sistemas y 81 predictores; la diferencia máxima de reconstrucción A2 publicada es **2,6020852139652106×10⁻¹⁸**. Su alcance se detalla en el [Apéndice B](61_reproduccion_consolidada.md). **No es un comando para repetir todos los ajustes o generar de nuevo cada tabla y figura.** Los recibos de reproducción en entorno limpio, con discrepancia máxima de predicción cero, corresponden a su campaña original de [§55](55_reproduccion_ablaciones.md).
+
+Las ausencias reales siguen localizadas: auditoría integral de fuga; prueba comparable de δg; potencia objetivo; cobertura e importancia HPO; recursos clásicos y selección completa; efectos estandarizados con IC; equivalencia práctica y control específico de atajos. Efectos mixtos y descomposición de varianza no están ejecutados; no se inventan para completar una tabla. Una única serie y un calendario conocido limitan la extrapolación a otros mercados. La no aplicabilidad de NAS se distingue de estos requisitos pendientes.
+
+Esta consolidación actualiza documentación y une valores guardados, conservando A2, pesos, muestras, calibradores y archivos científicos. No inicia ajustes, inferencias reales, pruebas estadísticas o remuestreos nuevos.
+
+````{admonition} Archivo documental: contenido anterior de la entrega consolidada
+:class: dropdown
+
+Este bloque conserva íntegramente el texto anterior, sus encabezados, fechas y descargas. Las referencias a NAS TiDE, benchmark pendiente o presupuestos anteriores pertenecen a esos cortes. La lectura vigente se encuentra arriba.
+
+> **Ubicación:** complemento del [capítulo 8](08_reproducibilidad.md). Identificador documental anterior: **§47**; [ver concordancia](concordancia_guia.md).
+
 **Consolidación vigente:** [§60](60_calibracion_temporal_condicional.md) añade políticas temporales y cobertura condicional; [§61](61_reproduccion_consolidada.md), auditoría de entrega y Apéndice B; [§62](62_cierre_literatura_focal.md), flujo de 9.559 grupos recibidos y 42 estudios aplicados únicos; [§63](63_ensamble_calibracion.md), referencia empírica de ensemble. Los resultados adversos y límites prospectivos se conservan.
 
 **Actualización de evidencias del 13/11/2026:** [§49](49_diagnosticos_f2a.md) añade los diagnósticos F2a sobre las predicciones originales. Los resultados de §6 siguen siendo el benchmark primario; los suplementos posteriores conservan sus propias hipótesis y límites.
@@ -121,3 +195,5 @@ La contabilidad conciliada conserva **222.927,99 segundos cargados**, aproximada
 - [Antecedente E1](../_static/delivery_20261112/e1_reference_metrics.csv) · [Réplica y curvas ETTh1](05_paper_guia.md) · [Reproducción](08_reproducibilidad.md).
 
 La [preparación técnica de pilotos (§46)](46_artefactos_y_pilotos.md) queda como apéndice opcional para una continuación posterior.
+
+````
