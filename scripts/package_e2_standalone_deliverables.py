@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = None  # Set only by the maintainer's explicit --source-commit.
 SOURCE_BLOBS = {}
 BOOK_INFO = {}
-PUBLIC = ROOT / "book_e2/_static/entregables_independientes_v1"
+PUBLIC = ROOT / "book_e2/_static/entregables_independientes_v2_20261115"
 CORRECTIONS = ROOT / "book_e2/_static/e2_corrections_20261115"
 CORRECTION_AREAS = {
     "D04": ("data_audit", "controls", "cpu_diagnostic"),

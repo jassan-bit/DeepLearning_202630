@@ -13,7 +13,7 @@ Los doce componentes están disponibles como ZIP separados en {ref}`la portada d
 
 D01 incluye el libro offline completo y su fuente reconstruible; D02 ejecuta las trece arquitecturas en CPU y ofrece refit CUDA opcional; D03 reconstruye el dataset de desarrollo; D06/D08 reproducen métricas, cobertura y errores desde las trayectorias incluidas; D10 ofrece reanálisis agregado y entrenamiento CPU opcional; D12 prepara diapositivas y notas. Los demás paquetes generan sus informes y registros localmente. Esta comprobación de portabilidad tiene un alcance distinto del replay integral de toda la campaña científica y no cambia por sí sola los estados del Apéndice B.
 
-[Inventario publicado](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/index.json) · [Ejecuciones publicadas de los ZIP](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/execution_report.json) · [Instrucciones de la publicación](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/LEEME.md).
+[Inventario publicado](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/index.json) · [Ejecuciones publicadas de los ZIP](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/execution_report.json) · [Instrucciones de la publicación](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/LEEME.md).
 
 (e2-entrega-resumen-vigente)=
 ## Resumen de la entrega

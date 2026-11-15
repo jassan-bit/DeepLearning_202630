@@ -49,6 +49,37 @@ class MultiBookPublicationTests(unittest.TestCase):
             assemble(self.root, output)
         self.assertFalse(output.parent.exists())
 
+    def test_legacy_download_keeps_v1_bytes_when_v2_is_available(self):
+        html = self.root / "book_e2/_build/html"
+        old = html / "_static/entregables_independientes_v1/03_datos_contrato.zip"
+        new = html / "_static/entregables_independientes_v2_20261115/03_datos_contrato.zip"
+        old.parent.mkdir(parents=True); new.parent.mkdir(parents=True)
+        old.write_bytes(b"original v1 archive"); new.write_bytes(b"new v2 archive")
+        output = self.root / "site"
+        assemble(self.root, output, "a" * 40)
+        alias = output / "entregable2/_downloads/0961c6e1163031d54d15f628566dce77/03_datos_contrato.zip"
+        self.assertEqual(alias.read_bytes(), old.read_bytes())
+        self.assertEqual((output / "entregable2" / new.relative_to(html)).read_bytes(), new.read_bytes())
+
+    def test_conflicting_historical_alias_blocks_assembly(self):
+        html = self.root / "book_e2/_build/html"
+        old = html / "_static/entregables_independientes_v1/03_datos_contrato.zip"
+        alias = html / "_downloads/0961c6e1163031d54d15f628566dce77/03_datos_contrato.zip"
+        old.parent.mkdir(parents=True); alias.parent.mkdir(parents=True)
+        old.write_bytes(b"original"); alias.write_bytes(b"changed")
+        with self.assertRaisesRegex(ValueError, "Historical download alias differs"):
+            assemble(self.root, self.root / "site", "a" * 40)
+        self.assertFalse((self.root / "site").exists())
+
+    def test_historical_json_download_alias_is_retained(self):
+        html = self.root / "book_e2/_build/html"
+        old = html / "_static/e2_agregacion_entrega_current_v1/appendix_B_current.json"
+        old.parent.mkdir(parents=True); old.write_bytes(b'{"historical":true}')
+        output = self.root / "site"
+        assemble(self.root, output, "a" * 40)
+        alias = output / "entregable2/_downloads/59e5d7668f6bdf850ef5d42f4782f021/appendix_B_current.json"
+        self.assertEqual(alias.read_bytes(), old.read_bytes())
+
     def test_existing_content_is_not_deleted_or_replaced(self):
         output = self.root / "previous-site"
         output.mkdir()

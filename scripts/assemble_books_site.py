@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
-from hashlib import sha256
+from hashlib import md5, sha256
 from html import escape
 import json
 from pathlib import Path
@@ -24,9 +24,49 @@ BOOKS = (
     ("entregable3", "book_e3", "entregable3", "Libro inicial; guía específica pendiente"),
 )
 
+# Sphinx hashes the source-relative filename for download URLs. Keep the first
+# release's generated URLs available even after navigation moves to HTTPS links
+# and newer, explicitly versioned archives. Canonical v1 bytes remain immutable.
+E2_LEGACY_DOWNLOADS = tuple(
+    "_static/entregables_independientes_v1/" + name for name in (
+        "01_informe_jupyter_book.zip", "02_codigo_modelos.zip",
+        "03_datos_contrato.zip", "04_preregistro_auditoria.zip",
+        "05_ficha_ruta_F2a.zip", "06_benchmark_comparaciones.zip",
+        "07_registro_experimentos.zip", "08_techo_incertidumbre.zip",
+        "09_arquitecturas_no_aplica.zip", "10_paper_guia_replica.zip",
+        "11_reproducibilidad.zip", "12_presentacion_defensa.zip",
+        "LEEME.md", "index.json", "execution_report.json",
+    )
+) + (
+    "_static/e2_agregacion_entrega_current_v1/a3_primary_contrasts_readout.json",
+    "_static/e2_agregacion_entrega_current_v1/appendix_B_current.json",
+)
+
 
 def digest(path):
     return sha256(Path(path).read_bytes()).hexdigest()
+
+
+def retain_e2_download_aliases(destination):
+    """Copy historical canonical downloads to their unchanged Sphinx URLs."""
+    aliases = {}
+    for relative in E2_LEGACY_DOWNLOADS:
+        source = destination / relative
+        if not source.is_file():
+            continue  # Small fixture books need not contain the real releases.
+        folder = md5(relative.encode("utf-8"), usedforsecurity=False).hexdigest()
+        alias = destination / "_downloads" / folder / source.name
+        if alias.exists():
+            if not alias.is_file() or digest(alias) != digest(source):
+                raise ValueError("Historical download alias differs from canonical bytes: " + relative)
+        else:
+            alias.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, alias)
+        aliases[alias.relative_to(destination).as_posix()] = {
+            "canonical_path": relative, "sha256": digest(source),
+            "scope": "immutable historical release, not the current v2 archive",
+        }
+    return aliases
 
 
 def validate_inputs(project_root, output_dir):
@@ -99,6 +139,7 @@ def assemble(project_root=ROOT, output_dir=None, source_commit=None):
         for book in inputs:
             destination = staging / book["prefix"] if book["prefix"] else staging
             shutil.copytree(book["html"], destination)
+            aliases = retain_e2_download_aliases(destination) if book["id"] == "entregable2" else {}
             intro = destination / "intro.html"
             if digest(intro) != book["intro_sha256"]:
                 raise ValueError("A copied book introduction differs from its compiled source")
@@ -106,6 +147,7 @@ def assemble(project_root=ROOT, output_dir=None, source_commit=None):
             records.append({key: value for key, value in book.items() if key != "html"} |
                 {"entrypoint": (book["prefix"] + "/" if book["prefix"] else "") + "intro.html",
                  "compiled_files": len(files),
+                 "legacy_download_aliases": aliases,
                  "html_pages": sum(path.suffix == ".html" and "_static" not in
                                    path.relative_to(book["html"]).parts for path in files)})
         (staging / "entregables.html").write_text(portal_html(inputs), encoding="utf-8")
