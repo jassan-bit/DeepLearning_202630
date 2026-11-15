@@ -1,0 +1,946 @@
+{
+  "version": "e2-benchmark-current-guide-review-v1",
+  "scope": "Documentary reconciliation of guide6.1–6.4 with frozen benchmark and existing supplements; no new scientific execution",
+  "reviewed_repository_commit": "d4491d1ad2b02275f79c0b7ffcd48f0c793182e8",
+  "guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "guide_pages": [
+    17,
+    18,
+    19,
+    20
+  ],
+  "operations": {
+    "model_fits": 0,
+    "model_inferences": 0,
+    "new_statistical_tests": 0,
+    "new_bootstrap_draws": 0,
+    "predictive_rescoring": false,
+    "raw_archives_opened": 0,
+    "historical_artifacts_modified": false,
+    "new_presentations_of_existing_aggregates": 2,
+    "latency_pareto_derived_by_deterministic_point_dominance": true
+  },
+  "status_definitions": {
+    "verificado": "Existe evidencia del requisito dentro del alcance explícito; no significa validez externa, cierre de supuestos o cumplimiento global.",
+    "parcial": "Hay evidencia útil pero falta una condición o cobertura material del requisito.",
+    "no_ejecutado": "No existe el producto o análisis específico requerido; no se reemplaza por uno distinto.",
+    "no_aplica_justificado": "La condición corresponde a otra tarea y se explica su inaplicabilidad."
+  },
+  "interpretation": [
+    "Las filas son requisitos o subcondiciones auditables, no pesos ni una calificación.",
+    "El código de estado no borra la limitación descrita en la misma fila.",
+    "Los clásicos deterministas R = 1 no reciben DE entre semillas, rangosR6, costes cero o repeticiones artificiales.",
+    "La métrica primaria es media de RMSE individuales; DM y MCS usan MSE diaria media de semillas fijas y responden a otras hipótesis.",
+    "El refinamiento posterior20.000 conserva la familia original20,δ,estimando y decisiones; no reescribe el cálculooriginal4.999.",
+    "Las alternativas ANOVA/Friedman y Nemenyi/Holm no se exigen todas simultáneamente. El diagrama representa los grupos del post-hoc Holm existente, sin un CD numérico común de Nemenyi; Cohen/Cliff con IC sigue sin ejecutarse.",
+    "La herencia de partición/métrica/δ de E1 es exigida por la guía;δg previo está documentado,pero su pruebaformal actual sigue sinestablecerse.",
+    "Planes después de conocer los resultados no se convierten en prerregistros prospectivos.",
+    "Ninguna cifra de filas verificadas acredita cierre integral del capítulo o garantía de una nota.",
+    "Las dos figuras nuevas presentan agregados ya publicados: rangos y decisiones Holm copiados, y dominancia puntual determinista de RMSE/latencia. No recalculan contrastes, remuestreos, predicciones, rangos ni mediciones de latencia."
+  ],
+  "requirement_count": 48,
+  "status_counts": {
+    "parcial": 17,
+    "verificado": 29,
+    "no_ejecutado": 1,
+    "no_aplica_justificado": 1
+  },
+  "traceability_count": 13,
+  "decision_traceability": "decision_traceability.csv",
+  "checklist": "guide_checklist.csv",
+  "evidence_files": [
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/conditional_rank_groups.png",
+      "bytes": 145529,
+      "sha256": "b5399715854e80bd4116f28d3f34507346c2dfb39df7f084b5a5a8c7d9b8f201"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/conditional_rank_groups.svg",
+      "bytes": 93821,
+      "sha256": "594a2bf580831e4912ea222cc1ad9807bcdfbf62f12a2d126eba0d13bc002d15"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/latency_pareto.csv",
+      "bytes": 3883,
+      "sha256": "53fb0e9bf57f53346d3259d285be6bc20416011f8955d36d6d4e2246d9009c49"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/latency_pareto.png",
+      "bytes": 177461,
+      "sha256": "8da69a5c212bd3a4141c87515137170e48b57286d43505b8471b10a6e9a0c6ab"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/latency_pareto.svg",
+      "bytes": 107078,
+      "sha256": "4e19c029b3cfaab3dcdb45ad5afeb73e559587d1386e2c7009e314518d9bd8f2"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_current_v1/summary_plots.json",
+      "bytes": 4667,
+      "sha256": "a0728921021606b8f8ad7a2e60f1eb41a3c773011ec044947f830a0166dfe258"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "bytes": 2596,
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "bytes": 54683,
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "bytes": 15173,
+      "sha256": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "bytes": 69457,
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+      "bytes": 1997,
+      "sha256": "63f0f960f27f669380f9e336064f0274b026ed7a31d595a6c8df465c4781fcd4"
+    },
+    {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/primary_contrasts.csv",
+      "bytes": 7686,
+      "sha256": "7d351621c4a326bc717787bbc2f631f04acb015fe2ab09a7f516e4221ab9cb7f"
+    },
+    {
+      "path": "book_e2/_static/e2_calibration_ensemble_20261114/contrasts.csv",
+      "bytes": 464,
+      "sha256": "15aaf1428da50f773a2b25f34d6d11018ad4c8226072589c98e312add508e5ec"
+    },
+    {
+      "path": "book_e2/_static/e2_calibration_ensemble_20261114/summary.json",
+      "bytes": 4745,
+      "sha256": "49198e0f561d8cc70b4faadc6914dacdc69e9fa9bf0422f882e63bc45e220e21"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/analysis_plan.json",
+      "bytes": 4972,
+      "sha256": "2852cf0ed1cbdb7e3287d62b8410b23b945b3113fc717a401e5c3ca3f32cb702"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_coverage_CI.csv",
+      "bytes": 384026,
+      "sha256": "6349ec7fb84ce5b8397036702d4c0d0659b9d7fc33e61b8add3213a665bf2844"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv",
+      "bytes": 203305,
+      "sha256": "8bac90712c72b38dcaf95fa7d1754a19b4ecd848d4441683abc1eda92731ac27"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/coverage_HAC_Holm1344.csv",
+      "bytes": 159572,
+      "sha256": "4088d1249081e2e84e956a3e5c956138a07324d2e015e221c6f187c7ee1818a0"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv",
+      "bytes": 14471,
+      "sha256": "463bfe0466764330cf35d91cd44f0ca637684cf1ce00e83c73286aac8e0b1d22"
+    },
+    {
+      "path": "book_e2/_static/e2_conditional_calibration_20261114/summary.json",
+      "bytes": 1752,
+      "sha256": "69b524c45165fab9edc15ae66370dbd233bb56e665dd657da45c87aa1db0827d"
+    },
+    {
+      "path": "book_e2/_static/e2_eda_current_v1/partition_audit.json",
+      "bytes": 47671,
+      "sha256": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f"
+    },
+    {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv",
+      "bytes": 6407,
+      "sha256": "973e54a8c56ca3fd113accd26413d5322bb4b72dbcc5caa73950a77c52129567"
+    },
+    {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/phase_resources.csv",
+      "bytes": 75699,
+      "sha256": "4f24cee5a9be865dd51ebafba2c5957961c5b2303276941472ceab55af04e99e"
+    },
+    {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/quality_cost_pareto.svg",
+      "bytes": 96010,
+      "sha256": "11be17c0c2a41cb7fd0dc2216d677790e893964f427d2fe91e472ab566e56f76"
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/ceiling_gamma_references.json",
+      "bytes": 2719,
+      "sha256": "8d02cc1fb8fcb347c3900e6eea3260d0b2cdaa2e6512430977d82d9e8aabb95c"
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/model_annotation_coverage.csv",
+      "bytes": 831,
+      "sha256": "12c3f2d23aa4d7f3044d80fc3786bb1b88e664e6c346482a42af2ee5d3676137"
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/sampling_design.json",
+      "bytes": 1337,
+      "sha256": "a975dbd0ce2186c1ad64bfad5422f49543edd844ecec3eb655c107a89f1ea2f8"
+    },
+    {
+      "path": "book_e2/_static/e2_error_ceiling_final_audit_20261114/taxonomy_protocol.json",
+      "bytes": 3631,
+      "sha256": "204c7de5d30c9f64023f8a63833a35d76413a0e29e6f0b5746ef5850fddbd2a1"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/audit_summary.json",
+      "bytes": 6852,
+      "sha256": "106847c69c8a157034c104c48c5913d5d7328e99d82bff886552e1a821aeca20"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv",
+      "bytes": 1297,
+      "sha256": "6b140f107e6ad85aeccd1cb0f4d59689d79001883cfc1289ff4dc90aad5e286f"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/quarterly_metrics.csv",
+      "bytes": 22787,
+      "sha256": "95830aed3d4e4db0014b5d8633e5f98866d83f87c549bdf918452e9bea28ca2b"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_audit_20261113/tests.csv",
+      "bytes": 461463,
+      "sha256": "102e2e9ee069259a48fc772c01d149f797232902677fe57de133de7745329de2"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json",
+      "bytes": 3309,
+      "sha256": "cc4acd3e18cc1d00a445f7a9dc37800c4456fc4f290e4b54c862f499052aad87"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "bytes": 15431,
+      "sha256": "a6e791e90de6738dbca7d4b9aa1684acdeeb76d072d4b0ae68e76c3c5aa9b4e4"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/conditional_seed_ranks.csv",
+      "bytes": 738,
+      "sha256": "40229ce75e8449c2829740efbd3d62b70f1900c9cbb48f42ce4fdcba34612c4b"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv",
+      "bytes": 5681,
+      "sha256": "1c2c399eb925636ced5db6b7ea3c953bee72286d653e7b1be32e096f4b7007ed"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv",
+      "bytes": 32112,
+      "sha256": "b5cfd633fcf4e65613a578b1b17adfb7c69aa812a948692aa77884eda3c3415e"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/mcs_membership.csv",
+      "bytes": 1138,
+      "sha256": "38f118090eb50c1ecf357c3078588eaa12befee4f9c26aaae255260a8eceed54"
+    },
+    {
+      "path": "book_e2/_static/e2_f2a_s8_20261113/mcs_steps.csv",
+      "bytes": 3653,
+      "sha256": "56055615997787242884e17131917da50fe95bbae4df44283a76051f7d10d06f"
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/flops_audit.json",
+      "bytes": 532921,
+      "sha256": "3a2b3398770f615b4e1fba24c3b5570a770c807269d44fd6062ea24be97b5453"
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/flops_by_model.csv",
+      "bytes": 1347,
+      "sha256": "dc87d3c6d2e9d880fe62fcfd6448abb4c4126ff106accf49bd2875e4547c5dc0"
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/frozen_architecture_inputs.json",
+      "bytes": 43950,
+      "sha256": "da004139cfc4663ce1d9a13c88a422df8865b53f6448fbdf015da0244f9f51cf"
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/pareto_core_flops_rmse.csv",
+      "bytes": 755,
+      "sha256": "d5d99d3c72354f568fd923ab946a5f9937ea6eb69e18b194240b670605e49c9c"
+    },
+    {
+      "path": "book_e2/_static/e2_flops_final_audit_20261114/pareto_receipt.json",
+      "bytes": 386,
+      "sha256": "9545be8884153c507c37662052ada4aab7a198979c33366c5eaf0e094da0c132"
+    },
+    {
+      "path": "book_e2/_static/e2_point1_review_v1/margin_lineage.json",
+      "bytes": 4283,
+      "sha256": "20085e68d66eff8b0c2d003dead9b3ecc9750421fe3310e6b43e549fddcd830e"
+    },
+    {
+      "path": "book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "bytes": 8751,
+      "sha256": "172e24bcb29209a05176ae2c6ed0c9afaac9eba52d7609466f752137b4f787b9"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/explanation_stability.csv",
+      "bytes": 500,
+      "sha256": "3fa08ed25d045f5547900908beadf2a3f948c1a8018e7fe3d4206c02bbfa8489"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/fidelity_producer_summary.csv",
+      "bytes": 23923,
+      "sha256": "8b8290070025208bd0767427ee2560c14cbf45a7005404838363948abd662a95"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv",
+      "bytes": 4876,
+      "sha256": "9a517bdc60282fa6d2362477f2ec5799451cd0b74d96c88ab188b2ff66a1fd1f"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_per_predictor.csv",
+      "bytes": 21381,
+      "sha256": "269cf313e8b8a5bbfec0880cb95ba20a645b3842237c19be1b0e8775a8296483"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv",
+      "bytes": 5917,
+      "sha256": "871000659803d5dcd83b04ccf442cddbc6e914d75e0caf52eb6638f89d2a4825"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/robustness.csv",
+      "bytes": 127455,
+      "sha256": "cefdb4d439465e63cb9418d5b3d6ee8389a157278469f4a29887011b1f5f32c7"
+    },
+    {
+      "path": "book_e2/_static/e2_posthoc_gpu_20261113/source_evidence.json",
+      "bytes": 77328,
+      "sha256": "4ec5b0baf14c6bce4dfab649bee5dc6fa36893aed62cd58f2dcefbc71f00bbcf"
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "bytes": 938,
+      "sha256": "d9d4a6dfad269aecd8eadd106714f855706e5cec6fb2d9dc0b5a710e2d4fa0da"
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/ablation_fits.csv",
+      "bytes": 2601,
+      "sha256": "c5e5fe74f279f786a4e0e147b79bec49f3492116d744c6df305ef405b74729df"
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/historical_clean_runtime.json",
+      "bytes": 2308,
+      "sha256": "54c175598ac1e32d391e5ca8160832e96fb689bdaf3897835567b64729b57f5a"
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/reproduction.csv",
+      "bytes": 9325,
+      "sha256": "cc8639b83de29bfc28aee7d33f8e13e0fe8e4d70c633e7bd009d28f00bf373a5"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/analysis_plan.json",
+      "bytes": 3048,
+      "sha256": "b7c71ece7718b7e535afeaa2f52aa7af037173647a146b5314afda250968d0a4"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv",
+      "bytes": 9628,
+      "sha256": "9575d02dfad5bb3e2cfd4836217893a73e876cedbc2e250affa8e615351796cf"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_paths.csv",
+      "bytes": 701812,
+      "sha256": "9c391a0a65347c4f3d6fc67fdf8716777e08d1d02b0f7eba1f9839b3522ebd22"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv",
+      "bytes": 8269,
+      "sha256": "fe594b61b093063144acffc1d9e0d426db5ad7a7ef9c750c6200ee767cb1dea7"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv",
+      "bytes": 7480,
+      "sha256": "cac1557638484b9127a406dec855c4de375e021866fe610c5fd84edf6008f778"
+    },
+    {
+      "path": "book_e2/_static/e2_temporal_final_audit_20261114/summary.json",
+      "bytes": 1093,
+      "sha256": "d8cc2b2195463475a760f0dfc1a26375a68dfe4cfc1c4c353d0bab4d72010613"
+    }
+  ],
+  "requirements": [
+    {
+      "requirement_id": "BEN-00",
+      "guide_section": "6",
+      "requirement": "Presentar un benchmark reproducible, justo, comparable y verificable mediante código.",
+      "status": "parcial",
+      "finding": "Dieciséis sistemas, 608 fechas y 81 predictores congelados; 81 reproducciones verificadas con discrepancia máxima cero.",
+      "limitation": "La repetición utiliza el mismo motor, datos y tipo de A100; no demuestra réplica por otro equipo o generalización. El coste completo de selección no está reconstruido por modelo.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json; book_e2/_static/e2_reproduction_ablations_20261113/reproduction.csv; book_e2/_static/e2_reproduction_ablations_20261113/historical_clean_runtime.json; book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar recetas, recibos y comandos; completar contabilidad comparable de selección sólo si se recuperan sus registros originales."
+    },
+    {
+      "requirement_id": "BEN-01",
+      "guide_section": "6.1",
+      "requirement": "Incluir los diez modelos y las referencias en la comparación tabular.",
+      "status": "verificado",
+      "finding": "La A2 contiene diez candidatos, tres referencias neuronales de E1 y tres comparadores clásicos: dieciséis filas sobre las mismas 608 fechas.",
+      "limitation": "El híbrido adicional y Ridge conservan alcance opcional/histórico y no se mezclan con la A2 vigente.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener el catálogo de dieciséis y distinguir candidatos de referencias."
+    },
+    {
+      "requirement_id": "BEN-02",
+      "guide_section": "6.1",
+      "requirement": "Identificar la métrica primaria, su agregación y la cohorte común.",
+      "status": "verificado",
+      "finding": "La primaria es la media aritmética de seis RMSE individuales por red en unidades originales de σ7; los clásicos aportan una trayectoria.",
+      "limitation": "No equivale a RMSE del pronóstico medio, raíz de MSE mezclada entre semillas o media no ponderada de RMSE mensuales.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_benchmark_final_20261113/data_admission.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar el estimando y el calendario común al interpretar cada suplemento."
+    },
+    {
+      "requirement_id": "BEN-03",
+      "guide_section": "6.1",
+      "requirement": "Reportar métricas como media y desviación estándar.",
+      "status": "parcial",
+      "finding": "RMSE media y DE entre semillas disponibles para trece redes; A2 añade MAE, sMAPE, R², cobertura y anchura medias.",
+      "limitation": "No todas las métricas secundarias publican DE; R = 1 de los clásicos no admite DE entre semillas. Repetir una predicción determinista no crea réplicas.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener ausencias explícitas; para ampliar dispersión secundaria usar únicamente trayectorias guardadas y declarar su estimando."
+    },
+    {
+      "requirement_id": "BEN-04",
+      "guide_section": "6.1",
+      "requirement": "Reportar intervalos de confianza al 95%, preferiblemente por bootstrap.",
+      "status": "parcial",
+      "finding": "Hay IC t95% de RMSE media para las trece redes, IC temporales pareados de los veinte contrastes y suplementos de cobertura/robustez.",
+      "limitation": "Los IC t sólo describen optimización condicionada al calendario; no hay IC temporal marginal de cada métrica y cada uno de los dieciséis sistemas en la A2. Los IC son marginales, no simultáneos.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_conditional_calibration_20261114/conditional_coverage_CI.csv; book_e2/_static/e2_posthoc_gpu_20261113/robustness.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Identificar el alcance de cada IC; el cierre integral de IC por métrica requeriría un análisis temporal separado, sin sustituir la A2 original."
+    },
+    {
+      "requirement_id": "BEN-05",
+      "guide_section": "6.1",
+      "requirement": "Reportar métricas de calibración.",
+      "status": "verificado",
+      "finding": "Los dieciséis sistemas tienen cobertura y anchura de intervalos nominales90%; los suplementos añaden score de intervalo, pinball y cobertura global/condicional.",
+      "limitation": "ACI53 es una adaptación retrospectiva; acercarse a90% global no garantiza cobertura por régimen ni mejora de todas las pérdidas de intervalo.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv; book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv; book_e2/_static/e2_conditional_calibration_20261114/coverage_HAC_Holm1344.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar tanto los intervalos originales como las políticas posteriores y sus resultados adversos."
+    },
+    {
+      "requirement_id": "BEN-06",
+      "guide_section": "6.1",
+      "requirement": "Reportar métricas de robustez.",
+      "status": "parcial",
+      "finding": "Trece redes tienen cuatro perturbaciones por tres severidades, curvas de degradación y 52 áreas normalizadas.",
+      "limitation": "La prueba es sintética y no cubre los tres clásicos ni un mercado externo. Sus IC con2.000 remuestreos son descriptivos y no una familia confirmatoria de superioridad.",
+      "source": "book_e2/_static/e2_posthoc_gpu_20261113/robustness.csv; book_e2/_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv; book_e2/_static/e2_posthoc_gpu_20261113/source_evidence.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener alcance de trece redes; no extender el resultado a comparadores no perturbados o a otro mercado."
+    },
+    {
+      "requirement_id": "BEN-07",
+      "guide_section": "6.1",
+      "requirement": "Reportar tiempo de entrenamiento por sistema y alcance de la medición.",
+      "status": "parcial",
+      "finding": "Se publican tiempos finales por semilla de las trece redes; SAE incluye sus tres fases.",
+      "limitation": "No están medidos tiempos finales equivalentes de los clásicos ni el coste total de HPO por modelo; la suma de recetas ganadoras no reconstruye toda la búsqueda.",
+      "source": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv; book_e2/_static/e2_efficiency_closure_20261113/phase_resources.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar unidades y fases; recuperar registros completos de búsqueda y tiempos clásicos si existen, sin asignar ceros."
+    },
+    {
+      "requirement_id": "BEN-08",
+      "guide_section": "6.1",
+      "requirement": "Reportar latencia de inferencia con protocolo comparable.",
+      "status": "parcial",
+      "finding": "Hay perfiles A100 de78 predictores neuronales: batch1,32 calentamientos y100 repeticiones; resumen por modelo como media de seis medianas.",
+      "limitation": "Se excluyen transferencia, preprocesamiento, carga y servicio completo; no hay perfiles comparables de los tres clásicos. Las repeticiones del temporizador no son mercados independientes.",
+      "source": "book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv; book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_per_predictor.csv; book_e2/_static/e2_posthoc_gpu_20261113/source_evidence.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Publicar el protocolo junto a la tabla y mantener ausencias de los clásicos."
+    },
+    {
+      "requirement_id": "BEN-09",
+      "guide_section": "6.1",
+      "requirement": "Reportar el número de parámetros de las implementaciones evaluadas.",
+      "status": "parcial",
+      "finding": "Hay conteos efectivos de los trece cuerpos neuronales, vinculados a las recetas congeladas.",
+      "limitation": "No se define un conteo homogéneo equivalente para los tres clásicos; parámetros no representan por sí solos tiempo o memoria.",
+      "source": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv; book_e2/_static/e2_flops_final_audit_20261114/flops_by_model.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Usar el conteo de cada implementación real; no trasladar tamaños del paper ni rellenar clásicos con cero."
+    },
+    {
+      "requirement_id": "BEN-10",
+      "guide_section": "6.1",
+      "requirement": "Reportar FLOPs y declarar su convención.",
+      "status": "parcial",
+      "finding": "Se publica FLOPs core por ventana para trece redes, con1MAC=2 FLOPs, batch1 y cuerpos seleccionados.",
+      "limitation": "Excluye FFT, activaciones, normalización, pooling, sesgos y memoria. TimesNet usa rutas observadas con sondas sintéticas/pesos iniciales; no es un total de kernels o de todas las rutas. Clásicos no medidos.",
+      "source": "book_e2/_static/e2_flops_final_audit_20261114/flops_by_model.csv; book_e2/_static/e2_flops_final_audit_20261114/flops_audit.json; book_e2/_static/e2_flops_final_audit_20261114/frozen_architecture_inputs.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Etiquetar siempre FLOPs core; para un total haría falta una medición adicional que cubra operadores y rutas excluidos."
+    },
+    {
+      "requirement_id": "BEN-11",
+      "guide_section": "6.2",
+      "requirement": "Ordenar sistemas según la métrica primaria.",
+      "status": "verificado",
+      "finding": "Orden observado SAE 0,003803430, ARIMA 0,003921625, GRU32 0,004001162 y Persistence 0,004085596; las dieciséis filas conservan toda su precisión.",
+      "limitation": "Un orden puntual no establece superioridad significativa ni hace intercambiables RMSE, MAE y sMAPE.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener ranking descriptivo según RMSE media individual y mostrar resultados negativos."
+    },
+    {
+      "requirement_id": "BEN-12",
+      "guide_section": "6.2",
+      "requirement": "Presentar rangos promedio sobre ejecuciones o particiones.",
+      "status": "verificado",
+      "finding": "Rangos condicionales13 redes × 6 semillas: SAE1,500 y GRU322,167; los clásicos no se duplican para generar bloques artificiales.",
+      "limitation": "Las seis semillas no son seis series o mercados; compartir el identificador no demuestra emparejamiento sustantivo entre arquitecturas.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/conditional_seed_ranks.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mostrar rangos con su unidad y supuestos de intercambiabilidad; conservar clásicos fuera del diagnóstico."
+    },
+    {
+      "requirement_id": "BEN-13",
+      "guide_section": "6.2",
+      "requirement": "Identificar modelos no dominados en fronteras de Pareto.",
+      "status": "parcial",
+      "finding": "Frontera tiempo final–RMSE: LSTM32, MLP16, GRU32 y SAE; fronteras parámetros/FLOPs core–RMSE: MLP16, GRU32 y SAE. La frontera puntual RMSE–latencia, derivada de los trece perfiles existentes, conserva MLP16, GRU32 y SAE.",
+      "limitation": "Las fronteras son descriptivas y sólo cubren las trece redes con recursos medidos; los clásicos sin perfiles comparables se excluyen. FLOPs core es una medición parcial y latencia es media de seis medianas de forward con entrada residente. Dominancia puntual no demuestra superioridad estadística ni resuelve RQ3.",
+      "source": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv; book_e2/_static/e2_efficiency_closure_20261113/quality_cost_pareto.svg; book_e2/_static/e2_flops_final_audit_20261114/pareto_core_flops_rmse.csv; book_e2/_static/e2_flops_final_audit_20261114/pareto_receipt.json; book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv; book_e2/_static/e2_benchmark_current_v1/latency_pareto.csv; book_e2/_static/e2_benchmark_current_v1/latency_pareto.svg; book_e2/_static/e2_benchmark_current_v1/latency_pareto.png; book_e2/_static/e2_benchmark_current_v1/summary_plots.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar las cuatro fronteras con coste y alcance explícitos. Para ampliar la cobertura a clásicos o coste completo se requieren sus registros comparables; no asignar cero a magnitudes no medidas."
+    },
+    {
+      "requirement_id": "BEN-14",
+      "guide_section": "6.2",
+      "requirement": "Analizar compromiso entre precisión, complejidad, interpretabilidad y robustez.",
+      "status": "verificado",
+      "finding": "SAE reduce RMSE observada pero GRU32 exige menos tiempo final, parámetros, FLOPs core y latencia; ambas redes tienen oclusión, estabilidad de explicaciones y degradación por estrés.",
+      "limitation": "Las magnitudes no definen una utilidad conjunta, un ganador universal o una selección nueva. La importancia ARIMA y la neuronal usan soportes distintos.",
+      "source": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv; book_e2/_static/e2_flops_final_audit_20261114/flops_by_model.csv; book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv; book_e2/_static/e2_posthoc_gpu_20261113/explanation_stability.csv; book_e2/_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Exponer ventajas y costes por dimensión sin crear una puntuación retrospectiva de ganador."
+    },
+    {
+      "requirement_id": "BEN-15",
+      "guide_section": "6.3",
+      "requirement": "Evaluar diferencias con pruebas formales y control por multiplicidad.",
+      "status": "verificado",
+      "finding": "Veinte contrastes primarios de mejora mayor queδ, Holm20 aα = 0,05; suplementos DM120, Wilcoxon78, residuos826 y ablaciones3 conservan familias propias.",
+      "limitation": "Los análisis posteriores responden a hipótesis distintas y no se suman como confirmaciones independientes de la primaria.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/primary_contrasts.csv; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener estimando, hipótesis, dirección y familia de cada resultado."
+    },
+    {
+      "requirement_id": "BEN-16",
+      "guide_section": "6.3",
+      "requirement": "Verificar normalidad de la unidad analítica y justificar pruebas paramétricas.",
+      "status": "parcial",
+      "finding": "La auditoría residual ejecuta Jarque–Bera y rechaza en81/81; la primaria usa bloques temporales y el diagnóstico de rangos no requiere normalidad gaussiana.",
+      "limitation": "No se ejecutó Shapiro–Wilk sobre las seis diferencias por pareja. Jarque–Bera residual no verifica normalidad de esas seis diferencias; los p t y sus IC tienen supuestos no demostrados.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "No presentar la t como validación confirmatoria de supuestos; si se exige Shapiro, documentar una ejecución posterior sobre la unidad correcta y su baja potencia."
+    },
+    {
+      "requirement_id": "BEN-17",
+      "guide_section": "6.3",
+      "requirement": "Verificar homocedasticidad y justificar elección paramétrica/no paramétrica.",
+      "status": "parcial",
+      "finding": "Se diagnostican heterocedasticidad y dependencia con ARCH/Ljung–Box; la inferencia temporal utiliza HAC y remuestreo pareado en bloques.",
+      "limitation": "Levene no está ejecutado. ARCH no es el mismo test, y homocedasticidad entre modelos no es un requisito idéntico al de la t sobre diferencias pareadas.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json; book_e2/_static/e2_temporal_final_audit_20261114/analysis_plan.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Declarar la ausencia de Levene y justificar el procedimiento sobre diferenciales dependientes, sin exigir ANOVA independiente a datos pareados."
+    },
+    {
+      "requirement_id": "BEN-18",
+      "guide_section": "6.3",
+      "requirement": "Auditar independencia y dependencia temporal antes de interpretar contrastes.",
+      "status": "verificado",
+      "finding": "Ljung–Box rechaza en81/81 residuos y80/81 cuadrados a lags7 y14; BDS rechaza79/81 en dimensiones2 y3 después de Holm826.",
+      "limitation": "No se acredita iid. La validez de HAC14 y bloques14 requiere dependencia suficientemente corta/estacionariedad aproximada que los rechazos no garantizan.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_f2a_audit_20261113/tests.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Usar emparejamiento temporal y conservar sensibilidades7/28; no convertir fechas, meses o semillas en nuevos mercados."
+    },
+    {
+      "requirement_id": "BEN-19",
+      "guide_section": "6.3",
+      "requirement": "Reportar comparaciones pareadas apropiadas y sus supuestos.",
+      "status": "verificado",
+      "finding": "La batería primaria publica veinte t pareadas y veinte enumeraciones de64 cambios de signo como diagnósticos; el suplemento ejecuta78 Wilcoxon exactos entre seis identificadores de semilla.",
+      "limitation": "Normalidad de diferencias para t y simetría/emparejamiento para Wilcoxon/sign-flip no quedan demostradas por ejecutar los tests; todos los Holm de esas familias son1.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener el carácter condicional y distinguir las alternativas, sin requerir dos resultados coincidentes para declarar un efecto."
+    },
+    {
+      "requirement_id": "BEN-20",
+      "guide_section": "6.3",
+      "requirement": "Reportar d de Cohen o δ de Cliff con intervalo de confianza.",
+      "status": "no_ejecutado",
+      "finding": "Se publican diferencias de RMSE con IC y diferencias de MSE con IC; DM incluye un indicador diario estandarizado descriptivo.",
+      "limitation": "No se encontró d de Cohen o δ de Cliff con IC. Una diferencia en unidades originales o el indicador DM no se renombra como ese requisito específico.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Si se cierra este requisito, fijar una unidad pareada válida y calcular el efecto estandarizado y su IC dependiente en análisis posterior declarado."
+    },
+    {
+      "requirement_id": "BEN-21",
+      "guide_section": "6.3",
+      "requirement": "Aplicar una prueba global adecuada para diez o más modelos.",
+      "status": "verificado",
+      "finding": "Friedman condicional13 × 6:Q = 46,98901,p = 0,000004682; Iman–Davenport F = 9,39367,p7,02787e−10; comprobación10.000 permutaciones,p = 0,00009999.",
+      "limitation": "Los tres valores describen un mismo diagnóstico de optimización condicionado a una cronología; no tres descubrimientos ni un Friedman poblacional sobre mercados.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_f2a_s8_20261113/conditional_seed_ranks.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Presentar unidad, alcance y tamaño pequeño de seis bloques; no reclamar independencia por el identificador de semilla."
+    },
+    {
+      "requirement_id": "BEN-22",
+      "guide_section": "6.3",
+      "requirement": "Aplicar post-hoc con ajuste múltiple tras la comparación global.",
+      "status": "verificado",
+      "finding": "Setenta y ocho parejas Wilcoxon exactas con Holm después de la puerta global; ninguna rechaza y todos los p ajustados son1.",
+      "limitation": "Con seis pares el p bilateral mínimo0,03125 no permite superar el primer umbral Holm78; el rechazo global no identifica una pareja.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar el resultado negativo. Nemenyi es una alternativa de la guía, no una ejecución adicional necesaria a Holm."
+    },
+    {
+      "requirement_id": "BEN-23",
+      "guide_section": "6.3",
+      "requirement": "Incluir un diagrama de diferencia crítica.",
+      "status": "verificado",
+      "finding": "Se publica un diagrama de rangos medios de las trece redes con grupos de no rechazo del post-hoc Wilcoxon–Holm78 ya ejecutado. Los 78 p ajustados son1 y las trece redes forman un único grupo de no rechazo; la presentación emplea el post-hoc Holm admitido por la guía.",
+      "limitation": "Es un diagrama de rangos y agrupación Holm condicionado a seis ejecuciones sobre una cronología; no hay un umbral común numérico de diferencia crítica ni un Nemenyi ejecutado. El grupo no demuestra equivalencia ni independencia de mercados. Con seis pares, el p bilateral exacto mínimo0,03125 no supera el primer umbral Holm78.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/conditional_seed_ranks.csv; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_benchmark_current_v1/conditional_rank_groups.svg; book_e2/_static/e2_benchmark_current_v1/conditional_rank_groups.png; book_e2/_static/e2_benchmark_current_v1/summary_plots.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar el diagrama con sus grupos Holm y alcance explícito, sin inventar una distancia crítica común, cliques de equivalencia o contrastes nuevos."
+    },
+    {
+      "requirement_id": "BEN-24",
+      "guide_section": "6.3",
+      "requirement": "Aplicar corrección de varianza por solapamiento o justificar su omisión.",
+      "status": "verificado",
+      "finding": "Los folds HPO son expansivos y solapan entrenamiento; no se utilizan como réplicas iid de los contrastes finales. La primaria remuestrea calendario/semillas y DM utiliza HAC.",
+      "limitation": "Nadeau–Bengio no se ejecutó ni se presenta como necesario automáticamente para el diagnóstico condicionado de semillas. No hay inferencia poblacional entre folds independientes.",
+      "source": "book_e2/_static/e2_point1_review_v1/rq_specification.json; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_temporal_final_audit_20261114/analysis_plan.json; book_e2/_static/e2_eda_current_v1/partition_audit.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Explicar la unidad realmente contrastada y el solapamiento; no atribuir una corrección no ejecutada."
+    },
+    {
+      "requirement_id": "BEN-25",
+      "guide_section": "6.3",
+      "requirement": "Ejecutar Diebold–Mariano con corrección Harvey–Leybourne–Newbold para la ruta temporal.",
+      "status": "verificado",
+      "finding": "Ciento veinte parejas, pérdida MSE diaria media de semillas fijas,h1,HAC Bartlett14,HLN√(607/608) y t607;35 rechazos tras Holm120.",
+      "limitation": "No evalúa el margenδ en RMSE ni pérdida del pronóstico promedio; HLN más HAC14 es una aproximación exploratoria, no exactitud finita demostrada.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar p, efecto y unidad de pérdida; no sustituir los veinte contrastes primarios con DM."
+    },
+    {
+      "requirement_id": "BEN-26",
+      "guide_section": "6.3",
+      "requirement": "Considerar Model Confidence Set como análisis opcional avanzado.",
+      "status": "verificado",
+      "finding": "MCS90%,T_R,10.000 remuestreos con bloques circulares de 14 días conserva FCN, SAE, GRU32, Persistence y ARIMA.",
+      "limitation": "Pertenecer al conjunto no demuestra equivalencia ni cinco ganadores universales; su nivel y familia son distintos de Holm20 y DM120.",
+      "source": "book_e2/_static/e2_f2a_s8_20261113/mcs_membership.csv; book_e2/_static/e2_f2a_s8_20261113/mcs_steps.csv; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar secuencia de eliminación y alcance opcional del MCS."
+    },
+    {
+      "requirement_id": "BEN-27",
+      "guide_section": "6.3",
+      "requirement": "Ejecutar BDS sobre residuos.",
+      "status": "verificado",
+      "finding": "BDS dimensiones2 y3, radio1,5DE;79/81 rechazos en cada dimensión dentro de Holm826.",
+      "limitation": "El rechazo iid no demuestra por sí solo no linealidad aprovechable o una nueva arquitectura necesaria.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_f2a_audit_20261113/tests.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener los resultados adversos y su interpretación de dependencia."
+    },
+    {
+      "requirement_id": "BEN-28",
+      "guide_section": "6.3",
+      "requirement": "Ejecutar Ljung–Box sobre residuos y residuos al cuadrado.",
+      "status": "verificado",
+      "finding": "Lags7/14:81/81 rechazos de residuos y80/81 de cuadrados; ARCH-LM78/81.",
+      "limitation": "Las trayectorias comparten calendario y no son81 muestras independientes. Los p asintóticos y su ajuste no corrigen por sí solos una especificación marginal inválida.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/diagnostics_by_test.csv; book_e2/_static/e2_f2a_audit_20261113/tests.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener resultados, configuración y familia de826; no declarar adecuación por menor RMSE."
+    },
+    {
+      "requirement_id": "BEN-29",
+      "guide_section": "6.3",
+      "requirement": "Aplicar los tests de clasificación sólo cuando corresponden al problema.",
+      "status": "no_aplica_justificado",
+      "finding": "La tarea es pronóstico continuo de σ7 en regresión temporal, no comparación de AUC o tasas de clasificación.",
+      "limitation": "DeLong, McNemar, Accuracy y ECE de clasificación no tienen el estimando de esta tarea.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar las métricas de regresión y calibración de intervalos; no generar etiquetas de clase para llenar la lista."
+    },
+    {
+      "requirement_id": "BEN-30",
+      "guide_section": "6.3",
+      "requirement": "Mantener α = 0,05 y control explícito FWER/FDR por familia.",
+      "status": "verificado",
+      "finding": "PrimariaHolm20; DMHolm120; post-hocHolm78; residualHolm826; GR/constanciaHolm40; ablacionesHolm3. MCS opcional tieneα = 0,10 declarado.",
+      "limitation": "No se declara control confirmatorio global sobre todos los suplementos retrospectivos; Holm no compensa p marginales mal calibrados.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_f2a_audit_20261113/audit_summary.json; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Explicitar familias distintas, cronología y nivel de cada procedimiento."
+    },
+    {
+      "requirement_id": "BEN-31",
+      "guide_section": "6.3",
+      "requirement": "Reportar p-valores numéricos y ajustados, no sólo umbrales.",
+      "status": "verificado",
+      "finding": "CSV publican p brutos y ajustados para las familias, junto con estimabilidad y decisión.",
+      "limitation": "Treinta y cinco p_raw0 de la auditoría residual reflejan precisión/subdesbordamiento de biblioteca; no probabilidades matemáticas nulas. Los p Monte Carlo tienen resolución finita.",
+      "source": "book_e2/_static/e2_f2a_audit_20261113/tests.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar precisión publicada y explicar ceros numéricos/resolución en vez de inventar p exactos."
+    },
+    {
+      "requirement_id": "BEN-32",
+      "guide_section": "6.3",
+      "requirement": "Reportar magnitud del efecto e incertidumbre en unidades interpretables.",
+      "status": "verificado",
+      "finding": "Primaria informa ganancia de RMSE e IC95; DM diferencia MSE e IC; ablaciones diferencia y aumento porcentual con IC.",
+      "limitation": "Los IC publicados son marginales y no simultáneos; este requisito general no acredita el efecto específico Cohen/Cliff pendiente.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Identificar signo, unidades, margen y ajuste de decisión junto a cada efecto."
+    },
+    {
+      "requirement_id": "BEN-33",
+      "guide_section": "6.3",
+      "requirement": "Documentar número de comparaciones y justificar su elección a priori.",
+      "status": "parcial",
+      "finding": "La primaria fija diez candidatos frente a GRU32 y Persistence:veinte comparaciones; suplementos conservan planes propios antes de sus cálculos.",
+      "limitation": "Los planes posteriores se registraron después de conocer el calendario y A2; no se presentan como preregistros prospectivos del experimento original.",
+      "source": "book_e2/_static/e2_point1_review_v1/rq_specification.json; book_e2/_static/e2_f2a_s8_20261113/analysis_plan.json; book_e2/_static/e2_temporal_final_audit_20261114/analysis_plan.json; book_e2/_static/e2_conditional_calibration_20261114/analysis_plan.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener la cronología original y separar las familias exploratorias de la primaria registrada."
+    },
+    {
+      "requirement_id": "BEN-34",
+      "guide_section": "6.3",
+      "requirement": "Documentar potencia o capacidad de las pruebas con las ejecuciones disponibles.",
+      "status": "parcial",
+      "finding": "Piloto de cinco pares de semillas informa potencia aproximada12,3%,objetivo80% no alcanzado y MDE≈0,000878674; R = 6 se mantiene por recursos.",
+      "limitation": "No se demuestra potencia adecuada para todas las hipótesis ni se transfiere el piloto a RQ2/RQ3. El post-hoc78 no tiene resolución suficiente con seis pares.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_point1_review_v1/rq_specification.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar la insuficiencia de potencia como límite; no añadir réplicas tras observar resultados sin un nuevo diseño explícito."
+    },
+    {
+      "requirement_id": "BEN-35",
+      "guide_section": "6.3",
+      "requirement": "Distinguir significancia estadística y relevancia práctica.",
+      "status": "verificado",
+      "finding": "La primaria contrasta ganancia>δ = 0,00025772842664981106;20Holm=1. SAE gana0,000282166 frente aPersistence, pero su IC incluye cero; frente aGRU gana0,000197733<δ.",
+      "limitation": "El orden RMSE y los35 rechazos DM no acreditan mejora práctica primaria. Un efecto puntual por encima deδ no basta para rechazar.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "No afirmar superioridad práctica confirmada de ninguno de los diez candidatos en la familia primaria."
+    },
+    {
+      "requirement_id": "BEN-36",
+      "guide_section": "6.3",
+      "requirement": "No interpretar ausencia de rechazo como equivalencia.",
+      "status": "verificado",
+      "finding": "Se conserva explícitamente que ninguno de20 pares primarios ni78post-hoc rechaza; no se concluye igualdad.",
+      "limitation": "No se ejecutó TOST o ROPE para afirmar equivalencia. Las pruebas bayesianas son opcionales mientras no se formule esa afirmación.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/conditional_wilcoxon_holm78.csv; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener conclusiones inconclusas; cualquier equivalencia futura exige su margen y procedimiento específico."
+    },
+    {
+      "requirement_id": "BEN-37",
+      "guide_section": "6.3",
+      "requirement": "Documentar estabilidad temporal con su hipótesis propia.",
+      "status": "verificado",
+      "finding": "Giacomini–Rossi de igualdad predictiva y constancia relativa:20+20 hipótesis,Holm40,B20.000,ventanas182días; ningún rechazo ajustado.",
+      "limitation": "No rechazar no prueba estabilidad universal o ausencia de sobreajuste; no se simulan reestimaciones móviles de parámetros no ejecutadas.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_tests.csv; book_e2/_static/e2_temporal_final_audit_20261114/relative_fluctuation_paths.csv; book_e2/_static/e2_temporal_final_audit_20261114/summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Separar la nulidad de igualdad predictiva de la constancia de una media relativa no nula."
+    },
+    {
+      "requirement_id": "BEN-38",
+      "guide_section": "6.4",
+      "requirement": "Explicar qué modelo funciona mejor con ablación e interpretabilidad.",
+      "status": "verificado",
+      "finding": "SAE tiene menor RMSE observada; retirar dropout eleva13,90%,Δ = 0,000528565,IC[0,000299895;0,000771366],p Holm3 = 0,00059994. Hay oclusión paraSAE, ARIMA y GRU32.",
+      "limitation": "Las otras dos ablaciones no rechazan ni prueban ausencia de aporte. La fidelidad utiliza24 fechas y la misma muestra para ordenación/evaluación, con un control aleatorio; no causalidad.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv; book_e2/_static/e2_posthoc_gpu_20261113/explanation_stability.csv; book_e2/_static/e2_posthoc_gpu_20261113/fidelity_producer_summary.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Sustentar el mejor valor observado sin convertirlo en superioridad confirmada o explicación causal."
+    },
+    {
+      "requirement_id": "BEN-39",
+      "guide_section": "6.4",
+      "requirement": "Discutir generalización y calibración sin confundirlas.",
+      "status": "parcial",
+      "finding": "Las coberturas originales y ACI53 están medidas; SAE 96,52→89,94%, GRU32 96,90→90,46%, ARIMA 94,57→90,30%. El δg ya existía antes de esta campaña.",
+      "limitation": "En rango alto persisten87,21%,83,65%,86,08% de coberturaACI; el contraste formal actual conδg sigue sin establecerse. Una sola cronología no identifica generalización externa.",
+      "source": "book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv; book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv; book_e2/_static/e2_point1_review_v1/margin_lineage.json; book_e2/_static/e2_temporal_final_audit_20261114/saved_training_calibration_gaps.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Reconocer el margen previo y las coberturas adversas; no exigir nuevo test E1 por mera herencia ni acreditar ausencia de sobreajuste con brechas descriptivas."
+    },
+    {
+      "requirement_id": "BEN-40",
+      "guide_section": "6.4",
+      "requirement": "Discutir robustez a perturbaciones y cambio de distribución.",
+      "status": "parcial",
+      "finding": "Las trece redes tienen curvas de estrés; extremos10% elevanRMSE585,40% SAE,513,98% GRU y1552,52% TimeMixer.",
+      "limitation": "No hay líder universal o validación en otro mercado. Los estrés sintéticos y el cambio temporal observado no sustituyen un conjunto externo.",
+      "source": "book_e2/_static/e2_posthoc_gpu_20261113/robustness.csv; book_e2/_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv; book_e2/_static/e2_f2a_audit_20261113/quarterly_metrics.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener el resultado por perturbación/severidad y la limitación externa, sin seleccionar el estrés que favorece a un ganador."
+    },
+    {
+      "requirement_id": "BEN-41",
+      "guide_section": "6.4",
+      "requirement": "Responder si las diferencias son estadística y prácticamente relevantes.",
+      "status": "verificado",
+      "finding": "La familia primaria no confirma mejora>δ de ningún candidato; DMdetecta35/120diferenciasMSE y ningunaSAE–GRU/Persistence/ARIMAtras Holm120.",
+      "limitation": "Las decisiones se condicionan al calendario, semillas y dependencia representada; no se confunden los estimandos ni los niveles.",
+      "source": "book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_f2a_s8_20261113/dm_hln_hac14_all120.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Conservar las decisiones negativas y reportar magnitud e incertidumbre en vez de afirmar empates."
+    },
+    {
+      "requirement_id": "BEN-42",
+      "guide_section": "6.4",
+      "requirement": "Discutir el compromiso desempeño–coste con evidencia.",
+      "status": "verificado",
+      "finding": "SAE: 8.739 parámetros,116.308 FLOPs core,157,08 s finales/semilla y0,84019 ms forward; GRU32: 3.777,49.792,45,20s y0,42854 ms.",
+      "limitation": "Los tiempos no incluyen toda la búsqueda y las latencias no son servicio completo; la dominancia observada no es inferencial ni económica.",
+      "source": "book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv; book_e2/_static/e2_flops_final_audit_20261114/flops_by_model.csv; book_e2/_static/e2_posthoc_gpu_20261113/inference_profiles_by_model.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Describir el compromiso por dimensión, manteniendo recursos no medidos como ausentes."
+    },
+    {
+      "requirement_id": "BEN-43",
+      "guide_section": "6.4",
+      "requirement": "Estimar cercanía al techo y margen real de mejora.",
+      "status": "parcial",
+      "finding": "Ensemble ajustado sólo en calibración ofrece referencia alcanzableRMSE 0,003689532;γemp = 0,287574conIC[−1,49210;2,37128]. Ninguna de dos mejoras rechazaHolm.",
+      "limitation": "Es un proxy condicionado a pesos fijos, no riesgoBayes ni techo óptimo. No demuestra que quede28,8% de mejora real; el ensemble uniforme anterior resultó peor.",
+      "source": "book_e2/_static/e2_calibration_ensemble_20261114/summary.json; book_e2/_static/e2_calibration_ensemble_20261114/contrasts.csv; book_e2/_static/e2_error_ceiling_final_audit_20261114/ceiling_gamma_references.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Presentar ambas referencias y su incertidumbre; mantener techo irreducible no identificado en vez de elegir retrospectivamente el más favorable."
+    },
+    {
+      "requirement_id": "BEN-44",
+      "guide_section": "6.4",
+      "requirement": "Responder las hipótesis de investigación de la sección1.",
+      "status": "parcial",
+      "finding": "RQ1 conserva su estimando y20Holm1. Las reglas de RQ2 yRQ3 están explicitadas documentalmente después del scoring.",
+      "limitation": "Las decisiones de RQ2/RQ3 bajo esas reglas no se ejecutaron; rangos, robustez o costes agregados no prueban sus hipótesis conjuntas.",
+      "source": "book_e2/_static/e2_point1_review_v1/rq_specification.json; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "No inventar decisiones paraRQ2/RQ3; cualquier cierre requerirá los contrastes definidos y, paraRQ3, observaciones crudas pareadas de latencia válidas."
+    },
+    {
+      "requirement_id": "BEN-45",
+      "guide_section": "6.4",
+      "requirement": "Exponer amenazas a validez interna, externa, de constructo y estadística.",
+      "status": "verificado",
+      "finding": "Se explicitan exposición heredadaE1 y congelación actual; una serieBTC; diferenciaRMSE/MSE/ensemble; dependencia residual, R = 6, potencia 12,3%,familias retrospectivas y costes parciales.",
+      "limitation": "Documentar amenazas no las elimina. La guía exige heredar la particiónE1 y no obliga a inventar otra;δg previo tampoco equivale a su cumplimiento formal actual.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json; book_e2/_static/e2_point1_review_v1/margin_lineage.json; book_e2/_static/e2_f2a_s8_20261113/comparisons_summary.json; book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener las cuatro clases de amenaza vinculadas a evidencia y no penalizar la herencia requerida como incumplimiento automático."
+    },
+    {
+      "requirement_id": "BEN-46",
+      "guide_section": "6.4",
+      "requirement": "Presentar limitaciones y líneas de trabajo futuro respaldadas.",
+      "status": "verificado",
+      "finding": "Se conservan resultados desfavorables, taxonomía automática6080 casos,100 fechas/600residuos por modelo principal y límites del proxy de techo, recursos y calibración.",
+      "limitation": "La taxonomía no es anotación semántica experta; las tareas futuras no cuentan como resultados actuales ni autorizan gasto automático.",
+      "source": "book_e2/_static/e2_error_ceiling_final_audit_20261114/model_annotation_coverage.csv; book_e2/_static/e2_error_ceiling_final_audit_20261114/taxonomy_protocol.json; book_e2/_static/e2_conditional_calibration_20261114/summary.json; book_e2/_static/e2_efficiency_closure_20261113/model_efficiency.csv; book_e2/_static/e2_calibration_ensemble_20261114/summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Priorizar contraste formalδg, trazas de costes faltantes, cobertura condicional y validaciónfutura bajo diseño explícito; no presentar propuestas como ejecutadas."
+    },
+    {
+      "requirement_id": "BEN-47",
+      "guide_section": "6.4",
+      "requirement": "Respaldar cada afirmación crítica con evidencia trazable.",
+      "status": "verificado",
+      "finding": "La trazabilidad hallazgo–conclusión permitida–riesgo enlaza archivos originales y distingue observación descriptiva, contraste e insuficiencia de evidencia.",
+      "limitation": "La síntesis editorial no cambia la A2, sus archivos originales, el presupuesto ni la cronología de los planes.",
+      "source": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv; book_e2/_static/e2_temporal_final_audit_20261114/primary_refinement_20000.csv; book_e2/_static/e2_reproduction_ablations_20261113/ablation_comparisons.csv; book_e2/_static/e2_conditional_calibration_20261114/model_metrics.csv; book_e2/_static/e2_calibration_ensemble_20261114/summary.json",
+      "scope": "Benchmark congelado y suplementos existentes; cotejo documental sin ejecución científica nueva",
+      "chapter": "book_e2/sections/06_benchmark_final.md",
+      "closure_action": "Mantener referencias concretas y la tabla decision_traceability; corregir cualquier afirmación sin apoyo sin fabricar evidencia."
+    }
+  ]
+}
