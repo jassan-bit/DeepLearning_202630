@@ -215,6 +215,7 @@
 <li class="toctree-l1"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad de correcciones de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del modelo original</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_bloques_a_b.html">Bloques A y B con evidencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_modelo_original.html">Bloque C y modelo neuronal candidato</a></li>
 </ul>
 
     </div>
@@ -356,6 +357,7 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-del-arranque">Procedencia del arranque</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-ejecutable-de-los-bloques-a-y-b">Evidencia ejecutable de los bloques A y B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-del-candidato-del-bloque-c">Evidencia del candidato del Bloque C</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-final-del-informe">Estructura final del informe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-libro">Construcción del libro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-experimental-pendiente">Reproducibilidad experimental pendiente</a></li>
@@ -384,6 +386,10 @@
 <section id="evidencia-ejecutable-de-los-bloques-a-y-b">
 <h2>Evidencia ejecutable de los bloques A y B<a class="headerlink" href="#evidencia-ejecutable-de-los-bloques-a-y-b" title="Link to this heading">#</a></h2>
 <p>El <a class="reference internal" href="08_bloques_a_b.html"><span class="std std-doc">avance A y B</span></a> enlaza inventarios, tabla maestra y paridad de tres artefactos TorchScript heredados. Sus verificaciones offline están automatizadas en <code class="docutils literal notranslate"><span class="pre">.github/workflows/verify-e3-handoff.yml</span></code>; el código y las fuentes de cada informe se conservan en <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloques_ab_20261115/</span></code>. Los controles de fuga completos, la prueba formal de δg y la exportación de los demás sistemas siguen pendientes.</p>
+</section>
+<section id="evidencia-del-candidato-del-bloque-c">
+<h2>Evidencia del candidato del Bloque C<a class="headerlink" href="#evidencia-del-candidato-del-bloque-c" title="Link to this heading">#</a></h2>
+<p>La implementación y sus pruebas se encuentran en <code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code> y <code class="docutils literal notranslate"><span class="pre">tests/test_original_model.py</span></code>. <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloque_c_20261115/</span></code> conserva configuración, bitácora, procedencia, derivación, antecedentes e informe de software. El lock CPU y <code class="docutils literal notranslate"><span class="pre">verify-e3-original.yml</span></code> permiten ejecutar las comprobaciones. Los reportes no se presentan como entrenamiento de mercado, HPO ni protocolo confirmatorio.</p>
 </section>
 <section id="estructura-final-del-informe">
 <h2>Estructura final del informe<a class="headerlink" href="#estructura-final-del-informe" title="Link to this heading">#</a></h2>
@@ -523,6 +529,7 @@
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procedencia-del-arranque">Procedencia del arranque</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-ejecutable-de-los-bloques-a-y-b">Evidencia ejecutable de los bloques A y B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-del-candidato-del-bloque-c">Evidencia del candidato del Bloque C</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-final-del-informe">Estructura final del informe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-libro">Construcción del libro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad-experimental-pendiente">Reproducibilidad experimental pendiente</a></li>

@@ -11,6 +11,10 @@
 
 El [avance de los bloques A y B](08_bloques_a_b.md) presenta el inventario y la evidencia de ingeniería obtenida de estos componentes. La comprobación de un archivo, su exportación o su paridad no acredita por sí sola ausencia de fuga ni superioridad predictiva.
 
+## Desarrollo del Bloque C
+
+El [candidato y sus pruebas](09_modelo_original.md) ya tienen código desde la formulación y una demostración de estabilidad de la cabeza latente. Las 35 pruebas usan datos artificiales; no completan la búsqueda de novedad ni la comparación experimental.
+
 ## Productos nuevos necesarios
 
 El mecanismo original deberá programarse desde su formulación, con docstrings, pseudocódigo, complejidad y trazabilidad de procedencia. El [diseño preliminar](07_diseno_preliminar.md) delimita una hipótesis que aún debe superar la búsqueda de novedad y los experimentos de desarrollo.

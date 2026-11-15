@@ -1,0 +1,80 @@
+{
+  "version": "e3-original-development-v1",
+  "executed_at_utc": "2026-11-15T23:44:09.733923+00:00",
+  "scope": "synthetic software and latent-head property verification",
+  "configuration": {
+    "config": {
+      "history_days": 7,
+      "input_features": 5,
+      "cnn_channels": 8,
+      "hidden_size": 12,
+      "kernel_size": 3,
+      "reference_lookback": 3,
+      "radius": 1.0,
+      "epsilon": 0.0001,
+      "query_bound": 1.0,
+      "readout_bound": 4.0,
+      "penalty_bound": 1.0,
+      "initial_penalty": 0.25,
+      "temperature_min": 0.25,
+      "initial_temperature": 1.0,
+      "ablation": "full"
+    },
+    "initialization_seed": 20261115,
+    "status": "development_candidate_not_preregistered",
+    "output": "sigma7/training_target_scale",
+    "novelty_verified": false,
+    "statistical_superiority_verified": false
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "pytest": "9.2.0",
+    "platform": "Linux",
+    "device": "CPU",
+    "torch_threads": 1
+  },
+  "pytest": {
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "parameters": 1211,
+  "latent_verification": {
+    "unit_test_seed": 20261115,
+    "pairs": 256,
+    "state_magnitude_min": 0.001,
+    "state_magnitude_max": 1000.0,
+    "perturbation_SD": 0.0001,
+    "dtype": "float64",
+    "formal_upper_bound": 46.15606643770057,
+    "maximum_sampled_gain": 0.11516301406005287,
+    "maximum_sampled_gain_over_bound": 0.002495078609341523,
+    "sampled_violations": 0,
+    "maximum_value_norm": 0.9999999775106511,
+    "single_point_gradient_norm": 0.11815208499412795,
+    "manual_gradient_maximum_absolute_error": 6.938893903907228e-18,
+    "effective_query_norm": 0.32500511806679244,
+    "effective_readout_norm": 2.338605791270119,
+    "effective_penalty": 0.24999999628110864,
+    "effective_temperature": 1.0000000018344584,
+    "guarantee_scope": "H to positive scaled prediction, fixed P and inference parameters",
+    "full_OHLCV_encoder_bound_claimed": false,
+    "sampling_proves_global_property": false
+  },
+  "source_sha256": {
+    "src/original_model.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "tests/test_original_model.py": "e0cbc10fe4eddaf125d49cea43b913ca2ffa9f2e5df5ae76762522f953a9d829",
+    "scripts/e3_verify_original.py": "9fdc0d0cbae69fffa8d0a8168a4babf0f209968377f0aa2d0326bc9ff4e40c25",
+    "requirements-e3-original-cpu.lock.txt": "555b03b7a9edba72e7525f5e99c6e437e92819a1121b76ff3a0973f247d66e19",
+    "experiments/e3_bloque_c_20261115/theory.md": "432400357cd71c7cbdb8b3bd532068aaeded27f0f5a363466ba32d34fdaf8992"
+  },
+  "real_market_data_used": false,
+  "HPO_performed": false,
+  "confirmatory_protocol_registered": false,
+  "novelty_verified": false,
+  "student_defence_verified": false,
+  "statistical_superiority_verified": false,
+  "warning_scope": "TorchScript smoke test requires an external shape/finiteness guard; no trained candidate export is delivered."
+}
