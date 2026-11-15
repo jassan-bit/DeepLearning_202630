@@ -217,6 +217,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/05_reproducibilidad_entrega.html">5 Reproducibilidad y entrega</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/06_trazabilidad_correcciones.html">Trazabilidad de correcciones de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/07_diseno_preliminar.html">Diseño preliminar del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/08_bloques_a_b.html">Bloques A y B con evidencias</a></li>
 </ul>
 
     </div>
@@ -374,7 +375,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="entregable-3-de-deep-learning">
 <h1>Entregable 3 de Deep Learning<a class="headerlink" href="#entregable-3-de-deep-learning" title="Link to this heading">#</a></h1>
 <p><strong>Autor del proyecto:</strong> Jassan Arteta · <strong>Curso:</strong> Deep Learning 2026-30</p>
-<p><strong>Estado al 15 de noviembre de 2026:</strong> diagnóstico inicial y plan de trabajo preparados a partir de la guía oficial aportada y de la evidencia de E2. No se han realizado entrenamientos ni evaluaciones propios de E3.</p>
+<p><strong>Estado al 15 de noviembre de 2026:</strong> diagnóstico y plan de trabajo preparados, con avance verificable en los bloques A y B a partir de los artefactos de E2. No se ha entrenado ni evaluado el modelo original de E3; las mediciones actuales verifican artefactos heredados de E2.</p>
 <section id="problema-y-punto-de-partida">
 <h2>Problema y punto de partida<a class="headerlink" href="#problema-y-punto-de-partida" title="Link to this heading">#</a></h2>
 <p>El proyecto pronostica la volatilidad diaria de Bitcoin, BTCUSDT de Binance Spot: siete barras diarias OHLCV anteriores al día objetivo, cinco canales transformados mediante <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, horizonte de un día y desviación poblacional σ₇ de siete retornos logarítmicos de Close, sin anualización. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato vigente de E2</a> define disponibilidad, escalas y máscaras.</p>
@@ -394,31 +395,34 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="sections/01_alcance_requisitos.html"><span class="std std-doc">Alcance y matriz de requisitos</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/08_bloques_a_b.html"><span class="std std-doc">Bloques A y B</span></a></p></td>
+<td><p>Auditoría de artefactos, selección de configuraciones y exportación con evidencia.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="sections/01_alcance_requisitos.html"><span class="std std-doc">Alcance y matriz de requisitos</span></a></p></td>
 <td><p>Relaciona cada exigencia de la guía con evidencia y criterio de cierre.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="sections/02_planificacion.html"><span class="std std-doc">Plan de trabajo</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/02_planificacion.html"><span class="std std-doc">Plan de trabajo</span></a></p></td>
 <td><p>Ordena tareas y dependencias antes de entrenar.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="sections/06_trazabilidad_correcciones.html"><span class="std std-doc">Trazabilidad de correcciones</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="sections/06_trazabilidad_correcciones.html"><span class="std std-doc">Trazabilidad de correcciones</span></a></p></td>
 <td><p>Registra pendientes de la auditoría interna; no se han recibido observaciones docentes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="sections/07_diseno_preliminar.html"><span class="std std-doc">Diseño preliminar del modelo</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/07_diseno_preliminar.html"><span class="std std-doc">Diseño preliminar del modelo</span></a></p></td>
 <td><p>Presenta hipótesis, propiedad candidata y pruebas necesarias.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="sections/03_desarrollo_evidencias.html"><span class="std std-doc">Desarrollo y evidencias</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="sections/03_desarrollo_evidencias.html"><span class="std std-doc">Desarrollo y evidencias</span></a></p></td>
 <td><p>Distingue código reutilizable de productos nuevos.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="sections/04_resultados_discusion.html"><span class="std std-doc">Resultados y discusión</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="sections/04_resultados_discusion.html"><span class="std std-doc">Resultados y discusión</span></a></p></td>
 <td><p>Conserva el estado sin resultados propios.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="sections/05_reproducibilidad_entrega.html"><span class="std std-doc">Reproducibilidad y entrega</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="sections/05_reproducibilidad_entrega.html"><span class="std std-doc">Reproducibilidad y entrega</span></a></p></td>
 <td><p>Fija procedencia, verificaciones y estructura final prevista.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>La primera tarea ejecutable es inventariar los artefactos de E2 y completar sus controles de datos pendientes. Los periodos ya evaluados en E1/E2 siguen siendo conocidos; repetirlos no crea una confirmación independiente.</p>
+<p>El inventario de artefactos y la revisión de configuraciones ya tienen evidencia ejecutable en los bloques A y B. El cierre de los controles de datos pendientes sigue condicionando el congelamiento definitivo de E3. Los periodos ya evaluados en E1/E2 siguen siendo conocidos; repetirlos no crea una confirmación independiente.</p>
 </section>
 <section id="libros-del-curso">
 <h2>Libros del curso<a class="headerlink" href="#libros-del-curso" title="Link to this heading">#</a></h2>

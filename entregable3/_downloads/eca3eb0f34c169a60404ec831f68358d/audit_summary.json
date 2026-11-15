@@ -1,0 +1,66 @@
+{
+  "version": "e3-e2-handoff-audit-v1",
+  "source_commit": "f65b14d38e38f8d5fd80c717d71f2abd9ea708e2",
+  "scope": "read-only hashes, downloaded metadata, saved objective IDs and public release listings; not full leakage certification",
+  "systems": 16,
+  "predictors": 81,
+  "neural_predictors": 78,
+  "deterministic_predictors": 3,
+  "frozen_file_hashes_reconciled": 245,
+  "backup_artifacts": 246,
+  "release_weight_asset_metadata_verified": 79,
+  "downloaded_metadata_hashes_verified": 167,
+  "checkpoint_bytes_hash_verified": 2,
+  "scaler_bytes_hash_verified": 81,
+  "calibrator_bytes_hash_verified": 81,
+  "scaler_calibrator_predictor_bindings_verified": 81,
+  "partition_metadata": {
+    "training": 655,
+    "calibration": 53,
+    "evaluation": 608,
+    "hpo_folds": 3,
+    "scope": "saved objective IDs and metadata; not tensor content"
+  },
+  "guard_receipt": {
+    "tests_run": 5,
+    "status": "passed",
+    "reexecuted_here": false,
+    "scope": "existing synthetic/mocked common guard receipt, not randomized-label training"
+  },
+  "determinism": {
+    "recorded_runtime": {
+      "cuda": "12.6",
+      "gpu": "NVIDIA A100-SXM4-80GB",
+      "python": "3.12.12 (main, Oct 14 2025, 21:25:31) [Clang 20.1.4 ]",
+      "torch": "2.8.0+cu126",
+      "total_memory_bytes": 85094825984
+    },
+    "global_numpy_seed_claimed": false,
+    "numpy_policy": "registered analysis generators; no global NumPy seed set by training core",
+    "source": "book_e2/sections/08_reproducibilidad.md",
+    "new_runtime_reproduction": false
+  },
+  "A2_sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+  "results_changed": false,
+  "ranking_changed": false,
+  "models_fit": 0,
+  "model_inference_calls": 0,
+  "block_A_closed": false,
+  "E3_benchmark_freeze_issued": false,
+  "sources_sha256": {
+    "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+    "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+    "book_e2/_static/e2_benchmark_final_20261113/source_evidence.json": "362a680ea9a66a27e34233195ba93f34a2c39c017a4744acf94cda6021b2cceb",
+    "book_e2/_static/e2_eda_current_v1/partition_audit.json": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f",
+    "book_e2/_static/e2_data_training_uncertainty_current_v1/targeted_data_guard_checks.json": "3001037430ea2b843cfd6af2cddda7d03d074e106f09e3ffff5d9e75feb3d439",
+    "book_e2/_static/e2_repro_prereg_current_v1/environment_observed.json": "f7f5a5c62504ed2342d639ce488f75202f7a3df1cc4e2b196ee61f0277e4cc13",
+    "book_e2/sections/08_reproducibilidad.md": "7997753f34e3ed5f96684e573702f41f4b4c49853c3bf112e2d654d62d59dcab",
+    "experiments/e3_bloques_ab_20261115/source_receipts/audit_backup_manifest.json": "c9291f27ad2bb61a0fe756edfb27e27c3cd19e9f27a16d15995992e6990d8fc0",
+    "experiments/e3_bloques_ab_20261115/source_receipts/audit_release_listing.json": "750c92df928d556d07c844cf31e7374d244d985a24840e8e00b82a40f72e9ace"
+  },
+  "limits": [
+    "Hashes and chronology do not certify tensor content, transform fitting or absence of leakage.",
+    "Release listing verifies existence and size metadata; only downloaded_hash_verified verifies file bytes.",
+    "E2 known evaluation calendar and R6 are conserved; no new confirmation or equivalence claim."
+  ]
+}

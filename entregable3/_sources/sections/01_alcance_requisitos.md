@@ -8,6 +8,8 @@ El modelo debe demostrar formalmente al menos una propiedad y verificarla numér
 
 Estos son requisitos de evaluación. La superioridad será un resultado por comprobar y puede no alcanzarse. Un resultado no concluyente debe conservarse.
 
+El [avance ejecutado de los bloques A y B](08_bloques_a_b.md) actualiza las evidencias disponibles. La matriz siguiente conserva los estados del diagnóstico inicial; no se interpreta como un registro de tareas ya cerradas.
+
 ## Matriz de requisitos y evidencia
 
 P0 identifica decisiones o controles que condicionan la campaña definitiva. P1 identifica productos de implementación y entrega. Las páginas son las impresas en el PDF.

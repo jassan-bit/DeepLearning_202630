@@ -214,6 +214,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05_reproducibilidad_entrega.html">5 Reproducibilidad y entrega</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Trazabilidad de correcciones de E2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_bloques_a_b.html">Bloques A y B con evidencias</a></li>
 </ul>
 
     </div>
@@ -367,92 +368,104 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="trazabilidad-de-correcciones-de-e2">
 <h1>Trazabilidad de correcciones de E2<a class="headerlink" href="#trazabilidad-de-correcciones-de-e2" title="Link to this heading">#</a></h1>
-<p><strong>Observaciones docentes:</strong> no recibidas al 15 de noviembre de 2026, según lo informado por el autor. <strong>Origen de los hallazgos siguientes:</strong> revisión interna documental de E2 y cotejo con la guía E3. Ninguna fila se atribuye al profesor.</p>
-<p>La tabla registra acciones y límites para iniciar E3. Una condición pendiente no prueba que exista un error. El Bloque A no queda cerrado con este diagnóstico: requiere evidencias de los controles y análisis aplicables. Si se reciben observaciones docentes posteriormente, se incorporarán con su origen y sin sobrescribir este historial.</p>
+<p><strong>Observaciones docentes:</strong> no recibidas al 15 de noviembre de 2026, según lo informado por el autor. <strong>Origen de los hallazgos siguientes:</strong> revisión interna documental y comprobación de artefactos de E2. Ninguna fila se atribuye al profesor.</p>
+<p>La tabla conserva las columnas exigidas en el Bloque A y añade el hallazgo interno que motiva cada acción. Una condición pendiente no prueba que exista un error. Los <a class="reference internal" href="08_bloques_a_b.html"><span class="std std-doc">bloques A y B</span></a> presentan las verificaciones ejecutadas y sus límites; A sigue abierto. Si se recibe retroalimentación docente, se incorporará con su origen y fecha.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>ID</p></th>
+<tr class="row-odd"><th class="head"><p>Observación del docente</p></th>
 <th class="head"><p>Hallazgo interno</p></th>
-<th class="head"><p>Acción y ubicación</p></th>
-<th class="head"><p>Estado</p></th>
-<th class="head"><p>Impacto en resultados</p></th>
+<th class="head"><p>Acción realizada</p></th>
+<th class="head"><p>Ubicación en el Jupyter Book</p></th>
+<th class="head"><p>Evidencia</p></th>
+<th class="head"><p>Impacto en los resultados</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>A01 (P0)</p></td>
-<td><p>README desactualizado respecto al cierre de E2 y a la guía E3. Fuente: <code class="docutils literal notranslate"><span class="pre">README.md;</span> <span class="pre">book_e2/intro.md</span></code>.</p></td>
-<td><p>Actualizar resumen y portadas; conservar resultados históricos. <a class="reference internal" href="../intro.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Resuelto documentalmente en esta propuesta</p></td>
-<td><p>Sin cambios experimentales; impacto en métricas no aplica</p></td>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A01: README desactualizado respecto al cierre de E2 y a la guía E3</p></td>
+<td><p>Actualizados README, portada y alcance de E3.</p></td>
+<td><p><a class="reference internal" href="../intro.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference internal" href="../intro.html"><span class="std std-doc">Ver evidencia</span></a></p></td>
+<td><p>A2 y ranking conservados; sin recálculo.</p></td>
 </tr>
-<tr class="row-odd"><td><p>A02 (P0)</p></td>
-<td><p>Auditoría de fuga final parcial. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/38_cumplimiento_guia.md</span> <span class="pre">G08;</span> <span class="pre">book_e2/sections/61_reproduccion_consolidada.md</span> <span class="pre">B03</span></code>.</p></td>
-<td><p>Inventariar artefactos y completar controles sobre pipeline real. <a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Pendiente de ejecución</p></td>
-<td><p>No evaluado; no hay fuga demostrada por este diagnóstico</p></td>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A02: Auditoría de fuga final parcial</p></td>
+<td><p>Ejecutados inventario de 81 predictores y verificación de 167 metadatos; controles funcionales pendientes.</p></td>
+<td><p><a class="reference internal" href="08_bloques_a_b.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/eca3eb0f34c169a60404ec831f68358d/audit_summary.json"><span class="xref download myst">Ver evidencia</span></a></p></td>
+<td><p>A2 y ranking conservados; hashes verificados no acreditan ausencia de fuga.</p></td>
 </tr>
-<tr class="row-even"><td><p>A03 (P0)</p></td>
-<td><p>Aplicación formal comparable de δg pendiente. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/38_cumplimiento_guia.md</span> <span class="pre">G14-G15;</span> <span class="pre">book_e2/sections/61_reproduccion_consolidada.md</span> <span class="pre">B11</span></code>.</p></td>
-<td><p>Recuperar margen registrado, cohortes y estimando; analizar sólo con evidencia suficiente. <a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Pendiente de análisis</p></td>
-<td><p>No evaluado; análisis nuevo sería posterior</p></td>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A03: Aplicación formal comparable de δg pendiente</p></td>
+<td><p>Pendiente: prueba formal comparable con el margen δg original.</p></td>
+<td><p><a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/61_reproduccion_consolidada.html">Ver evidencia</a></p></td>
+<td><p>No evaluado; un análisis nuevo conservará su fecha posterior.</p></td>
 </tr>
-<tr class="row-odd"><td><p>A04 (P0)</p></td>
-<td><p>R6 y potencia insuficiente del piloto de E2. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json</span></code>.</p></td>
-<td><p>Conservar limitación E2; dimensionar campaña E3 R≥10 con piloto propio. <a class="reference internal" href="01_alcance_requisitos.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Limitación histórica conservada; diseño E3 pendiente</p></td>
-<td><p>Sin reentrenamiento; no aumenta R de E2</p></td>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A04: R6 y potencia insuficiente del piloto de E2</p></td>
+<td><p>Conservados R=6 y limitación de potencia de E2; dimensionamiento E3 pendiente.</p></td>
+<td><p><a class="reference internal" href="01_alcance_requisitos.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json">Ver evidencia</a></p></td>
+<td><p>No se ampliaron semillas ni se reentrenó E2.</p></td>
 </tr>
-<tr class="row-even"><td><p>A05 (P0)</p></td>
-<td><p>Periodos de E1/E2 ya conocidos. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/17_contrato_sincronizado.md</span></code>.</p></td>
-<td><p>Separar desarrollo/confirmación E3 y seleccionar datasets sin conocer desempeño. <a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Limitación histórica conservada; particiones E3 pendientes</p></td>
-<td><p>No cambia las 608 fechas ni su herencia permitida</p></td>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A05: Periodos de E1/E2 ya conocidos</p></td>
+<td><p>Documentada exposición previa; separación de confirmación E3 pendiente.</p></td>
+<td><p><a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">Ver evidencia</a></p></td>
+<td><p>Se conserva el alcance histórico de las 608 fechas.</p></td>
 </tr>
-<tr class="row-odd"><td><p>A06 (P0)</p></td>
-<td><p>Limitación TimeMixer no acredita hueco predictivo BTC ni novedad del híbrido. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/05_paper_guia.md</span></code>.</p></td>
-<td><p>Buscar mecanismo y evidencia pertinente; evaluar hipótesis alternativa de robustez. <a class="reference internal" href="07_diseno_preliminar.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Hipótesis preparada; búsqueda focal pendiente</p></td>
-<td><p>Sin mejora ni novedad demostrada</p></td>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A06: Limitación TimeMixer no acredita hueco predictivo BTC ni novedad del híbrido</p></td>
+<td><p>Documentada hipótesis técnica; búsqueda focal de novedad pendiente.</p></td>
+<td><p><a class="reference internal" href="07_diseno_preliminar.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference internal" href="07_diseno_preliminar.html"><span class="std std-doc">Ver evidencia</span></a></p></td>
+<td><p>No hay mejora ni novedad acreditada del modelo original.</p></td>
 </tr>
-<tr class="row-even"><td><p>A07 (P1)</p></td>
-<td><p>Equidad total de coste no acreditada para campaña E3. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/38_cumplimiento_guia.md</span> <span class="pre">G10</span></code>.</p></td>
-<td><p>Presupuesto explícito por configuraciones, tiempo, fases y fallos antes de confirmar. <a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Pendiente de presupuesto</p></td>
-<td><p>No consume ni extiende horas E2</p></td>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A07: Equidad total de coste no acreditada para campaña E3</p></td>
+<td><p>Pendiente: presupuesto común y recursos de la campaña E3.</p></td>
+<td><p><a class="reference internal" href="02_planificacion.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/38_cumplimiento_guia.html">Ver evidencia</a></p></td>
+<td><p>Sin nueva campaña de entrenamiento ni extensión del presupuesto E2.</p></td>
 </tr>
-<tr class="row-odd"><td><p>A08 (P1)</p></td>
-<td><p>Tres pruebas y familia E2 no sustituyen familia completa E3. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/38_cumplimiento_guia.md</span> <span class="pre">G14-G15</span></code>.</p></td>
-<td><p>Enumerar todos los rivales y pruebas temporales; registrar Holm, efectos e IC. <a class="reference internal" href="01_alcance_requisitos.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Pendiente de protocolo</p></td>
-<td><p>No modifica familia primaria ni p-valores E2</p></td>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A08: Tres pruebas y familia E2 no sustituyen familia completa E3</p></td>
+<td><p>Documentada familia de trabajo; protocolo y pruebas E3 pendientes.</p></td>
+<td><p><a class="reference internal" href="01_alcance_requisitos.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference internal" href="01_alcance_requisitos.html"><span class="std std-doc">Ver evidencia</span></a></p></td>
+<td><p>No se modifican familia primaria ni p-valores históricos de E2.</p></td>
 </tr>
-<tr class="row-even"><td><p>A09 (P1)</p></td>
-<td><p>Perfil A100 y FLOPs core no son perfil CPU de despliegue. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/53_cierre_requisitos.md;</span> <span class="pre">book_e2/sections/38_cumplimiento_guia.md</span> <span class="pre">G13</span></code>.</p></td>
-<td><p>Medir CPU/memoria y verificar exportación por modelo. <a class="reference internal" href="03_desarrollo_evidencias.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Pendiente de ingeniería</p></td>
-<td><p>Sin mediciones nuevas</p></td>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A09: Perfil A100 y FLOPs core no son perfil CPU de despliegue</p></td>
+<td><p>Exportadas y perfiladas MLP16, LSTM32 y GRU32 en CPU; los otros trece sistemas siguen pendientes.</p></td>
+<td><p><a class="reference internal" href="08_bloques_a_b.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference internal" href="08_bloques_a_b.html"><span class="std std-doc">Ver evidencia</span></a></p></td>
+<td><p>ΔRMSE de exportación en calibración = 0 en las tres referencias; A2 conservada.</p></td>
 </tr>
-<tr class="row-odd"><td><p>A10 (P1)</p></td>
-<td><p>Reproducción E2 no equivale a reproducción integral E3. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/61_reproduccion_consolidada.md</span> <span class="pre">B20-B21</span></code>.</p></td>
-<td><p>Conservar recibos E2 y preparar Docker y reproducción E3 propios. <a class="reference internal" href="05_reproducibilidad_entrega.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Pendiente E3</p></td>
-<td><p>Sin nuevos ajustes ni replay experimental</p></td>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A10: Reproducción E2 no equivale a reproducción integral E3</p></td>
+<td><p>Preparados auditores reproducibles y pruebas de integridad E3; reproducción integral y Docker pendientes.</p></td>
+<td><p><a class="reference internal" href="05_reproducibilidad_entrega.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/tests">Ver evidencia</a></p></td>
+<td><p>Sin nuevos ajustes de redes ni reproducción de la campaña definitiva E3.</p></td>
 </tr>
-<tr class="row-even"><td><p>A11 (P1)</p></td>
-<td><p>Cobertura histórica de literatura limitada; corpus recibido cerrado operativamente. Fuente: <code class="docutils literal notranslate"><span class="pre">book_e2/sections/62_cierre_literatura_focal.md</span></code>.</p></td>
-<td><p>Conservar límites y hacer revisión focal del mecanismo E3. <a class="reference internal" href="07_diseno_preliminar.html"><span class="std std-doc">Ubicación</span></a></p></td>
-<td><p>Limitación histórica conservada; búsqueda nueva pendiente</p></td>
-<td><p>No reabre ni altera PRISMA E2</p></td>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A11: Cobertura histórica de literatura limitada; corpus recibido cerrado operativamente</p></td>
+<td><p>Conservados límites bibliográficos y corpus cerrado; revisión focal del mecanismo E3 pendiente.</p></td>
+<td><p><a class="reference internal" href="07_diseno_preliminar.html"><span class="std std-doc">Consultar</span></a></p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/62_cierre_literatura_focal.html">Ver evidencia</a></p></td>
+<td><p>Sin cambios al PRISMA o resultados E2.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <section id="reglas-de-actualizacion">
 <h2>Reglas de actualización<a class="headerlink" href="#reglas-de-actualizacion" title="Link to this heading">#</a></h2>
-<p>Cada cierre debe enlazar figura, tabla, recibo o fragmento de código verificable y cuantificar cambios si afectan métricas. Cuando se demuestre un error, se recalculan todos sus productos dependientes y se publica ranking antes/después. Un análisis posterior conserva su fecha y no se presenta como preregistrado.</p>
-<p>Los resultados de E2 permanecen como referencia. El nuevo estándar de E3 no se satisface aumentando semillas históricas después de conocer el test ni reinterpretando una reproducción como evaluación independiente. La ausencia de observaciones docentes no acredita aprobación o cumplimiento integral.</p>
-<p>La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/38_cumplimiento_guia.html">matriz de E2</a> y el <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/61_reproduccion_consolidada.html">Apéndice B vigente</a> permiten consultar los alcances completos.</p>
+<p>Cada cierre debe enlazar figura, tabla, recibo o fragmento de código verificable y cuantificar los cambios si afectan métricas. Cuando se demuestre un error, se recalculan todos sus productos dependientes y se publica el ranking antes/después. Un análisis posterior conserva su fecha y no se presenta como preregistrado.</p>
+<p>El hash de la A2 histórica se conserva; esta revisión no produjo un cambio de ranking ni nuevas métricas de prueba. Las mediciones de exportación sobre 53 fechas de calibración se reportan por separado. El cierre del Bloque A y el nuevo congelamiento E3 requieren resolver los controles científicos pendientes.</p>
+<p>La tabla editable está en <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloques_ab_20261115/corrections_progress.csv</span></code>. El corte inicial de <code class="docutils literal notranslate"><span class="pre">experiments/e3_inicio_20261115/correcciones.csv</span></code> se conserva como antecedente, sin sobrescribir su historial.</p>
 </section>
 </section>
 
