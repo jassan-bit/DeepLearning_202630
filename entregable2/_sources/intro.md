@@ -5,22 +5,36 @@
 (e2-entregables-portada)=
 ## Entregables
 
-La lista de la guía de E2, páginas 58–59, se incluye completa a continuación, con enlaces a los componentes del informe. La [entrega consolidada](sections/47_entrega_consolidada.md) detalla su ubicación, evidencia y estado actual.
+**Descargas independientes para ejecutar en el computador del profesor.** Cada ZIP incluye su propio `run.py`, instrucciones `LEEME.md`, entradas necesarias y manifiesto SHA-256. Se puede usar cada paquete por separado, sin clonar el repositorio ni copiar archivos de la página web.
 
-- **Informe en Jupyter Book** con ejecución reproducible de celdas. [Informe y reproducción](sections/08_reproducibilidad.md).
-- **Código completo y documentado**: EDA, diez modelos, *baselines*, pruebas de ajuste y sobreajuste, análisis estadístico, robustez, incertidumbre e interpretabilidad. [Implementación](sections/04_implementacion.md) · [Repositorio](https://github.com/jassan-bit/DeepLearning_202630).
-- **Dataset o instrucciones verificables para obtenerlo**, junto con la **Data Card** y el contrato de datos. [Datos y fuentes](sections/01_punto_partida.md) · [Data Card](_static/e2_point1_review_v1/dataset_card_current.json) · [Contrato de datos](sections/10_auditoria_datos.md).
-- **Preregistro fechado y versionado** (sección 9) y **reporte de auditoría de fuga** (sección 10). [Preregistro](sections/09_protocolo_registrado.md) · [Auditoría](sections/10_auditoria_datos.md).
-- **Ficha de ruta metodológica** que indique el tipo de problema elegido, la ruta seguida de la sección 7.4 y la evidencia —tabla de p-valores, tamaños del efecto e IC— de cada prueba de las Tablas A, B y C. [Ruta F2a: series de tiempo](sections/07_ruta_temporal.md) · [Pruebas y evidencia disponible](sections/61_reproduccion_consolidada.md).
-- **Tabla comparativa** con métricas, costos computacionales e inferencia estadística, siguiendo las plantillas del Apéndice A. [Benchmark](sections/06_benchmark_final.md) · [Apéndice A](sections/61_reproduccion_consolidada.md).
-- **Registro de experimentos** —configuraciones, semillas y resultados por ejecución— y fichas de modelo (sección 11.3). [Registro y fichas](sections/11_hpo_equidad.md).
-- **Reporte de techo de desempeño y de incertidumbre** (sección 12). [Techo, incertidumbre y errores](sections/12_incertidumbre_errores.md).
-- **Reporte de la búsqueda de arquitectura** (sección 14) para cada modelo sin diseño predefinido: listado de las 1.000 arquitecturas, resultados de las dos fases, finalistas, regla de selección, análisis de efectos y frente de Pareto. **No aplica al catálogo actual de arquitecturas definidas**, incluida TiDE R0-v2. [Justificación](sections/14_arquitecturas.md).
-- **Paper guía**: réplica parcial y limitación identificada (sección 5), que sirve de insumo al Entregable 3. [Paper guía y replicación](sections/05_paper_guia.md).
-- **Lista de verificación de reproducibilidad completada** (Apéndice B). [Lista de 21 ítems con sus estados y evidencias](sections/61_reproduccion_consolidada.md).
-- **Presentación oral con defensa técnica de las decisiones metodológicas**. La [entrega consolidada](sections/47_entrega_consolidada.md) reúne el soporte para la defensa; su realización y evaluación oral siguen pendientes de acreditar.
+1. Descargar el ZIP elegido y **extraer todo su contenido** en una carpeta propia.
+2. Abrir la carpeta `D01`, `D02`, etc. y leer `LEEME.md`.
+3. Ejecutar `python run.py` —o `py -3.12 run.py` en Windows— y abrir el informe o los archivos generados en `output/`.
 
-Los enlaces permiten revisar lo disponible y sus límites. Incluir un componente en esta lista no lo declara íntegramente aprobado: el [Apéndice B](sections/61_reproduccion_consolidada.md) y la [matriz de requisitos](sections/38_cumplimiento_guia.md) conservan las condiciones parciales y pendientes.
+Se recomienda **Python 3.12**. D02 requiere instalar sus dependencias de CPU antes del primer forward; los otros once comandos predeterminados usan la biblioteca estándar. Cada ZIP incluye también `ejecutar.cmd` y `ejecutar.sh`.
+
+| Archivo independiente | Qué genera al ejecutarlo | Requisitos |
+| --- | --- | --- |
+| {download}`D01 · Libro completo y fuentes <_static/entregables_independientes_v1/01_informe_jupyter_book.zip>` (63.51 MiB) | Extrae el libro HTML offline, fórmulas locales y fuentes para reconstruirlo. | Python estándar; rebuild opcional con Jupyter Book. |
+| {download}`D02 · Código completo de modelos <_static/entregables_independientes_v1/02_codigo_modelos.zip>` (7.30 MiB) | Ejecuta las 13 arquitecturas en CPU; incluye fuentes de autores y entrenamiento CUDA local opcional. | Instalar requirements_cpu.txt; luego python run.py. |
+| {download}`D03 · Dataset, Data Card y contrato <_static/entregables_independientes_v1/03_datos_contrato.zip>` (88 KiB) | Reconstruye σ₇ y verifica los CSV diarios incluidos; ofrece descarga oficial verificada de datos crudos. | Python estándar. |
+| {download}`D04 · Preregistro y auditoría de fuga <_static/entregables_independientes_v1/04_preregistro_auditoria.zip>` (65 KiB) | Genera el informe local con protocolo, congelación, controles ejecutados y pendientes. | Python estándar. |
+| {download}`D05 · Ficha de ruta F2a <_static/entregables_independientes_v1/05_ficha_ruta_F2a.zip>` (116 KiB) | Genera la ficha y tablas de pruebas, unidades, p-valores, efectos e IC disponibles. | Python estándar. |
+| {download}`D06 · Benchmark y comparaciones <_static/entregables_independientes_v1/06_benchmark_comparaciones.zip>` (550 KiB) | Recalcula métricas de los 81 predictores y reconstruye A2; incluye reanálisis estadístico opcional. | Python estándar; NumPy/SciPy sólo para repetir pruebas. |
+| {download}`D07 · Registro experimental y fichas <_static/entregables_independientes_v1/07_registro_experimentos.zip>` (69 KiB) | Genera tablas y fichas desde configuraciones, semillas, resultados y costes incluidos. | Python estándar. |
+| {download}`D08 · Techo, incertidumbre y errores <_static/entregables_independientes_v1/08_techo_incertidumbre.zip>` (928 KiB) | Reconstruye cobertura original, 6.080 categorías y el proxy de techo con pesos guardados. | Python estándar; reanálisis completo opcional. |
+| {download}`D09 · Arquitecturas: NAS no aplica <_static/entregables_independientes_v1/09_arquitecturas_no_aplica.zip>` (42 KiB) | Genera y valida la justificación del catálogo actual con arquitecturas definidas. | Python estándar; no ejecuta una búsqueda NAS. |
+| {download}`D10 · Paper guía y réplica parcial <_static/entregables_independientes_v1/10_paper_guia_replica.zip>` (493 KiB) | Reproduce los agregados de cinco semillas; incluye ETTh1, autores y entrenamiento CPU opcional. | Python estándar; PyTorch sólo para entrenar. |
+| {download}`D11 · Reproducibilidad: Apéndice B <_static/entregables_independientes_v1/11_reproducibilidad.zip>` (61 KiB) | Genera la lista de 21 ítems, sus estados, evidencia y recibos. | Python estándar. |
+| {download}`D12 · Presentación y notas de defensa <_static/entregables_independientes_v1/12_presentacion_defensa.zip>` (571 KiB) | Genera 14 diapositivas HTML, notas del orador y tablas de apoyo; se pueden imprimir a PDF. | Python estándar; no requiere PowerPoint. |
+
+**Alcance de la ejecución:** los paquetes de análisis reproducen cálculos desde los pronósticos y datos incluidos. D02 verifica los modelos con entradas artificiales y pesos iniciales; las opciones de entrenamiento están separadas y documentadas. Los entrenamientos opcionales requieren las dependencias y el hardware indicados en cada `LEEME.md`; no se lanzan al ejecutar el comando predeterminado.
+
+**NAS no aplica al catálogo actual**, incluida TiDE R0-v2; D09 entrega su justificación ejecutable. D12 contiene las diapositivas y notas preparadas, mientras que la realización y evaluación de la defensa oral conservan su carácter pendiente.
+
+{download}`Instrucciones generales <_static/entregables_independientes_v1/LEEME.md>` · [Inventario y SHA-256](_static/entregables_independientes_v1/index.json) · [Comprobación de los doce ZIP extraídos](_static/entregables_independientes_v1/execution_report.json) · [Data Card original](_static/e2_point1_review_v1/dataset_card_current.json).
+
+La [entrega consolidada](sections/47_entrega_consolidada.md), el [Apéndice B](sections/61_reproduccion_consolidada.md) y la [matriz de requisitos](sections/38_cumplimiento_guia.md) conservan el estado científico de cada componente. Que un archivo se ejecute correctamente no convierte los controles experimentales pendientes en resultados aprobados.
 
 ## Estado del benchmark y suplementos
 
@@ -125,7 +139,7 @@ Los cortes anteriores mantienen sus fechas y archivos. Sus conteos parciales y p
 
 - [Instantánea y procedencia](_static/e2_progress_final_20261113_v2/progress_snapshot.json)
 - [Avance de las trece redes, CSV](_static/e2_progress_final_20261113_v2/neural_progress.csv)
-- [Descargar el paquete de entrega](_static/delivery_20261112/Entregable2_evidencia_disponible.zip)
+- [Paquete histórico del 12/11](_static/delivery_20261112/Entregable2_evidencia_disponible.zip)
 - [Fuentes y hashes](_static/e2_progress_final_20261113_v2/source_evidence.json)
 - [Manifiesto](_static/e2_progress_final_20261113_v2/manifest.json)
 - [corte anterior del 13/11, 07:24](_static/e2_progress_final_20261113/progress_snapshot.json)

@@ -467,22 +467,76 @@
 <p><strong>Deep Learning · 2026-30 · Jassan Arteta</strong></p>
 <section id="entregables">
 <span id="e2-entregables-portada"></span><h2>Entregables<a class="headerlink" href="#entregables" title="Link to this heading">#</a></h2>
-<p>La lista de la guía de E2, páginas 58–59, se incluye completa a continuación, con enlaces a los componentes del informe. La <a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">entrega consolidada</span></a> detalla su ubicación, evidencia y estado actual.</p>
-<ul class="simple">
-<li><p><strong>Informe en Jupyter Book</strong> con ejecución reproducible de celdas. <a class="reference internal" href="sections/08_reproducibilidad.html"><span class="std std-doc">Informe y reproducción</span></a>.</p></li>
-<li><p><strong>Código completo y documentado</strong>: EDA, diez modelos, <em>baselines</em>, pruebas de ajuste y sobreajuste, análisis estadístico, robustez, incertidumbre e interpretabilidad. <a class="reference internal" href="sections/04_implementacion.html"><span class="std std-doc">Implementación</span></a> · <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630">Repositorio</a>.</p></li>
-<li><p><strong>Dataset o instrucciones verificables para obtenerlo</strong>, junto con la <strong>Data Card</strong> y el contrato de datos. <a class="reference internal" href="sections/01_punto_partida.html"><span class="std std-doc">Datos y fuentes</span></a> · <a class="reference download internal" download="" href="_downloads/4394f1b61c4716dca968428d8849eefa/dataset_card_current.json"><span class="xref download myst">Data Card</span></a> · <a class="reference internal" href="sections/10_auditoria_datos.html"><span class="std std-doc">Contrato de datos</span></a>.</p></li>
-<li><p><strong>Preregistro fechado y versionado</strong> (sección 9) y <strong>reporte de auditoría de fuga</strong> (sección 10). <a class="reference internal" href="sections/09_protocolo_registrado.html"><span class="std std-doc">Preregistro</span></a> · <a class="reference internal" href="sections/10_auditoria_datos.html"><span class="std std-doc">Auditoría</span></a>.</p></li>
-<li><p><strong>Ficha de ruta metodológica</strong> que indique el tipo de problema elegido, la ruta seguida de la sección 7.4 y la evidencia —tabla de p-valores, tamaños del efecto e IC— de cada prueba de las Tablas A, B y C. <a class="reference internal" href="sections/07_ruta_temporal.html"><span class="std std-doc">Ruta F2a: series de tiempo</span></a> · <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Pruebas y evidencia disponible</span></a>.</p></li>
-<li><p><strong>Tabla comparativa</strong> con métricas, costos computacionales e inferencia estadística, siguiendo las plantillas del Apéndice A. <a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">Benchmark</span></a> · <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice A</span></a>.</p></li>
-<li><p><strong>Registro de experimentos</strong> —configuraciones, semillas y resultados por ejecución— y fichas de modelo (sección 11.3). <a class="reference internal" href="sections/11_hpo_equidad.html"><span class="std std-doc">Registro y fichas</span></a>.</p></li>
-<li><p><strong>Reporte de techo de desempeño y de incertidumbre</strong> (sección 12). <a class="reference internal" href="sections/12_incertidumbre_errores.html"><span class="std std-doc">Techo, incertidumbre y errores</span></a>.</p></li>
-<li><p><strong>Reporte de la búsqueda de arquitectura</strong> (sección 14) para cada modelo sin diseño predefinido: listado de las 1.000 arquitecturas, resultados de las dos fases, finalistas, regla de selección, análisis de efectos y frente de Pareto. <strong>No aplica al catálogo actual de arquitecturas definidas</strong>, incluida TiDE R0-v2. <a class="reference internal" href="sections/14_arquitecturas.html"><span class="std std-doc">Justificación</span></a>.</p></li>
-<li><p><strong>Paper guía</strong>: réplica parcial y limitación identificada (sección 5), que sirve de insumo al Entregable 3. <a class="reference internal" href="sections/05_paper_guia.html"><span class="std std-doc">Paper guía y replicación</span></a>.</p></li>
-<li><p><strong>Lista de verificación de reproducibilidad completada</strong> (Apéndice B). <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Lista de 21 ítems con sus estados y evidencias</span></a>.</p></li>
-<li><p><strong>Presentación oral con defensa técnica de las decisiones metodológicas</strong>. La <a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">entrega consolidada</span></a> reúne el soporte para la defensa; su realización y evaluación oral siguen pendientes de acreditar.</p></li>
-</ul>
-<p>Los enlaces permiten revisar lo disponible y sus límites. Incluir un componente en esta lista no lo declara íntegramente aprobado: el <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B</span></a> y la <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de requisitos</span></a> conservan las condiciones parciales y pendientes.</p>
+<p><strong>Descargas independientes para ejecutar en el computador del profesor.</strong> Cada ZIP incluye su propio <code class="docutils literal notranslate"><span class="pre">run.py</span></code>, instrucciones <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>, entradas necesarias y manifiesto SHA-256. Se puede usar cada paquete por separado, sin clonar el repositorio ni copiar archivos de la página web.</p>
+<ol class="arabic simple">
+<li><p>Descargar el ZIP elegido y <strong>extraer todo su contenido</strong> en una carpeta propia.</p></li>
+<li><p>Abrir la carpeta <code class="docutils literal notranslate"><span class="pre">D01</span></code>, <code class="docutils literal notranslate"><span class="pre">D02</span></code>, etc. y leer <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>.</p></li>
+<li><p>Ejecutar <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run.py</span></code> —o <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-3.12</span> <span class="pre">run.py</span></code> en Windows— y abrir el informe o los archivos generados en <code class="docutils literal notranslate"><span class="pre">output/</span></code>.</p></li>
+</ol>
+<p>Se recomienda <strong>Python 3.12</strong>. D02 requiere instalar sus dependencias de CPU antes del primer forward; los otros once comandos predeterminados usan la biblioteca estándar. Cada ZIP incluye también <code class="docutils literal notranslate"><span class="pre">ejecutar.cmd</span></code> y <code class="docutils literal notranslate"><span class="pre">ejecutar.sh</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Archivo independiente</p></th>
+<th class="head"><p>Qué genera al ejecutarlo</p></th>
+<th class="head"><p>Requisitos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/2ddfb038efe2093e7fb084c2631a950e/01_informe_jupyter_book.zip"><code class="xref download docutils literal notranslate"><span class="pre">D01</span> <span class="pre">·</span> <span class="pre">Libro</span> <span class="pre">completo</span> <span class="pre">y</span> <span class="pre">fuentes</span></code></a> (63.51 MiB)</p></td>
+<td><p>Extrae el libro HTML offline, fórmulas locales y fuentes para reconstruirlo.</p></td>
+<td><p>Python estándar; rebuild opcional con Jupyter Book.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/c2b9a4796685259419eaf647858dd321/02_codigo_modelos.zip"><code class="xref download docutils literal notranslate"><span class="pre">D02</span> <span class="pre">·</span> <span class="pre">Código</span> <span class="pre">completo</span> <span class="pre">de</span> <span class="pre">modelos</span></code></a> (7.30 MiB)</p></td>
+<td><p>Ejecuta las 13 arquitecturas en CPU; incluye fuentes de autores y entrenamiento CUDA local opcional.</p></td>
+<td><p>Instalar requirements_cpu.txt; luego python run.py.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/0961c6e1163031d54d15f628566dce77/03_datos_contrato.zip"><code class="xref download docutils literal notranslate"><span class="pre">D03</span> <span class="pre">·</span> <span class="pre">Dataset,</span> <span class="pre">Data</span> <span class="pre">Card</span> <span class="pre">y</span> <span class="pre">contrato</span></code></a> (88 KiB)</p></td>
+<td><p>Reconstruye σ₇ y verifica los CSV diarios incluidos; ofrece descarga oficial verificada de datos crudos.</p></td>
+<td><p>Python estándar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/9568b42fbbf8fb03dcbb529f71a4f4be/04_preregistro_auditoria.zip"><code class="xref download docutils literal notranslate"><span class="pre">D04</span> <span class="pre">·</span> <span class="pre">Preregistro</span> <span class="pre">y</span> <span class="pre">auditoría</span> <span class="pre">de</span> <span class="pre">fuga</span></code></a> (65 KiB)</p></td>
+<td><p>Genera el informe local con protocolo, congelación, controles ejecutados y pendientes.</p></td>
+<td><p>Python estándar.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/6ea8348b764b45ff3756f5a4cdf29cbb/05_ficha_ruta_F2a.zip"><code class="xref download docutils literal notranslate"><span class="pre">D05</span> <span class="pre">·</span> <span class="pre">Ficha</span> <span class="pre">de</span> <span class="pre">ruta</span> <span class="pre">F2a</span></code></a> (116 KiB)</p></td>
+<td><p>Genera la ficha y tablas de pruebas, unidades, p-valores, efectos e IC disponibles.</p></td>
+<td><p>Python estándar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/86948780d79c7b20149a89040a0c8d4f/06_benchmark_comparaciones.zip"><code class="xref download docutils literal notranslate"><span class="pre">D06</span> <span class="pre">·</span> <span class="pre">Benchmark</span> <span class="pre">y</span> <span class="pre">comparaciones</span></code></a> (550 KiB)</p></td>
+<td><p>Recalcula métricas de los 81 predictores y reconstruye A2; incluye reanálisis estadístico opcional.</p></td>
+<td><p>Python estándar; NumPy/SciPy sólo para repetir pruebas.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/afd5490f5227afc2afc70fe20cd69aa1/07_registro_experimentos.zip"><code class="xref download docutils literal notranslate"><span class="pre">D07</span> <span class="pre">·</span> <span class="pre">Registro</span> <span class="pre">experimental</span> <span class="pre">y</span> <span class="pre">fichas</span></code></a> (69 KiB)</p></td>
+<td><p>Genera tablas y fichas desde configuraciones, semillas, resultados y costes incluidos.</p></td>
+<td><p>Python estándar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/2924ced332d3bfcac99d745e6b322f28/08_techo_incertidumbre.zip"><code class="xref download docutils literal notranslate"><span class="pre">D08</span> <span class="pre">·</span> <span class="pre">Techo,</span> <span class="pre">incertidumbre</span> <span class="pre">y</span> <span class="pre">errores</span></code></a> (928 KiB)</p></td>
+<td><p>Reconstruye cobertura original, 6.080 categorías y el proxy de techo con pesos guardados.</p></td>
+<td><p>Python estándar; reanálisis completo opcional.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/d0c09ee7d2c42195abda0eb791314116/09_arquitecturas_no_aplica.zip"><code class="xref download docutils literal notranslate"><span class="pre">D09</span> <span class="pre">·</span> <span class="pre">Arquitecturas:</span> <span class="pre">NAS</span> <span class="pre">no</span> <span class="pre">aplica</span></code></a> (42 KiB)</p></td>
+<td><p>Genera y valida la justificación del catálogo actual con arquitecturas definidas.</p></td>
+<td><p>Python estándar; no ejecuta una búsqueda NAS.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/4191fbf81e76ed8a925a5410f5054021/10_paper_guia_replica.zip"><code class="xref download docutils literal notranslate"><span class="pre">D10</span> <span class="pre">·</span> <span class="pre">Paper</span> <span class="pre">guía</span> <span class="pre">y</span> <span class="pre">réplica</span> <span class="pre">parcial</span></code></a> (493 KiB)</p></td>
+<td><p>Reproduce los agregados de cinco semillas; incluye ETTh1, autores y entrenamiento CPU opcional.</p></td>
+<td><p>Python estándar; PyTorch sólo para entrenar.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/7a47896eb1e44d30bf4b7366124b4e2d/11_reproducibilidad.zip"><code class="xref download docutils literal notranslate"><span class="pre">D11</span> <span class="pre">·</span> <span class="pre">Reproducibilidad:</span> <span class="pre">Apéndice</span> <span class="pre">B</span></code></a> (61 KiB)</p></td>
+<td><p>Genera la lista de 21 ítems, sus estados, evidencia y recibos.</p></td>
+<td><p>Python estándar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/f35565f4f31d757fc361a37e96d94b76/12_presentacion_defensa.zip"><code class="xref download docutils literal notranslate"><span class="pre">D12</span> <span class="pre">·</span> <span class="pre">Presentación</span> <span class="pre">y</span> <span class="pre">notas</span> <span class="pre">de</span> <span class="pre">defensa</span></code></a> (571 KiB)</p></td>
+<td><p>Genera 14 diapositivas HTML, notas del orador y tablas de apoyo; se pueden imprimir a PDF.</p></td>
+<td><p>Python estándar; no requiere PowerPoint.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Alcance de la ejecución:</strong> los paquetes de análisis reproducen cálculos desde los pronósticos y datos incluidos. D02 verifica los modelos con entradas artificiales y pesos iniciales; las opciones de entrenamiento están separadas y documentadas. Los entrenamientos opcionales requieren las dependencias y el hardware indicados en cada <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>; no se lanzan al ejecutar el comando predeterminado.</p>
+<p><strong>NAS no aplica al catálogo actual</strong>, incluida TiDE R0-v2; D09 entrega su justificación ejecutable. D12 contiene las diapositivas y notas preparadas, mientras que la realización y evaluación de la defensa oral conservan su carácter pendiente.</p>
+<p><a class="reference download internal" download="" href="_downloads/42cdbfaef7e275da668394626ee63f4d/LEEME.md"><code class="xref download docutils literal notranslate"><span class="pre">Instrucciones</span> <span class="pre">generales</span></code></a> · <a class="reference download internal" download="" href="_downloads/5f5f132d0c90a107015d707a8f51c8a1/index.json"><span class="xref download myst">Inventario y SHA-256</span></a> · <a class="reference download internal" download="" href="_downloads/aa96b9327c9841dcc8238b4f5e823c09/execution_report.json"><span class="xref download myst">Comprobación de los doce ZIP extraídos</span></a> · <a class="reference download internal" download="" href="_downloads/4394f1b61c4716dca968428d8849eefa/dataset_card_current.json"><span class="xref download myst">Data Card original</span></a>.</p>
+<p>La <a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">entrega consolidada</span></a>, el <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B</span></a> y la <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de requisitos</span></a> conservan el estado científico de cada componente. Que un archivo se ejecute correctamente no convierte los controles experimentales pendientes en resultados aprobados.</p>
 </section>
 <section id="estado-del-benchmark-y-suplementos">
 <h2>Estado del benchmark y suplementos<a class="headerlink" href="#estado-del-benchmark-y-suplementos" title="Link to this heading">#</a></h2>
@@ -640,7 +694,7 @@
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="_downloads/0ae100cd2a0619f54f0c8946be08669a/progress_snapshot.json"><span class="xref download myst">Instantánea y procedencia</span></a></p></li>
 <li><p><a class="reference download internal" download="" href="_downloads/433b5f0ed32850e57f4599ab43226966/neural_progress.csv"><span class="xref download myst">Avance de las trece redes, CSV</span></a></p></li>
-<li><p><a class="reference download internal" download="" href="_downloads/80525faefdf76d3e2b06ee4792209944/Entregable2_evidencia_disponible.zip"><span class="xref download myst">Descargar el paquete de entrega</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/80525faefdf76d3e2b06ee4792209944/Entregable2_evidencia_disponible.zip"><span class="xref download myst">Paquete histórico del 12/11</span></a></p></li>
 <li><p><a class="reference download internal" download="" href="_downloads/ce2322748961f074d4caa1cadf35d2af/source_evidence.json"><span class="xref download myst">Fuentes y hashes</span></a></p></li>
 <li><p><a class="reference download internal" download="" href="_downloads/8615084d8ab6f942fe4ba757ad5c9329/manifest.json"><span class="xref download myst">Manifiesto</span></a></p></li>
 <li><p><a class="reference download internal" download="" href="_downloads/6834ef402375bb26a1fed0a912c9caba/progress_snapshot.json"><span class="xref download myst">corte anterior del 13/11, 07:24</span></a></p></li>
