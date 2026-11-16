@@ -2,7 +2,7 @@
 
 **Jassan Arteta · Deep Learning 2026-30**
 
-El informe está organizado en las **secciones 1 a 7 de la guía**, con el desarrollo disponible hasta ahora. La navegación principal separa introducción, estándar, panorama y los bloques A, B y C del diseño riguroso. Los resultados, fuentes y direcciones anteriores se conservan en anexos.
+El informe está organizado en las **secciones 1 a 8 de la guía**, con el desarrollo disponible hasta ahora. La navegación principal reúne introducción, estándar, panorama, bloques A–C, diseño riguroso y planificación de la verificación estadística del Bloque D. Los resultados, fuentes y direcciones anteriores se conservan en anexos.
 
 | Sección | Contenido |
 |---|---|
@@ -13,12 +13,13 @@ El informe está organizado en las **secciones 1 a 7 de la guía**, con el desar
 | [5 Bloque B Selección de configuraciones y exportación](sections/05_configuraciones_exportacion.md) | Tabla de 16 sistemas y tres exportaciones verificadas. |
 | [6 Bloque C El modelo original](sections/06_modelo_original.md) | Candidato, antecedentes, implementación y estados R1/R2/R3. |
 | [7 Diseño riguroso del modelo original](sections/07_diseno_riguroso.md) | Hipótesis, disciplina de diseño, sustento teórico y ablación. |
+| [8 Bloque D Verificación estadística y evaluación ampliada](sections/08_verificacion_estadistica.md) | Borrador de protocolo, equidad, potencia, familia completa y criterios de R3. |
 
 ## Estado del proyecto
 
 E2 conserva su benchmark de 16 sistemas y 608 fechas, con auditorías y suplementos posteriores de alcance explícito. E3 tiene inventario de artefactos, configuraciones verificadas y tres exportaciones CPU sobre calibración histórica. El candidato neuronal dispone de formulación, demostración de su cabeza latente y **35 pruebas artificiales**.
 
-**La novedad R1, la defensa académica de R2 y la superioridad R3 siguen pendientes.** Los bloques A y B aún no están cerrados; tampoco existe una campaña confirmatoria del candidato o un dashboard Render terminado. Esta reorganización no añade entrenamientos ni cambia métricas, pruebas o congelamientos.
+**La novedad R1, la defensa académica de R2 y la superioridad R3 siguen pendientes.** Los bloques A y B aún no están cerrados; tampoco existe una campaña confirmatoria del candidato o un dashboard Render terminado. La sección 8 incorpora un borrador de protocolo sin congelamiento, piloto ni contrastes de mercado ejecutados. Esta ampliación documental no añade entrenamientos ni cambia métricas, pruebas o congelamientos.
 
 La [concordancia y los anexos](sections/concordancia_secciones.md) permiten localizar las páginas y evidencias de trabajo anteriores. Sus números históricos no se confunden con los capítulos actuales de la guía.
 

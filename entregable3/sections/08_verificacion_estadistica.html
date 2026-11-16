@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8 Bloque D Verificación estadística y evaluación ampliada &#8212; Entregable 3 · Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/08_verificacion_estadistica';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Concordancia y documentos de trabajo anteriores" href="concordancia_secciones.html" />
+    <link rel="prev" title="7 Diseño riguroso del modelo original" href="07_diseno_riguroso.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3 · Deep Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 8 de la guía</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">1 Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_estandar_profundidad.html">2 Estándar de profundidad exigido</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_panorama_general.html">3 Panorama general del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_correcciones_e2.html">4 Bloque A Correcciones del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_configuraciones_exportacion.html">5 Bloque B Selección de configuraciones y exportación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_modelo_original.html">6 Bloque C El modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_diseno_riguroso.html">7 Diseño riguroso del modelo original</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8 Bloque D Verificación estadística y evaluación ampliada</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_planificacion.html">Plan de trabajo inicial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_desarrollo_evidencias.html">Desarrollo y evidencias anteriores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_resultados_discusion.html">Resultados y discusión del corte anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reproducibilidad_entrega.html">Reproducibilidad y estructura final prevista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad del primer corte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del candidato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_bloques_a_b.html">Evidencias originales de los bloques A y B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_modelo_original.html">Desarrollo original del candidato C</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 3 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/08_verificacion_estadistica.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8 Bloque D Verificación estadística y evaluación ampliada</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#protocolo-experimental-pre-registrado">8.1 Protocolo experimental pre-registrado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equidad-de-la-comparacion">8.2 Equidad de la comparación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-en-conjuntos-de-datos-adicionales">8.3 Evaluación en conjuntos de datos adicionales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-operativa-de-superioridad-r3">8.4 Definición operativa de superioridad R3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-de-contrastes">8.5 Familia de contrastes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-metodologicas-para-que-las-pruebas-sean-validas">8.6 Reglas metodológicas para que las pruebas sean válidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-estadistica-familias-potencia-y-agregacion">8.7 Estrategia estadística: familias, potencia y agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-del-error-por-familia">8.7.1 Control del error por familia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-numero-de-semillas">8.7.2 Potencia y número de semillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-jerarquica-y-multiples-conjuntos-de-datos">8.7.3 Agregación jerárquica y múltiples conjuntos de datos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-sensibilidad-y-calidad-probabilistica">8.8 Robustez, sensibilidad y calidad probabilística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-obligatorio-de-resultados">8.9 Reporte obligatorio de resultados</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bloque-d-verificacion-estadistica-y-evaluacion-ampliada">
+<h1>8 Bloque D Verificación estadística y evaluación ampliada<a class="headerlink" href="#bloque-d-verificacion-estadistica-y-evaluacion-ampliada" title="Link to this heading">#</a></h1>
+<p><strong>Estado: diseño documental, sin protocolo congelado ni experimentos confirmatorios del candidato.</strong> Este capítulo aplica la Sección 8 de la guía al pronóstico BTCUSDT, D7×5 OHLCV → σ₇ poblacional, sin anualización, horizonte h=1 y ruta temporal F2a. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">implementación de la sección 6</span></a> y la <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">demostración y verificación de la sección 7</span></a> no establecen superioridad predictiva. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_d/protocolo_borrador.md">borrador de protocolo</a> reúne las decisiones que deben cerrarse antes de ejecutar la campaña definitiva; no es un preregistro ni asigna cómputo.</p>
+<section id="protocolo-experimental-pre-registrado">
+<h2>8.1 Protocolo experimental pre-registrado<a class="headerlink" href="#protocolo-experimental-pre-registrado" title="Link to this heading">#</a></h2>
+<p>La métrica primaria heredada es la <strong>media de las RMSE individuales</strong>, en unidades originales de σ₇. Para un modelo j y una ejecución r sobre las mismas fechas admisibles T,</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{RMSE}_{j,r}=\sqrt{\frac1{|T|}\sum_{t\in T}(y_t-\widehat y_{j,r,t})^2},\qquad
+M_j=\frac1{R_j}\sum_{r=1}^{R_j}\operatorname{RMSE}_{j,r}.
+\]</div>
+<p>No se sustituye esta media por la RMSE de un ensemble ni por la raíz de la MSE agregada entre semillas. La ganancia frente al rival j se orienta como Δj = Mj − Moriginal: positivo favorece al candidato. La hipótesis confirmatoria propuesta es</p>
+<div class="math notranslate nohighlight">
+\[
+H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
+\qquad\delta=0{,}00025772842664981106.
+\]</div>
+<p>El parámetro poblacional y su estimador deben vincularse a la unidad de incertidumbre elegida; una media observada no basta para rechazar la nula. Antes del registro faltan estas decisiones concretas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Registro exigido</p></th>
+<th class="head"><p>Qué debe quedar cerrado</p></th>
+<th class="head"><p>Estado E3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Estándar y procedencia</p></td>
+<td><p>Compromiso teórico, fuente del mecanismo, modificación y relación con el paper guía.</p></td>
+<td><p>Estándar descrito; registro formal <code class="docutils literal notranslate"><span class="pre">experiments/estandar.md</span></code>, revisión R1 y defensa pendientes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hipótesis y métricas</p></td>
+<td><p>Primaria, secundarias, δ, brecha δg, hipótesis D1–D5 y análisis exploratorios separados.</p></td>
+<td><p>RMSE y δ heredados; catálogo secundario y reglas finales pendientes.</p></td>
+</tr>
+<tr class="row-even"><td><p>Datos</p></td>
+<td><p>Fuentes, versiones, hashes, exposición previa, cortes, purga/embargo y tres conjuntos adicionales.</p></td>
+<td><p>Sin selección de los tres conjuntos ni cierre de confirmación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ejecuciones</p></td>
+<td><p>Semillas, R, determinismo, versiones, fallos y política común de entrenamiento/calibración.</p></td>
+<td><p>Lista final y dimensionamiento pendientes.</p></td>
+</tr>
+<tr class="row-even"><td><p>Inferencia</p></td>
+<td><p>Familia completa, tres procedimientos válidos por rival, supuestos, estadísticos, IC y Holm.</p></td>
+<td><p>Batería por formular y validar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Recursos</p></td>
+<td><p>Espacios, intentos, épocas, parada, tiempo, hardware y costes por modelo.</p></td>
+<td><p>Presupuesto E3 pendiente.</p></td>
+</tr>
+<tr class="row-even"><td><p>Diseño</p></td>
+<td><p>Variantes, esfuerzo acumulado Nd y separación desarrollo/confirmación.</p></td>
+<td><p>Cuatro variantes funcionales de software; Nd de mercado igual a cero, según la bitácora.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Congelamiento</p></td>
+<td><p>Documento final, fecha y tag Git reales anteriores a los experimentos definitivos.</p></td>
+<td><p>No existe cierre confirmatorio de este borrador.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a> conserva los criterios de desarrollo como propuestas. Toda desviación posterior se registrará con fecha, motivo e impacto; los análisis no previstos serán exploratorios y no podrán sostener por sí solos R3. No se retrofecha un registro después de observar resultados.</p>
+</section>
+<section id="equidad-de-la-comparacion">
+<h2>8.2 Equidad de la comparación<a class="headerlink" href="#equidad-de-la-comparacion" title="Link to this heading">#</a></h2>
+<p>El candidato y cada rival deben compartir particiones, variables, preprocesamiento ajustado sólo en entrenamiento, aumentos admisibles, fuente de pesos si se usan, métrica y política de evaluación. Las transformaciones, épocas y calibradores se fijan antes de consultar la confirmación. La <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">sección 4</span></a> conserva los controles y límites de E2; su existencia no certifica el nuevo pipeline del candidato.</p>
+<p>El presupuesto se declarará en <strong>configuraciones y tiempo</strong>, o se justificará otra definición previa. Deben fijarse intentos, espacio relativo, épocas máximas, parada temprana, semillas HPO y tratamiento de fallos. Si el candidato consume más por intento, se igualará el tiempo total o se reportarán ambos análisis. El esfuerzo de idear variantes se contabiliza separado del HPO.</p>
+<p>Se reportarán parámetros totales/activos, FLOPs con su alcance y capacidad de todos los modelos. Una diferencia sustancial de tamaño exige una variante comparable o discusión explícita; las ablaciones que cambien parámetros tendrán su control de tamaño igualado conforme a la sección 7.4. Los costes heredados de GPU no se etiquetan como latencias CPU.</p>
+<p>Las redes requieren <strong>al menos diez semillas independientes</strong>, o más si el dimensionamiento lo exige, con pareado entre modelos cuando exista aleatoriedad. Las seis semillas históricas de E2 no completan ese requisito. Una campaña nueva deberá conservar recetas y reglas previamente cerradas, sin reajustar rivales después de ver la comparación final.</p>
+<p>Persistence, SeasonalNaive y ARIMA son comparadores deterministas en el contrato heredado: copiar diez veces la misma trayectoria no genera diez ajustes independientes. Se representará la variación del candidato contra esa referencia fija y la incertidumbre temporal sin inventar semillas clásicas. Hardware, precisión, tiempo, memoria y costes reales se registrarán en condiciones comparables.</p>
+</section>
+<section id="evaluacion-en-conjuntos-de-datos-adicionales">
+<h2>8.3 Evaluación en conjuntos de datos adicionales<a class="headerlink" href="#evaluacion-en-conjuntos-de-datos-adicionales" title="Link to this heading">#</a></h2>
+<p>Se necesitan al menos tres conjuntos públicos de la <strong>misma tarea de pronóstico de volatilidad</strong> y con la misma primaria. Cada uno debe diferir de BTCUSDT en al menos dos ejes documentados, como dominio, tamaño, ruido o dimensionalidad. Se registrarán fuente, licencia, versión, hash, criterio de selección y dependencia entre series antes de observar el desempeño.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conjunto requerido</p></th>
+<th class="head"><p>Fuente y diferencias documentadas</p></th>
+<th class="head"><p>Selección y evaluación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Adicional 1</p></td>
+<td><p>Pendiente de elegir y justificar.</p></td>
+<td><p>No ejecutada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Adicional 2</p></td>
+<td><p>Pendiente de elegir y justificar.</p></td>
+<td><p>No ejecutada.</p></td>
+</tr>
+<tr class="row-even"><td><p>Adicional 3</p></td>
+<td><p>Pendiente de elegir y justificar.</p></td>
+<td><p>No ejecutada.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El candidato y los <strong>16 rivales</strong> se evaluarán en cada conjunto, sin excepciones por resultados desfavorables, con presupuesto comparable y auditoría de fuga. Si un conjunto se usa para rediseñar el mecanismo, deja de ser evidencia independiente de esa decisión. Los márgenes y sus unidades en escalas adicionales deben justificarse antes de evaluar, sin recalibrarlos según la ventaja observada.</p>
+<p>Se reportarán métricas, diferencias, IC y efectos por conjunto; no se promedian RMSE de escalas distintas. La consolidación prevista es Friedman con corrección de Iman–Davenport y pares con Holm, o una alternativa bayesiana con ROPE elegida previamente. No se escogerá el procedimiento más favorable a posteriori. Con sólo tres conjuntos la potencia global puede ser limitada, y series relacionadas pueden compartir dependencia; la consistencia por conjunto seguirá siendo necesaria.</p>
+</section>
+<section id="definicion-operativa-de-superioridad-r3">
+<h2>8.4 Definición operativa de superioridad R3<a class="headerlink" href="#definicion-operativa-de-superioridad-r3" title="Link to this heading">#</a></h2>
+<p>La guía exige cumplir simultáneamente las condiciones siguientes. Ninguna está acreditada por las pruebas de software del candidato:</p>
+<ol class="arabic simple">
+<li><p><strong>Media favorable frente a cada rival.</strong> Menor primaria media, con comparación sobre soporte y tratamiento comunes.</p></li>
+<li><p><strong>Tres pruebas válidas y relevancia.</strong> La batería previamente cerrada debe rechazar para cada rival, con p ajustados por Holm menores que α=0,05, orientación favorable y ganancia mayor que δ. Si se usa MCS, su nivel se declara aparte; pertenecer a un conjunto no prueba dirección de superioridad ni ganancia práctica.</p></li>
+<li><p><strong>Efecto no despreciable e IC.</strong> La guía cita |δCliff| ≥ 0,147 o |dCohen| ≥ 0,2 cuando proceda. Debe elegirse un estimador compatible con pareado, dependencia y unidad, con IC95 % de ganancia cuyo límite inferior sea positivo e idealmente mayor que δ. Un IC marginal no sustituye la corrección familiar ni la prueba de la frontera δ.</p></li>
+<li><p><strong>Consistencia adicional.</strong> Mejor media en al menos dos de los tres conjuntos y ausencia de inferioridad significativa frente a cualquier rival en cualquiera de ellos. No detectar inferioridad no demuestra equivalencia o inocuidad.</p></li>
+<li><p><strong>Adecuación del candidato.</strong> Superar el baseline trivial y cumplir los criterios de brecha, calibración, residuos y coherencia validación–prueba. Se adaptarán las Tablas A y B de la ruta F2a al candidato, con aceptación y límites prefijados.</p></li>
+<li><p><strong>Conclusión robusta.</strong> Conservar la conclusión bajo pruebas alternativas y sensibilidades predefinidas. Si cambia, se reportará como no robusta, sin elegir sólo el análisis favorable.</p></li>
+</ol>
+<p>Para la brecha se conserva <strong>δg=0,00025772842664981106</strong>, registrado previamente en E2. Coincide numéricamente con δ, pero tiene otro significado: g = RMSEvalidación − RMSEtrain, calculada con riesgos comparables. Falta cerrar su transferencia al candidato, el estimando —media o mediana— y el ámbito de incertidumbre. La orientación es H0,g: θg≥δg frente a H1,g: θg&lt;δg, con θg definido previamente como media o mediana. Una prueba sobre la media de g no acredita automáticamente una afirmación sobre su mediana. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">suplemento posterior de E2</a> conserva sus resultados condicionales; no se trasladan al candidato ni a otro backend sin verificación.</p>
+</section>
+<section id="familia-de-contrastes">
+<h2>8.5 Familia de contrastes<a class="headerlink" href="#familia-de-contrastes" title="Link to this heading">#</a></h2>
+<p>La familia candidata conserva <strong>m=16 rivales de E2</strong>, todos frente al original:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Grupo</p></th>
+<th class="head"><p>Rivales incluidos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Top 10</p></td>
+<td><p>FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con predictor, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencias neuronales</p></td>
+<td><p>MLP16, LSTM32 y GRU32.</p></td>
+</tr>
+<tr class="row-even"><td><p>Comparadores clásicos</p></td>
+<td><p>Persistence, SeasonalNaive y ARIMA.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La comparación completa tendrá 17 sistemas contando al candidato. El m≈12 ilustrativo de la guía no autoriza retirar rivales. Las limitaciones de memoria del dashboard tampoco reducen la familia experimental. La afirmación «supera a todos» exige la conjunción de las decisiones de los 16 contrastes; un rival no concluyente no se elimina de la tabla.</p>
+<p>Falta cerrar el Bloque A y vincular las recetas confirmatorias con sus artefactos y hashes. Se conserva el benchmark histórico y se registrarán las ejecuciones nuevas con identidad propia; no se alteran sus resultados, recetas o semillas retrospectivamente para favorecer al candidato.</p>
+</section>
+<section id="reglas-metodologicas-para-que-las-pruebas-sean-validas">
+<h2>8.6 Reglas metodológicas para que las pruebas sean válidas<a class="headerlink" href="#reglas-metodologicas-para-que-las-pruebas-sean-validas" title="Link to this heading">#</a></h2>
+<p>La unidad temporal no es una fila iid: las ventanas D7 y los objetivos σ₇ comparten soporte, y los residuos pueden estar autocorrelacionados y ser heterocedásticos. El remuestreo deberá mantener bloques sincronizados entre todos los modelos, fechas comunes y la estructura de semillas. Sus longitudes, réplicas, generadores y sensibilidades deben fijarse antes del cálculo final. Las semillas sobre un calendario no son mercados independientes.</p>
+<p>Los datos de confirmación se consultarán al final, con diseño, hiperparámetros, umbrales y parada fijados en desarrollo. Las fechas históricas conocidas de E1/E2 no recuperan cegamiento al volver a puntuarlas. La purga, el embargo y la disponibilidad de covariables se derivarán del soporte real; compartir observaciones pasadas disponibles no implica por sí solo fuga, pero debe auditarse.</p>
+<p><strong>Todavía no existe una batería cerrada de tres pruebas distintas admisibles de la Tabla 4 y justificadas para F2a por rival.</strong> Las opciones siguientes se distinguen por estimando y alcance; figurar en esta lista no acredita su admisibilidad automática para la ruta temporal:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Procedimiento candidato</p></th>
+<th class="head"><p>Hipótesis o incertidumbre que debe justificarse</p></th>
+<th class="head"><p>Límite para R3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bootstrap temporal pareado de la ganancia de RMSE</p></td>
+<td><p>Contraste de Δj frente a δ, remuestreo por bloques y construcción válida bajo la nula; coherencia con la media de RMSE individuales.</p></td>
+<td><p>Es candidato natural, no una prueba ya ejecutada del original. Cambiar bloque, B o semilla no crea otra prueba distinta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>t pareada de ganancias entre semillas</p></td>
+<td><p>Media de ganancias condicionada al calendario; independencia de inicializaciones y adecuación de la distribución o aproximación.</p></td>
+<td><p>No representa por sí sola incertidumbre temporal ni múltiples mercados.</p></td>
+</tr>
+<tr class="row-even"><td><p>Aleatorización de signos de ganancias</p></td>
+<td><p>Simetría/intercambiabilidad bajo la nula pertinente y frontera del margen correctamente formulada.</p></td>
+<td><p>Su presencia junto a la t y al bootstrap no acredita tres confirmaciones temporales homogéneas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DM–HLN, Giacomini–White y MCS</p></td>
+<td><p>Orden temporal, pérdidas, estacionariedad, varianza de largo plazo o condiciones del procedimiento global.</p></td>
+<td><p>Las versiones sobre MSE diaria e igualdad contra cero no prueban automáticamente ΔRMSE&gt;δ ni completan esa batería por sí mismas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La aplicación histórica de E2 conserva bootstrap de RMSE, t y signos entre semillas con sus ámbitos condicionados; sus DM/MCS posteriores tienen familias y estimandos propios. No se trasladan como tres pruebas confirmatorias del candidato. Antes de congelar deben formularse y validarse tres procedimientos coherentes con la afirmación principal o justificarse expresamente su combinación y sus límites.</p>
+<p>La media de pérdidas cuadráticas diarias y la media de RMSE por trayectoria son cantidades diferentes. <strong>No se inserta δ de RMSE como un desplazamiento del mismo tamaño en MSE.</strong> DM o una tabla MCS pueden aportar información auxiliar, pero no convertir una hipótesis de igualdad de MSE en una ganancia de RMSE mayor que δ. Clark–West requiere anidamiento pertinente. Nadeau–Bengio corresponde a comparaciones de particiones solapadas que justifiquen su corrección; no se aplica genéricamente a días o semillas de este calendario.</p>
+<p>Se verificarán los supuestos de cada procedimiento y se declararán diagnósticos no estimables. Una predicción no finita o un fallo conserva su estado: no se sustituye por cero ni se retira una fecha para mejorar el resultado. Los IC de diferencias temporales deben respetar la dependencia; equivalencia requiere TOST o ROPE con margen previo, no un p no significativo.</p>
+</section>
+<section id="estrategia-estadistica-familias-potencia-y-agregacion">
+<h2>8.7 Estrategia estadística: familias, potencia y agregación<a class="headerlink" href="#estrategia-estadistica-familias-potencia-y-agregacion" title="Link to this heading">#</a></h2>
+<section id="control-del-error-por-familia">
+<h3>8.7.1 Control del error por familia<a class="headerlink" href="#control-del-error-por-familia" title="Link to this heading">#</a></h3>
+<p>La propuesta del borrador aplica Holm a α=0,05 sobre los <strong>16 rivales para cada procedimiento</strong> previamente definido. Con p ordenados de una de esas familias,</p>
+<div class="math notranslate nohighlight">
+\[
+p_{(i)}^{\rm Holm}=\min\left\{1,\ \max_{1\le j\le i}(m-j+1)p_{(j)}\right\},\qquad m=16.
+\]</div>
+<p>Holm controla el error familiar si los p de partida son válidos. La coherencia de hipótesis y ámbitos de incertidumbre debe cerrarse antes de atribuir ese control a la afirmación conjunta. Para el rival r y las pruebas exigidas K, se usará</p>
+<div class="math notranslate nohighlight">
+\[
+P_r=\max_{k\in K}p_{r,k}^{\rm Holm}.
+\]</div>
+<p>Todas deben rechazar y tener dirección favorable; no se escoge el menor p. La decisión «supera a todos» requiere esa regla para <strong>cada r=1,…,16</strong>, además de las condiciones de 8.4. Se reportará el procedimiento que menos rechaza. Si se integra una prueba global como MCS, su regla debe quedar fijada; no se inventa un p por par a partir de pertenencia al conjunto.</p>
+<p>Los conjuntos adicionales, las ablaciones, los subgrupos/regímenes, las sensibilidades y los diagnósticos tendrán familias secundarias separadas y enumeradas previamente. Se informarán su tamaño y todos los p crudos/ajustados. No se subdividen ni mezclan después de ver resultados para relajar el contraste principal.</p>
+</section>
+<section id="potencia-y-numero-de-semillas">
+<h3>8.7.2 Potencia y número de semillas<a class="headerlink" href="#potencia-y-numero-de-semillas" title="Link to this heading">#</a></h3>
+<p>Se requiere un <strong>piloto de desarrollo de al menos cinco semillas por par</strong>, todavía no ejecutado para el candidato, que estime la dispersión de las diferencias pareadas frente a cada rival. Para clásicos deterministas se conserva su trayectoria fija y se estima la variación pertinente del candidato y del calendario; no se inventan cinco ajustes clásicos independientes.</p>
+<p>Como orientación normal bilateral inicial, con nivel conservador α′=0,05/m y diferencia objetivo e respecto a la frontera nula,</p>
+<div class="math notranslate nohighlight">
+\[
+R_j\approx\frac{\left(z_{1-\alpha'/2}+z_{1-\beta}\right)^2\widehat\sigma_{D,j}^{\,2}}{e^2},
+\qquad R\ge\max\left(10,\max_j\lceil R_j\rceil\right).
+\]</div>
+<p>La guía ilustra e=δ al detectar una diferencia δ frente a cero. Para la propuesta H0:Δ≤δ, la distancia es <strong>e=Δalt−δ&gt;0</strong>, no δ salvo que se planifique Δalt=2δ. La alternativa y el criterio unilateral/bilateral deben fijarse antes de dimensionar. La fórmula no certifica potencia de Holm, bootstrap, una batería de tres pruebas o fechas dependientes.</p>
+<p>El objetivo es <strong>potencia de al menos 0,90 por contraste con la regla completa</strong>, con potencia conjunta de superar a toda la familia reportada. Se dimensionarán tanto R como el calendario y se evaluará el procedimiento real, por ejemplo mediante simulación que conserve las dependencias, con supuestos e incertidumbre del piloto. No se multiplican potencias marginales como si los contrastes que comparten original y calendario fueran independientes.</p>
+<p>Si diez semillas no bastan, se aumentan antes de congelar; se reportarán MDE y limitaciones si la potencia objetivo no resulta alcanzable. La falta de rechazo no demuestra equivalencia. <strong>No se han estimado aquí σD, R definitivo, MDE ni potencia del candidato.</strong> El piloto y las seis semillas históricos de E2 no constituyen ese dimensionamiento de toda la familia nueva.</p>
+</section>
+<section id="agregacion-jerarquica-y-multiples-conjuntos-de-datos">
+<h3>8.7.3 Agregación jerárquica y múltiples conjuntos de datos<a class="headerlink" href="#agregacion-jerarquica-y-multiples-conjuntos-de-datos" title="Link to this heading">#</a></h3>
+<p>Se distinguirán serie/conjunto, origen o bloque temporal, modelo y semilla. Las observaciones correlacionadas se agrupan o modelan antes del contraste; no se suman fechas, ventanas y semillas como si todas fueran réplicas independientes. La DE entre inicializaciones y el IC temporal tendrán etiquetas diferentes.</p>
+<p>Un modelo de efectos mixtos es una opción cuando el diseño aporte unidades repetidas adecuadas, por ejemplo Yijr = μ + αj + ui + vr + εijr para una métrica por unidad, modelo y semilla. Deben justificarse esas unidades y su covarianza temporal; no basta añadir un intercepto aleatorio para declarar independencia. No se ha ajustado ese modelo ni se lo fija automáticamente para una única serie BTC.</p>
+<p>Además de la consolidación entre conjuntos, se reportarán por conjunto y rival la ganancia, IC, efecto y probabilidad de superioridad Pr(RMSEoriginal &lt; RMSErival), estimada sobre unidades pareadas apropiadas y con el tratamiento de empates fijado. No se promedian métricas de escalas distintas. Las sensibilidades con una prueba alternativa, una métrica secundaria y subconjuntos razonables de semillas se definirán antes de evaluar y mostrarán si la conclusión R3 se conserva, sin elegir sólo semillas favorables.</p>
+<p>Se incluirán alternativas paramétrica/no paramétrica pertinentes. Se justificará si Nadeau–Bengio aplica al diseño y, en ese caso, se contrastarán las decisiones con y sin la corrección; si no aplica, se documentará el motivo sin calcular una corrección inválida.</p>
+</section>
+</section>
+<section id="robustez-sensibilidad-y-calidad-probabilistica">
+<h2>8.8 Robustez, sensibilidad y calidad probabilística<a class="headerlink" href="#robustez-sensibilidad-y-calidad-probabilistica" title="Link to this heading">#</a></h2>
+<p>La Tabla 5 de la guía se adapta a la ruta temporal con el mismo procedimiento para candidato y rivales. Los estudios siguientes están <strong>pendientes de ejecución E3</strong>; las pruebas sintéticas y suplementos de E2 conservan su alcance propio.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Estudio exigido</p></th>
+<th class="head"><p>Aplicación prevista a BTC/F2a</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sensibilidad a hiperparámetros</p></td>
+<td><p>Curvas sobre radio, penalización, temperatura, tamaño del mecanismo y learning rate en desarrollo; región de estabilidad y comparación con rivales. Fijar rangos antes de confirmar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Semillas y particiones</p></td>
+<td><p>Distribuciones con al menos diez semillas o R mayor, IC y coeficiente de variación cuando sea interpretable. ANOVA/Kruskal–Wallis sólo con réplicas y supuestos válidos: un único score por semilla no forma grupos con replicación.</p></td>
+</tr>
+<tr class="row-even"><td><p>Perturbaciones controladas</p></td>
+<td><p>Ruido, faltantes y atípicos con al menos tres severidades y curvas de degradación. Distinguir corrupción artificial de alteraciones que preserven coherencia OHLCV y disponibilidad temporal; reglas de imputación se fijan sin prueba.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tamaño y escalabilidad</p></td>
+<td><p>Curvas con fracciones de entrenamiento —por ejemplo 10/25/50/100 %—, varias semillas y cortes cronológicos válidos. Tiempo y memoria al variar entrada o tamaño; los porcentajes son propuesta, no corridas realizadas.</p></td>
+</tr>
+<tr class="row-even"><td><p>Cambio de distribución</p></td>
+<td><p>Periodo, fuente o mercado mantenido fuera del diseño. Registrar qué cambio se evalúa y la exposición previa; otro tramo conocido no se vuelve independiente por renombrarlo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Calibración y puntuación</p></td>
+<td><p>Calibración puntual/residuos mediante diagnósticos F2a y reglas probabilísticas pertinentes. CRPS/PIT y log-verosimilitud requieren una distribución o densidad adecuada; pinball se informa para cuantiles y niveles definidos. Un único intervalo del 90 % no identifica una distribución completa. No importar ECE de clasificación por defecto.</p></td>
+</tr>
+<tr class="row-even"><td><p>Incertidumbre</p></td>
+<td><p>Cobertura global y por regímenes/colas prefijados, IC temporales y ancho medio frente al nominal. Declarar límites de intercambiabilidad y distinguir dispersión de semillas de un intervalo predictivo calibrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eficiencia y Pareto</p></td>
+<td><p>Parámetros, FLOPs con operaciones incluidas, CPU/GPU, latencias, memoria, entrenamiento y energía si se estima, con hardware/precisión/hilos/lotes. RSS del proceso no es RAM incremental del modelo ni memoria Render.</p></td>
+</tr>
+<tr class="row-even"><td><p>Errores compartidos</p></td>
+<td><p>Subgrupos y regímenes donde el candidato falla o no supera al benchmark; pérdidas y errores compartidos, extremos genuinos y explicaciones con fidelidad/estabilidad. Las causas económicas se distinguen de etiquetas automáticas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La adecuación temporal incluirá Mincer–Zarnowitz, Ljung–Box, ARCH-LM y, cuando procedan, BDS/Jarque–Bera, estabilidad y brechas comparables. Se fijarán sus hipótesis, reglas y familias; un p no significativo no prueba ausencia de autocorrelación, heterocedasticidad o sobreajuste. Las métricas probabilísticas sólo se usarán cuando el producto emitido permita calcularlas con significado.</p>
+</section>
+<section id="reporte-obligatorio-de-resultados">
+<h2>8.9 Reporte obligatorio de resultados<a class="headerlink" href="#reporte-obligatorio-de-resultados" title="Link to this heading">#</a></h2>
+<p>El informe final deberá incluir los productos siguientes, con versiones, fuentes, estimandos y límites. <strong>En este capítulo no se rellenan métricas, p ni potencias con ceros o cifras ficticias.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tabla o figura</p></th>
+<th class="head"><p>Campos mínimos</p></th>
+<th class="head"><p>Estado del candidato</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Resumen de los 17 sistemas</p></td>
+<td><p>Modelo/dataset, media±DE, IC bootstrap con unidad, parámetros, FLOPs, tiempo de entrenamiento y latencia.</p></td>
+<td><p>Comparación pendiente; los parámetros del software se describen en sección 6.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contrastes por rival y procedimiento</p></td>
+<td><p>Prueba, nula, supuestos verificados, estadístico, p crudo, p Holm, efecto/IC, orientación y conclusión frente a δ.</p></td>
+<td><p>Batería pendiente; ningún p calculado.</p></td>
+</tr>
+<tr class="row-even"><td><p>MCS con original incluido</p></td>
+<td><p>Pérdida, nivel, pertenencia, estadístico y alcance temporal.</p></td>
+<td><p>Pendiente; MCS histórico de E2 no incluye al candidato.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cada conjunto adicional y consolidación</p></td>
+<td><p>Fuente/versión/hash, métrica, diferencias, IC, efectos, rangos/prueba global y pares.</p></td>
+<td><p>Tres conjuntos aún sin elegir.</p></td>
+</tr>
+<tr class="row-even"><td><p>Tablas A y B del original</p></td>
+<td><p>Baseline trivial, ajuste, residuos, calibración, brecha δg y coherencia validación–prueba.</p></td>
+<td><p>Pendientes; no se heredan resultados de las redes de E2.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Potencia</p></td>
+<td><p>Piloto, σD, efecto alternativo, R, semillas, α, MDE, potencia por contraste y conjunta, supuestos e incertidumbre.</p></td>
+<td><p>Piloto y dimensionamiento no ejecutados.</p></td>
+</tr>
+<tr class="row-even"><td><p>Estudios de la Tabla 5</p></td>
+<td><p>Curvas, distribuciones, degradación, cobertura, errores, costes y Pareto.</p></td>
+<td><p>Pendientes de evaluación real de E3.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La tabla de contrastes deberá dejar explícito el resultado menos favorable de cada rival y la decisión conjunta, no sólo los rechazos. Se conservarán resultados negativos, fallos y análisis no concluyentes, con discusión de muestra, ruido, capacidad, variabilidad y potencia. Un resultado honesto sin superioridad no se convierte en equivalencia ni se corrige relajando el estándar.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/8ea5dc200845be4f452ea4a40af872dd/protocolo_borrador.md"><code class="xref download docutils literal notranslate"><span class="pre">borrador</span> <span class="pre">de</span> <span class="pre">protocolo</span></code></a> conserva estos pendientes y las condiciones para un registro futuro. El capítulo organiza el trabajo estadístico; no declara cerrado el Bloque D ni autoriza entrenamientos o una campaña confirmatoria.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_diseno_riguroso.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">7 Diseño riguroso del modelo original</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="concordancia_secciones.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Concordancia y documentos de trabajo anteriores</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#protocolo-experimental-pre-registrado">8.1 Protocolo experimental pre-registrado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equidad-de-la-comparacion">8.2 Equidad de la comparación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-en-conjuntos-de-datos-adicionales">8.3 Evaluación en conjuntos de datos adicionales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-operativa-de-superioridad-r3">8.4 Definición operativa de superioridad R3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-de-contrastes">8.5 Familia de contrastes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-metodologicas-para-que-las-pruebas-sean-validas">8.6 Reglas metodológicas para que las pruebas sean válidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-estadistica-familias-potencia-y-agregacion">8.7 Estrategia estadística: familias, potencia y agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-del-error-por-familia">8.7.1 Control del error por familia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-numero-de-semillas">8.7.2 Potencia y número de semillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-jerarquica-y-multiples-conjuntos-de-datos">8.7.3 Agregación jerárquica y múltiples conjuntos de datos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-sensibilidad-y-calidad-probabilistica">8.8 Robustez, sensibilidad y calidad probabilística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-obligatorio-de-resultados">8.9 Reporte obligatorio de resultados</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
