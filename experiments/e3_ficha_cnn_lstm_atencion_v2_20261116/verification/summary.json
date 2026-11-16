@@ -1,0 +1,203 @@
+{
+  "version": "e3-student-head-synthetic-verification-v1",
+  "scope": "Synthetic operator/quadrature checks only; no market data, neural model, training, HPO or R1/R3 evidence",
+  "fixed_order": 128,
+  "nu": 5.0,
+  "c": 0.12244897959183673,
+  "E_abs_T5": 0.9490167245562362,
+  "L_s_exact_mean": 0.3320866760757413,
+  "E_T5_squared": 1.6666666666666667,
+  "beta_ratio": 1.1317684842090336,
+  "beta_E_sqrt_one_minus_V": 0.8835729338221293,
+  "criterion_relative_error": 0.0001,
+  "grid": {
+    "rho_min": 1e-06,
+    "rho_max": 1000000.0,
+    "rho_count": 241,
+    "gradient_count_per_order": 81
+  },
+  "reference_relative_quad_error_estimate_max": 2.0711772458817054e-13,
+  "orders": {
+    "64": {
+      "max_relative_error": 9.810755214711975e-05,
+      "A0_relative_error": 9.810755356376433e-05,
+      "positive_weights": true,
+      "positive_nodes": true,
+      "weight_sum": 0.9999999999999999,
+      "L_s_discrete": 0.3321192562871022,
+      "scale_equivariance_error_max": 4.440892098500626e-16,
+      "support_violation_count": 0,
+      "upper_envelope_violation_count": 0,
+      "finite_gradient_count": 81,
+      "derivative_s_bound_ratio_max": 1.0,
+      "derivative_A_bound_ratio_max_A_positive": 1.0,
+      "g_A1_s0": 0.9999999999999999,
+      "g_A0_s0": 0.0
+    },
+    "128": {
+      "max_relative_error": 2.4809482522591964e-05,
+      "A0_relative_error": 2.4809483663901233e-05,
+      "positive_weights": true,
+      "positive_nodes": true,
+      "weight_sum": 1.0,
+      "L_s_discrete": 0.33209491497470645,
+      "scale_equivariance_error_max": 4.440892098500626e-16,
+      "support_violation_count": 0,
+      "upper_envelope_violation_count": 0,
+      "finite_gradient_count": 81,
+      "derivative_s_bound_ratio_max": 1.0,
+      "derivative_A_bound_ratio_max_A_positive": 1.0000000000000002,
+      "g_A1_s0": 1.0,
+      "g_A0_s0": 0.0
+    },
+    "256": {
+      "max_relative_error": 6.238406189185142e-06,
+      "A0_relative_error": 6.2384070542709225e-06,
+      "positive_weights": true,
+      "positive_nodes": true,
+      "weight_sum": 1.0000000000000002,
+      "L_s_discrete": 0.332088747767604,
+      "scale_equivariance_error_max": 4.440892098500626e-16,
+      "support_violation_count": 0,
+      "upper_envelope_violation_count": 0,
+      "finite_gradient_count": 81,
+      "derivative_s_bound_ratio_max": 0.9999999999999998,
+      "derivative_A_bound_ratio_max_A_positive": 1.0000000000000004,
+      "g_A1_s0": 1.0000000000000002,
+      "g_A0_s0": 0.0
+    }
+  },
+  "density": [
+    {
+      "A": 0.0,
+      "s": 1e-06,
+      "integral": 1.0,
+      "quad_absolute_error_estimate": 1.6743589828184845e-12
+    },
+    {
+      "A": 0.0,
+      "s": 0.001,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.6743590332737489e-12
+    },
+    {
+      "A": 0.0,
+      "s": 1.0,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.674359011538234e-12
+    },
+    {
+      "A": 0.0,
+      "s": 1000.0,
+      "integral": 1.0,
+      "quad_absolute_error_estimate": 1.674359146167333e-12
+    },
+    {
+      "A": 0.0,
+      "s": 1000000.0,
+      "integral": 1.0,
+      "quad_absolute_error_estimate": 1.6743635239808781e-12
+    },
+    {
+      "A": 1.0,
+      "s": 1e-06,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.674349920148607e-12
+    },
+    {
+      "A": 1.0,
+      "s": 0.001,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.6743544274616069e-12
+    },
+    {
+      "A": 1.0,
+      "s": 1.0,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.748326501111143e-14
+    },
+    {
+      "A": 1.0,
+      "s": 1000.0,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.2353535619063279e-12
+    },
+    {
+      "A": 1.0,
+      "s": 1000000.0,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.2217926092861405e-12
+    },
+    {
+      "A": 1000000.0,
+      "s": 1e-06,
+      "integral": 0.9999999999999996,
+      "quad_absolute_error_estimate": 1.6743545858922204e-12
+    },
+    {
+      "A": 1000000.0,
+      "s": 0.001,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.674354790129395e-12
+    },
+    {
+      "A": 1000000.0,
+      "s": 1.0,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.6743551607555138e-12
+    },
+    {
+      "A": 1000000.0,
+      "s": 1000.0,
+      "integral": 0.9999999999999999,
+      "quad_absolute_error_estimate": 1.7483316582732006e-14
+    },
+    {
+      "A": 1000000.0,
+      "s": 1000000.0,
+      "integral": 0.9999999999999998,
+      "quad_absolute_error_estimate": 1.2353246991684471e-12
+    }
+  ],
+  "market_data_read": false,
+  "neural_model_implemented": false,
+  "recorded_environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.8.0+cpu"
+  },
+  "auxiliary_and_magnitude": {
+    "score_variable": "log(s)",
+    "score_min": -5.0,
+    "score_max": 1.0,
+    "score_count": 98,
+    "MSE_gradient_example": {
+      "A": 0,
+      "y": 0,
+      "y_scale": 1,
+      "s": [
+        1,
+        10,
+        100
+      ],
+      "d_MSE_d_log_s": [
+        0.220574065104115,
+        22.0574065104115,
+        2205.74065104115
+      ]
+    },
+    "predictive_second_moment": "A+(10/49)*s^2",
+    "nominal_coverage_if_assumed_law_is_true": 0.9000000000000139,
+    "coverage_if_true_scale_is_twice_assumed_scale": 0.7199808553188718,
+    "interpretation": "Only the auxiliary log-scale score is bounded. The point MSE, encoder gradients and empirical calibration have no such guarantee. No additional calibration loss is defined."
+  },
+  "boundaries": {
+    "s0": "g(A,0)=sqrt(A); a point mass, not an ordinary density",
+    "A0": "g_N(0,s)=L_N*s; approximate the exact sqrt(c)*E|T5|*s",
+    "origin": "g(0,0)=0 by continuity; no joint differentiability claim",
+    "density_endpoint": "A=0 has finite density q(0)/sqrt(c); A>0 has an integrable singularity",
+    "A_derivative": "No global Lipschitz bound in A: the exact derivative diverges at A=0,s>0"
+  },
+  "rule_sha256": "c3ce43d3cb81767ee3fc0daa0ccfe8432a3326643e28e51273a49cc1fe01c2fe"
+}

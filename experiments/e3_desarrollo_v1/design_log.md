@@ -33,3 +33,18 @@ anterior a este piloto. La revisión posterior no altera esa cronología.
 
 La [revisión posterior](../e3_revision_post_piloto_20261116/README.md) conserva
 insumos, diagnóstico reproducible, teoría, fuentes y la decisión de continuación.
+
+## Ficha propuesta después de la revisión
+
+La [ficha CNN-LSTM-atención v2](../e3_ficha_cnn_lstm_atencion_v2_20261116/README.md)
+mantiene la misma arquitectura base y propone tres recetas neuronales nuevas:
+cabeza de innovación con pérdida mixta, su ablación sin NLL auxiliar y un control
+de cabeza positiva aditiva. Permanecen en estado de diseño, sin implementación
+de las redes ni resultados de mercado. El recuento de variantes evaluadas con
+datos de mercado sigue siendo dos.
+
+Se implementó únicamente el operador matemático escalar de la cabeza y se
+verificó con entradas sintéticas. Las órdenes 64/128/256 comparadas pertenecen
+al análisis de precisión numérica, no a una búsqueda de arquitectura o de
+desempeño de mercado. El plan propone 600 segundos adicionales dentro del límite
+registrado existente; todavía no se ha ejecutado ni reservado esa nueva corrida.
