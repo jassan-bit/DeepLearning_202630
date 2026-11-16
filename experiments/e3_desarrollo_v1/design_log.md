@@ -57,3 +57,20 @@ software emplean datos sintéticos. El recuento de variantes evaluadas con datos
 de mercado permanece en dos; no hay resultados v2 al publicar esta actualización.
 El nuevo notebook conserva el presupuesto y los artefactos de v1 y recupera una
 única corrida v2 desde GitHub.
+
+## Cierre de v2 y recuento de recetas evaluadas
+
+El [cierre documentado](../e3_cierre_v2_20261116/README.md) corresponde al snapshot
+de resultados `1ca029e869a517cb8de704e573c78ca1e0cbad3c`. Las tres recetas v2
+completaron 40 épocas con una semilla. El recuento de recetas neuronales
+evaluadas con datos de mercado aumenta de dos a **cinco**: full y M00 de v1,
+cabeza aditiva, innovación sólo media e innovación con pérdida auxiliar de v2.
+Se conservan además las referencias analíticas, la referencia de un parámetro
+estimado en ajuste, las proyecciones y las ablaciones de software examinadas;
+el registro no se reduce al candidato que obtuvo mejor RMSE.
+
+La cabeza aditiva queda como referencia de desarrollo. La receta del candidato
+v2 no superó su criterio exploratorio; el cierre no amplía épocas o semillas.
+El diagnóstico por régimen es posterior y usa el objetivo realizado, por lo
+que no define un selector disponible al predecir. No se atribuye a esta revisión
+un protocolo confirmatorio anterior a los pilotos ni otra ejecución de mercado.
