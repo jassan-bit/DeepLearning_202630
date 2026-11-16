@@ -1,0 +1,163 @@
+{
+  "version": "e3-cnn-lstm-attention-v2-focal-origins-v1",
+  "scope": "focal_primary_source_review_not_systematic_novelty_clearance",
+  "source_count": 6,
+  "previous_review_matrix": "../../e3_revision_post_piloto_20261116/literature/review_matrix.json",
+  "architecture_origin": {
+    "known_backbone": "CNN causal → LSTM unidireccional → atención temporal por contenido, conservado como en M00.",
+    "backbone_replaced_with_flow": false,
+    "no_original_full_penalty_or_radial_saturation": true
+  },
+  "adaptation_origin": {
+    "status": "own_mathematical_combination_under_review_not_an_exact_algorithm_taken_from_one_paper",
+    "candidate_change": "La salida escalar positiva del mismo backbone se interpreta como escala s(X) de la magnitud U. Se incorpora A(X), calculado de seis retornos conocidos, y un transporte a Y=sqrt(A+cU²). La media de Y se aproxima con cuadratura positiva y se propone una pérdida compuesta.",
+    "standard_parts": [
+      "Actualización de varianza al añadir una observación.",
+      "Distribuciones folded-t/half-t.",
+      "Parametrización neuronal de densidades y escalas positivas.",
+      "Plegado absoluto, suma sobre signos y cambio de variables.",
+      "Restricciones de salida dependientes de la muestra.",
+      "Cuadratura numérica de expectativas."
+    ],
+    "design_choices_not_prescribed_by_sources": {
+      "student_degrees_of_freedom": 5,
+      "auxiliary_NLL_weight": 0.1,
+      "loss_standardization": "escalas estimadas sólo en ajuste; su definición exacta pertenece al diseño de la ficha",
+      "quadrature": "aproximación numérica positiva; resolución y tolerancia deben fijarse y comprobarse"
+    },
+    "origin_of_exact_sigma7_operator": "Derivación propia para este objetivo desde identidades y principios conocidos; no se atribuye como arquitectura final publicada por los autores de SurVAE."
+  },
+  "novelty_verified": false,
+  "R1_met": false,
+  "superiority_verified": false,
+  "training_started": false,
+  "limits": [
+    "La revisión focal no acredita ausencia de un antecedente con la misma combinación.",
+    "Conservar el backbone no convierte la cabeza probabilística en un mecanismo original verificado.",
+    "Ni Student-t ni la pérdida mixta garantizan mejora de RMSE o calibración.",
+    "No se copió código de autores ni se ejecutó entrenamiento para esta ficha."
+  ],
+  "sources": [
+    {
+      "id": "V2-L01",
+      "citation_key": "Nielsen2020SurVAE",
+      "title": "SurVAE Flows: Surjections to Bridge the Gap between VAEs and Flows",
+      "authors": [
+        "Didrik Nielsen",
+        "Priyank Jaini",
+        "Emiel Hoogeboom",
+        "Ole Winther",
+        "Max Welling"
+      ],
+      "year": 2020,
+      "arxiv": "2007.02731v2",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/9578a63fbe545bd82cc5bbe749636af1-Paper.pdf",
+      "appendix_url": "https://arxiv.org/pdf/2007.02731",
+      "reading_scope": "Lectura focal del original NeurIPS: sección 2/Ec.1 y sección 3.1/tabla 2/Abs; versión arXiv, apéndice D, Ecs.13–22 (página 15 del PDF). No lectura íntegra.",
+      "established_part": "Cambio de variables para densidades y plegado absoluto con dos signos posibles.",
+      "role_in_proposal": "Antecedente matemático para tratar la magnitud y el transporte de densidad; la fórmula condicionada por A(X) de esta ficha se deriva para σ7.",
+      "limits_for_claim": "No es la fuente de una arquitectura CNN-LSTM de volatilidad ni de esta combinación exacta. La ficha no reemplaza su backbone por un flow y no copia código de SurVAE.",
+      "code_repository": "https://github.com/didriknielsen/survae_flows",
+      "code_license": "not_verified"
+    },
+    {
+      "id": "V2-L02",
+      "citation_key": "Psarakis1990FoldedT",
+      "title": "The Folded t Distribution",
+      "authors": [
+        "Stelios Psarakis",
+        "John Panaretos"
+      ],
+      "year": 1990,
+      "doi": "10.1080/03610929008830342",
+      "primary_url": "https://mpra.ub.uni-muenchen.de/6257/",
+      "original_url": "https://mpra.ub.uni-muenchen.de/6257/1/MPRA_paper_6257.pdf",
+      "reading_scope": "Metadatos y cubierta del original depositado verificados. Cuerpo escaneado no extraíble por la herramienta; descarga local denegada. No se acredita lectura de sus derivaciones.",
+      "established_part": "La distribución folded-t tiene un antecedente publicado en 1990.",
+      "role_in_proposal": "Evita atribuir novedad a la familia de magnitudes de Student-t; la densidad half-t de escala se especifica matemáticamente en la ficha.",
+      "limits_for_claim": "No se afirma que el artículo proponga el predictor condicional de σ7, ni que su cuerpo se haya revisado íntegramente.",
+      "code_repository": "",
+      "code_license": "not_verified"
+    },
+    {
+      "id": "V2-L03",
+      "citation_key": "Salinas2019DeepAR",
+      "title": "DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks",
+      "authors": [
+        "David Salinas",
+        "Valentin Flunkert",
+        "Jan Gasthaus"
+      ],
+      "year": 2019,
+      "arxiv": "1704.04110v3",
+      "primary_url": "https://arxiv.org/html/1704.04110",
+      "reading_scope": "Lectura focal de sección 3.1: parámetros de distribución producidos por una red y escala positiva mediante softplus; versión arXiv 3, 22 febrero 2019. No lectura íntegra.",
+      "established_part": "Una red recurrente puede producir parámetros de una distribución condicional; la escala positiva con softplus ya está documentada.",
+      "role_in_proposal": "Antecedente del esquema red→parámetro de distribución, no fuente del decodificador σ7.",
+      "limits_for_claim": "Los experimentos del original leído consideran Gaussian y negative-binomial. No se cita este original como evidencia experimental de Student-t o half-t.",
+      "code_repository": "",
+      "code_license": "not_verified"
+    },
+    {
+      "id": "V2-L04",
+      "citation_key": "Zhao2024GARCHNN",
+      "title": "From GARCH to Neural Network for Volatility Forecast",
+      "authors": [
+        "Pengfei Zhao",
+        "Haoren Zhu",
+        "Wilfred Siu Hung Ng",
+        "Dik Lun Lee"
+      ],
+      "year": 2024,
+      "doi": "10.1609/aaai.v38i15.29643",
+      "arxiv": "2402.06642v1",
+      "primary_url": "https://ojs.aaai.org/index.php/AAAI/article/view/29643",
+      "original_url": "https://arxiv.org/html/2402.06642",
+      "reading_scope": "Recapitulación de lectura focal previa del agente de literatura: Methodology, Ec.6 de Student-t y Ecs.1–7; definición del proxy experimental. Véase matriz de nueve fuentes anterior.",
+      "established_part": "Verosimilitud Student-t y estructura neuronal para volatilidad financiera ya son antecedentes.",
+      "role_in_proposal": "Sustenta que las colas Student-t no se presentan como una invención; esta ficha modela una magnitud vinculada a σ7 centrada.",
+      "limits_for_claim": "El objetivo experimental de ese trabajo no coincide con σ7 centrada. No prescribe esta cabeza half-t, la cuadratura ni el peso 0.1.",
+      "code_repository": "",
+      "code_license": "not_verified"
+    },
+    {
+      "id": "V2-L05",
+      "citation_key": "Brosowsky2021ConstraintNet",
+      "title": "Sample-Specific Output Constraints for Neural Networks",
+      "authors": [
+        "Mathis Brosowsky",
+        "Florian Keck",
+        "Olaf Dünkel",
+        "Marius Zöllner"
+      ],
+      "year": 2021,
+      "primary_url": "https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf",
+      "reading_scope": "Recapitulación de revisión focal anterior: teoría, pp.6814–6816, Ecs.4–5 y guarda escalar; literatura cotejó PDF publicado, autores y Ecs.4–5. No lectura íntegra.",
+      "established_part": "Restricciones de salida por muestra y guardas parametrizadas por la entrada ya existen.",
+      "role_in_proposal": "Antecedente del soporte condicionado por A(X); la identidad específica del objetivo se explicita por separado.",
+      "limits_for_claim": "Una guarda positiva desplazada por un piso conocido no es por sí sola una novedad. DOI no verificado; se conserva el PDF editorial como identificador primario.",
+      "code_repository": "",
+      "code_license": "not_verified"
+    },
+    {
+      "id": "V2-L06",
+      "citation_key": "Chan1983Variance",
+      "title": "Algorithms for Computing the Sample Variance: Analysis and Recommendations",
+      "authors": [
+        "T. F. Chan",
+        "G. H. Golub",
+        "R. J. LeVeque"
+      ],
+      "year": 1983,
+      "doi": "10.1080/00031305.1983.10483115",
+      "primary_url": "https://doi.org/10.1080/00031305.1983.10483115",
+      "original_url": "https://math.pku.edu.cn/teachers/litj/notes/numer_anal/AmerStat_37_242_Chan_Variance.pdf",
+      "reading_scope": "Recapitulación de revisión focal delegada de teoría: p.242, Ecs.1.3a–b y captura de las ecuaciones del original. No relectura nueva ni lectura íntegra por este agente.",
+      "established_part": "Actualización de media y suma de desviaciones cuadráticas al añadir una observación.",
+      "role_in_proposal": "Antecedente algebraico de la separación entre seis retornos conocidos y una nueva observación, con coeficiente 6/49 para varianza poblacional.",
+      "limits_for_claim": "La identidad no predice la innovación desconocida y no se presenta como un teorema nuevo.",
+      "code_repository": "",
+      "code_license": "not_verified"
+    }
+  ]
+}
