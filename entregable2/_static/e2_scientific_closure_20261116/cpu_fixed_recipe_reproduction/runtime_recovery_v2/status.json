@@ -1,0 +1,103 @@
+{
+  "version": "e2-new-true-target-CPU-fixed-recipes-v1",
+  "status": "partial_stopped",
+  "jobs": [
+    {
+      "CPU_study_plan_sha256": "53704931391109bf2179985f5026af0316eacc892b8ebe8cfe62b87cd5aa5c7f",
+      "id": "759a1b80df7f02c7-271801",
+      "status": "failed",
+      "charged_worker_wall_seconds": 2.57698853599868,
+      "returncode": 1,
+      "reservation_id": "ef5ec474-3b95-435e-8ff9-f780dfb0e70d",
+      "reservation_cap_seconds": 45,
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "/workspace/e2-guide-closure-20261113/scripts/e2_cpu_fixed_recipe_reproduction.py",
+        "--worker",
+        "--plan",
+        "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/plan_v2/analysis_plan.json",
+        "--job",
+        "759a1b80df7f02c7-271801",
+        "--source-root",
+        "/workspace/work/e2-true-target-cpu-source-v1-20261116",
+        "--author-root",
+        "/workspace/work/e2architecture_sources",
+        "--raw-root",
+        "/workspace/e2-guide-closure-20261113/work/e2-scientific-market/raw",
+        "--output",
+        "/workspace/work/e2-true-target-cpu-reproduction-v2",
+        "--reservation-id",
+        "ef5ec474-3b95-435e-8ff9-f780dfb0e70d",
+        "--cpu-set",
+        "0,1"
+      ],
+      "log_sha256": "72e90e57f6be4497f823d7c9e7b6a20d1ddec7f3faac66770a089a1614d4faeb",
+      "error": null,
+      "parent_wall_seconds_added": false
+    },
+    {
+      "CPU_study_plan_sha256": "53704931391109bf2179985f5026af0316eacc892b8ebe8cfe62b87cd5aa5c7f",
+      "id": "759a1b80df7f02c7-271802",
+      "status": "failed",
+      "charged_worker_wall_seconds": 2.677816431001702,
+      "returncode": 1,
+      "reservation_id": "8d6d6f81-acdf-4ea0-b9ce-54afe6f6d918",
+      "reservation_cap_seconds": 45,
+      "cpu_affinity": [
+        2,
+        3
+      ],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "/workspace/e2-guide-closure-20261113/scripts/e2_cpu_fixed_recipe_reproduction.py",
+        "--worker",
+        "--plan",
+        "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/plan_v2/analysis_plan.json",
+        "--job",
+        "759a1b80df7f02c7-271802",
+        "--source-root",
+        "/workspace/work/e2-true-target-cpu-source-v1-20261116",
+        "--author-root",
+        "/workspace/work/e2architecture_sources",
+        "--raw-root",
+        "/workspace/e2-guide-closure-20261113/work/e2-scientific-market/raw",
+        "--output",
+        "/workspace/work/e2-true-target-cpu-reproduction-v2",
+        "--reservation-id",
+        "8d6d6f81-acdf-4ea0-b9ce-54afe6f6d918",
+        "--cpu-set",
+        "2,3"
+      ],
+      "log_sha256": "72e90e57f6be4497f823d7c9e7b6a20d1ddec7f3faac66770a089a1614d4faeb",
+      "error": null,
+      "parent_wall_seconds_added": false
+    }
+  ],
+  "original_CUDA_parity": false,
+  "full_original_campaign_passed": false,
+  "HPO_repeated": false,
+  "global_cap_sum_worker_seconds": 10000.0,
+  "prior_worker_seconds": 0,
+  "remaining_group_cap_seconds": 10000.0,
+  "remaining_projected_seconds": 9940.80107450109,
+  "charged_worker_seconds": 5.254804967000382,
+  "error": "CPU fit worker failed; retain partial results and all actual charges",
+  "budget": {
+    "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+    "approved_total_hours": 84,
+    "historical_charged_seconds": 288922.08751226973,
+    "corrections_charged_seconds": 1857.765927287015,
+    "cumulative_charged_seconds": 290779.8534395567,
+    "remaining_seconds": 11620.146560443278,
+    "reserved_seconds": 0,
+    "unreserved_seconds": 11620.146560443278,
+    "open_reservations": {},
+    "budget_reset": false,
+    "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+  },
+  "parent_wall_seconds_added": false
+}

@@ -1,0 +1,665 @@
+{
+  "status": "completed",
+  "model": "TimeMixer",
+  "seed": 271803,
+  "checkpoint": "fit/selected_model.pt",
+  "checkpoint_sha256": "ef6c689b1f44d7cbb0594405350b95df46eb890d00aca5ee3068b5d44d6292f2",
+  "scaler": "scaler.json",
+  "scaler_sha256": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959",
+  "calibrator": "calibrator.json",
+  "calibrator_sha256": "7e09acd5d920d67f0eb95205144da3acdc4558ce851baae29ceb980781acbebe",
+  "training_label_end": "2024-10-31",
+  "no_refit_after_calibration": true,
+  "phase_records": {
+    "supervised": {
+      "initial_state_sha256": "501236f117bf4ed43d693b9963c00dfe003491cba7eeba6076000291ed00e19a",
+      "final_state_sha256": "abdf3a72086fbf1591bd371996ddb94475daff41459bb5d2671093ae09568a8e",
+      "optimizer_steps": 2706,
+      "fixed_epochs": 66,
+      "scheduler_total_steps": 8200,
+      "logs": [
+        {
+          "epoch": 1,
+          "train_mse_scaled": 0.19841291117304155,
+          "train_rmse_original": 0.009333602878788044,
+          "examples_seen": 655,
+          "optimizer_steps": 41
+        },
+        {
+          "epoch": 2,
+          "train_mse_scaled": 0.18465366823072651,
+          "train_rmse_original": 0.00900416249476597,
+          "examples_seen": 655,
+          "optimizer_steps": 82
+        },
+        {
+          "epoch": 3,
+          "train_mse_scaled": 0.16448523443163807,
+          "train_rmse_original": 0.008498216936345738,
+          "examples_seen": 655,
+          "optimizer_steps": 123
+        },
+        {
+          "epoch": 4,
+          "train_mse_scaled": 0.15971867906228276,
+          "train_rmse_original": 0.008374178407220172,
+          "examples_seen": 655,
+          "optimizer_steps": 164
+        },
+        {
+          "epoch": 5,
+          "train_mse_scaled": 0.1474500487778933,
+          "train_rmse_original": 0.008046125726675171,
+          "examples_seen": 655,
+          "optimizer_steps": 205
+        },
+        {
+          "epoch": 6,
+          "train_mse_scaled": 0.14300030428944654,
+          "train_rmse_original": 0.007923787771153974,
+          "examples_seen": 655,
+          "optimizer_steps": 246
+        },
+        {
+          "epoch": 7,
+          "train_mse_scaled": 0.13247966238560568,
+          "train_rmse_original": 0.007626740337720286,
+          "examples_seen": 655,
+          "optimizer_steps": 287
+        },
+        {
+          "epoch": 8,
+          "train_mse_scaled": 0.1260509486416824,
+          "train_rmse_original": 0.007439391486980367,
+          "examples_seen": 655,
+          "optimizer_steps": 328
+        },
+        {
+          "epoch": 9,
+          "train_mse_scaled": 0.1265186953635616,
+          "train_rmse_original": 0.007453181660122856,
+          "examples_seen": 655,
+          "optimizer_steps": 369
+        },
+        {
+          "epoch": 10,
+          "train_mse_scaled": 0.11671440059902104,
+          "train_rmse_original": 0.0071585749470321315,
+          "examples_seen": 655,
+          "optimizer_steps": 410
+        },
+        {
+          "epoch": 11,
+          "train_mse_scaled": 0.10747486170921616,
+          "train_rmse_original": 0.006869384118017259,
+          "examples_seen": 655,
+          "optimizer_steps": 451
+        },
+        {
+          "epoch": 12,
+          "train_mse_scaled": 0.0970094807275379,
+          "train_rmse_original": 0.006526366280573729,
+          "examples_seen": 655,
+          "optimizer_steps": 492
+        },
+        {
+          "epoch": 13,
+          "train_mse_scaled": 0.09260913051721704,
+          "train_rmse_original": 0.006376630580035771,
+          "examples_seen": 655,
+          "optimizer_steps": 533
+        },
+        {
+          "epoch": 14,
+          "train_mse_scaled": 0.08591753328574522,
+          "train_rmse_original": 0.006141935538791825,
+          "examples_seen": 655,
+          "optimizer_steps": 574
+        },
+        {
+          "epoch": 15,
+          "train_mse_scaled": 0.08455020994630479,
+          "train_rmse_original": 0.006092867017525687,
+          "examples_seen": 655,
+          "optimizer_steps": 615
+        },
+        {
+          "epoch": 16,
+          "train_mse_scaled": 0.075295603457298,
+          "train_rmse_original": 0.005749752666687687,
+          "examples_seen": 655,
+          "optimizer_steps": 656
+        },
+        {
+          "epoch": 17,
+          "train_mse_scaled": 0.07085499633814542,
+          "train_rmse_original": 0.005577628623253495,
+          "examples_seen": 655,
+          "optimizer_steps": 697
+        },
+        {
+          "epoch": 18,
+          "train_mse_scaled": 0.08340457818890346,
+          "train_rmse_original": 0.006051447910504993,
+          "examples_seen": 655,
+          "optimizer_steps": 738
+        },
+        {
+          "epoch": 19,
+          "train_mse_scaled": 0.07076042601625428,
+          "train_rmse_original": 0.005573905143713044,
+          "examples_seen": 655,
+          "optimizer_steps": 779
+        },
+        {
+          "epoch": 20,
+          "train_mse_scaled": 0.06418402631774203,
+          "train_rmse_original": 0.005308573476131689,
+          "examples_seen": 655,
+          "optimizer_steps": 820
+        },
+        {
+          "epoch": 21,
+          "train_mse_scaled": 0.06424695007673657,
+          "train_rmse_original": 0.005311175007915741,
+          "examples_seen": 655,
+          "optimizer_steps": 861
+        },
+        {
+          "epoch": 22,
+          "train_mse_scaled": 0.05954026707256113,
+          "train_rmse_original": 0.0051129287807286155,
+          "examples_seen": 655,
+          "optimizer_steps": 902
+        },
+        {
+          "epoch": 23,
+          "train_mse_scaled": 0.056627019125086664,
+          "train_rmse_original": 0.004986274744927187,
+          "examples_seen": 655,
+          "optimizer_steps": 943
+        },
+        {
+          "epoch": 24,
+          "train_mse_scaled": 0.052618195901390254,
+          "train_rmse_original": 0.004806537455447465,
+          "examples_seen": 655,
+          "optimizer_steps": 984
+        },
+        {
+          "epoch": 25,
+          "train_mse_scaled": 0.050250577676387236,
+          "train_rmse_original": 0.004697154913233452,
+          "examples_seen": 655,
+          "optimizer_steps": 1025
+        },
+        {
+          "epoch": 26,
+          "train_mse_scaled": 0.05006129682519054,
+          "train_rmse_original": 0.004688300086716773,
+          "examples_seen": 655,
+          "optimizer_steps": 1066
+        },
+        {
+          "epoch": 27,
+          "train_mse_scaled": 0.05392473984993141,
+          "train_rmse_original": 0.004865846265919174,
+          "examples_seen": 655,
+          "optimizer_steps": 1107
+        },
+        {
+          "epoch": 28,
+          "train_mse_scaled": 0.04615304702110873,
+          "train_rmse_original": 0.004501575550747436,
+          "examples_seen": 655,
+          "optimizer_steps": 1148
+        },
+        {
+          "epoch": 29,
+          "train_mse_scaled": 0.044947882463003845,
+          "train_rmse_original": 0.004442413420303612,
+          "examples_seen": 655,
+          "optimizer_steps": 1189
+        },
+        {
+          "epoch": 30,
+          "train_mse_scaled": 0.046184394537037564,
+          "train_rmse_original": 0.004503104044175485,
+          "examples_seen": 655,
+          "optimizer_steps": 1230
+        },
+        {
+          "epoch": 31,
+          "train_mse_scaled": 0.0431263591496999,
+          "train_rmse_original": 0.004351467576191025,
+          "examples_seen": 655,
+          "optimizer_steps": 1271
+        },
+        {
+          "epoch": 32,
+          "train_mse_scaled": 0.043059731917526885,
+          "train_rmse_original": 0.004348104919201484,
+          "examples_seen": 655,
+          "optimizer_steps": 1312
+        },
+        {
+          "epoch": 33,
+          "train_mse_scaled": 0.04246697373517597,
+          "train_rmse_original": 0.004318073306835955,
+          "examples_seen": 655,
+          "optimizer_steps": 1353
+        },
+        {
+          "epoch": 34,
+          "train_mse_scaled": 0.04328843544002708,
+          "train_rmse_original": 0.004359636690707682,
+          "examples_seen": 655,
+          "optimizer_steps": 1394
+        },
+        {
+          "epoch": 35,
+          "train_mse_scaled": 0.04138164189253145,
+          "train_rmse_original": 0.004262537504685981,
+          "examples_seen": 655,
+          "optimizer_steps": 1435
+        },
+        {
+          "epoch": 36,
+          "train_mse_scaled": 0.0392472964661722,
+          "train_rmse_original": 0.004151157650878708,
+          "examples_seen": 655,
+          "optimizer_steps": 1476
+        },
+        {
+          "epoch": 37,
+          "train_mse_scaled": 0.037675392115844114,
+          "train_rmse_original": 0.004067178608607629,
+          "examples_seen": 655,
+          "optimizer_steps": 1517
+        },
+        {
+          "epoch": 38,
+          "train_mse_scaled": 0.036495325879286264,
+          "train_rmse_original": 0.004002975915974366,
+          "examples_seen": 655,
+          "optimizer_steps": 1558
+        },
+        {
+          "epoch": 39,
+          "train_mse_scaled": 0.03870511739763595,
+          "train_rmse_original": 0.004122384995392312,
+          "examples_seen": 655,
+          "optimizer_steps": 1599
+        },
+        {
+          "epoch": 40,
+          "train_mse_scaled": 0.043639015377932834,
+          "train_rmse_original": 0.004377254780826937,
+          "examples_seen": 655,
+          "optimizer_steps": 1640
+        },
+        {
+          "epoch": 41,
+          "train_mse_scaled": 0.03895914685407668,
+          "train_rmse_original": 0.004135890891352801,
+          "examples_seen": 655,
+          "optimizer_steps": 1681
+        },
+        {
+          "epoch": 42,
+          "train_mse_scaled": 0.040544803599819886,
+          "train_rmse_original": 0.0042192178975808325,
+          "examples_seen": 655,
+          "optimizer_steps": 1722
+        },
+        {
+          "epoch": 43,
+          "train_mse_scaled": 0.03470005932200046,
+          "train_rmse_original": 0.0039032778114386764,
+          "examples_seen": 655,
+          "optimizer_steps": 1763
+        },
+        {
+          "epoch": 44,
+          "train_mse_scaled": 0.03440137486193926,
+          "train_rmse_original": 0.003886442565399561,
+          "examples_seen": 655,
+          "optimizer_steps": 1804
+        },
+        {
+          "epoch": 45,
+          "train_mse_scaled": 0.035418692231178286,
+          "train_rmse_original": 0.00394348882987255,
+          "examples_seen": 655,
+          "optimizer_steps": 1845
+        },
+        {
+          "epoch": 46,
+          "train_mse_scaled": 0.04205960958968592,
+          "train_rmse_original": 0.004297312856906785,
+          "examples_seen": 655,
+          "optimizer_steps": 1886
+        },
+        {
+          "epoch": 47,
+          "train_mse_scaled": 0.03336407812952085,
+          "train_rmse_original": 0.003827400585267374,
+          "examples_seen": 655,
+          "optimizer_steps": 1927
+        },
+        {
+          "epoch": 48,
+          "train_mse_scaled": 0.0331981893827897,
+          "train_rmse_original": 0.003817873664232056,
+          "examples_seen": 655,
+          "optimizer_steps": 1968
+        },
+        {
+          "epoch": 49,
+          "train_mse_scaled": 0.032972243951477166,
+          "train_rmse_original": 0.0038048593417438843,
+          "examples_seen": 655,
+          "optimizer_steps": 2009
+        },
+        {
+          "epoch": 50,
+          "train_mse_scaled": 0.030979728721480332,
+          "train_rmse_original": 0.003688104002517533,
+          "examples_seen": 655,
+          "optimizer_steps": 2050
+        },
+        {
+          "epoch": 51,
+          "train_mse_scaled": 0.038025505533655184,
+          "train_rmse_original": 0.004086032836753742,
+          "examples_seen": 655,
+          "optimizer_steps": 2091
+        },
+        {
+          "epoch": 52,
+          "train_mse_scaled": 0.036480500463766,
+          "train_rmse_original": 0.004002162773358939,
+          "examples_seen": 655,
+          "optimizer_steps": 2132
+        },
+        {
+          "epoch": 53,
+          "train_mse_scaled": 0.030862445071453356,
+          "train_rmse_original": 0.00368111613517925,
+          "examples_seen": 655,
+          "optimizer_steps": 2173
+        },
+        {
+          "epoch": 54,
+          "train_mse_scaled": 0.03225083340897815,
+          "train_rmse_original": 0.0037630052579197227,
+          "examples_seen": 655,
+          "optimizer_steps": 2214
+        },
+        {
+          "epoch": 55,
+          "train_mse_scaled": 0.031364179863274555,
+          "train_rmse_original": 0.003710917693919975,
+          "examples_seen": 655,
+          "optimizer_steps": 2255
+        },
+        {
+          "epoch": 56,
+          "train_mse_scaled": 0.031558222101844904,
+          "train_rmse_original": 0.003722379247855971,
+          "examples_seen": 655,
+          "optimizer_steps": 2296
+        },
+        {
+          "epoch": 57,
+          "train_mse_scaled": 0.029570527772867044,
+          "train_rmse_original": 0.003603245825109182,
+          "examples_seen": 655,
+          "optimizer_steps": 2337
+        },
+        {
+          "epoch": 58,
+          "train_mse_scaled": 0.03807368349027997,
+          "train_rmse_original": 0.004088620499897007,
+          "examples_seen": 655,
+          "optimizer_steps": 2378
+        },
+        {
+          "epoch": 59,
+          "train_mse_scaled": 0.03394291448684139,
+          "train_rmse_original": 0.0038604587759393147,
+          "examples_seen": 655,
+          "optimizer_steps": 2419
+        },
+        {
+          "epoch": 60,
+          "train_mse_scaled": 0.030642450379051327,
+          "train_rmse_original": 0.003667972744665857,
+          "examples_seen": 655,
+          "optimizer_steps": 2460
+        },
+        {
+          "epoch": 61,
+          "train_mse_scaled": 0.027904736813698105,
+          "train_rmse_original": 0.003500284296253889,
+          "examples_seen": 655,
+          "optimizer_steps": 2501
+        },
+        {
+          "epoch": 62,
+          "train_mse_scaled": 0.027341770022425032,
+          "train_rmse_original": 0.0034647959829151764,
+          "examples_seen": 655,
+          "optimizer_steps": 2542
+        },
+        {
+          "epoch": 63,
+          "train_mse_scaled": 0.027050830162208498,
+          "train_rmse_original": 0.003446312482345669,
+          "examples_seen": 655,
+          "optimizer_steps": 2583
+        },
+        {
+          "epoch": 64,
+          "train_mse_scaled": 0.028149285707764954,
+          "train_rmse_original": 0.0035155885691417928,
+          "examples_seen": 655,
+          "optimizer_steps": 2624
+        },
+        {
+          "epoch": 65,
+          "train_mse_scaled": 0.030006405074177806,
+          "train_rmse_original": 0.0036297050699495687,
+          "examples_seen": 655,
+          "optimizer_steps": 2665
+        },
+        {
+          "epoch": 66,
+          "train_mse_scaled": 0.029727647015611633,
+          "train_rmse_original": 0.003612805837426917,
+          "examples_seen": 655,
+          "optimizer_steps": 2706
+        }
+      ],
+      "backend": "new_CPU_diagnostic_not_production_CUDA",
+      "wall_seconds": 83.04518239499885
+    }
+  },
+  "true_training_y_scaled_sha256": "60a38244b3ca716b34867e842e2d872eae120e50f171b839b749eb33bc1fbb42",
+  "label_permutation_used": false,
+  "architecture": {
+    "factory_version": "e2-published-periodic-v1",
+    "model": "TimeMixer",
+    "recipe_id": "TM-D7-PUBLISHED-v1",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; caller restores target units",
+    "body_output_shape": [
+      1,
+      5
+    ],
+    "source_forecast_complete": true,
+    "task_head": "Linear(5,1)+Softplus outside the complete forecasting body",
+    "same_window_moments": 0,
+    "future_covariates": false,
+    "architecture_search": false,
+    "paper_replication_claimed": false,
+    "historical_recipe_replaced": false,
+    "source_verification": {
+      "repository": "kwuking/TimeMixer",
+      "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "verified_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "layers/AutoCorrelation.py",
+          "sha256": "35fc23e552419a53ebf12de5eb39a276aeb379f3f49ad5cf85ad0527a8c18feb"
+        },
+        {
+          "path": "layers/Autoformer_EncDec.py",
+          "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+        },
+        {
+          "path": "layers/Conv_Blocks.py",
+          "sha256": "25c80a3f21bfcd403e9b3672cb1d3639b19e24d156e791060754b9ad32b90f3f"
+        },
+        {
+          "path": "layers/DWT_Decomposition.py",
+          "sha256": "365356b4017ff144e92e655c24631bd422ec066741f5130fb6dd9e6f1a186e91"
+        },
+        {
+          "path": "layers/Embed.py",
+          "sha256": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b"
+        },
+        {
+          "path": "layers/FourierCorrelation.py",
+          "sha256": "457afe4aa2a8ececf50bc359840edb3c9ed455cb02748b69fd01488215e186ca"
+        },
+        {
+          "path": "layers/SelfAttention_Family.py",
+          "sha256": "34026dd7d5644a2e1dab912f2bb661c91d458015796133e681f40b98fbc10cfd"
+        },
+        {
+          "path": "layers/StandardNorm.py",
+          "sha256": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df"
+        },
+        {
+          "path": "layers/Transformer_EncDec.py",
+          "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+        },
+        {
+          "path": "layers/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "models/TimeMixer.py",
+          "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be"
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9"
+        },
+        {
+          "path": "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+          "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+        },
+        {
+          "path": "utils/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "utils/data_analysis.py",
+          "sha256": "4176dc3ebb06988635085a397021d3b264056fc4251878b60abeee5b8aa94d69"
+        },
+        {
+          "path": "utils/losses.py",
+          "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+        },
+        {
+          "path": "utils/m4_summary.py",
+          "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+        },
+        {
+          "path": "utils/masking.py",
+          "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+        },
+        {
+          "path": "utils/metrics.py",
+          "sha256": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a"
+        },
+        {
+          "path": "utils/timefeatures.py",
+          "sha256": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971"
+        },
+        {
+          "path": "utils/tools.py",
+          "sha256": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376"
+        }
+      ],
+      "verification_scope": "Every declared file for this author tree, not the whole repository"
+    },
+    "frozen_unused_source_parameters": [
+      "pdm_blocks.0.layer_norm.weight",
+      "pdm_blocks.0.layer_norm.bias",
+      "pdm_blocks.1.layer_norm.weight",
+      "pdm_blocks.1.layer_norm.bias",
+      "pdm_blocks.2.layer_norm.weight",
+      "pdm_blocks.2.layer_norm.bias",
+      "pdm_blocks.3.layer_norm.weight",
+      "pdm_blocks.3.layer_norm.bias",
+      "enc_embedding.temporal_embedding.embed.weight"
+    ],
+    "frozen_parameter_reason": "Official branches not called with x_mark=None; TimeMixer PDM.layer_norm is registered but never called upstream",
+    "fixed_body": {
+      "layers": 4,
+      "d_model": 32,
+      "d_ff": 32
+    },
+    "scale_lengths": [
+      7,
+      3
+    ],
+    "down_sampling_layers": 1,
+    "moving_average": 25,
+    "preset_source": "TimeMixer v1 Table7 M4 short-term; pinned M4 Monthly script: four PDM, d_model32, d_ff32, M1, avg2",
+    "preset_source_url": "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/short_term_forecast/M4/TimeMixer.sh",
+    "architecture_policy_id": "e2-published-bodies-d7-v1",
+    "training_recipe_id": "TM-D7-PUBLISHED-v1",
+    "registered_trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0.1,
+      "learning_rate": 0.0006677459949385749,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TM-D7-PUBLISHED-v1",
+      "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+      "weight_decay": 2.0903286086513016e-05
+    },
+    "initialization_seed": 271803,
+    "actual_parameter_count": 9447,
+    "nas": false,
+    "weights_reused": false,
+    "weights_pretrained": false,
+    "training_axes_applied": false,
+    "restored_published_body": true
+  },
+  "artifacts_sha256": {
+    "development_admission.json": "949697f6b50e3a7d1950ce4fc64e6f05432ff8c3547dcc59d616b1a8dd774e99",
+    "calibration_predictions.json": "3d16a74c4f12ec00576a1b2b10eb12a00444953f123181f6867916c4cb72c1e5",
+    "scaler.json": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959",
+    "supervised_phase.json": "a56ff472c57e069322453ee78ad25070665541b3f19d3b9728d73d504092a1c0",
+    "calibrator.json": "7e09acd5d920d67f0eb95205144da3acdc4558ce851baae29ceb980781acbebe",
+    "fit/selected_model.pt": "ef6c689b1f44d7cbb0594405350b95df46eb890d00aca5ee3068b5d44d6292f2"
+  },
+  "new_CPU_fit_scope": true,
+  "original_CUDA_reproduction_claimed": false,
+  "CPU_study_plan_sha256": "53704931391109bf2179985f5026af0316eacc892b8ebe8cfe62b87cd5aa5c7f",
+  "new_job_wall_seconds": 84.33028213399666
+}

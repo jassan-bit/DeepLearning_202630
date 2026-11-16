@@ -245,7 +245,10 @@
 <li class="toctree-l2"><a class="reference internal" href="sections/45_enmienda_protocolo.html">Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="sections/10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="sections/65_cierre_cientifico_real.html">Entradas reales, controles y comparaciones completadas</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="sections/11_hpo_equidad.html">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="sections/51_eficiencia_costes.html">Eficiencia, coste observado y compromisos de Pareto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sections/58_flops_predictores.html">Coste de operaciones de los predictores congelados</a></li>
@@ -450,7 +453,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-interpretar-los-resultados">Cómo interpretar los resultados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-lectura">Guía de lectura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-y-alcance-temporal">Catálogo y alcance temporal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-falta-para-cerrar-la-guia">Qué falta para cerrar la guía</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendientes-y-limites-que-se-conservan">Pendientes y límites que se conservan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cortes-historicos-y-descargas-conservadas">Cortes históricos y descargas conservadas</a></li>
 </ul>
             </nav>
@@ -469,7 +472,7 @@
 <section id="entregables">
 <span id="e2-entregables-portada"></span><h2>Entregables<a class="headerlink" href="#entregables" title="Link to this heading">#</a></h2>
 <p><strong>Descargas independientes para ejecutar en el computador del profesor.</strong> Cada ZIP incluye su propio <code class="docutils literal notranslate"><span class="pre">run.py</span></code>, instrucciones <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>, entradas necesarias y manifiesto SHA-256. Se puede usar cada paquete por separado, sin clonar el repositorio ni copiar archivos de la página web.</p>
-<p><strong>Edición v2 · 15/11/2026:</strong> incorpora las correcciones y conserva el snapshot científico <code class="docutils literal notranslate"><span class="pre">ad8f163c</span></code>. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/index.json">primera edición</a> y sus descargas permanecen disponibles con sus bytes originales. El libro offline identifica su fecha de corte; el catálogo enlazado aquí corresponde a la edición actual.</p>
+<p><strong>Edición v3 · 16/11/2026:</strong> incorpora las entradas reales y los controles y análisis actuales. Cada manifiesto identifica el commit de sus fuentes y el alcance de ejecución. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/index.json">edición v2 del 15/11</a> y la <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/index.json">primera edición</a> conservan sus descargas y bytes originales. El libro offline identifica su fecha de corte.</p>
 <ol class="arabic simple">
 <li><p>Descargar el ZIP elegido y <strong>extraer todo su contenido</strong> en una carpeta propia.</p></li>
 <li><p>Abrir la carpeta <code class="docutils literal notranslate"><span class="pre">D01</span></code>, <code class="docutils literal notranslate"><span class="pre">D02</span></code>, etc. y leer <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>.</p></li>
@@ -484,66 +487,68 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/01_informe_jupyter_book.zip">D01 · Libro completo y fuentes</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/01_informe_jupyter_book.zip">D01 · Libro completo y fuentes</a></p></td>
 <td><p>Extrae el libro HTML offline, fórmulas locales y fuentes para reconstruirlo.</p></td>
 <td><p>Python estándar; rebuild opcional con Jupyter Book.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/02_codigo_modelos.zip">D02 · Código completo de modelos</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/02_codigo_modelos.zip">D02 · Código completo de modelos</a></p></td>
 <td><p>Ejecuta las 13 arquitecturas en CPU; incluye fuentes de autores y entrenamiento CUDA local opcional.</p></td>
 <td><p>Instalar requirements_cpu.txt; luego python run.py.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/03_datos_contrato.zip">D03 · Dataset, Data Card y contrato</a></p></td>
-<td><p>Reconstruye σ₇ y verifica los CSV diarios incluidos; ofrece descarga oficial verificada de datos crudos.</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/03_datos_contrato.zip">D03 · Dataset, Data Card y contrato</a></p></td>
+<td><p>Reconstruye σ₇ y verifica las 1.316 ventanas train655/cal53/test608; incluye OHLCV diario y matrices reales. La descarga de minutos es opcional.</p></td>
 <td><p>Python estándar.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/04_preregistro_auditoria.zip">D04 · Preregistro y auditoría de fuga</a></p></td>
-<td><p>Genera el informe local con protocolo, congelación, controles ejecutados y pendientes.</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/04_preregistro_auditoria.zip">D04 · Preregistro y auditoría de fuga</a></p></td>
+<td><p>Genera el informe con cronología, entradas reales, controles ejecutados y su aceptación; incluye los dos paquetes portables de diarios originales.</p></td>
 <td><p>Python estándar.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/05_ficha_ruta_F2a.zip">D05 · Ficha de ruta F2a</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/05_ficha_ruta_F2a.zip">D05 · Ficha de ruta F2a</a></p></td>
 <td><p>Genera la ficha y tablas de pruebas, unidades, p-valores, efectos e IC disponibles.</p></td>
 <td><p>Python estándar.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/06_benchmark_comparaciones.zip">D06 · Benchmark y comparaciones</a></p></td>
-<td><p>Recalcula métricas de los 81 predictores y reconstruye A2; incluye reanálisis estadístico opcional.</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/06_benchmark_comparaciones.zip">D06 · Benchmark y comparaciones</a></p></td>
+<td><p>Recalcula A2 original desde 81 pronósticos; incluye resultados CPU separados y reanálisis estadístico opcional.</p></td>
 <td><p>Python estándar; NumPy/SciPy sólo para repetir pruebas.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/07_registro_experimentos.zip">D07 · Registro experimental y fichas</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/07_registro_experimentos.zip">D07 · Registro experimental y fichas</a></p></td>
 <td><p>Genera tablas y fichas desde configuraciones, semillas, resultados y costes incluidos.</p></td>
 <td><p>Python estándar.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/08_techo_incertidumbre.zip">D08 · Techo, incertidumbre y errores</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/08_techo_incertidumbre.zip">D08 · Techo, incertidumbre y errores</a></p></td>
 <td><p>Reconstruye cobertura original, 6.080 categorías y el proxy de techo con pesos guardados.</p></td>
 <td><p>Python estándar; reanálisis completo opcional.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/09_arquitecturas_no_aplica.zip">D09 · Arquitecturas: NAS no aplica</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/09_arquitecturas_no_aplica.zip">D09 · Arquitecturas: NAS no aplica</a></p></td>
 <td><p>Genera y valida la justificación del catálogo actual con arquitecturas definidas.</p></td>
 <td><p>Python estándar; no ejecuta una búsqueda NAS.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/10_paper_guia_replica.zip">D10 · Paper guía y réplica parcial</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/10_paper_guia_replica.zip">D10 · Paper guía y réplica parcial</a></p></td>
 <td><p>Reproduce los agregados de cinco semillas; incluye ETTh1, autores y entrenamiento CPU opcional.</p></td>
 <td><p>Python estándar; PyTorch sólo para entrenar.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/11_reproducibilidad.zip">D11 · Reproducibilidad: Apéndice B</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/11_reproducibilidad.zip">D11 · Reproducibilidad: Apéndice B</a></p></td>
 <td><p>Genera la lista de 21 ítems, sus estados, evidencia y recibos.</p></td>
 <td><p>Python estándar.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/12_presentacion_defensa.zip">D12 · Presentación y notas de defensa</a></p></td>
-<td><p>Genera 14 diapositivas HTML, notas del orador y tablas de apoyo; se pueden imprimir a PDF.</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/12_presentacion_defensa.zip">D12 · Presentación y notas de defensa</a></p></td>
+<td><p>Genera 16 diapositivas HTML, notas del orador y tablas de apoyo; se pueden imprimir a PDF.</p></td>
 <td><p>Python estándar; no requiere PowerPoint.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p><strong>Alcance de la ejecución:</strong> los paquetes de análisis reproducen cálculos desde los pronósticos y datos incluidos. D02 verifica los modelos con entradas artificiales y pesos iniciales; las opciones de entrenamiento están separadas y documentadas. Los entrenamientos opcionales requieren las dependencias y el hardware indicados en cada <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>; no se lanzan al ejecutar el comando predeterminado.</p>
+<p>D01 contiene el HTML, sus fuentes y MathJax locales. Dos paquetes grandes de procedencia se ofrecen como descargas opcionales con commit y SHA fijados; <strong>D04 y D11 los incluyen completos</strong>, con sus diarios originales. La lectura y reconstrucción del libro no requieren esos dos ZIP.</p>
 <p><strong>NAS no aplica al catálogo actual</strong>, incluida TiDE R0-v2; D09 entrega su justificación ejecutable. D12 contiene las diapositivas y notas preparadas, mientras que la realización y evaluación de la defensa oral conservan su carácter pendiente.</p>
-<p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/LEEME.md">Instrucciones de la publicación</a> · <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/index.json">Inventario y SHA-256 publicados</a> · <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/execution_report.json">Comprobación publicada de los doce ZIP</a> · <a class="reference download internal" download="" href="_downloads/4394f1b61c4716dca968428d8849eefa/dataset_card_current.json"><span class="xref download myst">Data Card original</span></a>.</p>
+<p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/LEEME.md">Instrucciones de la publicación</a> · <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/index.json">Inventario y SHA-256 publicados</a> · <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v3_20261116/execution_report.json">Comprobación publicada de los doce ZIP</a> · <a class="reference download internal" download="" href="_downloads/4394f1b61c4716dca968428d8849eefa/dataset_card_current.json"><span class="xref download myst">Data Card original</span></a>.</p>
 <p>La <a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">entrega consolidada</span></a>, el <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B</span></a> y la <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de requisitos</span></a> conservan el estado científico de cada componente. Que un archivo se ejecute correctamente no convierte los controles experimentales pendientes en resultados aprobados.</p>
-<p><strong>Seguimiento del 16/11/2026:</strong> <a class="reference download internal" download="" href="_downloads/ae7f28c9ae45e44a1911eae6a3649cbc/suplemento_cierre_20261116.zip"><span class="xref download myst">suplemento independiente de cierre</span></a>, con su propio run.py y sin dependencias para el comando predeterminado. La <a class="reference internal" href="sections/64_correcciones_metodologicas.html"><span class="std std-doc">evidencia de §64</span></a> conserva la ejecución de 18 etapas analíticas, la respuesta condicionada de RQ3 y los bloqueos reales. Los doce ZIP v2 mantienen su snapshot del 15/11 y sus bytes originales.</p>
+<p><strong>Evidencia nueva del 16/11/2026:</strong> <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">entradas reales, controles y comparaciones completadas (§65)</span></a>. Se recuperaron los veinte ZIP originales, se auditaron las <strong>608 entradas de prueba</strong>, se entrenaron <strong>13 controles con etiquetas permutadas</strong> y se ejecutó la <strong>RQ3 completa en CPU</strong>. El clasificador adversarial detecta cambio de distribución y se conserva su alerta. La nueva repetición CPU de las recetas ganadoras también está completa: 78 ajustes neuronales, tres comparadores y evaluación/análisis propios, sin repetir HPO.</p>
+<p>El <a class="reference download internal" download="" href="_downloads/ae7f28c9ae45e44a1911eae6a3649cbc/suplemento_cierre_20261116.zip"><span class="xref download myst">suplemento independiente anterior del 16/11</span></a> conserva sus 18 etapas y su estado histórico. Los doce ZIP v2 mantienen su snapshot del 15/11 y sus bytes originales; no heredan automáticamente los resultados nuevos.</p>
 </section>
 <section id="estado-del-benchmark-y-suplementos">
 <h2>Estado del benchmark y suplementos<a class="headerlink" href="#estado-del-benchmark-y-suplementos" title="Link to this heading">#</a></h2>
-<p><strong>Ampliación del 15/11/2026:</strong> <a class="reference internal" href="sections/64_correcciones_metodologicas.html"><span class="std std-doc">correcciones metodológicas y evidencia</span></a>: veinte tamaños de efecto con IC, RQ2 ejecutada, auditoría real de train655/cal53 y conciliación de las 234 oportunidades HPO. El suplemento CPU completa 78 predictores, trece contrastes de brecha y 12.000 mediciones de latencia, conservando sus alertas numéricas y alcance propio. Los controles de prueba requieren recuperar su OHLCV. Cada componente distingue resultados ejecutados, parciales y pendientes.</p>
+<p><strong>Ampliaciones del 15 y 16/11/2026:</strong> <a class="reference internal" href="sections/64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> conserva veinte tamaños de efecto con IC, RQ2 ejecutada, trece contrastes de brecha y 12.000 mediciones de latencia. <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a> añade datos reales train655/cal53/test608, controles de los puertos, causalidad clásica, permutación de etiquetas, diagnóstico adversarial y comparación formal de calibración–prueba. La nueva IUT CPU genera <strong>47.424 pronósticos</strong> y no demuestra ninguna mejora conjunta tras Holm10. La tolerancia CUDA del suplemento anterior conserva su resultado fallido y no se cambia.</p>
 <p><strong>Evaluación final y experimentos complementarios completados. Cierre A100 verificado: 13/11/2026, 22:42:55 de Bogotá; suplementos estadísticos y documentales del 13/11, posteriores a las 23:17.</strong> La tabla A2 reúne <strong>16 sistemas sobre las mismas 608 fechas</strong>. El plan complementario cerró <strong>99/99 ajustes: 81 reproducciones y 18 ablaciones</strong>, con todas las comprobaciones de reproducción aprobadas y sin reservas abiertas. Se conservan los resultados originales y los respaldos en <strong>GitHub</strong>.</p>
 <p><strong><a class="reference internal" href="sections/06_benchmark_final.html"><span class="std std-doc">Resultados finales (§6)</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/878959cd45a45cb509b9c4065aa9d38c/benchmark_A2.csv"><span class="xref download myst">Tabla A2 medida, CSV</span></a></strong> · <strong><a class="reference internal" href="sections/55_reproduccion_ablaciones.html"><span class="std std-doc">Reproducción y ablaciones (§55)</span></a></strong> · <strong><a class="reference download internal" download="" href="_downloads/ebf8916e830254b68c2d6fa14a7a1adc/status.json"><span class="xref download myst">Estado y presupuesto final</span></a></strong></p>
 <p><strong>Resultado de reproducción:</strong> los recibos de los 81 predictores informan <strong>diferencia máxima absoluta cero</strong> frente a los originales en 53 pronósticos de calibración y 608 de prueba. Los 78 estados neuronales son iguales tensor a tensor y los tres clásicos conservan sus parámetros. Es una reproducción numérica con checkout y entorno Python separados sobre la misma cronología conocida.</p>
@@ -556,7 +561,7 @@
 <section id="organizacion-del-informe">
 <h2>Organización del informe<a class="headerlink" href="#organizacion-del-informe" title="Link to this heading">#</a></h2>
 <p>El índice principal sigue los <strong>catorce capítulos de la guía de E2, en su mismo orden</strong>. Los documentos complementarios aparecen bajo el tema correspondiente; los avances y diseños anteriores se reúnen en el <a class="reference internal" href="sections/archivo_antecedentes.html"><span class="std std-doc">archivo de antecedentes</span></a>.</p>
-<p>Las menciones <strong>§15–§64</strong> identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La <a class="reference internal" href="sections/concordancia_guia.html"><span class="std std-doc">tabla de concordancia</span></a> permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.</p>
+<p>Las menciones <strong>§15–§65</strong> identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La <a class="reference internal" href="sections/concordancia_guia.html"><span class="std std-doc">tabla de concordancia</span></a> permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.</p>
 </section>
 <section id="resumen">
 <h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
@@ -615,8 +620,20 @@
 <tr class="row-odd"><td><p>Literatura recibida</p></td>
 <td><p><strong>9.559 grupos cribados, 42 estudios aplicados</strong>, doce dimensiones y disposiciones de acceso: <a class="reference internal" href="sections/62_cierre_literatura_focal.html"><span class="std std-doc">§62</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p>Cierre contable</p></td>
-<td><p><strong>84 h autorizadas</strong>, <strong>80,2561 h contabilizadas</strong>, saldo <strong>3 h 44 min 38 s</strong>, sin reservas abiertas</p></td>
+<tr class="row-even"><td><p>Entradas y controles reales</p></td>
+<td><p>Train655/cal53/test608; <strong>78 puertos, 36 comprobaciones clásicas y 13 controles con etiquetas permutadas</strong>: <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Comparación conjunta RQ3 en CPU</p></td>
+<td><p><strong>47.424 pronósticos nuevos</strong>, diez IUT; ninguna mejora conjunta establecida tras Holm10: <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Registro y contabilidad recuperados</p></td>
+<td><p>Cronología de <strong>170 HPO nuevos y 78 ajustes finales</strong>; <strong>233 cargos observados</strong> del catálogo reducido, con hardware y relojes diferentes: <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Presupuesto</p></td>
+<td><p><strong>84 h acumuladas autorizadas</strong>. El cierre A100 del 13/11 dejó 80,2561 h contabilizadas; los controles y la nueva repetición CPU conservan sus cargos posteriores, sin reiniciar el límite.</p></td>
+</tr>
+<tr class="row-even"><td><p>Repetición CPU con recetas fijas</p></td>
+<td><p><strong>78 ajustes neuronales + tres clásicos</strong>, cal53/freeze81/test608 y primaria20.000 completos; <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">evidencia y costes</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Persistencia</p></td>
 <td><p>Resultados y comprobaciones de integridad en <strong>GitHub</strong></p></td>
@@ -625,7 +642,7 @@
 </table>
 </div>
 <p>El piloto estima una potencia condicional de <strong>12,30 %</strong> para una ganancia de <strong>2δ</strong>, por debajo del objetivo de 80 %. Con R=6, la ganancia mínima estimada para esa potencia es <strong>0,00087867</strong>. Son cálculos sobre cinco semillas emparejadas de dos modelos y 53 fechas de desarrollo; no garantizan potencia temporal ni para todo el Top 10. R=6 se conserva por recursos, sin ampliar repeticiones después de observar la prueba.</p>
-<p>Completar el benchmark no acredita cumplimiento integral de la guía. La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de exigencias (§38)</span></a> distingue los resultados existentes de las condiciones pendientes. Esta actualización documental utiliza los artefactos ya guardados.</p>
+<p>Completar el benchmark no acredita cumplimiento integral de la guía. La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de exigencias (§38)</span></a> distingue los resultados existentes de las condiciones pendientes; <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a> identifica los controles y cálculos nuevos con sus propios recibos.</p>
 </section>
 <section id="como-interpretar-los-resultados">
 <h2>Cómo interpretar los resultados<a class="headerlink" href="#como-interpretar-los-resultados" title="Link to this heading">#</a></h2>
@@ -682,13 +699,13 @@
 <p>La selección usa enero, julio y octubre de 2024; el ajuste final común termina el <strong>31/10/2024</strong>, seguido de embargo y calibración separada. La evaluación comprende <strong>01/01/2025–31/08/2026</strong>, el calendario heredado ya conocido en E1. Su interpretación es retrospectiva. La <a class="reference download internal" download="" href="_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión de datos</span></a> documenta las veinte fuentes originales verificadas, el puente causal de diciembre y el soporte común sin comprimir fechas.</p>
 <p>El cierre complementario mantiene un límite de <strong>84 horas acumuladas autorizadas</strong>, con el ancla anterior de 80 horas y todos sus cargos conservados. El balance final y su alcance se documentan en <a class="reference internal" href="sections/55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>. Las incidencias HPO y el fallo de implementación de ARIMA quedan contabilizados; el ARIMA ganador, de orden (2,0,1), se elige entre <strong>15 de los 18 órdenes</strong> con tres folds válidos. Se conservan dos incidencias de no convergencia y el fallo de implementación, sin repetirlos. Las correcciones de adquisición y respaldo no alteran los predictores congelados. La <a class="reference download internal" download="" href="_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">congelación</span></a> y el <a class="reference download internal" download="" href="_downloads/484b3adee08dabb2bf49a80094c5a0f8/benchmark_analysis.json"><span class="xref download myst">análisis completo</span></a> permiten revisar ese alcance.</p>
 </section>
-<section id="que-falta-para-cerrar-la-guia">
-<h2>Qué falta para cerrar la guía<a class="headerlink" href="#que-falta-para-cerrar-la-guia" title="Link to this heading">#</a></h2>
+<section id="pendientes-y-limites-que-se-conservan">
+<h2>Pendientes y límites que se conservan<a class="headerlink" href="#pendientes-y-limites-que-se-conservan" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Conservar los límites de cobertura y acceso de la literatura: 374 registros Scopus no recibidos y totales/rangos WoS no confirmados. El <a class="reference internal" href="sections/62_cierre_literatura_focal.html"><span class="std std-doc">flujo del corpus recibido (§62)</span></a> está reconciliado; los informes inaccesibles mantienen elegibilidad desconocida y los puntajes del catálogo tienen interpretación condicional.</p></li>
-<li><p>Reconocer la continuidad E1–E2–E3: la partición heredada es la exigida por la guía y δg ya estaba registrado antes de esta campaña. <a class="reference internal" href="sections/64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> contrasta la brecha train/cal de los 78 predictores CPU; dos de trece redes establecen tolerancia condicionada a esas semillas y periodos. Permanecen sin acreditar la consistencia validación–prueba del plan original y la adecuación conjunta; el piloto mantiene su limitación de potencia declarada. El calendario conocido conserva un alcance retrospectivo, sin penalizar su mera herencia. Giacomini–Rossi y el refinamiento de 20.000 réplicas están calculados en <a class="reference internal" href="sections/56_inferencia_estabilidad_final.html"><span class="std std-doc">§56</span></a>; no crean un experimento prospectivo.</p></li>
+<li><p>Mantener el alcance de las comparaciones: <a class="reference internal" href="sections/64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> contrasta δg en train/cal de los 78 predictores CPU; dos redes establecen tolerancia condicional. <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a> ejecuta la comparación formal de calibración–prueba original y la IUT CPU completa. Calibración no es validación HPO independiente; esos cálculos no establecen adecuación conjunta ni identifican la causa de sobreajuste. El calendario conocido conserva alcance retrospectivo y el piloto su limitación de potencia/MDE declarada. La nueva repetición CPU de las recetas está completa; no repite la búsqueda ni toda la campaña histórica.</p></li>
 <li><p><a class="reference internal" href="sections/63_ensamble_calibracion.html"><span class="std std-doc">§63</span></a> añade una referencia empírica ajustada sólo en calibración y γ=0,28757; su incertidumbre no confirma una superioridad ni un techo óptimo. <a class="reference internal" href="sections/57_errores_techo.html"><span class="std std-doc">§57</span></a> conserva entropía ordinal y las referencias anteriores, sin convertirlas en ruido Bayes. La taxonomía de residuos es automática y posterior, con 100 fechas auditables por modelo.</p></li>
-<li><p>Los FLOPs de <a class="reference internal" href="sections/58_flops_predictores.html"><span class="std std-doc">§58</span></a> cubren matrices y convoluciones, con FFT, activaciones y otras operaciones excluidas. Energía, dinero y coste total del servicio no se midieron. El <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B actual</span></a> mantiene estados verificables y un comando de auditoría; la defensa oral conserva su evaluación propia.</p></li>
+<li><p>Conservar el cambio de distribución detectado y su tratamiento explícito en <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a>. Los costes recuperados describen cargos observados del catálogo reducido, con hardware y relojes diferentes; faltan una duración desconocida y 51 desgloses de fase. Los FLOPs de <a class="reference internal" href="sections/58_flops_predictores.html"><span class="std std-doc">§58</span></a> tienen exclusiones declaradas; energía, dinero y servicio completo no se midieron. El <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B actual</span></a> mantiene estados verificables; la defensa oral conserva su evaluación propia.</p></li>
 </ol>
 <p>La <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de §38</span></a> distingue cada evidencia de sus condiciones pendientes. El cierre de 99 ajustes corresponde al plan complementario; no es un porcentaje de cumplimiento integral de E2.</p>
 </section>
@@ -785,7 +802,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-interpretar-los-resultados">Cómo interpretar los resultados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-lectura">Guía de lectura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-y-alcance-temporal">Catálogo y alcance temporal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-falta-para-cerrar-la-guia">Qué falta para cerrar la guía</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendientes-y-limites-que-se-conservan">Pendientes y límites que se conservan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cortes-historicos-y-descargas-conservadas">Cortes históricos y descargas conservadas</a></li>
 </ul>
   </nav></div>

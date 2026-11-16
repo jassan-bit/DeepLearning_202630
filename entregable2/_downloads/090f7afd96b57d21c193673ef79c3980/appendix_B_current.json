@@ -1,0 +1,1204 @@
+{
+  "schema_version": 1,
+  "reviewed_source_commit": null,
+  "source_guide_sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+  "guide_printed_page": 63,
+  "scope": "Current 21 literal items with corrective evidence; documentary export, no grade or percentage.",
+  "statuses": {
+    "completo": "Evidencia ejecutada para el alcance descrito; conservar sus límites",
+    "parcial": "Evidencia disponible, con condiciones pendientes",
+    "no_cumple": "Condición no acreditada para este experimento",
+    "no_aplica": "Obligación condicional que no se activa en el catálogo adjudicado"
+  },
+  "percentage_of_guide_complete_reported": false,
+  "previous_versions_preserved": [
+    "book_e2/_static/e2_point1_review_v1/appendix_B_clarified.json",
+    "book_e2/_static/e2_delivery_reproduction_20261114/appendix_B_current.csv",
+    "book_e2/_static/e2_delivery_reproduction_20261114/appendix_B_current.json",
+    "book_e2/_static/e2_corrections_20261115/delivery/appendix_B_current.csv",
+    "book_e2/_static/e2_corrections_20261115/delivery/appendix_B_current.json"
+  ],
+  "base_B_version": "e2-corrections-delivery-readouts-v1",
+  "base_B_preserved": "book_e2/_static/e2_corrections_20261115/delivery/appendix_B_current.json",
+  "version": "e2-scientific-delivery-readouts-v1",
+  "counts": {
+    "parcial": 5,
+    "completo": 14,
+    "no_aplica": 2,
+    "no_cumple": 0
+  },
+  "items": [
+    {
+      "id": "B01",
+      "guide_pdf_page": "63",
+      "requirement": "Preregistro fechado y versionado antes del primer entrenamiento.",
+      "status": "parcial",
+      "evidence": "Protocolo y motor reducidos anteriores a los 170 HPO nuevos (206 diarios verificados) y a los 78 ajustes finales (90 diarios); δ/δg y enmiendas conservan su linaje.",
+      "evidence_paths": "book_e2/_static/e2_scientific_closure_20261116/preregistration/summary.json;book_e2/_static/e2_scientific_closure_20261116/final_registration_chronology/audit_results/summary.json",
+      "remaining_limit": "Los 61 resultados HPO cacheados y ajustes anteriores conservan otra historia. No se certifican todas las decisiones antes del primer entrenamiento del proyecto ni cegamiento del test E1; los tiempos registrados no son sellos externos independientes."
+    },
+    {
+      "id": "B02",
+      "guide_pdf_page": "63",
+      "requirement": "Hash del dataset y del conjunto de prueba registrados.",
+      "status": "completo",
+      "evidence": "Admisión, congelación y manifiestos conservan SHA256 de los datos y del conjunto de evaluación. El auditor CPU coteja la entrada publicada y A2 antes de reconstruir su aritmética.",
+      "evidence_paths": "book_e2/_static/e2_benchmark_final_20261113/data_admission.json;book_e2/_static/e2_final_audit_inputs_20261114/manifest.json;book_e2/_static/e2_delivery_reproduction_20261114/delivery_audit.json",
+      "remaining_limit": "La identidad de bytes acredita procedencia; no demuestra independencia, ausencia de fuga o calidad universal del contenido."
+    },
+    {
+      "id": "B03",
+      "guide_pdf_page": "63",
+      "requirement": "Auditoría de fuga ejecutada y anexa, con todos los criterios aprobados.",
+      "status": "parcial",
+      "evidence": "Todos los procedimientos declarados están ejecutados: entradas reales 655/53/608, 78 ports/390 condiciones de desarrollo, 36 controles causales clásicos, 35 OLS univariadas/105 resultados sin R²≥0,95, adversarial y 13 entrenamientos con etiquetas permutadas. La deriva AUC=0,95253867, p=0,001 se conserva, explica y trata.",
+      "evidence_paths": "book_e2/_static/e2_scientific_closure_20261116/data_audit/audit_result.json;book_e2/_static/e2_scientific_closure_20261116/port_audit/readout.json;book_e2/_static/e2_scientific_closure_20261116/classical_causality/readout.json;book_e2/_static/e2_scientific_closure_20261116/univariate_attributes/result_v1/summary.json;book_e2/_static/e2_scientific_closure_20261116/univariate_attributes/plan_v1/analysis_plan.json;book_e2/_static/e2_scientific_closure_20261116/univariate_attributes/qa_before_run.json;book_e2/_static/e2_scientific_closure_20261116/controls/negative_summary.json;book_e2/_static/e2_scientific_closure_20261116/controls/adversarial_result.json;book_e2/_static/e2_scientific_closure_20261116/drift_explanation/treatment_evidence.json",
+      "remaining_limit": "La aceptación de rendimiento cercano al azar bajo etiquetas permutadas no está establecida: iTransformer/TSMixer conservan ρ=0,52230/0,49253 y ganancias RMSE positivas; p conjuntos nominales=0,00740/0,04460 y Holm13=0,09619/0,53515. Cero alertas Holm no demuestra equivalencia al azar. La parcialidad corresponde a este criterio de aceptación, no a procedimientos pendientes ni a una demostración de fuga."
+    },
+    {
+      "id": "B04",
+      "guide_pdf_page": "63",
+      "requirement": "Particiones y semillas guardadas y regenerables.",
+      "status": "completo",
+      "evidence": "Se conservan tres folds HPO con 253/435/527 objetivos train y 83 de validación por fold, 655 train finales, 53 de calibración y 608 de evaluación; HPO usa 271201 y las seis semillas finales son 271801–271806.",
+      "evidence_paths": "book_e2/_static/e2_eda_current_v1/partition_audit.json;book_e2/_static/reduced_protocol_20261112/calendar_registered_bytes_v2.csv;book_e2/sections/08_reproducibilidad.md",
+      "remaining_limit": "La partición es cronológica, sin semilla aleatoria de split; regenerar requiere las mismas fuentes, máscaras y políticas. Calibración y test comparten seis cierres pasados legítimos, sin compartir claves de objetivo."
+    },
+    {
+      "id": "B05",
+      "guide_pdf_page": "63",
+      "requirement": "Un único pipeline por modelo; ningún ajuste fuera de train.",
+      "status": "completo",
+      "evidence": "Completo en el pipeline auditado: las cohortes 655/53/608 mantienen transformaciones relativas, ventanas causales y escaladores ajustados sólo en train. Firmas de 78 ajustes y 81 escaladores cotejados; 390 condiciones del port conservan parámetros/buffers y los clásicos avanzan sin refits de coeficientes. Los 35 atributos usan información disponible hasta t−1.",
+      "evidence_paths": "book_e2/_static/e2_scientific_closure_20261116/data_audit/audit_result.json;book_e2/_static/e2_scientific_closure_20261116/data_audit/physical_scaler_checks.json;book_e2/_static/e2_scientific_closure_20261116/port_audit/readout.json;book_e2/_static/e2_scientific_closure_20261116/classical_causality/readout.json;book_e2/_static/e2_scientific_closure_20261116/univariate_attributes/result_v1/summary.json",
+      "remaining_limit": "Alcance: preparación train-only y predictores/consultas auditados, sin extenderlo a historias arbitrarias, otros ports o todas las plataformas. Calibrar intervalos en cal53, actualizar el estado causal de ARIMA y el ensemble posterior con identidad propia no equivalen a reajustar parámetros con test."
+    },
+    {
+      "id": "B06",
+      "guide_pdf_page": "63",
+      "requirement": "Mismo presupuesto de ajuste para todos los modelos; todas las configuraciones registradas.",
+      "status": "parcial",
+      "evidence": "234 oportunidades: 231 completas, dos fallos conocidos y una desconocida; 61 cachés y 170 ajustes nuevos completos. Hay 180/231 desgloses de fase. Los 233 cargos de pared observados mutuamente excluyentes suman 25.833,898918 s; 1.860 s de asignación desconocida quedan separados.",
+      "evidence_paths": "book_e2/_static/e2_scientific_closure_20261116/hpo_cost_reconciliation/summary.json;book_e2/_static/e2_scientific_closure_20261116/catalogue_charge_accounting/summary.json;book_e2/_static/e2_scientific_closure_20261116/catalogue_charge_accounting/catalogue_charge_opportunities_234.csv",
+      "remaining_limit": "Mismas plazas no implica mismo presupuesto efectivo: SAE tiene tres fases, los clásicos otros dominios y los relojes/hardware difieren. Los 51 desgloses de fase faltantes sí conservan cargos originales. No se suman fases/callbacks/cargos anidados ni se interpreta la reserva desconocida como tiempo observado o el subtotal como todo el historial."
+    },
+    {
+      "id": "B07",
+      "guide_pdf_page": "63",
+      "requirement": "Al menos 5 ejecuciones por modelo (6 si se usan pruebas por rangos) y resultados por ejecución guardados.",
+      "status": "completo",
+      "evidence": "Las trece redes tienen seis ajustes finales, con resultados individuales guardados: 78 trayectorias neuronales. Persistence, SeasonalNaive y ARIMA son deterministas y conservan una trayectoria cada uno, sin réplicas artificiales.",
+      "evidence_paths": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json;book_e2/_static/e2_reproduction_ablations_20261113/reproduction_by_model.csv;book_e2/sections/13_agregacion_estadistica.md",
+      "remaining_limit": "Las seis semillas representan variación de optimización condicionada a una cronología; los rangos neuronales usan seis vectores emparejados, sin duplicar los clásicos R=1."
+    },
+    {
+      "id": "B08",
+      "guide_pdf_page": "63",
+      "requirement": "Análisis de potencia y justificación del número de ejecuciones.",
+      "status": "completo",
+      "evidence": "Piloto de cinco pares iTransformer/GRU32 en 53 fechas: R=6, α=0,0025, ganancia 2δ, potencia 0,122953 frente a 0,80 y MDE=0,000878674. Se justifica R=6 por recursos y se reporta la limitación conforme a la excepción explícita de la guía 9.2.",
+      "evidence_paths": "book_e2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json;book_e2/_static/e2_repro_prereg_current_v1/power_design_readout.json;book_e2/sections/09_protocolo_registrado.md",
+      "remaining_limit": "Completo en el alcance literal de análisis y reporte con justificación/MDE. No se alcanzó potencia 0,80 ni se acredita potencia temporal o exacta de Holm para todos los candidatos; no autoriza ampliar R tras observar prueba."
+    },
+    {
+      "id": "B09",
+      "guide_pdf_page": "63",
+      "requirement": "Baselines trivial y clásico fuerte, y los tres modelos base del Entregable 1, ajustados con el mismo presupuesto.",
+      "status": "parcial",
+      "evidence": "A2 incluye Persistence, SeasonalNaive, ARIMA y las referencias E1 MLP16/LSTM32/GRU32, junto a los diez candidatos, sobre las mismas 608 fechas y máscara. Sus configuraciones y fallos conservan registros.",
+      "evidence_paths": "book_e2/_static/e2_benchmark_current_v1/comparison_current.csv;book_e2/sections/11_hpo_equidad.md;book_e2/sections/06_benchmark_final.md",
+      "remaining_limit": "Los presupuestos y dominios clásicos y neuronales difieren; no se acredita igualdad global de cómputo ni se rellenan costes clásicos ausentes con cero."
+    },
+    {
+      "id": "B10",
+      "guide_pdf_page": "63",
+      "requirement": "Versiones exactas de software, hardware y determinismo documentados.",
+      "status": "completo",
+      "evidence": "Benchmark y reproducción registran Python 3.12.12, Torch 2.8.0+cu126, CUDA 12.6 y A100; FP32 y flags deterministas explícitos. El inventario recupera exactamente las 44 distribuciones instaladas y el hash del lock observado.",
+      "evidence_paths": "book_e2/sections/08_reproducibilidad.md;book_e2/_static/e2_repro_prereg_current_v1/environment_observed.json;book_e2/_static/e2_reproduction_ablations_20261113/historical_clean_runtime.json",
+      "remaining_limit": "Los entornos CPU y ETTh1 se documentan aparte; no hay digest de imagen/SO ni garantía bit a bit entre plataformas. Docker es opcional en E2."
+    },
+    {
+      "id": "B11",
+      "guide_pdf_page": "63",
+      "requirement": "Pruebas de las Tablas A, B y C reportadas con p exactos, ajustados, IC y tamaños de efecto.",
+      "status": "completo",
+      "evidence": "Completo en el reporte de las Tablas A/B/C: 20 contrastes primarios con ganancias, IC y p exactos/ajustados; 20 d_z con IC entre semillas; RQ2 con diez pares y siete rechazos Holm10; 13 pruebas CPU de δg, 13 comparaciones de periodos originales y diez IUT CPU de RQ3. Las unidades, familias y supuestos están identificados.",
+      "evidence_paths": "book_e2/_static/e2_corrections_20261115/delivery/a3_primary_contrasts_current.csv;book_e2/_static/e2_corrections_20261115/statistics/standardized_effects_20.csv;book_e2/_static/e2_corrections_20261115/statistics/rq2_primary_Holm10.csv;book_e2/sections/49_diagnosticos_f2a.md;book_e2/_static/e2_scientific_closure_20261116/period_comparison/summary.json;book_e2/_static/e2_scientific_closure_20261116/cpu_test_iut/statistics/summary.json;book_e2/_static/e2_scientific_closure_20261116/cpu_test_iut/verification_report.json",
+      "remaining_limit": "Reporte completo no significa adecuación favorable: se conservan resultados adversos, dos tolerancias condicionales, falta de equivalencia, puerta antigua de paridad CUDA no aprobada y adecuación conjunta A100 no establecida. Calibración no es validación HPO independiente; los d_z entre semillas no sustituyen incertidumbre temporal."
+    },
+    {
+      "id": "B12",
+      "guide_pdf_page": "63",
+      "requirement": "Familias de comparaciones y corrección múltiple declaradas a priori.",
+      "status": "completo",
+      "evidence": "Completo para las familias declaradas: los 20 pares primarios, α y Holm por procedimiento constan en el protocolo reducido anterior a los 170 HPO nuevos y a los 78 ajustes finales. Efectos/RQ2, brecha CPU, periodos e IUT RQ3 tienen planes, familias y fechas propios anteriores a sus cálculos y se etiquetan como suplementos posteriores.",
+      "evidence_paths": "book_e2/sections/09_protocolo_registrado.md;book_e2/_static/e2_corrections_20261115/statistics/analysis_plan.json;book_e2/_static/e2_corrections_20261115/statistics/execution_receipt.json;book_e2/_static/e2_scientific_closure_20261116/period_comparison/analysis_plan.json;book_e2/_static/e2_scientific_closure_20261116/cpu_test_iut/analysis_plan.json;book_e2/_static/e2_scientific_closure_20261116/cpu_test_iut/statistics/summary.json",
+      "remaining_limit": "El alcance no atribuye preregistro a todo el historial o a los 61 HPO cacheados. Conocer el test E1 limita confirmación prospectiva; no convierte por sí solo una familia explícita, corregida y fechada en infracción del literal. No se retrofechan los suplementos ni se infiere equivalencia desde no rechazo."
+    },
+    {
+      "id": "B13",
+      "guide_pdf_page": "63",
+      "requirement": "Techo de desempeño estimado y distancia normalizada γ reportada.",
+      "status": "completo",
+      "evidence": "Completo en la estimación operativa reportada conforme a §12.1: entropía ordinal como predictibilidad intrínseca y referencias empíricas de ensembles, con referencia ideal y ensemble uniforme adverso conservados. El proxy ajustado sólo en cal53 obtiene RMSE=0,003689532 y γ=0,287574, IC [−1,49210; 2,37128].",
+      "evidence_paths": "book_e2/sections/12_incertidumbre_errores.md;book_e2/_static/e2_error_ceiling_final_audit_20261114/ceiling_gamma_references.json;book_e2/_static/e2_calibration_ensemble_20261114/summary.json",
+      "remaining_limit": "La incertidumbre amplia, el orden favorable en 6.588/10.000 réplicas y las dos ganancias no concluyentes Holm2 limitan la interpretación del margen. Se reconoce la referencia y γ reportados sin exigir resultado favorable ni identificar techo óptimo, riesgo Bayes o piso de ruido."
+    },
+    {
+      "id": "B14",
+      "guide_pdf_page": "63",
+      "requirement": "Modelos con arquitectura no definida identificados; espacio declarado antes de entrenar; fase 1 con las 1000 arquitecturas; k finalistas con al menos 5 ejecuciones.",
+      "status": "no_aplica",
+      "evidence": "Los cuerpos del catálogo actual tienen arquitectura definida, incluida TiDE publicada r=0. La obligación NAS de 1.000 arquitecturas y dos fases no se activa; las seis plazas HPO no se presentan como búsqueda NAS.",
+      "evidence_paths": "book_e2/sections/14_arquitecturas.md;book_e2/sections/44_arquitecturas_publicadas.md;book_e2/sections/48_protocolo_reducido.md",
+      "remaining_limit": "La condición aplica si se introduce una arquitectura no definida. Esta fila no declara una fase NAS ejecutada ni una exención de documentar las recetas actuales."
+    },
+    {
+      "id": "B15",
+      "guide_pdf_page": "63",
+      "requirement": "Arquitectura ganadora elegida solo con validación, con finalistas indistinguibles y análisis del sesgo del ganador y de la correlación entre fases.",
+      "status": "no_aplica",
+      "evidence": "El análisis de finalistas NAS, sesgo del ganador y correlación entre fases es condicional a la búsqueda de B14. Los ganadores HPO actuales sí se eligieron con los tres orígenes de validación registrados.",
+      "evidence_paths": "book_e2/sections/14_arquitecturas.md;book_e2/sections/11_hpo_equidad.md;book_e2/sections/48_protocolo_reducido.md",
+      "remaining_limit": "No se inventan finalistas NAS, correlaciones entre fases ni comparaciones de arquitectura que no se ejecutaron."
+    },
+    {
+      "id": "B16",
+      "guide_pdf_page": "63",
+      "requirement": "Robustez con al menos tres niveles de severidad; interpretabilidad con prueba de fidelidad y estabilidad.",
+      "status": "completo",
+      "evidence": "Se publican cuatro perturbaciones por tres severidades y diagnósticos de fidelidad con borrado/inserción/control aleatorio para SAE, GRU32 y ARIMA en 24 fechas, con estabilidad entre las seis semillas neuronales.",
+      "evidence_paths": "book_e2/sections/54_robustez_interpretabilidad.md;book_e2/_static/e2_posthoc_gpu_20261113/normalized_degradation_areas.csv",
+      "remaining_limit": "Estrés sintético en trece redes, no garantía de robustez externa. La fidelidad usa la misma muestra para ordenar/evaluar; ARIMA R=1 no tiene estabilidad entre semillas estimable y las explicaciones no prueban causalidad."
+    },
+    {
+      "id": "B17",
+      "guide_pdf_page": "63",
+      "requirement": "Incertidumbre cuantificada en los tres mejores modelos con cobertura empírica.",
+      "status": "completo",
+      "evidence": "SAE, ARIMA y GRU32 tienen intervalos y cobertura empírica, con intervalos originales congelados y variantes móvil53/ACI53; se publican IC temporales, anchuras y análisis por grupos.",
+      "evidence_paths": "book_e2/sections/12_incertidumbre_errores.md;book_e2/sections/60_calibracion_temporal_condicional.md;book_e2/_static/e2_repro_prereg_current_v1/calibration_plot_readout.json",
+      "remaining_limit": "Completo en el alcance literal de cuantificación y cobertura empírica. Se conservan infracoberturas por grupos, dependencia temporal y ausencia de garantía universal; no se exige cobertura condicional perfecta para reconocer la evidencia ejecutada."
+    },
+    {
+      "id": "B18",
+      "guide_pdf_page": "63",
+      "requirement": "Un solo acceso al conjunto de prueba por ejecución, con modelo y umbrales ya fijados.",
+      "status": "completo",
+      "evidence": "El ciclo E2 documentado conserva 81 predictores/escaladores/calibradores/reglas fijados y el registro de no refit/retuning tras scoring. La cronología recuperada vincula 78 pesos evaluados con sus ajustes originales anteriores al fin reportado de admisión.",
+      "evidence_paths": "book_e2/_static/e2_scientific_closure_20261116/final_registration_chronology/audit_results/summary.json",
+      "remaining_limit": "Completo en el ciclo documentado; el test E1 ya era conocido. El fin de admisión no prueba la fecha del primer acceso externo ni un sello independiente de cegamiento. Los suplementos posteriores tienen otra identidad."
+    },
+    {
+      "id": "B19",
+      "guide_pdf_page": "63",
+      "requirement": "Replicación parcial del paper guía con criterio de éxito definido a priori y limitación identificada.",
+      "status": "completo",
+      "evidence": "La réplica parcial TimeMixer/ETTh1 con cinco semillas satisface su criterio registrado de compatibilidad. Se documentan la limitación de dependencia del batch L1 y una prueba predictiva L2 inconclusa, con alcances separados.",
+      "evidence_paths": "book_e2/sections/05_paper_guia.md;book_e2/_static/e2_paper_current_v1/guide_checklist.json",
+      "remaining_limit": "La cobertura exacta de la réplica respecto de todas las ventanas originales del paper es desconocida. L1 no prueba una mejora Bitcoin; L2 no confirma ni refuta transferencia predictiva y no se afirma reproducción integral del paper."
+    },
+    {
+      "id": "B20",
+      "guide_pdf_page": "63",
+      "requirement": "Reproducción independiente de la tabla principal con discrepancia máxima reportada.",
+      "status": "completo",
+      "evidence": "Un checkout y un venv nuevos reprodujeron 81/81 predictores: discrepancia máxima absoluta de predicción 0 en 53 fechas de calibración y 608 de test, con 78 estados neuronales y tres parámetros clásicos iguales según recibos.",
+      "evidence_paths": "book_e2/sections/08_reproducibilidad.md;book_e2/_static/e2_reproduction_ablations_20261113/reproduction.csv;book_e2/_static/e2_reproduction_ablations_20261113/historical_clean_runtime.json",
+      "remaining_limit": "La guía admite otra persona o entorno limpio; está acreditada la segunda vía. La discrepancia aritmética CPU 2,6020852139652106×10⁻¹⁸ es otro chequeo, no una nueva comparación tensorial ni prueba de generalización."
+    },
+    {
+      "id": "B21",
+      "guide_pdf_page": "63",
+      "requirement": "Código ejecutable de extremo a extremo con un solo comando y entorno reproducible.",
+      "status": "parcial",
+      "evidence": "Doce ZIP del 15/11 conservan sus propios puntos de entrada y recibos. Nueva repetición de recetas finales desde cero: 78/78 trabajadores neuronales y 3/3 clásicos, 2/2 etapas de scoring/análisis; completada en su alcance CPU. Las auditorías, estadísticas e inferencias CPU ya terminadas conservan manifiestos propios.",
+      "evidence_paths": "book_e2/_static/e2_corrections_20261115/delivery/standalone_execution_snapshot.json;scripts/package_e2_standalone_deliverables.py;book_e2/sections/08_reproducibilidad.md;book_e2/_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/plan_v2/analysis_plan.json;source_snapshots/cpu_status_at_export.json",
+      "remaining_limit": "La repetición CPU de recetas finales no repite HPO, robustez ni toda la campaña histórica y no prueba paridad CUDA. Los comandos predeterminados de informes no repiten todos los ajustes; B21 permanece parcial. Cada versión de ZIP necesita sus propios recibos y no hereda los de otro snapshot."
+    }
+  ],
+  "base_B_reviewed_source_commit": "2769b25574f4406bf8afcc44778a2a20f04977e5",
+  "reviewed_source_commit_scope": "New metadata export; stable working-tree inputs are SHA-bound in source_provenance; no historical source is rewritten.",
+  "correction_evidence_state": {
+    "version": "e2-scientific-delivery-readouts-v1",
+    "observed_at_utc": "2026-11-16T03:28:09.962881+00:00",
+    "appendix_B_counts": {
+      "parcial": 5,
+      "completo": 14,
+      "no_aplica": 2,
+      "no_cumple": 0
+    },
+    "percentage_complete_or_grade_reported": false,
+    "primary_pairs": 20,
+    "A3_15November_bytes_preserved": true,
+    "primary_p_and_decisions_unchanged": true,
+    "A2_replaced": false,
+    "RQ1_replaced": false,
+    "effects_and_RQ2_preserved": {
+      "version": "e2-effects-rq2-closure-v1",
+      "effect_pairs": 20,
+      "effects_with_estimable_CI": 20,
+      "RQ2_primary_pairs": 10,
+      "RQ2_estimable_pairs": 10,
+      "RQ2_rejections_Holm10": 7,
+      "RQ2_rejected_candidates": [
+        "FCN-1D",
+        "ResNet-1D",
+        "TimesNet",
+        "TSMixer",
+        "TiDE",
+        "PatchTST",
+        "iTransformer"
+      ],
+      "high_dates": 121,
+      "normal_dates": 487,
+      "bootstrap_draws": 20000,
+      "primary_block_days": 14,
+      "sensitivity_blocks": [
+        7,
+        28
+      ],
+      "A2_replaced": false,
+      "RQ1_replaced": false,
+      "new_model_fits": 0,
+      "new_model_inference": false,
+      "interpretation": "RQ2 rejection supports erosion greater than delta; non-rejection does not establish robustness or equivalence.",
+      "limitations": [
+        "The analysis is exploratory after A2 on the already known E1 calendar, not restored prospective confirmation.",
+        "One BTC series and fixed fitted trajectories; no market-population or HPO-selection uncertainty.",
+        "Moving-block inference is approximate under suitable weak dependence/local stationarity;14 days is not universally adequate.",
+        "Only six optimization pairs inform dz; its bootstrap can be unstable and undefined samples are disclosed.",
+        "No demonstrated RQ2-specific power; non-rejection does not establish robustness or equivalence.",
+        "A causal regime available at issue time is distinct from grouping by realized same-day target."
+      ]
+    },
+    "real_cohort_audit": {
+      "status": "PARTIAL",
+      "control_counts": {
+        "PASS": 12,
+        "PARTIAL": 3,
+        "NA": 1
+      },
+      "actual_cohorts_audited": {
+        "training": 655,
+        "calibration": 53,
+        "evaluation": 608
+      }
+    },
+    "bounded_development_port_audit": {
+      "audit_report_sha256": "84bb12ac2e860922d511a8a6fabad675fcc3c0aec988a5a6ff124fb659250be7",
+      "conditions_passed": 390,
+      "exact_guards": "All 78 parameter and registered-buffer states, supplied queried inputs, frozen scaler records and checkpoint bindings unchanged",
+      "fixed_queries": [
+        {
+          "date": "2023-01-08",
+          "split": "training",
+          "zero_based_index": 0
+        },
+        {
+          "date": "2023-12-09",
+          "split": "training",
+          "zero_based_index": 327
+        },
+        {
+          "date": "2024-10-31",
+          "split": "training",
+          "zero_based_index": 654
+        },
+        {
+          "date": "2024-11-08",
+          "split": "calibration",
+          "zero_based_index": 0
+        },
+        {
+          "date": "2024-12-04",
+          "split": "calibration",
+          "zero_based_index": 26
+        },
+        {
+          "date": "2024-12-30",
+          "split": "calibration",
+          "zero_based_index": 52
+        }
+      ],
+      "models": 13,
+      "new_bootstrap": 0,
+      "new_fits": 0,
+      "new_hypothesis_tests": 0,
+      "new_predictive_scores": 0,
+      "no_method_change_after_forwards": true,
+      "not_closed": [
+        "Exhaustive proof over all possible inputs",
+        "Actual 608 evaluation post-transformations",
+        "Original CPU/GPU parity gate, which remains failed with 10 preserved projection alerts",
+        "Random-label training and adversarial classifier controls"
+      ],
+      "observed_maximum_head_feature_absolute_difference": 1.9073486328125e-06,
+      "observed_maximum_head_feature_tolerance_fraction": 0.1425492700004443,
+      "observed_maximum_original_unit_output_absolute_difference": 1.6763806343078613e-08,
+      "observed_maximum_output_tolerance_fraction": 0.04729929424605434,
+      "observed_maximum_scaled_output_absolute_difference": 8.344650268554688e-07,
+      "plan_sha256": "a8f29acb29cd437afccfd0d09974632a2678f899746003c0bb227a7d37d25a78",
+      "predictors": 78,
+      "scope_clarification": "Only train655/cal53 inputs were admitted to this registered audit. Its report limitation about absent evaluation OHLCV refers to its own admitted inputs; the separate newly recovered 20 official ZIPs and full 608 audit are not consumed or certified here.",
+      "seeds_per_model": 6,
+      "status": "PASS",
+      "unit_checks": 12,
+      "version": "e2-real-development-port-audit-readout-v1"
+    },
+    "bounded_classical_causality_audit": {
+      "audit_report_sha256": "18f7a98761f9accdd09e5761794a229c214c7131a4c39bfff18d70313c8ccaff",
+      "branch_checks": 36,
+      "causal_ARIMA_receipt_files": 2825,
+      "causal_history": "For every chosen emission t, branches retain the same observed history strictly before t. Targets at and after t are unavailable at emission and may be removed or perturbed; each forecast is persisted before observe(t). Earlier endogenous labels remain legitimate model inputs.",
+      "causal_prefix_maximum_absolute_difference": 0.0,
+      "checked_prediction_values": 6612,
+      "checkpoint_lineage": "Naive JSON files match original freeze bytes. ARIMA checkpoint383f74... is the recovered clean-reproduction pickle, distinct from original941413...; both hashes are explicit in plan and predictor bindings.",
+      "coefficient_refits": 0,
+      "comparison_values_are_not_independent_samples": true,
+      "descriptive_saved_prediction_comparison_only": true,
+      "fixed_prefix_lengths": [
+        1,
+        7,
+        31,
+        90,
+        365,
+        608
+      ],
+      "maximum_replay_vs_saved_prediction_difference_by_model": {
+        "ARIMA": 0.0,
+        "Persistence": 0.0,
+        "SeasonalNaive": 0.0
+      },
+      "method_unchanged_after_registration": true,
+      "model_count": 3,
+      "models": [
+        "Persistence",
+        "SeasonalNaive",
+        "ARIMA"
+      ],
+      "new_bootstrap": 0,
+      "new_hypothesis_tests": 0,
+      "new_scores": 0,
+      "original_GPU_parity_claimed": false,
+      "parameter_scale_order_changes": 0,
+      "plan_sha256": "7af31b520a05622bee08da3964ed34cfe4a31f1be79a6a23d866af312dee8a4d",
+      "scope": "Actual full-cohort data admission655/53/608 supports the causal history; six fixed evaluation origins are probed. This does not certify arbitrary histories or neural post-transformations. Neural D7 uses35 scalar coordinates arranged as7 days by5 OHLCV channels; the shorthand neural35-channel in the fixed report is not a claim of35 distinct channels.",
+      "status": "PASS",
+      "unit_checks": 10,
+      "version": "e2-classical-causality-readout-v1"
+    },
+    "univariate_attribute_audit": {
+      "summary": {
+        "version": "e2-univariate-attribute-audit-v1",
+        "status": "PASS_declared_univariate_screen",
+        "plan_sha256": "13bd48b75cf6234cda03dec52277423c4d1d2ac3c92d2adeb6cf8ea1d3a35eef",
+        "QA_sha256": "13763ae394784de9648d84273f5a638f29d372b153756d13dfdc77f23323e510",
+        "script_sha256": "aaaa4266961db4d20da8e902879f0513be10a8632298f09c9a95826a6cc300f0",
+        "coordinates": 35,
+        "scored_rows": 105,
+        "OLS_fits": 35,
+        "deep_learning_fits": 0,
+        "suspicious_R2_threshold": 0.95,
+        "flagged_coordinate_cohorts": 0,
+        "flagged_rows": [],
+        "all_availability_offsets_strictly_past": true,
+        "OLS_fit_data": "training655 only",
+        "calibration_or_test_used_for_fit": false,
+        "new_hypothesis_tests_or_bootstrap": 0,
+        "feature_or_model_selection": false,
+        "original_A2_RQ1_changed": false,
+        "limitations": [
+          "A high univariate R2 is a review flag, not proof of leakage; low R2 does not exclude nonlinear/multivariate leakage.",
+          "One known chronology and overlapping windows; these are descriptive predictive risks, not independent tests or confirmation.",
+          "Calibration/test targets enter scoring denominators and residuals only, never OLS fitting/scaling/model selection.",
+          "Availability is checked against the pinned causal reconstruction, not an independent timestamp-of-publication feed."
+        ]
+      },
+      "plan_path": "book_e2/_static/e2_scientific_closure_20261116/univariate_attributes/plan_v1/analysis_plan.json",
+      "QA_path": "book_e2/_static/e2_scientific_closure_20261116/univariate_attributes/qa_before_run.json",
+      "registered_plan_QA_commit": "ea60ec3c806a290f1c00deeec952d6fdae672308",
+      "registration_commit_recorded_at_utc": "2026-11-16T02:48:23Z",
+      "registration_reference_scope": "Pinned plan/QA blob hashes were checked against this recorded Git commit during export development; this stdlib exporter rechecks their file hashes and recorded chronology, without requiring Git or treating Git time as an independent timestamp authority.",
+      "source_input_files_reverified": 11,
+      "result_manifest_verified": true,
+      "prospective_plan_and_QA_binding_verified": true,
+      "scope": "All declared attribute-audit procedures executed; finite descriptive screen, not universal nonlinear/multivariate leakage exclusion."
+    },
+    "declared_audit_procedures_executed": true,
+    "B03_remaining_acceptance_criterion": "Closeness to chance under permuted labels is not established; absence of Holm13 alerts is not an equivalence result. This is an acceptance limitation, not an unexecuted procedure or proof of leakage.",
+    "negative_training_controls": {
+      "family_size": 13,
+      "Holm_flags": 0,
+      "close_to_chance_acceptance_established": false,
+      "retained_nominal_warning_rows": [
+        {
+          "Spearman_rho": 0.4925264789537326,
+          "flag": false,
+          "gain_CI95": [
+            0.00029872906588963,
+            0.0008641943992651193
+          ],
+          "gain_RMSE_vs_training_mean": 0.0005362712582000859,
+          "model": "TSMixer",
+          "p_Holm13": 0.5351464853514649,
+          "p_IUT": 0.04459554044595541,
+          "p_gain_above_delta": 0.04459554044595541,
+          "p_rho_above_zero": 9.999000099990002e-05,
+          "rho_CI95": [
+            0.36516401646952645,
+            0.5992805784606229
+          ],
+          "status": "computed",
+          "valid_rho_draws": 10000
+        },
+        {
+          "Spearman_rho": 0.5223021943030045,
+          "flag": false,
+          "gain_CI95": [
+            0.00029563812778410023,
+            0.0005192475796773739
+          ],
+          "gain_RMSE_vs_training_mean": 0.00040503130052704783,
+          "model": "iTransformer",
+          "p_Holm13": 0.09619038096190381,
+          "p_IUT": 0.007399260073992601,
+          "p_gain_above_delta": 0.007399260073992601,
+          "p_rho_above_zero": 9.999000099990002e-05,
+          "rho_CI95": [
+            0.39777200467330354,
+            0.623310382786537
+          ],
+          "status": "computed",
+          "valid_rho_draws": 10000
+        }
+      ],
+      "scope": "One registered block-label permutation fit per model; no flag does not certify absence of leakage."
+    },
+    "adversarial_drift": {
+      "AUC": 0.9525386701486541,
+      "p_block_permutation_with_refit": 0.001,
+      "flag_retained": true,
+      "explanation": {
+        "version": "e2-domain-drift-explanation-v1",
+        "status": "completed_exploratory_description",
+        "plan_sha256": "217bef62ddd30dc816a3a62b3ccbf71b9eb37db2ece97a2c443e17d96c99525b",
+        "group_results": [
+          {
+            "group": "full_OHLCV_35",
+            "feature_count": 35,
+            "AUC_OOF_descriptive": 0.9525386701486541,
+            "train_count": 655,
+            "test_count": 608,
+            "folds": 5,
+            "purge_days": 7,
+            "new_p_value": "",
+            "scope": "exploratory domain-membership diagnosis,not forecasting accuracy or causal attribution"
+          },
+          {
+            "group": "relative_prices_OHLC_28",
+            "feature_count": 28,
+            "AUC_OOF_descriptive": 0.49734331056649256,
+            "train_count": 655,
+            "test_count": 608,
+            "folds": 5,
+            "purge_days": 7,
+            "new_p_value": "",
+            "scope": "exploratory domain-membership diagnosis,not forecasting accuracy or causal attribution"
+          },
+          {
+            "group": "log1p_volume_7",
+            "feature_count": 7,
+            "AUC_OOF_descriptive": 0.9026541783848935,
+            "train_count": 655,
+            "test_count": 608,
+            "folds": 5,
+            "purge_days": 7,
+            "new_p_value": "",
+            "scope": "exploratory domain-membership diagnosis,not forecasting accuracy or causal attribution"
+          }
+        ],
+        "full_AUC_reference_reproduced": true,
+        "features_described": 35,
+        "new_domain_classifier_fits": 15,
+        "new_forecasting_model_fits": 0,
+        "predictive_target_arrays_read": false,
+        "new_p_values": false,
+        "new_resampling": false,
+        "original_drift_flag_retained": true,
+        "original_primary_results_changed": false,
+        "drift_fixed_or_causal_mechanism_identified": false,
+        "limits": [
+          "A group retaining discrimination is not a causal explanation or a variance decomposition of full AUC.",
+          "Overlapping windows and one chronology do not yield independent observations.",
+          "Folds include later calendar rows for distribution diagnosis; this is not a causal forecasting backtest.",
+          "Univariate orientation and differences between the three AUC values are descriptive, not significance claims.",
+          "Shift can coexist with valid causal splitting and is not by itself information leakage."
+        ]
+      },
+      "treatment": {
+        "status": "documented_drift_explanation_and_evaluation_scope",
+        "original_adversarial_flag_retained": true,
+        "new_feature_group_analysis_executed": true,
+        "drift_eliminated_or_stationarity_established": false,
+        "new_unseen_validation_created": false,
+        "new_forecasting_adaptation_trained": false,
+        "predictive_targets_used_by_domain_classifier": false,
+        "existing_segmented_evaluation_sources": {
+          "temporal_quarter_metrics": {
+            "path": "book_e2/_static/e2_f2a_audit_20261113/quarterly_metrics.csv",
+            "bytes": 22787,
+            "sha256": "95830aed3d4e4db0014b5d8633e5f98866d83f87c549bdf918452e9bea28ca2b",
+            "rows": 112,
+            "existing_results_not_recomputed": true
+          },
+          "RQ2_high_volatility_comparisons": {
+            "path": "book_e2/_static/e2_corrections_20261115/statistics/rq2_primary_Holm10.csv",
+            "bytes": 3489,
+            "sha256": "d6956fbe2c6e1b88bf574a73363de549153aceb9a799c78dde28955018a267b9",
+            "rows": 10,
+            "existing_results_not_recomputed": true
+          },
+          "conditional_calibration_metrics": {
+            "path": "book_e2/_static/e2_conditional_calibration_20261114/conditional_metrics.csv",
+            "bytes": 203305,
+            "sha256": "8bac90712c72b38dcaf95fa7d1754a19b4ecd848d4441683abc1eda92731ac27",
+            "rows": 672,
+            "existing_results_not_recomputed": true
+          }
+        },
+        "actions_applied": [
+          "Retain original adversarial result and causal preprocessing audit as distinct questions",
+          "Localize domain-separation information descriptively in seven log1pvolume features",
+          "Bind existing temporal loss,regime,andcoverage evidence to the transportability limitation",
+          "Preserve frozen benchmark and prohibit test-driven feature removal,reweighting,retuning or recalibration"
+        ],
+        "future_adaptation_scope": "Would require separate development-only temporal design and later evaluation; no adaptation executed here",
+        "multiple_group_auc_differences_confirmed_by_new_tests": false
+      }
+    },
+    "original_period_comparison": {
+      "version": "e2-original-period-comparison-v1",
+      "neural_period_tests": 13,
+      "classical_descriptive_rows": 3,
+      "t_rejections_Holm13": 6,
+      "t_rejected_models": [
+        "FCN-1D",
+        "PatchTST",
+        "iTransformer",
+        "MLP16",
+        "LSTM32",
+        "GRU32"
+      ],
+      "t_not_estimable": 0,
+      "sign_flip_rejections_Holm13": 0,
+      "sign_flip_minimum_two_sided_resolution_no_zero_ties": 0.03125,
+      "family_size": 13,
+      "alpha_family": 0.05,
+      "scope": "original saved calibration/test risks, same predictor; initialization uncertainty on fixed periods",
+      "calibration_is_not_independent_HPO_validation": true,
+      "equivalence_established": false,
+      "overfitting_cause_identified": false,
+      "CPU_GPU_mixed": false,
+      "new_model_fits": 0,
+      "new_model_inference": false,
+      "A2_RQ1_modified": false,
+      "limits": [
+        "Calibration53 was used for pilot and interval calibration; it is not independent HPO validation.",
+        "A period difference may reflect distribution change, period difficulty or estimation, not identified overfitting.",
+        "Non-rejection does not demonstrate consistency, equivalence or universal absence of overfitting.",
+        "No new model fits, inference, CPU/GPU mixing, new holdout or original preregistration is claimed.",
+        "The original export's predictor/calibrator/checkpoint verification is inherited from its pinned bundle; raw market inputs are not reacquired here."
+      ],
+      "assumptions": [
+        "Independent optimization repetitions conditional on the fixed calibration/test calendars.",
+        "Adequate small-sample normal approximation of six differences for t; not normality of daily residuals.",
+        "Sign-flip sensitivity additionally requires symmetry under the null; enumeration does not verify symmetry.",
+        "Shared calendars, overlapping target supports and temporal dependence are not treated as independent observations."
+      ]
+    },
+    "posterior_CPU_test_IUT": {
+      "version": "e2-cpu-test-iut-v1",
+      "full_CPU_IUT_executed": true,
+      "candidates": 10,
+      "joint_CPU_improvements_Holm10": 0,
+      "CPU_test_predictors": 78,
+      "test_dates": 608,
+      "old714_executed": false,
+      "original_GPU_parity_gate_passed": false,
+      "A2_or_RQ1_changed": false,
+      "new_fits": 0,
+      "limits": [
+        "New CPU-only IUT, not retrospective execution of the original failed GPU-parity714plan.",
+        "Known inherited chronology; no new blind holdout or prospective confirmation.",
+        "Previous cost p-values already known; this is exploratory and methods fixed before CPU test projections.",
+        "Calendar bootstrap assumes suitable weak dependence and block adequacy; six fixed trajectories do not represent multiple markets.",
+        "Timing blocks require stable/exchangeable session measurements; cost refers to this resident CPU forward policy, not A100 or complete deployment.",
+        "Calibration remains calibration, not independent HPO validation; no equivalence or adequacy is inferred from non-rejection."
+      ]
+    },
+    "HPO_chronology": {
+      "version": "e2-registration-chronology-audit-v1",
+      "observed_at_utc": "2026-11-16T00:59:22.421775+00:00",
+      "registrations": [
+        {
+          "id": "early_margin",
+          "commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+          "path": "experiments/e2_remediation_20261106/preregistration.json",
+          "blob_sha256": "b8c84979fccec4fc282810e489d2d666f7f0562d587403e04bf3c2e923073cb3",
+          "bytes": 62608,
+          "author_time": "2026-11-06T14:51:20Z",
+          "committer_time": "2026-11-06T14:51:20Z",
+          "committer_epoch_seconds": 1793976680.0
+        },
+        {
+          "id": "historical_full_protocol",
+          "commit": "ef2be289903517e9d6f3b70bd72981990d58479a",
+          "path": "experiments/e2_remediation_20261106/preregistration.json",
+          "blob_sha256": "b8c84979fccec4fc282810e489d2d666f7f0562d587403e04bf3c2e923073cb3",
+          "bytes": 62608,
+          "author_time": "2026-11-06T18:54:20Z",
+          "committer_time": "2026-11-06T18:54:20Z",
+          "committer_epoch_seconds": 1793991260.0
+        },
+        {
+          "id": "reduced_protocol_first",
+          "commit": "c056c1cfb8ac771b32b13bf1382b9afc5e813912",
+          "path": "experiments/e2_reduced_protocol_20261112/protocol.json",
+          "blob_sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+          "bytes": 17086,
+          "author_time": "2026-11-12T12:37:50-05:00",
+          "committer_time": "2026-11-12T12:37:50-05:00",
+          "committer_epoch_seconds": 1794505070.0
+        },
+        {
+          "id": "reduced_engine",
+          "commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+          "path": "scripts/e2_reduced_final_analysis.py",
+          "blob_sha256": "f33a063c3c2478263fbd3cbee11d949b106a392e9a66eb14575f3a1638768fe9",
+          "bytes": 15604,
+          "author_time": "2026-11-12T13:35:15-05:00",
+          "committer_time": "2026-11-12T13:35:15-05:00",
+          "committer_epoch_seconds": 1794508515.0
+        }
+      ],
+      "original_HPO_archive_commit": "6a8000022d2f374731faacc8a5c66f9b9d46b465",
+      "fresh_HPO_jobs_with_verified_journal_bindings": 170,
+      "phase_journals_with_content_and_chain_verification": 206,
+      "all170_reduced_protocol_precedes_journal": true,
+      "all170_engine_commit_precedes_journal": true,
+      "cached_outcomes_not_relabelled_fresh": 61,
+      "fresh_HPO_first_utc": "2026-11-12T18:59:40.429665+00:00",
+      "fresh_HPO_last_utc": "2026-11-13T06:59:05.781674+00:00",
+      "complete_pre_training_preregistration_certified": false,
+      "blinding_recovered": false,
+      "bibliographic_coverage_repaired": false,
+      "missing_reports_retrieved_by_this_audit": 0,
+      "new_fits": 0,
+      "new_model_inference": false,
+      "new_statistical_tests": 0,
+      "inputs": {
+        "book_e2/_static/e2_corrections_20261115/hpo/opportunities_234.csv": {
+          "sha256": "ebd6a2b38904c5aea960bc89c075d12947e7e3722b49f47206b5adca4c93ef43",
+          "bytes": 203512
+        },
+        "references/literature_e2/prisma_received_v1/full_reports_compact.jsonl": {
+          "sha256": "38f69d11e644aa0c05115c5def7d0dd50d6d6fad94e79db65289e9f79ef4f226",
+          "bytes": 1298988
+        }
+      },
+      "limits": [
+        "Git dates and worker UTC fields are stored timestamps, not an independent trusted timestamp authority.",
+        "Hash chains verify content consistency and sequence, not wall-clock accuracy or absence of prior decisions.",
+        "No inference that the first registration preceded all historical/cached fits or exposure to the inherited E1test.",
+        "The pending implementation_verified flag in the first protocol is retained, not rewritten.",
+        "Original374Scopus IDs/ranges and WoShistory cannot be inferred from generic new searches.",
+        "The174unretrieved reports remain access/eligibility uncertainty; the list is a concrete recovery request, not retrieval."
+      ]
+    },
+    "final_registration_chronology": {
+      "status": "verified_original_final_metadata_only",
+      "archive_commit": "50cb634e9eb163b09f9607982842144ba9f74c87",
+      "final_neural_fits": 78,
+      "phase_journals": 90,
+      "scored_checkpoint_bindings_verified": 78,
+      "original_real_fits_rerun": 0,
+      "new_model_inference": false,
+      "new_hypothesis_tests": 0,
+      "all_phases_protocol_precedes_execution": true,
+      "all_phases_engine_precedes_execution": true,
+      "all_phases_before_reported_data_admission_completion": true,
+      "first_final_phase_utc": "2026-11-13T07:00:12.729421+00:00",
+      "last_final_phase_utc": "2026-11-13T14:43:01.313950+00:00",
+      "reported_admission_completed_at_utc": "2026-11-13T16:50:56.751273+00:00",
+      "freeze_analysis_frozen_flag": true,
+      "freeze_weights_before_current_data_flag": true,
+      "full_historical_preregistration_or_blinding_certified": false,
+      "scope": "Original current78final fits; cached earlier HPO and prior E1exposure retain separate historical scope",
+      "timing_limits": [
+        "Git dates and worker UTC are recorded timestamps, not an independent trusted timestamp authority.",
+        "The end of data admission is an observed upper endpoint, not a verified time of first access.",
+        "The freeze flags document controller order; the freeze JSON has no independent trusted wall-clock timestamp.",
+        "No claim of original selection, every old cached fit, or inherited known test being prospectively blind."
+      ]
+    },
+    "HPO_phase_breakdown_separate_scope": {
+      "version": "e2-hpo-cost-reconciliation-v1",
+      "scope": "Recorded metadata reconciliation; no new fit, inference or statistical calculation",
+      "opportunities": 234,
+      "completed": 231,
+      "known_failed": 2,
+      "outcome_unknown": 1,
+      "old_jobs_with_phase_receipts": 170,
+      "selected_jobs": 39,
+      "selected_overlapping_jobs_not_added_again": 29,
+      "additional_selected_cached_jobs": 10,
+      "jobs_with_phase_receipts_union": 180,
+      "completed_jobs_without_phase_durations": 51,
+      "original_170_report_phase_seconds": 20526.75792988201,
+      "additional_selected_cached_phase_seconds": 257.7073942039983,
+      "recorded_phase_seconds_union_mixed_scopes": 20784.46532408601,
+      "current_campaign_measured_charge_seconds": 24116.93557340999,
+      "conservative_reserved_allocation_seconds_not_measured": 1860.0,
+      "historical_cached_fit_charge_seconds": 1716.9633450739982,
+      "historical_cached_fit_charge_unique_jobs": 61,
+      "original_final_neural_jobs": 78,
+      "original_final_phase_rows": 90,
+      "original_final_recorded_phase_seconds": 5765.086219800991,
+      "classical_resources": {
+        "Persistence": {
+          "recorded_phase_seconds": null,
+          "full_selection_seconds": null,
+          "reason": "No comparable recorded resource timing; not zero"
+        },
+        "SeasonalNaive": {
+          "recorded_phase_seconds": null,
+          "full_selection_seconds": null,
+          "reason": "No comparable recorded resource timing; not zero"
+        },
+        "ARIMA": {
+          "recorded_phase_seconds": null,
+          "full_selection_seconds": null,
+          "reason": "No comparable recorded resource timing; not zero"
+        }
+      },
+      "count_unit": "HPO job/opportunity, not individual optimization phases; SAE has three phases per job",
+      "timing_union_scope": "Non-overlapping recorded job phase durations, with distinct historical checkpoint policies and potentially different hardware. Descriptive accounted duration, not a homogeneous GPU speed comparison.",
+      "do_not_add": [
+        "Union phases + selected_hpo phases: 29 jobs overlap",
+        "Recorded phase elapsed + campaign worker/budget charges: nested boundaries",
+        "Historical cached callback + cached charged wall: nested boundaries",
+        "Failed worker elapsed + campaign charge: nested boundaries",
+        "Conservative lost-runtime allocation as measured training time",
+        "Any of these fields as a complete GPU-active, energy, monetary or end-to-end campaign total"
+      ],
+      "remaining": [
+        "Phase breakdown unavailable for 51 historical reused jobs, whose charged/callback walls remain recorded",
+        "Lost TSMixer C02/2024-07-01 outcome and measured elapsed remain unknown; 1860 s is an allocation",
+        "TimesNet has two known setup failures; their charges do not create successful fits",
+        "Full selection and end-to-end timing remain unknown for every model; three classical timings missing"
+      ],
+      "old_reports_modified": false,
+      "new_model_fits": 0,
+      "new_model_inference": false,
+      "new_HPO": false,
+      "NAS_executed": false,
+      "statistical_tests": 0,
+      "bootstrap_draws": 0,
+      "full_campaign_reproduction_performed": false
+    },
+    "original_reduced_catalogue_observed_charges_separate_scope": {
+      "version": "e2-catalogue-charge-accounting-v1",
+      "scope": "recorded reduced HPO catalogue only; heterogeneous observed wall charges",
+      "registered_opportunities": 234,
+      "completed_outcomes": 231,
+      "known_failed_outcomes": 2,
+      "unknown_outcomes": 1,
+      "current_campaign_charge_receipts": 173,
+      "current_campaign_observed_charge_receipts": 172,
+      "original_cached_charge_receipts": 61,
+      "observed_charge_receipts_union": 233,
+      "physical_jobs_double_counted": 0,
+      "current_campaign_observed_wall_charge_seconds": 24116.93557340999,
+      "historical_original_cached_wall_charge_seconds": 1716.9633450739982,
+      "recorded_catalogue_observed_wall_charge_seconds_mixed_scopes": 25833.89891848399,
+      "recorded_catalogue_observed_wall_charge_hours_mixed_scopes": 7.176083032912219,
+      "unmeasured_conservative_allocation_seconds_not_added": 1860.0,
+      "unknown_actual_elapsed_seconds": null,
+      "phase_breakdown_available_jobs_separate_scope": 180,
+      "completed_jobs_without_phase_breakdown_separate_scope": 51,
+      "two_known_failures": [
+        {
+          "model": "TimesNet",
+          "attempt_id": "10098dda29216054585354395d2d8ef4b81c44ad31361b4c11cabf09ee998c41",
+          "fold_origin": "2024-01-01",
+          "terminal_failure_class": "pre_model_setup_failure",
+          "optimizer_steps_exact_at_failure": 0,
+          "observed_wall_charge_seconds": 10.937776180000583
+        },
+        {
+          "model": "TimesNet",
+          "attempt_id": "9f7b59ed82fc0df667298fdca8ca6d5b18e3aa4d6767fd584962d0dd5390aaa2",
+          "fold_origin": "2024-07-01",
+          "terminal_failure_class": "synchronized_phase_timeout",
+          "optimizer_steps_exact_at_failure": 749,
+          "observed_wall_charge_seconds": 613.7289963609983
+        }
+      ],
+      "limitations": [
+        "Different historical search-session and reduced-budget timer boundaries and mixed hardware; descriptive accounting, not comparable pure training speed.",
+        "Only the 234 recorded reduced-catalogue opportunities; earlier discarded trials, outer controller overhead, source recovery, final fitting, CPU supplements and all project-wide costs are outside this sum.",
+        "One lost worker has no observed elapsed duration; its 1860-second conservative allocation is not added to observed time and is not an upper bound on its actual wall time.",
+        "The 51 missing phase breakdowns do not remove existing original wall-charge receipts; phase totals remain a distinct incomplete breakdown.",
+        "No GPU-active time, monetary cost, energy, complete historical selection cost, or end-to-end campaign duration is inferred."
+      ],
+      "do_not_add_to_this_total": [
+        "phase elapsed times",
+        "cached callbacks",
+        "failed-worker nested elapsed",
+        "unknown reserved allocation",
+        "new CPU reproduction cost or other campaigns without separate scope accounting"
+      ]
+    },
+    "operational_performance_ceiling_and_gamma": {
+      "reference_report": {
+        "version": "e2-error-ceiling-posthoc-audit-v1",
+        "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+        "n_dates": 608,
+        "original_winner_unchanged": "LSTM-autoencoder con predictor",
+        "primary_statistic_unchanged": "mean individual-seed RMSE",
+        "original_best_RMSE": 0.003803429612358448,
+        "Persistence_RMSE": 0.004085595867023217,
+        "uniform_ten_matched_seed_RMSE": 0.004120056200789176,
+        "uniform_all_60_forecast_mean_RMSE_diagnostic": 0.004081730577889794,
+        "ensemble_RMSE_per_seed": [
+          0.0042404251316166,
+          0.004118078252023737,
+          0.004190142418804864,
+          0.004000363006986044,
+          0.0040851266731123225,
+          0.004086201722191488
+        ],
+        "empirical_ensemble_reference": {
+          "best_RMSE": 0.003803429612358448,
+          "baseline_RMSE": 0.004085595867023217,
+          "reference_RMSE": 0.004120056200789176,
+          "raw_algebraic_gamma": 9.188146307030435,
+          "gamma_remaining_fraction": null,
+          "valid_order_for_ceiling_gap": false,
+          "score_orientation": "s=-RMSE",
+          "formula": "(RMSE_best-RMSE_reference)/(RMSE_baseline-RMSE_reference)",
+          "status": "not_interpretable_as_ceiling_gap"
+        },
+        "ideal_zero_error_reference": {
+          "best_RMSE": 0.003803429612358448,
+          "baseline_RMSE": 0.004085595867023217,
+          "reference_RMSE": 0.0,
+          "raw_algebraic_gamma": 0.9309363275642931,
+          "gamma_remaining_fraction": 0.9309363275642931,
+          "valid_order_for_ceiling_gap": true,
+          "score_orientation": "s=-RMSE",
+          "formula": "(RMSE_best-RMSE_reference)/(RMSE_baseline-RMSE_reference)",
+          "status": "zero_error_mathematical_bound_only_not_attainable_Bayes_ceiling"
+        },
+        "temporal_CI95_block14": {
+          "best": [
+            0.003223703655955279,
+            0.004553794481072296
+          ],
+          "baseline": [
+            0.00332938826584638,
+            0.004967275589109918
+          ],
+          "ensemble": [
+            0.003334779509746254,
+            0.005021275264896841
+          ],
+          "gamma_ideal": [
+            0.8444799380051798,
+            1.0297426341864033
+          ]
+        },
+        "Bayes_risk_identified": false,
+        "irreducible_noise_floor_estimated": false,
+        "ensemble_weights": {
+          "FCN-1D": 0.1,
+          "ResNet-1D": 0.1,
+          "Inception-1D": 0.1,
+          "LSTM-autoencoder con predictor": 0.1,
+          "TimesNet": 0.1,
+          "TSMixer": 0.1,
+          "TiDE": 0.1,
+          "TimeMixer": 0.1,
+          "PatchTST": 0.1,
+          "iTransformer": 0.1
+        },
+        "weights_tuned_to_outcomes": false,
+        "forecast_generation": "Arithmetic of saved predictions; no new model inference",
+        "reference_warning": "Ensemble is worse than best and baseline: not a valid ceiling; algebraic gamma is not interpreted",
+        "original_primary_superiority_or_equivalence_claim_changed": false,
+        "test_scope": "Retrospective, already known since E1; not independent confirmation"
+      },
+      "calibration_ensemble": {
+        "version": "e2-calibration-fitted-diverse-ensemble-v1",
+        "registered_commit": "8d9cc8c3397242a07378fb1a678196dab36744da",
+        "posthoc": true,
+        "original_A2_changed": false,
+        "original_calibrators_changed": false,
+        "new_neural_fits": 0,
+        "new_model_inference": 0,
+        "new_statistical_weight_fits": 1,
+        "weights_fit_only_on_calibration53": true,
+        "test_used_to_choose_method_or_weights": false,
+        "calibration_dates": [
+          "2024-11-08",
+          "2024-11-09",
+          "2024-11-10",
+          "2024-11-11",
+          "2024-11-12",
+          "2024-11-13",
+          "2024-11-14",
+          "2024-11-15",
+          "2024-11-16",
+          "2024-11-17",
+          "2024-11-18",
+          "2024-11-19",
+          "2024-11-20",
+          "2024-11-21",
+          "2024-11-22",
+          "2024-11-23",
+          "2024-11-24",
+          "2024-11-25",
+          "2024-11-26",
+          "2024-11-27",
+          "2024-11-28",
+          "2024-11-29",
+          "2024-11-30",
+          "2024-12-01",
+          "2024-12-02",
+          "2024-12-03",
+          "2024-12-04",
+          "2024-12-05",
+          "2024-12-06",
+          "2024-12-07",
+          "2024-12-08",
+          "2024-12-09",
+          "2024-12-10",
+          "2024-12-11",
+          "2024-12-12",
+          "2024-12-13",
+          "2024-12-14",
+          "2024-12-15",
+          "2024-12-16",
+          "2024-12-17",
+          "2024-12-18",
+          "2024-12-19",
+          "2024-12-20",
+          "2024-12-21",
+          "2024-12-22",
+          "2024-12-23",
+          "2024-12-24",
+          "2024-12-25",
+          "2024-12-26",
+          "2024-12-27",
+          "2024-12-28",
+          "2024-12-29",
+          "2024-12-30"
+        ],
+        "calibration_ensemble_mean_RMSE": 0.003186256639089575,
+        "test_mean_individual_seed_RMSE": {
+          "ensemble": 0.0036895319245579465,
+          "SAE": 0.003803429612358448,
+          "Persistence": 0.004085595867023217
+        },
+        "gamma": {
+          "raw_algebraic_gamma": 0.2875739889159152,
+          "interpretable_empirical_reference_order": true,
+          "gamma_remaining_fraction": 0.2875739889159152,
+          "empirical_reference_is_Bayes_or_optimal_ceiling": false
+        },
+        "same_known_test_as_E1": true,
+        "empirical_reference_scope": "one explicitly fitted and separately registered attainable ensemble, not Bayes risk or an optimum over all ensembles",
+        "fit": {
+          "solver": "SLSQP",
+          "success": true,
+          "message": "Optimization terminated successfully",
+          "iterations": 43,
+          "calibration_scaled_objective": 0.022441235750878717,
+          "uniform_scaled_objective": 0.031035369972925678,
+          "constraint_sum": 1.0,
+          "minimum_weight": 0.0,
+          "numerical_feasibility_adjustment_L1": 0.0,
+          "ridge": 0.0001,
+          "development_target_mean_scale": 0.021283234850735196,
+          "optimizations": 1,
+          "test_targets_used_for_weights": false,
+          "new_statistical_weight_fit": true
+        },
+        "bootstrap": [
+          {
+            "block_days": 14,
+            "draws": 10000,
+            "risk_CI95": {
+              "ensemble": [
+                0.0030432213532183864,
+                0.004419617859012068
+              ],
+              "SAE": [
+                0.003176916044500598,
+                0.004566666117204017
+              ],
+              "Persistence": [
+                0.0033136473951659575,
+                0.004960633538832754
+              ]
+            },
+            "algebraic_gamma_defined_replicates": 10000,
+            "algebraic_gamma_CI95": [
+              -1.4921008161406322,
+              2.3712816235497707
+            ],
+            "reference_order_valid_replicates": 6588,
+            "gamma_interval_scope": "algebraic_only_if_reference_order_or_denominator_change; never silently restrict to favorable replicates"
+          },
+          {
+            "block_days": 7,
+            "draws": 10000,
+            "risk_CI95": {
+              "ensemble": [
+                0.003114274789868752,
+                0.0043706444888211024
+              ],
+              "SAE": [
+                0.003226847426458862,
+                0.004526580505201315
+              ],
+              "Persistence": [
+                0.003437754611197078,
+                0.004803851991052662
+              ]
+            },
+            "algebraic_gamma_defined_replicates": 10000,
+            "algebraic_gamma_CI95": [
+              -1.17565579851215,
+              2.452442525427031
+            ],
+            "reference_order_valid_replicates": 6556,
+            "gamma_interval_scope": "algebraic_only_if_reference_order_or_denominator_change; never silently restrict to favorable replicates"
+          },
+          {
+            "block_days": 28,
+            "draws": 10000,
+            "risk_CI95": {
+              "ensemble": [
+                0.003025986258865304,
+                0.004467008372840485
+              ],
+              "SAE": [
+                0.0031558058924033446,
+                0.004639337216730395
+              ],
+              "Persistence": [
+                0.0032611275847635682,
+                0.0050570559684929356
+              ]
+            },
+            "algebraic_gamma_defined_replicates": 10000,
+            "algebraic_gamma_CI95": [
+              -1.2303277462960738,
+              2.190167182239316
+            ],
+            "reference_order_valid_replicates": 6522,
+            "gamma_interval_scope": "algebraic_only_if_reference_order_or_denominator_change; never silently restrict to favorable replicates"
+          }
+        ],
+        "CPU_analysis_wall_seconds": 2.006516784982523
+      },
+      "scope": "Allowed operational intrinsic-predictability/ensemble references and reported gamma with uncertainty; no Bayes risk or optimal ceiling identified."
+    },
+    "new_true_target_CPU_fixed_recipe_repetition": {
+      "scope": "New posterior true-target CPU scientific replication, not original CUDA parity/bitwise reproduction",
+      "plan_path": "book_e2/_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/plan_v2/analysis_plan.json",
+      "plan_sha256": "53704931391109bf2179985f5026af0316eacc892b8ebe8cfe62b87cd5aa5c7f",
+      "runtime_policy_declared_in_plan": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "scipy": "1.17.0",
+        "statsmodels": "0.14.5",
+        "device": "cpu",
+        "dtype": "float32",
+        "threads": 2,
+        "interop_threads": 2,
+        "deterministic_algorithms": true,
+        "float32_matmul_precision": "highest",
+        "mkldnn_enabled": true,
+        "score_batch_size": 1,
+        "parallel_fit_processes": 2,
+        "worker_cpu_sets": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "planned_neural_fits": 78,
+      "planned_classical_reconstructions": 3,
+      "completed_neural_workers": 78,
+      "completed_classical_workers": 3,
+      "completed_scoring_stages": 2,
+      "status": "completed_new_CPU_fixed_recipe_fit_cal_freeze_raw_test_A2_scope",
+      "CPU_study_completed": true,
+      "original_CUDA_parity": false,
+      "full_original_campaign_passed": false,
+      "HPO_repeated": false,
+      "NAS": "not_applicable_defined_bodies",
+      "dynamic_status_sampled_once": true,
+      "live_ledger_read_or_frozen": false,
+      "sampled_status_source": "/workspace/work/e2-true-target-cpu-reproduction-v4/status.json",
+      "sampled_status_sha256": "6796225f16e1e2495bee38cdfb9f076188f43f6e334734b171cc2fc4d80234bf",
+      "sampled_status_bytes": 120298,
+      "sampled_at_utc": "2026-11-16T03:28:09.961788+00:00",
+      "status_snapshot_path": "source_snapshots/cpu_status_at_export.json",
+      "claimed_charged_worker_seconds_at_snapshot": 6845.049573544995,
+      "worker_accounting_scope": "status-reported sum of worker wall seconds; not the full project ledger or training-only time",
+      "run_identity_sha256": "9f0a3a78182d6be189bedd71c1d6ac8d3269d3452010a1dc632cbb12c955f8ca",
+      "sample_observed_worker_runtime_evidence": {
+        "source": "/workspace/work/e2-true-target-cpu-reproduction-v4/final-fit/237a2b476e55cf17/271801/result.json",
+        "sha256": "c7c73f4030249cda3fee2eb601cb821da58ad00a331a093ac47878aa63ca313f",
+        "observed_phase_backend_labels": [
+          "new_CPU_diagnostic_not_production_CUDA"
+        ],
+        "training_label_end": "2024-10-31",
+        "scope": "One completed worker metadata sample, not independent attestation of every runtime package or all81workers; plan runtime settings remain declared policy."
+      }
+    },
+    "B08_reporting_scope": "Analysis, resource justification and MDE reported under guide 9.2; target power 0.80 was not achieved.",
+    "B05_reporting_scope": "Complete within the audited train-only pipeline and predictors/queries; no universal claim across arbitrary histories or platforms.",
+    "B11_reporting_scope": "Reported tests and effects are complete; adverse adequacy outcomes and the failed original CUDA gate are retained as scientific results/limits, not missing reporting.",
+    "B12_reporting_scope": "Complete declaration/control of primary families and separately dated exploratory supplements; inherited E1 exposure limits prospective confirmation, not the existence of explicit families.",
+    "B13_reporting_scope": "Complete operational intrinsic-predictability/ensemble reference and uncertain gamma report under allowed guide12.1 references; no favorable outcome or Bayes identification required or claimed.",
+    "B21_scope": "Partial even after a successful new CPU fixed-recipe repetition; all historical HPO and campaign stages are not automated/repeated.",
+    "operations_this_export": {
+      "new_model_fits": 0,
+      "new_inference": false,
+      "new_predictive_scores": 0,
+      "new_hypothesis_tests": 0,
+      "new_bootstrap_draws": 0,
+      "active_ledger_read": false
+    }
+  },
+  "operations": {
+    "new_model_fits": 0,
+    "new_inference": false,
+    "new_predictive_scores": 0,
+    "new_hypothesis_tests": 0,
+    "new_bootstrap_draws": 0,
+    "active_ledger_read": false
+  }
+}

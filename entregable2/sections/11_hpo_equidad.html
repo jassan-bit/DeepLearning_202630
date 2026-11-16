@@ -68,7 +68,7 @@
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
     <link rel="next" title="Eficiencia, coste observado y compromisos de Pareto" href="51_eficiencia_costes.html" />
-    <link rel="prev" title="10. Contrato de Datos y Auditoría Formal de Fuga de Información" href="10_auditoria_datos.html" />
+    <link rel="prev" title="Datos reales, controles y cierre de las comparaciones" href="65_cierre_cientifico_real.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -244,7 +244,10 @@
 <li class="toctree-l2"><a class="reference internal" href="45_enmienda_protocolo.html">Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="65_cierre_cientifico_real.html">Entradas reales, controles y comparaciones completadas</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="51_eficiencia_costes.html">Eficiencia, coste observado y compromisos de Pareto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="58_flops_predictores.html">Coste de operaciones de los predictores congelados</a></li>
@@ -526,9 +529,9 @@
 </section>
 <section id="oportunidades-resultados-y-fallos-conservados">
 <h3>11.1.2 Oportunidades, resultados y fallos conservados<a class="headerlink" href="#oportunidades-resultados-y-fallos-conservados" title="Link to this heading">#</a></h3>
-<p><strong>Recuperación adicional del 15/11/2026:</strong> <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> publica los recibos de las 234 oportunidades, 78 configuraciones, cobertura por parámetro y trece ganadores reproducidos. Distingue 61 reutilizaciones, 170 duraciones medidas y 173 cargos de campaña, con ámbitos que no se suman entre sí. La <a class="reference download internal" download="" href="../_downloads/0d354283853e6486793646d18cc14e4a/opportunities_234.csv"><span class="xref download myst">tabla por oportunidad</span></a> mejora la atribución anterior sin inventar el desenlace perdido de TSMixer ni presentar el subtotal como coste integral.</p>
-<p>Se conservan <strong>231 resultados válidos de 234 oportunidades</strong>, dos fallos conocidos y un desenlace desconocido. Cada una de las trece recetas ganadoras tiene tres folds completos. Las reutilizaciones admitidas no se cuentan como entrenamientos nuevos, y un fallo no se sustituye por una oportunidad adicional favorable. El intento TSMixer C02 del origen julio de 2024 perdido con la sesión T4 conserva desenlace desconocido y cargo conservador, sin inventar métricas o pasos del optimizador.</p>
-<p>Este cotejo verifica los resultados y disposiciones publicados, <strong>sin reconstruir la atribución exhaustiva caché/nuevo del diario</strong>. Los contadores históricos y candidatos de caché conservan su corte; no se transforman en una medición independiente de todos los entrenamientos nuevos. Los 39 ajustes HPO de recetas finalmente elegidas son una selección del dominio completo, no los 234 intentos. Hay curvas recuperadas para 29/39 y diez ausencias explícitas; los 78 finales sí conservan sus curvas. <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">Galería de curvas</span></a> · <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">Auditoría de entrenamiento</span></a>.</p>
+<p><strong>Recuperación adicional del 15–16/11/2026:</strong> <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> publica los recibos de las 234 oportunidades, 78 configuraciones, cobertura por parámetro y trece ganadores reproducidos. La <a class="reference download internal" download="" href="../_downloads/41efb3c2ab05706756346445a65911c6/summary.json"><span class="xref download myst">conciliación de cargos originales del catálogo</span></a> identifica <strong>61 reutilizaciones y 173 oportunidades de la campaña actual</strong>: 172 con cargo de pared observado y una con asignación conservadora sin duración medida. Los <strong>233 cargos observados</strong> cubren oportunidades distintas y suman <strong>25.833,898918 s</strong>, con fronteras de medida y hardware heterogéneos. La reserva desconocida de 1.860 s queda separada. La <a class="reference download internal" download="" href="../_downloads/388d4a9d0d9c96f1f6916cb364a7d256/catalogue_charge_opportunities_234.csv"><span class="xref download myst">tabla de 234 identidades y sus fuentes</span></a> conserva la correspondencia con los <a class="reference download internal" download="" href="../_downloads/0d354283853e6486793646d18cc14e4a/opportunities_234.csv"><span class="xref download myst">recibos del corte anterior</span></a>, sin inventar el desenlace perdido de TSMixer ni presentar el subtotal como coste histórico integral.</p>
+<p>Se conservan <strong>231 resultados válidos de 234 oportunidades</strong>, dos fallos conocidos y un desenlace desconocido. Cada una de las trece recetas ganadoras tiene tres folds completos. Las reutilizaciones admitidas no se cuentan como entrenamientos nuevos, y un fallo no se sustituye por una oportunidad adicional favorable. Los dos fallos TimesNet C01 corresponden a <strong>un fallo de preparación previo al modelo, con cero pasos</strong>, y <strong>un límite de tiempo de fase tras 749 pasos completados</strong>. El intento TSMixer C02 del origen julio de 2024 perdido con la sesión T4 conserva desenlace desconocido y cargo conservador, sin inventar métricas o pasos del optimizador.</p>
+<p>La auditoría de metadatos verifica la atribución del <strong>catálogo reducido</strong> mediante hashes de recibos, identidades de trabajo, receta/fold/semilla y vínculos entre resultados y cargos. Los 61 pares históricos <code class="docutils literal notranslate"><span class="pre">job_id</span></code>/<code class="docutils literal notranslate"><span class="pre">job_payload_sha256</span></code> son únicos; cada reutilización declara que no entrenó de nuevo y carece de cargo actual. Los 170 resultados nuevos completos declaran entrenamiento realizado. Esta conciliación no reconstruye las búsquedas históricas descartadas fuera del catálogo. Los 39 ajustes HPO de recetas finalmente elegidas son una selección del dominio completo, no los 234 intentos. Hay curvas recuperadas para 29/39 y diez ausencias explícitas; los 78 finales sí conservan sus curvas. La cobertura de curvas se distingue del <a class="reference download internal" download="" href="../_downloads/cdb8bcbe7b104d99ee308e79ddef60b6/summary.json"><span class="xref download myst">desglose temporal por fases</span></a>, recuperado para <strong>180/231 trabajos completos</strong>. <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">Galería de curvas</span></a> · <a class="reference internal" href="49_diagnosticos_f2a.html"><span class="std std-doc">Auditoría de entrenamiento</span></a>.</p>
 </section>
 </section>
 <section id="busqueda-de-hiperparametros-y-reajuste-final">
@@ -843,6 +846,41 @@ q_{\mathrm{HPO}}=\sqrt{\frac{\sum_f n_f\,q_f^2}{\sum_f n_f}},
 </table>
 </div>
 <p>El tiempo es <strong>reloj de pared de las fases finales</strong>: incluye actualización, evaluación de riesgo y checkpoints; excluye HPO completo, controlador y scoring persistido. SAE incluye AE1, AE2 y supervisión, mientras el recuento de parámetros cuenta sólo el predictor desplegado y excluye decodificadores auxiliares. La DE de los tiempos en la tabla describe seis tiempos de entrenamiento, <strong>no dispersión entre fechas de mercado</strong>. Las 78 ejecuciones suman <strong>5.765,09 s</strong>. Los 39 ajustes de las recetas HPO finalmente elegidas suman <strong>3.007,84 s</strong> y mezclan T4/A100/caché; ese subtotal no es el coste completo de seleccionar cada arquitectura. <code class="docutils literal notranslate"><span class="pre">full_selection_seconds</span></code> permanece desconocido.</p>
+<p><strong>Contabilidad de cargos observados del catálogo reducido.</strong> La <a class="reference download internal" download="" href="../_downloads/1da4e3c0fba951463bfa9daab598e7ce/catalogue_charge_by_model_13.csv"><span class="xref download myst">tabla por red</span></a> y el <a class="reference download internal" download="" href="../_downloads/388d4a9d0d9c96f1f6916cb364a7d256/catalogue_charge_opportunities_234.csv"><span class="xref download myst">registro de 234 oportunidades</span></a> permiten separar las dos fuentes de cargos físicos mutuamente excluyentes:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fuente</p></th>
+<th class="head text-right"><p>Oportunidades</p></th>
+<th class="head text-right"><p>Segundos observados</p></th>
+<th class="head"><p>Frontera del reloj</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Trabajadores de la campaña actual, incluidos los dos fallos conocidos</p></td>
+<td class="text-right"><p>172</p></td>
+<td class="text-right"><p>24.116,935573</p></td>
+<td><p>Desde reserva/supervisión hasta el cargo terminal; incluye el trabajador y su supervisión.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ajustes originales cuyo resultado se reutilizó</p></td>
+<td class="text-right"><p>61</p></td>
+<td class="text-right"><p>1.716,963345</p></td>
+<td><p>Cargo de la sesión histórica hasta completar el callback; incluye el pequeño intervalo desde el cargo anterior.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Unión descriptiva de cargos observados</strong></p></td>
+<td class="text-right"><p><strong>233</strong></p></td>
+<td class="text-right"><p><strong>25.833,898918</strong></p></td>
+<td><p><strong>7,176083 h; suma de relojes con fronteras y hardware diferentes.</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Desenlace perdido TSMixer</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p><strong>Desconocido</strong></p></td>
+<td><p>La asignación conservadora de <strong>1.860 s</strong> se registra aparte y no se añade al tiempo observado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La unión cubre los cargos observados originales de <strong>233/234 oportunidades</strong>; sólo falta la duración real del trabajador perdido. Los cargos de caché son sus costes originales, no costes de entrenamientos nuevos. Los callbacks, las fases y los tiempos de trabajador contenidos en esos cargos <strong>no se vuelven a sumar</strong>. El <a class="reference download internal" download="" href="../_downloads/cdb8bcbe7b104d99ee308e79ddef60b6/summary.json"><span class="xref download myst">desglose de fases separado</span></a> comprende <strong>180/231 trabajos completos</strong>, con <strong>20.784,465324 s</strong> y <strong>51 desgloses todavía ausentes</strong>; esos 51 trabajos sí conservan cargo original de pared. La ausencia de su desglose no vuelve desconocidos los cargos disponibles.</p>
+<p>Este subtotal permite revisar la contabilidad del catálogo ejecutado; <strong>no acredita igual coste de ajuste entre modelos</strong>. Las diferencias de reloj y hardware impiden usarlo como una comparación homogénea de velocidad de entrenamiento. Tampoco incluye todo el historial de búsqueda previo al catálogo, overhead externo, ajustes finales, suplementos CPU o recuperación de fuentes. No sustituye <code class="docutils literal notranslate"><span class="pre">full_selection_seconds</span></code>, ni representa GPU activa, energía, dinero o duración completa de la campaña. El <a class="reference download internal" download="" href="../_downloads/c2ef6508ad4a0fa8556d0d92d41952f7/inputs_manifest.json"><span class="xref download myst">manifiesto de entradas</span></a> y el <a class="reference download internal" download="" href="../_downloads/b1306820c1f76945590c0c00d8d429fb/execution_receipt.json"><span class="xref download myst">recibo de ejecución</span></a> permiten auditar esta conciliación de metadatos sin nuevos ajustes o inferencia.</p>
 <p>La latencia es la <strong>media de seis medianas registradas por semilla</strong>, con <strong>32 calentamientos y 100 repeticiones</strong>, eventos CUDA, batch 1 y entrada D7 residente. Excluye transferencia, preprocesamiento, carga y servicio. El throughput serial guardado promedia las métricas registradas por predictor; no se deduce como 1.000 dividido por la media de medianas ni equivale a rendimiento de un sistema por lotes. La <a class="reference download internal" download="" href="../_downloads/044ef94cec20df12654a8e92d4456752/inference_latency.svg"><span class="xref download myst">figura original de latencia</span></a> muestra el rango mínimo–máximo de aquellas medianas, no un IC del 95 %.</p>
 <p>Los <strong>FLOPs core</strong> usan 2 FLOPs/MAC y cuentan productos matriciales y convoluciones, incluidas compuertas recurrentes y atención. Excluyen FFT, activaciones, normalizaciones, pooling, sesgos y movimiento de memoria. En TimesNet las tres sondas con pesos iniciales coinciden, pero <strong>no acotan todas las rutas dependientes de los valores</strong>; la tabla no afirma coste total de todos los kernels o de los pesos entrenados sobre cualquier ventana. <a class="reference internal" href="58_flops_predictores.html"><span class="std std-doc">Conteo y alcance</span></a>.</p>
 <p>La memoria de entrenamiento original es un máximo del proceso desde el último reset del llamador (<code class="docutils literal notranslate"><span class="pre">since_callers_last_reset</span></code>), <strong>no un pico aislado por modelo</strong>. Los perfiles posteriores de inferencia registran memoria asignada/reservada tras calentamiento y sus incrementos, con otro alcance. No se equiparan ambos campos ni se confunde el límite del allocator con memoria medida. Los recursos comparables de <strong>Persistence, SeasonalNaive y ARIMA no se midieron</strong> en estos inventarios; permanecen ausentes y no se les asigna cero.</p>
@@ -889,9 +927,9 @@ q_{\mathrm{HPO}}=\sqrt{\frac{\sum_f n_f\,q_f^2}{\sum_f n_f}},
 </section>
 <section id="balance-y-sostenibilidad">
 <h3>11.4.4 Balance y sostenibilidad<a class="headerlink" href="#balance-y-sostenibilidad" title="Link to this heading">#</a></h3>
-<p>El cierre complementario conserva <strong>84 h autorizadas acumuladas, 80,2561 h contabilizadas, 13.477,91 s de saldo y cero reservas abiertas</strong>. El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">balance final</span></a> incluye los cargos previos y no reinicia el presupuesto. El cierre original de 74,9530 h frente a 80 h pertenece a otro corte; las reservas sucesivas son techos de admisión, no horas consumidas.</p>
+<p>El cierre complementario del <strong>13/11/2026</strong> conservó <strong>84 h autorizadas acumuladas, 80,2561 h contabilizadas, 13.477,91 s de saldo y cero reservas abiertas en aquel corte</strong>. El <a class="reference download internal" download="" href="../_downloads/0afa4747e855182beac75b95af584f23/budget_final.json"><span class="xref download myst">balance de ese cierre</span></a> incluye los cargos previos y no reinicia el presupuesto. Las verificaciones y reproducciones posteriores continúan el <a class="reference download internal" download="" href="../_downloads/844f92de8ec60c01fed2ae6230cf562d/compute_ledger.jsonl"><span class="xref download myst">diario aditivo del 16/11</span></a>; sus estados no se atribuyen retroactivamente al cierre del 13/11. El cierre original de 74,9530 h frente a 80 h pertenece a otro corte; las reservas sucesivas son techos de admisión, no horas consumidas.</p>
 <p>Los cargos son tiempo de campaña, <strong>no GPU-horas activas, energía o importe monetario</strong>. No hay telemetría energética, factores de emisión o tarifa verificados para convertirlos en kWh, CO₂ o dinero. La huella energética es una recomendación condicionada a disponibilidad; esta entrega no fabrica esos valores ni hace una afirmación de sostenibilidad desde el menor número de parámetros. La incertidumbre del coste y los compromisos con precisión, robustez e interpretabilidad permanecen explícitos.</p>
-<p>El estado es <strong>selección y entrenamiento completados con recursos medidos y límites de equidad declarados</strong>. Quedan parciales la amplitud e importancia del espacio HPO, la atribución completa de selección, ciertos recursos comparables y los análisis η/equivalencia. Ninguna de esas ausencias se rellena repitiendo resultados históricos o llamando entrenamiento a la recuperación de archivos. Los antecedentes se preservan a continuación.</p>
+<p>El estado es <strong>selección y entrenamiento originales completados con recursos medidos y límites de equidad declarados</strong>. Los cargos del catálogo reducido quedan conciliados para 233 oportunidades observadas y una asignación desconocida separada. Quedan parciales la amplitud e importancia del espacio HPO, el coste histórico completo fuera de ese catálogo, ciertos recursos comparables y los análisis η/equivalencia. Las reproducciones CPU posteriores conservan sus propios estados y costes; esta auditoría no las declara completas. Los antecedentes se preservan a continuación.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Archivo documental: contenido anterior del capítulo 11</p>
 <p>Este bloque conserva íntegramente el texto anterior y sus encabezados. Sus fechas, estados y enlaces corresponden a sus cortes originales; la lectura vigente sigue 11.1–11.4 presentados arriba.</p>
@@ -951,12 +989,12 @@ q_{\mathrm{HPO}}=\sqrt{\frac{\sum_f n_f\,q_f^2}{\sum_f n_f}},
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="10_auditoria_datos.html"
+       href="65_cierre_cientifico_real.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">10. Contrato de Datos y Auditoría Formal de Fuga de Información</p>
+        <p class="prev-next-title">Datos reales, controles y cierre de las comparaciones</p>
       </div>
     </a>
     <a class="right-next"

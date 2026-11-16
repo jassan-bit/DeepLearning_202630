@@ -1,0 +1,97 @@
+{
+  "version": "e2-original-period-comparison-v1",
+  "registered_at_utc": "2026-11-16T01:04:39.424784+00:00",
+  "timing": "New exploratory specification after benchmark, earlier descriptive intervals and CPU diagnostics; before this new inferential calculation",
+  "script_sha256": "cb4a7f02c71424de6cb199d26a0d698c72338e82f6a96b9ed7dc2c25ef577150",
+  "sources": {
+    "bundle": {
+      "path": "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json",
+      "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+      "bytes": 1371654
+    },
+    "freeze": {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/final_freeze.json",
+      "sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+      "bytes": 69457
+    },
+    "A2": {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+      "bytes": 2596
+    },
+    "original_analysis": {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637",
+      "bytes": 54683
+    },
+    "phase_resources": {
+      "path": "book_e2/_static/e2_efficiency_closure_20261113/phase_resources.csv",
+      "sha256": "4f24cee5a9be865dd51ebafba2c5957961c5b2303276941472ceab55af04e99e",
+      "bytes": 75699
+    },
+    "exporter": {
+      "path": "scripts/export_e2_f2a_cached_data.py",
+      "sha256": "6370b8e4ef1fbf7519322107de5f26eb659ecf0dfe59dd6ed7df477a2da586ef",
+      "bytes": 15905
+    },
+    "original_engine_in_checkout": {
+      "path": "scripts/e2_reduced_final.py",
+      "sha256": "033e4bf7db0d4f69624063830d116a1b5cf159a401c310a79979aa46307dad19",
+      "bytes": 34401
+    }
+  },
+  "models": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32"
+  ],
+  "seeds": [
+    271801,
+    271802,
+    271803,
+    271804,
+    271805,
+    271806
+  ],
+  "calibration_dates": 53,
+  "test_dates": 608,
+  "effect": "per-seed RMSE_test608 minus RMSE_calibration53 of the same original frozen predictor; then mean across six seeds",
+  "H0": "mean seed difference=0",
+  "H1": "mean seed difference!=0",
+  "primary": "two-sided Student t of six differences,df5; marginal95percent t CI; separate Holm13 family at0.05",
+  "sensitivity": "two-sided64exact sign assignments of six original differences; abs(mean) statistic, no MonteCarlo+1; separate Holm13 family at0.05",
+  "assumptions": [
+    "Independent optimization repetitions conditional on the fixed calibration/test calendars.",
+    "Adequate small-sample normal approximation of six differences for t; not normality of daily residuals.",
+    "Sign-flip sensitivity additionally requires symmetry under the null; enumeration does not verify symmetry.",
+    "Shared calendars, overlapping target supports and temporal dependence are not treated as independent observations."
+  ],
+  "zero_seed_variance_policy": "t,CI andp not estimable; never fabricate zero uncertainty or p0",
+  "classical_policy": "three single trajectories described by period risk/difference only; no seed t/IC or invented repetitions",
+  "decisions": "Reject only with valid t p_Holm13<=0.05; sign-flips remain sensitivity, not a replacement selected by smaller p",
+  "limits": [
+    "Calibration53 was used for pilot and interval calibration; it is not independent HPO validation.",
+    "A period difference may reflect distribution change, period difficulty or estimation, not identified overfitting.",
+    "Non-rejection does not demonstrate consistency, equivalence or universal absence of overfitting.",
+    "No new model fits, inference, CPU/GPU mixing, new holdout or original preregistration is claimed.",
+    "The original export's predictor/calibrator/checkpoint verification is inherited from its pinned bundle; raw market inputs are not reacquired here."
+  ],
+  "new_fits": 0,
+  "new_model_inference": false,
+  "A2_or_RQ1_changed": false,
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  }
+}

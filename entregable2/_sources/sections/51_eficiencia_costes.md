@@ -4,7 +4,7 @@
 
 Los registros originales permiten cuantificar el coste de las fases de entrenamiento de los **78 ajustes finales**: **5 765,09 s (1,6014 h)**, sumados sobre 13 modelos y seis semillas. Esta cantidad corresponde a fases instrumentadas del entrenamiento final. El presupuesto contable del **cierre original del benchmark** fue **74,9530 h de 80 h autorizadas** e incluye historia previa, trabajos y tiempo del controlador. Las dos cifras describen ámbitos diferentes y no se suman.
 
-**Cierre complementario vigente:** el límite se amplió una sola vez de 80 a **84 horas totales**, conservando todos los cargos. El cierre de [§55](55_reproduccion_ablaciones.md) registra **80,2561 horas contabilizadas**, **3 h 44 min 38 s de saldo** y cero reservas abiertas, después de las 81 reproducciones y 18 ablaciones. La tabla contable de este capítulo conserva el corte original; no representa ese saldo posterior ni horas de GPU activa.
+**Cierre complementario histórico del 13/11/2026:** el límite se amplió una sola vez de 80 a **84 horas totales**, conservando todos los cargos. El cierre de [§55](55_reproduccion_ablaciones.md) registró **80,2561 horas contabilizadas**, **3 h 44 min 38 s de saldo** y cero reservas abiertas en ese momento, después de las 81 reproducciones y 18 ablaciones. Los controles y la {download}`repetición CPU completada <../_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/result_v1/README.md>` de [§65](65_cierre_cientifico_real.md) conservan sus cargos posteriores dentro del mismo límite, sin reiniciar la cuenta. La tabla contable de este capítulo conserva el corte original; no representa el saldo actual ni horas de GPU activa.
 
 Esta auditoría es posterior al cierre: lee metadatos, verifica hashes y conserva la tabla A2 original. No entrena modelos, descarga pesos, ejecuta inferencias ni vuelve a calcular sus métricas. Los resultados siguen vinculados al commit científico `1e8745497b484518f766b6da5c19be8362d9add7` y al commit inmutable de resultados `50cb634e9eb163b09f9607982842144ba9f74c87`.
 
@@ -39,6 +39,22 @@ La calidad es el RMSE A2 original, media de seis semillas sobre las **608 fechas
 En SAE, la suma de seis semillas se descompone en **373,79 s para AE1**, **378,45 s para AE2** y **190,25 s para la fase supervisada**, total **942,49 s**. Omitir el preentrenamiento reduciría indebidamente su coste reportado. Las demás arquitecturas tienen una fase supervisada.
 
 Los 39 ajustes HPO seleccionados suman **3 007,84 s (0,8355 h)**. Proceden de tres orígenes internos (`2024-01-01`, `2024-07-01`, `2024-10-01`) y una semilla de optimización (`271201`). Su temporización mezcla A100, Tesla T4 y diez resultados históricos admitidos desde caché, con políticas de checkpoints distintas. Esta suma es descriptiva de los registros recuperados: no permite ordenar arquitecturas por eficiencia de búsqueda. `full_selection_seconds` queda en `null` para todos los modelos porque este inventario no contiene una atribución exhaustiva de todas las configuraciones y operaciones previas a la selección.
+
+## Conciliación posterior del catálogo HPO: ámbitos separados
+
+La recuperación documental del **16/11/2026** amplía la cobertura del inventario HPO, sin alterar la tabla de ajustes finales, sus recursos A100 o las fronteras de Pareto siguientes. Los recibos nuevos y [§65](65_cierre_cientifico_real.md) permiten distinguir estas magnitudes:
+
+| Inventario recuperado | Cobertura y total | Alcance |
+| --- | --- | --- |
+| [Fases instrumentadas HPO](../_static/e2_scientific_closure_20261116/hpo_cost_reconciliation/summary.json) | **180/231 trabajos válidos; 20.784,465 s** | Unión de 170 trabajos ya inventariados y diez reutilizados adicionales, sin volver a sumar los 29 seleccionados que se solapan. Para 51 trabajos falta el desglose por fase. |
+| [Cargos observados del catálogo reducido](../_static/e2_scientific_closure_20261116/catalogue_charge_accounting/summary.json) | **233/234 oportunidades; 25.833,898918 s (7,176083 h)** | 172 cargos observados de la campaña y 61 cargos originales reutilizados: conjuntos de trabajos disjuntos, con hardware y límites de reloj heterogéneos. Incluye los dos fallos conocidos, sin convertirlos en ajustes exitosos. |
+| Asignación del trabajo de desenlace desconocido | **1.860 s, fuera de la suma observada** | Cargo conservador presupuestario; no se conoce su duración real ni se presenta esa asignación como duración medida. |
+
+Los [234 registros por oportunidad](../_static/e2_scientific_closure_20261116/catalogue_charge_accounting/catalogue_charge_opportunities_234.csv) y las [trece conciliaciones por modelo](../_static/e2_scientific_closure_20261116/catalogue_charge_accounting/catalogue_charge_by_model_13.csv) conservan identidad, origen y límites. Las 51 duraciones de fase ausentes **no eliminan sus recibos de cargo originales**. La suma de cargos es contabilidad descriptiva del catálogo recuperado: no representa tiempo puro de entrenamiento comparable, selección histórica completa, GPU activa, energía, dinero o duración integral del proyecto.
+
+**No se suman fases, callbacks, supervisión y reservas entre sí:** sus relojes contienen trabajo solapado. Tampoco se añaden estos cargos otra vez al ledger histórico, que ya conserva sus ámbitos contables. Los 5.765,09 s de ajuste final A100 y el tiempo de las nuevas ejecuciones CPU tienen fuentes y fases distintas; esta conciliación HPO no los incorpora ni modifica sus valores.
+
+La repetición posterior de recetas fijas tiene [contabilidad separada](../_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/result_v1/accounting_summary.json): 78 ajustes neuronales nuevos, tres clásicos y dos etapas compartidas, **83 workers exitosos por 6.845,049574 s**; con 8,582609 s de fallos anteriores, el estudio suma **6.853,632183 s**. Se reutilizaron 80 workers exitosos de V3 y sólo se ejecutaron los tres restantes en el intento final. Los tiempos de fase están contenidos en los workers y no se vuelven a sumar, ni se añade el tiempo del padre. Esa evidencia CPU no se incorpora al Pareto A100 ni constituye una nueva IUT de latencia de los predictores recién entrenados.
 
 ## Pareto observado
 

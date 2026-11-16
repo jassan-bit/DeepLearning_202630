@@ -1,0 +1,57 @@
+{
+  "version": "e2-domain-drift-explanation-v1",
+  "status": "completed_exploratory_description",
+  "plan_sha256": "217bef62ddd30dc816a3a62b3ccbf71b9eb37db2ece97a2c443e17d96c99525b",
+  "group_results": [
+    {
+      "group": "full_OHLCV_35",
+      "feature_count": 35,
+      "AUC_OOF_descriptive": 0.9525386701486541,
+      "train_count": 655,
+      "test_count": 608,
+      "folds": 5,
+      "purge_days": 7,
+      "new_p_value": "",
+      "scope": "exploratory domain-membership diagnosis,not forecasting accuracy or causal attribution"
+    },
+    {
+      "group": "relative_prices_OHLC_28",
+      "feature_count": 28,
+      "AUC_OOF_descriptive": 0.49734331056649256,
+      "train_count": 655,
+      "test_count": 608,
+      "folds": 5,
+      "purge_days": 7,
+      "new_p_value": "",
+      "scope": "exploratory domain-membership diagnosis,not forecasting accuracy or causal attribution"
+    },
+    {
+      "group": "log1p_volume_7",
+      "feature_count": 7,
+      "AUC_OOF_descriptive": 0.9026541783848935,
+      "train_count": 655,
+      "test_count": 608,
+      "folds": 5,
+      "purge_days": 7,
+      "new_p_value": "",
+      "scope": "exploratory domain-membership diagnosis,not forecasting accuracy or causal attribution"
+    }
+  ],
+  "full_AUC_reference_reproduced": true,
+  "features_described": 35,
+  "new_domain_classifier_fits": 15,
+  "new_forecasting_model_fits": 0,
+  "predictive_target_arrays_read": false,
+  "new_p_values": false,
+  "new_resampling": false,
+  "original_drift_flag_retained": true,
+  "original_primary_results_changed": false,
+  "drift_fixed_or_causal_mechanism_identified": false,
+  "limits": [
+    "A group retaining discrimination is not a causal explanation or a variance decomposition of full AUC.",
+    "Overlapping windows and one chronology do not yield independent observations.",
+    "Folds include later calendar rows for distribution diagnosis; this is not a causal forecasting backtest.",
+    "Univariate orientation and differences between the three AUC values are descriptive, not significance claims.",
+    "Shift can coexist with valid causal splitting and is not by itself information leakage."
+  ]
+}

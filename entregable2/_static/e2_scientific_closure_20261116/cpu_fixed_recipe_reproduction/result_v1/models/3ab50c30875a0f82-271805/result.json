@@ -1,0 +1,462 @@
+{
+  "status": "completed",
+  "model": "PatchTST",
+  "seed": 271805,
+  "checkpoint": "fit/selected_model.pt",
+  "checkpoint_sha256": "93d3d81fbccd34d862b7921a02d9173ef01181ae3da16f8c73735fa3bf80d0e9",
+  "scaler": "scaler.json",
+  "scaler_sha256": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959",
+  "calibrator": "calibrator.json",
+  "calibrator_sha256": "277931e66591fda8af36f38156dd1cddccbbfc7cd915eb1c1ba2ef793ecccf96",
+  "training_label_end": "2024-10-31",
+  "no_refit_after_calibration": true,
+  "phase_records": {
+    "supervised": {
+      "initial_state_sha256": "d210628c60ad5269e1a5ff2982472fc931476388a67e8fb98e41c6d9cd348f0e",
+      "final_state_sha256": "165e51d72a552d35f0deed74a49d504a1102c13f923fdd52656e664bd95672a4",
+      "optimizer_steps": 1927,
+      "fixed_epochs": 47,
+      "scheduler_total_steps": 8200,
+      "logs": [
+        {
+          "epoch": 1,
+          "train_mse_scaled": 0.24464361189885903,
+          "train_rmse_original": 0.010364092828279685,
+          "examples_seen": 655,
+          "optimizer_steps": 41
+        },
+        {
+          "epoch": 2,
+          "train_mse_scaled": 0.23931786586310116,
+          "train_rmse_original": 0.01025066203054348,
+          "examples_seen": 655,
+          "optimizer_steps": 82
+        },
+        {
+          "epoch": 3,
+          "train_mse_scaled": 0.23008144661670424,
+          "train_rmse_original": 0.01005090466967537,
+          "examples_seen": 655,
+          "optimizer_steps": 123
+        },
+        {
+          "epoch": 4,
+          "train_mse_scaled": 0.22475629878863124,
+          "train_rmse_original": 0.00993391157813074,
+          "examples_seen": 655,
+          "optimizer_steps": 164
+        },
+        {
+          "epoch": 5,
+          "train_mse_scaled": 0.22082585510406785,
+          "train_rmse_original": 0.009846668442901994,
+          "examples_seen": 655,
+          "optimizer_steps": 205
+        },
+        {
+          "epoch": 6,
+          "train_mse_scaled": 0.21956942959596182,
+          "train_rmse_original": 0.009818616353588607,
+          "examples_seen": 655,
+          "optimizer_steps": 246
+        },
+        {
+          "epoch": 7,
+          "train_mse_scaled": 0.21711388712620916,
+          "train_rmse_original": 0.009763559013932563,
+          "examples_seen": 655,
+          "optimizer_steps": 287
+        },
+        {
+          "epoch": 8,
+          "train_mse_scaled": 0.2159032259278625,
+          "train_rmse_original": 0.009736299389121931,
+          "examples_seen": 655,
+          "optimizer_steps": 328
+        },
+        {
+          "epoch": 9,
+          "train_mse_scaled": 0.2154629322863717,
+          "train_rmse_original": 0.009726366655440098,
+          "examples_seen": 655,
+          "optimizer_steps": 369
+        },
+        {
+          "epoch": 10,
+          "train_mse_scaled": 0.2150598001389103,
+          "train_rmse_original": 0.009717263356764922,
+          "examples_seen": 655,
+          "optimizer_steps": 410
+        },
+        {
+          "epoch": 11,
+          "train_mse_scaled": 0.21443814257629046,
+          "train_rmse_original": 0.009703208703123883,
+          "examples_seen": 655,
+          "optimizer_steps": 451
+        },
+        {
+          "epoch": 12,
+          "train_mse_scaled": 0.21511612862121057,
+          "train_rmse_original": 0.009718535846696276,
+          "examples_seen": 655,
+          "optimizer_steps": 492
+        },
+        {
+          "epoch": 13,
+          "train_mse_scaled": 0.21739139807133273,
+          "train_rmse_original": 0.00976979682136179,
+          "examples_seen": 655,
+          "optimizer_steps": 533
+        },
+        {
+          "epoch": 14,
+          "train_mse_scaled": 0.21429032824421657,
+          "train_rmse_original": 0.009699863867764584,
+          "examples_seen": 655,
+          "optimizer_steps": 574
+        },
+        {
+          "epoch": 15,
+          "train_mse_scaled": 0.21357301646516524,
+          "train_rmse_original": 0.009683615679949116,
+          "examples_seen": 655,
+          "optimizer_steps": 615
+        },
+        {
+          "epoch": 16,
+          "train_mse_scaled": 0.21593920297295083,
+          "train_rmse_original": 0.009737110559704163,
+          "examples_seen": 655,
+          "optimizer_steps": 656
+        },
+        {
+          "epoch": 17,
+          "train_mse_scaled": 0.2122244214283601,
+          "train_rmse_original": 0.009652993934922003,
+          "examples_seen": 655,
+          "optimizer_steps": 697
+        },
+        {
+          "epoch": 18,
+          "train_mse_scaled": 0.21124119340008451,
+          "train_rmse_original": 0.009630606990379488,
+          "examples_seen": 655,
+          "optimizer_steps": 738
+        },
+        {
+          "epoch": 19,
+          "train_mse_scaled": 0.21232677579836082,
+          "train_rmse_original": 0.009655321440412087,
+          "examples_seen": 655,
+          "optimizer_steps": 779
+        },
+        {
+          "epoch": 20,
+          "train_mse_scaled": 0.20990810867484289,
+          "train_rmse_original": 0.009600170847805073,
+          "examples_seen": 655,
+          "optimizer_steps": 820
+        },
+        {
+          "epoch": 21,
+          "train_mse_scaled": 0.20849654820129163,
+          "train_rmse_original": 0.009567837460224422,
+          "examples_seen": 655,
+          "optimizer_steps": 861
+        },
+        {
+          "epoch": 22,
+          "train_mse_scaled": 0.2084405054117887,
+          "train_rmse_original": 0.009566551481289152,
+          "examples_seen": 655,
+          "optimizer_steps": 902
+        },
+        {
+          "epoch": 23,
+          "train_mse_scaled": 0.2071310188479096,
+          "train_rmse_original": 0.00953645414565291,
+          "examples_seen": 655,
+          "optimizer_steps": 943
+        },
+        {
+          "epoch": 24,
+          "train_mse_scaled": 0.20587100336569866,
+          "train_rmse_original": 0.009507403910378296,
+          "examples_seen": 655,
+          "optimizer_steps": 984
+        },
+        {
+          "epoch": 25,
+          "train_mse_scaled": 0.20547154336485243,
+          "train_rmse_original": 0.009498175627687115,
+          "examples_seen": 655,
+          "optimizer_steps": 1025
+        },
+        {
+          "epoch": 26,
+          "train_mse_scaled": 0.2033641995364473,
+          "train_rmse_original": 0.009449342811623239,
+          "examples_seen": 655,
+          "optimizer_steps": 1066
+        },
+        {
+          "epoch": 27,
+          "train_mse_scaled": 0.2026858378457659,
+          "train_rmse_original": 0.009433569566795492,
+          "examples_seen": 655,
+          "optimizer_steps": 1107
+        },
+        {
+          "epoch": 28,
+          "train_mse_scaled": 0.20170346352890248,
+          "train_rmse_original": 0.009410680565282261,
+          "examples_seen": 655,
+          "optimizer_steps": 1148
+        },
+        {
+          "epoch": 29,
+          "train_mse_scaled": 0.20087691267938104,
+          "train_rmse_original": 0.009391378985286941,
+          "examples_seen": 655,
+          "optimizer_steps": 1189
+        },
+        {
+          "epoch": 30,
+          "train_mse_scaled": 0.19983175465168843,
+          "train_rmse_original": 0.009366915557029034,
+          "examples_seen": 655,
+          "optimizer_steps": 1230
+        },
+        {
+          "epoch": 31,
+          "train_mse_scaled": 0.1981288935846955,
+          "train_rmse_original": 0.009326920207024025,
+          "examples_seen": 655,
+          "optimizer_steps": 1271
+        },
+        {
+          "epoch": 32,
+          "train_mse_scaled": 0.1983890515247374,
+          "train_rmse_original": 0.009333041667382655,
+          "examples_seen": 655,
+          "optimizer_steps": 1312
+        },
+        {
+          "epoch": 33,
+          "train_mse_scaled": 0.19674731547595892,
+          "train_rmse_original": 0.009294344415292635,
+          "examples_seen": 655,
+          "optimizer_steps": 1353
+        },
+        {
+          "epoch": 34,
+          "train_mse_scaled": 0.196071624983358,
+          "train_rmse_original": 0.009278370877441945,
+          "examples_seen": 655,
+          "optimizer_steps": 1394
+        },
+        {
+          "epoch": 35,
+          "train_mse_scaled": 0.1956089324623574,
+          "train_rmse_original": 0.009267416797537042,
+          "examples_seen": 655,
+          "optimizer_steps": 1435
+        },
+        {
+          "epoch": 36,
+          "train_mse_scaled": 0.19451212173199836,
+          "train_rmse_original": 0.00924139832592254,
+          "examples_seen": 655,
+          "optimizer_steps": 1476
+        },
+        {
+          "epoch": 37,
+          "train_mse_scaled": 0.1929426685999368,
+          "train_rmse_original": 0.009204039942009443,
+          "examples_seen": 655,
+          "optimizer_steps": 1517
+        },
+        {
+          "epoch": 38,
+          "train_mse_scaled": 0.19287552396759733,
+          "train_rmse_original": 0.009202438285780634,
+          "examples_seen": 655,
+          "optimizer_steps": 1558
+        },
+        {
+          "epoch": 39,
+          "train_mse_scaled": 0.1920102913416069,
+          "train_rmse_original": 0.00918177418243561,
+          "examples_seen": 655,
+          "optimizer_steps": 1599
+        },
+        {
+          "epoch": 40,
+          "train_mse_scaled": 0.19212209545929013,
+          "train_rmse_original": 0.009184446983879487,
+          "examples_seen": 655,
+          "optimizer_steps": 1640
+        },
+        {
+          "epoch": 41,
+          "train_mse_scaled": 0.19090071548032397,
+          "train_rmse_original": 0.009155206242108855,
+          "examples_seen": 655,
+          "optimizer_steps": 1681
+        },
+        {
+          "epoch": 42,
+          "train_mse_scaled": 0.18990344641772847,
+          "train_rmse_original": 0.009131261441109201,
+          "examples_seen": 655,
+          "optimizer_steps": 1722
+        },
+        {
+          "epoch": 43,
+          "train_mse_scaled": 0.18952619865650439,
+          "train_rmse_original": 0.009122187197142539,
+          "examples_seen": 655,
+          "optimizer_steps": 1763
+        },
+        {
+          "epoch": 44,
+          "train_mse_scaled": 0.18763752848137427,
+          "train_rmse_original": 0.009076621094882505,
+          "examples_seen": 655,
+          "optimizer_steps": 1804
+        },
+        {
+          "epoch": 45,
+          "train_mse_scaled": 0.18518680188492054,
+          "train_rmse_original": 0.009017151573558289,
+          "examples_seen": 655,
+          "optimizer_steps": 1845
+        },
+        {
+          "epoch": 46,
+          "train_mse_scaled": 0.18610198420422677,
+          "train_rmse_original": 0.009039405230622508,
+          "examples_seen": 655,
+          "optimizer_steps": 1886
+        },
+        {
+          "epoch": 47,
+          "train_mse_scaled": 0.18498728220699398,
+          "train_rmse_original": 0.009012292739109438,
+          "examples_seen": 655,
+          "optimizer_steps": 1927
+        }
+      ],
+      "backend": "new_CPU_diagnostic_not_production_CUDA",
+      "wall_seconds": 43.70367044000159
+    }
+  },
+  "true_training_y_scaled_sha256": "60a38244b3ca716b34867e842e2d872eae120e50f171b839b749eb33bc1fbb42",
+  "label_permutation_used": false,
+  "architecture": {
+    "model": "PatchTST",
+    "recipe_id": "PT-D7-PUBLISHED-v1",
+    "input_shape": [
+      7,
+      5
+    ],
+    "horizon": 1,
+    "output": "positive sigma7 / training-only target scale",
+    "author_repository": "yuqinie98/PatchTST",
+    "source_commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+    "source_verification": {
+      "repository": "yuqinie98/PatchTST",
+      "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+      "verified_files": {
+        "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+        "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+        "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6",
+        "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+        "scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+      },
+      "verification_scope": "declared file subset, not whole repository"
+    },
+    "source_files_verified_at_build": true,
+    "body": "original supervised TSTiEncoder and Flatten_Head",
+    "d_model": 16,
+    "d_ff": 128,
+    "encoder_layers": 3,
+    "n_heads": 4,
+    "residual_attention": true,
+    "normalization": "author BatchNorm, post-norm",
+    "patch_len": 3,
+    "stride": 2,
+    "patch_count": 4,
+    "left_padding": 0,
+    "right_padding": 2,
+    "padding": "author end replication of last observed value",
+    "revin_statistics_scope": "seven actual observed days before padding",
+    "source_flatten_head_preserved": true,
+    "head_dropout": 0.0,
+    "published_source_preset": {
+      "evidence": "scripts/PatchTST/etth1.sh at the verified author commit",
+      "seq_len": 336,
+      "patch_len": 16,
+      "stride": 8,
+      "dropout": 0.3,
+      "fc_dropout": 0.3,
+      "head_dropout": 0.0
+    },
+    "actual_dropout": {
+      "encoder": 0.3,
+      "fc": 0.3,
+      "head": 0.0
+    },
+    "scalar_readout": "Linear(5,1) then Softplus before OHLCV denormalization",
+    "same_window_moment_features": 0,
+    "dropout": 0.3,
+    "task_adaptations": [
+      "Observed context 7 instead of source ETTh1 336; fixed P3/S2 rather than P16/S8",
+      "P3/S2 D7 geometry follows the prior documentary adaptation proposal",
+      "Five OHLCV channel predictions combined into one scalar before source denormalization"
+    ],
+    "paper_replication_claimed": false,
+    "exact_published_long_context_preset": false,
+    "structural_architecture_search": false,
+    "weights_pretrained": false,
+    "target_lags_added": false,
+    "calendar_covariates_added": false,
+    "market_data_read": false,
+    "architecture_policy_id": "e2-published-bodies-d7-v1",
+    "training_recipe_id": "PT-D7-PUBLISHED-v1",
+    "registered_trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0014458517173583036,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "warmup_fraction": 0.1,
+      "weight_decay": 0.0
+    },
+    "initialization_seed": 271805,
+    "actual_parameter_count": 16388,
+    "nas": false,
+    "weights_reused": false,
+    "training_axes_applied": false,
+    "restored_published_body": true
+  },
+  "artifacts_sha256": {
+    "development_admission.json": "949697f6b50e3a7d1950ce4fc64e6f05432ff8c3547dcc59d616b1a8dd774e99",
+    "calibration_predictions.json": "79ee997508303606d745632a50e6639828aea850fb5238d629af3ec6fa6faff5",
+    "scaler.json": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959",
+    "supervised_phase.json": "480bf7145ec3d4addf759a2edffa1d5d7f213d9a41dd65eebfa0416dc31d0a0a",
+    "calibrator.json": "277931e66591fda8af36f38156dd1cddccbbfc7cd915eb1c1ba2ef793ecccf96",
+    "fit/selected_model.pt": "93d3d81fbccd34d862b7921a02d9173ef01181ae3da16f8c73735fa3bf80d0e9"
+  },
+  "new_CPU_fit_scope": true,
+  "original_CUDA_reproduction_claimed": false,
+  "CPU_study_plan_sha256": "53704931391109bf2179985f5026af0316eacc892b8ebe8cfe62b87cd5aa5c7f",
+  "new_job_wall_seconds": 45.19969143700291
+}

@@ -182,7 +182,7 @@ python scripts/verify_e2_prisma_bundle.py references/literature_e2/prisma_receiv
 
 La recuperación de material privado es reproducible con `scripts/restore_e2_literature_materials.py`; la agregación de dictámenes usa `scripts/build_e2_prisma_bundle.py`. La clasificación semántica está registrada como revisión asistida por IA, no como resultado de reglas deterministas ni doble revisión humana. Los cuerpos de las fuentes no se distribuyen en el repositorio público.
 
-Permanecen **374 registros Scopus mostrados pero no recibidos** y la correspondencia incompleta entre consultas, totales y rangos WoS. Son desviaciones de cobertura documentadas. Una recuperación posterior produciría otra versión del flujo; no se modifica el corte histórico para fingir exhaustividad. Tampoco cambian el alcance retrospectivo del calendario heredado, la prueba formal pendiente de δg o la limitación de potencia del benchmark. La recuperación bibliográfica no ejecutó nuevos ajustes de mercado ni alteró A2.
+Permanecen **374 registros Scopus mostrados pero no recibidos** y la correspondencia incompleta entre consultas, totales y rangos WoS. Son desviaciones de cobertura documentadas. Una recuperación posterior produciría otra versión del flujo; no se modifica el corte histórico para fingir exhaustividad. Se conservan el alcance retrospectivo del calendario heredado y la limitación de potencia del benchmark. Las trece pruebas de δg en CPU ya están ejecutadas, con dos tolerancias condicionales y sin acreditar adecuación conjunta en A100; [§65](65_cierre_cientifico_real.md) enlaza las nuevas comparaciones. La recuperación bibliográfica no ejecutó ajustes de mercado ni alteró A2.
 
 ## Antecedentes conservados
 

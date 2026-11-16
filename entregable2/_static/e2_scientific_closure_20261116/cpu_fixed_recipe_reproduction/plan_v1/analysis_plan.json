@@ -1,0 +1,111 @@
+{
+  "version": "e2-new-true-target-CPU-fixed-recipes-v1",
+  "registered_at_utc": "2026-11-16T01:48:25.609704+00:00",
+  "script_sha256": "0dd00f742c2a4fd3b0dd0f9b24bd284f5e4e9c2ded64592fb70b356098b4c1b0",
+  "scope": "New posterior true-target CPU scientific replication, not original CUDA parity/bitwise reproduction",
+  "frozen_source_root": "/workspace/work/e2-true-target-cpu-source-v1-20261116",
+  "base_driver": {
+    "path": "/workspace/e2-guide-closure-20261113/scripts/e2_reproduce_from_raw.py",
+    "sha256": "6cf8de4bc1bb0e22a13ab8fee558890b880a2cf7fca0b135131d5389a66f9c33"
+  },
+  "fixed_recipe_plan": {
+    "path": "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_scientific_closure_20261116/reproduction/v2/plan.json",
+    "sha256": "b28fd8f04703b2321292e4caa5163783a4452c4a72d1a66cce3ea0554098cdb2"
+  },
+  "CPU_engine": {
+    "path": "/workspace/e2-guide-closure-20261113/scripts/e2_corrections_controls.py",
+    "sha256": "1d5606526f676e9aef0d83ebb95150ba8ee117d3ac3715de22c81e5a2b63129c",
+    "callable": "phase_cpu"
+  },
+  "accounting_policy": "Reserve and charge every worker separately; sum worker wallseconds including failures. Parent orchestration walltime is not charged again. Global cap is cumulative worker seconds, never parallel elapsed.",
+  "budget_source_sha256": "f570afe9ace549647cca187c84ddc7ccd62915330a7efc18e5a42f0bbd328731",
+  "accounting_root": "/workspace/e2-guide-closure-20261113",
+  "active_ledger_path": "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_scientific_closure_20261116/compute_ledger.jsonl",
+  "historical_budget_path": "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_reproduction_ablations_20261113/budget_final.json",
+  "parameter_counts": {
+    "iTransformer": 795403,
+    "Inception-1D": 490561,
+    "PatchTST": 16388,
+    "TimesNet": 1173099,
+    "TimeMixer": 9447,
+    "MLP16": 593,
+    "LSTM32": 5025,
+    "TSMixer": 35044,
+    "TiDE": 163384,
+    "ResNet-1D": 522955,
+    "LSTM-autoencoder con predictor": 8739,
+    "FCN-1D": 268929,
+    "GRU32": 3777
+  },
+  "runtime_policy": {
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "statsmodels": "0.14.5",
+    "device": "cpu",
+    "dtype": "float32",
+    "threads": 2,
+    "interop_threads": 2,
+    "deterministic_algorithms": true,
+    "float32_matmul_precision": "highest",
+    "mkldnn_enabled": true,
+    "score_batch_size": 1,
+    "parallel_fit_processes": 2,
+    "worker_cpu_sets": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ]
+  },
+  "optimization": "Unchanged phase_cpu AdamW(.9,.999,eps1e-8), original decay groups,clip1,seeded batches,cosine/warmup horizon200*batches; exact frozen phase epochs; no early stopping",
+  "data_policy": "Only655train true scaled targets used for supervised fitting; SAE auxiliary X targets unchanged.53calibration dates excluded from optimizer.20raw archives numerically admitted only after81weights/scalers/calibrators freeze.",
+  "timing_admission_policy": {
+    "required_models": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "control_seed": 271801,
+    "replication_seeds": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806
+    ],
+    "safety_factor": 1.5,
+    "fixed_shared_overhead_seconds": 1200,
+    "formula": "1.5*6*sum13verified_negative_elapsed_seconds+1200",
+    "interpretation": "Conservative operational projection from one fixed-seed control per architecture; not a confidence interval or runtime guarantee",
+    "require_no_other_open_reservations": true
+  },
+  "QA_required_before_fitting": true,
+  "full_original_campaign_passed": false,
+  "HPO_repeated": false,
+  "NAS": "not_applicable_defined_bodies",
+  "new_true_target_fits": 78,
+  "classical_reconstructions": 3,
+  "old_weights_or_predictions_used": false,
+  "remaining_separate_requirements": [
+    "original HPO reproduction",
+    "new fresh-model latency/accuracy-cost IUT if requested",
+    "all model-dependent robustness/explanations/ablations"
+  ]
+}

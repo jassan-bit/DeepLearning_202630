@@ -1,0 +1,37 @@
+{
+  "CPU_study_plan_sha256": "53704931391109bf2179985f5026af0316eacc892b8ebe8cfe62b87cd5aa5c7f",
+  "id": "CPU-freeze-raw-score",
+  "status": "completed",
+  "charged_worker_wall_seconds": 174.13835922499857,
+  "returncode": 0,
+  "reservation_id": "8f1ca17e-5950-4c7f-98df-33a89ed4e732",
+  "reservation_cap_seconds": 600.0,
+  "cpu_affinity": [
+    0,
+    1
+  ],
+  "command": [
+    "/workspace/e2-guide-closure-20261113/scripts/e2_cpu_arima_worker.py",
+    "/workspace/e2-guide-closure-20261113/scripts/e2_cpu_fixed_recipe_reproduction.py",
+    "--worker",
+    "--plan",
+    "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/plan_v2/analysis_plan.json",
+    "--job",
+    "CPU-freeze-raw-score",
+    "--source-root",
+    "/workspace/work/e2-true-target-cpu-source-v1-20261116",
+    "--author-root",
+    "/workspace/work/e2architecture_sources",
+    "--raw-root",
+    "/workspace/e2-guide-closure-20261113/work/e2-scientific-market/raw",
+    "--output",
+    "/workspace/work/e2-true-target-cpu-reproduction-v4",
+    "--reservation-id",
+    "8f1ca17e-5950-4c7f-98df-33a89ed4e732",
+    "--cpu-set",
+    "0,1"
+  ],
+  "log_sha256": "41e7990fd353faf30fdd4e0fba3d0b567ee22e6cd12d33ed031b8bf9a73ba0a8",
+  "error": null,
+  "parent_wall_seconds_added": false
+}

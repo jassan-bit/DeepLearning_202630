@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Datos reales, controles y cierre de las comparaciones &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/65_cierre_cientifico_real';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="11. Protocolo de Entrenamiento, Ajuste y Costo Computacional" href="11_hpo_equidad.html" />
+    <link rel="prev" title="10. Contrato de Datos y Auditoría Formal de Fuga de Información" href="10_auditoria_datos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Informe según la guía de E2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="17_contrato_sincronizado.html">Contrato vigente y relación entre E1, E2 y E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="62_cierre_literatura_focal.html">Elegibilidad, selección documental y brecha sustentada</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="04_implementacion.html">4. Implementación de Modelos Benchmark</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="43_catalogo_obligatorio.html">Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_revision_modelos.html">Catálogo ejecutado y procedencia bibliográfica</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark Final</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta Metodológica según el Tipo de Problema</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="49_diagnosticos_f2a.html">Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="54_robustez_interpretabilidad.html">Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, Ética y Comunicación Científica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="61_reproduccion_consolidada.html">Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="55_reproduccion_ablaciones.html">Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="38_cumplimiento_guia.html">Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="53_cierre_requisitos.html">Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="47_entrega_consolidada.html">Entrega consolidada con la evidencia disponible</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro, Potencia Estadística y Control de Decisiones</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="48_protocolo_reducido.html">Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l2"><a class="reference internal" href="45_enmienda_protocolo.html">Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Entradas reales, controles y comparaciones completadas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="11_hpo_equidad.html">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="51_eficiencia_costes.html">Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="58_flops_predictores.html">Coste de operaciones de los predictores congelados</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de Desempeño, Incertidumbre y Análisis de Errores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="60_calibracion_temporal_condicional.html">Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="57_errores_techo.html">Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="63_ensamble_calibracion.html">Referencia empírica mediante un ensemble ajustado en calibración</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estrategia de Agregación y Modelado Estadístico</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="64_correcciones_metodologicas.html">Correcciones posteriores: auditoría, efectos y regímenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50_comparaciones_f2a.html">Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l2"><a class="reference internal" href="56_inferencia_estabilidad_final.html">Inferencia refinada y estabilidad temporal</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas definidas: NAS no aplicable</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="44_arquitecturas_publicadas.html">Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Material de consulta y referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="concordancia_guia.html">Organización y concordancia</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="archivo_antecedentes.html">Archivo de antecedentes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="16_fichas_nuevas.html">Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_integracion_sintetica.html">Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_plan_auditoria.html">Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_contraste_guia.html">Cotejo del plan con la guía original</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_comparadores_nas.html">Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_fichas_recetas.html">Once fichas de recetas propuestas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_implementacion_recetas.html">Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_ejecutor_comun.html">Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_matriz_cierre.html">Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_registro_recetas.html">Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_nas_hpo_presupuesto.html">Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_fabricas_nas.html">Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_entrenamiento_temporal.html">Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_piloto_nube.html">Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_optimizacion_nube.html">Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_ejecucion_gpu.html">Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33_piloto_gpu.html">Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34_perfil_gpu_ampliado.html">Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="36_avance_campana_cuda.html">Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="37_ajuste_guia.html">Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l2"><a class="reference internal" href="39_optimizacion_tiempo.html">Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40_calendario_original.html">Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="46_artefactos_y_pilotos.html">Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="52_sintesis_literatura.html">Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="59_auditoria_literatura_final.html">Auditoría final de la literatura recibida</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/65_cierre_cientifico_real.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Datos reales, controles y cierre de las comparaciones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entradas-reales-y-auditoria-ejecutada">Entradas reales y auditoría ejecutada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-disponibles-y-pantalla-univariada">Atributos disponibles y pantalla univariada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-muestran-los-controles-negativos">Qué muestran los controles negativos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-de-distribucion-descripcion-y-tratamiento">Cambio de distribución: descripción y tratamiento</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-frente-a-prueba-y-alcance-del-sobreajuste">Calibración frente a prueba y alcance del sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rq3-comparacion-conjunta-completa-en-cpu">RQ3: comparación conjunta completa en CPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cronologia-del-registro-y-contabilidad-del-ajuste">Cronología del registro y contabilidad del ajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nueva-repeticion-del-entrenamiento-con-recetas-fijas">Nueva repetición del entrenamiento con recetas fijas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permanece-limitado">Qué permanece limitado</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="datos-reales-controles-y-cierre-de-las-comparaciones">
+<h1>Datos reales, controles y cierre de las comparaciones<a class="headerlink" href="#datos-reales-controles-y-cierre-de-las-comparaciones" title="Link to this heading">#</a></h1>
+<p><strong>Actualización del 16/11/2026.</strong> Se recuperaron los veinte ZIP originales de Binance correspondientes a enero de 2025–agosto de 2026 y se verificaron contra el manifiesto utilizado en E2. Con esas entradas se completaron los controles pendientes de datos, los trece entrenamientos con etiquetas permutadas y la comparación conjunta de precisión y coste en CPU. Los resultados y sus límites se describen aquí; los cortes del 14 y 15 de noviembre conservan sus archivos originales.</p>
+<p>La tarea continúa siendo <strong>F2a: pronóstico de una serie de tiempo</strong>, con D7×5 OHLCV, horizonte de un día y σ₇ poblacional sin anualización. Las redes y sus semillas, la tabla A2 original y la familia primaria RQ1 permanecen identificadas por sus artefactos originales. <strong>El capítulo 14 no aplica al catálogo de arquitecturas definidas.</strong></p>
+<section id="entradas-reales-y-auditoria-ejecutada">
+<h2>Entradas reales y auditoría ejecutada<a class="headerlink" href="#entradas-reales-y-auditoria-ejecutada" title="Link to this heading">#</a></h2>
+<p>Los veinte archivos admitidos suman <strong>42.542.826 bytes</strong>; sus SHA-256 coinciden con los del manifiesto original. La copia adicional de agosto de 2026 se reconoce como duplicado y no se cuenta como otra fuente. La agregación produce los <strong>608 días completos</strong> de evaluación. No se imputan barras ni se comprimen fechas; los timestamps en microsegundos de Binance se interpretan explícitamente.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/4771f042b83cdbc8993fb37a6fd4ec54/uploaded_archives_receipt.json"><span class="xref download myst">recibo de archivos originales</span></a>, el <a class="reference download internal" download="" href="../_downloads/abddb6386114ead08f2ec2d871830205/known_E1_daily.csv"><span class="xref download myst">OHLCV diario reconstruido</span></a> y el <a class="reference download internal" download="" href="../_downloads/c43e6990a5e0fb580d817a5a30c44fd1/cohort_array_manifest.json"><span class="xref download myst">manifiesto de matrices reales</span></a> permiten identificar las entradas. El <a class="reference download internal" download="" href="../_downloads/be6f73c683fb05e11fb3e46c71548aee/current_cohort_arrays.npz"><span class="xref download myst">NPZ</span></a> contiene las fechas, ventanas crudas, relativas y escaladas, objetivos originales y escalados de <strong>655 ejemplos de entrenamiento, 53 de calibración y 608 de prueba</strong>. Los objetivos de prueba coinciden exactamente con los guardados en el benchmark.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Control ejecutado</p></th>
+<th class="head"><p>Resultado y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Construcción de datos, disponibilidad, IDs, soporte, duplicados, vecinos y escaladores</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/509b697a3902f6c7a8e5c3806ecd3203/audit_result.json"><span class="xref download myst">Auditoría de datos</span></a>: <strong>12 aprobados, 3 parciales y 1 no aplicable</strong>. Las tres filas parciales remiten a controles del predictor que se ejecutan por separado, no a entradas ausentes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rendimiento univariado por atributo</p></td>
+<td><p><strong>35 regresiones OLS ajustadas sólo en train655</strong>, 105 resultados sobre train/cal/test; ninguna activa el umbral R²≥0,95 fijado antes del cálculo. <a class="reference download internal" download="" href="../_downloads/2bc242c98ecf7f8918f3d93bce2c669b/summary.json"><span class="xref download myst">Pantalla y disponibilidad</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Puertos neuronales congelados</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/3074962f9e9ce9bd07cef5a4cf191755/readout.json"><span class="xref download myst">78/78 predictores aprobados</span></a>, <strong>390 condiciones</strong>, sobre seis ventanas reales fijas de entrenamiento/calibración. Se comprueban estados, buffers, escaladores, lotes, orden y perturbación futura. Su alcance no se extiende automáticamente a todos los días de prueba o a una tolerancia CUDA distinta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Causalidad de los comparadores clásicos</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/cffb60e7dbac8c1511058217c69e03c6/readout.json"><span class="xref download myst">36/36 comprobaciones aprobadas</span></a>, <strong>6.612 comparaciones</strong> y diferencia máxima cero. Persistence, SeasonalNaive y ARIMA pronostican antes de incorporar la observación; ARIMA avanza su estado filtrado con parámetros fijos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Entrenamiento real con etiquetas permutadas</p></td>
+<td><p><strong>13/13 redes entrenadas</strong>, una semilla diagnóstica fija por receta. Ninguna activa la regla conjunta después de Holm13. <a class="reference download internal" download="" href="../_downloads/62b88d0daa786cb69387764b3e1273cd/negative_summary.json"><span class="xref download myst">Resultados</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Clasificador de dominio entrenamiento–prueba</p></td>
+<td><p><strong>AUC OOF=0,95254; p=0,001</strong>, con 999 permutaciones por bloques y reajuste del clasificador. Se detecta cambio de distribución y se conserva la alerta. <a class="reference download internal" download="" href="../_downloads/1dcf09f615edd03837a649413147b928/adversarial_result.json"><span class="xref download myst">Resultado</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los soportes de objetivos son distintos entre particiones. Calibración y prueba comparten historia causal de cierres y retornos al comienzo de enero; no se les atribuye independencia. Las pruebas de puertos usan ventanas reales de desarrollo y no constituyen por sí solas un certificado universal sobre todo el software. La auditoría clásica distingue los coeficientes congelados de ARIMA del estado que se actualiza después de observar cada día. La copia de ARIMA recuperada para estas comprobaciones tiene linaje binario documentado, sin presentarse como el archivo pickle original.</p>
+<section id="atributos-disponibles-y-pantalla-univariada">
+<h3>Atributos disponibles y pantalla univariada<a class="headerlink" href="#atributos-disponibles-y-pantalla-univariada" title="Link to this heading">#</a></h3>
+<p>Se añade la comprobación R² por atributo de la sección 10.1 de la guía. Las 35 coordenadas corresponden a cinco canales por siete rezagos; cada regresión usa un único atributo, intercepto y <strong>sólo los 655 pares de entrenamiento</strong>. Sus coeficientes quedan fijos al puntuar calibración y prueba. La normalización relativa de precios requiere Close(t−1); el volumen usa log1p. Ninguna coordenada requiere una barra de t o posterior.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/9049cc8dd302269df1c4618b3d49c195/analysis_plan.json"><span class="xref download myst">plan</span></a> y la <a class="reference download internal" download="" href="../_downloads/d6027e6374a82d6de6dd80e412af8ed9/qa_before_run.json"><span class="xref download myst">QA previa</span></a> se registraron antes de ejecutar el cálculo, con umbral de revisión R²≥0,95. Los máximos observados fueron <strong>0,14920 en entrenamiento, −0,01518 en calibración y 0,14972 en prueba</strong>. Se conservan los R² negativos y la coordenada constante. <a class="reference download internal" download="" href="../_downloads/bae2bef51ec15d8657c338a016b56afc/univariate_risks_105.csv"><span class="xref download myst">Las 105 filas</span></a> y los <a class="reference download internal" download="" href="../_downloads/a98e08885876af9a62308491730838f9/OLS_coefficients_35.csv"><span class="xref download myst">35 coeficientes</span></a> permiten revisarlos. No se seleccionan atributos ni se modifican las redes a partir de esta pantalla. Un R² bajo no excluye fugas multivariadas o no lineales.</p>
+</section>
+<section id="que-muestran-los-controles-negativos">
+<h3>Qué muestran los controles negativos<a class="headerlink" href="#que-muestran-los-controles-negativos" title="Link to this heading">#</a></h3>
+<p>Cada red vuelve a entrenarse con etiquetas de entrenamiento permutadas en bloques de siete días. El diagnóstico usa una <strong>semilla previamente fijada</strong>, las épocas y la receta correspondientes; no selecciona la mejor permutación ni busca hiperparámetros. Calibración y prueba no entran en el optimizador. Para SAE, el preentrenamiento auxiliar utiliza únicamente X de entrenamiento.</p>
+<p>La regla exige conjuntamente una ganancia de RMSE mayor que δ frente a la media de entrenamiento y una correlación de Spearman positiva; combina los p mediante su máximo y aplica <strong>Holm13</strong>, con 10.000 remuestreos en bloques de catorce días. Hay resultados nominales adversos: iTransformer tiene p conjunto sin ajustar=0,00740 y TSMixer=0,04460; sus p ajustados son <strong>0,09619 y 0,53515</strong>, respectivamente. Se conservan en la tabla. <strong>Cero alertas ajustadas no demuestra ausencia general de fuga</strong>, ni transforma una sola permutación por red en un estudio exhaustivo de controles negativos.</p>
+</section>
+<section id="cambio-de-distribucion-descripcion-y-tratamiento">
+<h3>Cambio de distribución: descripción y tratamiento<a class="headerlink" href="#cambio-de-distribucion-descripcion-y-tratamiento" title="Link to this heading">#</a></h3>
+<p>Una segunda descripción, con grupos de variables fijados antes de su cálculo, reproduce la AUC completa y obtiene:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variables del clasificador de dominio</p></th>
+<th class="head text-right"><p>AUC OOF descriptiva</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>35 entradas OHLCV relativas</p></td>
+<td class="text-right"><p>0,95254</p></td>
+</tr>
+<tr class="row-odd"><td><p>28 entradas relativas de precios OHLC</p></td>
+<td class="text-right"><p>0,49734</p></td>
+</tr>
+<tr class="row-even"><td><p>7 entradas de volumen log1p</p></td>
+<td class="text-right"><p>0,90265</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El volumen conserva gran parte de la capacidad de distinguir los periodos, mientras que este clasificador con precios relativos obtiene una AUC cercana a 0,5. Son <strong>descripciones del cambio observado</strong>, sin nueva prueba causal, descomposición aditiva de AUC ni demostración de que el cambio quedó corregido. Los folds del diagnóstico de dominio pueden utilizar filas posteriores; no se presentan como un backtest causal de pronóstico. <a class="reference download internal" download="" href="../_downloads/3d7304ad45769afcb5a37c7b271e5f7d/README.md"><code class="xref download docutils literal notranslate"><span class="pre">Plan,</span> <span class="pre">recibos</span> <span class="pre">y</span> <span class="pre">35</span> <span class="pre">descriptores</span></code></a>.</p>
+<p>El tratamiento conserva la alerta, limita la generalización a esta cronología y enlaza las métricas por trimestre, RQ2 por regímenes y la cobertura condicional ya calculadas. <strong>No se reajustan las redes ni los escaladores con prueba para eliminar la diferencia.</strong> El <a class="reference download internal" download="" href="../_downloads/8664b3f9b18d7093f7f032c1439efc80/treatment_evidence.json"><span class="xref download myst">registro de tratamiento</span></a> identifica esas evidencias. Un cambio de distribución puede coexistir con particiones causales válidas y no demuestra por sí mismo fuga de información.</p>
+</section>
+</section>
+<section id="calibracion-frente-a-prueba-y-alcance-del-sobreajuste">
+<h2>Calibración frente a prueba y alcance del sobreajuste<a class="headerlink" href="#calibracion-frente-a-prueba-y-alcance-del-sobreajuste" title="Link to this heading">#</a></h2>
+<p>Se ejecuta una comparación formal de las pérdidas de <strong>los mismos 81 predictores originales</strong> en calibración53 y prueba608. Para las trece redes se usa la diferencia emparejada de RMSE por semilla, <strong>prueba t bilateral con seis pares y Holm13</strong>; los tres clásicos conservan un único resultado descriptivo. El <a class="reference download internal" download="" href="../_downloads/40ebc1ef18796784e4064c11b8e7cf23/analysis_plan.json"><span class="xref download myst">plan</span></a> y las <a class="reference download internal" download="" href="../_downloads/9a6da5aa7674fac14b16e2f190e87514/period_differences_t_Holm13.csv"><span class="xref download myst">trece comparaciones</span></a> identifican su alcance.</p>
+<p>La prueba principal rechaza en <strong>seis redes</strong>: la RMSE de prueba es mayor para FCN, PatchTST e iTransformer, y menor para MLP16, LSTM32 y GRU32. Para SAE, la diferencia prueba−calibración es <strong>−0,00022571</strong>, IC95 % <strong>[−0,00049162; 0,00004019]</strong>, p ajustado <strong>0,53727</strong>. La sensibilidad mediante las 64 asignaciones de signo no rechaza tras Holm13; con seis pares su mínima resolución bilateral es 0,03125. Se publican ambos procedimientos sin seleccionar el resultado favorable.</p>
+<p><strong>Calibración no es validación HPO independiente.</strong> Estos contrastes describen incertidumbre de inicialización condicionada a dos periodos; una diferencia puede reflejar dificultad, deriva o estimación. No identifica la causa de sobreajuste, y un no rechazo no establece equivalencia o consistencia. La comparación actual sí está ejecutada; su límite es metodológico, no una ausencia de cálculo.</p>
+<p>Las trece pruebas de brecha train–calibración de <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> conservan sus dos tolerancias condicionales frente a δg. No se reinterpretan como ausencia universal de sobreajuste o adecuación conjunta de las redes originales en A100.</p>
+</section>
+<section id="rq3-comparacion-conjunta-completa-en-cpu">
+<h2>RQ3: comparación conjunta completa en CPU<a class="headerlink" href="#rq3-comparacion-conjunta-completa-en-cpu" title="Link to this heading">#</a></h2>
+<p>Se generaron <strong>47.424 pronósticos nuevos en CPU</strong>: los 78 checkpoints recuperados de la reproducción limpia sobre las 608 entradas reales de prueba. Sus estados coinciden con los originales, mientras sus archivos conservan hashes y linajes propios. El experimento utiliza el mismo port CPU y la política de ejecución fijada para sus riesgos train/cal y sus mediciones de latencia. La <a class="reference download internal" download="" href="../_downloads/eaf4bf8557292fd2d19f0fad03b7a42c/run_admission.json"><span class="xref download myst">admisión</span></a>, el <a class="reference download internal" download="" href="../_downloads/a8a0f12288d6bc699d22b3e0557937c6/inference_report.json"><span class="xref download myst">informe de inferencia</span></a> y la <a class="reference download internal" download="" href="../_downloads/602e346adc00ac91eb3f031af5faeacd/verification_report.json"><span class="xref download myst">verificación de entrega</span></a> comprueban identidades, fechas y estados.</p>
+<p>La prueba de intersección–unión combina, para cada uno de los diez candidatos frente a GRU32, la ganancia de precisión mayor que δ y la reducción de coste prevista. Se remuestrea el calendario en bloques de catorce días y los bloques completos de temporización; <strong>B=20.000</strong>, con Holm10 sobre los p conjuntos. <strong>Los diez p de coste, conjuntos y ajustados son 1: no se demuestra ninguna mejora conjunta.</strong> <a class="reference download internal" download="" href="../_downloads/569a24cd6f92f81737bd8c8905700499/summary.json"><span class="xref download myst">Resumen</span></a>.</p>
+<p>SAE obtiene RMSE CPU=<strong>0,003803430626</strong>, frente a GRU32=<strong>0,004001161981</strong>; la ganancia <strong>0,000197731356</strong> es menor que δ. La comparación está calculada íntegramente en CPU. No mezcla precisión A100 con latencia CPU, ni acredita una ventaja de despliegue completa: la temporización corresponde al forward residente, bajo la política publicada.</p>
+<p>Este resultado <strong>no completa el plan original detenido por paridad</strong> ni aprueba su tolerancia de paridad CUDA de 10⁻⁷. Se preservan los fallos originales de esa puerta. La nueva IUT tiene plan y fecha posteriores, alcance exploratorio y resultados propios. La tabla A2 y RQ1 originales permanecen iguales.</p>
+</section>
+<section id="cronologia-del-registro-y-contabilidad-del-ajuste">
+<h2>Cronología del registro y contabilidad del ajuste<a class="headerlink" href="#cronologia-del-registro-y-contabilidad-del-ajuste" title="Link to this heading">#</a></h2>
+<p>La nueva auditoría documental enlaza <strong>170/170 trabajos HPO entrenados de la campaña reducida</strong>, sus 206 diarios de fase, el protocolo <code class="docutils literal notranslate"><span class="pre">c056c1cf</span></code> y el motor <code class="docutils literal notranslate"><span class="pre">1e874549</span></code>. El protocolo se registró <strong>antes de esos entrenamientos</strong>; el motor también precede al primero. Se mantienen separados los <strong>61 resultados reutilizados</strong> y las decisiones posteriores al conocimiento histórico de prueba. <a class="reference download internal" download="" href="../_downloads/1d983c49106482038c251d0c7796e979/README.md"><code class="xref download docutils literal notranslate"><span class="pre">Auditoría</span> <span class="pre">de</span> <span class="pre">cronología</span></code></a>.</p>
+<p>La auditoría adicional enlaza <strong>78/78 ajustes finales y 90 diarios de fase</strong>, con solicitudes, resultados, checkpoints y costes. Son posteriores al registro reducido y anteriores al fin declarado de la admisión final. Esa comparación no identifica la primera lectura efectiva del conjunto de prueba ni restaura ceguera retrospectiva. <a class="reference download internal" download="" href="../_downloads/cf5b0fb4c3b0de029c9a4d668506760a/README.md"><code class="xref download docutils literal notranslate"><span class="pre">Resultados</span> <span class="pre">de</span> <span class="pre">ajustes</span> <span class="pre">finales</span></code></a>.</p>
+<p>Los paquetes portables de estas dos auditorías se pueden verificar en una carpeta extraída, con Python estándar y sin Git ni red: <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/93305368dff0ace40f94b4de4cd0fae9e79b4542/book_e2/_static/e2_scientific_closure_20261116/preregistration_bundle.zip">cronología HPO, 13,16 MB</a> y <a class="reference external" href="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/93305368dff0ace40f94b4de4cd0fae9e79b4542/book_e2/_static/e2_scientific_closure_20261116/final_registration_bundle.zip">cronología de ajustes finales, 4,55 MB</a>. Las URLs fijan un commit inmutable. Su descarga inicial requiere Internet; los datos y verificadores están dentro de cada archivo.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/cdb8bcbe7b104d99ee308e79ddef60b6/summary.json"><span class="xref download myst">reconciliación de fases HPO</span></a> recupera tiempos instrumentados para <strong>180 de los 231 trabajos válidos</strong>, por un total de <strong>20.784,465 segundos</strong>. Para los otros 51 no se inventan duraciones de fase. El inventario mantiene separados tiempo de fases, cargo de supervisión y asignación presupuestaria desconocida; no se suman magnitudes que ya contienen el mismo trabajo. <a class="reference download internal" download="" href="../_downloads/837083f96e11b7626a6deb2ba959fbe6/hpo_costs_by_model_13.csv"><span class="xref download myst">Detalle por modelo</span></a>.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/41efb3c2ab05706756346445a65911c6/summary.json"><span class="xref download myst">inventario de cargos</span></a> enlaza las <strong>234 oportunidades</strong> con <strong>233 cargos observados y un desenlace desconocido</strong>. Los 172 cargos observados de la campaña y los 61 cargos originales de trabajos reutilizados son conjuntos disjuntos: suman <strong>25.833,898918 segundos, 7,176083 horas</strong>. Es una contabilidad descriptiva con hardware y límites de reloj diferentes, no tiempo puro de entrenamiento comparable ni coste histórico completo del proyecto. La asignación conservadora de <strong>1.860 segundos</strong> del trabajo desconocido se conserva aparte, sin hacerla pasar por duración medida. Los 51 desgloses de fase ausentes no eliminan sus recibos de cargo originales. <a class="reference download internal" download="" href="../_downloads/388d4a9d0d9c96f1f6916cb364a7d256/catalogue_charge_opportunities_234.csv"><span class="xref download myst">Una fila por oportunidad</span></a>.</p>
+</section>
+<section id="nueva-repeticion-del-entrenamiento-con-recetas-fijas">
+<h2>Nueva repetición del entrenamiento con recetas fijas<a class="headerlink" href="#nueva-repeticion-del-entrenamiento-con-recetas-fijas" title="Link to this heading">#</a></h2>
+<p>Se completó una <strong>repetición posterior en CPU</strong>, desde objetivos reales de entrenamiento, de <strong>78 ajustes neuronales (trece redes por seis semillas) y tres comparadores</strong>. El <a class="reference download internal" download="" href="../_downloads/c1cac845146430bf9dbbf630fd217176/analysis_plan.json"><span class="xref download myst">plan fijado antes de los ajustes</span></a>, su <a class="reference download internal" download="" href="../_downloads/87c364d70b74ad47138fc3108cb971c7/timing_admission.json"><span class="xref download myst">admisión de tiempo</span></a> y la <a class="reference download internal" download="" href="../_downloads/d87de5b3a22fb55af4a255a0969c01f5/qa_v2.json"><span class="xref download myst">revisión previa</span></a> preceden a los ajustes. El <a class="reference download internal" download="" href="../_downloads/813d6cd63944fa3f37a833c501c20cd2/export_receipt.json"><span class="xref download myst">recibo final</span></a> acredita el cierre del alcance fijado, con <strong>83 trabajos completados: 81 predictores y dos etapas de evaluación/análisis</strong>.</p>
+<p>El flujo ejecutado entrena con 655 ejemplos, calibra con 53, congela los 81 predictores nuevos, admite numéricamente los veinte archivos crudos y evalúa las 608 fechas. Después calcula una tabla propia y sus contrastes con <strong>20.000 remuestreos</strong>. Las configuraciones, las épocas y los métodos ya estaban fijados; <strong>no se repite HPO ni se realiza NAS</strong>. Los resultados CPU nuevos no sustituyen los resultados originales en A100.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/f745c9ae46b68a688b58b9a50d851d23/benchmark_A2.csv"><span class="xref download myst">tabla CPU nueva</span></a> obtiene RMSE media <strong>0,0038736555 para SAE</strong>, <strong>0,0039216248 para ARIMA</strong> y <strong>0,0040134251 para GRU32</strong>. El <a class="reference download internal" download="" href="../_downloads/7d777892eba5053b3fe34a35841e7a08/benchmark_analysis_20000.json"><span class="xref download myst">análisis completo</span></a> conserva las veinte comparaciones previstas. Son resultados de ajustes nuevos bajo el entorno CPU declarado, sin una afirmación de igualdad bit a bit con A100. La IUT de coste anterior usa otros checkpoints recuperados y otra política CPU; no se traslada a estos pesos nuevos.</p>
+<p>El primer intento se detuvo antes de completar un ajuste por falta de <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. Sus dos fallos de validación del entorno y <strong>5,255 segundos</strong> cobrados se conservan. Se instaló la dependencia en su versión ya declarada y se inició una salida nueva con el mismo código y plan, descontando ese cargo del límite del estudio. No se reinicia el presupuesto histórico. <a class="reference download internal" download="" href="../_downloads/220bc758068b4494a10541a9e6e006a1/recovery_decision.json"><span class="xref download myst">Recuperación del entorno</span></a>.</p>
+<p>Al completar los clásicos, ARIMA falló al construir un recibo que solicita <code class="docutils literal notranslate"><span class="pre">raw_value</span></code>, mientras la clase original lo denomina <code class="docutils literal notranslate"><span class="pre">raw</span></code>. El <a class="reference download internal" download="" href="../_downloads/043a6af453fe70b35403f2903f3dee2a/recovery_plan.json"><span class="xref download myst">plan de recuperación</span></a> y su <a class="reference download internal" download="" href="../_downloads/22cc7b1754808fbcc9448b536f81a36a/QA_approved.json"><span class="xref download myst">QA previa</span></a> se registraron antes de reanudar. Se añadió únicamente el alias de lectura ya auditado, conservando números y política causal. Los <strong>80 predictores completos</strong> se copiaron con bytes y recibos idénticos; la reanudación ejecutó <strong>sólo ARIMA, evaluación y análisis</strong>, sin otros ajustes neuronales. El intento ARIMA fallido pudo estimar coeficientes antes del error del recibo y conserva su cargo de <strong>3,328 segundos</strong>.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/3779329f19648b0b41efbb4fb0825e83/accounting_summary.json"><span class="xref download myst">contabilidad del estudio</span></a> verifica <strong>6.853,632 segundos de cargos de workers</strong>, incluidos los tres intentos fallidos, dentro del límite original de 10.000 segundos y del presupuesto acumulado de 84 horas. Los 90 tiempos de fase están contenidos en esos cargos; no se suman otra vez ni se añade el tiempo del controlador. Se publican <a class="reference download internal" download="" href="../_downloads/d1450afa2871f74bb6563961fee77d1d/predictor_costs_81.csv"><span class="xref download myst">costes por predictor</span></a>, <a class="reference download internal" download="" href="../_downloads/e02effb12812f20a6bde813f3dce87fb/neural_model_costs_13.csv"><span class="xref download myst">costes de las trece redes</span></a> y los <a class="reference download internal" download="" href="../_downloads/da2256e10e4b69a2887352e118e28fa7/predictions_81.npz"><span class="xref download myst">81 pronósticos en NPZ</span></a>, con fuentes y targets unidos por fecha.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/f487e63627d921b4ccaa0320a3353dc2/manifest.json"><span class="xref download myst">manifiesto del export</span></a> identifica sus 942 archivos. Los 79 checkpoints binarios se verificaron físicamente antes de omitirlos de este paquete de evidencia; su <a class="reference download internal" download="" href="../_downloads/f1ea9ae8a44a0d68137afcfcc1e6dc3a/excluded_checkpoint_inventory.json"><span class="xref download myst">inventario</span></a> declara hashes y tamaños. Los dos ingenuos JSON sí están incluidos. El profesor puede reanalizar los pronósticos incluidos; verificar los bytes omitidos o recrear los pesos requiere el código de entrenamiento y su entorno, datos y cómputo.</p>
+<p>Repetir las recetas ganadoras no reproduce por sí solo toda la búsqueda histórica, la réplica del paper, cada perturbación o las ablaciones. La reproducción original de los 81 predictores con discrepancia cero sigue documentada en <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a>; cada ejecución conserva sus recibos y su entorno.</p>
+</section>
+<section id="que-permanece-limitado">
+<h2>Qué permanece limitado<a class="headerlink" href="#que-permanece-limitado" title="Link to this heading">#</a></h2>
+<p>La evidencia nueva permite revisar controles que antes estaban pendientes por falta de entradas. Se conservan el cambio de distribución detectado, los diagnósticos residuales adversos y la falta de adecuación conjunta. Las inferencias se refieren a una serie y unas trayectorias ajustadas, con potencia piloto limitada y márgenes ya registrados. No se obtiene equivalencia por ausencia de significación.</p>
+<p>No es posible reconstruir honestamente los 374 registros bibliográficos no recibidos ni confirmar toda la cobertura de búsqueda sin exportaciones nativas e historial. Tampoco se transforma el calendario conocido desde E1 en una prueba ciega. Estos límites se mantienen separados de los controles que ahora sí se ejecutaron.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_auditoria_datos.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">10. Contrato de Datos y Auditoría Formal de Fuga de Información</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="11_hpo_equidad.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entradas-reales-y-auditoria-ejecutada">Entradas reales y auditoría ejecutada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-disponibles-y-pantalla-univariada">Atributos disponibles y pantalla univariada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-muestran-los-controles-negativos">Qué muestran los controles negativos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-de-distribucion-descripcion-y-tratamiento">Cambio de distribución: descripción y tratamiento</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibracion-frente-a-prueba-y-alcance-del-sobreajuste">Calibración frente a prueba y alcance del sobreajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rq3-comparacion-conjunta-completa-en-cpu">RQ3: comparación conjunta completa en CPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cronologia-del-registro-y-contabilidad-del-ajuste">Cronología del registro y contabilidad del ajuste</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nueva-repeticion-del-entrenamiento-con-recetas-fijas">Nueva repetición del entrenamiento con recetas fijas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permanece-limitado">Qué permanece limitado</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

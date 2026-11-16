@@ -1,0 +1,42 @@
+{
+  "audit_report_sha256": "18f7a98761f9accdd09e5761794a229c214c7131a4c39bfff18d70313c8ccaff",
+  "branch_checks": 36,
+  "causal_ARIMA_receipt_files": 2825,
+  "causal_history": "For every chosen emission t, branches retain the same observed history strictly before t. Targets at and after t are unavailable at emission and may be removed or perturbed; each forecast is persisted before observe(t). Earlier endogenous labels remain legitimate model inputs.",
+  "causal_prefix_maximum_absolute_difference": 0.0,
+  "checked_prediction_values": 6612,
+  "checkpoint_lineage": "Naive JSON files match original freeze bytes. ARIMA checkpoint383f74... is the recovered clean-reproduction pickle, distinct from original941413...; both hashes are explicit in plan and predictor bindings.",
+  "coefficient_refits": 0,
+  "comparison_values_are_not_independent_samples": true,
+  "descriptive_saved_prediction_comparison_only": true,
+  "fixed_prefix_lengths": [
+    1,
+    7,
+    31,
+    90,
+    365,
+    608
+  ],
+  "maximum_replay_vs_saved_prediction_difference_by_model": {
+    "ARIMA": 0.0,
+    "Persistence": 0.0,
+    "SeasonalNaive": 0.0
+  },
+  "method_unchanged_after_registration": true,
+  "model_count": 3,
+  "models": [
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA"
+  ],
+  "new_bootstrap": 0,
+  "new_hypothesis_tests": 0,
+  "new_scores": 0,
+  "original_GPU_parity_claimed": false,
+  "parameter_scale_order_changes": 0,
+  "plan_sha256": "7af31b520a05622bee08da3964ed34cfe4a31f1be79a6a23d866af312dee8a4d",
+  "scope": "Actual full-cohort data admission655/53/608 supports the causal history; six fixed evaluation origins are probed. This does not certify arbitrary histories or neural post-transformations. Neural D7 uses35 scalar coordinates arranged as7 days by5 OHLCV channels; the shorthand neural35-channel in the fixed report is not a claim of35 distinct channels.",
+  "status": "PASS",
+  "unit_checks": 10,
+  "version": "e2-classical-causality-readout-v1"
+}

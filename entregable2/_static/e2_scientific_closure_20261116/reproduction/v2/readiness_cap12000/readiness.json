@@ -1,0 +1,97 @@
+{
+  "version": "e2-real-fixed-recipe-from-raw-v1",
+  "mode": "readiness_only",
+  "plan_sha256": "b28fd8f04703b2321292e4caa5163783a4452c4a72d1a66cce3ea0554098cdb2",
+  "checks": [
+    {
+      "gate": "source_and_recipe_bytes",
+      "passed": true,
+      "detail": "All registered scientific helpers and13selections verified"
+    },
+    {
+      "gate": "author_sources_76",
+      "passed": true,
+      "detail": {
+        "missing_or_changed": []
+      }
+    },
+    {
+      "gate": "twenty_test_archives_bytes_only",
+      "passed": true,
+      "detail": {
+        "missing_or_changed": [],
+        "numerical_test_payload_decoded": false
+      }
+    },
+    {
+      "gate": "real_development_train_cal",
+      "passed": true,
+      "detail": {
+        "train": 655,
+        "calibration": 53,
+        "pilot_status": "development_pilot_completed_power_reported"
+      }
+    },
+    {
+      "gate": "original_pilot_evidence",
+      "passed": true,
+      "detail": "Historical byte-bound pilot reused; no pilot refit"
+    },
+    {
+      "gate": "production_CUDA_runtime",
+      "passed": false,
+      "detail": {
+        "python": "3.12.14",
+        "torch": "2.8.0+cpu",
+        "cuda": null,
+        "available": false,
+        "device_name": null,
+        "total_memory_bytes": null
+      }
+    },
+    {
+      "gate": "existing_authorized_additive_budget",
+      "passed": true,
+      "detail": {
+        "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+        "approved_total_hours": 84,
+        "historical_charged_seconds": 288922.08751226973,
+        "corrections_charged_seconds": 646.6708894500043,
+        "cumulative_charged_seconds": 289568.75840171974,
+        "remaining_seconds": 12831.241598280289,
+        "reserved_seconds": 0,
+        "unreserved_seconds": 12831.241598280289,
+        "open_reservations": {},
+        "budget_reset": false,
+        "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+      }
+    }
+  ],
+  "ready_to_run_fixed_recipe_chain": false,
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "cuda": null,
+    "available": false,
+    "device_name": null,
+    "total_memory_bytes": null
+  },
+  "budget": {
+    "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+    "approved_total_hours": 84,
+    "historical_charged_seconds": 288922.08751226973,
+    "corrections_charged_seconds": 646.6708894500043,
+    "cumulative_charged_seconds": 289568.75840171974,
+    "remaining_seconds": 12831.241598280289,
+    "reserved_seconds": 0,
+    "unreserved_seconds": 12831.241598280289,
+    "open_reservations": {},
+    "budget_reset": false,
+    "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+  },
+  "new_model_fits": 0,
+  "test_values_decoded": false,
+  "full_original_campaign_passed": false,
+  "HPO_repeated": false,
+  "NAS_required": false
+}

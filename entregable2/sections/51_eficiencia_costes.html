@@ -242,7 +242,10 @@
 <li class="toctree-l2"><a class="reference internal" href="45_enmienda_protocolo.html">Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="65_cierre_cientifico_real.html">Entradas reales, controles y comparaciones completadas</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="11_hpo_equidad.html">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Eficiencia, coste observado y compromisos de Pareto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="58_flops_predictores.html">Coste de operaciones de los predictores congelados</a></li>
@@ -441,6 +444,7 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-midio">Qué se midió</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-por-modelo">Resultado por modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conciliacion-posterior-del-catalogo-hpo-ambitos-separados">Conciliación posterior del catálogo HPO: ámbitos separados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-observado">Pareto observado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-medido-y-reservas">Presupuesto medido y reservas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-inferencia-y-limites-de-la-evidencia">Memoria, inferencia y límites de la evidencia</a></li>
@@ -462,7 +466,7 @@
 <div><p><strong>Ubicación:</strong> complemento del <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">capítulo 11</span></a>. Identificador documental anterior: <strong>§51</strong>; <a class="reference internal" href="concordancia_guia.html"><span class="std std-doc">ver concordancia</span></a>.</p>
 </div></blockquote>
 <p>Los registros originales permiten cuantificar el coste de las fases de entrenamiento de los <strong>78 ajustes finales</strong>: <strong>5 765,09 s (1,6014 h)</strong>, sumados sobre 13 modelos y seis semillas. Esta cantidad corresponde a fases instrumentadas del entrenamiento final. El presupuesto contable del <strong>cierre original del benchmark</strong> fue <strong>74,9530 h de 80 h autorizadas</strong> e incluye historia previa, trabajos y tiempo del controlador. Las dos cifras describen ámbitos diferentes y no se suman.</p>
-<p><strong>Cierre complementario vigente:</strong> el límite se amplió una sola vez de 80 a <strong>84 horas totales</strong>, conservando todos los cargos. El cierre de <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> registra <strong>80,2561 horas contabilizadas</strong>, <strong>3 h 44 min 38 s de saldo</strong> y cero reservas abiertas, después de las 81 reproducciones y 18 ablaciones. La tabla contable de este capítulo conserva el corte original; no representa ese saldo posterior ni horas de GPU activa.</p>
+<p><strong>Cierre complementario histórico del 13/11/2026:</strong> el límite se amplió una sola vez de 80 a <strong>84 horas totales</strong>, conservando todos los cargos. El cierre de <a class="reference internal" href="55_reproduccion_ablaciones.html"><span class="std std-doc">§55</span></a> registró <strong>80,2561 horas contabilizadas</strong>, <strong>3 h 44 min 38 s de saldo</strong> y cero reservas abiertas en ese momento, después de las 81 reproducciones y 18 ablaciones. Los controles y la <a class="reference download internal" download="" href="../_downloads/ce6a0bbef0cc741df28b3b4131a4dbf9/README.md"><code class="xref download docutils literal notranslate"><span class="pre">repetición</span> <span class="pre">CPU</span> <span class="pre">completada</span></code></a> de <a class="reference internal" href="65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a> conservan sus cargos posteriores dentro del mismo límite, sin reiniciar la cuenta. La tabla contable de este capítulo conserva el corte original; no representa el saldo actual ni horas de GPU activa.</p>
 <p>Esta auditoría es posterior al cierre: lee metadatos, verifica hashes y conserva la tabla A2 original. No entrena modelos, descarga pesos, ejecuta inferencias ni vuelve a calcular sus métricas. Los resultados siguen vinculados al commit científico <code class="docutils literal notranslate"><span class="pre">1e8745497b484518f766b6da5c19be8362d9add7</span></code> y al commit inmutable de resultados <code class="docutils literal notranslate"><span class="pre">50cb634e9eb163b09f9607982842144ba9f74c87</span></code>.</p>
 <section id="que-se-midio">
 <h2>Qué se midió<a class="headerlink" href="#que-se-midio" title="Link to this heading">#</a></h2>
@@ -594,6 +598,36 @@
 </div>
 <p>En SAE, la suma de seis semillas se descompone en <strong>373,79 s para AE1</strong>, <strong>378,45 s para AE2</strong> y <strong>190,25 s para la fase supervisada</strong>, total <strong>942,49 s</strong>. Omitir el preentrenamiento reduciría indebidamente su coste reportado. Las demás arquitecturas tienen una fase supervisada.</p>
 <p>Los 39 ajustes HPO seleccionados suman <strong>3 007,84 s (0,8355 h)</strong>. Proceden de tres orígenes internos (<code class="docutils literal notranslate"><span class="pre">2024-01-01</span></code>, <code class="docutils literal notranslate"><span class="pre">2024-07-01</span></code>, <code class="docutils literal notranslate"><span class="pre">2024-10-01</span></code>) y una semilla de optimización (<code class="docutils literal notranslate"><span class="pre">271201</span></code>). Su temporización mezcla A100, Tesla T4 y diez resultados históricos admitidos desde caché, con políticas de checkpoints distintas. Esta suma es descriptiva de los registros recuperados: no permite ordenar arquitecturas por eficiencia de búsqueda. <code class="docutils literal notranslate"><span class="pre">full_selection_seconds</span></code> queda en <code class="docutils literal notranslate"><span class="pre">null</span></code> para todos los modelos porque este inventario no contiene una atribución exhaustiva de todas las configuraciones y operaciones previas a la selección.</p>
+</section>
+<section id="conciliacion-posterior-del-catalogo-hpo-ambitos-separados">
+<h2>Conciliación posterior del catálogo HPO: ámbitos separados<a class="headerlink" href="#conciliacion-posterior-del-catalogo-hpo-ambitos-separados" title="Link to this heading">#</a></h2>
+<p>La recuperación documental del <strong>16/11/2026</strong> amplía la cobertura del inventario HPO, sin alterar la tabla de ajustes finales, sus recursos A100 o las fronteras de Pareto siguientes. Los recibos nuevos y <a class="reference internal" href="65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a> permiten distinguir estas magnitudes:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Inventario recuperado</p></th>
+<th class="head"><p>Cobertura y total</p></th>
+<th class="head"><p>Alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/cdb8bcbe7b104d99ee308e79ddef60b6/summary.json"><span class="xref download myst">Fases instrumentadas HPO</span></a></p></td>
+<td><p><strong>180/231 trabajos válidos; 20.784,465 s</strong></p></td>
+<td><p>Unión de 170 trabajos ya inventariados y diez reutilizados adicionales, sin volver a sumar los 29 seleccionados que se solapan. Para 51 trabajos falta el desglose por fase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="../_downloads/41efb3c2ab05706756346445a65911c6/summary.json"><span class="xref download myst">Cargos observados del catálogo reducido</span></a></p></td>
+<td><p><strong>233/234 oportunidades; 25.833,898918 s (7,176083 h)</strong></p></td>
+<td><p>172 cargos observados de la campaña y 61 cargos originales reutilizados: conjuntos de trabajos disjuntos, con hardware y límites de reloj heterogéneos. Incluye los dos fallos conocidos, sin convertirlos en ajustes exitosos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Asignación del trabajo de desenlace desconocido</p></td>
+<td><p><strong>1.860 s, fuera de la suma observada</strong></p></td>
+<td><p>Cargo conservador presupuestario; no se conoce su duración real ni se presenta esa asignación como duración medida.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <a class="reference download internal" download="" href="../_downloads/388d4a9d0d9c96f1f6916cb364a7d256/catalogue_charge_opportunities_234.csv"><span class="xref download myst">234 registros por oportunidad</span></a> y las <a class="reference download internal" download="" href="../_downloads/1da4e3c0fba951463bfa9daab598e7ce/catalogue_charge_by_model_13.csv"><span class="xref download myst">trece conciliaciones por modelo</span></a> conservan identidad, origen y límites. Las 51 duraciones de fase ausentes <strong>no eliminan sus recibos de cargo originales</strong>. La suma de cargos es contabilidad descriptiva del catálogo recuperado: no representa tiempo puro de entrenamiento comparable, selección histórica completa, GPU activa, energía, dinero o duración integral del proyecto.</p>
+<p><strong>No se suman fases, callbacks, supervisión y reservas entre sí:</strong> sus relojes contienen trabajo solapado. Tampoco se añaden estos cargos otra vez al ledger histórico, que ya conserva sus ámbitos contables. Los 5.765,09 s de ajuste final A100 y el tiempo de las nuevas ejecuciones CPU tienen fuentes y fases distintas; esta conciliación HPO no los incorpora ni modifica sus valores.</p>
+<p>La repetición posterior de recetas fijas tiene <a class="reference download internal" download="" href="../_downloads/3779329f19648b0b41efbb4fb0825e83/accounting_summary.json"><span class="xref download myst">contabilidad separada</span></a>: 78 ajustes neuronales nuevos, tres clásicos y dos etapas compartidas, <strong>83 workers exitosos por 6.845,049574 s</strong>; con 8,582609 s de fallos anteriores, el estudio suma <strong>6.853,632183 s</strong>. Se reutilizaron 80 workers exitosos de V3 y sólo se ejecutaron los tres restantes en el intento final. Los tiempos de fase están contenidos en los workers y no se vuelven a sumar, ni se añade el tiempo del padre. Esa evidencia CPU no se incorpora al Pareto A100 ni constituye una nueva IUT de latencia de los predictores recién entrenados.</p>
 </section>
 <section id="pareto-observado">
 <h2>Pareto observado<a class="headerlink" href="#pareto-observado" title="Link to this heading">#</a></h2>
@@ -744,6 +778,7 @@ python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-midio">Qué se midió</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-por-modelo">Resultado por modelo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conciliacion-posterior-del-catalogo-hpo-ambitos-separados">Conciliación posterior del catálogo HPO: ámbitos separados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pareto-observado">Pareto observado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presupuesto-medido-y-reservas">Presupuesto medido y reservas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-inferencia-y-limites-de-la-evidencia">Memoria, inferencia y límites de la evidencia</a></li>
