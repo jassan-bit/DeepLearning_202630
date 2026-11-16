@@ -9,8 +9,8 @@ El trabajo se organiza en siete bloques. El desarrollo de software puede avanzar
 | C | Mecanismo neuronal, formulación, código y demostración. | Limitación sustentada y trabajo cercano. | Candidato con teoría y pruebas artificiales; novedad y evaluación real pendientes. |
 | D | [Comparación estadística y evaluación ampliada](08_verificacion_estadistica.md). | Diseño, presupuesto y protocolo congelados. | Borrador y requisitos organizados; piloto, congelamiento y campaña confirmatoria pendientes. |
 | E | [Dashboard Dash Plotly con Contexto, EDA y Modelos](09_dashboard_predictivo.md). | Artefactos y tabla maestra consistentes. | Diseño y requisitos documentados; aplicación, integración y pruebas de aceptación pendientes. |
-| F | Despliegue público en Render y prueba de humo. | Dashboard probado y límites de recursos medidos. | Pendiente; el Jupyter Book publicado no lo sustituye. |
-| G | Informe científico y paquete de reproducibilidad. | Evidencias de todos los bloques. | Informe parcial publicado; entrega integral pendiente. |
+| F | [Despliegue público en Render y prueba de humo](10_despliegue_render.md). | Dashboard probado, perfil de producción y límites de recursos medidos. | Plan documentado; aplicación, ONNX/ORT, URL y prueba de humo pendientes. |
+| G | [Informe científico y reproducibilidad](11_informe_tecnico.md). | Evidencias de todos los bloques. | Informe parcial publicado y bibliografía configurada; campaña, contenedor y reproducción independiente pendientes. |
 
 ## 3.1 Orden de trabajo
 

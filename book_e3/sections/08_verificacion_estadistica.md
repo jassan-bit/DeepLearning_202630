@@ -41,6 +41,8 @@ El presupuesto se declarará en **configuraciones y tiempo**, o se justificará 
 
 Se reportarán parámetros totales/activos, FLOPs con su alcance y capacidad de todos los modelos. Una diferencia sustancial de tamaño exige una variante comparable o discusión explícita; las ablaciones que cambien parámetros tendrán su control de tamaño igualado conforme a la sección 7.4. Los costes heredados de GPU no se etiquetan como latencias CPU.
 
+Para la condición de nota máxima, la [sección 14.5.2](14_evaluacion_calificacion.md) es más restrictiva: si el modelo propio es mayor, exige una variante del benchmark de tamaño comparable; la discusión del tamaño por sí sola no completa esa casilla.
+
 Las redes requieren **al menos diez semillas independientes**, o más si el dimensionamiento lo exige, con pareado entre modelos cuando exista aleatoriedad. Las seis semillas históricas de E2 no completan ese requisito. Una campaña nueva deberá conservar recetas y reglas previamente cerradas, sin reajustar rivales después de ver la comparación final.
 
 Persistence, SeasonalNaive y ARIMA son comparadores deterministas en el contrato heredado: copiar diez veces la misma trayectoria no genera diez ajustes independientes. Se representará la variación del candidato contra esa referencia fija y la incertidumbre temporal sin inventar semillas clásicas. Hardware, precisión, tiempo, memoria y costes reales se registrarán en condiciones comparables.
