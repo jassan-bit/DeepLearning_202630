@@ -72,4 +72,6 @@ python verify.py
 
 El verificador comprueba que **cerrar el seguimiento no cambie a aprobado un requisito parcial**. Este comando documental es distinto del `run.py` del reanálisis numérico integrado. Ambos paquetes son independientes y declaran sus entradas y operaciones.
 
+El [recibo del último reanálisis](../_static/e2_resolucion_final_20261116/reanalisis_integrado/accounting_receipt.json) y el [diario aditivo final](../_static/e2_resolucion_final_20261116/compute_ledger.jsonl) conservan el límite acumulado de 84 horas, los cargos anteriores y cero reservas abiertas. El diario anterior mantiene sus bytes; el nuevo prolonga su cadena con la comprobación integrada.
+
 Los bytes originales de A2, pronósticos, p-valores, IC, márgenes y descargas se conservan. El Apéndice B final mantiene **14 completos, 5 parciales y 2 no aplicables** y añade un campo separado de resolución. Las listas previas y §66 siguen disponibles como cortes fechados. Las propuestas de ampliación se archivan; no son compromisos activos ni se ejecutan nuevas corridas para buscar aprobación. Las limitaciones permanecen visibles y evaluables.
