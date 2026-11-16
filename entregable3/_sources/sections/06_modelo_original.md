@@ -1,5 +1,9 @@
 # 6 Bloque C El modelo original
 
+:::{note}
+**Corte histórico del primer diseño.** Las formulaciones y estados de este capítulo corresponden al candidato de atención previo a los pilotos. Para el estado vigente, véanse el [cierre v2](20_cierre_v2.md) y la [propuesta de cabeza de momentos](21_propuesta_momentos.md). El control aditivo conserva la referencia predictiva; el aporte original sigue pendiente.
+:::
+
 El trabajo actual es un **candidato neuronal de desarrollo**. Dispone de formulación, implementación asistida por IA y una propiedad demostrada de la cabeza latente. No se presenta como modelo con novedad o superioridad ya acreditadas.
 
 ## 6.1 Relación con el paper guía de E2
