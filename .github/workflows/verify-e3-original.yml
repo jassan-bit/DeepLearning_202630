@@ -19,6 +19,7 @@ on:
       - 'scripts/e3_audit_development.py'
       - 'scripts/e3_audit_innovation.py'
       - 'scripts/e3_verify_moment_head.py'
+      - 'scripts/e3_audit_moment_admissibility.py'
       - 'scripts/e3_verify_innovation_design.py'
       - 'scripts/e3_run_innovation.py'
       - 'scripts/e3_innovation_github.py'
@@ -29,10 +30,13 @@ on:
       - 'experiments/e3_innovacion_v2_20261116/**'
       - 'experiments/e3_cierre_v2_20261116/**'
       - 'experiments/e3_mecanismo_momentos_20261116/**'
+      - 'experiments/e3_dictamen_momentos_20261116/**'
       - 'book_e3/_static/e3_cierre_v2_20261116/**'
       - 'book_e3/sections/20_cierre_v2.md'
       - 'book_e3/_static/e3_mecanismo_momentos_20261116/**'
       - 'book_e3/sections/21_propuesta_momentos.md'
+      - 'book_e3/_static/e3_dictamen_momentos_20261116/**'
+      - 'book_e3/sections/22_dictamen_momentos.md'
       - 'notebooks/entregable3_desarrollo_colab.ipynb'
       - 'notebooks/preparar_e3_desarrollo_runtime.py'
       - 'notebooks/run_e3_github_colab.py'
@@ -79,6 +83,7 @@ jobs:
           python scripts/e3_verify_innovation_design.py --check
           python scripts/e3_audit_innovation.py --check
           python scripts/e3_verify_moment_head.py --check
+          python scripts/e3_audit_moment_admissibility.py --check
       - name: Comprobar copias de la propuesta por momentos en el libro
         run: |
           python - <<'PY'
@@ -91,6 +96,16 @@ jobs:
           for original, copy in pairs.items():
               assert (source / original).read_bytes() == (target / copy).read_bytes(), original
           print('Cuatro copias de la propuesta verificadas contra sus maestros')
+          PY
+      - name: Comprobar copias del dictamen en el libro
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          source = Path('experiments/e3_dictamen_momentos_20261116')
+          target = Path('book_e3/_static/e3_dictamen_momentos_20261116')
+          for name in ('counterexamples.json', 'decision.json', 'human_review.md', 'native_search_plan.csv'):
+              assert (source / name).read_bytes() == (target / name).read_bytes(), name
+          print('Cuatro copias del dictamen verificadas contra sus maestros')
           PY
       - name: Comprobar sintaxis de Colab sin instalar CUDA ni entrenar mercado
         run: |

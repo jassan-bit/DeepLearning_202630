@@ -1,0 +1,81 @@
+{
+  "schema": "e3-moment-admissibility-web-extension-v1",
+  "date": "2026-11-16",
+  "agent": "moment_admissibility_search",
+  "method": "mcp__codex_apps__search_service_web_run.system2_search_query",
+  "query_count": 8,
+  "prior_focal_query_count_separate_record": 12,
+  "native_academic_database_searches": 0,
+  "human_independent_verification": false,
+  "systematic_review_completed": false,
+  "absence_of_prior_art_established": false,
+  "individual_query_execution_timestamps_retained": false,
+  "queries": [
+    {"order": 1, "query": "\"conditional mean\" \"moment constraints\" \"neural\" square root", "language": "en", "domains_filter": null, "recency_filter": null},
+    {"order": 2, "query": "\"neural network\" \"moment bounds\" \"mean\" Jensen", "language": "en", "domains_filter": null, "recency_filter": null},
+    {"order": 3, "query": "\"cotas de momentos\" \"red neuronal\" media", "language": "es", "domains_filter": null, "recency_filter": null},
+    {"order": 4, "query": "\"moment elicitation\" \"output constraints\" neural", "language": "en", "domains_filter": null, "recency_filter": null},
+    {"order": 5, "query": "\"square root\" \"moments\" \"neural\" \"Jensen\" volatility", "language": "en", "domains_filter": null, "recency_filter": null},
+    {"order": 6, "query": "\"conditional moments\" \"elicitation\" neural mean variance", "language": "en", "domains_filter": null, "recency_filter": null},
+    {"order": 7, "query": "\"moment-constrained\" \"neural networks\" conditional mean", "language": "en", "domains_filter": null, "recency_filter": null},
+    {"order": 8, "query": "\"media condicional\" \"momentos\" \"restricciones\" \"redes neuronales\"", "language": "es", "domains_filter": null, "recency_filter": null}
+  ],
+  "queries_scope": "Two actual web batches of four queries each. Results were returned collectively per batch, so no query-specific hit counts or result-source assignment is inferred. Opens/finds and citation followups are not counted as new search queries. No native API endpoint was retried or bypassed.",
+  "new_primary_focal_records": [
+    {
+      "id": "ADM-S01",
+      "citation_key": "Hines2025MomentConstrained",
+      "title": "Automatic debiasing of neural networks via moment-constrained learning",
+      "authors": ["Christian L. Hines", "Oliver J. Hines"],
+      "year": 2025,
+      "venue": "Proceedings of the Fourth Conference on Causal Learning and Reasoning",
+      "series": "Proceedings of Machine Learning Research",
+      "volume": "275",
+      "pages": "390--405",
+      "primary_metadata_url": "https://proceedings.mlr.press/v275/hines25a.html",
+      "body_read_url": "https://arxiv.org/html/2409.19777v2",
+      "version_metadata_url": "https://arxiv.org/abs/2409.19777v2",
+      "arxiv": "2409.19777v2",
+      "first_submission": "2024-09-29",
+      "version_date": "2025-04-14",
+      "version_note": "Version dates verified from arXiv submission history. Experimental HTML displays an August 2026 heading; that heading is not used as the manuscript version date.",
+      "reading_scope": "Focal body reading: section 2.3, equations (7)--(9); section 2.4 and section 3, multiheaded MADNet loss. No full paper reading claimed.",
+      "comparison": "La sección 2.3 aprende una función para el representador de Riesz mediante distancia cuadrática y una restricción de momento lineal global h(f)=0, con formulación lagrangiana. La sección 3 combina ese aprendizaje con regresión de resultados mediante un tronco MLP y cabezas compartidas. Es un antecedente de multitarea con restricciones de momentos, pero no equivale a acotar por muestra la media de sqrt(A+cV) mediante E[V|X], E[V²|X] y rho. No se localizó esa composición en las secciones leídas; esto no demuestra su ausencia en toda la literatura.",
+      "evidence_level": "primary_focal_body_and_official_bibliography",
+      "exact_composition_match_established": false
+    },
+    {
+      "id": "ADM-S02",
+      "citation_key": "Wunder2021ReverseJensen",
+      "title": "A Reverse Jensen Inequality Result with Application to Mutual Information Estimation",
+      "authors": ["Gerhard Wunder", "Benedikt Groß", "Rick Fritschek", "Rafael F. Schaefer"],
+      "year": 2021,
+      "venue_note": "arXiv metadata: 6 pages, ITW 2021; proceedings page range not verified",
+      "primary_metadata_url": "https://arxiv.org/abs/2111.06676",
+      "body_read_url": "https://arxiv.org/html/2111.06676",
+      "arxiv": "2111.06676v1",
+      "version_date": "2021-11-12",
+      "discovery": "Backward citation from Merhav (2023), reference 21, whose explicit arXiv identifier was followed.",
+      "reading_scope": "Focal body reading: section II-A, Lemmas 1 and 2, including moment ratios and bounded-support special case; section II-B. Metadata/abstract identify mutual-information application. Section III not read in detail.",
+      "comparison": "Los lemas examinados proporcionan cotas inversas de Jensen con cocientes de momentos y restricciones de soporte para funciones cóncavas. El objeto declarado del artículo incluye estimación de información mutua. No se localizó allí la cabeza condicional m,q,rho de la propuesta. Refuerza la necesidad de atribuir las cotas a literatura previa y distinguir la incorporación neuronal de una desigualdad conocida. No se usa como prueba de equivalencia literal ni de ausencia de una composición anterior.",
+      "evidence_level": "primary_focal_body_and_arxiv_metadata",
+      "exact_composition_match_established": false
+    }
+  ],
+  "reopened_prior_records": [
+    {"source": "GenUT, Ebeigbe et al. (2021), arXiv v2 in PMC", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8043458/", "reading_scope": "Section II, equations (1)--(10), on moments and nonlinear transformed means; reference list, especially reference 36.", "comparison": "La propagación aproximada de una media no lineal con momentos tiene antecedentes; GenUT utiliza puntos sigma y momentos superiores. No es una certificación de la envolvente exacta de nuestra cabeza."},
+    {"source": "Merhav (2023)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10288939/", "reading_scope": "Reopened introduction and reference list; followed reference 21. The direct lower-bound attribution was already established in the prior focal review.", "comparison": "Se utiliza para identificar un antecedente por sus referencias; no se añade una búsqueda nativa ni una lectura integral nueva."}
+  ],
+  "citation_routes": [
+    {"from": "Merhav2023", "reference": "21", "to": "Wunder2021ReverseJensen", "status": "primary_focal_body_opened", "native_database_search": false},
+    {"from": "GenUT2021", "reference": "36", "to": "Julier and Uhlmann (2004), Unscented filtering and nonlinear estimation, Proceedings of the IEEE 92(3):401--422", "attempted_url": "https://doi.org/10.1109/JPROC.2003.823141", "outcome": "Not accessible via web tool; metadata retained only from GenUT reference list. DOI not independently verified by this attempt.", "status": "attempted_not_completed_no_body_reading", "native_database_search": false}
+  ],
+  "assessment": {
+    "exact_neural_composition_identified": false,
+    "interpretation": "No exact composition was identified in this limited extension. This is not an absence proof and neither clears nor categorically rejects R1. The candidate remains a possible adaptation of known ingredients; substantive distinction, complete native literature review and independent human verification remain necessary.",
+    "citation_followup_requirement_completed": false,
+    "R1_verified": false,
+    "R3_verified": false
+  },
+  "operations": {"files_of_prior_proposal_changed": false, "neural_training": false, "market_data_read": false, "market_inference": false, "third_party_code_copied": false, "human_contacted": false}
+}

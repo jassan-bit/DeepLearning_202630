@@ -1,5 +1,9 @@
 # 21 Propuesta de cabeza de momentos: formulación y admisibilidad
 
+:::{note}
+Esta propuesta se conserva como corte de formulación. El [dictamen posterior](22_dictamen_momentos.md) corrige localizadores, añade un control faltante y delimita las garantías: la adaptación no se selecciona todavía como aporte original ni pasa a otro piloto en ese corte.
+:::
+
 **16 de noviembre de 2026. Propuesta matemática de desarrollo; sin nueva red implementada o entrenada.** Se conserva CNN causal → LSTM unidireccional → atención temporal. La modificación propuesta pertenece a la salida y a su pérdida. La cabeza aditiva del [cierre v2](20_cierre_v2.md) continúa como referencia predictiva; no se ha elegido un modelo superior al Top 10.
 
 ## 21.1 Limitación que se investiga
