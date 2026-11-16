@@ -1,0 +1,167 @@
+{
+  "version": "e3-moment-native-search-access-log-v1",
+  "execution_date": "2026-11-16",
+  "scope": "Native public bibliographic API attempts only; no general web search is represented as native querying.",
+  "original_guide": {
+    "filename": "Entregable3DeepLearningProject.pdf",
+    "sha256": "d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364",
+    "section": "6.3",
+    "pages": [
+      11,
+      12
+    ],
+    "read_from_original_pdf": true,
+    "requirements": {
+      "minimum_databases": 3,
+      "minimum_query_strings": 5,
+      "bilingual_synonyms": true,
+      "other_applications": true,
+      "dated_search": true,
+      "closest_work_matrix": true,
+      "citation_snowballing": true,
+      "external_person_verification": true
+    }
+  },
+  "services": {
+    "OpenAlex": {
+      "endpoint": "https://api.openalex.org/works",
+      "kind": "public bibliographic index",
+      "guide_named": false
+    },
+    "Crossref": {
+      "endpoint": "https://api.crossref.org/works",
+      "kind": "public DOI bibliographic metadata index",
+      "guide_named": false
+    },
+    "arXiv": {
+      "endpoint": "https://export.arxiv.org/api/query",
+      "kind": "preprint repository",
+      "guide_named": true,
+      "guide_role": "complementary source"
+    }
+  },
+  "attempt_totals": {
+    "native_requests_issued": 3,
+    "services_attempted": 3,
+    "api_responses_received": 0,
+    "api_query_execution_confirmed": 0,
+    "query_families_planned": 5,
+    "completed_bilingual_query_families": 0,
+    "article_result_counts": "unknown; transport failures are not zero-result searches"
+  },
+  "stop_rule": "After the first tunnel-level 403 at each distinct service, do not retry that endpoint, change host/proxy, use credentials, or request escalation. Remaining query families remain unexecuted.",
+  "attempts": [
+    {
+      "service": "OpenAlex",
+      "query": "moment bounds neural volatility",
+      "api": "works",
+      "url": "https://api.openalex.org/works?search=moment%20bounds%20neural%20volatility&per-page=3",
+      "execution_date": "2026-11-16",
+      "started_at_utc": null,
+      "completed_at_utc": null,
+      "timestamp_note": "This first attempt was not instrumented with exact UTC timestamps; no timestamps were reconstructed.",
+      "max_results": 3,
+      "timeout_seconds": 12,
+      "attempt_count": 1,
+      "error_type": "URLError",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "status": "blocked_before_api_response",
+      "api_http_status": null,
+      "reported_total": null,
+      "returned_records": null,
+      "api_query_execution_confirmed": false
+    },
+    {
+      "service": "Crossref",
+      "query": "moment bounds neural volatility",
+      "api": "works",
+      "url": "https://api.crossref.org/works?query.bibliographic=moment+bounds+neural+volatility&rows=3&select=DOI%2Ctitle%2Cauthor%2Cpublished%2CURL%2Ctype",
+      "started_at_utc": "2026-11-16T20:58:58.840257+00:00",
+      "max_results": 3,
+      "timeout_seconds": 12,
+      "attempt_count": 1,
+      "error_type": "URLError",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "completed_at_utc": "2026-11-16T20:58:58.866487+00:00",
+      "status": "blocked_before_api_response",
+      "api_http_status": null,
+      "reported_total": null,
+      "returned_records": null,
+      "api_query_execution_confirmed": false
+    },
+    {
+      "service": "arXiv",
+      "query": "all:\"moment bounds\" AND (all:\"neural\" OR all:\"learned\") AND (all:\"volatility\" OR all:\"volatilidad\")",
+      "api": "query",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3A%22moment+bounds%22+AND+%28all%3A%22neural%22+OR+all%3A%22learned%22%29+AND+%28all%3A%22volatility%22+OR+all%3A%22volatilidad%22%29&start=0&max_results=3",
+      "started_at_utc": "2026-11-16T20:58:58.853613+00:00",
+      "max_results": 3,
+      "timeout_seconds": 12,
+      "attempt_count": 1,
+      "error_type": "URLError",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "completed_at_utc": "2026-11-16T20:58:58.875941+00:00",
+      "status": "blocked_before_api_response",
+      "api_http_status": null,
+      "reported_total": null,
+      "returned_records": null,
+      "api_query_execution_confirmed": false
+    }
+  ],
+  "planned_query_families": [
+    {
+      "id": "Q1",
+      "mechanism": "Moment bounds / cotas de momentos; learned output head / cabeza de salida aprendida",
+      "application": "Volatility forecasting / pronóstico de volatilidad",
+      "english": "moment bounds neural volatility forecasting",
+      "spanish": "cotas de momentos cabeza neuronal pronóstico volatilidad",
+      "status": "planned_not_completed_not_counted_as_executed_bilingual_query"
+    },
+    {
+      "id": "Q2",
+      "mechanism": "Joint moment elicitation / elicitación conjunta de momentos; expected square root / esperanza de raíz cuadrada",
+      "application": "Volatility prediction / predicción de volatilidad",
+      "english": "joint moment elicitation expected square root volatility prediction",
+      "spanish": "elicitación conjunta momentos esperanza raíz cuadrada predicción volatilidad",
+      "status": "planned_not_completed_not_counted_as_executed_bilingual_query"
+    },
+    {
+      "id": "Q3",
+      "mechanism": "QLIKE; quasi-Gamma moment loss / pérdida cuasi-Gamma para momentos",
+      "application": "Neural volatility forecasting / pronóstico neuronal de volatilidad",
+      "english": "QLIKE quasi Gamma joint conditional moments neural volatility forecasting",
+      "spanish": "QLIKE cuasi Gamma momentos condicionales conjuntos pronóstico neuronal volatilidad",
+      "status": "planned_not_completed_not_counted_as_executed_bilingual_query"
+    },
+    {
+      "id": "Q4",
+      "mechanism": "Lower and upper moment bounds / cotas inferior y superior por momentos; Jensen interpolation / interpolación Jensen",
+      "application": "Conditional expectation prediction / predicción de esperanza condicional",
+      "english": "learned interpolation moment bounds Jensen conditional expectation neural prediction",
+      "spanish": "interpolación aprendida cotas momentos Jensen predicción neuronal esperanza condicional",
+      "status": "planned_not_completed_not_counted_as_executed_bilingual_query"
+    },
+    {
+      "id": "Q5",
+      "mechanism": "Moment constrained output head / cabeza de salida restringida por momentos; distribution free / sin familia distribucional fija",
+      "application": "Other applications: option pricing and risk / otras aplicaciones: valoración de opciones y riesgo",
+      "english": "moment constrained neural output head distribution free option pricing risk",
+      "spanish": "cabeza salida neuronal restringida momentos sin distribución valoración opciones riesgo",
+      "status": "planned_not_completed_not_counted_as_executed_bilingual_query"
+    }
+  ],
+  "prior_history": {
+    "reported_prior_requests_denied": 18,
+    "relation": "Historical failed search attempts documented in E3 section 6.3; not counted as new native searches or successful queries."
+  },
+  "outcome": {
+    "three_database_requirement_accredited": false,
+    "five_query_requirement_accredited": false,
+    "equivalence_of_indices_to_guide_not_certified": true,
+    "R1_verified": false,
+    "human_external_verification": false,
+    "no_market_fits": true,
+    "no_market_inferences": true,
+    "no_credentials_used": true
+  }
+}
