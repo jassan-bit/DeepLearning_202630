@@ -1,0 +1,201 @@
+{
+  "version": "e3-postpilot-development-audit-v1",
+  "scope": "Exploratory post-hoc diagnostic on development validation already reused for early stopping. Projection and the floor-only reference are not new trained models, confirmatory benchmarks, or evidence of R1/R3. Original pilot metrics remain unchanged.",
+  "results_commit": "f7826d120f3a6eb8e9a0952dd9842cd77f152f34",
+  "data_commit": "af3f1223ad5899ed63016d2af2d09bae8470ab00",
+  "data_path": "book_e2/_static/e2_scientific_closure_20261116/data_audit/current_cohort_arrays.npz",
+  "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+  "snapshot_sha256": "159943471990119a0ae80be7f72c9f4b2853bf75f6343d83ace3df9921642742",
+  "input_result_sha256": {
+    "summary.json": "499247e464e356364038035d48ee67a3d9ccf5791c28d5f40fe3b51adb160f90",
+    "full_validation_predictions.csv": "e50ea86f01fc7d81114f859e61ca88fe81fd0a1593dd0509cd0fbee42f99e41f",
+    "M00_validation_predictions.csv": "3529052915166ee80cf6192fc8021ef7d8db8b24d62e8e7d50ffac426d60a8eb"
+  },
+  "keys_read": [
+    "training_raw",
+    "training_y_original",
+    "training_dates"
+  ],
+  "n": 116,
+  "first_date": "2024-07-08",
+  "last_date": "2024-10-31",
+  "new_training_performed": false,
+  "calibration_scored": false,
+  "evaluation_scored": false,
+  "statistical_inference_performed": false,
+  "R1_or_R3_claimed": false,
+  "floating_comparison": {
+    "absolute_tolerance": 1e-14,
+    "relative_tolerance": 1e-12,
+    "strict_fields": "Hashes, identities, dates, counts and method metadata remain exact"
+  },
+  "floor_formula": "A=sum((six_known_log_returns-mean6)^2)/7; floor=sqrt(A)",
+  "variance_identity": "sigma7_squared=A+(6/49)*(unknown_return-mean6)^2",
+  "variance_tolerance": 1e-12,
+  "target_floor_violation_count": 0,
+  "minimum_target_variance_minus_floor_variance": 1.295544116051376e-10,
+  "quartile_probabilities": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "quartile_edges": [
+    0.017555743370466767,
+    0.02024692465072929,
+    0.024095023436340245
+  ],
+  "quartile_method": "linear empirical target quantiles; descriptive only, not preregistered",
+  "floor_to_target_ratio_median": 0.9556765672465499,
+  "realized_A_over_target_squared_median": 0.9133271452956954,
+  "ratio_interpretation": "Realized pointwise proportion in this cohort, with a future target denominator; not R-squared, variance explained, or general predictability.",
+  "floor_only_posthoc_reference": {
+    "scope": "Analytic descriptive reference, not a new trained model or confirmatory benchmark",
+    "rmse": 0.003916833121413179,
+    "mae": 0.0021622332779556654,
+    "bias": -0.0021622332779556654
+  },
+  "models": {
+    "full": {
+      "original_rmse": 0.006045314271866801,
+      "original_mae": 0.004482311617676972,
+      "bias_prediction_minus_target": 2.128074372965291e-05,
+      "below_floor_count": 32,
+      "below_floor_fraction": 0.27586206896551724,
+      "below_floor_squared_error_share": 0.5005520091875022,
+      "below_floor_absolute_error_share": 0.38980759847553553,
+      "below_floor_mean_deficit": 0.0048329369316026495,
+      "below_floor_max_deficit": 0.016011746291708318,
+      "projected_posthoc_rmse": 0.004480682493616986,
+      "projected_posthoc_mae": 0.003149087636545205,
+      "projection_squared_error_reduction_fraction": 0.4506481710762854,
+      "projection_absolute_error_reduction_fraction": 0.29744116314312197,
+      "projection_pointwise_error_increase_count": 0,
+      "target_quartiles": [
+        {
+          "quartile": 1,
+          "n": 29,
+          "target_min": 0.009318246009325607,
+          "target_max": 0.017509192728256143,
+          "target_mean": 0.014513064294299372,
+          "prediction_mean": 0.017267220575445334,
+          "bias": 0.0027541562811459583,
+          "rmse": 0.004803733927676797,
+          "mae": 0.003556386078957707,
+          "below_floor_count": 4,
+          "squared_error_share": 0.15785565021220832
+        },
+        {
+          "quartile": 2,
+          "n": 29,
+          "target_min": 0.017571260251203643,
+          "target_max": 0.020182149452697983,
+          "target_mean": 0.01885658018704281,
+          "prediction_mean": 0.02040380467452155,
+          "bias": 0.0015472244874787395,
+          "rmse": 0.004096836194079876,
+          "mae": 0.0033983235026153196,
+          "below_floor_count": 6,
+          "squared_error_share": 0.11481521462347755
+        },
+        {
+          "quartile": 3,
+          "n": 29,
+          "target_min": 0.0203116998487606,
+          "target_max": 0.02405775706300862,
+          "target_mean": 0.022192937014067958,
+          "prediction_mean": 0.022869025006113063,
+          "bias": 0.0006760879920451071,
+          "rmse": 0.005238682061386948,
+          "mae": 0.004494201637088999,
+          "below_floor_count": 9,
+          "squared_error_share": 0.1877354664069278
+        },
+        {
+          "quartile": 4,
+          "n": 29,
+          "target_min": 0.024206822556335113,
+          "target_max": 0.05959837243869294,
+          "target_mean": 0.03375382404147699,
+          "prediction_mean": 0.028861478255725805,
+          "bias": -0.004892345785751191,
+          "rmse": 0.008881417814358935,
+          "mae": 0.0064803352520458575,
+          "below_floor_count": 13,
+          "squared_error_share": 0.5395936687573861
+        }
+      ],
+      "original_best_epoch": 35
+    },
+    "M00": {
+      "original_rmse": 0.005376766516801714,
+      "original_mae": 0.00396591588011462,
+      "bias_prediction_minus_target": -0.00026890873348716206,
+      "below_floor_count": 32,
+      "below_floor_fraction": 0.27586206896551724,
+      "below_floor_squared_error_share": 0.5412303102680366,
+      "below_floor_absolute_error_share": 0.4067886869935019,
+      "below_floor_mean_deficit": 0.0043932270072928135,
+      "below_floor_max_deficit": 0.015723336962985678,
+      "projected_posthoc_rmse": 0.003880673961761823,
+      "projected_posthoc_mae": 0.002753991188447637,
+      "projection_squared_error_reduction_fraction": 0.4790788897414735,
+      "projection_absolute_error_reduction_fraction": 0.3055850724781274,
+      "projection_pointwise_error_increase_count": 0,
+      "target_quartiles": [
+        {
+          "quartile": 1,
+          "n": 29,
+          "target_min": 0.009318246009325607,
+          "target_max": 0.017509192728256143,
+          "target_mean": 0.014513064294299372,
+          "prediction_mean": 0.016794270926184473,
+          "bias": 0.0022812066318850977,
+          "rmse": 0.004099154677655462,
+          "mae": 0.0030127906337023324,
+          "below_floor_count": 2,
+          "squared_error_share": 0.14530690935567123
+        },
+        {
+          "quartile": 2,
+          "n": 29,
+          "target_min": 0.017571260251203643,
+          "target_max": 0.020182149452697983,
+          "target_mean": 0.01885658018704281,
+          "prediction_mean": 0.019907804110991353,
+          "bias": 0.0010512239239485399,
+          "rmse": 0.0034969530672007147,
+          "mae": 0.002897050490552901,
+          "below_floor_count": 6,
+          "squared_error_share": 0.10574924130502525
+        },
+        {
+          "quartile": 3,
+          "n": 29,
+          "target_min": 0.0203116998487606,
+          "target_max": 0.02405775706300862,
+          "target_mean": 0.022192937014067958,
+          "prediction_mean": 0.02241517390187882,
+          "bias": 0.00022223688781086487,
+          "rmse": 0.0047772229554107065,
+          "mae": 0.0040417574301664485,
+          "below_floor_count": 9,
+          "squared_error_share": 0.19735524546369826
+        },
+        {
+          "quartile": 4,
+          "n": 29,
+          "target_min": 0.024206822556335113,
+          "target_max": 0.05959837243869294,
+          "target_mean": 0.03375382404147699,
+          "prediction_mean": 0.02912352166388384,
+          "bias": -0.0046303023775931505,
+          "rmse": 0.007986542663352397,
+          "mae": 0.005912064966036797,
+          "below_floor_count": 15,
+          "squared_error_share": 0.5515886038756053
+        }
+      ],
+      "original_best_epoch": 39
+    }
+  }
+}
