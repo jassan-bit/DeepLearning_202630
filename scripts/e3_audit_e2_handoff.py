@@ -24,6 +24,9 @@ PARTITION = Path("book_e2/_static/e2_eda_current_v1/partition_audit.json")
 GUARDS = Path("book_e2/_static/e2_data_training_uncertainty_current_v1/targeted_data_guard_checks.json")
 ENVIRONMENT = Path("book_e2/_static/e2_repro_prereg_current_v1/environment_observed.json")
 REPRO_DOC = Path("book_e2/sections/08_reproducibilidad.md")
+REPRO_DOC_SNAPSHOT = RECEIPTS / "audit_reproducibilidad_f65b14d.md"
+REPRO_DOC_SOURCE = RECEIPTS / "audit_reproducibilidad_source.json"
+REPRO_DOC_SHA256 = "7997753f34e3ed5f96684e573702f41f4b4c49853c3bf112e2d654d62d59dcab"
 
 
 def sha256(path: Path) -> str:
@@ -41,6 +44,28 @@ def require(condition: bool, message: str) -> None:
 
 def finite_positive(value) -> bool:
     return not isinstance(value, bool) and isinstance(value, (float, int)) and math.isfinite(value) and value > 0
+
+
+def historical_reproduction_source(root: Path) -> Path:
+    """Admit the exact documentary source used by the historical audit.
+
+    REPRO_DOC remains its original identity in the saved summary, at
+    SOURCE_COMMIT. The live chapter may evolve; it must never be a fallback
+    for this snapshot or silently change the historical output's provenance.
+    """
+    metadata_path = root / REPRO_DOC_SOURCE
+    require(metadata_path.is_file(), "historical reproduction source metadata is missing")
+    metadata = load_json(metadata_path)
+    expected = {"version": "e3-historical-document-source-v1",
+                "original_path": str(REPRO_DOC), "source_commit": SOURCE_COMMIT,
+                "snapshot_path": str(REPRO_DOC_SNAPSHOT),
+                "sha256": REPRO_DOC_SHA256, "bytes": 29132}
+    require(metadata == expected, "historical reproduction source metadata mismatch")
+    snapshot = root / REPRO_DOC_SNAPSHOT
+    require(snapshot.is_file(), "historical reproduction source snapshot is missing")
+    require(snapshot.stat().st_size == metadata["bytes"], "historical reproduction source byte count mismatch")
+    require(sha256(snapshot) == metadata["sha256"], "historical reproduction source hash mismatch")
+    return snapshot
 
 
 def validate_catalog(freeze: dict, a2: list[dict]) -> None:
@@ -185,8 +210,9 @@ def audit(root: Path, artifact_roots: list[Path]) -> tuple[list[dict], dict, lis
     guards = load_json(root / GUARDS)
     require(guards["tests_run"] == 5 and guards["status"] == "passed", "unexpected guard receipt")
     require(guards["operations"]["real_model_inference_calls"] == 0, "guard scope changed")
+    historical_repro = historical_reproduction_source(root)
     for rel in [PARTITION, GUARDS, ENVIRONMENT, REPRO_DOC, RECEIPTS / "audit_backup_manifest.json", RECEIPTS / "audit_release_listing.json"]:
-        checked_hashes[str(rel)] = sha256(root / rel)
+        checked_hashes[str(rel)] = sha256(historical_repro if rel == REPRO_DOC else root / rel)
 
     release_ids = []
     for artifact in backup["artifacts"]:
