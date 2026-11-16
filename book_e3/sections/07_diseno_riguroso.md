@@ -1,5 +1,9 @@
 # 7 Diseño riguroso del modelo original
 
+:::{note}
+**Diseño inicial conservado para trazabilidad.** Los conteos y menciones de ausencia de entrenamiento describen ese corte, anterior a los pilotos v1/v2. El [cierre v2](20_cierre_v2.md) recoge la evidencia posterior y la [propuesta por momentos](21_propuesta_momentos.md) documenta el diseño ahora en revisión. No se interpreta este texto histórico como un protocolo confirmatorio vigente.
+:::
+
 El mecanismo candidato y su implementación se describen en el [Bloque C](06_modelo_original.md). Este capítulo organiza su diseño según la Sección 7 de la guía: limitación, hipótesis, disciplina experimental, propiedad teórica y ablaciones. La implementación y los ensayos de software existen; todavía no se han ejecutado HPO, entrenamiento o comparaciones del candidato sobre datos de mercado. R1 y R3 siguen abiertos, y la comprensión y defensa académica de R2 deben verificarse con el autor.
 
 ## 7.1 Del hueco de investigación a la hipótesis contrastable

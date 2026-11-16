@@ -12,11 +12,13 @@ on:
       - 'tests/test_development_audit.py'
       - 'tests/test_innovation_design.py'
       - 'tests/test_innovation_*.py'
+      - 'tests/test_moment_head.py'
       - 'scripts/e3_verify_original.py'
       - 'scripts/e3_run_development.py'
       - 'scripts/e3_github_storage.py'
       - 'scripts/e3_audit_development.py'
       - 'scripts/e3_audit_innovation.py'
+      - 'scripts/e3_verify_moment_head.py'
       - 'scripts/e3_verify_innovation_design.py'
       - 'scripts/e3_run_innovation.py'
       - 'scripts/e3_innovation_github.py'
@@ -26,8 +28,11 @@ on:
       - 'experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/**'
       - 'experiments/e3_innovacion_v2_20261116/**'
       - 'experiments/e3_cierre_v2_20261116/**'
+      - 'experiments/e3_mecanismo_momentos_20261116/**'
       - 'book_e3/_static/e3_cierre_v2_20261116/**'
       - 'book_e3/sections/20_cierre_v2.md'
+      - 'book_e3/_static/e3_mecanismo_momentos_20261116/**'
+      - 'book_e3/sections/21_propuesta_momentos.md'
       - 'notebooks/entregable3_desarrollo_colab.ipynb'
       - 'notebooks/preparar_e3_desarrollo_runtime.py'
       - 'notebooks/run_e3_github_colab.py'
@@ -68,11 +73,25 @@ jobs:
           OMP_NUM_THREADS: '1'
           MKL_NUM_THREADS: '1'
         run: |
-          python -m pytest tests/test_original_model.py tests/test_development_training.py tests/test_development_github.py tests/test_development_audit.py tests/test_innovation_design.py tests/test_innovation_model.py tests/test_innovation_training.py tests/test_innovation_github.py tests/test_innovation_notebook.py tests/test_innovation_audit.py -q
+          python -m pytest tests/test_original_model.py tests/test_development_training.py tests/test_development_github.py tests/test_development_audit.py tests/test_innovation_design.py tests/test_innovation_model.py tests/test_innovation_training.py tests/test_innovation_github.py tests/test_innovation_notebook.py tests/test_innovation_audit.py tests/test_moment_head.py -q
           python scripts/e3_verify_original.py --check
           python scripts/e3_audit_development.py --check
           python scripts/e3_verify_innovation_design.py --check
           python scripts/e3_audit_innovation.py --check
+          python scripts/e3_verify_moment_head.py --check
+      - name: Comprobar copias de la propuesta por momentos en el libro
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          source = Path('experiments/e3_mecanismo_momentos_20261116')
+          target = Path('book_e3/_static/e3_mecanismo_momentos_20261116')
+          pairs = {'theory.md': 'theory.md', 'design_spec.json': 'design_spec.json',
+                   'verification/metrics.json': 'metrics.json',
+                   'verification/moment_envelope.svg': 'moment_envelope.svg'}
+          for original, copy in pairs.items():
+              assert (source / original).read_bytes() == (target / copy).read_bytes(), original
+          print('Cuatro copias de la propuesta verificadas contra sus maestros')
+          PY
       - name: Comprobar sintaxis de Colab sin instalar CUDA ni entrenar mercado
         run: |
           python -m py_compile notebooks/preparar_e3_desarrollo_runtime.py notebooks/run_e3_github_colab.py scripts/e3_github_storage.py scripts/e3_run_development.py src/e3_development.py
