@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Ficha de diseño: CNN-LSTM-atención v2 &#8212; Entregable 3 · Deep Learning</title>
+    <title>Anexo C. Ficha de diseño de CNN-LSTM-atención v2 &#8212; Entregable 3 · Deep Learning</title>
   
   
   
@@ -67,8 +67,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Piloto v2 listo para Colab: misma CNN-LSTM con atención" href="19_piloto_innovacion_v2.html" />
-    <link rel="prev" title="Revisión posterior al primer piloto" href="17_revision_post_piloto.html" />
+    <link rel="next" title="Anexo D. Ejecución en Colab del piloto v2" href="19_piloto_innovacion_v2.html" />
+    <link rel="prev" title="Anexo B. Revisión posterior al primer piloto" href="17_revision_post_piloto.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -227,18 +227,15 @@
 <li class="toctree-l1"><a class="reference internal" href="15_integridad_academica.html">15 Integridad académica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_conclusiones.html">16 Conclusiones</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Evidencia posterior al primer piloto</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Revisión posterior al primer piloto</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ficha de diseño: CNN-LSTM-atención v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Piloto v2 listo para Colab: misma CNN-LSTM con atención</a></li>
-<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Cierre de v2: regímenes, originalidad y selección</a></li>
-<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">21 Propuesta de cabeza de momentos: formulación y admisibilidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="apendice_a_plantillas.html">Apéndice A Plantillas operativas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Anexo B. Revisión del primer piloto</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Anexo C. Ficha de diseño v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Anexo D. Ejecución del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Anexo E. Cierre y errores del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">Anexo F. Formulación de la cabeza de momentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">Anexo G. Dictamen y revisión externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias_sugeridas.html">Referencias metodológicas sugeridas por la guía</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
@@ -382,7 +379,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ficha de diseño: CNN-LSTM-atención v2</h1>
+    <h1>Anexo C. Ficha de diseño de CNN-LSTM-atención v2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -408,8 +405,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ficha-de-diseno-cnn-lstm-atencion-v2">
-<h1>Ficha de diseño: CNN-LSTM-atención v2<a class="headerlink" href="#ficha-de-diseno-cnn-lstm-atencion-v2" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="anexo-c-ficha-de-diseno-de-cnn-lstm-atencion-v2">
+<h1>Anexo C. Ficha de diseño de CNN-LSTM-atención v2<a class="headerlink" href="#anexo-c-ficha-de-diseno-de-cnn-lstm-atencion-v2" title="Link to this heading">#</a></h1>
+<p>La ficha de desarrollo se conserva como soporte de los capítulos <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a>. El piloto ya terminó; sus resultados y la decisión posterior están en el <a class="reference internal" href="20_cierre_v2.html"><span class="std std-doc">anexo E</span></a>.</p>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/README.md">ficha completa</a>
 conserva la arquitectura <strong>CNN causal → LSTM → atención temporal por contenido</strong>
 de M00. La propuesta modifica la cabeza de salida y la pérdida. Está en fase de
@@ -546,7 +544,7 @@ sistemática de novedad ni la verificación humana externa.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Revisión posterior al primer piloto</p>
+        <p class="prev-next-title">Anexo B. Revisión posterior al primer piloto</p>
       </div>
     </a>
     <a class="right-next"
@@ -554,7 +552,7 @@ sistemática de novedad ni la verificación humana externa.</p>
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Piloto v2 listo para Colab: misma CNN-LSTM con atención</p>
+        <p class="prev-next-title">Anexo D. Ejecución en Colab del piloto v2</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>21 Propuesta de cabeza de momentos: formulación y admisibilidad &#8212; Entregable 3 · Deep Learning</title>
+    <title>Anexo F. Cabeza de momentos: formulación y admisibilidad &#8212; Entregable 3 · Deep Learning</title>
   
   
   
@@ -67,8 +67,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos" href="22_dictamen_momentos.html" />
-    <link rel="prev" title="Cierre de v2: regímenes, originalidad y selección" href="20_cierre_v2.html" />
+    <link rel="next" title="Anexo G. Dictamen de admisibilidad de la cabeza de momentos" href="22_dictamen_momentos.html" />
+    <link rel="prev" title="Anexo E. Cierre de v2: regímenes, originalidad y selección" href="20_cierre_v2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -227,18 +227,15 @@
 <li class="toctree-l1"><a class="reference internal" href="15_integridad_academica.html">15 Integridad académica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_conclusiones.html">16 Conclusiones</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Evidencia posterior al primer piloto</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Revisión posterior al primer piloto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Ficha de diseño: CNN-LSTM-atención v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Piloto v2 listo para Colab: misma CNN-LSTM con atención</a></li>
-<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Cierre de v2: regímenes, originalidad y selección</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">21 Propuesta de cabeza de momentos: formulación y admisibilidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="apendice_a_plantillas.html">Apéndice A Plantillas operativas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Anexo B. Revisión del primer piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Anexo C. Ficha de diseño v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Anexo D. Ejecución del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Anexo E. Cierre y errores del piloto v2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Anexo F. Formulación de la cabeza de momentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">Anexo G. Dictamen y revisión externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias_sugeridas.html">Referencias metodológicas sugeridas por la guía</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
@@ -382,7 +379,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>21 Propuesta de cabeza de momentos: formulación y admisibilidad</h1>
+    <h1>Anexo F. Cabeza de momentos: formulación y admisibilidad</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,11 +389,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitacion-que-se-investiga">21.1 Limitación que se investiga</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-misma-red-una-salida-diferente">21.2 La misma red, una salida diferente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-demostrada-y-limites">21.3 Propiedad demostrada y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobacion-numerica-sin-datos-de-mercado">21.4 Comprobación numérica sin datos de mercado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-falta-para-seleccionar-un-aporte-original">21.5 Qué falta para seleccionar un aporte original</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-1-limitacion-que-se-investiga">F.1 Limitación que se investiga</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-2-la-misma-red-una-salida-diferente">F.2 La misma red, una salida diferente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-3-propiedad-demostrada-y-limites">F.3 Propiedad demostrada y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-4-comprobacion-numerica-sin-datos-de-mercado">F.4 Comprobación numérica sin datos de mercado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-5-que-falta-para-seleccionar-un-aporte-original">F.5 Qué falta para seleccionar un aporte original</a></li>
 </ul>
             </nav>
         </div>
@@ -408,20 +405,20 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="propuesta-de-cabeza-de-momentos-formulacion-y-admisibilidad">
-<h1>21 Propuesta de cabeza de momentos: formulación y admisibilidad<a class="headerlink" href="#propuesta-de-cabeza-de-momentos-formulacion-y-admisibilidad" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="anexo-f-cabeza-de-momentos-formulacion-y-admisibilidad">
+<h1>Anexo F. Cabeza de momentos: formulación y admisibilidad<a class="headerlink" href="#anexo-f-cabeza-de-momentos-formulacion-y-admisibilidad" title="Link to this heading">#</a></h1>
 <p>:::{note}
-Esta propuesta se conserva como corte de formulación. El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">dictamen posterior</span></a> corrige localizadores, añade un control faltante y delimita las garantías: la adaptación no se selecciona todavía como aporte original ni pasa a otro piloto en ese corte.
+Este anexo conserva el detalle matemático de la propuesta integrada en los capítulos <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a>. El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">dictamen posterior del anexo G</span></a> corrige localizadores, añade un control faltante y delimita las garantías: la adaptación no se selecciona todavía como aporte original ni pasa a otro piloto en ese corte.
 :::</p>
 <p><strong>16 de noviembre de 2026. Propuesta matemática de desarrollo; sin nueva red implementada o entrenada.</strong> Se conserva CNN causal → LSTM unidireccional → atención temporal. La modificación propuesta pertenece a la salida y a su pérdida. La cabeza aditiva del <a class="reference internal" href="20_cierre_v2.html"><span class="std std-doc">cierre v2</span></a> continúa como referencia predictiva; no se ha elegido un modelo superior al Top 10.</p>
-<section id="limitacion-que-se-investiga">
-<h2>21.1 Limitación que se investiga<a class="headerlink" href="#limitacion-que-se-investiga" title="Link to this heading">#</a></h2>
+<section id="f-1-limitacion-que-se-investiga">
+<h2>F.1 Limitación que se investiga<a class="headerlink" href="#f-1-limitacion-que-se-investiga" title="Link to this heading">#</a></h2>
 <p>En v2, la cabeza half-t5 compartía una escala entre la media de σ₇ y la NLL de la magnitud de innovación. Bajo mala especificación esos objetivos pueden tener óptimos distintos. Un contraejemplo poblacional lo demuestra: con <code class="docutils literal notranslate"><span class="pre">A=0</span></code>, <code class="docutils literal notranslate"><span class="pre">P(U=0)=3/4</span></code> y <code class="docutils literal notranslate"><span class="pre">P(U=2)=1/4</span></code>, el óptimo MSE tiene escala al cuadrado <code class="docutils literal notranslate"><span class="pre">9π²/320≈0,277583</span></code>, mientras el óptimo NLL tiene <code class="docutils literal notranslate"><span class="pre">0,4</span></code>. La verificación incluye una exponencial continua. Se comparan riesgos poblacionales sintéticos, conservando la varianza irreducible; no se presenta MSE esperada cero.</p>
 <p>Esto demuestra un conflicto posible, <strong>no la causa del RMSE observado en Bitcoin</strong>. La escala libre t5 sí puede representar las medias puntuales de esta tarea. El problema general de NLL y estimación de media ya está documentado en <a class="reference external" href="https://proceedings.mlr.press/v206/stirn23a.html">Faithful, Stirn et al. (2023)</a>, que será un control necesario.</p>
 <p>El paper guía continúa siendo TimeMixer. Su limitación de calendario medida en ETTh1 no se transfiere al adaptador BTC sin calendario. La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/paper_guide.md">relación documentada con el paper guía</a> distingue la evidencia de E2 de la nueva limitación propuesta.</p>
 </section>
-<section id="la-misma-red-una-salida-diferente">
-<h2>21.2 La misma red, una salida diferente<a class="headerlink" href="#la-misma-red-una-salida-diferente" title="Link to this heading">#</a></h2>
+<section id="f-2-la-misma-red-una-salida-diferente">
+<h2>F.2 La misma red, una salida diferente<a class="headerlink" href="#f-2-la-misma-red-una-salida-diferente" title="Link to this heading">#</a></h2>
 <p>Con los seis retornos conocidos al origen se calcula</p>
 <div class="math notranslate nohighlight">
 \[
@@ -444,8 +441,8 @@ H=\sqrt{A+cm},\qquad
 <p>Con momentos verdaderos positivos y finitos, la media condicional pertenece exactamente al rango realizable <code class="docutils literal notranslate"><span class="pre">[L,H)</span></code> si <code class="docutils literal notranslate"><span class="pre">q&gt;m²</span></code>; la cota inferior se alcanza y la superior sólo es supremo. Si <code class="docutils literal notranslate"><span class="pre">q=m²</span></code>, ambas coinciden. Con momentos estimados, la región calculada puede no contener la media verdadera. <strong>No es un intervalo de predicción ni de confianza</strong> y no acota cada observación futura.</p>
 <p>La inicialización propuesta <code class="docutils literal notranslate"><span class="pre">b=√8,d=1</span></code> evita comenzar en los puntos de derivada nula de ambas ramas. La relación inicial <code class="docutils literal notranslate"><span class="pre">q/m²=9</span></code> toma como ancla t5, sin ajuste por desempeño. Se proponen escalas de ajuste positivas y pesos auxiliares <code class="docutils literal notranslate"><span class="pre">0,1</span></code>; no se han ejecutado ni congelado como protocolo. El conteo analítico es <strong>1236 parámetros</strong>, frente a 1210 de v2, con las mismas 1197 cantidades del tronco y atención más tres lecturas activas. La especificación completa distingue precisiones, bordes e inicialización.</p>
 </section>
-<section id="propiedad-demostrada-y-limites">
-<h2>21.3 Propiedad demostrada y límites<a class="headerlink" href="#propiedad-demostrada-y-limites" title="Link to this heading">#</a></h2>
+<section id="f-3-propiedad-demostrada-y-limites">
+<h2>F.3 Propiedad demostrada y límites<a class="headerlink" href="#f-3-propiedad-demostrada-y-limites" title="Link to this heading">#</a></h2>
 <p>La pérdida propuesta combina MSE de σ₇ con dos scores conocidos de media, normalizados mediante escalas calculadas sólo en ajuste:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -463,8 +460,8 @@ H=\sqrt{A+cm},\qquad
 <p>La <a class="reference download internal" download="" href="../_downloads/2bc997f4ebaff3248b6c3588d3fe44b5/theory.md"><code class="xref download docutils literal notranslate"><span class="pre">demostración</span> <span class="pre">completa</span> <span class="pre">descargable</span></code></a> incluye cotas, extremales, dominio de la media y consistencia condicional. La cota inferior se especializa de <a class="reference external" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10288939/">Merhav (2023), ec. (8)</a>; los scores tienen antecedentes en <a class="reference external" href="https://arxiv.org/html/0912.0902">Gneiting (2011), §3.1</a>. <strong>No se reclama una desigualdad o score nuevos.</strong></p>
 <p>No se deducen convergencia de la red, mejora en muestra finita o la garantía de trayectoria de Faithful. La esperanza auxiliar requiere <code class="docutils literal notranslate"><span class="pre">E[U⁴]</span></code> finita; no exige octavo momento para definirla, pero los gradientes pueden tener varianza infinita sin condiciones adicionales. El caso verdadero <code class="docutils literal notranslate"><span class="pre">m0=q0=0</span></code> queda fuera del teorema logarítmico: necesita una rama separada. El verificador documenta también redondeo, overflow y puntos planos.</p>
 </section>
-<section id="comprobacion-numerica-sin-datos-de-mercado">
-<h2>21.4 Comprobación numérica sin datos de mercado<a class="headerlink" href="#comprobacion-numerica-sin-datos-de-mercado" title="Link to this heading">#</a></h2>
+<section id="f-4-comprobacion-numerica-sin-datos-de-mercado">
+<h2>F.4 Comprobación numérica sin datos de mercado<a class="headerlink" href="#f-4-comprobacion-numerica-sin-datos-de-mercado" title="Link to this heading">#</a></h2>
 <p>Se integraron cinco leyes artificiales —uniforme, exponencial, dos puntos, lognormal y Pareto α5— en veinte combinaciones de ley y <code class="docutils literal notranslate"><span class="pre">A</span></code>. Se comprobaron extremales, homogeneidad, derivadas y exceso de riesgo. Hubo cuatro optimizaciones escalares de riesgos sintéticos; <strong>cero redes nuevas, lecturas de datos o inferencias de mercado</strong>. Estas pruebas no acreditan R1 ni R3.</p>
 <figure class="align-default" id="moment-envelope-synthetic">
 <img alt="A la izquierda, medias integradas de cinco leyes artificiales dentro de sus cotas por momentos, con A igual a 0,2. A la derecha, escalas óptimas distintas para error cuadrático, NLL y su suma en dos ejemplos sintéticos. No se entrenó ninguna red." src="../_images/moment_envelope.svg" />
@@ -474,8 +471,8 @@ H=\sqrt{A+cm},\qquad
 </figure>
 <p>Los <a class="reference download internal" download="" href="../_downloads/aff4ef775d7895672fbe2c321b30610e/metrics.json"><span class="xref download myst">resultados reproducibles</span></a>, el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e3_verify_moment_head.py">verificador escalar</a> y las pruebas están en GitHub. La integración continua comprueba tanto el cálculo como las copias descargables.</p>
 </section>
-<section id="que-falta-para-seleccionar-un-aporte-original">
-<h2>21.5 Qué falta para seleccionar un aporte original<a class="headerlink" href="#que-falta-para-seleccionar-un-aporte-original" title="Link to this heading">#</a></h2>
+<section id="f-5-que-falta-para-seleccionar-un-aporte-original">
+<h2>F.5 Qué falta para seleccionar un aporte original<a class="headerlink" href="#f-5-que-falta-para-seleccionar-un-aporte-original" title="Link to this heading">#</a></h2>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/literature/review.md">revisión focal</a> compara nueve trabajos cercanos y distingue ocho lecturas focales del cuerpo de una fuente examinada sólo por metadatos/resumen. No identificar una combinación exacta en esa búsqueda no demuestra su ausencia. Las doce consultas web y los tres intentos nativos bloqueados antes de respuesta no completan la revisión de §6.3. Faltan búsquedas nativas reproducibles, seguimiento por citas, repetición antes de entrega y concepto de una persona externa al diseño. Los agentes de IA no sustituyen esa verificación.</p>
 <p>La hipótesis predictiva propuesta es reducir RMSE respecto de una cabeza de media libre con <strong>las mismas tres lecturas activas y los mismos scores</strong>, sin deterioro relevante en extremos. El diseño futuro deberá contrastar además un control inspirado explícitamente en Faithful, el plug-in Jensen, la versión con <code class="docutils literal notranslate"><span class="pre">q=9m²</span></code> fijo y las referencias v2. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/README.md">documento de propuesta</a> especifica qué aísla cada control y las diferencias de capacidad. Los rivales congelados de E2 no se reajustan.</p>
 <p>Si los controles simples igualan o mejoran su desempeño, o la envolvente y el segundo momento no aportan bajo el protocolo fijado, la explicación propuesta no queda respaldada. Un resultado impreciso se reportaría como no concluyente. Los grupos por objetivo realizado se usan sólo para diagnóstico retrospectivo, no para seleccionar un modelo al predecir.</p>
@@ -520,7 +517,7 @@ H=\sqrt{A+cm},\qquad
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Cierre de v2: regímenes, originalidad y selección</p>
+        <p class="prev-next-title">Anexo E. Cierre de v2: regímenes, originalidad y selección</p>
       </div>
     </a>
     <a class="right-next"
@@ -528,7 +525,7 @@ H=\sqrt{A+cm},\qquad
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos</p>
+        <p class="prev-next-title">Anexo G. Dictamen de admisibilidad de la cabeza de momentos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -550,11 +547,11 @@ H=\sqrt{A+cm},\qquad
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitacion-que-se-investiga">21.1 Limitación que se investiga</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-misma-red-una-salida-diferente">21.2 La misma red, una salida diferente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-demostrada-y-limites">21.3 Propiedad demostrada y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobacion-numerica-sin-datos-de-mercado">21.4 Comprobación numérica sin datos de mercado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-falta-para-seleccionar-un-aporte-original">21.5 Qué falta para seleccionar un aporte original</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-1-limitacion-que-se-investiga">F.1 Limitación que se investiga</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-2-la-misma-red-una-salida-diferente">F.2 La misma red, una salida diferente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-3-propiedad-demostrada-y-limites">F.3 Propiedad demostrada y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-4-comprobacion-numerica-sin-datos-de-mercado">F.4 Comprobación numérica sin datos de mercado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-5-que-falta-para-seleccionar-un-aporte-original">F.5 Qué falta para seleccionar un aporte original</a></li>
 </ul>
   </nav></div>
 

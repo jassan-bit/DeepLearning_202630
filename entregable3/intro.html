@@ -228,18 +228,15 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/15_integridad_academica.html">15 Integridad académica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/16_conclusiones.html">16 Conclusiones</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Evidencia posterior al primer piloto</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="sections/17_revision_post_piloto.html">Revisión posterior al primer piloto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/18_ficha_cnn_lstm_atencion_v2.html">Ficha de diseño: CNN-LSTM-atención v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/19_piloto_innovacion_v2.html">Piloto v2 listo para Colab: misma CNN-LSTM con atención</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/20_cierre_v2.html">Cierre de v2: regímenes, originalidad y selección</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/21_propuesta_momentos.html">21 Propuesta de cabeza de momentos: formulación y admisibilidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/22_dictamen_momentos.html">22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="sections/apendice_a_plantillas.html">Apéndice A Plantillas operativas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/17_revision_post_piloto.html">Anexo B. Revisión del primer piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/18_ficha_cnn_lstm_atencion_v2.html">Anexo C. Ficha de diseño v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/19_piloto_innovacion_v2.html">Anexo D. Ejecución del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/20_cierre_v2.html">Anexo E. Cierre y errores del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/21_propuesta_momentos.html">Anexo F. Formulación de la cabeza de momentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/22_dictamen_momentos.html">Anexo G. Dictamen y revisión externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/referencias_sugeridas.html">Referencias metodológicas sugeridas por la guía</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="sections/concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="sections/01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
@@ -409,7 +406,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="entregable-3-de-deep-learning">
 <h1>Entregable 3 de Deep Learning<a class="headerlink" href="#entregable-3-de-deep-learning" title="Link to this heading">#</a></h1>
 <p><strong>Jassan Arteta · Deep Learning 2026-30</strong></p>
-<p>El informe está organizado en las <strong>secciones 1 a 16 de la guía</strong>, con el desarrollo disponible hasta ahora. La navegación principal reúne los bloques A–G, diseño, evaluación, entrega, sustentación, integridad y conclusiones. Los anexos incorporan plantillas operativas editables, referencias sugeridas y documentos de trabajo anteriores; el último anexo conserva reproducibilidad, autoría y bibliografía.</p>
+<p>El informe está organizado exclusivamente en los <strong>capítulos 1 a 16 de la guía</strong>, con el desarrollo disponible hasta ahora. La navegación principal reúne los bloques A–G, diseño, evaluación, entrega, sustentación, integridad y conclusiones. Las ampliaciones se integran en esos capítulos; los anexos A–G reúnen plantillas y detalle técnico de apoyo, junto con referencias y trazabilidad. El último anexo conserva reproducibilidad, autoría y bibliografía.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Sección</p></th>
@@ -471,11 +468,10 @@
 <section id="estado-del-proyecto">
 <h2>Estado del proyecto<a class="headerlink" href="#estado-del-proyecto" title="Link to this heading">#</a></h2>
 <p>E2 conserva su benchmark de 16 sistemas y 608 fechas, con auditorías y suplementos posteriores de alcance explícito. E3 tiene inventario de artefactos, configuraciones verificadas y tres exportaciones CPU sobre calibración histórica. La evidencia neuronal incluye formulación, demostraciones con alcance explícito, pruebas de software y dos pilotos de desarrollo sobre la misma base CNN-LSTM-atención.</p>
-<p>El <a class="reference internal" href="sections/20_cierre_v2.html"><span class="std std-doc">cierre de v2</span></a> documenta las tres recetas completadas y su análisis por régimen. El control aditivo obtuvo la menor RMSE global de desarrollo; el candidato con pérdida auxiliar no superó la heurística del 2 %. El control se conserva como referencia predictiva y <strong>no se promueve a modelo original por ese resultado</strong>. La auditoría reproduce los errores y conserva las limitaciones en alta volatilidad.</p>
+<p>Los capítulos <a class="reference internal" href="sections/06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="sections/07_diseno_riguroso.html"><span class="std std-doc">7</span></a> integran el diseño, la revisión de admisibilidad y los resultados de los pilotos. El control aditivo v2 obtuvo la menor RMSE global de desarrollo; el candidato con pérdida auxiliar no superó la heurística del 2 %. Se conserva como referencia predictiva y <strong>no se promueve a modelo original por ese resultado</strong>. El <a class="reference internal" href="sections/20_cierre_v2.html"><span class="std std-doc">anexo E</span></a> conserva el cierre detallado y sus limitaciones en alta volatilidad.</p>
 <p><strong>La novedad R1, la defensa académica de R2 y la superioridad R3 siguen pendientes.</strong> Los bloques A y B aún no están cerrados; tampoco existe una campaña confirmatoria del candidato o un dashboard Render terminado. El protocolo sigue en borrador. Las plantillas preparan registros futuros y no son preregistros, resultados o firmas. La bibliografía inicial y las revisiones focales posteriores distinguen antecedentes, procedencia y alcance de lectura; se conservan las 37 referencias sugeridas por la guía. El cierre incorpora resultados ya obtenidos en Colab y los audita sin nuevos ajustes, inferencias o cambios de las métricas y recetas originales.</p>
-<p>La <a class="reference internal" href="sections/concordancia_secciones.html"><span class="std std-doc">concordancia y los anexos</span></a> permiten localizar las páginas y evidencias de trabajo anteriores. Sus números históricos no se confunden con los capítulos actuales de la guía.</p>
-<p>La <a class="reference internal" href="sections/21_propuesta_momentos.html"><span class="std std-doc">propuesta posterior al cierre v2</span></a> formaliza una cabeza de momentos dentro de la misma CNN-LSTM con atención. Incluye hipótesis, demostración, antecedentes directos y verificación numérica artificial. Se conserva para revisión de admisibilidad: no es una red nueva ya entrenada ni una declaración de originalidad o superioridad. El control aditivo v2 sigue siendo la referencia predictiva de desarrollo.</p>
-<p>El <a class="reference internal" href="sections/22_dictamen_momentos.html"><span class="std std-doc">dictamen posterior</span></a> delimita su aporte potencial, añade el control de la misma cabeza sin auxiliares y demuestra dos límites de las garantías que podrían atribuirse a la propuesta. La decisión interna es conservarla como adaptación experimental, sin seleccionarla todavía como aporte original ni lanzar otro piloto. La revisión bibliográfica completa y la verificación humana externa siguen pendientes; se deja preparado su paquete de trabajo.</p>
+<p>La <a class="reference internal" href="sections/concordancia_secciones.html"><span class="std std-doc">concordancia y los anexos</span></a> permiten localizar cada evidencia y su capítulo principal. Se conservan las direcciones de las páginas anteriores, ahora identificadas como anexos, para mantener sus enlaces.</p>
+<p>La propuesta por momentos y su dictamen forman parte de esos capítulos 6 y 7. Los anexos <a class="reference internal" href="sections/21_propuesta_momentos.html"><span class="std std-doc">F</span></a> y <a class="reference internal" href="sections/22_dictamen_momentos.html"><span class="std std-doc">G</span></a> conservan formulación completa, verificaciones artificiales y paquete para revisión externa. La decisión interna es mantener la propuesta como adaptación experimental, sin seleccionarla todavía como aporte original ni lanzar otro piloto. La revisión bibliográfica completa y la verificación humana externa siguen pendientes.</p>
 <p>El <a class="reference internal" href="sections/cierre_reproducibilidad.html"><span class="std std-doc">anexo final</span></a> distingue conclusiones provisionales, evidencia de software, reproducción científica pendiente y declaración de autoría sin firmas. La rúbrica no se convierte en una calificación automática del proyecto.</p>
 <p>El <a class="reference internal" href="sections/apendice_a_plantillas.html"><span class="std std-doc">Apéndice A</span></a> ofrece las seis plantillas y su paquete descargable; las <a class="reference internal" href="sections/referencias_sugeridas.html"><span class="std std-doc">referencias sugeridas</span></a> conservan los 37 números de la guía y aclaran qué métodos son pertinentes para F2a.</p>
 </section>
@@ -487,8 +483,6 @@
 <li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregables.html">Selector de entregables</a>.</p></li>
 </ul>
 </section>
-<div class="toctree-wrapper compound">
-</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

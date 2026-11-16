@@ -227,18 +227,15 @@
 <li class="toctree-l1"><a class="reference internal" href="15_integridad_academica.html">15 Integridad académica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_conclusiones.html">16 Conclusiones</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Evidencia posterior al primer piloto</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Revisión posterior al primer piloto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Ficha de diseño: CNN-LSTM-atención v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Piloto v2 listo para Colab: misma CNN-LSTM con atención</a></li>
-<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Cierre de v2: regímenes, originalidad y selección</a></li>
-<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">21 Propuesta de cabeza de momentos: formulación y admisibilidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="apendice_a_plantillas.html">Apéndice A Plantillas operativas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Anexo B. Revisión del primer piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Anexo C. Ficha de diseño v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Anexo D. Ejecución del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Anexo E. Cierre y errores del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">Anexo F. Formulación de la cabeza de momentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">Anexo G. Dictamen y revisión externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias_sugeridas.html">Referencias metodológicas sugeridas por la guía</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
@@ -420,7 +417,7 @@ r_t=\log(C_t/C_{t-1}),\qquad
 <section id="antecedentes-y-motivacion">
 <h2>1.1 Antecedentes y motivación<a class="headerlink" href="#antecedentes-y-motivacion" title="Link to this heading">#</a></h2>
 <p>E1 estableció las referencias neuronales. E2 ejecutó diez candidatos, tres referencias neuronales y tres comparadores estadísticos: <strong>16 sistemas sobre 608 fechas conocidas</strong>, con seis semillas por red. El LSTM-autoencoder obtuvo la menor RMSE media observada, <strong>0,00380343</strong>. Las veinte comparaciones primarias no demostraron la mejora práctica registrada tras Holm; las ampliaciones posteriores conservan esa conclusión.</p>
-<p>E3 debe convertir los artefactos en un producto predictivo y desarrollar una contribución neuronal defendible. La combinación CNN-LSTM-atención no acredita por sí sola originalidad. El candidato actual incorpora penalización de discordancia temporal y saturación radial; su novedad y su ventaja predictiva siguen por comprobar.</p>
+<p>E3 debe convertir los artefactos en un producto predictivo y desarrollar una contribución neuronal defendible. La combinación CNN-LSTM-atención no acredita por sí sola originalidad. El primer piloto estudió penalización de discordancia y saturación radial; el segundo comparó cabezas de salida. La aditiva v2 conserva la referencia predictiva de desarrollo. La propuesta posterior por momentos queda como adaptación experimental sin originalidad acreditada, según el <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">capítulo 6</span></a>.</p>
 </section>
 <section id="objetivos">
 <h2>1.2 Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading">#</a></h2>
@@ -434,12 +431,12 @@ r_t=\log(C_t/C_{t-1}),\qquad
 </section>
 <section id="avances-y-limites-actuales">
 <h2>1.3 Avances y límites actuales<a class="headerlink" href="#avances-y-limites-actuales" title="Link to this heading">#</a></h2>
-<p>Se cuenta con un inventario de 81 predictores, comprobación de 167 metadatos, selección documentada de configuraciones y tres exportaciones TorchScript sobre calibración histórica. El candidato tiene código, una demostración de estabilidad de su cabeza latente y <strong>35 pruebas sobre datos artificiales</strong>.</p>
+<p>Se cuenta con un inventario de 81 predictores, comprobación de 167 metadatos, selección documentada de configuraciones y tres exportaciones TorchScript sobre calibración histórica. La evidencia neuronal incluye código, propiedades con alcance explícito, <strong>223 pruebas de software</strong> y dos pilotos de desarrollo completados, con cinco recetas entrenadas. Los resultados y controles se integran en el <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">capítulo 7</span></a>; las 35 pruebas del primer módulo conservan su alcance histórico dentro de ese conjunto.</p>
 <p>Estos avances no equivalen a una auditoría integral cerrada, un dashboard terminado ni superioridad del candidato. <strong>R1, la defensa académica de R2 y R3 siguen abiertos.</strong> Los periodos ya evaluados en E1/E2 continúan siendo conocidos; repetirlos no recupera una confirmación independiente.</p>
 </section>
 <section id="organizacion-del-libro">
 <h2>1.4 Organización del libro<a class="headerlink" href="#organizacion-del-libro" title="Link to this heading">#</a></h2>
-<p>Las <a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">secciones 2</span></a> y <a class="reference internal" href="03_panorama_general.html"><span class="std std-doc">3</span></a> fijan el estándar y las dependencias. Las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">secciones 4</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">5</span></a> y <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> reúnen los bloques A, B y C. La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a> organiza hipótesis, disciplina de diseño, teoría y ablaciones. Los <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">anexos</span></a> conservan las páginas y evidencias anteriores.</p>
+<p>El cuerpo principal sigue exclusivamente los <strong>capítulos 1 a 16 de la guía</strong>. Las <a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">secciones 2</span></a> y <a class="reference internal" href="03_panorama_general.html"><span class="std std-doc">3</span></a> fijan el estándar y las dependencias. Las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">secciones 4</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">5</span></a> y <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> reúnen los bloques A, B y C. La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a> integra hipótesis, disciplina de diseño, teoría, pilotos y controles. Los <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">anexos</span></a> reúnen las plantillas y el detalle de apoyo, con una concordancia hacia su capítulo correspondiente.</p>
 <p>El dashboard de Render aún no tiene URL pública. La publicación de este Jupyter Book no se presenta como ese dashboard. La asistencia de IA en código, teoría, revisión focal y documentación está declarada; el autor deberá comprender y defender la entrega.</p>
 </section>
 </section>

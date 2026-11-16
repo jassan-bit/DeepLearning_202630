@@ -61,11 +61,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/16_conclusiones';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Revisión posterior al primer piloto" href="17_revision_post_piloto.html" />
+    <link rel="next" title="Apéndice A Plantillas operativas" href="apendice_a_plantillas.html" />
     <link rel="prev" title="15 Integridad académica" href="15_integridad_academica.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -225,18 +227,15 @@
 <li class="toctree-l1"><a class="reference internal" href="15_integridad_academica.html">15 Integridad académica</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">16 Conclusiones</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Evidencia posterior al primer piloto</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Revisión posterior al primer piloto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Ficha de diseño: CNN-LSTM-atención v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Piloto v2 listo para Colab: misma CNN-LSTM con atención</a></li>
-<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Cierre de v2: regímenes, originalidad y selección</a></li>
-<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">21 Propuesta de cabeza de momentos: formulación y admisibilidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="apendice_a_plantillas.html">Apéndice A Plantillas operativas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Anexo B. Revisión del primer piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Anexo C. Ficha de diseño v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Anexo D. Ejecución del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Anexo E. Cierre y errores del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">Anexo F. Formulación de la cabeza de momentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">Anexo G. Dictamen y revisión externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias_sugeridas.html">Referencias metodológicas sugeridas por la guía</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
@@ -427,12 +426,12 @@
 <td><p>No hay app Dash ni URL Render/smoke verificados. Faltan el perfil ONNX Runtime sin framework, integración de contratos, dominio, intervalo, explicaciones y mediciones del servicio.</p></td>
 </tr>
 <tr class="row-even"><td><p>Investigar teóricamente un modelo propio o adaptado con atribución y disciplina de selección.</p></td>
-<td><p>Formulación, código asistido por IA, prueba formal de una propiedad de la cabeza latente y verificación artificial del candidato.</p></td>
-<td><p>R1 y revisión externa pendientes; la persona autora debe comprender y defender código/prueba para R2. Falta validar el mecanismo y sus ablaciones con datos reales de desarrollo.</p></td>
+<td><p>Formulación, código asistido por IA, propiedades delimitadas y dos pilotos de desarrollo completos. La propuesta posterior por momentos tiene dictamen crítico y ejemplos artificiales.</p></td>
+<td><p>R1 y revisión externa pendientes; la cabeza por momentos aún no está implementada ni seleccionada como aporte original. La persona autora debe comprender y defender código y pruebas para R2.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Sustentar o refutar honestamente superioridad con rigor estadístico y experimental.</p></td>
-<td><p>Familia de 16 rivales conservada y protocolo en borrador con márgenes, dependencias y condiciones de cierre.</p></td>
-<td><p>No se han ejecutado piloto, potencia, HPO o contrastes confirmatorios del candidato. R3 no está establecida; no se concluye una inferioridad o equivalencia a partir de esa ausencia.</p></td>
+<td><p>Familia de 16 rivales conservada, resultados de desarrollo y protocolo en borrador con márgenes y condiciones de cierre.</p></td>
+<td><p>Piloto de potencia y contrastes confirmatorios pendientes. Los cinco entrenamientos de recetas entre v1/v2 no establecen R3 ni sustituyen la comparación completa.</p></td>
 </tr>
 <tr class="row-even"><td><p>Documentar y reproducir con calidad científica/profesional.</p></td>
 <td><p>Jupyter Book, fuentes, manifiestos, bibliografía y auditores de productos con pruebas y ámbitos definidos.</p></td>
@@ -444,8 +443,9 @@
 </section>
 <section id="que-se-puede-concluir-de-lo-construido">
 <h2>Qué se puede concluir de lo construido<a class="headerlink" href="#que-se-puede-concluir-de-lo-construido" title="Link to this heading">#</a></h2>
-<p><strong>El software candidato implementa la formulación disponible.</strong> La arquitectura CNN causal → LSTM unidireccional → atención combina dos modificaciones candidatas, penalización de discordancia y saturación radial. Las tres intervenciones funcionales aisladas disponibles retiran, respectivamente, penalización, saturación o contenido convencional; no se presentan como tres innovaciones. Las 35 pruebas del módulo y los ensayos artificiales verifican comportamiento de software, gradientes, restricciones y serialización. No son entrenamiento ni evaluación de BTC y no aportan una mejora de RMSE del candidato.</p>
-<p><strong>La propiedad formal tiene un ámbito preciso.</strong> La cota Lipschitz se demuestra sobre estados latentes con operador de referencia y parámetros de inferencia fijos, y se comprueba numéricamente en condiciones registradas. No cuantifica la sensibilidad de todo el preprocesamiento/CNN/LSTM frente a OHLCV crudo. Acotar valores también puede limitar la representación de extremos; la utilidad predictiva y ese riesgo deben evaluarse antes del congelamiento definitivo.</p>
+<p><strong>El diseño y sus decisiones se integran en los capítulos 6 y 7.</strong> La base CNN causal → LSTM unidireccional → atención se conserva. V1 comparó penalización y saturación frente a <span class="math notranslate nohighlight">\(M_{00}\)</span> y fue desfavorable al modelo completo. V2 dejó como mejor referencia de desarrollo la cabeza aditiva, con RMSE 0,0031446148; el candidato con NLL no superó la heurística del 2 %. La propuesta posterior por momentos se conserva como adaptación experimental sin seleccionar como aporte original. Los anexos B–G conservan el detalle y las fuentes de esas decisiones.</p>
+<p><strong>Las verificaciones tienen ámbitos diferentes.</strong> Las 35 pruebas del primer módulo y las 223 pruebas posteriores de software verifican comportamiento, gradientes, restricciones, serialización y reproducibilidad de herramientas. No sustituyen resultados de mercado, búsqueda de novedad o validación estadística. Los ejemplos artificiales de momentos tampoco son un nuevo entrenamiento neuronal.</p>
+<p><strong>Las propiedades formales tienen un ámbito preciso.</strong> La cota Lipschitz del primer diseño cubre estados latentes con operador y parámetros de inferencia fijos; no todo el pipeline OHLCV. La consistencia condicional de la cabeza de momentos exige sus supuestos de momentos y capacidad funcional. No garantiza convergencia o mejor RMSE con momentos estimados, como delimitan los contraejemplos del anexo G. Ninguna propiedad acredita por sí sola R1 o R3.</p>
 <p><strong>Existen tres artefactos reales de inferencia heredada.</strong> MLP16, LSTM32 y GRU32 disponen de TorchScript, metadatos y paridad puntual sobre 53 fechas históricas de calibración de 2024, con error máximo y diferencia de RMSE cero en esa comprobación. La evidencia no verifica las 608 entradas de prueba A2, la cobertura de un intervalo exportado o una aplicación web. Esos artefactos requieren Torch y aún no satisfacen el perfil de producción ONNX Runtime sin framework de entrenamiento de la sección 10.</p>
 <p><strong>El benchmark de E2 conserva su identidad.</strong> Comprende 16 sistemas y 608 fechas históricas conocidas, con seis semillas por cada una de las trece redes y una trayectoria por clásico determinista. Para E3 esos sistemas son los 16 rivales del candidato, no dieciséis resultados propios de la arquitectura nueva. El mínimo de E3 es diez semillas o el número mayor requerido para potencia de al menos 0,90 por contraste, con potencia conjunta reportada; repetir una trayectoria clásica no crea semillas independientes.</p>
 <p><strong>La documentación hace visibles los límites actuales.</strong> La revisión de literatura mantiene R1 abierta y no transforma búsquedas bloqueadas o metadatos en evidencia de ausencia de antecedentes. La asistencia de IA y la defensa pendiente de R2 están declaradas. R3 requiere una comparación aún no ejecutada frente a toda la familia, con hipótesis y procedimientos válidos; el hecho de contar con una cota o pruebas aprobadas no la acredita. El <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo final</span></a> conserva autoría, checklist y reproducción pendiente.</p>
@@ -505,11 +505,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="17_revision_post_piloto.html"
+       href="apendice_a_plantillas.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Revisión posterior al primer piloto</p>
+        <p class="prev-next-title">Apéndice A Plantillas operativas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

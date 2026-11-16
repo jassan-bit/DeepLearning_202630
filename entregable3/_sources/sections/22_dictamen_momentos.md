@@ -1,10 +1,12 @@
-# 22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos
+# Anexo G. Dictamen de admisibilidad de la cabeza de momentos
+
+Este anexo respalda la decisión de admisibilidad integrada en el [capítulo 6](06_modelo_original.md) y las condiciones de comparación del [capítulo 7](07_diseno_riguroso.md).
 
 **16 de noviembre de 2026. Decisión interna de desarrollo:** conservar la [formulación por momentos](21_propuesta_momentos.md) como adaptación experimental documentada; **no seleccionarla todavía como aporte original de E3 ni iniciar otro piloto en este corte**. La sustantividad no está acreditada. Tampoco se demostró que la receta completa ya esté publicada o carezca de novedad. R1 permanece pendiente, con R2 y R3 sin acreditar.
 
 La base sigue siendo CNN causal → LSTM unidireccional → atención temporal. La cabeza aditiva v2 continúa como referencia predictiva de desarrollo; no se anuncia un ganador frente al Top 10. El [dictamen completo](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/README.md) distingue la decisión técnica de una calificación o aprobación del docente.
 
-## 22.1 Qué aporta la revisión adicional
+## G.1 Qué aporta la revisión adicional
 
 La cota inferior y los scores ya tienen antecedentes atribuidos. La reapertura focal de [ConstraintNet](https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf) confirma que una guarda puede usar regiones suministradas por otra red. Por tanto, aprender los límites no basta como argumento de originalidad. La inferencia sobre nuestra propuesta es que su diferencia debe justificarse por el vínculo conjunto específico entre momentos y media, no por usar una guarda o límites aprendidos.
 
@@ -12,7 +14,7 @@ En [Faithful](https://proceedings.mlr.press/v206/stirn23a/stirn23a.pdf), el comp
 
 El control que faltaba es la **misma cabeza de momentos con MSE sola**, retirando únicamente las pérdidas auxiliares. Una cabeza directa con igual número de parámetros responde otra pregunta y no sustituye ese control.
 
-## 22.2 Dos límites que pueden demostrarse
+## G.2 Dos límites que pueden demostrarse
 
 Con lecturas funcionales arbitrarias, para cualquier `mu>sqrt(A)` se puede elegir `m=(mu²-A)/c`, `q=m²`, obteniendo `L=H=mu`. La región propuesta no amplía el rango de medias puntuales; restringe su compatibilidad con los momentos reportados. Eso no demuestra igualdad de clases de funciones de dos redes finitas ni ausencia de novedad. Su diferencia puede actuar como sesgo inductivo, con efectos que requieren evaluación específica.
 
@@ -29,7 +31,7 @@ La media libre puede acertar conservando los mismos dos reportes y sus scores. S
 
 Son **seis actualizaciones escalares independientes de SGD**, con contexto fijo, no un entrenamiento neuronal ni una simulación del Adam futuro. Los [resultados descargables](../_static/e3_dictamen_momentos_20261116/counterexamples.json) y la [derivación](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/math_review.md) documentan las hipótesis, derivadas y tolerancias. Ningún ejemplo invalida el teorema de consistencia condicional existente ni explica causalmente el resultado del piloto de Bitcoin.
 
-## 22.3 Cómo tendría que aislarse una contribución
+## G.3 Cómo tendría que aislarse una contribución
 
 | Comparación futura | Qué resolvería |
 |---|---|
@@ -40,7 +42,7 @@ Son **seis actualizaciones escalares independientes de SGD**, con contexto fijo,
 
 Igualar parámetros no prueba igual expresividad, coste o trayectoria. No se implementaron estos controles ni se reajustan los rivales congelados de E2. La evaluación confirmatoria, todavía pendiente, conserva la familia completa, potencia, conjuntos adicionales y el margen heredado.
 
-## 22.4 Revisión externa preparada, sin aval simulado
+## G.4 Revisión externa preparada, sin aval simulado
 
 La extensión realizó ocho consultas web —seis EN y dos ES— y añadió lecturas focales de dos antecedentes, con [registro exacto](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/search_extension.json). Una ruta por citas terminó en lectura primaria y otra quedó incompleta por falta de acceso. No identificar la composición exacta no prueba su ausencia. Las consultas web no completan las búsquedas nativas exigidas por §6.3.
 

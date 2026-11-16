@@ -1,4 +1,6 @@
-# Piloto v2 listo para Colab: misma CNN-LSTM con atención
+# Anexo D. Ejecución en Colab del piloto v2
+
+Este anexo conserva las instrucciones y condiciones del piloto ya completado. Los capítulos [6](06_modelo_original.md) y [7](07_diseno_riguroso.md) integran su estado; el [anexo E](20_cierre_v2.md) contiene los resultados y el cierre. Las instrucciones no constituyen una nueva ejecución pendiente.
 
 La [ficha anterior](18_ficha_cnn_lstm_atencion_v2.md) ya tiene una implementación
 de desarrollo y un

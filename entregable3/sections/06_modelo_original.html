@@ -227,18 +227,15 @@
 <li class="toctree-l1"><a class="reference internal" href="15_integridad_academica.html">15 Integridad académica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_conclusiones.html">16 Conclusiones</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Evidencia posterior al primer piloto</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Revisión posterior al primer piloto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Ficha de diseño: CNN-LSTM-atención v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Piloto v2 listo para Colab: misma CNN-LSTM con atención</a></li>
-<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Cierre de v2: regímenes, originalidad y selección</a></li>
-<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">21 Propuesta de cabeza de momentos: formulación y admisibilidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">22 Dictamen de admisibilidad: qué sostiene la cabeza de momentos</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="apendice_a_plantillas.html">Apéndice A Plantillas operativas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_revision_post_piloto.html">Anexo B. Revisión del primer piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html">Anexo C. Ficha de diseño v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_piloto_innovacion_v2.html">Anexo D. Ejecución del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_cierre_v2.html">Anexo E. Cierre y errores del piloto v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_propuesta_momentos.html">Anexo F. Formulación de la cabeza de momentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_dictamen_momentos.html">Anexo G. Dictamen y revisión externa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias_sugeridas.html">Referencias metodológicas sugeridas por la guía</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
@@ -396,12 +393,13 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-originalidad-y-admisibilidad">6.2 Condiciones de originalidad y admisibilidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-de-literatura-y-evidencia-de-novedad">6.3 Revisión de literatura y evidencia de novedad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-desarrollo">6.4 Ciclo de desarrollo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-y-formulacion-del-candidato">6.5 Implementación y formulación del candidato</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primer-mecanismo-implementado-formulacion-y-reproduccion">6.5 Primer mecanismo implementado: formulación y reproducción</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-y-limites-de-exportacion">Pruebas y límites de exportación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-y-reproduccion">Uso y reproducción</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validez-del-modelo-y-regla-de-evaluacion">6.6 Validez del modelo y regla de evaluación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente">6.7 Propuesta posterior: cabeza de momentos y dictamen vigente</a></li>
 </ul>
             </nav>
         </div>
@@ -415,14 +413,14 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-c-el-modelo-original">
 <h1>6 Bloque C El modelo original<a class="headerlink" href="#bloque-c-el-modelo-original" title="Link to this heading">#</a></h1>
-<p>:::{note}
-<strong>Corte histórico del primer diseño.</strong> Las formulaciones y estados de este capítulo corresponden al candidato de atención previo a los pilotos. Para el estado vigente, véanse el <a class="reference internal" href="20_cierre_v2.html"><span class="std std-doc">cierre v2</span></a> y la <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">propuesta de cabeza de momentos</span></a>. El control aditivo conserva la referencia predictiva; el aporte original sigue pendiente.
-:::</p>
-<p>El trabajo actual es un <strong>candidato neuronal de desarrollo</strong>. Dispone de formulación, implementación asistida por IA y una propiedad demostrada de la cabeza latente. No se presenta como modelo con novedad o superioridad ya acreditadas.</p>
+<p>La base vigente es <strong>CNN causal → LSTM unidireccional → atención temporal</strong> para BTCUSDT. Los pilotos v1 y v2 ya se ejecutaron en desarrollo. La cabeza aditiva de v2 conserva la mejor RMSE global observada en ese piloto, <strong>0,0031446147843954175</strong>, como referencia predictiva; ese resultado no acredita originalidad ni superioridad frente al Top 10. La receta half-t5 con MSE y NLL no superó la heurística de continuación.</p>
+<p>La cabeza de momentos es una <strong>propuesta matemática no implementada como red y no seleccionada todavía como aporte original</strong>. Su dictamen interno conserva la adaptación para revisión, sin iniciar otro piloto. R1, la comprensión y defensa académica de R2 y la superioridad R3 siguen sin acreditarse. Este capítulo integra el estado vigente; la sección 6.5 conserva expresamente la formulación del primer mecanismo para trazabilidad.</p>
+<p>Las evidencias completas se encuentran en los anexos: <a class="reference internal" href="17_revision_post_piloto.html"><span class="std std-doc">revisión del piloto v1, B</span></a>, <a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html"><span class="std std-doc">ficha v2, C</span></a>, <a class="reference internal" href="19_piloto_innovacion_v2.html"><span class="std std-doc">ejecución v2, D</span></a>, <a class="reference internal" href="20_cierre_v2.html"><span class="std std-doc">cierre v2, E</span></a>, <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">formulación por momentos, F</span></a> y <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">dictamen de admisibilidad, G</span></a>.</p>
 <section id="relacion-con-el-paper-guia-de-e2">
 <h2>6.1 Relación con el paper guía de E2<a class="headerlink" href="#relacion-con-el-paper-guia-de-e2" title="Link to this heading">#</a></h2>
-<p>La continuidad elegida es CNN causal → LSTM unidireccional → atención temporal para BTCUSDT, D7×5 y horizonte de un día. El mecanismo candidato penaliza discordancia respecto a un promedio causal y acota radialmente los valores agregados.</p>
-<p>La limitación de calendario de TimeMixer medida en ETTh1 no se traslada automáticamente al adaptador BTC sin esos marcadores. El estrés artificial de E2 motiva investigar sensibilidad, pero puede romper coherencia OHLCV y no prueba que la regla nueva resuelva un defecto económico real. La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7.1</span></a> relaciona esa evidencia con una hipótesis falsable y sus límites.</p>
+<p>La continuidad elegida conserva D7×5 OHLCV, horizonte de un día y objetivo <span class="math notranslate nohighlight">\(\sigma_7\)</span> poblacional sin anualizar. El primer mecanismo v1 añadió penalización de discordancia respecto a un promedio causal y saturación radial de los valores agregados. Ese diseño tiene formulación, código y una propiedad latente demostrada, pero su piloto no mejoró al control M00.</p>
+<p>El paper guía sigue siendo TimeMixer. Su limitación de calendario medida en ETTh1 no se traslada automáticamente al adaptador BTC sin esos marcadores. El estrés artificial de E2 motivó investigar sensibilidad, pero puede romper coherencia OHLCV y no prueba que la regla nueva resuelva un defecto económico real. La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a> distingue esa hipótesis inicial de los resultados posteriores y del diseño aún pendiente de confirmación.</p>
+<p>La propuesta por momentos de la sección 6.7 estudia otra limitación: una escala paramétrica compartida puede tener óptimos distintos para la NLL auxiliar y para la media de la transformación objetivo bajo mala especificación. Los contraejemplos artificiales demuestran esa posibilidad, sin atribuirla como causa ya identificada del resultado de BTC ni como un defecto nuevo de TimeMixer.</p>
 </section>
 <section id="condiciones-de-originalidad-y-admisibilidad">
 <h2>6.2 Condiciones de originalidad y admisibilidad<a class="headerlink" href="#condiciones-de-originalidad-y-admisibilidad" title="Link to this heading">#</a></h2>
@@ -435,26 +433,26 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>R1 Novedad para el fenómeno y la tarea</p></td>
-<td><p>Regla exacta y matriz de siete trabajos cercanos.</p></td>
-<td><p>Pendiente de búsqueda efectiva, equivalencias, originales adicionales y revisión humana externa.</p></td>
+<td><p>Revisiones focales del mecanismo de atención y de la cabeza de momentos; sus componentes conocidos se atribuyen. El dictamen no selecciona todavía la adaptación por momentos como aporte original.</p></td>
+<td><p>Pendientes la revisión bibliográfica completa, la diferencia sustantiva y la verificación humana externa; no se declara novedad ni ausencia de novedad demostradas.</p></td>
 </tr>
 <tr class="row-odd"><td><p>R2 Núcleo algorítmico propio y defendible</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code>, escrito desde la formulación con primitivas PyTorch; pruebas y asistencia de IA declarada.</p></td>
-<td><p>La existencia del archivo no acredita por sí sola comprensión, autoría responsable y defensa del estudiante.</p></td>
+<td><p>Código del primer mecanismo y ejecutores v1/v2 desde la formulación, pruebas y asistencia de IA declarada. La cabeza neuronal de momentos aún no está implementada.</p></td>
+<td><p>El software no acredita por sí solo comprensión, autoría responsable y defensa del estudiante; esa verificación humana sigue pendiente.</p></td>
 </tr>
 <tr class="row-even"><td><p>R3 Superioridad estadísticamente verificada</p></td>
-<td><p>No hay evaluación confirmatoria del candidato sobre mercado.</p></td>
-<td><p>Pendiente de campaña justa, potencia, familia completa, pruebas y conjuntos adicionales.</p></td>
+<td><p>Dos pilotos de desarrollo, con cinco recetas neuronales entrenadas, y auditorías posteriores; sin campaña confirmatoria completa del candidato.</p></td>
+<td><p>Pendientes comparación justa, potencia, familia completa, pruebas y conjuntos adicionales. La mejor RMSE de un piloto no satisface R3.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>CNN, LSTM, atención por contenido, consultas aprendidas y saturación no se reclaman como invenciones. La contribución candidata debe diferir sustantivamente en mecanismo, pérdida o entrenamiento; cambiar datos o hiperparámetros no basta. Las tres ablaciones funcionales no se convierten en tres innovaciones.</p>
+<p>CNN, LSTM, atención por contenido, consultas aprendidas y saturación no se reclaman como invenciones. Tampoco se reclaman nuevas las desigualdades de momentos, los scores de media o las guardas de salida. La contribución candidata debe diferir sustantivamente en mecanismo, pérdida o entrenamiento; cambiar datos o hiperparámetros no basta. Las variantes funcionales y los resultados de desarrollo se conservan sin convertirlos en innovaciones acreditadas.</p>
 </section>
 <section id="revision-de-literatura-y-evidencia-de-novedad">
 <h2>6.3 Revisión de literatura y evidencia de novedad<a class="headerlink" href="#revision-de-literatura-y-evidencia-de-novedad" title="Link to this heading">#</a></h2>
-<p>Se examinaron focalmente los originales de <a class="reference external" href="https://proceedings.mlr.press/v139/kim21i.html">Kim, Papamakarios y Mnih (2021)</a> y <a class="reference external" href="https://proceedings.mlr.press/v139/dasoulas21a.html">Dasoulas, Scaman y Virmaux (2021)</a>. Ambos son antecedentes directos de atención y propiedades Lipschitz. Una consulta aprendida y una cota, por separado, ya tienen antecedentes.</p>
-<p>Las seis cadenas bilingües generaron 18 solicitudes a OpenAlex, Crossref y arXiv. <strong>Las 18 fueron denegadas por la política de red antes de ejecutar las búsquedas.</strong> El número de resultados es desconocido, no cero. Las ocho consultas GitHub y el examen de tres exportaciones heredadas no sustituyen la búsqueda exigida en tres bases. Tampoco se presenta un subagente de IA como la persona externa requerida.</p>
+<p><strong>Antecedentes del primer mecanismo de atención.</strong> Se examinaron focalmente los originales de <a class="reference external" href="https://proceedings.mlr.press/v139/kim21i.html">Kim, Papamakarios y Mnih (2021)</a> y <a class="reference external" href="https://proceedings.mlr.press/v139/dasoulas21a.html">Dasoulas, Scaman y Virmaux (2021)</a>. Ambos son antecedentes directos de atención y propiedades Lipschitz. Una consulta aprendida y una cota, por separado, ya tienen antecedentes. La matriz siguiente conserva el alcance histórico de ese primer corte.</p>
+<p>En ese corte, las seis cadenas bilingües generaron 18 solicitudes a OpenAlex, Crossref y arXiv. <strong>Las 18 fueron denegadas por la política de red antes de ejecutar las búsquedas.</strong> El número de resultados es desconocido, no cero. Las ocho consultas GitHub y el examen de tres exportaciones heredadas no sustituyeron la búsqueda exigida en tres bases. Tampoco se presenta un subagente de IA como la persona externa requerida.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Trabajo cercano</p></th>
@@ -487,6 +485,30 @@
 </table>
 </div>
 <p>La saturación <span class="math notranslate nohighlight">\(T_B\)</span> es también el gradiente de <span class="math notranslate nohighlight">\(\phi_B(h)=B^2(\sqrt{1+\|h\|^2/B^2}-1)\)</span>, de forma pseudo-Huber radial. Esta identidad impide presentarla aislada como una función inventada aquí. No se atribuye una fuente histórica primaria no verificada. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_bloque_c_20261115/literature">registro completo</a> distingue lecturas nuevas, heredadas y sólo metadatos. <strong>No se emite aún una declaración de novedad.</strong></p>
+<p><strong>Revisión posterior de la cabeza de momentos.</strong> Los <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">anexos F</span></a> y <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">G</span></a> integran los antecedentes y el dictamen específicos de esa adaptación:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fuente y localizador comprobado</p></th>
+<th class="head"><p>Consecuencia para la propuesta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10288939/">Merhav (2023)</a>, §2, ec. (8), ejemplo 2 ec. (15).</p></td>
+<td><p>La cota inferior se especializa de Jensen reponderado; no es una desigualdad inventada aquí.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://arxiv.org/html/0912.0902v2">Gneiting (2011; preprint v2)</a>, §3.1, teorema 3.1 y ec. (20).</p></td>
+<td><p>Los scores de media de forma QLIKE/Bregman tienen antecedentes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf">ConstraintNet, Brosowsky et al. (2021)</a>, pp. 6813–6817, ec. (7) en p. 6815.</p></td>
+<td><p>Una guarda admite restricciones por muestra, incluso de otra red; aprender las fronteras no basta como diferencia sustantiva. La guarda sobre umbral está en p. 6816 y la aplicación a intervalos en p. 6817.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://proceedings.mlr.press/v206/stirn23a/stirn23a.pdf">Faithful, Stirn et al. (2023)</a>, <strong>§2 Methods</strong>, páginas físicas 2–4; ec. (5) y teorema 1 en p. 4.</p></td>
+<td><p>Su garantía de actualizaciones no se hereda por consistencia del riesgo. El control de media sola conserva todos los ancestros de la media, incluidas las lecturas de momentos de nuestra cabeza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las revisiones posteriores registran doce consultas web iniciales y ocho adicionales; no equivalen a búsquedas nativas completas. Los tres intentos API de esa etapa no recibieron respuesta bibliográfica y sus conteos son desconocidos. Siguen pendientes la cobertura exigida en §6.3 de la guía, seguimiento por citas, repetición antes de entrega y verificación humana externa. El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">paquete de revisión del anexo G</span></a> está preparado, sin diligenciar ni firmar. No identificar la composición exacta en una revisión focal no prueba su ausencia.</p>
 </section>
 <section id="ciclo-de-desarrollo">
 <h2>6.4 Ciclo de desarrollo<a class="headerlink" href="#ciclo-de-desarrollo" title="Link to this heading">#</a></h2>
@@ -499,32 +521,37 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Revisión y hueco</p></td>
-<td><p>Antecedentes y limitación exploratoria delimitados.</p></td>
-<td><p>Completar R1 antes de una declaración de novedad.</p></td>
+<td><p>Primer mecanismo de atención y propuesta posterior por momentos, con antecedentes y límites documentados.</p></td>
+<td><p>Completar revisión y verificación externa antes de una declaración de novedad.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Formulación</p></td>
-<td><p>Regla, derivadas, pseudocódigo y cota latente.</p></td>
-<td><p>Comprobar utilidad y límites en desarrollo real.</p></td>
+<td><p>Cota latente del primer módulo y teoría condicional de momentos con sus supuestos; contraejemplos a garantías no demostradas.</p></td>
+<td><p>Justificar una contribución sustantiva y su alcance sin convertir la prueba en promesa de desempeño.</p></td>
 </tr>
-<tr class="row-even"><td><p>Implementación</p></td>
-<td><p>Encoder y cabeza desde primitivas; configuración guardable.</p></td>
-<td><p>Integrar el ejecutor de entrenamiento común sin cambiar los rivales congelados.</p></td>
+<tr class="row-even"><td><p>Implementación y desarrollo</p></td>
+<td><p>M00 y mecanismo completo implementados en v1; tres recetas de salida implementadas en v2. Cinco recetas neuronales entrenadas en mercado entre ambos pilotos.</p></td>
+<td><p>La cabeza de momentos sigue sin implementación neuronal y no se selecciona todavía para otro piloto.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Pruebas</p></td>
-<td><p>35 casos de software sobre datos artificiales.</p></td>
-<td><p>Estas pruebas no sustituyen HPO, ablación de desempeño o comparación de mercado.</p></td>
+<tr class="row-odd"><td><p>Pruebas y auditoría</p></td>
+<td><p><strong>223 pruebas de software</strong> y auditorías reproducibles, con ámbitos explícitos. Las 35 pruebas del primer módulo son un subconjunto histórico.</p></td>
+<td><p>El software y los cálculos artificiales no sustituyen evaluación confirmatoria, autoría defendida o revisión humana.</p></td>
 </tr>
-<tr class="row-even"><td><p>Diseño y confirmación</p></td>
-<td><p>Bitácora y estados abiertos documentados.</p></td>
-<td><p>Fijar datos, presupuesto, piloto, semillas y protocolo antes de los experimentos definitivos.</p></td>
+<tr class="row-even"><td><p>Selección de desarrollo</p></td>
+<td><p>La cabeza aditiva v2 obtiene la menor RMSE global del piloto; la receta half-t5 con auxiliares no supera la heurística prevista.</p></td>
+<td><p>Conservarla como referencia, sin promoverla a aporte original o ganador del Top 10.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Diseño y confirmación</p></td>
+<td><p>Resultados v1/v2 y decisiones posteriores conservados; protocolo confirmatorio aún sin congelar.</p></td>
+<td><p>Cerrar particiones, potencia, familia, presupuesto, semillas y conjuntos adicionales antes de confirmar.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a> desarrolla las decisiones previas a esa confirmación. No se han elegido recetas mediante resultados de los conjuntos adicionales ni se ha generado un tag de preregistro.</p>
+<p>La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a> integra método, pilotos, propiedades y controles. El número de recetas entrenadas es cinco; el <strong><span class="math notranslate nohighlight">\(N_d\)</span> global sigue pendiente de conciliación</strong> de propuestas, parametrizaciones, variantes y ensayos y no se reduce a ese subtotal. Los conjuntos adicionales todavía no se han elegido y no se ha generado un tag de preregistro confirmatorio.</p>
 </section>
-<section id="implementacion-y-formulacion-del-candidato">
-<h2>6.5 Implementación y formulación del candidato<a class="headerlink" href="#implementacion-y-formulacion-del-candidato" title="Link to this heading">#</a></h2>
+<section id="primer-mecanismo-implementado-formulacion-y-reproduccion">
+<h2>6.5 Primer mecanismo implementado: formulación y reproducción<a class="headerlink" href="#primer-mecanismo-implementado-formulacion-y-reproduccion" title="Link to this heading">#</a></h2>
+<p>Esta sección conserva la formulación histórica de penalización y saturación del primer módulo. Sus constantes, conteo de parámetros, pruebas y descargas pertenecen a ese código; no describen una cabeza de momentos ya implementada ni la receta seleccionada por el piloto v2.</p>
 <p>El encoder usa convolución con relleno sólo histórico, activación tanh y LSTM unidireccional. Recibe ventanas ya estandarizadas y produce estados <span class="math notranslate nohighlight">\(H=(h_1,\ldots,h_7)\)</span>. Una matriz fija <span class="math notranslate nohighlight">\(P\)</span>, independiente de <span class="math notranslate nohighlight">\(H\)</span>, calcula promedios causales. La cabeza implementa</p>
 <div class="math notranslate nohighlight">
 \[
@@ -537,10 +564,10 @@ v_j=\frac{Bh_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 f(H)=\operatorname{softplus}\left(w^\top\sum_j a_jv_j+b\right).
 \]</div>
 <p>Los parámetros efectivos satisfacen cotas mediante normalizaciones suaves; no se presume que cualquier peso libre esté acotado sin esa parametrización. La salida es positiva en unidades <span class="math notranslate nohighlight">\(\sigma_7/a_{\rm tr}\)</span> y el pipeline invierte la escala del objetivo fuera del módulo. Los detalles, derivadas y algoritmo completos están en la demostración descargable y en la <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7.3</span></a>.</p>
-<p>La configuración inicial tiene <strong>1.211 parámetros</strong>, ocho canales CNN y doce estados LSTM. B=1, Q=1, W=4, Λ=1 y τmín=0,25 son decisiones iniciales de software, no ganadores de HPO. Las tres variantes funcionales eliminan penalización, saturación o contenido; la base sin ambas modificaciones todavía está pendiente, como explica la sección 7.4.</p>
+<p>La configuración inicial tiene <strong>1.211 parámetros</strong>, ocho canales CNN y doce estados LSTM. B=1, Q=1, W=4, Λ=1 y τmín=0,25 fueron decisiones iniciales de software, no ganadores de HPO. Las tres variantes funcionales eliminan penalización, saturación o contenido. La base M00 sin ambas modificaciones <strong>ya fue implementada y entrenada en v1</strong>; su contraste con el modelo completo se conserva en el <a class="reference internal" href="17_revision_post_piloto.html"><span class="std std-doc">anexo B</span></a>. Esto no completa automáticamente el factorial estadístico de las ablaciones.</p>
 <section id="pruebas-y-limites-de-exportacion">
 <h3>Pruebas y límites de exportación<a class="headerlink" href="#pruebas-y-limites-de-exportacion" title="Link to this heading">#</a></h3>
-<p>Se aprobaron <strong>35 casos pytest</strong>: formas y entradas inválidas, semilla reproducible sin alterar el RNG global, causalidad del encoder, independencia entre muestras, gradientes activos, <code class="docutils literal notranslate"><span class="pre">gradcheck</span></code>, restricciones suaves, ablaciones aisladas y serialización. El sobreajuste diminuto usa ocho ejemplos artificiales y 350 pasos de Adam; no es entrenamiento en Bitcoin.</p>
+<p>El primer módulo aprobó <strong>35 casos pytest</strong>: formas y entradas inválidas, semilla reproducible sin alterar el RNG global, causalidad del encoder, independencia entre muestras, gradientes activos, <code class="docutils literal notranslate"><span class="pre">gradcheck</span></code>, restricciones suaves, ablaciones aisladas y serialización. Este conteo no reemplaza las 223 pruebas del conjunto de software posterior. El sobreajuste diminuto usa ocho ejemplos artificiales y 350 pasos de Adam; no es entrenamiento en Bitcoin.</p>
 <p>La ida y vuelta TorchScript se probó con lotes 1, 3 y 4 y tolerancia declarada. El trazado LSTM produce advertencias de comprobaciones de forma tratadas como constantes: hay que aplicar <code class="docutils literal notranslate"><span class="pre">validate_input</span></code> antes de usar una traza. No se entrega ese ensayo como artefacto final entrenado en mercado.</p>
 <p>La cabeza usa una multiplicación densa por <span class="math notranslate nohighlight">\(P\)</span>: su término dominante es <span class="math notranslate nohighlight">\(O(n^2d)\)</span>, además del encoder. No se declara coste lineal de una implementación de promedio móvil que todavía no se usa. La complejidad asintótica no sustituye FLOPs, memoria y latencias medidos.</p>
 </section>
@@ -558,7 +585,7 @@ python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> <
 python<span class="w"> </span>scripts/e3_verify_original.py<span class="w"> </span>--check
 </pre></div>
 </div>
-<p>El workflow CPU conserva esas comprobaciones. Compartir forma y escala con E2 no acredita la integración en el ejecutor común, que sigue pendiente. El autor deberá comprender y modificar el código y la demostración; la asistencia de IA está declarada en las fuentes y la procedencia.</p>
+<p>El workflow CPU conserva esas comprobaciones. Los ejecutores de desarrollo v1/v2 existen y sus resultados están auditados; eso no acredita una integración confirmatoria completa con todos los rivales de E2. El autor deberá comprender y modificar el código y la demostración; la asistencia de IA está declarada en las fuentes y la procedencia.</p>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../_downloads/0a2b3868216c36b5972338d221117555/original_model.py"><code class="xref download docutils literal notranslate"><span class="pre">Código</span> <span class="pre">del</span> <span class="pre">candidato</span></code></a>.</p></li>
 <li><p><a class="reference download internal" download="" href="../_downloads/32d342810021f6a75421a2eeb3f1e27b/test_original_model.py"><code class="xref download docutils literal notranslate"><span class="pre">Pruebas</span> <span class="pre">del</span> <span class="pre">módulo</span></code></a>.</p></li>
@@ -574,6 +601,32 @@ python<span class="w"> </span>scripts/e3_verify_original.py<span class="w"> </sp
 <h2>6.6 Validez del modelo y regla de evaluación<a class="headerlink" href="#validez-del-modelo-y-regla-de-evaluacion" title="Link to this heading">#</a></h2>
 <p>La guía distingue: si R1 o R2 fallan, tope 3,0; si R1/R2 y la propiedad se acreditan pero no R3, tope 4,0; la ruta al 5,0 exige cumplir la familia completa y los demás requisitos de evaluación. Es una regla condicionada a evidencia y evaluación académica, no una calificación calculada para este avance.</p>
 <p>Aquí las condiciones siguen abiertas. Una demostración de la cabeza y pruebas de software no convierten R1 o R3 en aprobadas ni certifican la defensa académica del autor. Las limitaciones y resultados adversos deberán conservarse.</p>
+</section>
+<section id="propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente">
+<h2>6.7 Propuesta posterior: cabeza de momentos y dictamen vigente<a class="headerlink" href="#propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente" title="Link to this heading">#</a></h2>
+<p>La propuesta conserva el mismo codificador y atención por contenido. Con los seis retornos conocidos al origen, define</p>
+<div class="math notranslate nohighlight">
+\[
+A=\frac17\sum_{i=t-6}^{t-1}(r_i-\bar r_6)^2,\qquad
+U=|r_t-\bar r_6|,\quad V=U^2,\quad
+Y=\sigma_7(t)=\sqrt{A+cV},\quad c=6/49.
+\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">A</span></code> se calcula con historia observable; <code class="docutils literal notranslate"><span class="pre">U,V,V²</span></code> son etiquetas de entrenamiento, nunca entradas disponibles al pronosticar. Tres lecturas escalares del contexto producirían</p>
+<div class="math notranslate nohighlight">
+\[
+m=s_u^2\operatorname{softplus}(a),\qquad
+q=m^2(1+b^2),\qquad \rho=\frac{d^2}{1+d^2},
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+L=\sqrt A+\frac{cm}{\sqrt{A+cq/m}+\sqrt A},\qquad
+H=\sqrt{A+cm},\qquad
+\widehat\mu=L+\rho(H-L).
+\]</div>
+<p>Aquí <code class="docutils literal notranslate"><span class="pre">m,q</span></code> representan momentos de <code class="docutils literal notranslate"><span class="pre">V</span></code>; este <code class="docutils literal notranslate"><span class="pre">q</span></code> no es la consulta de atención de la sección 6.5. Con momentos verdaderos y positivos, la región realizable de la media es <code class="docutils literal notranslate"><span class="pre">[L,H)</span></code> cuando <code class="docutils literal notranslate"><span class="pre">q&gt;m²</span></code>; <code class="docutils literal notranslate"><span class="pre">L</span></code> se alcanza y <code class="docutils literal notranslate"><span class="pre">H</span></code> es supremo no alcanzado. Si <code class="docutils literal notranslate"><span class="pre">q=m²</span></code>, ambas cotas coinciden. Con momentos estimados, la región calculada puede no contener la media verdadera: no es un intervalo de predicción ni garantiza menor MSE.</p>
+<p>El criterio propuesto suma MSE de <span class="math notranslate nohighlight">\(Y\)</span> y scores conocidos de media para <code class="docutils literal notranslate"><span class="pre">V,V²</span></code>, con escalas calculadas sólo en ajuste. La demostración de consistencia condicional exige <code class="docutils literal notranslate"><span class="pre">E[V|X]&gt;0</span></code>, <code class="docutils literal notranslate"><span class="pre">E[V²|X]&lt;∞</span></code> y una clase que represente conjuntamente los valores verdaderos; no demuestra convergencia de esta red finita, fidelidad de trayectoria o superioridad predictiva. El caso verdadero de momentos nulos queda fuera del teorema logarítmico. La formulación, bordes y verificación artificial completos están en el <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">anexo F</span></a>.</p>
+<p>El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">anexo G</span></a> demuestra dos límites: momentos estimados incorrectos pueden excluir la media verdadera, y los auxiliares pueden empeorar un paso escalar SGD frente a la misma cabeza con MSE sola. Son cálculos artificiales, no una simulación del Adam futuro ni evidencia de fracaso en BTC. El control faltante es <strong>la misma cabeza por momentos sin pérdidas auxiliares</strong>; una media directa con igual número de parámetros no sustituye ese contraste.</p>
+<p><strong>Dictamen interno vigente:</strong> conservar la formulación como adaptación experimental documentada, sin seleccionarla todavía como aporte original ni iniciar otro piloto en este corte. La revisión sustantiva y humana sigue pendiente; no se afirma que la composición completa ya esté publicada ni que se haya demostrado ausencia de novedad. La cabeza aditiva v2 permanece como referencia de desarrollo. La propuesta por momentos, de 1236 parámetros por conteo analítico, sigue sin implementación neuronal; no constituye una sexta receta entrenada.</p>
 </section>
 </section>
 
@@ -647,12 +700,13 @@ python<span class="w"> </span>scripts/e3_verify_original.py<span class="w"> </sp
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-originalidad-y-admisibilidad">6.2 Condiciones de originalidad y admisibilidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-de-literatura-y-evidencia-de-novedad">6.3 Revisión de literatura y evidencia de novedad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclo-de-desarrollo">6.4 Ciclo de desarrollo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-y-formulacion-del-candidato">6.5 Implementación y formulación del candidato</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primer-mecanismo-implementado-formulacion-y-reproduccion">6.5 Primer mecanismo implementado: formulación y reproducción</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-y-limites-de-exportacion">Pruebas y límites de exportación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-y-reproduccion">Uso y reproducción</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validez-del-modelo-y-regla-de-evaluacion">6.6 Validez del modelo y regla de evaluación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente">6.7 Propuesta posterior: cabeza de momentos y dictamen vigente</a></li>
 </ul>
   </nav></div>
 
