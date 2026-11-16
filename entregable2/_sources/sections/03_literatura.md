@@ -2,13 +2,15 @@
 
 **Lectura vigente.** La revisión amplía E1 y sustenta el catálogo de **diez modelos, cuatro familias y nueve fuentes arquitectónicas**; FCN y ResNet comparten estudio. El flujo del **corpus recibido** está reconciliado: **9.559 grupos cribados, 42 estudios aplicados únicos, 120 evaluaciones primarias focales o reutilizadas y cero pendientes operativos**. Hay 174 informes no recuperados y límites de cobertura de las búsquedas. El [expediente de elegibilidad y selección](62_cierre_literatura_focal.md) contiene los dictámenes detallados; este capítulo los ordena conforme a §§3.1–3.4 de la guía.
 
+**Cierre del componente Scopus, 16/11/2026:** por decisión expresa del autor se congela la exportación original de **7.500 registros y 7.500 EID únicos** que sustenta la revisión vigente. La recuperación de registros adicionales queda cerrada operativamente. Los 374 resultados históricos no recibidos se conservan como límite de cobertura, sin contarlos como exclusiones o registros revisados. Los reenvíos posteriores tienen identidad propia y no reemplazan esta cohorte. [Decisión y alcance](../_static/e2_literature_scope_7500_20261116/scope_decision.json) · [verificación independiente descargable](../_static/e2_literature_scope_7500_20261116/cierre_scopus_7500.zip).
+
 El {download}`índice de evidencias vigente <../_static/e2_literature_current_v1/README.md>`, la [lista de cotejo de 41 requisitos](../_static/e2_literature_current_v1/guide_checklist.csv), la [trazabilidad requisito–evidencia](../_static/e2_literature_current_v1/decision_traceability.csv) y el [manifiesto](../_static/e2_literature_current_v1/manifest.json) permiten revisar el alcance. Los resultados externos se mantienen separados del [benchmark E2 completado](06_benchmark_final.md): dieciséis sistemas, 81 predictores congelados y 608 fechas comunes. Esta consolidación documental no cambia sus resultados ni atribuye retrospectivamente a los puntajes bibliográficos la selección experimental anterior.
 
 ## 3.1 Estrategia de búsqueda y trazabilidad
 
 ### 3.1.1 Cadenas aportadas y procedencia
 
-Las cadenas originales se recuperaron del historial de GitHub y de los recibos; no faltan por volver a solicitarlas. Se conservan operadores y campos exactos. **Q1 · Aplicación, WoS:**
+Las dos cadenas originales de **WoS** se recuperaron del historial de GitHub y de los recibos, conservando operadores y campos exactos. La cadena nativa completa de Scopus no quedó acreditada en su CSV; ese límite se declara en el cierre de alcance de 7.500 y no se sustituye por una adaptación de las cadenas WoS. **Q1 · Aplicación, WoS:**
 
 ```text
 TS=((bitcoin OR ethereum OR cryptocurrenc* OR cryptoasset*)
@@ -46,7 +48,7 @@ Se recibieron exportaciones nativas de **WoS y Scopus**; IEEE Xplore aporta una 
 
 Los reenvíos con el mismo SHA no se suman como búsquedas nuevas. Las rondas dirigidas de 1.104 registros Scopus aplicados y de nueve fuentes actuales aportan material por identidad; no se añaden sin deduplicación a los 9.559 ni se consideran recuperación de los 374 ausentes. Los seis grupos exclusivamente dirigidos quedan fuera del denominador recibido. [Conciliación por ronda](../_static/e2_literature_final_audit_20261114/rounds.csv) y [enlaces conservados](../_static/e2_literature_final_audit_20261114/cross_round_link_ledger.csv).
 
-La cobertura histórica permanece limitada por **374 resultados Scopus mostrados pero no recibidos** y por totales/rangos WoS incompletos. Son límites de cobertura, no exclusiones científicas. El flujo del material recibido se cierra con disposiciones explícitas; no se afirma exhaustividad global ni se exige inventar un total nativo desconocido.
+El alcance Scopus se cierra con los **7.500 registros originales recibidos y analizados**. La diferencia histórica de 374 frente al total mostrado y los totales/rangos WoS incompletos se documentan como límites de cobertura; no se exige otra exportación Scopus para este cierre. El flujo multibase del material recibido mantiene sus disposiciones y 9.559 grupos. El cierre no acredita exhaustividad global ni convierte registros no recibidos en exclusiones científicas.
 
 ### 3.1.3 Inclusión, exclusión y evaluación de calidad
 
@@ -555,7 +557,7 @@ El [benchmark observado](06_benchmark_final.md), las [comparaciones posteriores]
 | Lectura y acceso | Cuatro originales y dos contextos adjudicados; 174 informes no recuperados siguen con elegibilidad desconocida. |
 | Selección de diez y diversidad | Diez sistemas, nueve estudios arquitectónicos, cuatro familias y seis comparadores adicionales; argumentos y scores reproducibles con alcance condicional. |
 | Análisis individual y comparación | Diez fichas, diagramas/formulación, métricas/localizadores, límites de reporte y costes externos separados de los propios de E2. |
-| Cobertura y prioridad global | Persisten 374 Scopus ausentes, totales/rangos WoS incompletos y P global no identificado; no se afirma exhaustividad ni Top 10 óptimo mundial. |
+| Cobertura y prioridad global | **Componente Scopus cerrado operativamente con 7.500 EID**. Se conservan el desfase histórico de 374, totales/rangos WoS incompletos y P global no identificado como límites; no se afirma exhaustividad ni Top 10 óptimo mundial. |
 | Búsqueda transversal | Tres consultas nativas ejecutadas y cuatro mecanismos documentados; recuperación parcial de resultados, sin unión/cribado completo de aquella ronda. |
 | Gap y RQ | Brecha falsable dentro de nueve fuentes, conectada con RQ1–RQ3 y sin superioridad inferida por ausencia de literatura. |
 

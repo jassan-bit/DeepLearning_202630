@@ -2,7 +2,16 @@
 
 > **Ubicación:** complemento del [capítulo 3](03_literatura.md). Identificador documental anterior: **§62**; [ver concordancia](concordancia_guia.md).
 
-**Estado documental vigente.** El **flujo tipo PRISMA del corpus recibido queda reconciliado**: los **9.559 grupos** tienen cribado y disposición final, con **42 estudios aplicados únicos**, **120 evaluaciones primarias focales o reutilizadas** y **cero pendientes operativos**. Se documentan **174 registros cuyo informe no se recuperó**, con elegibilidad desconocida. La cobertura de las búsquedas históricas permanece limitada: faltan 374 registros Scopus mostrados y no se conocen todos los totales/rangos de WoS. El cierre del flujo recibido no acredita exhaustividad de las bases.
+**Estado documental vigente.** El **flujo tipo PRISMA del corpus recibido queda reconciliado**: los **9.559 grupos** tienen cribado y disposición final, con **42 estudios aplicados únicos**, **120 evaluaciones primarias focales o reutilizadas** y **cero pendientes operativos**. Se documentan **174 registros cuyo informe no se recuperó**, con elegibilidad desconocida. El componente Scopus se cierra con 7.500 registros originales; el desfase histórico de 374 y los totales/rangos WoS no confirmados quedan como límites de cobertura. El cierre del flujo recibido no acredita exhaustividad de las bases.
+
+(e2-cierre-scopus-7500)=
+## Cierre del alcance Scopus con 7.500 registros
+
+El 16/11/2026 el autor decidió finalizar la recuperación con los **7.500 registros y EID únicos del CSV original**, cuya huella SHA-256 es `387f673a2146902ce12888ab3d662c095abc33d2cf5b54a168e9e2a12099f7de`. Es la cohorte que ya sustenta el cribado vigente; se conservan sus citas y metadatos de ese corte. Esta decisión posterior delimita el alcance, sin atribuirle preregistro ni justificar selección de estudios por los resultados del benchmark.
+
+**No se requieren más exportaciones Scopus para completar este cierre operativo.** Los 374 resultados mostrados históricamente y no recibidos quedan documentados como limitación. No se declaran recuperados, excluidos por elegibilidad o revisados. El total posterior de 7.936 corresponde a otro corte; los reenvíos posteriores, incluidos los 64 EID distintos de la cohorte original, no se incorporan silenciosamente como material ya cribado.
+
+La decisión conserva el corpus multibase de **9.559 grupos**, sus **42 estudios aplicados** y **174 informes no recuperados**, sin cambiar PRISMA, el catálogo de modelos, A2 o los resultados inferenciales. Los límites de la cadena Scopus exacta y de totales/rangos WoS permanecen descritos. [Decisión fechada](../_static/e2_literature_scope_7500_20261116/scope_decision.json) · [estado actual](../_static/e2_literature_scope_7500_20261116/closure_state.json) · [inventario de 7.500 registros](../_static/e2_literature_scope_7500_20261116/inventory_7500.csv) · [ZIP independiente](../_static/e2_literature_scope_7500_20261116/cierre_scopus_7500.zip).
 
 ## Flujo del corpus recibido
 
@@ -155,7 +164,7 @@ La afirmación de gap es refutable y acotada: **en las nueve fuentes que sustent
 
 ## Búsquedas recuperadas y límite del flujo global
 
-**Las cadenas originales sí estaban guardadas en GitHub.** El [primer commit de literatura E2](https://github.com/jassan-bit/DeepLearning_202630/blob/f8fbbe6af3e91202f2eb6971d60102624ef38446/book_e2/sections/03_literatura.md) conserva WoS Q1/Q2 completas, los lotes de **302/500/500 registros** y Scopus **7.500 recibidos frente a 7.874 mostrados**. No es necesario pedir esas cadenas otra vez. El [ledger de consultas](../_static/e2_literature_closure_final/search_history/git_query_history_ledger.csv) enlaza consulta, commit, ruta y cobertura conocida; las cuatro consultas arXiv también se recuperaron.
+**Las dos cadenas originales WoS sí estaban guardadas en GitHub.** El [primer commit de literatura E2](https://github.com/jassan-bit/DeepLearning_202630/blob/f8fbbe6af3e91202f2eb6971d60102624ef38446/book_e2/sections/03_literatura.md) conserva WoS Q1/Q2 completas, los lotes de **302/500/500 registros** y Scopus **7.500 recibidos frente a 7.874 mostrados**. La cadena Scopus exacta no quedó recuperada; la hipótesis de correspondencia con Q2 no la sustituye. El [ledger de consultas](../_static/e2_literature_closure_final/search_history/git_query_history_ledger.csv) enlaza consulta, commit, ruta y cobertura conocida; las cuatro consultas arXiv también se recuperaron.
 
 El expediente inicial ya decía que los originales se mantenían **fuera de los archivos públicos**, que la correspondencia consulta–lote/rangos no estaba confirmada y que faltaban **374 registros de Scopus**. La recuperación de la historia y de 52 referencias remotas confirma ese antecedente; la hora de commit no se convierte en hora de ejecución de consulta. La {download}`cadena de evidencia histórica <../_static/e2_literature_closure_final/search_history/GIT_HISTORY.md>` y el inventario de paquetes distinguen lo encontrado de las copias privadas no recuperadas.
 
@@ -182,7 +191,7 @@ python scripts/verify_e2_prisma_bundle.py references/literature_e2/prisma_receiv
 
 La recuperación de material privado es reproducible con `scripts/restore_e2_literature_materials.py`; la agregación de dictámenes usa `scripts/build_e2_prisma_bundle.py`. La clasificación semántica está registrada como revisión asistida por IA, no como resultado de reglas deterministas ni doble revisión humana. Los cuerpos de las fuentes no se distribuyen en el repositorio público.
 
-Permanecen **374 registros Scopus mostrados pero no recibidos** y la correspondencia incompleta entre consultas, totales y rangos WoS. Son desviaciones de cobertura documentadas. Una recuperación posterior produciría otra versión del flujo; no se modifica el corte histórico para fingir exhaustividad. Se conservan el alcance retrospectivo del calendario heredado y la limitación de potencia del benchmark. Las trece pruebas de δg en CPU ya están ejecutadas, con dos tolerancias condicionales y sin acreditar adecuación conjunta en A100; [§65](65_cierre_cientifico_real.md) enlaza las nuevas comparaciones. La recuperación bibliográfica no ejecutó ajustes de mercado ni alteró A2.
+El cierre actual fija **7.500 registros Scopus originales** y finaliza su tarea de recuperación. Los **374 resultados históricos no recibidos** y la correspondencia incompleta de consultas, totales y rangos WoS se conservan como límites declarados. Cualquier ampliación futura sería otra versión opcional del flujo; no se modifica el corte histórico para afirmar exhaustividad. Se conservan el alcance retrospectivo del calendario heredado y la limitación de potencia del benchmark. Las trece pruebas de δg en CPU ya están ejecutadas, con dos tolerancias condicionales y sin acreditar adecuación conjunta en A100; [§65](65_cierre_cientifico_real.md) enlaza las nuevas comparaciones. Este cierre documental no ejecuta ajustes de mercado ni altera A2.
 
 ## Antecedentes conservados
 
