@@ -1,0 +1,31 @@
+{
+  "registered_at_utc": "2026-11-16T01:14:47.507185+00:00",
+  "spec_path": "book_e2/_static/e2_scientific_closure_20261116/controls/specification.json",
+  "spec_sha256": "0fa388b003b2813ec2ee445e15e8a5346bd77b9952268c8514e3c4422b382547",
+  "controller_sha256": "57b4bc23b47be60c44799a196e52b7510ce87f47e82f9cea52ae50c870e374ca",
+  "adapter_sha256": "c9b1ae64ea5377d647ca1d438a050ad16fe10a6b1248ccfaa156a71fc97b023a",
+  "models_in_fixed_order": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32"
+  ],
+  "completed_controls_to_reuse": [
+    {
+      "model": "FCN-1D",
+      "result_sha256": "b31f964cc92ca43136bea56bad1f4a07423024c3272d1f7732d76908ddb28118"
+    }
+  ],
+  "scope": "Execute every remaining registered fixed-seed control; no score-based exclusion, HPO or recipe changes",
+  "partial_attempt_policy": "A previous request without a verified completion blocks implicit retries",
+  "new_blind_test_or_original_primary_change": false
+}

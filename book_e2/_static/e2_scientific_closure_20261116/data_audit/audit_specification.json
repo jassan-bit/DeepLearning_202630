@@ -1,0 +1,75 @@
+{
+  "created_at_utc": "2026-11-16T01:02:54.841434+00:00",
+  "version": "e2-current-data-closure-v1",
+  "design_role": "post-benchmark corrective data verification",
+  "prior_results_known": true,
+  "historical_preregistration_claimed": false,
+  "cohorts": {
+    "training": [
+      "2023-01-01",
+      "2024-10-31",
+      655
+    ],
+    "calibration": [
+      "2024-11-08",
+      "2024-12-30",
+      53
+    ],
+    "evaluation": [
+      "2025-01-01",
+      "2026-08-31",
+      608
+    ]
+  },
+  "contract": {
+    "D": 7,
+    "features": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "target_return_count": 7,
+    "target_close_count": 8,
+    "ddof": 0,
+    "horizon_days": 1,
+    "annualized": false,
+    "future_or_current_outcome_features_allowed": false
+  },
+  "criteria": {
+    "target_rtol": 1e-09,
+    "target_atol": 1e-13,
+    "scaler_numeric_absolute_tolerance": 1e-12,
+    "near_RMS_train_standardized_threshold": 0.01,
+    "near_threshold_source": "book_e2/_static/eda_decisions/nearest_window_summary.csv",
+    "near_alert_policy": "report and review; never remove rows or infer leakage automatically",
+    "calibration_test_shared_history": "six target closes and five D7 input bars are legitimate past history"
+  },
+  "source_policy": "Exact pinned development derivatives and original20 hash-pinned evaluation archives/cache; no future data, fitted models or new prediction calls.",
+  "status_definitions": {
+    "PASS": "criterion verified for the declared actual data/code scope",
+    "PARTIAL": "missing evidence or review needed, not a demonstrated failure",
+    "FAIL": "an explicit data/identity/causality criterion failed",
+    "NA": "the condition does not apply to this continuous nonhuman target"
+  },
+  "permitted_operations": [
+    "raw download/hash verification",
+    "daily aggregation",
+    "target reconstruction",
+    "causal window/scaler reconstruction",
+    "exact fingerprints",
+    "fixed-threshold neighbors",
+    "read-only JSON identity comparison",
+    "actual-data metamorphic preprocessing checks"
+  ],
+  "prohibited_operations": [
+    "model training",
+    "hyperparameter selection",
+    "model inference",
+    "performance rescoring",
+    "bootstrap",
+    "hypothesis tests",
+    "changing frozen A2"
+  ]
+}

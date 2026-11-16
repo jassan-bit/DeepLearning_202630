@@ -1,0 +1,469 @@
+{
+  "protocol_id": "e2-reduced-delivery-v1",
+  "schema_version": 1,
+  "implementation_version": "e2-reduced-protocol-v1",
+  "parent_source_commit": "52ea623fd76ceb1685cc44891316b48be3552f65",
+  "delivery_date_local": "2026-11-12",
+  "display_timezone": "America/Bogota",
+  "scope": "Prospective reduced continuation; prior data and results are known and disclosed",
+  "systems": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA"
+  ],
+  "neural_systems": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32"
+  ],
+  "contract": {
+    "input_shape": [
+      7,
+      5
+    ],
+    "horizon_days": 1,
+    "target": "population sigma7 of daily Close log returns; ddof0; unannualized",
+    "primary_metric": "mean_of_individual_seed_RMSE_original_units",
+    "delta": 0.00025772842664981106,
+    "target_scaling": "training mean only; invert before scoring",
+    "embargo_days": 7
+  },
+  "hpo": {
+    "configuration_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06"
+    ],
+    "parent_trial_indices": [
+      5,
+      7,
+      8,
+      9,
+      10,
+      15
+    ],
+    "configuration_rule": "same six parent indices chosen from hyperparameter metadata only: batch16/32/64 and zero/positive WD coverage, then max-min normalized logLR span, sum of spans, and lexicographic tie; no outcome-based choice",
+    "identical_numeric_optimizer_tuples_across_models": false,
+    "seed_ids": [
+      271201
+    ],
+    "fold_origins": [
+      "2024-01-01",
+      "2024-07-01",
+      "2024-10-01"
+    ],
+    "folds": [
+      {
+        "fold_origin": "2024-01-01",
+        "inner_train_label_end": "2023-09-25",
+        "inner_validation_start": "2023-10-03",
+        "inner_validation_end": "2023-12-24",
+        "embargo_days": 7,
+        "validation_calendar_days": 83,
+        "role": "internal_HPO_validation_not_final_test"
+      },
+      {
+        "fold_origin": "2024-07-01",
+        "inner_train_label_end": "2024-03-25",
+        "inner_validation_start": "2024-04-02",
+        "inner_validation_end": "2024-06-23",
+        "embargo_days": 7,
+        "validation_calendar_days": 83,
+        "role": "internal_HPO_validation_not_final_test"
+      },
+      {
+        "fold_origin": "2024-10-01",
+        "inner_train_label_end": "2024-06-25",
+        "inner_validation_start": "2024-07-03",
+        "inner_validation_end": "2024-09-23",
+        "embargo_days": 7,
+        "validation_calendar_days": 83,
+        "role": "internal_HPO_validation_not_final_test"
+      }
+    ],
+    "logical_fit_upper_bound_before_reuse": 234,
+    "SAE_additional_auxiliary_optimizer_stages": 36,
+    "optimizer_stage_upper_bound_before_reuse": 270,
+    "selection_scope": "one_global_recipe_per_model_for_post_HPO_final_cohort",
+    "selection_rule": "lowest original-unit RMSE on concatenated common validation predictions: sqrt(sum(n_fold*RMSE_fold**2)/sum(n_fold)); exact tie -> configuration_id",
+    "validation_count_per_fold": 83,
+    "concatenated_validation_count": 249,
+    "mean_of_fold_RMSEs_is_selection_metric": false,
+    "epoch_rule": "ceil(median(three winner strict-first-best epoch counts))",
+    "SAE_phase_epoch_rule": "separate three-fold medians for ae1, ae2 and supervised; never discard auxiliary stages",
+    "max_epochs": 200,
+    "patience_epochs": 20,
+    "failed_attempt_policy": "retain with reason, no replacement; fatal/systematic failure blocks selection",
+    "earlier_outer_forecasts_using_future_global_recipe": false,
+    "configuration_domains_sha256": "7df57aea6f67ef2f946c37c20121ace1c8374464c6748283ac0581cc453e6852"
+  },
+  "evaluation": {
+    "start": "2025-01-01",
+    "end": "2026-08-31",
+    "calendar_days": 608,
+    "role": "inherited_known_historical_E1_partition",
+    "training_label_end": "2024-10-31",
+    "training_to_calibration_bridge": [
+      "2024-11-01",
+      "2024-11-07"
+    ],
+    "calibration_start": "2024-11-08",
+    "calibration_end": "2024-12-30",
+    "calibration_calendar_days": 53,
+    "causal_bridge_after_calibration": [
+      "2024-12-31"
+    ],
+    "bridge_role": "causal observations only; no refit or recalibration",
+    "calibration_dependence": "overlapping sigma7 targets; no iid/exchangeability or exact coverage guarantee",
+    "previous_exposure_disclosed": true,
+    "blindness_recovered": false,
+    "new_100_day_cohort_required_for_this_delivery": false,
+    "freeze_weights_scalers_calibrators_and_analysis_before_current_E2_scoring": true,
+    "selection_or_retuning_from_final_scores_allowed": false
+  },
+  "replications": {
+    "operative_R": 6,
+    "seed_ids": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806
+    ],
+    "power_and_MDE_decision": "pending_development_pilot_before_final_scoring",
+    "power_80_percent_claimed": false,
+    "automatic_R_increase": false
+  },
+  "architecture": {
+    "published_or_fixed_bodies": 12,
+    "TiDE_execution_allowed": false,
+    "TiDE_gate": "accept a separately verified published recipe before execution, otherwise the applicable NAS remains required",
+    "six_TiDE_parent_rows_are_provenance_only": true
+  },
+  "budget": {
+    "authorized_total_hours": 64.0,
+    "budget_reset": false,
+    "budget_extension_authorized": false,
+    "remaining_seconds": 7472.010480572237,
+    "state": "two_historical_journals_reconciled_private_runtime_still_pending",
+    "consumed_seconds": 222927.98951942776,
+    "reconciliation_sha256": "fdcb6f63a059eb15311f399fbc5034c02bbf95d5b43fc9d19917f97988720b13",
+    "original_next_worker_reservation_seconds": 7500,
+    "original_next_worker_admitted": false,
+    "worker_reservation_policy_change_authorized_by_this_registration": false
+  },
+  "execution": {
+    "market_training_started": false,
+    "final_market_values_read": false,
+    "private_colab_modified": false,
+    "GPU_verified_in_private_Colab": false,
+    "ready": false,
+    "scope": "registration and criteria only; actual execution gates remain separate"
+  },
+  "prepared_at_utc": "2026-11-12T17:24:19.732905+00:00",
+  "prepared_at_bogota": "2026-11-12T12:24:19.732905-05:00",
+  "authorized_scope": "User explicitly requested registration of the reduced protocol, data/cache checks, six common HPO slots and GPU/budget verification; no new fitting in this step.",
+  "supersedes_for_affected_future_work": {
+    "protocol": "e2-resource-temporal-amendment-v1",
+    "original_registration_commit": "b9ae8ef1d204d18192ad81a116d90c701d137cf6",
+    "historical_bytes_unchanged": true
+  },
+  "guide": {
+    "sha256": "93499dcfda6a36d9621524a81821470017ba114ca6b08241a35de5a54f74a654",
+    "locators": [
+      "p2: inherit E1 primary metric, delta, independence unit and partition",
+      "p13-14: equal HPO effort; no fixed18-point/two-seed requirement",
+      "p43: pilot at least5 seeds on2-3 models, power/MDE and resource limitation",
+      "p30: causal rolling-origin time validation; no literal11-search requirement",
+      "p52-58: NAS applies only to architectures not defined by their sources"
+    ]
+  },
+  "configuration_file": "configurations.json",
+  "selection_visibility": "The domains use only hyperparameter metadata. Historical result availability is subsequently audited, never an input to choosing slots.",
+  "calibration": {
+    "predictor": "each frozen seed trajectory; any ensemble must have its own separately frozen calibrator",
+    "method": "development-only residual interval, nominal90percent; exact finite-sample guarantee not claimed under sigma7 dependence",
+    "coverage_and_width_reported": true,
+    "no_refit_after_calibration": true,
+    "all_calibrators_frozen_before_current_E2_scoring": true,
+    "residual": "absolute observed error of the same frozen predictor on53datedcalibration positions",
+    "quantile_rule": "sorted absolute residual at rank ceil((n+1)*0.90); unavailable if rank>n; interval [max(0,prediction-q), prediction+q]",
+    "no_distribution_free_exact_coverage_claim": true
+  },
+  "pilot": {
+    "models": [
+      "iTransformer",
+      "GRU32"
+    ],
+    "seed_ids": [
+      271701,
+      271702,
+      271703,
+      271704,
+      271705
+    ],
+    "training_label_end": "2024-10-31",
+    "evaluation_start": "2024-11-08",
+    "evaluation_end": "2024-12-30",
+    "recipes": "the same global three-fold selected winner; no calibration/pilot label enters HPO",
+    "purpose": "estimate paired training variance and conditional power/MDE at prechosen resource-boundR6",
+    "no_automatic_R_increase": true,
+    "power80_not_guaranteed": true,
+    "pilot_receipts_status": "pending"
+  },
+  "inference": {
+    "primary_contrasts": [
+      {
+        "model": "FCN-1D",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "FCN-1D",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "ResNet-1D",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "ResNet-1D",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "Inception-1D",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "Inception-1D",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "LSTM-autoencoder con predictor",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "LSTM-autoencoder con predictor",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TimesNet",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TimesNet",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TSMixer",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TSMixer",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TiDE",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TiDE",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TimeMixer",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "TimeMixer",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "PatchTST",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "PatchTST",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "iTransformer",
+        "baseline": "GRU32",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      },
+      {
+        "model": "iTransformer",
+        "baseline": "Persistence",
+        "gain": "mean_individual_seed_RMSE_baseline - mean_individual_seed_RMSE_model",
+        "null": "gain <= delta",
+        "alternative": "gain > delta",
+        "delta": 0.00025772842664981106
+      }
+    ],
+    "family_size": 20,
+    "family_wise_alpha": 0.05,
+    "multiplicity": "Holm within the registered primary family",
+    "primary_temporal_block_days": 14,
+    "diagnostic_block_days": [
+      7,
+      28
+    ],
+    "conditional_scope": "known inherited calendar, not independent markets or recovered prospective confirmation",
+    "required_before_scoring": "Freeze at least three applicable procedures per contrast with assumptions; Holm alone is not a third test",
+    "test_battery_implementation_verified": false
+  },
+  "classical_selection": {
+    "Persistence": "fixed lag1; deterministic, no seed replication",
+    "SeasonalNaive": "periods7,14,28 using the same3internalfolds",
+    "ARIMA": "18orders p0..2,d0..1,q0..2 using the same3internalfolds; coefficients frozen before calibration; causal refit=False state updates only"
+  },
+  "execution_gates": [
+    {
+      "id": "private_Colab_GPU_receipt",
+      "state": "pending"
+    },
+    {
+      "id": "all_model_CUDA_acceptance",
+      "state": "pending"
+    },
+    {
+      "id": "TiDE_published_body_or_applicable_NAS",
+      "state": "pending"
+    },
+    {
+      "id": "cache_runtime_identity_binding",
+      "state": "pending"
+    },
+    {
+      "id": "budget_worker_migration",
+      "state": "pending"
+    },
+    {
+      "id": "selected_recipes_and_epoch_receipts",
+      "state": "pending"
+    },
+    {
+      "id": "pilot_power_MDE",
+      "state": "pending"
+    },
+    {
+      "id": "freeze_weights_scalers_calibrators_and_analysis",
+      "state": "pending"
+    },
+    {
+      "id": "causal_Dec31_and_608_date_data_admission",
+      "state": "pending"
+    }
+  ],
+  "contract_details": {
+    "representation": "logOHLC relative to last known Close and log1p(volume); D7x5",
+    "features_scaling": "fold-local training mean and standard deviation only",
+    "target_scaling": "positive training mean sigma7 only; inverse transform before metrics",
+    "independence_unit": "single BTCUSDT daily series; overlapping sigma7 dates dependent; seeds are optimizer randomness, not independent markets",
+    "primary_CV_aggregation": "concatenate all eligible validation dates for each seed before RMSE; average independent-seed RMSE only afterwards",
+    "primary_final_aggregation": "mean of six individual original-unit RMSEs on identical608date eligible support; not ensemble RMSE",
+    "contract_reference": "book_e2/_static/books_alignment_20261108.json"
+  },
+  "configuration_execution_allowed_is_architecture_eligibility_only": true
+}

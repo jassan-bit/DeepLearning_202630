@@ -1,0 +1,79 @@
+{
+  "version": "e2-registration-chronology-audit-v1",
+  "observed_at_utc": "2026-11-16T00:59:22.421775+00:00",
+  "registrations": [
+    {
+      "id": "early_margin",
+      "commit": "599a29f87f8ebb1d67cd925ec09bf6bdbc732fa0",
+      "path": "experiments/e2_remediation_20261106/preregistration.json",
+      "blob_sha256": "b8c84979fccec4fc282810e489d2d666f7f0562d587403e04bf3c2e923073cb3",
+      "bytes": 62608,
+      "author_time": "2026-11-06T14:51:20Z",
+      "committer_time": "2026-11-06T14:51:20Z",
+      "committer_epoch_seconds": 1793976680.0
+    },
+    {
+      "id": "historical_full_protocol",
+      "commit": "ef2be289903517e9d6f3b70bd72981990d58479a",
+      "path": "experiments/e2_remediation_20261106/preregistration.json",
+      "blob_sha256": "b8c84979fccec4fc282810e489d2d666f7f0562d587403e04bf3c2e923073cb3",
+      "bytes": 62608,
+      "author_time": "2026-11-06T18:54:20Z",
+      "committer_time": "2026-11-06T18:54:20Z",
+      "committer_epoch_seconds": 1793991260.0
+    },
+    {
+      "id": "reduced_protocol_first",
+      "commit": "c056c1cfb8ac771b32b13bf1382b9afc5e813912",
+      "path": "experiments/e2_reduced_protocol_20261112/protocol.json",
+      "blob_sha256": "867cf6837158c1353a1aa86ad9c51fc6fc260948ffe02dce8e779d3c329fb1cc",
+      "bytes": 17086,
+      "author_time": "2026-11-12T12:37:50-05:00",
+      "committer_time": "2026-11-12T12:37:50-05:00",
+      "committer_epoch_seconds": 1794505070.0
+    },
+    {
+      "id": "reduced_engine",
+      "commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+      "path": "scripts/e2_reduced_final_analysis.py",
+      "blob_sha256": "f33a063c3c2478263fbd3cbee11d949b106a392e9a66eb14575f3a1638768fe9",
+      "bytes": 15604,
+      "author_time": "2026-11-12T13:35:15-05:00",
+      "committer_time": "2026-11-12T13:35:15-05:00",
+      "committer_epoch_seconds": 1794508515.0
+    }
+  ],
+  "original_HPO_archive_commit": "6a8000022d2f374731faacc8a5c66f9b9d46b465",
+  "fresh_HPO_jobs_with_verified_journal_bindings": 170,
+  "phase_journals_with_content_and_chain_verification": 206,
+  "all170_reduced_protocol_precedes_journal": true,
+  "all170_engine_commit_precedes_journal": true,
+  "cached_outcomes_not_relabelled_fresh": 61,
+  "fresh_HPO_first_utc": "2026-11-12T18:59:40.429665+00:00",
+  "fresh_HPO_last_utc": "2026-11-13T06:59:05.781674+00:00",
+  "complete_pre_training_preregistration_certified": false,
+  "blinding_recovered": false,
+  "bibliographic_coverage_repaired": false,
+  "missing_reports_retrieved_by_this_audit": 0,
+  "new_fits": 0,
+  "new_model_inference": false,
+  "new_statistical_tests": 0,
+  "inputs": {
+    "book_e2/_static/e2_corrections_20261115/hpo/opportunities_234.csv": {
+      "sha256": "ebd6a2b38904c5aea960bc89c075d12947e7e3722b49f47206b5adca4c93ef43",
+      "bytes": 203512
+    },
+    "references/literature_e2/prisma_received_v1/full_reports_compact.jsonl": {
+      "sha256": "38f69d11e644aa0c05115c5def7d0dd50d6d6fad94e79db65289e9f79ef4f226",
+      "bytes": 1298988
+    }
+  },
+  "limits": [
+    "Git dates and worker UTC fields are stored timestamps, not an independent trusted timestamp authority.",
+    "Hash chains verify content consistency and sequence, not wall-clock accuracy or absence of prior decisions.",
+    "No inference that the first registration preceded all historical/cached fits or exposure to the inherited E1test.",
+    "The pending implementation_verified flag in the first protocol is retained, not rewritten.",
+    "Original374Scopus IDs/ranges and WoShistory cannot be inferred from generic new searches.",
+    "The174unretrieved reports remain access/eligibility uncertainty; the list is a concrete recovery request, not retrieval."
+  ]
+}

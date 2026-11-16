@@ -22,7 +22,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "book_e2/_static/e2_reproduction_ablations_20261113/budget_final.json"
 BASE_SHA = "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4"
-LEDGER = ROOT / "book_e2/_static/e2_pending_closure_20261116/compute_ledger.jsonl"
+LEDGER = ROOT / "book_e2/_static/e2_scientific_closure_20261116/compute_ledger.jsonl"
 
 
 def canonical(value):

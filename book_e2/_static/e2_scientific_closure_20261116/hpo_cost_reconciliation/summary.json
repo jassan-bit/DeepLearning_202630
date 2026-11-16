@@ -1,0 +1,65 @@
+{
+  "version": "e2-hpo-cost-reconciliation-v1",
+  "scope": "Recorded metadata reconciliation; no new fit, inference or statistical calculation",
+  "opportunities": 234,
+  "completed": 231,
+  "known_failed": 2,
+  "outcome_unknown": 1,
+  "old_jobs_with_phase_receipts": 170,
+  "selected_jobs": 39,
+  "selected_overlapping_jobs_not_added_again": 29,
+  "additional_selected_cached_jobs": 10,
+  "jobs_with_phase_receipts_union": 180,
+  "completed_jobs_without_phase_durations": 51,
+  "original_170_report_phase_seconds": 20526.75792988201,
+  "additional_selected_cached_phase_seconds": 257.7073942039983,
+  "recorded_phase_seconds_union_mixed_scopes": 20784.46532408601,
+  "current_campaign_measured_charge_seconds": 24116.93557340999,
+  "conservative_reserved_allocation_seconds_not_measured": 1860.0,
+  "historical_cached_fit_charge_seconds": 1716.9633450739982,
+  "historical_cached_fit_charge_unique_jobs": 61,
+  "original_final_neural_jobs": 78,
+  "original_final_phase_rows": 90,
+  "original_final_recorded_phase_seconds": 5765.086219800991,
+  "classical_resources": {
+    "Persistence": {
+      "recorded_phase_seconds": null,
+      "full_selection_seconds": null,
+      "reason": "No comparable recorded resource timing; not zero"
+    },
+    "SeasonalNaive": {
+      "recorded_phase_seconds": null,
+      "full_selection_seconds": null,
+      "reason": "No comparable recorded resource timing; not zero"
+    },
+    "ARIMA": {
+      "recorded_phase_seconds": null,
+      "full_selection_seconds": null,
+      "reason": "No comparable recorded resource timing; not zero"
+    }
+  },
+  "count_unit": "HPO job/opportunity, not individual optimization phases; SAE has three phases per job",
+  "timing_union_scope": "Non-overlapping recorded job phase durations, with distinct historical checkpoint policies and potentially different hardware. Descriptive accounted duration, not a homogeneous GPU speed comparison.",
+  "do_not_add": [
+    "Union phases + selected_hpo phases: 29 jobs overlap",
+    "Recorded phase elapsed + campaign worker/budget charges: nested boundaries",
+    "Historical cached callback + cached charged wall: nested boundaries",
+    "Failed worker elapsed + campaign charge: nested boundaries",
+    "Conservative lost-runtime allocation as measured training time",
+    "Any of these fields as a complete GPU-active, energy, monetary or end-to-end campaign total"
+  ],
+  "remaining": [
+    "Phase breakdown unavailable for 51 historical reused jobs, whose charged/callback walls remain recorded",
+    "Lost TSMixer C02/2024-07-01 outcome and measured elapsed remain unknown; 1860 s is an allocation",
+    "TimesNet has two known setup failures; their charges do not create successful fits",
+    "Full selection and end-to-end timing remain unknown for every model; three classical timings missing"
+  ],
+  "old_reports_modified": false,
+  "new_model_fits": 0,
+  "new_model_inference": false,
+  "new_HPO": false,
+  "NAS_executed": false,
+  "statistical_tests": 0,
+  "bootstrap_draws": 0,
+  "full_campaign_reproduction_performed": false
+}

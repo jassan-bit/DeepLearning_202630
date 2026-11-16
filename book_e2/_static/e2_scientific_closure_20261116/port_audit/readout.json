@@ -1,0 +1,61 @@
+{
+  "audit_report_sha256": "84bb12ac2e860922d511a8a6fabad675fcc3c0aec988a5a6ff124fb659250be7",
+  "conditions_passed": 390,
+  "exact_guards": "All 78 parameter and registered-buffer states, supplied queried inputs, frozen scaler records and checkpoint bindings unchanged",
+  "fixed_queries": [
+    {
+      "date": "2023-01-08",
+      "split": "training",
+      "zero_based_index": 0
+    },
+    {
+      "date": "2023-12-09",
+      "split": "training",
+      "zero_based_index": 327
+    },
+    {
+      "date": "2024-10-31",
+      "split": "training",
+      "zero_based_index": 654
+    },
+    {
+      "date": "2024-11-08",
+      "split": "calibration",
+      "zero_based_index": 0
+    },
+    {
+      "date": "2024-12-04",
+      "split": "calibration",
+      "zero_based_index": 26
+    },
+    {
+      "date": "2024-12-30",
+      "split": "calibration",
+      "zero_based_index": 52
+    }
+  ],
+  "models": 13,
+  "new_bootstrap": 0,
+  "new_fits": 0,
+  "new_hypothesis_tests": 0,
+  "new_predictive_scores": 0,
+  "no_method_change_after_forwards": true,
+  "not_closed": [
+    "Exhaustive proof over all possible inputs",
+    "Actual 608 evaluation post-transformations",
+    "Original CPU/GPU parity gate, which remains failed with 10 preserved projection alerts",
+    "Random-label training and adversarial classifier controls"
+  ],
+  "observed_maximum_head_feature_absolute_difference": 1.9073486328125e-06,
+  "observed_maximum_head_feature_tolerance_fraction": 0.1425492700004443,
+  "observed_maximum_original_unit_output_absolute_difference": 1.6763806343078613e-08,
+  "observed_maximum_output_tolerance_fraction": 0.04729929424605434,
+  "observed_maximum_scaled_output_absolute_difference": 8.344650268554688e-07,
+  "plan_sha256": "a8f29acb29cd437afccfd0d09974632a2678f899746003c0bb227a7d37d25a78",
+  "predictors": 78,
+  "scope_clarification": "Only train655/cal53 inputs were admitted to this registered audit. Its report limitation about absent evaluation OHLCV refers to its own admitted inputs; the separate newly recovered 20 official ZIPs and full 608 audit are not consumed or certified here.",
+  "seeds_per_model": 6,
+  "status": "PASS",
+  "unit_checks": 12,
+  "version": "e2-real-development-port-audit-readout-v1"
+}
