@@ -102,4 +102,3 @@ Repetir las recetas ganadoras no reproduce por sí solo toda la búsqueda histó
 La evidencia nueva permite revisar controles que antes estaban pendientes por falta de entradas. Se conservan el cambio de distribución detectado, los diagnósticos residuales adversos y la falta de adecuación conjunta. Las inferencias se refieren a una serie y unas trayectorias ajustadas, con potencia piloto limitada y márgenes ya registrados. No se obtiene equivalencia por ausencia de significación.
 
 No es posible reconstruir honestamente los 374 registros bibliográficos no recibidos ni confirmar toda la cobertura de búsqueda sin exportaciones nativas e historial. Tampoco se transforma el calendario conocido desde E1 en una prueba ciega. Estos límites se mantienen separados de los controles que ahora sí se ejecutaron.
-
