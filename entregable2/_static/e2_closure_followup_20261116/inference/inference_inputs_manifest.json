@@ -1,0 +1,33 @@
+{
+  "version": "inference-local-inputs-v1",
+  "sha256": "418e6b5332d2deff5f711f1e0c80b11b61b673cbf0bdc180188e700ef498cbf8",
+  "bytes": 221800,
+  "scientific_plan_sha256": "7e1ba8ab775cbce04070943de7f84753b6e3c184d11c84a30fddd26ab5ce0b2e",
+  "models": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32"
+  ],
+  "OOF_shape": [
+    13,
+    3,
+    83
+  ],
+  "test_shape": [
+    13,
+    6,
+    608
+  ],
+  "contains": "Saved forecasts, targets, UTCdays, masks, model/seedidentifiers and originalsourcehashes; no checkpointsorrawminuteCSV.",
+  "scope": "Conditional known chronology, selectedOOFfoldpredictors and originalA100testtrajectories; no training or selection replay."
+}

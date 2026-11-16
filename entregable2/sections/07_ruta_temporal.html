@@ -244,6 +244,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="65_cierre_cientifico_real.html">Entradas reales, controles y comparaciones completadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="66_seguimiento_pendientes.html">Seguimiento de auditoría, inferencia, HPO y portabilidad</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="11_hpo_equidad.html">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -592,7 +593,7 @@
 <td><p>Mincer–Zarnowitz rechaza 37/81 restricciones de calibración puntual; Ljung–Box rechaza en <strong>81/81 trayectorias</strong> a lag7 y lag14 tras Holm826. La cobertura también depende de modelo/grupo. <strong>No se acredita ausencia de estructura ni calibración universal.</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>iv. Prueba consistente con validación</strong></p></td>
-<td><p><a class="reference internal" href="65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a> ejecuta la comparación formal de <strong>calibración53 frente a prueba608 de los mismos predictores A100 originales</strong>, con t sobre seis diferencias y Holm13: seis rechazos. La sensibilidad por signos da cero rechazos. Calibración no es validación HPO independiente; la diferencia de periodos no identifica sobreajuste, y un no rechazo no prueba consistencia o equivalencia. <strong>La adecuación de este criterio no queda establecida.</strong></p></td>
+<td><p><a class="reference internal" href="65_cierre_cientifico_real.html"><span class="std std-doc">§65</span></a> compara calibración53 y prueba608 de los mismos predictores originales: seis rechazos t/Holm13 y cero por signos. <a class="reference internal" href="66_seguimiento_pendientes.html"><span class="std std-doc">§66</span></a> añade la comparación <strong>OOF HPO249–prueba608</strong>, B=5.000 y Holm13: sólo SAE rechaza igualdad, con menor error en prueba. Calibración no sustituye validación HPO; los pronósticos OOF pertenecen a otros entrenamientos y se condicionan a la selección. Ningún no rechazo prueba consistencia o equivalencia ni identifica la causa de una diferencia. <strong>La adecuación de este criterio no queda establecida.</strong></p></td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,83 @@
+{
+  "version": "e2-three-full-HPO-timing-pilot-v2",
+  "plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+  "jobs": [
+    {
+      "job": "pilot-01",
+      "model": "MLP16",
+      "cap_seconds": 60,
+      "reservation_id": "257005f6-ff09-4866-8b7e-38c50c07aeeb",
+      "observed_charged_worker_seconds": 5.753766014997382,
+      "returncode": 0,
+      "outcome": {
+        "version": "e2-three-full-HPO-timing-pilot-v2",
+        "job": "pilot-01",
+        "model": "MLP16",
+        "status": "completed",
+        "plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+        "partial_fit_is_complete_fitness": false,
+        "full_HPO_policy_fit_completed": true,
+        "epochs_completed": 200,
+        "best_epoch": 180,
+        "optimizer_steps": 800,
+        "stop_reason": "patience",
+        "fit_seconds": 2.7622207929962315,
+        "selected_checkpoint_sha256": "ac2fbd1ef322ed26bd6bbaaf59645246fe66719876c0fef20e775c747a466ae8",
+        "validation_count": 83,
+        "validation_RMSE": 0.008588944136078861,
+        "timer_scope": "worker includes loading/setup, full200/patience20HPO fit, checkpoint and selected validation scoring",
+        "worker_elapsed_seconds_before_final_receipt": 5.093037037993781
+      }
+    },
+    {
+      "job": "pilot-02",
+      "model": "iTransformer",
+      "cap_seconds": 90,
+      "reservation_id": "2608b1fc-1bc9-4af6-8c4e-d74a09a041c9",
+      "observed_charged_worker_seconds": 12.817985828005476,
+      "returncode": 0,
+      "outcome": {
+        "version": "e2-three-full-HPO-timing-pilot-v2",
+        "job": "pilot-02",
+        "model": "iTransformer",
+        "status": "completed",
+        "plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+        "partial_fit_is_complete_fitness": false,
+        "full_HPO_policy_fit_completed": true,
+        "epochs_completed": 24,
+        "best_epoch": 4,
+        "optimizer_steps": 192,
+        "stop_reason": "patience",
+        "fit_seconds": 9.388178059001802,
+        "selected_checkpoint_sha256": "2a429d579d013c69beb123a0166e40bc4444bfacc3df7263f1585d0261b026dd",
+        "validation_count": 83,
+        "validation_RMSE": 0.008769390678967889,
+        "timer_scope": "worker includes loading/setup, full200/patience20HPO fit, checkpoint and selected validation scoring",
+        "worker_elapsed_seconds_before_final_receipt": 12.223218957995414
+      }
+    },
+    {
+      "job": "pilot-03",
+      "model": "TimesNet",
+      "cap_seconds": 270,
+      "reservation_id": "d94ed0d8-cf8c-4648-889e-038d7d164684",
+      "observed_charged_worker_seconds": 0.11463836400071159,
+      "returncode": 1,
+      "outcome": {
+        "status": "failed_without_worker_receipt",
+        "full_HPO_policy_fit_completed": false,
+        "completed_fit_cost_estimated": false
+      }
+    }
+  ],
+  "worker_charges_seconds": 18.68639020700357,
+  "completed_full_policy_fits": 2,
+  "attempts": 3,
+  "calibration_test_accessed": false,
+  "old_outcomes_changed": false,
+  "whole13model_HPO_cost_forecast_established": false,
+  "selection_variance_established": false,
+  "isolated_importance_established": false,
+  "NAS": "not_applicable_defined_bodies",
+  "projection": "Completed representatives give observed job costs for exact recipes/fold; censored attempts only lower-bound required complete cost. Other10models and broader domains need their own calibrated bounds; no full-campaign numerical forecast is identified."
+}

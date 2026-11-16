@@ -1,0 +1,664 @@
+{
+  "version": "e2-three-full-HPO-timing-pilot-v2",
+  "registered_at_utc": "2026-11-16T12:13:34.226704+00:00",
+  "script_sha256": "47b6814ae271037fbd6b94415974fb151ced6cfa151bda03024742b460540877",
+  "source_root": "/workspace/e2-guide-closure-20261113",
+  "author_root": "/workspace/work/e2architecture_sources",
+  "bound_sources": [
+    {
+      "path": "book_e2/_static/current_implementation_20261108/source_design.json",
+      "sha256": "ce0a76304186fabf922f8e1351ea2e9d44db49f1714f44cd1fe2df04baeb3dbe",
+      "bytes": 18811
+    },
+    {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/configurations_registered.json",
+      "sha256": "c6ce4f740e2492e2d6735f1ef85cbcadaa62f10e4af6a1ccee91281664ec435c",
+      "bytes": 69776
+    },
+    {
+      "path": "book_e2/_static/e2_reproduction_ablations_20261113/budget_final.json",
+      "sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+      "bytes": 1154
+    },
+    {
+      "path": "book_e2/_static/e2_scientific_closure_20261116/reproduction/v2/plan.json",
+      "sha256": "b28fd8f04703b2321292e4caa5163783a4452c4a72d1a66cce3ea0554098cdb2",
+      "bytes": 503037
+    },
+    {
+      "path": "book_e2/_static/search_protocol_20261109/protocol.json",
+      "sha256": "5195337af13f4193da16bf4499c8396586c621d4ab084a5b296a297f2141edeb",
+      "bytes": 29895
+    },
+    {
+      "path": "experiments/dl_r2_cv_20261104/protocol.json",
+      "sha256": "e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec",
+      "bytes": 5718
+    },
+    {
+      "path": "experiments/e2_completion_20261106/design.json",
+      "sha256": "58f54626d0765ee7a97dfd3cbe2dec932c74a28d2f47b5bda519fb0f5777a7f0",
+      "bytes": 32175
+    },
+    {
+      "path": "experiments/e2_published_architectures_20261112/architecture_policy.json",
+      "sha256": "a1c9440046af34c2b70bef9c05229dff2c6d863aa06ae191ed02c2de6d8bf0f2",
+      "bytes": 40255
+    },
+    {
+      "path": "results/eda_development/daily_market_development.csv",
+      "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "bytes": 60427
+    },
+    {
+      "path": "results/eda_development/daily_volatility_development.csv",
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+      "bytes": 76492
+    },
+    {
+      "path": "scripts/audit_e2_common_availability.py",
+      "sha256": "8863429e58592910ab5cd05ede092f30322c3b8e5696b6e28f40d61905c25b53",
+      "bytes": 11022
+    },
+    {
+      "path": "scripts/dl_models.py",
+      "sha256": "e24110b57aeee201e1e9ab53519eb6b05967927ac54102fe23d3908c3fc57d69",
+      "bytes": 8664
+    },
+    {
+      "path": "scripts/dl_models_gru_lstm_tcn.py",
+      "sha256": "c11af1229fec43dd7da01a21e349dc2b109d9d61d977f6df3d01cd7da736b35d",
+      "bytes": 7494
+    },
+    {
+      "path": "scripts/e2_amended_pilot_artifacts.py",
+      "sha256": "f46659b886f788f9240ae8c54f4ca7ca413cfdc7c240c2ac46226ef2ddc4908b",
+      "bytes": 21218
+    },
+    {
+      "path": "scripts/e2_corrections_budget.py",
+      "sha256": "f570afe9ace549647cca187c84ddc7ccd62915330a7efc18e5a42f0bbd328731",
+      "bytes": 7574
+    },
+    {
+      "path": "scripts/e2_cuda_training.py",
+      "sha256": "45b5697e1dfbd98106703fe8646bdcdc21f8423110886be5b6e2f2c419aa7433",
+      "bytes": 26800
+    },
+    {
+      "path": "scripts/e2_current_models.py",
+      "sha256": "78e44330118c5523bb4d23594493f584a22374f6b80cde9d3a4258d3d06844e3",
+      "bytes": 15854
+    },
+    {
+      "path": "scripts/e2_development_data.py",
+      "sha256": "056dc0eff0722bed0b65ecd9b27b3c0c5a2a2bab2d44a8cfd9730fdb38b87d5d",
+      "bytes": 10358
+    },
+    {
+      "path": "scripts/e2_final_models_attention.py",
+      "sha256": "a3f1a2a7534142f505fbf36bddf92e0abf4f76d89ac1a1fb61874559e5aafa07",
+      "bytes": 29070
+    },
+    {
+      "path": "scripts/e2_final_models_mlp.py",
+      "sha256": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68",
+      "bytes": 24766
+    },
+    {
+      "path": "scripts/e2_hpo_followup_pilot.py",
+      "sha256": "47b6814ae271037fbd6b94415974fb151ced6cfa151bda03024742b460540877",
+      "bytes": 21726
+    },
+    {
+      "path": "scripts/e2_nas_attention.py",
+      "sha256": "693e46c2891d356e553eb9d2565f1a8f491440b85680e2d9e5bcc74a9f50c187",
+      "bytes": 7612
+    },
+    {
+      "path": "scripts/e2_nas_autoencoder.py",
+      "sha256": "c2889a7c18b8dbc1c4741304c73c0d4ec83e0e620f0c38a00d05b484ec6530ca",
+      "bytes": 10378
+    },
+    {
+      "path": "scripts/e2_nas_common.py",
+      "sha256": "ba9b06acfc984b3414c9406fc577eab137d13308420e2da15d5433f6c665b618",
+      "bytes": 2402
+    },
+    {
+      "path": "scripts/e2_nas_factory.py",
+      "sha256": "52c345990cffb8982c13eddca9cb9fceddcf6a607fdc8bdef0110f0a02437f02",
+      "bytes": 6816
+    },
+    {
+      "path": "scripts/e2_nas_spectral.py",
+      "sha256": "196a1233322f8741b3ad28f11ef85d815f2eebb040fbf51c99ccfa0edc2caaea",
+      "bytes": 11400
+    },
+    {
+      "path": "scripts/e2_proposed_models.py",
+      "sha256": "d0004228ab79284c3a2b94fe768ef4f8e8a4577ecdc09e11b8342256d2be800b",
+      "bytes": 5261
+    },
+    {
+      "path": "scripts/e2_published_patchtst.py",
+      "sha256": "99aae30754cf33fe12883b4af2f4f957cfc32ec9f4bcc2eb71dfb34b39974d5f",
+      "bytes": 6082
+    },
+    {
+      "path": "scripts/e2_published_periodic.py",
+      "sha256": "a0ead3e4c394cb7d832e50e2821e0c73a3bb09652ed5e977a87f119941517af9",
+      "bytes": 11945
+    },
+    {
+      "path": "scripts/e2_published_pilot_training.py",
+      "sha256": "ee8389bdaeed87848547a28c1e899865db353f9b6662999e45b91e8ea54be398",
+      "bytes": 20223
+    },
+    {
+      "path": "scripts/e2_published_registry.py",
+      "sha256": "0704784aa0bb2887908d12ad12345094c8f6a707918aa695dbc11cda88092fec",
+      "bytes": 4905
+    },
+    {
+      "path": "scripts/e2_published_sae.py",
+      "sha256": "0436d73f9724bb065dc3642f18218cb35cda5e9abfa4de5090f8c5d69eb6c1aa",
+      "bytes": 13720
+    },
+    {
+      "path": "scripts/e2_published_tide.py",
+      "sha256": "5ba7a01a30c52793b566a44525e4f5ccfaf0254e9c6cdd2667c56a34319c747a",
+      "bytes": 17967
+    },
+    {
+      "path": "scripts/e2_real_executor.py",
+      "sha256": "0a5aef1d56bfb86c34fda2a3078612eb54434e2c395d6394202c147f9a8b7bf1",
+      "bytes": 31425
+    },
+    {
+      "path": "scripts/e2_recipe_models.py",
+      "sha256": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+      "bytes": 11472
+    },
+    {
+      "path": "scripts/e2_reduced_fit.py",
+      "sha256": "64e83d0a2a39920ae470252b8eb81c8f78429817fed978bd22f64866fdfb8f5f",
+      "bytes": 17056
+    },
+    {
+      "path": "scripts/e2_reduced_protocol.py",
+      "sha256": "443622d6fa73830634b86c41157ab95926243fe9cce1031ebbd99994bc4345c0",
+      "bytes": 26140
+    },
+    {
+      "path": "scripts/e2_search_plan.py",
+      "sha256": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314",
+      "bytes": 23267
+    },
+    {
+      "path": "scripts/e2_staged_training.py",
+      "sha256": "b66ac8d2beb3748f4934e55e99514f53c52eada4a4dbd2e4b597d080c9f4722b",
+      "bytes": 23487
+    },
+    {
+      "path": "scripts/e2_temporal_controls.py",
+      "sha256": "36e5a8b15e51ddf7d36397e2b6e71734afb36c6894cac0a71c9364b277fcc139",
+      "bytes": 12297
+    },
+    {
+      "path": "scripts/e2_temporal_training.py",
+      "sha256": "3e62a12135b47414ac11038f5bd931076c2c12c7fdd8edcbd3b46eae4dc90ac9",
+      "bytes": 25516
+    },
+    {
+      "path": "scripts/e2_training_models.py",
+      "sha256": "46be0644e0ed9d966163b17f171092e81b6a82dd734efc7954d6104f5ee5360b",
+      "bytes": 6694
+    }
+  ],
+  "author_files": [
+    {
+      "model": "TimesNet",
+      "path": "LICENSE",
+      "repository_path": "LICENSE",
+      "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
+      "bytes": 1084
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/AutoCorrelation.py",
+      "repository_path": "layers/AutoCorrelation.py",
+      "sha256": "354b44e54bdd39380c9f5c2bfaaf3b967fdbe80dc7998741dbfdfa5d521a040c",
+      "bytes": 6462
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/Autoformer_EncDec.py",
+      "repository_path": "layers/Autoformer_EncDec.py",
+      "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e",
+      "bytes": 6831
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/Conv_Blocks.py",
+      "repository_path": "layers/Conv_Blocks.py",
+      "sha256": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1",
+      "bytes": 2376
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/Crossformer_EncDec.py",
+      "repository_path": "layers/Crossformer_EncDec.py",
+      "sha256": "ee2cc5c8d3a44f4de67ce986e6b442488826a20fa4d8f87991941a75587936a1",
+      "bytes": 4333
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/DWT_Decomposition.py",
+      "repository_path": "layers/DWT_Decomposition.py",
+      "sha256": "422af1eec77df1b9dcfdea3d457e545c8575da69da4f505f27ba54db0c9f7764",
+      "bytes": 46759
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/ETSformer_EncDec.py",
+      "repository_path": "layers/ETSformer_EncDec.py",
+      "sha256": "4ba2a0b76381602e32341fcc1a6a74ca86d2347905589fb34a74f8e54d7023e3",
+      "bytes": 11433
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/Embed.py",
+      "repository_path": "layers/Embed.py",
+      "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+      "bytes": 7012
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/FourierCorrelation.py",
+      "repository_path": "layers/FourierCorrelation.py",
+      "sha256": "cea1095b3a94764f240e6ac67280d6ea7fac9f5ef54de137cd1f5e5adab1305f",
+      "bytes": 7523
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/MSGBlock.py",
+      "repository_path": "layers/MSGBlock.py",
+      "sha256": "01d3d446a214c33062ba098f251a1e49ed8a342dd4372e973a0a8c0dde5cd8c0",
+      "bytes": 9954
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/MambaBlock.py",
+      "repository_path": "layers/MambaBlock.py",
+      "sha256": "cbcbbd6cbb83366e40ffe5926da16b4ca0aa11b6649e2259750994b60527a390",
+      "bytes": 18260
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/MultiWaveletCorrelation.py",
+      "repository_path": "layers/MultiWaveletCorrelation.py",
+      "sha256": "cf0b8faf45a1b7fab4a3c1c521623c0762e2f9d7375b20ba9a9acd2142747342",
+      "bytes": 23039
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/Pyraformer_EncDec.py",
+      "repository_path": "layers/Pyraformer_EncDec.py",
+      "sha256": "ab92396677a9ad2e49c7bf171e15c96108d388b8898d29ee520d18dfe0bd5306",
+      "bytes": 7433
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/SelfAttention_Family.py",
+      "repository_path": "layers/SelfAttention_Family.py",
+      "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794",
+      "bytes": 12001
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/StandardNorm.py",
+      "repository_path": "layers/StandardNorm.py",
+      "sha256": "3f690dc5fc0e395d4f1ffe6396717548d18bd04f4518258308bbe5f392703f5f",
+      "bytes": 2184
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/TimeFilter_layers.py",
+      "repository_path": "layers/TimeFilter_layers.py",
+      "sha256": "3441713bdb54de1153afe3d5e746de4e251c07b545492180a073c4f275df6b9f",
+      "bytes": 10046
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/Transformer_EncDec.py",
+      "repository_path": "layers/Transformer_EncDec.py",
+      "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+      "bytes": 4929
+    },
+    {
+      "model": "TimesNet",
+      "path": "layers/__init__.py",
+      "repository_path": "layers/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "model": "TimesNet",
+      "path": "models/TimesNet.py",
+      "repository_path": "models/TimesNet.py",
+      "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7",
+      "bytes": 8735
+    },
+    {
+      "model": "TimesNet",
+      "path": "requirements.txt",
+      "repository_path": "requirements.txt",
+      "sha256": "1467f08eca3f4b749addf69042955eeb547dfb13a8a569e7e881b545c696df9f",
+      "bytes": 502
+    },
+    {
+      "model": "TimesNet",
+      "path": "run.py",
+      "repository_path": "run.py",
+      "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4",
+      "bytes": 16328
+    },
+    {
+      "model": "TimesNet",
+      "path": "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh",
+      "repository_path": "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh",
+      "sha256": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e",
+      "bytes": 1825
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/ADFtest.py",
+      "repository_path": "utils/ADFtest.py",
+      "sha256": "fcc30ead66778d2f70409740f8d54287fbeb032cd080695879a370722f7a4b26",
+      "bytes": 2490
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/__init__.py",
+      "repository_path": "utils/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/augmentation.py",
+      "repository_path": "utils/augmentation.py",
+      "sha256": "17bac803a96fb6c98d0822052c1edc9f6bc72ae37eec5aa859e9e2918d537b69",
+      "bytes": 19234
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/dtw.py",
+      "repository_path": "utils/dtw.py",
+      "sha256": "a12084ab35783e4c09ddfadb54b0253f1fa8a3499abd88c772f93f499bcffa2a",
+      "bytes": 7197
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/dtw_metric.py",
+      "repository_path": "utils/dtw_metric.py",
+      "sha256": "308c56507b01a945f38796f2f9b4bb104adc213ab574aa2693f93635c9748889",
+      "bytes": 5817
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/losses.py",
+      "repository_path": "utils/losses.py",
+      "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116",
+      "bytes": 3459
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/m4_summary.py",
+      "repository_path": "utils/m4_summary.py",
+      "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7",
+      "bytes": 6174
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/masking.py",
+      "repository_path": "utils/masking.py",
+      "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+      "bytes": 832
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/metrics.py",
+      "repository_path": "utils/metrics.py",
+      "sha256": "0a565c3f64d7cd29d9a87dee0c22d48f4a6a329476f893458cc18a35fa46a5df",
+      "bytes": 866
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/print_args.py",
+      "repository_path": "utils/print_args.py",
+      "sha256": "423454ec7e2cefe6d24a458903f6080e866efdbe78c0ac2481b2cf32d44c558a",
+      "bytes": 3141
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/timefeatures.py",
+      "repository_path": "utils/timefeatures.py",
+      "sha256": "319b3da2ef15ccae95162b1b4f4a9a0b0da63fa0062a7f6006a06dd567258d85",
+      "bytes": 4369
+    },
+    {
+      "model": "TimesNet",
+      "path": "utils/tools.py",
+      "repository_path": "utils/tools.py",
+      "sha256": "f47237f29d2a27570ef11871d9acdc51d1742b3bd1d8d09e5226e4140f4ad024",
+      "bytes": 3694
+    },
+    {
+      "model": "iTransformer",
+      "path": "LICENSE",
+      "repository_path": "LICENSE",
+      "sha256": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849",
+      "bytes": 1084
+    },
+    {
+      "model": "iTransformer",
+      "path": "layers/Embed.py",
+      "repository_path": "layers/Embed.py",
+      "sha256": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+      "bytes": 5124
+    },
+    {
+      "model": "iTransformer",
+      "path": "layers/SelfAttention_Family.py",
+      "repository_path": "layers/SelfAttention_Family.py",
+      "sha256": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+      "bytes": 12849
+    },
+    {
+      "model": "iTransformer",
+      "path": "layers/Transformer_EncDec.py",
+      "repository_path": "layers/Transformer_EncDec.py",
+      "sha256": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+      "bytes": 4916
+    },
+    {
+      "model": "iTransformer",
+      "path": "model/iTransformer.py",
+      "repository_path": "model/iTransformer.py",
+      "sha256": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+      "bytes": 3419
+    },
+    {
+      "model": "iTransformer",
+      "path": "run.py",
+      "repository_path": "run.py",
+      "sha256": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+      "bytes": 9153
+    },
+    {
+      "model": "iTransformer",
+      "path": "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh",
+      "repository_path": "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh",
+      "sha256": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+      "bytes": 1432
+    },
+    {
+      "model": "iTransformer",
+      "path": "utils/masking.py",
+      "repository_path": "utils/masking.py",
+      "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+      "bytes": 832
+    }
+  ],
+  "budget_source_sha256": "f570afe9ace549647cca187c84ddc7ccd62915330a7efc18e5a42f0bbd328731",
+  "ledger_path": "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_closure_followup_20261116/compute_ledger.jsonl",
+  "budget_reset": false,
+  "accounting": "Each worker charged once including imports, setup, failure and timeout; controller wall not added to nested workers",
+  "group_cap_seconds_assigned": 450,
+  "worker_cap_sum_seconds": 420,
+  "admission_setup_cap_seconds": 30,
+  "main_jobs": [
+    {
+      "id": "pilot-01",
+      "model": "MLP16",
+      "cap_seconds": 60,
+      "seed": 271211,
+      "fold_origin": "2024-01-01",
+      "configuration_id": "C03",
+      "parent_trial_index": 8,
+      "trial": {
+        "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-008",
+        "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+        "learning_rate": 0.0003440806652053162,
+        "weight_decay": 0.0,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 64,
+        "dropout": 0.5
+      },
+      "configuration_source_sha256": "c6ce4f740e2492e2d6735f1ef85cbcadaa62f10e4af6a1ccee91281664ec435c",
+      "selection_reason": "Prespecified third registered position for all3models; not chosen from fitness/winner"
+    },
+    {
+      "id": "pilot-02",
+      "model": "iTransformer",
+      "cap_seconds": 90,
+      "seed": 271211,
+      "fold_origin": "2024-01-01",
+      "configuration_id": "C03",
+      "parent_trial_index": 8,
+      "trial": {
+        "trial_id": "IT-D7-r1__hpo_v1:hpo-008",
+        "recipe_id": "IT-D7-r1__hpo_v1",
+        "learning_rate": 0.00029935095576708937,
+        "weight_decay": 0.0,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "batch_size": 32,
+        "dropout": 0.5,
+        "warmup_fraction": 0.05
+      },
+      "configuration_source_sha256": "c6ce4f740e2492e2d6735f1ef85cbcadaa62f10e4af6a1ccee91281664ec435c",
+      "selection_reason": "Prespecified third registered position for all3models; not chosen from fitness/winner"
+    },
+    {
+      "id": "pilot-03",
+      "model": "TimesNet",
+      "cap_seconds": 270,
+      "seed": 271211,
+      "fold_origin": "2024-01-01",
+      "configuration_id": "C03",
+      "parent_trial_index": 8,
+      "trial": {
+        "learning_rate": 0.0009698285023751574,
+        "weight_decay": 0.0001493929804279169,
+        "batch_size": 16,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "trial_id": "TN-D7-PUBLISHED-v1:hpo-008",
+        "recipe_id": "TN-D7-PUBLISHED-v1",
+        "dropout": 0.1
+      },
+      "configuration_source_sha256": "c6ce4f740e2492e2d6735f1ef85cbcadaa62f10e4af6a1ccee91281664ec435c",
+      "selection_reason": "Prespecified third registered position for all3models; not chosen from fitness/winner"
+    }
+  ],
+  "data_admission": {
+    "source_files": "Two original hash-pinned2023-2024derivatives",
+    "last_numerical_date_decoded": "2023-12-24",
+    "calendar_placeholder_end": "2024-01-01",
+    "train_count": 253,
+    "validation_count": 83,
+    "train_label_end": "2023-09-25",
+    "validation_start": "2023-10-03",
+    "validation_end": "2023-12-24",
+    "scaler": "Fit only253innertrain observations; validation uses same scaler",
+    "calibration53_numeric_values_decoded": false,
+    "test608_accessed": false
+  },
+  "runtime": {
+    "python": "3.12",
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "threads": 2,
+    "interop_threads": 2,
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "dtype": "float32",
+    "parallel_workers": 1
+  },
+  "HPO_policy": {
+    "max_epochs": 200,
+    "patience": 20,
+    "fixed_epochs": null,
+    "scheduler_horizon_epochs": 200,
+    "optimizer": "unchanged AdamW/groups, cosine/warmup,clip1",
+    "epoch_validation": "Original batch-size-specific validation used for stopping; persisted selected-checkpoint scoring uses batch1",
+    "process_cap_includes_imports_setup_and_scoring": true
+  },
+  "timeout_policy": "Record censored attempt and measured charge; partial epochs/steps never treated as a completed HPO fitness or full cost. No automatic retry/replacement.",
+  "limits": [
+    "Posterior timing pilot of3representatives, not all13bodies",
+    "Does not estimate selection variance or isolated hyperparameter importance",
+    "Different batches/epochs/body costs prohibit exact whole-study extrapolation",
+    "A censored fit gives no finite complete-fit cost bound",
+    "Historical costs and earlier failed jobs are unchanged"
+  ],
+  "supersedes_only_conceptual_timing_candidate": "Earlier unexecuted F07proposal requires new registry admission; this pilot uses exact existing C03 and does not execute the new16tuple domain",
+  "source_blocked_recovery": {
+    "previous_output": "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_closure_followup_20261116/hpo/pilot_v2",
+    "previous_plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+    "previous_pilot_summary_sha256": "ed267f9438265deaa80eca836f23b34327b1ed37e5750b982bb5929784ad8e74",
+    "previous_driver_unchanged": true,
+    "recovery_launcher_sha256": "b4b11b31db4f6bcf4080b327788f96027440418fb69ae199fd44a30107135aa5",
+    "pending_job_ids": [
+      "pilot-03"
+    ],
+    "completed_fit_receipts_retained": [
+      {
+        "path": "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_closure_followup_20261116/hpo/pilot_v2/pilot-01/outcome.json",
+        "sha256": "b22df092db65cc6a133ebe80f3cd2428aeb1ef1d2840f2b108bedcc840c47e17"
+      },
+      {
+        "path": "/workspace/e2-guide-closure-20261113/book_e2/_static/e2_closure_followup_20261116/hpo/pilot_v2/pilot-02/outcome.json",
+        "sha256": "aaab5b5e1cfdb38a674695a4ff9bdf8df10eaa07a9b6bc13da6b8e09968b350b"
+      }
+    ],
+    "excluded_unrelated_launcher": "scripts/e2_portable_campaign.py",
+    "exclusion_reason": "Standalone full-campaign launcher is not imported or executed by this HPO worker; scientific model/training/parser/recipe/source bytes remain unchanged. First blocked attempt occurred before any optimizer/model construction. New plan and admission required before remaining TimesNet fit; no previous successful fit rerun.",
+    "original_group_cap_seconds": 450,
+    "additional_budget_authorized": false,
+    "source_binding_method": "Static local import closure rooted in executed worker/parser/trainer/builders and their JSON paths, plus2pinned daily sources; excludes unrelated portable/newfollowup launchers.32scientific/local modules and10metadata/datafiles. Author files still separately pinned.",
+    "initial_broad_plan_unexecuted_sha256": "246e998f10b7cdc88325f20f338c500fe3c52997cbebf9b0083c36bab3398857"
+  },
+  "original_pilot_registered_at_utc": "2026-11-16T12:05:30.307038+00:00"
+}

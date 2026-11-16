@@ -1,0 +1,176 @@
+{
+  "version": "e2-three-full-HPO-timing-pilot-recovered-v3",
+  "plan_sha256": "bb196eee41b982b06b5dd8f998dda9c606b2c234f259bd2fe9d74d04553675a9",
+  "canonical_jobs": [
+    {
+      "job": "pilot-01",
+      "model": "MLP16",
+      "cap_seconds": 60,
+      "reservation_id": "257005f6-ff09-4866-8b7e-38c50c07aeeb",
+      "observed_charged_worker_seconds": 5.753766014997382,
+      "returncode": 0,
+      "outcome": {
+        "version": "e2-three-full-HPO-timing-pilot-v2",
+        "job": "pilot-01",
+        "model": "MLP16",
+        "status": "completed",
+        "plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+        "partial_fit_is_complete_fitness": false,
+        "full_HPO_policy_fit_completed": true,
+        "epochs_completed": 200,
+        "best_epoch": 180,
+        "optimizer_steps": 800,
+        "stop_reason": "patience",
+        "fit_seconds": 2.7622207929962315,
+        "selected_checkpoint_sha256": "ac2fbd1ef322ed26bd6bbaaf59645246fe66719876c0fef20e775c747a466ae8",
+        "validation_count": 83,
+        "validation_RMSE": 0.008588944136078861,
+        "timer_scope": "worker includes loading/setup, full200/patience20HPO fit, checkpoint and selected validation scoring",
+        "worker_elapsed_seconds_before_final_receipt": 5.093037037993781
+      }
+    },
+    {
+      "job": "pilot-02",
+      "model": "iTransformer",
+      "cap_seconds": 90,
+      "reservation_id": "2608b1fc-1bc9-4af6-8c4e-d74a09a041c9",
+      "observed_charged_worker_seconds": 12.817985828005476,
+      "returncode": 0,
+      "outcome": {
+        "version": "e2-three-full-HPO-timing-pilot-v2",
+        "job": "pilot-02",
+        "model": "iTransformer",
+        "status": "completed",
+        "plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+        "partial_fit_is_complete_fitness": false,
+        "full_HPO_policy_fit_completed": true,
+        "epochs_completed": 24,
+        "best_epoch": 4,
+        "optimizer_steps": 192,
+        "stop_reason": "patience",
+        "fit_seconds": 9.388178059001802,
+        "selected_checkpoint_sha256": "2a429d579d013c69beb123a0166e40bc4444bfacc3df7263f1585d0261b026dd",
+        "validation_count": 83,
+        "validation_RMSE": 0.008769390678967889,
+        "timer_scope": "worker includes loading/setup, full200/patience20HPO fit, checkpoint and selected validation scoring",
+        "worker_elapsed_seconds_before_final_receipt": 12.223218957995414
+      }
+    },
+    {
+      "job": "pilot-03",
+      "model": "TimesNet",
+      "cap_seconds": 270,
+      "reservation_id": "06ae2a8a-2ff2-448a-8aa4-79c4e9f8a317",
+      "observed_charged_worker_seconds": 266.56393904400466,
+      "returncode": 2,
+      "outcome": {
+        "version": "e2-three-full-HPO-timing-pilot-v2",
+        "job": "pilot-03",
+        "model": "TimesNet",
+        "status": "censored_timeout",
+        "plan_sha256": "bb196eee41b982b06b5dd8f998dda9c606b2c234f259bd2fe9d74d04553675a9",
+        "partial_fit_is_complete_fitness": false,
+        "error_type": "TrainingFailure",
+        "reason": "Stage wall limit exceeded at a checked boundary",
+        "full_HPO_policy_fit_completed": false,
+        "failed_stage_receipt_saved": true,
+        "completed_fit_cost_estimated": false,
+        "retry_performed": false,
+        "worker_elapsed_seconds_before_final_receipt": 265.10620458399353
+      }
+    }
+  ],
+  "completed_full_policy_fits": 2,
+  "prior_blocked_before_fit_attempt_retained": {
+    "job": "pilot-03",
+    "model": "TimesNet",
+    "cap_seconds": 270,
+    "reservation_id": "d94ed0d8-cf8c-4648-889e-038d7d164684",
+    "observed_charged_worker_seconds": 0.11463836400071159,
+    "returncode": 1,
+    "outcome": {
+      "status": "failed_without_worker_receipt",
+      "full_HPO_policy_fit_completed": false,
+      "completed_fit_cost_estimated": false
+    }
+  },
+  "all_worker_charges_including_prior_source_block_seconds": 285.2503292510082,
+  "all_group_charges_including_admissions_and_failure_seconds": 291.2081225889997,
+  "all_group_charge_rows": [
+    {
+      "at_utc": "2026-11-16T12:07:37.741257+00:00",
+      "cap_seconds": 30.0,
+      "elapsed_seconds": 3.077465595997637,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "followup-HPO-timing-admission",
+      "previous_record_sha256": "8e4942c62db2e3447685141e6d4193f80e8f6aea243a54367ca343d1523a748c",
+      "reservation_id": "78ffe8bf-bb3a-47c3-84ad-692ff8719de4",
+      "returncode": 0
+    },
+    {
+      "at_utc": "2026-11-16T12:07:55.550904+00:00",
+      "cap_seconds": 60.0,
+      "elapsed_seconds": 5.753766014997382,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "followup-HPO-timing:pilot-01",
+      "previous_record_sha256": "43a464dce7721905ce0950691501db9f7c156e57725a2fc659773597bea4f9da",
+      "reservation_id": "257005f6-ff09-4866-8b7e-38c50c07aeeb",
+      "returncode": 0
+    },
+    {
+      "at_utc": "2026-11-16T12:08:08.375691+00:00",
+      "cap_seconds": 90.0,
+      "elapsed_seconds": 12.817985828005476,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "followup-HPO-timing:pilot-02",
+      "previous_record_sha256": "9246d11259cdd647338ab140f3030559255d982a9ba9983064a1d6d7bb785d97",
+      "reservation_id": "2608b1fc-1bc9-4af6-8c4e-d74a09a041c9",
+      "returncode": 0
+    },
+    {
+      "at_utc": "2026-11-16T12:08:08.496246+00:00",
+      "cap_seconds": 270.0,
+      "elapsed_seconds": 0.11463836400071159,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "followup-HPO-timing:pilot-03",
+      "previous_record_sha256": "7bfd36b8efb01c78dd6f66b8b3604f6e04657b8730c4690b01523a56feb83d73",
+      "reservation_id": "d94ed0d8-cf8c-4648-889e-038d7d164684",
+      "returncode": 1
+    },
+    {
+      "at_utc": "2026-11-16T12:16:02.557627+00:00",
+      "cap_seconds": 20.0,
+      "elapsed_seconds": 2.880327741993824,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "followup-HPO-timing-readmission",
+      "previous_record_sha256": "4ecf636e0ac55a3bbdf3b7fd4dd4ba021fac138384e603b0babc5dbf326b573f",
+      "reservation_id": "45fbae65-8aa9-4d82-9002-545c047f8c28",
+      "returncode": 0
+    },
+    {
+      "at_utc": "2026-11-16T12:20:41.009064+00:00",
+      "cap_seconds": 270.0,
+      "elapsed_seconds": 266.56393904400466,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "followup-HPO-timing:pilot-03",
+      "previous_record_sha256": "ffcace10132249b955590aa87e5d335b48f8aca507bb0faaa9e7e3f81c046573",
+      "reservation_id": "06ae2a8a-2ff2-448a-8aa4-79c4e9f8a317",
+      "returncode": 2
+    }
+  ],
+  "original_group_cap_seconds": 450,
+  "original_group_cap_reset": false,
+  "two_completed_fits_rerun": false,
+  "calibration_test_accessed": false,
+  "historical_A2_changed": false,
+  "full13model_HPO_forecast_established": false,
+  "selection_variance_established": false,
+  "independent_importance_established": false,
+  "projection_limit": "Observed completed-job cost is conditional to exactmodel/C03/firstfold/seed/runtime; three representatives do not identify costs for all13bodies. Censored attempts never substitute full costs."
+}

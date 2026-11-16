@@ -1,0 +1,11 @@
+# Piloto operacional de coste HPO
+
+Este plan posterior admite tres intentos completos de selección HPO: MLP16, iTransformer y TimesNet. Conserva máximo 200 épocas, paciencia 20, horizonte de scheduler de 200 épocas y la receta publicada. La configuración es la **C03 original, índice padre 8**, elegida por la misma posición para los tres representantes; no por su resultado. La semilla es 271211. El primer fold tiene 253 ejemplos de entrenamiento y 83 de validación. El parser sólo decodifica valores hasta el 24/12/2023; las fechas posteriores hasta el origen son placeholders. No se decodifican valores de calibración final ni de prueba.
+
+`plan.json` fija fuentes, datos, código autoral, recetas y runtime antes de los ajustes. El grupo autorizado tiene un máximo de 450 segundos: hasta 30 s para admisión, 60 s para MLP16, 90 s para iTransformer y 270 s para TimesNet. Los cargos reales de cada trabajador, incluidos fallos y timeouts, se registran por separado en el ledger continuado. No se suman otra vez los tiempos internos de fase ni el tiempo del controlador que contiene a los trabajadores.
+
+El piloto operacional reemplaza **únicamente** la elección conceptual F07 del primer diseño no ejecutado. El constructor vigente exige las tuplas exactas registradas; por eso se usa C03 sin cambiar sus validaciones. El nuevo dominio de 16 tuplas continúa sin ejecutar y requiere su admisión propia. NAS del capítulo 14 no aplica a los cuerpos definidos.
+
+Un timeout conserva el coste observado y el estado censurado. Sus pocas épocas o pasos no equivalen a un ajuste completo, y su duración no se usa como coste completo. Los representantes que terminen proporcionan tiempos de sus condiciones concretas; tres modelos y un fold no identifican el coste de toda la búsqueda, la variación de selección o la importancia aislada de hiperparámetros.
+
+El ejecutor es `scripts/e2_hpo_followup_pilot.py`. Se separan `--prepare`, `--admit` y `--run`; la admisión verifica hashes y soportes antes de los ajustes. El trabajador exige una reserva activa de su identidad exacta. Los directorios existentes no se sobrescriben ni se reintentan automáticamente. El plan contiene las rutas observadas en este entorno; otro equipo debe registrar sus rutas y asignaciones de cómputo en un plan nuevo antes de ejecutar ajustes.

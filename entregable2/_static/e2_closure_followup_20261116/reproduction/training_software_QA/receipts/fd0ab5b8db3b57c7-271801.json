@@ -1,0 +1,101 @@
+{
+  "stage": "fd0ab5b8db3b57c7-271801",
+  "run_identity_sha256": "36629505eb3988a146ce8fb0c2bcc3b89732b473a4db2eeee8278b6e91fe9afc",
+  "returncode": 0,
+  "error": null,
+  "charged_worker_wall_seconds": 6.945097161005833,
+  "parent_wall_seconds_added": false,
+  "command": [
+    "<DECLARED_CPU_PYTHON>",
+    "-I",
+    "<PACKAGE>/run.py",
+    "--config",
+    "<PACKAGE>/portable_campaign.json",
+    "--worker",
+    "fd0ab5b8db3b57c7-271801",
+    "--mode",
+    "train-fixed",
+    "--device",
+    "cpu",
+    "--output",
+    "<TRAINING_QA_OUTPUT>/run"
+  ],
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifacts": [
+    {
+      "path": "stages/fd0ab5b8db3b57c7-271801/fit_result.json",
+      "bytes": 1373,
+      "sha256": "4409562414026833aaea127dfd3be9dc07d5179d80f82b67cfaae1f3650bd894"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/calibration_predictions.json",
+      "bytes": 3906,
+      "sha256": "8cb6964bc15712203405a788b1241697ddcf1703f3c60ce9b5c51eba20205546"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/calibrator.json",
+      "bytes": 1653,
+      "sha256": "05d7a9c03e0ccf4c54bf7b23c3402590d54dcfe9234522b252eaf02c62b56f5f"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/development_admission.json",
+      "bytes": 2812,
+      "sha256": "949697f6b50e3a7d1950ce4fc64e6f05432ff8c3547dcc59d616b1a8dd774e99"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/fit/selected_model.pt",
+      "bytes": 17827,
+      "sha256": "fead6f8aac11576f0447eb7c202543682f81478b453385a042b78aab5d6722e0"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/result.json",
+      "bytes": 15306,
+      "sha256": "fad1027bec381e5e58650dbdcb515b2ec8c91eb922a412e85e039d4ae43eb6e3"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/scaler.json",
+      "bytes": 12234,
+      "sha256": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/supervised_phase.json",
+      "bytes": 11039,
+      "sha256": "4d8361e9b90dc1eb5ae3707fbb21cd9f87a2c53c0296dbbb6c713f4e08c66de6"
+    },
+    {
+      "path": "campaign/final-fit/fd0ab5b8db3b57c7/271801/worker_spec.json",
+      "bytes": 5357,
+      "sha256": "9201f15b1ca40da5266b6b479056006d644bc4331e7876418699a5869d715094"
+    }
+  ],
+  "runtime": {
+    "python": "3.12.14",
+    "executable": "<DECLARED_CPU_PYTHON>",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "os_release": {
+      "NAME": "Debian GNU/Linux",
+      "ID": "debian",
+      "PRETTY_NAME": "Debian GNU/Linux 13 (trixie)",
+      "VERSION_ID": "13",
+      "VERSION": "13 (trixie)",
+      "VERSION_CODENAME": "trixie",
+      "DEBIAN_VERSION_FULL": "13.6",
+      "HOME_URL": "https://www.debian.org/",
+      "SUPPORT_URL": "https://www.debian.org/support",
+      "BUG_REPORT_URL": "https://bugs.debian.org/"
+    },
+    "packages": {
+      "torch": "2.8.0+cpu",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "statsmodels": "0.14.5"
+    }
+  },
+  "_public_export": {
+    "original_file_sha256": "db33f4d8a48acf34f211187e2e74bebe61561307f3e40ccb397f28e2a9775261",
+    "paths_normalized_for_public_readability": true,
+    "scientific_numbers_changed": false
+  }
+}

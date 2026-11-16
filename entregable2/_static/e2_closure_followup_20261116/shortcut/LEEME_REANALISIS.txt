@@ -1,0 +1,22 @@
+Diagnóstico de dependencia de entradas: reanálisis independiente
+
+Requisitos: Python 3.11 o posterior y NumPy 2.3.5. Se recomienda crear un
+entorno virtual y ejecutar:
+
+    python -m pip install -r requirements.txt
+    python replay_shortcut_statistics.py --output comprobacion.json
+
+No necesita repositorio, conexión a Binance, GPU ni Torch. La instalación de
+NumPy puede requerir red si la biblioteca todavía no está disponible.
+
+El comando verifica las identidades locales y recalcula los 26 contrastes
+exploratorios y sus IC a partir de los pronósticos guardados; compara las
+cifras con la tabla publicada y guarda el recibo solicitado. No entrena
+modelos ni regenera forwards. Los pesos y las fuentes originales son
+necesarios para repetir esos pasos científicos, descritos en README.md.
+
+Las rutas absolutas del plan conservan la procedencia del estudio original;
+el reanálisis usa exclusivamente archivos incluidos en esta carpeta.
+
+La intervención no demuestra fuga ni que el volumen sea espurio. Sus
+intervalos son marginales y condicionales a una sola asignación de donantes.

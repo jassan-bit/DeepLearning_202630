@@ -247,6 +247,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="sections/10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="sections/65_cierre_cientifico_real.html">Entradas reales, controles y comparaciones completadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/66_seguimiento_pendientes.html">Seguimiento de auditoría, inferencia, HPO y portabilidad</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="sections/11_hpo_equidad.html">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -445,7 +446,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-independientes-del-seguimiento-de-66">Archivos independientes del seguimiento de §66</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-benchmark-y-suplementos">Estado del benchmark y suplementos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-del-informe">Organización del informe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
@@ -471,8 +475,8 @@
 <p><strong>Deep Learning · 2026-30 · Jassan Arteta</strong></p>
 <section id="entregables">
 <span id="e2-entregables-portada"></span><h2>Entregables<a class="headerlink" href="#entregables" title="Link to this heading">#</a></h2>
-<p><strong>Descargas independientes para ejecutar en el computador del profesor.</strong> Cada ZIP incluye su propio <code class="docutils literal notranslate"><span class="pre">run.py</span></code>, instrucciones <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>, entradas necesarias y manifiesto SHA-256. Se puede usar cada paquete por separado, sin clonar el repositorio ni copiar archivos de la página web.</p>
-<p><strong>Edición v3 · 16/11/2026:</strong> incorpora las entradas reales y los controles y análisis actuales. Cada manifiesto identifica el commit de sus fuentes y el alcance de ejecución. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/index.json">edición v2 del 15/11</a> y la <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/index.json">primera edición</a> conservan sus descargas y bytes originales. El libro offline identifica su fecha de corte.</p>
+<p><strong>Descargas independientes para ejecutar en el computador del profesor.</strong> Los doce ZIP v3 incluyen su propio <code class="docutils literal notranslate"><span class="pre">run.py</span></code>, instrucciones <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>, entradas necesarias y manifiesto SHA-256. Los suplementos posteriores indican abajo sus ejecutores e instrucciones propios. Se puede usar cada paquete por separado, sin clonar el repositorio ni copiar archivos de la página web.</p>
+<p><strong>Edición v3 · 16/11/2026:</strong> incorpora las entradas reales y la evidencia de §65 en el corte identificado por cada manifiesto. El seguimiento posterior de §66 se distribuye en los archivos adicionales indicados abajo; no cambia los bytes de v3. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/index.json">edición v2 del 15/11</a> y la <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/index.json">primera edición</a> conservan sus descargas. El libro offline identifica su fecha de corte.</p>
 <ol class="arabic simple">
 <li><p>Descargar el ZIP elegido y <strong>extraer todo su contenido</strong> en una carpeta propia.</p></li>
 <li><p>Abrir la carpeta <code class="docutils literal notranslate"><span class="pre">D01</span></code>, <code class="docutils literal notranslate"><span class="pre">D02</span></code>, etc. y leer <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>.</p></li>
@@ -545,6 +549,36 @@
 <p>La <a class="reference internal" href="sections/47_entrega_consolidada.html"><span class="std std-doc">entrega consolidada</span></a>, el <a class="reference internal" href="sections/61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B</span></a> y la <a class="reference internal" href="sections/38_cumplimiento_guia.html"><span class="std std-doc">matriz de requisitos</span></a> conservan el estado científico de cada componente. Que un archivo se ejecute correctamente no convierte los controles experimentales pendientes en resultados aprobados.</p>
 <p><strong>Evidencia nueva del 16/11/2026:</strong> <a class="reference internal" href="sections/65_cierre_cientifico_real.html"><span class="std std-doc">entradas reales, controles y comparaciones completadas (§65)</span></a>. Se recuperaron los veinte ZIP originales, se auditaron las <strong>608 entradas de prueba</strong>, se entrenaron <strong>13 controles con etiquetas permutadas</strong> y se ejecutó la <strong>RQ3 completa en CPU</strong>. El clasificador adversarial detecta cambio de distribución y se conserva su alerta. La nueva repetición CPU de las recetas ganadoras también está completa: 78 ajustes neuronales, tres comparadores y evaluación/análisis propios, sin repetir HPO.</p>
 <p>El <a class="reference download internal" download="" href="_downloads/ae7f28c9ae45e44a1911eae6a3649cbc/suplemento_cierre_20261116.zip"><span class="xref download myst">suplemento independiente anterior del 16/11</span></a> conserva sus 18 etapas y su estado histórico. Los doce ZIP v2 mantienen su snapshot del 15/11 y sus bytes originales; no heredan automáticamente los resultados nuevos.</p>
+<section id="archivos-independientes-del-seguimiento-de-66">
+<h3>Archivos independientes del seguimiento de §66<a class="headerlink" href="#archivos-independientes-del-seguimiento-de-66" title="Link to this heading">#</a></h3>
+<p>Estos cinco ZIP incluyen sus propias entradas e instrucciones; no requieren descargar otro entregable ni clonar el repositorio. Los reanálisis parten de pronósticos incluidos; el paquete CPU incluye pesos y fuentes para generar pronósticos reales. Cada modo conserva su alcance y recibo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Descarga</p></th>
+<th class="head"><p>Ejecución y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/5795fae9fde37e13fa8e7519eeb734e5/reanalisis_controles_negativos_v1.zip"><span class="xref download myst">Controles negativos: reanálisis</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run.py</span></code>: seis controles, RMSE, correlaciones, IC, TOST y Holm. Requiere NumPy/SciPy; no entrena.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/9be2af2562e7692d2758a86f37c46097/reanalisis_inferencial_v1.zip"><span class="xref download myst">Validación HPO y variabilidad</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run.py</span></code>: comparación OOF249–prueba608 y descomposición finita con IC. Requiere NumPy; no entrena.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/582c809e560fd08196cccb97324cd662/diagnostico_entradas_reanalisis_v1.zip"><span class="xref download myst">Dependencia de volumen y OHLC</span></a></p></td>
+<td><p>Repite 26 comparaciones desde los pronósticos de las tres condiciones. Requiere NumPy; las instrucciones identifican el ejecutor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference download internal" download="" href="_downloads/5b6c0c83f2ffa12ab9c49db7546fbe01/reanalisis_hpo_descriptivo_v1.zip"><span class="xref download myst">HPO descriptivo y recuperación bibliográfica</span></a></p></td>
+<td><p>Reconstruye asociaciones y costes registrados con Python estándar; incluye formulario del historial Scopus/WoS. No ejecuta ajustes HPO.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference download internal" download="" href="_downloads/c265b773263462d7ab70091c2e3b3539/reproduccion_cpu_portable_v1.zip"><span class="xref download myst">Flujo CPU con fuentes, datos y pesos</span></a></p></td>
+<td><p>Incluye verificación, reanálisis, inferencia de 81 predictores y entrenamiento de recetas fijas como modos separados. Requiere instalar <code class="docutils literal notranslate"><span class="pre">requirements_cpu.txt</span></code>; leer <code class="docutils literal notranslate"><span class="pre">README.md</span></code> antes del modo elegido.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference internal" href="sections/66_seguimiento_pendientes.html"><span class="std std-doc">Resultados y límites del seguimiento (§66)</span></a>. La revisión de controles negativos conserva un resultado adverso: <strong>no está establecida la cercanía al azar</strong>. Los nuevos análisis no completan una campaña HPO ampliada ni restituyen el historial bibliográfico original faltante.</p>
+</section>
 </section>
 <section id="estado-del-benchmark-y-suplementos">
 <h2>Estado del benchmark y suplementos<a class="headerlink" href="#estado-del-benchmark-y-suplementos" title="Link to this heading">#</a></h2>
@@ -561,7 +595,7 @@
 <section id="organizacion-del-informe">
 <h2>Organización del informe<a class="headerlink" href="#organizacion-del-informe" title="Link to this heading">#</a></h2>
 <p>El índice principal sigue los <strong>catorce capítulos de la guía de E2, en su mismo orden</strong>. Los documentos complementarios aparecen bajo el tema correspondiente; los avances y diseños anteriores se reúnen en el <a class="reference internal" href="sections/archivo_antecedentes.html"><span class="std std-doc">archivo de antecedentes</span></a>.</p>
-<p>Las menciones <strong>§15–§65</strong> identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La <a class="reference internal" href="sections/concordancia_guia.html"><span class="std std-doc">tabla de concordancia</span></a> permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.</p>
+<p>Las menciones <strong>§15–§66</strong> identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La <a class="reference internal" href="sections/concordancia_guia.html"><span class="std std-doc">tabla de concordancia</span></a> permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.</p>
 </section>
 <section id="resumen">
 <h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
@@ -794,7 +828,10 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-independientes-del-seguimiento-de-66">Archivos independientes del seguimiento de §66</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-benchmark-y-suplementos">Estado del benchmark y suplementos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-del-informe">Organización del informe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>

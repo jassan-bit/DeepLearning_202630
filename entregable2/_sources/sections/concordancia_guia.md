@@ -4,7 +4,7 @@ El informe sigue los catorce capítulos de la guía. Cada complemento se encuent
 
 **El capítulo 14 documenta una no aplicabilidad:** el catálogo actual utiliza arquitecturas definidas, incluida TiDE publicada R0-v2. La búsqueda NAS de 1.000 diseños y dos fases no es un requisito pendiente. El capítulo se conserva para justificar esa decisión y enlazar las fuentes; el HPO ejecutado se evalúa en el capítulo 11.
 
-Los identificadores **§15–§63** que aparecen en enlaces y recibos históricos permiten seguir su procedencia. No se suman a los catorce capítulos del informe.
+Los identificadores **§15–§66** que aparecen en enlaces y recibos permiten seguir su procedencia. No se suman a los catorce capítulos del informe.
 
 ## Capítulos del informe
 
@@ -80,5 +80,6 @@ Los identificadores **§15–§63** que aparecen en enlaces y recibos histórico
 | §63 | [Referencia empírica mediante un ensemble ajustado en calibración](63_ensamble_calibracion.md) | [Capítulo 12](12_incertidumbre_errores.md) · complemento |
 | §64 | [Correcciones metodológicas posteriores al benchmark](64_correcciones_metodologicas.md) | [Capítulo 13](13_agregacion_estadistica.md) · complemento; auditoría, efectos, regímenes y trazabilidad |
 | §65 | [Entradas reales, controles y comparaciones completadas](65_cierre_cientifico_real.md) | [Capítulo 10](10_auditoria_datos.md) · auditoría de datos608, controles negativos, cambio de distribución y comparaciones posteriores |
+| §66 | [Seguimiento de auditoría, inferencia, HPO y portabilidad](66_seguimiento_pendientes.md) | [Capítulo 10](10_auditoria_datos.md) · seis controles adicionales, comparación OOF–prueba, variabilidad finita, dependencia de entradas y ejecución independiente |
 
 La numeración histórica de archivos y los recibos guardados no se modifica: conserva las identidades usadas para verificar las evidencias y las descargas.

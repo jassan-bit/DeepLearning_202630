@@ -1,0 +1,13 @@
+# HPO: resumen posterior y diseño sin ejecutar
+
+`descriptive_summary.json` concilia recibos existentes. Las asociaciones marginales y la figura muestran las seis tuplas registradas; no son importancia independiente, una selección nueva ni evidencia causal. `configuration_pair_identifiability_195.csv` cuenta qué comparaciones sólo cambian un parámetro; el rango de la matriz de diseño describe sus columnas, sin ajustar RMSE.
+
+Los cargos observados233y la reserva1860s desconocida permanecen separados. Los180desgloses de fases están contenidos en cargos; no se suman otra vez. No se reconstruyen costes perdidos ni se equiparan relojes/hardware. El coste histórico completo y recursos clásicos comparables siguen pendientes.
+
+El dominio de entrenamiento propuesto tiene16tuplas únicas por red, LRlog4×WD2×batch2. Dropout/warmup sólo varían donde las recetas existentes ya lo permiten, en columnas balanceadas con alias de interacciones declarado. No se cambian cuerpos ni D7; NAS§14no aplica. Esto no cubre por sí solo profundidad/ancho/cabezas/kernels/normalización: las alternativas publicadas requieren adjudicación previa y una enmienda del dominio antes de nuevos ajustes. Lo que siga fijo y no explorado conserva ese estado.
+
+`followup_registration_not_executed.json` registra un estudio posterior con3semillas HPO provisionales,1872trabajosantes de completar dimensiones familiares. No acredita potencia ni cronología prospectiva del estudio original. Ningún trabajo se lanza desde este productor. El piloto de coste propuesto admite hasta450s: MLP16/60s, iTransformer/90s, TimesNet/270s y30sdelcontrolador; una tupla y el primer fold por representante. Usa max200épocas/patience20yconserva los timeouts, sin reemplazar el coste completo por pocos pasos. Sólo se ejecutaría con asignación explícita del controlador, no como presupuesto nuevo implícito. La proyección proporcional desde recetas finales CPU es sólo escenario aritmético, no estimación HPO ni solicitud de horas. El piloto medido y la fórmula por pasos/fases deben sustentar cualquier ampliación concreta; un representante censurado no prueba que su coste completo quepa.
+
+## Reproducir el descriptivo
+
+Desde la raíz del repositorio: `python scripts/e2_hpo_followup_design.py --out book_e2/_static/e2_closure_followup_20261116`. Antes de la primera ejecución se congela el plan con `--freeze-plan`; el productor rechaza cualquier fuente cambiada. Ejecutar mediante el ledger continuado y su reserva asignada, sin reiniciar cargos. No requiereTorch, red, datos de mercado, inferencia, entrenamiento ni bootstrap. Los recibos históricos permanecen intactos.

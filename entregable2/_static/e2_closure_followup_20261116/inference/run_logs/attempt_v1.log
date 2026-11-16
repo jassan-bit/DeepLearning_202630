@@ -1,0 +1,15 @@
+{"budget_reservation_id": "ffec1d06-9a05-4fdd-9855-daff73390035", "phase": "followup-inference", "cap_seconds": 600.0}
+/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py:238: UserWarning: no explicit representation of timezones available for np.datetime64
+  require(all((np.datetime64(dates[i+1])-np.datetime64(dates[i])) == np.timedelta64(1, 'D')
+Traceback (most recent call last):
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 359, in <module>
+    main()
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 355, in main
+    execute(args.directory, args.plan_sha)
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 273, in execute
+    oof, loss, admissions = load_arrays(plan)
+                            ^^^^^^^^^^^^^^^^^
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 243, in load_arrays
+    y = np.array([development[d] for d in dates])
+                  ~~~~~~~~~~~^^^
+KeyError: '2023-10-03T00:00:00+00:00'

@@ -1,0 +1,87 @@
+{
+  "version": "e2-portable-training-software-QA-v1",
+  "command": [
+    "<DECLARED_CPU_PYTHON>",
+    "-I",
+    "<PACKAGE>/run.py",
+    "--mode",
+    "train-fixed",
+    "--execute",
+    "--device",
+    "cpu",
+    "--models",
+    "MLP16",
+    "LSTM-autoencoder con predictor",
+    "ARIMA",
+    "--seeds",
+    "271801",
+    "--output",
+    "<TRAINING_QA_OUTPUT>/run",
+    "--cap-seconds",
+    "180"
+  ],
+  "returncode": 0,
+  "registered_models": [
+    "MLP16",
+    "LSTM-autoencoder con predictor",
+    "ARIMA"
+  ],
+  "neural_seed": 271801,
+  "test_prediction_performed": false,
+  "new_A2_produced": false,
+  "HPO_performed": false,
+  "original_results_modified": false,
+  "full81_training_demonstrated": false,
+  "checks": [
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271801,
+      "status": "passed",
+      "checkpoint_sha256": "919d227b89a769030838177230f9fd49fadfe829fd43312916b2d81ef3dcba53",
+      "scaler_sha256": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959",
+      "calibrator_sha256": "4b2ca84bfc6acb1f30757e13213251a4565e3f6f82551c2b0e0f78a7d5c1df03",
+      "train_count": 655,
+      "calibration_count": 53,
+      "frozen_epoch_phases": {
+        "ae1": 172,
+        "ae2": 177,
+        "supervised": 78
+      }
+    },
+    {
+      "model": "MLP16",
+      "seed": 271801,
+      "status": "passed",
+      "checkpoint_sha256": "fead6f8aac11576f0447eb7c202543682f81478b453385a042b78aab5d6722e0",
+      "scaler_sha256": "245eaf5deeb2c236a51c495b2225b5a7a6f351e2abd2bd1941ad2d3eb65b2959",
+      "calibrator_sha256": "05d7a9c03e0ccf4c54bf7b23c3402590d54dcfe9234522b252eaf02c62b56f5f",
+      "train_count": 655,
+      "calibration_count": 53,
+      "frozen_epoch_phases": {
+        "supervised": 57
+      }
+    },
+    {
+      "model": "ARIMA",
+      "seed": "deterministic",
+      "status": "passed",
+      "checkpoint_sha256": "f587ec62f6b9b0d463d9547d315c88ae81b970de708bb4af5915d0918b5ae0ef",
+      "scaler_sha256": "118da154f426bd24ad185c472176a2bfab8e7654771141287a68b4cee42435ec",
+      "calibrator_sha256": "d5ab5c6b322ab4e19fe643cd679cde584e5e785d0d0b38d09550b45f351a3ac0",
+      "train_count": null,
+      "calibration_count": 53,
+      "frozen_epoch_phases": {}
+    }
+  ],
+  "status": "passed",
+  "elapsed_wall_seconds": 91.12601490500674,
+  "completed_at_utc": "2026-11-16T12:12:52.697911+00:00",
+  "log_sha256": "7001d2ba4feaa947b5afd6a61ed333cf6b4f5f7ea2e56612bf2a4fd50d35644e",
+  "new_neural_fits_completed": 2,
+  "new_classical_fits_completed": 1,
+  "_public_export": {
+    "original_file_sha256": "6fda2dde9359ea301c5e061b72694a337d6cdb4140b4e6ad8d38b7b6710695a0",
+    "paths_normalized_for_public_readability": true,
+    "scientific_numbers_changed": false
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "version": "e2-hpo-followup-design-v1",
+  "source_commit": "f0d140c070db8ebd8ba7ebf1389158dafebf7d4a",
+  "models": 13,
+  "configurations": 78,
+  "planned_fold_opportunities": 234,
+  "completed_fold_outcomes": 231,
+  "recorded_winners": 13,
+  "one_factor_only_comparison_pairs": 1,
+  "marginal_rows": 237,
+  "new_fits": 0,
+  "model_forward_passes": 0,
+  "response_regressions": 0,
+  "statistical_tests": 0,
+  "resampling_draws": 0,
+  "isolated_hyperparameter_importance_established": false,
+  "selection_variance_established": false,
+  "NAS_required_for_current_defined_bodies": false,
+  "observed_catalogue_cost_accounting": {
+    "version": "e2-catalogue-charge-accounting-v1",
+    "scope": "recorded reduced HPO catalogue only; heterogeneous observed wall charges",
+    "registered_opportunities": 234,
+    "completed_outcomes": 231,
+    "known_failed_outcomes": 2,
+    "unknown_outcomes": 1,
+    "current_campaign_charge_receipts": 173,
+    "current_campaign_observed_charge_receipts": 172,
+    "original_cached_charge_receipts": 61,
+    "observed_charge_receipts_union": 233,
+    "physical_jobs_double_counted": 0,
+    "current_campaign_observed_wall_charge_seconds": 24116.93557340999,
+    "historical_original_cached_wall_charge_seconds": 1716.9633450739982,
+    "recorded_catalogue_observed_wall_charge_seconds_mixed_scopes": 25833.89891848399,
+    "recorded_catalogue_observed_wall_charge_hours_mixed_scopes": 7.176083032912219,
+    "unmeasured_conservative_allocation_seconds_not_added": 1860.0,
+    "unknown_actual_elapsed_seconds": null,
+    "phase_breakdown_available_jobs_separate_scope": 180,
+    "completed_jobs_without_phase_breakdown_separate_scope": 51,
+    "two_known_failures": [
+      {
+        "model": "TimesNet",
+        "attempt_id": "10098dda29216054585354395d2d8ef4b81c44ad31361b4c11cabf09ee998c41",
+        "fold_origin": "2024-01-01",
+        "terminal_failure_class": "pre_model_setup_failure",
+        "optimizer_steps_exact_at_failure": 0,
+        "observed_wall_charge_seconds": 10.937776180000583
+      },
+      {
+        "model": "TimesNet",
+        "attempt_id": "9f7b59ed82fc0df667298fdca8ca6d5b18e3aa4d6767fd584962d0dd5390aaa2",
+        "fold_origin": "2024-07-01",
+        "terminal_failure_class": "synchronized_phase_timeout",
+        "optimizer_steps_exact_at_failure": 749,
+        "observed_wall_charge_seconds": 613.7289963609983
+      }
+    ],
+    "limitations": [
+      "Different historical search-session and reduced-budget timer boundaries and mixed hardware; descriptive accounting, not comparable pure training speed.",
+      "Only the 234 recorded reduced-catalogue opportunities; earlier discarded trials, outer controller overhead, source recovery, final fitting, CPU supplements and all project-wide costs are outside this sum.",
+      "One lost worker has no observed elapsed duration; its 1860-second conservative allocation is not added to observed time and is not an upper bound on its actual wall time.",
+      "The 51 missing phase breakdowns do not remove existing original wall-charge receipts; phase totals remain a distinct incomplete breakdown.",
+      "No GPU-active time, monetary cost, energy, complete historical selection cost, or end-to-end campaign duration is inferred."
+    ],
+    "do_not_add_to_this_total": [
+      "phase elapsed times",
+      "cached callbacks",
+      "failed-worker nested elapsed",
+      "unknown reserved allocation",
+      "new CPU reproduction cost or other campaigns without separate scope accounting"
+    ]
+  },
+  "phase_breakdown_recorded_jobs": 180,
+  "completed_jobs_without_phase_breakdown": 51,
+  "remaining": [
+    "Minimum family-specific HPO breadth not fully explored",
+    "No identified independent importance from the six covarying tuples",
+    "One HPO seed does not measure optimization-induced selection variance",
+    "Classical resource timings and full historical selection cost remain incomparable/unknown"
+  ]
+}

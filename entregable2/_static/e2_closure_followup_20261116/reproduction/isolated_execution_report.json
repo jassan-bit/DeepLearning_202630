@@ -1,0 +1,90 @@
+{
+  "version": "e2-isolated-portable-proof-v1",
+  "started_at_utc": "2026-11-16T12:08:08.553050+00:00",
+  "runner_sha256": "3b603768e4607d16e34c79b0aaf7bc60664006ff8372b1c51461e72a09b06617",
+  "config_sha256": "ba3b3d482a87236d785a3c64ec56e94e5d3f323c0739f1e89ccdcc7c66b52074",
+  "isolated_python": true,
+  "PYTHONPATH_removed": true,
+  "unrelated_working_directory": "<ISOLATED_OUTPUT>",
+  "scientific_inputs_from_package_only": true,
+  "new_model_fits": 0,
+  "cases": [
+    {
+      "name": "check_before",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "check",
+        "--output",
+        "<ISOLATED_OUTPUT>/check_before"
+      ],
+      "returncode": 0,
+      "seconds": 0.5662796699907631,
+      "log_sha256": "310040aacd5841499c94b563b2c87d0d63e7cc97f369d5f8eaaeadfee53ad926"
+    },
+    {
+      "name": "reanalysis",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "reanalysis",
+        "--execute",
+        "--output",
+        "<ISOLATED_OUTPUT>/reanalysis",
+        "--cap-seconds",
+        "65"
+      ],
+      "returncode": 0,
+      "seconds": 3.0246217350068036,
+      "log_sha256": "fb4ebdc123fb32b88844326da2af9c6fac2b99f6850a2522428bcca1f8ec0270"
+    },
+    {
+      "name": "replay",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "replay-checkpoints",
+        "--execute",
+        "--device",
+        "cpu",
+        "--output",
+        "<ISOLATED_OUTPUT>/replay",
+        "--cap-seconds",
+        "190"
+      ],
+      "returncode": 0,
+      "seconds": 131.39456088800216,
+      "log_sha256": "6679174c4f0a518f8583095ee76e9f17048a40fcd71b26e983de6997670d6d1c"
+    },
+    {
+      "name": "check_after",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "check",
+        "--output",
+        "<ISOLATED_OUTPUT>/check_after"
+      ],
+      "returncode": 0,
+      "seconds": 1.0709757360018557,
+      "log_sha256": "310040aacd5841499c94b563b2c87d0d63e7cc97f369d5f8eaaeadfee53ad926"
+    }
+  ],
+  "full_historical_campaign_reproduced": false,
+  "status": "passed",
+  "completed_at_utc": "2026-11-16T12:10:24.613110+00:00",
+  "elapsed_wall_seconds": 136.05942340201,
+  "_public_export": {
+    "original_file_sha256": "2235ff2a7e47c6e6acce8f5d2e5aac9c086f0f71344f62306a6b521a60336c62",
+    "paths_normalized_for_public_readability": true,
+    "scientific_numbers_changed": false
+  }
+}

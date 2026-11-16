@@ -1,0 +1,18 @@
+{"budget_reservation_id": "09e6bfd5-8370-47d0-9cb6-039b7aec6916", "phase": "followup-inference", "cap_seconds": 598.0}
+{"completed_block_days": 14, "draws": 5000, "elapsed_seconds": 9.092223191997618}
+{"completed_block_days": 7, "draws": 5000, "elapsed_seconds": 19.261132960993564}
+{"completed_block_days": 28, "draws": 5000, "elapsed_seconds": 27.751378061992}
+Traceback (most recent call last):
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 368, in <module>
+    main()
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 364, in main
+    execute(args.directory, args.plan_sha)
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 350, in execute
+    "files": [record(p) for p in sorted(output.iterdir()) if p.is_file()]})
+              ^^^^^^^^^
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 62, in record
+    return {"path": path.relative_to(ROOT).as_posix(), "sha256": sha(path),
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: 'book_e2/_static/e2_closure_followup_20261116/inference/recovery_v3/result_v1/bootstrap_draws.npz' is not in the subpath of '/workspace/e2-guide-closure-20261113'
