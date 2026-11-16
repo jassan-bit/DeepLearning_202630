@@ -5,6 +5,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import shutil
 import sys
 import tempfile
 import unittest
@@ -128,6 +129,57 @@ class HandoffAuditTests(unittest.TestCase):
         with patch.object(audit, "sha256", side_effect=tampered):
             with self.assertRaisesRegex(ValueError, "public source hash mismatch"):
                 audit.audit(ROOT, [])
+
+    def test_reproduction_document_is_the_verified_historical_source(self):
+        snapshot = audit.historical_reproduction_source(ROOT)
+        metadata = audit.load_json(ROOT / audit.REPRO_DOC_SOURCE)
+        self.assertEqual(metadata["original_path"], "book_e2/sections/08_reproducibilidad.md")
+        self.assertEqual(metadata["source_commit"], audit.SOURCE_COMMIT)
+        self.assertEqual(audit.sha256(snapshot), audit.REPRO_DOC_SHA256)
+        saved = audit.load_json(ROOT / audit.OUTPUT / "audit_summary.json")
+        self.assertEqual(saved["sources_sha256"][str(audit.REPRO_DOC)], audit.sha256(snapshot))
+
+    def test_historical_snapshot_cannot_be_missing_altered_or_relabelled(self):
+        for fault in ("missing", "altered", "relabelled", "metadata_missing"):
+            with self.subTest(fault=fault), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                snapshot = root / audit.REPRO_DOC_SNAPSHOT
+                snapshot.parent.mkdir(parents=True)
+                shutil.copyfile(ROOT / audit.REPRO_DOC_SNAPSHOT, snapshot)
+                metadata_path = root / audit.REPRO_DOC_SOURCE
+                shutil.copyfile(ROOT / audit.REPRO_DOC_SOURCE, metadata_path)
+                # A live chapter must not rescue a missing or invalid old input.
+                live = root / audit.REPRO_DOC
+                live.parent.mkdir(parents=True)
+                live.write_bytes((ROOT / audit.REPRO_DOC_SNAPSHOT).read_bytes())
+                if fault == "missing":
+                    snapshot.unlink()
+                elif fault == "altered":
+                    raw = bytearray(snapshot.read_bytes())
+                    raw[-1] ^= 1
+                    snapshot.write_bytes(raw)
+                elif fault == "relabelled":
+                    metadata = audit.load_json(metadata_path)
+                    metadata["source_commit"] = "0" * 40
+                    metadata_path.write_text(json.dumps(metadata))
+                else:
+                    metadata_path.unlink()
+                with self.assertRaisesRegex(ValueError, "historical reproduction source"):
+                    audit.historical_reproduction_source(root)
+
+    def test_mutable_reproduction_page_is_not_a_historical_audit_input(self):
+        original = audit.sha256
+
+        def reject_live_page(path):
+            if path == ROOT / audit.REPRO_DOC:
+                raise AssertionError("The current chapter is not the historical source")
+            return original(path)
+
+        with tempfile.TemporaryDirectory() as temporary, patch.object(audit, "sha256", side_effect=reject_live_page):
+            cache = Path(temporary)
+            audit.extract_metadata(self.raw_zip, self.backup, cache)
+            _, summary, _ = audit.audit(ROOT, [cache])
+        self.assertEqual(summary, audit.load_json(ROOT / audit.OUTPUT / "audit_summary.json"))
 
 
 if __name__ == "__main__":
