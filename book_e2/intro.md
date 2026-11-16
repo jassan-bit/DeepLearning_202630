@@ -5,9 +5,9 @@
 (e2-entregables-portada)=
 ## Entregables
 
-**Descargas independientes para ejecutar en el computador del profesor.** Cada ZIP incluye su propio `run.py`, instrucciones `LEEME.md`, entradas necesarias y manifiesto SHA-256. Se puede usar cada paquete por separado, sin clonar el repositorio ni copiar archivos de la página web.
+**Descargas independientes para ejecutar en el computador del profesor.** Los doce ZIP v3 incluyen su propio `run.py`, instrucciones `LEEME.md`, entradas necesarias y manifiesto SHA-256. Los suplementos posteriores indican abajo sus ejecutores e instrucciones propios. Se puede usar cada paquete por separado, sin clonar el repositorio ni copiar archivos de la página web.
 
-**Edición v3 · 16/11/2026:** incorpora las entradas reales y los controles y análisis actuales. Cada manifiesto identifica el commit de sus fuentes y el alcance de ejecución. La [edición v2 del 15/11](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/index.json) y la [primera edición](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/index.json) conservan sus descargas y bytes originales. El libro offline identifica su fecha de corte.
+**Edición v3 · 16/11/2026:** incorpora las entradas reales y la evidencia de §65 en el corte identificado por cada manifiesto. El seguimiento posterior de §66 se distribuye en los archivos adicionales indicados abajo; no cambia los bytes de v3. La [edición v2 del 15/11](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v2_20261115/index.json) y la [primera edición](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/entregables_independientes_v1/index.json) conservan sus descargas. El libro offline identifica su fecha de corte.
 
 1. Descargar el ZIP elegido y **extraer todo su contenido** en una carpeta propia.
 2. Abrir la carpeta `D01`, `D02`, etc. y leer `LEEME.md`.
@@ -44,6 +44,20 @@ La [entrega consolidada](sections/47_entrega_consolidada.md), el [Apéndice B](s
 
 El [suplemento independiente anterior del 16/11](_static/e2_pending_closure_20261116/suplemento_cierre_20261116.zip) conserva sus 18 etapas y su estado histórico. Los doce ZIP v2 mantienen su snapshot del 15/11 y sus bytes originales; no heredan automáticamente los resultados nuevos.
 
+### Archivos independientes del seguimiento de §66
+
+Estos cinco ZIP incluyen sus propias entradas e instrucciones; no requieren descargar otro entregable ni clonar el repositorio. Los reanálisis parten de pronósticos incluidos; el paquete CPU incluye pesos y fuentes para generar pronósticos reales. Cada modo conserva su alcance y recibo.
+
+| Descarga | Ejecución y alcance |
+| --- | --- |
+| [Controles negativos: reanálisis](_static/e2_closure_followup_20261116/audit/reanalisis_controles_negativos_v1.zip) | `python run.py`: seis controles, RMSE, correlaciones, IC, TOST y Holm. Requiere NumPy/SciPy; no entrena. |
+| [Validación HPO y variabilidad](_static/e2_closure_followup_20261116/inference/reanalisis_inferencial_v1.zip) | `python run.py`: comparación OOF249–prueba608 y descomposición finita con IC. Requiere NumPy; no entrena. |
+| [Dependencia de volumen y OHLC](_static/e2_closure_followup_20261116/shortcut/diagnostico_entradas_reanalisis_v1.zip) | Repite 26 comparaciones desde los pronósticos de las tres condiciones. Requiere NumPy; las instrucciones identifican el ejecutor. |
+| [HPO descriptivo y recuperación bibliográfica](_static/e2_closure_followup_20261116/hpo/reanalisis_hpo_descriptivo_v1.zip) | Reconstruye asociaciones y costes registrados con Python estándar; incluye formulario del historial Scopus/WoS. No ejecuta ajustes HPO. |
+| [Flujo CPU con fuentes, datos y pesos](_static/e2_closure_followup_20261116/reproduction/reproduccion_cpu_portable_v1.zip) | Incluye verificación, reanálisis, inferencia de 81 predictores y entrenamiento de recetas fijas como modos separados. Requiere instalar `requirements_cpu.txt`; leer `README.md` antes del modo elegido. |
+
+[Resultados y límites del seguimiento (§66)](sections/66_seguimiento_pendientes.md). La revisión de controles negativos conserva un resultado adverso: **no está establecida la cercanía al azar**. Los nuevos análisis no completan una campaña HPO ampliada ni restituyen el historial bibliográfico original faltante.
+
 ## Estado del benchmark y suplementos
 
 **Ampliaciones del 15 y 16/11/2026:** [§64](sections/64_correcciones_metodologicas.md) conserva veinte tamaños de efecto con IC, RQ2 ejecutada, trece contrastes de brecha y 12.000 mediciones de latencia. [§65](sections/65_cierre_cientifico_real.md) añade datos reales train655/cal53/test608, controles de los puertos, causalidad clásica, permutación de etiquetas, diagnóstico adversarial y comparación formal de calibración–prueba. La nueva IUT CPU genera **47.424 pronósticos** y no demuestra ninguna mejora conjunta tras Holm10. La tolerancia CUDA del suplemento anterior conserva su resultado fallido y no se cambia.
@@ -68,7 +82,7 @@ El [suplemento independiente anterior del 16/11](_static/e2_pending_closure_2026
 
 El índice principal sigue los **catorce capítulos de la guía de E2, en su mismo orden**. Los documentos complementarios aparecen bajo el tema correspondiente; los avances y diseños anteriores se reúnen en el [archivo de antecedentes](sections/archivo_antecedentes.md).
 
-Las menciones **§15–§65** identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La [tabla de concordancia](sections/concordancia_guia.md) permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.
+Las menciones **§15–§66** identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La [tabla de concordancia](sections/concordancia_guia.md) permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.
 
 ## Resumen
 

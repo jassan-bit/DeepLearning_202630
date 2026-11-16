@@ -1,0 +1,31 @@
+{
+  "observed_at_utc": "2026-11-16T12:20:25.057905+00:00",
+  "portable_controller_guard_tests": {
+    "passed": 6,
+    "failed": 0,
+    "command": "python tests/test_e2_portable_campaign.py",
+    "market_data_or_fits_used": false
+  },
+  "multi_book_publication_tests": {
+    "passed": 9,
+    "failed": 0,
+    "command": "python tests/test_multi_book_publication.py"
+  },
+  "safe_publication_tests": {
+    "passed": 84,
+    "failed": 0,
+    "command": "python tests/test_safe_publish_books.py"
+  },
+  "python_compilation": "PASS: eight new/changed Python scripts",
+  "whitespace_check": "PASS",
+  "scope": "Software validation and publication guards; not scientific performance, market training or guide acceptance.",
+  "strict_book_build": {
+    "status": "PASS",
+    "command": "jupyter-book build book_e2 --all --warningiserror --keep-going"
+  },
+  "book_links": {
+    "status": "PASS",
+    "HTML_pages": 73,
+    "local_links_and_assets": 12005
+  }
+}

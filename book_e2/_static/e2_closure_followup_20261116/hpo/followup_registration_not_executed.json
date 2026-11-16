@@ -1,0 +1,66 @@
+{
+  "version": "e2-proposed-training-factor-followup-v1",
+  "status": "registered_design_no_jobs_started",
+  "source_freeze_at_utc": "2026-11-16T11:59:36.745226+00:00",
+  "prior_E2_results_known": true,
+  "independent_prospective_confirmation_restored": false,
+  "purpose": "Improve training-factor coverage, importance identifiability and selection-variance accounting in a separate posterior study",
+  "scope_limits": "This training-factor design alone does not cover all structural minimum dimensions of guide11.2",
+  "inputs": "Same655 pretest training examples and3 internal chronological folds; never select from cal53 or test608",
+  "published_bodies_and_NAS": "Bodies unchanged; chapter14 NAS not applicable; unsupported structural variations are not silently introduced",
+  "training_domain": "4logLR x2WD x2batch=16 unique tuples per network; permitted dropout/warmup vary as balanced auxiliary factors",
+  "auxiliary_factor_aliasing": "Dropout/warmup columns are orthogonal to base main factors but alias some interactions; estimate only declared main effects unless a richer design is registered",
+  "HPO_seeds_provisional": [
+    271211,
+    271212,
+    271213
+  ],
+  "seed_count_is_not_power_adequacy": true,
+  "planned_fold_jobs_before_family_domain_amendment": 1872,
+  "training_policy": {
+    "max_epochs": 200,
+    "patience": 20,
+    "optimizer": "unchanged AdamW/clipping/scheduler recipe",
+    "fixed_epoch_scheduler_horizon": 200
+  },
+  "selection_rule": "Same pooled249-date RMSE; deterministic configuration-ID tie break; all failures retain assigned opportunities",
+  "importance_analysis_before_results": "Per-model factorial main contrasts for logLR, WD, batch; declared main-effects auxiliary estimates only. Do not call six-tuple historical associations independent importance. No confirmatory significance claims from this posterior follow-up.",
+  "selection_variance_before_results": "Repeat complete selection across prespecified HPO seeds; report winner frequencies and selected validation risk dispersion. Temporal uncertainty separately requires paired complete candidate-origin predictions and block resampling under a separately frozen executable analysis plan.",
+  "classical_fairness": "Before main jobs, register same-machine comparable opportunity/time rule and justified domains for ARIMA/SeasonalNaive; Persistence is fixed. Record all workers and timings. Historical unequal timing is not overwritten.",
+  "future_timing_pilot_proposal_not_authorized_or_executed": {
+    "requested_group_cap_seconds": 450,
+    "representatives": [
+      {
+        "model": "MLP16",
+        "worker_cap_seconds": 60
+      },
+      {
+        "model": "iTransformer",
+        "worker_cap_seconds": 90
+      },
+      {
+        "model": "TimesNet",
+        "worker_cap_seconds": 270
+      }
+    ],
+    "controller_allowance_seconds": 30,
+    "sum_caps_seconds": 450,
+    "candidate_choice": "F07 in each predefined training domain; same tuple level positions, no choice from observed fitness",
+    "fold": "First internal fold: train253, validation83, origin2024-01-01; other two folds remain in main design",
+    "seed": 271211,
+    "training_policy": "Complete original HPO policy: max200epochs, patience20, scheduler horizon200, no fixed small epoch/batch substitute. Per-worker cap can censor completion and is recorded as such, without automatic retry.",
+    "purpose": "Measure real complete selection-fit wall where admitted; keep timeout cost censored. No partial fit is treated as a complete HPO trial or evidence of coverage/selection variance.",
+    "requires": "Parent assignment of non-overlapping leases within remaining global budget; pinned runtime/sources; no active training from this script",
+    "after_pilot": "Estimate per-job cost by observed complete fits and workload strata; any timed-out representative only gives a lower bound. Freeze family-domain amendment and a conservative admitted cap sum before asking for concrete extra budget; do not extrapolate three representatives as exact costs for all13bodies.",
+    "projection_formula": "For each model m, sum setup_m + epochs_m * (ceil(n_train_fold/batch)*train_step_m + validation_epoch_m + checkpoint_m) over16configs*3folds*3seeds; add SAE auxiliary phases and classical jobs. Pilot and per-model measurements must identify the coefficients. If unknown or censored, use declared synchronized job cap, never substitute0."
+  },
+  "observed_cost_context_not_a_new_HPO_forecast": {
+    "78_fixed_recipe_CPU_final_fits_worker_seconds": 6387.643696654995,
+    "one_fit_each_network_sum_recorded_means_seconds": 1064.6072827758326,
+    "remaining_global_worker_seconds_at_task_assignment": 4646,
+    "proportional_fixed_recipe_scenario_1872_jobs_seconds": 153303.4487197199,
+    "scenario_warning": "Arithmetical scenario ONLY: the stored fits use655examples and fixed selected epochs, unlike HPO folds/200epoch early-stopping. Hardware/epochs/setup differ; not an estimate, quota request, lower bound or completion promise.",
+    "historical_hpo_costs": "233observed mixed-hardware/mixed-clock worker charges;1860unknown allocation separate; not homogeneous CPU calibration"
+  },
+  "execution_gate": "No main HPO before source-supported family adjudications, pilot/time estimate, budget allocation and exact runtime/analysis freeze"
+}

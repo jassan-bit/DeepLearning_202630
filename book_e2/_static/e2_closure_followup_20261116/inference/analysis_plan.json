@@ -1,0 +1,826 @@
+{
+  "version": "e2-conditional-inference-closure-v2",
+  "registered_at_utc": "2026-11-16T11:56:46.900255+00:00",
+  "script_sha256": "53629dcc910055ce9bbdf20ea5d07af9c61ecc53380dcff5c6649a40a196b7be",
+  "scope": "Posterior exploratory analysis, after the original benchmark and earlier diagnostics, before these calculations",
+  "sources": {
+    "selection:FCN-1D": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/FCN-1D.json",
+      "sha256": "f55def53eac4cfd80abc1938d93718c144ba0f0007cff4933894ad363ed9cbdc",
+      "bytes": 3232
+    },
+    "selection:GRU32": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/GRU32.json",
+      "sha256": "1d1e16cb89a02b8cd6a779328e1aa5d4a45db8aa6b6d65f1de733dcc6cfb5d0b",
+      "bytes": 3212
+    },
+    "selection:Inception-1D": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/Inception-1D.json",
+      "sha256": "1dae038192478c3527ff6b058c7213cdb5707804e86b57cad2e0f2bfdccd432e",
+      "bytes": 3258
+    },
+    "selection:LSTM-autoencoder con predictor": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/LSTM-autoencoder-con-predictor.json",
+      "sha256": "41766c69a3540e9ad2f32d1c197ba2c431d8a6a3f279d5e98b8ed3258fad9d47",
+      "bytes": 3361
+    },
+    "selection:LSTM32": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/LSTM32.json",
+      "sha256": "1baad16a7c8799f50adf345589422a0177653a1c2bedb52924576ac06ddaae8c",
+      "bytes": 3186
+    },
+    "selection:MLP16": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/MLP16.json",
+      "sha256": "0d2b2a358f4a814147e944b64dea14d5c427ea68e2639cf95122969560f6967d",
+      "bytes": 3205
+    },
+    "selection:PatchTST": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/PatchTST.json",
+      "sha256": "3102feb55fd9139e8abf944d8e36ffa40badd981896751b7f5dc0e7f93256d7d",
+      "bytes": 3194
+    },
+    "selection:ResNet-1D": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/ResNet-1D.json",
+      "sha256": "ff3d6e6fec05aa89f2678148c61e275ba4fd39f3d6f50ed31868af6885a7feec",
+      "bytes": 3229
+    },
+    "selection:TSMixer": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/TSMixer.json",
+      "sha256": "ab4f3e51f4a9dcd5bf68ae843f74a0bf979b7f44fc09fdd2e72e6ad07f1e0a5d",
+      "bytes": 2932
+    },
+    "selection:TiDE": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/TiDE.json",
+      "sha256": "8eed580d3a223d43e5d10bd614aa899e05662bc9b150f963ff1919ea48856159",
+      "bytes": 3206
+    },
+    "selection:TimeMixer": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/TimeMixer.json",
+      "sha256": "5cd19cd3a47920750be4253da486ad13564cacfc997634cd0633f1b6c1f5ec14",
+      "bytes": 3207
+    },
+    "selection:TimesNet": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/TimesNet.json",
+      "sha256": "b3f5058e6f4126c4f6e1e5f7ba20e38d23076bfee4a2fab3e31329a6b74ebffd",
+      "bytes": 2961
+    },
+    "selection:iTransformer": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/selections/iTransformer.json",
+      "sha256": "549fc87015ef22bc00f0e2f660b4a55a43ef03144a63662f2a28bbabd06abbfa",
+      "bytes": 3207
+    },
+    "OOF:TiDE:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/017c650e43425716245b0288654c85ee7e9b7996e144bfda8dd398eb4451d3a9/result.json",
+      "sha256": "ea98f5c31eda5b0201cf0825cc453a987de6a6435f3c5f192a69da9729798104",
+      "bytes": 51726
+    },
+    "OOF:FCN-1D:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/0241b5fb9d625ef532fa7baae5cc68f54414e44994506725cd58bbb0f70e1bc3/result.json",
+      "sha256": "0dbc1b1222fbce98fcffa1cdee40bb0db6fe9c8a92d41e912610af2523c8448c",
+      "bytes": 5287
+    },
+    "OOF:LSTM-autoencoder con predictor:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/07b00ca4ddd6e9d48bd9cb81eebdce9623d131d81d3a8f57d08b2fc9782feb0e/result.json",
+      "sha256": "e38db45cd0dfdd5c555467ba431e937a2ac3638eb8360ff66bbf8137da1dc4a0",
+      "bytes": 200964
+    },
+    "OOF:TSMixer:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/07c2e4217d554d41be09dd6ce65066328ed097bdaa5b1338a330f775154a93c5/result.json",
+      "sha256": "10921798dae20dc8667542ffe1c9f7ab9b0926204e8c9404c0c6bb46b0940f12",
+      "bytes": 5259
+    },
+    "OOF:LSTM-autoencoder con predictor:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/09aa2bb536d0306fa059a05de41ffac3e21ec40f55330a00d9dd775dcca6449c/result.json",
+      "sha256": "4b6c538cc8549d6eec3d0f1737e08a36f9382c5f0920418476b6ebf557042af1",
+      "bytes": 230334
+    },
+    "OOF:TimesNet:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/0ad8ebbcff11a9cc808b9a6d702bd69faf0baafbaac788f61237668f284da471/result.json",
+      "sha256": "e3f1857c44b0b56e1f319085833923327989d58e5decc16f3aef9c499a970362",
+      "bytes": 38747
+    },
+    "OOF:LSTM-autoencoder con predictor:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/1ee72a9b53dee8c8c1f890a2a9e89d6ba274194a258e4b8394547267798ff2a7/result.json",
+      "sha256": "bdd8a3f94564fa94a39a8d92ca0a0591141fb501063405b61be67134c91c2318",
+      "bytes": 207509
+    },
+    "OOF:LSTM32:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/215705b870dfd00ea789eae2837ce854fe263817ae01d03805d10098ada43eae/result.json",
+      "sha256": "1ca3fe5f6ad50154332355f37f7467e25465ee5f3e3f90424b2e12ad8f038fe8",
+      "bytes": 52493
+    },
+    "OOF:GRU32:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/2cdaa276533b5b40940c64c83465cac59bc1f5045b2031ee2f068907986d0e33/result.json",
+      "sha256": "5a92fa4f48c7a560b9c1196741142354f080d98735d9ee2890e2cc8794abfe2e",
+      "bytes": 89873
+    },
+    "OOF:TimeMixer:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3404ce97d35b5c2d35e66967196ae17a28b8635eb650e98e7be8f2b2ca19e339/result.json",
+      "sha256": "b0edf648fa1ddd2bd38b1dff091ee65b00416c01d780bf3e8aa79eab5b42fda0",
+      "bytes": 54917
+    },
+    "OOF:ResNet-1D:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3c9b828724ac981ab33d7de3a9ee4ca3c5f68eb6f980e72cbaee47118ea37dca/result.json",
+      "sha256": "f667eca3155630b377524db572bda9966d1d2cb656217452d98531cb42af9fdd",
+      "bytes": 30660
+    },
+    "OOF:TSMixer:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3dde76adc35da80d1f7cb200cb28d7ac5a106d5e49bcb5a8d256d51eb99a0623/result.json",
+      "sha256": "57eb4c17918f6882bb51d8e9eacdac1cd8de98cdc9f72f8dac4b66d2ba5862d6",
+      "bytes": 60007
+    },
+    "OOF:TimeMixer:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3dfd15935fdbb2a650826824254867e9b0ddec7b792344206313ed3cd9bbbae5/result.json",
+      "sha256": "ff95d948c148c28e50ed043293cedf0a38f38498914052b3eab0312d5ede89bc",
+      "bytes": 64972
+    },
+    "OOF:iTransformer:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/41aa6b4c56658847b9a029d9e026108fb1e2b0dd89f0188af1bba32b7755b4a4/result.json",
+      "sha256": "de0054c00b06cdacb371912a68a8c0bcd8c69854d68dac83914e05ce965f6be0",
+      "bytes": 64287
+    },
+    "OOF:GRU32:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/43e55e9b83d22c6e47e479d84f292ee54f956d2105021b101d20ae955254b79d/result.json",
+      "sha256": "fdf99b5682a1abd2c466a9f60f414a3d922db2954a86152fd5481147b27d4d09",
+      "bytes": 29834
+    },
+    "OOF:MLP16:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/4738ba54c805f5a95b8a0d0d7e3bc407aee68e72f9bed4763d0a490e8d11fa82/result.json",
+      "sha256": "82ab0186b837ac67a5c092e4e37b4677a2d22829513e751f1e80382336ce62b9",
+      "bytes": 5256
+    },
+    "OOF:PatchTST:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/477e100c00ec5c7528acba8743234fdb50b93a53984ec9ec6ec096e931dc7626/result.json",
+      "sha256": "ba0eb419affee80cc0750ada1addb61de791349bfac68dc14da13b1071da01b8",
+      "bytes": 40406
+    },
+    "OOF:TSMixer:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/5cf25c186c950bf9f68ed2c7acc62790432517b4f0793d6d004710bc99fb5e7a/result.json",
+      "sha256": "635de91a2cfdf4deaea7dbf5e3da896b37d46f9ac1bf82240bdc5e50b15eedfa",
+      "bytes": 32058
+    },
+    "OOF:LSTM32:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/69b7610e3c2234dc08d29a3b522f614a3c6f1778ddaa1788fe7a007aaed7b285/result.json",
+      "sha256": "da8719ca2f6dd01d9da96e525c2036e0ad9ea8f022ac03effc114824149d1680",
+      "bytes": 25395
+    },
+    "OOF:FCN-1D:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/6a0d640d980df5c8d5e04803001a39c98ae5c80605e65eaa12c613d76247c5c9/result.json",
+      "sha256": "4d0233b45c4abad4a50bc131b65fa0b0a28e0ddb990c9c3451d67d1e645c007a",
+      "bytes": 5277
+    },
+    "OOF:ResNet-1D:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/7144b06b74d92aa9f6eaa4020249e64d8f722df8a02142adbfd278cb17c83dea/result.json",
+      "sha256": "fe09441b98ad83788418c6d087adbaebfb65070d6f44bef6a2e658760493bb4a",
+      "bytes": 5283
+    },
+    "OOF:Inception-1D:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/821057f5b45065830f4d3d428d418119a25b9927b1086782aa1d0faabb298800/result.json",
+      "sha256": "1967ae971cc2f40fb9092ed25fead4c24cfd65342e2bbc9816f8ab1b55b8f0ea",
+      "bytes": 41640
+    },
+    "OOF:Inception-1D:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/876c61b31c440776ce4bf9e9542fbfc0e2c5df932e30d3e222cf4fa1d615561c/result.json",
+      "sha256": "32d7b3ead79ec11ebe248d557546982217ca753af9f8ffa10be34e8acb53537b",
+      "bytes": 5320
+    },
+    "OOF:TiDE:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/8c0259416a5497353acdd5206d5ac98c90611379287c29e5578188f8ea58915f/result.json",
+      "sha256": "a1c38990ab2d648128e2d43a507cade40333654095a6c4d8849953dd21c9791b",
+      "bytes": 36710
+    },
+    "OOF:ResNet-1D:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/8da27062bf186a567cbde291de91f997726790562a30ebcb56359dd371909e0b/result.json",
+      "sha256": "87b4f10eb323e24e8225f84b385981dcdd82bb258ebd0fe2dee13cab98858a91",
+      "bytes": 5287
+    },
+    "OOF:TiDE:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/908e72f7c97fc900fd2de5ef21967621597dd67db3f3d6215576b877c98714fb/result.json",
+      "sha256": "3c5d120b212a34969d4402ff48cc0c97b70f036f9a5edc3d81c94af15f2e299b",
+      "bytes": 44603
+    },
+    "OOF:iTransformer:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/9f091fb834f07f189dcc52803e969292cc29d2dfb73f8f478d79d347c6b37570/result.json",
+      "sha256": "406c63b67bdd4874a86d52115c67db6f2ef169f4c2846533876dc47575a3fc44",
+      "bytes": 5259
+    },
+    "OOF:iTransformer:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/abffb1e6751688636b86f5311e126f8590142cfe2662567df2865c0cb2f686a4/result.json",
+      "sha256": "43732dd9a4e96964f2129618f81a82b1a486b11afbd4394014f0407bdd143ebc",
+      "bytes": 44177
+    },
+    "OOF:TimesNet:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/add7ba4fe6b0d4ebe17823b9c1da3a349b1f789f50ebc6c0edc4f2f8166825ac/result.json",
+      "sha256": "89af6f1a03127e8653b1df191889567e4c0dc71942ad89322c3aecbb40983e91",
+      "bytes": 50323
+    },
+    "OOF:FCN-1D:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/b4bcf1c9640b2be246ef4d43d3326a8043518f7f32c308c040315aaa336f530e/result.json",
+      "sha256": "25c3fdcc6e45a99f3127fa1ac05130df56957ed568b771f9852488c781d67afc",
+      "bytes": 35912
+    },
+    "OOF:Inception-1D:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/bec8e55927aa4f4f67087a967309b5a72e589a61ee60c01f5e1624d6f89bb125/result.json",
+      "sha256": "b85af569e854ee792e916874006fd4fd44ae89ee2cfc4fc273a1d2c95bd179e8",
+      "bytes": 42336
+    },
+    "OOF:MLP16:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/cbc61bcb9eeee112028492e286dc53ce95afc646bca68311272871edb94cc51a/result.json",
+      "sha256": "4a916879d6b1794d9e4c0b484c7904699daaa3bc485544af85dfb441271b6990",
+      "bytes": 46068
+    },
+    "OOF:MLP16:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/d853e7e2376fd2bca599ca878e6a19baeaf44edb2eb224e74dce5f13fbddd828/result.json",
+      "sha256": "2cf16a59337dff8076dcd0576d2029fbef161fc46365348da09d7bc3a817dc37",
+      "bytes": 28319
+    },
+    "OOF:LSTM32:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/da849230703f35a3a8748ad46220e74badc108432c90e5a1546b865154bc3e95/result.json",
+      "sha256": "ba7fcd09a3b49953bb9e118de86ab0a0b2b566ace347d20779f50b38162f8d03",
+      "bytes": 5244
+    },
+    "OOF:TimesNet:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/ee6fa380669657a47b3b631ab5695286050b0019f33f9d9af1f860a3f2cac111/result.json",
+      "sha256": "1ccf3843e1c31dcbb485b5da9cca6eba2daec6cd9c609c06ca3e033ed8d247a7",
+      "bytes": 40467
+    },
+    "OOF:GRU32:2024-01-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/efe5caf8a0c82dec75a2a1b2923d16db80023e2893896d8d99c5174247433e6d/result.json",
+      "sha256": "23cd69876f090f0cc7d88c2979d366e92da239b64055bf312e8049d374577f3c",
+      "bytes": 5261
+    },
+    "OOF:PatchTST:2024-07-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/f1b8d5be2c8e6492cd7c488002ba4b1394b8e28874d706e18d9553d24b2568fc/result.json",
+      "sha256": "5daaec1795bbad10ca96e48c90680eb358998a384bc8c27a5e76571f52fa6c3c",
+      "bytes": 62751
+    },
+    "OOF:PatchTST:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/f60e6a519c618f39afbbf6f87bf7584c5395b56ca4fa741d00caf908dc19aabc/result.json",
+      "sha256": "9ac77219ef383d0730435cf8f86031beea5ba83cbb76e9d85bcc223e494efc28",
+      "bytes": 36553
+    },
+    "OOF:TimeMixer:2024-10-01": {
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/f705465d9828df271d229879635fa83af596b29ec6df7e5f5380bfcc4e6a3d8f/result.json",
+      "sha256": "da9ea49bd38dcf2967b1cca361dd279f43a4bfc9acf301f232faca87aa664e8f",
+      "bytes": 47394
+    },
+    "original_test": {
+      "path": "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json",
+      "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+      "bytes": 1371654
+    },
+    "development_targets": {
+      "path": "book_e2/_static/e2_final_audit_inputs_20261114/daily_volatility_development.csv",
+      "sha256": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a",
+      "bytes": 76492
+    },
+    "A2": {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv",
+      "sha256": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+      "bytes": 2596
+    },
+    "original_analysis": {
+      "path": "book_e2/_static/e2_benchmark_final_20261113/benchmark_analysis.json",
+      "sha256": "73206e1aa5bf004b7e0f884ba3685c0bdfbed209425c6397a68fa280c04ff637",
+      "bytes": 54683
+    }
+  },
+  "selected_fold_records": {
+    "TiDE:2024-07-01": {
+      "model": "TiDE",
+      "fold_origin": "2024-07-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "b677a1d58f389acc8e6ab01b3fe83b99ca2a443fb344670dd384a5a4993889b6",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/017c650e43425716245b0288654c85ee7e9b7996e144bfda8dd398eb4451d3a9/result.json",
+      "sha256": "ea98f5c31eda5b0201cf0825cc453a987de6a6435f3c5f192a69da9729798104",
+      "bytes": 51726
+    },
+    "FCN-1D:2024-07-01": {
+      "model": "FCN-1D",
+      "fold_origin": "2024-07-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/0241b5fb9d625ef532fa7baae5cc68f54414e44994506725cd58bbb0f70e1bc3/result.json",
+      "sha256": "0dbc1b1222fbce98fcffa1cdee40bb0db6fe9c8a92d41e912610af2523c8448c",
+      "bytes": 5287
+    },
+    "LSTM-autoencoder con predictor:2024-07-01": {
+      "model": "LSTM-autoencoder con predictor",
+      "fold_origin": "2024-07-01",
+      "configuration": "C06",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "938bedeccd2b58de829fb4f51daaf15652a3dc3eaa0bd6b99c30a26801946752",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/07b00ca4ddd6e9d48bd9cb81eebdce9623d131d81d3a8f57d08b2fc9782feb0e/result.json",
+      "sha256": "e38db45cd0dfdd5c555467ba431e937a2ac3638eb8360ff66bbf8137da1dc4a0",
+      "bytes": 200964
+    },
+    "TSMixer:2024-01-01": {
+      "model": "TSMixer",
+      "fold_origin": "2024-01-01",
+      "configuration": "C03",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/07c2e4217d554d41be09dd6ce65066328ed097bdaa5b1338a330f775154a93c5/result.json",
+      "sha256": "10921798dae20dc8667542ffe1c9f7ab9b0926204e8c9404c0c6bb46b0940f12",
+      "bytes": 5259
+    },
+    "LSTM-autoencoder con predictor:2024-10-01": {
+      "model": "LSTM-autoencoder con predictor",
+      "fold_origin": "2024-10-01",
+      "configuration": "C06",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "4581a8b78e18c4cb070b2e1e1a48c19a17ddb342415be7fb0f0ed39a64f87509",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/09aa2bb536d0306fa059a05de41ffac3e21ec40f55330a00d9dd775dcca6449c/result.json",
+      "sha256": "4b6c538cc8549d6eec3d0f1737e08a36f9382c5f0920418476b6ebf557042af1",
+      "bytes": 230334
+    },
+    "TimesNet:2024-01-01": {
+      "model": "TimesNet",
+      "fold_origin": "2024-01-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "278ec42d3af2ff87255e9e3d7d6fafddaaba8d0f5555b30246fa2e053273368c",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/0ad8ebbcff11a9cc808b9a6d702bd69faf0baafbaac788f61237668f284da471/result.json",
+      "sha256": "e3f1857c44b0b56e1f319085833923327989d58e5decc16f3aef9c499a970362",
+      "bytes": 38747
+    },
+    "LSTM-autoencoder con predictor:2024-01-01": {
+      "model": "LSTM-autoencoder con predictor",
+      "fold_origin": "2024-01-01",
+      "configuration": "C06",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "8a1c2f0889ffceef7171c8030c183b03eea9ae2585d70e011a36486132d4541b",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/1ee72a9b53dee8c8c1f890a2a9e89d6ba274194a258e4b8394547267798ff2a7/result.json",
+      "sha256": "bdd8a3f94564fa94a39a8d92ca0a0591141fb501063405b61be67134c91c2318",
+      "bytes": 207509
+    },
+    "LSTM32:2024-10-01": {
+      "model": "LSTM32",
+      "fold_origin": "2024-10-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "4f795cfa27759b6d34e0b70a27485aead793b27ed667422ab477ef047db089a7",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/215705b870dfd00ea789eae2837ce854fe263817ae01d03805d10098ada43eae/result.json",
+      "sha256": "1ca3fe5f6ad50154332355f37f7467e25465ee5f3e3f90424b2e12ad8f038fe8",
+      "bytes": 52493
+    },
+    "GRU32:2024-10-01": {
+      "model": "GRU32",
+      "fold_origin": "2024-10-01",
+      "configuration": "C03",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "fee637cb87767d056c046712eaec3af965620b935b5cce97b76a19bda3f46b8e",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/2cdaa276533b5b40940c64c83465cac59bc1f5045b2031ee2f068907986d0e33/result.json",
+      "sha256": "5a92fa4f48c7a560b9c1196741142354f080d98735d9ee2890e2cc8794abfe2e",
+      "bytes": 89873
+    },
+    "TimeMixer:2024-07-01": {
+      "model": "TimeMixer",
+      "fold_origin": "2024-07-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "7fa77c0c2d1114761c5a630bfe088d2f9e053b2808e9c35a555536a546f4a886",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3404ce97d35b5c2d35e66967196ae17a28b8635eb650e98e7be8f2b2ca19e339/result.json",
+      "sha256": "b0edf648fa1ddd2bd38b1dff091ee65b00416c01d780bf3e8aa79eab5b42fda0",
+      "bytes": 54917
+    },
+    "ResNet-1D:2024-10-01": {
+      "model": "ResNet-1D",
+      "fold_origin": "2024-10-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "7c9973cacc2294831aa5d90943eeef61327470db14b6902821c5b508304f24bb",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3c9b828724ac981ab33d7de3a9ee4ca3c5f68eb6f980e72cbaee47118ea37dca/result.json",
+      "sha256": "f667eca3155630b377524db572bda9966d1d2cb656217452d98531cb42af9fdd",
+      "bytes": 30660
+    },
+    "TSMixer:2024-10-01": {
+      "model": "TSMixer",
+      "fold_origin": "2024-10-01",
+      "configuration": "C03",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "3c5f6ef3deb6ab38ccc3fe362f52509aa02200c693a9cfd3eccc2b347fbc7319",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3dde76adc35da80d1f7cb200cb28d7ac5a106d5e49bcb5a8d256d51eb99a0623/result.json",
+      "sha256": "57eb4c17918f6882bb51d8e9eacdac1cd8de98cdc9f72f8dac4b66d2ba5862d6",
+      "bytes": 60007
+    },
+    "TimeMixer:2024-01-01": {
+      "model": "TimeMixer",
+      "fold_origin": "2024-01-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "3a3dd8d3adbf44af97a7a093383d99d94c6f08c72d10b8921c9cff9a458ac1f7",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/3dfd15935fdbb2a650826824254867e9b0ddec7b792344206313ed3cd9bbbae5/result.json",
+      "sha256": "ff95d948c148c28e50ed043293cedf0a38f38498914052b3eab0312d5ede89bc",
+      "bytes": 64972
+    },
+    "iTransformer:2024-10-01": {
+      "model": "iTransformer",
+      "fold_origin": "2024-10-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "e9087f387e1d8c0dae302c1562e252cf8001ea417f707cb85dc74cd8b491eaf0",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/41aa6b4c56658847b9a029d9e026108fb1e2b0dd89f0188af1bba32b7755b4a4/result.json",
+      "sha256": "de0054c00b06cdacb371912a68a8c0bcd8c69854d68dac83914e05ce965f6be0",
+      "bytes": 64287
+    },
+    "GRU32:2024-07-01": {
+      "model": "GRU32",
+      "fold_origin": "2024-07-01",
+      "configuration": "C03",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "4cc6f55e592bb628201739b2a221c21178479afddeb261be5dda15b913118f7e",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/43e55e9b83d22c6e47e479d84f292ee54f956d2105021b101d20ae955254b79d/result.json",
+      "sha256": "fdf99b5682a1abd2c466a9f60f414a3d922db2954a86152fd5481147b27d4d09",
+      "bytes": 29834
+    },
+    "MLP16:2024-01-01": {
+      "model": "MLP16",
+      "fold_origin": "2024-01-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/4738ba54c805f5a95b8a0d0d7e3bc407aee68e72f9bed4763d0a490e8d11fa82/result.json",
+      "sha256": "82ab0186b837ac67a5c092e4e37b4677a2d22829513e751f1e80382336ce62b9",
+      "bytes": 5256
+    },
+    "PatchTST:2024-01-01": {
+      "model": "PatchTST",
+      "fold_origin": "2024-01-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "02ac883b75e78abfda12c3864b1fe58b5e73f67b7ec161a0818d89eb69711593",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/477e100c00ec5c7528acba8743234fdb50b93a53984ec9ec6ec096e931dc7626/result.json",
+      "sha256": "ba0eb419affee80cc0750ada1addb61de791349bfac68dc14da13b1071da01b8",
+      "bytes": 40406
+    },
+    "TSMixer:2024-07-01": {
+      "model": "TSMixer",
+      "fold_origin": "2024-07-01",
+      "configuration": "C03",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "28ff2544eed8e940b3a3fcc3c52c81ad958d442dae5e1cacb75307e62611b7e8",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/5cf25c186c950bf9f68ed2c7acc62790432517b4f0793d6d004710bc99fb5e7a/result.json",
+      "sha256": "635de91a2cfdf4deaea7dbf5e3da896b37d46f9ac1bf82240bdc5e50b15eedfa",
+      "bytes": 32058
+    },
+    "LSTM32:2024-07-01": {
+      "model": "LSTM32",
+      "fold_origin": "2024-07-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "d1354708847c3211e0b10207526f4eafe54d184fda7b412f29b886b664a9e985",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/69b7610e3c2234dc08d29a3b522f614a3c6f1778ddaa1788fe7a007aaed7b285/result.json",
+      "sha256": "da8719ca2f6dd01d9da96e525c2036e0ad9ea8f022ac03effc114824149d1680",
+      "bytes": 25395
+    },
+    "FCN-1D:2024-01-01": {
+      "model": "FCN-1D",
+      "fold_origin": "2024-01-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/6a0d640d980df5c8d5e04803001a39c98ae5c80605e65eaa12c613d76247c5c9/result.json",
+      "sha256": "4d0233b45c4abad4a50bc131b65fa0b0a28e0ddb990c9c3451d67d1e645c007a",
+      "bytes": 5277
+    },
+    "ResNet-1D:2024-01-01": {
+      "model": "ResNet-1D",
+      "fold_origin": "2024-01-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/7144b06b74d92aa9f6eaa4020249e64d8f722df8a02142adbfd278cb17c83dea/result.json",
+      "sha256": "fe09441b98ad83788418c6d087adbaebfb65070d6f44bef6a2e658760493bb4a",
+      "bytes": 5283
+    },
+    "Inception-1D:2024-07-01": {
+      "model": "Inception-1D",
+      "fold_origin": "2024-07-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "9eb0c10f00efd791fb4b011a772144dc41bc9974da6d4a02be6dd0b79bb14276",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/821057f5b45065830f4d3d428d418119a25b9927b1086782aa1d0faabb298800/result.json",
+      "sha256": "1967ae971cc2f40fb9092ed25fead4c24cfd65342e2bbc9816f8ab1b55b8f0ea",
+      "bytes": 41640
+    },
+    "Inception-1D:2024-01-01": {
+      "model": "Inception-1D",
+      "fold_origin": "2024-01-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/876c61b31c440776ce4bf9e9542fbfc0e2c5df932e30d3e222cf4fa1d615561c/result.json",
+      "sha256": "32d7b3ead79ec11ebe248d557546982217ca753af9f8ffa10be34e8acb53537b",
+      "bytes": 5320
+    },
+    "TiDE:2024-01-01": {
+      "model": "TiDE",
+      "fold_origin": "2024-01-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "5eb72597c96c83cb39f1a6114079e2503d01d0dc106479f682fa90d7db988204",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/8c0259416a5497353acdd5206d5ac98c90611379287c29e5578188f8ea58915f/result.json",
+      "sha256": "a1c38990ab2d648128e2d43a507cade40333654095a6c4d8849953dd21c9791b",
+      "bytes": 36710
+    },
+    "ResNet-1D:2024-07-01": {
+      "model": "ResNet-1D",
+      "fold_origin": "2024-07-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/8da27062bf186a567cbde291de91f997726790562a30ebcb56359dd371909e0b/result.json",
+      "sha256": "87b4f10eb323e24e8225f84b385981dcdd82bb258ebd0fe2dee13cab98858a91",
+      "bytes": 5287
+    },
+    "TiDE:2024-10-01": {
+      "model": "TiDE",
+      "fold_origin": "2024-10-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "97280732a70310b20e1d0df4382358ff546dd16536c4ad2c2e515f10ed3cb32c",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/908e72f7c97fc900fd2de5ef21967621597dd67db3f3d6215576b877c98714fb/result.json",
+      "sha256": "3c5d120b212a34969d4402ff48cc0c97b70f036f9a5edc3d81c94af15f2e299b",
+      "bytes": 44603
+    },
+    "iTransformer:2024-01-01": {
+      "model": "iTransformer",
+      "fold_origin": "2024-01-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/9f091fb834f07f189dcc52803e969292cc29d2dfb73f8f478d79d347c6b37570/result.json",
+      "sha256": "406c63b67bdd4874a86d52115c67db6f2ef169f4c2846533876dc47575a3fc44",
+      "bytes": 5259
+    },
+    "iTransformer:2024-07-01": {
+      "model": "iTransformer",
+      "fold_origin": "2024-07-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "b69e925bd58de13be0a94ded2f0b1a81cc82d15c445cd6525dca82e5656e7d61",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/abffb1e6751688636b86f5311e126f8590142cfe2662567df2865c0cb2f686a4/result.json",
+      "sha256": "43732dd9a4e96964f2129618f81a82b1a486b11afbd4394014f0407bdd143ebc",
+      "bytes": 44177
+    },
+    "TimesNet:2024-07-01": {
+      "model": "TimesNet",
+      "fold_origin": "2024-07-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "19a057cbd08943ffce244d8a02da07ccdb095a790d2469b56a147a301796b30e",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/add7ba4fe6b0d4ebe17823b9c1da3a349b1f789f50ebc6c0edc4f2f8166825ac/result.json",
+      "sha256": "89af6f1a03127e8653b1df191889567e4c0dc71942ad89322c3aecbb40983e91",
+      "bytes": 50323
+    },
+    "FCN-1D:2024-10-01": {
+      "model": "FCN-1D",
+      "fold_origin": "2024-10-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "d5b04983a5bd0659f6551e688a0bf712df3094f6dd055fd759b5488a69a5fb19",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/b4bcf1c9640b2be246ef4d43d3326a8043518f7f32c308c040315aaa336f530e/result.json",
+      "sha256": "25c3fdcc6e45a99f3127fa1ac05130df56957ed568b771f9852488c781d67afc",
+      "bytes": 35912
+    },
+    "Inception-1D:2024-10-01": {
+      "model": "Inception-1D",
+      "fold_origin": "2024-10-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "09d9ad4854e9ebd695b09524434fe85d06e8854612a6564baa4c026090fb74d3",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/bec8e55927aa4f4f67087a967309b5a72e589a61ee60c01f5e1624d6f89bb125/result.json",
+      "sha256": "b85af569e854ee792e916874006fd4fd44ae89ee2cfc4fc273a1d2c95bd179e8",
+      "bytes": 42336
+    },
+    "MLP16:2024-10-01": {
+      "model": "MLP16",
+      "fold_origin": "2024-10-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "35fc6587f5c105397bab0c79701ac117c33f5f37c6f50d34b887eb528d59be38",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/cbc61bcb9eeee112028492e286dc53ce95afc646bca68311272871edb94cc51a/result.json",
+      "sha256": "4a916879d6b1794d9e4c0b484c7904699daaa3bc485544af85dfb441271b6990",
+      "bytes": 46068
+    },
+    "MLP16:2024-07-01": {
+      "model": "MLP16",
+      "fold_origin": "2024-07-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "5ef397bef126f2315687bda0981899d4693d2a2b6077804a7a45cdb094aafc72",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/d853e7e2376fd2bca599ca878e6a19baeaf44edb2eb224e74dce5f13fbddd828/result.json",
+      "sha256": "2cf16a59337dff8076dcd0576d2029fbef161fc46365348da09d7bc3a817dc37",
+      "bytes": 28319
+    },
+    "LSTM32:2024-01-01": {
+      "model": "LSTM32",
+      "fold_origin": "2024-01-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/da849230703f35a3a8748ad46220e74badc108432c90e5a1546b865154bc3e95/result.json",
+      "sha256": "ba7fcd09a3b49953bb9e118de86ab0a0b2b566ace347d20779f50b38162f8d03",
+      "bytes": 5244
+    },
+    "TimesNet:2024-10-01": {
+      "model": "TimesNet",
+      "fold_origin": "2024-10-01",
+      "configuration": "C05",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "743321366fea670fb189544addb2482eae168b309c2210659a786cbff686d9bc",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/ee6fa380669657a47b3b631ab5695286050b0019f33f9d9af1f860a3f2cac111/result.json",
+      "sha256": "1ccf3843e1c31dcbb485b5da9cca6eba2daec6cd9c609c06ca3e033ed8d247a7",
+      "bytes": 40467
+    },
+    "GRU32:2024-01-01": {
+      "model": "GRU32",
+      "fold_origin": "2024-01-01",
+      "configuration": "C03",
+      "hpo_seed": 271201,
+      "cache_reuse": true,
+      "checkpoint_sha256": null,
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/efe5caf8a0c82dec75a2a1b2923d16db80023e2893896d8d99c5174247433e6d/result.json",
+      "sha256": "23cd69876f090f0cc7d88c2979d366e92da239b64055bf312e8049d374577f3c",
+      "bytes": 5261
+    },
+    "PatchTST:2024-07-01": {
+      "model": "PatchTST",
+      "fold_origin": "2024-07-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "4f891901991b1d46fca1ba38666203977932b39ad3be34ab3e3d7d65ee3b408e",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/f1b8d5be2c8e6492cd7c488002ba4b1394b8e28874d706e18d9553d24b2568fc/result.json",
+      "sha256": "5daaec1795bbad10ca96e48c90680eb358998a384bc8c27a5e76571f52fa6c3c",
+      "bytes": 62751
+    },
+    "PatchTST:2024-10-01": {
+      "model": "PatchTST",
+      "fold_origin": "2024-10-01",
+      "configuration": "C02",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "a69dbbee47ee89fb96d08f9b7b5313a14b6ae373d58c1f7f8957c228dacf0a2e",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/f60e6a519c618f39afbbf6f87bf7584c5395b56ca4fa741d00caf908dc19aabc/result.json",
+      "sha256": "9ac77219ef383d0730435cf8f86031beea5ba83cbb76e9d85bcc223e494efc28",
+      "bytes": 36553
+    },
+    "TimeMixer:2024-10-01": {
+      "model": "TimeMixer",
+      "fold_origin": "2024-10-01",
+      "configuration": "C01",
+      "hpo_seed": 271201,
+      "cache_reuse": false,
+      "checkpoint_sha256": "5c37205f99eaabd19ab4d78aa59244c1a47e604cf806a59019a1f51ee89714a9",
+      "path": "book_e2/_static/e2_corrections_20261115/hpo/sources/metadata/jobs/f705465d9828df271d229879635fa83af596b29ec6df7e5f5380bfcc4e6a3d8f/result.json",
+      "sha256": "da9ea49bd38dcf2967b1cca361dd279f43a4bfc9acf301f232faca87aa664e8f",
+      "bytes": 47394
+    }
+  },
+  "models": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32"
+  ],
+  "test_seed_ids": [
+    271801,
+    271802,
+    271803,
+    271804,
+    271805,
+    271806
+  ],
+  "fold_origins": [
+    "2024-01-01",
+    "2024-07-01",
+    "2024-10-01"
+  ],
+  "draws": 5000,
+  "primary_block_days": 14,
+  "sensitivity_block_days": [
+    7,
+    28
+  ],
+  "random_seed_base": 202611161501,
+  "family_alpha": 0.05,
+  "period_comparison": {
+    "effect": "mean of6 original final-test608 individual RMSEs minus pooled249 OOF RMSE of the recorded winner's3 fold-specific predictors",
+    "OOF": "83 dates per fold; single HPO initialization per fold; conditional on recorded configuration selection and stopping",
+    "test": "same original A100 trajectories as A2; equal6seed average; original chronology and weights unchanged",
+    "H0": "conditional risk difference=0",
+    "H1": "conditional risk difference differs from0",
+    "resampling": "Independent noncircular moving-block draws within each83-date OOF fold and within608-date test; dates shared across models in each period. Independently sample6 optimization indices with replacement inside each test model; no invented seed pairing across architectures or periods.",
+    "p": "(1+count(abs(Tstar-Tobserved)>=abs(Tobserved)))/(B+1)",
+    "CI": "95percent marginal percentile intervals; Holm13 for primary block14 only",
+    "sensitivity": "blocks7/28; raw sensitivity p-values and marginal intervals are nondecisory",
+    "decision": "Reject equality when primary Holm13 p<=0.05; otherwise equality/consistency/equivalence not established",
+    "not_claimed": [
+      "same predictor in both periods",
+      "independent HPO validation of selected recipe",
+      "absence of selection optimism",
+      "causal attribution to overfitting or drift",
+      "prospective confirmation"
+    ]
+  },
+  "variance_decomposition": {
+    "data": "squared errors of balanced13models x6initializations x608dates; volatility units to the fourth power for variance of squared loss",
+    "method": "Exact orthogonal finite ANOVA projection under uniform empirical weighting, no mixed-model distribution fit",
+    "components": [
+      "model_fixed_catalogue",
+      "initialization_nested_in_model",
+      "calendar",
+      "model_by_calendar",
+      "initialization_by_calendar_remainder"
+    ],
+    "definitions": {
+      "model_fixed_catalogue": "Var_m(mean_st L_mst)",
+      "initialization_nested_in_model": "mean_ms[(mean_t L_mst - mean_st L_mst)^2]",
+      "calendar": "Var_t(mean_ms L_mst)",
+      "model_by_calendar": "mean_mt[(mean_s L_mst - mean_st L_mst - mean_ms L_mst + mean_mst L_mst)^2]",
+      "initialization_by_calendar_remainder": "mean_mst[(L_mst - mean_t L_mst - mean_s L_mst + mean_st L_mst)^2]"
+    },
+    "uncertainty": "For each bootstrap replicate, jointly resample608dates by noncircular moving blocks and independently resample6initializations inside each model, recompute all orthogonal projections; fixed catalogue remains fixed.",
+    "CI": "95percent marginal percentile intervals for finite component magnitude and fraction; no component significance tests",
+    "not_claimed": [
+      "population random-effect variance",
+      "variance across markets",
+      "variance across new train partitions",
+      "HPO selection uncertainty",
+      "independent daily residuals"
+    ],
+    "numerical_QA": "Direct orthogonal projection sum equals empirical total loss variance; nonnegative component magnitudes; independently verify additive planted tensor before real calculations"
+  },
+  "budget": {
+    "phase": "followup-inference",
+    "maximum_reserved_seconds": 600,
+    "ledger": "book_e2/_static/e2_closure_followup_20261116/compute_ledger.jsonl"
+  },
+  "invariants": {
+    "new_fits": 0,
+    "new_model_forwards": 0,
+    "original_A2_RQ1_changed": false,
+    "calibration_used_as_HPO_validation": false,
+    "NAS": false
+  },
+  "limits": [
+    "All inference is conditional on one known BTC chronology and the existing fitted predictors.",
+    "OOF and test have different training sizes, parameters and calendars; the contrast cannot identify the cause of a difference.",
+    "OOF folds selected the winner; this bootstrap does not replay selection, and no extra initialization variance exists for the OOF single-seed trajectories.",
+    "Temporal block inference is approximate under suitable weak dependence and local stationarity; observed drift is retained and block sensitivity cannot guarantee validity.",
+    "Finite orthogonal components describe loss variation in a fixed catalogue, not a fitted random-effects model or algorithm-population variance.",
+    "Nonrejection is not equality, consistency, equivalence, adequate fit, or absence of overfitting."
+  ],
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  }
+}

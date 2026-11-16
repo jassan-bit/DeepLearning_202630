@@ -1,0 +1,57 @@
+{
+  "version": "e2-portable-followup-plan-v1",
+  "scope": "New portable execution from admitted daily OHLCV/matrices and fitted CPU checkpoints, with separately implemented optional fixed-recipe training",
+  "new_fits_authorized_for_this_followup_test": 0,
+  "scientific_test_cap_seconds": 350,
+  "outside_repository_payload": "/workspace/work/e2-followup-portable-staging",
+  "relative_runtime_inputs": ["code", "authors", "recorded", "inputs"],
+  "input_contract": {
+    "entry_level": "Previously admitted daily OHLCV and independently audited window arrays",
+    "evaluation_dates": 608,
+    "training_examples": 655,
+    "calibration_examples": 53,
+    "checkpoint_trajectories": 81,
+    "binary_checkpoints": 79,
+    "raw_monthly_archives_decoded_by_this_test": 0,
+    "raw_provenance_archive_count": 20
+  },
+  "ordered_test_stages": [
+    "Build self-contained package from hash-verified local sources and fitted artifacts, without numerical scientific operations",
+    "Verify package inputs from an unrelated working directory, without PYTHONPATH and without Git lookup",
+    "Reconstruct A2 from saved CPU forecasts and compare against their own source table",
+    "Run all 81 fitted predictors on the admitted daily reconstruction and compare 47424 neural predictions and A2 against the own CPU source",
+    "Retain isolated commands, logs, runtime/SO, discrepancies, failures, output hashes and budget receipt"
+  ],
+  "acceptance": {
+    "all_input_hashes_verified": true,
+    "new_model_fits": 0,
+    "A2_max_numeric_difference": 0,
+    "fitted_prediction_max_difference": 0,
+    "all_scientific_inputs_inside_package": true,
+    "historical_budget_ledger_used_by_portable_runner": false,
+    "new_budget_wrapper_used_by_project_test": true
+  },
+  "optional_training_implementation": {
+    "default_device": "cpu",
+    "cuda_required": false,
+    "api": "e2_cpu_fixed_recipe_reproduction.fit_cpu and original fixed CUDA fitting API",
+    "new_neural_fits": 78,
+    "classical_reconstructions": 3,
+    "HPO_repeated": false,
+    "fully_executed_by_this_followup_test": false,
+    "previous_comparable_worker_charge_seconds": 6853.632182788,
+    "initial_remaining_campaign_seconds": 4646.109374,
+    "admission": "A fresh timing/resource plan is required before scheduling a full repeat; the previous charge already exceeds the available balance"
+  },
+  "full_historical_campaign_claimed": false,
+  "B21_upgraded_by_code_or_package_alone": false,
+  "NAS": "not_applicable_defined_architectures",
+  "immutable_prior_release": "entregables_independientes_v3_20261116",
+  "future_full_scope_dependencies": [
+    "All book tables/figures must have registered input/output stage definitions",
+    "Integrate HPO, robustness, explanations, ablations and paper-guide stages where required",
+    "Demonstrate the declared complete pipeline in a clean environment",
+    "Preserve missing historical metadata as unavailable rather than replace it with new timings",
+    "Publish a new release with new manifests and execution receipts"
+  ]
+}

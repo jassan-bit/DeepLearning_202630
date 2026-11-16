@@ -1,0 +1,50 @@
+{
+  "version": "e2-portable-extracted-archive-check-v1",
+  "returncode": 0,
+  "status": "passed",
+  "new_model_fits": 0,
+  "new_model_forwards": 0,
+  "seconds": 2.313573563005775,
+  "entrypoint": "E2_reproduccion_CPU_portable/run.py --mode check",
+  "stdlib_python": true,
+  "result": {
+    "version": "e2-portable-fixed-recipe-campaign-v1",
+    "status": "inputs_verified",
+    "files_verified": 1201,
+    "runtime": {
+      "python": "3.12.14",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "machine": "x86_64",
+      "os_release": {
+        "NAME": "Debian GNU/Linux",
+        "ID": "debian",
+        "PRETTY_NAME": "Debian GNU/Linux 13 (trixie)",
+        "VERSION_ID": "13",
+        "VERSION": "13 (trixie)",
+        "VERSION_CODENAME": "trixie",
+        "DEBIAN_VERSION_FULL": "13.6",
+        "HOME_URL": "https://www.debian.org/",
+        "SUPPORT_URL": "https://www.debian.org/support",
+        "BUG_REPORT_URL": "https://bugs.debian.org/"
+      },
+      "packages": {
+        "torch": null,
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "scipy": "1.17.0",
+        "statsmodels": null
+      }
+    },
+    "new_model_fits": 0,
+    "new_model_forwards": 0,
+    "full_historical_campaign_reproduced": false,
+    "remaining_separate_requirements": [
+      "historical HPO selection",
+      "all robustness and explanations",
+      "all ablations",
+      "all book tables and figures",
+      "historical missing timings"
+    ]
+  }
+}

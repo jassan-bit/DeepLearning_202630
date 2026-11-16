@@ -1,0 +1,50 @@
+{
+  "version": "e2-portable-software-training-QA-v2",
+  "registered_at_utc": "2026-11-16T12:10:40.197421+00:00",
+  "purpose": "Test portable real fitting API on a prespecified three-job subset; not a new predictive study or selection",
+  "models": [
+    "MLP16",
+    "LSTM-autoencoder con predictor",
+    "ARIMA"
+  ],
+  "neural_seed": 271801,
+  "classical_seed": "deterministic",
+  "new_neural_fits": 2,
+  "classical_fits": 1,
+  "SAE_phases": [
+    "ae1",
+    "ae2",
+    "supervised"
+  ],
+  "train_examples": 655,
+  "calibration_examples": 53,
+  "test_evaluation_scheduled": false,
+  "full81_scoring_scheduled": false,
+  "HPO_performed": false,
+  "cap_seconds": 200,
+  "runner_sha256": "3b603768e4607d16e34c79b0aaf7bc60664006ff8372b1c51461e72a09b06617",
+  "config_sha256": "ba3b3d482a87236d785a3c64ec56e94e5d3f323c0739f1e89ccdcc7c66b52074",
+  "timing_admission": {
+    "own_previous_worker_seconds": {
+      "LSTM-autoencoder con predictor": 75.36493005900411,
+      "MLP16": 6.464212827006122,
+      "ARIMA": 4.72993395600497
+    },
+    "projection_seconds": 144.8386152630228,
+    "safety_factor": 1.5,
+    "shared_overhead_seconds": 15,
+    "admitted": true,
+    "future_runtime_guarantee": false
+  },
+  "gates": [
+    "new checkpoint/scaler/calibrator physically present and producer hashes match",
+    "original train655/cal53support unchanged",
+    "scaler training cutoff2024-10-31",
+    "calibrator53dates and checkpoint binding match",
+    "read-only ARIMAraw_value alias installed; no forecastmethodchange",
+    "retained logs/failures and ownnewbudgetreceipt"
+  ],
+  "final_A2_original_modified": false,
+  "B21_full_integral_claimed": false,
+  "prior_plan_implemented_without_execution": true
+}

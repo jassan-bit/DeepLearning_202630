@@ -1,0 +1,479 @@
+{
+  "version": "e2-followup-delivery-readouts-v1",
+  "observed_at_utc": "2026-11-16T12:25:51.272791+00:00",
+  "appendix_B_counts": {
+    "completo": 14,
+    "parcial": 5,
+    "no_cumple": 0,
+    "no_aplica": 2
+  },
+  "new_negative_control_fits": 6,
+  "original_13_model_negative_acceptance": false,
+  "conditional_inference": {
+    "version": "e2-conditional-inference-closure-v2",
+    "plan_sha256": "7e1ba8ab775cbce04070943de7f84753b6e3c184d11c84a30fddd26ab5ce0b2e",
+    "completed_at_utc": "2026-11-16T11:58:42.730595+00:00",
+    "elapsed_seconds": 27.947150015999796,
+    "models": 13,
+    "OOF_folds": 3,
+    "OOF_dates_per_model": 249,
+    "test_dates": 608,
+    "test_predictors": 78,
+    "period_primary_rejections_Holm13": 1,
+    "primary_rejected_models": [
+      "LSTM-autoencoder con predictor"
+    ],
+    "finite_decomposition_max_relative_identity_error": 1.0990282990774954e-15,
+    "finite_decomposition_not_population_random_effect_fit": true,
+    "HPO_validation_comparison_executed": true,
+    "independent_post_selection_validation_established": false,
+    "equivalence_or_consistency_established": false,
+    "cause_of_period_difference_identified": false,
+    "original_A2_RQ1_changed": false,
+    "new_fits": 0,
+    "new_model_forwards": 0,
+    "limitations": [
+      "All inference is conditional on one known BTC chronology and the existing fitted predictors.",
+      "OOF and test have different training sizes, parameters and calendars; the contrast cannot identify the cause of a difference.",
+      "OOF folds selected the winner; this bootstrap does not replay selection, and no extra initialization variance exists for the OOF single-seed trajectories.",
+      "Temporal block inference is approximate under suitable weak dependence and local stationarity; observed drift is retained and block sensitivity cannot guarantee validity.",
+      "Finite orthogonal components describe loss variation in a fixed catalogue, not a fitted random-effects model or algorithm-population variance.",
+      "Nonrejection is not equality, consistency, equivalence, adequate fit, or absence of overfitting."
+    ]
+  },
+  "input_dependency": {
+    "version": "e2-training-donor-input-dependency-v1",
+    "plan_sha256": "0bc277124baab88a00d6e281f7c759f4bab36bed5ceb66628526dce806cb843a",
+    "new_fits": 0,
+    "groups": 2,
+    "systems": 13,
+    "seed_trajectories": 78,
+    "conditions": 3,
+    "donor_realizations": 1,
+    "original_CPU_max_absolute_difference": 0.0,
+    "states_unchanged": true,
+    "A2_or_RQ1_changed": false,
+    "shortcuts_or_leakage_proven": false,
+    "diagnostic_executed": true,
+    "limits": [
+      "Volume distinguished train/test periods in an earlier adversarial diagnostic; this does not establish that volume is spurious or leaking.",
+      "Donor inputs preserve each group seven-day path but can lie off joint OHLC-volume support and violate consistency between overlapping windows.",
+      "Effects identify model dependence under the specified donor intervention, not causal economic effects, expected live missing-feature performance, or benefit of retraining without the feature.",
+      "One donor realization is fixed before inference; confidence intervals do not include donor-assignment uncertainty.",
+      "No model, hyperparameter, scaler, calibrator or deployment choice is selected using these results.",
+      "Known inherited test608, not a fresh blind holdout. Original A2/RQ1 and CPU benchmark remain unchanged."
+    ]
+  },
+  "HPO_descriptive_scope": {
+    "version": "e2-hpo-followup-design-v1",
+    "source_commit": "f0d140c070db8ebd8ba7ebf1389158dafebf7d4a",
+    "models": 13,
+    "configurations": 78,
+    "planned_fold_opportunities": 234,
+    "completed_fold_outcomes": 231,
+    "recorded_winners": 13,
+    "one_factor_only_comparison_pairs": 1,
+    "marginal_rows": 237,
+    "new_fits": 0,
+    "model_forward_passes": 0,
+    "response_regressions": 0,
+    "statistical_tests": 0,
+    "resampling_draws": 0,
+    "isolated_hyperparameter_importance_established": false,
+    "selection_variance_established": false,
+    "NAS_required_for_current_defined_bodies": false,
+    "observed_catalogue_cost_accounting": {
+      "version": "e2-catalogue-charge-accounting-v1",
+      "scope": "recorded reduced HPO catalogue only; heterogeneous observed wall charges",
+      "registered_opportunities": 234,
+      "completed_outcomes": 231,
+      "known_failed_outcomes": 2,
+      "unknown_outcomes": 1,
+      "current_campaign_charge_receipts": 173,
+      "current_campaign_observed_charge_receipts": 172,
+      "original_cached_charge_receipts": 61,
+      "observed_charge_receipts_union": 233,
+      "physical_jobs_double_counted": 0,
+      "current_campaign_observed_wall_charge_seconds": 24116.93557340999,
+      "historical_original_cached_wall_charge_seconds": 1716.9633450739982,
+      "recorded_catalogue_observed_wall_charge_seconds_mixed_scopes": 25833.89891848399,
+      "recorded_catalogue_observed_wall_charge_hours_mixed_scopes": 7.176083032912219,
+      "unmeasured_conservative_allocation_seconds_not_added": 1860.0,
+      "unknown_actual_elapsed_seconds": null,
+      "phase_breakdown_available_jobs_separate_scope": 180,
+      "completed_jobs_without_phase_breakdown_separate_scope": 51,
+      "two_known_failures": [
+        {
+          "model": "TimesNet",
+          "attempt_id": "10098dda29216054585354395d2d8ef4b81c44ad31361b4c11cabf09ee998c41",
+          "fold_origin": "2024-01-01",
+          "terminal_failure_class": "pre_model_setup_failure",
+          "optimizer_steps_exact_at_failure": 0,
+          "observed_wall_charge_seconds": 10.937776180000583
+        },
+        {
+          "model": "TimesNet",
+          "attempt_id": "9f7b59ed82fc0df667298fdca8ca6d5b18e3aa4d6767fd584962d0dd5390aaa2",
+          "fold_origin": "2024-07-01",
+          "terminal_failure_class": "synchronized_phase_timeout",
+          "optimizer_steps_exact_at_failure": 749,
+          "observed_wall_charge_seconds": 613.7289963609983
+        }
+      ],
+      "limitations": [
+        "Different historical search-session and reduced-budget timer boundaries and mixed hardware; descriptive accounting, not comparable pure training speed.",
+        "Only the 234 recorded reduced-catalogue opportunities; earlier discarded trials, outer controller overhead, source recovery, final fitting, CPU supplements and all project-wide costs are outside this sum.",
+        "One lost worker has no observed elapsed duration; its 1860-second conservative allocation is not added to observed time and is not an upper bound on its actual wall time.",
+        "The 51 missing phase breakdowns do not remove existing original wall-charge receipts; phase totals remain a distinct incomplete breakdown.",
+        "No GPU-active time, monetary cost, energy, complete historical selection cost, or end-to-end campaign duration is inferred."
+      ],
+      "do_not_add_to_this_total": [
+        "phase elapsed times",
+        "cached callbacks",
+        "failed-worker nested elapsed",
+        "unknown reserved allocation",
+        "new CPU reproduction cost or other campaigns without separate scope accounting"
+      ]
+    },
+    "phase_breakdown_recorded_jobs": 180,
+    "completed_jobs_without_phase_breakdown": 51,
+    "remaining": [
+      "Minimum family-specific HPO breadth not fully explored",
+      "No identified independent importance from the six covarying tuples",
+      "One HPO seed does not measure optimization-induced selection variance",
+      "Classical resource timings and full historical selection cost remain incomparable/unknown"
+    ]
+  },
+  "HPO_timing_pilot": {
+    "version": "e2-three-full-HPO-timing-pilot-recovered-v3",
+    "plan_sha256": "bb196eee41b982b06b5dd8f998dda9c606b2c234f259bd2fe9d74d04553675a9",
+    "canonical_jobs": [
+      {
+        "job": "pilot-01",
+        "model": "MLP16",
+        "cap_seconds": 60,
+        "reservation_id": "257005f6-ff09-4866-8b7e-38c50c07aeeb",
+        "observed_charged_worker_seconds": 5.753766014997382,
+        "returncode": 0,
+        "outcome": {
+          "version": "e2-three-full-HPO-timing-pilot-v2",
+          "job": "pilot-01",
+          "model": "MLP16",
+          "status": "completed",
+          "plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+          "partial_fit_is_complete_fitness": false,
+          "full_HPO_policy_fit_completed": true,
+          "epochs_completed": 200,
+          "best_epoch": 180,
+          "optimizer_steps": 800,
+          "stop_reason": "patience",
+          "fit_seconds": 2.7622207929962315,
+          "selected_checkpoint_sha256": "ac2fbd1ef322ed26bd6bbaaf59645246fe66719876c0fef20e775c747a466ae8",
+          "validation_count": 83,
+          "validation_RMSE": 0.008588944136078861,
+          "timer_scope": "worker includes loading/setup, full200/patience20HPO fit, checkpoint and selected validation scoring",
+          "worker_elapsed_seconds_before_final_receipt": 5.093037037993781
+        }
+      },
+      {
+        "job": "pilot-02",
+        "model": "iTransformer",
+        "cap_seconds": 90,
+        "reservation_id": "2608b1fc-1bc9-4af6-8c4e-d74a09a041c9",
+        "observed_charged_worker_seconds": 12.817985828005476,
+        "returncode": 0,
+        "outcome": {
+          "version": "e2-three-full-HPO-timing-pilot-v2",
+          "job": "pilot-02",
+          "model": "iTransformer",
+          "status": "completed",
+          "plan_sha256": "0f58a5a11047aae71a88dd580c8c865e424485909eaefa72e75c698794d6aa48",
+          "partial_fit_is_complete_fitness": false,
+          "full_HPO_policy_fit_completed": true,
+          "epochs_completed": 24,
+          "best_epoch": 4,
+          "optimizer_steps": 192,
+          "stop_reason": "patience",
+          "fit_seconds": 9.388178059001802,
+          "selected_checkpoint_sha256": "2a429d579d013c69beb123a0166e40bc4444bfacc3df7263f1585d0261b026dd",
+          "validation_count": 83,
+          "validation_RMSE": 0.008769390678967889,
+          "timer_scope": "worker includes loading/setup, full200/patience20HPO fit, checkpoint and selected validation scoring",
+          "worker_elapsed_seconds_before_final_receipt": 12.223218957995414
+        }
+      },
+      {
+        "job": "pilot-03",
+        "model": "TimesNet",
+        "cap_seconds": 270,
+        "reservation_id": "06ae2a8a-2ff2-448a-8aa4-79c4e9f8a317",
+        "observed_charged_worker_seconds": 266.56393904400466,
+        "returncode": 2,
+        "outcome": {
+          "version": "e2-three-full-HPO-timing-pilot-v2",
+          "job": "pilot-03",
+          "model": "TimesNet",
+          "status": "censored_timeout",
+          "plan_sha256": "bb196eee41b982b06b5dd8f998dda9c606b2c234f259bd2fe9d74d04553675a9",
+          "partial_fit_is_complete_fitness": false,
+          "error_type": "TrainingFailure",
+          "reason": "Stage wall limit exceeded at a checked boundary",
+          "full_HPO_policy_fit_completed": false,
+          "failed_stage_receipt_saved": true,
+          "completed_fit_cost_estimated": false,
+          "retry_performed": false,
+          "worker_elapsed_seconds_before_final_receipt": 265.10620458399353
+        }
+      }
+    ],
+    "completed_full_policy_fits": 2,
+    "prior_blocked_before_fit_attempt_retained": {
+      "job": "pilot-03",
+      "model": "TimesNet",
+      "cap_seconds": 270,
+      "reservation_id": "d94ed0d8-cf8c-4648-889e-038d7d164684",
+      "observed_charged_worker_seconds": 0.11463836400071159,
+      "returncode": 1,
+      "outcome": {
+        "status": "failed_without_worker_receipt",
+        "full_HPO_policy_fit_completed": false,
+        "completed_fit_cost_estimated": false
+      }
+    },
+    "all_worker_charges_including_prior_source_block_seconds": 285.2503292510082,
+    "all_group_charges_including_admissions_and_failure_seconds": 291.2081225889997,
+    "all_group_charge_rows": [
+      {
+        "at_utc": "2026-11-16T12:07:37.741257+00:00",
+        "cap_seconds": 30.0,
+        "elapsed_seconds": 3.077465595997637,
+        "event": "finish",
+        "overrun_seconds": 0.0,
+        "phase": "followup-HPO-timing-admission",
+        "previous_record_sha256": "8e4942c62db2e3447685141e6d4193f80e8f6aea243a54367ca343d1523a748c",
+        "reservation_id": "78ffe8bf-bb3a-47c3-84ad-692ff8719de4",
+        "returncode": 0
+      },
+      {
+        "at_utc": "2026-11-16T12:07:55.550904+00:00",
+        "cap_seconds": 60.0,
+        "elapsed_seconds": 5.753766014997382,
+        "event": "finish",
+        "overrun_seconds": 0.0,
+        "phase": "followup-HPO-timing:pilot-01",
+        "previous_record_sha256": "43a464dce7721905ce0950691501db9f7c156e57725a2fc659773597bea4f9da",
+        "reservation_id": "257005f6-ff09-4866-8b7e-38c50c07aeeb",
+        "returncode": 0
+      },
+      {
+        "at_utc": "2026-11-16T12:08:08.375691+00:00",
+        "cap_seconds": 90.0,
+        "elapsed_seconds": 12.817985828005476,
+        "event": "finish",
+        "overrun_seconds": 0.0,
+        "phase": "followup-HPO-timing:pilot-02",
+        "previous_record_sha256": "9246d11259cdd647338ab140f3030559255d982a9ba9983064a1d6d7bb785d97",
+        "reservation_id": "2608b1fc-1bc9-4af6-8c4e-d74a09a041c9",
+        "returncode": 0
+      },
+      {
+        "at_utc": "2026-11-16T12:08:08.496246+00:00",
+        "cap_seconds": 270.0,
+        "elapsed_seconds": 0.11463836400071159,
+        "event": "finish",
+        "overrun_seconds": 0.0,
+        "phase": "followup-HPO-timing:pilot-03",
+        "previous_record_sha256": "7bfd36b8efb01c78dd6f66b8b3604f6e04657b8730c4690b01523a56feb83d73",
+        "reservation_id": "d94ed0d8-cf8c-4648-889e-038d7d164684",
+        "returncode": 1
+      },
+      {
+        "at_utc": "2026-11-16T12:16:02.557627+00:00",
+        "cap_seconds": 20.0,
+        "elapsed_seconds": 2.880327741993824,
+        "event": "finish",
+        "overrun_seconds": 0.0,
+        "phase": "followup-HPO-timing-readmission",
+        "previous_record_sha256": "4ecf636e0ac55a3bbdf3b7fd4dd4ba021fac138384e603b0babc5dbf326b573f",
+        "reservation_id": "45fbae65-8aa9-4d82-9002-545c047f8c28",
+        "returncode": 0
+      },
+      {
+        "at_utc": "2026-11-16T12:20:41.009064+00:00",
+        "cap_seconds": 270.0,
+        "elapsed_seconds": 266.56393904400466,
+        "event": "finish",
+        "overrun_seconds": 0.0,
+        "phase": "followup-HPO-timing:pilot-03",
+        "previous_record_sha256": "ffcace10132249b955590aa87e5d335b48f8aca507bb0faaa9e7e3f81c046573",
+        "reservation_id": "06ae2a8a-2ff2-448a-8aa4-79c4e9f8a317",
+        "returncode": 2
+      }
+    ],
+    "original_group_cap_seconds": 450,
+    "original_group_cap_reset": false,
+    "two_completed_fits_rerun": false,
+    "calibration_test_accessed": false,
+    "historical_A2_changed": false,
+    "full13model_HPO_forecast_established": false,
+    "selection_variance_established": false,
+    "independent_importance_established": false,
+    "projection_limit": "Observed completed-job cost is conditional to exactmodel/C03/firstfold/seed/runtime; three representatives do not identify costs for all13bodies. Censored attempts never substitute full costs."
+  },
+  "portable_reproduction": {
+    "version": "e2-portable-reproduction-followup-summary-v1",
+    "created_at_utc": "2026-11-16T12:14:49.984283+00:00",
+    "status": "passed_declared_scope_with_prior_failures_retained",
+    "archive": "reproduccion_cpu_portable_v1.zip",
+    "archive_sha256": "18661b0f34deee6514cf507a0ecf01e4b534d285650132981166f0cc24f9e7db",
+    "archive_bytes": 90171905,
+    "archive_members": 1202,
+    "runner_sha256": "3b603768e4607d16e34c79b0aaf7bc60664006ff8372b1c51461e72a09b06617",
+    "config_sha256": "ba3b3d482a87236d785a3c64ec56e94e5d3f323c0739f1e89ccdcc7c66b52074",
+    "bound_input_files": 1201,
+    "fitted_binary_checkpoints_included": 79,
+    "all81_fitted_predictors_included": true,
+    "actual_input_level": "Admitted daily OHLCV plus separately audited matrices; raw20ZIP identities retained as provenance, raw monthly ZIPs not decoded by this package",
+    "executed_modes": {
+      "check": {
+        "before_and_after_inference": true,
+        "new_model_fits": 0,
+        "new_model_forwards": 0
+      },
+      "reanalysis": {
+        "status": "passed",
+        "new_model_fits": 0,
+        "new_model_forwards": 0,
+        "A2_max_numeric_difference": 0.0
+      },
+      "replay-checkpoints": {
+        "scope": "fitted checkpoint inference",
+        "new_neural_forwards": 47424,
+        "new_predictor_trajectories": 81,
+        "new_model_fits_in_this_stage": 0,
+        "input_level": "previously admitted daily OHLCV and independently audited arrays, not monthly ZIP decode",
+        "max_prediction_difference_own_CPU_reference": 0.0,
+        "max_A2_difference_own_CPU_reference": 0.0,
+        "raw_archives_opened": 0,
+        "original_A100_parity_claimed": false,
+        "original_full_campaign_reproduced": false
+      },
+      "train-fixed_subset_software_QA": {
+        "status": "passed",
+        "new_neural_fits": 2,
+        "new_classical_fits": 1,
+        "models": [
+          "MLP16",
+          "LSTM-autoencoder con predictor",
+          "ARIMA"
+        ],
+        "neural_seed": 271801,
+        "SAE_phases": [
+          "ae1",
+          "ae2",
+          "supervised"
+        ],
+        "full81_training_executed": false,
+        "test_predictions_performed": false,
+        "new_A2_produced": false
+      }
+    },
+    "runtime_report": "runtime_observed.json",
+    "runtime_scope": "Declared existing CPU interpreter with isolated -I Python in an unrelated directory; this followup does not claim a new installation/venv",
+    "CPU_policy": {
+      "torch": "2.8.0+cpu",
+      "dtype": "float32",
+      "batch_size": 1,
+      "intraop_threads": 2,
+      "interop_threads": 2,
+      "mkldnn_enabled": true,
+      "deterministic_algorithms": true
+    },
+    "prior_failures_retained": [
+      {
+        "attempt": 1,
+        "reason": "A2 reduction layout yielded1.3877787807814457e-16; originalp[:,mask] layout restored without relaxing exact comparison",
+        "report": "attempts/attempt1/execution_report.json"
+      },
+      {
+        "attempt": 2,
+        "reason": "After78neural trajectories a naive forecast Pythonlist lackedtolist; converted prediction sequences tofloat64arrays without numericmethodchange",
+        "report": "attempts/attempt2/execution_report.json"
+      }
+    ],
+    "successful_isolated_report": "isolated_execution_report.json",
+    "software_training_QA_report": "training_software_QA_report.json",
+    "full_primary20000_executed_by_this_followup": false,
+    "HPO_repeated": false,
+    "full_historical_campaign_reproduced": false,
+    "B21_full_integral_complete": false,
+    "remaining_separate_requirements": [
+      "full portable78+3training pipeline not executed as a whole in this followup",
+      "HPO, robustness, explanations, ablations and complete booktables/figures are not regenerated by this runner",
+      "missing historical timings cannot be reconstructed by newtraining",
+      "historicalA100 OSimage not retrospectivelyauthenticated"
+    ],
+    "NAS": "not_applicable_defined_architectures",
+    "global_project_wrapper_charges": [
+      {
+        "phase": "followup-portable-replay",
+        "seconds": 4.387328102005995,
+        "returncode": 2,
+        "reservation_id": "2d04f1f5-fb42-40f4-9769-8b777ce93777"
+      },
+      {
+        "phase": "followup-portable-replay-v2",
+        "seconds": 125.80005609500222,
+        "returncode": 2,
+        "reservation_id": "d0b6a4bd-e9c5-4b60-a025-d00971164367"
+      },
+      {
+        "phase": "followup-portable-replay-v3",
+        "seconds": 136.14093861699803,
+        "returncode": 0,
+        "reservation_id": "443dec8b-af89-4abb-acde-6bad50a99e80"
+      },
+      {
+        "phase": "followup-portable-training-smoke",
+        "seconds": 91.23553276900202,
+        "returncode": 0,
+        "reservation_id": "a4792785-7096-448d-8dc2-e377273d658a"
+      },
+      {
+        "phase": "followup-portable-archive-QA",
+        "seconds": 2.374894888009294,
+        "returncode": 0,
+        "reservation_id": "cc22a129-b9da-48d0-bf7e-138538f501c3"
+      }
+    ],
+    "total_component_global_charge_seconds": 359.93875047101756,
+    "worker_times_are_nested_in_global_wrapper_charge_not_added_again": true,
+    "previous12_v3_ZIPs_modified": false,
+    "unit_guard_tests": {
+      "passed": 6,
+      "scientific_operations": 0,
+      "log": "guard_tests.log"
+    },
+    "archive_execution_report": "archive_execution_report.json",
+    "archive_check_status": "passed",
+    "training_QA_byte_exact_artifacts_manifest": "training_software_QA/artifacts_manifest.json"
+  },
+  "original_A2_changed": false,
+  "original_RQ1_changed": false,
+  "NAS_not_applicable": true,
+  "native_original_bibliography_recovery_closed": false,
+  "budget": {
+    "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+    "approved_total_hours": 84,
+    "historical_charged_seconds": 288922.08751226973,
+    "corrections_charged_seconds": 10232.593793446038,
+    "cumulative_charged_seconds": 299154.68130571576,
+    "remaining_seconds": 3245.318694284255,
+    "reserved_seconds": 0,
+    "unreserved_seconds": 3245.318694284255,
+    "open_reservations": {},
+    "budget_reset": false,
+    "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+  },
+  "scope": "Component results, including adverse findings, are retained. No percentage complete or grade is inferred."
+}

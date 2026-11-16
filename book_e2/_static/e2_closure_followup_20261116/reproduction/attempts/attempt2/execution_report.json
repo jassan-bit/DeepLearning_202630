@@ -1,0 +1,75 @@
+{
+  "version": "e2-isolated-portable-proof-v1",
+  "started_at_utc": "2026-11-16T12:05:05.764146+00:00",
+  "runner_sha256": "b66843069ada7e9f54f40031a4c01c091def9736b963315d358a1dd87da1921d",
+  "config_sha256": "62a84c9bfb1af441f4b10245dda8e5d20a80ac173ff764684ecf30693d110ffb",
+  "isolated_python": true,
+  "PYTHONPATH_removed": true,
+  "unrelated_working_directory": "<FAILED_OUTPUT2>",
+  "scientific_inputs_from_package_only": true,
+  "new_model_fits": 0,
+  "cases": [
+    {
+      "name": "check_before",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "check",
+        "--output",
+        "<FAILED_OUTPUT2>/check_before"
+      ],
+      "returncode": 0,
+      "seconds": 0.9856823440059088,
+      "log_sha256": "310040aacd5841499c94b563b2c87d0d63e7cc97f369d5f8eaaeadfee53ad926"
+    },
+    {
+      "name": "reanalysis",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "reanalysis",
+        "--execute",
+        "--output",
+        "<FAILED_OUTPUT2>/reanalysis",
+        "--cap-seconds",
+        "65"
+      ],
+      "returncode": 0,
+      "seconds": 3.823145457005012,
+      "log_sha256": "83574771525724caabcfc848a531aef72a922c20e47e256ed9ed60d1968815c1"
+    },
+    {
+      "name": "replay",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "replay-checkpoints",
+        "--execute",
+        "--device",
+        "cpu",
+        "--output",
+        "<FAILED_OUTPUT2>/replay",
+        "--cap-seconds",
+        "240"
+      ],
+      "returncode": 2,
+      "seconds": 120.85223246099486,
+      "log_sha256": "6775f2586cb05740a3db1c6b1eff9e49f240cf716a80f085cc4fc1e8fc2fd7aa"
+    }
+  ],
+  "full_historical_campaign_reproduced": false,
+  "status": "failed",
+  "completed_at_utc": "2026-11-16T12:07:11.437270+00:00",
+  "elapsed_wall_seconds": 125.6721945580066,
+  "_public_export": {
+    "original_file_sha256": "921cd2349277c398f4e320fbd08df5d1abcf66d07736e7b514a4bf32037753c9",
+    "paths_normalized_for_public_readability": true,
+    "scientific_numbers_changed": false
+  }
+}

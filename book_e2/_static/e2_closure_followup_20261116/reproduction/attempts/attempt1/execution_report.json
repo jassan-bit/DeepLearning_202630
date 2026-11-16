@@ -1,0 +1,55 @@
+{
+  "version": "e2-isolated-portable-proof-v1",
+  "started_at_utc": "2026-11-16T12:03:30.832601+00:00",
+  "runner_sha256": "78ba186408cd0d3510116838af68e4c712adac3baf92bfa95e373bb82f08985e",
+  "config_sha256": "10c4b58a2b1da24d861972b61303a10164437bcaf4c50731e0c54d4c3b848fff",
+  "isolated_python": true,
+  "PYTHONPATH_removed": true,
+  "unrelated_working_directory": "<FAILED_OUTPUT1>",
+  "scientific_inputs_from_package_only": true,
+  "new_model_fits": 0,
+  "cases": [
+    {
+      "name": "check_before",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "check",
+        "--output",
+        "<FAILED_OUTPUT1>/check_before"
+      ],
+      "returncode": 0,
+      "seconds": 0.7171698899910552,
+      "log_sha256": "310040aacd5841499c94b563b2c87d0d63e7cc97f369d5f8eaaeadfee53ad926"
+    },
+    {
+      "name": "reanalysis",
+      "command": [
+        "<DECLARED_CPU_PYTHON>",
+        "-I",
+        "<PACKAGE>/run.py",
+        "--mode",
+        "reanalysis",
+        "--execute",
+        "--output",
+        "<FAILED_OUTPUT1>/reanalysis",
+        "--cap-seconds",
+        "65"
+      ],
+      "returncode": 2,
+      "seconds": 3.5890127849997953,
+      "log_sha256": "a4ad2cd7290e51ec02462007506b7dbdd53bb74e6391a0ceb95ad843e4ec53b9"
+    }
+  ],
+  "full_historical_campaign_reproduced": false,
+  "status": "failed",
+  "completed_at_utc": "2026-11-16T12:03:35.140857+00:00",
+  "elapsed_wall_seconds": 4.306618948990945,
+  "_public_export": {
+    "original_file_sha256": "b965d37a5b95dc8663eeb70ad8c48e6c88f5b21ffd9a709ade20b7d6f0790cf5",
+    "paths_normalized_for_public_readability": true,
+    "scientific_numbers_changed": false
+  }
+}

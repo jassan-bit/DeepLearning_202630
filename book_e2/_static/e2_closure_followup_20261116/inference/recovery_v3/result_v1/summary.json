@@ -1,0 +1,32 @@
+{
+  "version": "e2-conditional-inference-closure-v2",
+  "plan_sha256": "7e1ba8ab775cbce04070943de7f84753b6e3c184d11c84a30fddd26ab5ce0b2e",
+  "completed_at_utc": "2026-11-16T11:58:42.730595+00:00",
+  "elapsed_seconds": 27.947150015999796,
+  "models": 13,
+  "OOF_folds": 3,
+  "OOF_dates_per_model": 249,
+  "test_dates": 608,
+  "test_predictors": 78,
+  "period_primary_rejections_Holm13": 1,
+  "primary_rejected_models": [
+    "LSTM-autoencoder con predictor"
+  ],
+  "finite_decomposition_max_relative_identity_error": 1.0990282990774954e-15,
+  "finite_decomposition_not_population_random_effect_fit": true,
+  "HPO_validation_comparison_executed": true,
+  "independent_post_selection_validation_established": false,
+  "equivalence_or_consistency_established": false,
+  "cause_of_period_difference_identified": false,
+  "original_A2_RQ1_changed": false,
+  "new_fits": 0,
+  "new_model_forwards": 0,
+  "limitations": [
+    "All inference is conditional on one known BTC chronology and the existing fitted predictors.",
+    "OOF and test have different training sizes, parameters and calendars; the contrast cannot identify the cause of a difference.",
+    "OOF folds selected the winner; this bootstrap does not replay selection, and no extra initialization variance exists for the OOF single-seed trajectories.",
+    "Temporal block inference is approximate under suitable weak dependence and local stationarity; observed drift is retained and block sensitivity cannot guarantee validity.",
+    "Finite orthogonal components describe loss variation in a fixed catalogue, not a fitted random-effects model or algorithm-population variance.",
+    "Nonrejection is not equality, consistency, equivalence, adequate fit, or absence of overfitting."
+  ]
+}

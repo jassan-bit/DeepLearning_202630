@@ -1,0 +1,16 @@
+{"budget_reservation_id": "19e5d231-bab3-4abc-9620-86ee34be4fc5", "phase": "followup-inference", "cap_seconds": 599.0}
+Traceback (most recent call last):
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 366, in <module>
+    main()
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 362, in main
+    execute(args.directory, args.plan_sha)
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 280, in execute
+    oof, loss, admissions = load_arrays(plan)
+                            ^^^^^^^^^^^^^^^^^
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 240, in load_arrays
+    require(all(datetime.fromisoformat(d).hour == 0 and
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/e2-guide-closure-20261113/scripts/e2_inference_closure_v2.py", line 242, in <genexpr>
+    datetime.fromisoformat(d).utcoffset().total_seconds() == 0
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'total_seconds'

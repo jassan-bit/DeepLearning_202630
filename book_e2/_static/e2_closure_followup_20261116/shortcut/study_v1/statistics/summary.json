@@ -1,0 +1,23 @@
+{
+  "version": "e2-training-donor-input-dependency-v1",
+  "plan_sha256": "0bc277124baab88a00d6e281f7c759f4bab36bed5ceb66628526dce806cb843a",
+  "new_fits": 0,
+  "groups": 2,
+  "systems": 13,
+  "seed_trajectories": 78,
+  "conditions": 3,
+  "donor_realizations": 1,
+  "original_CPU_max_absolute_difference": 0.0,
+  "states_unchanged": true,
+  "A2_or_RQ1_changed": false,
+  "shortcuts_or_leakage_proven": false,
+  "diagnostic_executed": true,
+  "limits": [
+    "Volume distinguished train/test periods in an earlier adversarial diagnostic; this does not establish that volume is spurious or leaking.",
+    "Donor inputs preserve each group seven-day path but can lie off joint OHLC-volume support and violate consistency between overlapping windows.",
+    "Effects identify model dependence under the specified donor intervention, not causal economic effects, expected live missing-feature performance, or benefit of retraining without the feature.",
+    "One donor realization is fixed before inference; confidence intervals do not include donor-assignment uncertainty.",
+    "No model, hyperparameter, scaler, calibrator or deployment choice is selected using these results.",
+    "Known inherited test608, not a fresh blind holdout. Original A2/RQ1 and CPU benchmark remain unchanged."
+  ]
+}
