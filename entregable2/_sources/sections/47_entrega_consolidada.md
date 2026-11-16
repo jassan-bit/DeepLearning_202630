@@ -1,5 +1,7 @@
 # Entrega consolidada con la evidencia disponible
 
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 > **Ubicación:** complemento del [capítulo 8](08_reproducibilidad.md). Identificador documental anterior: **§47**; [ver concordancia](concordancia_guia.md).
 
 **Lectura vigente:** el informe entrega el benchmark de **16 sistemas, 81 predictores y 608 fechas**, junto con sus fuentes, límites y suplementos. La ruta metodológica es **F2a, series de tiempo**. **La búsqueda NAS del capítulo 14 no aplica al catálogo actual de arquitecturas definidas**, incluida TiDE publicada R0-v2. No constituye un experimento pendiente ni se sustituye por las seis configuraciones HPO.

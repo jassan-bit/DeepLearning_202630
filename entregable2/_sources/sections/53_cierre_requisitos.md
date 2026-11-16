@@ -1,5 +1,7 @@
 # Cierre de requisitos y experimentos complementarios
 
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 > **Ubicación:** complemento del [capítulo 8](08_reproducibilidad.md). Identificador documental anterior: **§53**; [ver concordancia](concordancia_guia.md).
 
 **Lectura vigente:** la consolidación actual presenta un comando de auditoría sin red/GPU y el Apéndice B vigente; §§60/62/63 añaden calibración causal y cobertura condicional, elegibilidad focal y un proxy empírico de ensemble con incertidumbre. Se reconoce el δg ya registrado y la partición heredada. [§64](64_correcciones_metodologicas.md) ejecutó trece pruebas de tolerancia condicional en CPU; [§65](65_cierre_cientifico_real.md) añade los controles con entradas reales, la comparación formal de periodos originales y la IUT CPU completa. Sus resultados conservan el alcance retrospectivo y no establecen adecuación conjunta. El [seguimiento de §66](66_seguimiento_pendientes.md) añade seis negativos, comparación OOF HPO–prueba, descomposición finita con IC y diagnóstico específico de dependencia de entradas, manteniendo sus resultados y condiciones parciales. [Detalle](61_reproduccion_consolidada.md).

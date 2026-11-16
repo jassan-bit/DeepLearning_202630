@@ -233,8 +233,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, Ética y Comunicación Científica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="61_reproduccion_consolidada.html">Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="67_resolucion_final.html">Resolución final de las cuatro observaciones</a></li>
 <li class="toctree-l2"><a class="reference internal" href="55_reproduccion_ablaciones.html">Reproducción numérica y ablaciones completadas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="38_cumplimiento_guia.html">Exigencias de la guía, evidencia y pendientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="38_cumplimiento_guia.html">Exigencias de la guía, evidencia y resoluciones finales</a></li>
 <li class="toctree-l2"><a class="reference internal" href="53_cierre_requisitos.html">Cierre de requisitos y experimentos complementarios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="47_entrega_consolidada.html">Entrega consolidada con la evidencia disponible</a></li>
 </ul>
@@ -464,7 +465,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-critica-y-decisiones">6.4 Discusión crítica y decisiones</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-las-preguntas-de-investigacion">6.4.1 Respuesta a las preguntas de investigación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez-y-trabajo-pendiente">6.4.2 Amenazas a la validez y trabajo pendiente</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez-y-limitaciones-finales">6.4.2 Amenazas a la validez y limitaciones finales</a></li>
 </ul>
 </li>
 </ul>
@@ -478,8 +479,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="benchmark-final">
-<span id="benchmark-obligatorio-dieciseis-sistemas"></span><h1>6. Benchmark Final<a class="headerlink" href="#benchmark-final" title="Link to this heading">#</a></h1>
+  <p id="benchmark-obligatorio-dieciseis-sistemas"><strong>Resolución final vigente:</strong> <a class="reference internal" href="67_resolucion_final.html"><span class="std std-doc">§67</span></a> sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="benchmark-final">
+<h1>6. Benchmark Final<a class="headerlink" href="#benchmark-final" title="Link to this heading">#</a></h1>
 <p><strong>Lectura vigente:</strong> el benchmark de <strong>16 sistemas y 81 predictores congelados</strong> está completado sobre las mismas <strong>608 fechas, del 01/01/2025 al 31/08/2026</strong>. El LSTM-autoencoder con predictor (SAE) obtiene la menor RMSE media observada; Persistence obtiene el menor MAE y la menor sMAPE. <strong>Ninguna de las veinte comparaciones primarias demuestra una mejora mayor que δ después de Holm</strong>, tanto en el cálculo original como en el refinamiento posterior de 20.000 remuestreos. Esta sección reúne los resultados y responde a los apartados 6.1–6.4 de la guía, con sus incertidumbres y resultados negativos.</p>
 <p>El catálogo vigente reúne diez modelos principales —FCN-1D, ResNet-1D, Inception-1D, SAE, TimesNet, TSMixer, TiDE, TimeMixer, PatchTST e iTransformer—, las referencias E1 MLP16, LSTM32 y GRU32, y Persistence, SeasonalNaive y ARIMA. Son <strong>78 ajustes finales neuronales</strong>, seis por red, y tres comparadores deterministas. El híbrido adicional y Ridge conservan alcance opcional o histórico. La <a class="reference internal" href="04_implementacion.html"><span class="std std-doc">implementación</span></a>, el <a class="reference internal" href="48_protocolo_reducido.html"><span class="std std-doc">protocolo ejecutado</span></a> y el <a class="reference internal" href="61_reproduccion_consolidada.html"><span class="std std-doc">Apéndice B vigente</span></a> documentan recetas, selección y reproducción.</p>
 <p>La <strong>métrica, δ, unidad temporal y partición heredadas de E1 se aceptan conforme a la continuidad E1–E2–E3 exigida por la guía</strong>. La exposición previa al periodo se declara en la <a class="reference download internal" download="" href="../_downloads/1f149477d437c56efd6a2818d858b2bb/data_admission.json"><span class="xref download myst">admisión de datos</span></a>: limita el alcance prospectivo de las conclusiones, sin convertir la mera herencia de la partición en una infracción. Los suplementos conservan sus identidades y no se usan para cambiar la selección o el resultado original.</p>
@@ -1041,8 +1043,8 @@ q_{m,s}=\sqrt{\frac{1}{608}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 </table>
 </div>
 </section>
-<section id="amenazas-a-la-validez-y-trabajo-pendiente">
-<h3>6.4.2 Amenazas a la validez y trabajo pendiente<a class="headerlink" href="#amenazas-a-la-validez-y-trabajo-pendiente" title="Link to this heading">#</a></h3>
+<section id="amenazas-a-la-validez-y-limitaciones-finales">
+<h3>6.4.2 Amenazas a la validez y limitaciones finales<a class="headerlink" href="#amenazas-a-la-validez-y-limitaciones-finales" title="Link to this heading">#</a></h3>
 <p><strong>Validez interna y temporal.</strong> La selección se hizo por validación y las <a class="reference download internal" download="" href="../_downloads/f8db31dfb4cd9da09a27596c7df67a1f/final_freeze.json"><span class="xref download myst">81 identidades finales se congelaron</span></a> antes de puntuar. La partición heredada se mantiene como exige la guía y su conocimiento previo limita la confirmación prospectiva. El <strong>δg previo sí está documentado</strong>, con valor 0,00025772842664981106 y <a class="reference download internal" download="" href="../_downloads/f88411ff7ee06304afe925ed446df154/margin_lineage.json"><span class="xref download myst">linaje verificable</span></a>; no se le atribuye ausencia de definición. <a class="reference internal" href="64_correcciones_metodologicas.html"><span class="std std-doc">§64</span></a> añade un diagnóstico CPU completo con riesgos train/cal en batch1 y trece contrastes: dos tolerancias condicionales y once no establecidas. Las brechas históricas usaban lotes distintos; los nuevos cálculos son posteriores, con diez alertas de proyección frente a CUDA, y no certifican ausencia general de sobreajuste. Una curva favorable o falta de rechazo no subsana esa inferencia. La <a class="reference download internal" download="" href="../_downloads/9a6da5aa7674fac14b16e2f190e87514/period_differences_t_Holm13.csv"><span class="xref download myst">comparación formal posterior de los riesgos originales A100</span></a> contrasta prueba608 menos calibración53 sobre los mismos seis predictores de cada red: seis diferencias rechazan Holm13. La sensibilidad por signos no rechaza. Calibración no es validación HPO independiente; ni el rechazo identifica sobreajuste como causa ni el no rechazo demuestra consistencia o equivalencia.</p>
 <p><strong>Validez externa y de constructo.</strong> Se observa una sola cronología BTCUSDT, con objetivo σ₇ y ventanas solapadas. La volatilidad definida a partir de precios no equivale a utilidad de inversión, rentabilidad ni ausencia de riesgos operativos. Las perturbaciones no reconstruyen trayectorias OHLCV económicamente coherentes; la taxonomía y las explicaciones son diagnósticas. Los suplementos de calibración y ensemble se planificaron antes de sus cálculos respectivos, después de conocer el test original; no se convierten en comparaciones confirmatorias retrospectivamente.</p>
 <p><strong>Validez estadística y de coste.</strong> La potencia es limitada; las aproximaciones HAC, bootstrap y rangos tienen los supuestos expuestos. El MCS, un no rechazo o una cobertura global cercana al nominal no demuestran equivalencia. El coste de selección completo, los FLOPs excluidos y la energía no se han identificado. El cociente γ conserva su intervalo amplio, incluidos cambios de orden y denominador; no se trunca para aparentar un techo preciso.</p>
@@ -1571,7 +1573,7 @@ q_{m,s}=\sqrt{|\mathcal T|^{-1}\sum_{t\in\mathcal T}(Y_t-\widehat Y_{m,s,t})^2},
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discusion-critica-y-decisiones">6.4 Discusión crítica y decisiones</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-a-las-preguntas-de-investigacion">6.4.1 Respuesta a las preguntas de investigación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez-y-trabajo-pendiente">6.4.2 Amenazas a la validez y trabajo pendiente</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez-y-limitaciones-finales">6.4.2 Amenazas a la validez y limitaciones finales</a></li>
 </ul>
 </li>
 </ul>

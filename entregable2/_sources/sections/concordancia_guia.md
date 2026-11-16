@@ -4,7 +4,7 @@ El informe sigue los catorce capítulos de la guía. Cada complemento se encuent
 
 **El capítulo 14 documenta una no aplicabilidad:** el catálogo actual utiliza arquitecturas definidas, incluida TiDE publicada R0-v2. La búsqueda NAS de 1.000 diseños y dos fases no es un requisito pendiente. El capítulo se conserva para justificar esa decisión y enlazar las fuentes; el HPO ejecutado se evalúa en el capítulo 11.
 
-Los identificadores **§15–§66** que aparecen en enlaces y recibos permiten seguir su procedencia. No se suman a los catorce capítulos del informe.
+Los identificadores **§15–§67** que aparecen en enlaces y recibos permiten seguir su procedencia. No se suman a los catorce capítulos del informe.
 
 ## Capítulos del informe
 
@@ -52,7 +52,7 @@ Los identificadores **§15–§66** que aparecen en enlaces y recibos permiten s
 | §35 | [Selección CUDA con presupuesto y continuación en GitHub](35_busqueda_cuda_reanudable.md) | [Archivo de antecedentes](archivo_antecedentes.md) · antecedente |
 | §36 | [Avance parcial de la campaña CUDA](36_avance_campana_cuda.md) | [Archivo de antecedentes](archivo_antecedentes.md) · antecedente |
 | §37 | [Ajuste de cómputo conforme a la guía](37_ajuste_guia.md) | [Archivo de antecedentes](archivo_antecedentes.md) · antecedente |
-| §38 | [Exigencias de la guía, evidencia y pendientes](38_cumplimiento_guia.md) | [Capítulo 8](08_reproducibilidad.md) · complemento |
+| §38 | [Exigencias de la guía, evidencia y resoluciones finales](38_cumplimiento_guia.md) | [Capítulo 8](08_reproducibilidad.md) · complemento |
 | §39 | [Optimizar tiempo sin recortar las exigencias de E2](39_optimizacion_tiempo.md) | [Archivo de antecedentes](archivo_antecedentes.md) · antecedente |
 | §40 | [Calendario original y optimizaciones de implementación](40_calendario_original.md) | [Archivo de antecedentes](archivo_antecedentes.md) · antecedente |
 | §41 | [Ejecución optimizada: avance verificable de once orígenes](41_avance_optimizacion_11_origenes.md) | [Archivo de antecedentes](archivo_antecedentes.md) · antecedente |
@@ -81,5 +81,7 @@ Los identificadores **§15–§66** que aparecen en enlaces y recibos permiten s
 | §64 | [Correcciones metodológicas posteriores al benchmark](64_correcciones_metodologicas.md) | [Capítulo 13](13_agregacion_estadistica.md) · complemento; auditoría, efectos, regímenes y trazabilidad |
 | §65 | [Entradas reales, controles y comparaciones completadas](65_cierre_cientifico_real.md) | [Capítulo 10](10_auditoria_datos.md) · auditoría de datos608, controles negativos, cambio de distribución y comparaciones posteriores |
 | §66 | [Seguimiento de auditoría, inferencia, HPO y portabilidad](66_seguimiento_pendientes.md) | [Capítulo 10](10_auditoria_datos.md) · seis controles adicionales, comparación OOF–prueba, variabilidad finita, dependencia de entradas y ejecución independiente |
+
+| §67 | [Resolución final de las cuatro observaciones](67_resolucion_final.md) | [Capítulo 8](08_reproducibilidad.md) · complemento vigente de resolución |
 
 La numeración histórica de archivos y los recibos guardados no se modifica: conserva las identidades usadas para verificar las evidencias y las descargas.

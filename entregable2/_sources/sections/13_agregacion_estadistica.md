@@ -1,4 +1,7 @@
 (estimandos-agregacion-e-inferencia-actual)=
+
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 # 13. Estrategia de Agregación y Modelado Estadístico
 
 **Lectura vigente:** la A2 compara **16 sistemas sobre las mismas 608 fechas**, con seis semillas por cada una de trece redes y una trayectoria por cada clásico. La inferencia primaria conserva **veinte contrastes de mejora de RMSE mayor que δ**, con Holm20: ningún par rechaza, tanto en el cálculo original B=4.999 como en su refinamiento B=20.000. Los análisis posteriores tienen sus propias unidades, pérdidas, hipótesis y familias; no se suman como confirmaciones del mismo efecto. La [ampliación del 16/11 (§65)](65_cierre_cientifico_real.md) añade la comparación formal de los periodos originales, los controles reales de datos y una IUT CPU completa; A2 y RQ1 permanecen iguales.

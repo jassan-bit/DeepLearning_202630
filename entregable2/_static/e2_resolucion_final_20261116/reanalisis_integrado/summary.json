@@ -1,0 +1,331 @@
+{
+  "version": "e2-integrated-reanalysis-summary-v1",
+  "created_at_utc": "2026-11-16T14:54:32.392689+00:00",
+  "status": "passed",
+  "scope": "integrated_existing_reanalysis",
+  "completed_tasks": 13,
+  "total_tasks": 13,
+  "all_tasks_have_terminal_status": true,
+  "full_historical_campaign_retrained": false,
+  "new_model_fits": 0,
+  "new_model_forwards": 0,
+  "all_book_tables_and_figures_regenerated": false,
+  "scientific_audit_approved_from_module_success": false,
+  "B21_integrated_reanalysis_demonstrated": true,
+  "B21_full_historical_campaign_complete": false,
+  "archive": "reanalisis_integrado_v1.zip",
+  "archive_relative_to_summary": "../reanalisis_integrado_v1.zip",
+  "archive_bytes": 93602501,
+  "archive_sha256": "6a07fe9b0340f91b75a751d8a6d2ff369c9d2c812f6dd5df2c99d7e738de1c27",
+  "runner_sha256": "4a528d6852c858913629cf3a3c66f330d75e02717317df36890abd85036f7e15",
+  "catalog_sha256": "f023e44458c7ba3789ab8f3ee05957e869d1177c1b4087c7bf74e775e03f8826",
+  "archive_input_files_verified": 19,
+  "native_archive_count": 13,
+  "native_archives_bundled_only_in_finalZIP": true,
+  "offline_self_contained_runtime_inputs": true,
+  "isolated_execution": {
+    "python_isolated_I": true,
+    "PYTHONPATH_removed": true,
+    "unrelated_working_directory": true,
+    "all_inputs_from_extracted_finalZIP": true
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "executable": "/workspace/work/e2-opt-venv/bin/python",
+    "system": "Linux",
+    "release": "6.18.57",
+    "machine": "x86_64",
+    "os_release": {
+      "NAME": "Debian GNU/Linux",
+      "ID": "debian",
+      "PRETTY_NAME": "Debian GNU/Linux 13 (trixie)",
+      "VERSION_ID": "13",
+      "VERSION": "13 (trixie)",
+      "VERSION_CODENAME": "trixie",
+      "DEBIAN_VERSION_FULL": "13.6",
+      "HOME_URL": "https://www.debian.org/",
+      "SUPPORT_URL": "https://www.debian.org/support",
+      "BUG_REPORT_URL": "https://bugs.debian.org/"
+    },
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0"
+    }
+  },
+  "elapsed_QA_wall_seconds": 57.0777978959959,
+  "project_global_charge_seconds": 57.17169000800641,
+  "remaining_global_seconds_after_QA": 3188.1470042762485,
+  "previously_published_archives_and_ledger_modified": false,
+  "tasks": [
+    {
+      "id": "D02",
+      "title": "Inventario de fuentes y recetas",
+      "status": "completed",
+      "scope": "source_inventory_no_forwards",
+      "returncode": 0,
+      "elapsed_seconds": 1.9954950400133384,
+      "result_verification": {
+        "native_result_status": "verified",
+        "scope": "source_inventory_no_forwards",
+        "status": "verified",
+        "author_files_verified": 76,
+        "models_verified": 13,
+        "new_model_forwards": 0
+      },
+      "generated_artifact_count": 2
+    },
+    {
+      "id": "D03",
+      "title": "Datos y contrato",
+      "status": "completed",
+      "scope": "daily_and_audited_arrays_validation",
+      "returncode": 0,
+      "elapsed_seconds": 0.33977510400291067,
+      "result_verification": {
+        "native_result_status": "passed",
+        "scope": "daily_and_audited_arrays_validation",
+        "status": "passed",
+        "cohorts.training.count": 655,
+        "cohorts.calibration.count": 53,
+        "cohorts.evaluation.count": 608,
+        "cohorts": {
+          "training": 655,
+          "calibration": 53,
+          "evaluation": 608
+        }
+      },
+      "generated_artifact_count": 14
+    },
+    {
+      "id": "D04",
+      "title": "Preregistro y auditoría registrada",
+      "status": "completed",
+      "scope": "recorded_documentary_audit_not_a_new_audit_acceptance",
+      "returncode": 0,
+      "elapsed_seconds": 7.944990400996176,
+      "result_verification": {
+        "native_result_status": "verified",
+        "scope": "recorded_documentary_audit_not_a_new_audit_acceptance",
+        "status": "verified",
+        "schema_integrity_checks": 7024,
+        "scientific_audit_acceptance_inferred_from_exit_code": false
+      },
+      "generated_artifact_count": 3473
+    },
+    {
+      "id": "D06",
+      "title": "Tabla A2 original",
+      "status": "completed",
+      "scope": "saved_forecast_arithmetic_original_A2",
+      "returncode": 0,
+      "elapsed_seconds": 3.917861122012255,
+      "result_verification": {
+        "native_result_status": "verified",
+        "scope": "saved_forecast_arithmetic_original_A2",
+        "status": "verified",
+        "systems": 16,
+        "predictors": 81,
+        "dates": 608,
+        "new_model_fits": 0,
+        "max_metric_difference_from_published": 2.220446049250313e-16
+      },
+      "generated_artifact_count": 1112
+    },
+    {
+      "id": "D07",
+      "title": "Registro y fichas experimentales",
+      "status": "completed",
+      "scope": "recorded_experiment_schema_and_aggregates",
+      "returncode": 0,
+      "elapsed_seconds": 8.582956983998884,
+      "result_verification": {
+        "native_result_status": "verified",
+        "scope": "recorded_experiment_schema_and_aggregates",
+        "status": "verified",
+        "schema_integrity_checks": 4685,
+        "scientific_audit_acceptance_inferred_from_exit_code": false
+      },
+      "generated_artifact_count": 2301
+    },
+    {
+      "id": "D08",
+      "title": "Errores e incertidumbre",
+      "status": "completed",
+      "scope": "coverage_error_categories_and_saved_ceiling_weights_not_new_CIs",
+      "returncode": 0,
+      "elapsed_seconds": 0.3282978539937176,
+      "result_verification": {
+        "native_result_status": "verified",
+        "scope": "coverage_error_categories_and_saved_ceiling_weights_not_new_CIs",
+        "status": "verified",
+        "taxonomy.rows": 6080,
+        "taxonomy.categories_match_published_rows": true,
+        "ceiling.CI_regenerated_in_default": false,
+        "max_metric_difference_from_published": 2.220446049250313e-16
+      },
+      "generated_artifact_count": 9
+    },
+    {
+      "id": "D09",
+      "title": "NAS no aplicable",
+      "status": "completed",
+      "scope": "recorded_defined_architecture_justification_no_NAS",
+      "returncode": 0,
+      "elapsed_seconds": 0.1292952969961334,
+      "result_verification": {
+        "native_result_status": "verified",
+        "scope": "recorded_defined_architecture_justification_no_NAS",
+        "status": "verified",
+        "schema_integrity_checks": 25,
+        "scientific_audit_acceptance_inferred_from_exit_code": false
+      },
+      "generated_artifact_count": 7
+    },
+    {
+      "id": "D10",
+      "title": "Agregados del paper guía",
+      "status": "completed",
+      "scope": "five_seed_paper_aggregates_and_saved_curves_no_training",
+      "returncode": 0,
+      "elapsed_seconds": 0.17967427399707958,
+      "result_verification": {
+        "native_result_status": "verified",
+        "scope": "five_seed_paper_aggregates_and_saved_curves_no_training",
+        "status": "verified",
+        "five_seed_summary_reconstructed": true,
+        "operations.model_fits": 0,
+        "max_abs_summary_difference": 0.0
+      },
+      "generated_artifact_count": 9
+    },
+    {
+      "id": "negative_controls",
+      "title": "Controles negativos",
+      "status": "completed",
+      "scope": "fixed_functions_negative_controls_bootstrap_TOST_existing_predictions",
+      "returncode": 0,
+      "elapsed_seconds": 12.506508720005513,
+      "result_verification": {
+        "native_result_status": null,
+        "scope": "fixed_functions_negative_controls_bootstrap_TOST_existing_predictions",
+        "all_fields_match": true,
+        "numeric_values_compared": 80,
+        "new_model_fits": 0,
+        "new_model_forwards": 0,
+        "max_absolute_difference": 0.0
+      },
+      "generated_artifact_count": 2
+    },
+    {
+      "id": "conditional_inference",
+      "title": "OOF–prueba y componentes finitos",
+      "status": "completed",
+      "scope": "existing_OOF_test_bootstrap_and_finite_loss_variability",
+      "returncode": 0,
+      "elapsed_seconds": 17.72777672301163,
+      "result_verification": {
+        "native_result_status": null,
+        "scope": "existing_OOF_test_bootstrap_and_finite_loss_variability",
+        "full_bootstrap": true,
+        "draws_per_block": 5000,
+        "new_fits": 0,
+        "new_model_forwards": 0,
+        "tables_byte_equal_to_reference": [
+          {
+            "name": "conditional_OOF_test_comparisons_39.csv",
+            "sha256": "d12f3459f8e9dfde117c18a460be9a8083fa25ec03a3d7364405c5d4fb6a1132"
+          },
+          {
+            "name": "finite_loss_variance_components_15.csv",
+            "sha256": "b85a99235e639fb8f7e9033883218516fb691eeb50bbf524c0c7f7f98697065e"
+          }
+        ]
+      },
+      "generated_artifact_count": 5
+    },
+    {
+      "id": "input_dependence",
+      "title": "Dependencia de entradas",
+      "status": "completed",
+      "scope": "saved_intervention_statistics_no_new_input_forwards",
+      "returncode": 0,
+      "elapsed_seconds": 0.5352032490045531,
+      "result_verification": {
+        "native_result_status": "passed_saved_predictions_reanalysis",
+        "scope": "saved_intervention_statistics_no_new_input_forwards",
+        "status": "passed_saved_predictions_reanalysis",
+        "rows_compared": 26,
+        "numeric_comparisons": 208,
+        "new_fits": 0,
+        "new_model_forwards": 0,
+        "max_absolute_difference": 1.734723475976807e-18
+      },
+      "generated_artifact_count": 1
+    },
+    {
+      "id": "HPO_descriptive",
+      "title": "HPO descriptivo",
+      "status": "completed",
+      "scope": "recorded_HPO_associations_and_mixed_scope_charges_no_new_HPO",
+      "returncode": 0,
+      "elapsed_seconds": 0.07826451200526208,
+      "result_verification": {
+        "native_result_status": "passed",
+        "scope": "recorded_HPO_associations_and_mixed_scope_charges_no_new_HPO",
+        "status": "passed",
+        "models": 13,
+        "configurations": 78,
+        "opportunities": 234,
+        "marginal_numeric_values_reconstructed": 702,
+        "observed_charge_receipts": 233,
+        "new_fits": 0,
+        "model_forward_passes": 0,
+        "maximum_marginal_absolute_difference": 0.0
+      },
+      "generated_artifact_count": 1
+    },
+    {
+      "id": "Scopus7500",
+      "title": "Cierre Scopus7500",
+      "status": "completed",
+      "scope": "public_7500_EID_inventory_scope_closure_no_new_search",
+      "returncode": 0,
+      "elapsed_seconds": 0.1456959079951048,
+      "result_verification": {
+        "native_result_status": "passed",
+        "scope": "public_7500_EID_inventory_scope_closure_no_new_search",
+        "status": "passed",
+        "inventory_rows": 7500,
+        "unique_EIDs": 7500,
+        "active_Scopus_export_recovery_tasks": [],
+        "preserved_PRISMA_counts": [
+          9559,
+          42,
+          174
+        ],
+        "network_calls": 0
+      },
+      "generated_artifact_count": 1
+    }
+  ],
+  "reports": {
+    "execution": "execution_report.json",
+    "task_scheduler_terminal_statuses": "task_statuses.csv",
+    "standalone_QA": "QA_report.json",
+    "accounting": "accounting_receipt.json",
+    "fixture_guards": "guard_tests.log"
+  },
+  "guard_tests": {
+    "passed": 4,
+    "scientific_operations": 0,
+    "not_a_substitute_for_actual13_task_execution": true
+  },
+  "closure_limits": [
+    "Only the thirteen declared existing modules are integrated; no training/forward/HPO/ablation/robustness campaign is rerun",
+    "D06/D08 preserve their observed rounding difference; there is no false global zero discrepancy",
+    "D08 default reconstructs coverage/errorcategories and savedproxy, not every CI or allfigures",
+    "Native documentary modules retain historical scientific statuses; command success does not certify the leakageaudit",
+    "Scopus7500 operational closure supersedes the old HPO recoveryform; no newexportsrequired",
+    "Reanalysis of saved functions/predictions does not create new blindprospectiveconfirmation"
+  ]
+}

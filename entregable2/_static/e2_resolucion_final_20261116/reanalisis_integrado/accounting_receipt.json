@@ -1,0 +1,43 @@
+{
+  "version": "e2-integrated-reanalysis-budget-receipt-v1",
+  "new_ledger": "../compute_ledger.jsonl",
+  "prior_published_ledger_sha256": "c4e48b6063e12944097ef539e2dce6d28742f33eeb44ad26b1b05f243486beab",
+  "prior_published_ledger_bytes_preserved": true,
+  "global84h_budget_reset": false,
+  "records": [
+    {
+      "at_utc": "2026-11-16T14:51:47.155094+00:00",
+      "cap_seconds": 120.0,
+      "event": "reserve",
+      "phase": "final-integrated-existing-reanalysis-QA",
+      "previous_record_sha256": "90c1f0c8ad336c8afbb69b51b9d0380a7bb427aa1b5dd50cb0603f2b1c664b51",
+      "reservation_id": "1d8d15c7-5640-413f-bc45-3f8c44a8bd9d"
+    },
+    {
+      "at_utc": "2026-11-16T14:52:44.333120+00:00",
+      "cap_seconds": 120.0,
+      "elapsed_seconds": 57.17169000800641,
+      "event": "finish",
+      "overrun_seconds": 0.0,
+      "phase": "final-integrated-existing-reanalysis-QA",
+      "previous_record_sha256": "bfb30d13e0af4b3671f3e2a185bc929f88d8e17064bcbdcdba04a4d95861ca44",
+      "reservation_id": "1d8d15c7-5640-413f-bc45-3f8c44a8bd9d",
+      "returncode": 0
+    }
+  ],
+  "component_charge_seconds": 57.17169000800641,
+  "budget_after": {
+    "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+    "approved_total_hours": 84,
+    "historical_charged_seconds": 288922.08751226973,
+    "corrections_charged_seconds": 10289.765483454044,
+    "cumulative_charged_seconds": 299211.8529957238,
+    "remaining_seconds": 3188.1470042762485,
+    "reserved_seconds": 0,
+    "unreserved_seconds": 3188.1470042762485,
+    "open_reservations": {},
+    "budget_reset": false,
+    "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+  },
+  "worker_times_nested_in_wrapper_not_added_again": true
+}

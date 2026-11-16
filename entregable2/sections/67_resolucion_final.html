@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Resolución final de las cuatro observaciones &#8212; Entregable 2 · Bitcoin: pronóstico de volatilidad</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/67_resolucion_final';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Reproducción numérica y ablaciones completadas" href="55_reproduccion_ablaciones.html" />
+    <link rel="prev" title="Entrega reproducible y Apéndice B actual" href="61_reproduccion_consolidada.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 2 · Bitcoin: pronóstico de volatilidad</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Informe según la guía de E2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="01_punto_partida.html">1. Definición del Problema, Preguntas de Investigación y Dataset</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="17_contrato_sincronizado.html">Contrato vigente y relación entre E1, E2 y E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis Exploratorio de Datos (EDA) Orientado a Decisiones</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="03_literatura.html">3. Revisión Sistemática del Estado del Arte</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="62_cierre_literatura_focal.html">Elegibilidad, selección documental y brecha sustentada</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="04_implementacion.html">4. Implementación de Modelos Benchmark</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="43_catalogo_obligatorio.html">Catálogo obligatorio: dieciséis sistemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_revision_modelos.html">Catálogo ejecutado y procedencia bibliográfica</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="05_paper_guia.html">5. Paper Guía y Replicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_final.html">6. Benchmark Final</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="07_ruta_temporal.html">7. Ruta Metodológica según el Tipo de Problema</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="49_diagnosticos_f2a.html">Diagnósticos F2a posteriores al benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="54_robustez_interpretabilidad.html">Robustez e interpretabilidad: resultados reales de los predictores congelados</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad, Ética y Comunicación Científica</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="61_reproduccion_consolidada.html">Entrega reproducible y Apéndice B actual</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Resolución final de las cuatro observaciones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="55_reproduccion_ablaciones.html">Reproducción numérica y ablaciones completadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="38_cumplimiento_guia.html">Exigencias de la guía, evidencia y resoluciones finales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="53_cierre_requisitos.html">Cierre de requisitos y experimentos complementarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="47_entrega_consolidada.html">Entrega consolidada con la evidencia disponible</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09_protocolo_registrado.html">9. Preregistro, Potencia Estadística y Control de Decisiones</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="48_protocolo_reducido.html">Protocolo reducido y seguimiento de la ejecución</a></li>
+<li class="toctree-l2"><a class="reference internal" href="45_enmienda_protocolo.html">Enmienda del protocolo: calendario común, presupuesto y prueba final</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10_auditoria_datos.html">10. Contrato de Datos y Auditoría Formal de Fuga de Información</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="65_cierre_cientifico_real.html">Entradas reales, controles y comparaciones completadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="66_seguimiento_pendientes.html">Seguimiento de auditoría, inferencia, HPO y portabilidad</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="11_hpo_equidad.html">11. Protocolo de Entrenamiento, Ajuste y Costo Computacional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="51_eficiencia_costes.html">Eficiencia, coste observado y compromisos de Pareto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="58_flops_predictores.html">Coste de operaciones de los predictores congelados</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="12_incertidumbre_errores.html">12. Techo de Desempeño, Incertidumbre y Análisis de Errores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="60_calibracion_temporal_condicional.html">Calibración temporal y cobertura condicional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="57_errores_techo.html">Taxonomía de errores y referencias de predictibilidad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="63_ensamble_calibracion.html">Referencia empírica mediante un ensemble ajustado en calibración</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13_agregacion_estadistica.html">13. Estrategia de Agregación y Modelado Estadístico</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="64_correcciones_metodologicas.html">Correcciones posteriores: auditoría, efectos y regímenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50_comparaciones_f2a.html">Comparaciones F2a posteriores: DM, MCS y rangos por semilla</a></li>
+<li class="toctree-l2"><a class="reference internal" href="56_inferencia_estabilidad_final.html">Inferencia refinada y estabilidad temporal</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="14_arquitecturas.html">14. Arquitecturas definidas: NAS no aplicable</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="44_arquitecturas_publicadas.html">Cuerpos publicados, adaptaciones D7 y aplicación de NAS</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Material de consulta y referencias</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="concordancia_guia.html">Organización y concordancia</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="archivo_antecedentes.html">Archivo de antecedentes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="16_fichas_nuevas.html">Fichas bibliográficas de las cuatro altas propuestas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_integracion_sintetica.html">Implementación provisional y verificación sintética</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_plan_auditoria.html">Plan experimental propuesto y auditoría sin entrenamiento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_contraste_guia.html">Cotejo del plan con la guía original</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_comparadores_nas.html">Comparadores temporales y decisión NAS por receta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_fichas_recetas.html">Once fichas de recetas propuestas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_implementacion_recetas.html">Implementación de recetas y controles temporales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_ejecutor_comun.html">Ejecutor común y disponibilidad temporal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_matriz_cierre.html">Matriz de cierre antes del benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_registro_recetas.html">Registro por receta: fuentes, NAS, HPO e integración</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_nas_hpo_presupuesto.html">Decisiones NAS, rangos HPO y presupuesto para Codex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_fabricas_nas.html">Fábricas NAS implementadas y verificadas sintéticamente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_entrenamiento_temporal.html">Entrenamiento por etapas, selección temporal y perfilado CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_piloto_nube.html">Piloto de desarrollo en la nube de Codex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_optimizacion_nube.html">Optimización de CPU y presupuesto de cómputo en la nube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_ejecucion_gpu.html">Ejecución CUDA preparada y piloto de recursos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33_piloto_gpu.html">Primer piloto de recursos en GPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34_perfil_gpu_ampliado.html">Perfil GPU ampliado y viabilidad del extremo TimesNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35_busqueda_cuda_reanudable.html">Selección CUDA con presupuesto y continuación en GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="36_avance_campana_cuda.html">Avance parcial de la campaña CUDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="37_ajuste_guia.html">Ajuste de cómputo conforme a la guía</a></li>
+<li class="toctree-l2"><a class="reference internal" href="39_optimizacion_tiempo.html">Optimizar tiempo sin recortar las exigencias de E2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40_calendario_original.html">Calendario original y optimizaciones de implementación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41_avance_optimizacion_11_origenes.html">Ejecución optimizada: avance verificable de once orígenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_auditoria_y_trabajo_paralelo.html">Preparación complementaria a partir de evidencia existente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="46_artefactos_y_pilotos.html">Preparación técnica opcional: artefactos y pilotos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="52_sintesis_literatura.html">Síntesis verificable de literatura y selección vigente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="59_auditoria_literatura_final.html">Auditoría final de la literatura recibida</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 2 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/67_resolucion_final.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Resolución final de las cuatro observaciones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen-por-observacion">Dictamen por observación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-resultado-adverso-conservado-y-aceptacion-no-establecida">Auditoría: resultado adverso conservado y aceptación no establecida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-dominio-ejecutado-y-limites-de-identificabilidad">HPO: dominio ejecutado y límites de identificabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-comando-para-los-reanalisis-disponibles">Un comando para los reanálisis disponibles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-definitivo-de-las-conclusiones">Alcance definitivo de las conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-la-resolucion-y-versiones-anteriores">Verificación de la resolución y versiones anteriores</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="resolucion-final-de-las-cuatro-observaciones">
+<h1>Resolución final de las cuatro observaciones<a class="headerlink" href="#resolucion-final-de-las-cuatro-observaciones" title="Link to this heading">#</a></h1>
+<p><strong>Corte final del 16/11/2026, por instrucción del autor.</strong> Se cierra la revisión de auditoría, HPO, reproducción y alcance histórico con la información disponible. Cada observación tiene una decisión terminal, evidencia y afirmaciones permitidas. <strong>No hay tareas correctivas activas para estos cuatro puntos dentro de esta versión congelada de E2.</strong></p>
+<p>La decisión de terminar el seguimiento <strong>no acredita los requisitos que la evidencia no permite aprobar</strong>. Los cinco estados parciales del Apéndice B conservan su significado científico. Un evaluador puede mantener descuentos por esas limitaciones; este cierre no modifica la rúbrica ni garantiza una nota. La tarea sigue siendo <strong>F2a, serie de tiempo</strong>, y <strong>NAS del capítulo 14 no aplica</strong>.</p>
+<section id="dictamen-por-observacion">
+<h2>Dictamen por observación<a class="headerlink" href="#dictamen-por-observacion" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Observación</p></th>
+<th class="head"><p>Resolución con la evidencia disponible</p></th>
+<th class="head"><p>Aceptación científica</p></th>
+<th class="head"><p>Estado del seguimiento</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>C01 · Auditoría integral</strong></p></td>
+<td><p>Procedencia, cohortes, transformaciones, ports, causalidad clásica y controles negativos ejecutados; se conserva el resultado adverso.</p></td>
+<td><p><strong>Aceptación integral no establecida.</strong> La cercanía a la referencia constante no está acreditada y la causa de la señal retenida no fue identificada. Tampoco se ha demostrado una vía de fuga mediante estos controles.</p></td>
+<td><p><strong>Cerrado con dictamen; B03 parcial.</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>C02 · Cobertura HPO</strong></p></td>
+<td><p>Selección reducida de seis tuplas por red terminada; 234 oportunidades, 231 resultados completos, trece ganadores y cargos observados conciliados.</p></td>
+<td><p>Igualdad de plazas acreditada. <strong>Amplitud mínima integral e importancia independiente no acreditadas.</strong> Las asociaciones disponibles son descriptivas.</p></td>
+<td><p><strong>Cerrado con limitación del diseño; B06/B09 parciales.</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>C03 · Reproducción</strong></p></td>
+<td><p>Reproducciones y portabilidad con recibos propios; los módulos de reanálisis disponibles se integran en un comando independiente.</p></td>
+<td><p><strong>Reanálisis integrado verificable.</strong> No se acredita que ese comando repita toda la campaña histórica, HPO, entrenamientos y figuras.</p></td>
+<td><p><strong>Cerrado en el alcance entregado; B21 parcial.</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>C04 · Anterioridad y alcance</strong></p></td>
+<td><p>Cronología auditada por etapa, comparación OOF–prueba ejecutada y cohorte Scopus original fijada.</p></td>
+<td><p>Registro anterior a 170 HPO nuevos y 78 ajustes finales. <strong>No acredita anterioridad histórica integral, cegamiento restaurado, validación externa independiente o exhaustividad bibliográfica.</strong></p></td>
+<td><p><strong>Cerrado con alcance retrospectivo; B01 parcial.</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference download internal" download="" href="../_downloads/bcea3c0e90c19b154c4c3b804b1a44e2/decisions.json"><span class="xref download myst">Decisiones estructuradas</span></a> · <a class="reference download internal" download="" href="../_downloads/2074c692aecb7d8bba00e34dcd3a999b/observaciones_finales.csv"><span class="xref download myst">Tabla descargable de las cuatro resoluciones</span></a> · <a class="reference download internal" download="" href="../_downloads/16a3c7db10655ed70c89d4b031cc8e2d/appendix_B_final.csv"><span class="xref download myst">Apéndice B final, CSV</span></a> · <a class="reference download internal" download="" href="../_downloads/49c00a40c708d84e640ee26826aae58d/appendix_B_final.json"><span class="xref download myst">Apéndice B final, JSON</span></a>.</p>
+</section>
+<section id="auditoria-resultado-adverso-conservado-y-aceptacion-no-establecida">
+<h2>Auditoría: resultado adverso conservado y aceptación no establecida<a class="headerlink" href="#auditoria-resultado-adverso-conservado-y-aceptacion-no-establecida" title="Link to this heading">#</a></h2>
+<p>Los trece controles iniciales y los seis adicionales están ejecutados. En el suplemento de TSMixer e iTransformer, TOST/Holm2 no establece equivalencia con la constante dentro del margen registrado. La revisión estática no identifica una ruta explícita de etiquetas futuras; las funciones antes del entrenamiento tampoco explican íntegramente la señal posterior. <strong>No se atribuye una causa que los datos no han demostrado.</strong> <a class="reference internal" href="66_seguimiento_pendientes.html"><span class="std std-doc">Resultados, planes y límites de §66</span></a>.</p>
+<p>El control permuta las etiquetas del ajuste final, mientras que arquitectura, receta y épocas proceden de selección previa con etiquetas reales. No reproduce toda la selección bajo el nulo. Además, σ₇(t) contiene seis retornos conocidos legítimamente al emitir el pronóstico. Si A y B son la suma y la suma de cuadrados de esos seis retornos, respectivamente:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_7(t)^2 = \frac{B+r_t^2}{7}-\frac{(A+r_t)^2}{49}.\]</div>
+<p>Por ello, superar una constante después de permutar no identifica por sí solo una fuga: pueden existir funciones legítimas no constantes de X. <strong>Esta observación tampoco demuestra que explique las ganancias concretas del control.</strong> Se rechazan tanto la acusación automática de fuga como la certificación de ausencia de fuga.</p>
+<p>La regla de la guía, §10/p.46, exige corregir la causa y repetir el experimento afectado para aprobar una verificación fallida; <strong>este cierre no acredita que eso haya ocurrido</strong>. A2 y los análisis quedan disponibles como resultados retrospectivos reproducibles, sin presentarse como un benchmark íntegramente validado conforme a la Tabla 10.1. El dictamen final de B03 es <strong>parcial, con aceptación integral no establecida</strong>, y no una aprobación acompañada de una nota al pie.</p>
+</section>
+<section id="hpo-dominio-ejecutado-y-limites-de-identificabilidad">
+<h2>HPO: dominio ejecutado y límites de identificabilidad<a class="headerlink" href="#hpo-dominio-ejecutado-y-limites-de-identificabilidad" title="Link to this heading">#</a></h2>
+<p>El dominio ejecutado tiene seis configuraciones por red y tres folds. La alternativa de igualdad del número de configuraciones de §11.1 está acreditada; no se exige además igualdad de segundos. Se conservan los fallos, el desenlace desconocido y los ámbitos distintos de medición de recursos. Los <strong>233 cargos observados suman 25.833,898918 s</strong>; la asignación desconocida de <strong>1.860 s</strong> permanece separada.</p>
+<p>Sólo <strong>uno de 195 pares</strong> cambia un único parámetro: PatchTST C02–C06 modifica LR y conserva WD, batch, dropout y warmup. Sus dos puntuaciones permiten describir una sensibilidad observada de esa receta, no una importancia global ni una incertidumbre poblacional. Las 237 asociaciones descriptivas ya publicadas no se renombran como estimaciones independientes. No se ajustan retrospectivamente modelos de importancia para obtener un cierre favorable.</p>
+<p>La propuesta posterior de dieciséis tuplas queda <strong>archivada como diseño no ejecutado</strong>, sin trabajos pendientes en esta versión. El piloto temporal está terminado: dos ajustes completos y TimesNet censurado. No se extrapola su coste a las trece redes. El benchmark se interpreta condicionado a las recetas realmente exploradas; <strong>B06/B09 conservan su cumplimiento parcial</strong>. <a class="reference internal" href="11_hpo_equidad.html"><span class="std std-doc">Dominio y costes</span></a>.</p>
+</section>
+<section id="un-comando-para-los-reanalisis-disponibles">
+<h2>Un comando para los reanálisis disponibles<a class="headerlink" href="#un-comando-para-los-reanalisis-disponibles" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/c8216a54248de91b5622030044218201/reanalisis_integrado_v1.zip"><span class="xref download myst">paquete integrado independiente</span></a> incluye sus entradas, módulos, hashes, ejecutor e instrucciones. Después de extraerlo e instalar las dependencias indicadas en su <code class="docutils literal notranslate"><span class="pre">LEEME.md</span></code>, se ejecuta el comando de su carpeta:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>run.py
+</pre></div>
+</div>
+<p>El ejecutor encadena los módulos incluidos y genera un informe de ejecución con su alcance. La <a class="reference download internal" download="" href="../_downloads/59fb158824d70147055fd16b826b60d9/summary.json"><span class="xref download myst">verificación fuera del repositorio</span></a> identifica los módulos completados, comparaciones y cargos. No necesita clonar el proyecto ni descargar otro entregable. No entrena ni hace inferencia sobre modelos en este modo.</p>
+<p>Este cierre resuelve la ejecución conjunta de esos reanálisis. <strong>No afirma reconstruir toda la campaña histórica desde los veinte ZIP de minutos, ni repetir HPO, todos los ajustes o todas las figuras.</strong> Las reproducciones originales A100 y la repetición posterior CPU de recetas fijas conservan sus propios recibos. B21 sigue parcial para el literal integral de la guía; no se aprueba por disponer de un nuevo ejecutor.</p>
+</section>
+<section id="alcance-definitivo-de-las-conclusiones">
+<h2>Alcance definitivo de las conclusiones<a class="headerlink" href="#alcance-definitivo-de-las-conclusiones" title="Link to this heading">#</a></h2>
+<p>Se conservan como resultados de E2:</p>
+<ul class="simple">
+<li><p>SAE tiene la menor RMSE media observada de A2 en las 608 fechas comunes.</p></li>
+<li><p>Ninguno de los veinte contrastes primarios demuestra mejora mayor que δ tras Holm20, bajo los supuestos declarados; eso no demuestra igualdad.</p></li>
+<li><p>RQ2 y RQ3 CPU están ejecutadas como suplementos posteriores, con sus familias y límites.</p></li>
+<li><p>OOF249–prueba608 es una comparación ejecutada entre ajustes y periodos distintos. La diferencia de SAE no identifica su causa ni valida externamente el procedimiento de selección.</p></li>
+<li><p>La descomposición con IC describe las pérdidas del catálogo y las inicializaciones observadas; no identifica variación entre mercados o particiones nuevas.</p></li>
+<li><p>La cronología acredita las etapas verificadas; no certifica que todo E2 se registró antes de cualquier entrenamiento o conocimiento del test.</p></li>
+</ul>
+<p>Scopus queda cerrado con <strong>7.500 registros originales</strong>. Se preservan <strong>9.559 grupos multibase, 42 estudios y 174 informes no recuperados</strong>, junto con los límites de consultas, cobertura y acceso ya documentados. No se solicitan nuevas exportaciones para esta entrega. <a class="reference internal" href="62_cierre_literatura_focal.html"><span class="std std-doc">Decisión bibliográfica</span></a>.</p>
+</section>
+<section id="verificacion-de-la-resolucion-y-versiones-anteriores">
+<h2>Verificación de la resolución y versiones anteriores<a class="headerlink" href="#verificacion-de-la-resolucion-y-versiones-anteriores" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/a4577e3c604c16112e576547a4fca60e/resolucion_cuatro_observaciones_v1.zip"><span class="xref download myst">ZIP pequeño de resoluciones y evidencia</span></a> permite comprobar hashes, decisiones y estados con <strong>Python estándar</strong>, sin red, modelos o remuestreos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>verify.py
+</pre></div>
+</div>
+<p>El verificador comprueba que <strong>cerrar el seguimiento no cambie a aprobado un requisito parcial</strong>. Este comando documental es distinto del <code class="docutils literal notranslate"><span class="pre">run.py</span></code> del reanálisis numérico integrado. Ambos paquetes son independientes y declaran sus entradas y operaciones.</p>
+<p>Los bytes originales de A2, pronósticos, p-valores, IC, márgenes y descargas se conservan. El Apéndice B final mantiene <strong>14 completos, 5 parciales y 2 no aplicables</strong> y añade un campo separado de resolución. Las listas previas y §66 siguen disponibles como cortes fechados. Las propuestas de ampliación se archivan; no son compromisos activos ni se ejecutan nuevas corridas para buscar aprobación. Las limitaciones permanecen visibles y evaluables.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="61_reproduccion_consolidada.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Entrega reproducible y Apéndice B actual</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="55_reproduccion_ablaciones.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Reproducción numérica y ablaciones completadas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen-por-observacion">Dictamen por observación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-resultado-adverso-conservado-y-aceptacion-no-establecida">Auditoría: resultado adverso conservado y aceptación no establecida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hpo-dominio-ejecutado-y-limites-de-identificabilidad">HPO: dominio ejecutado y límites de identificabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-comando-para-los-reanalisis-disponibles">Un comando para los reanálisis disponibles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-definitivo-de-las-conclusiones">Alcance definitivo de las conclusiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-la-resolucion-y-versiones-anteriores">Verificación de la resolución y versiones anteriores</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

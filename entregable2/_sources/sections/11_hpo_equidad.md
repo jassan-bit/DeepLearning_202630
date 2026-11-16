@@ -1,4 +1,7 @@
 (seleccion-hpo-ejecutada-y-equidad)=
+
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 # 11. Protocolo de Entrenamiento, Ajuste y Costo Computacional
 
 **Lectura vigente:** la selección reducida y el benchmark están ejecutados para **dieciséis sistemas**: diez candidatos, las referencias E1 MLP16/LSTM32/GRU32 y Persistence, SeasonalNaive y ARIMA. Las trece redes aportan **78 ajustes finales, seis semillas por receta**; los tres clásicos completan **81 predictores sobre 608 fechas comunes**. Las reproducciones y ablaciones posteriores conservan sus propias identidades y no aumentan el número de predictores originales de A2.
@@ -49,7 +52,7 @@ El [CSV completo de configuración](../_static/reduced_protocol_20261112/hpo_con
 | **Warmup y contexto Transformer** | PatchTST varía warmup 0/0,1; iTransformer 0/0,05/0,1. Contexto D7 y cabezas/dimensiones están fijados por el contrato y el cuerpo seleccionado. No se registra aquí una búsqueda completa de todos los mínimos familiares. |
 | **Opciones condicionadas por la tarea** | No hay fine-tuning de un Transformer externo ni decodificación multi-paso con teacher forcing. Esas opciones se distinguen de las dimensiones aplicables que sí permanecieron fijas. |
 
-Los mejores valores y su identidad discreta se publican en §11.3; el dominio completo permite localizar cada ganador entre sus seis plazas. El [seguimiento de §66](66_seguimiento_pendientes.md) añade una figura de puntuaciones individuales y 237 asociaciones descriptivas. Sólo uno de 195 pares cambia un único parámetro: esas asociaciones **no identifican importancia independiente ni una estimación completa de la varianza de selección**. Tener curvas descriptivas o una tabla de ganadores no subsana esas condiciones ni una amplitud insuficiente del espacio. El nuevo diseño y el piloto temporal mantienen su identidad posterior; no se confunden con una campaña HPO ampliada ya terminada.
+Los mejores valores y su identidad discreta se publican en §11.3; el dominio completo permite localizar cada ganador entre sus seis plazas. El [seguimiento de §66](66_seguimiento_pendientes.md) añade una figura de puntuaciones individuales y 237 asociaciones descriptivas. Sólo uno de 195 pares cambia un único parámetro: esas asociaciones **no identifican importancia independiente ni una estimación completa de la varianza de selección**. Tener curvas descriptivas o una tabla de ganadores no subsana esas condiciones ni una amplitud insuficiente del espacio. El nuevo diseño y el piloto temporal mantienen su identidad posterior; no se confunden con una campaña HPO ampliada ya terminada. La propuesta de dieciséis tuplas queda archivada como diseño no ejecutado, sin trabajos pendientes de esta versión; el dictamen final conserva la importancia independiente no acreditada.
 
 ### 11.2.2 Validación, épocas y política final
 

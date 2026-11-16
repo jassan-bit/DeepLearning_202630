@@ -1,0 +1,290 @@
+{
+  "version": "e2-integrated-existing-reanalysis-v1",
+  "scope": "integrated_existing_reanalysis",
+  "source_commit": "28b79561b121e05e72101f5acd1f9f02566d8173",
+  "runtime_packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "tasks": [
+    {
+      "id": "D02",
+      "title": "Inventario de fuentes y recetas",
+      "archive": "archives/D02.zip",
+      "archive_bytes": 11487878,
+      "archive_sha256": "b5e4dabbec9b818b8c881281d21152590b27354e14a7fc8e1a21bb3c5a02a672",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/02_codigo_modelos.zip",
+      "root_directory": "D02",
+      "script": "run.py",
+      "arguments": [
+        "--inventory"
+      ],
+      "result_json": "output/resultado.json",
+      "scope": "source_inventory_no_forwards",
+      "required_equal": {
+        "status": "verified",
+        "author_files_verified": 76
+      },
+      "required_maximum": {}
+    },
+    {
+      "id": "D03",
+      "title": "Datos y contrato",
+      "archive": "archives/D03.zip",
+      "archive_bytes": 582155,
+      "archive_sha256": "e3304a27d86ea525ddaef07aedb6cf0043d521d3054a0b886003eaf0f014f518",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/03_datos_contrato.zip",
+      "root_directory": "D03",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/current_dataset_audit.json",
+      "scope": "daily_and_audited_arrays_validation",
+      "required_equal": {
+        "status": "passed",
+        "cohorts.training.count": 655,
+        "cohorts.calibration.count": 53,
+        "cohorts.evaluation.count": 608
+      },
+      "required_maximum": {}
+    },
+    {
+      "id": "D04",
+      "title": "Preregistro y auditoría registrada",
+      "archive": "archives/D04.zip",
+      "archive_bytes": 42032132,
+      "archive_sha256": "5ba00532d09c9ace3824b50dc622ea68fb7ecc8d4f20865b09b36bd70f3858bd",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/04_preregistro_auditoria.zip",
+      "root_directory": "D04",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/resultado.json",
+      "scope": "recorded_documentary_audit_not_a_new_audit_acceptance",
+      "required_equal": {
+        "status": "verified"
+      },
+      "required_maximum": {}
+    },
+    {
+      "id": "D06",
+      "title": "Tabla A2 original",
+      "archive": "archives/D06.zip",
+      "archive_bytes": 18004169,
+      "archive_sha256": "7a8fea7ab1c9362cceba61a603da59cb83390a4c086428afd278495b8184eed6",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/06_benchmark_comparaciones.zip",
+      "root_directory": "D06",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/resultado.json",
+      "scope": "saved_forecast_arithmetic_original_A2",
+      "required_equal": {
+        "status": "verified",
+        "systems": 16,
+        "predictors": 81,
+        "dates": 608,
+        "new_model_fits": 0
+      },
+      "required_maximum": {
+        "max_metric_difference_from_published": 1e-12
+      }
+    },
+    {
+      "id": "D07",
+      "title": "Registro y fichas experimentales",
+      "archive": "archives/D07.zip",
+      "archive_bytes": 22245118,
+      "archive_sha256": "183397030e93dae51ad3169ef6811f99dc959d4921f604bb6082b8f29f119f09",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/07_registro_experimentos.zip",
+      "root_directory": "D07",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/resultado.json",
+      "scope": "recorded_experiment_schema_and_aggregates",
+      "required_equal": {
+        "status": "verified"
+      },
+      "required_maximum": {}
+    },
+    {
+      "id": "D08",
+      "title": "Errores e incertidumbre",
+      "archive": "archives/D08.zip",
+      "archive_bytes": 957358,
+      "archive_sha256": "5e07a5b8a24bb4b475c3659bf7fb487394d5f008642fec2ba1e80587fe4eefb0",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/08_techo_incertidumbre.zip",
+      "root_directory": "D08",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/resultado.json",
+      "scope": "coverage_error_categories_and_saved_ceiling_weights_not_new_CIs",
+      "required_equal": {
+        "status": "verified",
+        "taxonomy.rows": 6080,
+        "taxonomy.categories_match_published_rows": true,
+        "ceiling.CI_regenerated_in_default": false
+      },
+      "required_maximum": {
+        "max_metric_difference_from_published": 1e-12
+      }
+    },
+    {
+      "id": "D09",
+      "title": "NAS no aplicable",
+      "archive": "archives/D09.zip",
+      "archive_bytes": 45622,
+      "archive_sha256": "c5be911a41cc4de5590bf951f5f08dbc9af29f6ab76477444041186c2c379270",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/09_arquitecturas_no_aplica.zip",
+      "root_directory": "D09",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/resultado.json",
+      "scope": "recorded_defined_architecture_justification_no_NAS",
+      "required_equal": {
+        "status": "verified"
+      },
+      "required_maximum": {}
+    },
+    {
+      "id": "D10",
+      "title": "Agregados del paper guía",
+      "archive": "archives/D10.zip",
+      "archive_bytes": 504860,
+      "archive_sha256": "629ec9c6be3111a11f4039cde284455b312b9be6254b9eb2a28c0b82ecea061e",
+      "original_archive_path": "book_e2/_static/entregables_independientes_v3_20261116/10_paper_guia_replica.zip",
+      "root_directory": "D10",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/resultado.json",
+      "scope": "five_seed_paper_aggregates_and_saved_curves_no_training",
+      "required_equal": {
+        "status": "verified",
+        "five_seed_summary_reconstructed": true,
+        "operations.model_fits": 0
+      },
+      "required_maximum": {
+        "max_abs_summary_difference": 1e-12
+      }
+    },
+    {
+      "id": "negative_controls",
+      "title": "Controles negativos",
+      "archive": "archives/negative_controls.zip",
+      "archive_bytes": 86401,
+      "archive_sha256": "fa8cdbf55c74bff225e8d28da325809ab8a499648ff67c1b7446ebc9f516163c",
+      "original_archive_path": "book_e2/_static/e2_closure_followup_20261116/audit/reanalisis_controles_negativos_v1.zip",
+      "root_directory": "reanalysis_portable",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "resultado_auditoria/verification.json",
+      "scope": "fixed_functions_negative_controls_bootstrap_TOST_existing_predictions",
+      "required_equal": {
+        "all_fields_match": true,
+        "numeric_values_compared": 80,
+        "new_model_fits": 0,
+        "new_model_forwards": 0
+      },
+      "required_maximum": {
+        "max_absolute_difference": 1e-12
+      }
+    },
+    {
+      "id": "conditional_inference",
+      "title": "OOF–prueba y componentes finitos",
+      "archive": "archives/conditional_inference.zip",
+      "archive_bytes": 228753,
+      "archive_sha256": "e2598e8101ffa479a68fd621a99eedf6ab999f7738ee65bca441381bef94ace9",
+      "original_archive_path": "book_e2/_static/e2_closure_followup_20261116/inference/reanalisis_inferencial_v1.zip",
+      "root_directory": "inferencia_temporal",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "output/replay_receipt.json",
+      "scope": "existing_OOF_test_bootstrap_and_finite_loss_variability",
+      "required_equal": {
+        "full_bootstrap": true,
+        "draws_per_block": 5000,
+        "new_fits": 0,
+        "new_model_forwards": 0
+      },
+      "required_maximum": {}
+    },
+    {
+      "id": "input_dependence",
+      "title": "Dependencia de entradas",
+      "archive": "archives/input_dependence.zip",
+      "archive_bytes": 803763,
+      "archive_sha256": "b3745d4070488e16533cc7b01abbead5decd10a8434f3745df5db990db17792f",
+      "original_archive_path": "book_e2/_static/e2_closure_followup_20261116/shortcut/diagnostico_entradas_reanalisis_v1.zip",
+      "root_directory": "",
+      "script": "replay_shortcut_statistics.py",
+      "arguments": [],
+      "result_json": "replay_result.json",
+      "scope": "saved_intervention_statistics_no_new_input_forwards",
+      "required_equal": {
+        "status": "passed_saved_predictions_reanalysis",
+        "rows_compared": 26,
+        "numeric_comparisons": 208,
+        "new_fits": 0,
+        "new_model_forwards": 0
+      },
+      "required_maximum": {
+        "max_absolute_difference": 1e-12
+      }
+    },
+    {
+      "id": "HPO_descriptive",
+      "title": "HPO descriptivo",
+      "archive": "archives/HPO_descriptive.zip",
+      "archive_bytes": 161635,
+      "archive_sha256": "82efe0cb1f624e9e5849968f155c4ab8e5bb34c2cf9244a33a1f0402379f4c93",
+      "original_archive_path": "book_e2/_static/e2_closure_followup_20261116/hpo/reanalisis_hpo_descriptivo_v1.zip",
+      "root_directory": "",
+      "script": "replay_descriptive.py",
+      "arguments": [],
+      "result_json": "replay_result.json",
+      "scope": "recorded_HPO_associations_and_mixed_scope_charges_no_new_HPO",
+      "required_equal": {
+        "status": "passed",
+        "models": 13,
+        "configurations": 78,
+        "opportunities": 234,
+        "marginal_numeric_values_reconstructed": 702,
+        "observed_charge_receipts": 233,
+        "new_fits": 0,
+        "model_forward_passes": 0
+      },
+      "required_maximum": {
+        "maximum_marginal_absolute_difference": 0
+      }
+    },
+    {
+      "id": "Scopus7500",
+      "title": "Cierre Scopus7500",
+      "archive": "archives/Scopus7500.zip",
+      "archive_bytes": 526797,
+      "archive_sha256": "e7bb831279984bf38551cb7b43c28aeee24338190504de2ff2dcb8006333b5b1",
+      "original_archive_path": "book_e2/_static/e2_literature_scope_7500_20261116/cierre_scopus_7500.zip",
+      "root_directory": "",
+      "script": "run.py",
+      "arguments": [],
+      "result_json": "verification_result.json",
+      "scope": "public_7500_EID_inventory_scope_closure_no_new_search",
+      "required_equal": {
+        "status": "passed",
+        "inventory_rows": 7500,
+        "unique_EIDs": 7500,
+        "active_Scopus_export_recovery_tasks": [],
+        "preserved_PRISMA_counts": [
+          9559,
+          42,
+          174
+        ],
+        "network_calls": 0
+      },
+      "required_maximum": {}
+    }
+  ],
+  "full_historical_campaign_retrained": false,
+  "all_book_tables_and_figures_regenerated": false,
+  "new_fits": 0,
+  "new_forwards": 0,
+  "historical_HPO_literature_form_superseded_by": "Scopus7500 operational closure, no new exports required"
+}
