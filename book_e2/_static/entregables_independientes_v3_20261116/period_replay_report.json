@@ -1,0 +1,73 @@
+{
+  "status": "verified",
+  "source_commit": "78271c46a1fe7a9544e8d1ec46e096dafb7cf9e9",
+  "program": "period_comparison",
+  "registered_plan_sha256": "3e021afa31bbdf29e6f747ff5e5c9bc6e982ef19c42a91a521648c4492ea7cb2",
+  "original_program_and_plan_bytes_unchanged": true,
+  "source_relocation": "Original relative repository paths retained inside the included source tree",
+  "summary": {
+    "version": "e2-original-period-comparison-v1",
+    "neural_period_tests": 13,
+    "classical_descriptive_rows": 3,
+    "t_rejections_Holm13": 6,
+    "t_rejected_models": [
+      "FCN-1D",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "t_not_estimable": 0,
+    "sign_flip_rejections_Holm13": 0,
+    "sign_flip_minimum_two_sided_resolution_no_zero_ties": 0.03125,
+    "family_size": 13,
+    "alpha_family": 0.05,
+    "scope": "original saved calibration/test risks, same predictor; initialization uncertainty on fixed periods",
+    "calibration_is_not_independent_HPO_validation": true,
+    "equivalence_established": false,
+    "overfitting_cause_identified": false,
+    "CPU_GPU_mixed": false,
+    "new_model_fits": 0,
+    "new_model_inference": false,
+    "A2_RQ1_modified": false,
+    "limits": [
+      "Calibration53 was used for pilot and interval calibration; it is not independent HPO validation.",
+      "A period difference may reflect distribution change, period difficulty or estimation, not identified overfitting.",
+      "Non-rejection does not demonstrate consistency, equivalence or universal absence of overfitting.",
+      "No new model fits, inference, CPU/GPU mixing, new holdout or original preregistration is claimed.",
+      "The original export's predictor/calibrator/checkpoint verification is inherited from its pinned bundle; raw market inputs are not reacquired here."
+    ],
+    "assumptions": [
+      "Independent optimization repetitions conditional on the fixed calibration/test calendars.",
+      "Adequate small-sample normal approximation of six differences for t; not normality of daily residuals.",
+      "Sign-flip sensitivity additionally requires symmetry under the null; enumeration does not verify symmetry.",
+      "Shared calendars, overlapping target supports and temporal dependence are not treated as independent observations."
+    ]
+  },
+  "comparisons": [
+    {
+      "file": "classical_period_differences_descriptive.csv",
+      "rows": 3,
+      "maximum_absolute_difference": 0.0
+    },
+    {
+      "file": "period_differences_t_Holm13.csv",
+      "rows": 13,
+      "maximum_absolute_difference": 0.0
+    },
+    {
+      "file": "period_risks_81.csv",
+      "rows": 81,
+      "maximum_absolute_difference": 0.0
+    },
+    {
+      "file": "period_sign_flip_sensitivity_Holm13.csv",
+      "rows": 13,
+      "maximum_absolute_difference": 0.0
+    }
+  ],
+  "new_model_fits": 0,
+  "new_model_inference": false,
+  "scope": "Numerical reproduction of the included posterior statistical plan; no new registration, originalA2 replacement or originalGPU parity claim"
+}
