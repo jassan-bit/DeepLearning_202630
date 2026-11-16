@@ -1,6 +1,6 @@
 # Concordancia y documentos de trabajo anteriores
 
-El índice principal sigue las secciones 1 a 8 de la guía. Las páginas anteriores conservan sus direcciones y contenidos como documentos de trabajo y cortes de evidencia; sus cifras y estados se interpretan con la fecha y el alcance que declaran. Para el estado integrado actual se deben leer los capítulos principales.
+El índice principal sigue las secciones 1 a 9 de la guía. Las páginas anteriores conservan sus direcciones y contenidos como documentos de trabajo y cortes de evidencia; sus cifras y estados se interpretan con la fecha y el alcance que declaran. Para el estado integrado actual se deben leer los capítulos principales.
 
 | Página anterior | Ubicación principal actual |
 |---|---|
@@ -16,4 +16,4 @@ El índice principal sigue las secciones 1 a 8 de la guía. Las páginas anterio
 
 Los informes de `experiments/e3_bloques_ab_20261115/` y `experiments/e3_bloque_c_20261115/` mantienen sus fuentes, hashes y resultados. La página original A/B se conserva exactamente porque forma parte de una comprobación reproducible. Las derivaciones y el código del candidato tampoco se modifican al reorganizar el libro.
 
-La actualización de estado de la sección 4 incorpora las auditorías posteriores publicadas por E2, sin renombrarlas como nuevas ejecuciones de E3. La [sección 8](08_verificacion_estadistica.md) añade la planificación del Bloque D y un borrador de protocolo; no modifica la página histórica `08_bloques_a_b` ni declara una campaña ejecutada. Las secciones posteriores a la 8 de la guía se incorporarán conforme se desarrolle su contenido.
+La actualización de estado de la sección 4 incorpora las auditorías posteriores publicadas por E2, sin renombrarlas como nuevas ejecuciones de E3. La [sección 8](08_verificacion_estadistica.md) añade la planificación del Bloque D y un borrador de protocolo. La [sección 9](09_dashboard_predictivo.md) organiza el diseño del Bloque E y sus contratos pendientes. Se conservan las páginas históricas `08_bloques_a_b` y `09_modelo_original`; sus números no corresponden a los capítulos actuales de la guía. Las secciones posteriores a la 9 se incorporarán conforme se desarrolle su contenido.
