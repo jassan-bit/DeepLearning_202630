@@ -1,0 +1,57 @@
+{
+  "status": "verified",
+  "scope": "Registered HPO metadata replay with original source/inputs; no Git, network, new HPO or fitting",
+  "summary": {
+    "version": "e2-hpo-coverage-closure-v1",
+    "opportunities": 234,
+    "completed": 231,
+    "known_failed": 2,
+    "outcome_unknown": 1,
+    "configuration_count": 78,
+    "eligible_complete_configurations": 76,
+    "recorded_winners_reproduced": 13,
+    "reused_outcomes": 61,
+    "original_cached_fit_cost_receipts": 61,
+    "measured_phase_time_receipts": 170,
+    "campaign_budget_charge_receipts": 173,
+    "known_training_phase_seconds": 20526.75792988201,
+    "campaign_budget_charge_seconds": 25976.93557340999,
+    "unknown_allocation_is_not_measured_training_time": true,
+    "cost_categories_not_added_into_one_total": true,
+    "new_fits": 0,
+    "new_model_inference": false,
+    "NAS_executed": false,
+    "TiDE_recipe": "TIDE-D7-PUBLISHED-R0-v2",
+    "isolated_hyperparameter_importance_identified": false,
+    "limitations": [
+      "Only six covarying configurations and one optimization seed per fold; parameter effects are confounded.",
+      "The same validation folds selected the winner; performance curves do not estimate selection uncertainty or external generalization.",
+      "The lost T4 session retains unknown scientific outcome and conservative budget charge, never reconstructed metrics or optimizer steps.",
+      "Failed configurations retain their available fold scores but are ineligible for pooled selection.",
+      "Recorded applicable dimensions may remain fixed; this inventory does not close missing search breadth or family-specific minima.",
+      "Current campaign charges, original cached-fit cost and phase elapsed have different scopes and must not be added indiscriminately."
+    ]
+  },
+  "tables": [
+    {
+      "file": "configurations_78.csv",
+      "rows": 78,
+      "byte_identical_to_included": true
+    },
+    {
+      "file": "opportunities_234.csv",
+      "rows": 234,
+      "byte_identical_to_included": true
+    },
+    {
+      "file": "model_reconciliation_13.csv",
+      "rows": 13,
+      "byte_identical_to_included": true
+    },
+    {
+      "file": "parameter_coverage_65.csv",
+      "rows": 65,
+      "byte_identical_to_included": true
+    }
+  ]
+}

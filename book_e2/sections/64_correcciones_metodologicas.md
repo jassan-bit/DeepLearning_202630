@@ -129,3 +129,43 @@ El [recibo de ejecución](../_static/e2_corrections_20261115/statistics/executio
 El [diario complementario](../_static/e2_corrections_20261115/compute_ledger.jsonl) continúa el cierre histórico de **84 horas autorizadas**, sin reiniciar el contador. Reserva antes de cada comando científico y carga su tiempo real, incluidos fallos; libera el saldo no usado. La unidad es tiempo de pared acumulado de comandos científicos, no GPU activa ni coste monetario. Las comprobaciones documentales, descargas y empaquetado se distinguen de esas ejecuciones.
 
 La potencia piloto de RQ1, **12,3 %**, y su diferencia mínima detectable ya estaban declaradas conforme a la excepción presupuestaria de §9.2 de la guía. Esta ampliación no aumenta retrospectivamente esa potencia ni la transfiere a RQ2/RQ3.
+
+## Seguimiento del 16/11/2026: respuestas y reproducción
+
+Este seguimiento conserva los resultados y planes anteriores. Corrige las menciones vigentes que todavía describían RQ2, los veinte efectos con IC y las pruebas de brecha CPU como no ejecutados. Los bloques históricos conservan su fecha y contenido.
+
+### Respuesta condicionada de RQ3
+
+**No se establece una mejora conjunta de error y coste en el entorno CPU medido.** Los diez p-valores sin ajustar del componente de reducción de latencia son 1. Para cualquier componente predictivo compatible y válido, con p-valor $u\in[0,1]$, la regla registrada implicaría
+
+$$
+p_{\mathrm{IUT}}=\max(u,p_{\mathrm{coste}})\ge p_{\mathrm{coste}}=1.
+$$
+
+La condición necesaria de coste basta para deducir que una IUT compatible con este componente no rechazaría, tampoco tras Holm10. La [tabla de diez límites](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/necessary_component_bounds_10.csv), la [derivación y fuentes](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/necessary_component_proof.json) y el [alcance del argumento](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/README.md) permiten comprobarlo sin nuevas predicciones ni remuestreos.
+
+Es una **deducción exploratoria posterior por componente necesario**, no diez IUT ejecutadas. No se estima el componente predictivo CPU, no se mezclan precisión GPU y latencia CPU y no se transforma el límite en un p-valor conjunto observado. Se mantiene sin ejecutar la IUT integral del plan original. La conclusión no demuestra equivalencia, ausencia de ventajas predictivas ni imposibilidad de mejora en otro hardware.
+
+### Datos de prueba y alcance del cierre
+
+El [recibo de acceso a los datos](../_static/e2_pending_closure_20261116/data_status.json) registra un intento por URL para el ZIP oficial de enero de 2025 y su CHECKSUM: ambos quedaron bloqueados por el túnel HTTPS con **CONNECT 403 y cero bytes**. No es una respuesta de Binance que pruebe inexistencia del archivo. No se repitieron búsquedas masivas ni se cambiaron proxies. El estado continúa siendo **BLOCKED_INPUTS**.
+
+Para ejecutar la auditoría del contenido de las 608 fechas y los controles preparados se necesita `known_E1_daily.csv` con su identidad original, o los veinte ZIP mensuales de enero de 2025 a agosto de 2026 verificados contra el manifiesto. Los objetivos y pronósticos públicos no sustituyen esas entradas. Continúan parciales la auditoría integral, los controles adversariales y de etiquetas permutadas, la consistencia validación–prueba del plan original y la reproducción de toda la campaña desde sus datos originales.
+
+### Un comando de reproducción analítica ejecutado
+
+El orquestador completó **18/18 etapas disponibles**, en 323,26 segundos contabilizados: los doce paquetes v2, una nueva auditoría de desarrollo, efectos/RQ2 y estadísticas CPU, conciliación HPO, inferencia primaria con 20.000 remuestreos, calibración/errores y reconstrucción del libro desde su ZIP. D02 ejecuta forwards de implementación con pesos iniciales, no entrenamientos de mercado. El [recibo de ejecución](../_static/e2_pending_closure_20261116/replay_receipts/v1/reproduction_status.json) identifica los comandos y sus fuentes exactas.
+
+Se verifican **diferencia cero en los veinte contrastes primarios y ocho tablas de correcciones**, y cuatro tablas HPO idénticas byte a byte. El [resumen de comprobación](../_static/e2_pending_closure_20261116/replay_receipts/v1/verification_summary.json) y su [manifiesto](../_static/e2_pending_closure_20261116/replay_receipts/v1/manifest.json) conservan esa evidencia. La fuente y el catálogo usados realmente en la ejecución se archivan; la versión actual añade correcciones de CLI y comprobación de dependencias, verificadas con nueve pruebas.
+
+**El resultado global sigue siendo parcial**, con salida deliberada 2: este comando no repite los 78 ajustes neuronales originales, los tres clásicos, las 18 ablaciones o todos los análisis que requieren sus entradas y modelos. Tampoco convierte el argumento de RQ3 en la IUT original ejecutada. Los informes guardados, los cálculos repetidos y los controles no ejecutados mantienen estados separados.
+
+Las [instrucciones del orquestador](../_static/e2_pending_closure_20261116/reproduction_README.md) y el [catálogo de insumos](../_static/e2_pending_closure_20261116/reproduction_inputs.json) permiten repetirlo. El modo de comprobación usa Python estándar, no descarga datos y escribe en una salida nueva:
+
+~~~sh
+python scripts/reproduce_e2_campaign.py --check
+~~~
+
+El [suplemento independiente descargable](../_static/e2_pending_closure_20261116/suplemento_cierre_20261116.zip) contiene su propio run.py, fuentes, huellas, recibos y la deducción RQ3. Su comando predeterminado funciona sin los otros paquetes y genera un informe local de comprobación y disponibilidad. El replay analítico opcional requiere descargar los doce ZIP v2 y disponer de los entornos especificados; el suplemento no contiene los datos de prueba ausentes.
+
+La [conciliación por modelo](../_static/e2_corrections_20261115/hpo/model_reconciliation_13.csv) y el catálogo mantienen por separado duraciones de fases y cargos de campaña. No se suman ámbitos solapados, no se imputan costes desconocidos y no se reabre HPO o NAS. El coste histórico integral continúa sin identificar. **NAS sigue sin aplicar.**

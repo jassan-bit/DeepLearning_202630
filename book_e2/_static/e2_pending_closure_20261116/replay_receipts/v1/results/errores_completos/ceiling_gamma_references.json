@@ -1,0 +1,78 @@
+{
+  "version": "e2-error-ceiling-posthoc-audit-v1",
+  "input_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+  "n_dates": 608,
+  "original_winner_unchanged": "LSTM-autoencoder con predictor",
+  "primary_statistic_unchanged": "mean individual-seed RMSE",
+  "original_best_RMSE": 0.003803429612358448,
+  "Persistence_RMSE": 0.004085595867023217,
+  "uniform_ten_matched_seed_RMSE": 0.004120056200789176,
+  "uniform_all_60_forecast_mean_RMSE_diagnostic": 0.004081730577889794,
+  "ensemble_RMSE_per_seed": [
+    0.0042404251316166,
+    0.004118078252023737,
+    0.004190142418804864,
+    0.004000363006986044,
+    0.0040851266731123225,
+    0.004086201722191488
+  ],
+  "empirical_ensemble_reference": {
+    "best_RMSE": 0.003803429612358448,
+    "baseline_RMSE": 0.004085595867023217,
+    "reference_RMSE": 0.004120056200789176,
+    "raw_algebraic_gamma": 9.188146307030435,
+    "gamma_remaining_fraction": null,
+    "valid_order_for_ceiling_gap": false,
+    "score_orientation": "s=-RMSE",
+    "formula": "(RMSE_best-RMSE_reference)/(RMSE_baseline-RMSE_reference)",
+    "status": "not_interpretable_as_ceiling_gap"
+  },
+  "ideal_zero_error_reference": {
+    "best_RMSE": 0.003803429612358448,
+    "baseline_RMSE": 0.004085595867023217,
+    "reference_RMSE": 0.0,
+    "raw_algebraic_gamma": 0.9309363275642931,
+    "gamma_remaining_fraction": 0.9309363275642931,
+    "valid_order_for_ceiling_gap": true,
+    "score_orientation": "s=-RMSE",
+    "formula": "(RMSE_best-RMSE_reference)/(RMSE_baseline-RMSE_reference)",
+    "status": "zero_error_mathematical_bound_only_not_attainable_Bayes_ceiling"
+  },
+  "temporal_CI95_block14": {
+    "best": [
+      0.003223703655955279,
+      0.004553794481072296
+    ],
+    "baseline": [
+      0.00332938826584638,
+      0.004967275589109918
+    ],
+    "ensemble": [
+      0.003334779509746254,
+      0.005021275264896841
+    ],
+    "gamma_ideal": [
+      0.8444799380051798,
+      1.0297426341864033
+    ]
+  },
+  "Bayes_risk_identified": false,
+  "irreducible_noise_floor_estimated": false,
+  "ensemble_weights": {
+    "FCN-1D": 0.1,
+    "ResNet-1D": 0.1,
+    "Inception-1D": 0.1,
+    "LSTM-autoencoder con predictor": 0.1,
+    "TimesNet": 0.1,
+    "TSMixer": 0.1,
+    "TiDE": 0.1,
+    "TimeMixer": 0.1,
+    "PatchTST": 0.1,
+    "iTransformer": 0.1
+  },
+  "weights_tuned_to_outcomes": false,
+  "forecast_generation": "Arithmetic of saved predictions; no new model inference",
+  "reference_warning": "Ensemble is worse than best and baseline: not a valid ceiling; algebraic gamma is not interpreted",
+  "original_primary_superiority_or_equivalence_claim_changed": false,
+  "test_scope": "Retrospective, already known since E1; not independent confirmation"
+}

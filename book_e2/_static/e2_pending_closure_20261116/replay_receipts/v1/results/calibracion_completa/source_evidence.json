@@ -1,0 +1,30 @@
+{
+  "primary_source": {
+    "authors": "Isaac Gibbs and Emmanuel J. Candes",
+    "year": 2021,
+    "title": "Adaptive Conformal Inference Under Distribution Shift",
+    "version": "arxiv2106.00170v3",
+    "url": "https://arxiv.org/html/2106.00170v3",
+    "locators": {
+      "section2_equation2": "alpha feedback after observing miscoverage",
+      "section2_1": "gamma0.005 chosen by authors; used here unchanged without test search",
+      "section4_1_Lemma4_1_Proposition4_1": "extended full/empty sets; long-run aggregate error frequency, finite bound"
+    }
+  },
+  "implementation_adaptations": [
+    "fixed previously trained E2 point forecasts replace GARCH in source experiment",
+    "53 prior available scores instead of1250 source-example dates",
+    "finite-sample corrected ceil((n+1)*(1-alpha)) empirical rank preserves original49/53 instead of source n convention",
+    "nonnegative target restricts full set to[0,infinity)",
+    "exact source experiment and conditional-coverage guarantees are not claimed"
+  ],
+  "first_origin_lagged_target": {
+    "date": "2024-12-31",
+    "source": "verified development CSV; actual observed sigma7, not an invented forecast/residual"
+  },
+  "missing_score": {
+    "date": "2024-12-31",
+    "handling": "not available; not inserted or forward filled"
+  },
+  "probability_scope": "one already exposed market chronology; no new independent markets; seeds fixed in calendar inference"
+}

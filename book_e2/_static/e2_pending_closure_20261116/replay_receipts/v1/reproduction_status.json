@@ -1,0 +1,598 @@
+{
+  "version": "e2-traceable-reproduction-v1",
+  "mode": "replay",
+  "at_utc": "2026-11-16T00:13:06.368190+00:00",
+  "scientific_source_commit": "ad8f163c1bbed55348c4af3d3c71b71f57bc7c55",
+  "orchestrator_sha256": "4e854b80774e7bee7a71a0338ebe9ed4f3fe266a2cddf20757449572974ca570",
+  "input_catalogue_sha256": "7f64e1b76b71563c464e7d1006dc49c2be82ce7210087653d97aa1da6ed327bb",
+  "archives": [
+    {
+      "id": "D01",
+      "file": "01_informe_jupyter_book.zip",
+      "expected_sha256": "78f369b856bb7d3b310eff3ca38f2b788b6bd5ed4a954044c670e8f633741115",
+      "status": "verified"
+    },
+    {
+      "id": "D02",
+      "file": "02_codigo_modelos.zip",
+      "expected_sha256": "5423c85bf220729c826e47a1c37d79a49ce2ba8b0e8f764c47ab9c0796b4bcae",
+      "status": "verified"
+    },
+    {
+      "id": "D03",
+      "file": "03_datos_contrato.zip",
+      "expected_sha256": "8635353fc374281ec3cdece71b1ce22148f91f3b6cd26e83bc99249a3f947773",
+      "status": "verified"
+    },
+    {
+      "id": "D04",
+      "file": "04_preregistro_auditoria.zip",
+      "expected_sha256": "6108de21c37240b221420a104b494953a8d49a9d3a51ec660f57fb0d8601148b",
+      "status": "verified"
+    },
+    {
+      "id": "D05",
+      "file": "05_ficha_ruta_F2a.zip",
+      "expected_sha256": "c2c7afd57c79cb91af9eed2662e13edd0bdacbcdab8cded911427e3d552f094e",
+      "status": "verified"
+    },
+    {
+      "id": "D06",
+      "file": "06_benchmark_comparaciones.zip",
+      "expected_sha256": "feb12e8a8a1138b08a849daa28d58e511bcea203e409df1dbe432a626f33b7ab",
+      "status": "verified"
+    },
+    {
+      "id": "D07",
+      "file": "07_registro_experimentos.zip",
+      "expected_sha256": "86b95843805228af97af7ce5fadf5eb97324c9ed1dc59566f1b3b8d5cd990bc3",
+      "status": "verified"
+    },
+    {
+      "id": "D08",
+      "file": "08_techo_incertidumbre.zip",
+      "expected_sha256": "6425bede1c259eb265ac0817005d2dbb3d85d381373321a6d8c325384680890c",
+      "status": "verified"
+    },
+    {
+      "id": "D09",
+      "file": "09_arquitecturas_no_aplica.zip",
+      "expected_sha256": "21807f77605e1168b18568bcee83b5510c46aee018f327fcb21d9f3eb17e74b1",
+      "status": "verified"
+    },
+    {
+      "id": "D10",
+      "file": "10_paper_guia_replica.zip",
+      "expected_sha256": "1b881c35d05ea79f003a43df502a934f1adc67aebd572fb05b4b6f582d4da8ff",
+      "status": "verified"
+    },
+    {
+      "id": "D11",
+      "file": "11_reproducibilidad.zip",
+      "expected_sha256": "d694053eb2abaa2c1f6a23fc5a31bf196d421cf30a7f1ea34967405501edf0ac",
+      "status": "verified"
+    },
+    {
+      "id": "D12",
+      "file": "12_presentacion_defensa.zip",
+      "expected_sha256": "aad0dbdb582075ad7c2e8479e70411e3678bd19efa24110c05b3e73e1e76e9a8",
+      "status": "verified"
+    }
+  ],
+  "environments": {
+    "stdlib": {
+      "ready": true,
+      "observed": {
+        "python": "3.12.14"
+      }
+    },
+    "model": {
+      "ready": true,
+      "observed": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "einops": "0.8.1"
+      },
+      "mismatches": {}
+    },
+    "corrections": {
+      "ready": true,
+      "observed": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0"
+      },
+      "mismatches": {}
+    },
+    "hpo": {
+      "ready": true,
+      "observed": {
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.8"
+      },
+      "mismatches": {}
+    },
+    "analysis": {
+      "ready": true,
+      "observed": {
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "scipy": "1.16.3",
+        "statsmodels": "0.14.5",
+        "matplotlib": "3.10.8"
+      },
+      "mismatches": {}
+    },
+    "book": {
+      "ready": true,
+      "observed": {
+        "jupyter-book": "1.0.4.post1"
+      },
+      "mismatches": {}
+    }
+  },
+  "stages": [
+    {
+      "id": "D01_default",
+      "package": "D01",
+      "script": "run.py",
+      "args": [],
+      "kind": "book_extraction",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D01/D01/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D01_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 9.719052915002976,
+      "log_sha256": "ea01e32ca8eddaaf3add9d649393dde5337cd9256c3a5271075771e12947f62e"
+    },
+    {
+      "id": "D02_default",
+      "package": "D02",
+      "script": "run.py",
+      "args": [],
+      "kind": "implementation_fixture_forward",
+      "environment": "model",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-standalone-clean-cpu/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D02/D02/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D02_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 3.476628593998612,
+      "log_sha256": "60027990b49e553c3e97b3c62f68baecdcb3afadbf79fedde861d0454119a514"
+    },
+    {
+      "id": "D03_default",
+      "package": "D03",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D03/D03/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D03_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.11464045599859674,
+      "log_sha256": "1a3fb810e2d4b5842bef7fe787f83ca73f27cf6c67f829301e4eb7d8f8125218"
+    },
+    {
+      "id": "D04_default",
+      "package": "D04",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D04/D04/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D04_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.7158604139985982,
+      "log_sha256": "1c1aeb7cee10619cc32d300274262a3882270887c6fa2ed216683bf7bf5824ee"
+    },
+    {
+      "id": "D05_default",
+      "package": "D05",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D05/D05/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D05_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 1.0675496809999458,
+      "log_sha256": "57bcafb1f104ca43b395eedb9bdaf8c56c0b890232f1527b8a98194d53d2a0b8"
+    },
+    {
+      "id": "D06_default",
+      "package": "D06",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D06/D06/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D06_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.9170656130008865,
+      "log_sha256": "32a314ed912213846b49b85092a30218a4424457d73a070385e57734d8d3b4f6"
+    },
+    {
+      "id": "D07_default",
+      "package": "D07",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D07/D07/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D07_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 1.3178138069997658,
+      "log_sha256": "8e8834385f5ea5e176a147ba76c21552dbc37ca1d09b9350b6c8d53b986a262e"
+    },
+    {
+      "id": "D08_default",
+      "package": "D08",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D08/D08/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D08_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.21464383100101259,
+      "log_sha256": "5a17a569bdc2618ecb1165d17bdc1cca4bc5dc8de1ceeb862295715a1a91a98c"
+    },
+    {
+      "id": "D09_default",
+      "package": "D09",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D09/D09/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D09_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.11421187200176064,
+      "log_sha256": "f30f90357cf02db198acc6e9bf83d797bf6d067ac6639c5ff0b760613cb61c67"
+    },
+    {
+      "id": "D10_default",
+      "package": "D10",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D10/D10/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D10_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.06442342900118092,
+      "log_sha256": "5b4225ea909ef54ddf02018b78599f2c43572f14f55374632650f06a5339a104"
+    },
+    {
+      "id": "D11_default",
+      "package": "D11",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D11/D11/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D11_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 1.470632320997538,
+      "log_sha256": "a6979ccde08856e9625083f2db02cd037974e5f9bb7323f775d6185c68264d30"
+    },
+    {
+      "id": "D12_default",
+      "package": "D12",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D12/D12/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/D12_default"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.8164631460022065,
+      "log_sha256": "027dda475bd35ec8449eb830e5a010a85d742692cd4c86891654e553bae82011"
+    },
+    {
+      "id": "development_reaudit",
+      "package": "D04",
+      "script": "audit_data/run.py",
+      "args": [],
+      "kind": "real_development_data_reaudit",
+      "environment": "stdlib",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D04/D04/audit_data/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/development_reaudit"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.11481802300113486,
+      "log_sha256": "1a3fb810e2d4b5842bef7fe787f83ca73f27cf6c67f829301e4eb7d8f8125218"
+    },
+    {
+      "id": "effects_RQ2_CPU_statistics",
+      "package": "D11",
+      "script": "reanalysis/run.py",
+      "args": [],
+      "kind": "numerical_replay_from_saved_forecasts_and_CPU_timers",
+      "environment": "corrections",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D11/D11/reanalysis/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/effects_RQ2_CPU_statistics"
+      ],
+      "returncode": 0,
+      "wall_seconds": 5.581917023002461,
+      "log_sha256": "b04ad6f74bcf0b1a52a2300b192980616bd4fa08326a0766da1ca9df40306e8e"
+    },
+    {
+      "id": "HPO_metadata",
+      "package": "D07",
+      "script": "hpo_reanalysis/run.py",
+      "args": [],
+      "kind": "numerical_metadata_reconciliation_and_figures",
+      "environment": "hpo",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-opt-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D07/D07/hpo_reanalysis/run.py",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/HPO_metadata"
+      ],
+      "returncode": 0,
+      "wall_seconds": 5.399808211004711,
+      "log_sha256": "f1a269b8abb855a2a028a167a5800ece73bbbe47f979ab1bba2df5093319c79a"
+    },
+    {
+      "id": "primary_inference",
+      "package": "D06",
+      "script": "run.py",
+      "args": [
+        "--full-primary",
+        "--draws",
+        "20000"
+      ],
+      "kind": "primary_bootstrap_t_signflip_from_saved_forecasts",
+      "environment": "analysis",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/e2-f2a-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D06/D06/run.py",
+        "--full-primary",
+        "--draws",
+        "20000",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/primary_inference"
+      ],
+      "returncode": 0,
+      "wall_seconds": 248.17975493000267,
+      "log_sha256": "0d3cb2804334349e72cf810e3ab445d848338970645cb43dfc375acc5d9b7fa1"
+    },
+    {
+      "id": "conditional_calibration_error_analysis",
+      "package": "D08",
+      "script": "run.py",
+      "args": [
+        "--full-uncertainty"
+      ],
+      "kind": "conditional_calibration_and_error_bootstrap_from_saved_forecasts",
+      "environment": "analysis",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/e2-f2a-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D08/D08/run.py",
+        "--full-uncertainty",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/conditional_calibration_error_analysis"
+      ],
+      "returncode": 0,
+      "wall_seconds": 13.192607618002512,
+      "log_sha256": "d0f9f22df3f09a2d8893be4e76264817bbf86115fe80e538e5e646ada1bfbdac"
+    },
+    {
+      "id": "book_rebuild",
+      "package": "D01",
+      "script": "run.py",
+      "args": [
+        "--build"
+      ],
+      "kind": "rebuild_book_from_included_sources",
+      "environment": "book",
+      "status": "completed",
+      "blockers": [],
+      "command": [
+        "/workspace/work/e2-book-venv/bin/python",
+        "-I",
+        "/workspace/work/e2-unified-replay-20261116/extracted/D01/D01/run.py",
+        "--build",
+        "--output",
+        "/workspace/work/e2-unified-replay-20261116/stages/book_rebuild"
+      ],
+      "returncode": 0,
+      "wall_seconds": 27.595050841002376,
+      "log_sha256": "9c6085e0cc197a9c5818bdbc58c7a0abf172923235e83a3b8cd904e3c196935e"
+    }
+  ],
+  "mandatory_unexecuted_stages": [
+    {
+      "id": "original_market_training",
+      "status": "not_executed",
+      "requires": [
+        "real admissible train/cal/test data with hashes",
+        "concrete original training executor and frozen recipes",
+        "compatible original CUDA runtime",
+        "explicit authorization and existing additive compute budget"
+      ],
+      "reason": "Analytical replay does not run78original market fits or reconstruct3classical predictors; no full-training flag is offered."
+    },
+    {
+      "id": "full_test_data_audit_and_real_controls",
+      "status": "blocked",
+      "requires": [
+        "real OHLCV/X for608test dates",
+        "complete13port audit",
+        "recorded permutation and adversarial controls"
+      ],
+      "reason": "Existing actual audit remains partial; train655/cal53 are verified, testX is absent."
+    },
+    {
+      "id": "original_CUDA_parity_and_RQ3_IUT",
+      "status": "blocked",
+      "reason": "Two original1e-7parity attempts failed. Complete CPU supplement does not pass or execute the original714IUT."
+    },
+    {
+      "id": "model_dependent_robustness_explanations_ablations",
+      "status": "recorded_only",
+      "reason": "Original reports remain available; this no-fit analytic runner does not redo18ablations or all model-dependent inference."
+    },
+    {
+      "id": "RQ3_necessary_component",
+      "status": "pending_adapter",
+      "reason": "A separate new proof/replay stage will be wired only after its exact CLI and inputs are finalized."
+    }
+  ],
+  "HPO_cost_scopes": {
+    "opportunities": 234,
+    "completed": 231,
+    "failed": 2,
+    "unknown": 1,
+    "measured_training_phases": {
+      "receipts": 170,
+      "known_seconds": 20526.75792988201
+    },
+    "current_campaign_accounting": {
+      "receipts": 173,
+      "charged_seconds": 25976.93557340999,
+      "unknown_conservative_allocation_seconds": 1860
+    },
+    "original_cached_fit_costs": {
+      "receipts": 61,
+      "deduplication_key": [
+        "job_id",
+        "job_payload_sha256"
+      ],
+      "note": "charged_wall_seconds and callback_wall_seconds are distinct descriptions of the same originalfit; do not add them"
+    },
+    "categories_added_together": false,
+    "full_historical_HPO_training_seconds": null,
+    "energy_kWh": null,
+    "money": null,
+    "prohibited_sums": [
+      "measured phases + campaign charges + original cachedfit charges",
+      "callback time + charged time of same fit",
+      "reserved allocation + actual consumption",
+      "selected phase_resources subtotal + full opportunity inventory"
+    ]
+  },
+  "original_full_training_repeated": false,
+  "full_campaign_passed": false,
+  "NAS1000": "not_applicable_defined_current_bodies",
+  "interpretation": "Analytical reconstruction is distinct from training and from passing the original CUDA gate. A partial result exits 2.",
+  "status": "partial",
+  "additive_compute_budget": {
+    "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+    "approved_total_hours": 84,
+    "historical_charged_seconds": 288922.08751226973,
+    "corrections_charged_seconds": 539.5584115620004,
+    "cumulative_charged_seconds": 289461.64592383173,
+    "remaining_seconds": 12938.354076168293,
+    "reserved_seconds": 0,
+    "unreserved_seconds": 12938.354076168293,
+    "open_reservations": {},
+    "budget_reset": false,
+    "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+  }
+}
