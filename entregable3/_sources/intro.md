@@ -25,9 +25,11 @@ El informe está organizado en las **secciones 1 a 16 de la guía**, con el desa
 
 ## Estado del proyecto
 
-E2 conserva su benchmark de 16 sistemas y 608 fechas, con auditorías y suplementos posteriores de alcance explícito. E3 tiene inventario de artefactos, configuraciones verificadas y tres exportaciones CPU sobre calibración histórica. El candidato neuronal dispone de formulación, demostración de su cabeza latente y **35 pruebas artificiales**.
+E2 conserva su benchmark de 16 sistemas y 608 fechas, con auditorías y suplementos posteriores de alcance explícito. E3 tiene inventario de artefactos, configuraciones verificadas y tres exportaciones CPU sobre calibración histórica. La evidencia neuronal incluye formulación, demostraciones con alcance explícito, pruebas de software y dos pilotos de desarrollo sobre la misma base CNN-LSTM-atención.
 
-**La novedad R1, la defensa académica de R2 y la superioridad R3 siguen pendientes.** Los bloques A y B aún no están cerrados; tampoco existe una campaña confirmatoria del candidato o un dashboard Render terminado. El protocolo sigue en borrador. Las plantillas preparan registros futuros y no son preregistros, resultados o firmas. La bibliografía distingue siete antecedentes del candidato y 37 referencias sugeridas por la guía, con su procedencia y alcance de lectura. Esta ampliación documental no añade entrenamientos ni cambia métricas, pruebas o congelamientos.
+El [cierre de v2](sections/20_cierre_v2.md) documenta las tres recetas completadas y su análisis por régimen. El control aditivo obtuvo la menor RMSE global de desarrollo; el candidato con pérdida auxiliar no superó la heurística del 2 %. El control se conserva como referencia predictiva y **no se promueve a modelo original por ese resultado**. La auditoría reproduce los errores y conserva las limitaciones en alta volatilidad.
+
+**La novedad R1, la defensa académica de R2 y la superioridad R3 siguen pendientes.** Los bloques A y B aún no están cerrados; tampoco existe una campaña confirmatoria del candidato o un dashboard Render terminado. El protocolo sigue en borrador. Las plantillas preparan registros futuros y no son preregistros, resultados o firmas. La bibliografía inicial y las revisiones focales posteriores distinguen antecedentes, procedencia y alcance de lectura; se conservan las 37 referencias sugeridas por la guía. El cierre incorpora resultados ya obtenidos en Colab y los audita sin nuevos ajustes, inferencias o cambios de las métricas y recetas originales.
 
 La [concordancia y los anexos](sections/concordancia_secciones.md) permiten localizar las páginas y evidencias de trabajo anteriores. Sus números históricos no se confunden con los capítulos actuales de la guía.
 
