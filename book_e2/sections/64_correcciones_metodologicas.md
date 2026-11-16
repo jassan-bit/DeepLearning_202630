@@ -142,7 +142,7 @@ $$
 p_{\mathrm{IUT}}=\max(u,p_{\mathrm{coste}})\ge p_{\mathrm{coste}}=1.
 $$
 
-La condición necesaria de coste basta para deducir que una IUT compatible con este componente no rechazaría, tampoco tras Holm10. La [tabla de diez límites](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/necessary_component_bounds_10.csv), la [derivación y fuentes](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/necessary_component_proof.json) y el [alcance del argumento](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/README.md) permiten comprobarlo sin nuevas predicciones ni remuestreos.
+La condición necesaria de coste basta para deducir que una IUT compatible con este componente no rechazaría, tampoco tras Holm10. La [tabla de diez límites](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/necessary_component_bounds_10.csv), la [derivación y fuentes](../_static/e2_pending_closure_20261116/rq3_necessary_component/v2/necessary_component_proof.json) y el [alcance del argumento](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_pending_closure_20261116/rq3_necessary_component/v2/README.md) permiten comprobarlo sin nuevas predicciones ni remuestreos.
 
 Es una **deducción exploratoria posterior por componente necesario**, no diez IUT ejecutadas. No se estima el componente predictivo CPU, no se mezclan precisión GPU y latencia CPU y no se transforma el límite en un p-valor conjunto observado. Se mantiene sin ejecutar la IUT integral del plan original. La conclusión no demuestra equivalencia, ausencia de ventajas predictivas ni imposibilidad de mejora en otro hardware.
 
@@ -160,7 +160,7 @@ Se verifican **diferencia cero en los veinte contrastes primarios y ocho tablas 
 
 **El resultado global sigue siendo parcial**, con salida deliberada 2: este comando no repite los 78 ajustes neuronales originales, los tres clásicos, las 18 ablaciones o todos los análisis que requieren sus entradas y modelos. Tampoco convierte el argumento de RQ3 en la IUT original ejecutada. Los informes guardados, los cálculos repetidos y los controles no ejecutados mantienen estados separados.
 
-Las [instrucciones del orquestador](../_static/e2_pending_closure_20261116/reproduction_README.md) y el [catálogo de insumos](../_static/e2_pending_closure_20261116/reproduction_inputs.json) permiten repetirlo. El modo de comprobación usa Python estándar, no descarga datos y escribe en una salida nueva:
+Las [instrucciones del orquestador](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_pending_closure_20261116/reproduction_README.md) y el [catálogo de insumos](../_static/e2_pending_closure_20261116/reproduction_inputs.json) permiten repetirlo. El modo de comprobación usa Python estándar, no descarga datos y escribe en una salida nueva:
 
 ~~~sh
 python scripts/reproduce_e2_campaign.py --check
