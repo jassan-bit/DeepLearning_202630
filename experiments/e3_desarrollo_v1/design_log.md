@@ -48,3 +48,12 @@ verificó con entradas sintéticas. Las órdenes 64/128/256 comparadas pertenece
 al análisis de precisión numérica, no a una búsqueda de arquitectura o de
 desempeño de mercado. El plan propone 600 segundos adicionales dentro del límite
 registrado existente; todavía no se ha ejecutado ni reservado esa nueva corrida.
+
+## Implementación v2 preparada, sin nueva evaluación de mercado
+
+El [piloto v2 implementado](../e3_innovacion_v2_20261116/README.md) añade las tres
+recetas neuronales propuestas, manteniendo la CNN-LSTM-atención. Las pruebas de
+software emplean datos sintéticos. El recuento de variantes evaluadas con datos
+de mercado permanece en dos; no hay resultados v2 al publicar esta actualización.
+El nuevo notebook conserva el presupuesto y los artefactos de v1 y recupera una
+única corrida v2 desde GitHub.
