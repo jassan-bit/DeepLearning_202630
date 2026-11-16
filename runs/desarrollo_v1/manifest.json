@@ -1,0 +1,97 @@
+{
+  "version": "e3-development-v1",
+  "run_id": "9e40ce379a7b4ee1a3e2fb306071cdcb",
+  "created_at_utc": "2026-11-16T13:02:58.403481+00:00",
+  "scope": "development_only_not_preregistered_not_confirmation",
+  "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+  "plan_sha256": "8d5611965275ef57caffbadebc34b273b493b3ea43729ff76b9e9971697aeaa2",
+  "source_hashes": {
+    "src/original_model.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "src/e3_development.py": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+    "scripts/e3_run_development.py": "8f100e6aed1ade7336e7c104cefc475b61ee5cd8db20e04a253f099d0190ce7c"
+  },
+  "data_fingerprint": "cdd36e8df891897f7fbf0de0a59d0c36e1e994ddee28a4edee6c1a131d3ec466",
+  "runtime_initial": {
+    "python": "3.12.12",
+    "numpy": "2.3.5",
+    "torch": "2.8.0+cu126",
+    "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+    "device_type": "cuda",
+    "cuda_build": "12.6",
+    "cuda_available": true,
+    "cpu_threads": 2,
+    "deterministic_algorithms": true,
+    "AMP": false,
+    "TF32": false,
+    "cudnn_benchmark": false,
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "gpu_total_memory_bytes": 42405855232,
+    "gpu_count": 1
+  },
+  "models": {
+    "full": {
+      "model_name": "full",
+      "base": {
+        "config": {
+          "history_days": 7,
+          "input_features": 5,
+          "cnn_channels": 8,
+          "hidden_size": 12,
+          "kernel_size": 3,
+          "reference_lookback": 3,
+          "radius": 1.0,
+          "epsilon": 0.0001,
+          "query_bound": 1.0,
+          "readout_bound": 4.0,
+          "penalty_bound": 1.0,
+          "initial_penalty": 0.25,
+          "temperature_min": 0.25,
+          "initial_temperature": 1.0,
+          "ablation": "full"
+        },
+        "initialization_seed": 20261116,
+        "status": "development_candidate_not_preregistered",
+        "output": "sigma7/training_target_scale",
+        "novelty_verified": false,
+        "statistical_superiority_verified": false
+      },
+      "penalty_enabled": true,
+      "saturation_enabled": true,
+      "latent_bound_applicable": true,
+      "trainable_parameters": 1211,
+      "comparison": "joint_two_component_development_control_not_separate_attribution"
+    },
+    "M00": {
+      "model_name": "M00",
+      "base": {
+        "config": {
+          "history_days": 7,
+          "input_features": 5,
+          "cnn_channels": 8,
+          "hidden_size": 12,
+          "kernel_size": 3,
+          "reference_lookback": 3,
+          "radius": 1.0,
+          "epsilon": 0.0001,
+          "query_bound": 1.0,
+          "readout_bound": 4.0,
+          "penalty_bound": 1.0,
+          "initial_penalty": 0.25,
+          "temperature_min": 0.25,
+          "initial_temperature": 1.0,
+          "ablation": "full"
+        },
+        "initialization_seed": 20261116,
+        "status": "development_candidate_not_preregistered",
+        "output": "sigma7/training_target_scale",
+        "novelty_verified": false,
+        "statistical_superiority_verified": false
+      },
+      "penalty_enabled": false,
+      "saturation_enabled": false,
+      "latent_bound_applicable": false,
+      "trainable_parameters": 1210,
+      "comparison": "joint_two_component_development_control_not_separate_attribution"
+    }
+  }
+}
