@@ -23,6 +23,8 @@ La carga será bajo demanda en CPU, con **un worker propuesto**, cargas serializ
 
 El pico RSS medido en procesos de exportación incluye Python, PyTorch, checkpoint y cohorte. No acredita memoria del dashboard ni cabida en Render. La selección de modelos en vivo se cerrará tras medir arranque, carga, inferencia, explicaciones y sesiones concurrentes. Los precálculos identificarán qué operación no está habilitada y por qué, sin presentar una captura de resultados como inferencia ejecutada por el usuario.
 
+El [perfil de despliegue de la sección 10](10_despliegue_render.md) exige ONNX Runtime sin el framework de entrenamiento y propone un modelo residente bajo demanda. Los TorchScript actuales requieren PyTorch: son referencias verificadas, pero falta exportar y verificar ONNX/ORT para ese perfil. El máximo de dos modelos de este diseño es un techo; no prueba cabida ni sustituye la política más restrictiva de producción.
+
 ## 9.3 Arquitectura y estructura del repositorio
 
 Se propone una aplicación multipágina con `Dash(..., use_pages=True)`, navegación fija y una página por sección. La interfaz, los datos, la inferencia y las explicaciones tendrán módulos separados. El entrenamiento permanecerá fuera del proceso de servicio y nunca se importará desde la aplicación.
