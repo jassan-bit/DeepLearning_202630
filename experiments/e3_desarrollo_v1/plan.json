@@ -1,0 +1,38 @@
+{
+  "version": "e3-development-v1",
+  "scope": "development_only_not_preregistered_not_confirmation",
+  "seed": 20261116,
+  "models": ["full", "M00"],
+  "data": {
+    "fit_end": "2024-06-30",
+    "validation_start": "2024-07-08",
+    "validation_end": "2024-10-31"
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip_norm": 1.0
+  },
+  "budget": {"total_seconds": 1200.0},
+  "data_source": {
+    "repository": "jassan-bit/DeepLearning_202630",
+    "commit": "af3f1223ad5899ed63016d2af2d09bae8470ab00",
+    "path": "book_e2/_static/e2_scientific_closure_20261116/data_audit/current_cohort_arrays.npz",
+    "sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "expected_fit_count": 532,
+    "expected_purged_count": 7,
+    "expected_validation_count": 116
+  },
+  "interpretation": {
+    "selection_metric": "development_validation_RMSE_in_original_sigma7_units",
+    "validation_reused_for_early_stopping": true,
+    "joint_control_has_one_fewer_parameter": true,
+    "novelty_verified": false,
+    "superiority_verified": false,
+    "final_evaluation_allowed": false
+  }
+}
