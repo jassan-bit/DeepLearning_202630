@@ -25,8 +25,21 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = None  # Set only by the maintainer's explicit --source-commit.
 SOURCE_BLOBS = {}
 BOOK_INFO = {}
-PUBLIC = ROOT / "book_e2/_static/entregables_independientes_v2_20261115"
+PUBLIC = ROOT / "book_e2/_static/entregables_independientes_v3_20261116"
 CORRECTIONS = ROOT / "book_e2/_static/e2_corrections_20261115"
+SCIENTIFIC = ROOT / "book_e2/_static/e2_scientific_closure_20261116"
+EVALUATION_DAILY = SCIENTIFIC / "data_admission/known_E1_daily.csv"
+EVALUATION_DAILY_SHA = "9563ef557e180f34ee37dce3b1480c38aaefd7063df21c031644973310e28deb"
+JOURNAL_ARCHIVES = {
+    "preregistration": {"file":"preregistration_bundle.zip","prefix":"Preregistro_E2/journals/","count":206,
+        "sha256":"51add9f3236b2109d9b01702ea420e9b1ed1d89a7ad1a133d8a18984a66b2cf6"},
+    "final_registration_chronology": {"file":"final_registration_bundle.zip","prefix":"Registro_Final_E2/journals/","count":90,
+        "sha256":"3068baac29ef94f1e0a387550377f9bea005b3bd900f84c84c305b80dc961b1a"},
+}
+SCIENTIFIC_REVIEW_SOURCES = {
+    "univariate_attributes": ("e2_univariate_attribute_audit.py",),
+    "cpu_fixed_recipe_reproduction": ("e2_cpu_fixed_recipe_reproduction.py", "e2_cpu_arima_worker.py", "e2_cpu_arima_recovery.py", "e2_reproduce_from_raw.py", "e2_corrections_controls.py", "e2_corrections_budget.py"),
+}
 CORRECTION_AREAS = {
     "D04": ("data_audit", "controls", "cpu_diagnostic"),
     "D05": ("delivery", "statistics", "inference_statistics", "data_audit", "frozen_inference", "cpu_diagnostic", "controls"),
@@ -35,7 +48,16 @@ CORRECTION_AREAS = {
     "D11": ("delivery", "statistics", "inference_statistics", "data_audit", "frozen_inference", "cpu_diagnostic", "controls", "hpo"),
     "D12": ("delivery", "statistics", "inference_statistics", "data_audit", "cpu_diagnostic", "controls", "hpo"),
 }
-PUBLIC_CORRECTION_SUFFIXES = {".json", ".jsonl", ".csv", ".md", ".txt", ".log", ".svg", ".png", ".html", ".py", ".npz"}
+SCIENTIFIC_AREAS = {
+    "D02": ("cpu_fixed_recipe_reproduction",),
+    "D04": ("data_admission", "data_audit", "port_audit", "classical_causality", "controls", "drift_explanation", "univariate_attributes", "preregistration", "final_registration_chronology"),
+    "D05": ("cpu_test_iut", "period_comparison", "preregistration", "delivery"),
+    "D06": ("cpu_test_iut", "period_comparison", "cpu_fixed_recipe_reproduction", "delivery"),
+    "D07": ("hpo_cost_reconciliation", "catalogue_charge_accounting", "reproduction", "cpu_fixed_recipe_reproduction", "final_registration_chronology"),
+    "D11": ("data_admission", "data_audit", "port_audit", "classical_causality", "controls", "drift_explanation", "univariate_attributes", "cpu_test_iut", "period_comparison", "hpo_cost_reconciliation", "catalogue_charge_accounting", "reproduction", "cpu_fixed_recipe_reproduction", "preregistration", "final_registration_chronology", "delivery"),
+    "D12": ("data_audit", "port_audit", "classical_causality", "controls", "drift_explanation", "cpu_test_iut", "period_comparison", "hpo_cost_reconciliation", "reproduction", "cpu_fixed_recipe_reproduction", "delivery"),
+}
+PUBLIC_CORRECTION_SUFFIXES = {".json", ".jsonl", ".csv", ".md", ".txt", ".log", ".svg", ".png", ".html", ".py", ".npz", ".gz"}
 PANEL = "book_e2/_static/e2_final_audit_inputs_20261114/e2_f2a_input.json"
 CPU_REQUIREMENTS = '''--extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.8.0+cpu ; platform_system != "Darwin"
@@ -113,37 +135,153 @@ def config(root, key, *, documents=(), tables=(), json_files=(), scope=""):
             "corrections_are_posthoc":True,
             "original_A2_replaced":False,
             "full_original_training_replay_claimed":False}
+    if (root/"inputs/current_dataset_bundle.json").is_file():
+        record["current_dataset"]={"manifest":"inputs/current_dataset_bundle.json", "cohorts":{"training":655,"calibration":53,"evaluation":608},
+            "inherited_E1_evaluation":True,"new_unseen_test_claimed":False}
     dump(root/"package.json",record)
     return record
+
+
+def correction_renderable(relative, size):
+    """Retain complete files but avoid embedding large traces in default HTML."""
+    if any(part in {"sources", "executed_source", "executed_sources", "frozen_inputs", "causal_receipts", "journals", "jobs"} for part in relative.parts):
+        return False
+    if size > 1_000_000 or relative.suffix.lower() in {".jsonl", ".npz"}:
+        return False
+    return True
+
+
+def registration_journal_entries(root,area):
+    """Hydrate exact journal members from a committed registration ZIP.
+
+    The individual gzip files are intentionally absent from Git. Their source
+    identity is a member of the byte-bound C1 archive, never a fabricated blob.
+    """
+    definition=JOURNAL_ARCHIVES.get(area)
+    if definition is None or not (SCIENTIFIC/area).is_dir():return []
+    source=SCIENTIFIC/definition["file"]
+    verified_repository_source(source)
+    if sha(source)!=definition["sha256"]:raise ValueError("Registration ZIP differs from its immutable public source")
+    result=[]
+    with zipfile.ZipFile(source) as archive:
+        members=[r for r in archive.infolist() if not r.is_dir() and r.filename.startswith(definition["prefix"])]
+        if len(members)!=definition["count"] or len({r.filename for r in members})!=len(members):raise ValueError("Registration journal member set changed")
+        for member in members:
+            relative=member.filename[len(definition["prefix"]):]
+            if not re.fullmatch(r"[0-9a-f]{64}/(?:ae1|ae2|supervised)\.jsonl\.gz",relative):raise ValueError("Unexpected registration journal member path")
+            raw=archive.read(member)
+            destination="scientific_closure/"+area+"/journals/"+relative
+            target=root/destination;target.parent.mkdir(parents=True,exist_ok=True)
+            if target.exists() and target.read_bytes()!=raw:raise ValueError("Expanded registration journal conflicts with its committed ZIP")
+            if not target.exists():target.write_bytes(raw)
+            result.append({"title":"Journal registrado · "+relative,"path":destination,"bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest(),
+                "correction_area":area,"generation":"20261116","render_in_report":False,"partial_execution":False,
+                "source_binding":"member_of_committed_registration_zip","archive_repository_path":source.relative_to(ROOT).as_posix(),
+                "archive_sha256":definition["sha256"],"archive_member":member.filename,"individual_Git_blob_claimed":False})
+    return result
 
 
 def correction_entries(root, key):
     """Include public correction outputs, preserving each area's namespace."""
     result = {"documents":[], "tables":[], "json_files":[], "areas":[]}
-    for area in CORRECTION_AREAS.get(key, ()):
-        directory = CORRECTIONS / area
-        records = []
-        if directory.is_dir():
-            for path in sorted(directory.rglob("*")):
-                relative = path.relative_to(directory)
-                if not path.is_file() or path.is_symlink() or path.suffix.lower() not in PUBLIC_CORRECTION_SUFFIXES:
-                    continue
-                if any(part in {"__pycache__", ".git", "work", "weights", "checkpoints", "market_raw"} for part in relative.parts):
-                    continue
-                destination = "corrections/" + area + "/" + relative.as_posix()
-                copy(root,path,destination)
-                item={"title":"Corrección " + area + " · " + relative.as_posix(),
-                      "path":destination,"bytes":path.stat().st_size,"sha256":sha(path),
-                      "correction_area":area,
-                      "partial_execution":(path.parent/"failure_report.json").is_file(),
-                      "render_in_report":not any(part in {"sources", "executed_source", "executed_sources"} for part in relative.parts)}
-                records.append(item)
-                kind = {".json":"json_files", ".csv":"tables", ".md":"documents"}.get(path.suffix.lower())
-                if kind and item["render_in_report"]: result[kind].append(item)
-        result["areas"].append({"area":area,"files":records,
-            "availability":"included" if records else "not_available_in_this_snapshot",
-            "interpretation":"Recorded evidence with its own status; inclusion is not methodological approval."})
+    generations = ((CORRECTIONS, CORRECTION_AREAS.get(key, ()), "corrections", "20261115"),
+                   (SCIENTIFIC, SCIENTIFIC_AREAS.get(key, ()), "scientific_closure", "20261116"))
+    for base, areas, namespace, generation in generations:
+        for area in areas:
+            directory = base / area
+            records = registration_journal_entries(root,area) if namespace=="scientific_closure" else []
+            journal_paths={r["path"] for r in records}
+            if directory.is_dir():
+                for path in sorted(directory.rglob("*")):
+                    relative = path.relative_to(directory)
+                    if not path.is_file() or path.is_symlink() or path.suffix.lower() not in PUBLIC_CORRECTION_SUFFIXES:
+                        continue
+                    # These are committed public evidence trees. Preserve small
+                    # JSON/CSV/source inputs even when an archived path contains
+                    # "work" or "checkpoints"; binary weights are outside the
+                    # explicit suffix allowlist.
+                    if any(part in {"__pycache__", ".git"} for part in relative.parts):
+                        continue
+                    destination = namespace + "/" + area + "/" + relative.as_posix()
+                    if namespace=="scientific_closure" and area in JOURNAL_ARCHIVES and relative.parts[0]=="journals" and path.suffix.lower()==".gz":
+                        if destination not in journal_paths:raise ValueError("Unregistered working-tree journal is not silently included or omitted")
+                        continue  # Use the committed ZIP member, not a private cache.
+                    copy(root,path,destination)
+                    item={"title":"Corrección " + area + " · " + relative.as_posix(),
+                          "path":destination,"bytes":path.stat().st_size,"sha256":sha(path),
+                          "correction_area":area,"generation":generation,
+                          "partial_execution":(path.parent/"failure_report.json").is_file(),
+                          "render_in_report":correction_renderable(relative,path.stat().st_size)}
+                    records.append(item)
+                    kind = {".json":"json_files", ".csv":"tables", ".md":"documents"}.get(path.suffix.lower())
+                    if kind and item["render_in_report"]: result[kind].append(item)
+            result["areas"].append({"area":area,"generation":generation,"namespace":namespace,"files":records,
+                "availability":"included" if records else "not_available_in_this_snapshot",
+                "interpretation":"Recorded evidence with its own status; inclusion is not methodological approval."})
+            if namespace=="scientific_closure" and directory.is_dir():
+                for filename in SCIENTIFIC_REVIEW_SOURCES.get(area,()):
+                    path=ROOT/"scripts"/filename
+                    if area=="univariate_attributes":
+                        plan=json.loads((directory/"plan_v1/analysis_plan.json").read_text())
+                        if sha(path)!=plan["script_sha256"]:raise ValueError("Univariate audit source differs from its executed plan")
+                    destination=namespace+"/"+area+"/source_review/"+filename
+                    copy(root,path,destination)
+                    records.append({"title":"Fuente revisable · "+filename,"path":destination,"sha256":sha(path),"bytes":path.stat().st_size,
+                                    "correction_area":area,"generation":generation,"render_in_report":False,
+                                    "role":"source_code_for_review_not_a_claim_of_unchanged_portable_execution"})
+    if key in {"D04","D11"}:
+        records=[]
+        for name in ("preregistration_bundle.zip","final_registration_bundle.zip"):
+            path=SCIENTIFIC/name
+            if not path.is_file():continue
+            destination="scientific_closure/registration_bundles/"+name
+            copy(root,path,destination)
+            records.append({"title":"Registro completo · "+name,"path":destination,"bytes":path.stat().st_size,
+                            "sha256":sha(path),"generation":"20261116","correction_area":"registration_bundles",
+                            "render_in_report":False,"partial_execution":False})
+        result["areas"].append({"area":"registration_bundles","generation":"20261116","namespace":"scientific_closure","files":records,
+                                "availability":"included" if records else "not_available_in_this_snapshot",
+                                "interpretation":"Complete immutable registration archives; expanded journals are retained separately too."})
     return result
+
+
+def current_dataset_inputs(root, folder="inputs"):
+    """Include full real cohorts, preferring the committed current daily cache.
+
+    A maintainer may explicitly supply an external byte-identical copy. Its SHA
+    remains an independent source identity rather than a fictitious Git blob;
+    the default public copy and all public outputs pass the C1 byte guard.
+    """
+    audit_path=SCIENTIFIC/"data_audit/audit_result.json"
+    if not audit_path.is_file():return None
+    verified_repository_source(audit_path)
+    audit=json.loads(audit_path.read_text(encoding="utf-8"))
+    if audit.get("actual_cohorts_audited")!={"training":655,"calibration":53,"evaluation":608} or not audit.get("data_ready_for_bounded_controls"):
+        raise ValueError("V3 dataset packaging requires actual admitted train655/cal53/test608")
+    provenance=[r for r in audit["provenance"] if r["path"].endswith("known_E1_daily.csv")]
+    if len(provenance)!=1 or provenance[0]["sha256"]!=EVALUATION_DAILY_SHA or provenance[0].get("expected_sha256_matched") is not True:
+        raise ValueError("Full dataset audit does not bind the original daily evaluation cache")
+    source=EVALUATION_DAILY
+    if not source.is_file() or source.is_symlink() or sha(source)!=provenance[0]["sha256"] or source.stat().st_size!=provenance[0]["bytes"]:
+        raise ValueError("Original evaluation daily cache is missing or differs from its pinned C1 audit")
+    daily_snapshot_bound=source.resolve().is_relative_to(SCIENTIFIC.resolve())
+    rows=[]
+    for name,path,role,snapshot in [
+        ("daily_market_evaluation.csv",source,"original_hash_pinned_evaluation_OHLCV",daily_snapshot_bound),
+        ("current_cohort_arrays.npz",ROOT/audit["arrays_npz_path"],"actual_train_calibration_evaluation_arrays",True),
+        ("audit_result.json",audit_path,"actual_data_audit_receipt",True),
+        ("cohort_array_manifest.json",SCIENTIFIC/"data_audit/cohort_array_manifest.json","array_content_manifest",True),
+        ("reconstructed_training_scaler.json",SCIENTIFIC/"data_audit/reconstructed_training_scaler.json","reconstructed_train_only_scaler",True),
+    ]:
+        if name=="current_cohort_arrays.npz" and sha(path)!=audit["arrays_npz_sha256"]:raise ValueError("Full dataset NPZ differs from its admitted SHA")
+        copy(root,path,folder+"/"+name,snapshot_bound=snapshot)
+        rows.append({"path":name,"sha256":sha(path),"bytes":path.stat().st_size,"role":role,
+                     "source_binding":"selected_source_commit" if snapshot else "independent_original_SHA_bound_by_committed_data_audit"})
+    bundle={"version":"e2-standalone-current-dataset-v1","source_commit":SOURCE,"files":rows,
+        "array_keys":audit["array_keys"],"cohorts":audit["actual_cohorts_audited"],
+        "scope":"Actual full current cohorts and inherited known E1 evaluation; not a new blind sample or model validation"}
+    dump(root/folder/"current_dataset_bundle.json",bundle)
+    return bundle
 
 
 CORRECTION_REPLAY_WRAPPER = '''"""Portable numerical replay of an included immutable correction plan.
@@ -339,7 +477,253 @@ def documents(root, pairs):
     return [entry(root,"book_e2/sections/"+name,title,folder="documents") for name,title in pairs]
 
 
+SCIENTIFIC_REPLAY_WRAPPER = '''"""Replay included current statistical results; no fit or inference.
+
+The numerical program and registered plan retain their original bytes. For the
+CPU supplement, absolute source identities are mapped to verified local copies;
+only that source-location resolver is replaced. No statistical function changes.
+"""
+from pathlib import Path
+import argparse,csv,hashlib,importlib.util,json,math,shutil,sys
+BASE=Path(__file__).resolve().parent
+def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def checked(name):
+    p=(BASE/name).resolve()
+    if not p.is_relative_to(BASE.resolve()) or not p.is_file() or p.is_symlink():raise ValueError("Unsafe or missing replay input: "+name)
+    return p
+def compare(expected,actual):
+    with expected.open(newline="",encoding="utf-8") as f:left=list(csv.DictReader(f))
+    with actual.open(newline="",encoding="utf-8") as f:right=list(csv.DictReader(f))
+    if len(left)!=len(right):raise ValueError("Replayed row count differs")
+    maximum=0.0
+    for a,b in zip(left,right):
+        if set(a)!=set(b):raise ValueError("Replayed columns differ")
+        for key,value in a.items():
+            if value==b[key]:continue
+            try:x,y=float(value),float(b[key])
+            except ValueError:raise ValueError("Replayed categorical value differs: "+key)
+            if not(math.isfinite(x) and math.isfinite(y) and math.isclose(x,y,rel_tol=1e-10,abs_tol=1e-12)):raise ValueError("Replayed numeric value differs: "+key)
+            maximum=max(maximum,abs(x-y))
+    return {"rows":len(left),"maximum_absolute_difference":maximum}
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--program",required=True)
+    parser.add_argument("--output",type=Path,required=True)
+    args=parser.parse_args()
+    config=json.loads((BASE/"config.json").read_text())
+    choices=[r for r in config["programs"] if r["id"]==args.program]
+    if len(choices)!=1:raise ValueError("Choose an included program: "+", ".join(r["id"] for r in config["programs"]))
+    item=choices[0]
+    if args.output.exists():raise ValueError("Use a new replay output directory")
+    for record in item["bound_files"]:
+        p=checked(record["local_path"])
+        if p.stat().st_size!=record["bytes"] or digest(p)!=record["sha256"]:raise ValueError("Replay input checksum changed: "+record["local_path"])
+    program=checked(item["program"]);plan=checked(item["plan"])
+    if digest(program)!=item["program_sha256"] or digest(plan)!=item["plan_sha256"]:raise ValueError("Registered program or plan changed")
+    sys.path.insert(0,str(BASE/"source/scripts"))
+    spec=importlib.util.spec_from_file_location("_e2_current_replay_"+item["id"],program)
+    module=importlib.util.module_from_spec(spec);sys.modules[spec.name]=module;spec.loader.exec_module(module)
+    args.output.mkdir(parents=True)
+    shutil.copyfile(plan,args.output/"analysis_plan.json")
+    if item["kind"]=="cpu_statistics":
+        archived=json.loads(plan.read_text())
+        module.sources=lambda:archived["sources"]
+        shutil.copytree(checked(item["inference_report"]).parent,args.output/"inference")
+        summary=module.stats_run(args.output,item["plan_sha256"])
+        resultdir=args.output/"statistics"
+    else:
+        summary=module.execute(args.output);resultdir=args.output
+    comparisons=[]
+    for row in item["comparisons"]:
+        comparisons.append({"file":row["name"],**compare(checked(row["reference"]),resultdir/row["name"])})
+    record={"status":"verified","source_commit":config["source_commit"],"program":item["id"],"registered_plan_sha256":item["plan_sha256"],"original_program_and_plan_bytes_unchanged":True,"source_relocation":item["source_relocation"],"summary":summary,"comparisons":comparisons,"new_model_fits":0,"new_model_inference":False,"scope":"Numerical reproduction of the included posterior statistical plan; no new registration, originalA2 replacement or originalGPU parity claim"}
+    (args.output/"portable_replay_report.json").write_text(json.dumps(record,ensure_ascii=False,indent=2)+"\\n")
+    print(json.dumps(record,ensure_ascii=False,indent=2))
+if __name__=="__main__":main()
+'''
+
+
+def scientific_reanalysis(root,key):
+    if key not in {"D05","D06","D11","D12"}:return
+    programs=[]
+    definitions=(
+        ("period_comparison","e2_original_period_comparison.py","execute",("neural_period_tests_Holm13.csv","classical_period_descriptive.csv")),
+        ("cpu_test_iut","e2_cpu_test_iut.py","cpu_statistics",("CPU_full_IUT_Holm10.csv","CPU_test_RMSE_by_seed_78.csv")),
+    )
+    for area,filename,kind,requested in definitions:
+        directory=SCIENTIFIC/area
+        plan_path=directory/"analysis_plan.json"
+        resultdir=directory/"statistics" if kind=="cpu_statistics" else directory
+        receipt_path=resultdir/"execution_receipt.json"
+        if not receipt_path.is_file():continue
+        receipt=json.loads(receipt_path.read_text());plan=json.loads(plan_path.read_text())
+        program=ROOT/"scripts"/filename
+        if sha(program)!=plan["script_sha256"] or receipt.get("script_sha256")!=sha(program):
+            raise ValueError("Executed current statistical program differs from its plan/receipt: "+filename)
+        if receipt.get("plan_sha256")!=sha(plan_path):raise ValueError("Current statistical plan differs from its executed receipt")
+        records=[]
+        def included(path):
+            path=Path(path)
+            if not path.is_absolute():path=ROOT/path
+            relative=path.resolve().relative_to(ROOT.resolve()).as_posix()
+            local="source/"+relative
+            copy(root,path,"scientific_reanalysis/"+local)
+            record={"local_path":local,"sha256":sha(path),"bytes":path.stat().st_size}
+            if record not in records:records.append(record)
+            return local
+        program_local=included(program)
+        for record in plan["sources"].values():
+            path=Path(record["path"])
+            if not path.is_absolute():path=ROOT/path
+            if sha(path)!=record["sha256"] or path.stat().st_size!=record["bytes"]:raise ValueError("Current replay input changed")
+            included(path)
+        plan_local="plans/"+area+".json"
+        copy(root,plan_path,"scientific_reanalysis/"+plan_local)
+        item={"id":area,"kind":kind,"program":program_local,"program_sha256":sha(program),
+              "plan":plan_local,"plan_sha256":sha(plan_path),"bound_files":records,"comparisons":[],
+              "source_relocation":"Archived absolute source identities resolve to included files verified by their exact original SHA/bytes; numerical/statistical code is unchanged" if kind=="cpu_statistics" else "Original relative repository paths retained inside the included source tree"}
+        if kind=="cpu_statistics":
+            report_path=directory/"inference/inference_report.json"
+            report=json.loads(report_path.read_text())
+            if report.get("status")!="completed_CPU_test78" or report.get("plan_sha256")!=sha(plan_path) or not report.get("states_unchanged"):
+                raise ValueError("CPU IUT replay needs complete78 frozen-predictor inference with unchanged states")
+            item["inference_report"]=included(report_path)
+            for name,record in report["files"].items():
+                if Path(name).name!=name:raise ValueError("Unsafe current inference report filename")
+                path=report_path.parent/name
+                if sha(path)!=record["sha256"]:raise ValueError("Current CPU inference input changed")
+                included(path)
+        selected_names=requested if kind=="cpu_statistics" else tuple(path.name for path in sorted(resultdir.glob("*.csv")))
+        if not selected_names:raise ValueError("Completed replay has no published comparison CSVs")
+        for name in selected_names:
+            path=resultdir/name
+            if not path.is_file():
+                # The period program's actual immutable output names are used,
+                # rather than fabricating a table with a guessed name.
+                if kind!="cpu_statistics":continue
+                raise ValueError("Completed CPU replay reference missing: "+name)
+            relative="references/"+area+"/"+name
+            copy(root,path,"scientific_reanalysis/"+relative)
+            item["comparisons"].append({"name":name,"reference":relative})
+        programs.append(item)
+    if programs:
+        dump(root/"scientific_reanalysis/config.json",{"version":"e2-portable-current-replays-v1","source_commit":SOURCE,"programs":programs})
+        (root/"scientific_reanalysis/run.py").write_text(SCIENTIFIC_REPLAY_WRAPPER,encoding="utf-8")
+        (root/"requirements_scientific.txt").write_text("numpy==2.3.5\nscipy==1.17.0\n",encoding="utf-8")
+
+
+CONTROL_REPLAY_WRAPPER = '''"""Reconstruct recorded control arithmetic without fitting or resampling.
+
+AUC uses the exact included original kernel. The empirical permutation p uses
+the 999 already fitted null AUCs; no classifier is refitted. Negative-control gain
+and Spearman use their saved 608 predictions. Published CIs/Holm results are copied.
+"""
+from pathlib import Path
+import argparse,csv,hashlib,importlib.util,json,math
+BASE=Path(__file__).resolve().parent;ROOT=BASE.parent
+def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def checked(name):
+    p=(ROOT/name).resolve()
+    if not p.is_relative_to(ROOT.resolve()) or not p.is_file() or p.is_symlink():raise ValueError("Unsafe control replay path")
+    return p
+def same(a,b):
+    if a is None or b is None:return a is None and b is None
+    return math.isfinite(a) and math.isfinite(b) and math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-12)
+def main():
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument("--output",type=Path,required=True);args=parser.parse_args()
+    if args.output.exists():raise ValueError("Use a new control replay output directory")
+    config=json.loads((BASE/"config.json").read_text())
+    for record in config["bound_files"]:
+        p=checked(record["path"])
+        if p.stat().st_size!=record["bytes"] or digest(p)!=record["sha256"]:raise ValueError("Control replay input changed: "+record["path"])
+    import numpy as np
+    from scipy.stats import rankdata
+    spec=importlib.util.spec_from_file_location("_e2_saved_control_kernel",checked(config["kernel"]))
+    kernel=importlib.util.module_from_spec(spec);spec.loader.exec_module(kernel)
+    if sum(r["kind"]=="adversarial" for r in config["predictions"])!=1 or {r["model"] for r in config["predictions"] if r["kind"]=="negative"}!=set(kernel.MODELS):raise ValueError("Control predictor identities are incomplete")
+    with np.load(checked(config["cohorts"]),allow_pickle=False) as data:
+        truth=data[config["test_y_key"]].copy();dates=data[config["test_dates_key"]].copy();scale=float(data[config["target_scale_key"]].item())
+    if truth.shape!=(608,) or not np.isfinite(truth).all():raise ValueError("Incomplete actual evaluation targets")
+    summary=json.loads(checked(config["negative_summary"]).read_text());negatives={r["model"]:r for r in summary["rows"]}
+    rows=[];preserved=[]
+    for entry in config["predictions"]:
+        receipt=json.loads(checked(entry["receipt"]).read_text())
+        with np.load(checked(entry["path"]),allow_pickle=False) as data:
+            if entry["kind"]=="adversarial":
+                labels=data["labels"];predictions=data["predictions"];null=data["permutation_AUC"]
+                if labels.shape!=(1263,) or predictions.shape!=(1263,) or null.shape!=(999,) or not np.isfinite(null).all():raise ValueError("Incomplete saved adversarial design")
+                observed=kernel.auc(labels,predictions);p=float((1+np.sum(null>=observed))/(1+len(null)))
+                if not same(observed,receipt["AUC_OOF"]) or not same(p,receipt["p_block_permutation_with_refit"]):raise ValueError("Saved adversarial arithmetic differs")
+                rows.extend([{"control":"adversarial","metric":"AUC_OOF","observed":observed,"reference":receipt["AUC_OOF"]},
+                             {"control":"adversarial","metric":"p_from_saved999nullAUCs","observed":p,"reference":receipt["p_block_permutation_with_refit"]}])
+                preserved.append({"control":"adversarial","published_CI":receipt.get("fixed_OOF_temporal_CI"),"CI_recomputed":False})
+            else:
+                prediction=data["prediction"];stored_truth=data["truth"]
+                if prediction.shape!=(608,) or not np.isfinite(prediction).all() or not np.array_equal(data["dates"],dates) or not np.array_equal(stored_truth,truth):raise ValueError("Saved negative-control cohort changed")
+                gain=math.sqrt(float(((scale-truth)**2).mean()))-math.sqrt(float(((prediction-truth)**2).mean()))
+                a,b=rankdata(prediction),rankdata(truth)
+                rho=float(np.corrcoef(a,b)[0,1]) if np.std(a) and np.std(b) else None
+                reference=negatives[entry["model"]]
+                if not same(gain,reference["gain_RMSE_vs_training_mean"]) or not same(rho,reference["Spearman_rho"]):raise ValueError("Saved negative-control arithmetic differs: "+entry["model"])
+                rows.extend([{"control":entry["model"],"metric":"gain_RMSE_vs_training_mean","observed":gain,"reference":reference["gain_RMSE_vs_training_mean"]},
+                             {"control":entry["model"],"metric":"Spearman_rho","observed":rho,"reference":reference["Spearman_rho"]}])
+                preserved.append({"control":entry["model"],"published_gain_CI95":reference["gain_CI95"],"published_rho_CI95":reference["rho_CI95"],"published_p_Holm13":reference["p_Holm13"],"published_flag":reference["flag"],"CI_or_Holm_recomputed":False})
+    if len(rows)!=28 or len(preserved)!=14:raise ValueError("Incomplete original 13 negative + 1 adversarial control set")
+    args.output.mkdir(parents=True)
+    with (args.output/"control_arithmetic.csv").open("w",encoding="utf-8",newline="") as f:
+        writer=csv.DictWriter(f,fieldnames=["control","metric","observed","reference"],lineterminator="\\n");writer.writeheader();writer.writerows(rows)
+    report={"status":"verified","scope":"Numerical reproduction from included saved control outputs; classifier folds/null fits and original CIs remain represented by their immutable receipts", "source_commit":config["source_commit"],"arithmetic_checks":len(rows),"published_results_preserved":preserved,"new_model_fits":0,"new_model_inference":False,"new_resampling":0,"new_hypothesis_test":False}
+    (args.output/"control_replay_report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\\n")
+    print(json.dumps(report,ensure_ascii=False,indent=2))
+if __name__=="__main__":main()
+'''
+
+
+def controls_reanalysis(root,key):
+    descriptor=SCIENTIFIC/"controls/predictions/manifest.json"
+    if key not in {"D04","D11"} or not descriptor.is_file():return
+    verified_repository_source(descriptor)
+    manifest=json.loads(descriptor.read_text())
+    if len(manifest["files"])!=14:raise ValueError("Control replay requires all14 immutable prediction archives")
+    records=[];predictions=[]
+    def included(path,destination=None):
+        path=Path(path)
+        if not path.is_absolute():path=ROOT/path
+        verified_repository_source(path)
+        if destination is None:
+            destination="scientific_closure/"+path.relative_to(SCIENTIFIC).as_posix()
+        if not (root/destination).is_file():copy(root,path,destination)
+        record={"path":destination,"sha256":sha(path),"bytes":path.stat().st_size}
+        if record not in records:records.append(record)
+        return destination
+    for row in manifest["files"]:
+        path=ROOT/row["public_path"];receipt_path=ROOT/row["source_receipt"]
+        if sha(path)!=row["sha256"] or path.stat().st_size!=row["bytes"] or sha(receipt_path)!=row["source_receipt_sha256"] or row["fit_repeated"] is not False:
+            raise ValueError("Public control prediction binding changed")
+        receipt=json.loads(receipt_path.read_text())
+        if receipt.get("prediction_sha256")!=row["sha256"] or receipt.get("prediction_path",receipt.get("prediction_file"))!=row["original_path"]:
+            raise ValueError("Public control predictions do not match the unchanged original receipt")
+        item={"path":included(path),"receipt":included(receipt_path),
+              "kind":"adversarial" if receipt_path.name=="adversarial_result.json" else "negative"}
+        if item["kind"]=="negative":item["model"]=receipt["model"]
+        predictions.append(item)
+    negative_names=[r["model"] for r in predictions if r["kind"]=="negative"]
+    if len(negative_names)!=13 or len(set(negative_names))!=13 or sum(r["kind"]=="adversarial" for r in predictions)!=1:
+        raise ValueError("Control replay needs 13 distinct negative models and one adversarial output")
+    audit=json.loads((SCIENTIFIC/"data_audit/audit_result.json").read_text())
+    kernel=included(ROOT/"scripts/e2_corrections_controls.py","control_replay/code/e2_corrections_controls.py")
+    cohorts=included(ROOT/audit["arrays_npz_path"])
+    summary=included(SCIENTIFIC/"controls/negative_summary.json")
+    dump(root/"control_replay/config.json",{"source_commit":SOURCE,"predictions":predictions,"kernel":kernel,
+        "cohorts":cohorts,"test_y_key":audit["array_keys"]["evaluation"]["y_original"],"test_dates_key":audit["array_keys"]["evaluation"]["dates"],
+        "target_scale_key":audit["training_target_scale_key"],"negative_summary":summary,"bound_files":records})
+    (root/"control_replay/run.py").write_text(CONTROL_REPLAY_WRAPPER,encoding="utf-8")
+    (root/"requirements_controls_replay.txt").write_text("numpy==2.3.5\nscipy==1.17.0\n",encoding="utf-8")
+
+
 def current_delivery(name, fallback):
+    latest=SCIENTIFIC/"delivery"/name
+    if latest.is_file():return latest.relative_to(ROOT).as_posix()
     names=[name]
     if name.startswith("a3_primary_contrasts_"):
         names.extend(["a3_primary_contrasts_readout.csv","a3_primary_contrasts_current.csv"])
@@ -393,6 +777,7 @@ def auxiliary_reanalyses(root, key):
         copy(root,script,"audit_data/run.py")
         for name,row in values["SOURCES"].items():
             copy(root,row["repository_path"],"audit_data/inputs/"+name)
+        current_dataset_inputs(root,"audit_data/inputs")
     if key in {"D07","D11","D12"} and (CORRECTIONS/"hpo/analysis_plan.json").is_file():
         program=ROOT/"scripts/e2_hpo_coverage_closure.py"
         expected="c668e5853562298829a259b5ebd705dce8f9f359e3e2dffa1dbc272ad0fa12ea"
@@ -539,7 +924,9 @@ def dataset_bundle(root):
     copy(root,"scripts/download_e2_known_market.py","code/scripts/download_e2_known_market.py")
     copy(root,"book/_static/data/test_raw_reserve_20250101_20260831.json",
          "code/book/_static/data/test_raw_reserve_20250101_20260831.json")
-    return config(root,"D03",scope="CSV diarios originales de desarrollo; reconstruye calidad y σ7. Descarga oficial verificada opcional; no incluye X final privado.")
+    current=current_dataset_inputs(root)
+    return config(root,"D03",scope=("CSV diarios originales, evaluación 608 recuperada con SHA original y NPZ real train655/cal53/test608; reconstruye calidad y σ7 con Python estándar. Sin nuevos fits o scores." if current else
+                  "CSV diarios originales de desarrollo; reconstruye calidad y σ7. Descarga oficial verificada opcional; no incluye X final privado."))
 
 
 def paper_bundle(root,extra):
@@ -565,21 +952,30 @@ def paper_bundle(root,extra):
 def readme(root,key):
     default={"D01":"Extrae y valida el libro completo y sus fuentes en output/. Abre output/site/intro.html; para navegación servida, python run.py --serve.",
              "D02":"Verifica fuentes y ejecuta forwards CPU de las 13 redes con entradas artificiales. Es comprobación de implementación, no evaluación con pesos entrenados.",
-             "D03":"Reconstruye las 716 etiquetas de desarrollo desde los cierres incluidos, verifica calidad/cohortes y produce un informe y CSV.",
+             "D03":"Reconstruye σ7 desde los cierres incluidos y comprueba calidad/calendarios/cohortes. V3 añade evaluación 608 y el NPZ real de 655/53/608; produce informes y CSV sin dependencias científicas.",
              "D06":"Recalcula RMSE, MAE, sMAPE, R², cobertura y anchura de los 81 predictores desde sus pronósticos guardados; comprueba A2 y genera tabla, gráfico e informe.",
              "D08":"Reconstruye métricas/cobertura originales y 6.080 categorías de error; compara con los resultados guardados. Incluye las políticas e IC publicados.",
              "D10":"Recalcula media, DE, IC y discrepancias de las cinco semillas ETTh1; reconstruye curvas/figuras e informe. No entrena por defecto.",
-             "D12":"Genera 14 diapositivas HTML autónomas, notas y el benchmark reconstruido. Abre output/presentacion.html, usa flechas y Ctrl+P para imprimir/guardar PDF."}.get(key,"Valida los esquemas de las entradas incluidas y genera un informe HTML navegable, tablas/JSON y exportaciones originales. No necesita el sitio ni otros paquetes de entrega.")
+             "D12":"Genera diapositivas HTML autónomas, notas y el benchmark reconstruido, con los suplementos actuales incluidos. Abre output/presentacion.html, usa flechas y Ctrl+P para imprimir/guardar PDF."}.get(key,"Valida los esquemas de las entradas incluidas y genera un informe HTML navegable, tablas/JSON y exportaciones originales. No necesita el sitio ni otros paquetes de entrega.")
     text="# "+key+" · "+NAMES[key][1]+"\n\nEste ZIP es independiente. Descomprímelo completo en una carpeta nueva. No necesitas clonar el repositorio, acceder al sitio del curso ni descargar otro entregable.\n\n## Ejecutar\n\nSe recomienda Python 3.12. Windows: `py -3.12 run.py`. Linux/macOS: `python3 run.py`. También se incluyen `ejecutar.cmd` y `ejecutar.sh`.\n\n"
     if key=="D02":
         text+="Antes del primer forward, crea un venv e instala sus dependencias: `python -m venv .venv`, activa el entorno y ejecuta `python -m pip install -r requirements_cpu.txt`. Con ese entorno activado, usa `python run.py` también en Windows. Los lanzadores detectan una .venv local. La instalación necesita Internet; después, el inventario y los forwards usan sólo archivos locales. Sin instalar librerías, `python run.py --inventory` verifica las recetas y fuentes. No mezcles el lock CPU y CUDA.\n\n"
     text+="## Qué produce\n\n"+default+"\n\nLas salidas se escriben dentro del paquete; no modifican los datos científicos incluidos. D03 usa `output/dataset_audit.html`; los otros informes usan `output/informe.html`, y D01 ofrece el sitio completo en `output/site/intro.html`.\n\n## Alcance y opciones\n\n"
     if key=="D01":
         text+="El snapshot científico/documental corresponde al commit "+SOURCE+". Incluye "+str(BOOK_INFO["html_pages"])+" páginas HTML y la proyección de fuentes del libro, con MathJax local y licencias. El manifiesto inventaría "+str(BOOK_INFO["expanded_bytes"])+" bytes antes de extraer; una reconstrucción necesita espacio adicional para su salida. `--serve --port 8765` inicia un servidor sólo en 127.0.0.1; Ctrl+C lo detiene. Para reconstruir el libro: instala `output/source/requirements-book.lock.txt` y ejecuta `python run.py --build`. El build recompila el informe, no repite entrenamientos.\n"
+        if BOOK_INFO.get("optional_downloads"):
+            text+="\nLa lectura local conserva sus recursos. Dos ZIP científicos redundantes son descargas opcionales por HTTPS y requieren Internet. Las fuentes pequeñas seleccionadas permanecen incluidas. El catálogo exacto de rutas, tamaños y SHA está en el manifiesto del payload:\n\n"
+            for item in BOOK_INFO["optional_downloads"]:
+                text+="- "+item["url"]+"\n"
+            if BOOK_INFO.get("optional_scientific_journals"):
+                text+="\nEste payload omite además los296journals comprimidos enumerados individualmente en optional_scientific_journals, con SHA, tamaño y miembro del ZIP inmutable correspondiente. D04 y D11 conservan esos journals y los dos ZIP completos. Releer el informe y reconstruir sus fuentes seleccionadas no descarga ni ejecuta esos registros; inspeccionarlos desde D01 requiere obtener el suplemento indicado.\n"
+            else:
+                text+="\nLos journals científicos se conservan en los ZIP completos identificados; D04 y D11 los incluyen también expandidos. D01 contiene únicamente las fuentes seleccionadas en C1 y los recursos necesarios para leer el informe.\n"
     elif key=="D02":
         text+="`python run.py --smoke-cpu` usa pesos iniciales y un fixture [1,7,5]; no afirma precisión Bitcoin. Incluye código original de EDA, modelos, baselines, entrenamiento, estadísticas, robustez, incertidumbre, explicaciones y tests bajo code/. Para un reentrenamiento real opcional, usa Linux/WSL2 y CUDA: instala requirements_cuda.txt en otro venv y ejecuta `python run.py --train --model MLP16 --seed 271801 --device cuda:0 --output nuevo_ajuste`. Emplea 655 ejemplos train, 53 held-out y las épocas congeladas; no abre el controlador ni el presupuesto de la campaña. Esa opción no se ejecutó al preparar el ZIP. No incluye checkpoints originales ni el tensor X de prueba; los resultados del benchmark se reconstruyen sin ellos en D06.\n"
+        text+="\nEl nuevo estudio de reproducción CPU se incluye como código, recetas, planes, registros y resultados revisables bajo scientific_closure/cpu_fixed_recipe_reproduction/ y code/scripts/. Su driver histórico vincula rutas, presupuesto y autorizaciones de la máquina original; no se ofrece su --run como ejecución portable sin cambios. Repetirlo en otra máquina requiere registrar un plan y presupuesto locales nuevos, conservando las recetas y distinguiendo los nuevos recibos. El estudio ejecutado y sus fallos no se confunden con los forwards artificiales predeterminados.\n"
     elif key=="D03":
-        text+="Incluye los dos CSV diarios de desarrollo, la Data Card, contrato y manifiestos. CSV diario y tensor de ventanas no son el mismo objeto. No incluye ni inventa los tensores finales X/escalares de test. Descarga opcional: `python run.py --download --archive BTCUSDT-1m-2023-01.zip`; requiere Internet y verifica CHECKSUM/hash oficiales. Sin --archive, la descarga selecciona los 24 meses de desarrollo; no se inicia por defecto.\n"
+        text+="Incluye los dos CSV diarios de desarrollo, la Data Card, contrato y manifiestos. V3 añade el CSV diario original de evaluación 608 y el NPZ real train655/cal53/test608. CSV diario y tensor causal D7×5 son objetos distintos. El runner reconstruye σ7 y valida los arrays con Python estándar; no ajusta modelos ni calcula scores predictivos. Descarga opcional: `python run.py --download --archive BTCUSDT-1m-2023-01.zip`; requiere Internet y verifica CHECKSUM/hash oficiales. Sin --archive, la descarga selecciona los 24 meses de desarrollo; no se inicia por defecto.\n"
         text+="\nPara obtener las veinte fuentes originales del test conocido de enero de 2025 a agosto de 2026: `python code/scripts/download_e2_known_market.py --output datos_test`. Sólo necesita Python estándar y una red que permita data.binance.vision. Verifica el manifiesto histórico, tamaños y SHA-256; no cambia datos ni inicia ajustes. Para verificar una descarga ya completa: añade `--validate-only`. La descarga no reconstruye por sí sola todos los tensores del benchmark ni declara cerrada una auditoría cuyo test siga sin estar disponible.\n"
     elif key=="D06":
         text+="Default: biblioteca estándar, sin red, GPU o pesos. Los IC t y p se conservan como valores publicados y no se recalculan silenciosamente. Para repetir bootstrap/t/sign-flip originales: instala requirements_analysis.txt y ejecuta `python run.py --full-primary --draws 4999 --output reanalisis_original`. La opción recalcula pruebas con el programa original; puede tardar y no entrena modelos. Para el refinamiento usa --draws 20000.\n"
@@ -590,17 +986,21 @@ def readme(root,key):
     elif key=="D10":
         text+="Incluye ETTh1 original sin modificar, su licencia/atribución, 23 fuentes de autores verificadas y el driver original. Default no necesita NumPy/Torch; los NPZ históricos privados no se sustituyen por agregados. `python run.py --validate-training` comprueba todo sin entrenar. Para una repetición nueva CPU: instala requirements_training.txt y ejecuta `python run.py --train --seed 2019 --output nueva_replica`; sin --seed entrena las cinco semillas y puntúa. Puede tardar horas. El registro local nuevo se distingue del preregistro histórico. Esa repetición no se ejecutó al preparar este paquete.\n"
     elif key=="D11":
-        text+="Los 21 ítems conservan sus estados: 9 completos dentro de su alcance, 10 parciales y 2 NAS no aplicables. El runner valida coherencia y exporta las evidencias; no declara todos los criterios aprobados ni reentrena los 81 modelos.\n"
+        text+="Los 21 ítems conservan los estados de la tabla actual incluida, con sus alcances y fechas. El runner valida coherencia y exporta las evidencias; no declara todos los criterios aprobados ni reentrena los 81 modelos. Las nuevas reproducciones y sus fallos se distinguen de los recibos históricos y de un replay aritmético.\n"
     elif key=="D12":
         text+="Las diapositivas y notas están preparadas para la defensa; su generación no acredita que la presentación oral ya haya ocurrido. No necesitan PowerPoint, CDN ni el sitio del curso. El contenido mantiene los resultados negativos, unidades y límites del estudio.\n"
     else:
         text+="Las verificaciones son de integridad y coherencia semántica del documento/registro, con datos reales incluidos. No sustituyen controles experimentales pendientes ni repiten entrenamientos. Los estados parciales quedan visibles.\n"
-    if CORRECTION_AREAS.get(key):
-        text+="\n## Correcciones posteriores incluidas\n\nLas carpetas corrections/ conservan el espacio de nombres de cada área: planes, recibos, tablas, fuentes y estados. Los informes predeterminados verifican esas entradas y muestran sus resultados; no vuelven a ajustar redes, ejecutar controles o remuestrear. Los resultados adversos, no estimables o pendientes se conservan. Estas ampliaciones no sustituyen A2 ni acreditan una defensa oral.\n"
+    if CORRECTION_AREAS.get(key) or SCIENTIFIC_AREAS.get(key):
+        text+="\n## Correcciones posteriores incluidas\n\ncorrections/ conserva las evidencias del 15 de noviembre y scientific_closure/ las ampliaciones del 16 de noviembre pertinentes a este entregable. package.json enumera áreas y archivos realmente disponibles; incluirlos no convierte una ausencia, alerta o fallo en éxito. Los informes predeterminados verifican esas entradas y muestran sus resultados; no vuelven a ajustar redes, ejecutar controles o remuestrear. Estas ampliaciones no sustituyen A2, no crean un test ciego nuevo y no acreditan una defensa oral.\n"
     if (root/"reanalysis/run.py").is_file():
         text+="\n## Repetir los suplementos estadísticos incluidos\n\nInstala requirements_corrections.txt en un entorno separado y ejecuta `python reanalysis/run.py --output nueva_repeticion`. Se incluyen los programas originales exactos, planes fechados y todos sus insumos en sus rutas relativas. El adaptador llama a execute, sin Git, tokens, descarga, nuevo registro o ajustes de modelos. Compara las tablas numéricas con las referencias incluidas. reanalysis/config.json enumera los programas realmente disponibles. La repetición de efectos/RQ2 y el diagnóstico complementario CPU, si está incluido, conservan sus propios alcances. El suplemento CPU no acredita paridad CUDA, ausencia de sobreajuste original ni la IUT/RQ3 original; los dos fallos de paridad permanecen visibles. No se promete reproducir toda la campaña.\n"
     if (root/"audit_data/run.py").is_file():
-        text+="\n## Reauditar el desarrollo incluido\n\n`python audit_data/run.py --output output/data_reaudit` ejecuta el verificador original de datos con Python estándar y sus seis insumos incluidos, sin Git ni otros ZIP. Reconstruye σ₇ y comprueba calendarios y soporte de desarrollo. No verifica por sí solo los trece ports, los 81 checkpoints o el contenido X del test ausente; los recibos de la auditoría actual y sus límites se conservan por separado en corrections/data_audit/.\n"
+        text+="\n## Reauditar los datos incluidos\n\n`python audit_data/run.py --output output/data_reaudit` ejecuta el verificador con Python estándar, sin Git ni otros ZIP. Si current_dataset_bundle.json está incluido, comprueba también el CSV original de evaluación 608 y el NPZ real de 655/53/608. Reconstruye σ7 y comprueba calendarios, soporte e integridad de los arrays. No verifica por sí solo los trece ports o los 81 checkpoints; sus recibos y límites se conservan por separado.\n"
+    if (root/"scientific_reanalysis/run.py").is_file():
+        text+="\n## Repetir los análisis actuales\n\nEn otro entorno instala requirements_scientific.txt. scientific_reanalysis/config.json enumera los programas realmente incluidos. Ejecuta `python scientific_reanalysis/run.py --program period_comparison --output nueva_comparacion_periodos` o `python scientific_reanalysis/run.py --program cpu_test_iut --output nueva_IUT_CPU`, si aparecen en esa lista. Conserva los programas y planes exactos; adapta únicamente la ubicación de fuentes absolutas a copias incluidas verificadas. Compara las tablas contra sus referencias. Esta repetición puede remuestrear según el plan ya ejecutado: no ajusta modelos, no realiza inferencia ni registra una hipótesis nueva, y no convierte la IUT CPU secundaria en la IUT A100 original.\n"
+    if (root/"control_replay/run.py").is_file():
+        text+="\n## Reconstruir la aritmética de los controles\n\nInstala requirements_controls_replay.txt y ejecuta `python control_replay/run.py --output nuevos_controles_replay`. Usa las 14 copias NPZ verificadas: AUC y p empírico desde los 999 valores nulos ya guardados, más gain y Spearman de los 13 controles negativos. No vuelve a ajustar clasificadores o redes, no remuestrea y no recalcula sus IC o Holm13; conserva esos resultados publicados. El modo predeterminado del entregable sigue usando sólo Python estándar.\n"
     if (root/"hpo_reanalysis/run.py").is_file():
         text+="\n## Repetir el análisis de metadatos HPO\n\nInstala requirements_hpo_reanalysis.txt y ejecuta `python hpo_reanalysis/run.py --output nueva_revision_hpo`. El adaptador copia el plan y sources incluidos a una salida nueva y llama al execute original byte por byte, sin Git, red, recuperación de datos o nuevos ajustes. Verifica las tablas frente a sus referencias. No uses --recover-only ni --register-plan para este replay: conservar el registro previo es parte del alcance.\n"
     text+="\n## Procedencia\n\nFuente documental: `"+SOURCE+"`. Los archivos originales conservan sus bytes y los programas nuevos son adaptadores de entrega. `source_manifest.json` enumera rutas, tamaños y SHA-256 de los archivos del paquete; `package.json` describe el componente. Los resultados locales no se confunden con otra campaña científica. No se incluyen credenciales, .git, Colab o rutas privadas necesarias para ejecutar. Las licencias de autores y datasets incluidos se conservan junto a sus fuentes.\n"
@@ -612,10 +1012,13 @@ def readme(root,key):
 def finalize_package(root,key):
     auxiliary_reanalyses(root,key)
     corrections_reanalysis(root,key)
+    scientific_reanalysis(root,key)
+    controls_reanalysis(root,key)
     package=json.loads((root/"package.json").read_text(encoding="utf-8"))
     if (root/"audit_data/run.py").is_file():
         package["optional_data_reaudit"]={"entrypoint":"audit_data/run.py","standard_library_only":True,
-            "scope":"Included development CSV/target/support checks; not a full thirteen-port or test-X audit"}
+            "full_current_cohorts_included":(root/"audit_data/inputs/current_dataset_bundle.json").is_file(),
+            "scope":"Included real CSV/target/calendar checks and NPZ integrity; not a substitute for the separate model-port/checkpoint audit"}
     if (root/"hpo_reanalysis/run.py").is_file():
         package["optional_hpo_reanalysis"]={"entrypoint":"hpo_reanalysis/run.py","requirements":"requirements_hpo_reanalysis.txt",
             "original_program_bytes_unchanged":True,"new_HPO_or_fitting":False}
@@ -624,6 +1027,14 @@ def finalize_package(root,key):
             "original_program_bytes_unchanged":True,"git_or_external_checkout_required":False,
             "programs":[r["id"] for r in json.loads((root/"reanalysis/config.json").read_text())["programs"]],
             "scope":"Recorded posthoc analytical replays from included data; no model fitting or new predictor inference"}
+    if (root/"scientific_reanalysis/run.py").is_file():
+        package["optional_current_reanalysis"]={"entrypoint":"scientific_reanalysis/run.py","config":"scientific_reanalysis/config.json",
+            "requirements":"requirements_scientific.txt","original_program_and_plan_bytes_unchanged":True,
+            "programs":[r["id"] for r in json.loads((root/"scientific_reanalysis/config.json").read_text())["programs"]],
+            "scope":"Reproduction of the included secondary CPU IUT and original period comparison from saved inputs; no inference or fitting"}
+    if (root/"control_replay/run.py").is_file():
+        package["optional_control_replay"]={"entrypoint":"control_replay/run.py","requirements":"requirements_controls_replay.txt",
+            "scope":"Saved adversarial AUC/permutation-null arithmetic and 13 negative-control point estimates; no model refit, new resampling or recomputed CIs"}
     dump(root/"package.json",package)
     readme(root,key)
     records=[]
@@ -632,6 +1043,7 @@ def finalize_package(root,key):
         records.append({"path":path.relative_to(root).as_posix(),"bytes":path.stat().st_size,"sha256":sha(path)})
     dump(root/"source_manifest.json",{"version":"e2-independent-component-v1","id":key,"source_commit":SOURCE,"files":records,"outputs_in_manifest":False})
     target=PUBLIC/NAMES[key][0]
+    if target.exists():raise ValueError("Immutable package already exists; use a fresh v3 output directory: "+str(target))
     descriptor, temporary_name=tempfile.mkstemp(prefix="."+key+"-",suffix=".zip",dir=PUBLIC)
     __import__('os').close(descriptor)
     temporary=Path(temporary_name)
@@ -652,13 +1064,16 @@ def finalize_package(root,key):
 
 
 def main():
-    global SOURCE, SOURCE_BLOBS, BOOK_INFO, CORRECTIONS, PUBLIC
+    global SOURCE, SOURCE_BLOBS, BOOK_INFO, CORRECTIONS, SCIENTIFIC, EVALUATION_DAILY, PUBLIC
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-commit",required=True,help="Exact committed C1 source snapshot; no implicit HEAD")
     parser.add_argument("--book-payload",type=Path)
     parser.add_argument("--paper-extra",type=Path)
     parser.add_argument("--authors-root",type=Path,default=Path('/workspace/work/e2architecture_sources'))
     parser.add_argument("--corrections-root",type=Path,default=CORRECTIONS)
+    parser.add_argument("--scientific-closure-root",type=Path,default=SCIENTIFIC)
+    parser.add_argument("--evaluation-daily",type=Path,
+                        help="Optional external copy of original daily cache9563...; default is the committed data_admission/known_E1_daily.csv")
     parser.add_argument("--public-output",type=Path,default=PUBLIC)
     parser.add_argument("--staging",type=Path)
     parser.add_argument("--only",choices=sorted(NAMES))
@@ -673,7 +1088,13 @@ def main():
         metadata,name=record.split(b"\t",1)
         mode,kind,oid=metadata.split()
         if kind==b"blob":SOURCE_BLOBS[name.decode("utf-8")]=oid.decode("ascii")
-    CORRECTIONS=args.corrections_root.resolve();PUBLIC=args.public_output.resolve()
+    # Embedded wrappers, generated READMEs and namespace policy come from this
+    # executing program, so copied-input guards alone cannot bind them to C1.
+    verified_repository_source(Path(__file__))
+    CORRECTIONS=args.corrections_root.resolve();SCIENTIFIC=args.scientific_closure_root.resolve()
+    EVALUATION_DAILY=(args.evaluation_daily or SCIENTIFIC/"data_admission/known_E1_daily.csv").resolve();PUBLIC=args.public_output.resolve()
+    if (PUBLIC/"index.json").is_file() and json.loads((PUBLIC/"index.json").read_text()).get("version")!="e2-independent-deliverables-v3":
+        raise ValueError("V3 must not modify historical v1/v2 delivery directories")
     if args.only in (None,"D01") and args.book_payload is None:parser.error("D01 requires --book-payload generated for this exact source commit")
     if args.only in (None,"D10") and args.paper_extra is None:parser.error("D10 requires --paper-extra with the verified ETTh1/author cache")
     if args.only in (None,"D01"):
@@ -684,7 +1105,9 @@ def main():
         if payload_manifest.get("source_commit")!=SOURCE:
             raise ValueError("D01 payload source differs from the exact --source-commit")
         BOOK_INFO={"html_pages":payload_manifest["html_validation"]["html_pages"],
-                   "expanded_bytes":sum(record["bytes"] for record in payload_manifest["files"].values())}
+                   "expanded_bytes":sum(record["bytes"] for record in payload_manifest["files"].values()),
+                   "optional_downloads":payload_manifest.get("optional_downloads",[]),
+                   "optional_scientific_journals":payload_manifest.get("optional_scientific_journals",[])}
     if args.only and (PUBLIC/"index.json").is_file():
         prior=json.loads((PUBLIC/"index.json").read_text(encoding="utf-8"))
         if prior.get("source_commit")!=SOURCE or any(row.get("scientific_source_commit")!=SOURCE for row in prior.get("packages",[])):
@@ -700,7 +1123,7 @@ def main():
         if key=="D01":
             copy(root,"scripts/e2_standalone_book.py","run.py")
             copy(root,args.book_payload,"payload.tar.xz",snapshot_bound=False)
-            config(root,key,scope="Libro completo offline, MathJax local y fuente exacta; rebuild opcional.")
+            config(root,key,scope="Informe para lectura offline, MathJax local y fuentes seleccionadas exactas. Los descargables científicos opcionales enumerados por el payload requieren HTTPS; rebuild opcional.")
         elif key=="D02":code_bundle(root,args.authors_root)
         elif key=="D03":dataset_bundle(root)
         elif key in {"D04","D05","D07","D09","D11"}:reporting_bundle(root,key)
@@ -713,7 +1136,7 @@ def main():
         old=json.loads((PUBLIC/"index.json").read_text())["packages"]
         combined=sorted([r for r in old if r["id"]!=args.only]+index,key=lambda r:r["id"])
     if len(combined)==12:
-        dump(PUBLIC/"index.json",{"version":"e2-independent-deliverables-v1","source_commit":SOURCE,"packages":combined,"every_archive_has_own_run_py":True,"cross_package_dependency":False,"default_requires_website_or_git_clone":False,"neural_market_training_executed_during_packaging":False})
+        dump(PUBLIC/"index.json",{"version":"e2-independent-deliverables-v3","source_commit":SOURCE,"packages":combined,"every_archive_has_own_run_py":True,"cross_package_dependency":False,"default_requires_website_or_git_clone":False,"neural_market_training_executed_during_packaging":False,"documentary_default_standard_library_packages":11,"new_scientific_closure_included":True})
         with (PUBLIC/"SHA256SUMS").open("w",encoding="utf-8") as stream:
             for row in combined:stream.write(row["sha256"]+"  "+row["file"]+"\n")
     if not args.only:

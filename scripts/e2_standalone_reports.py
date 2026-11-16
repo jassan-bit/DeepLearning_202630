@@ -370,7 +370,8 @@ def validate_corrections(package, inputs, review):
     for area in areas:
         files = area.get("files", [])
         name = area.get("area", "?")
-        review.note("Corrección " + name,
+        label = (area.get("generation", "") + " / " + name).strip(" / ")
+        review.note("Corrección " + label,
                     str(len(files)) + " archivos incluidos" if files else "No disponible en esta instantánea; no se declara ejecutada.")
         for entry in files:
             item = known.get(entry["path"])
@@ -380,8 +381,15 @@ def validate_corrections(package, inputs, review):
                 states = {key: data[key] for key in ("status", "scope", "A2_replaced", "original_A2_unchanged",
                                                     "new_model_fits", "training_performed", "oral_defense_performed",
                                                     "original_parity_gate_passed", "old714statistics_executed",
-                                                    "original_RQ3_IUT_executed", "mixed_CPU_GPU_period_test_executed") if key in data}
-                if states: review.note(name + " / " + Path(entry["path"]).name, states)
+                                                    "original_RQ3_IUT_executed", "mixed_CPU_GPU_period_test_executed",
+                                                    "control_counts", "actual_cohorts_audited", "data_ready_for_bounded_controls",
+                                                    "predictors_completed", "predictors_passed", "branch_checks", "passed", "failed",
+                                                    "full_CPU_IUT_executed", "CPU_test_predictors", "joint_CPU_improvements_Holm10",
+                                                    "t_rejections_Holm13", "t_rejected_models", "group_results",
+                                                    "opportunities", "jobs_with_phase_receipts_union", "completed_jobs_without_phase_durations",
+                                                    "pipeline_execution_verified", "real_driver_model_fits_executed", "full_original_campaign_passed",
+                                                    "AUC_OOF", "p_block_permutation_with_refit", "permutations_completed", "family_size") if key in data}
+                if states: review.note(label + " / " + Path(entry["path"]).name, states)
                 if name == "cpu_diagnostic" and "CPU_gap_tests" in data:
                     review.check("Alcance del diagnóstico CPU conservado",
                                  data.get("CPU_gap_tests") == 13 and data.get("CPU_cost_tests") == 10 and
@@ -403,6 +411,10 @@ def validate_corrections(package, inputs, review):
                                "CPU_cost_only_Holm10.csv":10, "CPU_latency_block_means_1000.csv":1000,
                                "configurations_78.csv":78, "opportunities_234.csv":234,
                                "model_reconciliation_13.csv":13, "parameter_coverage_65.csv":65}
+            # A fresh81-predictor CPU study is distinct from the78-neural
+            # frozen-projection diagnosis, even if an exporter reuses a name.
+            if name=="cpu_fixed_recipe_reproduction":required_counts={}
+            if name=="cpu_test_iut":required_counts.update({"CPU_full_IUT_Holm10.csv":10,"CPU_test_RMSE_by_seed_78.csv":78})
             if filename in required_counts:
                 partial = entry.get("partial_execution") is True
                 review.check("Filas de " + filename,
@@ -423,7 +435,7 @@ def validate_corrections(package, inputs, review):
                                for row in rows)
                 review.check("Alertas CPU completas y coherentes", coherent,
                              "La alerta describe la diferencia frente a CUDA; una alerta no elimina una trayectoria ni acredita paridad.", item["path"])
-            if filename == "risks_by_predictor.csv" and {"state_before_sha256", "state_after_sha256", "train_count", "calibration_count", "batch_size"}.issubset(fields):
+            if name in {"frozen_inference", "cpu_diagnostic", "cpu_test_iut"} and filename == "risks_by_predictor.csv" and {"state_before_sha256", "state_after_sha256", "train_count", "calibration_count", "batch_size"}.issubset(fields):
                 review.check("Predictores congelados y soporte comparable", all(
                     row["state_before_sha256"] == row["state_after_sha256"] and
                     int(row["train_count"]) == 655 and int(row["calibration_count"]) == 53 and int(row["batch_size"]) == 1
@@ -675,6 +687,19 @@ def generate(root, package, inputs, review, output, table_limit):
     for item in inputs:
         if item["kind"] == "documents":
             links[item["file"].relative_to(root).as_posix()] = "#" + item["anchor"]
+    supplementary=[]
+    included_paths={item["path"] for item in inputs}
+    for area in package.get("corrections",[]):
+        for item in area.get("files",[]):
+            if item["path"] in included_paths:continue
+            source=local_path(root,item["path"])
+            destination=output/"export"/item["path"]
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(source,destination)
+            export="export/"+quote(item["path"],safe="/")
+            supplementary.append({"title":item.get("title",item["path"]),"path":item["path"],"export":export,
+                                  "kind":"supplementary","bytes":source.stat().st_size,"sha256":digest(source)})
+    inventory.extend(supplementary)
     report = {"version": VERSION, "package_id": package["id"], "title": package["title"],
               "source_commit": package["source_commit"],
               "status": "verified" if review.passed else "validation_failed",
@@ -722,6 +747,8 @@ def generate(root, package, inputs, review, output, table_limit):
             else:
                 body += '<details><summary>Datos JSON completos</summary><pre>' + escaped(json.dumps(value, ensure_ascii=False, indent=2)) + '</pre></details>'
         sections.append(body + '</section>')
+    if supplementary:
+        sections.append('<section><h2>Archivos completos de las ampliaciones</h2><p>Conservados y verificados; no se incrustan los registros extensos.</p><details><summary>'+str(len(supplementary))+' archivos</summary><ul>'+''.join('<li><a href="'+escaped(item["export"])+'">'+escaped(item["path"])+'</a></li>' for item in supplementary)+'</ul></details></section>')
     (output / "informe.html").write_text('<!doctype html><html lang="es"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<title>' + title + '</title><style>' + CSS + '</style></head><body><main>' +

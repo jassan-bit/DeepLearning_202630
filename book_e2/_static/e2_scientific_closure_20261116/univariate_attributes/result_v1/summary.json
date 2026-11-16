@@ -1,0 +1,26 @@
+{
+  "version": "e2-univariate-attribute-audit-v1",
+  "status": "PASS_declared_univariate_screen",
+  "plan_sha256": "13bd48b75cf6234cda03dec52277423c4d1d2ac3c92d2adeb6cf8ea1d3a35eef",
+  "QA_sha256": "13763ae394784de9648d84273f5a638f29d372b153756d13dfdc77f23323e510",
+  "script_sha256": "aaaa4266961db4d20da8e902879f0513be10a8632298f09c9a95826a6cc300f0",
+  "coordinates": 35,
+  "scored_rows": 105,
+  "OLS_fits": 35,
+  "deep_learning_fits": 0,
+  "suspicious_R2_threshold": 0.95,
+  "flagged_coordinate_cohorts": 0,
+  "flagged_rows": [],
+  "all_availability_offsets_strictly_past": true,
+  "OLS_fit_data": "training655 only",
+  "calibration_or_test_used_for_fit": false,
+  "new_hypothesis_tests_or_bootstrap": 0,
+  "feature_or_model_selection": false,
+  "original_A2_RQ1_changed": false,
+  "limitations": [
+    "A high univariate R2 is a review flag, not proof of leakage; low R2 does not exclude nonlinear/multivariate leakage.",
+    "One known chronology and overlapping windows; these are descriptive predictive risks, not independent tests or confirmation.",
+    "Calibration/test targets enter scoring denominators and residuals only, never OLS fitting/scaling/model selection.",
+    "Availability is checked against the pinned causal reconstruction, not an independent timestamp-of-publication feed."
+  ]
+}

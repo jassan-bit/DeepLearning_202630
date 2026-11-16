@@ -79,5 +79,6 @@ Los identificadores **§15–§63** que aparecen en enlaces y recibos histórico
 | §62 | [Elegibilidad, selección documental y brecha sustentada](62_cierre_literatura_focal.md) | [Capítulo 3](03_literatura.md) · complemento |
 | §63 | [Referencia empírica mediante un ensemble ajustado en calibración](63_ensamble_calibracion.md) | [Capítulo 12](12_incertidumbre_errores.md) · complemento |
 | §64 | [Correcciones metodológicas posteriores al benchmark](64_correcciones_metodologicas.md) | [Capítulo 13](13_agregacion_estadistica.md) · complemento; auditoría, efectos, regímenes y trazabilidad |
+| §65 | [Entradas reales, controles y comparaciones completadas](65_cierre_cientifico_real.md) | [Capítulo 10](10_auditoria_datos.md) · auditoría de datos608, controles negativos, cambio de distribución y comparaciones posteriores |
 
 La numeración histórica de archivos y los recibos guardados no se modifica: conserva las identidades usadas para verificar las evidencias y las descargas.

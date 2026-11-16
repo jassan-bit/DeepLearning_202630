@@ -1,0 +1,191 @@
+{
+  "version": "e2-scientific-delivery-readouts-v1",
+  "status": "separate_completed_posterior_CPU_studies_original_GPU_gate_still_failed",
+  "original_GPU_parity_plan": {
+    "status": "PARTIAL",
+    "gap_reporting_valid": false,
+    "RQ3_reporting_valid": false,
+    "all78_parity_valid": false,
+    "reason": "No completed statistical summary with valid78-predictor parity",
+    "historical_failed_attempts": [
+      {
+        "path": "book_e2/_static/e2_corrections_20261115/frozen_inference/eager_predictions/failure_report.json",
+        "status": "failed",
+        "stage": "predictions",
+        "error_type": "ValueError",
+        "error": "CPU calibration parity exceeds fixed tolerance: ('LSTM-autoencoder con predictor', 271804, 1.1920928955078125e-07)"
+      },
+      {
+        "path": "book_e2/_static/e2_corrections_20261115/frozen_inference/predictions/failure_report.json",
+        "status": "failed",
+        "stage": "predictions",
+        "error_type": "ValueError",
+        "error": "CPU calibration parity exceeds fixed tolerance: ('LSTM-autoencoder con predictor', 271804, 1.1920928955078125e-07)"
+      }
+    ]
+  },
+  "posterior_CPU_train_calibration_diagnostic": {
+    "version": "e2-cpu-diagnostic-statistics-v1",
+    "scope": "new CPU-only posterior diagnosis; not original benchmark reproduction or adequacy",
+    "CPU_gap_tests": 13,
+    "CPU_within_tolerance_conditionally": 2,
+    "CPU_gap_not_estimable": 0,
+    "CPU_cost_tests": 10,
+    "CPU_cost_reductions_Holm10": 0,
+    "projection_comparisons_reported": 78,
+    "projection_alert_threshold": 1e-07,
+    "projection_alerts": 10,
+    "maximum_CPU_original_GPU_projection_difference": 2.1606683731079102e-07,
+    "all78included_regardless_projection_alert": true,
+    "original_parity_gate_passed": false,
+    "old714statistics_executed": false,
+    "original_RQ3_IUT_executed": false,
+    "mixed_CPU_GPU_period_test_executed": false,
+    "new_fits": 0,
+    "A2_or_RQ1_changed": false,
+    "limits": [
+      "All diagnoses are posterior exploratory evidence; neither the original1e-7gate nor original benchmark adequacy is certified.",
+      "The same numerical weights/scalers do not establish equivalence of CPU/GPU predictions; every deviation is retained.",
+      "Six optimization pairs and the small-sample t approximation do not model calendar, HPO-selection or market-population uncertainty.",
+      "Calibration53 was already used for pilot and intervals; it is not independent HPO validation and a small gap is not causal proof of absence of overfitting.",
+      "Timer blocks require sufficiently stable/exchangeable session measurements; clock repeats do not create independent markets.",
+      "A cost reduction alone is not joint predictive improvement, operational utility or equivalence to GPU deployment."
+    ]
+  },
+  "original_saved_period_comparison": {
+    "version": "e2-original-period-comparison-v1",
+    "neural_period_tests": 13,
+    "classical_descriptive_rows": 3,
+    "t_rejections_Holm13": 6,
+    "t_rejected_models": [
+      "FCN-1D",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "t_not_estimable": 0,
+    "sign_flip_rejections_Holm13": 0,
+    "sign_flip_minimum_two_sided_resolution_no_zero_ties": 0.03125,
+    "family_size": 13,
+    "alpha_family": 0.05,
+    "scope": "original saved calibration/test risks, same predictor; initialization uncertainty on fixed periods",
+    "calibration_is_not_independent_HPO_validation": true,
+    "equivalence_established": false,
+    "overfitting_cause_identified": false,
+    "CPU_GPU_mixed": false,
+    "new_model_fits": 0,
+    "new_model_inference": false,
+    "A2_RQ1_modified": false,
+    "limits": [
+      "Calibration53 was used for pilot and interval calibration; it is not independent HPO validation.",
+      "A period difference may reflect distribution change, period difficulty or estimation, not identified overfitting.",
+      "Non-rejection does not demonstrate consistency, equivalence or universal absence of overfitting.",
+      "No new model fits, inference, CPU/GPU mixing, new holdout or original preregistration is claimed.",
+      "The original export's predictor/calibrator/checkpoint verification is inherited from its pinned bundle; raw market inputs are not reacquired here."
+    ],
+    "assumptions": [
+      "Independent optimization repetitions conditional on the fixed calibration/test calendars.",
+      "Adequate small-sample normal approximation of six differences for t; not normality of daily residuals.",
+      "Sign-flip sensitivity additionally requires symmetry under the null; enumeration does not verify symmetry.",
+      "Shared calendars, overlapping target supports and temporal dependence are not treated as independent observations."
+    ]
+  },
+  "posterior_CPU_test_IUT": {
+    "version": "e2-cpu-test-iut-v1",
+    "full_CPU_IUT_executed": true,
+    "candidates": 10,
+    "joint_CPU_improvements_Holm10": 0,
+    "CPU_test_predictors": 78,
+    "test_dates": 608,
+    "old714_executed": false,
+    "original_GPU_parity_gate_passed": false,
+    "A2_or_RQ1_changed": false,
+    "new_fits": 0,
+    "limits": [
+      "New CPU-only IUT, not retrospective execution of the original failed GPU-parity714plan.",
+      "Known inherited chronology; no new blind holdout or prospective confirmation.",
+      "Previous cost p-values already known; this is exploratory and methods fixed before CPU test projections.",
+      "Calendar bootstrap assumes suitable weak dependence and block adequacy; six fixed trajectories do not represent multiple markets.",
+      "Timing blocks require stable/exchangeable session measurements; cost refers to this resident CPU forward policy, not A100 or complete deployment.",
+      "Calibration remains calibration, not independent HPO validation; no equivalence or adequacy is inferred from non-rejection."
+    ]
+  },
+  "posterior_CPU_test_IUT_verification": {
+    "verified_at_utc": "2026-11-16T01:24:34.097758+00:00",
+    "unique_test_model_seed_dates": 47424,
+    "frozen_predictor_bindings": 78,
+    "states_unchanged": true,
+    "IUT_rows": 10,
+    "IUT_equals_max_of_two_estimated_CPU_components_all10": true,
+    "all_cost_IUT_Holm_p_equal_one": true,
+    "new_fits": 0,
+    "verification_did_not_refit_or_repeat_bootstrap": true
+  },
+  "new_true_target_CPU_fixed_recipe_repetition": {
+    "scope": "New posterior true-target CPU scientific replication, not original CUDA parity/bitwise reproduction",
+    "plan_path": "book_e2/_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/plan_v2/analysis_plan.json",
+    "plan_sha256": "53704931391109bf2179985f5026af0316eacc892b8ebe8cfe62b87cd5aa5c7f",
+    "runtime_policy_declared_in_plan": {
+      "torch": "2.8.0+cpu",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "statsmodels": "0.14.5",
+      "device": "cpu",
+      "dtype": "float32",
+      "threads": 2,
+      "interop_threads": 2,
+      "deterministic_algorithms": true,
+      "float32_matmul_precision": "highest",
+      "mkldnn_enabled": true,
+      "score_batch_size": 1,
+      "parallel_fit_processes": 2,
+      "worker_cpu_sets": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "planned_neural_fits": 78,
+    "planned_classical_reconstructions": 3,
+    "completed_neural_workers": 78,
+    "completed_classical_workers": 3,
+    "completed_scoring_stages": 2,
+    "status": "completed_new_CPU_fixed_recipe_fit_cal_freeze_raw_test_A2_scope",
+    "CPU_study_completed": true,
+    "original_CUDA_parity": false,
+    "full_original_campaign_passed": false,
+    "HPO_repeated": false,
+    "NAS": "not_applicable_defined_bodies",
+    "dynamic_status_sampled_once": true,
+    "live_ledger_read_or_frozen": false,
+    "sampled_status_source": "/workspace/work/e2-true-target-cpu-reproduction-v4/status.json",
+    "sampled_status_sha256": "6796225f16e1e2495bee38cdfb9f076188f43f6e334734b171cc2fc4d80234bf",
+    "sampled_status_bytes": 120298,
+    "sampled_at_utc": "2026-11-16T03:28:09.961788+00:00",
+    "status_snapshot_path": "source_snapshots/cpu_status_at_export.json",
+    "claimed_charged_worker_seconds_at_snapshot": 6845.049573544995,
+    "worker_accounting_scope": "status-reported sum of worker wall seconds; not the full project ledger or training-only time",
+    "run_identity_sha256": "9f0a3a78182d6be189bedd71c1d6ac8d3269d3452010a1dc632cbb12c955f8ca",
+    "sample_observed_worker_runtime_evidence": {
+      "source": "/workspace/work/e2-true-target-cpu-reproduction-v4/final-fit/237a2b476e55cf17/271801/result.json",
+      "sha256": "c7c73f4030249cda3fee2eb601cb821da58ad00a331a093ac47878aa63ca313f",
+      "observed_phase_backend_labels": [
+        "new_CPU_diagnostic_not_production_CUDA"
+      ],
+      "training_label_end": "2024-10-31",
+      "scope": "One completed worker metadata sample, not independent attestation of every runtime package or all81workers; plan runtime settings remain declared policy."
+    }
+  },
+  "original_A2_or_RQ1_replaced": false,
+  "new_original_GPU_parity_claim": false,
+  "generic_parity_or_adequacy_flag_created": false,
+  "scope": "Completed CPU RQ3 is a separate posterior study; failed historical 714/GPU-parity plan remains failed. Calibration is not independent HPO validation."
+}

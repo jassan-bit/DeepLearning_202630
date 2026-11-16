@@ -1,0 +1,77 @@
+{
+  "version": "e2-development-admission-v1",
+  "status": "registered_development_prefix_loaded",
+  "admitted_end": "2024-12-30",
+  "purpose": "preselection development power pilot",
+  "target_definition": "population sigma7 of daily log returns, ddof0, h1, unannualized",
+  "target_is_intraday_realized_variance": false,
+  "source_protocol": "experiments/dl_r2_cv_20261104/protocol.json",
+  "source_protocol_sha256": "e8da0f0098acd24a58664b83d0ba499b43aa9d597a36c52da6b3325c2c3c7bec",
+  "source_sha256": {
+    "results/eda_development/daily_market_development.csv": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+    "results/eda_development/daily_volatility_development.csv": "20b96374a659eb87dadfa68aa3d6b6b5fb6bea5b10eebe6f2c186ad69861844a"
+  },
+  "raw_sources_hashed_in_full_as_bytes": true,
+  "source_values_parsed_only_through_admission": true,
+  "parsing": {
+    "results/eda_development/daily_market_development.csv": {
+      "date_fields_inspected": 731,
+      "numerical_rows_decoded": 730,
+      "numerical_values_after_admission_decoded": false,
+      "source_calendar_start": "2023-01-01",
+      "source_calendar_end": "2024-12-31"
+    },
+    "results/eda_development/daily_volatility_development.csv": {
+      "date_fields_inspected": 731,
+      "numerical_rows_decoded": 730,
+      "numerical_values_after_admission_decoded": false,
+      "source_calendar_start": "2023-01-01",
+      "source_calendar_end": "2024-12-31"
+    }
+  },
+  "decoded_calendar_rows": 730,
+  "output_calendar_start": "2023-01-01",
+  "output_calendar_end": "2024-12-30",
+  "placeholder_rows": 0,
+  "placeholder_dates": [],
+  "incomplete_admitted_bar_dates": [
+    "2023-03-24"
+  ],
+  "invalid_admitted_sigma7_dates": [
+    "2023-01-01",
+    "2023-01-02",
+    "2023-01-03",
+    "2023-01-04",
+    "2023-01-05",
+    "2023-01-06",
+    "2023-01-07",
+    "2023-03-24",
+    "2023-03-25",
+    "2023-03-26",
+    "2023-03-27",
+    "2023-03-28",
+    "2023-03-29",
+    "2023-03-30",
+    "2023-03-31"
+  ],
+  "population_target_reconstruction_matches": true,
+  "support_counts": {
+    "D7_window": 716,
+    "target_sigma7_quality": 715,
+    "D7_target": 715,
+    "lag1_target": 714,
+    "lag7_target": 708,
+    "lag14_target": 701,
+    "lag28_target": 687,
+    "common": 665
+  },
+  "market_values_exported": false,
+  "raw_archives_opened": 0,
+  "external_2025_2026_files_opened": 0,
+  "limits": [
+    "Only the admitted numerical prefix is decoded; full file bytes are hashed and all date fields checked.",
+    "Quality derives from registered daily derivatives; minute archives are not reaggregated.",
+    "Development has been used historically; this does not create an untouched confirmatory sample.",
+    "Power-pilot outer development labels must not feed selection or refits; use dated callbacks/replay."
+  ]
+}

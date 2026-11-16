@@ -10,7 +10,7 @@ Los pesos son comunes a las seis semillas, no negativos y suman uno. Los compara
 
 Se efectuó **un ajuste estadístico de los pesos de combinación en CPU**, con duración observada de aproximadamente 2 segundos. No se reajustó ninguna de las trece redes ni de los tres comparadores, ni se cargaron sus pesos para realizar nuevas inferencias. Los pronósticos del ensemble son combinaciones de las trayectorias ya guardadas. Los calibradores originales permanecen intactos. Estos costes CPU se documentan separados de los cargos históricos A100.
 
-Ocho pesos son superiores a 1e-9; corresponden a FCN, ResNet, Inception, SAE, TimesNet, TimeMixer, iTransformer y Persistence. Los [dieciséis pesos y sus ceros numéricos](../_static/e2_calibration_ensemble_20261114/weights.csv) se publican completos. La optimización terminó en 43 iteraciones. La [auditoría independiente de factibilidad y condiciones KKT](../_static/e2_calibration_ensemble_20261114/independent_fit_audit.json) verifica suma 1, no negatividad, residuo activo máximo 4,73e-7 y holgura inactiva positiva. Las diferencias en validación de 2024 explican por qué un modelo con buena posición en la A2 puede recibir peso cero aquí; no se modificaron pesos para favorecer su posición en 2025–2026.
+Ocho pesos son superiores a 1e-9; corresponden a FCN, ResNet, Inception, SAE, TimesNet, TimeMixer, iTransformer y Persistence. Los [dieciséis pesos y sus ceros numéricos](../_static/e2_calibration_ensemble_20261114/weights.csv) se publican completos. La optimización terminó en 43 iteraciones. La [auditoría independiente de factibilidad y condiciones KKT](../_static/e2_calibration_ensemble_20261114/independent_fit_audit.json) verifica suma 1, no negatividad, residuo activo máximo 4,73e-7 y holgura inactiva positiva. Las diferencias de error en calibración de 2024 explican por qué un modelo con buena posición en la A2 puede recibir peso cero aquí; no se modificaron pesos para favorecer su posición en 2025–2026.
 
 ## Resultado en las mismas 608 fechas
 
@@ -39,11 +39,11 @@ $$
 \gamma_{emp}=\frac{RMSE_{SAE}-RMSE_{ensemble}}{RMSE_{Persistence}-RMSE_{ensemble}}=0,287574.
 $$
 
-Este número expresa la fracción puntual del margen Persistence–ensemble que aún separa al SAE de esta combinación concreta. **No identifica el riesgo Bayes ni un techo óptimo sobre todos los predictores.**
+Este número expresa la fracción puntual del margen Persistence–ensemble que aún separa al SAE de esta combinación concreta. **No identifica el riesgo Bayes ni un techo óptimo sobre todos los predictores.** La referencia operativa, γ y su incertidumbre están estimados y reportados; el requisito de presentar esa estimación no implica que deba probarse optimalidad global o que el IC sea estrecho.
 
 La incertidumbre del cociente es grande: el intervalo percentil de su valor algebraico es **[−1,49210;2,37128]** con bloques de 14 días. Sólo 6.588 de 10.000 réplicas conservan el orden `ensemble < SAE < Persistence`. Se conservaron todas las réplicas algebraicamente definidas, incluidas las que cambian el orden o el signo del denominador; no se truncó el intervalo a [0,1] ni se condicionó silenciosamente a los resultados favorables. Por ello no se interpreta este intervalo como una fracción poblacional estable ni se concluye que quede exactamente 28,8 % de margen real.
 
-El ensemble uniforme de [§57](57_errores_techo.md) permanece como resultado anterior negativo, con otra identidad. Esta construcción de pesos es nueva y tiene su protocolo propio; no se elige retrospectivamente entre ambas para declarar un techo demostrado. Se mantienen el calendario conocido desde E1, la prueba formal pendiente respecto al δg registrado y la incertidumbre sobre generalización futura.
+El ensemble uniforme de [§57](57_errores_techo.md) permanece como resultado anterior negativo, con otra identidad. Esta construcción de pesos es nueva y tiene su protocolo propio; no se elige retrospectivamente entre ambas para declarar un techo demostrado. Se mantienen el calendario conocido desde E1 y la incertidumbre sobre generalización futura. Las trece pruebas de δg ya ejecutadas en [§64](64_correcciones_metodologicas.md) establecen dos tolerancias condicionales en CPU y dejan once sin establecer; no acreditan adecuación general de los predictores A100. La [comparación formal de los periodos originales (§65)](65_cierre_cientifico_real.md) conserva el mismo límite: calibración no es validación HPO independiente, y una diferencia o un no rechazo no identifica sobreajuste o equivalencia.
 
 ## Artefactos y reproducción
 

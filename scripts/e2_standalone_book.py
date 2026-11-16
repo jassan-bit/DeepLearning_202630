@@ -34,6 +34,19 @@ MATHJAX_RELATIVE = Path("_static/vendor/mathjax/es5/tex-mml-chtml.js")
 MATHJAX_CDN = re.compile(
     r"https://cdn\.jsdelivr\.net/npm/mathjax@(?:3|3\.2\.2)/es5/tex-mml-chtml\.js"
 )
+OPTIONAL_DOWNLOAD_PREFIX = "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/"
+OPTIONAL_DOWNLOAD_PATHS = frozenset((
+    "book_e2/_static/e2_scientific_closure_20261116/preregistration_bundle.zip",
+    "book_e2/_static/e2_scientific_closure_20261116/final_registration_bundle.zip",
+))
+OPTIONAL_JOURNAL_ROOTS = {
+    "book_e2/_static/e2_scientific_closure_20261116/preregistration/journals/": (
+        "book_e2/_static/e2_scientific_closure_20261116/preregistration_bundle.zip",
+        "Preregistro_E2/journals/", 206),
+    "book_e2/_static/e2_scientific_closure_20261116/final_registration_chronology/journals/": (
+        "book_e2/_static/e2_scientific_closure_20261116/final_registration_bundle.zip",
+        "Registro_Final_E2/journals/", 90),
+}
 
 
 def digest(path: Path) -> str:
@@ -84,6 +97,80 @@ def advertised_source_commit() -> str:
     return value
 
 
+def optional_downloads(manifest: dict) -> list[dict]:
+    """Validate a v3 catalogue without fetching any optional resource."""
+    records = manifest.get("optional_downloads", [])
+    if not records:
+        if manifest.get("version") == "e2-standalone-book-payload-v3":
+            raise ValueError("El manifiesto v3 requiere su catálogo opcional explícito")
+        return []  # Payload v1/v2 readers keep their existing behavior.
+    if manifest.get("version") != "e2-standalone-book-payload-v3" or not isinstance(records, list):
+        raise ValueError("Catálogo opcional sólo admitido en un manifiesto v3")
+    seen = set()
+    for record in records:
+        if not isinstance(record, dict):
+            raise ValueError("Cada descarga opcional debe ser un registro explícito")
+        path, commit = record.get("repository_path"), record.get("download_commit")
+        if (path not in OPTIONAL_DOWNLOAD_PATHS or path in seen
+                or not isinstance(commit, str) or not re.fullmatch(r"[0-9a-f]{40}", commit)
+                or record.get("url") != f"{OPTIONAL_DOWNLOAD_PREFIX}{commit}/{path}"
+                or not isinstance(record.get("sha256"), str)
+                or not re.fullmatch(r"[0-9a-f]{64}", record["sha256"])
+                or type(record.get("bytes")) is not int or not 0 < record["bytes"] < 100_000_000
+                or not isinstance(record.get("reason"), str) or not record["reason"]):
+            raise ValueError("Catálogo opcional con ruta, identidad o HTTPS inmutable inválido")
+        seen.add(path)
+    if seen != OPTIONAL_DOWNLOAD_PATHS:
+        raise ValueError("El catálogo opcional debe identificar exactamente los dos ZIP autorizados")
+    return records
+
+
+def optional_scientific_journals(manifest: dict, downloads: list[dict]) -> list[dict]:
+    """Validate optional journal identities/member aliases without opening ZIPs."""
+    records = manifest.get("optional_scientific_journals", [])
+    if not records:
+        return []
+    if (manifest.get("version") != "e2-standalone-book-payload-v3"
+            or not downloads or not isinstance(records, list)):
+        raise ValueError("El catálogo journal requiere v3 y sus dos ZIP opcionales")
+    archives = {record["repository_path"]: record for record in downloads}
+    counts = {prefix: 0 for prefix in OPTIONAL_JOURNAL_ROOTS}
+    paths, hashes = set(), set()
+    for record in records:
+        if not isinstance(record, dict) or not isinstance(record.get("repository_path"), str):
+            raise ValueError("Registro journal opcional inválido")
+        path = record["repository_path"]
+        prefix = next((root for root in counts if path.startswith(root)), None)
+        if prefix is None:
+            raise ValueError("Journal fuera de las dos carpetas autorizadas")
+        bundle_path, member_prefix, _ = OPTIONAL_JOURNAL_ROOTS[prefix]
+        bundle = archives[bundle_path]
+        relative = path[len(prefix):]
+        if (not re.fullmatch(r"[0-9a-f]{64}/(?:ae1|ae2|supervised)\.jsonl\.gz", relative)
+                or path in paths or not isinstance(record.get("sha256"), str)
+                or not re.fullmatch(r"[0-9a-f]{64}", record["sha256"])
+                or record["sha256"] in hashes
+                or type(record.get("bytes")) is not int or not 0 < record["bytes"] < 100_000_000
+                or record.get("bundle_repository_path") != bundle_path
+                or record.get("member_path") != member_prefix + relative
+                or record.get("bundle_bytes") != bundle["bytes"]
+                or record.get("bundle_sha256") != bundle["sha256"]
+                or record.get("download_commit") != bundle["download_commit"]
+                or record.get("url") != bundle["url"]
+                or record.get("source_individual_git_present") is not False
+                or not isinstance(record.get("source_archive_git_blob"), str)
+                or not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", record["source_archive_git_blob"])
+                or record.get("source_binding") != "Git-tracked ZIP member; no individual journal Git source is claimed"
+                or not isinstance(record.get("reason"), str) or not record["reason"]):
+            raise ValueError("Identidad, miembro ZIP o ruta journal opcional inválidos")
+        counts[prefix] += 1
+        paths.add(path)
+        hashes.add(record["sha256"])
+    if any(counts[prefix] != specification[2] for prefix, specification in OPTIONAL_JOURNAL_ROOTS.items()):
+        raise ValueError("El catálogo journal debe contener exactamente 206+90 rutas")
+    return records
+
+
 def verify_files(root: Path, source_commit: str | None = None) -> dict:
     reject_symlinks(root)
     manifest_path = root / MANIFEST_NAME
@@ -93,9 +180,16 @@ def verify_files(root: Path, source_commit: str | None = None) -> dict:
     expected_commit = source_commit or advertised_source_commit()
     if manifest.get("source_commit") != expected_commit:
         raise ValueError("El paquete no corresponde al commit de fuente anunciado")
+    downloads = optional_downloads(manifest)
+    journals = optional_scientific_journals(manifest, downloads)
     entries = manifest.get("files")
     if not isinstance(entries, dict) or not entries or len(entries) > MAX_FILES:
         raise ValueError("Inventario de archivos inválido")
+    for record in downloads + journals:
+        site_path = PurePosixPath(*PurePosixPath(record["repository_path"]).parts[1:])
+        if ("source/" + record["repository_path"] in entries
+                or "site/" + site_path.as_posix() in entries):
+            raise ValueError("Un archivo declarado opcional no puede estar incluido a la vez")
     total = 0
     for name, record in entries.items():
         path = confined(root, safe_relative(name))
@@ -104,8 +198,13 @@ def verify_files(root: Path, source_commit: str | None = None) -> dict:
         if digest(path) != record["sha256"]:
             raise ValueError(f"Contenido modificado: {name}")
         total += record["bytes"]
-    return {"verified_files": len(entries), "verified_bytes": total,
-            "source_commit": expected_commit, "mathjax_version": MATHJAX_VERSION}
+    report = {"verified_files": len(entries), "verified_bytes": total,
+              "source_commit": expected_commit, "mathjax_version": MATHJAX_VERSION}
+    if downloads:
+        report["optional_downloads"] = downloads
+    if journals:
+        report["optional_scientific_journals"] = journals
+    return report
 
 
 def extract_payload(payload: Path, output: Path, source_commit: str | None = None) -> dict:
@@ -282,11 +381,28 @@ def write_entry(output: Path, report: dict, rebuilt: Path | None = None) -> None
     reject_symlinks(output)
     rebuilt_link = (f'<p><a href="{escape(rebuilt.relative_to(output).as_posix())}/intro.html">'
                     "Abrir la reconstrucción desde las fuentes</a></p>" if rebuilt else "")
+    downloads = report.get("optional_downloads", [])
+    optional_links = ""
+    if downloads:
+        optional_links = ("<h2>Descargas científicas opcionales</h2><p>El libro, sus figuras y las "
+                          "fuentes seleccionadas para reconstruirlo se leen sin estos ZIP. "
+                          "Descargarlos requiere Internet.</p><ul>" + "".join(
+            f'<li><a href="{escape(record["url"], quote=True)}">'
+            f'{escape(Path(record["repository_path"]).name)}</a>: {record["bytes"]} bytes; '
+            f'SHA-256 <code>{escape(record["sha256"])}</code>.</li>' for record in downloads) + "</ul>")
+    journals = report.get("optional_scientific_journals", [])
+    if journals:
+        optional_links += (f"<p>El catálogo describe {len(journals)} journals gzip como miembros "
+                           "de los ZIP opcionales; sus rutas individuales no son fuentes Git incluidas. "
+                           "El opt-in sólo permite omitir copias residuales reconocidas en el HTML. "
+                           "El manifiesto indica la ruta, SHA-256 y miembro de los ZIP anteriores "
+                           "para recuperar cada uno. D04/D11 conservan esos insumos científicos; "
+                           "la lectura y reconstrucción de este libro no los ejecuta ni los necesita.</p>")
     document = f"""<!doctype html><html lang="es"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>D01 · Libro E2 autónomo</title>
 <style>body{{font:18px/1.6 system-ui,sans-serif;max-width:860px;margin:3rem auto;padding:0 1.2rem}}
 a{{color:#125b91}}code{{background:#f0f3f6;padding:.15em .3em}}li{{margin:.6em 0}}</style>
-<h1>Libro del Entregable 2</h1><p>El libro completo y sus fuentes están en esta carpeta.
+<h1>Libro del Entregable 2</h1><p>El libro y sus fuentes seleccionadas están en esta carpeta.
 La lectura del contenido, las figuras, la navegación y las fórmulas no necesita el sitio web.</p>
 <p><strong><a href="site/intro.html">Abrir el libro completo</a></strong></p>{rebuilt_link}
 <ul><li>Instantánea de fuente: <code>{report['source_commit']}</code>.</li>
@@ -301,7 +417,7 @@ Sólo escucha en <code>127.0.0.1</code>; puede elegir puerto con <code>--port 0<
 el libro si Jupyter Book ya está instalado. Sus dependencias se indican en
 <code>source/requirements-book.lock.txt</code>.</li>
 <li>Esta entrega no entrena modelos, no ejecuta notebooks y no convierte la reproducción editorial en un experimento nuevo.</li></ul>
-<p>Instrucciones y alcance: <a href="LEEME_D01.md">LEEME_D01.md</a>.</p></html>"""
+{optional_links}<p>Instrucciones y alcance: <a href="LEEME_D01.md">LEEME_D01.md</a>.</p></html>"""
     contents = {"index.html": document,
                 "extraction_report.json": json.dumps(report, ensure_ascii=False, indent=2) + "\n"}
     for name, content in contents.items():

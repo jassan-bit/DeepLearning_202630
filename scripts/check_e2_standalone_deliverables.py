@@ -18,6 +18,16 @@ def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def validate_presentation(out,record):
+    deck=(out/"presentacion.html").read_text(encoding="utf-8")
+    expected=record.get("slides_prepared")
+    if (type(expected) is not int or expected<14
+            or deck.count('<section class="slide">')!=expected
+            or not (out/"notas_orador.md").is_file()
+            or record.get("oral_defense_performed") is not False):
+        raise ValueError("Presentation count/scope does not match the generated deck")
+
+
 def execute_case(item, archives, work, python, torch_python):
     started=time.monotonic()
     archive=archives/item["file"]
@@ -56,6 +66,11 @@ def execute_case(item, archives, work, python, torch_python):
         record=load(out/"dataset_audit.json")
         if record.get("status")!="passed" or not (out/"development_dataset.csv").is_file():
             raise ValueError("D03 dataset was not reconstructed")
+        if load(package/"package.json").get("current_dataset"):
+            current=load(out/"current_dataset_audit.json")
+            if (current.get("status")!="passed" or record.get("current_dataset",{}).get("cohorts")!={"training":655,"calibration":53,"evaluation":608}
+                    or not (out/"evaluation_dataset.csv").is_file() or not (out/"current_cohort_arrays.npz").is_file()):
+                raise ValueError("D03 full current dataset was not independently reconstructed/validated")
     else:
         record=load(out/"resultado.json")
         if not (out/"informe.html").is_file():
@@ -73,9 +88,7 @@ def execute_case(item, archives, work, python, torch_python):
     if item["id"]=="D08" and not record["taxonomy"]["categories_match_published_rows"]:
         raise ValueError("Error taxonomy differs")
     if item["id"]=="D12":
-        deck=(out/"presentacion.html").read_text(encoding="utf-8")
-        if deck.count('<section class="slide">')!=14 or not (out/"notas_orador.md").is_file():
-            raise ValueError("Presentation not generated")
+        validate_presentation(out,record)
     if item["id"]=="D10":
         with (work/"D10-training-inputs.log").open("w",encoding="utf-8") as stream:
             validation=subprocess.run([str(python),"-I","-S",str(package/"run.py"),"--validate-training"],cwd=unrelated,env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=60)

@@ -228,18 +228,20 @@ def recorded_corrections(config, out):
     records=[];body=""
     for area in config.get("corrections",[]):
         files=area.get("files",[]);name=area["area"]
-        body+='<h2>Correcciones: '+html.escape(name)+'</h2>'
+        body+='<h2>Correcciones: '+html.escape(area.get("generation", "")+" / "+name)+'</h2>'
         if not files:
             body+='<p>No disponible en esta instantánea; no se declara ejecutada.</p>'
-            records.append({"area":name,"availability":"not_available_in_this_snapshot","files":0});continue
+            records.append({"area":name,"generation":area.get("generation"),"availability":"not_available_in_this_snapshot","files":0});continue
         summaries=[]
         for item in files:
-            if item.get("render_in_report") is False:continue
             source=BASE/item["path"]
             target=out/"export"/item["path"];target.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(source,target)
             link='export/'+item["path"]
             title=html.escape(Path(item["path"]).name)
+            if item.get("render_in_report") is False:
+                body+='<p><a href="'+html.escape(link)+'">'+title+'</a> · archivo completo, sin incrustar su contenido</p>'
+                continue
             if source.suffix==".csv":
                 stored=csv_rows(source)
                 body+='<details><summary>'+title+' · '+str(len(stored))+' filas</summary><p><a href="'+html.escape(link)+'">CSV completo incluido</a></p>'+table(stored[:60])+'</details>'
@@ -249,12 +251,25 @@ def recorded_corrections(config, out):
                     scope={k:value[k] for k in ("status","version","scope","effect_pairs","RQ2_rejections_Holm10","RQ2_rejected_candidates","A2_replaced","new_model_fits","training_performed",
                                                "CPU_gap_tests","CPU_within_tolerance_conditionally","CPU_cost_tests","CPU_cost_reductions_Holm10",
                                                "projection_comparisons_reported","projection_alerts","maximum_CPU_original_GPU_projection_difference",
-                                               "original_parity_gate_passed","old714statistics_executed","original_RQ3_IUT_executed") if k in value}
-                    if scope:summaries.append({"file":source.name,"recorded":scope})
+                                               "original_parity_gate_passed","old714statistics_executed","original_RQ3_IUT_executed",
+                                               "control_counts","actual_cohorts_audited","data_ready_for_bounded_controls",
+                                               "predictors_completed","predictors_passed","branch_checks","passed","failed",
+                                               "full_CPU_IUT_executed","CPU_test_predictors","joint_CPU_improvements_Holm10",
+                                               "t_rejections_Holm13","t_rejected_models","group_results",
+                                               "opportunities","jobs_with_phase_receipts_union","completed_jobs_without_phase_durations",
+                                               "pipeline_execution_verified","real_driver_model_fits_executed","full_original_campaign_passed",
+                                               "AUC_OOF","p_block_permutation_with_refit","permutations_completed","family_size") if k in value}
+                    if name=="controls" and source.name=="negative_summary.json" and isinstance(value.get("rows"),list):
+                        scope.update(negative_control_rows=len(value["rows"]),
+                                     negative_controls_with_results=sum(r.get("status") in {"computed","association_nonestimable"} for r in value["rows"]),
+                                     negative_control_flags=sum(r.get("flag") is True for r in value["rows"]),
+                                     negative_unadjusted_IUT_p_le05=sum(r.get("p_IUT",1.)<=.05 for r in value["rows"]),
+                                     interpretation="Recorded posterior controls; no flags does not certify universal absence of leakage")
+                    if scope:summaries.append({"file":item["path"],"recorded":scope})
                 body+='<details><summary>'+title+'</summary><p><a href="'+html.escape(link)+'">JSON completo incluido</a></p><pre>'+html.escape(json.dumps(value,ensure_ascii=False,indent=2))+'</pre></details>'
             else:
                 body+='<p><a href="'+html.escape(link)+'">'+title+'</a></p>'
-        records.append({"area":name,"availability":"included","files":len(files),"recorded_summaries":summaries})
+        records.append({"area":name,"generation":area.get("generation"),"availability":"included","files":len(files),"recorded_summaries":summaries})
     if records:
         body='<h2>Ampliaciones posteriores conservadas</h2><p>Se muestran planes, recibos y resultados incluidos con sus propios estimandos y límites. El modo predeterminado no los recalcula, no sustituye A2 y no acredita una ejecución integral de entrenamiento o una defensa oral.</p>'+body
     return records,body
@@ -295,7 +310,7 @@ def slides(rows, payload, plot, corrections=()):
         overview=[]
         for area in corrections:
             summaries=area.get("recorded_summaries",[])
-            values=[item for item in summaries if item["file"] in ("summary.json","inference_report.json","controls_summary.json","hpo_summary.json","audit_summary.json")]
+            values=[item for item in summaries if Path(item["file"]).name in ("summary.json","inference_report.json","controls_summary.json","hpo_summary.json","audit_summary.json")]
             overview.append({"area":area["area"],"estado":area["availability"],"evidencia":values or "Fuentes y estados detallados en el informe independiente"})
         for area in corrections:
             for item in area.get("recorded_summaries",[]):
@@ -314,6 +329,20 @@ def slides(rows, payload, plot, corrections=()):
         body=body.replace("Auditoría integral de fuga y prueba formal comparable de δg pendientes.","El estado actual de auditoría y δg se distingue en los suplementos posteriores incluidos.")
         body=body.replace("No hay TOST/ROPE que acredite equivalencia.","El benchmark original no acreditó equivalencia; los suplementos conservan sus pruebas y límites propios.")
         contents[-2]=("Alcance original y correcciones",body+table(overview)+"<p>Incluir evidencia no acredita cumplimiento global. Los resultados adversos y no estimables se conservan.</p>")
+    current = [area for area in corrections if area.get("generation") == "20261116" and area.get("availability") == "included"]
+    if current:
+        title, body = contents[2]
+        contents[2] = (title, body.replace("La auditoría integral sigue parcial.", "Los recibos actuales separan la integridad real655/53/608, guardas de puertos, controles negativos y drift; cada control conserva su alcance y resultado."))
+        for title, selected in (("Auditoría y controles actuales", {"data_audit", "port_audit", "classical_causality", "controls", "drift_explanation"}),
+                                ("Inferencia, costes y reproducción actuales", {"cpu_test_iut", "period_comparison", "hpo_cost_reconciliation", "reproduction", "cpu_fixed_recipe_reproduction"})):
+            evidence=[]
+            for area in current:
+                if area["area"] not in selected:continue
+                for item in area.get("recorded_summaries",[]):
+                    if Path(item["file"]).name not in {"summary.json", "readout.json", "audit_result.json", "audit_report.json", "manifest.json", "adversarial_result.json", "negative_summary.json"}:continue
+                    values={k:v for k,v in item["recorded"].items() if k not in {"version", "scope"}}
+                    if values:evidence.append({"área":area["area"],"archivo":Path(item["file"]).name,"valores publicados":json.dumps(values,ensure_ascii=False)})
+            contents.insert(-1,(title,table(evidence)+"<p>Valores copiados de los archivos incluidos. Las ampliaciones son posteriores; una ejecución no acredita toda la campaña, ausencia universal de fuga o una nueva validación ciega.</p>"))
     sections = ''.join('<section class="slide"><h1>'+html.escape(title)+'</h1>'+body+'</section>' for title,body in contents)
     style = CSS+".slide{display:none;min-height:76vh;padding:35px;box-sizing:border-box;font-size:clamp(18px,2.2vw,30px)}.slide.active{display:block}.slide h1{font-size:1.5em}.slide table{font-size:.7em}.slide img{max-height:58vh}.controls{position:fixed;bottom:0;left:0;right:0;background:#153b62;color:white;padding:10px;display:flex;justify-content:space-between;gap:20px}.controls button{font-size:18px;padding:7px 18px;cursor:pointer}.counter{align-self:center}@media print{.slide{display:block;break-after:page;min-height:0;font-size:17px;padding:20px}.controls{display:none}}"
     script = "const s=[...document.querySelectorAll('.slide')];let i=0;function show(v){i=Math.max(0,Math.min(s.length-1,v));s.forEach((x,k)=>x.classList.toggle('active',k===i));document.querySelector('.counter').textContent=(i+1)+' / '+s.length;}document.querySelector('#prev').onclick=()=>show(i-1);document.querySelector('#next').onclick=()=>show(i+1);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();show(i+1)}if(e.key==='ArrowLeft')show(i-1)});show(0);"
@@ -361,8 +390,8 @@ def main():
         deck,notes=slides(rows,payload,"comparacion_rmse.svg",correction_records)
         (out/"presentacion.html").write_text(deck,encoding="utf-8")
         (out/"notas_orador.md").write_text(notes,encoding="utf-8")
-        body='<p><a href="presentacion.html">Abrir las 14 diapositivas</a> · <a href="notas_orador.md">Notas del orador</a>. Flechas para navegar; imprimir para guardar PDF. La preparación del archivo no acredita una defensa oral ya realizada.</p>'+body
-        result["slides_prepared"]=14;result["oral_defense_performed"]=False
+        body='<p><a href="presentacion.html">Abrir las '+str(deck.count('<section class="slide">'))+' diapositivas</a> · <a href="notas_orador.md">Notas del orador</a>. Flechas para navegar; imprimir para guardar PDF. La preparación del archivo no acredita una defensa oral ya realizada.</p>'+body
+        result["slides_prepared"]=deck.count('<section class="slide">');result["oral_defense_performed"]=False
     if args.full_primary:
         result["full_primary"]=full_primary(payload,out,args.draws)
     if args.full_uncertainty:

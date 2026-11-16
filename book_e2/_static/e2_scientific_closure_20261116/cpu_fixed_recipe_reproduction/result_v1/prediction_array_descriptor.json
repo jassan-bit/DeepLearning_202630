@@ -1,0 +1,93 @@
+{
+  "representation": "derivative of saved forecast JSON; exact float64 values, without model forwards or rescoring",
+  "forecast_rows": 81,
+  "evaluation_dates": 608,
+  "calibration_dates": 53,
+  "forecast_source": "81 copied predictions/*.json bound to the new frozen checkpoints",
+  "target_source": "inputs/current_cohort_arrays.npz; evaluation_y_original, not the score forecast JSON",
+  "target_npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+  "target_join": "exact608 date equality, all-common support, identical20 archive hashes and byte-identical raw-derived daily CSV",
+  "daily_csv_sha256": "9563ef557e180f34ee37dce3b1480c38aaefd7063df21c031644973310e28deb",
+  "sha256": "4926264c3ba9f6dc30da3822ec312cfd8cd3902f57734085a867f4130c01cf60",
+  "arrays": {
+    "dates": {
+      "shape": [
+        608
+      ],
+      "dtype": "<U10",
+      "array_sha256": "33a396b79d35be335e31b448c9e1ab4a721c36359b25114ed9dbd6c17c966132"
+    },
+    "model": {
+      "shape": [
+        81
+      ],
+      "dtype": "<U30",
+      "array_sha256": "82eef368893b54a4b38e53e2bdac418a1dc5deaafeb31eb724c40435b667f478"
+    },
+    "seed": {
+      "shape": [
+        81
+      ],
+      "dtype": "<U13",
+      "array_sha256": "7c234232eb582669169b0ba2a9badf02ffde99fd6fa491ee4002c39ed3b87b77"
+    },
+    "prediction_original": {
+      "shape": [
+        81,
+        608
+      ],
+      "dtype": "<f8",
+      "array_sha256": "0df644905087adf3c2abb6fe818234e09d4ac4b637adb6a22ec52dac5ff2d019"
+    },
+    "observed_y_original": {
+      "shape": [
+        608
+      ],
+      "dtype": "<f8",
+      "array_sha256": "810d151c5c5a7d99912bb789121cd6333072783eafcde6b94da0a50d37c4a93a"
+    },
+    "mask": {
+      "shape": [
+        608
+      ],
+      "dtype": "|b1",
+      "array_sha256": "1bcc6703b93b146af678f828b58a35fbaa565d6b60b2f376c0d0ba8a2cea7d60"
+    },
+    "calibration_dates": {
+      "shape": [
+        53
+      ],
+      "dtype": "<U10",
+      "array_sha256": "90ba1aa82893a712219e52a8b25a998bf6cd4f2dbf5f35723f8fd9b8160204e5"
+    },
+    "calibration_prediction_original": {
+      "shape": [
+        81,
+        53
+      ],
+      "dtype": "<f8",
+      "array_sha256": "1d278d0541aab47249edb99e3d8c2b5d230fde0d012265643ca3d2f9f6c3bb57"
+    },
+    "calibration_y_original": {
+      "shape": [
+        53
+      ],
+      "dtype": "<f8",
+      "array_sha256": "1eeb6189aefbcf1ca4cf77c73ddd46e111dfd34ccc0c754a6c1d545216d35bb8"
+    },
+    "checkpoint_sha256": {
+      "shape": [
+        81
+      ],
+      "dtype": "<U64",
+      "array_sha256": "327c75e7b0f9755994d6ef545cafd525025e4531b1714064c71f9c3617e798e8"
+    },
+    "calibrator_sha256": {
+      "shape": [
+        81
+      ],
+      "dtype": "<U64",
+      "array_sha256": "6044d36c4ddd4c7ada78c86bcd02d17367dfa4775c2a0642f194c80f1c54fe95"
+    }
+  }
+}

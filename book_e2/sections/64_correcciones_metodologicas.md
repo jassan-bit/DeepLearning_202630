@@ -1,7 +1,9 @@
 (e2-correcciones-metodologicas)=
 # Correcciones metodológicas posteriores al benchmark
 
-**Fecha de esta ampliación: 15/11/2026.** Se ejecutan comprobaciones adicionales de datos, efectos, regímenes y predictores congelados. La ruta continúa siendo **F2a, series de tiempo**. El catálogo conserva arquitecturas definidas: **NAS no aplica**.
+**Primera ampliación: 15/11/2026. Estado vigente actualizado el 16/11/2026.** Se ejecutan comprobaciones adicionales de datos, efectos, regímenes y predictores congelados. La ruta continúa siendo **F2a, series de tiempo**. El catálogo conserva arquitecturas definidas: **NAS no aplica**.
+
+La [evidencia adicional del 16/11 (§65)](65_cierre_cientifico_real.md) completa los controles que dependían de las entradas reales de prueba y ejecuta una nueva IUT CPU. Los resultados y límites vigentes se presentan primero; los bloqueos y planes anteriores se conservan al final como antecedentes fechados.
 
 La ampliación parte de la versión `0bdbc42b`. Los planes se registran antes de sus respectivos cálculos, después de conocer el benchmark. Es evidencia **posterior y exploratoria**, no una recuperación de cegamiento o de preregistro histórico. Se conserva la A2 original, SHA-256 `879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1`, y la decisión primaria: ningún contraste de mejora mayor que δ rechaza después de Holm20.
 
@@ -48,6 +50,44 @@ Para cada régimen se calcula la RMSE de cada trayectoria y después su promedio
 La inferencia depende de la adecuación del remuestreo temporal a esta cronología. No hay potencia específica de RQ2 demostrada ni extrapolación a otros mercados. La asociación entre régimen y deterioro tampoco identifica un efecto causal de la volatilidad.
 
 {download}`RQ2, diez contrastes y Holm10 <../_static/e2_corrections_20261115/statistics/rq2_primary_Holm10.csv>` · {download}`Sensibilidad 7/14/28 <../_static/e2_corrections_20261115/statistics/rq2_block_sensitivity.csv>` · {download}`608 etiquetas causales <../_static/e2_corrections_20261115/statistics/causal_regime_labels_608.csv>` · [Soporte por régimen](../_static/e2_corrections_20261115/statistics/rq2_support.json).
+
+## Datos reales y controles ejecutados el 16/11/2026
+
+Se recibieron y verificaron los **veinte ZIP mensuales originales**, 42.542.826 bytes, para enero de 2025–agosto de 2026. Sus huellas coinciden con el manifiesto previo; la copia repetida de agosto no cuenta como un mes adicional. El [recibo de admisión](../_static/e2_scientific_closure_20261116/data_admission/uploaded_archives_receipt.json) y el [derivado diario verificado](../_static/e2_scientific_closure_20261116/data_admission/known_E1_daily.csv) permiten revisar la procedencia. El bloqueo de descarga anterior ya no impide estos cálculos.
+
+La [auditoría común real](../_static/e2_scientific_closure_20261116/data_audit/audit_result.json) reconstruye **655 entradas train, 53 de calibración y 608 de prueba**, sin imputar ni comprimir el calendario; conserva 12 controles PASS, tres PARTIAL y uno no aplicable. Los tres parciales remiten a controles separados, ahora ejecutados, y no se convierten retrospectivamente en PASS dentro de ese archivo:
+
+| Control adicional ejecutado | Resultado y alcance |
+|---|---|
+| [Ports neuronales](../_static/e2_scientific_closure_20261116/port_audit/audit_report.json) | 78/78 checkpoints aprobados en 390 condiciones de aislamiento, lote, orden e intervención futura sobre seis ventanas reales de desarrollo. Estados, buffers y escaladores inmutables; no es una prueba de esas condiciones en las 608 fechas. |
+| [Causalidad clásica](../_static/e2_scientific_closure_20261116/classical_causality/audit_report.json) | 36/36 condiciones de truncamiento y perturbación futura aprobadas, 6.612 comparaciones idénticas y 2.825 recibos ARIMA de pronóstico antes de observar. Actualizar estado filtrado con coeficientes fijos se distingue de reajustar. |
+| [Etiquetas permutadas](../_static/e2_scientific_closure_20261116/controls/negative_summary.json) | Trece redes realmente entrenadas, una semilla y recetas fijas, permutando sólo etiquetas de train por bloques7. IUT de ganancia>δ y correlación positiva, 10.000 remuestreos por bloques14 y Holm13: **cero alertas ajustadas**. Algunos p brutos son menores que 0,05; no se afirma ausencia universal de fuga. |
+| [Adversarial de dominio](../_static/e2_scientific_closure_20261116/controls/adversarial_result.json) | Train655 frente a test608, cinco folds purgados y 999 permutaciones con reajuste: **AUC OOF=0,95254, p=0,001**. Hay cambio de distribución detectable. Los folds del clasificador pueden usar filas posteriores al bloque retenido: es un diagnóstico de dominio, no un backtest causal. No se presenta como AUC indistinguible de 0,5 ni como prueba de fuga por sí sola. |
+
+La [explicación del cambio](../_static/e2_scientific_closure_20261116/drift_explanation/README.md) reproduce AUC 0,95254 con los 35 atributos; al separar grupos obtiene **0,49734 con OHLC y 0,90265 con volumen**. Es una localización descriptiva, sin atribución causal ni una descomposición aditiva de AUC. Se conserva la alerta y se vinculan métricas trimestrales, RQ2 y cobertura condicional al límite de transporte. No se retiran atributos ni se reajusta A2 después de ver test.
+
+## Inferencia: brecha CPU, periodos originales y RQ3 completa
+
+El [diagnóstico de brecha CPU del 15/11](../_static/e2_corrections_20261115/cpu_diagnostic/statistics/results/CPU_delta_g_Holm13.csv) continúa ejecutado: riesgos comparables train/cal, seis semillas, t con cinco grados de libertad y Holm13. **Dos de trece redes establecen tolerancia condicional respecto a δg; once no la establecen.** Su alcance no demuestra ausencia general de sobreajuste ni paridad CUDA. Las dos puertas anteriores con tolerancia 10⁻⁷ y las diez alertas posteriores se conservan con sus valores originales.
+
+La [comparación formal de periodos originales A100](../_static/e2_scientific_closure_20261116/period_comparison/period_differences_t_Holm13.csv) usa calibración53 y prueba608 de los mismos predictores. La t bilateral sobre seis diferencias por red y Holm13 rechaza en seis casos: mayor RMSE de prueba en FCN, PatchTST e iTransformer; menor en MLP16, LSTM32 y GRU32. Para SAE, diferencia media −0,000225714 y p Holm=0,53727. La [sensibilidad por los 64 cambios de signo](../_static/e2_scientific_closure_20261116/period_comparison/period_sign_flip_sensitivity_Holm13.csv), con su propio Holm13, no rechaza. Los tres clásicos conservan reporte descriptivo R=1. **Calibración no es validación HPO independiente**; estos resultados no identifican sobreajuste como causa ni demuestran equivalencia o consistencia a partir del no rechazo.
+
+**La nueva IUT CPU de RQ3 sí se ejecutó completa**, con [plan propio](../_static/e2_scientific_closure_20261116/cpu_test_iut/analysis_plan.json) anterior a sus nuevas pasadas. Se generaron **47.424 pronósticos de prueba**, 78 pesos recuperados × 608 fechas, sin alterar estados; se comprobaron identidades de los riesgos train/cal reutilizados. La ganancia predictiva procede de esas nuevas proyecciones CPU, y el coste de las mediciones CPU residentes: no se mezcla precisión GPU con latencia CPU.
+
+El componente de ganancia>δ usa 20.000 remuestreos del calendario por bloques14 con las seis trayectorias fijas; el componente de reducción de latencia remuestrea 20.000 veces los 100 bloques completos de medición. Para cada candidato frente a GRU32 se calcula p_IUT=max(p_ganancia,p_coste), seguido de Holm10. **Los diez p de coste, IUT y Holm10 son 1: cero mejoras conjuntas establecidas.** Para SAE, la ganancia CPU puntual es 0,000197731, menor que δ, con p predictivo=0,73291. [Diez IUT ejecutadas](../_static/e2_scientific_closure_20261116/cpu_test_iut/statistics/CPU_full_IUT_Holm10.csv) · [recibo y límites](../_static/e2_scientific_closure_20261116/cpu_test_iut/statistics/summary.json).
+
+Esta evidencia posterior supera el alcance del argumento anterior por componente necesario: ahora ambos componentes están estimados. **El plan original detenido por paridad no se declara completado**, ni se acredita equivalencia, una nueva prueba ciega o una ventaja en otro hardware. A2 y RQ1 permanecen intactos.
+
+## Reproducción y costes: alcance vigente
+
+[§65](65_cierre_cientifico_real.md) reúne la cronología recuperada de los ajustes y las nuevas conciliaciones de coste, con sus fuentes y límites. La [repetición posterior del entrenamiento en CPU](../_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/result_v1/README.md) está completada con las recetas, semillas y épocas fijadas antes de sus ajustes: **78 ajustes neuronales nuevos, tres clásicos, calibración53, congelación81, admisión20ZIP y evaluación608**, seguida del análisis primario de 20.000 remuestreos. Sus [resultados y recibos nuevos](../_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/result_v1/export_receipt.json) no sustituyen los resultados A100 originales ni acreditan paridad entre backends. Los [83 workers exitosos y fallos previos](../_static/e2_scientific_closure_20261116/cpu_fixed_recipe_reproduction/result_v1/accounting_summary.json) suman **6.853,632183 s**; el intento final reutilizó 80 workers exitosos verificados de V3 y sólo ejecutó los tres restantes, sin volver a entrenar las redes. No repitió HPO, NAS, ablaciones ni toda la campaña histórica; B21 conserva ese alcance parcial.
+
+RQ2, los veinte efectos con IC y las trece pruebas de brecha CPU ya están ejecutados; no se enumeran como cálculos pendientes. La potencia piloto de RQ1 y su MDE conservan su limitación declarada, y la cronología conocida mantiene el alcance retrospectivo. **NAS sigue sin aplicar.**
+
+````{admonition} Archivo documental: auditorías y cierres del 15/11 y primer corte del 16/11
+:class: dropdown
+
+Este bloque conserva los resultados, enlaces y estados del corte anterior a recibir los veinte ZIP. Sus menciones BLOCKED_INPUTS, controles no ejecutados e IUT sólo deducida corresponden a ese corte; el estado vigente está en las secciones anteriores y en [§65](65_cierre_cientifico_real.md). Sus archivos descargables mantienen sus bytes originales.
 
 ## Auditoría de los datos y transformaciones disponibles
 
@@ -171,3 +211,6 @@ El [suplemento independiente descargable](../_static/e2_pending_closure_20261116
 La [conciliación por modelo](../_static/e2_corrections_20261115/hpo/model_reconciliation_13.csv) y el catálogo mantienen por separado duraciones de fases y cargos de campaña. No se suman ámbitos solapados, no se imputan costes desconocidos y no se reabre HPO o NAS. El coste histórico integral continúa sin identificar. **NAS sigue sin aplicar.**
 
 El diario vigente usa una URL versionada nueva y conserva la cadena aditiva completa. La descarga del diario del 15/11 mantiene sus bytes originales; no se sustituye ni se reinicia la cuenta. El suplemento descargable conserva el script y el diario de su propio snapshot científico.
+
+
+````
