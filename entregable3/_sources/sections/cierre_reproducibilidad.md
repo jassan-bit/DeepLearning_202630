@@ -39,6 +39,8 @@ El informe deberá identificar revisor humano y relación con el proyecto; fecha
 
 ## Autoría, contribuciones y uso de IA
 
+El [dictamen posterior sobre la cabeza de momentos](22_dictamen_momentos.md) también usa asistencia de ChatGPT/Codex para lectura focal, búsqueda, crítica matemática, contraejemplos escalares, código de auditoría y documentación. Su [procedencia](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/provenance.md) declara ese alcance. El paquete de revisión humana está sin diligenciar y no se presenta como aval externo ni firma.
+
 La [propuesta posterior al cierre v2](21_propuesta_momentos.md) también fue preparada con asistencia de ChatGPT/Codex para revisión focal, formulación, demostración, crítica matemática, verificación escalar, pruebas y documentación. Su [declaración de procedencia](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/provenance.md) atribuye los componentes conocidos y mantiene pendiente la revisión humana, la novedad y la defensa del estudiante. No se entrenó una red nueva en ese corte.
 
 La autoría declarada en la portada se mantiene como dato del proyecto. No se atribuyen automáticamente contribuciones individuales ni se afirma una firma o defensa que no se haya verificado.
