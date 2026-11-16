@@ -1,0 +1,91 @@
+{
+  "version": "e2-pending-data-status-v1",
+  "observed_at_utc": "2026-11-16T00:08:30.522889+00:00",
+  "status": "BLOCKED_INPUTS",
+  "probe_scope": "One curl attempt per original ZIP and CHECKSUM URL; max20seconds each; no retries or proxy changes",
+  "probe_elapsed_wall_seconds": 0.04170274699572474,
+  "original_archive": {
+    "archive": "BTCUSDT-1m-2025-01.zip",
+    "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip",
+    "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip.CHECKSUM",
+    "sha256": "8d028b2f91aad57d6b693d44449c93f9c4b7044f55f298c8a3ac40ab676dafac",
+    "bytes": 2222830,
+    "csv_rows": 44640,
+    "first_open_utc": "2025-01-01T00:00:00+00:00",
+    "last_open_utc": "2025-01-31T23:59:00+00:00",
+    "relative_path": "BTCUSDT/1m/monthly/BTCUSDT-1m-2025-01.zip"
+  },
+  "manifest_sha256": "d2eb4e84fff85ee957e6b02890cead3cec37fd593ec2a8db487dbe137d2d3a10",
+  "probe_records": [
+    {
+      "kind": "zip",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip",
+      "returncode": 22,
+      "elapsed_wall_seconds": 0.04071143000328448,
+      "transfer": {
+        "http_code": "000",
+        "http_connect": "403",
+        "size_download": 0,
+        "time_total": 0.00485,
+        "url_effective": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip"
+      },
+      "error": "curl: (22) The requested URL returned error: 403",
+      "file_exists": false,
+      "file_bytes": 0,
+      "response_sha256": null,
+      "header_sha256": "8834c08677888a8c0a9d1599b0edcbda17fbd5e5a594a9bfac338b5d9f54b7cd"
+    },
+    {
+      "kind": "checksum",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip.CHECKSUM",
+      "returncode": 22,
+      "elapsed_wall_seconds": 0.023527479999756906,
+      "transfer": {
+        "http_code": "000",
+        "http_connect": "403",
+        "size_download": 0,
+        "time_total": 0.007652,
+        "url_effective": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip.CHECKSUM"
+      },
+      "error": "curl: (22) The requested URL returned error: 403",
+      "file_exists": false,
+      "file_bytes": 0,
+      "response_sha256": null,
+      "header_sha256": "8834c08677888a8c0a9d1599b0edcbda17fbd5e5a594a9bfac338b5d9f54b7cd"
+    }
+  ],
+  "proxy_tunnel_403_observed": true,
+  "official_zip_and_checksum_verified": false,
+  "all20_original_archives_recovered": false,
+  "current_evaluation_features_available": false,
+  "current_evaluation_target_metadata_available": true,
+  "scientific_recomputation_executed": false,
+  "budget_before_probe": {
+    "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+    "approved_total_hours": 84,
+    "historical_charged_seconds": 288922.08751226973,
+    "corrections_charged_seconds": 216.07346003600105,
+    "cumulative_charged_seconds": 289138.16097230575,
+    "remaining_seconds": 13261.839027694292,
+    "reserved_seconds": 0,
+    "unreserved_seconds": 13261.839027694292,
+    "open_reservations": {},
+    "budget_reset": false,
+    "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+  },
+  "new_model_fits": 0,
+  "model_inference_calls": 0,
+  "proxy_configuration_changed": false,
+  "alternative_proxy_or_data_source_used": false,
+  "earlier_large_local_search_repeated": false,
+  "scope_limit": "Blocked before numeric evaluation-data recovery; known targets/predictions are not OHLCV features or Xtest.",
+  "probe_execution_role": "Single initial curl probe; the reusable helper was added afterward and its default mode does not repeat network requests.",
+  "helper_script_sha256": "b3000022ae9e659840aa983936951fe8300dfd55572ffbf828ab3e9f5b3cf3ff",
+  "unblock_without_dataset_switch": {
+    "original_daily_csv_sha256": "9563ef557e180f34ee37dce3b1480c38aaefd7063df21c031644973310e28deb",
+    "accepted_inherited_daily_csv_sha256": "c81215f88dfc7fe9b8b579596c958f27da5bedb7580bb4a935808b23a414baf1",
+    "alternative": "Twenty original manifest-bound monthly archives; no substitute prices or labels",
+    "existing_reconstruction_executor": "scripts/e2_current_data_closure.py",
+    "scientific_execution_requires_shared_budget_wrapper": "scripts/e2_corrections_budget.py"
+  }
+}

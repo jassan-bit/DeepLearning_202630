@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7 Diseño riguroso del modelo original &#8212; Entregable 3 · Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/07_diseno_riguroso';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Concordancia y documentos de trabajo anteriores" href="concordancia_secciones.html" />
+    <link rel="prev" title="6 Bloque C El modelo original" href="06_modelo_original.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3 · Deep Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 7 de la guía</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">1 Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_estandar_profundidad.html">2 Estándar de profundidad exigido</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_panorama_general.html">3 Panorama general del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_correcciones_e2.html">4 Bloque A Correcciones del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_configuraciones_exportacion.html">5 Bloque B Selección de configuraciones y exportación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_modelo_original.html">6 Bloque C El modelo original</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7 Diseño riguroso del modelo original</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_planificacion.html">Plan de trabajo inicial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_desarrollo_evidencias.html">Desarrollo y evidencias anteriores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_resultados_discusion.html">Resultados y discusión del corte anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reproducibilidad_entrega.html">Reproducibilidad y estructura final prevista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad del primer corte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del candidato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_bloques_a_b.html">Evidencias originales de los bloques A y B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_modelo_original.html">Desarrollo original del candidato C</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 3 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/07_diseno_riguroso.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>7 Diseño riguroso del modelo original</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-hueco-de-investigacion-a-la-hipotesis-contrastable">7.1 Del hueco de investigación a la hipótesis contrastable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion">7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustento-teorico-que-demostrar-y-como-verificarlo">7.3 Sustento teórico: qué demostrar y cómo verificarlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-ablacion">7.4 Diseño de la ablación</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diseno-riguroso-del-modelo-original">
+<h1>7 Diseño riguroso del modelo original<a class="headerlink" href="#diseno-riguroso-del-modelo-original" title="Link to this heading">#</a></h1>
+<p>El mecanismo candidato y su implementación se describen en el <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Bloque C</span></a>. Este capítulo organiza su diseño según la Sección 7 de la guía: limitación, hipótesis, disciplina experimental, propiedad teórica y ablaciones. La implementación y los ensayos de software existen; todavía no se han ejecutado HPO, entrenamiento o comparaciones del candidato sobre datos de mercado. R1 y R3 siguen abiertos, y la comprensión y defensa académica de R2 deben verificarse con el autor.</p>
+<section id="del-hueco-de-investigacion-a-la-hipotesis-contrastable">
+<h2>7.1 Del hueco de investigación a la hipótesis contrastable<a class="headerlink" href="#del-hueco-de-investigacion-a-la-hipotesis-contrastable" title="Link to this heading">#</a></h2>
+<p><strong>D1. Limitación identificada y evidencia disponible.</strong> El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/54_robustez_interpretabilidad.html">estudio de robustez de E2</a> ejecutó un estrés que desplaza el 10 % de las celdas de entrada en ±5 desviaciones estándar. Bajo esa condición, la RMSE aumentó un 585,40 % en el SAE, un 513,98 % en GRU32 y un 1.552,52 % en TimeMixer. Es evidencia de sensibilidad bajo una corrupción artificial concreta, observada retrospectivamente en el benchmark. No demuestra fragilidad ante cualquier error de mercado: las ventanas perturbadas pueden incumplir la coherencia OHLCV. La limitación operativa de calendario de TimeMixer en ETTh1 tampoco se traslada al adaptador BTC sin marcadores de calendario.</p>
+<p><strong>D2. Fuente y diferencia candidata del mecanismo.</strong> Se conserva el codificador CNN causal → LSTM unidireccional y se estudia una regla de atención que combina penalización de discordancia respecto a una referencia causal fija con saturación radial de valores. La consulta por contenido, las CNN, las LSTM y la estabilidad Lipschitz tienen antecedentes. Además, la saturación usada es el gradiente de una función pseudo-Huber radial. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación y la revisión focal</span></a> distinguen esos componentes conocidos de la combinación que se investiga. Las dos modificaciones candidatas no se presentan como una invención acreditada: faltan cerrar la revisión de novedad, las equivalencias con trabajos cercanos y su verificación externa.</p>
+<p><strong>D3. Hipótesis del mecanismo, propuesta para desarrollo.</strong> Si la penalización y la saturación reducen la influencia de estados discordantes por el mecanismo previsto, el modelo completo deberá reducir la RMSE frente al mismo codificador con atención convencional de contenido en un conjunto de estrés <span class="math notranslate nohighlight">\(S\)</span> definido antes de evaluar, sin un deterioro limpio superior al margen heredado. Para BTCUSDT se conserva</p>
+<div class="math notranslate nohighlight">
+\[
+\delta=0{,}00025772842664981106
+\]</div>
+<p>en unidades originales de <span class="math notranslate nohighlight">\(\sigma_7\)</span>; no se recalcula con el resultado del candidato. La propuesta exige una ganancia de al menos <span class="math notranslate nohighlight">\(\delta\)</span> en <span class="math notranslate nohighlight">\(S\)</span>. Quedaría refutada si no se observa ese beneficio bajo el diseño fijado o si el deterioro limpio excede el margen. Mejorar sólo la robustez no satisface la comparación principal de R3 frente al Top 10 y todos los baselines fuertes.</p>
+<p><strong>D4. Predicciones secundarias que deben contrastarse.</strong> Se proponen antes de los experimentos finales:</p>
+<ul class="simple">
+<li><p>Al retirar la saturación, debería aumentar la sensibilidad a perturbaciones que producen estados latentes grandes. El ejemplo analítico del <a class="reference internal" href="09_modelo_original.html"><span class="std std-doc">anexo técnico</span></a> muestra ese efecto en un caso artificial, no en BTC.</p></li>
+<li><p>Al retirar la penalización, debería reducirse la ventaja atribuida específicamente a estados discordantes. Si el efecto permanece igual, debe revisarse la explicación del papel de ese componente.</p></li>
+<li><p>La mejora debería mantenerse bajo alteraciones plausibles que preserven la coherencia OHLCV, además del estrés artificial ya conocido. Los tipos, severidades y subconjuntos se fijarán antes de medirlos.</p></li>
+<li><p>Los saltos genuinos y la cobertura en la cola alta no deberían degradarse de manera incompatible con la hipótesis. Una ganancia media acompañada de supresión de extremos obliga a revisar el diseño y sus límites.</p></li>
+</ul>
+<p><strong>D5. Éxito y fracaso antes de la evaluación definitiva.</strong> Como criterio de desarrollo propuesto, sean <span class="math notranslate nohighlight">\(\Delta_S=\operatorname{RMSE}_{\rm base}(S)-\operatorname{RMSE}_{\rm completo}(S)\)</span> y <span class="math notranslate nohighlight">\(D_0=\operatorname{RMSE}_{\rm completo}(\text{limpio})-\operatorname{RMSE}_{\rm base}(\text{limpio})\)</span>. El criterio a someter a cierre previo es que el límite inferior del IC95 % de <span class="math notranslate nohighlight">\(\Delta_S\)</span> supere <span class="math notranslate nohighlight">\(\delta\)</span> y que el límite superior del IC95 % de <span class="math notranslate nohighlight">\(D_0\)</span> quede por debajo de <span class="math notranslate nohighlight">\(\delta\)</span>, con inferencia temporal y control familiar definidos en el protocolo. Los umbrales de los análisis de cola también deben fijarse antes de conocer sus resultados.</p>
+<p>No cumplir esas condiciones impide declarar éxito de esta hipótesis; un intervalo amplio se reportaría como no concluyente, sin confundirlo con equivalencia. La hipótesis, los IC anteriores y los criterios secundarios son <strong>propuestas sin ejecución ni preregistro</strong>. Antes de confirmar se deben cerrar el estimando, el remuestreo, las familias y las reglas de decisión. R3 requerirá además sus condiciones completas de relevancia, adecuación y superioridad frente a cada rival; no se deduce de una comparación favorable con el modelo base.</p>
+</section>
+<section id="disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion">
+<h2>7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación<a class="headerlink" href="#disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion" title="Link to this heading">#</a></h2>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md">bitácora de desarrollo</a> conserva la familia completa y tres intervenciones funcionales de software: sin penalización, sin saturación y sin contenido. Las cuatro variantes se examinaron con entradas artificiales; no se eligió una receta por su RMSE en datos de mercado. El corte informa <strong><span class="math notranslate nohighlight">\(N_{d,\rm mercado}=0\)</span></strong>, que no equivale a ausencia de esfuerzo de diseño. Hay <strong>cuatro variantes funcionales especificadas y comprobadas</strong>. Antes del protocolo se deberá conciliar y declarar el <span class="math notranslate nohighlight">\(N_d\)</span> total, incluyendo variantes descartadas, intentos y fallos, con su fecha, evidencia, métricas disponibles y decisión.</p>
+<p>El ajuste diminuto de una prueba unitaria realizó 350 pasos de Adam sobre ocho ejemplos artificiales. Comprueba capacidad de ajuste del software; no constituye entrenamiento de BTC, validación del mecanismo económico ni selección de hiperparámetros con los datos de E1/E2.</p>
+<p>La separación de datos para las siguientes fases debe conservar estos roles:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Uso</p></th>
+<th class="head"><p>Decisiones permitidas</p></th>
+<th class="head"><p>Límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Desarrollo</p></td>
+<td><p>Formular el mecanismo, probar variantes y fijar espacios, hipótesis y criterios.</p></td>
+<td><p>Registrar todo el esfuerzo y el sesgo de selección; no presentar este conjunto como confirmación independiente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Confirmación</p></td>
+<td><p>Aplicar el protocolo final con arquitectura, pérdida, ajustes y reglas ya cerrados.</p></td>
+<td><p>No cambiar el diseño después de observar sus resultados.</p></td>
+</tr>
+<tr class="row-even"><td><p>Tres conjuntos adicionales</p></td>
+<td><p>Evaluar la transferencia de la misma tarea bajo el procedimiento prefijado.</p></td>
+<td><p><strong>Todavía no se han elegido.</strong> Deben seleccionarse antes de conocer el desempeño y no usarse para rediseñar el mecanismo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las 608 fechas de enero de 2025 a agosto de 2026 ya se evaluaron en E1/E2; la reserva de septiembre–octubre de 2026 también tiene antecedentes publicados. Repetir esos periodos no recupera cegamiento. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato heredado</a> conserva su procedencia; la confirmación de E3 requiere documentar la exposición previa y una separación real de las decisiones de diseño.</p>
+<p>Antes de la campaña definitiva deben quedar cerrados la arquitectura y la pérdida, la revisión del mecanismo, las particiones y fuentes, los tres datasets adicionales, el espacio y presupuesto de ajuste comparable, el piloto de potencia, las semillas y el número de ejecuciones, las hipótesis y familias, el <span class="math notranslate nohighlight">\(N_d\)</span> y la bitácora. El número final será al menos diez semillas o el mayor requerido por potencia; esta organización del informe no lo dimensiona ni ejecuta.</p>
+<p>El congelamiento debe registrarse con fecha y tag Git reales anteriores a los experimentos definitivos. Un cambio posterior de arquitectura, pérdida o espacio de búsqueda reinicia el protocolo con nueva versión y conserva el historial. El esfuerzo de diseño del candidato se reportará separado del presupuesto de HPO de cada rival, sin ocultar una asimetría bajo el mismo número de configuraciones.</p>
+</section>
+<section id="sustento-teorico-que-demostrar-y-como-verificarlo">
+<h2>7.3 Sustento teórico: qué demostrar y cómo verificarlo<a class="headerlink" href="#sustento-teorico-que-demostrar-y-como-verificarlo" title="Link to this heading">#</a></h2>
+<p>La propiedad disponible es una cota Lipschitz de la <strong>cabeza sobre estados latentes</strong>. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación del Bloque C</span></a> y la <a class="reference download internal" download="" href="../_downloads/baebf3f0c6b03093bbfcfebf157eef77/theory.md"><code class="xref download docutils literal notranslate"><span class="pre">demostración</span> <span class="pre">íntegra</span> <span class="pre">con</span> <span class="pre">derivadas</span> <span class="pre">y</span> <span class="pre">pseudocódigo</span></code></a> conservan su desarrollo. La demostración siguiente es autocontenida; no extiende la garantía al preprocesamiento, a la CNN o a la LSTM.</p>
+<p>Sean <span class="math notranslate nohighlight">\(H,H'\in\mathbb R^{n\times d}\)</span>, con <span class="math notranslate nohighlight">\(n=7\)</span> en el problema principal. Se usan norma euclídea, norma de Frobenius y norma espectral para vectores, estados y operadores, respectivamente. Sean <span class="math notranslate nohighlight">\(P\)</span> una matriz causal fija e independiente de <span class="math notranslate nohighlight">\(H\)</span>, <span class="math notranslate nohighlight">\(A=I-P\)</span> y parámetros de inferencia fijos tales que</p>
+<div class="math notranslate nohighlight">
+\[
+B&gt;0,\quad\varepsilon&gt;0,\quad\|q\|_2\le Q,\quad\|w\|_2\le W,
+\quad0\le\lambda\le\Lambda,\quad\tau\ge\tau_{\min}&gt;0.
+\]</div>
+<p>El mecanismo es</p>
+<div class="math notranslate nohighlight">
+\[
+r_j=(AH)_j,\quad d_j=\sqrt{\|r_j\|_2^2+\varepsilon^2},\quad
+s_j=q^\top h_j-\lambda d_j,\quad a=\operatorname{softmax}(s/\tau),
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+v_j=\frac{B h_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
+c=\sum_{j=1}^n a_jv_j,\qquad
+f(H)=\operatorname{softplus}(w^\top c+b).
+\]</div>
+<p>En el código, las restricciones se cumplen mediante <span class="math notranslate nohighlight">\(q=Qu_q/\sqrt{1+\|u_q\|_2^2}\)</span>, <span class="math notranslate nohighlight">\(w=Wu_w/\sqrt{1+\|u_w\|_2^2}\)</span>, <span class="math notranslate nohighlight">\(\lambda=\Lambda\operatorname{sigmoid}(\theta_\lambda)\)</span> y <span class="math notranslate nohighlight">\(\tau=\tau_{\min}+\operatorname{softplus}(\theta_\tau)\)</span>. <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(P\)</span> son fijos. Las constantes se guardan en la configuración; no son supuestos de norma que se atribuyan a pesos sin controlar.</p>
+<p><strong>Lema 1: valores acotados y transformación 1-Lipschitz.</strong> Para <span class="math notranslate nohighlight">\(T_B(h)=Bh/u\)</span>, <span class="math notranslate nohighlight">\(u=\sqrt{B^2+\|h\|_2^2}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+J_{T_B}(h)=\frac B u I-\frac B{u^3}hh^\top.
+\]</div>
+<p>Sus autovalores son <span class="math notranslate nohighlight">\(B/u\)</span> en direcciones ortogonales a <span class="math notranslate nohighlight">\(h\)</span> y <span class="math notranslate nohighlight">\(B^3/u^3\)</span> en la dirección de <span class="math notranslate nohighlight">\(h\)</span>; en <span class="math notranslate nohighlight">\(h=0\)</span> el jacobiano es <span class="math notranslate nohighlight">\(I\)</span>. Están en <span class="math notranslate nohighlight">\((0,1]\)</span>. Integrando sobre el segmento entre dos puntos, <span class="math notranslate nohighlight">\(\|T_B(h)-T_B(h')\|_2\le\|h-h'\|_2\)</span>. Además, <span class="math notranslate nohighlight">\(\|T_B(h)\|_2\le B\)</span>. Para la matriz <span class="math notranslate nohighlight">\(V\)</span> de filas <span class="math notranslate nohighlight">\(v_j^\top\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\|V(H)-V(H')\|_F\le\|H-H'\|_F,
+\qquad\|V(H)\|_2\le\|V(H)\|_F\le B\sqrt n.
+\]</div>
+<p><strong>Lema 2: sensibilidad de los puntajes.</strong> La igualdad <span class="math notranslate nohighlight">\(d_j(H)=\|(r_j,\varepsilon)\|_2\)</span> y la desigualdad triangular inversa implican <span class="math notranslate nohighlight">\(|d_j(H)-d_j(H')|\le\|r_j-r'_j\|_2\)</span>. Sumando cuadrados por filas,</p>
+<div class="math notranslate nohighlight">
+\[
+\|d(H)-d(H')\|_2\le\|A(H-H')\|_F
+\le\|A\|_2\|H-H'\|_F.
+\]</div>
+<p>La parte de contenido cumple <span class="math notranslate nohighlight">\(\|(H-H')q\|_2\le Q\|H-H'\|_F\)</span>. Por tanto,</p>
+<div class="math notranslate nohighlight">
+\[
+\|s(H)-s(H')\|_2
+\le\bigl(Q+\Lambda\|A\|_2\bigr)\|H-H'\|_F.
+\]</div>
+<p><strong>Lema 3: softmax es <span class="math notranslate nohighlight">\(1/2\)</span>-Lipschitz en norma euclídea.</strong> Su jacobiano es <span class="math notranslate nohighlight">\(J=\operatorname{diag}(a)-aa^\top\)</span>. La suma absoluta de la fila <span class="math notranslate nohighlight">\(j\)</span> es <span class="math notranslate nohighlight">\(2a_j(1-a_j)\le1/2\)</span>. Como <span class="math notranslate nohighlight">\(J\)</span> es simétrico, <span class="math notranslate nohighlight">\(\|J\|_2\le\|J\|_\infty\le1/2\)</span>. Integrando el jacobiano y aplicando el Lema 2,</p>
+<div class="math notranslate nohighlight">
+\[
+\|a(H)-a(H')\|_2
+\le\frac{Q+\Lambda\|A\|_2}{2\tau_{\min}}\|H-H'\|_F.
+\]</div>
+<p><strong>Teorema.</strong> Bajo los supuestos anteriores, para cualesquiera estados finitos <span class="math notranslate nohighlight">\(H,H'\)</span> y los mismos parámetros de inferencia,</p>
+<div class="math notranslate nohighlight">
+\[
+|f(H)-f(H')|\le C_{\rm head}\|H-H'\|_F,
+\qquad
+C_{\rm head}=W\left[1+\frac{B\sqrt n}{2\tau_{\min}}
+\left(Q+\Lambda\|I-P\|_2\right)\right].
+\]</div>
+<p><strong>Demostración.</strong> Al escribir <span class="math notranslate nohighlight">\(c(H)=V(H)^\top a(H)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
++\bigl(V(H)-V(H')\bigr)^\top a(H').
+\]</div>
+<p>Como <span class="math notranslate nohighlight">\(a(H')\)</span> es una distribución, <span class="math notranslate nohighlight">\(\|a(H')\|_2\le1\)</span>. Los lemas dan</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\|c(H)-c(H')\|_2
+&amp;\le B\sqrt n\,\|a(H)-a(H')\|_2+\|V(H)-V(H')\|_F\\
+&amp;\le\left[1+\frac{B\sqrt n}{2\tau_{\min}}
+\left(Q+\Lambda\|I-P\|_2\right)\right]\|H-H'\|_F.
+\end{aligned}
+\end{split}\]</div>
+<p>Softplus es 1-Lipschitz porque su derivada es sigmoid, entre cero y uno. La proyección tiene norma <span class="math notranslate nohighlight">\(\|w\|_2\le W\)</span> y el sesgo fijo se cancela al tomar diferencias. La composición demuestra la cota. <span class="math notranslate nohighlight">\(\square\)</span></p>
+<p>La prueba usa aritmética real y puede ser conservadora. En unidades originales de <span class="math notranslate nohighlight">\(\sigma_7\)</span>, la constante se multiplica por la media de entrenamiento <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span>. Obtener una cota desde OHLCV crudo exigiría demostrar también las constantes del codificador y de sus transformaciones. Esas constantes no se han cuantificado aquí; tampoco se demuestra mejor RMSE, calibración o R3.</p>
+<p>Como <span class="math notranslate nohighlight">\(c\)</span> es combinación convexa de vectores de norma a lo sumo <span class="math notranslate nohighlight">\(B\)</span>, también se obtiene</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{softplus}(b-WB)\le f(H)\le\operatorname{softplus}(b+WB).
+\]</div>
+<p>Ese techo de salida puede perjudicar extremos genuinos y debe evaluarse. El promedio causal actual incluye el estado presente: en la primera posición la discordancia es <span class="math notranslate nohighlight">\(\varepsilon\)</span>, otra asimetría del diseño que debe examinarse. La atención normalizada usa toda la ventana observada y no es causal por prefijos de sus pesos; la predicción sólo es causal respecto al día objetivo si el pipeline respeta la disponibilidad temporal.</p>
+<p><strong>Verificación ejecutada.</strong> El <a class="reference download internal" download="" href="../_downloads/299a0f782acbd03fbf0aa366a9e3354c/software_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">guardado</span></code></a> y el <a class="reference internal" href="09_modelo_original.html"><span class="std std-doc">anexo técnico</span></a> conservan código, configuración, ambiente y hashes. Los resultados corresponden a estados y ventanas artificiales:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comprobación</p></th>
+<th class="head text-right"><p>Resultado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Casos pytest del módulo</p></td>
+<td class="text-right"><p>35 aprobados, ninguno omitido</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pares latentes examinados, float64</p></td>
+<td class="text-right"><p>256</p></td>
+</tr>
+<tr class="row-even"><td><p>Escalas de estados</p></td>
+<td class="text-right"><p>0,001 a 1.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cota <span class="math notranslate nohighlight">\(C_{\rm head}\)</span> de la configuración registrada</p></td>
+<td class="text-right"><p>46,15606644</p></td>
+</tr>
+<tr class="row-even"><td><p>Mayor cociente de diferencias observado</p></td>
+<td class="text-right"><p>0,11516301</p></td>
+</tr>
+<tr class="row-odd"><td><p>Violaciones observadas de la cota</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Error máximo de derivada manual frente a autograd</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(6{,}939\times10^{-18}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La ausencia de violaciones en 256 pares apoya la implementación; la afirmación universal procede de la demostración. El caso analítico del anexo ilustra una consecuencia observable de acotar valores, pero <strong>todavía falta comprobar un beneficio predictivo en datos reales de desarrollo</strong>. Las pruebas de gradientes, formas, causalidad del encoder, sobreajuste diminuto y serialización tampoco sustituyen esa evidencia.</p>
+</section>
+<section id="diseno-de-la-ablacion">
+<h2>7.4 Diseño de la ablación<a class="headerlink" href="#diseno-de-la-ablacion" title="Link to this heading">#</a></h2>
+<p>Hay dos modificaciones algorítmicas candidatas: penalización de discordancia y saturación radial. Se propone un factorial completo <span class="math notranslate nohighlight">\(2\times2\)</span> para separar sus aportes e interacción, con el mismo codificador y atención de contenido. Esta organización del informe no agrega código, entrenamientos o resultados.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modelo <span class="math notranslate nohighlight">\(M_{uv}\)</span></p></th>
+<th class="head text-right"><p>Penalización <span class="math notranslate nohighlight">\(u\)</span></p></th>
+<th class="head text-right"><p>Saturación <span class="math notranslate nohighlight">\(v\)</span></p></th>
+<th class="head"><p>Relación con el código disponible</p></th>
+<th class="head"><p>Estado experimental</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(M_{00}\)</span>, base convencional</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td><p>Requiere desactivar ambos componentes simultáneamente; <strong>todavía no está implementado</strong> como variante.</p></td>
+<td><p>Propuesto; sin métricas de mercado.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M_{10}\)</span>, sólo penalización</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">without_saturation</span></code>.</p></td>
+<td><p>Intervención funcional comprobada con datos artificiales.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(M_{01}\)</span>, sólo saturación</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">without_penalty</span></code>.</p></td>
+<td><p>Intervención funcional comprobada con datos artificiales.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M_{11}\)</span>, completo</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">full</span></code>.</p></td>
+<td><p>Software y propiedad latente verificados; sin entrenamiento de mercado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Control adicional sin contenido</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">without_content</span></code> fuerza <span class="math notranslate nohighlight">\(q=0\)</span>.</p></td>
+<td><p>Intervención funcional comprobada; no forma parte del factorial de los dos cambios.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El control sin contenido estudia un componente convencional y <strong>no es una tercera innovación</strong>. Las tres ablaciones funcionales existentes no equivalen a haber completado el factorial, ni a la ablación estadística exigida. El modelo base debe implementarse y verificarse en una revisión posterior antes de ejecutar ese diseño, conservando su versión y trazabilidad.</p>
+<p>Para errores <span class="math notranslate nohighlight">\(E_{uv}\)</span> sobre unidades comparables, la interacción puede expresarse como</p>
+<div class="math notranslate nohighlight">
+\[
+I=E_{11}-E_{10}-E_{01}+E_{00}.
+\]</div>
+<p>Un <span class="math notranslate nohighlight">\(I&lt;0\)</span> indicaría una reducción de error conjunta mayor que la suma aditiva de sus reducciones, bajo esta codificación; no se ha estimado <span class="math notranslate nohighlight">\(I\)</span>. El análisis deberá reportar efectos principales e interacciones con IC, mediante un modelo o remuestreo compatible con la dependencia temporal y las repeticiones. Los contrastes contra el modelo completo usarán las pruebas adecuadas de la Sección 8 de la guía y Holm dentro de una familia de ablación separada de la comparación principal.</p>
+<p>Se mantendrán particiones, preprocesamiento, semillas pareadas, política de ajuste, épocas y presupuesto comparables; el esfuerzo real y los fallos se registrarán. Las semillas no se cuentan como mercados independientes. Se reportarán parámetros totales y activos: retirar una penalización puede eliminar su parámetro, y retirar contenido elimina <span class="math notranslate nohighlight">\(q\)</span>. Cuando cambie el número de parámetros se incluirá una variante de tamaño igualado para separar el efecto del mecanismo del efecto de la capacidad, y se discutirá esa comparación.</p>
+<p>Las ablaciones pueden apoyar que un componente contribuye bajo el diseño evaluado; no prueban por sí solas el mecanismo causal. Sus resultados deberán contrastarse con las predicciones D4 y conservar también los efectos nulos, adversos y la posible pérdida de desempeño en extremos.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_modelo_original.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">6 Bloque C El modelo original</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="concordancia_secciones.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Concordancia y documentos de trabajo anteriores</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-hueco-de-investigacion-a-la-hipotesis-contrastable">7.1 Del hueco de investigación a la hipótesis contrastable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion">7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustento-teorico-que-demostrar-y-como-verificarlo">7.3 Sustento teórico: qué demostrar y cómo verificarlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-ablacion">7.4 Diseño de la ablación</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

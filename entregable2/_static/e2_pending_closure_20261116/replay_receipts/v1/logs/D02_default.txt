@@ -1,0 +1,260 @@
+/workspace/work/e2-standalone-clean-cpu/lib/python3.12/site-packages/torch/nn/init.py:582: UserWarning: Initializing zero-element tensors is a no-op
+  warnings.warn("Initializing zero-element tensors is a no-op")
+{
+  "version": "e2-standalone-code-v1",
+  "status": "verified",
+  "scientific_source_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+  "original_constructor_files_verified": 12,
+  "original_constructor_metadata_files_verified": 4,
+  "author_files_verified": 76,
+  "author_subsets": [
+    {
+      "model": "PatchTST",
+      "files": 6,
+      "license": "Apache-2.0"
+    },
+    {
+      "model": "TSMixer",
+      "files": 2,
+      "license": "Apache-2.0"
+    },
+    {
+      "model": "TiDE",
+      "files": 4,
+      "license": "Apache-2.0"
+    },
+    {
+      "model": "TimeMixer",
+      "files": 22,
+      "license": "Apache-2.0"
+    },
+    {
+      "model": "TimesNet",
+      "files": 34,
+      "license": "MIT"
+    },
+    {
+      "model": "iTransformer",
+      "files": 8,
+      "license": "MIT"
+    }
+  ],
+  "models": [
+    {
+      "model": "FCN-1D",
+      "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "parameters": 268929
+    },
+    {
+      "model": "ResNet-1D",
+      "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+      "parameters": 522955
+    },
+    {
+      "model": "Inception-1D",
+      "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "parameters": 490561
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+      "parameters": 8739
+    },
+    {
+      "model": "TimesNet",
+      "recipe_id": "TN-D7-PUBLISHED-v1",
+      "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+      "parameters": 1173099
+    },
+    {
+      "model": "TSMixer",
+      "recipe_id": "TSM-D7-r1__hpo_v1",
+      "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+      "parameters": 35044
+    },
+    {
+      "model": "TiDE",
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "parameters": 163384
+    },
+    {
+      "model": "TimeMixer",
+      "recipe_id": "TM-D7-PUBLISHED-v1",
+      "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+      "parameters": 9447
+    },
+    {
+      "model": "PatchTST",
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "parameters": 16388
+    },
+    {
+      "model": "iTransformer",
+      "recipe_id": "IT-D7-r1__hpo_v1",
+      "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+      "parameters": 795403
+    },
+    {
+      "model": "MLP16",
+      "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+      "parameters": 593
+    },
+    {
+      "model": "LSTM32",
+      "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+      "parameters": 5025
+    },
+    {
+      "model": "GRU32",
+      "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+      "parameters": 3777
+    }
+  ],
+  "scope": {
+    "market_data_read": false,
+    "trained_weights_loaded": false,
+    "new_model_fits": 0,
+    "predictive_accuracy_evaluated": false,
+    "absolute_historical_result_paths_used": false
+  },
+  "smoke_cpu": {
+    "status": "passed",
+    "device": "cpu",
+    "torch": "2.8.0+cpu",
+    "python": "3.12.14",
+    "threads": 2,
+    "fixture": "fixed linspace tensor [1,7,5], not market observations",
+    "models": [
+      {
+        "model": "FCN-1D",
+        "parameters": 268929,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "ResNet-1D",
+        "parameters": 522955,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "Inception-1D",
+        "parameters": 490561,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "LSTM-autoencoder con predictor",
+        "parameters": 8739,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "TimesNet",
+        "parameters": 1173099,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "TSMixer",
+        "parameters": 35044,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "TiDE",
+        "parameters": 163384,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "TimeMixer",
+        "parameters": 9447,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "PatchTST",
+        "parameters": 16388,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "iTransformer",
+        "parameters": 795403,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "MLP16",
+        "parameters": 593,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "LSTM32",
+        "parameters": 5025,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      },
+      {
+        "model": "GRU32",
+        "parameters": 3777,
+        "output_shape": [
+          1
+        ],
+        "finite_nonnegative": true,
+        "real_forward_executed": true
+      }
+    ],
+    "optimizer_created": false,
+    "training_performed": false,
+    "trained_checkpoint_loaded": false,
+    "scientific_benchmark_reproduced": false
+  }
+}

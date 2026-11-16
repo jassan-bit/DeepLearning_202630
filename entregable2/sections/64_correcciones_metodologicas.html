@@ -453,6 +453,12 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-pendientes-de-los-insumos-de-prueba">Controles pendientes de los insumos de prueba</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-hpo-y-costes-recuperados">Cobertura HPO y costes recuperados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-y-presupuesto">Trazabilidad y presupuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seguimiento-del-16-11-2026-respuestas-y-reproduccion">Seguimiento del 16/11/2026: respuestas y reproducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-condicionada-de-rq3">Respuesta condicionada de RQ3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-prueba-y-alcance-del-cierre">Datos de prueba y alcance del cierre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-comando-de-reproduccion-analitica-ejecutado">Un comando de reproducción analítica ejecutado</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -696,8 +702,40 @@ d_z=\frac{\overline{\mathrm{ganancia}}}{s_{\mathrm{ganancia}}}.
 <section id="trazabilidad-y-presupuesto">
 <h2>Trazabilidad y presupuesto<a class="headerlink" href="#trazabilidad-y-presupuesto" title="Link to this heading">#</a></h2>
 <p>El <a class="reference download internal" download="" href="../_downloads/b8f85aad61d954922f2bbe2cafddba85/execution_receipt.json"><span class="xref download myst">recibo de ejecución</span></a> conserva fechas, software y hashes del programa y entradas, comprobados nuevamente al terminar. El <a class="reference download internal" download="" href="../_downloads/8196c7ea0a9b58d13ae97a92ea2925b7/manifest.json"><span class="xref download myst">manifiesto estadístico</span></a> y las <a class="reference download internal" download="" href="../_downloads/70b113cdad530411996984def73ea7ee/README.md"><code class="xref download docutils literal notranslate"><span class="pre">instrucciones</span> <span class="pre">de</span> <span class="pre">repetición</span></code></a> permiten revisar los resultados. Se aprobaron siete pruebas analíticas y de invariancia del cálculo.</p>
-<p>El <a class="reference download internal" download="" href="../_downloads/7a69d605fc2e9fbe0025c3cc3926b64e/compute_ledger.jsonl"><span class="xref download myst">diario complementario</span></a> continúa el cierre histórico de <strong>84 horas autorizadas</strong>, sin reiniciar el contador. Reserva antes de cada comando científico y carga su tiempo real, incluidos fallos; libera el saldo no usado. La unidad es tiempo de pared acumulado de comandos científicos, no GPU activa ni coste monetario. Las comprobaciones documentales, descargas y empaquetado se distinguen de esas ejecuciones.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/2e12bb9d54447767880e93c9e0fb8033/compute_ledger.jsonl"><span class="xref download myst">diario complementario vigente</span></a> continúa el cierre histórico de <strong>84 horas autorizadas</strong>, sin reiniciar el contador. Reserva antes de cada comando científico y carga su tiempo real, incluidos fallos; libera el saldo no usado. La unidad es tiempo de pared acumulado de comandos científicos, no GPU activa ni coste monetario. Las comprobaciones documentales, descargas y empaquetado se distinguen de esas ejecuciones.</p>
 <p>La potencia piloto de RQ1, <strong>12,3 %</strong>, y su diferencia mínima detectable ya estaban declaradas conforme a la excepción presupuestaria de §9.2 de la guía. Esta ampliación no aumenta retrospectivamente esa potencia ni la transfiere a RQ2/RQ3.</p>
+</section>
+<section id="seguimiento-del-16-11-2026-respuestas-y-reproduccion">
+<h2>Seguimiento del 16/11/2026: respuestas y reproducción<a class="headerlink" href="#seguimiento-del-16-11-2026-respuestas-y-reproduccion" title="Link to this heading">#</a></h2>
+<p>Este seguimiento conserva los resultados y planes anteriores. Corrige las menciones vigentes que todavía describían RQ2, los veinte efectos con IC y las pruebas de brecha CPU como no ejecutados. Los bloques históricos conservan su fecha y contenido.</p>
+<section id="respuesta-condicionada-de-rq3">
+<h3>Respuesta condicionada de RQ3<a class="headerlink" href="#respuesta-condicionada-de-rq3" title="Link to this heading">#</a></h3>
+<p><strong>No se establece una mejora conjunta de error y coste en el entorno CPU medido.</strong> Los diez p-valores sin ajustar del componente de reducción de latencia son 1. Para cualquier componente predictivo compatible y válido, con p-valor <span class="math notranslate nohighlight">\(u\in[0,1]\)</span>, la regla registrada implicaría</p>
+<div class="math notranslate nohighlight">
+\[
+p_{\mathrm{IUT}}=\max(u,p_{\mathrm{coste}})\ge p_{\mathrm{coste}}=1.
+\]</div>
+<p>La condición necesaria de coste basta para deducir que una IUT compatible con este componente no rechazaría, tampoco tras Holm10. La <a class="reference download internal" download="" href="../_downloads/675a71cd5fb1f6efee9577e80294d316/necessary_component_bounds_10.csv"><span class="xref download myst">tabla de diez límites</span></a>, la <a class="reference download internal" download="" href="../_downloads/3affc9fff595c3f9eac6b6224ee21e3b/necessary_component_proof.json"><span class="xref download myst">derivación y fuentes</span></a> y el <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_pending_closure_20261116/rq3_necessary_component/v2/README.md">alcance del argumento</a> permiten comprobarlo sin nuevas predicciones ni remuestreos.</p>
+<p>Es una <strong>deducción exploratoria posterior por componente necesario</strong>, no diez IUT ejecutadas. No se estima el componente predictivo CPU, no se mezclan precisión GPU y latencia CPU y no se transforma el límite en un p-valor conjunto observado. Se mantiene sin ejecutar la IUT integral del plan original. La conclusión no demuestra equivalencia, ausencia de ventajas predictivas ni imposibilidad de mejora en otro hardware.</p>
+</section>
+<section id="datos-de-prueba-y-alcance-del-cierre">
+<h3>Datos de prueba y alcance del cierre<a class="headerlink" href="#datos-de-prueba-y-alcance-del-cierre" title="Link to this heading">#</a></h3>
+<p>El <a class="reference download internal" download="" href="../_downloads/24dd57a816692c05c24d948003273f12/data_status.json"><span class="xref download myst">recibo de acceso a los datos</span></a> registra un intento por URL para el ZIP oficial de enero de 2025 y su CHECKSUM: ambos quedaron bloqueados por el túnel HTTPS con <strong>CONNECT 403 y cero bytes</strong>. No es una respuesta de Binance que pruebe inexistencia del archivo. No se repitieron búsquedas masivas ni se cambiaron proxies. El estado continúa siendo <strong>BLOCKED_INPUTS</strong>.</p>
+<p>Para ejecutar la auditoría del contenido de las 608 fechas y los controles preparados se necesita <code class="docutils literal notranslate"><span class="pre">known_E1_daily.csv</span></code> con su identidad original, o los veinte ZIP mensuales de enero de 2025 a agosto de 2026 verificados contra el manifiesto. Los objetivos y pronósticos públicos no sustituyen esas entradas. Continúan parciales la auditoría integral, los controles adversariales y de etiquetas permutadas, la consistencia validación–prueba del plan original y la reproducción de toda la campaña desde sus datos originales.</p>
+</section>
+<section id="un-comando-de-reproduccion-analitica-ejecutado">
+<h3>Un comando de reproducción analítica ejecutado<a class="headerlink" href="#un-comando-de-reproduccion-analitica-ejecutado" title="Link to this heading">#</a></h3>
+<p>El orquestador completó <strong>18/18 etapas disponibles</strong>, en 323,26 segundos contabilizados: los doce paquetes v2, una nueva auditoría de desarrollo, efectos/RQ2 y estadísticas CPU, conciliación HPO, inferencia primaria con 20.000 remuestreos, calibración/errores y reconstrucción del libro desde su ZIP. D02 ejecuta forwards de implementación con pesos iniciales, no entrenamientos de mercado. El <a class="reference download internal" download="" href="../_downloads/54ea95a5cd3963a80dafdce39d5a1a8d/reproduction_status.json"><span class="xref download myst">recibo de ejecución</span></a> identifica los comandos y sus fuentes exactas.</p>
+<p>Se verifican <strong>diferencia cero en los veinte contrastes primarios y ocho tablas de correcciones</strong>, y cuatro tablas HPO idénticas byte a byte. El <a class="reference download internal" download="" href="../_downloads/90aeefb70edd58abc2e85e83a9756af6/verification_summary.json"><span class="xref download myst">resumen de comprobación</span></a> y su <a class="reference download internal" download="" href="../_downloads/cab28f3380aa04b570409dc6b8873e67/manifest.json"><span class="xref download myst">manifiesto</span></a> conservan esa evidencia. La fuente y el catálogo usados realmente en la ejecución se archivan; la versión actual añade correcciones de CLI y comprobación de dependencias, verificadas con nueve pruebas.</p>
+<p><strong>El resultado global sigue siendo parcial</strong>, con salida deliberada 2: este comando no repite los 78 ajustes neuronales originales, los tres clásicos, las 18 ablaciones o todos los análisis que requieren sus entradas y modelos. Tampoco convierte el argumento de RQ3 en la IUT original ejecutada. Los informes guardados, los cálculos repetidos y los controles no ejecutados mantienen estados separados.</p>
+<p>Las <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_pending_closure_20261116/reproduction_README.md">instrucciones del orquestador</a> y el <a class="reference download internal" download="" href="../_downloads/3e8a78dcd0e639bd46e7eaf52cc0be25/reproduction_inputs.json"><span class="xref download myst">catálogo de insumos</span></a> permiten repetirlo. El modo de comprobación usa Python estándar, no descarga datos y escribe en una salida nueva:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/reproduce_e2_campaign.py<span class="w"> </span>--check
+</pre></div>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/ae7f28c9ae45e44a1911eae6a3649cbc/suplemento_cierre_20261116.zip"><span class="xref download myst">suplemento independiente descargable</span></a> contiene su propio run.py, fuentes, huellas, recibos y la deducción RQ3. Su comando predeterminado funciona sin los otros paquetes y genera un informe local de comprobación y disponibilidad. El replay analítico opcional requiere descargar los doce ZIP v2 y disponer de los entornos especificados; el suplemento no contiene los datos de prueba ausentes.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/62396ab9c0dafc7cea4fd06208f3bfd1/model_reconciliation_13.csv"><span class="xref download myst">conciliación por modelo</span></a> y el catálogo mantienen por separado duraciones de fases y cargos de campaña. No se suman ámbitos solapados, no se imputan costes desconocidos y no se reabre HPO o NAS. El coste histórico integral continúa sin identificar. <strong>NAS sigue sin aplicar.</strong></p>
+<p>El diario vigente usa una URL versionada nueva y conserva la cadena aditiva completa. La descarga del diario del 15/11 mantiene sus bytes originales; no se sustituye ni se reinicia la cuenta. El suplemento descargable conserva el script y el diario de su propio snapshot científico.</p>
+</section>
 </section>
 </section>
 
@@ -779,6 +817,12 @@ d_z=\frac{\overline{\mathrm{ganancia}}}{s_{\mathrm{ganancia}}}.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-pendientes-de-los-insumos-de-prueba">Controles pendientes de los insumos de prueba</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cobertura-hpo-y-costes-recuperados">Cobertura HPO y costes recuperados</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-y-presupuesto">Trazabilidad y presupuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seguimiento-del-16-11-2026-respuestas-y-reproduccion">Seguimiento del 16/11/2026: respuestas y reproducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-condicionada-de-rq3">Respuesta condicionada de RQ3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-prueba-y-alcance-del-cierre">Datos de prueba y alcance del cierre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-comando-de-reproduccion-analitica-ejecutado">Un comando de reproducción analítica ejecutado</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

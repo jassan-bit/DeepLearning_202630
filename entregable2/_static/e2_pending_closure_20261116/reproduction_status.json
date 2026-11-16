@@ -1,0 +1,400 @@
+{
+  "version": "e2-traceable-reproduction-v1",
+  "mode": "check",
+  "at_utc": "2026-11-16T00:12:36.639597+00:00",
+  "scientific_source_commit": "ad8f163c1bbed55348c4af3d3c71b71f57bc7c55",
+  "orchestrator_sha256": "4e854b80774e7bee7a71a0338ebe9ed4f3fe266a2cddf20757449572974ca570",
+  "input_catalogue_sha256": "7f64e1b76b71563c464e7d1006dc49c2be82ce7210087653d97aa1da6ed327bb",
+  "archives": [
+    {
+      "id": "D01",
+      "file": "01_informe_jupyter_book.zip",
+      "expected_sha256": "78f369b856bb7d3b310eff3ca38f2b788b6bd5ed4a954044c670e8f633741115",
+      "status": "verified"
+    },
+    {
+      "id": "D02",
+      "file": "02_codigo_modelos.zip",
+      "expected_sha256": "5423c85bf220729c826e47a1c37d79a49ce2ba8b0e8f764c47ab9c0796b4bcae",
+      "status": "verified"
+    },
+    {
+      "id": "D03",
+      "file": "03_datos_contrato.zip",
+      "expected_sha256": "8635353fc374281ec3cdece71b1ce22148f91f3b6cd26e83bc99249a3f947773",
+      "status": "verified"
+    },
+    {
+      "id": "D04",
+      "file": "04_preregistro_auditoria.zip",
+      "expected_sha256": "6108de21c37240b221420a104b494953a8d49a9d3a51ec660f57fb0d8601148b",
+      "status": "verified"
+    },
+    {
+      "id": "D05",
+      "file": "05_ficha_ruta_F2a.zip",
+      "expected_sha256": "c2c7afd57c79cb91af9eed2662e13edd0bdacbcdab8cded911427e3d552f094e",
+      "status": "verified"
+    },
+    {
+      "id": "D06",
+      "file": "06_benchmark_comparaciones.zip",
+      "expected_sha256": "feb12e8a8a1138b08a849daa28d58e511bcea203e409df1dbe432a626f33b7ab",
+      "status": "verified"
+    },
+    {
+      "id": "D07",
+      "file": "07_registro_experimentos.zip",
+      "expected_sha256": "86b95843805228af97af7ce5fadf5eb97324c9ed1dc59566f1b3b8d5cd990bc3",
+      "status": "verified"
+    },
+    {
+      "id": "D08",
+      "file": "08_techo_incertidumbre.zip",
+      "expected_sha256": "6425bede1c259eb265ac0817005d2dbb3d85d381373321a6d8c325384680890c",
+      "status": "verified"
+    },
+    {
+      "id": "D09",
+      "file": "09_arquitecturas_no_aplica.zip",
+      "expected_sha256": "21807f77605e1168b18568bcee83b5510c46aee018f327fcb21d9f3eb17e74b1",
+      "status": "verified"
+    },
+    {
+      "id": "D10",
+      "file": "10_paper_guia_replica.zip",
+      "expected_sha256": "1b881c35d05ea79f003a43df502a934f1adc67aebd572fb05b4b6f582d4da8ff",
+      "status": "verified"
+    },
+    {
+      "id": "D11",
+      "file": "11_reproducibilidad.zip",
+      "expected_sha256": "d694053eb2abaa2c1f6a23fc5a31bf196d421cf30a7f1ea34967405501edf0ac",
+      "status": "verified"
+    },
+    {
+      "id": "D12",
+      "file": "12_presentacion_defensa.zip",
+      "expected_sha256": "aad0dbdb582075ad7c2e8479e70411e3678bd19efa24110c05b3e73e1e76e9a8",
+      "status": "verified"
+    }
+  ],
+  "environments": {
+    "stdlib": {
+      "ready": true,
+      "observed": {
+        "python": "3.12.14"
+      }
+    },
+    "model": {
+      "ready": true,
+      "observed": {
+        "torch": "2.8.0+cpu",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "einops": "0.8.1"
+      },
+      "mismatches": {}
+    },
+    "corrections": {
+      "ready": true,
+      "observed": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0"
+      },
+      "mismatches": {}
+    },
+    "hpo": {
+      "ready": true,
+      "observed": {
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.8"
+      },
+      "mismatches": {}
+    },
+    "analysis": {
+      "ready": true,
+      "observed": {
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "scipy": "1.16.3",
+        "statsmodels": "0.14.5",
+        "matplotlib": "3.10.8"
+      },
+      "mismatches": {}
+    },
+    "book": {
+      "ready": true,
+      "observed": {
+        "jupyter-book": "1.0.4.post1"
+      },
+      "mismatches": {}
+    }
+  },
+  "stages": [
+    {
+      "id": "D01_default",
+      "package": "D01",
+      "script": "run.py",
+      "args": [],
+      "kind": "book_extraction",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D02_default",
+      "package": "D02",
+      "script": "run.py",
+      "args": [],
+      "kind": "implementation_fixture_forward",
+      "environment": "model",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D03_default",
+      "package": "D03",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D04_default",
+      "package": "D04",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D05_default",
+      "package": "D05",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D06_default",
+      "package": "D06",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D07_default",
+      "package": "D07",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D08_default",
+      "package": "D08",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D09_default",
+      "package": "D09",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D10_default",
+      "package": "D10",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D11_default",
+      "package": "D11",
+      "script": "run.py",
+      "args": [],
+      "kind": "recorded_evidence_validation",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "D12_default",
+      "package": "D12",
+      "script": "run.py",
+      "args": [],
+      "kind": "arithmetic_reconstruction",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "development_reaudit",
+      "package": "D04",
+      "script": "audit_data/run.py",
+      "args": [],
+      "kind": "real_development_data_reaudit",
+      "environment": "stdlib",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "effects_RQ2_CPU_statistics",
+      "package": "D11",
+      "script": "reanalysis/run.py",
+      "args": [],
+      "kind": "numerical_replay_from_saved_forecasts_and_CPU_timers",
+      "environment": "corrections",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "HPO_metadata",
+      "package": "D07",
+      "script": "hpo_reanalysis/run.py",
+      "args": [],
+      "kind": "numerical_metadata_reconciliation_and_figures",
+      "environment": "hpo",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "primary_inference",
+      "package": "D06",
+      "script": "run.py",
+      "args": [
+        "--full-primary",
+        "--draws",
+        "20000"
+      ],
+      "kind": "primary_bootstrap_t_signflip_from_saved_forecasts",
+      "environment": "analysis",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "conditional_calibration_error_analysis",
+      "package": "D08",
+      "script": "run.py",
+      "args": [
+        "--full-uncertainty"
+      ],
+      "kind": "conditional_calibration_and_error_bootstrap_from_saved_forecasts",
+      "environment": "analysis",
+      "status": "ready",
+      "blockers": []
+    },
+    {
+      "id": "book_rebuild",
+      "package": "D01",
+      "script": "run.py",
+      "args": [
+        "--build"
+      ],
+      "kind": "rebuild_book_from_included_sources",
+      "environment": "book",
+      "status": "ready",
+      "blockers": []
+    }
+  ],
+  "mandatory_unexecuted_stages": [
+    {
+      "id": "original_market_training",
+      "status": "not_executed",
+      "requires": [
+        "real admissible train/cal/test data with hashes",
+        "concrete original training executor and frozen recipes",
+        "compatible original CUDA runtime",
+        "explicit authorization and existing additive compute budget"
+      ],
+      "reason": "Analytical replay does not run78original market fits or reconstruct3classical predictors; no full-training flag is offered."
+    },
+    {
+      "id": "full_test_data_audit_and_real_controls",
+      "status": "blocked",
+      "requires": [
+        "real OHLCV/X for608test dates",
+        "complete13port audit",
+        "recorded permutation and adversarial controls"
+      ],
+      "reason": "Existing actual audit remains partial; train655/cal53 are verified, testX is absent."
+    },
+    {
+      "id": "original_CUDA_parity_and_RQ3_IUT",
+      "status": "blocked",
+      "reason": "Two original1e-7parity attempts failed. Complete CPU supplement does not pass or execute the original714IUT."
+    },
+    {
+      "id": "model_dependent_robustness_explanations_ablations",
+      "status": "recorded_only",
+      "reason": "Original reports remain available; this no-fit analytic runner does not redo18ablations or all model-dependent inference."
+    },
+    {
+      "id": "RQ3_necessary_component",
+      "status": "pending_adapter",
+      "reason": "A separate new proof/replay stage will be wired only after its exact CLI and inputs are finalized."
+    }
+  ],
+  "HPO_cost_scopes": {
+    "opportunities": 234,
+    "completed": 231,
+    "failed": 2,
+    "unknown": 1,
+    "measured_training_phases": {
+      "receipts": 170,
+      "known_seconds": 20526.75792988201
+    },
+    "current_campaign_accounting": {
+      "receipts": 173,
+      "charged_seconds": 25976.93557340999,
+      "unknown_conservative_allocation_seconds": 1860
+    },
+    "original_cached_fit_costs": {
+      "receipts": 61,
+      "deduplication_key": [
+        "job_id",
+        "job_payload_sha256"
+      ],
+      "note": "charged_wall_seconds and callback_wall_seconds are distinct descriptions of the same originalfit; do not add them"
+    },
+    "categories_added_together": false,
+    "full_historical_HPO_training_seconds": null,
+    "energy_kWh": null,
+    "money": null,
+    "prohibited_sums": [
+      "measured phases + campaign charges + original cachedfit charges",
+      "callback time + charged time of same fit",
+      "reserved allocation + actual consumption",
+      "selected phase_resources subtotal + full opportunity inventory"
+    ]
+  },
+  "original_full_training_repeated": false,
+  "full_campaign_passed": false,
+  "NAS1000": "not_applicable_defined_current_bodies",
+  "interpretation": "Analytical reconstruction is distinct from training and from passing the original CUDA gate. A partial result exits 2.",
+  "status": "partial"
+}

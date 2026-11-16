@@ -132,7 +132,7 @@ Estos controles conservan la disponibilidad de las covariables y la interpretaci
 | Situación observada | Decisión que permite la evidencia |
 |---|---|
 | No hay superioridad práctica ajustada frente a naive | Conservar A2 y resultados negativos; describir SAE como menor RMSE observada, sin declarar valor añadido confirmado ni seleccionar otra receta con test. |
-| Brechas y δg previo | Conservar el margen y la orientación correcta. No afirmar ausencia de sobreajuste por una brecha pequeña, negativa o un umbral exploratorio más amplio; falta la prueba comparable. |
+| Brechas y δg previo | Conservar el margen y la orientación correcta. [§64](64_correcciones_metodologicas.md) ejecuta trece pruebas con riesgos train/cal comparables en CPU: dos tolerancias condicionales y once no establecidas. No afirmar ausencia general de sobreajuste ni adecuación conjunta por una brecha pequeña o negativa; la consistencia validación–prueba original continúa sin acreditar. |
 | Residuos autocorrelacionados y heterocedásticos | Mantener F2a, incertidumbre temporal robusta y limitaciones. La recomendación de revisar rezagos/capacidad es trabajo de desarrollo con protocolo propio; no modifica los predictores publicados. |
 | Cobertura global próxima a 90 %, pero desigual por grupos | Reportar longitud y score junto a cobertura; no confundir adaptación ACI con garantía condicional, PIT completo ni cumplimiento universal. |
 | Heterogeneidad Friedman, sin pares Wilcoxon ajustados | Mostrar rangos y sus conexiones de no rechazo. Con seis pares, la resolución es limitada; ni significancia global ni no rechazo justifican una pareja superior o equivalente. |

@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4 Bloque A Correcciones del Entregable 2 &#8212; Entregable 3 · Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/04_correcciones_e2';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="5 Bloque B Selección de configuraciones y exportación" href="05_configuraciones_exportacion.html" />
+    <link rel="prev" title="3 Panorama general del entregable" href="03_panorama_general.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3 · Deep Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 7 de la guía</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">1 Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_estandar_profundidad.html">2 Estándar de profundidad exigido</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_panorama_general.html">3 Panorama general del entregable</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4 Bloque A Correcciones del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_configuraciones_exportacion.html">5 Bloque B Selección de configuraciones y exportación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_modelo_original.html">6 Bloque C El modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_diseno_riguroso.html">7 Diseño riguroso del modelo original</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_planificacion.html">Plan de trabajo inicial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_desarrollo_evidencias.html">Desarrollo y evidencias anteriores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_resultados_discusion.html">Resultados y discusión del corte anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reproducibilidad_entrega.html">Reproducibilidad y estructura final prevista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad del primer corte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del candidato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_bloques_a_b.html">Evidencias originales de los bloques A y B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_modelo_original.html">Desarrollo original del candidato C</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 3 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/04_correcciones_e2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4 Bloque A Correcciones del Entregable 2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-de-correcciones">4.1 Trazabilidad de correcciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-artefactos-y-datos-reales">4.2 Auditoría de artefactos y datos reales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-determinismo-y-limites-numericos">4.3 Brecha, determinismo y límites numéricos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-actualizados-y-congelamiento">4.4 Resultados actualizados y congelamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencias-de-referencia">Evidencias de referencia</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bloque-a-correcciones-del-entregable-2">
+<h1>4 Bloque A Correcciones del Entregable 2<a class="headerlink" href="#bloque-a-correcciones-del-entregable-2" title="Link to this heading">#</a></h1>
+<p>No se han recibido observaciones del docente, según lo informado por el autor. Las filas siguientes corresponden a <strong>revisión interna</strong>, auditorías ejecutadas y límites documentados de E2. No se atribuyen al profesor ni se interpreta su ausencia como aprobación.</p>
+<section id="trazabilidad-de-correcciones">
+<h2>4.1 Trazabilidad de correcciones<a class="headerlink" href="#trazabilidad-de-correcciones" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Observación del docente</p></th>
+<th class="head"><p>Hallazgo interno</p></th>
+<th class="head"><p>Acción realizada y estado</p></th>
+<th class="head"><p>Ubicación en el Jupyter Book</p></th>
+<th class="head"><p>Evidencia</p></th>
+<th class="head"><p>Impacto en resultados</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A01 Organización y estado del informe.</p></td>
+<td><p>Actualizadas portada y navegación; las secciones 1 a 7 siguen la guía.</p></td>
+<td><p><a class="reference internal" href="01_introduccion.html"><span class="std std-doc">Sección 1</span></a> y <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">concordancia</span></a>.</p></td>
+<td><p>Índice y fuentes del libro.</p></td>
+<td><p>Sin modificación de métricas o ranking.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A02 Auditoría de fuga parcial.</p></td>
+<td><p>Inventario E3 y auditoría real train/cal de E2 ejecutados; faltan el contenido de prueba y controles completos.</p></td>
+<td><p>Sección 4.2.</p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">Auditoría E2 vigente</a>.</p></td>
+<td><p>Sin fallo de datos demostrado en los controles ejecutados; no certifica ausencia integral de fuga.</p></td>
+</tr>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A03 Aplicación de δg.</p></td>
+<td><p>E2 añadió un diagnóstico CPU sobre trece redes; dos establecieron tolerancia condicional. La puerta CPU–CUDA estricta no se dio por aprobada.</p></td>
+<td><p>Sección 4.3.</p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_corrections_20261115/cpu_diagnostic/statistics/results/CPU_delta_g_Holm13.csv">Trece contrastes CPU</a>.</p></td>
+<td><p>No cambia la conclusión primaria ni acredita adecuación conjunta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A04 Seis semillas y baja potencia histórica.</p></td>
+<td><p>Conservadas la limitación y la MDE; dimensionamiento nuevo de E3 pendiente.</p></td>
+<td><p><a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">Sección 2</span></a>.</p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json">Piloto E2</a>.</p></td>
+<td><p>No se amplían semillas después de observar la prueba.</p></td>
+</tr>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A05 Calendario conocido.</p></td>
+<td><p>Documentada exposición previa y herencia permitida; confirmación E3 pendiente.</p></td>
+<td><p><a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">Sección 7.2</span></a>.</p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">Contrato E2</a>.</p></td>
+<td><p>Conserva el alcance retrospectivo de las 608 fechas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A06 Limitación y originalidad del híbrido.</p></td>
+<td><p>Formulación y antecedentes disponibles; R1 sigue abierto.</p></td>
+<td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Secciones 6 y 7</span></a>.</p></td>
+<td><p><a class="reference download internal" download="" href="../_downloads/f9b1268c101e012ece98cf78c243f91c/review_matrix.csv"><span class="xref download myst">Matriz de antecedentes</span></a>.</p></td>
+<td><p>Sin novedad ni mejora predictiva acreditadas del candidato.</p></td>
+</tr>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A07 Equidad de presupuesto.</p></td>
+<td><p>E2 recuperó oportunidades HPO y costes con límites; presupuesto E3 pendiente.</p></td>
+<td><p><a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">Sección 7.2</span></a>.</p></td>
+<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">Ampliación E2</a>.</p></td>
+<td><p>Sin nuevo HPO o campaña de mercado en esta reorganización.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A08 Familia y pruebas de E3.</p></td>
+<td><p>Estándar conservado; protocolo confirmatorio del candidato pendiente.</p></td>
+<td><p><a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">Secciones 2 y 7</span></a>.</p></td>
+<td><p>Registro de diseño y requisitos.</p></td>
+<td><p>No se cambian las familias primarias ni los p-valores de E2.</p></td>
+</tr>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A09 CPU y exportación.</p></td>
+<td><p>Tres referencias TorchScript verificadas. E2 tiene además un suplemento eager CPU con alcance propio.</p></td>
+<td><p><a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">Sección 5</span></a>.</p></td>
+<td><p>Reportes de ida y vuelta y diagnóstico E2.</p></td>
+<td><p>Paridad CPU–TorchScript en calibración; no se equipara a la puerta CUDA ni a prueba608.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No recibida</p></td>
+<td><p>A10 Reproducibilidad completa.</p></td>
+<td><p>Auditores, código y pruebas disponibles; contenedor y reproducción final E3 pendientes.</p></td>
+<td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Sección 6.5</span></a>.</p></td>
+<td><p>Workflows e informes guardados.</p></td>
+<td><p>Pruebas de software no sustituyen reproducción de la campaña definitiva.</p></td>
+</tr>
+<tr class="row-even"><td><p>No recibida</p></td>
+<td><p>A11 Cobertura bibliográfica.</p></td>
+<td><p>Corpus recibido de E2 conservado y revisión focal del candidato añadida; búsqueda completa R1 pendiente.</p></td>
+<td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Sección 6.3</span></a>.</p></td>
+<td><p>Matriz, manifiesto de fuentes y bitácora de consultas.</p></td>
+<td><p>No se cambia el PRISMA ni se infiere ausencia de antecedentes de una consulta bloqueada.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="auditoria-de-artefactos-y-datos-reales">
+<h2>4.2 Auditoría de artefactos y datos reales<a class="headerlink" href="#auditoria-de-artefactos-y-datos-reales" title="Link to this heading">#</a></h2>
+<p>El inventario de E3 concilia <strong>16 sistemas y 81 predictores</strong>, 78 neuronales y tres deterministas. Se verificaron los bytes de <strong>167 metadatos</strong>, incluidos 81 escaladores y 81 calibradores, y sus vínculos con los checkpoints. Los <strong>245 hashes</strong> del freeze histórico concuerdan con el manifiesto de respaldo. Listar 79 assets de pesos en Releases no equivale a haber verificado todos sus contenidos; cada descarga efectiva conserva su propia comprobación.</p>
+<p>La ampliación actual de E2 también reconstruyó los <strong>655 ejemplos train y 53 de calibración</strong>, comprobó ventanas, vecinos, soportes y transformaciones comunes, y recuperó escaladores físicos. Informó ocho controles verificados, siete parciales y uno no aplicable, como clasificación de esa auditoría, no como porcentaje de cumplimiento de la guía.</p>
+<p>Por tanto, no se mantiene el diagnóstico anterior de que sólo existían guardas sintéticas. <strong>La auditoría integral sigue parcial:</strong> no están disponibles en ese entorno las ventanas OHLCV de las 608 fechas de prueba; faltan controles train/test con ajustes adversariales y etiquetas permutadas y la certificación completa de cada port. La recuperación, las identidades de la reproducción y el freeze original se distinguen en sus manifiestos.</p>
+</section>
+<section id="brecha-determinismo-y-limites-numericos">
+<h2>4.3 Brecha, determinismo y límites numéricos<a class="headerlink" href="#brecha-determinismo-y-limites-numericos" title="Link to this heading">#</a></h2>
+<p>El suplemento CPU posterior completó 78 trayectorias y contrastó la brecha calibración–train frente a δg con seis pares y Holm13. <strong>Dos de trece redes establecieron tolerancia condicional; once no la establecieron.</strong> Una brecha negativa puede reflejar una calibración más sencilla. Este resultado no acredita adecuación conjunta ni constituye confirmación prospectiva.</p>
+<p>La puerta anterior de coincidencia CPU frente a CUDA, con tolerancia 10⁻⁷, conservó su fallo y sus ejecuciones parciales. El suplemento CPU no la convirtió retrospectivamente en aprobada. Tampoco se mezcla con la paridad de exportación CPU–TorchScript de la sección 5, que compara otras salidas bajo otro alcance.</p>
+<p>E2 documenta semillas y política de Python/PyTorch/CUDA, FP32 y flags de determinismo. El núcleo no fija una semilla global NumPy; los análisis usan generadores registrados. No se atribuye una llamada global inexistente ni se promete igualdad entre plataformas.</p>
+</section>
+<section id="resultados-actualizados-y-congelamiento">
+<h2>4.4 Resultados actualizados y congelamiento<a class="headerlink" href="#resultados-actualizados-y-congelamiento" title="Link to this heading">#</a></h2>
+<p>La A2 original conserva SHA-256 <code class="docutils literal notranslate"><span class="pre">879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1</span></code>. Las comprobaciones posteriores y esta reorganización <strong>no cambian su ranking o su conclusión primaria</strong>. Si una corrección demostrada modifica resultados, se recalcularán todos los productos dependientes y se publicará la comparación antes/después.</p>
+<p>El hash histórico es un ancla de lectura, no un nuevo cierre del Bloque A. El congelamiento definitivo de los benchmarks para E3 requiere resolver y documentar los controles aplicables; después no se reajustan rivales para favorecer al modelo original.</p>
+<section id="evidencias-de-referencia">
+<h3>Evidencias de referencia<a class="headerlink" href="#evidencias-de-referencia" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/926b1c9b8806cce1f46b73a6a87f8d59/audit_predictors.csv"><code class="xref download docutils literal notranslate"><span class="pre">Inventario</span> <span class="pre">E3</span> <span class="pre">de</span> <span class="pre">81</span> <span class="pre">predictores</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/eca3eb0f34c169a60404ec831f68358d/audit_summary.json"><code class="xref download docutils literal notranslate"><span class="pre">Resumen</span> <span class="pre">del</span> <span class="pre">corte</span> <span class="pre">de</span> <span class="pre">auditoría</span> <span class="pre">de</span> <span class="pre">artefactos</span></code></a>.</p></li>
+<li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">Auditorías y diagnósticos posteriores de E2</a>.</p></li>
+<li><p><a class="reference internal" href="06_trazabilidad_correcciones.html"><span class="std std-doc">Tabla anterior de trazabilidad</span></a>, conservada como corte de trabajo.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_panorama_general.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">3 Panorama general del entregable</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_configuraciones_exportacion.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">5 Bloque B Selección de configuraciones y exportación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-de-correcciones">4.1 Trazabilidad de correcciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-artefactos-y-datos-reales">4.2 Auditoría de artefactos y datos reales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-determinismo-y-limites-numericos">4.3 Brecha, determinismo y límites numéricos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-actualizados-y-congelamiento">4.4 Resultados actualizados y congelamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencias-de-referencia">Evidencias de referencia</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
