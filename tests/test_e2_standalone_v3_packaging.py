@@ -147,6 +147,36 @@ class CurrentDatasetBindingTests(unittest.TestCase):
 
 
 class DocumentaryScopeTests(unittest.TestCase):
+    def appendix_inputs(self):
+        fields=["id","requirement","status","evidence","remaining_limit"]
+        result=[]
+        for folder,completed in [("inputs",14),("corrections/delivery",9)]:
+            rows=[];used=0
+            for number in range(1,22):
+                state="no_aplica" if number in (14,15) else "completo" if used<completed else "parcial"
+                if state=="completo":used+=1
+                rows.append(dict(zip(fields,[f"B{number:02}","literal",""+state,"source","bounded scope"])))
+            counts={state:sum(r["status"]==state for r in rows) for state in ["completo","parcial","no_aplica","no_cumple"]}
+            result.extend([{"kind":"json_files","data":{"items":rows,"counts":counts},"file":Path(folder)/"appendix_B_current.json","path":folder+"/appendix_B_current.json"},
+                           {"kind":"tables","fields":fields,"rows":[dict(r) for r in rows],"file":Path(folder)/"appendix_B_current.csv","path":folder+"/appendix_B_current.csv"}])
+        return result
+
+    def test_two_appendix_generations_validate_only_against_their_own_csv(self):
+        review=reports.Review();reports.validate_appendix(self.appendix_inputs(),review)
+        self.assertTrue(review.passed)
+        pairs=[r for r in review.checks if r["control"]=="CSV y JSON del Apéndice B"]
+        self.assertEqual(len(pairs),2)
+        self.assertTrue(all(r["correcto"] for r in pairs))
+
+    def test_mismatch_within_either_appendix_generation_is_rejected(self):
+        for index in (1,3):
+            with self.subTest(table=index):
+                inputs=self.appendix_inputs();inputs[index]["rows"][0]["status"]="parcial"
+                review=reports.Review();reports.validate_appendix(inputs,review)
+                self.assertFalse(review.passed)
+                failures=[r for r in review.checks if not r["correcto"]]
+                self.assertEqual([r["fuente"] for r in failures],[inputs[index]["path"]])
+
     def test_presentation_checker_accepts_v2_and_v3_counts_without_claiming_oral_event(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);(root/"notas_orador.md").write_text('prepared, not performed')

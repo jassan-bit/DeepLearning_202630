@@ -340,15 +340,21 @@ def validate_appendix(inputs, review):
         review.check("Recuentos consistentes", all(counts.get(key, 0) == declared.get(key, 0) for key in allowed),
                      "Los recuentos coinciden con los estados incluidos; no son porcentajes de nota.", source)
     if documents:
-        for table in inputs:
-            if table["kind"] == "tables" and {"id", "requirement", "status", "remaining_limit"}.issubset(table["fields"]):
+        for document in documents:
+            identity = (Path(document["path"]).parent, Path(document["path"]).stem)
+            json_rows = document["data"]["items"]
+            for table in inputs:
+                if (table["kind"] != "tables"
+                        or not {"id", "requirement", "status", "remaining_limit"}.issubset(table["fields"])
+                        or (Path(table["path"]).parent, Path(table["path"]).stem) != identity):
+                    continue
                 csv_rows = {row["id"]: row for row in table["rows"]}
-                same = len(table["rows"]) == 21 and all(
+                same = len(table["rows"]) == len(json_rows) and all(
                     key in csv_rows and all(str(csv_rows[key].get(field)) == str(row.get(field))
                                            for field in table["fields"])
-                    for row in rows for key in [row["id"]])
+                    for row in json_rows for key in [row["id"]])
                 review.check("CSV y JSON del Apéndice B", same,
-                             "Los21 registros coinciden entre sus dos formatos.", table["path"])
+                             "Los registros coinciden con el JSON de la misma carpeta y generación.", table["path"])
     review.note("Ítems de reproducibilidad", len(rows))
     review.note("Estados conservados", dict(sorted(counts.items())))
     review.note("Interpretación", "Completar la lista no acredita todas sus condiciones ni calcula una calificación.")
