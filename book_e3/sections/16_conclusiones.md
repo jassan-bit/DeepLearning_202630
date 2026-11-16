@@ -1,0 +1,40 @@
+# 16 Conclusiones
+
+El avance reúne un informe público, evidencias heredadas de E2, herramientas verificadas de auditoría/exportación y un candidato neuronal con implementación y sustento teórico delimitado. **No constituye el entregable terminado:** la novedad, la defensa académica del algoritmo, la validación estadística de mercado, el servicio predictivo y la reproducción integral siguen requiriendo trabajo y evidencia.
+
+## Capacidades que exige la guía y evidencia actual
+
+La Sección 16 de la guía organiza el cierre alrededor de cinco capacidades. La tabla distingue lo realizado de lo que todavía no puede afirmarse:
+
+| Capacidad exigida | Evidencia real del avance | Límite y trabajo de cierre |
+|---|---|---|
+| Corregir y mejorar el trabajo a partir de retroalimentación. | Revisión interna, trazabilidad, auditorías y ampliaciones documentadas de E2, con sus fuentes e impacto. | No se han recibido observaciones del profesor. No se declara una respuesta a retroalimentación docente inexistente; si llega, se incorporará con origen, acción, evidencia e impacto. |
+| Llevar modelos a un producto interactivo, desplegado, explicable y comunicable bajo recursos reales. | Tres referencias exportadas y diseño documentado de Contexto, EDA y Modelos; informe E3 publicado. | No hay app Dash ni URL Render/smoke verificados. Faltan el perfil ONNX Runtime sin framework, integración de contratos, dominio, intervalo, explicaciones y mediciones del servicio. |
+| Investigar teóricamente un modelo propio o adaptado con atribución y disciplina de selección. | Formulación, código asistido por IA, prueba formal de una propiedad de la cabeza latente y verificación artificial del candidato. | R1 y revisión externa pendientes; la persona autora debe comprender y defender código/prueba para R2. Falta validar el mecanismo y sus ablaciones con datos reales de desarrollo. |
+| Sustentar o refutar honestamente superioridad con rigor estadístico y experimental. | Familia de 16 rivales conservada y protocolo en borrador con márgenes, dependencias y condiciones de cierre. | No se han ejecutado piloto, potencia, HPO o contrastes confirmatorios del candidato. R3 no está establecida; no se concluye una inferioridad o equivalencia a partir de esa ausencia. |
+| Documentar y reproducir con calidad científica/profesional. | Jupyter Book, fuentes, manifiestos, bibliografía y auditores de productos con pruebas y ámbitos definidos. | Contenedores finales, reproducción humana independiente, datos/artefactos completos, declaración personal firmada y archivo con DOI pendientes. Una construcción HTML no sustituye esas evidencias. |
+
+## Qué se puede concluir de lo construido
+
+**El software candidato implementa la formulación disponible.** La arquitectura CNN causal → LSTM unidireccional → atención combina dos modificaciones candidatas, penalización de discordancia y saturación radial. Las tres intervenciones funcionales aisladas disponibles retiran, respectivamente, penalización, saturación o contenido convencional; no se presentan como tres innovaciones. Las 35 pruebas del módulo y los ensayos artificiales verifican comportamiento de software, gradientes, restricciones y serialización. No son entrenamiento ni evaluación de BTC y no aportan una mejora de RMSE del candidato.
+
+**La propiedad formal tiene un ámbito preciso.** La cota Lipschitz se demuestra sobre estados latentes con operador de referencia y parámetros de inferencia fijos, y se comprueba numéricamente en condiciones registradas. No cuantifica la sensibilidad de todo el preprocesamiento/CNN/LSTM frente a OHLCV crudo. Acotar valores también puede limitar la representación de extremos; la utilidad predictiva y ese riesgo deben evaluarse antes del congelamiento definitivo.
+
+**Existen tres artefactos reales de inferencia heredada.** MLP16, LSTM32 y GRU32 disponen de TorchScript, metadatos y paridad puntual sobre 53 fechas históricas de calibración de 2024, con error máximo y diferencia de RMSE cero en esa comprobación. La evidencia no verifica las 608 entradas de prueba A2, la cobertura de un intervalo exportado o una aplicación web. Esos artefactos requieren Torch y aún no satisfacen el perfil de producción ONNX Runtime sin framework de entrenamiento de la sección 10.
+
+**El benchmark de E2 conserva su identidad.** Comprende 16 sistemas y 608 fechas históricas conocidas, con seis semillas por cada una de las trece redes y una trayectoria por clásico determinista. Para E3 esos sistemas son los 16 rivales del candidato, no dieciséis resultados propios de la arquitectura nueva. El mínimo de E3 es diez semillas o el número mayor requerido para potencia de al menos 0,90 por contraste, con potencia conjunta reportada; repetir una trayectoria clásica no crea semillas independientes.
+
+**La documentación hace visibles los límites actuales.** La revisión de literatura mantiene R1 abierta y no transforma búsquedas bloqueadas o metadatos en evidencia de ausencia de antecedentes. La asistencia de IA y la defensa pendiente de R2 están declaradas. R3 requiere una comparación aún no ejecutada frente a toda la familia, con hipótesis y procedimientos válidos; el hecho de contar con una cota o pruebas aprobadas no la acredita. El [anexo final](cierre_reproducibilidad.md) conserva autoría, checklist y reproducción pendiente.
+
+## Orden de los próximos cierres
+
+1. **Cerrar insumos y auditorías.** Resolver datos/artefactos admisibles y controles pendientes, documentar correcciones reales y recalcular sus productos dependientes cuando corresponda. Conservar la selección por validación y el linaje del benchmark.
+2. **Revisar admisibilidad y mecanismo.** Completar la búsqueda de novedad y comparación con trabajos cercanos, procedencia, revisión humana y comprensión del autor. Contrastar la hipótesis y el diseño de ablación en desarrollo, registrando cada variante y resultado, sin usar confirmación para rediseñar.
+3. **Cerrar el diseño experimental antes de confirmar.** Fijar separación de datos y exposición previa, tres conjuntos adicionales, hipótesis, métricas, márgenes, familia, tres procedimientos válidos, presupuesto y reglas de fallo. Ejecutar el piloto y dimensionar semillas/calendario; registrar estándar y protocolo con fechas y tags reales previos a los experimentos definitivos.
+4. **Ejecutar y conservar la evaluación completa.** Evaluar al candidato y a todos los rivales bajo tratamiento comparable, con incertidumbre temporal y de inicialización diferenciadas, control familiar, adecuación, robustez, calibración, interpretabilidad y eficiencia. Mantener resultados adversos y no concluyentes junto a sus causas investigadas.
+5. **Construir y verificar el producto.** Completar exportación y paridad para el perfil de servicio, implementar Dash, contratos y explicación del caso real, comprobar recursos y accesibilidad y desplegar en Render. La prueba de humo deberá recorrer cada página y modelo habilitado; capturas/vídeo de contingencia procederán de una aplicación realmente funcional.
+6. **Completar la entrega reproducible y la defensa.** Consolidar el reporte científico y su tabla maestra, probar contenedores separados de ciencia/servicio, obtener la reproducción humana independiente y registrar discrepancias. Cerrar declaraciones y firmas, archivo persistente/DOI y preparación de la sustentación sin simular avales.
+
+Estos pasos conservan las dependencias y el estándar; planificarlos no los marca completados. La [evaluación de la sección 14](14_evaluacion_calificacion.md) mantiene sus reglas condicionales y no asigna una nota al avance. La [integridad académica](15_integridad_academica.md) exige atribución, fechas y resultados honestos durante todos los cierres.
+
+El cierre del proyecto requerirá reunir demostración, reproducción, validación estadística, calibración, robustez, interpretabilidad, eficiencia, atribución y disponibilidad del producto. La publicación actual del libro permite examinar el progreso y sus evidencias; las conclusiones científicas sobre el candidato deberán actualizarse después de la evaluación pertinente, sin anticipar superioridad.
