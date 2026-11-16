@@ -126,7 +126,7 @@ La [tabla de cobertura](../_static/e2_corrections_20261115/hpo/parameter_coverag
 
 El [recibo de ejecución](../_static/e2_corrections_20261115/statistics/execution_receipt.json) conserva fechas, software y hashes del programa y entradas, comprobados nuevamente al terminar. El [manifiesto estadístico](../_static/e2_corrections_20261115/statistics/manifest.json) y las {download}`instrucciones de repetición <../_static/e2_corrections_20261115/statistics/README.md>` permiten revisar los resultados. Se aprobaron siete pruebas analíticas y de invariancia del cálculo.
 
-El [diario complementario](../_static/e2_corrections_20261115/compute_ledger.jsonl) continúa el cierre histórico de **84 horas autorizadas**, sin reiniciar el contador. Reserva antes de cada comando científico y carga su tiempo real, incluidos fallos; libera el saldo no usado. La unidad es tiempo de pared acumulado de comandos científicos, no GPU activa ni coste monetario. Las comprobaciones documentales, descargas y empaquetado se distinguen de esas ejecuciones.
+El [diario complementario vigente](../_static/e2_pending_closure_20261116/compute_ledger.jsonl) continúa el cierre histórico de **84 horas autorizadas**, sin reiniciar el contador. Reserva antes de cada comando científico y carga su tiempo real, incluidos fallos; libera el saldo no usado. La unidad es tiempo de pared acumulado de comandos científicos, no GPU activa ni coste monetario. Las comprobaciones documentales, descargas y empaquetado se distinguen de esas ejecuciones.
 
 La potencia piloto de RQ1, **12,3 %**, y su diferencia mínima detectable ya estaban declaradas conforme a la excepción presupuestaria de §9.2 de la guía. Esta ampliación no aumenta retrospectivamente esa potencia ni la transfiere a RQ2/RQ3.
 
@@ -169,3 +169,5 @@ python scripts/reproduce_e2_campaign.py --check
 El [suplemento independiente descargable](../_static/e2_pending_closure_20261116/suplemento_cierre_20261116.zip) contiene su propio run.py, fuentes, huellas, recibos y la deducción RQ3. Su comando predeterminado funciona sin los otros paquetes y genera un informe local de comprobación y disponibilidad. El replay analítico opcional requiere descargar los doce ZIP v2 y disponer de los entornos especificados; el suplemento no contiene los datos de prueba ausentes.
 
 La [conciliación por modelo](../_static/e2_corrections_20261115/hpo/model_reconciliation_13.csv) y el catálogo mantienen por separado duraciones de fases y cargos de campaña. No se suman ámbitos solapados, no se imputan costes desconocidos y no se reabre HPO o NAS. El coste histórico integral continúa sin identificar. **NAS sigue sin aplicar.**
+
+El diario vigente usa una URL versionada nueva y conserva la cadena aditiva completa. La descarga del diario del 15/11 mantiene sus bytes originales; no se sustituye ni se reinicia la cuenta. El suplemento descargable conserva el script y el diario de su propio snapshot científico.

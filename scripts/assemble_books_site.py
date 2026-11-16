@@ -40,6 +40,7 @@ E2_LEGACY_DOWNLOADS = tuple(
 ) + (
     "_static/e2_agregacion_entrega_current_v1/a3_primary_contrasts_readout.json",
     "_static/e2_agregacion_entrega_current_v1/appendix_B_current.json",
+    "_static/e2_corrections_20261115/compute_ledger.jsonl",
 )
 
 

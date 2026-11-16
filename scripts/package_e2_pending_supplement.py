@@ -90,6 +90,7 @@ def package(source, output):
                   "scripts/download_e2_known_market.py",
                   "data/manifests/test_raw_reserve_20250101_20260831.json",
                   "book_e2/_static/e2_corrections_20261115/compute_ledger.jsonl",
+                  AREA+"/compute_ledger.jsonl",
                   "book_e2/sections/64_correcciones_metodologicas.md"})
     for path in (ROOT/AREA).rglob("*"):
         if path.is_file() and path.suffix in {".json",".csv",".md",".py",".txt"}:

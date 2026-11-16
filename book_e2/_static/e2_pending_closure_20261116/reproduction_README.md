@@ -20,7 +20,7 @@ python scripts/reproduce_e2_campaign.py --replay --archives-dir RUTA_ZIP --outpu
 El script reserva y cobra su reloj de pared en el diario aditivo existente de la
 campaña ya autorizada de 84 horas. No necesita otra envoltura del presupuesto,
 no lo reinicia y no inicia ajustes. `--replay` requiere el diario existente
-`book_e2/_static/e2_corrections_20261115/compute_ledger.jsonl` y su ancla histórica;
+`book_e2/_static/e2_pending_closure_20261116/compute_ledger.jsonl` y su ancla histórica;
 `--check` no necesita ese diario. No instala dependencias automáticamente.
 
 Correcciones: NumPy2.3.5/SciPy1.17.0. Primaria e incertidumbre originales:
@@ -77,3 +77,5 @@ No hacen falta los doce ZIP para ese modo: su ausencia se informa como bloqueo
 de replay. El suplemento conserva la fuente v1 realmente ejecutada bajo
 `replay_receipts/v1/`; las correcciones posteriores de CLI se validan con tests
 y comprobación de dependencias, sin atribuirles otra ejecución estadística.
+
+El diario activo conserva íntegramente la cadena previa de10591bytes; la copia histórica de8763bytes de `e2_corrections_20261115/compute_ledger.jsonl` conserva los bytes publicados en532a2bb y no vuelve a recibir cargos. La migración mantiene el mismo ancla y todos los cargos/reservas, sin reiniciar presupuesto. El suplemento C3 conserva su snapshot coherente anterior y no se modifica.
