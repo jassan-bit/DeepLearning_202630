@@ -1,0 +1,207 @@
+{
+  "review_date_utc": "2026-11-16",
+  "review_type": "focal_primary_source_review",
+  "AI_assisted_review": true,
+  "external_human_verification": false,
+  "systematic_novelty_clearance": false,
+  "version": "e3-v2-closure-focal-literature-v1",
+  "scope": "Limited focal supplement, not a systematic three-database novelty review or external human verification",
+  "source_count": 9,
+  "novelty_status": "not_verified",
+  "R1_accredited": false,
+  "absence_of_prior_art_claimed": false,
+  "backbone_preserved": "CNN causal -> LSTM unidirectional -> temporal content attention (M00)",
+  "repository_records_read": [
+    {
+      "path": "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/literature/sources.json",
+      "ref": "main",
+      "blob_sha": "79f76d1b8b52f7c8da78477b7b0ba9170fbf61e2"
+    },
+    {
+      "path": "experiments/e3_revision_post_piloto_20261116/literature/review_matrix.json",
+      "ref": "main",
+      "blob_sha": "3328f5f5af64731c7d2dda15d7ee3794602af76e"
+    }
+  ],
+  "sources": [
+    {
+      "id": "CV2-L01",
+      "citation_key": "Chan1983Variance",
+      "title": "Algorithms for Computing the Sample Variance: Analysis and Recommendations",
+      "authors": [
+        "Tony F. Chan",
+        "Gene H. Golub",
+        "Randall J. LeVeque"
+      ],
+      "year": 1983,
+      "doi": "10.1080/00031305.1983.10483115",
+      "primary_url": "https://doi.org/10.1080/00031305.1983.10483115",
+      "original_text_url": "https://math.pku.edu.cn/teachers/litj/notes/numer_anal/AmerStat_37_242_Chan_Variance.pdf",
+      "access_this_closure": "inherited_verified_primary_focal_reading_not_reopened",
+      "reading_location": "p.242, equations 1.3a–b; original scan and visual equation check in preceding theory review",
+      "established_mechanism": "Incremental update of mean and corrected sum of squares.",
+      "relation_to_current_design": "The six-known plus one-new return decomposition and coefficient 6/49 specialize this standard identity.",
+      "not_established": "It supplies no predictor of the next return and does not establish novelty of a neural architecture."
+    },
+    {
+      "id": "CV2-L02",
+      "citation_key": "Brosowsky2021ConstraintNet",
+      "title": "Sample-Specific Output Constraints for Neural Networks",
+      "authors": [
+        "Mathis Brosowsky",
+        "Florian Keck",
+        "Olaf Dünkel",
+        "Marius Zöllner"
+      ],
+      "year": 2021,
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 35(8), 6812–6819",
+      "primary_url": "https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf",
+      "access_this_closure": "primary_publisher_pdf_reopened_and_focally_read",
+      "reading_location": "pp.6814–6816, equations 3–5; Supported Constraints and Generalizations, scalar-threshold bullet on p.6816",
+      "established_mechanism": "Sample-specific output domains and the explicit scalar guard phi(z,s)=exp(z)+b, s=b.",
+      "relation_to_current_design": "A known lower bound plus a positive output is prior art; replacing exp with softplus alone is not a substantive novelty claim.",
+      "not_established": "The paper neither defines A from six financial returns nor evaluates this BTC sigma7 task.",
+      "metadata_note": "Use authors from the published AAAI PDF. No new independent DOI-resolver verification is claimed."
+    },
+    {
+      "id": "CV2-L03",
+      "citation_key": "Psarakis1990FoldedT",
+      "title": "The Folded t Distribution",
+      "authors": [
+        "Stelios Psarakis",
+        "John Panaretos"
+      ],
+      "year": 1990,
+      "venue": "Communications in Statistics—Theory and Methods 19(7), 2717–2734",
+      "doi": "10.1080/03610929008830342",
+      "primary_url": "https://mpra.ub.uni-muenchen.de/6257/",
+      "original_text_url": "https://mpra.ub.uni-muenchen.de/6257/1/MPRA_paper_6257.pdf",
+      "access_this_closure": "primary_deposited_original_focally_read_visually_by_delegated_reviewer",
+      "reading_location": "Journal pp.2718–2720, PDF pages 3–5; absolute-value definition, reflected densities, section 2 equation 2.1",
+      "reading_scope_change": "The V2 design record previously verified metadata/cover only. This closure adds a delegated visual reading of these original pages, not a full-article reading.",
+      "established_mechanism": "Folding a Student-t distribution by absolute value; density sums the positive and reflected branches.",
+      "relation_to_current_design": "A half-t magnitude with zero location is a special folded-t case; the family and factor two are not new.",
+      "not_established": "No conditional sigma7 predictor or novelty of our exact A-conditioned transport is established.",
+      "metadata_note": "Publication year is 1990; the MPRA deposit date in 2007 is not the publication date."
+    },
+    {
+      "id": "CV2-L04",
+      "citation_key": "Salinas2019DeepAR",
+      "title": "DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks",
+      "authors": [
+        "David Salinas",
+        "Valentin Flunkert",
+        "Jan Gasthaus"
+      ],
+      "year": 2019,
+      "arxiv": "1704.04110v3",
+      "primary_url": "https://arxiv.org/html/1704.04110",
+      "access_this_closure": "primary_arxiv_body_reopened_and_focally_read",
+      "reading_location": "Version 3, section 3.1, Gaussian and negative-binomial likelihood parameterizations; section 3.2 equation 2",
+      "established_mechanism": "A recurrent network produces conditional distribution parameters; affine output plus softplus ensures positive scale.",
+      "relation_to_current_design": "The network-to-positive-scale pattern is established; our backbone remains CNN–LSTM–attention.",
+      "not_established": "The read version experiments with Gaussian and negative-binomial distributions, not our half-t sigma7 head.",
+      "metadata_note": "Metadata corresponds to the three-author 2019 arXiv version; it is not silently merged with later journal metadata."
+    },
+    {
+      "id": "CV2-L05",
+      "citation_key": "Buczynski2024GARCHNet",
+      "title": "GARCHNet: Value-at-Risk Forecasting with GARCH Models Based on Neural Networks",
+      "authors": [
+        "Mateusz Buczynski",
+        "Marcin Chlebus"
+      ],
+      "year": 2024,
+      "online_publication_date": "2023-05-22",
+      "venue": "Computational Economics 63, 1949–1979",
+      "doi": "10.1007/s10614-023-10390-7",
+      "primary_url": "https://link.springer.com/article/10.1007/s10614-023-10390-7",
+      "access_this_closure": "primary_publisher_body_reopened_and_focally_read_by_delegated_reviewer",
+      "reading_location": "Section 2.1 equation 7 and section 2.3 equations 19–23",
+      "established_mechanism": "Neural conditional variance and likelihood parameters, softplus positivity and Student-t innovations.",
+      "relation_to_current_design": "Positive financial density heads are established; this source is not a sigma7 or folded-magnitude decoder.",
+      "not_established": "Its variance-standardized Student-t parameterization cannot be copied as an ordinary location-scale t scale without conversion."
+    },
+    {
+      "id": "CV2-L06",
+      "citation_key": "Zhao2024GARCHNN",
+      "title": "From GARCH to Neural Network for Volatility Forecast",
+      "authors": [
+        "Pengfei Zhao",
+        "Haoren Zhu",
+        "Wilfred Siu Hung Ng",
+        "Dik Lun Lee"
+      ],
+      "year": 2024,
+      "arxiv": "2402.06642v1",
+      "doi": "10.1609/aaai.v38i15.29643",
+      "primary_url": "https://arxiv.org/html/2402.06642",
+      "access_this_closure": "primary_arxiv_body_reopened_and_focally_read",
+      "reading_location": "Methodology, Equivalent Loss Function equations 4–6 and GARCH-LSTM equation 7",
+      "established_mechanism": "GARCH-derived neural components, conditional Student-t likelihood and coupling to LSTM.",
+      "relation_to_current_design": "Student-t financial likelihood and GARCH–neural combination are prior mechanisms.",
+      "not_established": "Its conditional variance/proxy, long history and parameterization differ from centered sigma7, U and the fixed D7 contract.",
+      "metadata_note": "AAAI DOI is carried from the previous source record; the new focal read is the original arXiv body."
+    },
+    {
+      "id": "CV2-L07",
+      "citation_key": "Nielsen2020SurVAE",
+      "title": "SurVAE Flows: Surjections to Bridge the Gap between VAEs and Flows",
+      "authors": [
+        "Didrik Nielsen",
+        "Priyank Jaini",
+        "Emiel Hoogeboom",
+        "Ole Winther",
+        "Max Welling"
+      ],
+      "year": 2020,
+      "arxiv": "2007.02731v2",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/9578a63fbe545bd82cc5bbe749636af1-Paper.pdf",
+      "original_text_url": "https://arxiv.org/pdf/2007.02731",
+      "access_this_closure": "inherited_verified_primary_focal_reading_not_reopened",
+      "reading_location": "Section 2 equation 1; section 3.1 table 2; arXiv appendix D equations 13–22",
+      "established_mechanism": "Change of variables and absolute-value surjections with sign branches.",
+      "relation_to_current_design": "Mathematical antecedent for magnitude and density transport only; no flow replaces the CNN–LSTM–attention backbone.",
+      "not_established": "It does not prescribe our sigma7 decoder, nu=5, lambda=0.1 or positive N128 quadrature."
+    },
+    {
+      "id": "CV2-L08",
+      "citation_key": "Spulbar2026Residual",
+      "title": "Residual Deep Learning for Realized Volatility Using a Hybrid HAR-LSTM Model with ARIMA Features and SHAP Interpretability",
+      "authors": [
+        "Cristi Spulbar",
+        "Cezar Cătălin Ene"
+      ],
+      "year": 2026,
+      "publication_date": "2026-10-09",
+      "venue": "Mathematics 14(20), 3661",
+      "doi": "10.3390/math14203661",
+      "primary_url": "https://www.mdpi.com/2227-7390/14/20/3661",
+      "access_this_closure": "inherited_verified_primary_focal_reading_not_reopened",
+      "reading_location": "Sections 3.1 and 4.3 in preceding focal review",
+      "established_mechanism": "Rolling volatility with a known contribution, a horizon-consistent GARCH diagnostic and non-overlapping target comparison.",
+      "relation_to_current_design": "Known-history plus future-innovation reasoning has financial forecasting precedents.",
+      "not_established": "The source uses a five-return uncentered squared-return target, not our seven-return centered population deviation."
+    },
+    {
+      "id": "CV2-L09",
+      "citation_key": "AcevedoPrins2026ARCHLSTM",
+      "title": "ARCH–LSTM Structural Equivalence with Hybrid Student-t Likelihood Loss for Financial Volatility Forecasting",
+      "authors": [
+        "Natalia Acevedo-Prins",
+        "Juan D. Velásquez"
+      ],
+      "year": 2026,
+      "publication_date": "2026-09-04",
+      "venue": "Journal of Risk and Financial Management 19(9), 688",
+      "doi": "10.3390/jrfm19090688",
+      "primary_url": "https://www.mdpi.com/1911-8074/19/9/688",
+      "access_this_closure": "new_search_hit_primary_publisher_metadata_and_body_focally_read",
+      "reading_location": "Section 2.3, equations 6–8; section 3.1 target definition; section 4.6.2 contextual limitation",
+      "established_mechanism": "LSTM output with softplus and a hybrid squared-error plus Student-t negative-log-likelihood criterion.",
+      "exact_similarity": "A positive recurrent financial output and mixing a point loss with a heavy-tail likelihood are already documented.",
+      "exact_difference": "Its SSE compares predicted conditional variance with a centered return squared, and its likelihood is on the centered return. Our MSE is on sigma7 and our auxiliary likelihood is on U=|r_next-mean6|; the source does not give our floor, half-t transport or N128 integration.",
+      "not_established": "This source does not establish the exact V2 combination as prior identical architecture, nor validate our choice nu=5/lambda=0.1. Its equivalence proofs and reported empirical claims were not independently verified or reproduced."
+    }
+  ]
+}
