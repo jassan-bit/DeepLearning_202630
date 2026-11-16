@@ -8,11 +8,14 @@ on:
       - 'tests/test_original_model.py'
       - 'tests/test_development_training.py'
       - 'tests/test_development_github.py'
+      - 'tests/test_development_audit.py'
       - 'scripts/e3_verify_original.py'
       - 'scripts/e3_run_development.py'
       - 'scripts/e3_github_storage.py'
+      - 'scripts/e3_audit_development.py'
       - 'experiments/e3_bloque_c_20261115/**'
       - 'experiments/e3_desarrollo_v1/**'
+      - 'experiments/e3_revision_post_piloto_20261116/**'
       - 'notebooks/entregable3_desarrollo_colab.ipynb'
       - 'notebooks/preparar_e3_desarrollo_runtime.py'
       - 'notebooks/run_e3_github_colab.py'
@@ -46,8 +49,9 @@ jobs:
           OMP_NUM_THREADS: '1'
           MKL_NUM_THREADS: '1'
         run: |
-          python -m pytest tests/test_original_model.py tests/test_development_training.py tests/test_development_github.py -q
+          python -m pytest tests/test_original_model.py tests/test_development_training.py tests/test_development_github.py tests/test_development_audit.py -q
           python scripts/e3_verify_original.py --check
+          python scripts/e3_audit_development.py --check
       - name: Comprobar sintaxis de Colab sin instalar CUDA ni entrenar mercado
         run: |
           python -m py_compile notebooks/preparar_e3_desarrollo_runtime.py notebooks/run_e3_github_colab.py scripts/e3_github_storage.py scripts/e3_run_development.py src/e3_development.py

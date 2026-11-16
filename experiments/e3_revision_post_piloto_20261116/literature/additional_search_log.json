@@ -1,0 +1,99 @@
+{
+  "version": "e3-additional-focal-search-log-v1",
+  "recorded_date_utc": "2026-11-16",
+  "scope": "Web discovery and focal reading of original sources after the development pilot; not a completed systematic novelty review.",
+  "web_search_batches": [
+    {
+      "queries": [
+        "\"rolling volatility\" \"known\" neural forecasting",
+        "\"volatility forecasting\" \"hard constraints\" neural",
+        "\"variance decomposition\" \"neural\" \"volatility forecasting\"",
+        "\"bounded influence\" attention volatility forecasting"
+      ],
+      "backend": "connected web search",
+      "per_query_hit_counts": null
+    },
+    {
+      "queries": [
+        "\"PGA-Trans-HAR\"",
+        "\"Signal Simplification Is Not Predictive Simplification\"",
+        "\"rolling standard deviation\" \"neural\" constraint forecasting",
+        "\"partially known\" volatility forecasting"
+      ],
+      "backend": "connected web search",
+      "per_query_hit_counts": null
+    }
+  ],
+  "native_endpoint_attempts": [
+    {
+      "database": "Crossref",
+      "query": "rolling volatility neural constraints",
+      "url": "https://api.crossref.org/works?query=rolling%20volatility%20neural%20constraints&rows=5",
+      "status": "tool_unavailable",
+      "outcome": "Endpoint was not accessible through the web tool. This is not a successful database search or a zero-result finding.",
+      "hits": null
+    },
+    {
+      "database": "OpenAlex",
+      "query": "rolling volatility neural constraints",
+      "url": "https://api.openalex.org/works?search=rolling%20volatility%20neural%20constraints&per-page=5",
+      "status": "tool_unavailable",
+      "outcome": "Endpoint was not accessible through the web tool. This is not a successful database search or a zero-result finding.",
+      "hits": null
+    },
+    {
+      "database": "arXiv",
+      "query": "all:\"volatility\" AND all:\"constraints\"",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3Avolatility%20AND%20all%3Aconstraints&start=0&max_results=5",
+      "status": "tool_unavailable",
+      "outcome": "Endpoint was not accessible through the web tool. This is not a successful database search or a zero-result finding.",
+      "hits": null
+    }
+  ],
+  "root_original_focal_readings": [
+    {
+      "url": "https://www.mdpi.com/2227-7390/14/20/3661",
+      "locations": [
+        "3.1: overlapping five-return target",
+        "4.3: horizon-consistent GARCH diagnostic"
+      ],
+      "note": "A daily squared-return window is partly observed at forecast origin; not the centered seven-return target of this project."
+    },
+    {
+      "url": "https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf",
+      "locations": [
+        "pages 1–2: sample-specific parameterization and prior projection",
+        "printed page 6816: scalar guard exp(z)+b"
+      ],
+      "note": "The output threshold layer is explicit prior art; replacing exp with softplus alone is not a supported novelty claim."
+    },
+    {
+      "url": "https://arxiv.org/html/2205.07719",
+      "locations": [
+        "4.1–4.3: equations 18–22 and target definition"
+      ],
+      "note": "HARNet uses realized-variance history and original windows longer than seven days."
+    },
+    {
+      "url": "https://arxiv.org/html/2610.03019",
+      "locations": [
+        "abstract",
+        "3.3: signal/forecast/system diagnostics",
+        "4.1: equations 10–11 and six-observation squared-return target"
+      ],
+      "note": "Residual simplification is not itself evidence that a neural correction will improve forecasting."
+    },
+    {
+      "url": "https://arxiv.org/html/2608.25369",
+      "locations": [
+        "3.4: equations 10–14",
+        "4.3: common protocol and code link"
+      ],
+      "note": "Financial attention with a bounded correction to a frozen HAR anchor already exists; this is not the exact discordance-logit head of the initial candidate."
+    }
+  ],
+  "novelty_absence_established": false,
+  "three_database_search_completed": false,
+  "external_human_verification_completed": false,
+  "new_market_training_performed": false
+}
