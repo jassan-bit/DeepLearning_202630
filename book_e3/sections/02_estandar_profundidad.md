@@ -22,4 +22,4 @@ Se conserva la RMSE en unidades originales y el margen práctico heredado **δ=0
 
 La superioridad requiere además relevancia práctica, tamaño de efecto, adecuación del modelo, robustez de la conclusión y consistencia en los conjuntos adicionales. Mejorar una métrica puntual, demostrar una cota o no rechazar una diferencia no establece por sí solo superioridad o equivalencia.
 
-La [matriz inicial de requisitos](01_alcance_requisitos.md) se conserva como anexo de trazabilidad. El estado vigente se desarrolla en las secciones 4 a 8. La [sección 8](08_verificacion_estadistica.md) organiza el protocolo propuesto y sus decisiones pendientes; no sustituye el registro previo exigido.
+La [matriz inicial de requisitos](01_alcance_requisitos.md) se conserva como anexo de trazabilidad. El estado vigente se desarrolla en las secciones 4 a 9. La [sección 8](08_verificacion_estadistica.md) organiza el protocolo propuesto y sus decisiones pendientes; no sustituye el registro previo exigido. La [sección 9](09_dashboard_predictivo.md) especifica cómo el dashboard deberá comunicar resultados, incertidumbre y límites sin sustituir su evaluación científica.
