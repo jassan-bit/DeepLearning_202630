@@ -1,6 +1,6 @@
 # Concordancia y documentos de trabajo anteriores
 
-El índice principal sigue las secciones 1 a 14 de la guía. Las páginas anteriores conservan sus direcciones y contenidos como documentos de trabajo y cortes de evidencia; sus cifras y estados se interpretan con la fecha y el alcance que declaran. Para el estado integrado actual se deben leer los capítulos principales.
+El índice principal sigue las secciones 1 a 16 de la guía. Las páginas anteriores conservan sus direcciones y contenidos como documentos de trabajo y cortes de evidencia; sus cifras y estados se interpretan con la fecha y el alcance que declaran. Para el estado integrado actual se deben leer los capítulos principales.
 
 | Página anterior | Ubicación principal actual |
 |---|---|
@@ -18,4 +18,6 @@ Los informes de `experiments/e3_bloques_ab_20261115/` y `experiments/e3_bloque_c
 
 La actualización de estado de la sección 4 incorpora las auditorías posteriores publicadas por E2, sin renombrarlas como nuevas ejecuciones de E3. Las secciones [8](08_verificacion_estadistica.md), [9](09_dashboard_predictivo.md) y [10](10_despliegue_render.md) organizan protocolo, aplicación y despliegue pendientes. Las secciones [11](11_informe_tecnico.md) a [14](14_evaluacion_calificacion.md) incorporan estructura científica, lista de productos, sustentación y evaluación. Se conservan las páginas históricas `08_bloques_a_b` y `09_modelo_original`; sus números no corresponden a los capítulos actuales de la guía.
 
-El [anexo final](cierre_reproducibilidad.md) reúne conclusiones provisionales, checklist de reproducción, autoría pendiente de confirmación/firmas y bibliografía renderizada. Su ubicación al cierre atiende los requisitos de las secciones 11–12 sin presentar la documentación parcial como reproducción independiente. El [mapa del Cuadro 7](11_informe_tecnico.md) distingue su estructura científica de la numeración de secciones de esta guía. Las secciones posteriores a la 14 se incorporarán cuando se trabaje su contenido.
+Las secciones [15](15_integridad_academica.md) y [16](16_conclusiones.md) completan la organización de la guía. El [Apéndice A](apendice_a_plantillas.md) incorpora sus seis plantillas y el [índice metodológico](referencias_sugeridas.md) sus 37 referencias sugeridas. Los Cuadros 7, 8 y 9 se integran en las secciones 11 y 14 con su numeración de origen.
+
+El [anexo final](cierre_reproducibilidad.md) conserva checklist de reproducción, autoría pendiente de confirmación/firmas y bibliografía renderizada. Su ubicación al cierre atiende las secciones 11–12 sin presentar la documentación parcial como reproducción independiente. El [mapa del Cuadro 7](11_informe_tecnico.md) distingue su estructura científica de la numeración de secciones de la guía. Completar el índice no declara terminados los experimentos o los productos pendientes.

@@ -27,3 +27,5 @@ Cada producto final deberá identificar versión/commit o tag, fecha real, fuent
 Las rutas exigidas por la guía se distinguen de los documentos de trabajo anidados que existen hoy. Copiar un borrador a un nombre canónico no lo convierte en preregistro ni resuelve su contenido pendiente. La selección de recetas y los resultados históricos conservan su identidad; no se editan para completar casillas del candidato.
 
 La [rúbrica](14_evaluacion_calificacion.md) determina cómo se evalúan los productos y la evidencia. Esta tabla no asigna una nota ni un tope de calificación, y no sustituye los criterios R1, R2 y R3.
+
+El [Apéndice A](apendice_a_plantillas.md) aporta archivos editables para preparar estándar, procedencia, bitácora, contrastes y verificaciones. Son plantillas identificadas como tales; no completan los productos pendientes mediante nombres, fechas, firmas o resultados ficticios. La [sección 15](15_integridad_academica.md) mantiene las reglas de atribución y trazabilidad durante ese cierre.
