@@ -194,6 +194,16 @@ Este catálogo identifica riesgos, controles ejecutados y condiciones que siguen
 
 La evidencia adversa se conserva: autocorrelación y desviaciones residuales, deriva de covariables detectada, potencia insuficiente, heterogeneidad y huecos de costes, techo incierto y adecuación conjunta no demostrada. Las decisiones pendientes requieren su diseño de desarrollo y alcance propios; esta entrega **no cambia modelos, datos, semillas, métricas, calibradores ni familias** para obtener una aprobación. Los apéndices enlazan lo que existe y mantienen separados los controles sintéticos, la reproducción numérica y los resultados científicos.
 
+## Descargas conservadas de la edición del 15 de noviembre
+
+Estos cinco archivos mantienen sus bytes y enlaces de descarga anteriores. Describen el corte del 15/11; la evidencia vigente se presenta arriba y en [§65](65_cierre_cientifico_real.md).
+
+- {download}`Recibo histórico de ejecución independiente <../_static/e2_corrections_20261115/delivery/standalone_execution_snapshot.json>`
+- {download}`Procedencia histórica de A.3 <../_static/e2_corrections_20261115/delivery/a3_primary_contrasts_current.json>`
+- {download}`Apéndice B histórico, JSON <../_static/e2_corrections_20261115/delivery/appendix_B_current.json>`
+- {download}`Apéndice B histórico, CSV <../_static/e2_corrections_20261115/delivery/appendix_B_current.csv>`
+- {download}`Resumen HPO histórico <../_static/e2_corrections_20261115/hpo/summary.json>`
+
 ````{admonition} Archivo documental: contenido anterior de este complemento
 :class: dropdown
 
