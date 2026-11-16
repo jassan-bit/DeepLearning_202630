@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cierre provisional, reproducibilidad, autoría y bibliografía &#8212; Entregable 3 · Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/cierre_reproducibilidad';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="Bloque C y modelo neuronal candidato" href="09_modelo_original.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3 · Deep Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 14 de la guía</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">1 Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_estandar_profundidad.html">2 Estándar de profundidad exigido</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_panorama_general.html">3 Panorama general del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_correcciones_e2.html">4 Bloque A Correcciones del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_configuraciones_exportacion.html">5 Bloque B Selección de configuraciones y exportación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_modelo_original.html">6 Bloque C El modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_diseno_riguroso.html">7 Diseño riguroso del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_verificacion_estadistica.html">8 Bloque D Verificación estadística y evaluación ampliada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_dashboard_predictivo.html">9 Bloque E Dashboard predictivo en Dash Plotly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_despliegue_render.html">10 Bloque F Despliegue en Render</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_informe_tecnico.html">11 Bloque G Informe técnico en Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_lista_entregables.html">12 Lista de entregables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_sustentacion.html">13 Sustentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_evaluacion_calificacion.html">14 Evaluación y calificación</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_planificacion.html">Plan de trabajo inicial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_desarrollo_evidencias.html">Desarrollo y evidencias anteriores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_resultados_discusion.html">Resultados y discusión del corte anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reproducibilidad_entrega.html">Reproducibilidad y estructura final prevista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad del primer corte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del candidato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_bloques_a_b.html">Evidencias originales de los bloques A y B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_modelo_original.html">Desarrollo original del candidato C</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Cierre provisional, reproducibilidad, autoría y bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 3 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/cierre_reproducibilidad.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Cierre provisional, reproducibilidad, autoría y bibliografía</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-provisionales-y-limites">Conclusiones provisionales y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-reproducibilidad-al-cierre">Lista de reproducibilidad al cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-reproduccion-independiente-por-completar">Registro de reproducción independiente por completar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoria-contribuciones-y-uso-de-ia">Autoría, contribuciones y uso de IA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-de-partida-y-alcance-de-lectura">Bibliografía de partida y alcance de lectura</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cierre-provisional-reproducibilidad-autoria-y-bibliografia">
+<h1>Cierre provisional, reproducibilidad, autoría y bibliografía<a class="headerlink" href="#cierre-provisional-reproducibilidad-autoria-y-bibliografia" title="Link to this heading">#</a></h1>
+<p>Este anexo cierra la navegación del informe con los requisitos de reproducción y autoría de las secciones 11–12. Es un <strong>registro provisional</strong>, no un acta de entrega, firma o reproducción independiente. Se conserva la diferencia entre documentación publicada, software comprobado y resultados científicos pendientes.</p>
+<section id="conclusiones-provisionales-y-limites">
+<h2>Conclusiones provisionales y límites<a class="headerlink" href="#conclusiones-provisionales-y-limites" title="Link to this heading">#</a></h2>
+<p>E2 aporta un benchmark histórico de 16 sistemas y 608 fechas, con recetas/artefactos, auditorías parciales y análisis posteriores de alcance declarado. E3 dispone de inventario, selección documentada y tres exportaciones TorchScript de referencias, verificadas numéricamente en calibración histórica. Estas comprobaciones no aportan confirmación independiente del modelo original ni certifican el servicio en Render.</p>
+<p>El candidato tiene formulación, implementación asistida por IA, demostración de una cota de su cabeza latente y 35 pruebas con datos artificiales. La revisión focal y la bibliografía no establecen una ausencia de antecedentes. <strong>R1, la defensa académica de R2 y R3 permanecen pendientes.</strong> No se infieren ganancias de RMSE, adecuación, calibración o generalización de los tests artificiales.</p>
+<p>Las etapas siguientes son cerrar auditorías y fuentes admisibles, revisión/hipótesis/diseño, separación de confirmación, datasets, presupuesto y potencia antes del protocolo; ejecutar después la comparación completa; construir y verificar la aplicación y su reproducción. Los borradores y las páginas de diseño conservan sus fechas y no se convierten retrospectivamente en preregistros o productos funcionales.</p>
+</section>
+<section id="lista-de-reproducibilidad-al-cierre">
+<h2>Lista de reproducibilidad al cierre<a class="headerlink" href="#lista-de-reproducibilidad-al-cierre" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Pendiente para cierre completo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Versión de fuentes</p></td>
+<td><p>Git, manifiestos de los cortes y fuentes del libro.</p></td>
+<td><p>Vincular la entrega exacta con archivo verificable, tag y DOI/identificador persistente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Entorno documental</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">requirements-book.lock.txt</span></code>, configuración y workflow de construcción de los tres libros.</p></td>
+<td><p>Mantener instrucciones verificadas para reconstruir esta versión; esto no ejecuta la campaña científica.</p></td>
+</tr>
+<tr class="row-even"><td><p>Entornos científicos y de servicio</p></td>
+<td><p>Locks CPU del software existente y reportes con versiones.</p></td>
+<td><p>Contenedores probados separados: científico con framework; servicio ONNX Runtime sin framework de entrenamiento, conforme a sección 10.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hardware y precisión</p></td>
+<td><p>Perfiles identificados en los reportes de E2/exportación.</p></td>
+<td><p>Registrar hardware/backend/hilos/lotes de cada ejecución final, sin mezclar eager CPU, TorchScript y GPU.</p></td>
+</tr>
+<tr class="row-even"><td><p>Semillas y determinismo</p></td>
+<td><p>E2 registra seis semillas por red; el software del candidato conserva su configuración y pruebas.</p></td>
+<td><p>Lista y número final de semillas E3 dimensionados por potencia, políticas de todos los generadores y límites de determinismo documentados. No multiplicar trayectorias clásicas deterministas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hiperparámetros y esfuerzo</p></td>
+<td><p>Recibos de selección de E2 y bitácora artificial del candidato.</p></td>
+<td><p>Espacios/presupuestos comparables, Nd total, fallos, decisiones y protocolo previo al cálculo definitivo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Métricas y tabla maestra</p></td>
+<td><p>Inventario de los 16 sistemas heredados y reportes por cohorte.</p></td>
+<td><p>Métricas por ejecución del candidato y tres conjuntos; fuente común de informe/dashboard, IC y dispersiones con unidades de incertidumbre.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Datos y derechos</p></td>
+<td><p>Data Card/contrato de E2, hashes y auditorías de desarrollo con alcance.</p></td>
+<td><p>Datos admisibles faltantes, instrucciones exactas y licencias/condiciones verificadas para cada fuente; DATA_STATEMENT final.</p></td>
+</tr>
+<tr class="row-even"><td><p>Artefactos y paridad</p></td>
+<td><p>Tres TorchScript y paridad puntual en 53 fechas de calibración.</p></td>
+<td><p>Exportaciones de producción ONNX y demás artefactos aplicables, metadata y pruebas completas de preprocesamiento/salida/intervalo con tolerancias previas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cómputo y energía</p></td>
+<td><p>Registros existentes con sus ámbitos históricos.</p></td>
+<td><p>Tiempos/costes y energía medida o estimada con método explícito de la campaña E3; no inventar kWh ni confundir reloj, CPU y horas GPU.</p></td>
+</tr>
+<tr class="row-even"><td><p>Verificación de software</p></td>
+<td><p>Workflows <code class="docutils literal notranslate"><span class="pre">verify-e3-handoff.yml</span></code> y <code class="docutils literal notranslate"><span class="pre">verify-e3-original.yml</span></code>, más comprobaciones del libro.</p></td>
+<td><p>Tests de la aplicación futura y su coherencia con el informe. Un check de bytes no demuestra reproducción integral de resultados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reproducción independiente</p></td>
+<td><p>Requisitos y procedimiento previsto en <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>.</p></td>
+<td><p>Una persona ajena al código, entorno limpio en contenedor, tabla principal regenerada y discrepancia máxima reportada.</p></td>
+</tr>
+<tr class="row-even"><td><p>Servicio público</p></td>
+<td><p>Plan <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a> y diseño <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>.</p></td>
+<td><p>URL Render, prueba de humo por página/modelo, logs, tiempos y contingencia basados en una app funcional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Autoría y defensa</p></td>
+<td><p>Procedencia del candidato declara asistencia IA.</p></td>
+<td><p>Contribuciones individuales confirmadas, firmas humanas y dominio del algoritmo comprobado durante preparación/defensa.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las verificaciones <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_build_handoff_book.py</span> <span class="pre">--check</span></code> y <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_verify_original.py</span> <span class="pre">--check</span></code> tienen ámbitos de evidencia y software definidos. La construcción <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">book_e3</span> <span class="pre">--all</span> <span class="pre">--warningiserror</span> <span class="pre">--keep-going</span></code> y el comprobador de enlaces verifican documentación. Ninguno de esos comandos, por sí solo, entrena la campaña E3, reproduce un servicio Render o convierte a la IA en una persona independiente del código.</p>
+</section>
+<section id="registro-de-reproduccion-independiente-por-completar">
+<h2>Registro de reproducción independiente por completar<a class="headerlink" href="#registro-de-reproduccion-independiente-por-completar" title="Link to this heading">#</a></h2>
+<p>El informe deberá identificar revisor humano y relación con el proyecto; fecha; commit/tag y archivo/DOI; digest del contenedor; hardware; versiones; hashes de datos/artefactos; comandos y logs; semillas; productos regenerados y productos sólo comprobados. La tabla principal se comparará con la versión entregada usando tolerancias fijadas previamente, y se reportarán discrepancia máxima, localización de diferencias, fallos y causa investigada.</p>
+<p><strong>Estado: no ejecutado ni firmado.</strong> No hay una discrepancia cero que informar de esa reproducción. Los errores cero de las tres exportaciones y las comprobaciones CI mantienen su alcance propio.</p>
+</section>
+<section id="autoria-contribuciones-y-uso-de-ia">
+<h2>Autoría, contribuciones y uso de IA<a class="headerlink" href="#autoria-contribuciones-y-uso-de-ia" title="Link to this heading">#</a></h2>
+<p>La autoría declarada en la portada se mantiene como dato del proyecto. No se atribuyen automáticamente contribuciones individuales ni se afirma una firma o defensa que no se haya verificado.</p>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/procedencia.md">procedencia existente</a> declara que el módulo candidato fue escrito con asistencia de IA desde la formulación. La asistencia también se ha usado para organizar requisitos, redactar documentación, preparar herramientas de auditoría/exportación y comprobar software. Los capítulos deben conservar ese alcance y la revisión humana pendiente; no se presentan como implementación o demostración comprendidas y defendidas por la persona autora sólo porque existan archivos.</p>
+<p>Antes de la entrega, cada integrante deberá completar y confirmar este registro y firmar su propia declaración:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo</p></th>
+<th class="head"><p>Contenido a registrar</p></th>
+<th class="head"><p>Estado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Identidad y participación</p></td>
+<td><p>Nombre de cada integrante y relación con la versión entregada.</p></td>
+<td><p>Por confirmar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contribuciones individuales</p></td>
+<td><p>Actividades concretas, archivos/decisiones y evidencia de su revisión.</p></td>
+<td><p>Por declarar; no asignadas por la IA.</p></td>
+</tr>
+<tr class="row-even"><td><p>Herramientas</p></td>
+<td><p>Nombre/versión o identificación disponible, usos, alcance y archivos afectados, incluidas herramientas IA.</p></td>
+<td><p>Asistencia descrita; inventario final por validar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comprensión y responsabilidad</p></td>
+<td><p>Qué código, derivaciones, resultados y limitaciones revisó y puede explicar/modificar cada persona.</p></td>
+<td><p>No certificado por los tests.</p></td>
+</tr>
+<tr class="row-even"><td><p>Confirmación</p></td>
+<td><p>Declaración personal, fecha real y firma de cada integrante.</p></td>
+<td><p>Sin firmas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esta plantilla no es una declaración suscrita. La <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">sustentación</span></a> deberá permitir explicar y modificar el mecanismo y sus pruebas sin ocultar la asistencia recibida.</p>
+</section>
+<section id="bibliografia-de-partida-y-alcance-de-lectura">
+<h2>Bibliografía de partida y alcance de lectura<a class="headerlink" href="#bibliografia-de-partida-y-alcance-de-lectura" title="Link to this heading">#</a></h2>
+<p>La bibliografía configurada en <code class="docutils literal notranslate"><span class="pre">book_e3/references.bib</span></code> conserva los siete registros ya presentes en el corte del candidato; no es una nueva búsqueda ni acredita lectura completa de todos los trabajos. Los originales de Kim y colaboradores <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id4" title="Hyunjik Kim, George Papamakarios, and Andriy Mnih. The lipschitz constant of self-attention. In Proceedings of the 38th International Conference on Machine Learning, volume 139 of Proceedings of Machine Learning Research, 5562–5571. 2021. URL: https://proceedings.mlr.press/v139/kim21i.html.">Kim <em>et al.</em>, 2021</a>]</span> y Dasoulas y colaboradores <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id5" title="George Dasoulas, Kevin Scaman, and Aladin Virmaux. Lipschitz normalization for self-attention layers with application to graph neural networks. In Proceedings of the 38th International Conference on Machine Learning, volume 139 of Proceedings of Machine Learning Research, 2456–2466. 2021. URL: https://proceedings.mlr.press/v139/dasoulas21a.html.">Dasoulas <em>et al.</em>, 2021</a>]</span> tuvieron lectura focal documentada. La matriz de la <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a> distingue los otros antecedentes, metadatos heredados y límites de consulta.</p>
+<p>El archivo <a class="reference download internal" download="" href="../_downloads/33e59b5ca9ec342068223d604c3f8d55/references.bib"><code class="xref download docutils literal notranslate"><span class="pre">references.bib</span></code></a> y la bibliografía renderizada permiten seguir las citas. Cerrar R1 requiere además completar/repetir la revisión, clasificar diferencias y obtener la verificación externa exigida; una lista BibTeX no demuestra novedad.</p>
+<div class="docutils container" id="id3">
+<div role="list" class="citation-list">
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Hyunjik Kim, George Papamakarios, and Andriy Mnih. The lipschitz constant of self-attention. In <em>Proceedings of the 38th International Conference on Machine Learning</em>, volume 139 of Proceedings of Machine Learning Research, 5562–5571. 2021. URL: <a class="reference external" href="https://proceedings.mlr.press/v139/kim21i.html">https://proceedings.mlr.press/v139/kim21i.html</a>.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>George Dasoulas, Kevin Scaman, and Aladin Virmaux. Lipschitz normalization for self-attention layers with application to graph neural networks. In <em>Proceedings of the 38th International Conference on Machine Learning</em>, volume 139 of Proceedings of Machine Learning Research, 2456–2466. 2021. URL: <a class="reference external" href="https://proceedings.mlr.press/v139/dasoulas21a.html">https://proceedings.mlr.press/v139/dasoulas21a.html</a>.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<p>Shiyu Wang, Haixu Wu, Xiaoming Shi, Tengge Hu, Huakun Luo, Lintao Ma, James Y. Zhang, and Jun Zhou. Timemixer: decomposable multiscale mixing for time series forecasting. In <em>International Conference on Learning Representations</em>. 2024. URL: <a class="reference external" href="https://openreview.net/forum?id=7oLshfEIC2">https://openreview.net/forum?id=7oLshfEIC2</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<p>Thang Luong, Hieu Pham, and Christopher D. Manning. Effective approaches to attention-based neural machine translation. In <em>Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing</em>, 1412–1421. 2015. URL: <a class="reference external" href="https://aclanthology.org/D15-1166/">https://aclanthology.org/D15-1166/</a>, <a class="reference external" href="https://doi.org/10.18653/v1/D15-1166">doi:10.18653/v1/D15-1166</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
+<p>P. Peng, Y. Chen, W. Lin, and J. Z. Wang. Attention-based cnn–lstm for high-frequency multiple cryptocurrency trend prediction. <em>Expert Systems with Applications</em>, 2024. Bibliographic metadata inherited from the received Scopus export; original body not newly read in this pass. <a class="reference external" href="https://doi.org/10.1016/j.eswa.2023.121520">doi:10.1016/j.eswa.2023.121520</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<p>H. Wang, Y. Huang, Z. Chen, X. Yang, X. Yi, H. Dong, and X. Yang. Estimation of realized volatility of cryptocurrencies using ceemdan-rf-lstm. <em>Future Generation Computer Systems</em>, 2024. Metadata and critical assessment inherited from E2; original not independently reread here. <a class="reference external" href="https://doi.org/10.1016/j.future.2024.04.043">doi:10.1016/j.future.2024.04.043</a>.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
+<p>Rafael Reisenhofer, Xandro Bayer, and Nikolaus Hautsch. Harnet: a convolutional neural network for realized volatility forecasting. 2022. Preprint identity from received arXiv export; inherited E2 focal review. URL: <a class="reference external" href="https://arxiv.org/abs/2205.07719">https://arxiv.org/abs/2205.07719</a>, <a class="reference external" href="https://arxiv.org/abs/2205.07719">arXiv:2205.07719</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_modelo_original.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Bloque C y modelo neuronal candidato</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-provisionales-y-limites">Conclusiones provisionales y límites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-reproducibilidad-al-cierre">Lista de reproducibilidad al cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-reproduccion-independiente-por-completar">Registro de reproducción independiente por completar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoria-contribuciones-y-uso-de-ia">Autoría, contribuciones y uso de IA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-de-partida-y-alcance-de-lectura">Bibliografía de partida y alcance de lectura</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1028 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>14 Evaluación y calificación &#8212; Entregable 3 · Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/14_evaluacion_calificacion';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Concordancia y documentos de trabajo anteriores" href="concordancia_secciones.html" />
+    <link rel="prev" title="13 Sustentación" href="13_sustentacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3 · Deep Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 14 de la guía</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">1 Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_estandar_profundidad.html">2 Estándar de profundidad exigido</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_panorama_general.html">3 Panorama general del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_correcciones_e2.html">4 Bloque A Correcciones del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_configuraciones_exportacion.html">5 Bloque B Selección de configuraciones y exportación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_modelo_original.html">6 Bloque C El modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_diseno_riguroso.html">7 Diseño riguroso del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_verificacion_estadistica.html">8 Bloque D Verificación estadística y evaluación ampliada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_dashboard_predictivo.html">9 Bloque E Dashboard predictivo en Dash Plotly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_despliegue_render.html">10 Bloque F Despliegue en Render</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_informe_tecnico.html">11 Bloque G Informe técnico en Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_lista_entregables.html">12 Lista de entregables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_sustentacion.html">13 Sustentación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14 Evaluación y calificación</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_planificacion.html">Plan de trabajo inicial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_desarrollo_evidencias.html">Desarrollo y evidencias anteriores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_resultados_discusion.html">Resultados y discusión del corte anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reproducibilidad_entrega.html">Reproducibilidad y estructura final prevista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad del primer corte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del candidato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_bloques_a_b.html">Evidencias originales de los bloques A y B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_modelo_original.html">Desarrollo original del candidato C</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_reproducibilidad.html">Cierre provisional, reproducibilidad, autoría y bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 3 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/14_evaluacion_calificacion.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>14 Evaluación y calificación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tope-de-calificacion-segun-el-modelo-original">14.1 Tope de calificación según el modelo original</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rubrica-ponderada">14.2 Rúbrica ponderada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-la-nota-final">14.3 Cálculo de la nota final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveles-de-desempeno-por-componente">14.4 Niveles de desempeño por componente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-para-alcanzar-la-nota-5-0">14.5 Condiciones para alcanzar la nota 5,0</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contribucion-y-novedad">14.5.1 Contribución y novedad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-justa">14.5.2 Comparación justa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-estadistica">14.5.3 Evidencia estadística</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-de-la-evidencia">14.5.4 Generalización de la evidencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validez-del-modelo">14.5.5 Validez del modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-que-explican-el-resultado">14.5.6 Análisis que explican el resultado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad">14.5.7 Reproducibilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-del-entregable">14.5.8 Productos del entregable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-previa-al-congelamiento-del-protocolo">14.5.9 Decisión previa al congelamiento del protocolo</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="evaluacion-y-calificacion">
+<h1>14 Evaluación y calificación<a class="headerlink" href="#evaluacion-y-calificacion" title="Link to this heading">#</a></h1>
+<p><strong>Estado: matriz documental de requisitos y evidencia, sin nota ni tope asignados al avance actual.</strong> Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas de evaluación pertenecen a esa guía; describirlas no acredita su cumplimiento ni constituye una evaluación del docente.</p>
+<p>La evidencia se consulta en las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">correcciones de E2</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">artefactos</span></a>, <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">candidato</span></a>, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">diseño riguroso</span></a>, <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">verificación estadística</span></a> y <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">diseño del dashboard</span></a>. Las actividades pendientes conservan su estado; esta ampliación no entrena modelos, ejecuta contrastes ni calcula calificaciones.</p>
+<section id="tope-de-calificacion-segun-el-modelo-original">
+<h2>14.1 Tope de calificación según el modelo original<a class="headerlink" href="#tope-de-calificacion-segun-el-modelo-original" title="Link to this heading">#</a></h2>
+<p>La guía establece estos casos <strong>condicionales</strong>, sujetos a evidencia y evaluación académica:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tope previsto por la guía</p></th>
+<th class="head"><p>Condición que debe haberse evaluado</p></th>
+<th class="head"><p>Alcance de la regla</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5,0</p></td>
+<td><p>R1 sí, R2 sí y R3 sí.</p></td>
+<td><p>Novedad para el problema, núcleo algorítmico propio y defendible, propiedad formal exigida y superioridad estadísticamente verificada frente a toda la familia, con consistencia adicional. El tope no sustituye la rúbrica.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4,0</p></td>
+<td><p>R1 sí y R2 sí, pero R3 no.</p></td>
+<td><p>La contribución admisible y su sustento teórico están acreditados, pero no se demuestra la superioridad significativa exigida frente a toda la familia.</p></td>
+</tr>
+<tr class="row-even"><td><p>3,0</p></td>
+<td><p>R1 no o R2 no, independientemente del desempeño.</p></td>
+<td><p>La diferencia es sólo de aplicación, el mecanismo ya fue usado para el problema, la transferencia carece de atribución/adaptación sustantiva o el núcleo proviene de un import o código ajeno sin programación algorítmica propia.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La condición incumplida de menor nivel determina el caso; <strong>R3 sólo se evalúa cuando R1 y R2 están acreditadas</strong>. «Pendiente de acreditar» no equivale a un «no» demostrado. En este proyecto siguen abiertas la revisión de novedad R1, la comprensión y defensa académica de R2 y la evaluación de R3; por ello esta tabla no se usa para fijar un tope actual. Las 35 pruebas de software y la demostración de la cabeza latente no acreditan por sí solas novedad, autoría responsable, defensa o superioridad de mercado.</p>
+<p>La potencia se dimensiona <strong>antes de congelar</strong>: al menos 0,90 por contraste y potencia conjunta reportada, con diez semillas como mínimo o el número mayor requerido. Si el piloto muestra insuficiencia, la guía exige aumentar las semillas antes del cierre; no permite rebajar el estándar después de observar los resultados. Bajo el supuesto de R1 y R2 acreditadas, la guía contempla el caso de resultado no concluyente con potencia insuficiente declarada y MDE reportada dentro de la regla de 4,0. Si falta análisis de potencia, además sitúa el componente de pruebas de hipótesis del 15 % en «en desarrollo». Son reglas condicionales de evaluación, no una autorización para omitir el dimensionamiento ni una calificación de este avance. Una media mejor sin los rechazos exigidos no acredita R3.</p>
+</section>
+<section id="rubrica-ponderada">
+<h2>14.2 Rúbrica ponderada<a class="headerlink" href="#rubrica-ponderada" title="Link to this heading">#</a></h2>
+<p>Se conservan exactamente los once componentes y pesos del Cuadro 9. Los criterios de clasificación se adaptan a la ruta temporal F2a cuando corresponde.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente</p></th>
+<th class="head text-right"><p>Peso</p></th>
+<th class="head"><p>Evidencia que valora la guía</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Correcciones del Entregable 2</p></td>
+<td class="text-right"><p>7 %</p></td>
+<td><p>Trazabilidad, resultados consistentes recalculados cuando proceda, ranking antes/después, auditoría de fuga y determinismo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mejores configuraciones y artefactos</p></td>
+<td class="text-right"><p>7 %</p></td>
+<td><p>Selección estadística, ajuste final, exportación, ida y vuelta, metadatos y coste de inferencia.</p></td>
+</tr>
+<tr class="row-even"><td><p>Dashboard: Contexto y EDA</p></td>
+<td class="text-right"><p>8 %</p></td>
+<td><p>Contenido mínimo, callbacks, panel F2a e interpretación de cada figura.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dashboard: Modelos</p></td>
+<td class="text-right"><p>9 %</p></td>
+<td><p>Catálogo completo, predicción con explicación e incertidumbre, OOD, diagnósticos, comparación y ficha.</p></td>
+</tr>
+<tr class="row-even"><td><p>Dashboard: diseño, UX y despliegue</p></td>
+<td class="text-right"><p>5 %</p></td>
+<td><p>Calidad visual, responsividad, recursos, robustez, seguridad, consistencia y URL funcional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Modelo original: revisión y diseño</p></td>
+<td class="text-right"><p>8 %</p></td>
+<td><p>Matriz/declaración de novedad, procedencia, paper guía, limitación con evidencia, hipótesis falsable, formulación y pseudocódigo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Modelo original: implementación y demostración</p></td>
+<td class="text-right"><p>10 %</p></td>
+<td><p>Núcleo propio o adaptación sustantiva, demostración/verificación numérica, complejidad, pruebas, ablación e interpretabilidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Evaluación ampliada y robustez</p></td>
+<td class="text-right"><p>10 %</p></td>
+<td><p>Preregistro, equidad, conjuntos adicionales, familia completa, sensibilidad, perturbaciones, escalabilidad, calibración, incertidumbre y eficiencia.</p></td>
+</tr>
+<tr class="row-even"><td><p>Pruebas de hipótesis y adecuación</p></td>
+<td class="text-right"><p>15 %</p></td>
+<td><p>Tres pruebas por contraste, supuestos, Holm, potencia por contraste/conjunta, IC, efectos y ajuste/sobreajuste.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Informe en Jupyter Book</p></td>
+<td class="text-right"><p>14 %</p></td>
+<td><p>Estructura completa, contenedor, reproducibilidad, redacción, figuras y bibliografía.</p></td>
+</tr>
+<tr class="row-even"><td><p>Sustentación</p></td>
+<td class="text-right"><p>7 %</p></td>
+<td><p>Claridad, dominio técnico, demostración en vivo y respuestas.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>100 %</strong></p></td>
+<td><p>Los pesos no son puntuaciones ya obtenidas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="calculo-de-la-nota-final">
+<h2>14.3 Cálculo de la nota final<a class="headerlink" href="#calculo-de-la-nota-final" title="Link to this heading">#</a></h2>
+<p>Si el evaluador determina un cumplimiento por componente <span class="math notranslate nohighlight">\(q_i\)</span> entre 0 y 100 y aplica los pesos <span class="math notranslate nohighlight">\(w_i\)</span> de la tabla, el puntaje ponderado queda en la escala de 0 a 100:</p>
+<div class="math notranslate nohighlight">
+\[
+P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
+\qquad
+\mathrm{Nota\ final}=\min\left(\mathrm{Tope},\;5{,}0\times\frac{P_{\mathrm{ponderado}}}{100}\right).
+\]</div>
+<p>El tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Aquí no se asignan valores a <span class="math notranslate nohighlight">\(q_i\)</span>, no se estima el puntaje y no se calcula una nota o tope del proyecto.</p>
+</section>
+<section id="niveles-de-desempeno-por-componente">
+<h2>14.4 Niveles de desempeño por componente<a class="headerlink" href="#niveles-de-desempeno-por-componente" title="Link to this heading">#</a></h2>
+<p>Los niveles describen criterios de la guía; no clasifican automáticamente los componentes actuales.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nivel</p></th>
+<th class="head"><p>Criterio de la guía</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sobresaliente</p></td>
+<td><p>Protocolo fechado antes de los experimentos; hipótesis falsable y predicciones verificadas; demostración formal con verificación numérica; fuente y adaptación justificadas; Nd y evidencia independiente; familia completa con Holm; potencia por contraste y conjunta; sensibilidad y reproducción independiente exitosa.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Satisfactorio</p></td>
+<td><p>Protocolo correcto y reproducible, pruebas adecuadas e interpretación sólida, con omisiones menores de robustez o documentación.</p></td>
+</tr>
+<tr class="row-even"><td><p>En desarrollo</p></td>
+<td><p>Implementación funcional con debilidades de método: presupuesto desigual, pocas semillas, falta de control familiar, bitácora o potencia, o conjuntos elegidos con conocimiento del resultado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Insuficiente</p></td>
+<td><p>Fuga, selección posterior de semillas/datos/métricas/rivales, relajación del estándar, copia de implementación, transferencia sin citar, resultados irreproducibles o veredicto sin evidencia.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="condiciones-para-alcanzar-la-nota-5-0">
+<h2>14.5 Condiciones para alcanzar la nota 5,0<a class="headerlink" href="#condiciones-para-alcanzar-la-nota-5-0" title="Link to this heading">#</a></h2>
+<p>La guía exige simultáneamente R1/R2/R3 acreditadas y 100 % de la rúbrica. <strong>Una exigencia sin evidencia no puede marcarse cumplida</strong>, aunque esté descrita en un plan. Las matrices siguientes distinguen evidencia parcial, pendiente y alcance no aplicable por justificar; no usan casillas aprobadas ni porcentajes de avance.</p>
+<p>«Parcial» identifica evidencia real que todavía no cubre todo el requisito. «Pendiente» indica que falta ejecutarlo o acreditarlo, sin convertir esa ausencia en un fallo científico demostrado. Los documentos de diseño y protocolos en borrador son evidencia documental; no sustituyen resultados, firmas, recibos de CI o validación externa.</p>
+<section id="contribucion-y-novedad">
+<h3>14.5.1 Contribución y novedad<a class="headerlink" href="#contribucion-y-novedad" title="Link to this heading">#</a></h3>
+<p>Corresponde a R1/R2 y a revisión/diseño —8 %— e implementación/demostración —10 %—.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mecanismo nuevo y transferible para el problema, con diferencia algorítmica sustantiva.</p></td>
+<td><p>Pendiente R1.</p></td>
+<td><p>Regla candidata y comparación de siete antecedentes en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a>.</p></td>
+<td><p>Búsqueda efectiva y análisis de equivalencias; la combinación no se declara inédita.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Si hay transferencia: fuente citada, justificación y adaptación documentadas en <code class="docutils literal notranslate"><span class="pre">experiments/procedencia.md</span></code>.</p></td>
+<td><p>Parcial; procedencia final pendiente.</p></td>
+<td><p>Registro del candidato en <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloque_c_20261115/procedencia.md</span></code> y antecedentes declarados.</p></td>
+<td><p>Resolver origen y modificaciones verificables; consolidar el documento final cuando corresponda. No marcar «no aplica» sin justificarlo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Limitación de los métodos, preferiblemente del paper guía, citada o cuantificada por piloto.</p></td>
+<td><p>Parcial.</p></td>
+<td><p>Limitación exploratoria y límites de extrapolar el estrés artificial, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">secciones 6.1 y 7.1</span></a>.</p></td>
+<td><p>Evidencia sobre la limitación específica de BTC que la regla pretende corregir.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hipótesis falsable y predicciones secundarias anteriores a los experimentos finales.</p></td>
+<td><p>Parcial documental.</p></td>
+<td><p>D1–D5 propuestas en <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a>.</p></td>
+<td><p>Fijar magnitudes, escenarios y éxito/fracaso antes del protocolo definitivo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Propiedad formal, supuestos explícitos y verificación numérica.</p></td>
+<td><p>Disponible con alcance latente delimitado.</p></td>
+<td><p>Cota de la cabeza, derivadas y verificaciones en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">secciones 6–7</span></a>.</p></td>
+<td><p>No atribuir esa cota al encoder o al pipeline OHLCV completo ni dar por probada utilidad de mercado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Núcleo escrito desde la formulación, sin importar el modelo ni copiar el núcleo ajeno; comprensión defendible.</p></td>
+<td><p>Parcial.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code>, primitivas PyTorch y 35 pruebas artificiales; asistencia de IA declarada.</p></td>
+<td><p>Revisión, comprensión y capacidad de explicar/modificar por el estudiante. Las pruebas no certifican la defensa R2.</p></td>
+</tr>
+<tr class="row-even"><td><p>Matriz y declaración de novedad, búsqueda repetida al final y verificación por un tercero.</p></td>
+<td><p>Parcial, sin declaración acreditada.</p></td>
+<td><p>Matriz y bitácora: las 18 solicitudes a tres índices se bloquearon antes de buscar.</p></td>
+<td><p>Ejecutar búsquedas, completar revisión y repetición final, y concepto de una persona externa; resultados desconocidos no significan cero antecedentes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="comparacion-justa">
+<h3>14.5.2 Comparación justa<a class="headerlink" href="#comparacion-justa" title="Link to this heading">#</a></h3>
+<p>Corresponde a R3 y evaluación ampliada/robustez —10 %—. Los controles propuestos se detallan en la <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Benchmarks fuertes/recientes, ajustados y congelados después del Bloque A.</p></td>
+<td><p>Parcial heredado.</p></td>
+<td><p>Dieciséis sistemas, recetas y resultados E2; auditorías en <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">sección 4</span></a>.</p></td>
+<td><p>Cierre A, controles aplicables y anclas del benchmark confirmatorio; el freeze histórico no cierra A automáticamente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Familia completa, sin selección posterior de rivales.</p></td>
+<td><p>Inventario definido; comparación pendiente.</p></td>
+<td><p>Diez candidatos, tres referencias neuronales y tres clásicos: <strong>16 rivales</strong> frente al original.</p></td>
+<td><p>Campaña completa y trazable. El m≈12 ilustrativo no reduce esta familia.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mismo presupuesto, particiones, preprocesamiento y fuente de pesos preentrenados.</p></td>
+<td><p>Pendiente E3.</p></td>
+<td><p>Propuesta de equidad y contabilidad de HPO/tiempo; candidato sin pesos preentrenados.</p></td>
+<td><p>Cerrar recursos y ejecutar protocolo común; no asumir que heredar formas de entrada demuestra equidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Capacidad controlada con parámetros/FLOPs y benchmark de tamaño comparable si el propio es mayor.</p></td>
+<td><p>Parcial de inventario.</p></td>
+<td><p>Parámetros del candidato y costes heredados con alcance, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">secciones 5–6</span></a>.</p></td>
+<td><p>Medición comparable y variante ajustada en tamaño si procede. Para esta casilla de 5,0, discutir el tamaño no sustituye esa variante.</p></td>
+</tr>
+<tr class="row-even"><td><p>Estándar/protocolo con fecha y tag previos; confirmatorio y exploratorio separados.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Estándar descrito y borrador <strong>no congelado</strong> de <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/estandar.md</span></code> y protocolo finales, decisiones cerradas y tags reales anteriores a las ejecuciones definitivas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bitácora Nd y desarrollo separado de confirmación.</p></td>
+<td><p>Parcial documental.</p></td>
+<td><p>Nd de mercado=0, cuatro variantes funcionales artificiales; exposición histórica registrada.</p></td>
+<td><p>Conciliar esfuerzo total e intentos/fallos y definir confirmación que no haya guiado el diseño. Repetir E1/E2 no restaura cegamiento.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="evidencia-estadistica">
+<h3>14.5.3 Evidencia estadística<a class="headerlink" href="#evidencia-estadistica" title="Link to this heading">#</a></h3>
+<p>Corresponde a R3 y pruebas/adecuación —15 %—. Las unidades, estimandos y reglas de decisión deberán quedar cerrados antes de confirmar.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Al menos diez semillas o más por potencia, media/DE/IC95 % bootstrap, MDE y potencia conjunta.</p></td>
+<td><p>Pendiente del candidato.</p></td>
+<td><p>E2 tiene seis semillas por red y una trayectoria por clásico; límites declarados.</p></td>
+<td><p>Piloto de al menos cinco pares contra cada rival, R final y calendario suficientes. Copiar un clásico determinista no crea semillas independientes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tres pruebas admisibles por contraste, Holm y potencia ≥0,90 por contraste.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Batería por validar en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>: 16 rivales reales.</p></td>
+<td><p>Pruebas F2a coherentes con la media de RMSE y δ; p válidos, supuestos y máximo de p ajustados por rival. Superar a todos exige que todos pasen.</p></td>
+</tr>
+<tr class="row-even"><td><p>Efecto con IC y relevancia frente a δ.</p></td>
+<td><p>Pendiente del candidato.</p></td>
+<td><p>δ heredado y orientación de ganancia declarados.</p></td>
+<td><p>Efectos/IC con unidades independientes y dirección favorable; no transferir efectos E2 ni convertir δ de RMSE en δ² de MSE.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comparación global que incluya al original.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>MCS histórico E2 sin candidato.</p></td>
+<td><p>MCS de los 17 sistemas bajo protocolo; pertenencia no demuestra por sí sola superioridad práctica por par.</p></td>
+</tr>
+<tr class="row-even"><td><p>Prueba entre conjuntos: Friedman–Iman–Davenport y Holm, o bayesiana con ROPE.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Alternativas documentadas, sin elegir por resultados.</p></td>
+<td><p>Conjuntos admisibles, unidad/dependencia y análisis con límites de potencia; no promediar RMSE de escalas diferentes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sensibilidad a prueba, métrica secundaria y subconjunto de semillas.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Análisis propuestos y aplicabilidad de Nadeau–Bengio delimitada.</p></td>
+<td><p>Reglas previas y resultados; comparación paramétrica/no paramétrica y con/sin corrección sólo cuando su diseño la justifique.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La potencia no se certifica por cumplir R≥10 ni multiplicando potencias marginales dependientes. El dimensionamiento debe considerar la regla completa —Holm, tres pruebas y familia—, la alternativa frente a la frontera δ y la dependencia temporal. Semillas×días no son observaciones iid. Estas exigencias no se relajan ante resultados adversos.</p>
+</section>
+<section id="generalizacion-de-la-evidencia">
+<h3>14.5.4 Generalización de la evidencia<a class="headerlink" href="#generalizacion-de-la-evidencia" title="Link to this heading">#</a></h3>
+<p>Corresponde a R3 y evaluación ampliada/robustez —10 %—.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Al menos tres conjuntos de naturaleza distinta, elegidos antes de conocer resultados y fuera del diseño.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Criterios de fuente pública, dos ejes de diferencia, licencia/versión/hash en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.3</span></a>.</p></td>
+<td><p>Elegirlos y evaluar original y todos los rivales con presupuesto comparable. Ninguno está seleccionado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Evaluación bajo cambio de distribución: periodo, dominio o fuente.</p></td>
+<td><p>Pendiente E3.</p></td>
+<td><p>Estrategia propuesta y exposición previa de periodos históricos identificada.</p></td>
+<td><p>Evidencia mantenida fuera de las decisiones de diseño; otro tramo conocido no adquiere independencia al renombrarlo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mejor media en al menos dos de tres adicionales y ausencia de inferioridad significativa frente a cualquier rival en cualquiera.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Criterio R3 conservado sin resultados del candidato.</p></td>
+<td><p>Métricas y contrastes por conjunto; falta de rechazo de inferioridad no equivale a equivalencia o no inferioridad demostradas.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="validez-del-modelo">
+<h3>14.5.5 Validez del modelo<a class="headerlink" href="#validez-del-modelo" title="Link to this heading">#</a></h3>
+<p>Corresponde a pruebas/adecuación —15 %— y correcciones E2 —7 %—. La ruta es <strong>pronóstico temporal F2a</strong>: ECE y Brier de clasificación no se trasladan directamente a σ₇ continua.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Auditoría de fuga: duplicados, unidad de partición, preentrenamiento y exposición del test.</p></td>
+<td><p>Parcial.</p></td>
+<td><p>Auditoría E2 train655/cal53: ocho controles verificados, siete parciales y uno no aplicable; candidato sin backbone preentrenado.</p></td>
+<td><p>Datos/controles de prueba y auditoría del pipeline candidato. No se acredita ausencia integral de fuga por no hallar un fallo en lo inspeccionado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tablas A y B de ajuste/sobreajuste superadas.</p></td>
+<td><p>Pendiente del candidato.</p></td>
+<td><p>E2 conserva diagnósticos CPU condicionales: dos de trece redes establecen tolerancia δg.</p></td>
+<td><p>Baseline trivial, riesgos comparables, contraste de brecha, residuos y consistencia del candidato; no heredar adecuación de otras redes.</p></td>
+</tr>
+<tr class="row-even"><td><p>Calibración antes/después de la recalibración, adaptada a la tarea.</p></td>
+<td><p>Pendiente del candidato.</p></td>
+<td><p>Diagnósticos F2a y reglas probabilísticas previstos.</p></td>
+<td><p>Pendiente/intercepto, residuos y calibración probabilística aplicables, con recalibración sólo en datos autorizados y evaluación separada; pinball para cuantiles, CRPS/log-score cuando la salida lo permita.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Incertidumbre: cobertura empírica frente a nominal y por subgrupo.</p></td>
+<td><p>Pendiente del candidato y del servicio.</p></td>
+<td><p>Calibradores de referencias existentes, con nominal 0,90 y límites temporales, <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">secciones 5 y 9</span></a>.</p></td>
+<td><p>Cobertura/ancho del mismo predictor y cohorte, subgrupos prefijados e IC temporales; nominal no es garantía individual.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-que-explican-el-resultado">
+<h3>14.5.6 Análisis que explican el resultado<a class="headerlink" href="#analisis-que-explican-el-resultado" title="Link to this heading">#</a></h3>
+<p>Corresponde a implementación/demostración —10 %— y evaluación ampliada/robustez —10 %—.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ablación, incluidas adaptaciones, con las mismas pruebas, familia propia y control de capacidad.</p></td>
+<td><p>Parcial de software.</p></td>
+<td><p>Completo, sin penalización, sin saturación y sin contenido comprobados artificialmente.</p></td>
+<td><p>Ablaciones de desempeño, base sin ambas modificaciones y controles igualados en tamaño cuando cambie capacidad; no declarar tres innovaciones por tres intervenciones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sensibilidad a hiperparámetros propios y estabilidad por semilla.</p></td>
+<td><p>Pendiente de mercado.</p></td>
+<td><p>Rangos y estudios propuestos, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">secciones 7–8</span></a>.</p></td>
+<td><p>Resultados con varias semillas, IC y sensibilidad de la conclusión, sin seleccionar sólo la región favorable.</p></td>
+</tr>
+<tr class="row-even"><td><p>Robustez a ruido, perturbaciones y reducción de muestra.</p></td>
+<td><p>Pendiente E3.</p></td>
+<td><p>Matriz de estudios de <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.8</span></a>.</p></td>
+<td><p>Al menos tres severidades, curvas de degradación y aprendizaje/escalabilidad con varias semillas; separar estrés artificial de escenarios plausibles.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interpretabilidad con fidelidad, estabilidad, comparación con mejor benchmark y descarte de atajos.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Métodos y controles especificados en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">sección 9</span></a>.</p></td>
+<td><p>Explicaciones reales del mismo caso/modelo y evidencia comparativa; atención no equivale por sí sola a explicación causal.</p></td>
+</tr>
+<tr class="row-even"><td><p>Errores y escenarios donde no supera a los benchmarks.</p></td>
+<td><p>Pendiente del candidato.</p></td>
+<td><p>Regímenes y análisis de errores previstos; límites económicos declarados.</p></td>
+<td><p>Resultados adversos por escenarios prefijados, errores compartidos y causas discutidas sin inferencia causal injustificada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Parámetros, FLOPs, latencia, memoria, entrenamiento y energía con Pareto.</p></td>
+<td><p>Parcial de inventario.</p></td>
+<td><p>Parámetros del candidato; costes E2 y tres forwards TorchScript con ámbitos distintos.</p></td>
+<td><p>Mediciones comparables del conjunto completo y candidato, energía estimada y Pareto; RSS aislado no mide cabida Render ni RAM incremental.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reproducibilidad">
+<h3>14.5.7 Reproducibilidad<a class="headerlink" href="#reproducibilidad" title="Link to this heading">#</a></h3>
+<p>Corresponde al informe —14 %— y configuraciones/artefactos —7 %—.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Archivo con DOI, Docker, semillas y determinismo documentados.</p></td>
+<td><p>Parcial; paquete final pendiente.</p></td>
+<td><p>Repositorio, versiones CPU del candidato y política/semillas heredadas documentadas.</p></td>
+<td><p>Archivo E3 persistente con DOI y contenedor final verificados; no atribuir determinismo global NumPy o paridad entre plataformas no demostrados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maestro por ejecución que genere informe y dashboard.</p></td>
+<td><p>Parcial.</p></td>
+<td><p>Tablas E2 y maestro de artefactos de 16 sistemas; diseño de vista de 17.</p></td>
+<td><p>Fuente final común con procedencia/estados y prueba de igualdad app–libro; no añadir resultados ficticios del candidato al CSV histórico.</p></td>
+</tr>
+<tr class="row-even"><td><p>Pruebas unitarias ejecutadas en CI.</p></td>
+<td><p>Parcial de alcance software.</p></td>
+<td><p>35 casos aprobados en informe de verificación y workflows CPU de original/handoff disponibles.</p></td>
+<td><p>Recibos del paquete final e integración completa, exportaciones y app; los tests del módulo no acreditan el dashboard.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Datos o instrucciones exactas de obtención y licencias verificadas.</p></td>
+<td><p>Parcial.</p></td>
+<td><p>Fuentes, contratos y disponibilidad de train/cal documentados.</p></td>
+<td><p>Insumos finales autorizados, hashes/licencias e instrucciones que resuelvan los faltantes; no reconstruir OHLCV desde predicciones.</p></td>
+</tr>
+<tr class="row-even"><td><p>Reproducción independiente desde cero en contenedor, por persona ajena al código, con discrepancia máxima.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Auditores y comprobaciones de software con alcances propios.</p></td>
+<td><p>Persona externa, entorno limpio, comandos y recibo verificable de reproducción final; un subagente de IA no sustituye ese requisito.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="productos-del-entregable">
+<h3>14.5.8 Productos del entregable<a class="headerlink" href="#productos-del-entregable" title="Link to this heading">#</a></h3>
+<p>Corresponde a correcciones —7 %—, artefactos —7 %—, dashboard —8 %, 9 % y 5 %—, informe —14 %— y sustentación —7 %—.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Correcciones E2 con trazabilidad completa y recálculo consistente.</p></td>
+<td><p>Parcial.</p></td>
+<td><p>Tabla de revisión interna y auditorías de <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">sección 4</span></a>.</p></td>
+<td><p>Cerrar los controles pendientes; recalcular dependencias y ranking antes/después si una corrección modifica resultados. No se recibieron observaciones del docente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mejores configuraciones exportadas, ida y vuelta y <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code>.</p></td>
+<td><p>Parcial.</p></td>
+<td><p>MLP16/LSTM32/GRU32 TorchScript, paridad puntual en 53 fechas de calibración.</p></td>
+<td><p>Exportaciones/resto del catálogo, política final y prueba A2 aplicable. ONNX no está verificado; TorchScript es el formato disponible, no una conversión ONNX.</p></td>
+</tr>
+<tr class="row-even"><td><p>Dash Plotly en Render, prueba de humo, contingencia y funcionamiento en sustentación.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Especificación de <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">sección 9</span></a>.</p></td>
+<td><p>App, URL, recursos medidos, prueba de humo y plan de contingencia comprobados; publicar el libro no despliega Dash.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jupyter Book sin errores, ficha de modelo y declaración de datos.</p></td>
+<td><p>Parcial documental.</p></td>
+<td><p>Fuentes y evidencias del libro E3, con esta ampliación editorial.</p></td>
+<td><p>Construcción y revisión del paquete final, <code class="docutils literal notranslate"><span class="pre">MODEL_CARD.md</span></code> y <code class="docutils literal notranslate"><span class="pre">DATA_STATEMENT.md</span></code> completos; documentos propuestos no son productos verificados.</p></td>
+</tr>
+<tr class="row-even"><td><p>Procedencia del mecanismo transferido, cuando corresponda.</p></td>
+<td><p>Parcial.</p></td>
+<td><p>Registro candidato y atribuciones en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a>.</p></td>
+<td><p>Cerrar fuente/adaptación e integrar <code class="docutils literal notranslate"><span class="pre">experiments/procedencia.md</span></code> final, sin fingir novedad de componentes conocidos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Declaración de autoría, contribuciones individuales y uso de IA.</p></td>
+<td><p>Parcial documental; validación pendiente.</p></td>
+<td><p>Asistencia de IA reconocida en código, teoría y procedencia.</p></td>
+<td><p>Declaración final firmada, contribuciones individuales y comprensión responsable del autor; la asistencia declarada no acredita una firma ni defensa.</p></td>
+</tr>
+<tr class="row-even"><td><p>Sustentación: demostración en vivo y capacidad de explicar/modificar el algoritmo.</p></td>
+<td><p>Pendiente.</p></td>
+<td><p>Código, formulación y comandos de reproducción disponibles.</p></td>
+<td><p>Defensa efectiva por el estudiante, preguntas técnicas y modificación/ejecución en vivo; el archivo y sus tests no reemplazan esa evidencia.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="decision-previa-al-congelamiento-del-protocolo">
+<h3>14.5.9 Decisión previa al congelamiento del protocolo<a class="headerlink" href="#decision-previa-al-congelamiento-del-protocolo" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia de la guía</p></th>
+<th class="head"><p>Estado actual</p></th>
+<th class="head"><p>Evidencia disponible</p></th>
+<th class="head"><p>Vacío que impide darla por cumplida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Definir antes del cierre el hallazgo alternativo que sostendrá el trabajo si no se acredita superioridad significativa y consistente.</p></td>
+<td><p>Propuesta pendiente de fijar.</p></td>
+<td><p>Límites y resultados adversos se conservan en el diseño de <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">secciones 7–8</span></a>.</p></td>
+<td><p>Registrar el hallazgo alternativo, sus análisis y criterios antes de confirmar; no escogerlo después por ser favorable.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se propone como hallazgo alternativo un <strong>benchmark reproducible y una explicación delimitada de los escenarios en que la regla candidata aporta o perjudica</strong>. Si no supera a toda la familia, el informe conservaría las diferencias/IC, potencia y MDE, costes y ablaciones, y distinguiría falta de evidencia, efecto pequeño y deterioro observado. La relación entre acotar la cabeza y predecir colas de σ₇ sería una hipótesis a contrastar, no una explicación ya demostrada. Esta propuesta debe precisarse antes del congelamiento y no reemplaza el objetivo confirmatorio ni permite relajar R3.</p>
+<p>La consecuencia de un R3 evaluado y no satisfecho, bajo R1/R2 acreditadas, es la regla condicional descrita en 14.1. No se aplica aquí a condiciones aún pendientes. La selección posterior de semillas, conjuntos, métricas, análisis o rivales para sostener superioridad contraviene la guía y anula esa afirmación; se conservarán el historial, los resultados desfavorables y las desviaciones declaradas.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="13_sustentacion.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">13 Sustentación</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="concordancia_secciones.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Concordancia y documentos de trabajo anteriores</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tope-de-calificacion-segun-el-modelo-original">14.1 Tope de calificación según el modelo original</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rubrica-ponderada">14.2 Rúbrica ponderada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-la-nota-final">14.3 Cálculo de la nota final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveles-de-desempeno-por-componente">14.4 Niveles de desempeño por componente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-para-alcanzar-la-nota-5-0">14.5 Condiciones para alcanzar la nota 5,0</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contribucion-y-novedad">14.5.1 Contribución y novedad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-justa">14.5.2 Comparación justa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-estadistica">14.5.3 Evidencia estadística</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-de-la-evidencia">14.5.4 Generalización de la evidencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validez-del-modelo">14.5.5 Validez del modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-que-explican-el-resultado">14.5.6 Análisis que explican el resultado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibilidad">14.5.7 Reproducibilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-del-entregable">14.5.8 Productos del entregable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-previa-al-congelamiento-del-protocolo">14.5.9 Decisión previa al congelamiento del protocolo</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

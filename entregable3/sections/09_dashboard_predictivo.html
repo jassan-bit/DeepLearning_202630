@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Concordancia y documentos de trabajo anteriores" href="concordancia_secciones.html" />
+    <link rel="next" title="10 Bloque F Despliegue en Render" href="10_despliegue_render.html" />
     <link rel="prev" title="8 Bloque D Verificación estadística y evaluación ampliada" href="08_verificacion_estadistica.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -206,7 +206,7 @@
 </button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 9 de la guía</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 14 de la guía</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">1 Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_estandar_profundidad.html">2 Estándar de profundidad exigido</a></li>
@@ -217,6 +217,11 @@
 <li class="toctree-l1"><a class="reference internal" href="07_diseno_riguroso.html">7 Diseño riguroso del modelo original</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_verificacion_estadistica.html">8 Bloque D Verificación estadística y evaluación ampliada</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">9 Bloque E Dashboard predictivo en Dash Plotly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_despliegue_render.html">10 Bloque F Despliegue en Render</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_informe_tecnico.html">11 Bloque G Informe técnico en Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_lista_entregables.html">12 Lista de entregables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_sustentacion.html">13 Sustentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_evaluacion_calificacion.html">14 Evaluación y calificación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
 <ul class="nav bd-sidenav">
@@ -232,6 +237,7 @@
 <li class="toctree-l2"><a class="reference internal" href="09_modelo_original.html">Desarrollo original del candidato C</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_reproducibilidad.html">Cierre provisional, reproducibilidad, autoría y bibliografía</a></li>
 </ul>
 
     </div>
@@ -432,6 +438,7 @@
 </div>
 <p>La carga será bajo demanda en CPU, con <strong>un worker propuesto</strong>, cargas serializadas y caché de como máximo dos modelos por proceso. Una caché LRU de tamaño dos en varios workers no limita a dos los modelos del servicio completo. Se reducirá su capacidad si la medición del proceso, la concurrencia y el límite vigente del plan lo requieren.</p>
 <p>El pico RSS medido en procesos de exportación incluye Python, PyTorch, checkpoint y cohorte. No acredita memoria del dashboard ni cabida en Render. La selección de modelos en vivo se cerrará tras medir arranque, carga, inferencia, explicaciones y sesiones concurrentes. Los precálculos identificarán qué operación no está habilitada y por qué, sin presentar una captura de resultados como inferencia ejecutada por el usuario.</p>
+<p>El <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">perfil de despliegue de la sección 10</span></a> exige ONNX Runtime sin el framework de entrenamiento y propone un modelo residente bajo demanda. Los TorchScript actuales requieren PyTorch: son referencias verificadas, pero falta exportar y verificar ONNX/ORT para ese perfil. El máximo de dos modelos de este diseño es un techo; no prueba cabida ni sustituye la política más restrictiva de producción.</p>
 </section>
 <section id="arquitectura-y-estructura-del-repositorio">
 <h2>9.3 Arquitectura y estructura del repositorio<a class="headerlink" href="#arquitectura-y-estructura-del-repositorio" title="Link to this heading">#</a></h2>
@@ -630,7 +637,7 @@ render.yaml                    # pendiente: despliegue del servicio
 </table>
 </div>
 <p>La paridad incluirá el preprocesamiento completo y tolerancias declaradas, no sólo que un archivo cargue. La prueba de humo y las evidencias del servicio deberán acompañar su implementación y despliegue posteriores.</p>
-<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_e/diseno_dashboard.md">diseño del Bloque E</a> y su <a class="reference download internal" download="" href="../_downloads/fd9ec65d411a9dec36d237ea50de757e/diseno_dashboard.md"><code class="xref download docutils literal notranslate"><span class="pre">copia</span> <span class="pre">descargable</span></code></a> recogerán los contratos y decisiones pendientes. La documentación pública de E3 está disponible; la construcción, pruebas de usuario y despliegue del servicio Dash siguen pendientes y deberán producir evidencia antes de declararse completados.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_e/diseno_dashboard_v2.md">diseño del Bloque E, versión 0.2</a> y su <a class="reference download internal" download="" href="../_downloads/b9445ce4b707af6cc7d8f1923bcee893/diseno_dashboard_v2.md"><code class="xref download docutils literal notranslate"><span class="pre">copia</span> <span class="pre">descargable</span></code></a> incorporan el perfil de producción de la sección 10. La <a class="reference download internal" download="" href="../_downloads/fd9ec65d411a9dec36d237ea50de757e/diseno_dashboard.md"><code class="xref download docutils literal notranslate"><span class="pre">versión</span> <span class="pre">0.1</span> <span class="pre">publicada</span> <span class="pre">anteriormente</span></code></a> conserva sus bytes y su alcance histórico. La documentación pública de E3 está disponible; la construcción, pruebas de usuario y despliegue del servicio Dash siguen pendientes y deberán producir evidencia antes de declararse completados.</p>
 </section>
 </section>
 
@@ -674,11 +681,11 @@ render.yaml                    # pendiente: despliegue del servicio
       </div>
     </a>
     <a class="right-next"
-       href="concordancia_secciones.html"
+       href="10_despliegue_render.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Concordancia y documentos de trabajo anteriores</p>
+        <p class="prev-next-title">10 Bloque F Despliegue en Render</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
