@@ -1,0 +1,54 @@
+{
+  "schema": "e2-followup-scope-v1",
+  "registered_at_utc": "2026-11-16T11:53:11.941069+00:00",
+  "source_commit": "af3f1223ad5899ed63016d2af2d09bae8470ab00",
+  "previous_ledger_path": "book_e2/_static/e2_scientific_closure_20261116/compute_ledger.jsonl",
+  "previous_ledger_sha256": "225c548241cce4236ff338ef02697f67425618de696958b3e8dbebc329987903",
+  "continuation_ledger": "compute_ledger.jsonl",
+  "historical_budget_reset": false,
+  "opening_budget_state": {
+    "historical_budget_sha256": "a3949762183627e5e7e5b39c9411c6d64214d726bfad03c83fc2ac3eeeea07e4",
+    "approved_total_hours": 84,
+    "historical_charged_seconds": 288922.08751226973,
+    "corrections_charged_seconds": 8831.803113920017,
+    "cumulative_charged_seconds": 297753.89062618976,
+    "remaining_seconds": 4646.109373810275,
+    "reserved_seconds": 0,
+    "unreserved_seconds": 4646.109373810275,
+    "open_reservations": {},
+    "budget_reset": false,
+    "accounting_unit": "sum of scientific-command wall seconds, not active GPU time or money"
+  },
+  "scope": [
+    "conditional HPO validation/test inference",
+    "conditional variance components",
+    "audited feature perturbation diagnostic",
+    "negative-control label/source review and registered limited replication",
+    "HPO coverage/cost reconciliation and future balanced design",
+    "portable pipeline and clean execution within available budget",
+    "editorial state corrections"
+  ],
+  "excluded": [
+    "NAS chapter14",
+    "changing original A2",
+    "retroactively certifying preregistration",
+    "manufacturing lost historical costs",
+    "claiming original native bibliographic exports received"
+  ],
+  "allocation_caps_provisional_seconds": {
+    "inference": 600,
+    "shortcut": 650,
+    "negative_followup": 1300,
+    "hpo_summary": 120,
+    "portable_reanalysis": 350,
+    "verification": 200
+  },
+  "exclusions_from_scientific_clock": [
+    "read-only source inspection",
+    "code authoring and review",
+    "archive compression and integrity hashing",
+    "book compilation and publication",
+    "bibliographic metadata inspection"
+  ],
+  "gate": "Each scientific command has own frozen plan/source hash and uses the continued ledger; reserve before execute. No new campaign beyond current 84h cap."
+}
