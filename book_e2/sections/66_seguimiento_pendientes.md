@@ -1,5 +1,7 @@
 # Seguimiento de auditoría, inferencia, HPO y portabilidad
 
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 **Suplemento posterior del 16/11/2026.** Se ejecutan los análisis adicionales autorizados sobre los datos disponibles, con planes y recibos propios. La [inscripción del alcance](../_static/e2_closure_followup_20261116/scope_registration.json) continúa el presupuesto acumulado de 84 horas. Los resultados originales de A2/RQ1 y las versiones anteriores de los archivos se conservan. La tarea sigue siendo **F2a, serie de tiempo; NAS del capítulo 14 no aplica** al catálogo actual.
 
 ## Controles negativos: investigación y resultado adverso
@@ -71,7 +73,7 @@ El enlace de §8.4 se actualiza al Apéndice B vigente y los cortes anteriores q
 
 El nuevo paquete CPU incluye **79 checkpoints binarios y 81 predictores**, fuentes fijadas, dependencias y entradas diarias/matrices. Se ejecutaron fuera del repositorio la reconstrucción de A2 y la inferencia real de las 81 trayectorias: **discrepancia máxima de pronósticos y A2 igual a cero** con su propia referencia CPU. Se hicieron además tres ajustes reales de comprobación del software: MLP16, las tres fases de SAE y ARIMA, con train655/cal53, sin evaluar prueba o producir una nueva A2 completa. Los fallos previos de redondeo aritmético y conversión de un resultado clásico se conservan con sus cargos. [Resumen y alcances verificados](../_static/e2_closure_followup_20261116/reproduction/summary.json).
 
-La entrada de ese paquete es el derivado diario y las matrices auditadas. Su ejecución no vuelve a descargar ni decodificar los veinte ZIP de minutos. La prueba usa el intérprete CPU identificado en una carpeta aislada, sin afirmar que se instaló otro entorno desde cero o paridad A100. El modo `train-fixed` está separado y las pruebas específicas no equivalen a otra campaña completa de 78 ajustes. La reproducción integral de HPO, robustez y toda la campaña histórica conserva sus condiciones pendientes; **B21 no se completa por agregar un ejecutor**.
+La entrada de ese paquete es el derivado diario y las matrices auditadas. Su ejecución no vuelve a descargar ni decodificar los veinte ZIP de minutos. La prueba usa el intérprete CPU identificado en una carpeta aislada, sin afirmar que se instaló otro entorno desde cero o paridad A100. El modo `train-fixed` está separado y las pruebas específicas no equivalen a otra campaña completa de 78 ajustes. La reproducción integral de HPO, robustez y toda la campaña histórica no está acreditada en el alcance final de esta versión; **B21 no se completa por agregar un ejecutor**.
 
 ## Descargas independientes y estado verificable
 

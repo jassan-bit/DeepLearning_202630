@@ -1,4 +1,7 @@
 (registros-enmiendas-y-cierre-de-la-ejecucion)=
+
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 # 9. Preregistro, Potencia Estadística y Control de Decisiones
 
 **Lectura vigente:** el registro reducido gobierna un benchmark ejecutado de **16 sistemas, 81 predictores y 608 fechas comunes**. Este capítulo aplica los campos de §§9.1–9.3 de la guía y separa lo registrado antes de cada etapa, la congelación anterior al scoring actual y los análisis posteriores. El piloto no alcanzó la potencia objetivo: **R=6 se conservó por recursos**, con la limitación y el efecto mínimo detectable publicados. La existencia de registros, resultados o reproducciones no acredita por sí sola adecuación estadística conjunta.
@@ -126,7 +129,7 @@ La ganancia de RMSE, su IC y el p ajustado se leen respecto a **δ fijo**. Ningu
 
 RQ2/RQ3 ya ejecutadas conservan sus familias propias, su carácter posterior y sus límites; no heredan potencia ni confirmación de RQ1. La comparación original de calibración53/prueba608 usa los mismos predictores A100: seis de los trece contrastes de periodo rechazan con t/Holm13 y ninguna con la sensibilidad de signos. No es validación HPO independiente ni identifica sobreajuste como causa. [Resultado y supuestos](../_static/e2_scientific_closure_20261116/period_comparison/summary.json). El δg CPU condicionado y esa comparación de periodos no certifican adecuación conjunta, equivalencia o generalización externa.
 
-La edición documental no lanza cálculos. Documenta los análisis y controles ya ejecutados y distingue la réplica CPU que sigue en curso. Cada recibo conserva su fecha, fuentes y alcance; no se retrofechan las nuevas pruebas ni se presentan trabajos pendientes como completados.
+La edición documental no lanza cálculos. Documenta los análisis y controles ya ejecutados y la réplica CPU de recetas fijas completada en su alcance. La anterioridad histórica integral queda no acreditada en la resolución final, sin prometer su reconstrucción retrospectiva. Cada recibo conserva su fecha, fuentes y alcance; no se retrofechan las nuevas pruebas ni se presentan trabajos pendientes como completados.
 
 ````{admonition} Archivo documental: contenido anterior del capítulo 9
 :class: dropdown

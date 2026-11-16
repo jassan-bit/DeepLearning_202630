@@ -5,12 +5,18 @@ on:
     paths:
       - scripts/e2_portable_campaign.py
       - tests/test_e2_portable_campaign.py
+      - scripts/close_e2_final_observations.py
+      - tests/test_e2_final_disposition.py
+      - book_e2/_static/e2_resolucion_final_20261116/**
       - .github/workflows/verify-e2-portable.yml
   pull_request:
     branches: [main]
     paths:
       - scripts/e2_portable_campaign.py
       - tests/test_e2_portable_campaign.py
+      - scripts/close_e2_final_observations.py
+      - tests/test_e2_final_disposition.py
+      - book_e2/_static/e2_resolucion_final_20261116/**
       - .github/workflows/verify-e2-portable.yml
   workflow_dispatch:
 permissions:
@@ -27,3 +33,7 @@ jobs:
           python-version: '3.12'
       - name: Verificar rutas, integridad, recibos y separación de ejecución
         run: python tests/test_e2_portable_campaign.py
+      - name: Verificar resolución sin conceder aceptación científica
+        run: python tests/test_e2_final_disposition.py
+      - name: Verificar protecciones del reanálisis integrado sin ejecutar ciencia
+        run: python book_e2/_static/e2_resolucion_final_20261116/reanalisis_integrado/test_guards.py -v

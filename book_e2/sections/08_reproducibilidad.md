@@ -1,4 +1,7 @@
 (reproducibilidad-de-la-entrega-vigente)=
+
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 (e2-reproducibilidad)=
 # 8. Reproducibilidad, Ética y Comunicación Científica
 
@@ -123,7 +126,7 @@ Se reportan p brutos y ajustados, efectos e intervalos según sus familias. El m
 (e2-estado-reproduccion-vigente)=
 ## 8.4 Apéndice B y alcance del cierre
 
-El [Apéndice B vigente](61_reproduccion_consolidada.md) publica los 21 ítems literales, sus estados y fuentes, con descargas [CSV del seguimiento](../_static/e2_closure_followup_20261116/delivery/appendix_B_current.csv) y [JSON del seguimiento](../_static/e2_closure_followup_20261116/delivery/appendix_B_current.json). **La lista está publicada; eso no significa que todos los ítems estén completos.** No se crea un porcentaje global ni se infiere cumplimiento de una compilación correcta. El corte previo del 16/11 conserva su [CSV](../_static/e2_scientific_closure_20261116/delivery/appendix_B_current.csv) y [JSON](../_static/e2_scientific_closure_20261116/delivery/appendix_B_current.json). Las versiones [CSV anterior](../_static/e2_point1_review_v1/appendix_B_clarified.csv) y [JSON anterior](../_static/e2_point1_review_v1/appendix_B_clarified.json) se conservan como archivos históricos y no sustituyen los estados actuales.
+El [Apéndice B vigente](61_reproduccion_consolidada.md) publica los 21 ítems literales, sus estados y fuentes, con descargas [CSV del seguimiento](../_static/e2_resolucion_final_20261116/appendix_B_final.csv) y [JSON del seguimiento](../_static/e2_resolucion_final_20261116/appendix_B_final.json). **La lista está publicada; eso no significa que todos los ítems estén completos.** No se crea un porcentaje global ni se infiere cumplimiento de una compilación correcta. El corte previo del 16/11 conserva su [CSV](../_static/e2_scientific_closure_20261116/delivery/appendix_B_current.csv) y [JSON](../_static/e2_scientific_closure_20261116/delivery/appendix_B_current.json). Las versiones [CSV anterior](../_static/e2_point1_review_v1/appendix_B_clarified.csv) y [JSON anterior](../_static/e2_point1_review_v1/appendix_B_clarified.json) se conservan como archivos históricos y no sustituyen los estados actuales.
 
 La reproducción en entorno limpio está acreditada dentro de sus condiciones. El auditor reconstruye A2 y verifica la entrega, mientras la regeneración integral de todos los productos conserva su alcance propio. Las auditorías reales y los contrastes de δg, periodos y RQ3 ya ejecutados tienen fuentes separadas en [§65](65_cierre_cientifico_real.md); la discrepancia cero no acredita por sí sola sus condiciones metodológicas. Permanecen la potencia limitada declarada, costes históricos incompletos y límites de incertidumbre, así como la fijación de imagen/SO y la revisión no exhaustiva de licencias por componente. El contenedor sigue siendo opcional para E2.
 

@@ -1,4 +1,7 @@
 (ruta-metodologica-series-de-tiempo-y-controles-causales)=
+
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 (e2-ruta-temporal)=
 # 7. Ruta Metodológica según el Tipo de Problema
 
@@ -141,7 +144,7 @@ Estos controles conservan la disponibilidad de las covariables y la interpretaci
 | Potencia y variación entre semillas limitadas | Reportar R=6, DE, IC y potencia piloto 12,3 %. No aumentar R automáticamente después de observar prueba ni crear repeticiones clásicas ficticias. |
 | Proxy de techo y costes parciales | Mantener la incertidumbre de γ y distinguir recursos medidos de desconocidos; no justificar más complejidad con un techo óptimo no identificado. |
 
-La siguiente decisión sobre un modelo requiere evidencia de desarrollo y un protocolo compatible con la continuidad del proyecto. **Esta consolidación mantiene congelados modelos, recetas, pronósticos y calibradores originales**; los suplementos de calibración/ensemble conservan sus reglas y familias separadas. El estado es **ruta F2a justificada y benchmark ejecutado, con adecuación conjunta no demostrada y requisitos inferenciales concretos pendientes**, no ausencia de trabajo ni aprobación automática de todos los requisitos. Los capítulos y recibos históricos se conservan íntegros a continuación.
+La siguiente decisión sobre un modelo requiere evidencia de desarrollo y un protocolo compatible con la continuidad del proyecto. **Esta consolidación mantiene congelados modelos, recetas, pronósticos y calibradores originales**; los suplementos de calibración/ensemble conservan sus reglas y familias separadas. El estado es **ruta F2a justificada y benchmark ejecutado, con adecuación conjunta no demostrada y condiciones inferenciales no acreditadas en la versión cerrada**, no ausencia de trabajo ni aprobación automática de todos los requisitos. Los capítulos y recibos históricos se conservan íntegros a continuación.
 
 ````{admonition} Archivo documental: contenido anterior del capítulo 7
 :class: dropdown

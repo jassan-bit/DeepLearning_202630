@@ -2,6 +2,8 @@
 
 **Deep Learning · 2026-30 · Jassan Arteta**
 
+**Resolución final de las cuatro observaciones:** [dictámenes y alcance de §67](sections/67_resolucion_final.md). Se cierra el seguimiento con la evidencia disponible y se añade un [reanálisis integrado independiente](_static/e2_resolucion_final_20261116/reanalisis_integrado_v1.zip). El cierre no certifica la auditoría integral ni borra las limitaciones de HPO, reproducción histórica o anterioridad. El Apéndice B conserva sus cinco requisitos parciales; no hay tareas correctivas activas para estos cuatro puntos en esta versión.
+
 (e2-entregables-portada)=
 ## Entregables
 
@@ -82,7 +84,7 @@ Estos cinco ZIP incluyen sus propias entradas e instrucciones; no requieren desc
 
 El índice principal sigue los **catorce capítulos de la guía de E2, en su mismo orden**. Los documentos complementarios aparecen bajo el tema correspondiente; los avances y diseños anteriores se reúnen en el [archivo de antecedentes](sections/archivo_antecedentes.md).
 
-Las menciones **§15–§66** identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La [tabla de concordancia](sections/concordancia_guia.md) permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.
+Las menciones **§15–§67** identifican documentos complementarios y de trabajo, no capítulos adicionales de la guía. La [tabla de concordancia](sections/concordancia_guia.md) permite localizar cada uno en la organización actual. Los enlaces, resultados y descargas anteriores se conservan.
 
 ## Resumen
 

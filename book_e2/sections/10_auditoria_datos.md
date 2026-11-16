@@ -1,4 +1,7 @@
 (contrato-de-datos-y-auditoria-formal-de-fuga)=
+
+**Resolución final vigente:** [§67](67_resolucion_final.md) sustituye el seguimiento abierto de estas cuatro observaciones. El cierre conserva los requisitos no acreditados y sus límites; no implica aprobación científica ni nuevas tareas correctivas en esta versión.
+
 (e2-auditoria-datos)=
 # 10. Contrato de Datos y Auditoría Formal de Fuga de Información
 
