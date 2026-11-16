@@ -1,6 +1,17 @@
 # Concordancia y documentos de trabajo anteriores
 
-El índice principal sigue las secciones 1 a 16 de la guía. Las páginas anteriores conservan sus direcciones y contenidos como documentos de trabajo y cortes de evidencia; sus cifras y estados se interpretan con la fecha y el alcance que declaran. Para el estado integrado actual se deben leer los capítulos principales.
+El índice principal sigue exclusivamente los capítulos 1 a 16 de la guía. El diseño, la revisión de admisibilidad y los resultados de desarrollo están integrados en los capítulos 6 y 7. Los anexos conservan detalle técnico y cortes de evidencia; sus cifras y estados se interpretan con su fecha y alcance. Las páginas mantienen sus direcciones anteriores para conservar los enlaces, pero no constituyen capítulos principales adicionales.
+
+| Anexo de apoyo | Tema integrado en el cuerpo principal |
+|---|---|
+| [B. Revisión posterior al primer piloto](17_revision_post_piloto.md) | [6 Modelo y antecedentes](06_modelo_original.md), [7 Diseño y resultados](07_diseno_riguroso.md). |
+| [C. Ficha de diseño v2](18_ficha_cnn_lstm_atencion_v2.md) | [6 Modelo](06_modelo_original.md), [7 Hipótesis y controles](07_diseno_riguroso.md). |
+| [D. Ejecución del piloto v2](19_piloto_innovacion_v2.md) | [7 Pilotos completados](07_diseno_riguroso.md). |
+| [E. Cierre y errores del piloto v2](20_cierre_v2.md) | [6 Estado del modelo](06_modelo_original.md), [7 Resultados y decisiones](07_diseno_riguroso.md), [16 Conclusiones](16_conclusiones.md). |
+| [F. Formulación de la cabeza de momentos](21_propuesta_momentos.md) | [6 Formulación](06_modelo_original.md), [7 Propiedades y límites](07_diseno_riguroso.md). |
+| [G. Dictamen y revisión externa](22_dictamen_momentos.md) | [6 Admisibilidad](06_modelo_original.md), [7 Controles](07_diseno_riguroso.md), [15 Integridad](15_integridad_academica.md). |
+
+El Apéndice A conserva las plantillas de la guía. Las páginas históricas adicionales se relacionan a continuación con los capítulos vigentes.
 
 | Página anterior | Ubicación principal actual |
 |---|---|

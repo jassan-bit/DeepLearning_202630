@@ -2,7 +2,7 @@
 
 **Jassan Arteta · Deep Learning 2026-30**
 
-El informe está organizado en las **secciones 1 a 16 de la guía**, con el desarrollo disponible hasta ahora. La navegación principal reúne los bloques A–G, diseño, evaluación, entrega, sustentación, integridad y conclusiones. Los anexos incorporan plantillas operativas editables, referencias sugeridas y documentos de trabajo anteriores; el último anexo conserva reproducibilidad, autoría y bibliografía.
+El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guía**, con el desarrollo disponible hasta ahora. La navegación principal reúne los bloques A–G, diseño, evaluación, entrega, sustentación, integridad y conclusiones. Las ampliaciones se integran en esos capítulos; los anexos A–G reúnen plantillas y detalle técnico de apoyo, junto con referencias y trazabilidad. El último anexo conserva reproducibilidad, autoría y bibliografía.
 
 | Sección | Contenido |
 |---|---|
@@ -27,15 +27,13 @@ El informe está organizado en las **secciones 1 a 16 de la guía**, con el desa
 
 E2 conserva su benchmark de 16 sistemas y 608 fechas, con auditorías y suplementos posteriores de alcance explícito. E3 tiene inventario de artefactos, configuraciones verificadas y tres exportaciones CPU sobre calibración histórica. La evidencia neuronal incluye formulación, demostraciones con alcance explícito, pruebas de software y dos pilotos de desarrollo sobre la misma base CNN-LSTM-atención.
 
-El [cierre de v2](sections/20_cierre_v2.md) documenta las tres recetas completadas y su análisis por régimen. El control aditivo obtuvo la menor RMSE global de desarrollo; el candidato con pérdida auxiliar no superó la heurística del 2 %. El control se conserva como referencia predictiva y **no se promueve a modelo original por ese resultado**. La auditoría reproduce los errores y conserva las limitaciones en alta volatilidad.
+Los capítulos [6](sections/06_modelo_original.md) y [7](sections/07_diseno_riguroso.md) integran el diseño, la revisión de admisibilidad y los resultados de los pilotos. El control aditivo v2 obtuvo la menor RMSE global de desarrollo; el candidato con pérdida auxiliar no superó la heurística del 2 %. Se conserva como referencia predictiva y **no se promueve a modelo original por ese resultado**. El [anexo E](sections/20_cierre_v2.md) conserva el cierre detallado y sus limitaciones en alta volatilidad.
 
 **La novedad R1, la defensa académica de R2 y la superioridad R3 siguen pendientes.** Los bloques A y B aún no están cerrados; tampoco existe una campaña confirmatoria del candidato o un dashboard Render terminado. El protocolo sigue en borrador. Las plantillas preparan registros futuros y no son preregistros, resultados o firmas. La bibliografía inicial y las revisiones focales posteriores distinguen antecedentes, procedencia y alcance de lectura; se conservan las 37 referencias sugeridas por la guía. El cierre incorpora resultados ya obtenidos en Colab y los audita sin nuevos ajustes, inferencias o cambios de las métricas y recetas originales.
 
-La [concordancia y los anexos](sections/concordancia_secciones.md) permiten localizar las páginas y evidencias de trabajo anteriores. Sus números históricos no se confunden con los capítulos actuales de la guía.
+La [concordancia y los anexos](sections/concordancia_secciones.md) permiten localizar cada evidencia y su capítulo principal. Se conservan las direcciones de las páginas anteriores, ahora identificadas como anexos, para mantener sus enlaces.
 
-La [propuesta posterior al cierre v2](sections/21_propuesta_momentos.md) formaliza una cabeza de momentos dentro de la misma CNN-LSTM con atención. Incluye hipótesis, demostración, antecedentes directos y verificación numérica artificial. Se conserva para revisión de admisibilidad: no es una red nueva ya entrenada ni una declaración de originalidad o superioridad. El control aditivo v2 sigue siendo la referencia predictiva de desarrollo.
-
-El [dictamen posterior](sections/22_dictamen_momentos.md) delimita su aporte potencial, añade el control de la misma cabeza sin auxiliares y demuestra dos límites de las garantías que podrían atribuirse a la propuesta. La decisión interna es conservarla como adaptación experimental, sin seleccionarla todavía como aporte original ni lanzar otro piloto. La revisión bibliográfica completa y la verificación humana externa siguen pendientes; se deja preparado su paquete de trabajo.
+La propuesta por momentos y su dictamen forman parte de esos capítulos 6 y 7. Los anexos [F](sections/21_propuesta_momentos.md) y [G](sections/22_dictamen_momentos.md) conservan formulación completa, verificaciones artificiales y paquete para revisión externa. La decisión interna es mantener la propuesta como adaptación experimental, sin seleccionarla todavía como aporte original ni lanzar otro piloto. La revisión bibliográfica completa y la verificación humana externa siguen pendientes.
 
 El [anexo final](sections/cierre_reproducibilidad.md) distingue conclusiones provisionales, evidencia de software, reproducción científica pendiente y declaración de autoría sin firmas. La rúbrica no se convierte en una calificación automática del proyecto.
 

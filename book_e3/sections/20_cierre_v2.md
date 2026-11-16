@@ -1,4 +1,6 @@
-# Cierre de v2: regímenes, originalidad y selección
+# Anexo E. Cierre de v2: regímenes, originalidad y selección
+
+El análisis detallado de este anexo respalda el estado del modelo en el [capítulo 6](06_modelo_original.md) y la comparación de pilotos del [capítulo 7](07_diseno_riguroso.md).
 
 **Piloto completo; criterio de continuación no superado.** La arquitectura
 continúa siendo **CNN causal → LSTM unidireccional → atención temporal**.

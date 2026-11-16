@@ -1,12 +1,12 @@
 # 7 Diseño riguroso del modelo original
 
-:::{note}
-**Diseño inicial conservado para trazabilidad.** Los conteos y menciones de ausencia de entrenamiento describen ese corte, anterior a los pilotos v1/v2. El [cierre v2](20_cierre_v2.md) recoge la evidencia posterior y la [propuesta por momentos](21_propuesta_momentos.md) documenta el diseño ahora en revisión. No se interpreta este texto histórico como un protocolo confirmatorio vigente.
-:::
+El mecanismo y su estado de admisibilidad se describen en el [Bloque C](06_modelo_original.md). Este capítulo integra el diseño inicial de atención, los dos pilotos de desarrollo ya completados y la propuesta posterior por momentos. Distingue hipótesis, propiedades, resultados y controles pendientes. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. El protocolo confirmatorio continúa en borrador.
 
-El mecanismo candidato y su implementación se describen en el [Bloque C](06_modelo_original.md). Este capítulo organiza su diseño según la Sección 7 de la guía: limitación, hipótesis, disciplina experimental, propiedad teórica y ablaciones. La implementación y los ensayos de software existen; todavía no se han ejecutado HPO, entrenamiento o comparaciones del candidato sobre datos de mercado. R1 y R3 siguen abiertos, y la comprensión y defensa académica de R2 deben verificarse con el autor.
+Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; los apartados 7.5–7.7 incorporan resultados y decisiones posteriores. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) contienen su detalle técnico y trazabilidad.
 
 ## 7.1 Del hueco de investigación a la hipótesis contrastable
+
+**Origen del primer diseño de atención.** Las hipótesis D1–D5 siguientes motivaron penalización y saturación. Los pilotos posteriores no las convierten en un protocolo confirmatorio ni en una declaración de superioridad. Su resultado de desarrollo se integra en 7.5.
 
 **D1. Limitación identificada y evidencia disponible.** El [estudio de robustez de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/54_robustez_interpretabilidad.html) ejecutó un estrés que desplaza el 10 % de las celdas de entrada en ±5 desviaciones estándar. Bajo esa condición, la RMSE aumentó un 585,40 % en el SAE, un 513,98 % en GRU32 y un 1.552,52 % en TimeMixer. Es evidencia de sensibilidad bajo una corrupción artificial concreta, observada retrospectivamente en el benchmark. No demuestra fragilidad ante cualquier error de mercado: las ventanas perturbadas pueden incumplir la coherencia OHLCV. La limitación operativa de calendario de TimeMixer en ETTh1 tampoco se traslada al adaptador BTC sin marcadores de calendario.
 
@@ -33,7 +33,7 @@ No cumplir esas condiciones impide declarar éxito de esta hipótesis; un interv
 
 ## 7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación
 
-La [bitácora de desarrollo](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md) conserva la familia completa y tres intervenciones funcionales de software: sin penalización, sin saturación y sin contenido. Las cuatro variantes se examinaron con entradas artificiales; no se eligió una receta por su RMSE en datos de mercado. El corte informa **$N_{d,\rm mercado}=0$**, que no equivale a ausencia de esfuerzo de diseño. Hay **cuatro variantes funcionales especificadas y comprobadas**. Antes del protocolo se deberá conciliar y declarar el $N_d$ total, incluyendo variantes descartadas, intentos y fallos, con su fecha, evidencia, métricas disponibles y decisión.
+La [bitácora inicial](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md) registra cuatro variantes de software comprobadas con entradas artificiales: completa, sin penalización, sin saturación y sin contenido. Su conteo de cero recetas entrenadas en mercado corresponde al corte anterior a los pilotos. **El estado posterior incluye cinco recetas neuronales entrenadas entre v1 y v2.** El $N_d$ global sigue pendiente de conciliación e incluye también propuestas, parametrizaciones y ensayos descartados; no se reduce a ese subtotal de cinco. Antes de confirmar debe declararse el inventario completo con fecha, evidencia, métricas y decisión.
 
 El ajuste diminuto de una prueba unitaria realizó 350 pasos de Adam sobre ocho ejemplos artificiales. Comprueba capacidad de ajuste del software; no constituye entrenamiento de BTC, validación del mecanismo económico ni selección de hiperparámetros con los datos de E1/E2.
 
@@ -53,7 +53,7 @@ El congelamiento debe registrarse con fecha y tag Git reales anteriores a los ex
 
 ## 7.3 Sustento teórico: qué demostrar y cómo verificarlo
 
-La propiedad disponible es una cota Lipschitz de la **cabeza sobre estados latentes**. La [formulación del Bloque C](06_modelo_original.md) y la {download}`demostración íntegra con derivadas y pseudocódigo <../_static/e3_bloque_c_20261115/theory.md>` conservan su desarrollo. La demostración siguiente es autocontenida; no extiende la garantía al preprocesamiento, a la CNN o a la LSTM.
+La propiedad del primer diseño es una cota Lipschitz de la **cabeza sobre estados latentes**. La [formulación del Bloque C](06_modelo_original.md) y la {download}`demostración íntegra con derivadas y pseudocódigo <../_static/e3_bloque_c_20261115/theory.md>` conservan su desarrollo. La demostración siguiente es autocontenida; no extiende la garantía al preprocesamiento, a la CNN o a la LSTM. La propiedad de la propuesta posterior por momentos se integra en 7.6.
 
 Sean $H,H'\in\mathbb R^{n\times d}$, con $n=7$ en el problema principal. Se usan norma euclídea, norma de Frobenius y norma espectral para vectores, estados y operadores, respectivamente. Sean $P$ una matriz causal fija e independiente de $H$, $A=I-P$ y parámetros de inferencia fijos tales que
 
@@ -170,13 +170,13 @@ Hay dos modificaciones algorítmicas candidatas: penalización de discordancia y
 
 | Modelo $M_{uv}$ | Penalización $u$ | Saturación $v$ | Relación con el código disponible | Estado experimental |
 |---|---:|---:|---|---|
-| $M_{00}$, base convencional | 0 | 0 | Requiere desactivar ambos componentes simultáneamente; **todavía no está implementado** como variante. | Propuesto; sin métricas de mercado. |
+| $M_{00}$, base convencional | 0 | 0 | Ambos componentes desactivados; implementado en el ejecutor de desarrollo v1. | Entrenado en v1; RMSE de desarrollo 0,00537677. |
 | $M_{10}$, sólo penalización | 1 | 0 | `without_saturation`. | Intervención funcional comprobada con datos artificiales. |
 | $M_{01}$, sólo saturación | 0 | 1 | `without_penalty`. | Intervención funcional comprobada con datos artificiales. |
-| $M_{11}$, completo | 1 | 1 | `full`. | Software y propiedad latente verificados; sin entrenamiento de mercado. |
+| $M_{11}$, completo | 1 | 1 | `full`. | Entrenado en v1; RMSE de desarrollo 0,00604531. |
 | Control adicional sin contenido | 1 | 1 | `without_content` fuerza $q=0$. | Intervención funcional comprobada; no forma parte del factorial de los dos cambios. |
 
-El control sin contenido estudia un componente convencional y **no es una tercera innovación**. Las tres ablaciones funcionales existentes no equivalen a haber completado el factorial, ni a la ablación estadística exigida. El modelo base debe implementarse y verificarse en una revisión posterior antes de ejecutar ese diseño, conservando su versión y trazabilidad.
+El control sin contenido estudia un componente convencional y **no es una tercera innovación**. Las tres ablaciones funcionales existentes no equivalen a haber completado el factorial, ni a la ablación estadística exigida. El piloto v1 ya implementó y comparó $M_{00}$ y $M_{11}$; las dos intervenciones aisladas siguen sin esa evaluación de mercado. El resultado de v1 fue desfavorable al modelo completo en la métrica global.
 
 Para errores $E_{uv}$ sobre unidades comparables, la interacción puede expresarse como
 
@@ -189,3 +189,54 @@ Un $I<0$ indicaría una reducción de error conjunta mayor que la suma aditiva d
 Se mantendrán particiones, preprocesamiento, semillas pareadas, política de ajuste, épocas y presupuesto comparables; el esfuerzo real y los fallos se registrarán. Las semillas no se cuentan como mercados independientes. Se reportarán parámetros totales y activos: retirar una penalización puede eliminar su parámetro, y retirar contenido elimina $q$. Cuando cambie el número de parámetros se incluirá una variante de tamaño igualado para separar el efecto del mecanismo del efecto de la capacidad, y se discutirá esa comparación.
 
 Las ablaciones pueden apoyar que un componente contribuye bajo el diseño evaluado; no prueban por sí solas el mecanismo causal. Sus resultados deberán contrastarse con las predicciones D4 y conservar también los efectos nulos, adversos y la posible pérdida de desempeño en extremos.
+
+## 7.5 Pilotos de desarrollo completados y decisiones
+
+Los dos pilotos usan la misma base CNN-LSTM-atención. V1 comparó la atención modificada con $M_{00}$ y obtuvo RMSE **0,00604531 frente a 0,00537677**: el mecanismo completo no mejoró al control. La revisión posterior del [anexo B](17_revision_post_piloto.md) detectó predicciones incompatibles con el piso observable del objetivo; su diagnóstico es posterior y no se presenta como un preregistro.
+
+V2 comparó tres recetas con el mismo codificador y cuarenta épocas por receta, una semilla y 116 fechas de validación de desarrollo. Las mejores épocas se seleccionaron con esa validación, ya expuesta a decisiones de diseño. Sus resultados en unidades originales de σ₇ son:
+
+| Receta v2 | RMSE de desarrollo | Decisión |
+|---|---:|---|
+| Cabeza positiva aditiva | **0,0031446148** | Referencia predictiva de desarrollo. |
+| Half-t5: sólo media | 0,0031739264 | Control sin NLL auxiliar. |
+| Half-t5: media y NLL | 0,0031982970 | No supera la heurística exploratoria del 2 %. |
+
+La receta con NLL quedó 1,707 % peor que la aditiva. La referencia aditiva también presentó una RMSE 22,50 % mayor que $M_{00}$ conservado y proyectado en las 18 fechas de objetivo realizado alto. Ese grupo sólo sirve para diagnóstico retrospectivo: no es información disponible al pronosticar. El [anexo E](20_cierre_v2.md) conserva cohortes, cifras por régimen, errores individuales y reproducción sin nuevos ajustes.
+
+La comparación con $M_{00}$ conservado enfrenta recetas completas, no aísla por sí sola cada cambio de salida o entrenamiento. Estos resultados de desarrollo no prueban superioridad frente al Top 10, no completan R3 y no permiten promover automáticamente la aditiva como aporte original.
+
+## 7.6 Propuesta posterior: momentos y media transformada
+
+La identidad conocida del objetivo es $Y=\sqrt{A+cV}$, con $c=6/49$, $A$ observable al origen y $V=U^2$ una etiqueta futura. Aquí $A$ es un escalar de la varianza histórica, distinto del operador latente del apartado 7.3. La [formulación del capítulo 6](06_modelo_original.md) propone estimar los escalares $m\approx E[V\mid X]$, $q\approx E[V^2\mid X]$ y una posición $\rho$ de la media entre sus cotas $L,H$.
+
+Con escalas positivas obtenidas sólo de ajuste, $\widetilde V=V/s_u^2$, $\widetilde m=m/s_u^2$, $\widetilde q=q/s_u^4$, el criterio propuesto es
+
+$$
+\mathcal L=((Y-\widehat\mu)/s_y)^2
++\lambda_m[\log\widetilde m+\widetilde V/\widetilde m]
++\lambda_q[\log\widetilde q+\widetilde V^2/\widetilde q].
+$$
+
+Con $m_0>0$, $q_0=E[U^4\mid X]<\infty$ y una clase capaz de representar conjuntamente momentos y media verdaderos, el exceso de riesgo condicional es
+
+$$
+\frac{(\widehat\mu-\mu_0)^2}{s_y^2}
++\lambda_m[\log(m/m_0)+m_0/m-1]
++\lambda_q[\log(q/q_0)+q_0/q-1]\ge0.
+$$
+
+La demostración y la verificación con cinco leyes artificiales están en el [anexo F](21_propuesta_momentos.md). La cota y los scores tienen antecedentes atribuidos. El teorema no garantiza convergencia de la red, trayectoria de Faithful o mejora de RMSE; excluye el borde verdadero $m_0=q_0=0$ del score logarítmico. Con momentos estimados la región calculada puede no contener la media verdadera y **no es un intervalo de predicción**.
+
+El [anexo G](22_dictamen_momentos.md) delimita además dos contraejemplos: momentos incorrectos pueden excluir la media verdadera, y los auxiliares pueden empeorar un paso escalar de SGD respecto de la misma cabeza con MSE sola. Son seis actualizaciones artificiales independientes, no entrenamiento neuronal o una trayectoria Adam. La cabeza por momentos todavía no se implementó como red ni se entrenó en mercado.
+
+## 7.7 Controles futuros y decisión de desarrollo
+
+| Control conceptual | Pregunta que permite contrastar |
+|---|---|
+| Misma cabeza por momentos con y sin auxiliares; 1236 parámetros | Efecto de las pérdidas auxiliares conservando todos los ancestros de la media. |
+| Cabeza por momentos frente a media directa con las mismas dos cabezas auxiliares; 1236 parámetros | Efecto del vínculo entre media y momentos, con tres lecturas activas. |
+| Media directa con auxiliares separados y gradiente detenido al contexto, frente a su propia media sola | Comparación inspirada en Faithful, sujeta a comprobar condiciones de actualización. |
+| Referencia aditiva v2 y ablaciones Jensen / $q=9m^2$ | Utilidad frente al control observado y necesidad de cada componente; se declaran capacidades diferentes. |
+
+Igualar parámetros no demuestra igual clase de funciones, coste o trayectoria. La revisión de admisibilidad del capítulo 6 mantiene la decisión de **conservar la propuesta como adaptación experimental, sin seleccionarla todavía como aporte original ni iniciar otro piloto en este corte**. La revisión externa, el diseño justo y el protocolo confirmatorio siguen pendientes. Los rivales congelados, el margen heredado y el presupuesto no se alteran por reorganizar el informe.
