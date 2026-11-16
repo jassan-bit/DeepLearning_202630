@@ -35,6 +35,8 @@ La [concordancia y los anexos](sections/concordancia_secciones.md) permiten loca
 
 La [propuesta posterior al cierre v2](sections/21_propuesta_momentos.md) formaliza una cabeza de momentos dentro de la misma CNN-LSTM con atención. Incluye hipótesis, demostración, antecedentes directos y verificación numérica artificial. Se conserva para revisión de admisibilidad: no es una red nueva ya entrenada ni una declaración de originalidad o superioridad. El control aditivo v2 sigue siendo la referencia predictiva de desarrollo.
 
+El [dictamen posterior](sections/22_dictamen_momentos.md) delimita su aporte potencial, añade el control de la misma cabeza sin auxiliares y demuestra dos límites de las garantías que podrían atribuirse a la propuesta. La decisión interna es conservarla como adaptación experimental, sin seleccionarla todavía como aporte original ni lanzar otro piloto. La revisión bibliográfica completa y la verificación humana externa siguen pendientes; se deja preparado su paquete de trabajo.
+
 El [anexo final](sections/cierre_reproducibilidad.md) distingue conclusiones provisionales, evidencia de software, reproducción científica pendiente y declaración de autoría sin firmas. La rúbrica no se convierte en una calificación automática del proyecto.
 
 El [Apéndice A](sections/apendice_a_plantillas.md) ofrece las seis plantillas y su paquete descargable; las [referencias sugeridas](sections/referencias_sugeridas.md) conservan los 37 números de la guía y aclaran qué métodos son pertinentes para F2a.

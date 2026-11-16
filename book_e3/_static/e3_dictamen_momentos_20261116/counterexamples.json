@@ -1,0 +1,220 @@
+{
+  "schema": "e3-moment-admissibility-scalar-counterexamples-v1",
+  "date_local": "2026-11-16",
+  "timezone": "America/Bogota",
+  "source_verifier": {
+    "path": "scripts/e3_verify_moment_head.py",
+    "sha256": "131ba13f4a7abdafda6ca6e0c379734ee3c74a7a727d43c71ce3d0546d396aea",
+    "modified_by_this_audit": false
+  },
+  "operations": {
+    "artificial_laws": 1,
+    "scalar_SGD_updates": 6,
+    "independent_step_sizes": 3,
+    "steps_per_update": 1,
+    "neural_networks_instantiated": 0,
+    "neural_networks_trained": 0,
+    "market_rows_read": 0,
+    "market_fits": 0,
+    "market_inferences": 0,
+    "NPZ_or_checkpoint_opened": false,
+    "Adam_campaign": false,
+    "optimizer_minimizations": 0,
+    "multi_step_optimizer_search": false
+  },
+  "fixed_wrong_moments": {
+    "law": "V=1 almost surely; U=1; A=0; c=6/49",
+    "true_moments": {
+      "m0": 1.0,
+      "q0": 1.0
+    },
+    "true_mean_Y": 0.3499271061118826,
+    "fixed_estimated_moments_both_controls": {
+      "m": 4.0,
+      "q": 32.0
+    },
+    "estimated_envelope": {
+      "L": 0.4948716593053935,
+      "H_unattained_supremum": 0.6998542122237652
+    },
+    "direct_mean": 0.3499271061118826,
+    "best_envelope_mean_with_these_reports": 0.4948716593053935,
+    "moment_scores_direct": {
+      "m": 1.6362943611198906,
+      "q": 3.4969859027997265
+    },
+    "moment_scores_envelope": {
+      "m": 1.6362943611198906,
+      "q": 3.4969859027997265
+    },
+    "identical_auxiliary_score": true,
+    "direct_raw_expected_MSE": 0.0,
+    "envelope_minimum_raw_expected_MSE": 0.02100892350046651,
+    "exact_excess_MSE_formula": "c*(sqrt(2)-1)^2 > 0",
+    "direct_normalized_expected_MSE": 0.0,
+    "envelope_minimum_normalized_expected_MSE": 0.17157287525380985,
+    "interpretation": "Estimated moment bounds can exclude the true mean; keeping the SAME moment scores does not guarantee lower MSE.",
+    "limit": "The incorrect reports are held fixed to isolate the output constraint; this is not an optimization result for a trained neural network."
+  },
+  "same_head_gradient_step": {
+    "law": "V=1 almost surely; U=1; A=0; c=6/49",
+    "true_mean_Y": 0.3499271061118826,
+    "normalization": {
+      "s_u": 1.0,
+      "s_y": 0.3499271061118826,
+      "source": "exact fit-population means for this artificial law"
+    },
+    "same_head_controls": [
+      "moment head + normalized MSE only",
+      "SAME moment head + normalized MSE + two moment scores"
+    ],
+    "initial_coordinates_both_controls": {
+      "a": 0.541324854612918,
+      "b": 2.8284271247461903,
+      "d": 1.0
+    },
+    "initial_m": 0.9999999999999999,
+    "initial_q": 9.0,
+    "initial_rho": 0.5,
+    "initial_prediction": 0.2332847374079217,
+    "initial_normalized_MSE": 0.11111111111111122,
+    "lambda_m": 0.1,
+    "lambda_q": 0.1,
+    "derivative_checks": {
+      "mean_Y": {
+        "analytic": {
+          "a": 0.07373203928823441,
+          "b": -0.018328579974273836,
+          "d": 0.11664236870396087
+        },
+        "central_difference": {
+          "a": 0.07373203927962813,
+          "b": -0.01832857998707027,
+          "d": 0.11664236869435296
+        },
+        "step": 1e-06,
+        "maximum_absolute_error": 1.2796434051276506e-11
+      },
+      "auxiliary_score": {
+        "analytic": {
+          "a": 0.11237698823618802,
+          "b": 0.05587016542708525,
+          "d": 0.0
+        },
+        "central_difference": {
+          "a": 0.11237698824273501,
+          "b": 0.055870165438509645,
+          "d": 0.0
+        },
+        "step": 1e-06,
+        "maximum_absolute_error": 1.1424396151316074e-11
+      },
+      "normalized_MSE": {
+        "analytic": {
+          "a": -0.14047123529523503,
+          "b": 0.034918853391928274,
+          "d": -0.2222222222222222
+        },
+        "central_difference": {
+          "a": -0.1404712352687243,
+          "b": 0.03491885339906853,
+          "d": -0.2222222222000858
+        },
+        "step": 1e-06,
+        "maximum_absolute_error": 2.6510738049267957e-11
+      }
+    },
+    "exact_aux_directional_derivative_formula": "D=lambda*sqrt(c)*[(16/27)*(1-exp(-1))^2-64/2187] > 0",
+    "coefficient_without_lambda_sqrt_c": 0.20752218361146388,
+    "aux_directional_derivative_of_prediction": 0.00726176371651783,
+    "first_order_difference_formula": "mu_joint_after_SGD - mu_MSE_after_SGD = -eta*D + O(eta^2)",
+    "independent_one_step_comparisons": [
+      {
+        "eta": 1e-06,
+        "reset_to_same_initial_coordinates": true,
+        "mean_only_coordinates_after_one_step": {
+          "a": 0.5413249950841533,
+          "b": 2.8284270898273367,
+          "d": 1.0000002222222222
+        },
+        "joint_coordinates_after_one_step": {
+          "a": 0.5413248827071651,
+          "b": 2.8284270339571713,
+          "d": 1.0000002222222222
+        },
+        "mean_only_prediction": 0.23328477432568995,
+        "joint_prediction": 0.23328476706392506,
+        "mean_only_normalized_MSE": 0.11111104077691536,
+        "joint_normalized_MSE": 0.11111105461172585,
+        "joint_minus_mean_only_prediction": -7.261764883859101e-09,
+        "first_order_prediction_difference": -7.26176371651783e-09,
+        "joint_minus_mean_only_normalized_MSE": 1.3834810491664129e-08,
+        "joint_MSE_is_larger": true
+      },
+      {
+        "eta": 1e-05,
+        "reset_to_same_initial_coordinates": true,
+        "mean_only_coordinates_after_one_step": {
+          "a": 0.541326259325271,
+          "b": 2.828426775557656,
+          "d": 1.0000022222222222
+        },
+        "joint_coordinates_after_one_step": {
+          "a": 0.5413251355553886,
+          "b": 2.828426216856002,
+          "d": 1.0000022222222222
+        },
+        "mean_only_prediction": 0.233285106585442,
+        "joint_prediction": 0.2332850339676888,
+        "mean_only_normalized_MSE": 0.11111040777046373,
+        "joint_normalized_MSE": 0.1111105461184124,
+        "joint_minus_mean_only_prediction": -7.261775319955532e-08,
+        "first_order_prediction_difference": -7.261763716517831e-08,
+        "joint_minus_mean_only_normalized_MSE": 1.3834794866662836e-07,
+        "joint_MSE_is_larger": true
+      },
+      {
+        "eta": 0.0001,
+        "reset_to_same_initial_coordinates": true,
+        "mean_only_coordinates_after_one_step": {
+          "a": 0.5413389017364475,
+          "b": 2.828423632860851,
+          "d": 1.0000222222222221
+        },
+        "joint_coordinates_after_one_step": {
+          "a": 0.5413276640376239,
+          "b": 2.8284180458443084,
+          "d": 1.0000222222222221
+        },
+        "mean_only_prediction": 0.23328842916693526,
+        "joint_prediction": 0.23328770297896267,
+        "mean_only_normalized_MSE": 0.11110407783565363,
+        "joint_normalized_MSE": 0.11110546129949778,
+        "joint_minus_mean_only_prediction": -7.26187972588388e-07,
+        "first_order_prediction_difference": -7.26176371651783e-07,
+        "joint_minus_mean_only_normalized_MSE": 1.3834638441512226e-06,
+        "joint_MSE_is_larger": true
+      }
+    ],
+    "encoder": "fixed; only the three scalar readout coordinates a,b,d are updated",
+    "optimizer": "plain scalar SGD; one step from identical initialization for each eta and each objective",
+    "interpretation": "Auxiliary gradients change ancestors of the mean. Detaching them only from an encoder cannot guarantee the same mean trajectory as this same head trained on MSE alone.",
+    "limits": [
+      "These are six independent scalar updates, not a multi-step neural training or an Adam campaign.",
+      "A first idealized Adam step can coincide when it depends only on coordinate signs; no Adam trajectory was simulated or inferred.",
+      "The example refutes an automatic optimization-fidelity or universal one-step MSE-improvement claim, not conditional-risk consistency in a sufficiently rich class.",
+      "The artificial deterministic law has zero irreducible conditional variance. This is not a claim about financial data or the source of the v2 pilot result."
+    ]
+  },
+  "claims": {
+    "previous_consistency_theorem_invalidated": false,
+    "market_failure_explained": false,
+    "novelty_decided_by_counterexample": false,
+    "general_MSE_improvement_guaranteed": false,
+    "Faithful_optimization_theorem_inherited": false
+  },
+  "check_tolerance": {
+    "float_rtol": 2e-09,
+    "float_atol": 2e-12
+  }
+}
