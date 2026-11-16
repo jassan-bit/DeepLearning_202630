@@ -1,4 +1,6 @@
-# Ficha de diseño: CNN-LSTM-atención v2
+# Anexo C. Ficha de diseño de CNN-LSTM-atención v2
+
+La ficha de desarrollo se conserva como soporte de los capítulos [6](06_modelo_original.md) y [7](07_diseno_riguroso.md). El piloto ya terminó; sus resultados y la decisión posterior están en el [anexo E](20_cierre_v2.md).
 
 La [ficha completa](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/README.md)
 conserva la arquitectura **CNN causal → LSTM → atención temporal por contenido**

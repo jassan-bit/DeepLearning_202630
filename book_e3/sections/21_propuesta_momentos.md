@@ -1,12 +1,12 @@
-# 21 Propuesta de cabeza de momentos: formulación y admisibilidad
+# Anexo F. Cabeza de momentos: formulación y admisibilidad
 
 :::{note}
-Esta propuesta se conserva como corte de formulación. El [dictamen posterior](22_dictamen_momentos.md) corrige localizadores, añade un control faltante y delimita las garantías: la adaptación no se selecciona todavía como aporte original ni pasa a otro piloto en ese corte.
+Este anexo conserva el detalle matemático de la propuesta integrada en los capítulos [6](06_modelo_original.md) y [7](07_diseno_riguroso.md). El [dictamen posterior del anexo G](22_dictamen_momentos.md) corrige localizadores, añade un control faltante y delimita las garantías: la adaptación no se selecciona todavía como aporte original ni pasa a otro piloto en ese corte.
 :::
 
 **16 de noviembre de 2026. Propuesta matemática de desarrollo; sin nueva red implementada o entrenada.** Se conserva CNN causal → LSTM unidireccional → atención temporal. La modificación propuesta pertenece a la salida y a su pérdida. La cabeza aditiva del [cierre v2](20_cierre_v2.md) continúa como referencia predictiva; no se ha elegido un modelo superior al Top 10.
 
-## 21.1 Limitación que se investiga
+## F.1 Limitación que se investiga
 
 En v2, la cabeza half-t5 compartía una escala entre la media de σ₇ y la NLL de la magnitud de innovación. Bajo mala especificación esos objetivos pueden tener óptimos distintos. Un contraejemplo poblacional lo demuestra: con `A=0`, `P(U=0)=3/4` y `P(U=2)=1/4`, el óptimo MSE tiene escala al cuadrado `9π²/320≈0,277583`, mientras el óptimo NLL tiene `0,4`. La verificación incluye una exponencial continua. Se comparan riesgos poblacionales sintéticos, conservando la varianza irreducible; no se presenta MSE esperada cero.
 
@@ -14,7 +14,7 @@ Esto demuestra un conflicto posible, **no la causa del RMSE observado en Bitcoin
 
 El paper guía continúa siendo TimeMixer. Su limitación de calendario medida en ETTh1 no se transfiere al adaptador BTC sin calendario. La [relación documentada con el paper guía](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/paper_guide.md) distingue la evidencia de E2 de la nueva limitación propuesta.
 
-## 21.2 La misma red, una salida diferente
+## F.2 La misma red, una salida diferente
 
 Con los seis retornos conocidos al origen se calcula
 
@@ -41,7 +41,7 @@ Con momentos verdaderos positivos y finitos, la media condicional pertenece exac
 
 La inicialización propuesta `b=√8,d=1` evita comenzar en los puntos de derivada nula de ambas ramas. La relación inicial `q/m²=9` toma como ancla t5, sin ajuste por desempeño. Se proponen escalas de ajuste positivas y pesos auxiliares `0,1`; no se han ejecutado ni congelado como protocolo. El conteo analítico es **1236 parámetros**, frente a 1210 de v2, con las mismas 1197 cantidades del tronco y atención más tres lecturas activas. La especificación completa distingue precisiones, bordes e inicialización.
 
-## 21.3 Propiedad demostrada y límites
+## F.3 Propiedad demostrada y límites
 
 La pérdida propuesta combina MSE de σ₇ con dos scores conocidos de media, normalizados mediante escalas calculadas sólo en ajuste:
 
@@ -63,7 +63,7 @@ La {download}`demostración completa descargable <../_static/e3_mecanismo_moment
 
 No se deducen convergencia de la red, mejora en muestra finita o la garantía de trayectoria de Faithful. La esperanza auxiliar requiere `E[U⁴]` finita; no exige octavo momento para definirla, pero los gradientes pueden tener varianza infinita sin condiciones adicionales. El caso verdadero `m0=q0=0` queda fuera del teorema logarítmico: necesita una rama separada. El verificador documenta también redondeo, overflow y puntos planos.
 
-## 21.4 Comprobación numérica sin datos de mercado
+## F.4 Comprobación numérica sin datos de mercado
 
 Se integraron cinco leyes artificiales —uniforme, exponencial, dos puntos, lognormal y Pareto α5— en veinte combinaciones de ley y `A`. Se comprobaron extremales, homogeneidad, derivadas y exceso de riesgo. Hubo cuatro optimizaciones escalares de riesgos sintéticos; **cero redes nuevas, lecturas de datos o inferencias de mercado**. Estas pruebas no acreditan R1 ni R3.
 
@@ -76,7 +76,7 @@ Verificación artificial. El círculo abierto representa el supremo superior, no
 
 Los [resultados reproducibles](../_static/e3_mecanismo_momentos_20261116/metrics.json), el [verificador escalar](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e3_verify_moment_head.py) y las pruebas están en GitHub. La integración continua comprueba tanto el cálculo como las copias descargables.
 
-## 21.5 Qué falta para seleccionar un aporte original
+## F.5 Qué falta para seleccionar un aporte original
 
 La [revisión focal](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/literature/review.md) compara nueve trabajos cercanos y distingue ocho lecturas focales del cuerpo de una fuente examinada sólo por metadatos/resumen. No identificar una combinación exacta en esa búsqueda no demuestra su ausencia. Las doce consultas web y los tres intentos nativos bloqueados antes de respuesta no completan la revisión de §6.3. Faltan búsquedas nativas reproducibles, seguimiento por citas, repetición antes de entrega y concepto de una persona externa al diseño. Los agentes de IA no sustituyen esa verificación.
 

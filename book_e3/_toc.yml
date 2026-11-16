@@ -1,5 +1,7 @@
 format: jb-book
 root: intro
+# La guía fija los capítulos principales 1–16. Integrar ampliaciones en ellos
+# y conservar el detalle de apoyo en anexos, sin añadir capítulos 17 en adelante.
 parts:
   - caption: Secciones 1 a 16 de la guía
     chapters:
@@ -19,17 +21,21 @@ parts:
       - file: sections/14_evaluacion_calificacion
       - file: sections/15_integridad_academica
       - file: sections/16_conclusiones
-  - caption: Evidencia posterior al primer piloto
-    chapters:
-      - file: sections/17_revision_post_piloto
-      - file: sections/18_ficha_cnn_lstm_atencion_v2
-      - file: sections/19_piloto_innovacion_v2
-      - file: sections/20_cierre_v2
-      - file: sections/21_propuesta_momentos
-      - file: sections/22_dictamen_momentos
   - caption: Anexos y trazabilidad
     chapters:
       - file: sections/apendice_a_plantillas
+      - file: sections/17_revision_post_piloto
+        title: Anexo B. Revisión del primer piloto
+      - file: sections/18_ficha_cnn_lstm_atencion_v2
+        title: Anexo C. Ficha de diseño v2
+      - file: sections/19_piloto_innovacion_v2
+        title: Anexo D. Ejecución del piloto v2
+      - file: sections/20_cierre_v2
+        title: Anexo E. Cierre y errores del piloto v2
+      - file: sections/21_propuesta_momentos
+        title: Anexo F. Formulación de la cabeza de momentos
+      - file: sections/22_dictamen_momentos
+        title: Anexo G. Dictamen y revisión externa
       - file: sections/referencias_sugeridas
       - file: sections/concordancia_secciones
         sections:

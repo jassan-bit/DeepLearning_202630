@@ -1,4 +1,6 @@
-# Revisión posterior al primer piloto
+# Anexo B. Revisión posterior al primer piloto
+
+Este anexo conserva el detalle del primer piloto y su revisión posterior. La síntesis de diseño y resultados está integrada en los capítulos [6](06_modelo_original.md) y [7](07_diseno_riguroso.md).
 
 Este corte del **16 de noviembre de 2026** incorpora el primer entrenamiento
 real del candidato. Continúa siendo desarrollo exploratorio. Los documentos

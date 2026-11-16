@@ -14,7 +14,7 @@ La etiqueta requiere ocho cierres y contiene el retorno del día objetivo, aún 
 
 E1 estableció las referencias neuronales. E2 ejecutó diez candidatos, tres referencias neuronales y tres comparadores estadísticos: **16 sistemas sobre 608 fechas conocidas**, con seis semillas por red. El LSTM-autoencoder obtuvo la menor RMSE media observada, **0,00380343**. Las veinte comparaciones primarias no demostraron la mejora práctica registrada tras Holm; las ampliaciones posteriores conservan esa conclusión.
 
-E3 debe convertir los artefactos en un producto predictivo y desarrollar una contribución neuronal defendible. La combinación CNN-LSTM-atención no acredita por sí sola originalidad. El candidato actual incorpora penalización de discordancia temporal y saturación radial; su novedad y su ventaja predictiva siguen por comprobar.
+E3 debe convertir los artefactos en un producto predictivo y desarrollar una contribución neuronal defendible. La combinación CNN-LSTM-atención no acredita por sí sola originalidad. El primer piloto estudió penalización de discordancia y saturación radial; el segundo comparó cabezas de salida. La aditiva v2 conserva la referencia predictiva de desarrollo. La propuesta posterior por momentos queda como adaptación experimental sin originalidad acreditada, según el [capítulo 6](06_modelo_original.md).
 
 ## 1.2 Objetivos
 
@@ -26,12 +26,12 @@ E3 debe convertir los artefactos en un producto predictivo y desarrollar una con
 
 ## 1.3 Avances y límites actuales
 
-Se cuenta con un inventario de 81 predictores, comprobación de 167 metadatos, selección documentada de configuraciones y tres exportaciones TorchScript sobre calibración histórica. El candidato tiene código, una demostración de estabilidad de su cabeza latente y **35 pruebas sobre datos artificiales**.
+Se cuenta con un inventario de 81 predictores, comprobación de 167 metadatos, selección documentada de configuraciones y tres exportaciones TorchScript sobre calibración histórica. La evidencia neuronal incluye código, propiedades con alcance explícito, **223 pruebas de software** y dos pilotos de desarrollo completados, con cinco recetas entrenadas. Los resultados y controles se integran en el [capítulo 7](07_diseno_riguroso.md); las 35 pruebas del primer módulo conservan su alcance histórico dentro de ese conjunto.
 
 Estos avances no equivalen a una auditoría integral cerrada, un dashboard terminado ni superioridad del candidato. **R1, la defensa académica de R2 y R3 siguen abiertos.** Los periodos ya evaluados en E1/E2 continúan siendo conocidos; repetirlos no recupera una confirmación independiente.
 
 ## 1.4 Organización del libro
 
-Las [secciones 2](02_estandar_profundidad.md) y [3](03_panorama_general.md) fijan el estándar y las dependencias. Las [secciones 4](04_correcciones_e2.md), [5](05_configuraciones_exportacion.md) y [6](06_modelo_original.md) reúnen los bloques A, B y C. La [sección 7](07_diseno_riguroso.md) organiza hipótesis, disciplina de diseño, teoría y ablaciones. Los [anexos](concordancia_secciones.md) conservan las páginas y evidencias anteriores.
+El cuerpo principal sigue exclusivamente los **capítulos 1 a 16 de la guía**. Las [secciones 2](02_estandar_profundidad.md) y [3](03_panorama_general.md) fijan el estándar y las dependencias. Las [secciones 4](04_correcciones_e2.md), [5](05_configuraciones_exportacion.md) y [6](06_modelo_original.md) reúnen los bloques A, B y C. La [sección 7](07_diseno_riguroso.md) integra hipótesis, disciplina de diseño, teoría, pilotos y controles. Los [anexos](concordancia_secciones.md) reúnen las plantillas y el detalle de apoyo, con una concordancia hacia su capítulo correspondiente.
 
 El dashboard de Render aún no tiene URL pública. La publicación de este Jupyter Book no se presenta como ese dashboard. La asistencia de IA en código, teoría, revisión focal y documentación está declarada; el autor deberá comprender y defender la entrega.
