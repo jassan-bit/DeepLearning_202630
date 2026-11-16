@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Apéndice A Plantillas operativas &#8212; Entregable 3 · Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sections/apendice_a_plantillas';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencias metodológicas sugeridas por la guía" href="referencias_sugeridas.html" />
+    <link rel="prev" title="16 Conclusiones" href="16_conclusiones.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 3 · Deep Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Secciones 1 a 16 de la guía</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_introduccion.html">1 Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_estandar_profundidad.html">2 Estándar de profundidad exigido</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_panorama_general.html">3 Panorama general del entregable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_correcciones_e2.html">4 Bloque A Correcciones del Entregable 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_configuraciones_exportacion.html">5 Bloque B Selección de configuraciones y exportación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_modelo_original.html">6 Bloque C El modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_diseno_riguroso.html">7 Diseño riguroso del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_verificacion_estadistica.html">8 Bloque D Verificación estadística y evaluación ampliada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_dashboard_predictivo.html">9 Bloque E Dashboard predictivo en Dash Plotly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_despliegue_render.html">10 Bloque F Despliegue en Render</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_informe_tecnico.html">11 Bloque G Informe técnico en Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_lista_entregables.html">12 Lista de entregables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_sustentacion.html">13 Sustentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_evaluacion_calificacion.html">14 Evaluación y calificación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_integridad_academica.html">15 Integridad académica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_conclusiones.html">16 Conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos y trazabilidad</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Apéndice A Plantillas operativas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias_sugeridas.html">Referencias metodológicas sugeridas por la guía</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="concordancia_secciones.html">Concordancia y documentos de trabajo anteriores</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_alcance_requisitos.html">Matriz inicial de requisitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_planificacion.html">Plan de trabajo inicial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_desarrollo_evidencias.html">Desarrollo y evidencias anteriores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_resultados_discusion.html">Resultados y discusión del corte anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reproducibilidad_entrega.html">Reproducibilidad y estructura final prevista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_trazabilidad_correcciones.html">Trazabilidad del primer corte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_diseno_preliminar.html">Diseño preliminar del candidato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_bloques_a_b.html">Evidencias originales de los bloques A y B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_modelo_original.html">Desarrollo original del candidato C</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="cierre_reproducibilidad.html">Cierre provisional, reproducibilidad, autoría y bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><p class="small">Entregable 3 · Jassan Arteta · 2026-30</p></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/sections/apendice_a_plantillas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Apéndice A Plantillas operativas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-declaracion-del-estandar">A.1 Declaración del estándar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-declaracion-de-procedencia-del-mecanismo">A.2 Declaración de procedencia del mecanismo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-bitacora-de-diseno">A.3 Bitácora de diseño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-tabla-de-contrastes-confirmatorios">A.4 Tabla de contrastes confirmatorios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-5-lista-de-verificacion-de-reproducibilidad">A.5 Lista de verificación de reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-6-catalogo-de-errores-frecuentes">A.6 Catálogo de errores frecuentes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apendice-a-plantillas-operativas">
+<h1>Apéndice A Plantillas operativas<a class="headerlink" href="#apendice-a-plantillas-operativas" title="Link to this heading">#</a></h1>
+<p>Este apéndice aplica A.1–A.6 de la guía —páginas 49–54— al proyecto BTCUSDT, ruta temporal F2a. <strong>Son plantillas y registros preventivos, no un preregistro, una campaña ejecutada, una firma o un nuevo congelamiento.</strong> Los documentos canónicos <code class="docutils literal notranslate"><span class="pre">experiments/estandar.md</span></code>, <code class="docutils literal notranslate"><span class="pre">experiments/protocolo.md</span></code>, <code class="docutils literal notranslate"><span class="pre">experiments/procedencia.md</span></code> y <code class="docutils literal notranslate"><span class="pre">experiments/design_log.md</span></code> siguen pendientes; publicar los formatos no los crea ni cierra sus decisiones.</p>
+<p>Las fuentes editables se conservan en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_plantillas_v1">experiments/e3_plantillas_v1</a>. El paquete <a class="reference download internal" download="" href="../_downloads/bceb02df35336a2ccbc0e5e907edb8a8/plantillas_operativas_v1.zip"><code class="xref download docutils literal notranslate"><span class="pre">plantillas_operativas_v1.zip</span></code></a> reúne los formatos; el <a class="reference download internal" download="" href="../_downloads/dbdaa8738babc0420e0b9207c6631d58/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">de</span> <span class="pre">uso</span> <span class="pre">y</span> <span class="pre">alcance</span></code></a> explica cómo completarlos sin sustituir evidencia. Las <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">secciones 6–8</span></a> y la <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">matriz de evaluación</span></a> mantienen sus estados actuales.</p>
+<section id="a-1-declaracion-del-estandar">
+<h2>A.1 Declaración del estándar<a class="headerlink" href="#a-1-declaracion-del-estandar" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/9518d315de405411ed1d1ba08a3cff24/estandar_plantilla.md"><code class="xref download docutils literal notranslate"><span class="pre">plantilla</span> <span class="pre">de</span> <span class="pre">estándar</span></code></a> conserva los cuatro campos de la guía: estándar, justificación, compromisos y fecha/tag. Desglosa los pendientes necesarios para fijar propiedad/supuestos, rivales, conjuntos, potencia, recursos y responsables.</p>
+<p>El estándar exigido es <strong>teórico</strong>: al menos una propiedad formal con verificación numérica; familia completa; al menos tres conjuntos adicionales; al menos tres pruebas válidas por contraste; potencia ≥0,90 por contraste y potencia conjunta reportada; mínimo diez semillas o más según dimensionamiento. Ningún piloto, coste, R definitivo, conjunto adicional o tag se da por completado mediante el formato. La cota existente se limita a la cabeza latente; no se amplía a OHLCV crudo por llenar una plantilla.</p>
+<p>La justificación deberá conectar el cómputo y perfil del equipo con el análisis de potencia real. El registro tendrá fecha/tag anteriores al congelamiento, sin retrofecharlos. La regla completa de comparación y el hallazgo alternativo deben fijarse antes de confirmar, como explican las <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">secciones 8</span></a> y <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">14.5.9</span></a>.</p>
+<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/estandar_plantilla.md">estandar_plantilla.md</a>.</p>
+</section>
+<section id="a-2-declaracion-de-procedencia-del-mecanismo">
+<h2>A.2 Declaración de procedencia del mecanismo<a class="headerlink" href="#a-2-declaracion-de-procedencia-del-mecanismo" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/d7aaa7c772baea0849c73acd0d3b9a71/procedencia_plantilla.md"><code class="xref download docutils literal notranslate"><span class="pre">plantilla</span> <span class="pre">de</span> <span class="pre">procedencia</span></code></a> solicita origen, cita completa del trabajo y del código consultado/licencia, motivo de transferencia, modificaciones algorítmicas e implementación desde la formulación. Añade campos de trazabilidad para asistencia de IA, revisión personal y capacidad de explicación/modificación.</p>
+<p>Todos esos campos requieren validación: el formato no afirma que una fuente fue leída, que el código es original o que el autor comprende y puede defenderlo. La transferencia, si corresponde, debe introducir cambios sustantivos de mecanismo, pérdida o entrenamiento; cambiar sólo datos o hiperparámetros no acredita R1. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/procedencia.md">registro ya existente del candidato</a> y su asistencia declarada se preservan, sin convertirse en declaración final firmada.</p>
+<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/procedencia_plantilla.md">procedencia_plantilla.md</a>.</p>
+</section>
+<section id="a-3-bitacora-de-diseno">
+<h2>A.3 Bitácora de diseño<a class="headerlink" href="#a-3-bitacora-de-diseno" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/9c49936c23bbf7e108aceebb89674239/design_log_plantilla.csv"><code class="xref download docutils literal notranslate"><span class="pre">bitácora</span> <span class="pre">CSV</span> <span class="pre">vacía</span></code></a> contiene <strong>sólo encabezados</strong>. Conserva número de variante, cambio respecto a la anterior, métrica de desarrollo, decisión, motivo y fecha; añade identificadores, fuentes, fallos y tag para preservar trazabilidad. No copia las filas ilustrativas de la guía como si fueran ejecuciones.</p>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md">bitácora real del candidato</a> sigue declarando cuatro variantes funcionales artificiales y Nd de mercado=0. No se reinicia ese historial ni se inventan variantes, métricas, decisiones o tags. Los intentos futuros deberán acumularse con sus fallos, presupuesto y partición usada; una partición de confirmación no se usa para diseñar.</p>
+<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/design_log_plantilla.csv">design_log_plantilla.csv</a>.</p>
+</section>
+<section id="a-4-tabla-de-contrastes-confirmatorios">
+<h2>A.4 Tabla de contrastes confirmatorios<a class="headerlink" href="#a-4-tabla-de-contrastes-confirmatorios" title="Link to this heading">#</a></h2>
+<p>La <a class="reference download internal" download="" href="../_downloads/c52ec42e8db77bfbfb0418cdda446e74/contrastes_confirmatorios_plantilla.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">propuesta</span> <span class="pre">de</span> <span class="pre">contrastes</span></code></a> prepara <strong>48 filas: 16 rivales × tres slots</strong>, recuperando nombres y roles del <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloques_ab_20261115/master_configurations.csv">maestro histórico</a>. P1–P3 son lugares sin procedimiento elegido: no se contabilizan como pruebas admisibles, ejecutadas o rechazadas. El m≈12 ilustrativo de la guía no reduce los 16 rivales reales.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Campo del formato</p></th>
+<th class="head"><p>Regla de llenado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Contraste y slot</p></td>
+<td><p>Candidato frente a cada rival, con tres procedimientos distintos cuya admisibilidad F2a sigue pendiente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prueba, nula, estimando y supuestos</p></td>
+<td><p>Cerrar antes de confirmar; identificar unidad independiente y ámbito temporal/semilla. No basta nombrar tres métodos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Estadístico, diferencia e IC95 %, efecto e IC</p></td>
+<td><p>Vacíos hasta disponer de ejecución válida, fuente y recibo. No transferir valores de E2 ni llenar con ceros.</p></td>
+</tr>
+<tr class="row-odd"><td><p>p crudo, p Holm y máximo por rival</p></td>
+<td><p>Vacíos. Propuesta: Holm sobre 16 rivales para cada procedimiento previamente cerrado; todas las pruebas exigidas deben rechazar. El máximo ajustado gobierna cada rival.</p></td>
+</tr>
+<tr class="row-even"><td><p>Decisión frente a δ y decisión conjunta</p></td>
+<td><p>Vacías. Superar a todos requiere todos los rivales y condiciones R3; no elegir el menor p ni excluir un resultado no concluyente.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La primaria sigue siendo la media de RMSE individuales en unidades de σ7. La ganancia propuesta es RMSErival−RMSEoriginal y δ=0,00025772842664981106, como margen heredado, no como resultado. Una hipótesis sobre MSE diaria no contrasta directamente ganancia de RMSE mayor que δ; <strong>δ² no es una conversión válida del margen</strong>. MCS no aporta por sí solo un contraste pareado de relevancia práctica. La ausencia de rechazo no se etiqueta «equivalente»: TOST/ROPE requieren margen y reglas previos.</p>
+<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/contrastes_confirmatorios_plantilla.csv">contrastes_confirmatorios_plantilla.csv</a>. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> conserva el protocolo no congelado y la batería todavía por validar.</p>
+</section>
+<section id="a-5-lista-de-verificacion-de-reproducibilidad">
+<h2>A.5 Lista de verificación de reproducibilidad<a class="headerlink" href="#a-5-lista-de-verificacion-de-reproducibilidad" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/a8ecc1a41862ca33fd87eea27449cf6e/checklist_reproducibilidad.csv"><code class="xref download docutils literal notranslate"><span class="pre">checklist</span> <span class="pre">de</span> <span class="pre">17</span> <span class="pre">ítems</span></code></a> reproduce los diecisiete ítems de la guía y añade estado, evidencia y vacío específico. No hay marcas de cumplimiento integral. «Parcial» reconoce evidencia real sin certificar todo lo agrupado en una fila.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>N.º</p></th>
+<th class="head"><p>Ítem de A.5</p></th>
+<th class="head"><p>Estado actual resumido</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Estándar escrito antes de congelar.</p></td>
+<td><p>Pendiente de declaración canónica.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Benchmarks congelados con hash después de A.</p></td>
+<td><p>Parcial: freeze histórico disponible; Bloque A aún abierto.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Limitación cuantificada, hipótesis y predicciones secundarias.</p></td>
+<td><p>Parcial: formulación/motivación; evidencia y registro finales pendientes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Fuente y procedencia completas si hay transferencia.</p></td>
+<td><p>Parcial: registro candidato y antecedentes; cierre por validar.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Propiedad formal, supuestos y verificación numérica.</p></td>
+<td><p>Parcial de alcance: evidencia de cabeza latente; no certificar pipeline completo o utilidad de mercado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Bitácora Nd y desarrollo distinto de confirmación.</p></td>
+<td><p>Parcial: historial artificial; separación confirmatoria pendiente.</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Protocolo con tag/fecha previos.</p></td>
+<td><p>Pendiente; sólo borrador.</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Potencia, MDE y potencia conjunta.</p></td>
+<td><p>Pendiente del candidato.</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Familia completa con Holm.</p></td>
+<td><p>Parcial: roster de 16; inferencia confirmatoria pendiente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Tres pruebas por contraste y máximo de p ajustados.</p></td>
+<td><p>Pendiente; slots sin métodos ni resultados.</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Tres conjuntos elegidos antes de resultados y fuera del diseño.</p></td>
+<td><p>Pendiente; ninguno seleccionado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Sensibilidad a prueba, métrica y semillas.</p></td>
+<td><p>Pendiente de ejecución conforme al plan.</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Unitarias en CI y exportación con ida y vuelta.</p></td>
+<td><p>Parcial: software/workflows y tres TorchScript sobre calibración; integración final pendiente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>Dashboard desde maestro y prueba de consistencia.</p></td>
+<td><p>Pendiente; aplicación no construida.</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Docker y reproducción independiente con discrepancia.</p></td>
+<td><p>Pendiente; sin recibo humano externo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>Humo del despliegue y contingencia.</p></td>
+<td><p>Pendiente; no servicio Render acreditado.</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>Archivo/DOI, fichas, datos, contribuciones e IA.</p></td>
+<td><p>Parcial: fuentes y asistencia declaradas; paquete final/firmas pendientes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/checklist_reproducibilidad.csv">checklist_reproducibilidad.csv</a>. La evidencia detallada y las condiciones de cierre siguen en las <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">secciones 12–14</span></a> y el <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo final</span></a>.</p>
+</section>
+<section id="a-6-catalogo-de-errores-frecuentes">
+<h2>A.6 Catálogo de errores frecuentes<a class="headerlink" href="#a-6-catalogo-de-errores-frecuentes" title="Link to this heading">#</a></h2>
+<p>El <a class="reference download internal" download="" href="../_downloads/fa01f04dd7c852242e25b80af808189b/errores_frecuentes.csv"><code class="xref download docutils literal notranslate"><span class="pre">catálogo</span> <span class="pre">preventivo</span> <span class="pre">de</span> <span class="pre">16</span> <span class="pre">errores</span></code></a> conserva los dieciséis casos de A.6, cada uno con síntoma observable y diagnóstico/corrección. <strong>No afirma que el usuario haya cometido esos errores</strong> ni sustituye una auditoría con evidencia.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>N.º</p></th>
+<th class="head"><p>Error de A.6</p></th>
+<th class="head"><p>Corrección preventiva resumida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Novedad sólo de aplicación.</p></td>
+<td><p>Clasificar mecanismo, pérdida/entrenamiento o aplicación; la última no acredita R1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Transferencia sin citar la fuente.</p></td>
+<td><p>Atribuir fuente y registrar adaptación en procedencia.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Transferencia sin adaptación.</p></td>
+<td><p>Exigir cambio algorítmico sustantivo; no inventarlo para completar una casilla.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Demostración decorativa.</p></td>
+<td><p>Supuestos, demostración y verificación controlada con alcance explícito.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Diseñar sobre confirmación.</p></td>
+<td><p>Separación real, Nd y sesgo de selección declarados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Reajustar benchmarks para comparar.</p></td>
+<td><p>Congelar tras A; cambios posteriores documentados exigen nuevo protocolo.</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Presupuesto desigual disfrazado.</p></td>
+<td><p>Igualar tiempo total o reportar ambos análisis.</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Contrastes sin control familiar.</p></td>
+<td><p>Familia previa y Holm sobre p válidos.</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Elegir la prueba favorable.</p></td>
+<td><p>Todas las exigidas y máximo de p ajustados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Diseño sin potencia.</p></td>
+<td><p>Dimensionar antes de congelar: 16 rivales reales, potencia por contraste/conjunta y semillas suficientes.</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Relajar el estándar tras resultados.</p></td>
+<td><p>Mantener estándar e historial; declarar límites sin reducir exigencias.</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Conjuntos adicionales usados para ajustar.</p></td>
+<td><p>Si guiaron diseño, declararlos desarrollo; no evidencia independiente.</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Dashboard desincronizado.</p></td>
+<td><p>Maestro único y prueba automática app–informe.</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>Entrada fuera de dominio sin aviso.</p></td>
+<td><p>Rangos/distancias train y advertencia, sin promesa de fiabilidad.</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Entorno no reproducible.</p></td>
+<td><p>Versiones exactas y Docker probado en entorno limpio.</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>Despliegue sin contingencia.</p></td>
+<td><p>Humo, apertura previa y respaldo real identificado como grabado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/errores_frecuentes.csv">errores_frecuentes.csv</a>. El catálogo orienta correcciones documentadas; cada estado se respaldará con evidencia, sin resultados, registros o firmas ficticios.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="16_conclusiones.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">16 Conclusiones</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias_sugeridas.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Referencias metodológicas sugeridas por la guía</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-1-declaracion-del-estandar">A.1 Declaración del estándar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-2-declaracion-de-procedencia-del-mecanismo">A.2 Declaración de procedencia del mecanismo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-3-bitacora-de-diseno">A.3 Bitácora de diseño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-4-tabla-de-contrastes-confirmatorios">A.4 Tabla de contrastes confirmatorios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-5-lista-de-verificacion-de-reproducibilidad">A.5 Lista de verificación de reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-6-catalogo-de-errores-frecuentes">A.6 Catálogo de errores frecuentes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

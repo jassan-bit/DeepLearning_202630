@@ -1,6 +1,6 @@
 # Cierre provisional, reproducibilidad, autoría y bibliografía
 
-Este anexo cierra la navegación del informe con los requisitos de reproducción y autoría de las secciones 11–12. Es un **registro provisional**, no un acta de entrega, firma o reproducción independiente. Se conserva la diferencia entre documentación publicada, software comprobado y resultados científicos pendientes.
+Este anexo cierra la navegación del informe con los requisitos de reproducción y autoría de las secciones 11–12 y 15. Es un **registro provisional**, no un acta de entrega, firma o reproducción independiente. Las [conclusiones de la sección 16](16_conclusiones.md) mantienen la diferencia entre documentación publicada, software comprobado y resultados científicos pendientes.
 
 ## Conclusiones provisionales y límites
 
@@ -57,9 +57,11 @@ Esta plantilla no es una declaración suscrita. La [sustentación](13_sustentaci
 
 ## Bibliografía de partida y alcance de lectura
 
-La bibliografía configurada en `book_e3/references.bib` conserva los siete registros ya presentes en el corte del candidato; no es una nueva búsqueda ni acredita lectura completa de todos los trabajos. Los originales de Kim y colaboradores {cite:p}`kim2021lipschitz` y Dasoulas y colaboradores {cite:p}`dasoulas2021lipschitz` tuvieron lectura focal documentada. La matriz de la [sección 6](06_modelo_original.md) distingue los otros antecedentes, metadatos heredados y límites de consulta.
+La bibliografía configurada tiene dos fuentes separadas. `book_e3/references.bib` conserva intactos los siete registros del corte del candidato. Los originales de Kim y colaboradores {cite:p}`kim2021lipschitz` y Dasoulas y colaboradores {cite:p}`dasoulas2021lipschitz` tuvieron lectura focal documentada; la matriz de la [sección 6](06_modelo_original.md) distingue los otros antecedentes, metadatos heredados y límites de consulta.
 
-El archivo {download}`references.bib <../references.bib>` y la bibliografía renderizada permiten seguir las citas. Cerrar R1 requiere además completar/repetir la revisión, clasificar diferencias y obtener la verificación externa exigida; una lista BibTeX no demuestra novedad.
+`referencias_metodologicas_v1.bib` incorpora las 37 sugerencias de la guía, indexadas con su [número original y aplicabilidad](referencias_sugeridas.md). No son 37 búsquedas o lecturas nuevas, ni se agregan automáticamente al corpus de novedad o al PRISMA. Su inclusión no afirma que todos sus procedimientos sean aplicables a F2a.
+
+Se conservan la descarga original de {download}`references.bib, siete antecedentes del candidato <../references.bib>` y la nueva descarga de {download}`referencias_metodologicas_v1.bib, 37 sugerencias de la guía <../referencias_metodologicas_v1.bib>`. La lista renderizada reúne los 44 registros. Cerrar R1 requiere completar/repetir la revisión, clasificar diferencias y obtener la verificación externa exigida; una lista BibTeX no demuestra novedad.
 
 ```{bibliography}
 :all:
