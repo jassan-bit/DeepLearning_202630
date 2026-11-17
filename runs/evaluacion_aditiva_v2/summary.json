@@ -1,0 +1,104 @@
+{
+  "version": "e3-frozen-additive-historical-evaluation-v1",
+  "created_at_utc": "2026-11-17T02:08:45.934069+00:00",
+  "status": "completed",
+  "scope": "historical_descriptive",
+  "variant": "additive_positive_head",
+  "seed": 20261116,
+  "best_epoch_frozen_before_evaluation": 38,
+  "checkpoint_sha256": "65641a377ab3e6051081d8a8d15f55e7eece3765b305a0029b032418c8095916",
+  "result_source_commit": "1ca029e869a517cb8de704e573c78ca1e0cbad3c",
+  "E2_source_commit": "f65b14d38e38f8d5fd80c717d71f2abd9ea708e2",
+  "frozen_checkpoint_sha256": "65641a377ab3e6051081d8a8d15f55e7eece3765b305a0029b032418c8095916",
+  "source_result_commit": "1ca029e869a517cb8de704e573c78ca1e0cbad3c",
+  "roundtrip_max_absolute_error": 0.0,
+  "evaluation_n": 608,
+  "no_training": true,
+  "data_npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+  "source_run_id": "6cc32b1a91224c4f9144a1c831394746",
+  "source_hashes": {
+    "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json": "c3ce43d3cb81767ee3fc0daa0ccfe8432a3326643e28e51273a49cc1fe01c2fe",
+    "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json.sha256": "624b0c1dde0cebf59390a921e6e4830ea51dff81658293b329e152f74a7b86ae",
+    "scripts/e3_run_development.py": "8f100e6aed1ade7336e7c104cefc475b61ee5cd8db20e04a253f099d0190ce7c",
+    "scripts/e3_run_innovation.py": "c08b3c3200d7c09ee88e6695ad0755029328fb6c19da4967b6c8651388a8d32a",
+    "src/e3_development.py": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+    "src/e3_innovation.py": "3bf0a6ded102e60fb4f3a46d92ca64b41fad393c6d9da56986c889b54789cd25",
+    "src/e3_innovation_model.py": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1",
+    "src/original_model.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f"
+  },
+  "input_hashes": {
+    "snapshot_manifest.json": "5fe65596b99b334de197f3fc08811514c5ee6ea48b8447318057fea1b7cf9be1",
+    "manifest.json": "49ed926ff8c3ad5967d4fa145b471383fa5f0058609cee64c6d7af6f74728dad",
+    "data_admission.json": "7de4ccec3e415484253c3867b4451040a1e9a2fd49e4b999599cbe785f9a9d32",
+    "additive_positive_head/best.pt": "65641a377ab3e6051081d8a8d15f55e7eece3765b305a0029b032418c8095916",
+    "additive_positive_head/validation_predictions.csv": "2b4866fcb060f19647ec7a6ed604ddf40f99642c2acf4fd3656d5182b313c8b5",
+    "current_cohort_arrays.npz": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "e2_partition.json": "69ac07eebcfad0e946d2edaaf433871e4045696b95035e7b5252cf3409a7e02f",
+    "e2_benchmark_A2.csv": "879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1",
+    "e2_data_admission.json": "1d430f16a4d363055800fb4ec62cc4a7bc9062a131e3a792324b8440e5cebd9c"
+  },
+  "target": "population sigma7 of daily Close log returns, ddof0, unannualized; h1",
+  "prediction_units": "sigma7_original",
+  "validation_roundtrip": {
+    "examples": 116,
+    "maximum_absolute_error": 0.0,
+    "tolerance": 1e-07,
+    "passed_before_test_members_opened": true
+  },
+  "evaluation": {
+    "first": "2025-01-01",
+    "last": "2026-08-31",
+    "examples": 608,
+    "RMSE": 0.0029062363847952803,
+    "MAE": 0.0018774685463564486,
+    "bias": 3.264476168800233e-05,
+    "below_floor_count": 0
+  },
+  "training": {
+    "new_model_fits": 0,
+    "new_scaler_fits": 0,
+    "optimizer_steps": 0,
+    "bias_matching_calls": 0,
+    "calibration_fits": 0,
+    "E3_examples": 532,
+    "E2_neural_examples": 655,
+    "E2_classical_training_counts_claimed": false,
+    "equal_training_budget_claimed": false
+  },
+  "members_read": [
+    "training_dates",
+    "training_raw",
+    "training_y_original",
+    "evaluation_dates",
+    "evaluation_raw",
+    "evaluation_y_original"
+  ],
+  "calibration_members_opened": false,
+  "rows_dropped": 0,
+  "statistical_tests_performed": false,
+  "R1_R3_verified": false,
+  "winner_declared": false,
+  "runtime": {
+    "python": "3.12.12",
+    "torch": "2.8.0+cu126",
+    "numpy": "2.3.5",
+    "device": "cuda",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "cuda_build": "12.6",
+    "cpu_threads": 2,
+    "AMP": false,
+    "TF32": false,
+    "inference_seconds": 0.04682556100033253
+  },
+  "limits": [
+    "Known historical test calendar; prospective blinding is not recovered.",
+    "E3 was selected from exposed development results and has one seed.",
+    "E2 neural metrics average six seed metrics; E3 uses one frozen trajectory.",
+    "Training samples, tuning histories and computation budgets are different.",
+    "This is descriptive inference, not a confirmatory superiority or novelty decision."
+  ],
+  "artifact_sha256": {
+    "predictions.csv": "24b5c09fbfb65837ec55a9ec8dd3ae9cad29de2419900ac2c80cc2901516d559",
+    "comparison.csv": "6db36abe05122889d58ba8442e703389603a6fd48ef9e66a990d30133bbf1be7"
+  }
+}
