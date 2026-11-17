@@ -26,10 +26,16 @@ El coordinador fija el descriptor antes de ejecutar y guarda `predictions.csv`, 
 
 La comprobación local del checkpoint real sobre las 116 fechas de validación, con PyTorch 2.8.0 en CPU y NumPy 2.3.5, dio un error absoluto máximo de aproximadamente `1.24e-8` respecto a las predicciones de GPU publicadas. Esa comprobación no abrió los miembros de evaluación. Las pruebas de evaluación completa usan datos artificiales; la ejecución real de las 608 fechas corresponde al usuario en Colab.
 
-Pasaron 11 pruebas locales: cuatro del trabajador con datos artificiales y siete del coordinador con GitHub simulado. Incluyen acceso restringido a miembros NPZ, conservación de resultados, recuperación después de fallos de publicación, repetición de una evaluación ya publicada y conflictos de escritura. Desde la raíz del repositorio y con PyTorch 2.8.0/NumPy 2.3.5 instalados:
+Pasaron 13 pruebas locales: cuatro del trabajador con datos artificiales y nueve del coordinador con GitHub simulado. Incluyen acceso restringido a miembros NPZ, conservación de resultados, recuperación después de fallos de publicación, repetición de una evaluación ya publicada, conflictos de escritura y errores de validación HTTP con credenciales redactadas. Desde la raíz del repositorio y con PyTorch 2.8.0/NumPy 2.3.5 instalados:
 
 ```bash
 python -m unittest discover -s notebooks/e3_evaluacion_aditiva_v2 -p 'test_*.py' -v
 ```
+
+## Corrección del guardado HTTP 422
+
+Una ejecución en Colab recibió HTTP 422 al intentar crear el primer commit del descriptor, antes de ejecutar el trabajador. El estado HTTP por sí solo no identifica la causa exacta. La publicación corregida usa un padre existente de la rama dispersa de resultados v2 y declara la identidad automática `E3 development storage`, igual que el transporte Git anterior. La creación del árbol sigue incluyendo solamente los archivos de esta evaluación, sin copiar el árbol principal. Las actualizaciones posteriores conservan el padre esperado y `force=False`.
+
+Se añaden los campos acotados `message`, `resource`, `field` y `code` de los errores de validación, con redacción de credenciales. La celda corregida usa `launcher_v2/` para conservar el código descargado anteriormente, junto con los mismos `inputs/`, `output/` y descriptor científico. El worker y su SHA256 permanecen sin cambios.
 
 Este código fue preparado con asistencia de IA. Debe declararse esa asistencia en el informe, junto con la responsabilidad del estudiante de comprender y defender su implementación.

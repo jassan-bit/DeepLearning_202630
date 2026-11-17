@@ -32,6 +32,7 @@ EXTRA_SOURCES = {
     "requirements-e3-innovation-gpu.lock.txt": "85f80fa265764d6aa213ff4b375f946eb187acb58cb915311f3a5268122224d6",
 }
 OUTPUT_NAMES = ("predictions.csv", "comparison.csv", "summary.json")
+COMMIT_IDENTITY = {"name": "E3 development storage", "email": "e3@users.noreply.github.com"}
 
 
 def digest(payload):
@@ -70,6 +71,29 @@ class NoApiRedirect(HTTPRedirectHandler):
         raise HTTPError(request.full_url, code, "API redirect rejected", headers, response)
 
 
+def api_error_details(error, token):
+    """Expose bounded validation fields only, never HTTP bodies or credentials."""
+    try:
+        record = json.loads(error.read(8192))
+    except (ValueError, UnicodeError, OSError):
+        return ""
+    if not isinstance(record, dict):
+        return ""
+    values = []
+    if isinstance(record.get("message"), str):
+        values.append(record["message"])
+    errors = record.get("errors", [])
+    for item in errors[:4] if isinstance(errors, list) else []:
+        if isinstance(item, dict):
+            values.extend(f"{key}={item[key]}" for key in ("resource", "field", "code")
+                          if isinstance(item.get(key), str))
+    value = " | ".join(values)
+    if token:
+        value = value.replace(token, "[redacted]")
+    value = re.sub(r"(?:gh[pousr]_[A-Za-z0-9_]+|github_pat_[A-Za-z0-9_]+)", "[redacted]", value)
+    return " ".join(value.split())[:600]
+
+
 class GitHub:
     def __init__(self, token):
         self.token = token
@@ -86,7 +110,9 @@ class GitHub:
         except HTTPError as error:
             if missing and error.code == 404:
                 return None
-            raise RuntimeError(f"GitHub rechazó {method} {path}: HTTP {error.code}") from None
+            detail = api_error_details(error, self.token) if error.code in (400, 409, 422) else ""
+            suffix = "; " + detail if detail else ""
+            raise RuntimeError(f"GitHub rechazó {method} {path}: HTTP {error.code}{suffix}") from None
         except URLError:
             raise RuntimeError(f"No se confirmó la solicitud GitHub: {method} {path}") from None
 
@@ -124,7 +150,8 @@ class GitHub:
         tree = self.api("POST", "git/trees", body)
         commit = self.api("POST", "git/commits", {
             "message": "E3: evaluación descriptiva del checkpoint aditivo congelado",
-            "tree": tree["sha"], "parents": [] if head is None else [head]})
+            "tree": tree["sha"], "parents": [RESULT_COMMIT if head is None else head],
+            "author": dict(COMMIT_IDENTITY), "committer": dict(COMMIT_IDENTITY)})
         if head is None:
             ref = self.api("POST", "git/refs", {"ref": "refs/heads/" + BRANCH, "sha": commit["sha"]})
         else:

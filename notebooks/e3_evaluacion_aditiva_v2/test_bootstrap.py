@@ -9,6 +9,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
+from urllib.error import HTTPError
 
 HERE = Path(__file__).resolve().parent
 SPEC = importlib.util.spec_from_file_location("frozen_bootstrap", HERE / "bootstrap.py")
@@ -41,15 +42,21 @@ class FakeAPI(b.GitHub):
 
 
 class PublicationTests(unittest.TestCase):
-    def test_empty_tree_root(self):
+    def test_sparse_initial_commit_with_parent_and_identity(self):
         client = FakeAPI()
         self.assertEqual(client.publish({b.PREFIX + "/plan.json": b"{}"}), "new")
-        self.assertEqual(client.calls[-2][2]["parents"], [])
+        commit = client.calls[-2][2]
+        self.assertEqual(commit["parents"], [b.RESULT_COMMIT])
+        self.assertEqual(commit["author"], b.COMMIT_IDENTITY)
+        self.assertEqual(commit["committer"], b.COMMIT_IDENTITY)
         self.assertNotIn("base_tree", next(v for _, p, v in client.calls if p == "git/trees"))
 
     def test_nonforced_update(self):
         client = FakeAPI()
         self.assertEqual(client.publish({b.PREFIX + "/summary.json": b"{}"}, "old", "base"), "new")
+        commit = next(v for _, p, v in client.calls if p == "git/commits")
+        self.assertEqual(commit["parents"], ["old"])
+        self.assertEqual(commit["author"], b.COMMIT_IDENTITY)
         self.assertEqual(client.calls[-1][2], {"sha": "new", "force": False})
 
     def test_writer_race_preserves_branch(self):
@@ -57,6 +64,31 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "rama cambió"):
             client.publish({b.PREFIX + "/summary.json": b"{}"}, "old", "base")
         self.assertFalse(any(method == "PATCH" for method, _, _ in client.calls))
+
+    def test_api_validation_detail_redacts_credentials(self):
+        token = "test-private-credential"
+        body = json.dumps({"message": "Validation failed " + token,
+            "errors": [{"resource": "Commit", "field": "author.email", "code": "invalid",
+                        "private_payload": "must not appear"}],
+            "unapproved": "must not appear"}).encode()
+        error = HTTPError("https://api.github.com/", 422, "failed", {}, io.BytesIO(body))
+        with patch.object(b, "build_opener") as opener:
+            opener.return_value.open.side_effect = error
+            with self.assertRaises(RuntimeError) as raised:
+                b.GitHub(token).api("POST", "git/commits", {})
+        message = str(raised.exception)
+        self.assertIn("HTTP 422", message)
+        self.assertIn("author.email", message)
+        self.assertIn("[redacted]", message)
+        self.assertNotIn(token, message)
+        self.assertNotIn("must not appear", message)
+
+    def test_non_json_validation_detail_preserves_safe_status(self):
+        error = HTTPError("https://api.github.com/", 422, "failed", {}, io.BytesIO(b"not JSON"))
+        with patch.object(b, "build_opener") as opener:
+            opener.return_value.open.side_effect = error
+            with self.assertRaisesRegex(RuntimeError, "HTTP 422$"):
+                b.GitHub("hidden").api("POST", "git/commits", {})
 
 
 class CoordinatorTests(unittest.TestCase):
