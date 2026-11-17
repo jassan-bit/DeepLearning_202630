@@ -1,6 +1,6 @@
 # 9 Bloque E Dashboard predictivo en Dash Plotly
 
-**Estado: diseño documental, sin aplicación construida o desplegada.** Este capítulo aplica la Sección 9 de la guía al proyecto BTCUSDT y especifica la integración futura de datos, artefactos e interpretaciones. Esta actualización no crea `app.py`, las páginas Dash, `Dockerfile` ni `render.yaml`, ni ejecuta una campaña de modelos. La [selección y exportación](05_configuraciones_exportacion.md), el [modelo candidato](06_modelo_original.md) y el [protocolo estadístico en borrador](08_verificacion_estadistica.md) conservan sus propios alcances.
+**Estado: diseño documental, sin aplicación construida o desplegada.** Este capítulo aplica la Sección 9 de la guía al proyecto BTCUSDT y especifica la integración futura de datos, artefactos e interpretaciones. La [selección y exportación](05_configuraciones_exportacion.md), el [modelo evaluado](06_modelo_original.md) y el [análisis estadístico posterior ya calculado](08_verificacion_estadistica.md) conservan sus propios alcances; aún falta integrarlos en una aplicación verificable.
 
 ## 9.1 Objetivo
 
@@ -10,14 +10,14 @@ La cantidad objetivo es la desviación poblacional de siete retornos logarítmic
 
 ## 9.2 Alcance y límites de memoria
 
-El catálogo de la vista tendrá **17 filas**: los 16 sistemas heredados de E2 y el candidato original. El registro del candidato indicará «sin evaluación de mercado»; sus métricas no se rellenarán con ceros, resultados de pruebas sintéticas o cifras de otra arquitectura.
+El catálogo de la vista tendrá **17 filas**: los 16 sistemas heredados de E2 y la referencia CNN-LSTM con atención evaluada en E3. Su registro mostrará las métricas guardadas de diez semillas y el estado «evaluación histórica; inferencia en vivo pendiente». No se le atribuirán cifras o propiedades de otra arquitectura ni se rellenarán campos ausentes con ceros.
 
 | Grupo | Evidencia disponible | Modalidad prevista y condición de habilitación |
 |---|---|---|
 | MLP16, LSTM32 y GRU32 | Tres TorchScript reales, metadatos y paridad de predicción sobre 53 fechas de calibración de 2024. | Inferencia CPU integrable después de implementar y verificar validación, preprocesamiento, incertidumbre, explicación y control de dominio. Actualmente no hay interfaz en vivo. |
 | Diez candidatos del Top 10 | Resultados históricos y artefactos originales de E2, con límites documentados. | Resultados precalculados con fuente y justificación del estado; exportación e integración pendientes. No se presume que hayan excedido memoria sin medirlos. |
 | Persistence, SeasonalNaive y ARIMA | Comparadores históricos con su contrato temporal propio. | Precálculos hasta definir y verificar la historia de σ₇ requerida; no se alimentan automáticamente con siete barras OHLCV. |
-| Original CNN-LSTM con atención candidata | Código, demostración de cabeza latente y 35 pruebas del módulo con datos artificiales. | Presentación documental y de evidencia de software. No hay pesos BTC ni R1, defensa académica de R2 o R3 acreditados. |
+| CNN-LSTM con atención y salida aditiva positiva, 1210 parámetros | Pesos y predicciones de diez semillas entrenadas, métricas y análisis posterior sobre 608 fechas comunes. | Resultados precalculados con procedencia. Exportación e integración CPU de servicio pendientes; R1, defensa académica de R2 y R3 sin acreditar. Las 35 pruebas del primer módulo de 1211 parámetros conservan su ámbito propio. |
 
 La carga será bajo demanda en CPU, con **un worker propuesto**, cargas serializadas y caché de como máximo dos modelos por proceso. Una caché LRU de tamaño dos en varios workers no limita a dos los modelos del servicio completo. Se reducirá su capacidad si la medición del proceso, la concurrencia y el límite vigente del plan lo requieren.
 
@@ -38,7 +38,8 @@ pages/
   eda.py                       # propuesto: filtros y exploradores
   modelos.py                   # propuesto: catálogo e inferencia
 src/
-  original_model.py            # existente: candidato sin pesos BTC entrenados
+  original_model.py            # existente: primer mecanismo histórico, 1211 parámetros
+  e3_innovation_model.py       # existente: referencia aditiva evaluada, 1210 parámetros
   data.py                      # propuesto: fuentes autorizadas y caché de datos
   plots.py                     # propuesto: figuras y plantillas reutilizables
   inference.py                 # propuesto: contratos, preprocesamiento y carga CPU
@@ -62,7 +63,7 @@ render.yaml                    # pendiente: despliegue del servicio
 
 Los scripts históricos de E2 conservarán identidad y procedencia; este esquema no los mueve ni los importa como entrenamiento al arrancar Dash. Los procesos de análisis producen tablas y figuras versionadas antes del servicio. El backend sólo leerá insumos permitidos, validará su esquema e integridad y ejecutará inferencia de artefactos verificados.
 
-La tabla de vista conservará la procedencia de las 16 filas de E2 y añadirá el original con estado pendiente. Campos mínimos: modelo, familia, dataset, partición, receta, semilla o número de trayectorias, estimando, métrica/DE/IC disponibles, cobertura y costes con hardware/backend. No se combinarán como una misma medición perfiles GPU, eager CPU y TorchScript de distintas condiciones.
+La tabla de vista conservará la procedencia de las 16 filas de E2 y añadirá la referencia aditiva con sus resultados y capacidades pendientes. Campos mínimos: modelo, familia, dataset, partición, receta, semilla o número de trayectorias, estimando, métrica/DE/IC disponibles, cobertura y costes con hardware/backend. No se combinarán como una misma medición perfiles GPU, eager CPU y TorchScript de distintas condiciones.
 
 El flujo de una predicción admitida deberá conservar esta separación de responsabilidades:
 
@@ -106,7 +107,7 @@ Se proponen `dcc.Dropdown` para fuente/partición/variables, `dcc.DatePickerRang
 | ¿Qué cambia entre particiones? | Distribuciones y resúmenes comparables de entrenamiento, calibración y prueba disponible. | Mostrar exposición previa y disponibilidad real; no equiparar periodos distintos como réplicas independientes. |
 | ¿Qué variables y rezagos quiero comparar? | Explorador de OHLCV, retornos y σ₇, con vistas seleccionables. | Explicitar unidades y disponibilidad temporal; las correlaciones no se presentan como efectos causales. |
 
-La auditoría actual dispone de ventanas reconstruidas train/cal y mantiene incompleta la disponibilidad de OHLCV de las 608 fechas de prueba en ese entorno. Las vistas que requieran esas barras seguirán pendientes hasta obtenerlas y verificarlas. Se podrán mostrar agregados, figuras o trayectorias guardadas sólo cuando estén disponibles y autorizados, con su procedencia; no se reconstruirán datos faltantes de forma ficticia.
+La auditoría posterior enlazada en la [sección 4](04_correcciones_e2.md) dispone de 1316 ventanas D7×5 verificadas, incluidas las 608 de prueba, y comprueba su soporte temporal. Esto corrige la limitación del corte inicial train/cal. No constituye por sí solo una serie continua de barras OHLCV para cualquier vista: cada gráfico deberá usar los campos realmente disponibles, con sus fechas, procedencia y permisos, sin reconstruir datos ausentes de forma ficticia.
 
 Cada gráfico tendrá una frase de interpretación que cambie con el filtro y explique la implicación para el modelado. Si el subconjunto no permite una prueba o ACF válida, se mostrará «datos insuficientes», sin rellenar el resultado con cero. Los filtros EDA no recalcularán silenciosamente el ranking A2: la referencia histórica de 608 fechas conservará su etiqueta. Cualquier ranking de otra cohorte requerirá cálculo y evidencia propios antes de mostrarse.
 
@@ -114,7 +115,7 @@ Cada gráfico tendrá una frase de interpretación que cambie con el filtro y ex
 
 La página tendrá una `dash_table.DataTable` ordenable y filtrable con las 17 filas previstas. Mostrar/ocultar una fila es una operación de vista; no cambia la familia científica. Para cada sistema se conservarán familia, primaria media±DE, calibración, parámetros, FLOPs y latencia con unidad y alcance. Una trayectoria determinista no recibirá DE=0 como sustituto de incertidumbre; los campos inexistentes aparecerán como pendientes.
 
-Se distinguirán los líderes documentados: TimeMixer encabeza los quince sistemas con score CV recuperado, mientras que el SAE es líder descriptivo de prueba histórica y pertenece al MCS90 de E2. Esa distinción no permite elegir retrospectivamente una configuración o semilla por su prueba. El original no tiene posición de rendimiento ni comparación explicativa global con esos líderes todavía.
+Se distinguirán los líderes documentados: TimeMixer encabeza los quince sistemas con score CV recuperado, mientras que el SAE lidera descriptivamente E2 en prueba y pertenece al MCS90 histórico de E2. La referencia aditiva E3 tiene la menor RMSE media en la comparación posterior de 17 sistemas, con tratamientos de entrenamiento distintos y sin acreditar R3. Esos resultados no permiten elegir retrospectivamente una configuración o semilla por su prueba. La comparación explicativa global con los líderes sigue pendiente.
 
 **Contrato propuesto para las tres referencias exportadas.** El usuario elegirá modelo y origen UTC t, con horizonte h=1 fijo, y aportará siete barras de días consecutivos hasta t−1 o un ejemplo autorizado. La propuesta inicial admite sólo CSV UTF-8 sin compresión, siete filas de datos y las seis columnas `date,open,high,low,close,volume`. El límite configurable propuesto es **100 KiB (102.400 bytes)**; es una decisión de ingeniería por validar, no un límite de Render ni una carga ya probada.
 
@@ -130,9 +131,9 @@ El contrato D7×5 no se extiende automáticamente a los clásicos. Persistence u
 
 La explicación propuesta atribuirá la predicción a rezagos/covariables mediante un método adecuado, como Integrated Gradients u oclusión controlada, con referencia procedente de entrenamiento. Deben verificarse escala, fidelidad y estabilidad, y preservar la plausibilidad de las alteraciones. Los mapas de atención serán un complemento, no la única atribución ni una explicación causal. Los ejemplos precargados podrán tener explicaciones precalculadas enlazadas al mismo modelo/hash; una explicación de otra entrada, aunque use el mismo modelo, no se presentará como la de la carga actual.
 
-**Diagnósticos y comparación.** Para F2a se mostrarán reales frente a predichos, residuos, ACF de residuos y error por origen/horizonte disponible, además de calibración e incertidumbre pertinentes. No se importarán ROC o matrices de confusión de clasificación. La interpretación global del modelo seleccionado y su comparación con el original y el mejor benchmark deberán conservar métodos y cohortes; la comparación del original sigue pendiente.
+**Diagnósticos y comparación.** Para F2a se mostrarán reales frente a predichos, residuos, ACF de residuos y error por origen/horizonte disponible, además de calibración e incertidumbre pertinentes. No se importarán ROC o matrices de confusión de clasificación. La comparación numérica posterior ya existe; su integración visual, la interpretación global y la comparación explicativa con el mejor benchmark siguen pendientes y deberán conservar métodos y cohortes.
 
-La tabla MCS futura incluirá al candidato y los 16 rivales bajo el protocolo de la sección 8; el MCS histórico de E2 no lo contiene. La frontera de Pareto distinguirá desempeño y costes medidos en el mismo hardware/backend y condiciones. La ficha del original mostrará procedencia, diferencias, pseudocódigo, pruebas, curvas, efectos/IC/p ajustados y robustez cuando existan, con veredicto explícito, límites y escenarios adversos. Su Model Card accesible incluirá uso previsto, datos, métricas, riesgos y usos no recomendados.
+La vista MCS podrá incorporar el análisis auxiliar posterior de la sección 8: partió de 17 sistemas y conserva diez, incluida E3, sin identificar un ganador único ni probar el margen de RMSE. Se distinguirá del MCS histórico de E2, que no contiene al candidato. La frontera de Pareto requerirá costes medidos en condiciones comparables. La ficha mostrará procedencia, diferencias, pseudocódigo, pruebas, curvas, efectos/IC/p ajustados y robustez realmente disponibles, con límites y escenarios adversos. Su Model Card accesible incluirá uso previsto, datos, métricas, riesgos y usos no recomendados.
 
 ## 9.5 Criterios de calidad de diseño y de ingeniería
 
@@ -165,4 +166,4 @@ La aceptación posterior tendrá casos y evidencia concretos; ninguno se declara
 
 La paridad incluirá el preprocesamiento completo y tolerancias declaradas, no sólo que un archivo cargue. La prueba de humo y las evidencias del servicio deberán acompañar su implementación y despliegue posteriores.
 
-El [diseño del Bloque E, versión 0.2](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_e/diseno_dashboard_v2.md) y su {download}`copia descargable <../_static/e3_bloque_e/diseno_dashboard_v2.md>` incorporan el perfil de producción de la sección 10. La {download}`versión 0.1 publicada anteriormente <../_static/e3_bloque_e/diseno_dashboard.md>` conserva sus bytes y su alcance histórico. La documentación pública de E3 está disponible; la construcción, pruebas de usuario y despliegue del servicio Dash siguen pendientes y deberán producir evidencia antes de declararse completados.
+El [diseño del Bloque E, versión 0.2](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_e/diseno_dashboard_v2.md) y su {download}`copia descargable <../_static/e3_bloque_e/diseno_dashboard_v2.md>` incorporan el perfil de producción de la sección 10. La {download}`versión 0.1 publicada anteriormente <../_static/e3_bloque_e/diseno_dashboard.md>` conserva sus bytes y su alcance histórico. Sus estados de MCS y disponibilidad de datos pertenecen a esos cortes: la [sección 8](08_verificacion_estadistica.md) ya publica el MCS auxiliar de 17 sistemas, con diez supervivientes incluida E3, y la sección 4 actualiza la auditoría. La documentación pública de E3 está disponible; la construcción, pruebas de usuario y despliegue del servicio Dash siguen pendientes y deberán producir evidencia antes de declararse completados.

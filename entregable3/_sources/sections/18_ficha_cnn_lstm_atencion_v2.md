@@ -4,8 +4,11 @@ La ficha de desarrollo se conserva como soporte de los capítulos [6](06_modelo_
 
 La [ficha completa](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/README.md)
 conserva la arquitectura **CNN causal → LSTM → atención temporal por contenido**
-de M00. La propuesta modifica la cabeza de salida y la pérdida. Está en fase de
-diseño: la red v2 y su coordinador no están implementados ni entrenados.
+de M00. La propuesta modifica la cabeza de salida y la pérdida. **Al corte de
+diseño de esa ficha** la red v2 y su coordinador aún no estaban implementados
+ni entrenados. Posteriormente se implementaron y ejecutaron; este anexo conserva
+la propuesta inicial y el anexo E su cierre. La comparación vigente de los
+capítulos 6 y 8 evalúa la salida aditiva positiva, no la variante half-Student-t.
 
 ## Base común y modificación propuesta
 

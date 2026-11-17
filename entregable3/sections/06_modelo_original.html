@@ -400,7 +400,12 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validez-del-modelo-y-regla-de-evaluacion">6.6 Validez del modelo y regla de evaluación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente">6.7 Propuesta posterior: cabeza de momentos y dictamen vigente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-evaluada-y-alcance-de-la-evidencia-posterior">6.8 Referencia evaluada y alcance de la evidencia posterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-evaluada-y-alcance-de-la-evidencia-posterior">6.8 Referencia evaluada y alcance de la evidencia posterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-de-la-referencia-efectivamente-evaluada">Formulación de la referencia efectivamente evaluada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudocodigo-descriptivo-de-la-ejecucion-cerrada">Pseudocódigo descriptivo de la ejecución cerrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-del-cumplimiento-para-esta-referencia">6.9 Revisión del cumplimiento para esta referencia</a></li>
 </ul>
             </nav>
         </div>
@@ -438,7 +443,7 @@
 <td><p>Pendientes la revisión bibliográfica completa, la diferencia sustantiva y la verificación humana externa; no se declara novedad ni ausencia de novedad demostradas.</p></td>
 </tr>
 <tr class="row-odd"><td><p>R2 Núcleo algorítmico propio y defendible</p></td>
-<td><p>Código del primer mecanismo, ejecutores v1/v2 y cabeza neuronal de momentos desde la formulación, con pruebas artificiales y asistencia de IA declarada.</p></td>
+<td><p>El modelo aditivo evaluado se construye con los módulos locales <code class="docutils literal notranslate"><span class="pre">InnovationModel</span></code>, <code class="docutils literal notranslate"><span class="pre">DevelopmentModel</span></code> y <code class="docutils literal notranslate"><span class="pre">OriginalModel</span></code>, usando primitivas de PyTorch. Hay pruebas específicas de su salida y de los gradientes, además del código histórico de las otras variantes; la asistencia de IA está declarada.</p></td>
 <td><p>La implementación y sus pruebas no acreditan por sí solas comprensión, autoría responsable y defensa del estudiante; esa verificación humana sigue pendiente.</p></td>
 </tr>
 <tr class="row-even"><td><p>R3 Superioridad estadísticamente verificada</p></td>
@@ -510,6 +515,7 @@
 </table>
 </div>
 <p>Las revisiones posteriores registran doce consultas web iniciales y ocho adicionales; no equivalen a búsquedas nativas completas. Los tres intentos API de esa etapa no recibieron respuesta bibliográfica y sus conteos son desconocidos. Siguen pendientes la cobertura exigida en §6.3 de la guía, seguimiento por citas, repetición antes de entrega y verificación humana externa. El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">paquete de revisión del anexo G</span></a> está preparado, sin diligenciar ni firmar. No identificar la composición exacta en una revisión focal no prueba su ausencia.</p>
+<p>Para cerrar esta revisión deben ejecutarse al menos cinco cadenas en inglés y español en <strong>tres bases</strong>, combinando mecanismo, tarea y sinónimos e incluyendo su posible origen en otras aplicaciones. Cada consulta debe registrar fecha, cadena, resultados, títulos/resúmenes examinados, textos completos revisados y trabajos relevantes; un acceso bloqueado se registra con conteo desconocido. Debe completarse el seguimiento de citas hacia atrás y adelante desde tres a cinco trabajos cercanos —incluidos TimeMixer y la fuente del mecanismo, cuando corresponda— y la búsqueda de implementaciones y tablas de resultados. La matriz debe clasificar cada diferencia como mecanismo, pérdida/entrenamiento o sólo aplicación, y repetirse antes de la entrega. Finalmente, <strong>una persona ajena al diseño debe repetir al menos dos cadenas y anexar su concepto</strong>. Ninguna lectura asistida por IA completa esa verificación humana.</p>
 </section>
 <section id="ciclo-de-desarrollo">
 <h2>6.4 Ciclo de desarrollo<a class="headerlink" href="#ciclo-de-desarrollo" title="Link to this heading">#</a></h2>
@@ -633,8 +639,100 @@ H=\sqrt{A+cm},\qquad
 <section id="referencia-evaluada-y-alcance-de-la-evidencia-posterior">
 <h2>6.8 Referencia evaluada y alcance de la evidencia posterior<a class="headerlink" href="#referencia-evaluada-y-alcance-de-la-evidencia-posterior" title="Link to this heading">#</a></h2>
 <p>La denominación de los archivos, <code class="docutils literal notranslate"><span class="pre">CNN-LSTM-atencion-aditiva</span> <span class="pre">E3</span></code>, identifica la salida aditiva positiva de <strong>1210 parámetros</strong>, con atención temporal por contenido. No identifica la penalización y saturación de 6.5 ni la cabeza de momentos de 1236 parámetros. Se mantienen las diez semillas <code class="docutils literal notranslate"><span class="pre">271801</span></code>–<code class="docutils literal notranslate"><span class="pre">271810</span></code>; la semilla histórica de desarrollo <code class="docutils literal notranslate"><span class="pre">20261116</span></code> queda fuera de esa media y no se elige una réplica por su error de prueba.</p>
+<section id="formulacion-de-la-referencia-efectivamente-evaluada">
+<h3>Formulación de la referencia efectivamente evaluada<a class="headerlink" href="#formulacion-de-la-referencia-efectivamente-evaluada" title="Link to this heading">#</a></h3>
+<p>Para una ventana estandarizada <span class="math notranslate nohighlight">\(X\in\mathbb R^{7\times5}\)</span>, el encoder aplica una convolución causal de kernel 3 y ocho canales, <code class="docutils literal notranslate"><span class="pre">tanh</span></code> y una LSTM unidireccional de doce estados. Si <span class="math notranslate nohighlight">\(H=(h_1,\ldots,h_7)\)</span> es su salida, la atención usa</p>
+<div class="math notranslate nohighlight">
+\[
+q=\frac{q_{\rm raw}}{\sqrt{1+\|q_{\rm raw}\|^2}},\quad
+\tau=0.25+\operatorname{softplus}(\tau_{\rm raw}),\quad
+\alpha_j=\frac{\exp(h_j^\top q/\tau)}{\sum_k\exp(h_k^\top q/\tau)},\quad
+c_H=\sum_j\alpha_jh_j.
+\]</div>
+<p>No se penalizan los scores ni se saturan los valores. La consulta no es otro modelo entrenado por separado: es un vector de parámetros de esta misma red. La lectura es</p>
+<div class="math notranslate nohighlight">
+\[
+w=\frac{4w_{\rm raw}}{\sqrt{1+\|w_{\rm raw}\|^2}},\qquad
+z=w^\top c_H+b,\qquad
+\widehat y=\sqrt A+a_{\rm tr}\,[10^{-4}+\operatorname{softplus}(z)].
+\]</div>
+<p><span class="math notranslate nohighlight">\(A\)</span> es el piso observable definido en 6.7, calculado a partir de los seis retornos de la ventana; <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> es la media del objetivo en los 532 ejemplos de ajuste. El encoder y la atención usan float32; la lectura y la salida usan float64. La pérdida de esta receta es únicamente <span class="math notranslate nohighlight">\(\operatorname{mean}[(\widehat y-y)^2/a_{\rm tr}^2]\)</span>: <strong>no usa NLL, cuadratura para predecir, una escala Student ni intervalos calibrados</strong>. La palabra «aditiva» se refiere a sumar un exceso positivo al piso, no a una segunda clase de atención.</p>
+<p>La propiedad de soporte se verifica directamente: para <span class="math notranslate nohighlight">\(A\ge0\)</span>, <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> y <span class="math notranslate nohighlight">\(z\)</span> real finito, <code class="docutils literal notranslate"><span class="pre">softplus(z)&gt;0</span></code>, por lo que <span class="math notranslate nohighlight">\(\widehat y&gt;\sqrt A+10^{-4}a_{\rm tr}\)</span> en aritmética exacta. Además, con <span class="math notranslate nohighlight">\(A\)</span> fijo, <span class="math notranslate nohighlight">\(\partial\widehat y/\partial z=a_{\rm tr}\operatorname{sigmoid}(z)\in(0,a_{\rm tr})\)</span>. Es una propiedad conocida de esta parametrización escalar; <strong>no es una cota global del mapa OHLCV, una prueba de novedad ni una garantía de menor error</strong>. Los casos sintéticos de salida comprueban la fórmula y el respeto del piso con tolerancia numérica. La cota latente del módulo de 1211 parámetros no se hereda al retirar la saturación.</p>
+<p>El conteo auditable es CNN 128 + LSTM 1056 + consulta, lectura, sesgo y temperatura 26 = <strong>1210</strong>. Para longitud <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(f\)</span> variables, <span class="math notranslate nohighlight">\(c\)</span> canales, kernel <span class="math notranslate nohighlight">\(k\)</span> y estado <span class="math notranslate nohighlight">\(h\)</span>, el coste por muestra incluye <span class="math notranslate nohighlight">\(O(nkfc+n(ch+h^2)+n^2h)\)</span>. El último término sigue presente en el código eager heredado porque calcula la referencia densa <span class="math notranslate nohighlight">\(PH\)</span> aunque su penalización esté desactivada; no se declara un coste lineal de una implementación optimizada inexistente. Faltan los FLOPs completos y la curva empírica de escalabilidad de esta receta.</p>
+</section>
+<section id="pseudocodigo-descriptivo-de-la-ejecucion-cerrada">
+<h3>Pseudocódigo descriptivo de la ejecución cerrada<a class="headerlink" href="#pseudocodigo-descriptivo-de-la-ejecucion-cerrada" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Entradas: datos y código fijados por hash; escalador de 532 fechas;
+          semillas 271801–271810; plan y presupuesto ya registrados.
+Para cada semilla:
+  Construir la red de 1210 parámetros y ajustar el sesgo inicial
+  por 64 pasos de bisección usando sólo el exceso medio de ajuste.
+  Optimizar MSE con AdamW(lr=0.001, weight_decay=0), lotes de 32
+  y recorte de norma del gradiente a 1; conservar optimizador y RNG.
+  Tras cada época, medir RMSE en las 116 fechas de validación.
+  Conservar la menor RMSE; los empates conservan la época anterior.
+  Parar a las 40 épocas o tras 8 épocas sin mejora, sujeto al presupuesto.
+Confirmar guardado remoto de los diez entrenamientos terminados.
+Cargar los mejores pesos de cada semilla y predecir las 608 fechas fijadas.
+Salida: diez trayectorias y sus métricas individuales; conservar todas.
+</pre></div>
+</div>
+<p>Este pseudocódigo explica la campaña histórica; no inicia ni amplía entrenamiento. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/2d25989dffd8e4d447bfa21d57c255b9efdcb465/notebooks/e3_estabilidad_aditiva_v1/plan.json">plan inmutable de estabilidad</a> y su código fijan los detalles de reanudación y cómputo del consumo.</p>
 <p>E3 conserva <strong>532 ejemplos de ajuste y 116 de validación</strong>, sin usar las 53 fechas de calibración de E2. Los 13 rivales neuronales de E2 tienen diez semillas cada uno; Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista por sistema: <strong>133 predictores de E2</strong>, además de las diez réplicas de E3. Todos se puntúan sobre las mismas <strong>608 fechas</strong>, del 1 de enero de 2025 al 31 de agosto de 2026. E2 se ajustó con 655 ejemplos y calibró con 53; no se afirma igualdad de tratamiento o presupuesto.</p>
 <p>Las <a class="reference download internal" download="" href="../_downloads/0bf20be134132d812eba1b43760104f0/metrics.csv"><span class="xref download myst">métricas descargables</span></a> y los <a class="reference download internal" download="" href="../_downloads/29e3a1414499a70f9d5dc7ef6e55972c/primary_contrasts.csv"><span class="xref download myst">48 contrastes primarios</span></a> respaldan el resultado posterior: los tres procedimientos rechazan para cada uno de los 16 rivales tras Holm en la familia de 48. Dos procedimientos estudian incertidumbre temporal condicionada a trayectorias ajustadas y otro la inicialización condicionada al calendario; no se presentan como tres confirmaciones temporales equivalentes. El MCS auxiliar conserva diez sistemas, incluida la aditiva, y no identifica un ganador único. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> expone supuestos, sensibilidades y límites; R1, R2 y R3 siguen sin acreditarse.</p>
+</section>
+</section>
+<section id="revision-del-cumplimiento-para-esta-referencia">
+<h2>6.9 Revisión del cumplimiento para esta referencia<a class="headerlink" href="#revision-del-cumplimiento-para-esta-referencia" title="Link to this heading">#</a></h2>
+<p>La revisión del 17 de noviembre de 2026 distingue los requisitos de la guía de la evidencia que realmente corresponde a la receta aditiva. Se volvieron a ejecutar en CPU las pruebas sintéticas existentes del modelo y del entrenamiento, sin cargar cohortes de mercado ni repetir ajustes del benchmark. El <a class="reference download internal" download="" href="../_downloads/19c76da87666c682ba2cbc3753c1c65c/c_software_review.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">de</span> <span class="pre">comprobación</span></code></a> conserva resultados, entorno y hashes de las fuentes. Los casos del modelo cubren también las otras dos cabezas de v2; su total no se atribuye exclusivamente a la aditiva.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requisito de la guía</p></th>
+<th class="head"><p>Evidencia aplicable a la receta de 1210 parámetros</p></th>
+<th class="head"><p>Cierre pendiente</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Módulo, formulación y pseudocódigo</p></td>
+<td><p>Código local, forward y pérdida identificados en 6.8; conteo 1210 verificado.</p></td>
+<td><p>Diferencia algorítmica sustantiva y defensa humana de la contribución candidata.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Propiedad con supuestos y verificación</p></td>
+<td><p>Piso observable y exceso positivo comprobados; la cota de saturación pertenece a v1.</p></td>
+<td><p>Una propiedad de soporte conocida no acredita la contribución original exigida.</p></td>
+</tr>
+<tr class="row-even"><td><p>Pruebas del modelo</p></td>
+<td><p>Inicialización reproducible, admisión de datos, salida, precisión mixta y gradientes finitos no nulos; reanudación sintética de v2 con pesos, optimizador y RNG.</p></td>
+<td><p>Sobreajuste diminuto específico de esta receta, <code class="docutils literal notranslate"><span class="pre">gradcheck</span></code> pertinente y exportación final con ida y vuelta. El <code class="docutils literal notranslate"><span class="pre">gradcheck</span></code> de cuadratura y el caso aislado de copia de <code class="docutils literal notranslate"><span class="pre">state_dict</span></code> prueban cabezas half-t; no se atribuyen a toda la aditiva.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Protocolo común y HPO equivalente</p></td>
+<td><p>Se conserva la receta elegida por validación y sus diez semillas; los resultados históricos no se alteran.</p></td>
+<td><p>E2 y E3 no comparten política final de ajuste, tamaño de entrenamiento o presupuesto demostrados como equivalentes.</p></td>
+</tr>
+<tr class="row-even"><td><p>Ablación de al menos tres componentes</p></td>
+<td><p>Hay controles de desarrollo y pruebas funcionales de otras variantes.</p></td>
+<td><p>Ablación estadística de la receta defendida, aislando componentes, con particiones, semillas y tratamiento comparables; los controles de v1 no la completan.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interpretabilidad, fidelidad y estabilidad</p></td>
+<td><p>Se puede inspeccionar la atención; los errores por régimen están documentados.</p></td>
+<td><p>Comparación con el mejor benchmark, fidelidad por borrado/inserción y estabilidad entre semillas. Los pesos de atención no bastan como explicación validada.</p></td>
+</tr>
+<tr class="row-even"><td><p>Complejidad y eficiencia</p></td>
+<td><p>Conteo y coste asintótico identificados; resultados y código conservados.</p></td>
+<td><p>FLOPs completos, escalabilidad y recursos medidos en condiciones comunes; ver capítulo 5.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Literatura y R1</p></td>
+<td><p>Lecturas focales y consultas con resultados o bloqueos documentados.</p></td>
+<td><p>Tres bases, cobertura y seguimiento de citas completos, matriz de diferencias y concepto humano externo de al menos dos cadenas.</p></td>
+</tr>
+<tr class="row-even"><td><p>R3 y evaluación amplia</p></td>
+<td><p>Diez semillas y análisis posterior frente a 16 rivales, con límites explícitos.</p></td>
+<td><p>Potencia por contraste y conjunta, protocolo confirmatorio justo y al menos tres conjuntos adicionales elegidos antes de sus resultados; ver capítulos 7 y 8.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/202c2d9fffd1c8c69d653cb68dc18500/c_requirements_review.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">revisión</span> <span class="pre">de</span> <span class="pre">requisitos</span></code></a> permite seguir cada evidencia y su alcance. No sustituye la model card, la declaración de datos, la bitácora de diseños ni la declaración de asistencia de IA de los capítulos correspondientes. La siguiente decisión de investigación debe resolver qué mecanismo se defenderá como contribución; una mejor RMSE de esta referencia convencional no resuelve esa decisión por sí sola.</p>
 </section>
 </section>
 
@@ -715,7 +813,12 @@ H=\sqrt{A+cm},\qquad
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validez-del-modelo-y-regla-de-evaluacion">6.6 Validez del modelo y regla de evaluación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente">6.7 Propuesta posterior: cabeza de momentos y dictamen vigente</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-evaluada-y-alcance-de-la-evidencia-posterior">6.8 Referencia evaluada y alcance de la evidencia posterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-evaluada-y-alcance-de-la-evidencia-posterior">6.8 Referencia evaluada y alcance de la evidencia posterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-de-la-referencia-efectivamente-evaluada">Formulación de la referencia efectivamente evaluada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudocodigo-descriptivo-de-la-ejecucion-cerrada">Pseudocódigo descriptivo de la ejecución cerrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-del-cumplimiento-para-esta-referencia">6.9 Revisión del cumplimiento para esta referencia</a></li>
 </ul>
   </nav></div>
 

@@ -431,8 +431,8 @@
 </tr>
 <tr class="row-odd"><td><p>4</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code> con docstrings y pruebas en CI.</p></td>
-<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/src/original_model.py">Módulo</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_original_model.py">pruebas</a> y workflow <code class="docutils literal notranslate"><span class="pre">verify-e3-original.yml</span></code>.</p></td>
-<td><p><strong>Disponible como software.</strong> El corte inicial documenta 35 pruebas artificiales. Los ajustes de mercado se documentan por separado en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8</span></a>; esas pruebas de software no certifican comprensión del autor, novedad ni R3.</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/src/original_model.py">Módulo inicial</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_original_model.py">pruebas</a> y workflow <code class="docutils literal notranslate"><span class="pre">verify-e3-original.yml</span></code>; la referencia aditiva se implementa en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/src/e3_innovation_model.py">src/e3_innovation_model.py</a>.</p></td>
+<td><p><strong>Disponible con identidades distintas.</strong> Los 35 casos artificiales del corte inicial pertenecen al núcleo de 1211 parámetros; no son un recibo intercambiable para la referencia aditiva de 1210 parámetros. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a> identifica código, pruebas y límites de cada mecanismo. La evidencia de software no certifica comprensión del autor, novedad ni R3.</p></td>
 </tr>
 <tr class="row-even"><td><p>5</p></td>
 <td><p>Declaración de estándar, protocolo preregistrado con fecha/tag y bitácora de diseño.</p></td>
@@ -456,8 +456,8 @@
 </tr>
 <tr class="row-even"><td><p>9</p></td>
 <td><p>Artefactos exportados con <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> y prueba de ida y vuelta.</p></td>
-<td><p>Tres TorchScript en <code class="docutils literal notranslate"><span class="pre">artifacts/e3_handoff/</span></code>, con metadata y reportes.</p></td>
-<td><p><strong>Parcial.</strong> Paridad puntual sobre 53 fechas de calibración; no sobre la A2 de 608 fechas. Faltan otras exportaciones y la paridad ONNX/ORT necesaria para el perfil de producción de la sección 10.</p></td>
+<td><p>Tres referencias E2 —MLP16, LSTM32 y GRU32— exportadas a TorchScript en <code class="docutils literal notranslate"><span class="pre">artifacts/e3_handoff/</span></code>, con metadata y reportes.</p></td>
+<td><p><strong>Parcial.</strong> Paridad puntual sobre 53 fechas de calibración; no sobre la A2 de 608 fechas. Falta la exportación de la CNN-LSTM evaluada y del resto del catálogo, así como la paridad ONNX/ORT del perfil de producción elegido en la sección 10. TorchScript es un formato admitido por la guía; las tres exportaciones existentes no cierran ese perfil del proyecto.</p></td>
 </tr>
 <tr class="row-odd"><td><p>10</p></td>
 <td><p>MODEL_CARD.md y DATA_STATEMENT.md.</p></td>

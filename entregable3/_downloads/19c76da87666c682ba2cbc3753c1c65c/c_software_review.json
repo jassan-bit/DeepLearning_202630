@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "date_local": "2026-11-17",
+  "timezone": "America/Bogota",
+  "checked_at_utc": "2026-11-17T20:47:07.425719+00:00",
+  "source_main_commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+  "model": {
+    "variant": "additive_positive_head",
+    "parameters": 1210,
+    "encoder_attention": "float32",
+    "readout_prediction": "float64",
+    "component_parameters": {
+      "CNN": 128,
+      "LSTM": 1056,
+      "query_readout_bias_temperature": 26
+    }
+  },
+  "source_identity": {
+    "frozen_model_source_commit": "cf891213f1acb6967aef5e0857fa0ac63768f836",
+    "immutable_plan_commit": "2d25989dffd8e4d447bfa21d57c255b9efdcb465",
+    "four_model_runner_source_hashes_match": true
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "selected_device": "cpu",
+    "market_arrays_loaded": false,
+    "market_training_started": false,
+    "new_inference_on_market": false
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest <suite> -q",
+  "suites": [
+    {
+      "file": "tests/test_innovation_model.py",
+      "cases": 26,
+      "passed": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "cases_seconds": 1.241,
+      "case_names": [
+        "test_fit_only_statistics_and_magnitudes_match_eight_close_population_target",
+        "test_validation_changes_cannot_change_fit_scalers_or_control_offset",
+        "test_npz_admission_reads_only_three_raw_training_members",
+        "test_wrong_hash_is_rejected_before_npz_parsing",
+        "test_impossible_variance_in_a_purged_row_aborts_without_dropping_it",
+        "test_only_roundoff_negative_margin_is_clamped_without_removing_rows",
+        "test_invalid_data_or_degenerate_fit_is_rejected[bad_shape]",
+        "test_invalid_data_or_degenerate_fit_is_rejected[nan_y]",
+        "test_invalid_data_or_degenerate_fit_is_rejected[invalid_bar]",
+        "test_invalid_data_or_degenerate_fit_is_rejected[duplicate_date]",
+        "test_invalid_data_or_degenerate_fit_is_rejected[unordered_date]",
+        "test_invalid_data_or_degenerate_fit_is_rejected[overlap]",
+        "test_invalid_data_or_degenerate_fit_is_rejected[zero_U]",
+        "test_three_variants_share_seeded_parameters_with_only_final_readout_in_double",
+        "test_readout_is_linear_in_double_and_each_head_applies_softplus_once",
+        "test_auxiliary_nll_matches_independent_half_student_density_and_has_finite_score",
+        "test_module_quadrature_preserves_numeric_properties_and_scale_gradcheck",
+        "test_analytic_controls_are_exactly_the_floor_and_fit_offset",
+        "test_normalized_loss_is_exactly_specified_and_all_retained_parameters_receive_gradients[additive_positive_head]",
+        "test_normalized_loss_is_exactly_specified_and_all_retained_parameters_receive_gradients[innovation_mean_only]",
+        "test_normalized_loss_is_exactly_specified_and_all_retained_parameters_receive_gradients[innovation_density_mean]",
+        "test_nominal_quantiles_match_independent_student_and_are_not_claimed_calibrated",
+        "test_modified_quadrature_is_rejected_even_with_a_recomputed_sidecar",
+        "test_bias_matching_uses_fit_mean_and_keeps_probability_pair_identical",
+        "test_bias_matching_budget_failure_is_transactional_and_invalid_target_is_rejected",
+        "test_mixed_precision_state_roundtrip_preserves_outputs"
+      ]
+    },
+    {
+      "file": "tests/test_innovation_training.py",
+      "cases": 21,
+      "passed": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "cases_seconds": 4.3100000000000005,
+      "case_names": [
+        "test_claim_required_before_any_data_fit",
+        "test_closed_preflight_receipt_cannot_fit_or_train_without_current_active_reservation",
+        "test_claim_cannot_reset_or_expand_global_budget[prior_charged_seconds-0]",
+        "test_claim_cannot_reset_or_expand_global_budget[global_limit_seconds-1400]",
+        "test_claim_cannot_reset_or_expand_global_budget[additional_limit_seconds-601]",
+        "test_claim_cannot_reset_or_expand_global_budget[registry_commit-missing]",
+        "test_prepare_is_billed_bias_fit_with_six_registered_recipes",
+        "test_interleaved_pause_resume_equals_continuous_including_rng_optimizer_and_csv",
+        "test_initialization_timeout_charges_every_attempt_and_never_declares_winner",
+        "test_training_timeout_leaves_honest_partial_checkpoints",
+        "test_active_reservation_gap_is_charged_before_fit",
+        "test_frozen_hash_is_checked_before_safe_torch_load",
+        "test_corrupt_resume_checkpoint_rejected_before_deserialization",
+        "test_resume_fails_if_plan_or_source_changed",
+        "test_failed_best_publication_is_recovered_from_authoritative_last",
+        "test_interruption_after_one_saved_minibatch_resumes_exactly",
+        "test_checkpoint_published_before_receipt_compaction_remains_recoverable",
+        "test_interrupted_initialization_restarts_billed_matching_with_same_claim_on_new_path",
+        "test_all_three_completed_networks_without_controls_are_still_incomplete",
+        "test_setup_failure_preserves_progress_for_recipes_not_yet_loaded[budget_exhausted]",
+        "test_setup_failure_preserves_progress_for_recipes_not_yet_loaded[interrupted]"
+      ]
+    }
+  ],
+  "total_passed": 47,
+  "sources": {
+    "src/original_model.py": {
+      "sha256": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+      "bytes": 12281,
+      "matches_frozen_stability_source": true
+    },
+    "src/e3_development.py": {
+      "sha256": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+      "bytes": 38128,
+      "matches_frozen_stability_source": true
+    },
+    "src/e3_innovation_model.py": {
+      "sha256": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1",
+      "bytes": 23342,
+      "matches_frozen_stability_source": true
+    },
+    "src/e3_innovation.py": {
+      "sha256": "3bf0a6ded102e60fb4f3a46d92ca64b41fad393c6d9da56986c889b54789cd25",
+      "bytes": 44078,
+      "matches_frozen_stability_source": true
+    },
+    "tests/test_innovation_model.py": {
+      "sha256": "1956ad2127ddc7a826d60ce1ca4214022e5fd3dc6bac0d496ed6e8f9460d815f",
+      "bytes": 18466,
+      "matches_frozen_stability_source": null
+    },
+    "tests/test_innovation_training.py": {
+      "sha256": "78e4f8994a2dbe88347169f8b38d3f842f2fa2cb38b1a624bbcefe8a275e3195",
+      "bytes": 21497,
+      "matches_frozen_stability_source": null
+    }
+  },
+  "warning": "One pytest third-party plugin deprecation warning per suite; no test failures.",
+  "execution_note": "Training suite first required restoring its versioned plan into the sparse checkout; all 21 cases passed after the missing fixture file was restored, without code edits.",
+  "verified_scope": [
+    "The 26 model cases include data admission and all three V2 heads; they are not 26 additive-only cases.",
+    "The additive branch has direct forward/floor, parameter count/precision, seeded initialization and all-parameter finite nonzero gradient assertions.",
+    "The 21 training cases use synthetic cohorts and test V2 continuation including the additive branch, optimizer, RNG, checkpoints and accounting.",
+    "The isolated mixed-precision state_dict-copy case defaults to the density head; it is not an additive export test.",
+    "The quadrature gradcheck concerns half-t heads, not the complete additive model."
+  ],
+  "pending": [
+    "Additive-specific tiny-batch overfit and an appropriate full-mechanism gradcheck.",
+    "Final trained additive ONNX/TorchScript export and test-cohort roundtrip.",
+    "Three-component statistical ablation, fidelity and seed-stable interpretability.",
+    "Common HPO/refit policy, full empirical computational comparison and additional datasets.",
+    "Complete novelty review and independent human review; no R1/R2/R3 certification."
+  ]
+}

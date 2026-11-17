@@ -424,7 +424,7 @@
 <section id="a-3-bitacora-de-diseno">
 <h2>A.3 Bitácora de diseño<a class="headerlink" href="#a-3-bitacora-de-diseno" title="Link to this heading">#</a></h2>
 <p>La <a class="reference download internal" download="" href="../_downloads/9c49936c23bbf7e108aceebb89674239/design_log_plantilla.csv"><code class="xref download docutils literal notranslate"><span class="pre">bitácora</span> <span class="pre">CSV</span> <span class="pre">vacía</span></code></a> contiene <strong>sólo encabezados</strong>. Conserva número de variante, cambio respecto a la anterior, métrica de desarrollo, decisión, motivo y fecha; añade identificadores, fuentes, fallos y tag para preservar trazabilidad. No copia las filas ilustrativas de la guía como si fueran ejecuciones.</p>
-<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md">bitácora real del candidato</a> sigue declarando cuatro variantes funcionales artificiales y Nd de mercado=0. No se reinicia ese historial ni se inventan variantes, métricas, decisiones o tags. Los intentos futuros deberán acumularse con sus fallos, presupuesto y partición usada; una partición de confirmación no se usa para diseñar.</p>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md">bitácora inicial del candidato</a> registra cuatro variantes funcionales artificiales y Nd de mercado=0 <strong>en su corte anterior a los pilotos</strong>. Después se completaron cinco recetas entre v1/v2 y tres por momentos; las diez réplicas aditivas posteriores repiten una receta. Los <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">capítulos 6–7</span></a> conservan ese historial y la conciliación del Nd global pendiente. No se reinicia el conteo ni se inventan variantes, métricas, decisiones o tags. Los intentos futuros deberán acumularse con sus fallos, presupuesto y partición usada; una partición de confirmación no se usa para diseñar.</p>
 <p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/design_log_plantilla.csv">design_log_plantilla.csv</a>.</p>
 </section>
 <section id="a-4-tabla-de-contrastes-confirmatorios">
@@ -456,7 +456,7 @@
 </table>
 </div>
 <p>La primaria sigue siendo la media de RMSE individuales en unidades de σ7. La ganancia propuesta es RMSErival−RMSEoriginal y δ=0,00025772842664981106, como margen heredado, no como resultado. Una hipótesis sobre MSE diaria no contrasta directamente ganancia de RMSE mayor que δ; <strong>δ² no es una conversión válida del margen</strong>. MCS no aporta por sí solo un contraste pareado de relevancia práctica. La ausencia de rechazo no se etiqueta «equivalente»: TOST/ROPE requieren margen y reglas previos.</p>
-<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/contrastes_confirmatorios_plantilla.csv">contrastes_confirmatorios_plantilla.csv</a>. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> conserva el protocolo no congelado y la batería todavía por validar.</p>
+<p>Fuente editable: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/contrastes_confirmatorios_plantilla.csv">contrastes_confirmatorios_plantilla.csv</a>. Esos slots y su propuesta de ajuste pertenecen a una plantilla sin diligenciar. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> ya presenta un <strong>análisis posterior distinto</strong>, con tres procedimientos calculados y Holm global sobre 48 p-valores; no se usa esta plantilla para sustituir sus resultados o convertirlo en preregistro. El protocolo confirmatorio futuro sigue sin congelar.</p>
 </section>
 <section id="a-5-lista-de-verificacion-de-reproducibilidad">
 <h2>A.5 Lista de verificación de reproducibilidad<a class="headerlink" href="#a-5-lista-de-verificacion-de-reproducibilidad" title="Link to this heading">#</a></h2>
@@ -471,7 +471,7 @@
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>Estándar escrito antes de congelar.</p></td>
-<td><p>Pendiente de declaración canónica.</p></td>
+<td><p>Declaración canónica fechada disponible; tag y revisión pendientes, sin retrofechar experimentos.</p></td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p>Benchmarks congelados con hash después de A.</p></td>
@@ -487,15 +487,15 @@
 </tr>
 <tr class="row-even"><td><p>5</p></td>
 <td><p>Propiedad formal, supuestos y verificación numérica.</p></td>
-<td><p>Parcial de alcance: evidencia de cabeza latente; no certificar pipeline completo o utilidad de mercado.</p></td>
+<td><p>Parcial y específica por arquitectura; las pruebas del primer módulo y de momentos no se trasladan a la referencia aditiva.</p></td>
 </tr>
 <tr class="row-odd"><td><p>6</p></td>
 <td><p>Bitácora Nd y desarrollo distinto de confirmación.</p></td>
-<td><p>Parcial: historial artificial; separación confirmatoria pendiente.</p></td>
+<td><p>Pilotos y réplicas documentados; conciliación global y separación confirmatoria pendientes.</p></td>
 </tr>
 <tr class="row-even"><td><p>7</p></td>
 <td><p>Protocolo con tag/fecha previos.</p></td>
-<td><p>Pendiente; sólo borrador.</p></td>
+<td><p>Protocolo confirmatorio pendiente; el plan versionado del cálculo posterior no lo sustituye.</p></td>
 </tr>
 <tr class="row-odd"><td><p>8</p></td>
 <td><p>Potencia, MDE y potencia conjunta.</p></td>
@@ -503,11 +503,11 @@
 </tr>
 <tr class="row-even"><td><p>9</p></td>
 <td><p>Familia completa con Holm.</p></td>
-<td><p>Parcial: roster de 16; inferencia confirmatoria pendiente.</p></td>
+<td><p>Análisis posterior: 16 rivales, 48 contrastes y 48 rechazos tras Holm global; cierre confirmatorio pendiente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>10</p></td>
 <td><p>Tres pruebas por contraste y máximo de p ajustados.</p></td>
-<td><p>Pendiente; slots sin métodos ni resultados.</p></td>
+<td><p>Tres procedimientos posteriores calculados con ámbitos declarados; pertinencia para la afirmación confirmatoria y demás requisitos por justificar.</p></td>
 </tr>
 <tr class="row-even"><td><p>11</p></td>
 <td><p>Tres conjuntos elegidos antes de resultados y fuera del diseño.</p></td>
@@ -515,7 +515,7 @@
 </tr>
 <tr class="row-odd"><td><p>12</p></td>
 <td><p>Sensibilidad a prueba, métrica y semillas.</p></td>
-<td><p>Pendiente de ejecución conforme al plan.</p></td>
+<td><p>Análisis posterior disponible: bloques 7/14/28, MAE y subconjuntos descriptivos de semillas; no completa la robustez ampliada.</p></td>
 </tr>
 <tr class="row-even"><td><p>13</p></td>
 <td><p>Unitarias en CI y exportación con ida y vuelta.</p></td>

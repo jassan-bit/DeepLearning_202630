@@ -410,8 +410,11 @@
 <p>La ficha de desarrollo se conserva como soporte de los capítulos <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a>. El piloto ya terminó; sus resultados y la decisión posterior están en el <a class="reference internal" href="20_cierre_v2.html"><span class="std std-doc">anexo E</span></a>.</p>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/README.md">ficha completa</a>
 conserva la arquitectura <strong>CNN causal → LSTM → atención temporal por contenido</strong>
-de M00. La propuesta modifica la cabeza de salida y la pérdida. Está en fase de
-diseño: la red v2 y su coordinador no están implementados ni entrenados.</p>
+de M00. La propuesta modifica la cabeza de salida y la pérdida. <strong>Al corte de
+diseño de esa ficha</strong> la red v2 y su coordinador aún no estaban implementados
+ni entrenados. Posteriormente se implementaron y ejecutaron; este anexo conserva
+la propuesta inicial y el anexo E su cierre. La comparación vigente de los
+capítulos 6 y 8 evalúa la salida aditiva positiva, no la variante half-Student-t.</p>
 <section id="base-comun-y-modificacion-propuesta">
 <h2>Base común y modificación propuesta<a class="headerlink" href="#base-comun-y-modificacion-propuesta" title="Link to this heading">#</a></h2>
 <p>Se mantienen D7×5, CNN de ocho canales con kernel 3, LSTM de dimensión 12,

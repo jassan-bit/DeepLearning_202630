@@ -19,7 +19,7 @@ La propuesta por momentos de la sección 6.7 estudia otra limitación: una escal
 | Condición | Evidencia actual | Estado que debe conservarse |
 |---|---|---|
 | R1 Novedad para el fenómeno y la tarea | Revisiones focales del mecanismo de atención y de la cabeza de momentos; sus componentes conocidos se atribuyen. El dictamen no selecciona todavía la adaptación por momentos como aporte original. | Pendientes la revisión bibliográfica completa, la diferencia sustantiva y la verificación humana externa; no se declara novedad ni ausencia de novedad demostradas. |
-| R2 Núcleo algorítmico propio y defendible | Código del primer mecanismo, ejecutores v1/v2 y cabeza neuronal de momentos desde la formulación, con pruebas artificiales y asistencia de IA declarada. | La implementación y sus pruebas no acreditan por sí solas comprensión, autoría responsable y defensa del estudiante; esa verificación humana sigue pendiente. |
+| R2 Núcleo algorítmico propio y defendible | El modelo aditivo evaluado se construye con los módulos locales `InnovationModel`, `DevelopmentModel` y `OriginalModel`, usando primitivas de PyTorch. Hay pruebas específicas de su salida y de los gradientes, además del código histórico de las otras variantes; la asistencia de IA está declarada. | La implementación y sus pruebas no acreditan por sí solas comprensión, autoría responsable y defensa del estudiante; esa verificación humana sigue pendiente. |
 | R3 Superioridad estadísticamente verificada | Pilotos de desarrollo y comparación posterior completa frente a 16 rivales: los 48 contrastes primarios rechazan tras Holm, con ámbitos temporal y de inicialización distintos. | No se acredita R3: calendario conocido, ajuste de E2 con 655 ejemplos frente a 532 en E3, potencia no dimensionada y conjuntos adicionales pendientes; la pertinencia de las pruebas y sus supuestos debe justificarse para la afirmación F2a. |
 
 CNN, LSTM, atención por contenido, consultas aprendidas y saturación no se reclaman como invenciones. Tampoco se reclaman nuevas las desigualdades de momentos, los scores de media o las guardas de salida. La contribución candidata debe diferir sustantivamente en mecanismo, pérdida o entrenamiento; cambiar datos o hiperparámetros no basta. Las variantes funcionales y los resultados de desarrollo se conservan sin convertirlos en innovaciones acreditadas.
@@ -53,6 +53,8 @@ La saturación $T_B$ es también el gradiente de $\phi_B(h)=B^2(\sqrt{1+\|h\|^2/
 | [Faithful, Stirn et al. (2023)](https://proceedings.mlr.press/v206/stirn23a/stirn23a.pdf), **§2 Methods**, páginas físicas 2–4; ec. (5) y teorema 1 en p. 4. | Su garantía de actualizaciones no se hereda por consistencia del riesgo. El control de media sola conserva todos los ancestros de la media, incluidas las lecturas de momentos de nuestra cabeza. |
 
 Las revisiones posteriores registran doce consultas web iniciales y ocho adicionales; no equivalen a búsquedas nativas completas. Los tres intentos API de esa etapa no recibieron respuesta bibliográfica y sus conteos son desconocidos. Siguen pendientes la cobertura exigida en §6.3 de la guía, seguimiento por citas, repetición antes de entrega y verificación humana externa. El [paquete de revisión del anexo G](22_dictamen_momentos.md) está preparado, sin diligenciar ni firmar. No identificar la composición exacta en una revisión focal no prueba su ausencia.
+
+Para cerrar esta revisión deben ejecutarse al menos cinco cadenas en inglés y español en **tres bases**, combinando mecanismo, tarea y sinónimos e incluyendo su posible origen en otras aplicaciones. Cada consulta debe registrar fecha, cadena, resultados, títulos/resúmenes examinados, textos completos revisados y trabajos relevantes; un acceso bloqueado se registra con conteo desconocido. Debe completarse el seguimiento de citas hacia atrás y adelante desde tres a cinco trabajos cercanos —incluidos TimeMixer y la fuente del mecanismo, cuando corresponda— y la búsqueda de implementaciones y tablas de resultados. La matriz debe clasificar cada diferencia como mecanismo, pérdida/entrenamiento o sólo aplicación, y repetirse antes de la entrega. Finalmente, **una persona ajena al diseño debe repetir al menos dos cadenas y anexar su concepto**. Ninguna lectura asistida por IA completa esa verificación humana.
 
 ## 6.4 Ciclo de desarrollo
 
@@ -164,6 +166,69 @@ La implementación en [src/e3_moment_model.py](https://github.com/jassan-bit/Dee
 
 La denominación de los archivos, `CNN-LSTM-atencion-aditiva E3`, identifica la salida aditiva positiva de **1210 parámetros**, con atención temporal por contenido. No identifica la penalización y saturación de 6.5 ni la cabeza de momentos de 1236 parámetros. Se mantienen las diez semillas `271801`–`271810`; la semilla histórica de desarrollo `20261116` queda fuera de esa media y no se elige una réplica por su error de prueba.
 
+### Formulación de la referencia efectivamente evaluada
+
+Para una ventana estandarizada $X\in\mathbb R^{7\times5}$, el encoder aplica una convolución causal de kernel 3 y ocho canales, `tanh` y una LSTM unidireccional de doce estados. Si $H=(h_1,\ldots,h_7)$ es su salida, la atención usa
+
+$$
+q=\frac{q_{\rm raw}}{\sqrt{1+\|q_{\rm raw}\|^2}},\quad
+\tau=0.25+\operatorname{softplus}(\tau_{\rm raw}),\quad
+\alpha_j=\frac{\exp(h_j^\top q/\tau)}{\sum_k\exp(h_k^\top q/\tau)},\quad
+c_H=\sum_j\alpha_jh_j.
+$$
+
+No se penalizan los scores ni se saturan los valores. La consulta no es otro modelo entrenado por separado: es un vector de parámetros de esta misma red. La lectura es
+
+$$
+w=\frac{4w_{\rm raw}}{\sqrt{1+\|w_{\rm raw}\|^2}},\qquad
+z=w^\top c_H+b,\qquad
+\widehat y=\sqrt A+a_{\rm tr}\,[10^{-4}+\operatorname{softplus}(z)].
+$$
+
+$A$ es el piso observable definido en 6.7, calculado a partir de los seis retornos de la ventana; $a_{\rm tr}>0$ es la media del objetivo en los 532 ejemplos de ajuste. El encoder y la atención usan float32; la lectura y la salida usan float64. La pérdida de esta receta es únicamente $\operatorname{mean}[(\widehat y-y)^2/a_{\rm tr}^2]$: **no usa NLL, cuadratura para predecir, una escala Student ni intervalos calibrados**. La palabra «aditiva» se refiere a sumar un exceso positivo al piso, no a una segunda clase de atención.
+
+La propiedad de soporte se verifica directamente: para $A\ge0$, $a_{\rm tr}>0$ y $z$ real finito, `softplus(z)>0`, por lo que $\widehat y>\sqrt A+10^{-4}a_{\rm tr}$ en aritmética exacta. Además, con $A$ fijo, $\partial\widehat y/\partial z=a_{\rm tr}\operatorname{sigmoid}(z)\in(0,a_{\rm tr})$. Es una propiedad conocida de esta parametrización escalar; **no es una cota global del mapa OHLCV, una prueba de novedad ni una garantía de menor error**. Los casos sintéticos de salida comprueban la fórmula y el respeto del piso con tolerancia numérica. La cota latente del módulo de 1211 parámetros no se hereda al retirar la saturación.
+
+El conteo auditable es CNN 128 + LSTM 1056 + consulta, lectura, sesgo y temperatura 26 = **1210**. Para longitud $n$, $f$ variables, $c$ canales, kernel $k$ y estado $h$, el coste por muestra incluye $O(nkfc+n(ch+h^2)+n^2h)$. El último término sigue presente en el código eager heredado porque calcula la referencia densa $PH$ aunque su penalización esté desactivada; no se declara un coste lineal de una implementación optimizada inexistente. Faltan los FLOPs completos y la curva empírica de escalabilidad de esta receta.
+
+### Pseudocódigo descriptivo de la ejecución cerrada
+
+```text
+Entradas: datos y código fijados por hash; escalador de 532 fechas;
+          semillas 271801–271810; plan y presupuesto ya registrados.
+Para cada semilla:
+  Construir la red de 1210 parámetros y ajustar el sesgo inicial
+  por 64 pasos de bisección usando sólo el exceso medio de ajuste.
+  Optimizar MSE con AdamW(lr=0.001, weight_decay=0), lotes de 32
+  y recorte de norma del gradiente a 1; conservar optimizador y RNG.
+  Tras cada época, medir RMSE en las 116 fechas de validación.
+  Conservar la menor RMSE; los empates conservan la época anterior.
+  Parar a las 40 épocas o tras 8 épocas sin mejora, sujeto al presupuesto.
+Confirmar guardado remoto de los diez entrenamientos terminados.
+Cargar los mejores pesos de cada semilla y predecir las 608 fechas fijadas.
+Salida: diez trayectorias y sus métricas individuales; conservar todas.
+```
+
+Este pseudocódigo explica la campaña histórica; no inicia ni amplía entrenamiento. El [plan inmutable de estabilidad](https://github.com/jassan-bit/DeepLearning_202630/blob/2d25989dffd8e4d447bfa21d57c255b9efdcb465/notebooks/e3_estabilidad_aditiva_v1/plan.json) y su código fijan los detalles de reanudación y cómputo del consumo.
+
 E3 conserva **532 ejemplos de ajuste y 116 de validación**, sin usar las 53 fechas de calibración de E2. Los 13 rivales neuronales de E2 tienen diez semillas cada uno; Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista por sistema: **133 predictores de E2**, además de las diez réplicas de E3. Todos se puntúan sobre las mismas **608 fechas**, del 1 de enero de 2025 al 31 de agosto de 2026. E2 se ajustó con 655 ejemplos y calibró con 53; no se afirma igualdad de tratamiento o presupuesto.
 
 Las [métricas descargables](../_static/e3_estadistica_posterior_20261117/metrics.csv) y los [48 contrastes primarios](../_static/e3_estadistica_posterior_20261117/primary_contrasts.csv) respaldan el resultado posterior: los tres procedimientos rechazan para cada uno de los 16 rivales tras Holm en la familia de 48. Dos procedimientos estudian incertidumbre temporal condicionada a trayectorias ajustadas y otro la inicialización condicionada al calendario; no se presentan como tres confirmaciones temporales equivalentes. El MCS auxiliar conserva diez sistemas, incluida la aditiva, y no identifica un ganador único. La [sección 8](08_verificacion_estadistica.md) expone supuestos, sensibilidades y límites; R1, R2 y R3 siguen sin acreditarse.
+
+## 6.9 Revisión del cumplimiento para esta referencia
+
+La revisión del 17 de noviembre de 2026 distingue los requisitos de la guía de la evidencia que realmente corresponde a la receta aditiva. Se volvieron a ejecutar en CPU las pruebas sintéticas existentes del modelo y del entrenamiento, sin cargar cohortes de mercado ni repetir ajustes del benchmark. El {download}`informe de comprobación <../_static/e3_revision_bc_20261117/c_software_review.json>` conserva resultados, entorno y hashes de las fuentes. Los casos del modelo cubren también las otras dos cabezas de v2; su total no se atribuye exclusivamente a la aditiva.
+
+| Requisito de la guía | Evidencia aplicable a la receta de 1210 parámetros | Cierre pendiente |
+|---|---|---|
+| Módulo, formulación y pseudocódigo | Código local, forward y pérdida identificados en 6.8; conteo 1210 verificado. | Diferencia algorítmica sustantiva y defensa humana de la contribución candidata. |
+| Propiedad con supuestos y verificación | Piso observable y exceso positivo comprobados; la cota de saturación pertenece a v1. | Una propiedad de soporte conocida no acredita la contribución original exigida. |
+| Pruebas del modelo | Inicialización reproducible, admisión de datos, salida, precisión mixta y gradientes finitos no nulos; reanudación sintética de v2 con pesos, optimizador y RNG. | Sobreajuste diminuto específico de esta receta, `gradcheck` pertinente y exportación final con ida y vuelta. El `gradcheck` de cuadratura y el caso aislado de copia de `state_dict` prueban cabezas half-t; no se atribuyen a toda la aditiva. |
+| Protocolo común y HPO equivalente | Se conserva la receta elegida por validación y sus diez semillas; los resultados históricos no se alteran. | E2 y E3 no comparten política final de ajuste, tamaño de entrenamiento o presupuesto demostrados como equivalentes. |
+| Ablación de al menos tres componentes | Hay controles de desarrollo y pruebas funcionales de otras variantes. | Ablación estadística de la receta defendida, aislando componentes, con particiones, semillas y tratamiento comparables; los controles de v1 no la completan. |
+| Interpretabilidad, fidelidad y estabilidad | Se puede inspeccionar la atención; los errores por régimen están documentados. | Comparación con el mejor benchmark, fidelidad por borrado/inserción y estabilidad entre semillas. Los pesos de atención no bastan como explicación validada. |
+| Complejidad y eficiencia | Conteo y coste asintótico identificados; resultados y código conservados. | FLOPs completos, escalabilidad y recursos medidos en condiciones comunes; ver capítulo 5. |
+| Literatura y R1 | Lecturas focales y consultas con resultados o bloqueos documentados. | Tres bases, cobertura y seguimiento de citas completos, matriz de diferencias y concepto humano externo de al menos dos cadenas. |
+| R3 y evaluación amplia | Diez semillas y análisis posterior frente a 16 rivales, con límites explícitos. | Potencia por contraste y conjunta, protocolo confirmatorio justo y al menos tres conjuntos adicionales elegidos antes de sus resultados; ver capítulos 7 y 8. |
+
+La {download}`matriz de revisión de requisitos <../_static/e3_revision_bc_20261117/c_requirements_review.csv>` permite seguir cada evidencia y su alcance. No sustituye la model card, la declaración de datos, la bitácora de diseños ni la declaración de asistencia de IA de los capítulos correspondientes. La siguiente decisión de investigación debe resolver qué mecanismo se defenderá como contribución; una mejor RMSE de esta referencia convencional no resuelve esa decisión por sí sola.

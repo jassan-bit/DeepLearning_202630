@@ -10,8 +10,8 @@ El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guí
 | [2 Estándar de profundidad exigido](sections/02_estandar_profundidad.md) | Requisitos teóricos, potencia, semillas y compromisos previos. |
 | [3 Panorama general del entregable](sections/03_panorama_general.md) | Bloques A–G, dependencias y estado de avance. |
 | [4 Bloque A Correcciones del Entregable 2](sections/04_correcciones_e2.md) | Trazabilidad y auditorías vigentes, con sus pendientes. |
-| [5 Bloque B Selección de configuraciones y exportación](sections/05_configuraciones_exportacion.md) | Tabla de 16 sistemas y tres exportaciones verificadas. |
-| [6 Bloque C El modelo original](sections/06_modelo_original.md) | Candidato, antecedentes, implementación y estados R1/R2/R3. |
+| [5 Bloque B Selección de configuraciones y exportación](sections/05_configuraciones_exportacion.md) | Selección por validación, checkpoints y tres exportaciones verificadas; requisitos de cierre. |
+| [6 Bloque C El modelo original](sections/06_modelo_original.md) | Arquitectura evaluada, antecedentes, formulación y evidencia específica para R1/R2/R3. |
 | [7 Diseño riguroso del modelo original](sections/07_diseno_riguroso.md) | Hipótesis, disciplina de diseño, sustento teórico y ablación. |
 | [8 Bloque D Verificación estadística y evaluación ampliada](sections/08_verificacion_estadistica.md) | Comparación posterior de diez semillas, alcances de incertidumbre, MCS y requisitos aún pendientes de R3. |
 | [9 Bloque E Dashboard predictivo en Dash Plotly](sections/09_dashboard_predictivo.md) | Diseño de Contexto, EDA y Modelos, contratos de inferencia y requisitos de calidad. |
@@ -41,11 +41,13 @@ El [anexo final](sections/cierre_reproducibilidad.md) distingue conclusiones pro
 
 El [Apéndice A](sections/apendice_a_plantillas.md) ofrece las seis plantillas y su paquete descargable; las [referencias sugeridas](sections/referencias_sugeridas.md) conservan los 37 números de la guía y aclaran qué métodos son pertinentes para F2a.
 
-## Revisión de los capítulos 1–4 frente a la guía
+## Revisión frente a la guía
 
 La [introducción](sections/01_introduccion.md) explicita los cuatro productos obligatorios y el alcance actual. El [estándar](sections/02_estandar_profundidad.md) conserva los cinco requisitos de profundidad, distingue diez semillas de potencia suficiente y enlaza su declaración con fecha actual y registro prospectivo pendiente. El [panorama](sections/03_panorama_general.md) relaciona los productos con los bloques A–G. Las [correcciones](sections/04_correcciones_e2.md) separan observaciones internas de comentarios docentes, la auditoría histórica de la posterior y el ranking de seis semillas de su ampliación a diez.
 
-Esta revisión documental no modifica predicciones, p-valores o recetas, ni convierte los productos pendientes en completados. Los archivos y enlaces históricos se conservan.
+La revisión del [Bloque B](sections/05_configuraciones_exportacion.md) contrasta selección, ajuste final, checkpoints, metadatos, exportación y costes con la evidencia guardada. El [Bloque C](sections/06_modelo_original.md) identifica la formulación de la referencia aditiva realmente evaluada y distingue sus pruebas de las del primer mecanismo y de la cabeza de momentos. Las matrices de requisitos y los registros de reproducibilidad reflejan las diez semillas y el análisis posterior ya terminado.
+
+Para avanzar al cierre faltan, entre otros productos, justificar una contribución admisible con revisión de literatura y defensa del autor, preparar la evaluación comparable con potencia y tres conjuntos adicionales y exportar/verificar el catálogo para el dashboard. La revisión no cambia predicciones, p-valores o recetas, ni convierte pendientes en requisitos cumplidos. Los archivos y enlaces históricos se conservan.
 
 ## Libros del curso
 
