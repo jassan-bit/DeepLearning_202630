@@ -232,7 +232,9 @@ def runtime_identity(device: str, bundle_root: Path) -> dict:
     props = torch.cuda.get_device_properties(0)
     return {"device": device, "device_name": props.name,
         "total_memory_bytes": props.total_memory, "python": platform.python_version(),
-        "torch": torch.__version__, "torch_cuda": torch.version.cuda,
+        # TorchVersion is a str subclass; the frozen artifact writer accepts
+        # exact JSON builtin types, so normalize at this adapter boundary.
+        "torch": str(torch.__version__), "torch_cuda": torch.version.cuda,
         "cpu_threads": 2, "interop_threads": 1, "precision": "float32",
         "amp": False, "tf32": False, "cudnn_tf32": False, "deterministic": True,
         "packages": actual_packages}
@@ -375,6 +377,11 @@ def fit_job(bundle_root: Path, inputs: Path, run_dir: Path, job: dict, claim: di
         "constructor_sha256": original_module(code, "e2_standalone_code").CONSTRUCTOR_SHA256,
         "arrays_sha256": NPZ_SHA256, "frozen_recipe_sha256": FROZEN_SHA256,
         "epoch_register_sha256": REGISTER_SHA256, "author_files_verified": 76}
+    # Check the unchanged writer's strict type contract before the fitter can
+    # publish request.json or create a phase attempt.
+    original_module(code, "e2_amended_pilot_artifacts")._canonical({
+        "source": source, "resources": runtime,
+        "data": {"train": train.record(), "validation": None}})
     # The parent separately enforces its remaining whole-worker reservation.
     phase_limit = 1800.0
     result = fitter.fit_reduced_job(job["model"], trial, job["seed"], train, None,

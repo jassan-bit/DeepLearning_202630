@@ -257,6 +257,72 @@ class OriginalLibrarySyntheticTests(unittest.TestCase):
         self.assertEqual(len(self.recipes), 13)
         self.assertEqual(set(self.recipes), set(worker.NEURAL))
 
+    def test_production_runtime_metadata_passes_unchanged_strict_artifact_writer(self):
+        """Exercise actual TorchVersion through the production metadata adapter.
+
+        CUDA properties and package admission are mocked; no CUDA operation,
+        predictor, optimizer or real cohort is used by this metadata test.
+        """
+        from contextlib import ExitStack
+        from dataclasses import asdict
+        from types import SimpleNamespace
+        import importlib.metadata
+        import re
+        from torch.torch_version import TorchVersion
+
+        expected = {}
+        for line in (BUNDLE / "requirements_cuda.txt").read_text().splitlines():
+            match = re.fullmatch(r"([A-Za-z0-9_.-]+)==([^\s]+)", line.strip())
+            if match:
+                expected[match[1]] = match[2]
+        self.assertEqual(len(expected), 43)
+        actual_torch_version_type = TorchVersion("2.8.0+cu126")
+        self.assertIsInstance(actual_torch_version_type, str)
+        self.assertIsNot(type(actual_torch_version_type), str)
+        with ExitStack() as stack:
+            stack.enter_context(patch.dict(os.environ, {"CUBLAS_WORKSPACE_CONFIG": ":4096:8"}))
+            stack.enter_context(patch.object(worker.sys, "version_info", (3, 12, 12)))
+            stack.enter_context(patch.object(self.torch, "__version__", actual_torch_version_type))
+            stack.enter_context(patch.object(self.torch.version, "cuda", "12.6"))
+            stack.enter_context(patch.object(self.torch.cuda, "is_available", return_value=True))
+            stack.enter_context(patch.object(self.torch.cuda, "get_device_properties",
+                return_value=SimpleNamespace(name="Synthetic metadata GPU", total_memory=85094825984)))
+            stack.enter_context(patch.object(importlib.metadata, "version", side_effect=expected.__getitem__))
+            for name in ("set_num_threads", "set_num_interop_threads", "use_deterministic_algorithms",
+                         "set_float32_matmul_precision"):
+                stack.enter_context(patch.object(self.torch, name))
+            stack.enter_context(patch.object(self.torch, "backends", SimpleNamespace(
+                cudnn=SimpleNamespace(benchmark=False, deterministic=False, allow_tf32=False),
+                cuda=SimpleNamespace(matmul=SimpleNamespace(allow_tf32=False)))))
+            runtime = worker.runtime_identity("cuda:0", BUNDLE)
+
+        self.assertIs(type(runtime["torch"]), str)
+        self.assertEqual(runtime["torch"], "2.8.0+cu126")
+        durable = worker.original_module(self.code, "e2_amended_pilot_artifacts")
+        # Reproduce the exact old failure, proving the original validator still
+        # rejects a string subclass instead of weakening its admission policy.
+        with self.assertRaisesRegex(TypeError, "Artifact metadata must contain only finite JSON values"):
+            durable._canonical({"resources": {**runtime, "torch": actual_torch_version_type}})
+        historical = worker.original_module(self.code, "e2_staged_training")
+        trial = self.recipes["MLP16"]["trial"]
+        config = historical.TrainConfig(learning_rate=trial["learning_rate"],
+            weight_decay=trial["weight_decay"], batch_size=trial["batch_size"],
+            max_epochs=200, patience=20, seed=271807,
+            warmup_fraction=trial.get("warmup_fraction", 0), wall_limit_seconds=1800.,
+            memory_limit_bytes=12 * 1024**3)
+        metadata = {"config": asdict(config), "source": {"run_id": "synthetic-metadata-only"},
+            "data": {"train": self.synthetic_training().record(), "validation": None},
+            "seed": 271807, "resources": runtime}
+        with tempfile.TemporaryDirectory(prefix="e2-production-metadata-") as temporary:
+            store = durable.PilotArtifactStore(Path(temporary), "supervised",
+                {"seed": 271807, "phase": "supervised", "request_sha256": "a" * 64})
+            try:
+                store.prepare(metadata)
+                self.assertEqual(store.status, "prepared")
+                self.assertEqual(store.manifest["checkpoints"], {})
+            finally:
+                store.close()
+
     def test_original_mlp_and_three_phase_sae_optimize_only_synthetic_targets(self):
         fitter = worker.original_module(self.code, "e2_reduced_fit")
         train = self.synthetic_training()

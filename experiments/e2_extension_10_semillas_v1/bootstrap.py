@@ -38,6 +38,19 @@ ARTIFACT_NAMES = {"checkpoint.pt", "scaler.json", "calibrator.json", "fit_receip
 AGGREGATE_NAMES = {"summary.json", "per_seed_metrics.csv", "family_summary.csv", "predictions.csv",
                    "aggregate_receipt.json", "provenance.json", "comparison.json"}
 
+# The only permitted terminal-state reopening is the audited first-job metadata
+# failure, before any phase or optimizer artifact existed. Later failures halt.
+REPAIR_ID = "finite_json_before_first_step_v1"
+REPAIR_ROOT = "repairs/" + REPAIR_ID
+FAILED_RUN_ID = "e2ext10-20261117-4f4fa4687ce5"
+FAILED_HEAD = "f4a16e33291e6e175c8d1fff0e2d5f3470a585e7"
+FAILED_JOB_ID = "759a1b80df7f02c7-271807"
+FAILED_LEDGER_SHA256 = "b125c5d6d6e20ef14735c9c4b790aa96c2d8da6f31009cf710d4c04cfb4b174e"
+FAILED_MANIFEST_SHA256 = "b317c319e1fb43ee19a1902c673e5dce03ac88c31a7292798e027b511e5a17d5"
+FAILED_SNAPSHOT_SHA256 = "793d07a5fc0475e009e7710e8d2d32159b831b7825a672a2ffe5a00eeb6865b6"
+FAILED_CHARGED_SECONDS = 3.62394042599999
+REPAIR_FILES = {"authorization.json", "failed_request.json", "failed_worker.log", "original_run_manifest.json", "original_snapshot.json"}
+
 
 def require(condition, message):
     if not condition:
@@ -135,6 +148,16 @@ def ledger_summary(events, manifest):
                     "Reservation exceeds remaining shared budget")
             require(cap <= {"fit": 1800, "evaluate": 300, "aggregate": 120}[event["phase"]], "Phase cap exceeded")
             active = event
+        elif event["event"] == "reopen":
+            prefix = b"".join(canonical(row) + b"\n" for row in events[:2])
+            require(event["sequence"] == 2 and manifest["run_id"] == FAILED_RUN_ID
+                and event["job_id"] == FAILED_JOB_ID and event["phase"] == "fit"
+                and event.get("repair_id") == REPAIR_ID and event.get("failed_head") == FAILED_HEAD
+                and sha(prefix) == FAILED_LEDGER_SHA256 and active is None
+                and charged == event.get("charged_seconds_preserved") == FAILED_CHARGED_SECONDS
+                and event.get("authorization_sha256") == manifest.get("repair_authorization_sha256")
+                and bool(re.fullmatch(r"[a-f0-9]{64}", event.get("authorization_sha256", ""))),
+                "Reopening is restricted to the audited metadata-only first failure")
         elif event["event"] == "finish":
             require(active is not None and event["reservation_id"] == active["reservation_id"]
                     and event["job_id"] == active["job_id"] and event["phase"] == active["phase"], "Finish without matching reservation")
@@ -159,6 +182,11 @@ def ledger_summary(events, manifest):
 def state_projection(events, manifest):
     state = {"version": "e2-extension-state-v1", "run_id": manifest["run_id"], "status": "new", "jobs": {}}
     for event in events:
+        if event["event"] == "reopen":
+            require(state["status"] == "failed" and not state["jobs"], "Only the first pre-step failure can reopen")
+            state["prior_failure"] = state.pop("failure")
+            state["repair_id"], state["status"] = REPAIR_ID, "running"
+            continue
         if event["event"] != "finish":
             continue
         if event["outcome"] == "success":
@@ -207,6 +235,8 @@ def approved_path(name, manifest):
     jobs = {j["id"] for j in manifest["jobs"]}
     if name in BASE_FILES:
         return True
+    if name.startswith(REPAIR_ROOT + "/"):
+        return manifest.get("run_id") == FAILED_RUN_ID and name[len(REPAIR_ROOT) + 1:] in REPAIR_FILES
     if len(parts) == 2 and parts[0] == "remote_acks":
         return parts[1].endswith(".json") and parts[1][:-5] in jobs
     if len(parts) >= 3 and parts[0] == "jobs" and parts[1] in jobs:
@@ -262,6 +292,31 @@ def validate_snapshot(snapshot, payloads):
     require(json.loads(payloads["ledger.json"]) == ledger_summary(events, manifest), "Budget ledger projection changed")
     state = json.loads(payloads["state.json"])
     require(state == state_projection(events, manifest), "State differs from append-only ledger progress")
+    if manifest.get("repair_authorization_sha256") is not None:
+        authorization_path = REPAIR_ROOT + "/authorization.json"
+        require(authorization_path in payloads and sha(payloads[authorization_path]) == manifest["repair_authorization_sha256"],
+                "Repair authorization bytes differ")
+        authorization = json.loads(payloads[authorization_path])
+        require(authorization.get("repair_id") == REPAIR_ID and authorization.get("failed_head") == FAILED_HEAD
+                and authorization.get("run_id") == FAILED_RUN_ID and manifest["run_id"] == FAILED_RUN_ID
+                and authorization.get("old_manifest_sha256") == FAILED_MANIFEST_SHA256
+                and authorization.get("new_code_hashes") == manifest["code_hashes"], "Repair authorization identity differs")
+        old_manifest_bytes = payloads[REPAIR_ROOT + "/original_run_manifest.json"]
+        require(sha(old_manifest_bytes) == FAILED_MANIFEST_SHA256, "Archived original manifest changed")
+        old_manifest = json.loads(old_manifest_bytes)
+        require({k: v for k, v in manifest.items() if k not in {"code_hashes", "repair_authorization_sha256"}}
+                == {k: v for k, v in old_manifest.items() if k != "code_hashes"}, "Repair changed frozen science or budget identity")
+        original = json.loads(payloads[REPAIR_ROOT + "/original_snapshot.json"])
+        old_payloads = {p: v.encode() for p, v in original.items() if p != "snapshot.json"}
+        require(sha(original["snapshot.json"].encode()) == FAILED_SNAPSHOT_SHA256,
+                "Archived original snapshot differs")
+        validate_snapshot(json.loads(original["snapshot.json"]), old_payloads)
+        require(sha(old_payloads["ledger.jsonl"]) == FAILED_LEDGER_SHA256
+                and payloads["ledger.jsonl"].startswith(old_payloads["ledger.jsonl"])
+                and payloads[REPAIR_ROOT + "/failed_request.json"] == old_payloads[f"jobs/{FAILED_JOB_ID}/fit/request.json"]
+                and payloads[REPAIR_ROOT + "/failed_worker.log"] == old_payloads["logs/eec1cdd8aaaa4b6c9a9579606bbbc8c9.log"],
+                "Repair lost the failed ledger/request/log evidence")
+        require(len(events) >= 3 and events[2]["event"] == "reopen", "Repair lacks its append-only reopening record")
     completed = {"fit": set(), "evaluate": set(), "aggregate": set()}
     gate = json.loads(payloads["all_fits_remote_ack.json"]) if "all_fits_remote_ack.json" in payloads else None
     for event in events:
@@ -272,7 +327,7 @@ def validate_snapshot(snapshot, payloads):
                 require(len(completed["fit"]) == 52 and gate is not None, "Evaluation before all 52 acknowledged fits")
             elif phase == "aggregate":
                 require(len(completed["evaluate"]) == 52, "Aggregate before all 52 evaluations")
-        elif event["outcome"] == "success":
+        elif event["event"] == "finish" and event["outcome"] == "success":
             path = event["receipt_path"]
             require(path in payloads and sha(payloads[path]) == event["receipt_sha256"], "Completed receipt changed")
             validate_receipt(json.loads(payloads[path]), manifest, jid, phase, payloads=payloads)

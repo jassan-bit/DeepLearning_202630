@@ -23,3 +23,9 @@ La etapa es posterior al conocimiento de ese calendario de prueba. E2 usa 655 ej
 Las pruebas locales verifican los archivos fijados, los trece constructores originales con tensores artificiales, el aislamiento del entorno, el registro de consumo, la publicación Git y la conservación de resultados. Los ajustes de prueba utilizan únicamente datos sintéticos. Las pruebas no ejecutan los 52 entrenamientos reales ni sustituyen la verificación con CUDA en Colab.
 
 Archivos de implementación: `prepare.py`, `worker.py`, `aggregate.py`, `bootstrap.py` y `plan.json`. Las evidencias y pruebas permanecen en este directorio; no se añaden capítulos al libro.
+
+## Reparación del guardado de metadatos
+
+El primer proceso de FCN-1D, semilla 271807, se detuvo antes de crear un optimizador: `torch.__version__` es una subclase de texto que el escritor original de artefactos rechaza. El adaptador convierte esa versión a un texto de tipo incorporado y verifica los metadatos con el validador original antes de crear una solicitud de ajuste. No se modifican el entrenador ni los constructores originales.
+
+`repair.py` reconcilia exclusivamente ese fallo documentado. Conserva la solicitud y el registro originales, agrega la autorización de reapertura al registro existente y mantiene los 3.62394042599999 segundos consumidos. Rechaza la recuperación si aparecen artefactos de entrenamiento. El cuaderno de reparación conserva las mismas 52 coordenadas de modelo y semilla y el límite total de 7200 segundos.

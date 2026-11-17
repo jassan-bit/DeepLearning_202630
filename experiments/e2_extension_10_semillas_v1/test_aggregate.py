@@ -215,3 +215,40 @@ def test_real_plan_source_aliases_and_coordinator_output_allowlist():
     assert all(plan['inputs'][name]['sha256'] == expected for name, expected in subject.SOURCE_HASHES.items())
     assert all(bootstrap.approved_path(name, {'jobs': plan['jobs']}) for name in
         ('combined_predictors.json', 'per_seed_metrics.csv', 'comparison.csv', 'summary.json', 'aggregate_receipt.json'))
+
+
+def test_aggregate_claim_understands_audited_reopen_and_preserves_failed_charge(tmp_path):
+    """Use archived failure metadata only; append synthetic authorization/claim."""
+    import bootstrap
+    archived = subject.read_json(Path(__file__).with_name('failed_remote_snapshot.json'))
+    manifest = json.loads(archived['run_manifest.json'])
+    manifest['repair_authorization_sha256'] = 'c'*64
+    run = tmp_path/'run'; run.mkdir()
+    write(run/'run_manifest.json', manifest)
+    events = bootstrap.events_from(archived['ledger.jsonl'].encode())
+    def append(body):
+        value = {**body, 'version': 'e2-extension-event-v1', 'run_id': manifest['run_id'],
+                 'plan_fingerprint': manifest['plan_fingerprint'], 'sequence': len(events),
+                 'previous_sha256': events[-1]['sha256']}
+        value['sha256'] = bootstrap.sha(bootstrap.canonical(value))
+        events.append(value)
+    append({'event': 'reopen', 'job_id': bootstrap.FAILED_JOB_ID, 'phase': 'fit',
+            'repair_id': bootstrap.REPAIR_ID, 'failed_head': bootstrap.FAILED_HEAD,
+            'charged_seconds_preserved': bootstrap.FAILED_CHARGED_SECONDS,
+            'authorization_sha256': manifest['repair_authorization_sha256']})
+    append({'event': 'reserve', 'job_id': 'aggregate', 'phase': 'aggregate',
+            'reservation_id': 'synthetic-aggregate-after-reopen', 'cap_seconds': 120.0})
+    (run/'ledger.jsonl').write_bytes(b''.join(bootstrap.canonical(event)+b'\n' for event in events))
+    reservation = events[-1]
+    claim = {key: reservation[key] for key in ('run_id', 'plan_fingerprint', 'job_id', 'phase', 'reservation_id', 'cap_seconds')}
+    claim.update(version='e2-seed-extension-v1', ledger_event_sha256=reservation['sha256'], ack_commit='a'*40)
+    write(tmp_path/'claim.json', claim)
+    assert subject.validate_claim(run, tmp_path/'claim.json') == (manifest, claim)
+    ledger = bootstrap.ledger_summary(events, manifest)
+    assert ledger['charged_seconds'] == bootstrap.FAILED_CHARGED_SECONDS
+    assert ledger['remaining_seconds'] == 7200-bootstrap.FAILED_CHARGED_SECONDS
+    state = bootstrap.state_projection(events, manifest)
+    assert state['status'] == 'running' and state['prior_failure']['outcome'] == 'failed' and not state['jobs']
+    changed = {**events[2], 'charged_seconds_preserved': 0.0}
+    with pytest.raises(RuntimeError, match='audited metadata-only'):
+        bootstrap.ledger_summary([*events[:2], changed, events[3]], manifest)
