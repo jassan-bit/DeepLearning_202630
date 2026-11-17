@@ -2,7 +2,7 @@
 
 Este anexo respalda la decisión de admisibilidad integrada en el [capítulo 6](06_modelo_original.md) y las condiciones de comparación del [capítulo 7](07_diseno_riguroso.md).
 
-**16 de noviembre de 2026. Decisión interna de desarrollo:** conservar la [formulación por momentos](21_propuesta_momentos.md) como adaptación experimental documentada; **no seleccionarla todavía como aporte original de E3 ni iniciar otro piloto en este corte**. La sustantividad no está acreditada. Tampoco se demostró que la receta completa ya esté publicada o carezca de novedad. R1 permanece pendiente, con R2 y R3 sin acreditar.
+**Corte del dictamen interno del 16 de noviembre de 2026:** conservar la [formulación por momentos](21_propuesta_momentos.md) como adaptación experimental documentada; **no seleccionarla todavía como aporte original de E3 ni iniciar otro piloto en ese corte**. La sustantividad no quedó acreditada. Tampoco se demostró que la receta completa ya esté publicada o carezca de novedad. R1 permanece pendiente, con R2 y R3 sin acreditar. La decisión posterior solicitada por el usuario para una exploración se distingue en G.5.
 
 La base sigue siendo CNN causal → LSTM unidireccional → atención temporal. La cabeza aditiva v2 continúa como referencia predictiva de desarrollo; no se anuncia un ganador frente al Top 10. El [dictamen completo](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/README.md) distingue la decisión técnica de una calificación o aprobación del docente.
 
@@ -40,7 +40,7 @@ Son **seis actualizaciones escalares independientes de SGD**, con contexto fijo,
 | Media directa con auxiliares separados y gradiente detenido al contexto, frente a su propia media sola | Control inspirado en Faithful, sujeto a comprobar sus condiciones. |
 | Referencia aditiva v2 congelada y ablaciones Jensen / `q=9m²` | Utilidad frente a una referencia fuerte y necesidad de cada componente. |
 
-Igualar parámetros no prueba igual expresividad, coste o trayectoria. No se implementaron estos controles ni se reajustan los rivales congelados de E2. La evaluación confirmatoria, todavía pendiente, conserva la familia completa, potencia, conjuntos adicionales y el margen heredado.
+Igualar parámetros no prueba igual expresividad, coste o trayectoria. En el corte de este dictamen todavía no se habían implementado esos controles; G.5 distingue la implementación posterior. Los rivales congelados de E2 se conservan. La evaluación confirmatoria pendiente mantiene la familia completa, potencia, conjuntos adicionales y el margen heredado.
 
 ## G.4 Revisión externa preparada, sin aval simulado
 
@@ -49,3 +49,11 @@ La extensión realizó ocho consultas web —seis EN y dos ES— y añadió lect
 Se prepararon un {download}`paquete para la persona revisora <../_static/e3_dictamen_momentos_20261116/human_review.md>` y [cinco familias bilingües planificadas](../_static/e3_dictamen_momentos_20261116/native_search_plan.csv). Las plantillas no están diligenciadas, no se ejecutaron esas búsquedas nativas y no existe firma o concepto humano. La persona externa debe repetir al menos dos cadenas y emitir su propia valoración; la revisión entre agentes de IA no la sustituye. No se contactó a terceros.
 
 La [decisión estructurada](../_static/e3_dictamen_momentos_20261116/decision.json), la [procedencia y uso de IA](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/provenance.md) y el [audit reproducible](https://github.com/jassan-bit/DeepLearning_202630/blob/main/scripts/e3_audit_moment_admissibility.py) hacen revisable este corte. No hubo datos o inferencias nuevas de mercado, carga de NPZ/checkpoints, selección de semillas o nuevos conjuntos de confirmación. Se conservan las cinco recetas neuronales entrenadas y el presupuesto anterior; el `N_d` global sigue pendiente de conciliación.
+
+## G.5 Decisión posterior: comprobar funcionamiento en desarrollo
+
+Después de este dictamen, el usuario solicitó correr la CNN-LSTM con atención y cabeza de momentos en Colab para comprobar si funciona antes de completar los requisitos restantes. Esa solicitud autoriza un **piloto exploratorio de desarrollo**; no selecciona el mecanismo como aporte original ni convierte la revisión bibliográfica o humana pendiente en un requisito ya cumplido.
+
+La implementación, sus controles `moment_mean_only` y `direct_moment_aux`, el ejecutor reanudable y el guardado en GitHub ya tienen pruebas artificiales. El [plan posterior](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_piloto_momentos_20261116/plan.json) fija la receta y presupuesto antes de la corrida; el [apartado 7.8](07_diseno_riguroso.md) y el anexo F.6 explican el alcance y el [notebook de Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_momentos_colab.ipynb). Todavía no se ha iniciado una ejecución real de este piloto en Colab desde este entorno ni se reporta una GPU detectada o un resultado nuevo de mercado.
+
+El registro del dictamen inicial y sus archivos se conservan con su fecha y alcance. La documentación posterior describirá los resultados que realmente se obtengan, incluidos fallos o resultados desfavorables, sin retrofechar un protocolo, reconstruir un aval humano o presentar esta validación expuesta como confirmación independiente. La revisión sustantiva, la persona externa y los demás requisitos de R1/R2/R3 siguen pendientes; un piloto favorable no los completa por sí solo.

@@ -6,6 +6,7 @@ on:
       - 'src/original_model.py'
       - 'src/e3_development.py'
       - 'src/e3_innovation*.py'
+      - 'src/e3_moment*.py'
       - 'tests/test_original_model.py'
       - 'tests/test_development_training.py'
       - 'tests/test_development_github.py'
@@ -13,6 +14,10 @@ on:
       - 'tests/test_innovation_design.py'
       - 'tests/test_innovation_*.py'
       - 'tests/test_moment_head.py'
+      - 'tests/test_moment_model.py'
+      - 'tests/test_moment_training.py'
+      - 'tests/test_moment_github.py'
+      - 'tests/test_moment_notebook.py'
       - 'scripts/e3_verify_original.py'
       - 'scripts/e3_run_development.py'
       - 'scripts/e3_github_storage.py'
@@ -20,6 +25,9 @@ on:
       - 'scripts/e3_audit_innovation.py'
       - 'scripts/e3_verify_moment_head.py'
       - 'scripts/e3_audit_moment_admissibility.py'
+      - 'scripts/e3_moment_github.py'
+      - 'scripts/e3_run_moments.py'
+      - 'scripts/e3_build_moment_notebook.py'
       - 'scripts/e3_verify_innovation_design.py'
       - 'scripts/e3_run_innovation.py'
       - 'scripts/e3_innovation_github.py'
@@ -31,6 +39,7 @@ on:
       - 'experiments/e3_cierre_v2_20261116/**'
       - 'experiments/e3_mecanismo_momentos_20261116/**'
       - 'experiments/e3_dictamen_momentos_20261116/**'
+      - 'experiments/e3_piloto_momentos_20261116/**'
       - 'book_e3/_static/e3_cierre_v2_20261116/**'
       - 'book_e3/sections/20_cierre_v2.md'
       - 'book_e3/_static/e3_mecanismo_momentos_20261116/**'
@@ -41,6 +50,7 @@ on:
       - 'notebooks/preparar_e3_desarrollo_runtime.py'
       - 'notebooks/run_e3_github_colab.py'
       - 'notebooks/entregable3_innovacion_v2_colab.ipynb'
+      - 'notebooks/entregable3_momentos_colab.ipynb'
       - 'notebooks/preparar_e3_innovacion_runtime.py'
       - 'requirements-e3-development-gpu.lock.txt'
       - 'requirements-e3-original-cpu.lock.txt'
@@ -77,13 +87,14 @@ jobs:
           OMP_NUM_THREADS: '1'
           MKL_NUM_THREADS: '1'
         run: |
-          python -m pytest tests/test_original_model.py tests/test_development_training.py tests/test_development_github.py tests/test_development_audit.py tests/test_innovation_design.py tests/test_innovation_model.py tests/test_innovation_training.py tests/test_innovation_github.py tests/test_innovation_notebook.py tests/test_innovation_audit.py tests/test_moment_head.py -q
+          python -m pytest tests/test_original_model.py tests/test_development_training.py tests/test_development_github.py tests/test_development_audit.py tests/test_innovation_design.py tests/test_innovation_model.py tests/test_innovation_training.py tests/test_innovation_github.py tests/test_innovation_notebook.py tests/test_innovation_audit.py tests/test_moment_head.py tests/test_moment_model.py tests/test_moment_training.py tests/test_moment_github.py tests/test_moment_notebook.py -q
           python scripts/e3_verify_original.py --check
           python scripts/e3_audit_development.py --check
           python scripts/e3_verify_innovation_design.py --check
           python scripts/e3_audit_innovation.py --check
           python scripts/e3_verify_moment_head.py --check
           python scripts/e3_audit_moment_admissibility.py --check
+          python scripts/e3_build_moment_notebook.py --check
       - name: Comprobar copias de la propuesta por momentos en el libro
         run: |
           python - <<'PY'
@@ -111,6 +122,7 @@ jobs:
         run: |
           python -m py_compile notebooks/preparar_e3_desarrollo_runtime.py notebooks/run_e3_github_colab.py scripts/e3_github_storage.py scripts/e3_run_development.py src/e3_development.py
           python -m py_compile notebooks/preparar_e3_innovacion_runtime.py scripts/e3_run_innovation.py scripts/e3_innovation_github.py src/e3_innovation.py src/e3_innovation_model.py
+          python -m py_compile src/e3_moment_model.py src/e3_moment_training.py scripts/e3_run_moments.py scripts/e3_moment_github.py scripts/e3_build_moment_notebook.py
           python - <<'PY'
           import json
           from pathlib import Path
