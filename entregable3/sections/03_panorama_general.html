@@ -420,17 +420,17 @@
 <tr class="row-odd"><td><p>B</p></td>
 <td><p>Mejores configuraciones y exportaciones de inferencia.</p></td>
 <td><p>Resultados y recetas válidos de A.</p></td>
-<td><p>Tabla de 16 sistemas y tres referencias exportadas; resto y cierre pendientes.</p></td>
+<td><p>Recetas de los 16 sistemas conservadas; E2 reúne 133 predictores, con diez semillas por red y una trayectoria por clásico. Tres referencias exportadas; resto y cierre pendientes.</p></td>
 </tr>
 <tr class="row-even"><td><p>C</p></td>
 <td><p>Mecanismo neuronal, formulación, código y demostración.</p></td>
 <td><p>Limitación sustentada y trabajo cercano.</p></td>
-<td><p>Dos pilotos de desarrollo completos y aditiva v2 como referencia. Cabeza de momentos implementada, con pruebas artificiales y notebook exploratorio preparado; sin ejecución real nueva ni selección como aporte original. Estado integrado en 6/7.</p></td>
+<td><p>El candidato de la comparación vigente es CNN causal → LSTM → atención temporal, con cabeza positiva aditiva y 1210 parámetros, evaluado con diez semillas. Los pilotos y la cabeza de momentos se conservan como historia de desarrollo, sin acreditar R1/R2. Estado integrado en 6/7.</p></td>
 </tr>
 <tr class="row-odd"><td><p>D</p></td>
 <td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Comparación estadística y evaluación ampliada</span></a>.</p></td>
-<td><p>Diseño, presupuesto y protocolo congelados.</p></td>
-<td><p>Borrador y requisitos organizados; piloto de potencia, congelamiento y campaña confirmatoria pendientes. Los pilotos de desarrollo no los sustituyen.</p></td>
+<td><p>Predicciones congeladas y alcance de inferencia explícito.</p></td>
+<td><p>Análisis posterior completado sobre 608 fechas comunes: 48/48 contrastes primarios rechazan, con ámbitos de incertidumbre distintos. MCS al 90 % conserva diez sistemas incluido el candidato. Potencia, campaña confirmatoria y R3 no quedan acreditadas.</p></td>
 </tr>
 <tr class="row-even"><td><p>E</p></td>
 <td><p><a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Dashboard Dash Plotly con Contexto, EDA y Modelos</span></a>.</p></td>
@@ -445,13 +445,14 @@
 <tr class="row-even"><td><p>G</p></td>
 <td><p><a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">Informe científico y reproducibilidad</span></a>.</p></td>
 <td><p>Evidencias de todos los bloques.</p></td>
-<td><p>Informe parcial publicado y bibliografía configurada; campaña, contenedor y reproducción independiente pendientes.</p></td>
+<td><p>Informe con análisis posterior y bibliografía configurada; cierre confirmatorio, contenedor y reproducción independiente pendientes.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <section id="orden-de-trabajo">
 <h2>3.1 Orden de trabajo<a class="headerlink" href="#orden-de-trabajo" title="Link to this heading">#</a></h2>
+<p>Para una futura campaña confirmatoria se mantiene este orden, sin presentarlo como el origen previo del análisis histórico ya ejecutado:</p>
 <ol class="arabic simple">
 <li><p>Cerrar las correcciones aplicables y las auditorías de datos; conservar fallos, limitaciones e impacto.</p></li>
 <li><p>Fijar el conjunto de comparación y los artefactos que puedan reutilizarse, con sus hashes.</p></li>
@@ -461,12 +462,13 @@
 <li><p>Ejecutar y reportar la comparación, incluyendo resultados adversos; después integrar y publicar el producto final.</p></li>
 </ol>
 <p>El inventario de exportación y el diseño del dashboard pueden avanzar durante la investigación. Los resultados precalculados o las pruebas artificiales deberán seguir identificados como tales.</p>
-<p>La solicitud posterior de comprobar el modelo en Colab habilita un piloto de desarrollo antes del cierre de todos los requisitos académicos. Su configuración operativa se fija antes de ejecutar y se documenta en 7.8. Esa exploración no sustituye el protocolo confirmatorio ni permite fechar requisitos después de los resultados como si hubieran sido previos.</p>
+<p>Las solicitudes posteriores de ejecución en Colab permitieron los pilotos y las repeticiones de desarrollo documentados en los capítulos 6 y 7. El análisis estadístico vigente reutiliza esas predicciones congeladas; no añade entrenamiento ni inferencia de modelos. Su carácter posterior no se transforma en confirmación por fechar después de los resultados un protocolo como si hubiera sido previo.</p>
 </section>
 <section id="procedencia-y-versiones">
 <h2>3.2 Procedencia y versiones<a class="headerlink" href="#procedencia-y-versiones" title="Link to this heading">#</a></h2>
 <p>Las evidencias de los bloques A/B están en <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloques_ab_20261115/</span></code>; las del candidato, en <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloque_c_20261115/</span></code>. Cada conjunto conserva su corte y sus fuentes. La <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">ampliación posterior de E2</a> aporta auditorías y diagnósticos adicionales sin cambiar la A2 original.</p>
-<p>Los capítulos principales 1–16 integran el estado actual. Los capítulos <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a> reúnen el diseño y los resultados posteriores de desarrollo. Su detalle está en los anexos B–G, junto con las plantillas y la <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">concordancia</span></a>; se conservan las direcciones de las páginas y los informes guardados con sus hashes.</p>
+<p>La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> y su <a class="reference download internal" download="" href="../_downloads/0bf20be134132d812eba1b43760104f0/metrics.csv"><span class="xref download myst">tabla de métricas</span></a> reúnen la comparación posterior con diez semillas neuronales. E2 conserva 655 ejemplos de entrenamiento y 53 de calibración; E3, 532 de ajuste y 116 de validación para parada, sin calibración adicional. Las 608 fechas comunes y el número de semillas no igualan esos protocolos ni constituyen múltiples conjuntos independientes.</p>
+<p>Los capítulos principales 1–16 integran el estado actual. Los capítulos <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a> reúnen el diseño y la historia de desarrollo. Su detalle está en los anexos B–G, junto con las plantillas y la <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">concordancia</span></a>; se conservan las direcciones de las páginas y los informes guardados con sus hashes.</p>
 </section>
 </section>
 
