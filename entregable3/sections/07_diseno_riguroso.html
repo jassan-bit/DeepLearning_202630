@@ -391,13 +391,19 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-hueco-de-investigacion-a-la-hipotesis-contrastable">7.1 Del hueco de investigación a la hipótesis contrastable</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion">7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustento-teorico-que-demostrar-y-como-verificarlo">7.3 Sustento teórico: qué demostrar y cómo verificarlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustento-teorico-que-demostrar-y-como-verificarlo">7.3 Sustento teórico: qué demostrar y cómo verificarlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-historica-del-modulo-con-penalizacion-y-saturacion">Propiedad histórica del módulo con penalización y saturación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cota-condicional-de-la-referencia-aditiva-de-1210-parametros">Cota condicional de la referencia aditiva de 1210 parámetros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-exige-la-guia-ademas-de-una-desigualdad">Qué exige la guía además de una desigualdad</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-ablacion">7.4 Diseño de la ablación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilotos-de-desarrollo-completados-y-decisiones">7.5 Pilotos de desarrollo completados y decisiones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-momentos-y-media-transformada">7.6 Propuesta posterior: momentos y media transformada</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-comparacion-y-decision-de-desarrollo">7.7 Controles de comparación y decisión de desarrollo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-exploratorio-por-momentos-condiciones-historicas-y-cierre">7.8 Piloto exploratorio por momentos: condiciones históricas y cierre</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-aditiva-y-comparacion-posterior-vigente">7.9 Réplica aditiva y comparación posterior vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-del-diseno-frente-a-la-guia">7.10 Revisión del diseño frente a la guía</a></li>
 </ul>
             </nav>
         </div>
@@ -412,18 +418,43 @@
   <section class="tex2jax_ignore mathjax_ignore" id="diseno-riguroso-del-modelo-original">
 <h1>7 Diseño riguroso del modelo original<a class="headerlink" href="#diseno-riguroso-del-modelo-original" title="Link to this heading">#</a></h1>
 <p>El mecanismo y su estado de admisibilidad se describen en el <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Bloque C</span></a>. Este capítulo integra el diseño inicial de atención, los pilotos de desarrollo completados y la posterior réplica de la <strong>salida aditiva positiva de 1210 parámetros</strong> en diez semillas. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> presenta la comparación estadística posterior ya calculada. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. Ese análisis no convierte el diseño en un protocolo confirmatorio.</p>
-<p>Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; 7.5–7.8 recogen los pilotos históricos y su cierre, y 7.9 identifica la comparación posterior vigente. Los anexos <a class="reference internal" href="17_revision_post_piloto.html"><span class="std std-doc">B</span></a> a <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">G</span></a> conservan el detalle técnico y los cortes documentales de esas decisiones.</p>
+<p>Este capítulo aplica la sección 7 de la guía: identificar una limitación, formular una explicación refutable, registrar las decisiones y contrastar teoría y ablaciones. Los apartados 7.1–7.4 distinguen los diseños históricos de la referencia evaluada; 7.5–7.8 conservan los pilotos y su cierre, 7.9 identifica la comparación posterior vigente y 7.10 reúne la revisión de requisitos. Los anexos <a class="reference internal" href="17_revision_post_piloto.html"><span class="std std-doc">B</span></a> a <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">G</span></a> conservan el detalle técnico y las fechas de esas decisiones.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Arquitectura</p></th>
+<th class="head"><p>Pregunta de diseño documentada</p></th>
+<th class="head"><p>Alcance de la evidencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Primer módulo, 1211 parámetros</p></td>
+<td><p>Penalizar discordancia y saturar los valores de atención para limitar su sensibilidad.</p></td>
+<td><p>D1–D5 y cota latente históricas; el piloto global fue desfavorable frente a M00.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencia aditiva, 1210 parámetros</p></td>
+<td><p>Sumar un exceso positivo al piso observable del objetivo, conservando atención por contenido.</p></td>
+<td><p>Diez réplicas y análisis posterior completos. Su buen rendimiento no demuestra que el cambio de salida sea una contribución nueva ni que explique por sí solo la ganancia.</p></td>
+</tr>
+<tr class="row-even"><td><p>Cabeza de momentos, 1236 parámetros</p></td>
+<td><p>Relacionar momentos de una innovación con la media de la transformación objetivo.</p></td>
+<td><p>Teoría condicional y tres recetas de desarrollo completadas; no superó la heurística de continuación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <section id="del-hueco-de-investigacion-a-la-hipotesis-contrastable">
 <h2>7.1 Del hueco de investigación a la hipótesis contrastable<a class="headerlink" href="#del-hueco-de-investigacion-a-la-hipotesis-contrastable" title="Link to this heading">#</a></h2>
 <p><strong>Origen del primer diseño de atención.</strong> Las hipótesis D1–D5 siguientes motivaron penalización y saturación. Los pilotos posteriores no las convierten en un protocolo confirmatorio ni en una declaración de superioridad. Su resultado de desarrollo se integra en 7.5.</p>
 <p><strong>D1. Limitación identificada y evidencia disponible.</strong> El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/54_robustez_interpretabilidad.html">estudio de robustez de E2</a> ejecutó un estrés que desplaza el 10 % de las celdas de entrada en ±5 desviaciones estándar. Bajo esa condición, la RMSE aumentó un 585,40 % en el SAE, un 513,98 % en GRU32 y un 1.552,52 % en TimeMixer. Es evidencia de sensibilidad bajo una corrupción artificial concreta, observada retrospectivamente en el benchmark. No demuestra fragilidad ante cualquier error de mercado: las ventanas perturbadas pueden incumplir la coherencia OHLCV. La limitación operativa de calendario de TimeMixer en ETTh1 tampoco se traslada al adaptador BTC sin marcadores de calendario.</p>
 <p><strong>D2. Fuente y diferencia candidata del mecanismo.</strong> Se conserva el codificador CNN causal → LSTM unidireccional y se estudia una regla de atención que combina penalización de discordancia respecto a una referencia causal fija con saturación radial de valores. La consulta por contenido, las CNN, las LSTM y la estabilidad Lipschitz tienen antecedentes. Además, la saturación usada es el gradiente de una función pseudo-Huber radial. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación y la revisión focal</span></a> distinguen esos componentes conocidos de la combinación que se investiga. Las dos modificaciones candidatas no se presentan como una invención acreditada: faltan cerrar la revisión de novedad, las equivalencias con trabajos cercanos y su verificación externa.</p>
+<p>No se ha cerrado una transferencia desde una aplicación de origen concreta. Citar antecedentes de atención y estabilidad no demuestra por sí solo esa transferencia ni su adaptación sustantiva. Si se defiende una transferencia, deberán identificarse la fuente exacta, la propiedad o estructura compartida que permite trasladarla y el cambio algorítmico requerido en BTC. Si se defiende una combinación propia, deberá demostrarse su diferencia frente a los trabajos cercanos. La revisión pendiente no se completa asignando una procedencia retrospectiva por conveniencia.</p>
 <p><strong>D3. Hipótesis del mecanismo, propuesta para desarrollo.</strong> Si la penalización y la saturación reducen la influencia de estados discordantes por el mecanismo previsto, el modelo completo deberá reducir la RMSE frente al mismo codificador con atención convencional de contenido en un conjunto de estrés <span class="math notranslate nohighlight">\(S\)</span> definido antes de evaluar, sin un deterioro limpio superior al margen heredado. Para BTCUSDT se conserva</p>
 <div class="math notranslate nohighlight">
 \[
 \delta=0{,}00025772842664981106
 \]</div>
 <p>en unidades originales de <span class="math notranslate nohighlight">\(\sigma_7\)</span>; no se recalcula con el resultado del candidato. La propuesta exige una ganancia de al menos <span class="math notranslate nohighlight">\(\delta\)</span> en <span class="math notranslate nohighlight">\(S\)</span>. Quedaría refutada si no se observa ese beneficio bajo el diseño fijado o si el deterioro limpio excede el margen. Mejorar sólo la robustez no satisface la comparación principal de R3 frente al Top 10 y todos los baselines fuertes.</p>
+<p>La explicación causal propuesta es que la penalización reduzca el peso de estados discordantes y la saturación limite la amplitud de los valores que éstos pueden aportar. La cota demuestra una restricción matemática de sensibilidad, pero no demuestra que la discordancia identifique errores en vez de saltos genuinos. Esa diferencia es precisamente lo que deben contrastar el estrés plausible, la ablación y los análisis de cola; no se da por cierta a partir de una RMSE global.</p>
 <p><strong>D4. Predicciones secundarias que deben contrastarse.</strong> Se proponen antes de los experimentos finales:</p>
 <ul class="simple">
 <li><p>Al retirar la saturación, debería aumentar la sensibilidad a perturbaciones que producen estados latentes grandes. El ejemplo analítico del <a class="reference internal" href="09_modelo_original.html"><span class="std std-doc">anexo técnico</span></a> muestra ese efecto en un caso artificial, no en BTC.</p></li>
@@ -432,11 +463,13 @@
 <li><p>Los saltos genuinos y la cobertura en la cola alta no deberían degradarse de manera incompatible con la hipótesis. Una ganancia media acompañada de supresión de extremos obliga a revisar el diseño y sus límites.</p></li>
 </ul>
 <p><strong>D5. Éxito y fracaso antes de la evaluación definitiva.</strong> Como criterio de desarrollo propuesto, sean <span class="math notranslate nohighlight">\(\Delta_S=\operatorname{RMSE}_{\rm base}(S)-\operatorname{RMSE}_{\rm completo}(S)\)</span> y <span class="math notranslate nohighlight">\(D_0=\operatorname{RMSE}_{\rm completo}(\text{limpio})-\operatorname{RMSE}_{\rm base}(\text{limpio})\)</span>. El criterio a someter a cierre previo es que el límite inferior del IC95 % de <span class="math notranslate nohighlight">\(\Delta_S\)</span> supere <span class="math notranslate nohighlight">\(\delta\)</span> y que el límite superior del IC95 % de <span class="math notranslate nohighlight">\(D_0\)</span> quede por debajo de <span class="math notranslate nohighlight">\(\delta\)</span>, con inferencia temporal y control familiar definidos en el protocolo. Los umbrales de los análisis de cola también deben fijarse antes de conocer sus resultados.</p>
-<p>No cumplir esas condiciones impide declarar éxito de esta hipótesis; un intervalo amplio se reportaría como no concluyente, sin confundirlo con equivalencia. La hipótesis, los IC anteriores y los criterios secundarios son <strong>propuestas sin ejecución ni preregistro</strong>. Antes de confirmar se deben cerrar el estimando, el remuestreo, las familias y las reglas de decisión. R3 requerirá además sus condiciones completas de relevancia, adecuación y superioridad frente a cada rival; no se deduce de una comparación favorable con el modelo base.</p>
+<p>No cumplir esas condiciones impide declarar éxito de esta hipótesis; un intervalo amplio se reportaría como no concluyente, sin confundirlo con equivalencia. El contraste de estrés y sus criterios secundarios siguen siendo <strong>propuestas sin ejecución ni preregistro</strong>, aunque M00 y el modelo completo sí se entrenaron en el piloto global de 7.5. Antes de confirmar se deben cerrar el estimando, el remuestreo, las familias y las reglas de decisión. R3 requerirá además sus condiciones completas de relevancia, adecuación y superioridad frente a cada rival; no se deduce de una comparación favorable con el modelo base.</p>
+<p><strong>Aplicación a la referencia actualmente evaluada.</strong> El diagnóstico posterior del piso y la elección de la cabeza aditiva se conservan como decisiones de desarrollo. No heredan la hipótesis de penalización/saturación: la referencia de 1210 parámetros carece de ambas modificaciones. Sus diez semillas y los 48 contrastes describen la receta ejecutada, sin aislar causalmente la cabeza, la atención o el entrenamiento. Para defenderla como aporte debe fijarse una limitación específica y una hipótesis propia, con subconjunto observable al pronosticar, magnitud de efecto y predicciones secundarias refutables. Esas decisiones futuras no se presentarán como anteriores a los resultados ya conocidos.</p>
 </section>
 <section id="disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion">
 <h2>7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación<a class="headerlink" href="#disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion" title="Link to this heading">#</a></h2>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md">bitácora inicial</a> registra cuatro variantes de software comprobadas con entradas artificiales: completa, sin penalización, sin saturación y sin contenido. Su conteo de cero recetas entrenadas en mercado corresponde al corte anterior a los pilotos. <strong>V1/v2 reunieron cinco recetas neuronales y el piloto por momentos completó otras tres.</strong> Las diez réplicas aditivas posteriores conservan una receta, sin diez diseños nuevos. El <span class="math notranslate nohighlight">\(N_d\)</span> global sigue pendiente de conciliación e incluye también propuestas, parametrizaciones y ensayos descartados; no se reduce al subtotal de ocho recetas. Antes de confirmar debe declararse el inventario completo con fecha, evidencia, métricas y decisión.</p>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md">bitácora canónica de consolidación</a>, fechada el 17 de noviembre de 2026, enlaza el <a class="reference download internal" download="" href="../_downloads/b3f6f358b9fc0910700fe7b1dfa822ec/design_log.md"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">diseño</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/50b3ff637fb9cb68ddef8d2273756d4a/design_inventory.csv"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">de</span> <span class="pre">variantes</span> <span class="pre">y</span> <span class="pre">ejecuciones</span></code></a>. La consolidación conserva las fuentes históricas y los campos desconocidos; no es un registro previo de aquellos experimentos ni un cierre del <span class="math notranslate nohighlight">\(N_d\)</span> global. Las fechas de un plan o del nombre de una carpeta no se convierten en fechas verificadas de ejecución.</p>
 <p>El ajuste diminuto de una prueba unitaria realizó 350 pasos de Adam sobre ocho ejemplos artificiales. Comprueba capacidad de ajuste del software; no constituye entrenamiento de BTC, validación del mecanismo económico ni selección de hiperparámetros con los datos de E1/E2.</p>
 <p>La separación de datos para las siguientes fases debe conservar estos roles:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -462,12 +495,16 @@
 </tbody>
 </table>
 </div>
+<p>En la evidencia actual, las 116 fechas de julio–octubre de 2024 son <strong>validación de desarrollo</strong>: guiaron las mejores épocas y la elección entre recetas. Los 532 ejemplos anteriores se usaron para ajuste y estadísticas de transformación. Las 53 fechas de calibración de E2 no se abrieron en el procedimiento aditivo congelado. Las 608 fechas de prueba conservan su etiqueta histórica y permiten la comparación posterior, pero no se convierten en una reserva confirmatoria nueva. Renombrar una cohorte no deshace su exposición previa.</p>
 <p>Las 608 fechas de enero de 2025 a agosto de 2026 ya se evaluaron en E1/E2; la reserva de septiembre–octubre de 2026 también tiene antecedentes publicados. Repetir esos periodos no recupera cegamiento. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato heredado</a> conserva su procedencia; la confirmación de E3 requiere documentar la exposición previa y una separación real de las decisiones de diseño.</p>
 <p>Antes de la campaña definitiva deben quedar cerrados la arquitectura y la pérdida, la revisión del mecanismo, las particiones y fuentes, los tres datasets adicionales, el espacio y presupuesto de ajuste comparable, el piloto de potencia, las semillas y el número de ejecuciones, las hipótesis y familias, el <span class="math notranslate nohighlight">\(N_d\)</span> y la bitácora. La comparación posterior ya dispone de diez semillas por red; ese número observado no acredita que se haya alcanzado la potencia exigida para una confirmación futura.</p>
 <p>El congelamiento debe registrarse con fecha y tag Git reales anteriores a los experimentos definitivos. Un cambio posterior de arquitectura, pérdida o espacio de búsqueda reinicia el protocolo con nueva versión y conserva el historial. El esfuerzo de diseño del candidato se reportará separado del presupuesto de HPO de cada rival, sin ocultar una asimetría bajo el mismo número de configuraciones.</p>
+<p>El número de semillas, el tiempo de entrenamiento y el número de diseños describen aspectos diferentes del esfuerzo. Repetir diez veces una receta no elimina la selección previa entre recetas; el registro de <span class="math notranslate nohighlight">\(N_d\)</span> tampoco produce por sí solo una corrección numérica del sesgo del ganador. La comparación actual mantiene 532 ejemplos de ajuste y 116 de desarrollo en E3, frente a 655 de ajuste y 53 de calibración en E2. No se declara equivalencia de HPO, política de ajuste final o cómputo a partir de compartir ventanas D7×5.</p>
 </section>
 <section id="sustento-teorico-que-demostrar-y-como-verificarlo">
 <h2>7.3 Sustento teórico: qué demostrar y cómo verificarlo<a class="headerlink" href="#sustento-teorico-que-demostrar-y-como-verificarlo" title="Link to this heading">#</a></h2>
+<section id="propiedad-historica-del-modulo-con-penalizacion-y-saturacion">
+<h3>Propiedad histórica del módulo con penalización y saturación<a class="headerlink" href="#propiedad-historica-del-modulo-con-penalizacion-y-saturacion" title="Link to this heading">#</a></h3>
 <p>La propiedad del primer diseño es una cota Lipschitz de la <strong>cabeza sobre estados latentes</strong>. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación del Bloque C</span></a> y la <a class="reference download internal" download="" href="../_downloads/baebf3f0c6b03093bbfcfebf157eef77/theory.md"><code class="xref download docutils literal notranslate"><span class="pre">demostración</span> <span class="pre">íntegra</span> <span class="pre">con</span> <span class="pre">derivadas</span> <span class="pre">y</span> <span class="pre">pseudocódigo</span></code></a> conservan su desarrollo. La demostración siguiente es autocontenida; no extiende la garantía al preprocesamiento, a la CNN o a la LSTM. La propiedad de la propuesta posterior por momentos se integra en 7.6.</p>
 <p>Sean <span class="math notranslate nohighlight">\(H,H'\in\mathbb R^{n\times d}\)</span>, con <span class="math notranslate nohighlight">\(n=7\)</span> en el problema principal. Se usan norma euclídea, norma de Frobenius y norma espectral para vectores, estados y operadores, respectivamente. Sean <span class="math notranslate nohighlight">\(P\)</span> una matriz causal fija e independiente de <span class="math notranslate nohighlight">\(H\)</span>, <span class="math notranslate nohighlight">\(A=I-P\)</span> y parámetros de inferencia fijos tales que</p>
 <div class="math notranslate nohighlight">
@@ -581,11 +618,92 @@ c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 </tbody>
 </table>
 </div>
-<p>La ausencia de violaciones en 256 pares apoya la implementación; la afirmación universal procede de la demostración. El caso analítico del anexo ilustra una consecuencia observable de acotar valores, pero <strong>todavía falta comprobar un beneficio predictivo en datos reales de desarrollo</strong>. Las pruebas de gradientes, formas, causalidad del encoder, sobreajuste diminuto y serialización tampoco sustituyen esa evidencia.</p>
+<p>La ausencia de violaciones en 256 pares apoya la implementación; la afirmación universal procede de la demostración. El caso analítico del anexo ilustra una consecuencia observable de acotar valores, pero <strong>todavía falta comprobar un beneficio predictivo atribuible a esa propiedad en datos reales de desarrollo</strong>. El piloto global de v1 fue desfavorable al módulo completo; no respalda una promesa general de mejora. Tampoco ejecutó el contraste de estrés D3–D5, de modo que no identifica por sí solo la causa de ese resultado. Las pruebas de gradientes, formas, causalidad del encoder, sobreajuste diminuto y serialización mantienen su alcance de software.</p>
+</section>
+<section id="cota-condicional-de-la-referencia-aditiva-de-1210-parametros">
+<h3>Cota condicional de la referencia aditiva de 1210 parámetros<a class="headerlink" href="#cota-condicional-de-la-referencia-aditiva-de-1210-parametros" title="Link to this heading">#</a></h3>
+<p>La referencia actual conserva atención convencional por contenido y retira penalización y saturación. Por ello se demuestra por separado una propiedad conocida sobre <strong>estados acotados</strong>, sin trasladarle el teorema anterior. Sean <span class="math notranslate nohighlight">\(H,H'\in\mathbb R^{n\times d}\)</span> con filas de norma a lo sumo <span class="math notranslate nohighlight">\(R\)</span>, y parámetros de inferencia fijos con <span class="math notranslate nohighlight">\(\|q\|_2\le Q\)</span>, <span class="math notranslate nohighlight">\(\|w\|_2\le W\)</span> y <span class="math notranslate nohighlight">\(\tau\ge\tau_{\min}&gt;0\)</span>. Sean también <span class="math notranslate nohighlight">\(A\ge0\)</span> y <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> fijos. La cabeza definida en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6.8</span></a> es</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha(H)=\operatorname{softmax}(Hq/\tau),\qquad
+c(H)=H^\top\alpha(H),\qquad
+f_A(H)=\sqrt A+a_{\rm tr}[10^{-4}+\operatorname{softplus}(w^\top c(H)+b)].
+\]</div>
+<p>El mismo límite del jacobiano de softmax da <span class="math notranslate nohighlight">\(\|\alpha(H)-\alpha(H')\|_2\le Q\|H-H'\|_F/(2\tau_{\min})\)</span>. Como <span class="math notranslate nohighlight">\(\|H\|_2\le\sqrt nR\)</span> y <span class="math notranslate nohighlight">\(\|\alpha(H')\|_2\le1\)</span>, descomponer la diferencia del contexto y componer la lectura y softplus demuestra</p>
+<div class="math notranslate nohighlight">
+\[
+|f_A(H)-f_A(H')|\le K_{\rm ad}\|H-H'\|_F,\qquad
+K_{\rm ad}=a_{\rm tr}W\left(1+\frac{\sqrt n RQ}{2\tau_{\min}}\right).
+\]</div>
+<p>Cada estado oculto de la LSTM estándar tiene coordenadas <span class="math notranslate nohighlight">\(h_j=o_j\odot\tanh(C_j)\)</span>, de magnitud a lo sumo uno en aritmética real; se puede usar <span class="math notranslate nohighlight">\(R=\sqrt d\)</span>. Esto identifica un dominio que contiene los estados alcanzables, sin afirmar que todo tensor de ese dominio sea alcanzable. Para <span class="math notranslate nohighlight">\(n=7\)</span>, <span class="math notranslate nohighlight">\(d=12\)</span>, <span class="math notranslate nohighlight">\(Q=1\)</span>, <span class="math notranslate nohighlight">\(W=4\)</span> y <span class="math notranslate nohighlight">\(\tau_{\min}=0{,}25\)</span>, resulta <strong><span class="math notranslate nohighlight">\(K_{\rm ad}/a_{\rm tr}=77{,}32121111929344\)</span></strong>. No se ha acotado la sensibilidad del encoder respecto de su entrada.</p>
+<p>Si cambia el piso, sólo se añade el término <span class="math notranslate nohighlight">\(|\sqrt A-\sqrt{A'}|\le\sqrt{|A-A'|}\)</span>. La raíz no es uniformemente Lipschitz respecto de <span class="math notranslate nohighlight">\(A\)</span> cerca de cero. Esto impide extender esta cota condicional a una garantía global en <span class="math notranslate nohighlight">\((H,A)\)</span> con esas normas, y no demuestra inestabilidad desde retornos u OHLCV. Tampoco acredita novedad, calibración o menor RMSE.</p>
+<p><strong>Verificación ejecutada para esta fórmula.</strong> El 17 de noviembre de 2026 se comprobaron estados artificiales en CPU, sin cargar datos ni pesos entrenados de mercado. Se fijaron <span class="math notranslate nohighlight">\(a_{\rm tr}=0{,}02\)</span> y <span class="math notranslate nohighlight">\(A=0{,}0001\)</span> como constantes sintéticas; el primer valor no es una estadística estimada del conjunto real. Se examinaron inicialización sembrada, parámetros cercanos a sus límites y atención uniforme, con coordenadas en <span class="math notranslate nohighlight">\([-1,1]\)</span>, tres amplitudes y tres escalas de perturbación. Dentro de cada perfil los parámetros permanecieron fijos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comprobación de la referencia aditiva</p></th>
+<th class="head text-right"><p>Resultado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pares latentes sintéticos</p></td>
+<td class="text-right"><p>1728</p></td>
+</tr>
+<tr class="row-odd"><td><p>Normas de gradiente de la fórmula de referencia float64</p></td>
+<td class="text-right"><p>96</p></td>
+</tr>
+<tr class="row-even"><td><p>Cota con la escala sintética fijada</p></td>
+<td class="text-right"><p>1,5464242224</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mayor cociente de diferencias observado, precisión mixta</p></td>
+<td class="text-right"><p>0,0256703577</p></td>
+</tr>
+<tr class="row-even"><td><p>Mayor cociente dividido por la escala sintética</p></td>
+<td class="text-right"><p>1,2835178841</p></td>
+</tr>
+<tr class="row-odd"><td><p>Violaciones observadas con la tolerancia registrada</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Mayor diferencia absoluta entre vía original mixta y referencia float64</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(1{,}591\times10^{-8}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference download internal" download="" href="../_downloads/ebdae2f20d2ba3fc4bff878af7345ca9/theory_reference.md"><code class="xref download docutils literal notranslate"><span class="pre">demostración</span> <span class="pre">y</span> <span class="pre">sus</span> <span class="pre">supuestos</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/140d170ff17ddb84a35b7cd130540d90/verify_theory.py"><code class="xref download docutils literal notranslate"><span class="pre">script</span> <span class="pre">de</span> <span class="pre">reproducción</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/fbaa745ff826ded864b6a0836c50f91b/theory_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">numérico</span> <span class="pre">con</span> <span class="pre">entorno</span> <span class="pre">y</span> <span class="pre">hashes</span></code></a> conservan el procedimiento, semilla, distancias y tolerancia. Las tres fuentes del módulo coinciden con las de la campaña congelada. La comprobación finita apoya el código; la afirmación universal procede de la demostración en aritmética real. El redondeo float32 no hereda literalmente una garantía continua para diferencias arbitrariamente pequeñas. Estos ensayos no prueban una cota del pipeline OHLCV ni que esta propiedad explique la ganancia histórica de predicción.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/.github/workflows/verify-e3-design-theory.yml">workflow de comprobación CPU</a> reproduce estos ensayos y verifica las copias publicadas de la bitácora y la demostración. Guarda su propio informe sin sobrescribir los resultados versionados; no ejecuta entrenamiento o inferencia de mercado ni sustituye una reproducción humana independiente.</p>
+</section>
+<section id="que-exige-la-guia-ademas-de-una-desigualdad">
+<h3>Qué exige la guía además de una desigualdad<a class="headerlink" href="#que-exige-la-guia-ademas-de-una-desigualdad" title="Link to this heading">#</a></h3>
+<p>La propiedad elegida debe tener supuestos explícitos, demostración y verificación numérica, y debe mostrarse si importa para el problema. Una simulación artificial puede comprobar la implementación o una consecuencia matemática; no sustituye el beneficio predictivo que se atribuya al mecanismo. Las discrepancias entre supuestos y datos deben declararse, conservando resultados adversos.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Línea de diseño</p></th>
+<th class="head"><p>Lo demostrado o comprobado</p></th>
+<th class="head"><p>Lo que no se ha establecido</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Penalización y saturación, 1211 parámetros</p></td>
+<td><p>Cota latente anterior, derivadas y verificación artificial.</p></td>
+<td><p>Beneficio predictivo atribuible a la cota y robustez de mercado bajo D3–D5.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Salida aditiva, 1210 parámetros</p></td>
+<td><p>Soporte de la salida y cota condicional anterior sobre estados acotados, con comprobación numérica propia.</p></td>
+<td><p>Novedad del mecanismo, beneficio causal de cada componente y una garantía desde OHLCV crudo. La cota de saturación de v1 no se hereda.</p></td>
+</tr>
+<tr class="row-even"><td><p>Momentos, 1236 parámetros</p></td>
+<td><p>Consistencia condicional del riesgo bajo capacidad y momentos verdaderos; contraejemplos con momentos erróneos y auxiliares.</p></td>
+<td><p>Convergencia de la red finita o mejora de RMSE con momentos estimados; el piloto no superó su heurística.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las otras propiedades admisibles de la guía —invariancia/equivarianza, descenso de pérdida, expresividad, generalización o propiedades de la pérdida— son alternativas que requieren su propia formulación, supuestos y verificación. No se afirma haberlas demostrado por enumerarlas. Una propiedad conocida de una parametrización tampoco acredita por sí sola la contribución original.</p>
+</section>
 </section>
 <section id="diseno-de-la-ablacion">
 <h2>7.4 Diseño de la ablación<a class="headerlink" href="#diseno-de-la-ablacion" title="Link to this heading">#</a></h2>
-<p>Hay dos modificaciones algorítmicas candidatas: penalización de discordancia y saturación radial. Se propone un factorial completo <span class="math notranslate nohighlight">\(2\times2\)</span> para separar sus aportes e interacción, con el mismo codificador y atención de contenido. Esta organización del informe no agrega código, entrenamientos o resultados.</p>
+<p>En el primer diseño hay dos modificaciones algorítmicas candidatas: penalización de discordancia y saturación radial. Se propone un factorial completo <span class="math notranslate nohighlight">\(2\times2\)</span> para separar sus aportes e interacción, con el mismo codificador y atención de contenido. Este plan pertenece al módulo de 1211 parámetros; no completa la ablación de la referencia aditiva ni agrega entrenamientos o resultados.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo <span class="math notranslate nohighlight">\(M_{uv}\)</span></p></th>
@@ -630,6 +748,8 @@ c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 </table>
 </div>
 <p>El control sin contenido estudia un componente convencional y <strong>no es una tercera innovación</strong>. Las tres ablaciones funcionales existentes no equivalen a haber completado el factorial, ni a la ablación estadística exigida. El piloto v1 ya implementó y comparó <span class="math notranslate nohighlight">\(M_{00}\)</span> y <span class="math notranslate nohighlight">\(M_{11}\)</span>; las dos intervenciones aisladas siguen sin esa evaluación de mercado. El resultado de v1 fue desfavorable al modelo completo en la métrica global.</p>
+<p>Las cuatro celdas cubren las variantes mínimas de la guía para esos dos componentes: <span class="math notranslate nohighlight">\(M_{11}\)</span> es el completo; <span class="math notranslate nohighlight">\(M_{01}\)</span> retira penalización y añade sólo saturación a la base; <span class="math notranslate nohighlight">\(M_{10}\)</span> retira saturación y añade sólo penalización; <span class="math notranslate nohighlight">\(M_{00}\)</span> carece de ambas. Con dos factores, el factorial completo permite identificar la interacción sin fraccionarlo. Si un diseño posterior incorpora más factores, un factorial fraccionado deberá justificar qué interacciones permite estimar y cuáles quedan confundidas, antes de observar los resultados.</p>
+<p>La exigencia general de aislar al menos tres componentes debe justificarse sobre el modelo que finalmente se defienda, sin contar tres innovaciones por tres intervenciones ni trasladar las de otro núcleo. Los controles convencionales pueden responder preguntas de dependencia arquitectónica, pero no demuestran que esos bloques sean nuevos. Para la referencia aditiva sigue pendiente el plan de ablación correspondiente al aporte que se presente: los pilotos v1, v2 y por momentos comparan preguntas y recetas distintas.</p>
 <p>Para errores <span class="math notranslate nohighlight">\(E_{uv}\)</span> sobre unidades comparables, la interacción puede expresarse como</p>
 <div class="math notranslate nohighlight">
 \[
@@ -753,6 +873,66 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 <p>La comparación actual conserva la receta <strong>CNN causal → LSTM → atención temporal por contenido y salida aditiva positiva</strong>, de <strong>1210 parámetros</strong>, en diez semillas <code class="docutils literal notranslate"><span class="pre">271801</span></code>–<code class="docutils literal notranslate"><span class="pre">271810</span></code>. No vuelve a seleccionar arquitectura o época con las 608 fechas de prueba conocidas. E3 usa 532 ejemplos de ajuste, 116 de validación y ninguno de calibración; E2 mantiene 655 de ajuste y 53 de calibración. Las trece redes de E2 ya tienen diez semillas cada una, mientras sus tres clásicos deterministas conservan una trayectoria: 133 predictores de E2 frente a las diez réplicas aditivas.</p>
 <p>El código del análisis se fija en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/0213266404a0aa3af985d7306dce6b13892c71ec">0213266</a> y el plan en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/4a21b0329b99e864ec64fc2df49260aa874141bf">4a21b03</a>. Ese orden fija el cálculo posterior, no retrofecha una confirmación anterior a los entrenamientos o a la exposición al calendario. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> y sus <a class="reference download internal" download="" href="../_downloads/29e3a1414499a70f9d5dc7ef6e55972c/primary_contrasts.csv"><span class="xref download myst">tablas de contrastes</span></a> presentan los 48 rechazos tras Holm con sus distintos ámbitos de incertidumbre. No se afirma igualdad de entrenamiento, potencia suficiente ni superioridad R3; el MCS auxiliar conserva diez modelos, incluida la aditiva.</p>
 </section>
+<section id="revision-del-diseno-frente-a-la-guia">
+<h2>7.10 Revisión del diseño frente a la guía<a class="headerlink" href="#revision-del-diseno-frente-a-la-guia" title="Link to this heading">#</a></h2>
+<p>La revisión del 17 de noviembre de 2026 conserva las decisiones y los resultados con su fecha y arquitectura. La <a class="reference download internal" download="" href="../_downloads/5ef31763bab13611e2dc11021a09a59d/requirements_review.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">requisitos</span> <span class="pre">y</span> <span class="pre">evidencia</span></code></a> permite seguir los pendientes sin presentar un plan como una ejecución.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exigencia</p></th>
+<th class="head"><p>Evidencia actual</p></th>
+<th class="head"><p>Para cerrar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D1: limitación concreta y cuantificada</p></td>
+<td><p>Estrés artificial de E2, diagnóstico posterior del piso y resultados por régimen documentados.</p></td>
+<td><p>Limitación específica que la contribución finalmente defendida pretende corregir, sin trasladar automáticamente el calendario de ETTh1 ni una corrupción artificial a BTC.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D2: fuente propia o transferida y adaptación</p></td>
+<td><p>Componentes conocidos y fuentes atribuidos; tres líneas de diseño diferenciadas.</p></td>
+<td><p>Resolver la diferencia sustantiva y, si hay transferencia, aplicación de origen, motivo de transferibilidad y modificación desde la formulación.</p></td>
+</tr>
+<tr class="row-even"><td><p>D3–D5: hipótesis, predicciones secundarias y éxito/fracaso previos</p></td>
+<td><p>Propuesta histórica para penalización/saturación; heurísticas de desarrollo y resultados favorables y adversos conservados.</p></td>
+<td><p>Hipótesis específica del mecanismo defendido, subconjuntos observables, magnitudes y reglas cerradas antes de una nueva evaluación confirmatoria. No retrofecharlas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Registro de iteraciones y <span class="math notranslate nohighlight">\(N_d\)</span></p></td>
+<td><p>Bitácora parcial consolidada; ocho recetas neuronales históricas y diez réplicas posteriores de una de ellas.</p></td>
+<td><p>Conciliar todas las propuestas, parametrizaciones, intentos y fallos; cuantificar y discutir selección sin tomar ocho como <span class="math notranslate nohighlight">\(N_d\)</span> global.</p></td>
+</tr>
+<tr class="row-even"><td><p>Separación entre desarrollo y confirmación</p></td>
+<td><p>Cohortes y exposición histórica declaradas; las 116 fechas siguen siendo desarrollo.</p></td>
+<td><p>Separación real para decisiones futuras, sin usar confirmación para rediseñar o recuperar cegamiento por cambiar nombres.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tres conjuntos adicionales independientes del diseño</p></td>
+<td><p>Ninguno elegido ni evaluado en E3.</p></td>
+<td><p>Seleccionarlos antes de conocer su desempeño, documentar tarea, diferencias y admisión; si guían el diseño, declararlos desarrollo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Congelamiento y esfuerzo comparable</p></td>
+<td><p>Recetas, planes y consumos guardados; comparación posterior identificada.</p></td>
+<td><p>Arquitectura, pérdida, espacio de búsqueda, recursos y protocolo con fecha/tag anteriores a futuros experimentos; HPO equivalente y esfuerzo de diseño separado. Un cambio posterior exige nueva versión.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Propiedad formal y verificación numérica</p></td>
+<td><p>Pruebas delimitadas por arquitectura: cota histórica de v1, cota condicional aditiva con 1728 pares/96 gradientes y teoría condicional de momentos.</p></td>
+<td><p>Justificar la propiedad del aporte defendido y sus supuestos; no convertir una desigualdad conocida en prueba de novedad o garantía sobre todo el pipeline.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mostrar que la propiedad importa</p></td>
+<td><p>Ejemplos artificiales y resultados de desarrollo conservados, incluido el deterioro de v1.</p></td>
+<td><p>Beneficio predictivo atribuible al mecanismo bajo el diseño previsto; la RMSE favorable de otra receta no lo demuestra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ablaciones mínimas e interacción</p></td>
+<td><p>M00 y completo entrenados en v1; intervenciones aisladas artificiales y controles v2/momentos con preguntas distintas.</p></td>
+<td><p>Modelo completo, cada componente retirado o sustituido, base y cada componente añadido solo; al menos tres componentes aislados justificados del modelo defendido, interacción e IC.</p></td>
+</tr>
+<tr class="row-even"><td><p>Inferencia, capacidad y conclusión prudente</p></td>
+<td><p>Regla de familia de ablación separada y controles de capacidad documentados.</p></td>
+<td><p>Mismas pruebas pertinentes, Holm dentro de esa familia, presupuestos y semillas comparables, variantes de tamaño igualado cuando cambie capacidad; contribución observada no equivale a mecanismo causal demostrado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esta revisión no selecciona un mecanismo nuevo, abre entrenamiento de mercado o aprueba un protocolo confirmatorio. La siguiente decisión de investigación debe resolver qué aporte se sostendrá con evidencia y comprensión del autor, conservando la referencia aditiva como resultado reproducible dentro de su alcance.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -823,13 +1003,19 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-hueco-de-investigacion-a-la-hipotesis-contrastable">7.1 Del hueco de investigación a la hipótesis contrastable</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion">7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustento-teorico-que-demostrar-y-como-verificarlo">7.3 Sustento teórico: qué demostrar y cómo verificarlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustento-teorico-que-demostrar-y-como-verificarlo">7.3 Sustento teórico: qué demostrar y cómo verificarlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-historica-del-modulo-con-penalizacion-y-saturacion">Propiedad histórica del módulo con penalización y saturación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cota-condicional-de-la-referencia-aditiva-de-1210-parametros">Cota condicional de la referencia aditiva de 1210 parámetros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-exige-la-guia-ademas-de-una-desigualdad">Qué exige la guía además de una desigualdad</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-ablacion">7.4 Diseño de la ablación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilotos-de-desarrollo-completados-y-decisiones">7.5 Pilotos de desarrollo completados y decisiones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-momentos-y-media-transformada">7.6 Propuesta posterior: momentos y media transformada</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-comparacion-y-decision-de-desarrollo">7.7 Controles de comparación y decisión de desarrollo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-exploratorio-por-momentos-condiciones-historicas-y-cierre">7.8 Piloto exploratorio por momentos: condiciones históricas y cierre</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replica-aditiva-y-comparacion-posterior-vigente">7.9 Réplica aditiva y comparación posterior vigente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-del-diseno-frente-a-la-guia">7.10 Revisión del diseño frente a la guía</a></li>
 </ul>
   </nav></div>
 

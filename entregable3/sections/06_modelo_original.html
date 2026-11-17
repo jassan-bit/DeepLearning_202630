@@ -607,6 +607,12 @@ python<span class="w"> </span>scripts/e3_verify_original.py<span class="w"> </sp
 <section id="validez-del-modelo-y-regla-de-evaluacion">
 <h2>6.6 Validez del modelo y regla de evaluación<a class="headerlink" href="#validez-del-modelo-y-regla-de-evaluacion" title="Link to this heading">#</a></h2>
 <p>La guía distingue: si R1 o R2 fallan, tope 3,0; si R1/R2 y la propiedad se acreditan pero no R3, tope 4,0; la ruta al 5,0 exige cumplir la familia completa y los demás requisitos de evaluación. Es una regla condicionada a evidencia y evaluación académica, no una calificación calculada para este avance.</p>
+<figure class="align-default" id="e3-arbol-topes">
+<img alt="Árbol condicional de los topes: incumplir R1 o R2 conduce a 3,0; R1 y R2 acreditadas sin R3 a 4,0; las tres acreditadas a 5,0, sujeto a los demás requisitos." src="../_images/decision_tree.svg" />
+<figcaption>
+<p><span class="caption-number">Figura 1 </span><span class="caption-text">Árbol de decisión adaptado de la Figura 3 de la guía. Las ramas «No» describen incumplimientos establecidos; un estado pendiente de revisión no se convierte automáticamente en incumplimiento. La propiedad formal y los demás requisitos siguen siendo exigibles. El árbol no asigna una nota al proyecto.</span><a class="headerlink" href="#e3-arbol-topes" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Aquí las condiciones siguen abiertas. Una demostración de la cabeza y pruebas de software no convierten R1 o R3 en aprobadas ni certifican la defensa académica del autor. Las limitaciones y resultados adversos deberán conservarse.</p>
 </section>
 <section id="propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente">
@@ -658,6 +664,7 @@ z=w^\top c_H+b,\qquad
 \]</div>
 <p><span class="math notranslate nohighlight">\(A\)</span> es el piso observable definido en 6.7, calculado a partir de los seis retornos de la ventana; <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> es la media del objetivo en los 532 ejemplos de ajuste. El encoder y la atención usan float32; la lectura y la salida usan float64. La pérdida de esta receta es únicamente <span class="math notranslate nohighlight">\(\operatorname{mean}[(\widehat y-y)^2/a_{\rm tr}^2]\)</span>: <strong>no usa NLL, cuadratura para predecir, una escala Student ni intervalos calibrados</strong>. La palabra «aditiva» se refiere a sumar un exceso positivo al piso, no a una segunda clase de atención.</p>
 <p>La propiedad de soporte se verifica directamente: para <span class="math notranslate nohighlight">\(A\ge0\)</span>, <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> y <span class="math notranslate nohighlight">\(z\)</span> real finito, <code class="docutils literal notranslate"><span class="pre">softplus(z)&gt;0</span></code>, por lo que <span class="math notranslate nohighlight">\(\widehat y&gt;\sqrt A+10^{-4}a_{\rm tr}\)</span> en aritmética exacta. Además, con <span class="math notranslate nohighlight">\(A\)</span> fijo, <span class="math notranslate nohighlight">\(\partial\widehat y/\partial z=a_{\rm tr}\operatorname{sigmoid}(z)\in(0,a_{\rm tr})\)</span>. Es una propiedad conocida de esta parametrización escalar; <strong>no es una cota global del mapa OHLCV, una prueba de novedad ni una garantía de menor error</strong>. Los casos sintéticos de salida comprueban la fórmula y el respeto del piso con tolerancia numérica. La cota latente del módulo de 1211 parámetros no se hereda al retirar la saturación.</p>
+<p>El apartado <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7.3</span></a> aporta una derivación independiente para la cabeza aditiva: con el piso y los parámetros fijos y las filas latentes acotadas por <span class="math notranslate nohighlight">\(\sqrt{12}\)</span>, obtiene <span class="math notranslate nohighlight">\(K_{\rm ad}=77{,}32121111929344\,a_{\rm tr}\)</span>. Su verificación usa estados sintéticos y no pesos entrenados. Es una cota condicional conocida de atención sobre estados acotados; tampoco acredita originalidad o explica por sí sola la mejora histórica.</p>
 <p>El conteo auditable es CNN 128 + LSTM 1056 + consulta, lectura, sesgo y temperatura 26 = <strong>1210</strong>. Para longitud <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(f\)</span> variables, <span class="math notranslate nohighlight">\(c\)</span> canales, kernel <span class="math notranslate nohighlight">\(k\)</span> y estado <span class="math notranslate nohighlight">\(h\)</span>, el coste por muestra incluye <span class="math notranslate nohighlight">\(O(nkfc+n(ch+h^2)+n^2h)\)</span>. El último término sigue presente en el código eager heredado porque calcula la referencia densa <span class="math notranslate nohighlight">\(PH\)</span> aunque su penalización esté desactivada; no se declara un coste lineal de una implementación optimizada inexistente. Faltan los FLOPs completos y la curva empírica de escalabilidad de esta receta.</p>
 </section>
 <section id="pseudocodigo-descriptivo-de-la-ejecucion-cerrada">
@@ -698,8 +705,8 @@ Salida: diez trayectorias y sus métricas individuales; conservar todas.
 <td><p>Diferencia algorítmica sustantiva y defensa humana de la contribución candidata.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Propiedad con supuestos y verificación</p></td>
-<td><p>Piso observable y exceso positivo comprobados; la cota de saturación pertenece a v1.</p></td>
-<td><p>Una propiedad de soporte conocida no acredita la contribución original exigida.</p></td>
+<td><p>Piso y exceso positivo, más cota condicional de la cabeza aditiva en 7.3 con 1728 pares sintéticos y 96 gradientes de referencia. La cota de saturación pertenece a v1.</p></td>
+<td><p>El dominio latente y el piso fijo no cubren el pipeline OHLCV. Faltan evidencia de utilidad predictiva y una contribución admisible; no se declara nueva esta propiedad.</p></td>
 </tr>
 <tr class="row-even"><td><p>Pruebas del modelo</p></td>
 <td><p>Inicialización reproducible, admisión de datos, salida, precisión mixta y gradientes finitos no nulos; reanudación sintética de v2 con pesos, optimizador y RNG.</p></td>

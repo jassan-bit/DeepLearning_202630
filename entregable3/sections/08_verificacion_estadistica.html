@@ -671,7 +671,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 <a class="reference internal image-reference" href="../_images/ranking_rmse.svg"><img alt="Los diecisiete sistemas ordenados por RMSE medio; las redes incluyen su desviación estándar entre diez semillas." src="../_images/ranking_rmse.svg" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Figura 1 </span><span class="caption-text">RMSE medio y DE muestral entre inicializaciones. Los clásicos tienen R=1 y no reciben una barra de dispersión artificial. La DE entre semillas no es un intervalo predictivo ni temporal.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Figura 2 </span><span class="caption-text">RMSE medio y DE muestral entre inicializaciones. Los clásicos tienen R=1 y no reciben una barra de dispersión artificial. La DE entre semillas no es un intervalo predictivo ni temporal.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>La CNN-LSTM obtuvo <strong>RMSE medio 0,0029394324</strong> y <strong>MAE medio 0,0018928273</strong>. El mejor rival por RMSE fue LSTM-autoencoder, con <strong>0,0038728895</strong>: la reducción relativa observada de E3 fue <strong>24,10 %</strong>. Frente a ese rival, la ganancia absoluta fue <strong>0,0009334571</strong>, con IC95% temporal marginal <strong>[0,0006329359; 0,0012131746]</strong>.</p>
@@ -865,7 +865,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 <a class="reference internal image-reference" href="../_images/gains_ci.svg"><img alt="Ganancias de RMSE de E3 frente a los dieciséis rivales con intervalos temporales marginales y el margen heredado." src="../_images/gains_ci.svg" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Figura 2 </span><span class="caption-text">Ganancias e IC95% temporales marginales con bloque 14. Una ganancia positiva favorece a E3. Estos intervalos no son simultáneos para toda la familia.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-number">Figura 3 </span><span class="caption-text">Ganancias e IC95% temporales marginales con bloque 14. Una ganancia positiva favorece a E3. Estos intervalos no son simultáneos para toda la familia.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Los límites nominales del 95% no deben confundirse con límites simultáneos. La cota inferior Bonferroni48 del bootstrap frente a FCN-1D es <strong>0,0001980411</strong>, menor que delta, aunque el contraste Holm rechace. La conclusión no se sustituye por una afirmación inexistente de que todas las cotas Bonferroni superan el margen.</p>

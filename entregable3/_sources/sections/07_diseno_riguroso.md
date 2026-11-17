@@ -2,7 +2,13 @@
 
 El mecanismo y su estado de admisibilidad se describen en el [Bloque C](06_modelo_original.md). Este capítulo integra el diseño inicial de atención, los pilotos de desarrollo completados y la posterior réplica de la **salida aditiva positiva de 1210 parámetros** en diez semillas. La [sección 8](08_verificacion_estadistica.md) presenta la comparación estadística posterior ya calculada. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. Ese análisis no convierte el diseño en un protocolo confirmatorio.
 
-Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; 7.5–7.8 recogen los pilotos históricos y su cierre, y 7.9 identifica la comparación posterior vigente. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) conservan el detalle técnico y los cortes documentales de esas decisiones.
+Este capítulo aplica la sección 7 de la guía: identificar una limitación, formular una explicación refutable, registrar las decisiones y contrastar teoría y ablaciones. Los apartados 7.1–7.4 distinguen los diseños históricos de la referencia evaluada; 7.5–7.8 conservan los pilotos y su cierre, 7.9 identifica la comparación posterior vigente y 7.10 reúne la revisión de requisitos. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) conservan el detalle técnico y las fechas de esas decisiones.
+
+| Arquitectura | Pregunta de diseño documentada | Alcance de la evidencia |
+|---|---|---|
+| Primer módulo, 1211 parámetros | Penalizar discordancia y saturar los valores de atención para limitar su sensibilidad. | D1–D5 y cota latente históricas; el piloto global fue desfavorable frente a M00. |
+| Referencia aditiva, 1210 parámetros | Sumar un exceso positivo al piso observable del objetivo, conservando atención por contenido. | Diez réplicas y análisis posterior completos. Su buen rendimiento no demuestra que el cambio de salida sea una contribución nueva ni que explique por sí solo la ganancia. |
+| Cabeza de momentos, 1236 parámetros | Relacionar momentos de una innovación con la media de la transformación objetivo. | Teoría condicional y tres recetas de desarrollo completadas; no superó la heurística de continuación. |
 
 ## 7.1 Del hueco de investigación a la hipótesis contrastable
 
@@ -12,6 +18,8 @@ Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; 7
 
 **D2. Fuente y diferencia candidata del mecanismo.** Se conserva el codificador CNN causal → LSTM unidireccional y se estudia una regla de atención que combina penalización de discordancia respecto a una referencia causal fija con saturación radial de valores. La consulta por contenido, las CNN, las LSTM y la estabilidad Lipschitz tienen antecedentes. Además, la saturación usada es el gradiente de una función pseudo-Huber radial. La [formulación y la revisión focal](06_modelo_original.md) distinguen esos componentes conocidos de la combinación que se investiga. Las dos modificaciones candidatas no se presentan como una invención acreditada: faltan cerrar la revisión de novedad, las equivalencias con trabajos cercanos y su verificación externa.
 
+No se ha cerrado una transferencia desde una aplicación de origen concreta. Citar antecedentes de atención y estabilidad no demuestra por sí solo esa transferencia ni su adaptación sustantiva. Si se defiende una transferencia, deberán identificarse la fuente exacta, la propiedad o estructura compartida que permite trasladarla y el cambio algorítmico requerido en BTC. Si se defiende una combinación propia, deberá demostrarse su diferencia frente a los trabajos cercanos. La revisión pendiente no se completa asignando una procedencia retrospectiva por conveniencia.
+
 **D3. Hipótesis del mecanismo, propuesta para desarrollo.** Si la penalización y la saturación reducen la influencia de estados discordantes por el mecanismo previsto, el modelo completo deberá reducir la RMSE frente al mismo codificador con atención convencional de contenido en un conjunto de estrés $S$ definido antes de evaluar, sin un deterioro limpio superior al margen heredado. Para BTCUSDT se conserva
 
 $$
@@ -19,6 +27,8 @@ $$
 $$
 
 en unidades originales de $\sigma_7$; no se recalcula con el resultado del candidato. La propuesta exige una ganancia de al menos $\delta$ en $S$. Quedaría refutada si no se observa ese beneficio bajo el diseño fijado o si el deterioro limpio excede el margen. Mejorar sólo la robustez no satisface la comparación principal de R3 frente al Top 10 y todos los baselines fuertes.
+
+La explicación causal propuesta es que la penalización reduzca el peso de estados discordantes y la saturación limite la amplitud de los valores que éstos pueden aportar. La cota demuestra una restricción matemática de sensibilidad, pero no demuestra que la discordancia identifique errores en vez de saltos genuinos. Esa diferencia es precisamente lo que deben contrastar el estrés plausible, la ablación y los análisis de cola; no se da por cierta a partir de una RMSE global.
 
 **D4. Predicciones secundarias que deben contrastarse.** Se proponen antes de los experimentos finales:
 
@@ -29,11 +39,15 @@ en unidades originales de $\sigma_7$; no se recalcula con el resultado del candi
 
 **D5. Éxito y fracaso antes de la evaluación definitiva.** Como criterio de desarrollo propuesto, sean $\Delta_S=\operatorname{RMSE}_{\rm base}(S)-\operatorname{RMSE}_{\rm completo}(S)$ y $D_0=\operatorname{RMSE}_{\rm completo}(\text{limpio})-\operatorname{RMSE}_{\rm base}(\text{limpio})$. El criterio a someter a cierre previo es que el límite inferior del IC95 % de $\Delta_S$ supere $\delta$ y que el límite superior del IC95 % de $D_0$ quede por debajo de $\delta$, con inferencia temporal y control familiar definidos en el protocolo. Los umbrales de los análisis de cola también deben fijarse antes de conocer sus resultados.
 
-No cumplir esas condiciones impide declarar éxito de esta hipótesis; un intervalo amplio se reportaría como no concluyente, sin confundirlo con equivalencia. La hipótesis, los IC anteriores y los criterios secundarios son **propuestas sin ejecución ni preregistro**. Antes de confirmar se deben cerrar el estimando, el remuestreo, las familias y las reglas de decisión. R3 requerirá además sus condiciones completas de relevancia, adecuación y superioridad frente a cada rival; no se deduce de una comparación favorable con el modelo base.
+No cumplir esas condiciones impide declarar éxito de esta hipótesis; un intervalo amplio se reportaría como no concluyente, sin confundirlo con equivalencia. El contraste de estrés y sus criterios secundarios siguen siendo **propuestas sin ejecución ni preregistro**, aunque M00 y el modelo completo sí se entrenaron en el piloto global de 7.5. Antes de confirmar se deben cerrar el estimando, el remuestreo, las familias y las reglas de decisión. R3 requerirá además sus condiciones completas de relevancia, adecuación y superioridad frente a cada rival; no se deduce de una comparación favorable con el modelo base.
+
+**Aplicación a la referencia actualmente evaluada.** El diagnóstico posterior del piso y la elección de la cabeza aditiva se conservan como decisiones de desarrollo. No heredan la hipótesis de penalización/saturación: la referencia de 1210 parámetros carece de ambas modificaciones. Sus diez semillas y los 48 contrastes describen la receta ejecutada, sin aislar causalmente la cabeza, la atención o el entrenamiento. Para defenderla como aporte debe fijarse una limitación específica y una hipótesis propia, con subconjunto observable al pronosticar, magnitud de efecto y predicciones secundarias refutables. Esas decisiones futuras no se presentarán como anteriores a los resultados ya conocidos.
 
 ## 7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación
 
 La [bitácora inicial](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md) registra cuatro variantes de software comprobadas con entradas artificiales: completa, sin penalización, sin saturación y sin contenido. Su conteo de cero recetas entrenadas en mercado corresponde al corte anterior a los pilotos. **V1/v2 reunieron cinco recetas neuronales y el piloto por momentos completó otras tres.** Las diez réplicas aditivas posteriores conservan una receta, sin diez diseños nuevos. El $N_d$ global sigue pendiente de conciliación e incluye también propuestas, parametrizaciones y ensayos descartados; no se reduce al subtotal de ocho recetas. Antes de confirmar debe declararse el inventario completo con fecha, evidencia, métricas y decisión.
+
+La [bitácora canónica de consolidación](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md), fechada el 17 de noviembre de 2026, enlaza el {download}`registro posterior de diseño <../_static/e3_diseno_riguroso_20261117/design_log.md>` y el {download}`inventario de variantes y ejecuciones <../_static/e3_diseno_riguroso_20261117/design_inventory.csv>`. La consolidación conserva las fuentes históricas y los campos desconocidos; no es un registro previo de aquellos experimentos ni un cierre del $N_d$ global. Las fechas de un plan o del nombre de una carpeta no se convierten en fechas verificadas de ejecución.
 
 El ajuste diminuto de una prueba unitaria realizó 350 pasos de Adam sobre ocho ejemplos artificiales. Comprueba capacidad de ajuste del software; no constituye entrenamiento de BTC, validación del mecanismo económico ni selección de hiperparámetros con los datos de E1/E2.
 
@@ -45,13 +59,19 @@ La separación de datos para las siguientes fases debe conservar estos roles:
 | Confirmación | Aplicar el protocolo final con arquitectura, pérdida, ajustes y reglas ya cerrados. | No cambiar el diseño después de observar sus resultados. |
 | Tres conjuntos adicionales | Evaluar la transferencia de la misma tarea bajo el procedimiento prefijado. | **Todavía no se han elegido.** Deben seleccionarse antes de conocer el desempeño y no usarse para rediseñar el mecanismo. |
 
+En la evidencia actual, las 116 fechas de julio–octubre de 2024 son **validación de desarrollo**: guiaron las mejores épocas y la elección entre recetas. Los 532 ejemplos anteriores se usaron para ajuste y estadísticas de transformación. Las 53 fechas de calibración de E2 no se abrieron en el procedimiento aditivo congelado. Las 608 fechas de prueba conservan su etiqueta histórica y permiten la comparación posterior, pero no se convierten en una reserva confirmatoria nueva. Renombrar una cohorte no deshace su exposición previa.
+
 Las 608 fechas de enero de 2025 a agosto de 2026 ya se evaluaron en E1/E2; la reserva de septiembre–octubre de 2026 también tiene antecedentes publicados. Repetir esos periodos no recupera cegamiento. El [contrato heredado](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html) conserva su procedencia; la confirmación de E3 requiere documentar la exposición previa y una separación real de las decisiones de diseño.
 
 Antes de la campaña definitiva deben quedar cerrados la arquitectura y la pérdida, la revisión del mecanismo, las particiones y fuentes, los tres datasets adicionales, el espacio y presupuesto de ajuste comparable, el piloto de potencia, las semillas y el número de ejecuciones, las hipótesis y familias, el $N_d$ y la bitácora. La comparación posterior ya dispone de diez semillas por red; ese número observado no acredita que se haya alcanzado la potencia exigida para una confirmación futura.
 
 El congelamiento debe registrarse con fecha y tag Git reales anteriores a los experimentos definitivos. Un cambio posterior de arquitectura, pérdida o espacio de búsqueda reinicia el protocolo con nueva versión y conserva el historial. El esfuerzo de diseño del candidato se reportará separado del presupuesto de HPO de cada rival, sin ocultar una asimetría bajo el mismo número de configuraciones.
 
+El número de semillas, el tiempo de entrenamiento y el número de diseños describen aspectos diferentes del esfuerzo. Repetir diez veces una receta no elimina la selección previa entre recetas; el registro de $N_d$ tampoco produce por sí solo una corrección numérica del sesgo del ganador. La comparación actual mantiene 532 ejemplos de ajuste y 116 de desarrollo en E3, frente a 655 de ajuste y 53 de calibración en E2. No se declara equivalencia de HPO, política de ajuste final o cómputo a partir de compartir ventanas D7×5.
+
 ## 7.3 Sustento teórico: qué demostrar y cómo verificarlo
+
+### Propiedad histórica del módulo con penalización y saturación
 
 La propiedad del primer diseño es una cota Lipschitz de la **cabeza sobre estados latentes**. La [formulación del Bloque C](06_modelo_original.md) y la {download}`demostración íntegra con derivadas y pseudocódigo <../_static/e3_bloque_c_20261115/theory.md>` conservan su desarrollo. La demostración siguiente es autocontenida; no extiende la garantía al preprocesamiento, a la CNN o a la LSTM. La propiedad de la propuesta posterior por momentos se integra en 7.6.
 
@@ -162,11 +182,60 @@ Ese techo de salida puede perjudicar extremos genuinos y debe evaluarse. El prom
 | Violaciones observadas de la cota | 0 |
 | Error máximo de derivada manual frente a autograd | $6{,}939\times10^{-18}$ |
 
-La ausencia de violaciones en 256 pares apoya la implementación; la afirmación universal procede de la demostración. El caso analítico del anexo ilustra una consecuencia observable de acotar valores, pero **todavía falta comprobar un beneficio predictivo en datos reales de desarrollo**. Las pruebas de gradientes, formas, causalidad del encoder, sobreajuste diminuto y serialización tampoco sustituyen esa evidencia.
+La ausencia de violaciones en 256 pares apoya la implementación; la afirmación universal procede de la demostración. El caso analítico del anexo ilustra una consecuencia observable de acotar valores, pero **todavía falta comprobar un beneficio predictivo atribuible a esa propiedad en datos reales de desarrollo**. El piloto global de v1 fue desfavorable al módulo completo; no respalda una promesa general de mejora. Tampoco ejecutó el contraste de estrés D3–D5, de modo que no identifica por sí solo la causa de ese resultado. Las pruebas de gradientes, formas, causalidad del encoder, sobreajuste diminuto y serialización mantienen su alcance de software.
+
+### Cota condicional de la referencia aditiva de 1210 parámetros
+
+La referencia actual conserva atención convencional por contenido y retira penalización y saturación. Por ello se demuestra por separado una propiedad conocida sobre **estados acotados**, sin trasladarle el teorema anterior. Sean $H,H'\in\mathbb R^{n\times d}$ con filas de norma a lo sumo $R$, y parámetros de inferencia fijos con $\|q\|_2\le Q$, $\|w\|_2\le W$ y $\tau\ge\tau_{\min}>0$. Sean también $A\ge0$ y $a_{\rm tr}>0$ fijos. La cabeza definida en [6.8](06_modelo_original.md) es
+
+$$
+\alpha(H)=\operatorname{softmax}(Hq/\tau),\qquad
+c(H)=H^\top\alpha(H),\qquad
+f_A(H)=\sqrt A+a_{\rm tr}[10^{-4}+\operatorname{softplus}(w^\top c(H)+b)].
+$$
+
+El mismo límite del jacobiano de softmax da $\|\alpha(H)-\alpha(H')\|_2\le Q\|H-H'\|_F/(2\tau_{\min})$. Como $\|H\|_2\le\sqrt nR$ y $\|\alpha(H')\|_2\le1$, descomponer la diferencia del contexto y componer la lectura y softplus demuestra
+
+$$
+|f_A(H)-f_A(H')|\le K_{\rm ad}\|H-H'\|_F,\qquad
+K_{\rm ad}=a_{\rm tr}W\left(1+\frac{\sqrt n RQ}{2\tau_{\min}}\right).
+$$
+
+Cada estado oculto de la LSTM estándar tiene coordenadas $h_j=o_j\odot\tanh(C_j)$, de magnitud a lo sumo uno en aritmética real; se puede usar $R=\sqrt d$. Esto identifica un dominio que contiene los estados alcanzables, sin afirmar que todo tensor de ese dominio sea alcanzable. Para $n=7$, $d=12$, $Q=1$, $W=4$ y $\tau_{\min}=0{,}25$, resulta **$K_{\rm ad}/a_{\rm tr}=77{,}32121111929344$**. No se ha acotado la sensibilidad del encoder respecto de su entrada.
+
+Si cambia el piso, sólo se añade el término $|\sqrt A-\sqrt{A'}|\le\sqrt{|A-A'|}$. La raíz no es uniformemente Lipschitz respecto de $A$ cerca de cero. Esto impide extender esta cota condicional a una garantía global en $(H,A)$ con esas normas, y no demuestra inestabilidad desde retornos u OHLCV. Tampoco acredita novedad, calibración o menor RMSE.
+
+**Verificación ejecutada para esta fórmula.** El 17 de noviembre de 2026 se comprobaron estados artificiales en CPU, sin cargar datos ni pesos entrenados de mercado. Se fijaron $a_{\rm tr}=0{,}02$ y $A=0{,}0001$ como constantes sintéticas; el primer valor no es una estadística estimada del conjunto real. Se examinaron inicialización sembrada, parámetros cercanos a sus límites y atención uniforme, con coordenadas en $[-1,1]$, tres amplitudes y tres escalas de perturbación. Dentro de cada perfil los parámetros permanecieron fijos.
+
+| Comprobación de la referencia aditiva | Resultado |
+|---|---:|
+| Pares latentes sintéticos | 1728 |
+| Normas de gradiente de la fórmula de referencia float64 | 96 |
+| Cota con la escala sintética fijada | 1,5464242224 |
+| Mayor cociente de diferencias observado, precisión mixta | 0,0256703577 |
+| Mayor cociente dividido por la escala sintética | 1,2835178841 |
+| Violaciones observadas con la tolerancia registrada | 0 |
+| Mayor diferencia absoluta entre vía original mixta y referencia float64 | $1{,}591\times10^{-8}$ |
+
+La {download}`demostración y sus supuestos <../_static/e3_diseno_riguroso_20261117/theory_reference.md>`, el {download}`script de reproducción <../_static/e3_diseno_riguroso_20261117/verify_theory.py>` y el {download}`informe numérico con entorno y hashes <../_static/e3_diseno_riguroso_20261117/theory_verification.json>` conservan el procedimiento, semilla, distancias y tolerancia. Las tres fuentes del módulo coinciden con las de la campaña congelada. La comprobación finita apoya el código; la afirmación universal procede de la demostración en aritmética real. El redondeo float32 no hereda literalmente una garantía continua para diferencias arbitrariamente pequeñas. Estos ensayos no prueban una cota del pipeline OHLCV ni que esta propiedad explique la ganancia histórica de predicción.
+
+El [workflow de comprobación CPU](https://github.com/jassan-bit/DeepLearning_202630/blob/main/.github/workflows/verify-e3-design-theory.yml) reproduce estos ensayos y verifica las copias publicadas de la bitácora y la demostración. Guarda su propio informe sin sobrescribir los resultados versionados; no ejecuta entrenamiento o inferencia de mercado ni sustituye una reproducción humana independiente.
+
+### Qué exige la guía además de una desigualdad
+
+La propiedad elegida debe tener supuestos explícitos, demostración y verificación numérica, y debe mostrarse si importa para el problema. Una simulación artificial puede comprobar la implementación o una consecuencia matemática; no sustituye el beneficio predictivo que se atribuya al mecanismo. Las discrepancias entre supuestos y datos deben declararse, conservando resultados adversos.
+
+| Línea de diseño | Lo demostrado o comprobado | Lo que no se ha establecido |
+|---|---|---|
+| Penalización y saturación, 1211 parámetros | Cota latente anterior, derivadas y verificación artificial. | Beneficio predictivo atribuible a la cota y robustez de mercado bajo D3–D5. |
+| Salida aditiva, 1210 parámetros | Soporte de la salida y cota condicional anterior sobre estados acotados, con comprobación numérica propia. | Novedad del mecanismo, beneficio causal de cada componente y una garantía desde OHLCV crudo. La cota de saturación de v1 no se hereda. |
+| Momentos, 1236 parámetros | Consistencia condicional del riesgo bajo capacidad y momentos verdaderos; contraejemplos con momentos erróneos y auxiliares. | Convergencia de la red finita o mejora de RMSE con momentos estimados; el piloto no superó su heurística. |
+
+Las otras propiedades admisibles de la guía —invariancia/equivarianza, descenso de pérdida, expresividad, generalización o propiedades de la pérdida— son alternativas que requieren su propia formulación, supuestos y verificación. No se afirma haberlas demostrado por enumerarlas. Una propiedad conocida de una parametrización tampoco acredita por sí sola la contribución original.
 
 ## 7.4 Diseño de la ablación
 
-Hay dos modificaciones algorítmicas candidatas: penalización de discordancia y saturación radial. Se propone un factorial completo $2\times2$ para separar sus aportes e interacción, con el mismo codificador y atención de contenido. Esta organización del informe no agrega código, entrenamientos o resultados.
+En el primer diseño hay dos modificaciones algorítmicas candidatas: penalización de discordancia y saturación radial. Se propone un factorial completo $2\times2$ para separar sus aportes e interacción, con el mismo codificador y atención de contenido. Este plan pertenece al módulo de 1211 parámetros; no completa la ablación de la referencia aditiva ni agrega entrenamientos o resultados.
 
 | Modelo $M_{uv}$ | Penalización $u$ | Saturación $v$ | Relación con el código disponible | Estado experimental |
 |---|---:|---:|---|---|
@@ -177,6 +246,10 @@ Hay dos modificaciones algorítmicas candidatas: penalización de discordancia y
 | Control adicional sin contenido | 1 | 1 | `without_content` fuerza $q=0$. | Intervención funcional comprobada; no forma parte del factorial de los dos cambios. |
 
 El control sin contenido estudia un componente convencional y **no es una tercera innovación**. Las tres ablaciones funcionales existentes no equivalen a haber completado el factorial, ni a la ablación estadística exigida. El piloto v1 ya implementó y comparó $M_{00}$ y $M_{11}$; las dos intervenciones aisladas siguen sin esa evaluación de mercado. El resultado de v1 fue desfavorable al modelo completo en la métrica global.
+
+Las cuatro celdas cubren las variantes mínimas de la guía para esos dos componentes: $M_{11}$ es el completo; $M_{01}$ retira penalización y añade sólo saturación a la base; $M_{10}$ retira saturación y añade sólo penalización; $M_{00}$ carece de ambas. Con dos factores, el factorial completo permite identificar la interacción sin fraccionarlo. Si un diseño posterior incorpora más factores, un factorial fraccionado deberá justificar qué interacciones permite estimar y cuáles quedan confundidas, antes de observar los resultados.
+
+La exigencia general de aislar al menos tres componentes debe justificarse sobre el modelo que finalmente se defienda, sin contar tres innovaciones por tres intervenciones ni trasladar las de otro núcleo. Los controles convencionales pueden responder preguntas de dependencia arquitectónica, pero no demuestran que esos bloques sean nuevos. Para la referencia aditiva sigue pendiente el plan de ablación correspondiente al aporte que se presente: los pilotos v1, v2 y por momentos comparan preguntas y recetas distintas.
 
 Para errores $E_{uv}$ sobre unidades comparables, la interacción puede expresarse como
 
@@ -268,3 +341,23 @@ Las tres recetas terminaron. `moment_joint` obtuvo RMSE **0,0032589201**, frente
 La comparación actual conserva la receta **CNN causal → LSTM → atención temporal por contenido y salida aditiva positiva**, de **1210 parámetros**, en diez semillas `271801`–`271810`. No vuelve a seleccionar arquitectura o época con las 608 fechas de prueba conocidas. E3 usa 532 ejemplos de ajuste, 116 de validación y ninguno de calibración; E2 mantiene 655 de ajuste y 53 de calibración. Las trece redes de E2 ya tienen diez semillas cada una, mientras sus tres clásicos deterministas conservan una trayectoria: 133 predictores de E2 frente a las diez réplicas aditivas.
 
 El código del análisis se fija en [0213266](https://github.com/jassan-bit/DeepLearning_202630/tree/0213266404a0aa3af985d7306dce6b13892c71ec) y el plan en [4a21b03](https://github.com/jassan-bit/DeepLearning_202630/tree/4a21b0329b99e864ec64fc2df49260aa874141bf). Ese orden fija el cálculo posterior, no retrofecha una confirmación anterior a los entrenamientos o a la exposición al calendario. La [sección 8](08_verificacion_estadistica.md) y sus [tablas de contrastes](../_static/e3_estadistica_posterior_20261117/primary_contrasts.csv) presentan los 48 rechazos tras Holm con sus distintos ámbitos de incertidumbre. No se afirma igualdad de entrenamiento, potencia suficiente ni superioridad R3; el MCS auxiliar conserva diez modelos, incluida la aditiva.
+
+## 7.10 Revisión del diseño frente a la guía
+
+La revisión del 17 de noviembre de 2026 conserva las decisiones y los resultados con su fecha y arquitectura. La {download}`matriz de requisitos y evidencia <../_static/e3_diseno_riguroso_20261117/requirements_review.csv>` permite seguir los pendientes sin presentar un plan como una ejecución.
+
+| Exigencia | Evidencia actual | Para cerrar |
+|---|---|---|
+| D1: limitación concreta y cuantificada | Estrés artificial de E2, diagnóstico posterior del piso y resultados por régimen documentados. | Limitación específica que la contribución finalmente defendida pretende corregir, sin trasladar automáticamente el calendario de ETTh1 ni una corrupción artificial a BTC. |
+| D2: fuente propia o transferida y adaptación | Componentes conocidos y fuentes atribuidos; tres líneas de diseño diferenciadas. | Resolver la diferencia sustantiva y, si hay transferencia, aplicación de origen, motivo de transferibilidad y modificación desde la formulación. |
+| D3–D5: hipótesis, predicciones secundarias y éxito/fracaso previos | Propuesta histórica para penalización/saturación; heurísticas de desarrollo y resultados favorables y adversos conservados. | Hipótesis específica del mecanismo defendido, subconjuntos observables, magnitudes y reglas cerradas antes de una nueva evaluación confirmatoria. No retrofecharlas. |
+| Registro de iteraciones y $N_d$ | Bitácora parcial consolidada; ocho recetas neuronales históricas y diez réplicas posteriores de una de ellas. | Conciliar todas las propuestas, parametrizaciones, intentos y fallos; cuantificar y discutir selección sin tomar ocho como $N_d$ global. |
+| Separación entre desarrollo y confirmación | Cohortes y exposición histórica declaradas; las 116 fechas siguen siendo desarrollo. | Separación real para decisiones futuras, sin usar confirmación para rediseñar o recuperar cegamiento por cambiar nombres. |
+| Tres conjuntos adicionales independientes del diseño | Ninguno elegido ni evaluado en E3. | Seleccionarlos antes de conocer su desempeño, documentar tarea, diferencias y admisión; si guían el diseño, declararlos desarrollo. |
+| Congelamiento y esfuerzo comparable | Recetas, planes y consumos guardados; comparación posterior identificada. | Arquitectura, pérdida, espacio de búsqueda, recursos y protocolo con fecha/tag anteriores a futuros experimentos; HPO equivalente y esfuerzo de diseño separado. Un cambio posterior exige nueva versión. |
+| Propiedad formal y verificación numérica | Pruebas delimitadas por arquitectura: cota histórica de v1, cota condicional aditiva con 1728 pares/96 gradientes y teoría condicional de momentos. | Justificar la propiedad del aporte defendido y sus supuestos; no convertir una desigualdad conocida en prueba de novedad o garantía sobre todo el pipeline. |
+| Mostrar que la propiedad importa | Ejemplos artificiales y resultados de desarrollo conservados, incluido el deterioro de v1. | Beneficio predictivo atribuible al mecanismo bajo el diseño previsto; la RMSE favorable de otra receta no lo demuestra. |
+| Ablaciones mínimas e interacción | M00 y completo entrenados en v1; intervenciones aisladas artificiales y controles v2/momentos con preguntas distintas. | Modelo completo, cada componente retirado o sustituido, base y cada componente añadido solo; al menos tres componentes aislados justificados del modelo defendido, interacción e IC. |
+| Inferencia, capacidad y conclusión prudente | Regla de familia de ablación separada y controles de capacidad documentados. | Mismas pruebas pertinentes, Holm dentro de esa familia, presupuestos y semillas comparables, variantes de tamaño igualado cuando cambie capacidad; contribución observada no equivale a mecanismo causal demostrado. |
+
+Esta revisión no selecciona un mecanismo nuevo, abre entrenamiento de mercado o aprueba un protocolo confirmatorio. La siguiente decisión de investigación debe resolver qué aporte se sostendrá con evidencia y comprensión del autor, conservando la referencia aditiva como resultado reproducible dentro de su alcance.

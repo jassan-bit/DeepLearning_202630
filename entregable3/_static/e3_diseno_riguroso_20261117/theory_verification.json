@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-11-17T21:11:51.457617+00:00",
+  "source_commit": "15f6f664217dc9a88dc12c6ce22ad1516ff9e384",
+  "frozen_model_source_commit": "cf891213f1acb6967aef5e0857fa0ac63768f836",
+  "seed": 2026111707,
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "device": "cpu",
+    "threads": 1
+  },
+  "model": {
+    "variant": "additive_positive_head",
+    "parameters": 1210,
+    "n": 7,
+    "d": 12,
+    "row_norm_bound": 3.4641016151377544
+  },
+  "synthetic_constants": {
+    "y_scale": 0.02,
+    "fixed_A": 0.0001,
+    "scale_is_not_fitted_to_market": true
+  },
+  "theorem": {
+    "Q": 1.0,
+    "W": 4.0,
+    "tau_min": 0.25,
+    "normalized_latent_bound": 77.32121111929344,
+    "latent_bound_in_output_units": 1.5464242223858689,
+    "arithmetic": "real",
+    "A_and_scale_fixed": true
+  },
+  "numerical_checks": {
+    "total_pairs": 1728,
+    "total_reference_gradient_cases": 96,
+    "amplitudes": [
+      0.001,
+      0.1,
+      1.0
+    ],
+    "perturbation_standard_deviations": [
+      0.001,
+      0.03,
+      0.3
+    ],
+    "latent_coordinates_clipped_to": [
+      -1.0,
+      1.0
+    ],
+    "pair_bound_absolute_slack": 2.001e-09,
+    "profiles": [
+      {
+        "profile": "seeded_initialization",
+        "effective_parameters": {
+          "q_norm": 0.3087255656719208,
+          "w_norm": 2.094879169319429,
+          "temperature": 1.0
+        },
+        "pairs": 576,
+        "max_mixed_precision_difference_quotient": 0.0028265612691776914,
+        "max_quotient_divided_by_y_scale": 0.14132806345888457,
+        "min_pair_Frobenius_distance": 0.007012089704699642,
+        "max_pair_Frobenius_distance": 3.2381135236336718,
+        "max_mixed_vs_FP64_reference_absolute_difference": 1.0640843622899965e-09,
+        "FP64_reference_gradient_cases": 32,
+        "max_FP64_reference_gradient_Frobenius_norm": 0.011685221932778045,
+        "violations": 0
+      },
+      {
+        "profile": "near_parameter_bounds",
+        "effective_parameters": {
+          "q_norm": 0.9999874830245972,
+          "w_norm": 3.9999500009295827,
+          "temperature": 0.25
+        },
+        "pairs": 576,
+        "max_mixed_precision_difference_quotient": 0.025670357682440158,
+        "max_quotient_divided_by_y_scale": 1.2835178841220078,
+        "min_pair_Frobenius_distance": 0.007148686562593928,
+        "max_pair_Frobenius_distance": 3.2704541349809135,
+        "max_mixed_vs_FP64_reference_absolute_difference": 1.5909623479748447e-08,
+        "FP64_reference_gradient_cases": 32,
+        "max_FP64_reference_gradient_Frobenius_norm": 0.10150594440998792,
+        "violations": 0
+      },
+      {
+        "profile": "uniform_attention",
+        "effective_parameters": {
+          "q_norm": 0.0,
+          "w_norm": 3.9999500009295827,
+          "temperature": 0.25
+        },
+        "pairs": 576,
+        "max_mixed_precision_difference_quotient": 0.010873960381383264,
+        "max_quotient_divided_by_y_scale": 0.5436980190691632,
+        "min_pair_Frobenius_distance": 0.007559761539085963,
+        "max_pair_Frobenius_distance": 3.2323557687648967,
+        "max_mixed_vs_FP64_reference_absolute_difference": 3.82203038662432e-09,
+        "FP64_reference_gradient_cases": 32,
+        "max_FP64_reference_gradient_Frobenius_norm": 0.030107944989504344,
+        "violations": 0
+      }
+    ],
+    "violations": 0
+  },
+  "encoder_domain_sanity": {
+    "synthetic_windows": 32,
+    "max_absolute_hidden_coordinate": 0.3525821566581726,
+    "global_encoder_bound_proved": false
+  },
+  "sources": {
+    "src/original_model.py": {
+      "sha256": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+      "matches_frozen_source": true
+    },
+    "src/e3_development.py": {
+      "sha256": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+      "matches_frozen_source": true
+    },
+    "src/e3_innovation_model.py": {
+      "sha256": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1",
+      "matches_frozen_source": true
+    }
+  },
+  "verification_script_sha256": "e5c0ff1b42daf56ea41775fba9df9e728fd58f5ef2023ffc5c39192dbe7752c4",
+  "scope": {
+    "uses_trained_market_weights": false,
+    "market_arrays_loaded": false,
+    "market_training": false,
+    "market_inference": false,
+    "R1_R2_R3_certified": false,
+    "novel_theorem_claimed": false,
+    "empirical_predictive_benefit_established": false,
+    "FP32_universal_Lipschitz_guarantee_claimed": false
+  },
+  "limitations": [
+    "Fixed inference parameters, fixed A and scale; bounded latent domain only.",
+    "The real-arithmetic bound is not a proof for every finite-precision difference quotient.",
+    "The finite checks use seeded initial and deliberately stressed parameters, not trained weights.",
+    "No bound for raw OHLCV, preprocessor or encoder is certified.",
+    "A varying floor adds |sqrt(A)-sqrt(A')|, not a uniform Lipschitz constant in A near zero.",
+    "No ablation, forecasting improvement, novelty or academic defence follows from these checks."
+  ]
+}
