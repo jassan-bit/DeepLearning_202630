@@ -1,8 +1,8 @@
 # 7 Diseño riguroso del modelo original
 
-El mecanismo y su estado de admisibilidad se describen en el [Bloque C](06_modelo_original.md). Este capítulo integra el diseño inicial de atención, los dos pilotos de desarrollo ya completados y la propuesta posterior por momentos. Distingue hipótesis, propiedades, resultados y controles pendientes. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. El protocolo confirmatorio continúa en borrador.
+El mecanismo y su estado de admisibilidad se describen en el [Bloque C](06_modelo_original.md). Este capítulo integra el diseño inicial de atención, los pilotos de desarrollo completados y la posterior réplica de la **salida aditiva positiva de 1210 parámetros** en diez semillas. La [sección 8](08_verificacion_estadistica.md) presenta la comparación estadística posterior ya calculada. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. Ese análisis no convierte el diseño en un protocolo confirmatorio.
 
-Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; los apartados 7.5–7.8 incorporan resultados, decisiones y la preparación del nuevo piloto exploratorio. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) contienen su detalle técnico y trazabilidad.
+Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; 7.5–7.8 recogen los pilotos históricos y su cierre, y 7.9 identifica la comparación posterior vigente. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) conservan el detalle técnico y los cortes documentales de esas decisiones.
 
 ## 7.1 Del hueco de investigación a la hipótesis contrastable
 
@@ -33,7 +33,7 @@ No cumplir esas condiciones impide declarar éxito de esta hipótesis; un interv
 
 ## 7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación
 
-La [bitácora inicial](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md) registra cuatro variantes de software comprobadas con entradas artificiales: completa, sin penalización, sin saturación y sin contenido. Su conteo de cero recetas entrenadas en mercado corresponde al corte anterior a los pilotos. **El estado posterior incluye cinco recetas neuronales entrenadas entre v1 y v2.** El $N_d$ global sigue pendiente de conciliación e incluye también propuestas, parametrizaciones y ensayos descartados; no se reduce a ese subtotal de cinco. Antes de confirmar debe declararse el inventario completo con fecha, evidencia, métricas y decisión.
+La [bitácora inicial](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md) registra cuatro variantes de software comprobadas con entradas artificiales: completa, sin penalización, sin saturación y sin contenido. Su conteo de cero recetas entrenadas en mercado corresponde al corte anterior a los pilotos. **V1/v2 reunieron cinco recetas neuronales y el piloto por momentos completó otras tres.** Las diez réplicas aditivas posteriores conservan una receta, sin diez diseños nuevos. El $N_d$ global sigue pendiente de conciliación e incluye también propuestas, parametrizaciones y ensayos descartados; no se reduce al subtotal de ocho recetas. Antes de confirmar debe declararse el inventario completo con fecha, evidencia, métricas y decisión.
 
 El ajuste diminuto de una prueba unitaria realizó 350 pasos de Adam sobre ocho ejemplos artificiales. Comprueba capacidad de ajuste del software; no constituye entrenamiento de BTC, validación del mecanismo económico ni selección de hiperparámetros con los datos de E1/E2.
 
@@ -47,7 +47,7 @@ La separación de datos para las siguientes fases debe conservar estos roles:
 
 Las 608 fechas de enero de 2025 a agosto de 2026 ya se evaluaron en E1/E2; la reserva de septiembre–octubre de 2026 también tiene antecedentes publicados. Repetir esos periodos no recupera cegamiento. El [contrato heredado](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html) conserva su procedencia; la confirmación de E3 requiere documentar la exposición previa y una separación real de las decisiones de diseño.
 
-Antes de la campaña definitiva deben quedar cerrados la arquitectura y la pérdida, la revisión del mecanismo, las particiones y fuentes, los tres datasets adicionales, el espacio y presupuesto de ajuste comparable, el piloto de potencia, las semillas y el número de ejecuciones, las hipótesis y familias, el $N_d$ y la bitácora. El número final será al menos diez semillas o el mayor requerido por potencia; esta organización del informe no lo dimensiona ni ejecuta.
+Antes de la campaña definitiva deben quedar cerrados la arquitectura y la pérdida, la revisión del mecanismo, las particiones y fuentes, los tres datasets adicionales, el espacio y presupuesto de ajuste comparable, el piloto de potencia, las semillas y el número de ejecuciones, las hipótesis y familias, el $N_d$ y la bitácora. La comparación posterior ya dispone de diez semillas por red; ese número observado no acredita que se haya alcanzado la potencia exigida para una confirmación futura.
 
 El congelamiento debe registrarse con fecha y tag Git reales anteriores a los experimentos definitivos. Un cambio posterior de arquitectura, pérdida o espacio de búsqueda reinicia el protocolo con nueva versión y conserva el historial. El esfuerzo de diseño del candidato se reportará separado del presupuesto de HPO de cada rival, sin ocultar una asimetría bajo el mismo número de configuraciones.
 
@@ -228,11 +228,11 @@ $$
 
 La demostración y la verificación con cinco leyes artificiales están en el [anexo F](21_propuesta_momentos.md). La cota y los scores tienen antecedentes atribuidos. El teorema no garantiza convergencia de la red, trayectoria de Faithful o mejora de RMSE; excluye el borde verdadero $m_0=q_0=0$ del score logarítmico. Con momentos estimados la región calculada puede no contener la media verdadera y **no es un intervalo de predicción**.
 
-El [anexo G](22_dictamen_momentos.md) delimita además dos contraejemplos: momentos incorrectos pueden excluir la media verdadera, y los auxiliares pueden empeorar un paso escalar de SGD respecto de la misma cabeza con MSE sola. Son seis actualizaciones artificiales independientes, no entrenamiento neuronal o una trayectoria Adam. La implementación neuronal posterior ya tiene pruebas artificiales y se prepara para el piloto de 7.8; todavía no hay resultados de mercado nuevos de esa corrida.
+El [anexo G](22_dictamen_momentos.md) delimita además dos contraejemplos: momentos incorrectos pueden excluir la media verdadera, y los auxiliares pueden empeorar un paso escalar de SGD respecto de la misma cabeza con MSE sola. Son seis actualizaciones artificiales independientes, no entrenamiento neuronal o una trayectoria Adam. La implementación neuronal posterior se evaluó en el piloto de 7.8, que no superó su heurística de continuación; ese resultado no identifica causalmente cuál de esos límites explicó su error.
 
 ## 7.7 Controles de comparación y decisión de desarrollo
 
-Los dos primeros controles de la tabla ya se implementan para el piloto de 7.8. El control inspirado en Faithful y las ablaciones complementarias continúan previstos; no se presentan como comparaciones completadas.
+Los dos primeros controles de la tabla se evaluaron en el piloto de 7.8. El control inspirado en Faithful y las ablaciones complementarias continúan previstos; no se presentan como comparaciones completadas.
 
 | Control conceptual | Pregunta que permite contrastar |
 |---|---|
@@ -241,11 +241,11 @@ Los dos primeros controles de la tabla ya se implementan para el piloto de 7.8. 
 | Media directa con auxiliares separados y gradiente detenido al contexto, frente a su propia media sola | Comparación inspirada en Faithful, sujeta a comprobar condiciones de actualización. |
 | Referencia aditiva v2 y ablaciones Jensen / $q=9m^2$ | Utilidad frente al control observado y necesidad de cada componente; se declaran capacidades diferentes. |
 
-Igualar parámetros no demuestra igual clase de funciones, coste o trayectoria. El dictamen del corte anterior conservó la propuesta como adaptación experimental sin seleccionar como aporte original. La solicitud posterior del usuario abre el piloto exploratorio de 7.8; no cierra la revisión externa ni el protocolo confirmatorio. Los rivales congelados y el margen heredado se conservan.
+Igualar parámetros no demuestra igual clase de funciones, coste o trayectoria. El dictamen del corte anterior conservó la propuesta como adaptación experimental sin seleccionar como aporte original. El posterior piloto exploratorio de 7.8 ya terminó; no cerró la revisión externa ni el protocolo confirmatorio. Los rivales congelados y el margen heredado se conservan.
 
-## 7.8 Piloto exploratorio de funcionamiento en Colab
+## 7.8 Piloto exploratorio por momentos: condiciones históricas y cierre
 
-El usuario solicitó ejecutar la CNN-LSTM con atención y cabeza de momentos para comprobar su funcionamiento antes de completar los requisitos finales. El [plan de ejecución](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_piloto_momentos_20261116/plan.json) fija ahora datos, pérdidas, controles y presupuesto; no se presenta como el preregistro confirmatorio del curso. Los resultados que produzca serán de desarrollo y la documentación posterior conservará la fecha y exposición reales.
+El usuario solicitó ejecutar la CNN-LSTM con atención y cabeza de momentos para comprobar su funcionamiento antes de completar los requisitos finales. El [plan de ejecución](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_piloto_momentos_20261116/plan.json) fijó datos, pérdidas, controles y presupuesto; no fue un preregistro confirmatorio del curso. El piloto ya terminó y su [resumen inmutable](https://github.com/jassan-bit/DeepLearning_202630/blob/4cd455d90fb72fe78beeb885dc5dadc4ea9edeb4/runs/momentos_v1/summary.json) conserva los resultados de desarrollo, con la exposición histórica real.
 
 | Receta nueva | Pérdida y salida | Parámetros |
 |---|---|---:|
@@ -253,12 +253,18 @@ El usuario solicitó ejecutar la CNN-LSTM con atención y cabeza de momentos par
 | `moment_mean_only` | La misma cabeza y sus ancestros de media; MSE sola. Sus salidas auxiliares no se presentan como momentos identificados. | 1236 |
 | `direct_moment_aux` | Media positiva directa y las mismas dos cabezas de momentos con scores auxiliares. | 1236 |
 
-Se conservan como controles adicionales el piso observable, el piso más incremento medio de ajuste y las predicciones congeladas de la aditiva v2. Esta última es una referencia histórica de 1210 parámetros, no un control de capacidad igualada, y se comprueba mediante texto y hashes sin cargar sus pesos neuronales.
+Se conservaron como controles adicionales el piso observable, el piso más incremento medio de ajuste y las predicciones congeladas de la aditiva v2. Esta última fue una referencia de 1210 parámetros, no un control de capacidad igualada, comprobada mediante texto y hashes sin cargar sus pesos neuronales.
 
-La receta usa una semilla, `20261116`, hasta **40 épocas por modelo**, AdamW, lote 32 y paciencia 8; se intercalan épocas entre las tres variantes. Sólo se admiten las tres matrices `training_*`: 532 ejemplos de ajuste, siete purgados y 116 fechas de validación de desarrollo ya expuesta a decisiones. Los escaladores, momentos e igualación del exceso medio inicial se calculan sólo con ajuste. Ni calibración ni prueba se usan para esta evaluación.
+La receta usó una semilla, `20261116`, hasta **40 épocas por modelo**, AdamW, lote 32 y paciencia 8; se intercalaron épocas entre las tres variantes. Sólo se admitieron las tres matrices `training_*`: 532 ejemplos de ajuste, siete purgados y 116 fechas de validación de desarrollo ya expuesta a decisiones. Los escaladores, momentos e igualación del exceso medio inicial se calcularon sólo con ajuste. No se usaron calibración ni prueba para esta evaluación.
 
-El nuevo contador dispone de **600 segundos adicionales**, manteniendo el consumo previo de **556,2126593619992 segundos** y el límite global de 1200. Las comprobaciones se realizan por operaciones; cualquier sobrepaso al concluir la última operación se registra. Instalación, descarga y publicación pueden añadir tiempo fuera del contador activo. Un registro remoto confirmado precede a cada ajuste; una reanudación conserva identidad, optimizador, RNG y coste, y puede cargar de forma conservadora el tiempo de una sesión interrumpida. No crea una corrida nueva ni reinicia el saldo.
+El piloto dispuso de **600 segundos adicionales**, manteniendo el consumo previo de **556,2126593619992 segundos** y el límite global de 1200. Consumió **94,1646841730 segundos**, hasta un acumulado de **650,3773435350**, sin reiniciar el saldo. Instalación, descarga y publicación quedaron fuera del contador activo. Los registros remotos, checkpoints y costes se conservan en el cierre de esa campaña.
 
-El [notebook listo para Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_momentos_colab.ipynb) comprueba la GPU realmente asignada y guarda avances en GitHub. Aquí se comprobaron las funciones y el ejecutor con datos artificiales; **no se ha iniciado desde este entorno una corrida real en Colab**, ni se certifica una A100 u otro hardware sin detección. Las instrucciones están en el anexo F.6.
+El [notebook de ese piloto](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_momentos_colab.ipynb) y el anexo F.6 conservan las instrucciones históricas; no representan una corrida pendiente ni autorizan repetirla para escoger otro resultado.
 
-La heurística de continuación exige a `moment_joint` al menos 2 % menos RMSE que el mejor de los cinco controles, con las tres recetas terminadas. Es una regla exploratoria fijada antes de esta corrida. Un agotamiento de presupuesto o fallo deja el piloto incompleto; un resultado favorable tampoco acredita novedad o R3. Los requisitos de potencia, semillas finales, familia completa, conjuntos adicionales y revisión humana continúan pendientes y no se retrofechan.
+Las tres recetas terminaron. `moment_joint` obtuvo RMSE **0,0032589201**, frente a **0,0031446148** de la aditiva congelada: quedó un **3,635 % peor** y no alcanzó la mejora exploratoria mínima del 2 % frente al mejor control. El cierre conserva también `moment_mean_only` y `direct_moment_aux`; no se sustituyó la primaria por una métrica más favorable. Este resultado no acredita ni refuta R1 por sí solo, y no satisface R3.
+
+## 7.9 Réplica aditiva y comparación posterior vigente
+
+La comparación actual conserva la receta **CNN causal → LSTM → atención temporal por contenido y salida aditiva positiva**, de **1210 parámetros**, en diez semillas `271801`–`271810`. No vuelve a seleccionar arquitectura o época con las 608 fechas de prueba conocidas. E3 usa 532 ejemplos de ajuste, 116 de validación y ninguno de calibración; E2 mantiene 655 de ajuste y 53 de calibración. Las trece redes de E2 ya tienen diez semillas cada una, mientras sus tres clásicos deterministas conservan una trayectoria: 133 predictores de E2 frente a las diez réplicas aditivas.
+
+El código del análisis se fija en [0213266](https://github.com/jassan-bit/DeepLearning_202630/tree/0213266404a0aa3af985d7306dce6b13892c71ec) y el plan en [4a21b03](https://github.com/jassan-bit/DeepLearning_202630/tree/4a21b0329b99e864ec64fc2df49260aa874141bf). Ese orden fija el cálculo posterior, no retrofecha una confirmación anterior a los entrenamientos o a la exposición al calendario. La [sección 8](08_verificacion_estadistica.md) y sus [tablas de contrastes](../_static/e3_estadistica_posterior_20261117/primary_contrasts.csv) presentan los 48 rechazos tras Holm con sus distintos ámbitos de incertidumbre. No se afirma igualdad de entrenamiento, potencia suficiente ni superioridad R3; el MCS auxiliar conserva diez modelos, incluida la aditiva.

@@ -7,7 +7,7 @@ Este bloque reúne la selección documentada de los **16 sistemas** y la ingenie
 
 Se recuperaron trece recibos de selección originales y se verificaron sus seis configuraciones, tres folds temporales, parámetros y enlace al ajuste final. E2 eligió por RMSE agrupada en validación; la media aritmética de las tres RMSE elige la misma configuración en **13/13 redes**. No se usó la métrica de prueba ni la mejor semilla para elegir recetas.
 
-La desviación que aparece abajo describe tres folds temporales correlacionados. No es dispersión de semillas independientes; por ello no se inventa un IC de validación. La tabla maestra descargable conserva por separado la media, DE e IC95 % de prueba entre seis semillas, sus límites condicionales a una cronología, parámetros, FLOPs core y costes existentes.
+La desviación que aparece abajo describe tres folds temporales correlacionados. No es dispersión de semillas independientes; por ello no se inventa un IC de validación. La tabla maestra descargable conserva el corte histórico de E2: media, DE e IC95 % de prueba entre seis semillas, límites condicionales a una cronología, parámetros, FLOPs core y costes existentes. La ampliación posterior a diez semillas por red se informa por separado abajo y en la [sección 8](08_verificacion_estadistica.md); no cambia esta selección de configuraciones.
 
 | Modelo | Configuración | RMSE media de folds | DE descriptiva de folds |
 |---|---|---:|---:|
@@ -32,11 +32,19 @@ La desviación que aparece abajo describe tres folds temporales correlacionados.
 
 TimeMixer C01 lidera los quince sistemas con score de validación recuperado: RMSE agrupada 0,00414459. Persistence tiene receta fija y no publica score CV en su recibo; no se certifica un líder global de validación de los dieciséis.
 
-El líder descriptivo de la A2 de prueba histórica es el LSTM-autoencoder y sí pertenece al MCS90 de E2. TimeMixer no pertenece a ese conjunto. Se reportan ambos hechos sin convertir al ganador de prueba en criterio para cambiar configuraciones o semillas. El MCS sigue condicionado a la cronología conocida y no constituye una evaluación independiente de E3.
+En el corte histórico de seis semillas, el líder descriptivo de la A2 de prueba es el LSTM-autoencoder y sí pertenece al MCS90 de E2; TimeMixer no pertenece a ese conjunto histórico. Esos hechos no se usan para cambiar configuraciones o semillas. El MCS posterior que incorpora E3 es otro análisis, descrito a continuación, y no sustituye ni reescribe ese corte.
+
+### Comparación posterior con las recetas congeladas
+
+La ampliación conserva las seis semillas históricas y añade 271807–271810 a las trece redes de E2, sin repetir HPO ni seleccionar una semilla por desempeño. Hay **diez semillas por red**, más Persistence, SeasonalNaive y ARIMA con una trayectoria determinista cada uno: **133 predictores de E2**. Se comparan con diez semillas de la **CNN causal → LSTM unidireccional → atención temporal, con cabeza positiva aditiva y 1210 parámetros**, sobre las mismas **608 fechas** de prueba histórica. La primaria es la media aritmética de las RMSE individuales, no la RMSE de un ensamble.
+
+La comparación conserva una diferencia de entrenamiento: E2 usa 655 ejemplos y 53 fechas de calibración; E3 usa 532 ejemplos, 116 de validación y **ninguna fecha de calibración**. No se atribuye igualdad de presupuesto o de política de ajuste final. Los 48 contrastes primarios rechazan tras Holm global, pero sus tres procedimientos tienen ámbitos de incertidumbre distintos. El MCS90 auxiliar conserva **diez sistemas, incluido E3**; no identifica un ganador único ni prueba el margen de RMSE. El análisis es posterior sobre un calendario conocido y no acredita R1, R2 o R3, tres pruebas F2a homogéneas ni potencia suficiente.
+
+La [sección 8](08_verificacion_estadistica.md) delimita los procedimientos y sus resultados. Se publican las {download}`métricas por sistema <../_static/e3_estadistica_posterior_20261117/metrics.csv>` y los {download}`48 contrastes primarios <../_static/e3_estadistica_posterior_20261117/primary_contrasts.csv>`, sin modificar las recetas heredadas.
 
 ## 5.2 Reentrenamiento final exportación y serialización
 
-La guía exige una política común de ajuste final y conservar pesos, optimizador y configuración. El avance actual exporta pesos heredados de E2; no se presenta como un nuevo reentrenamiento final de E3 ni como un checkpoint completo con optimizador.
+La guía exige una política común de ajuste final y conservar pesos, optimizador y configuración. Este corte de exportación conserva pesos heredados de E2; sus tres artefactos no son una exportación del modelo E3 ni checkpoints completos con optimizador. Los ajustes de E3 y la ampliación de E2 de la comparación posterior se documentan por separado; disponer de sus resultados no completa la política común de exportación.
 
 MLP16, LSTM32 y GRU32 se exportaron a **TorchScript** desde sus checkpoints guardados. Se usó la semilla 271801 por ser el menor ID registrado, no por su RMSE. Se conservaron el escalador y el calibrador originales; no se reentrenó ni recalibró.
 
@@ -68,7 +76,7 @@ No se aplicó cuantización ni se atribuyó un límite de memoria a modelos no m
 
 ## Suplemento CPU y reproducibilidad
 
-E2 añadió un diagnóstico eager CPU de los 78 predictores neuronales, con dos hilos y un plan propio. Es distinto de estas tres exportaciones TorchScript, medidas con un hilo. Sus latencias, memorias y diferencias respecto a CUDA no se mezclan como si fueran un único experimento. Ninguna de las dos verificaciones sustituye la métrica del artefacto exportado sobre las 608 entradas originales de prueba.
+E2 añadió un diagnóstico eager CPU de los **78 predictores neuronales del corte histórico de seis semillas**, con dos hilos y un plan propio. No cubre automáticamente los 130 predictores neuronales de la ampliación a diez semillas. Es distinto de estas tres exportaciones TorchScript, medidas con un hilo. Sus latencias, memorias y diferencias respecto a CUDA no se mezclan como si fueran un único experimento. Ninguna de las dos verificaciones sustituye la métrica del artefacto exportado sobre las 608 entradas originales de prueba.
 
 La tabla maestra conserva parámetros, FLOPs core, costes disponibles y campos ausentes, sin rellenarlos con ceros ni sustituir CPU por GPU. Los FLOPs completos, los costes comparables del resto y sus exportaciones siguen pendientes.
 

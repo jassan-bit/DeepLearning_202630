@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BOOKS = (
     ("entregable1", "book", "", "Informe y estudios del Entregable 1"),
     ("entregable2", "book_e2", "entregable2", "Dieciséis sistemas evaluados; reproducción en entorno limpio y tres ablaciones completadas; límites metodológicos documentados"),
-    ("entregable3", "book_e3", "entregable3", "Libro inicial; guía específica pendiente"),
+    ("entregable3", "book_e3", "entregable3", "Informe E3: diseño y evaluación estadística retrospectiva"),
 )
 
 # Sphinx hashes the source-relative filename for download URLs. Keep the first
