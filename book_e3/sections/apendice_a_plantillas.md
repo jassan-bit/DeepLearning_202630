@@ -30,6 +30,8 @@ La [bitácora inicial del candidato](https://github.com/jassan-bit/DeepLearning_
 
 Fuente editable: [design_log_plantilla.csv](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/design_log_plantilla.csv).
 
+El [registro consolidado parcial](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md), fechado el 17 de noviembre de 2026, incorpora las etapas ejecutadas y enlaza sus fuentes. Es un registro posterior, con Nd global aún sin conciliar; la plantilla vacía y la bitácora inicial conservan sus bytes y fechas.
+
 ## A.4 Tabla de contrastes confirmatorios
 
 La {download}`tabla propuesta de contrastes <../_static/e3_plantillas_v1/contrastes_confirmatorios_plantilla.csv>` prepara **48 filas: 16 rivales × tres slots**, recuperando nombres y roles del [maestro histórico](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloques_ab_20261115/master_configurations.csv). P1–P3 son lugares sin procedimiento elegido: no se contabilizan como pruebas admisibles, ejecutadas o rechazadas. El m≈12 ilustrativo de la guía no reduce los 16 rivales reales.

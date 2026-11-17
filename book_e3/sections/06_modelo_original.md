@@ -127,6 +127,13 @@ El workflow CPU conserva esas comprobaciones. Los ejecutores de desarrollo v1/v2
 
 La guía distingue: si R1 o R2 fallan, tope 3,0; si R1/R2 y la propiedad se acreditan pero no R3, tope 4,0; la ruta al 5,0 exige cumplir la familia completa y los demás requisitos de evaluación. Es una regla condicionada a evidencia y evaluación académica, no una calificación calculada para este avance.
 
+```{figure} ../_static/e3_diseno_riguroso_20261117/decision_tree.svg
+:name: e3_arbol_topes
+:alt: Árbol condicional de los topes: incumplir R1 o R2 conduce a 3,0; R1 y R2 acreditadas sin R3 a 4,0; las tres acreditadas a 5,0, sujeto a los demás requisitos.
+
+Árbol de decisión adaptado de la Figura 3 de la guía. Las ramas «No» describen incumplimientos establecidos; un estado pendiente de revisión no se convierte automáticamente en incumplimiento. La propiedad formal y los demás requisitos siguen siendo exigibles. El árbol no asigna una nota al proyecto.
+```
+
 Aquí las condiciones siguen abiertas. Una demostración de la cabeza y pruebas de software no convierten R1 o R3 en aprobadas ni certifican la defensa académica del autor. Las limitaciones y resultados adversos deberán conservarse.
 
 ## 6.7 Propuesta posterior: cabeza de momentos y dictamen vigente
@@ -189,6 +196,8 @@ $A$ es el piso observable definido en 6.7, calculado a partir de los seis retorn
 
 La propiedad de soporte se verifica directamente: para $A\ge0$, $a_{\rm tr}>0$ y $z$ real finito, `softplus(z)>0`, por lo que $\widehat y>\sqrt A+10^{-4}a_{\rm tr}$ en aritmética exacta. Además, con $A$ fijo, $\partial\widehat y/\partial z=a_{\rm tr}\operatorname{sigmoid}(z)\in(0,a_{\rm tr})$. Es una propiedad conocida de esta parametrización escalar; **no es una cota global del mapa OHLCV, una prueba de novedad ni una garantía de menor error**. Los casos sintéticos de salida comprueban la fórmula y el respeto del piso con tolerancia numérica. La cota latente del módulo de 1211 parámetros no se hereda al retirar la saturación.
 
+El apartado [7.3](07_diseno_riguroso.md) aporta una derivación independiente para la cabeza aditiva: con el piso y los parámetros fijos y las filas latentes acotadas por $\sqrt{12}$, obtiene $K_{\rm ad}=77{,}32121111929344\,a_{\rm tr}$. Su verificación usa estados sintéticos y no pesos entrenados. Es una cota condicional conocida de atención sobre estados acotados; tampoco acredita originalidad o explica por sí sola la mejora histórica.
+
 El conteo auditable es CNN 128 + LSTM 1056 + consulta, lectura, sesgo y temperatura 26 = **1210**. Para longitud $n$, $f$ variables, $c$ canales, kernel $k$ y estado $h$, el coste por muestra incluye $O(nkfc+n(ch+h^2)+n^2h)$. El último término sigue presente en el código eager heredado porque calcula la referencia densa $PH$ aunque su penalización esté desactivada; no se declara un coste lineal de una implementación optimizada inexistente. Faltan los FLOPs completos y la curva empírica de escalabilidad de esta receta.
 
 ### Pseudocódigo descriptivo de la ejecución cerrada
@@ -222,7 +231,7 @@ La revisión del 17 de noviembre de 2026 distingue los requisitos de la guía de
 | Requisito de la guía | Evidencia aplicable a la receta de 1210 parámetros | Cierre pendiente |
 |---|---|---|
 | Módulo, formulación y pseudocódigo | Código local, forward y pérdida identificados en 6.8; conteo 1210 verificado. | Diferencia algorítmica sustantiva y defensa humana de la contribución candidata. |
-| Propiedad con supuestos y verificación | Piso observable y exceso positivo comprobados; la cota de saturación pertenece a v1. | Una propiedad de soporte conocida no acredita la contribución original exigida. |
+| Propiedad con supuestos y verificación | Piso y exceso positivo, más cota condicional de la cabeza aditiva en 7.3 con 1728 pares sintéticos y 96 gradientes de referencia. La cota de saturación pertenece a v1. | El dominio latente y el piso fijo no cubren el pipeline OHLCV. Faltan evidencia de utilidad predictiva y una contribución admisible; no se declara nueva esta propiedad. |
 | Pruebas del modelo | Inicialización reproducible, admisión de datos, salida, precisión mixta y gradientes finitos no nulos; reanudación sintética de v2 con pesos, optimizador y RNG. | Sobreajuste diminuto específico de esta receta, `gradcheck` pertinente y exportación final con ida y vuelta. El `gradcheck` de cuadratura y el caso aislado de copia de `state_dict` prueban cabezas half-t; no se atribuyen a toda la aditiva. |
 | Protocolo común y HPO equivalente | Se conserva la receta elegida por validación y sus diez semillas; los resultados históricos no se alteran. | E2 y E3 no comparten política final de ajuste, tamaño de entrenamiento o presupuesto demostrados como equivalentes. |
 | Ablación de al menos tres componentes | Hay controles de desarrollo y pruebas funcionales de otras variantes. | Ablación estadística de la receta defendida, aislando componentes, con particiones, semillas y tratamiento comparables; los controles de v1 no la completan. |

@@ -47,6 +47,8 @@ La [introducción](sections/01_introduccion.md) explicita los cuatro productos o
 
 La revisión del [Bloque B](sections/05_configuraciones_exportacion.md) contrasta selección, ajuste final, checkpoints, metadatos, exportación y costes con la evidencia guardada. El [Bloque C](sections/06_modelo_original.md) identifica la formulación de la referencia aditiva realmente evaluada y distingue sus pruebas de las del primer mecanismo y de la cabeza de momentos. Las matrices de requisitos y los registros de reproducibilidad reflejan las diez semillas y el análisis posterior ya terminado.
 
+El [diseño riguroso del capítulo 7](sections/07_diseno_riguroso.md) distingue las hipótesis de los mecanismos históricos de la receta aditiva evaluada, y relaciona bitácora, separación de datos, sustento teórico y ablaciones con las exigencias de la guía. El árbol del apartado 6.6 conserva las reglas condicionales de R1/R2/R3 sin convertirlas en una calificación del avance.
+
 Para avanzar al cierre faltan, entre otros productos, justificar una contribución admisible con revisión de literatura y defensa del autor, preparar la evaluación comparable con potencia y tres conjuntos adicionales y exportar/verificar el catálogo para el dashboard. La revisión no cambia predicciones, p-valores o recetas, ni convierte pendientes en requisitos cumplidos. Los archivos y enlaces históricos se conservan.
 
 ## Libros del curso
