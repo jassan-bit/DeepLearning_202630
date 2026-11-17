@@ -10,6 +10,8 @@ Los **48 contrastes principales** —dieciséis rivales por tres procedimientos�
 
 La cronología permite reproducir las decisiones de esta etapa; no restaura el cegamiento del test. Se conservan el {download}`plan con once insumos y SHA256 <../_static/e3_estadistica_posterior_20261117/plan.json>` y el {download}`protocolo de análisis posterior <../_static/e3_estadistica_posterior_20261117/protocol.md>`.
 
+El {download}`borrador histórico de protocolo <../_static/e3_bloque_d/protocolo_borrador.md>` conserva su archivo y su enlace de descarga anteriores. Su estado de borrador no cambia por esta evaluación posterior.
+
 La métrica primaria es la **media de las RMSE individuales**, en unidades originales de sigma7 poblacional, sin anualización:
 
 $$
