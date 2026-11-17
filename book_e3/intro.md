@@ -29,7 +29,7 @@ E2 conserva su benchmark de 16 sistemas y ahora reúne diez semillas para cada u
 
 Los capítulos [6](sections/06_modelo_original.md) y [7](sections/07_diseno_riguroso.md) distinguen ese candidato de los pilotos anteriores. En el piloto v2, el control aditivo obtuvo la menor RMSE de desarrollo y la variante con pérdida auxiliar no superó la heurística del 2 %. El [anexo E](sections/20_cierre_v2.md) conserva ese corte histórico y sus limitaciones en alta volatilidad. La elección posterior de la cabeza aditiva para la comparación **no acredita por sí misma un aporte original**.
 
-La [sección 8](sections/08_verificacion_estadistica.md) incorpora el análisis posterior ya completado: los **48 contrastes primarios** rechazan sus nulas y los 16 rivales cumplen la regla conjunta de los tres procedimientos. Sus ámbitos de incertidumbre son distintos; esto no verifica tres pruebas temporales F2a homogéneas. E2 usa 655 ejemplos de entrenamiento y 53 de calibración; E3 usa 532 de ajuste y 116 de validación para parada, sin calibración adicional. No se declara igualdad de presupuestos. El MCS al 90 % conserva diez sistemas, incluido el candidato, y no identifica un ganador único.
+La [sección 8](sections/08_verificacion_estadistica.md) incorpora el análisis posterior ya completado: los **48 contrastes primarios** rechazan sus nulas y los 16 rivales cumplen la regla conjunta de los tres procedimientos. Son tres procedimientos distintos con ámbitos de incertidumbre declarados; su pertinencia y combinación deben justificarse para la ruta F2a. La guía no exige literalmente que sus ámbitos sean idénticos. E2 usa 655 ejemplos de entrenamiento y 53 de calibración; E3 usa 532 de ajuste y 116 de validación para parada, sin calibración adicional. No se declara igualdad de presupuestos. El MCS al 90 % conserva diez sistemas, incluido el candidato, y no identifica un ganador único.
 
 **La novedad R1, la defensa académica de R2 y la superioridad R3 siguen sin acreditarse.** La comparación utiliza un calendario histórico conocido y no constituye una campaña confirmatoria ciega ni demuestra potencia o reproducción en mercados independientes. Los bloques A y B conservan sus pendientes de cierre, al igual que el dashboard Render. Las plantillas no se convierten retrospectivamente en preregistros ni firmas. La bibliografía inicial y las revisiones focales posteriores distinguen antecedentes, procedencia y alcance de lectura; se conservan las 37 referencias sugeridas por la guía. El análisis estadístico reutiliza predicciones congeladas, sin nuevos ajustes ni inferencias de modelos.
 
@@ -40,6 +40,12 @@ La cabeza de momentos y su dictamen se conservan como una línea histórica de d
 El [anexo final](sections/cierre_reproducibilidad.md) distingue conclusiones provisionales, evidencia de software, reproducción científica pendiente y declaración de autoría sin firmas. La rúbrica no se convierte en una calificación automática del proyecto.
 
 El [Apéndice A](sections/apendice_a_plantillas.md) ofrece las seis plantillas y su paquete descargable; las [referencias sugeridas](sections/referencias_sugeridas.md) conservan los 37 números de la guía y aclaran qué métodos son pertinentes para F2a.
+
+## Revisión de los capítulos 1–4 frente a la guía
+
+La [introducción](sections/01_introduccion.md) explicita los cuatro productos obligatorios y el alcance actual. El [estándar](sections/02_estandar_profundidad.md) conserva los cinco requisitos de profundidad, distingue diez semillas de potencia suficiente y enlaza su declaración con fecha actual y registro prospectivo pendiente. El [panorama](sections/03_panorama_general.md) relaciona los productos con los bloques A–G. Las [correcciones](sections/04_correcciones_e2.md) separan observaciones internas de comentarios docentes, la auditoría histórica de la posterior y el ranking de seis semillas de su ampliación a diez.
+
+Esta revisión documental no modifica predicciones, p-valores o recetas, ni convierte los productos pendientes en completados. Los archivos y enlaces históricos se conservan.
 
 ## Libros del curso
 
