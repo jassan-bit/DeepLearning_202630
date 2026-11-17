@@ -40,3 +40,11 @@ python -m unittest discover -s notebooks/e3_estabilidad_aditiva_v1 -p 'test_*.py
 ```
 
 La preparación de este software no ejecutó nuevos entrenamientos ni evaluaciones sobre los datos reales. El código se elaboró con asistencia de IA, que debe declararse en el informe. El estudiante debe comprender y poder defender la implementación.
+
+## Recuperación del transporte Git
+
+Una ejecución avanzó hasta el segundo bloque y recibió `HTTP 422; Object does not exist` al actualizar la referencia por la API de GitHub. El último estado remoto confirmado contiene cinco épocas por semilla y 51.85614561499959 segundos adicionales contabilizados. El estado HTTP no permite identificar por sí solo la causa exacta del rechazo.
+
+`repair_git_transport.py` conserva los archivos originales del coordinador, trabajador, referencia y plan, comprobando sus hashes. Sustituye en memoria únicamente el transporte de lectura y publicación por Git nativo, reutilizando el transporte con `askpass` de los pilotos anteriores. La rama y el prefijo siguen fijados; la publicación no utiliza fuerza y comprueba la referencia esperada antes y después de guardar.
+
+El coordinador original reconcilia primero el avance local con el remoto. Así, un bloque calculado cuyo guardado falló se publica antes de continuar el entrenamiento. Se mantienen corrida, pesos, optimizador, cursores, semillas, sesiones y consumo. La reparación se registra como metadato de transporte y no modifica los parámetros científicos ni el presupuesto. Las credenciales permanecen en el entorno privado de Git y se eliminan al cerrar el transporte.
