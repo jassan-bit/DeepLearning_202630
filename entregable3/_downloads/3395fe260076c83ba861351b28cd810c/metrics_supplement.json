@@ -1,0 +1,184 @@
+{
+  "version": "e3-posterior-descriptive-metrics-v1",
+  "definition_date": "2026-11-17",
+  "timezone": "America/Bogota",
+  "source_repository_commit": "8fccb216f36a3e4fc5cb38ecdec769b7f5379397",
+  "scope": "posterior_descriptive_supplement_on_known_calendar",
+  "definitions": {
+    "primary": "arithmetic mean of individual predictor RMSE, not ensemble RMSE",
+    "RMSE_sample_SD": "sample SD across optimization seeds, ddof=1; absent at R=1",
+    "sMAPE_percent": "200*mean(abs(y-p)/(abs(y)+abs(p))); zero/zero contributes zero",
+    "R2_mean": "mean across predictors of 1-SSE/SST, same cohort target mean; undefined at SST=0",
+    "E2_interval": "[max(0,p-calibrator_q),p+calibrator_q], frozen q for each predictor",
+    "coverage90_percent": "100*mean over predictors of empirical datewise interval coverage",
+    "mean_interval_width90": "mean over predictors and dates of upper-lower in original sigma7 units",
+    "interval_nominal": 0.9,
+    "E3_interval": "unavailable: no calibration q or frozen predictive interval; seed CI is not a predictive interval"
+  },
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 20261117,
+    "quantile_method": "linear",
+    "shared_indices_for_14_neural_systems": true,
+    "indices_sha256": "097a5d79b6521ba4698d37a39eac35d96419818c58f8bbfd02e6d34f6dd9e97c",
+    "scope": "marginal optimization-seed mean conditional on this known calendar; not temporal, simultaneous or predictive",
+    "no_classical_seed_bootstrap": true,
+    "E3_inherited_CI95": [
+      0.002913282254796285,
+      0.0029684039720926795
+    ],
+    "maximum_absolute_difference_from_inherited_E3_CI": 0.0
+  },
+  "counts": {
+    "systems": 17,
+    "E2_predictors": 133,
+    "E3_predictors": 10,
+    "common_dates": 608,
+    "calibration_dates_E2": 53,
+    "calibration_dates_E3": 0,
+    "neural_seed_ids": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806,
+      271807,
+      271808,
+      271809,
+      271810
+    ],
+    "historical_seed_excluded": 20261116
+  },
+  "data_checks": {
+    "dates_and_targets_exactly_matched": true,
+    "rows_dropped": 0,
+    "misaligned_E3_date_negative_control_rejected": true,
+    "frozen_81_E2_predictors_preserved": true,
+    "maximum_difference_from_prior_metrics": {
+      "RMSE_mean": 8.673617379884035e-19,
+      "MAE_mean": 1.734723475976807e-18,
+      "RMSE_sample_SD": 2.710505431213761e-19
+    },
+    "historical_six_seed_formula_control_maximum_differences": {
+      "RMSE": 2.6020852139652106e-18,
+      "MAE": 2.6020852139652106e-18,
+      "R2_mean": 2.220446049250313e-16,
+      "sMAPE_percent": 7.105427357601002e-15,
+      "coverage90_percent": 2.842170943040401e-14,
+      "mean_interval_width90": 3.469446951953614e-18
+    }
+  },
+  "sources": {
+    "combined_predictors.json": {
+      "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+      "path": "runs/e2_extension_10_semillas_v1/combined_predictors.json",
+      "sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+      "bytes": 3393801
+    },
+    "e2_per_seed_metrics.csv": {
+      "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+      "path": "runs/e2_extension_10_semillas_v1/per_seed_metrics.csv",
+      "sha256": "d53c970cc37d000a0d05d4666adcaa04384e317ccac33b6fb3717f750c650e4e",
+      "bytes": 12138
+    },
+    "e2_comparison.csv": {
+      "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+      "path": "runs/e2_extension_10_semillas_v1/comparison.csv",
+      "sha256": "1b33b37f1971e1668904828dae07e7522813553d255164ff228052d8201b699a",
+      "bytes": 1450
+    },
+    "e2_summary.json": {
+      "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+      "path": "runs/e2_extension_10_semillas_v1/summary.json",
+      "sha256": "d033a3cb9a537e555826a1e46d80ba1abf47fafb06dde4d195679262049da55e",
+      "bytes": 17619
+    },
+    "e2_snapshot.json": {
+      "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+      "path": "runs/e2_extension_10_semillas_v1/snapshot.json",
+      "sha256": "ded84adce601ba908f3634a47171d04e3d0491b65532199cb9ba532e92fc667d",
+      "bytes": 169594
+    },
+    "e2_plan.json": {
+      "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+      "path": "runs/e2_extension_10_semillas_v1/plan.json",
+      "sha256": "45fb6a14137b03642737521731c4b56a1312980bfbeca0319182a9ffd600cc07",
+      "bytes": 24226
+    },
+    "e3_evaluation_predictions.csv": {
+      "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+      "path": "runs/estabilidad_aditiva_v1/evaluation_predictions.csv",
+      "sha256": "b82ba0a8a0371ea5643d9ff666a3ac5a1a4e91018b95a640bd88b1be50bb5133",
+      "bytes": 486813
+    },
+    "e3_per_seed_metrics.csv": {
+      "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+      "path": "runs/estabilidad_aditiva_v1/per_seed_metrics.csv",
+      "sha256": "2fd1f3c6ec918d0c4371a3e3cf25864c271fd5250d459c3ef99d96ab7d31b2ff",
+      "bytes": 1115
+    },
+    "e3_summary.json": {
+      "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+      "path": "runs/estabilidad_aditiva_v1/summary.json",
+      "sha256": "7c90c800adcca2218ea94553081cbcf744f3b9d9ff657ece17402df40be8f176",
+      "bytes": 9498
+    },
+    "e3_plan.json": {
+      "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+      "path": "runs/estabilidad_aditiva_v1/plan.json",
+      "sha256": "57de7c087113163b18fb384ffc73fed5dbf6045b37b42eae43c6261b1f76b148",
+      "bytes": 6416
+    },
+    "old_e2_predictions.json": {
+      "commit": "2121b048d3b379c2c28dfe366cba35a1c08a3617",
+      "path": "runs/f2a-65ae74b547a6073b2c286dea-posthoc/artifacts/e2_f2a_input.json",
+      "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+      "bytes": 1371654
+    }
+  },
+  "local_prior_outputs": {
+    "metrics.csv": {
+      "path": "book_e3/_static/e3_estadistica_posterior_20261117/metrics.csv",
+      "sha256": "98456dbb18e21ad91c60a0fea7987eb8000350ef94858ccef2dc5c04034baa52"
+    },
+    "input_validator": {
+      "path": "experiments/e3_estadistica_posterior_20261117/inputs.py",
+      "sha256": "58d9cde8af881f9a987e449e6b70c301aa37c4b35fd4061e4d8bb5110b7e6302"
+    }
+  },
+  "script_sha256": "dde36955f0d11a40b0c2550f7da87ceb1e9a76f5c9a1bb097607218ac5701597",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  },
+  "new_model_fits": 0,
+  "new_model_inferences": 0,
+  "new_hypothesis_tests": 0,
+  "power_MDE_or_R3_certified": false,
+  "limitations": [
+    "Same known 608-date calendar; not independent markets.",
+    "E2 trained on 655 examples and calibrated on 53; E3 trained on 532 and validated on 116, with no calibration.",
+    "Inherited nominal 90% intervals do not guarantee coverage under temporal dependence or shift.",
+    "Coverage and width are reconstructed descriptions of inherited intervals, not a recalibration or export roundtrip.",
+    "Seed bootstrap quantifies initialization variation only; no deterministic replicate is invented."
+  ],
+  "artifacts": {
+    "metrics_extended.csv": {
+      "sha256": "2a3bd6e5921a977ea5aa91ad9bced23968bad235cbe7925680d9f76091f1632c",
+      "bytes": 3292
+    },
+    "metrics_extended_table.csv": {
+      "sha256": "edc8d79e2a4625cbf2a19a9f9c56985a2e500a1fff42991b9413cb29293ebc08",
+      "bytes": 1492
+    },
+    "metrics_uncertainty.csv": {
+      "sha256": "3f9a7a02757b372c70295d3b5f78c35a729cda3fcf452f0bd64da194fcc872ea",
+      "bytes": 2497
+    },
+    "metrics_per_predictor.csv": {
+      "sha256": "8ddd0a620690fcfc2ff0d26d2b4d62d0d65fef02b520e83f98852be000f778d7",
+      "bytes": 19426
+    }
+  }
+}
