@@ -6,7 +6,7 @@ Este anexo cierra la navegación del informe con los requisitos de reproducción
 
 E2 aporta un benchmark histórico de 16 sistemas y 608 fechas, con recetas/artefactos, auditorías parciales y análisis posteriores de alcance declarado. E3 dispone de inventario, selección documentada y tres exportaciones TorchScript de referencias, verificadas numéricamente en calibración histórica. Estas comprobaciones no aportan confirmación independiente del modelo original ni certifican el servicio en Render.
 
-El candidato tiene formulación, implementación asistida por IA, demostración de una cota de su cabeza latente y 35 pruebas con datos artificiales. La revisión focal y la bibliografía no establecen una ausencia de antecedentes. **R1, la defensa académica de R2 y R3 permanecen pendientes.** No se infieren ganancias de RMSE, adecuación, calibración o generalización de los tests artificiales.
+El primer candidato tiene formulación, implementación asistida por IA, demostración de una cota de su cabeza latente y 35 pruebas históricas con datos artificiales. Los pilotos v1/v2 aportan cinco recetas entrenadas en desarrollo y la referencia aditiva v2. La cabeza posterior de momentos ya tiene implementación, pruebas artificiales y un notebook exploratorio preparado; su corrida real nueva en Colab todavía no se ha iniciado desde este entorno. La revisión focal y la bibliografía no establecen una ausencia de antecedentes. **R1, la defensa académica de R2 y R3 permanecen pendientes.** Los tests de software no demuestran ganancias de RMSE, calibración o generalización.
 
 Las etapas siguientes son cerrar auditorías y fuentes admisibles, revisión/hipótesis/diseño, separación de confirmación, datasets, presupuesto y potencia antes del protocolo; ejecutar después la comparación completa; construir y verificar la aplicación y su reproducción. Los borradores y las páginas de diseño conservan sus fechas y no se convierten retrospectivamente en preregistros o productos funcionales.
 
@@ -38,6 +38,8 @@ El informe deberá identificar revisor humano y relación con el proyecto; fecha
 **Estado: no ejecutado ni firmado.** No hay una discrepancia cero que informar de esa reproducción. Los errores cero de las tres exportaciones y las comprobaciones CI mantienen su alcance propio.
 
 ## Autoría, contribuciones y uso de IA
+
+La preparación del [piloto exploratorio de momentos](07_diseno_riguroso.md) también empleó ChatGPT/Codex para implementación del modelo, ejecutor, guardado y reanudación en GitHub, pruebas sobre datos artificiales, revisión de código y documentación del notebook. Esa asistencia no equivale a haber ejecutado el piloto real en Colab ni a una verificación humana externa. El estado de cada corrida deberá respaldarse con sus propios commits, hardware detectado, métricas y contador; la persona autora conserva la responsabilidad de revisar y defender el código.
 
 El [dictamen posterior sobre la cabeza de momentos](22_dictamen_momentos.md) también usa asistencia de ChatGPT/Codex para lectura focal, búsqueda, crítica matemática, contraejemplos escalares, código de auditoría y documentación. Su [procedencia](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/provenance.md) declara ese alcance. El paquete de revisión humana está sin diligenciar y no se presenta como aval externo ni firma.
 

@@ -6,7 +6,7 @@ El trabajo se organiza en siete bloques. El desarrollo de software puede avanzar
 |---|---|---|---|
 | A | Correcciones de E2, trazabilidad, auditoría y congelamiento. | Evidencias y artefactos de E2. | Inventario y auditorías parciales ejecutados; cierre integral pendiente. |
 | B | Mejores configuraciones y exportaciones de inferencia. | Resultados y recetas válidos de A. | Tabla de 16 sistemas y tres referencias exportadas; resto y cierre pendientes. |
-| C | Mecanismo neuronal, formulación, código y demostración. | Limitación sustentada y trabajo cercano. | Dos pilotos de desarrollo completos, aditiva v2 como referencia; propuesta por momentos sin seleccionar como aporte original. Diseño, antecedentes y dictamen integrados en 6/7. |
+| C | Mecanismo neuronal, formulación, código y demostración. | Limitación sustentada y trabajo cercano. | Dos pilotos de desarrollo completos y aditiva v2 como referencia. Cabeza de momentos implementada, con pruebas artificiales y notebook exploratorio preparado; sin ejecución real nueva ni selección como aporte original. Estado integrado en 6/7. |
 | D | [Comparación estadística y evaluación ampliada](08_verificacion_estadistica.md). | Diseño, presupuesto y protocolo congelados. | Borrador y requisitos organizados; piloto de potencia, congelamiento y campaña confirmatoria pendientes. Los pilotos de desarrollo no los sustituyen. |
 | E | [Dashboard Dash Plotly con Contexto, EDA y Modelos](09_dashboard_predictivo.md). | Artefactos y tabla maestra consistentes. | Diseño y requisitos documentados; aplicación, integración y pruebas de aceptación pendientes. |
 | F | [Despliegue público en Render y prueba de humo](10_despliegue_render.md). | Dashboard probado, perfil de producción y límites de recursos medidos. | Plan documentado; aplicación, ONNX/ORT, URL y prueba de humo pendientes. |
@@ -22,6 +22,8 @@ El trabajo se organiza en siete bloques. El desarrollo de software puede avanzar
 6. Ejecutar y reportar la comparación, incluyendo resultados adversos; después integrar y publicar el producto final.
 
 El inventario de exportación y el diseño del dashboard pueden avanzar durante la investigación. Los resultados precalculados o las pruebas artificiales deberán seguir identificados como tales.
+
+La solicitud posterior de comprobar el modelo en Colab habilita un piloto de desarrollo antes del cierre de todos los requisitos académicos. Su configuración operativa se fija antes de ejecutar y se documenta en 7.8. Esa exploración no sustituye el protocolo confirmatorio ni permite fechar requisitos después de los resultados como si hubieran sido previos.
 
 ## 3.2 Procedencia y versiones
 

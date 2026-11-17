@@ -395,7 +395,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-ablacion">7.4 Diseño de la ablación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilotos-de-desarrollo-completados-y-decisiones">7.5 Pilotos de desarrollo completados y decisiones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-momentos-y-media-transformada">7.6 Propuesta posterior: momentos y media transformada</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-futuros-y-decision-de-desarrollo">7.7 Controles futuros y decisión de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-comparacion-y-decision-de-desarrollo">7.7 Controles de comparación y decisión de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-exploratorio-de-funcionamiento-en-colab">7.8 Piloto exploratorio de funcionamiento en Colab</a></li>
 </ul>
             </nav>
         </div>
@@ -410,7 +411,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="diseno-riguroso-del-modelo-original">
 <h1>7 Diseño riguroso del modelo original<a class="headerlink" href="#diseno-riguroso-del-modelo-original" title="Link to this heading">#</a></h1>
 <p>El mecanismo y su estado de admisibilidad se describen en el <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Bloque C</span></a>. Este capítulo integra el diseño inicial de atención, los dos pilotos de desarrollo ya completados y la propuesta posterior por momentos. Distingue hipótesis, propiedades, resultados y controles pendientes. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. El protocolo confirmatorio continúa en borrador.</p>
-<p>Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; los apartados 7.5–7.7 incorporan resultados y decisiones posteriores. Los anexos <a class="reference internal" href="17_revision_post_piloto.html"><span class="std std-doc">B</span></a> a <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">G</span></a> contienen su detalle técnico y trazabilidad.</p>
+<p>Los apartados 7.1–7.4 conservan el origen y los límites del primer diseño; los apartados 7.5–7.8 incorporan resultados, decisiones y la preparación del nuevo piloto exploratorio. Los anexos <a class="reference internal" href="17_revision_post_piloto.html"><span class="std std-doc">B</span></a> a <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">G</span></a> contienen su detalle técnico y trazabilidad.</p>
 <section id="del-hueco-de-investigacion-a-la-hipotesis-contrastable">
 <h2>7.1 Del hueco de investigación a la hipótesis contrastable<a class="headerlink" href="#del-hueco-de-investigacion-a-la-hipotesis-contrastable" title="Link to this heading">#</a></h2>
 <p><strong>Origen del primer diseño de atención.</strong> Las hipótesis D1–D5 siguientes motivaron penalización y saturación. Los pilotos posteriores no las convierten en un protocolo confirmatorio ni en una declaración de superioridad. Su resultado de desarrollo se integra en 7.5.</p>
@@ -685,10 +686,11 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 +\lambda_q[\log(q/q_0)+q_0/q-1]\ge0.
 \]</div>
 <p>La demostración y la verificación con cinco leyes artificiales están en el <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">anexo F</span></a>. La cota y los scores tienen antecedentes atribuidos. El teorema no garantiza convergencia de la red, trayectoria de Faithful o mejora de RMSE; excluye el borde verdadero <span class="math notranslate nohighlight">\(m_0=q_0=0\)</span> del score logarítmico. Con momentos estimados la región calculada puede no contener la media verdadera y <strong>no es un intervalo de predicción</strong>.</p>
-<p>El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">anexo G</span></a> delimita además dos contraejemplos: momentos incorrectos pueden excluir la media verdadera, y los auxiliares pueden empeorar un paso escalar de SGD respecto de la misma cabeza con MSE sola. Son seis actualizaciones artificiales independientes, no entrenamiento neuronal o una trayectoria Adam. La cabeza por momentos todavía no se implementó como red ni se entrenó en mercado.</p>
+<p>El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">anexo G</span></a> delimita además dos contraejemplos: momentos incorrectos pueden excluir la media verdadera, y los auxiliares pueden empeorar un paso escalar de SGD respecto de la misma cabeza con MSE sola. Son seis actualizaciones artificiales independientes, no entrenamiento neuronal o una trayectoria Adam. La implementación neuronal posterior ya tiene pruebas artificiales y se prepara para el piloto de 7.8; todavía no hay resultados de mercado nuevos de esa corrida.</p>
 </section>
-<section id="controles-futuros-y-decision-de-desarrollo">
-<h2>7.7 Controles futuros y decisión de desarrollo<a class="headerlink" href="#controles-futuros-y-decision-de-desarrollo" title="Link to this heading">#</a></h2>
+<section id="controles-de-comparacion-y-decision-de-desarrollo">
+<h2>7.7 Controles de comparación y decisión de desarrollo<a class="headerlink" href="#controles-de-comparacion-y-decision-de-desarrollo" title="Link to this heading">#</a></h2>
+<p>Los dos primeros controles de la tabla ya se implementan para el piloto de 7.8. El control inspirado en Faithful y las ablaciones complementarias continúan previstos; no se presentan como comparaciones completadas.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Control conceptual</p></th>
@@ -711,7 +713,39 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 </tbody>
 </table>
 </div>
-<p>Igualar parámetros no demuestra igual clase de funciones, coste o trayectoria. La revisión de admisibilidad del capítulo 6 mantiene la decisión de <strong>conservar la propuesta como adaptación experimental, sin seleccionarla todavía como aporte original ni iniciar otro piloto en este corte</strong>. La revisión externa, el diseño justo y el protocolo confirmatorio siguen pendientes. Los rivales congelados, el margen heredado y el presupuesto no se alteran por reorganizar el informe.</p>
+<p>Igualar parámetros no demuestra igual clase de funciones, coste o trayectoria. El dictamen del corte anterior conservó la propuesta como adaptación experimental sin seleccionar como aporte original. La solicitud posterior del usuario abre el piloto exploratorio de 7.8; no cierra la revisión externa ni el protocolo confirmatorio. Los rivales congelados y el margen heredado se conservan.</p>
+</section>
+<section id="piloto-exploratorio-de-funcionamiento-en-colab">
+<h2>7.8 Piloto exploratorio de funcionamiento en Colab<a class="headerlink" href="#piloto-exploratorio-de-funcionamiento-en-colab" title="Link to this heading">#</a></h2>
+<p>El usuario solicitó ejecutar la CNN-LSTM con atención y cabeza de momentos para comprobar su funcionamiento antes de completar los requisitos finales. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_piloto_momentos_20261116/plan.json">plan de ejecución</a> fija ahora datos, pérdidas, controles y presupuesto; no se presenta como el preregistro confirmatorio del curso. Los resultados que produzca serán de desarrollo y la documentación posterior conservará la fecha y exposición reales.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Receta nueva</p></th>
+<th class="head"><p>Pérdida y salida</p></th>
+<th class="head text-right"><p>Parámetros</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">moment_joint</span></code></p></td>
+<td><p>Cabeza de momentos; MSE y ambos scores auxiliares, con pesos 0,1.</p></td>
+<td class="text-right"><p>1236</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">moment_mean_only</span></code></p></td>
+<td><p>La misma cabeza y sus ancestros de media; MSE sola. Sus salidas auxiliares no se presentan como momentos identificados.</p></td>
+<td class="text-right"><p>1236</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">direct_moment_aux</span></code></p></td>
+<td><p>Media positiva directa y las mismas dos cabezas de momentos con scores auxiliares.</p></td>
+<td class="text-right"><p>1236</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se conservan como controles adicionales el piso observable, el piso más incremento medio de ajuste y las predicciones congeladas de la aditiva v2. Esta última es una referencia histórica de 1210 parámetros, no un control de capacidad igualada, y se comprueba mediante texto y hashes sin cargar sus pesos neuronales.</p>
+<p>La receta usa una semilla, <code class="docutils literal notranslate"><span class="pre">20261116</span></code>, hasta <strong>40 épocas por modelo</strong>, AdamW, lote 32 y paciencia 8; se intercalan épocas entre las tres variantes. Sólo se admiten las tres matrices <code class="docutils literal notranslate"><span class="pre">training_*</span></code>: 532 ejemplos de ajuste, siete purgados y 116 fechas de validación de desarrollo ya expuesta a decisiones. Los escaladores, momentos e igualación del exceso medio inicial se calculan sólo con ajuste. Ni calibración ni prueba se usan para esta evaluación.</p>
+<p>El nuevo contador dispone de <strong>600 segundos adicionales</strong>, manteniendo el consumo previo de <strong>556,2126593619992 segundos</strong> y el límite global de 1200. Las comprobaciones se realizan por operaciones; cualquier sobrepaso al concluir la última operación se registra. Instalación, descarga y publicación pueden añadir tiempo fuera del contador activo. Un registro remoto confirmado precede a cada ajuste; una reanudación conserva identidad, optimizador, RNG y coste, y puede cargar de forma conservadora el tiempo de una sesión interrumpida. No crea una corrida nueva ni reinicia el saldo.</p>
+<p>El <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_momentos_colab.ipynb">notebook listo para Colab</a> comprueba la GPU realmente asignada y guarda avances en GitHub. Aquí se comprobaron las funciones y el ejecutor con datos artificiales; <strong>no se ha iniciado desde este entorno una corrida real en Colab</strong>, ni se certifica una A100 u otro hardware sin detección. Las instrucciones están en el anexo F.6.</p>
+<p>La heurística de continuación exige a <code class="docutils literal notranslate"><span class="pre">moment_joint</span></code> al menos 2 % menos RMSE que el mejor de los cinco controles, con las tres recetas terminadas. Es una regla exploratoria fijada antes de esta corrida. Un agotamiento de presupuesto o fallo deja el piloto incompleto; un resultado favorable tampoco acredita novedad o R3. Los requisitos de potencia, semillas finales, familia completa, conjuntos adicionales y revisión humana continúan pendientes y no se retrofechan.</p>
 </section>
 </section>
 
@@ -787,7 +821,8 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-de-la-ablacion">7.4 Diseño de la ablación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilotos-de-desarrollo-completados-y-decisiones">7.5 Pilotos de desarrollo completados y decisiones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propuesta-posterior-momentos-y-media-transformada">7.6 Propuesta posterior: momentos y media transformada</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-futuros-y-decision-de-desarrollo">7.7 Controles futuros y decisión de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controles-de-comparacion-y-decision-de-desarrollo">7.7 Controles de comparación y decisión de desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-exploratorio-de-funcionamiento-en-colab">7.8 Piloto exploratorio de funcionamiento en Colab</a></li>
 </ul>
   </nav></div>
 
