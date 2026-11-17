@@ -14,7 +14,7 @@ La etiqueta requiere ocho cierres y contiene el retorno del día objetivo, aún 
 
 E1 estableció las referencias neuronales. E2 ejecutó diez candidatos, tres referencias neuronales y tres comparadores estadísticos: **16 sistemas sobre 608 fechas conocidas**, con seis semillas por red. El LSTM-autoencoder obtuvo la menor RMSE media observada, **0,00380343**. Las veinte comparaciones primarias no demostraron la mejora práctica registrada tras Holm; las ampliaciones posteriores conservan esa conclusión.
 
-E3 debe convertir los artefactos en un producto predictivo y desarrollar una contribución neuronal defendible. La combinación CNN-LSTM-atención no acredita por sí sola originalidad. El primer piloto estudió penalización de discordancia y saturación radial; el segundo comparó cabezas de salida. La aditiva v2 conserva la referencia predictiva de desarrollo. La propuesta posterior por momentos queda como adaptación experimental sin originalidad acreditada, según el [capítulo 6](06_modelo_original.md).
+E3 debe convertir los artefactos en un producto predictivo y desarrollar una contribución neuronal defendible. La combinación CNN-LSTM-atención no acredita por sí sola originalidad. El primer piloto estudió penalización de discordancia y saturación radial; el segundo comparó cabezas de salida. La aditiva v2 conserva la referencia predictiva de desarrollo. La cabeza posterior por momentos ya tiene implementación y un piloto preparado para Colab por solicitud del usuario, como adaptación experimental sin originalidad acreditada; el [capítulo 6](06_modelo_original.md) distingue esa preparación de resultados de mercado aún no obtenidos.
 
 ## 1.2 Objetivos
 
@@ -26,7 +26,7 @@ E3 debe convertir los artefactos en un producto predictivo y desarrollar una con
 
 ## 1.3 Avances y límites actuales
 
-Se cuenta con un inventario de 81 predictores, comprobación de 167 metadatos, selección documentada de configuraciones y tres exportaciones TorchScript sobre calibración histórica. La evidencia neuronal incluye código, propiedades con alcance explícito, **223 pruebas de software** y dos pilotos de desarrollo completados, con cinco recetas entrenadas. Los resultados y controles se integran en el [capítulo 7](07_diseno_riguroso.md); las 35 pruebas del primer módulo conservan su alcance histórico dentro de ese conjunto.
+Se cuenta con un inventario de 81 predictores, comprobación de 167 metadatos, selección documentada de configuraciones y tres exportaciones TorchScript sobre calibración histórica. La evidencia neuronal incluye código, propiedades con alcance explícito, pruebas de software y dos pilotos de desarrollo completados, con cinco recetas entrenadas. La nueva implementación de momentos y su guardado/reanudación se comprobaron con datos artificiales; su corrida real en Colab sigue pendiente de inicio desde la sesión del usuario. Los resultados y controles se integran en el [capítulo 7](07_diseno_riguroso.md); las 35 pruebas del primer módulo conservan su alcance histórico.
 
 Estos avances no equivalen a una auditoría integral cerrada, un dashboard terminado ni superioridad del candidato. **R1, la defensa académica de R2 y R3 siguen abiertos.** Los periodos ya evaluados en E1/E2 continúan siendo conocidos; repetirlos no recupera una confirmación independiente.
 
