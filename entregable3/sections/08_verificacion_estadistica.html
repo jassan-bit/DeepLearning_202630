@@ -420,7 +420,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-d-verificacion-estadistica-y-evaluacion-ampliada">
 <h1>8 Bloque D Verificación estadística y evaluación ampliada<a class="headerlink" href="#bloque-d-verificacion-estadistica-y-evaluacion-ampliada" title="Link to this heading">#</a></h1>
 <p><strong>Corte del 17 de noviembre de 2026: análisis retrospectivo ejecutado sobre predicciones congeladas.</strong> La CNN-LSTM con atención de contenido y salida aditiva positiva tiene diez semillas; cada una de las trece redes rivales también tiene diez. Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista cada uno. La comparación incluye los diecisiete sistemas sobre las mismas 608 fechas, sin eliminar rivales, semillas ni observaciones.</p>
-<p>Los <strong>48 contrastes principales</strong> —dieciséis rivales por tres procedimientos— rechazaron sus nulas frente al margen heredado, con <strong>Holm sobre los 48 p-valores</strong> y máximo p ajustado <strong>0,0019</strong>. Las sensibilidades temporales conservaron esa decisión. Este resultado está condicionado al calendario y a los supuestos de cada método: <strong>no acredita por sí solo R3</strong>, una batería confirmatoria homogénea o la originalidad del mecanismo. El MCS auxiliar conserva diez sistemas, incluido E3; no identifica un ganador único.</p>
+<p>Los <strong>48 contrastes principales</strong> —dieciséis rivales por tres procedimientos— rechazaron sus nulas frente al margen heredado, con <strong>Holm sobre los 48 p-valores</strong> y máximo p ajustado <strong>0,0019</strong>. Las sensibilidades temporales conservaron esa decisión. Este resultado está condicionado al calendario y a los supuestos de cada método: <strong>no acredita por sí solo R3</strong>, un diseño confirmatorio previo o la originalidad del mecanismo. El MCS auxiliar conserva diez sistemas, incluido E3; no identifica un ganador único.</p>
 <section id="protocolo-experimental-pre-registrado">
 <h2>8.1 Protocolo experimental pre-registrado<a class="headerlink" href="#protocolo-experimental-pre-registrado" title="Link to this heading">#</a></h2>
 <p><strong>No existe un preregistro confirmatorio de esta comparación.</strong> El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/c4a4a1e68e9844cdfb81de0075177ced0cd96c07/experiments/e3_bloque_d/protocolo_borrador.md">borrador de Bloque D</a> continúa identificado como borrador. El plan de esta etapa se fijó en el commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/4a21b0329b99e864ec64fc2df49260aa874141bf">4a21b032</a>, después de conocer las predicciones y sus métricas medias y antes de calcular estos p-valores. El código probado se fijó en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/0213266404a0aa3af985d7306dce6b13892c71ec">02132664</a> antes de ejecutar el análisis.</p>
@@ -552,7 +552,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 </table>
 </div>
 <div class="pst-scrollable-table-container"><table class="table" id="id1">
-<caption><span class="caption-number">Tabla 1 </span><span class="caption-text">Métricas sobre las 608 fechas: media individual y dispersión entre semillas</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<caption><span class="caption-number">Tabla 3 </span><span class="caption-text">Métricas sobre las 608 fechas: media individual y dispersión entre semillas</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo</p></th>
 <th class="head"><p>R</p></th>
@@ -709,7 +709,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 \]</div>
 <p>El bootstrap recalcula la métrica completa y compara su ruido centrado con la distancia observada al margen. Usa la corrección Monte Carlo de uno en numerador y denominador, con resolución <strong>0,0001</strong>. Los p no estimables permanecen en la familia mediante una contribución conservadora de uno para el ajuste y se reportan como no estimables.</p>
 <p>Los dieciséis diagnósticos Shapiro entre semillas no rechazaron normalidad a 0,05; el menor p fue 0,0564. <strong>Eso no demuestra normalidad con diez observaciones.</strong> Los supuestos de estabilidad temporal y del calendario tampoco quedan certificados por los p de comparación. Holm no corrige la exposición previa al test, la selección del diseño ni un supuesto inválido.</p>
-<p>Los tres procedimientos no se presentan como tres confirmaciones temporales homogéneas ni como acreditación automática de la Tabla 4. No se aplican correcciones Nadeau–Bengio a días o semillas de esta única cronología, ni Clark–West sin justificar anidamiento.</p>
+<p>La guía exige al menos tres pruebas distintas y apropiadas; no prescribe literalmente idéntico ámbito de incertidumbre. Los procedimientos aquí ejecutados son distintos y sus alcances deben justificarse para la hipótesis F2a; su presencia y sus rechazos no acreditan automáticamente toda la Tabla 4 ni R3. No se aplican correcciones Nadeau–Bengio a días o semillas de esta única cronología, ni Clark–West sin justificar anidamiento.</p>
 </section>
 <section id="estrategia-estadistica-familias-potencia-y-agregacion">
 <h2>8.7 Estrategia estadística: familias, potencia y agregación<a class="headerlink" href="#estrategia-estadistica-familias-potencia-y-agregacion" title="Link to this heading">#</a></h2>
@@ -717,7 +717,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 <h3>8.7.1 Control del error por familia<a class="headerlink" href="#control-del-error-por-familia" title="Link to this heading">#</a></h3>
 <p>Se fijó <strong>una familia principal de 48 hipótesis</strong>, con Holm a alfa=0,05. Este control es más amplio que las tres familias de dieciséis propuestas en el borrador. No se eligió la prueba de menor p ni se excluyeron rivales después de ver el resultado. Para la descripción conjunta por rival se exige que los tres p ajustados sean menores que 0,05.</p>
 <div class="pst-scrollable-table-container"><table class="table" id="id3">
-<caption><span class="caption-number">Tabla 2 </span><span class="caption-text">Contrastes principales frente al margen heredado</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<caption><span class="caption-number">Tabla 4 </span><span class="caption-text">Contrastes principales frente al margen heredado</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Rival</p></th>
 <th class="head"><p>Ganancia RMSE</p></th>
@@ -884,7 +884,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 <section id="robustez-sensibilidad-y-calidad-probabilistica">
 <h2>8.8 Robustez, sensibilidad y calidad probabilística<a class="headerlink" href="#robustez-sensibilidad-y-calidad-probabilistica" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table" id="id5">
-<caption><span class="caption-number">Tabla 3 </span><span class="caption-text">Sensibilidades temporales prefijadas</span><a class="headerlink" href="#id5" title="Link to this table">#</a></caption>
+<caption><span class="caption-number">Tabla 5 </span><span class="caption-text">Sensibilidades temporales prefijadas</span><a class="headerlink" href="#id5" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Bloque / rezagos</p></th>
 <th class="head"><p>Rechazos de 48</p></th>
@@ -917,7 +917,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 <h3>MCS auxiliar con el modelo E3 incluido<a class="headerlink" href="#mcs-auxiliar-con-el-modelo-e3-incluido" title="Link to this heading">#</a></h3>
 <p>El MCS usa <strong>Tmax, nivel 90%, 4999 réplicas y bloques 14</strong>. Su pérdida es el <strong>MSE diario medio entre semillas</strong>, otro estimando respecto a la media de RMSE primaria. Tras siete exclusiones, conserva <strong>diez sistemas</strong>, con p del último contraste global <strong>0,1442</strong>:</p>
 <div class="pst-scrollable-table-container"><table class="table" id="id6">
-<caption><span class="caption-number">Tabla 4 </span><span class="caption-text">MCS auxiliar: conjunto retenido y exclusiones secuenciales</span><a class="headerlink" href="#id6" title="Link to this table">#</a></caption>
+<caption><span class="caption-number">Tabla 6 </span><span class="caption-text">MCS auxiliar: conjunto retenido y exclusiones secuenciales</span><a class="headerlink" href="#id6" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Modelo</p></th>
 <th class="head"><p>MSE diario medio</p></th>

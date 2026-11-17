@@ -390,9 +390,9 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-motivacion">1.1 Antecedentes y motivación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos">1.2 Objetivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuatro-componentes-obligatorios-y-objetivos">1.2 Cuatro componentes obligatorios y objetivos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avances-y-limites-actuales">1.3 Avances y límites actuales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-del-libro">1.4 Organización del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-leer-el-informe">1.4 Cómo leer el informe</a></li>
 </ul>
             </nav>
         </div>
@@ -406,38 +406,65 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
 <h1>1 Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h1>
-<p>Este proyecto pronostica la volatilidad diaria de Bitcoin, BTCUSDT de Binance Spot. Al inicio del día <span class="math notranslate nohighlight">\(t\)</span> utiliza las siete barras OHLCV anteriores para estimar la desviación poblacional de siete retornos logarítmicos, sin anualizar y con horizonte de un día:</p>
+<p>Este tercer entregable da continuidad al proyecto de pronóstico de volatilidad de Bitcoin. La guía exige reunir <strong>correcciones de E2, un producto predictivo, una contribución neuronal defendible y un informe científico reproducible</strong>, sus cuatro componentes obligatorios. El avance actual incluye una CNN-LSTM con atención entrenada en diez semillas y su evaluación estadística retrospectiva; todavía no equivale al cierre de los cuatro productos.</p>
+<p>El problema es BTCUSDT de Binance Spot. Al inicio del día <span class="math notranslate nohighlight">\(t\)</span> se utilizan las siete barras OHLCV anteriores para estimar la desviación poblacional de siete retornos logarítmicos, sin anualizar y con horizonte de un día:</p>
 <div class="math notranslate nohighlight">
 \[
 r_t=\log(C_t/C_{t-1}),\qquad
 \bar r_t=\frac17\sum_{j=0}^{6}r_{t-j},\qquad
 \sigma_7(t)=\sqrt{\frac17\sum_{j=0}^{6}(r_{t-j}-\bar r_t)^2}.
 \]</div>
-<p>La etiqueta requiere ocho cierres y contiene el retorno del día objetivo, aún desconocido al emitir el pronóstico. Las entradas son las siete barras de <span class="math notranslate nohighlight">\([t-7,t)\)</span>, ordenadas de antigua a reciente, con cinco canales. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato de E2</a> define <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, escaladores de entrenamiento, disponibilidad y máscaras.</p>
+<p>La etiqueta requiere ocho cierres y contiene el retorno del día objetivo, aún desconocido al emitir el pronóstico. Las entradas son las siete barras de <span class="math notranslate nohighlight">\([t-7,t)\)</span>, ordenadas de antigua a reciente, con cinco canales. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato de E2</a> define <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, escaladores de entrenamiento, disponibilidad y máscaras. Se conserva la ruta metodológica temporal <strong>F2a</strong>; no se importan pruebas de clasificación o de conjuntos independientes sin justificar su aplicación.</p>
 <section id="antecedentes-y-motivacion">
 <h2>1.1 Antecedentes y motivación<a class="headerlink" href="#antecedentes-y-motivacion" title="Link to this heading">#</a></h2>
-<p>E1 estableció las referencias neuronales. E2 ejecutó diez candidatos, tres referencias neuronales y tres comparadores estadísticos: <strong>16 sistemas sobre 608 fechas conocidas</strong>, con seis semillas por red. El LSTM-autoencoder obtuvo la menor RMSE media observada, <strong>0,00380343</strong>. Las veinte comparaciones primarias no demostraron la mejora práctica registrada tras Holm; las ampliaciones posteriores conservan esa conclusión.</p>
-<p>E3 debe convertir los artefactos en un producto predictivo y desarrollar una contribución neuronal defendible. La combinación CNN-LSTM-atención no acredita por sí sola originalidad. El primer piloto estudió penalización de discordancia y saturación radial; el segundo comparó cabezas de salida. La aditiva v2 conserva la referencia predictiva de desarrollo. La cabeza posterior por momentos ya tiene implementación y un piloto preparado para Colab por solicitud del usuario, como adaptación experimental sin originalidad acreditada; el <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">capítulo 6</span></a> distingue esa preparación de resultados de mercado aún no obtenidos.</p>
+<p>E1 estableció las referencias neuronales. El corte histórico de E2 comparó diez candidatos, tres referencias neuronales y tres comparadores clásicos: <strong>16 sistemas sobre 608 fechas conocidas</strong>, con seis semillas por red. En ese corte, LSTM-autoencoder obtuvo la menor RMSE media, <strong>0,00380343</strong>. Sus veinte contrastes primarios y su conclusión histórica conservan identidad; no se sustituyen por el análisis posterior de E3.</p>
+<p>La extensión posterior conservó los <strong>81 predictores originales</strong> y añadió cuatro semillas por cada una de las trece redes: ahora hay <strong>133 predictores E2</strong>, diez por red y una trayectoria por clásico. No se repitió HPO. Con diez semillas, el menor RMSE medio de E2 sigue siendo el de LSTM-autoencoder, <strong>0,00387289</strong>. El <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">capítulo 4</span></a> distingue esta ampliación de una corrección de datos y conserva el ranking antes/después.</p>
+<p>La receta E3 evaluada es <strong>CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva y 1210 parámetros</strong>. Sus diez semillas obtuvieron RMSE medio <strong>0,0029394324</strong>, una reducción observada del <strong>24,10 %</strong> frente al mejor rival por RMSE de la extensión E2. El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">capítulo 8</span></a> conserva los 48 contrastes posteriores favorables tras Holm, sus supuestos, intervalos y sensibilidades. El MCS auxiliar conserva diez sistemas, incluido E3, y no establece un ganador único.</p>
+<p>La combinación CNN-LSTM-atención y una mejor métrica <strong>no acreditan por sí solas originalidad</strong>. Los pilotos de penalización/saturación, cabezas de salida y momentos se conservan como historia de desarrollo en los <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">capítulos 6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a>. El piloto por momentos ya completó sus tres recetas y no superó su heurística; no sigue pendiente ni se renombra como el modelo de la comparación actual.</p>
 </section>
-<section id="objetivos">
-<h2>1.2 Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Resolver y documentar las correcciones aplicables de E2, con trazabilidad e impacto en resultados.</p></li>
-<li><p>Seleccionar configuraciones desde validación y preparar artefactos CPU con metadatos y paridad verificada.</p></li>
-<li><p>Desarrollar el candidato desde su formulación, demostrar una propiedad y comprobar su implementación.</p></li>
-<li><p>Evaluarlo con comparación justa, protocolo previo y evidencia adicional independiente.</p></li>
-<li><p>Integrar resultados en Dash Plotly, Render y un informe reproducible.</p></li>
-</ol>
+<section id="cuatro-componentes-obligatorios-y-objetivos">
+<h2>1.2 Cuatro componentes obligatorios y objetivos<a class="headerlink" href="#cuatro-componentes-obligatorios-y-objetivos" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente de la guía</p></th>
+<th class="head"><p>Producto que debe entregarse</p></th>
+<th class="head"><p>Estado comprobable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Correcciones de E2</p></td>
+<td><p>Observaciones aplicables resueltas, tabla de trazabilidad, auditoría e impacto consistente en resultados</p></td>
+<td><p>Auditorías y correcciones internas documentadas en <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">4</span></a>; cierre integral del Bloque A pendiente. No se inventan observaciones del docente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dashboard predictivo</p></td>
+<td><p>Aplicación <strong>Dash Plotly</strong>, desplegada en <strong>Render</strong>, con <strong>Contexto, EDA y Modelos</strong>; Top 10 con su configuración seleccionada y artefactos ligeros, o resultados precalculados con justificación de recursos</p></td>
+<td><p>Diseño en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a> y <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>; tres referencias exportadas con alcance limitado. Aplicación integrada, perfil final de inferencia, URL y prueba de humo pendientes.</p></td>
+</tr>
+<tr class="row-even"><td><p>Modelo neuronal original o transferido</p></td>
+<td><p>Mecanismo, capa, pérdida o entrenamiento con diferencia sustantiva, fuentes atribuidas, implementación algorítmica, propiedad formal pertinente y comparación justa, reproducible y con protocolo previo</p></td>
+<td><p>Receta CNN-LSTM evaluada y desarrollo documentado en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a>, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a> y <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8</span></a>. La novedad, la defensa humana y los requisitos completos de R3 siguen sin acreditarse.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Informe científico</p></td>
+<td><p>Jupyter Book que documente implementación, método, experimentos, resultados, discusión y paquete de reproducción</p></td>
+<td><p>Este libro y sus fuentes están publicados; <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a> y <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">12</span></a> distinguen lo disponible de contenedor, reproducción independiente y cierre pendientes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los objetivos operativos son resolver las correcciones aplicables, conservar la selección por validación y los hashes, justificar la contribución frente a los antecedentes, evaluarla bajo la ruta F2a y llevar los resultados a un servicio reproducible. Un buen resultado estadístico no cierra automáticamente los otros componentes.</p>
 </section>
 <section id="avances-y-limites-actuales">
 <h2>1.3 Avances y límites actuales<a class="headerlink" href="#avances-y-limites-actuales" title="Link to this heading">#</a></h2>
-<p>Se cuenta con un inventario de 81 predictores, comprobación de 167 metadatos, selección documentada de configuraciones y tres exportaciones TorchScript sobre calibración histórica. La evidencia neuronal incluye código, propiedades con alcance explícito, pruebas de software y dos pilotos de desarrollo completados, con cinco recetas entrenadas. La nueva implementación de momentos y su guardado/reanudación se comprobaron con datos artificiales; su corrida real en Colab sigue pendiente de inicio desde la sesión del usuario. Los resultados y controles se integran en el <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">capítulo 7</span></a>; las 35 pruebas del primer módulo conservan su alcance histórico.</p>
-<p>Estos avances no equivalen a una auditoría integral cerrada, un dashboard terminado ni superioridad del candidato. <strong>R1, la defensa académica de R2 y R3 siguen abiertos.</strong> Los periodos ya evaluados en E1/E2 continúan siendo conocidos; repetirlos no recupera una confirmación independiente.</p>
+<p>El inventario inicial de <strong>81 predictores y 167 metadatos</strong> corresponde a su corte histórico, no al tamaño actual de la extensión E2. Se conserva porque documenta escaladores, calibradores y artefactos ya verificados. La comparación posterior incorpora <strong>133 predictores E2 y diez de E3</strong>, con fechas y objetivos idénticos y sin borrar los resultados anteriores.</p>
+<p>El proceso E3 utilizó <strong>532 ejemplos de ajuste y 116 de validación</strong>, mientras que E2 utilizó <strong>655 de ajuste y 53 de calibración</strong>. Compartir las 608 fechas de prueba y diez semillas por red no iguala esos tratamientos. Las fechas de prueba ya eran conocidas y no se presentan como una confirmación ciega. Los análisis retrospectivos, la variación entre semillas, las propiedades formales históricas y las pruebas de software conservan alcances diferentes.</p>
+<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">capítulo 8</span></a> ya incluye métricas, efectos, p-valores, Holm, sensibilidades y MCS. En cambio, sMAPE y R² aún deben incorporarse a la tabla resumida vigente; la cobertura y anchura de intervalos del candidato requieren una etapa de calibración separada. Tampoco están cerrados la evaluación en tres conjuntos adicionales, el dimensionamiento de potencia, la adecuación completa y los demás estudios de robustez.</p>
+<p><strong>R1, la defensa académica de R2 y R3 siguen abiertos.</strong> La demostración del primer módulo de atención modificada no se transfiere automáticamente a la receta aditiva actual. La implementación, el resultado favorable y la publicación del libro no acreditan por sí solos novedad, dominio humano del código o entrega completa.</p>
 </section>
-<section id="organizacion-del-libro">
-<h2>1.4 Organización del libro<a class="headerlink" href="#organizacion-del-libro" title="Link to this heading">#</a></h2>
-<p>El cuerpo principal sigue exclusivamente los <strong>capítulos 1 a 16 de la guía</strong>. Las <a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">secciones 2</span></a> y <a class="reference internal" href="03_panorama_general.html"><span class="std std-doc">3</span></a> fijan el estándar y las dependencias. Las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">secciones 4</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">5</span></a> y <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> reúnen los bloques A, B y C. La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">sección 7</span></a> integra hipótesis, disciplina de diseño, teoría, pilotos y controles. Los <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">anexos</span></a> reúnen las plantillas y el detalle de apoyo, con una concordancia hacia su capítulo correspondiente.</p>
-<p>El dashboard de Render aún no tiene URL pública. La publicación de este Jupyter Book no se presenta como ese dashboard. La asistencia de IA en código, teoría, revisión focal y documentación está declarada; el autor deberá comprender y defender la entrega.</p>
+<section id="como-leer-el-informe">
+<h2>1.4 Cómo leer el informe<a class="headerlink" href="#como-leer-el-informe" title="Link to this heading">#</a></h2>
+<p>El cuerpo principal sigue exclusivamente los <strong>capítulos 1 a 16 de la guía</strong>. La <a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">sección 2</span></a> mantiene el estándar único de profundidad; la <a class="reference internal" href="03_panorama_general.html"><span class="std std-doc">3</span></a> organiza los bloques A–G y sus dependencias. Las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">secciones 4</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">5</span></a> y <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> reúnen correcciones, artefactos y contribución. La <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a> desarrolla el diseño; la <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8</span></a>, la evaluación y sus límites. Las <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">secciones 14</span></a> y <a class="reference internal" href="15_integridad_academica.html"><span class="std std-doc">15</span></a> conservan las condiciones de evaluación e integridad, sin asignar una nota al avance.</p>
+<p>Los <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">anexos y la concordancia</span></a> conservan las plantillas, el detalle de apoyo y las direcciones publicadas. Cuando la guía precisa o restringe un requisito en una sección posterior, se mantiene esa condición; el libro no rebaja el estándar después de observar resultados.</p>
+<p>El dashboard de Render aún no tiene URL pública verificada. Este Jupyter Book no se presenta como ese dashboard. La asistencia de IA en código, teoría, revisión focal y documentación está declarada; la persona autora deberá comprender y defender la entrega.</p>
 </section>
 </section>
 
@@ -508,9 +535,9 @@ r_t=\log(C_t/C_{t-1}),\qquad
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-motivacion">1.1 Antecedentes y motivación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos">1.2 Objetivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuatro-componentes-obligatorios-y-objetivos">1.2 Cuatro componentes obligatorios y objetivos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avances-y-limites-actuales">1.3 Avances y límites actuales</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-del-libro">1.4 Organización del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-leer-el-informe">1.4 Cómo leer el informe</a></li>
 </ul>
   </nav></div>
 

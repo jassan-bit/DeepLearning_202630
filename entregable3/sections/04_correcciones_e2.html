@@ -388,9 +388,15 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-de-correcciones">4.1 Trazabilidad de correcciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-artefactos-y-datos-reales">4.2 Auditoría de artefactos y datos reales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-artefactos-y-datos-reales">4.2 Auditoría de artefactos y datos reales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inventario-historico-y-ampliacion-actual">Inventario histórico y ampliación actual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-de-datos-disponible">Cierre de datos disponible</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-determinismo-y-limites-numericos">4.3 Brecha, determinismo y límites numéricos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-actualizados-y-congelamiento">4.4 Resultados actualizados y congelamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antes-despues-de-seis-a-diez-semillas">Antes/después: de seis a diez semillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versiones-fijadas-y-reglas-para-cambios-futuros">Versiones fijadas y reglas para cambios futuros</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencias-de-referencia">Evidencias de referencia</a></li>
 </ul>
 </li>
@@ -407,7 +413,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-a-correcciones-del-entregable-2">
 <h1>4 Bloque A Correcciones del Entregable 2<a class="headerlink" href="#bloque-a-correcciones-del-entregable-2" title="Link to this heading">#</a></h1>
-<p>No se han recibido observaciones del docente, según lo informado por el autor. Las filas siguientes corresponden a <strong>revisión interna</strong>, auditorías ejecutadas y límites documentados de E2. No se atribuyen al profesor ni se interpreta su ausencia como aprobación.</p>
+<p>No se han aportado observaciones del docente sobre E2 en el registro recibido. Las páginas de la guía fijan requisitos; no son retroalimentación individual ni aprobación del trabajo. Las filas siguientes identifican <strong>hallazgos internos y evidencia ejecutada</strong>, con sus alcances y pendientes.</p>
+<p>El corte actual conserva los 16 sistemas de E2 y amplía las trece redes de seis a diez semillas: <strong>133 predictores, 130 neuronales y tres deterministas</strong>. Esa ampliación es posterior al conocimiento del test y está identificada como tal. No reescribe la A2 histórica, no es una corrección de sus etiquetas y no cierra automáticamente el Bloque A.</p>
 <section id="trazabilidad-de-correcciones">
 <h2>4.1 Trazabilidad de correcciones<a class="headerlink" href="#trazabilidad-de-correcciones" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -421,108 +428,414 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>No recibida</p></td>
+<tr class="row-even"><td><p>No aportada</p></td>
 <td><p>A01 Organización y estado del informe.</p></td>
-<td><p>Actualizadas portada y navegación; las secciones 1 a 7 siguen la guía.</p></td>
-<td><p><a class="reference internal" href="01_introduccion.html"><span class="std std-doc">Sección 1</span></a> y <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">concordancia</span></a>.</p></td>
-<td><p>Índice y fuentes del libro.</p></td>
-<td><p>Sin modificación de métricas o ranking.</p></td>
+<td><p>Actualizados alcance, estándar, panorama y trazabilidad, conservando capítulos 1–16 y anexos.</p></td>
+<td><p><a class="reference internal" href="01_introduccion.html"><span class="std std-doc">Sección 1</span></a>, <a class="reference internal" href="03_panorama_general.html"><span class="std std-doc">sección 3</span></a> y <a class="reference internal" href="concordancia_secciones.html"><span class="std std-doc">concordancia</span></a>.</p></td>
+<td><p>Índice, fuentes y matriz de esta sección.</p></td>
+<td><p>Corrección documental; no altera predicciones ni resultados históricos.</p></td>
 </tr>
-<tr class="row-odd"><td><p>No recibida</p></td>
-<td><p>A02 Auditoría de fuga parcial.</p></td>
-<td><p>Inventario E3 y auditoría real train/cal de E2 ejecutados; faltan el contenido de prueba y controles completos.</p></td>
+<tr class="row-odd"><td><p>No aportada</p></td>
+<td><p>A02 Auditoría de fuga incompleta y descripción desactualizada de los datos disponibles.</p></td>
+<td><p>Incorporado el cierre de datos con train655, cal53 y prueba608; 12 controles PASS, 3 PARTIAL y 1 NA.</p></td>
 <td><p>Sección 4.2.</p></td>
-<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">Auditoría E2 vigente</a>.</p></td>
-<td><p>Sin fallo de datos demostrado en los controles ejecutados; no certifica ausencia integral de fuga.</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/af3f1223ad5899ed63016d2af2d09bae8470ab00/book_e2/_static/e2_scientific_closure_20261116/data_audit/audit_result.json">Informe de datos fijado</a>.</p></td>
+<td><p>Reconstrucción de los 608 objetivos con diferencia máxima cero; quedan controles de ports, etiquetas permutadas y clasificación adversarial.</p></td>
 </tr>
-<tr class="row-even"><td><p>No recibida</p></td>
-<td><p>A03 Aplicación de δg.</p></td>
-<td><p>E2 añadió un diagnóstico CPU sobre trece redes; dos establecieron tolerancia condicional. La puerta CPU–CUDA estricta no se dio por aprobada.</p></td>
+<tr class="row-even"><td><p>No aportada</p></td>
+<td><p>A03 Alcance del diagnóstico histórico de brecha δg.</p></td>
+<td><p>Conservado el suplemento CPU: dos de trece redes establecieron tolerancia condicional; la puerta CPU–CUDA estricta no se dio por aprobada.</p></td>
 <td><p>Sección 4.3.</p></td>
 <td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_corrections_20261115/cpu_diagnostic/statistics/results/CPU_delta_g_Holm13.csv">Trece contrastes CPU</a>.</p></td>
-<td><p>No cambia la conclusión primaria ni acredita adecuación conjunta.</p></td>
+<td><p>No se convierte ese resultado de seis pares por red en adecuación de diez semillas o de la CNN-LSTM E3.</p></td>
 </tr>
-<tr class="row-odd"><td><p>No recibida</p></td>
-<td><p>A04 Seis semillas y baja potencia histórica.</p></td>
-<td><p>Conservadas la limitación y la MDE; dimensionamiento nuevo de E3 pendiente.</p></td>
-<td><p><a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">Sección 2</span></a>.</p></td>
-<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/e2_benchmark_final_20261113/pilot_power_MDE.json">Piloto E2</a>.</p></td>
-<td><p>No se amplían semillas después de observar la prueba.</p></td>
+<tr class="row-odd"><td><p>No aportada</p></td>
+<td><p>A04 Seis semillas históricas y dimensionamiento insuficiente.</p></td>
+<td><p>Conservadas las seis semillas y añadidas cuatro por cada red, con recetas fijas y todos los ajustes registrados.</p></td>
+<td><p>Sección 4.4 y <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>.</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/5e9023ea821bfa9fb0b92340d518413f6ab89161/runs/e2_extension_10_semillas_v1">Extensión E2 final</a>.</p></td>
+<td><p>81→133 predictores y cambios de medias/rangos publicados abajo. Es una ampliación posterior; no un dimensionamiento prospectivo ni prueba de potencia.</p></td>
 </tr>
-<tr class="row-even"><td><p>No recibida</p></td>
+<tr class="row-even"><td><p>No aportada</p></td>
 <td><p>A05 Calendario conocido.</p></td>
-<td><p>Documentada exposición previa y herencia permitida; confirmación E3 pendiente.</p></td>
-<td><p><a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">Sección 7.2</span></a>.</p></td>
-<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">Contrato E2</a>.</p></td>
-<td><p>Conserva el alcance retrospectivo de las 608 fechas.</p></td>
+<td><p>Mantenida la exposición previa de las 608 fechas y el carácter retrospectivo de la comparación.</p></td>
+<td><p><a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">Sección 7.2</span></a> y <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.1</span></a>.</p></td>
+<td><p>Planes e insumos fijados de E2/E3.</p></td>
+<td><p>Repetir el calendario o ampliar semillas no crea un test ciego ni mercados independientes.</p></td>
 </tr>
-<tr class="row-odd"><td><p>No recibida</p></td>
-<td><p>A06 Limitación y originalidad del híbrido.</p></td>
-<td><p>Formulación y antecedentes disponibles; R1 sigue abierto.</p></td>
-<td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Secciones 6 y 7</span></a>.</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/f9b1268c101e012ece98cf78c243f91c/review_matrix.csv"><span class="xref download myst">Matriz de antecedentes</span></a>.</p></td>
-<td><p>Sin novedad ni mejora predictiva acreditadas del candidato.</p></td>
+<tr class="row-odd"><td><p>No aportada</p></td>
+<td><p>A06 Novedad del híbrido y separación entre mecanismo y desempeño.</p></td>
+<td><p>La referencia CNN-LSTM con atención y salida aditiva positiva ya tiene diez semillas y evidencia predictiva favorable; R1 y la defensa académica de R2 permanecen sin acreditar.</p></td>
+<td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Secciones 6</span></a>, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a> y <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8</span></a>.</p></td>
+<td><p>Revisión de antecedentes, métricas y contrastes posteriores.</p></td>
+<td><p>RMSE medio de E3 0,0029394324; ventaja observada de 24,10 % frente al mejor E2 ampliado. No demuestra que la atención cause la mejora ni acredita novedad.</p></td>
 </tr>
-<tr class="row-even"><td><p>No recibida</p></td>
-<td><p>A07 Equidad de presupuesto.</p></td>
-<td><p>E2 recuperó oportunidades HPO y costes con límites; presupuesto E3 pendiente.</p></td>
-<td><p><a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">Sección 7.2</span></a>.</p></td>
-<td><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">Ampliación E2</a>.</p></td>
-<td><p>Sin nuevo HPO o campaña de mercado en esta reorganización.</p></td>
+<tr class="row-even"><td><p>No aportada</p></td>
+<td><p>A07 Equidad de particiones y presupuesto.</p></td>
+<td><p>Documentadas las recetas conservadas y los consumos separados; no se declara equivalencia del tratamiento.</p></td>
+<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Sección 8.2</span></a>.</p></td>
+<td><p>Plan de extensión y registro de ejecución.</p></td>
+<td><p>E2 usa 655 ejemplos de ajuste y 53 de calibración; E3, 532 de ajuste y 116 de validación. Diez semillas por red no eliminan esas diferencias.</p></td>
 </tr>
-<tr class="row-odd"><td><p>No recibida</p></td>
-<td><p>A08 Familia y pruebas de E3.</p></td>
-<td><p>Estándar conservado; protocolo confirmatorio del candidato pendiente.</p></td>
-<td><p><a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">Secciones 2 y 7</span></a>.</p></td>
-<td><p>Registro de diseño y requisitos.</p></td>
-<td><p>No se cambian las familias primarias ni los p-valores de E2.</p></td>
+<tr class="row-odd"><td><p>No aportada</p></td>
+<td><p>A08 Familia y procedimientos de E3.</p></td>
+<td><p>Analizados los 16 rivales y 48 contrastes frente al margen heredado, con Holm global y sensibilidades prefijadas.</p></td>
+<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Sección 8</span></a>.</p></td>
+<td><p>Plan posterior, p crudos/ajustados, intervalos y MCS.</p></td>
+<td><p>48/48 rechazos bajo los supuestos de cada procedimiento; MCS conserva diez sistemas. No altera los p históricos de E2 ni completa R3, el preregistro o la potencia exigida.</p></td>
 </tr>
-<tr class="row-even"><td><p>No recibida</p></td>
+<tr class="row-even"><td><p>No aportada</p></td>
 <td><p>A09 CPU y exportación.</p></td>
-<td><p>Tres referencias TorchScript verificadas. E2 tiene además un suplemento eager CPU con alcance propio.</p></td>
+<td><p>Conservadas tres referencias TorchScript y sus reportes de ida y vuelta.</p></td>
 <td><p><a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">Sección 5</span></a>.</p></td>
-<td><p>Reportes de ida y vuelta y diagnóstico E2.</p></td>
-<td><p>Paridad CPU–TorchScript en calibración; no se equipara a la puerta CUDA ni a prueba608.</p></td>
+<td><p>Metadatos y paridad CPU–TorchScript.</p></td>
+<td><p>Paridad puntual sobre calibración histórica; no se equipara a la puerta CUDA, a prueba608 o a exportación de todos los sistemas.</p></td>
 </tr>
-<tr class="row-odd"><td><p>No recibida</p></td>
-<td><p>A10 Reproducibilidad completa.</p></td>
-<td><p>Auditores, código y pruebas disponibles; contenedor y reproducción final E3 pendientes.</p></td>
-<td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Sección 6.5</span></a>.</p></td>
-<td><p>Workflows e informes guardados.</p></td>
-<td><p>Pruebas de software no sustituyen reproducción de la campaña definitiva.</p></td>
+<tr class="row-odd"><td><p>No aportada</p></td>
+<td><p>A10 Reproducibilidad integral.</p></td>
+<td><p>Fuentes, manifiestos y pruebas de CI disponibles; el análisis posterior reutiliza predicciones fijadas.</p></td>
+<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Secciones 8.9</span></a> y <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>.</p></td>
+<td><p>Registro de 42 pruebas de insumos/métodos y construcción del libro.</p></td>
+<td><p>Verificación de software y archivos; no sustituye contenedor final y reproducción humana independiente de la campaña.</p></td>
 </tr>
-<tr class="row-even"><td><p>No recibida</p></td>
+<tr class="row-even"><td><p>No aportada</p></td>
 <td><p>A11 Cobertura bibliográfica.</p></td>
-<td><p>Corpus recibido de E2 conservado y revisión focal del candidato añadida; búsqueda completa R1 pendiente.</p></td>
+<td><p>Conservadas las fuentes heredadas y revisiones focales; búsqueda completa y verificación externa R1 pendientes.</p></td>
 <td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Sección 6.3</span></a>.</p></td>
-<td><p>Matriz, manifiesto de fuentes y bitácora de consultas.</p></td>
-<td><p>No se cambia el PRISMA ni se infiere ausencia de antecedentes de una consulta bloqueada.</p></td>
+<td><p>Matriz, manifiestos y bitácoras de consultas.</p></td>
+<td><p>No se infiere ausencia de antecedentes de una consulta bloqueada ni se presenta un agente de IA como la persona externa exigida.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Una observación docente futura debe incorporarse con su fuente, acción, ubicación, evidencia e impacto; ninguna queda corregida por omitirla de esta tabla. Las casillas abiertas permanecen abiertas.</p>
 </section>
 <section id="auditoria-de-artefactos-y-datos-reales">
 <h2>4.2 Auditoría de artefactos y datos reales<a class="headerlink" href="#auditoria-de-artefactos-y-datos-reales" title="Link to this heading">#</a></h2>
-<p>El inventario de E3 concilia <strong>16 sistemas y 81 predictores</strong>, 78 neuronales y tres deterministas. Se verificaron los bytes de <strong>167 metadatos</strong>, incluidos 81 escaladores y 81 calibradores, y sus vínculos con los checkpoints. Los <strong>245 hashes</strong> del freeze histórico concuerdan con el manifiesto de respaldo. Listar 79 assets de pesos en Releases no equivale a haber verificado todos sus contenidos; cada descarga efectiva conserva su propia comprobación.</p>
-<p>La ampliación actual de E2 también reconstruyó los <strong>655 ejemplos train y 53 de calibración</strong>, comprobó ventanas, vecinos, soportes y transformaciones comunes, y recuperó escaladores físicos. Informó ocho controles verificados, siete parciales y uno no aplicable, como clasificación de esa auditoría, no como porcentaje de cumplimiento de la guía.</p>
-<p>Por tanto, no se mantiene el diagnóstico anterior de que sólo existían guardas sintéticas. <strong>La auditoría integral sigue parcial:</strong> no están disponibles en ese entorno las ventanas OHLCV de las 608 fechas de prueba; faltan controles train/test con ajustes adversariales y etiquetas permutadas y la certificación completa de cada port. La recuperación, las identidades de la reproducción y el freeze original se distinguen en sus manifiestos.</p>
+<section id="inventario-historico-y-ampliacion-actual">
+<h3>Inventario histórico y ampliación actual<a class="headerlink" href="#inventario-historico-y-ampliacion-actual" title="Link to this heading">#</a></h3>
+<p>El inventario del primer corte de E3 concilió <strong>16 sistemas y 81 predictores</strong>, con 78 trayectorias neuronales y tres deterministas. Sus <strong>167 metadatos</strong> —incluidos 81 escaladores y 81 calibradores— y los <strong>245 hashes</strong> del freeze histórico conservan ese alcance. No se extrapolan esas cantidades a los 133 predictores posteriores. Listar 79 assets de pesos en Releases tampoco equivale a verificar todos sus contenidos.</p>
+<p>La ampliación conserva íntegros los 81 predictores y los campos globales del insumo histórico, y agrega <strong>52 ajustes nuevos</strong>, cuatro por red. La auditoría de entrada del análisis posterior verifica los 133 predictores E2 y diez trayectorias E3, las fechas y objetivos exactos y las métricas guardadas. Su <a class="reference download internal" download="" href="../_downloads/3dbb7093dfc1874d79d8d066a5246afd/input_validation.json"><span class="xref download myst">informe</span></a> no se presenta como una nueva deserialización independiente de todos los pesos.</p>
+</section>
+<section id="cierre-de-datos-disponible">
+<h3>Cierre de datos disponible<a class="headerlink" href="#cierre-de-datos-disponible" title="Link to this heading">#</a></h3>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/af3f1223ad5899ed63016d2af2d09bae8470ab00/book_e2/_static/e2_scientific_closure_20261116/data_audit/audit_result.json">cierre de datos del 16 de noviembre</a> tiene estado global <strong>PARTIAL</strong> y clasifica <strong>12 controles PASS, 3 PARTIAL y 1 NA</strong>. La descripción anterior de ocho verificados/siete parciales y de ventanas de prueba no disponibles corresponde a un corte previo y queda reemplazada por esta evidencia.</p>
+<p>El archivo fijado <code class="docutils literal notranslate"><span class="pre">current_cohort_arrays.npz</span></code>, SHA-256 <code class="docutils literal notranslate"><span class="pre">186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683</span></code>, contiene las <strong>1316 ventanas D7×5</strong>: 655 de entrenamiento, 53 de calibración y 608 de prueba, con representaciones crudas, relativas y escaladas, fechas y objetivos. Los controles publicados verifican reconstrucción de sigma7 poblacional, ausencia de covariables del día objetivo/futuro en las ventanas, transformaciones ajustadas en entrenamiento y escaladores físicos. Para los 608 objetivos de prueba, la diferencia máxima respecto al registro congelado fue <strong>cero</strong>.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-number">Tabla 1 </span><span class="caption-text">Controles del cierre de datos: estado y alcance</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Control</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Ámbito</p></th>
+<th class="head"><p>Límite o pendiente</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D01</p></td>
+<td><p>PASS</p></td>
+<td><p>Identidades de protocolo y fuentes</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D02</p></td>
+<td><p>PASS</p></td>
+<td><p>Calendario y barras OHLCV de desarrollo</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-even"><td><p>D03</p></td>
+<td><p>PASS</p></td>
+<td><p>Construcción de etiquetas train/cal</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D04</p></td>
+<td><p>PASS</p></td>
+<td><p>608 etiquetas, entradas y fechas de prueba</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-even"><td><p>D05</p></td>
+<td><p>PASS</p></td>
+<td><p>Identificadores, embargo y soportes móviles</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D06</p></td>
+<td><p>PASS</p></td>
+<td><p>Disponibilidad causal de las 1316 ventanas D7</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-even"><td><p>D07</p></td>
+<td><p>PASS</p></td>
+<td><p>Escalado común estimado sólo en train655</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D08</p></td>
+<td><p>PASS</p></td>
+<td><p>Prueba metamórfica del preprocesamiento común</p></td>
+<td><p>No certifica el comportamiento aprendido de todos los ports.</p></td>
+</tr>
+<tr class="row-even"><td><p>D09</p></td>
+<td><p>PASS</p></td>
+<td><p>Firmas históricas de 78 ajustes neuronales</p></td>
+<td><p>Sin pendiente dentro del alcance declarado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D10</p></td>
+<td><p>PASS</p></td>
+<td><p>Duplicados exactos de ventanas numéricas</p></td>
+<td><p>No certifica ausencia universal de fuga.</p></td>
+</tr>
+<tr class="row-even"><td><p>D11</p></td>
+<td><p>PASS</p></td>
+<td><p>Diagnóstico de ventanas cercanas con umbral fijo</p></td>
+<td><p>Umbral descriptivo; no certifica ausencia de fuga.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D12</p></td>
+<td><p>PASS</p></td>
+<td><p>81 escaladores físicos y cortes de ajuste</p></td>
+<td><p>Lee escaladores JSON; no deserializa todos los pesos.</p></td>
+</tr>
+<tr class="row-even"><td><p>D13</p></td>
+<td><p>PARTIAL</p></td>
+<td><p>Comportamiento específico de cada port</p></td>
+<td><p>Falta auditoría específica de ports y controles negativos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D14</p></td>
+<td><p>PARTIAL</p></td>
+<td><p>Control negativo con etiquetas permutadas</p></td>
+<td><p>Falta control de entrenamiento acotado y registrado.</p></td>
+</tr>
+<tr class="row-even"><td><p>D15</p></td>
+<td><p>PARTIAL</p></td>
+<td><p>Clasificador adversarial train/test</p></td>
+<td><p>Falta diagnóstico separado de diferencia de distribución.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D16</p></td>
+<td><p>NA</p></td>
+<td><p>Acuerdo entre anotadores humanos</p></td>
+<td><p>No aplica a una etiqueta continua determinista; no estima ruido de medida externo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los soportes crudos de entrenamiento están separados de calibración y prueba. Los identificadores objetivo de calibración/prueba son distintos, pero sus historias móviles comparten <strong>seis cierres, cinco barras de entrada y cinco retornos</strong>. Es pasado disponible para el pronóstico; no se declara independencia entre esas cohortes o entre días solapados.</p>
+<p>Siguen parciales <strong>D13</strong>, comportamiento específico de los ports; <strong>D14</strong>, entrenamiento con etiquetas permutadas; y <strong>D15</strong>, clasificador adversarial train/test. Este último diagnosticaría diferencias de distribución, no demostraría fuga por sí solo. El estado NA de D16 responde a que no hay anotadores humanos de una etiqueta continua determinista; no identifica ruido de medida externo ni un límite de Bayes. Los conteos de controles no son un porcentaje de cumplimiento de la guía.</p>
+<p>Esta revisión lee informes y archivos existentes; no ejecuta nuevos entrenamientos, inferencias o pruebas de hipótesis. El <a class="reference download internal" download="" href="../_downloads/dfa4b4629e56a4e4471b92fd2cd3b2a3/block_a_readout.json"><code class="xref download docutils literal notranslate"><span class="pre">readout</span> <span class="pre">de</span> <span class="pre">Bloque</span> <span class="pre">A</span></code></a> conserva fuentes, hashes y límites.</p>
+</section>
 </section>
 <section id="brecha-determinismo-y-limites-numericos">
 <h2>4.3 Brecha, determinismo y límites numéricos<a class="headerlink" href="#brecha-determinismo-y-limites-numericos" title="Link to this heading">#</a></h2>
-<p>El suplemento CPU posterior completó 78 trayectorias y contrastó la brecha calibración–train frente a δg con seis pares y Holm13. <strong>Dos de trece redes establecieron tolerancia condicional; once no la establecieron.</strong> Una brecha negativa puede reflejar una calibración más sencilla. Este resultado no acredita adecuación conjunta ni constituye confirmación prospectiva.</p>
-<p>La puerta anterior de coincidencia CPU frente a CUDA, con tolerancia 10⁻⁷, conservó su fallo y sus ejecuciones parciales. El suplemento CPU no la convirtió retrospectivamente en aprobada. Tampoco se mezcla con la paridad de exportación CPU–TorchScript de la sección 5, que compara otras salidas bajo otro alcance.</p>
-<p>E2 documenta semillas y política de Python/PyTorch/CUDA, FP32 y flags de determinismo. El núcleo no fija una semilla global NumPy; los análisis usan generadores registrados. No se atribuye una llamada global inexistente ni se promete igualdad entre plataformas.</p>
+<p>El suplemento CPU histórico completó 78 trayectorias y contrastó la brecha <strong>calibración–train</strong> frente a δg, con seis pares por red y Holm13. <strong>Dos de trece redes establecieron tolerancia condicional; once no la establecieron.</strong> Una brecha negativa puede reflejar una calibración más sencilla. Este resultado no se transforma en adecuación de E3 ni en análisis actualizado de los diez ajustes por red.</p>
+<p>La puerta anterior de coincidencia CPU frente a CUDA, con tolerancia 10⁻⁷, conserva su fallo y sus ejecuciones parciales. El suplemento CPU no la convirtió retrospectivamente en aprobada. La paridad de exportación CPU–TorchScript de la sección 5 compara otras salidas y tiene su propio alcance.</p>
+<p>La extensión E2 documenta <strong>Python 3.12.12, PyTorch 2.8.0+cu126, NumPy 2.3.5, FP32, dos hilos CPU y un hilo inter-op</strong>, con TF32 y AMP desactivados. El ejecutor exige <code class="docutils literal notranslate"><span class="pre">CUBLAS_WORKSPACE_CONFIG=:4096:8</span></code> y algoritmos deterministas de Torch; las semillas 271801–271810 identifican las inicializaciones, no nuevos mercados. El código original fija <code class="docutils literal notranslate"><span class="pre">random.seed</span></code>, <code class="docutils literal notranslate"><span class="pre">torch.manual_seed</span></code> y las semillas CUDA y usa generadores Torch registrados para el muestreo.</p>
+<p>No se atribuye al entrenamiento una llamada global <code class="docutils literal notranslate"><span class="pre">numpy.random.seed</span></code> que no existe. Los remuestreos estadísticos sí usan generadores NumPy con semillas registradas en su plan. Documentar esos mecanismos no demuestra igualdad bit a bit entre CPU, CUDA, dispositivos o versiones; el desacuerdo numérico histórico no se oculta. Una auditoría integral debe comprobar cada fuente de aleatoriedad efectivamente usada, no completar esa evidencia con una llamada añadida después de obtener el resultado.</p>
 </section>
 <section id="resultados-actualizados-y-congelamiento">
 <h2>4.4 Resultados actualizados y congelamiento<a class="headerlink" href="#resultados-actualizados-y-congelamiento" title="Link to this heading">#</a></h2>
-<p>La A2 original conserva SHA-256 <code class="docutils literal notranslate"><span class="pre">879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1</span></code>. Las comprobaciones posteriores y esta reorganización <strong>no cambian su ranking o su conclusión primaria</strong>. Si una corrección demostrada modifica resultados, se recalcularán todos los productos dependientes y se publicará la comparación antes/después.</p>
-<p>El hash histórico es un ancla de lectura, no un nuevo cierre del Bloque A. El congelamiento definitivo de los benchmarks para E3 requiere resolver y documentar los controles aplicables; después no se reajustan rivales para favorecer al modelo original.</p>
+<section id="antes-despues-de-seis-a-diez-semillas">
+<h3>Antes/después: de seis a diez semillas<a class="headerlink" href="#antes-despues-de-seis-a-diez-semillas" title="Link to this heading">#</a></h3>
+<p>La A2 original conserva SHA-256 <code class="docutils literal notranslate"><span class="pre">879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1</span></code>. El siguiente cuadro <strong>no reemplaza la A2 ni corrige sus etiquetas</strong>: compara sus trayectorias históricas con la ampliación posterior a diez semillas, sobre las mismas 608 fechas y con las mismas recetas. Para cada clásico R sigue siendo uno. La métrica es la media de RMSE individuales, en unidades originales de sigma7.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-number">Tabla 2 </span><span class="caption-text">Benchmark E2 histórico y ampliado: medias y rangos entre sus dieciséis sistemas</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema</p></th>
+<th class="head"><p>R histórico</p></th>
+<th class="head"><p>R ampliado</p></th>
+<th class="head"><p>RMSE histórica</p></th>
+<th class="head"><p>RMSE ampliada</p></th>
+<th class="head"><p>Cambio RMSE</p></th>
+<th class="head"><p>Rango histórico</p></th>
+<th class="head"><p>Rango ampliado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.003803430</p></td>
+<td><p>0.003872889</p></td>
+<td><p>0.000069460</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>ARIMA</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0.003921625</p></td>
+<td><p>0.003921625</p></td>
+<td><p>0.000000000</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004001162</p></td>
+<td><p>0.003949975</p></td>
+<td><p>-0.000051187</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistence</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0.004085596</p></td>
+<td><p>0.004085596</p></td>
+<td><p>0.000000000</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>Inception-1D</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004362441</p></td>
+<td><p>0.004300219</p></td>
+<td><p>-0.000062222</p></td>
+<td><p>5</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004481091</p></td>
+<td><p>0.004423327</p></td>
+<td><p>-0.000057764</p></td>
+<td><p>6</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>ResNet-1D</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004543602</p></td>
+<td><p>0.004476908</p></td>
+<td><p>-0.000066694</p></td>
+<td><p>8</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>MLP16</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004517496</p></td>
+<td><p>0.004522873</p></td>
+<td><p>0.000005378</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>FCN-1D</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004566151</p></td>
+<td><p>0.004574328</p></td>
+<td><p>0.000008177</p></td>
+<td><p>9</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimesNet</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004805500</p></td>
+<td><p>0.004610965</p></td>
+<td><p>-0.000194535</p></td>
+<td><p>11</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM32</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004664330</p></td>
+<td><p>0.004643827</p></td>
+<td><p>-0.000020504</p></td>
+<td><p>10</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.004975357</p></td>
+<td><p>0.004821543</p></td>
+<td><p>-0.000153813</p></td>
+<td><p>12</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.005254319</p></td>
+<td><p>0.005250680</p></td>
+<td><p>-0.000003639</p></td>
+<td><p>13</p></td>
+<td><p>13</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiDE</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.005771842</p></td>
+<td><p>0.005439748</p></td>
+<td><p>-0.000332094</p></td>
+<td><p>14</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-even"><td><p>PatchTST</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>0.010139304</p></td>
+<td><p>0.010093051</p></td>
+<td><p>-0.000046253</p></td>
+<td><p>15</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>SeasonalNaive</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0.012148568</p></td>
+<td><p>0.012148568</p></td>
+<td><p>0.000000000</p></td>
+<td><p>16</p></td>
+<td><p>16</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El LSTM-autoencoder permanece primero entre los rivales E2, aunque su media cambia de <strong>0,0038034296 a 0,0038728895</strong>. ResNet-1D pasa de rango 8 a 7 y MLP16 de 7 a 8; TimesNet pasa de 11 a 10 y LSTM32 de 10 a 11. También se conservan los cambios desfavorables de las medias de FCN-1D y MLP16. Ningún modelo o semilla se retira según su resultado.</p>
+<p>Las diferencias del cuadro proceden de <strong>agregar cuatro inicializaciones</strong>, no de corregir una fuga demostrada, alterar el conjunto de prueba o repetir HPO. La ampliación y los contrastes posteriores de E3 están declarados como posteriores al conocimiento del test: no se presentan como un aumento de semillas dimensionado antes de una confirmación. Los análisis primarios y la conclusión de la A2 histórica conservan su identidad. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> contiene la comparación de los diecisiete sistemas, incluido E3, sin mezclar esas inferencias con las históricas.</p>
+</section>
+<section id="versiones-fijadas-y-reglas-para-cambios-futuros">
+<h3>Versiones fijadas y reglas para cambios futuros<a class="headerlink" href="#versiones-fijadas-y-reglas-para-cambios-futuros" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Evidencia</p></th>
+<th class="head"><p>Versión fijada</p></th>
+<th class="head"><p>SHA-256 o ancla</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A2 histórica</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f65b14d38e38f8d5fd80c717d71f2abd9ea708e2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">879e2ce52709657a06bc6c009f0cd553423f2eaa0bbdf16dc7f5844dfec9fcc1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Insumo histórico de 81 predictores</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2121b048d3b379c2c28dfe366cba35a1c08a3617</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Insumo ampliado de 133 predictores</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5e9023ea821bfa9fb0b92340d518413f6ab89161</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Predicciones E3 de diez semillas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">510c3bddfdc9926322e3210ac61ee1f5eeffad2e</span></code></p></td>
+<td><p>Fuentes y hashes del plan en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Si se demuestra un error que modifica datos, escalado, predicciones o selección, deben recalcularse <strong>todos los productos dependientes</strong> —métricas, ranking, inferencias, tablas, figuras e informe— en una nueva versión, con causa e impacto antes/después. No basta actualizar una cifra dejando otras inconsistentes; tampoco se sobrescriben las descargas históricas protegidas.</p>
+<p>Las recetas y los artefactos fijados de esta evaluación no se retunean para favorecer al candidato. Cualquier corrección documentada conservará el estado anterior, sus hashes y la justificación; los 52 ajustes adicionales no autorizan continuar buscando semillas favorables. El cierre definitivo de Bloque A requiere resolver o delimitar formalmente los controles pendientes y atender la retroalimentación docente que se aporte. <strong>Este capítulo no lo declara cerrado.</strong></p>
+</section>
 <section id="evidencias-de-referencia">
 <h3>Evidencias de referencia<a class="headerlink" href="#evidencias-de-referencia" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../_downloads/926b1c9b8806cce1f46b73a6a87f8d59/audit_predictors.csv"><code class="xref download docutils literal notranslate"><span class="pre">Inventario</span> <span class="pre">E3</span> <span class="pre">de</span> <span class="pre">81</span> <span class="pre">predictores</span></code></a>.</p></li>
 <li><p><a class="reference download internal" download="" href="../_downloads/eca3eb0f34c169a60404ec831f68358d/audit_summary.json"><code class="xref download docutils literal notranslate"><span class="pre">Resumen</span> <span class="pre">del</span> <span class="pre">corte</span> <span class="pre">de</span> <span class="pre">auditoría</span> <span class="pre">de</span> <span class="pre">artefactos</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/b8b7ebe650112b784467868285d8879d/benchmark_seed_extension_before_after.csv"><code class="xref download docutils literal notranslate"><span class="pre">Antes/después</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">ampliación</span> <span class="pre">de</span> <span class="pre">semillas</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/db627258af7b2bea7532b696c1b8b47b/data_audit_controls.csv"><code class="xref download docutils literal notranslate"><span class="pre">Controles</span> <span class="pre">del</span> <span class="pre">cierre</span> <span class="pre">de</span> <span class="pre">datos</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/dfa4b4629e56a4e4471b92fd2cd3b2a3/block_a_readout.json"><code class="xref download docutils literal notranslate"><span class="pre">Readout</span> <span class="pre">y</span> <span class="pre">fuentes</span> <span class="pre">fijadas</span> <span class="pre">de</span> <span class="pre">Bloque</span> <span class="pre">A</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/42216f5758ed0995486e0ca4fd0c80a6/block_a_readout_manifest.json"><code class="xref download docutils literal notranslate"><span class="pre">Manifiesto</span> <span class="pre">del</span> <span class="pre">readout</span></code></a>.</p></li>
 <li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">Auditorías y diagnósticos posteriores de E2</a>.</p></li>
 <li><p><a class="reference internal" href="06_trazabilidad_correcciones.html"><span class="std std-doc">Tabla anterior de trazabilidad</span></a>, conservada como corte de trabajo.</p></li>
 </ul>
@@ -597,9 +910,15 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trazabilidad-de-correcciones">4.1 Trazabilidad de correcciones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-artefactos-y-datos-reales">4.2 Auditoría de artefactos y datos reales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-artefactos-y-datos-reales">4.2 Auditoría de artefactos y datos reales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inventario-historico-y-ampliacion-actual">Inventario histórico y ampliación actual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-de-datos-disponible">Cierre de datos disponible</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-determinismo-y-limites-numericos">4.3 Brecha, determinismo y límites numéricos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-actualizados-y-congelamiento">4.4 Resultados actualizados y congelamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antes-despues-de-seis-a-diez-semillas">Antes/después: de seis a diez semillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versiones-fijadas-y-reglas-para-cambios-futuros">Versiones fijadas y reglas para cambios futuros</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencias-de-referencia">Evidencias de referencia</a></li>
 </ul>
 </li>

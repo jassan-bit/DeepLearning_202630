@@ -61,6 +61,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/02_estandar_profundidad';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -387,8 +389,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compromiso-previo-al-protocolo">2.1 Compromiso previo al protocolo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-del-estandar-y-cronologia">2.1 Declaración del estándar y cronología</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrica-margenes-y-afirmaciones">2.2 Métrica, márgenes y afirmaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-compromiso-y-viabilidad">2.3 Estado del compromiso y viabilidad</a></li>
 </ul>
             </nav>
         </div>
@@ -402,7 +405,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="estandar-de-profundidad-exigido">
 <h1>2 Estándar de profundidad exigido<a class="headerlink" href="#estandar-de-profundidad-exigido" title="Link to this heading">#</a></h1>
-<p>La guía establece un único estándar: <strong>profundidad teórica con evaluación rigurosa</strong>. Los requisitos siguientes se mantienen como condiciones de cierre; no se consideran cumplidos por disponer de código o por publicar el libro.</p>
+<p>La guía establece un único estándar: <strong>profundidad teórica con evaluación rigurosa</strong>. Los cinco requisitos siguientes se mantienen simultáneamente. La evidencia favorable ya obtenida no los sustituye ni permite reducirlos después de ver los resultados.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Requisito</p></th>
@@ -412,38 +415,76 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Sustento teórico</p></td>
-<td><p>Al menos una propiedad formal, con supuestos explícitos y verificación numérica.</p></td>
-<td><p>La cabeza latente tiene demostración y comprobaciones artificiales. La garantía no cubre automáticamente el pipeline OHLCV ni acredita un beneficio de mercado.</p></td>
+<td><p>Al menos una propiedad demostrada formalmente, con supuestos explícitos y verificación numérica</p></td>
+<td><p>Hay una cota latente del primer módulo de atención modificada, de 1211 parámetros, y teoría/contraejemplos de la cabeza por momentos. <strong>No se trasladan automáticamente</strong> a la receta evaluada de salida aditiva positiva y 1210 parámetros; debe justificarse la propiedad pertinente de esa contribución y su alcance.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Evaluación amplia</p></td>
-<td><p>Tres conjuntos adicionales de la misma tarea, de naturaleza distinta y elegidos antes de ver sus resultados.</p></td>
-<td><p>No se han seleccionado ni evaluado para E3.</p></td>
+<td><p>Al menos tres conjuntos adicionales de naturaleza distinta, elegidos antes de conocer sus resultados</p></td>
+<td><p>No se han seleccionado ni evaluado para E3. Las 608 fechas BTC compartidas y las diez semillas no son varios conjuntos independientes.</p></td>
 </tr>
 <tr class="row-even"><td><p>Familia completa</p></td>
-<td><p>Original frente a todo el Top 10 y todos los baselines fuertes, con Holm.</p></td>
-<td><p>El conjunto de trabajo conserva los 16 sistemas de E2; el protocolo definitivo debe enumerar todos los rivales y sus estimandos.</p></td>
+<td><p>Comparación frente a todo el Top 10 y todos los baselines fuertes, con corrección de Holm</p></td>
+<td><p>Se conservaron los <strong>16 rivales</strong>, y el análisis posterior calculó los <strong>48 contrastes</strong> de tres procedimientos con Holm global. Esto aporta evidencia favorable bajo sus supuestos; no convierte el calendario conocido en confirmación independiente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Potencia y repeticiones</p></td>
-<td><p>Potencia por contraste de al menos 0,90, conjunta reportada y al menos diez semillas o el número mayor que requiera el análisis.</p></td>
-<td><p>E2 tiene seis semillas por red y una limitación de potencia documentada. E3 requiere piloto y dimensionamiento propios antes del cierre.</p></td>
+<td><p>Potencia de al menos <strong>0,90 por contraste</strong>, potencia conjunta reportada y al menos <strong>10 semillas</strong>, o más si el dimensionamiento lo exige</p></td>
+<td><p>E3 y las trece redes E2 ya tienen diez semillas; los clásicos tienen una trayectoria. <strong>La potencia y el número suficiente de repeticiones no se han dimensionado prospectivamente</strong> para la campaña exigida.</p></td>
 </tr>
 <tr class="row-even"><td><p>Pruebas por contraste</p></td>
-<td><p>Al menos tres pruebas distintas, adecuadas a la tarea y con control familiar.</p></td>
-<td><p>No se han ejecutado contrastes confirmatorios del candidato.</p></td>
+<td><p>Mínimo <strong>tres pruebas distintas</strong>, apropiadas para el problema, con hipótesis, supuestos y control familiar justificados</p></td>
+<td><p>Se ejecutaron bootstrap temporal, HAC de influencia de RMSE y t pareada entre semillas. Sus ámbitos temporal y de inicialización están documentados en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8</span></a>. La adecuación y combinación deben justificarse para la afirmación y la ruta F2a; contar tres p-valores no cierra por sí solo el requisito.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<section id="compromiso-previo-al-protocolo">
-<h2>2.1 Compromiso previo al protocolo<a class="headerlink" href="#compromiso-previo-al-protocolo" title="Link to this heading">#</a></h2>
-<p>La guía exige <code class="docutils literal notranslate"><span class="pre">experiments/estandar.md</span></code>, con fecha y tag Git anteriores al congelamiento del protocolo. Los documentos de desarrollo actuales <strong>no sustituyen ese registro</strong> ni se retrofechan como preregistro. El estándar no se reduce después de conocer resultados.</p>
-<p>El número de semillas se fija antes de confirmar. Diez es un mínimo, no una garantía de potencia. El tratamiento de comparadores deterministas deberá quedar explícito: repetir la misma trayectoria no crea semillas independientes. Las fuentes de incertidumbre entre fechas, series e inicializaciones deben distinguirse.</p>
+<p>La guía exige pruebas <strong>distintas y apropiadas</strong>; no establece como condición literal que todas tengan idéntico ámbito de incertidumbre. La diferencia de alcance de los procedimientos debe explicarse y justificarse, sin inventar un requisito adicional de «homogeneidad» ni ignorar los supuestos de cada prueba.</p>
+<section id="declaracion-del-estandar-y-cronologia">
+<h2>2.1 Declaración del estándar y cronología<a class="headerlink" href="#declaracion-del-estandar-y-cronologia" title="Link to this heading">#</a></h2>
+<p>Se incorpora el documento <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/estandar.md">experiments/estandar.md</a>, con <strong>fecha real del 17 de noviembre de 2026</strong>, para documentar el estándar y los pendientes de una futura campaña confirmatoria. Es posterior a los pilotos, entrenamientos y resultados conocidos. <strong>No es un preregistro de esos experimentos, no acredita una firma humana y su registro con tag previo al futuro protocolo sigue pendiente.</strong></p>
+<p>La guía exige una declaración fechada y un <strong>tag Git real anterior al congelamiento del protocolo</strong>. Publicar ahora el documento no retrofecha el compromiso ni completa automáticamente esa condición. La plantilla A.1 del <a class="reference internal" href="apendice_a_plantillas.html"><span class="std std-doc">apéndice</span></a> se conserva como plantilla histórica y no se transforma en una declaración suscrita.</p>
+<p>El estándar no se relaja por falta de tiempo o por un resultado desfavorable. Si un análisis de potencia válido requiere más semillas, se aumentan <strong>antes de congelar la campaña confirmatoria</strong>, sin reducir la familia de rivales o el número de pruebas para obtener rechazo. La extensión posterior ya realizada de seis a diez semillas queda identificada como tal y no se presenta retrospectivamente como dimensionamiento previo.</p>
 </section>
 <section id="metrica-margenes-y-afirmaciones">
 <h2>2.2 Métrica, márgenes y afirmaciones<a class="headerlink" href="#metrica-margenes-y-afirmaciones" title="Link to this heading">#</a></h2>
-<p>Se conserva la RMSE en unidades originales y el margen práctico heredado <strong>δ=0,00025772842664981106</strong>. El margen de brecha <strong>δg</strong> es otro parámetro y no se supone igual a δ. Los análisis posteriores de E2 conservan sus fechas, unidades y alcance; no se transforman en pruebas confirmatorias de E3.</p>
-<p>La superioridad requiere además relevancia práctica, tamaño de efecto, adecuación del modelo, robustez de la conclusión y consistencia en los conjuntos adicionales. Mejorar una métrica puntual, demostrar una cota o no rechazar una diferencia no establece por sí solo superioridad o equivalencia.</p>
-<p>La <a class="reference internal" href="01_alcance_requisitos.html"><span class="std std-doc">matriz inicial de requisitos</span></a> se conserva como anexo de trazabilidad. El estado vigente se desarrolla en las secciones 4 a 16. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> organiza el protocolo propuesto y sus decisiones pendientes; no sustituye el registro previo exigido. Las secciones <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a> y <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a> especifican el dashboard y su despliegue. La <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">sección 14</span></a> mantiene los criterios y condiciones más restrictivas para la nota máxima, y la <a class="reference internal" href="15_integridad_academica.html"><span class="std std-doc">15</span></a> conserva las reglas de integridad, sin asignar una nota actual. La plantilla A.1 del <a class="reference internal" href="apendice_a_plantillas.html"><span class="std std-doc">apéndice</span></a> prepara la declaración del estándar; no la registra ni la congela.</p>
+<p>La primaria es la <strong>media de RMSE individuales por ejecución</strong>, en unidades originales de sigma7; no la RMSE de un ensemble. Para cada rival se orienta la ganancia como RMSE del rival menos RMSE de E3. Se conserva el margen heredado</p>
+<div class="math notranslate nohighlight">
+\[
+\delta=0{,}00025772842664981106.
+\]</div>
+<p>El borrador heredó <strong>el mismo valor numérico para δg</strong>, pero su hipótesis es diferente: δ se refiere a una ganancia entre modelos y δg a una brecha entre ajuste y evaluación comparable. Compartir valor numérico no hace intercambiables sus significados. Falta justificar y ejecutar la evaluación de brecha del candidato bajo un diseño apropiado; los diagnósticos CPU de E2 no la sustituyen.</p>
+<p>La superioridad exigida por la guía incluye relevancia práctica, tamaño de efecto, adecuación, estabilidad de la conclusión y consistencia en los conjuntos adicionales. El resultado posterior favorable frente a los 16 rivales es evidencia con alcance concreto; ni una media menor, ni una cota formal, ni la pertenencia al MCS certifican por sí solas el conjunto de condiciones de R3. No rechazar una diferencia tampoco demuestra equivalencia.</p>
+</section>
+<section id="estado-del-compromiso-y-viabilidad">
+<h2>2.3 Estado del compromiso y viabilidad<a class="headerlink" href="#estado-del-compromiso-y-viabilidad" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Registro necesario</p></th>
+<th class="head"><p>Estado real</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Estándar escrito y fecha actual</p></td>
+<td><p>Documento incorporado; declara expresamente su carácter posterior a los resultados históricos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tag anterior al futuro protocolo</p></td>
+<td><p>Pendiente; no se inventa un tag ni se usa uno de otro experimento</p></td>
+</tr>
+<tr class="row-even"><td><p>Viabilidad de cómputo</p></td>
+<td><p>Hay tiempos reales de las ejecuciones terminadas; falta dimensionar la campaña completa, incluidos tres conjuntos y la potencia requerida</p></td>
+</tr>
+<tr class="row-odd"><td><p>Número de semillas suficiente</p></td>
+<td><p>Diez observadas por red; suficiencia por potencia pendiente</p></td>
+</tr>
+<tr class="row-even"><td><p>Conjuntos y propiedad a comprometer</p></td>
+<td><p>Selección previa de los tres conjuntos y propiedad pertinente de la receta/contribución final, pendientes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Revisión y responsabilidad humana</p></td>
+<td><p>La asistencia de IA está declarada; revisión, comprensión y defensa de la persona autora pendientes de acreditación</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La <a class="reference internal" href="01_alcance_requisitos.html"><span class="std std-doc">matriz inicial de requisitos</span></a> se conserva como anexo de trazabilidad. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> distingue el análisis posterior ejecutado del diseño confirmatorio pendiente. Las <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">secciones 9</span></a> y <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a> especifican el producto; la <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">14</span></a>, las condiciones de evaluación; y la <a class="reference internal" href="15_integridad_academica.html"><span class="std std-doc">15</span></a>, las reglas de integridad. Ninguna de estas matrices asigna una nota o convierte un pendiente en evidencia cumplida.</p>
 </section>
 </section>
 
@@ -513,8 +554,9 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compromiso-previo-al-protocolo">2.1 Compromiso previo al protocolo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-del-estandar-y-cronologia">2.1 Declaración del estándar y cronología</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrica-margenes-y-afirmaciones">2.2 Métrica, márgenes y afirmaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-compromiso-y-viabilidad">2.3 Estado del compromiso y viabilidad</a></li>
 </ul>
   </nav></div>
 

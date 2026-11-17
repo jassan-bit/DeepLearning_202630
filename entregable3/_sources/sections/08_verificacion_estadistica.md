@@ -2,7 +2,7 @@
 
 **Corte del 17 de noviembre de 2026: análisis retrospectivo ejecutado sobre predicciones congeladas.** La CNN-LSTM con atención de contenido y salida aditiva positiva tiene diez semillas; cada una de las trece redes rivales también tiene diez. Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista cada uno. La comparación incluye los diecisiete sistemas sobre las mismas 608 fechas, sin eliminar rivales, semillas ni observaciones.
 
-Los **48 contrastes principales** —dieciséis rivales por tres procedimientos— rechazaron sus nulas frente al margen heredado, con **Holm sobre los 48 p-valores** y máximo p ajustado **0,0019**. Las sensibilidades temporales conservaron esa decisión. Este resultado está condicionado al calendario y a los supuestos de cada método: **no acredita por sí solo R3**, una batería confirmatoria homogénea o la originalidad del mecanismo. El MCS auxiliar conserva diez sistemas, incluido E3; no identifica un ganador único.
+Los **48 contrastes principales** —dieciséis rivales por tres procedimientos— rechazaron sus nulas frente al margen heredado, con **Holm sobre los 48 p-valores** y máximo p ajustado **0,0019**. Las sensibilidades temporales conservaron esa decisión. Este resultado está condicionado al calendario y a los supuestos de cada método: **no acredita por sí solo R3**, un diseño confirmatorio previo o la originalidad del mecanismo. El MCS auxiliar conserva diez sistemas, incluido E3; no identifica un ganador único.
 
 ## 8.1 Protocolo experimental pre-registrado
 
@@ -108,7 +108,7 @@ El bootstrap recalcula la métrica completa y compara su ruido centrado con la d
 
 Los dieciséis diagnósticos Shapiro entre semillas no rechazaron normalidad a 0,05; el menor p fue 0,0564. **Eso no demuestra normalidad con diez observaciones.** Los supuestos de estabilidad temporal y del calendario tampoco quedan certificados por los p de comparación. Holm no corrige la exposición previa al test, la selección del diseño ni un supuesto inválido.
 
-Los tres procedimientos no se presentan como tres confirmaciones temporales homogéneas ni como acreditación automática de la Tabla 4. No se aplican correcciones Nadeau–Bengio a días o semillas de esta única cronología, ni Clark–West sin justificar anidamiento.
+La guía exige al menos tres pruebas distintas y apropiadas; no prescribe literalmente idéntico ámbito de incertidumbre. Los procedimientos aquí ejecutados son distintos y sus alcances deben justificarse para la hipótesis F2a; su presencia y sus rechazos no acreditan automáticamente toda la Tabla 4 ni R3. No se aplican correcciones Nadeau–Bengio a días o semillas de esta única cronología, ni Clark–West sin justificar anidamiento.
 
 ## 8.7 Estrategia estadística: familias, potencia y agregación
 
