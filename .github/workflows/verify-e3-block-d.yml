@@ -1,0 +1,64 @@
+name: Verificar suplemento estadístico del Bloque D
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/e3_revision_bloque_d_20261117/**'
+      - 'book_e3/_static/e3_revision_bloque_d_20261117/**'
+      - 'experiments/protocolo.md'
+      - 'experiments/e3_estadistica_posterior_20261117/inputs.py'
+      - 'book_e3/_static/e3_estadistica_posterior_20261117/metrics.csv'
+      - '.github/workflows/verify-e3-block-d.yml'
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  frozen-prediction-supplement:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencia numérica fijada sin framework de entrenamiento
+        run: |
+          python -m pip install numpy==2.3.5
+          python -m pip check
+      - name: Probar definiciones, casos límite e integridad
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          python -m unittest discover -s experiments/e3_revision_bloque_d_20261117 -p test_metrics_supplement.py -v
+          python experiments/e3_revision_bloque_d_20261117/planning_illustrations.py --output /tmp/e3-planning-ci.json
+      - name: Reconciliar tablas con predicciones inmutables
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          python experiments/e3_revision_bloque_d_20261117/metrics_supplement.py \
+            --data-dir work/e3_statistical_inputs --download --check \
+            --mirror book_e3/_static/e3_revision_bloque_d_20261117
+      - name: Verificar copias de método y borrador de protocolo
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          source = Path('experiments/e3_revision_bloque_d_20261117')
+          target = Path('book_e3/_static/e3_revision_bloque_d_20261117')
+          for name in ('methods_review.md', 'planning_illustrations.py',
+                       'planning_illustrations.json', 'protocol_readiness.csv', 'protocol_draft.md'):
+              assert (source / name).read_bytes() == (target / name).read_bytes(), name
+          assert Path('experiments/protocolo.md').read_bytes() == (source / 'protocol_draft.md').read_bytes()
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-block-d-supplement-${{ github.sha }}
+          path: |
+            /tmp/e3-planning-ci.json
+            experiments/e3_revision_bloque_d_20261117/metrics_supplement.json
+          if-no-files-found: error

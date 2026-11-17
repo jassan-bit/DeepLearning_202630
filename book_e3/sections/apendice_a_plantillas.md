@@ -4,6 +4,8 @@ Este apéndice aplica A.1–A.6 de la guía —páginas 49–54— al proyecto B
 
 Las fuentes editables se conservan en [experiments/e3_plantillas_v1](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_plantillas_v1). El paquete {download}`plantillas_operativas_v1.zip <../_static/e3_plantillas_v1/plantillas_operativas_v1.zip>` reúne los formatos; el {download}`README de uso y alcance <../_static/e3_plantillas_v1/README.md>` explica cómo completarlos sin sustituir evidencia. Las [secciones 6–8](08_verificacion_estadistica.md) y la [matriz de evaluación](14_evaluacion_calificacion.md) mantienen sus estados actuales.
 
+El [borrador canónico de protocolo](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/protocolo.md), incorporado al revisar el Bloque D, tiene fecha real posterior a los resultados conocidos. Organiza los campos exigidos, con decisiones críticas abiertas, sin congelamiento ni tag confirmatorio. Las plantillas y el borrador histórico conservan sus bytes y su alcance.
+
 ## A.1 Declaración del estándar
 
 La {download}`plantilla de estándar <../_static/e3_plantillas_v1/estandar_plantilla.md>` conserva los cuatro campos de la guía: estándar, justificación, compromisos y fecha/tag. Desglosa los pendientes necesarios para fijar propiedad/supuestos, rivales, conjuntos, potencia, recursos y responsables.

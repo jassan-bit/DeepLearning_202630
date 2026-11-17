@@ -1,0 +1,568 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-17T22:15:45.348857+00:00",
+  "timezone_for_document_date": "America/Bogota",
+  "source_review_base_commit": "8fccb216f36a3e4fc5cb38ecdec769b7f5379397",
+  "script_sha256": "acc4f739a9b18fa391cb33cf85407b25e92e8d27c563743edd7a1009986d7800",
+  "alpha": 0.05,
+  "status": "mathematical_illustrations_only_not_a_frozen_experimental_plan",
+  "observed_test_effect_used": false,
+  "model_predictions_loaded": false,
+  "market_fitting_or_inference": false,
+  "normal_approximation_assumptions": [
+    "Independent paired experimental units with a prespecified gain estimand and finite variance",
+    "Known planning variance and normal reference; a real design must account for estimated variance and dependence",
+    "Bonferroni alpha/m is a conservative planning reference, not a computed power for Holm or a three-test conjunction",
+    "The unilateral margin reference uses planned gain g1 above null boundary delta, with separation g1-delta"
+  ],
+  "rank_resolution_assumptions": [
+    "Exact sign distribution for n nonzero tie-free paired differences; symmetry assumptions remain necessary",
+    "The first Holm threshold is alpha/m; thresholds can increase after earlier ordered rejections",
+    "Sidedness and procedures must be fixed before observing results, not changed to obtain significance"
+  ],
+  "guide_reference_formula": "R approx ((z_(1-alpha/(2m)) + z_power) * sigma_d / separation)^2",
+  "practical_margin_formula": "If H0: gain <= delta and planned g1 > delta, separation = g1-delta; not delta again",
+  "normal_sample_size_illustrations": [
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 13.740970248235685,
+      "ceiling_R": 14,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 54.96388099294274,
+      "ceiling_R": 55,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 17.196048138430136,
+      "ceiling_R": 18,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 68.78419255372054,
+      "ceiling_R": 69,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 12.109554423826207,
+      "ceiling_R": 13,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 48.43821769530483,
+      "ceiling_R": 49,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 15.364901334469916,
+      "ceiling_R": 16,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 61.459605337879665,
+      "ceiling_R": 62,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 14.415599732560898,
+      "ceiling_R": 15,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 57.66239893024359,
+      "ceiling_R": 58,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 17.949782911412814,
+      "ceiling_R": 18,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 71.79913164565126,
+      "ceiling_R": 72,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 12.787704623898355,
+      "ceiling_R": 13,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 51.15081849559342,
+      "ceiling_R": 52,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 16.12761627423249,
+      "ceiling_R": 17,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 64.51046509692996,
+      "ceiling_R": 65,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 16.979719594547962,
+      "ceiling_R": 17,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 67.91887837819185,
+      "ceiling_R": 68,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 20.798852204573613,
+      "ceiling_R": 21,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 83.19540881829445,
+      "ceiling_R": 84,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 15.364121046796953,
+      "ceiling_R": 16,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 61.45648418718781,
+      "ceiling_R": 62,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 1.0,
+      "normal_approximation_R": 19.006457776593056,
+      "ceiling_R": 20,
+      "is_actual_E3_sample_size_recommendation": false
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "planned_separation_over_sigma": 0.5,
+      "normal_approximation_R": 76.02583110637222,
+      "ceiling_R": 77,
+      "is_actual_E3_sample_size_recommendation": false
+    }
+  ],
+  "normal_MDE_illustrations": [
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.1722188468129866,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.8288838956161376,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.3113370328954388,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.9272553083814116,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.1004342062943249,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.7781244895203532,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.239552392376777,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.8764959022856272,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.2006498129163596,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.8489876245435176,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.3397679989988123,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.9473590373087917,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.1308273353566562,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.7996156771818057,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.2699455214391084,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.8979870899470795,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.3030625309073989,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.921404351914727,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.442180716989851,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 1.019775764680001,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.2395209174030486,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.8,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.8764736461182662,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 10,
+      "MDE_separation_over_sigma": 1.3786391034855008,
+      "not_an_estimate_of_E3_MDE": true
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "target_marginal_power": 0.9,
+      "independent_pairs": 20,
+      "MDE_separation_over_sigma": 0.97484505888354,
+      "not_an_estimate_of_E3_MDE": true
+    }
+  ],
+  "signed_rank_exact_minimum_p_examples": [
+    {
+      "nonzero_pairs": 5,
+      "bilateral_minimum_p": 0.0625,
+      "unilateral_minimum_p": 0.03125
+    },
+    {
+      "nonzero_pairs": 9,
+      "bilateral_minimum_p": 0.00390625,
+      "unilateral_minimum_p": 0.001953125
+    },
+    {
+      "nonzero_pairs": 10,
+      "bilateral_minimum_p": 0.001953125,
+      "unilateral_minimum_p": 0.0009765625
+    },
+    {
+      "nonzero_pairs": 11,
+      "bilateral_minimum_p": 0.0009765625,
+      "unilateral_minimum_p": 0.00048828125
+    }
+  ],
+  "signed_rank_first_Holm_resolution": [
+    {
+      "family_size": 12,
+      "reference": "bilateral_guide_reference",
+      "first_Holm_threshold": 0.004166666666666667,
+      "minimum_nonzero_pairs_for_possible_first_step_rejection": 9,
+      "not_a_statement_about_all_later_Holm_steps": true
+    },
+    {
+      "family_size": 12,
+      "reference": "unilateral_margin_reference",
+      "first_Holm_threshold": 0.004166666666666667,
+      "minimum_nonzero_pairs_for_possible_first_step_rejection": 8,
+      "not_a_statement_about_all_later_Holm_steps": true
+    },
+    {
+      "family_size": 16,
+      "reference": "bilateral_guide_reference",
+      "first_Holm_threshold": 0.003125,
+      "minimum_nonzero_pairs_for_possible_first_step_rejection": 10,
+      "not_a_statement_about_all_later_Holm_steps": true
+    },
+    {
+      "family_size": 16,
+      "reference": "unilateral_margin_reference",
+      "first_Holm_threshold": 0.003125,
+      "minimum_nonzero_pairs_for_possible_first_step_rejection": 9,
+      "not_a_statement_about_all_later_Holm_steps": true
+    },
+    {
+      "family_size": 48,
+      "reference": "bilateral_guide_reference",
+      "first_Holm_threshold": 0.0010416666666666667,
+      "minimum_nonzero_pairs_for_possible_first_step_rejection": 11,
+      "not_a_statement_about_all_later_Holm_steps": true
+    },
+    {
+      "family_size": 48,
+      "reference": "unilateral_margin_reference",
+      "first_Holm_threshold": 0.0010416666666666667,
+      "minimum_nonzero_pairs_for_possible_first_step_rejection": 10,
+      "not_a_statement_about_all_later_Holm_steps": true
+    }
+  ],
+  "joint_power_illustrations": [
+    {
+      "number_of_decisions": 12,
+      "common_marginal_power": 0.9,
+      "product_if_independent_only": 0.2824295364810001,
+      "union_lower_bound_under_arbitrary_dependence": 0.0,
+      "actual_joint_power_estimated": false
+    },
+    {
+      "number_of_decisions": 12,
+      "common_marginal_power": 0.95,
+      "product_if_independent_only": 0.5403600876626367,
+      "union_lower_bound_under_arbitrary_dependence": 0.39999999999999947,
+      "actual_joint_power_estimated": false
+    },
+    {
+      "number_of_decisions": 16,
+      "common_marginal_power": 0.9,
+      "product_if_independent_only": 0.18530201888518416,
+      "union_lower_bound_under_arbitrary_dependence": 0.0,
+      "actual_joint_power_estimated": false
+    },
+    {
+      "number_of_decisions": 16,
+      "common_marginal_power": 0.95,
+      "product_if_independent_only": 0.44012666865176536,
+      "union_lower_bound_under_arbitrary_dependence": 0.1999999999999993,
+      "actual_joint_power_estimated": false
+    },
+    {
+      "number_of_decisions": 48,
+      "common_marginal_power": 0.9,
+      "product_if_independent_only": 0.00636268544113595,
+      "union_lower_bound_under_arbitrary_dependence": 0.0,
+      "actual_joint_power_estimated": false
+    },
+    {
+      "number_of_decisions": 48,
+      "common_marginal_power": 0.95,
+      "product_if_independent_only": 0.0852575903343082,
+      "union_lower_bound_under_arbitrary_dependence": 0.0,
+      "actual_joint_power_estimated": false
+    }
+  ],
+  "self_checks": {
+    "passed": true,
+    "checks": [
+      "Exact rank-test p resolution halves with each additional nonzero pair",
+      "First-step Holm rank resolution is checked on both sides of its threshold",
+      "Halving planned standardized separation quadruples approximate sample size",
+      "Larger families and higher target power do not reduce the normal approximation",
+      "Four times as many independent pairs halves illustrative standardized MDE",
+      "Bilateral and unilateral reference quantiles are kept distinct",
+      "Guide illustrative bilateral reference gives ceilings 14 and 55",
+      "Independent-product example respects the arbitrary-dependence union lower bound",
+      "Invalid family sizes, pair counts and zero separation are rejected"
+    ]
+  },
+  "not_estimated": [
+    "E3 prospective marginal power",
+    "E3 joint power",
+    "E3 actual MDE",
+    "a final required number of seeds",
+    "an actual family success probability"
+  ]
+}
