@@ -1,0 +1,145 @@
+{
+  "version": "e3-block-b-guide-review-20261117",
+  "checked_date_local": "2026-11-17",
+  "timezone": "America/Bogota",
+  "source_main_commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+  "block_B_closed": false,
+  "scope": "documentary/source-code/inventory review; not a new fit/export/inference/statistical analysis",
+  "selection": {
+    "systems": 16,
+    "neural_receipts_verified_in_existing_report": 13,
+    "pooled_arithmetic_winners_agree": 13,
+    "available_validation_scores": 15,
+    "available_validation_leader": "TimeMixer C01",
+    "global_validation_leader": null,
+    "winner_selection_bias_quantified": false
+  },
+  "current_comparison": {
+    "E2_predictors": 133,
+    "E2_neural_seeds_per_model": 10,
+    "E3_seeds": 10,
+    "E3_parameters": 1210
+  },
+  "export": {
+    "exported_references": [
+      "MLP16",
+      "LSTM32",
+      "GRU32"
+    ],
+    "format": "TorchScript",
+    "roundtrip_dates": 53,
+    "roundtrip_cohort": "historical_calibration",
+    "tolerance_sigma7": 1e-06,
+    "exported_test_608_verified": false,
+    "metadata_exported_test_metric": null,
+    "metadata_input_domain_ranges_estimated": false,
+    "remaining_systems_including_E3": 14,
+    "common_final_refit_policy_complete": false
+  },
+  "checkpoint_scope": {
+    "E2_selected_weights_are_not_full_training_checkpoint": true,
+    "E2_phase_snapshot_source_contains": [
+      "state_dict",
+      "optimizer_state_dict",
+      "rng",
+      "config",
+      "epoch",
+      "resources"
+    ],
+    "E2_resume_exact_supported": false,
+    "E3_snapshot_source_contains": [
+      "model_state",
+      "best_model_state",
+      "optimizer_state",
+      "rng",
+      "generator_state",
+      "history"
+    ],
+    "all_binary_payloads_deserialized_in_this_review": false,
+    "inventory_file": "block_b_checkpoint_inventory.json"
+  },
+  "new_work": {
+    "model_fits": 0,
+    "optimizer_steps": 0,
+    "model_inferences": 0,
+    "exports": 0,
+    "statistical_tests": 0
+  },
+  "sources": [
+    {
+      "commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+      "path": "experiments/e3_bloques_ab_20261115/selection_report.json",
+      "bytes": 5209,
+      "sha256": "9f8289b66be0df784314cfcb1368a6f35d01ce922128f98bf0ee60ab767f001d"
+    },
+    {
+      "commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+      "path": "experiments/e3_bloques_ab_20261115/export_readiness.json",
+      "bytes": 29649,
+      "sha256": "1f1ce32755f9ce79e70d72094b4341f136d87d94e3f02845eb132d9674e7c936"
+    },
+    {
+      "commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+      "path": "experiments/e3_bloques_ab_20261115/export_roundtrip_summary.json",
+      "bytes": 2690,
+      "sha256": "ac79ac1e7842f331116f8379cf4c196125ff13190707371a456e98c247403ae8"
+    },
+    {
+      "commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+      "path": "experiments/e3_bloques_ab_20261115/deployment_master.csv",
+      "bytes": 65874,
+      "sha256": "d850dd6487a898fa4f7793a1f4f72acb7be1e9a0950051b8e69eea2be5370ee7"
+    },
+    {
+      "commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+      "path": "artifacts/e3_handoff/MLP16/metadata.json",
+      "bytes": 4575,
+      "sha256": "b25c44d20eb3ef6d565fd33573db9a1e1ce9ad54938e8fab80c8a14c0f0a83ab"
+    },
+    {
+      "commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+      "path": "artifacts/e3_handoff/LSTM32/metadata.json",
+      "bytes": 4564,
+      "sha256": "e6b7a7f813f3bc1cc99ae310ac07959c921fca4c5dc854a24d4275499ba54de8"
+    },
+    {
+      "commit": "2e4bebed3b0015b32c8ac33428512df5c5b3ee66",
+      "path": "artifacts/e3_handoff/GRU32/metadata.json",
+      "bytes": 4583,
+      "sha256": "98d075133110a9b8a843ceb03e0bf6d753e7ac3464eeb8eeb690bfda8f61c499"
+    }
+  ],
+  "source_code_review": [
+    {
+      "archive_commit": "c4a4a1e68e9844cdfb81de0075177ced0cd96c07",
+      "archive_path": "book_e2/_static/entregables_independientes_v2_20261115/02_codigo_modelos.zip",
+      "archive_sha256": "5423c85bf220729c826e47a1c37d79a49ce2ba8b0e8f764c47ab9c0796b4bcae",
+      "member": "D02/code/scripts/e2_published_pilot_training.py",
+      "member_sha256": "ee8389bdaeed87848547a28c1e899865db353f9b6662999e45b91e8ea54be398"
+    },
+    {
+      "archive_commit": "c4a4a1e68e9844cdfb81de0075177ced0cd96c07",
+      "archive_path": "book_e2/_static/entregables_independientes_v2_20261115/02_codigo_modelos.zip",
+      "archive_sha256": "5423c85bf220729c826e47a1c37d79a49ce2ba8b0e8f764c47ab9c0796b4bcae",
+      "member": "D02/code/scripts/e2_reduced_fit.py",
+      "member_sha256": "64e83d0a2a39920ae470252b8eb81c8f78429817fed978bd22f64866fdfb8f5f"
+    },
+    {
+      "commit": "2d25989dffd8e4d447bfa21d57c255b9efdcb465",
+      "path": "notebooks/e3_estabilidad_aditiva_v1/worker.py",
+      "sha256": "739efe735d180e4aa6f2e28623632b21ace93bf21d18c958edd0649e9a7f07d8"
+    }
+  ],
+  "readouts": [
+    {
+      "path": "block_b_requirements.csv",
+      "bytes": 2555,
+      "sha256": "0e2648380447401266b6e4787dde2065ec2f5c511c511f3718b629a227a0ee69"
+    },
+    {
+      "path": "block_b_checkpoint_inventory.json",
+      "bytes": 57239,
+      "sha256": "9daa7b6add7de2b6337640a7c12a45e23b818cc14c103ccf9a58923ab19102cc"
+    }
+  ]
+}

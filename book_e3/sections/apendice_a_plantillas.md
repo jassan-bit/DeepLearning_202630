@@ -26,7 +26,7 @@ Fuente editable: [procedencia_plantilla.md](https://github.com/jassan-bit/DeepLe
 
 La {download}`bitácora CSV vacía <../_static/e3_plantillas_v1/design_log_plantilla.csv>` contiene **sólo encabezados**. Conserva número de variante, cambio respecto a la anterior, métrica de desarrollo, decisión, motivo y fecha; añade identificadores, fuentes, fallos y tag para preservar trazabilidad. No copia las filas ilustrativas de la guía como si fueran ejecuciones.
 
-La [bitácora real del candidato](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md) sigue declarando cuatro variantes funcionales artificiales y Nd de mercado=0. No se reinicia ese historial ni se inventan variantes, métricas, decisiones o tags. Los intentos futuros deberán acumularse con sus fallos, presupuesto y partición usada; una partición de confirmación no se usa para diseñar.
+La [bitácora inicial del candidato](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md) registra cuatro variantes funcionales artificiales y Nd de mercado=0 **en su corte anterior a los pilotos**. Después se completaron cinco recetas entre v1/v2 y tres por momentos; las diez réplicas aditivas posteriores repiten una receta. Los [capítulos 6–7](06_modelo_original.md) conservan ese historial y la conciliación del Nd global pendiente. No se reinicia el conteo ni se inventan variantes, métricas, decisiones o tags. Los intentos futuros deberán acumularse con sus fallos, presupuesto y partición usada; una partición de confirmación no se usa para diseñar.
 
 Fuente editable: [design_log_plantilla.csv](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/design_log_plantilla.csv).
 
@@ -44,7 +44,7 @@ La {download}`tabla propuesta de contrastes <../_static/e3_plantillas_v1/contras
 
 La primaria sigue siendo la media de RMSE individuales en unidades de σ7. La ganancia propuesta es RMSErival−RMSEoriginal y δ=0,00025772842664981106, como margen heredado, no como resultado. Una hipótesis sobre MSE diaria no contrasta directamente ganancia de RMSE mayor que δ; **δ² no es una conversión válida del margen**. MCS no aporta por sí solo un contraste pareado de relevancia práctica. La ausencia de rechazo no se etiqueta «equivalente»: TOST/ROPE requieren margen y reglas previos.
 
-Fuente editable: [contrastes_confirmatorios_plantilla.csv](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/contrastes_confirmatorios_plantilla.csv). La [sección 8](08_verificacion_estadistica.md) conserva el protocolo no congelado y la batería todavía por validar.
+Fuente editable: [contrastes_confirmatorios_plantilla.csv](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/contrastes_confirmatorios_plantilla.csv). Esos slots y su propuesta de ajuste pertenecen a una plantilla sin diligenciar. La [sección 8](08_verificacion_estadistica.md) ya presenta un **análisis posterior distinto**, con tres procedimientos calculados y Holm global sobre 48 p-valores; no se usa esta plantilla para sustituir sus resultados o convertirlo en preregistro. El protocolo confirmatorio futuro sigue sin congelar.
 
 ## A.5 Lista de verificación de reproducibilidad
 
@@ -52,18 +52,18 @@ El {download}`checklist de 17 ítems <../_static/e3_plantillas_v1/checklist_repr
 
 | N.º | Ítem de A.5 | Estado actual resumido |
 |---|---|---|
-| 1 | Estándar escrito antes de congelar. | Pendiente de declaración canónica. |
+| 1 | Estándar escrito antes de congelar. | Declaración canónica fechada disponible; tag y revisión pendientes, sin retrofechar experimentos. |
 | 2 | Benchmarks congelados con hash después de A. | Parcial: freeze histórico disponible; Bloque A aún abierto. |
 | 3 | Limitación cuantificada, hipótesis y predicciones secundarias. | Parcial: formulación/motivación; evidencia y registro finales pendientes. |
 | 4 | Fuente y procedencia completas si hay transferencia. | Parcial: registro candidato y antecedentes; cierre por validar. |
-| 5 | Propiedad formal, supuestos y verificación numérica. | Parcial de alcance: evidencia de cabeza latente; no certificar pipeline completo o utilidad de mercado. |
-| 6 | Bitácora Nd y desarrollo distinto de confirmación. | Parcial: historial artificial; separación confirmatoria pendiente. |
-| 7 | Protocolo con tag/fecha previos. | Pendiente; sólo borrador. |
+| 5 | Propiedad formal, supuestos y verificación numérica. | Parcial y específica por arquitectura; las pruebas del primer módulo y de momentos no se trasladan a la referencia aditiva. |
+| 6 | Bitácora Nd y desarrollo distinto de confirmación. | Pilotos y réplicas documentados; conciliación global y separación confirmatoria pendientes. |
+| 7 | Protocolo con tag/fecha previos. | Protocolo confirmatorio pendiente; el plan versionado del cálculo posterior no lo sustituye. |
 | 8 | Potencia, MDE y potencia conjunta. | Pendiente del candidato. |
-| 9 | Familia completa con Holm. | Parcial: roster de 16; inferencia confirmatoria pendiente. |
-| 10 | Tres pruebas por contraste y máximo de p ajustados. | Pendiente; slots sin métodos ni resultados. |
+| 9 | Familia completa con Holm. | Análisis posterior: 16 rivales, 48 contrastes y 48 rechazos tras Holm global; cierre confirmatorio pendiente. |
+| 10 | Tres pruebas por contraste y máximo de p ajustados. | Tres procedimientos posteriores calculados con ámbitos declarados; pertinencia para la afirmación confirmatoria y demás requisitos por justificar. |
 | 11 | Tres conjuntos elegidos antes de resultados y fuera del diseño. | Pendiente; ninguno seleccionado. |
-| 12 | Sensibilidad a prueba, métrica y semillas. | Pendiente de ejecución conforme al plan. |
+| 12 | Sensibilidad a prueba, métrica y semillas. | Análisis posterior disponible: bloques 7/14/28, MAE y subconjuntos descriptivos de semillas; no completa la robustez ampliada. |
 | 13 | Unitarias en CI y exportación con ida y vuelta. | Parcial: software/workflows y tres TorchScript sobre calibración; integración final pendiente. |
 | 14 | Dashboard desde maestro y prueba de consistencia. | Pendiente; aplicación no construida. |
 | 15 | Docker y reproducción independiente con discrepancia. | Pendiente; sin recibo humano externo. |
