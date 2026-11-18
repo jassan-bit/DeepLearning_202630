@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/ORCk7/4gAHgN8unuyfZ0C6i82wk</id>
+  <title>arXiv Query: search_query=all:rolling OR all:variance OR all:conditional OR all:forecast&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <updated>2026-11-18T20:23:48Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:rolling+OR+(all:variance+OR+(all:conditional+OR+all:forecast))&amp;start=0&amp;max_results=10&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>435823</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2602.07775v7</id>
+    <title>Rolling Sink: Bridging Limited-Horizon Training and Open-Ended Testing in Autoregressive Video Diffusion</title>
+    <updated>2026-08-31T22:05:28Z</updated>
+    <link href="https://arxiv.org/abs/2602.07775v7" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.07775v7" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autoregressive (AR) video diffusion models in the Self Forcing family generate a video chunk by chunk, each conditioned on the ones before it, so they can keep rolling out with no preset length. In practice they are trained on short, fixed clips (e.g., 5s). Once a rollout passes this training horizon, the cache fills with self-generated chunks the model never saw in training, and quality degrades: colors oversaturate, identities drift, structures collapse, and motion fades. We frame this failure as a cache-behavior mismatch, a domain shift between the within-horizon caches seen in training and those produced by open-ended testing, and address it with Rolling Sink, a training-free inference-time cache policy. Within the base model's fixed cache budget, Rolling Sink holds the cache close to its stable within-horizon behavior: it restores low-drift content, sliding temporal indices, and evolving semantics, and keeps a small recent context. Attention sink and temporal re-indexing are existing mechanisms. Our contribution is the mismatch formulation, the joint bounded-cache policy, and the Rolling Semantics schedule. On two 5s-trained bases, Self Forcing and Causal Forcing, Rolling Sink attains the best averaged rank on VBench-Long at both 1- and 5-minute rollouts under the same inference setting, at about 0.56% throughput change, and holds GPU memory constant. It also sustains a 30-minute qualitative rollout, 360 times its training horizon. We validate at 1- and 5-minute rollouts and do not claim guaranteed quality at arbitrary duration. Project page: https://rolling-sink.github.io/</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-08T02:16:02Z</published>
+    <arxiv:comment>Project page: https://rolling-sink.github.io/</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Haodong Li</name>
+    </author>
+    <author>
+      <name>Shaoteng Liu</name>
+    </author>
+    <author>
+      <name>Zhe Lin</name>
+    </author>
+    <author>
+      <name>Manmohan Chandraker</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1907.03762v3</id>
+    <title>Rolling with quantum fields</title>
+    <updated>2019-12-04T20:36:30Z</updated>
+    <link href="https://arxiv.org/abs/1907.03762v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1907.03762v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We study the dynamics of a classical scalar field that rolls down a linear potential as it interacts bi-quadratically with a quantum field. We explicitly solve the dynamical problem by using the classical-quantum correspondence (CQC). Rolling solutions on the effective potential are shown to compare very poorly with the full solution. Spatially homogeneous initial conditions maintain their homogeneity and small inhomogeneities in the initial conditions do not grow.</summary>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.other" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-07-08T18:00:01Z</published>
+    <arxiv:comment>10 pages, 8 figures; updated references; published in PRD with title "Rolling classical scalar field in a linear potential coupled to a quantum field"</arxiv:comment>
+    <arxiv:primary_category term="hep-th"/>
+    <arxiv:journal_ref>Phys. Rev. D 100, 096018 (2019)</arxiv:journal_ref>
+    <author>
+      <name>Mainak Mukhopadhyay</name>
+    </author>
+    <author>
+      <name>Tanmay Vachaspati</name>
+    </author>
+    <arxiv:doi>10.1103/PhysRevD.100.096018</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1103/PhysRevD.100.096018" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.30247v2</id>
+    <title>Rolling-WAM: World Action Models with Rolling Imagination</title>
+    <updated>2026-10-05T17:15:08Z</updated>
+    <link href="https://arxiv.org/abs/2609.30247v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.30247v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World Action Models (WAMs) couple action generation with future visual prediction for robotic manipulation. However, completing the joint video-action denoising process at each replanning cycle incurs substantial latency, delaying action updates and limiting closed-loop responsiveness. We present Rolling-WAM, a formulation that distributes joint denoising across successive replanning cycles. Our method maintains a sliding window of video-action chunks at staggered noise levels. At each step, a rolling noise schedule fully denoises the imminent action chunk for execution, while partially refining farther-future chunks. As the window advances with new camera observations, the retained future chunks continue their denoising process. This distributes the computational cost over time while carrying an evolving visual-action context across chunk boundaries. Evaluations on LIBERO, RoboTwin, and a real-world Unitree G1 humanoid show that Rolling-WAM achieves competitive manipulation performance. By removing the need to denoise the entire prediction horizon from scratch, it delivers a 4.5x steady-state replanning speedup over standard joint WAMs.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-24T17:58:03Z</published>
+    <arxiv:comment>10 pages, 7 figures, 5 tables. Under review. Project page: https://rolling-wam.github.io/</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Yinghua Zhou</name>
+    </author>
+    <author>
+      <name>Junjie Ye</name>
+    </author>
+    <author>
+      <name>Yiqi Zhao</name>
+    </author>
+    <author>
+      <name>Hao Dong</name>
+    </author>
+    <author>
+      <name>Celina Shiyu Wang</name>
+    </author>
+    <author>
+      <name>Ruohai Ge</name>
+    </author>
+    <author>
+      <name>Tingyi Yang</name>
+    </author>
+    <author>
+      <name>Basile Van Hoorick</name>
+    </author>
+    <author>
+      <name>Gaurav Sukhatme</name>
+    </author>
+    <author>
+      <name>Vitor Guizilini</name>
+    </author>
+    <author>
+      <name>Yue Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2008.06489v1</id>
+    <title>A Deep Convolutional Neural Network Model for improving WRF Forecasts</title>
+    <updated>2020-08-14T17:48:06Z</updated>
+    <link href="https://arxiv.org/abs/2008.06489v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2008.06489v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Advancements in numerical weather prediction models have accelerated, fostering a more comprehensive understanding of physical phenomena pertaining to the dynamics of weather and related computing resources. Despite these advancements, these models contain inherent biases due to parameterization and linearization of the differential equations that reduce forecasting accuracy. In this work, we investigate the use of a computationally efficient deep learning method, the Convolutional Neural Network (CNN), as a post-processing technique that improves mesoscale Weather and Research Forecasting (WRF) one day forecast (with a one-hour temporal resolution) outputs. Using the CNN architecture, we bias-correct several meteorological parameters calculated by the WRF model for all of 2018. We train the CNN model with a four-year history (2014-2017) to investigate the patterns in WRF biases and then reduce these biases in forecasts for surface wind speed and direction, precipitation, relative humidity, surface pressure, dewpoint temperature, and surface temperature. The WRF data, with a spatial resolution of 27 km, covers South Korea. We obtain ground observations from the Korean Meteorological Administration station network for 93 weather station locations. The results indicate a noticeable improvement in WRF forecasts in all station locations. The average of annual index of agreement for surface wind, precipitation, surface pressure, temperature, dewpoint temperature and relative humidity of all stations are 0.85 (WRF:0.67), 0.62 (WRF:0.56), 0.91 (WRF:0.69), 0.99 (WRF:0.98), 0.98 (WRF:0.98), and 0.92 (WRF:0.87), respectively. While this study focuses on South Korea, the proposed approach can be applied for any measured weather parameters at any location.</summary>
+    <category term="physics.ao-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-08-14T17:48:06Z</published>
+    <arxiv:comment>CNN, weather forecast, WRF, Artificial Intelligence, Machine Learning, wind speed forecast, rainfall forecast</arxiv:comment>
+    <arxiv:primary_category term="physics.ao-ph"/>
+    <author>
+      <name>Alqamah Sayeed</name>
+    </author>
+    <author>
+      <name>Yunsoo Choi</name>
+    </author>
+    <author>
+      <name>Jia Jung</name>
+    </author>
+    <author>
+      <name>Yannic Lops</name>
+    </author>
+    <author>
+      <name>Ebrahim Eslami</name>
+    </author>
+    <author>
+      <name>Ahmed Khan Salman</name>
+    </author>
+    <arxiv:doi>10.1109/TNNLS.2021.3100902</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TNNLS.2021.3100902" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2003.09703v1</id>
+    <title>Variance function of boolean additive convolution</title>
+    <updated>2020-03-21T17:15:03Z</updated>
+    <link href="https://arxiv.org/abs/2003.09703v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2003.09703v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Suppose Vν is the pseudo-variance function of the Cauchy-Stieltjes Kernel (CSK) family K+(ν) generated by a non degenerate probability measure ν with support bounded from above. We determine the formula for pseudo-variance function (or variance function Vν in case of existence) under boolean additive convolution power. This formulas is used to identify the relation between variance functions under Boolean Bercovici-Bata Bijection between probability measures. We also gives the connection between boolean cumulants and variance function and we relate boolean cumulants of some probability measures to Catalan numbers and Fuss Catalan numbers.</summary>
+    <category term="math.PR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-03-21T17:15:03Z</published>
+    <arxiv:comment>We determine the formula for pseudo-variance function (or variance function Vν in case of existence) under boolean additive convolution power</arxiv:comment>
+    <arxiv:primary_category term="math.PR"/>
+    <author>
+      <name>Raouf Fakhfakh</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2506.20024v3</id>
+    <title>Elucidated Rolling Diffusion Models for Probabilistic Forecasting of Complex Dynamics</title>
+    <updated>2025-12-08T23:59:30Z</updated>
+    <link href="https://arxiv.org/abs/2506.20024v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2506.20024v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Diffusion models are a powerful tool for probabilistic forecasting, yet most applications in high-dimensional complex systems predict future states individually. This approach struggles to model complex temporal dependencies and fails to explicitly account for the progressive growth of uncertainty inherent to the systems. While rolling diffusion frameworks, which apply increasing noise to forecasts at longer lead times, have been proposed to address this, their integration with state-of-the-art, high-fidelity diffusion techniques remains a significant challenge. We tackle this problem by introducing Elucidated Rolling Diffusion Models (ERDM), the first framework to successfully unify a rolling forecast structure with the principled, performant design of Elucidated Diffusion Models (EDM). To do this, we adapt the core EDM components-its noise schedule, network preconditioning, and Heun sampler-to the rolling forecast setting. The success of this integration is driven by three key contributions: (i) a novel loss weighting scheme that focuses model capacity on the mid-range forecast horizons where determinism gives way to stochasticity; (ii) an efficient initialization strategy using a pre-trained EDM for the initial window; and (iii) a bespoke hybrid sequence architecture for robust spatiotemporal feature extraction under progressive denoising. On 2D Navier-Stokes simulations and ERA5 global weather forecasting at 1.5-degree resolution, ERDM consistently outperforms key diffusion-based baselines, including conditional autoregressive EDM. ERDM offers a flexible and powerful general framework for tackling diffusion-based dynamics forecasting problems where modeling uncertainty propagation is paramount.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.ao-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-06-24T21:44:31Z</published>
+    <arxiv:comment>NeurIPS 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>Advances in Neural Information Processing Systems (NeurIPS), 2025</arxiv:journal_ref>
+    <author>
+      <name>Salva Rühling Cachay</name>
+    </author>
+    <author>
+      <name>Miika Aittala</name>
+    </author>
+    <author>
+      <name>Karsten Kreis</name>
+    </author>
+    <author>
+      <name>Noah Brenowitz</name>
+    </author>
+    <author>
+      <name>Arash Vahdat</name>
+    </author>
+    <author>
+      <name>Morteza Mardani</name>
+    </author>
+    <author>
+      <name>Rose Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2202.01043v2</id>
+    <title>2T-POT Hawkes model for left- and right-tail conditional quantile forecasts of financial log-returns: out-of-sample comparison of conditional EVT models</title>
+    <updated>2022-10-14T00:57:16Z</updated>
+    <link href="https://arxiv.org/abs/2202.01043v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2202.01043v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Conditional extreme value theory (EVT) methods promise enhanced forecasting of the extreme tail events that often dominate systemic risk. We present an improved two-tailed peaks-over-threshold (2T-POT) Hawkes model that is adapted for conditional quantile forecasting in both the left and right tails of a univariate time series. This is applied to the daily log-returns of six large cap indices. We also take the unique step of fitting the model at multiple exceedance thresholds (from the 1.25% to 25.00% mirrored quantiles). Quantitatively similar asymmetries in Hawkes parameters are found across all six indices, adding further empirical support to a temporal leverage effect in financial price time series in which the impact of losses is not only larger but also more immediate. Out-of-sample backtests find that our 2T-POT Hawkes model is more reliably accurate than the GARCH-EVT model when forecasting (mirrored) value-at-risk and expected shortfall at the 5% coverage level and below. This suggests that asymmetric Hawkes-type arrival dynamics are a better approximation of the true data generating process for extreme daily log-returns than GARCH-type conditional volatility; our 2T-POT Hawkes model therefore presents a better performing alternative for financial risk modelling.</summary>
+    <category term="q-fin.ST" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-02-02T14:10:05Z</published>
+    <arxiv:comment>Main paper: 25 pages, 7 figures, 6 tables. Supplementary material: 12 pages, 14 figures</arxiv:comment>
+    <arxiv:primary_category term="q-fin.ST"/>
+    <arxiv:journal_ref>Int. J. Forecast., 40(1), 324-347 (2024)</arxiv:journal_ref>
+    <author>
+      <name>Matthew F. Tomlinson</name>
+    </author>
+    <author>
+      <name>David Greenwood</name>
+    </author>
+    <author>
+      <name>Marcin Mucha-Kruczynski</name>
+    </author>
+    <arxiv:doi>10.1016/j.ijforecast.2023.03.003</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1016/j.ijforecast.2023.03.003" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2002.10996v2</id>
+    <title>Shear thickening and jamming of dense suspensions: the "roll" of friction</title>
+    <updated>2020-05-07T21:07:42Z</updated>
+    <link href="https://arxiv.org/abs/2002.10996v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2002.10996v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Particle-based simulations of discontinuous shear thickening (DST) and shear jamming (SJ) suspensions are used to study the role of stress-activated constraints, with an emphasis on resistance to gear-like rolling. Rolling friction decreases the volume fraction required for DST and SJ, in quantitative agreement with real-life suspensions with adhesive surface chemistries and "rough" particle shapes. It sets a distinct structure of the frictional force network compared to only sliding friction, and from a dynamical perspective leads to an increase in the velocity correlation length, in part responsible for the increased viscosity. The physics of rolling friction is thus a key element in achieving a comprehensive understanding of strongly shear-thickening materials.</summary>
+    <category term="cond-mat.soft" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.flu-dyn" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-02-25T16:12:03Z</published>
+    <arxiv:comment>5 pages, 4 figures. +Supplemental Material--- --- Supplementary Material also consists of the following movies: ---https://youtu.be/wgrfN7jiu1g (Force network in 3D at volume fraction 0.45, at high stress limit, with and without rolling friction) --- https://youtu.be/SMzTB7CsRsY (Force network in 2D at packing fraction 0.7, at high stress limit, with and without rolling friction)</arxiv:comment>
+    <arxiv:primary_category term="cond-mat.soft"/>
+    <arxiv:journal_ref>Phys. Rev. Lett. 124, 248005 (2020)</arxiv:journal_ref>
+    <author>
+      <name>Abhinendra Singh</name>
+    </author>
+    <author>
+      <name>Christopher Ness</name>
+    </author>
+    <author>
+      <name>Ryohei Seto</name>
+    </author>
+    <author>
+      <name>Juan J de Pablo</name>
+    </author>
+    <author>
+      <name>Heinrich M Jaeger</name>
+    </author>
+    <arxiv:doi>10.1103/PhysRevLett.124.248005</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1103/PhysRevLett.124.248005" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.01868v1</id>
+    <title>Forecast Linear Augmented Projection (FLAP): A free lunch to reduce forecast error variance</title>
+    <updated>2024-07-02T00:54:38Z</updated>
+    <link href="https://arxiv.org/abs/2407.01868v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.01868v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A novel forecast linear augmented projection (FLAP) method is introduced, which reduces the forecast error variance of any unbiased multivariate forecast without introducing bias. The method first constructs new component series which are linear combinations of the original series. Forecasts are then generated for both the original and component series. Finally, the full vector of forecasts is projected onto a linear subspace where the constraints implied by the combination weights hold. It is proven that the trace of the forecast error variance is non-increasing with the number of components, and mild conditions are established for which it is strictly decreasing. It is also shown that the proposed method achieves maximum forecast error variance reduction among linear projection methods. The theoretical results are validated through simulations and two empirical applications based on Australian tourism and FRED-MD data. Notably, using FLAP with Principal Component Analysis (PCA) to construct the new series leads to substantial forecast error variance reduction.</summary>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-02T00:54:38Z</published>
+    <arxiv:primary_category term="stat.ME"/>
+    <author>
+      <name>Yangzhuoran Fin Yang</name>
+    </author>
+    <author>
+      <name>George Athanasopoulos</name>
+    </author>
+    <author>
+      <name>Rob J. Hyndman</name>
+    </author>
+    <author>
+      <name>Anastasios Panagiotelis</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1505.00475v1</id>
+    <title>On the Forecast Combination Puzzle</title>
+    <updated>2015-05-03T20:56:27Z</updated>
+    <link href="https://arxiv.org/abs/1505.00475v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1505.00475v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>It is often reported in forecast combination literature that a simple average of candidate forecasts is more robust than sophisticated combining methods. This phenomenon is usually referred to as the "forecast combination puzzle". Motivated by this puzzle, we explore its possible explanations including estimation error, invalid weighting formulas and model screening. We show that existing understanding of the puzzle should be complemented by the distinction of different forecast combination scenarios known as combining for adaptation and combining for improvement. Applying combining methods without consideration of the underlying scenario can itself cause the puzzle. Based on our new understandings, both simulations and real data evaluations are conducted to illustrate the causes of the puzzle. We further propose a multi-level AFTER strategy that can integrate the strengths of different combining methods and adapt intelligently to the underlying scenario. In particular, by treating the simple average as a candidate forecast, the proposed strategy is shown to avoid the heavy cost of estimation error and, to a large extent, solve the forecast combination puzzle.</summary>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="econ.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2015-05-03T20:56:27Z</published>
+    <arxiv:primary_category term="stat.ME"/>
+    <author>
+      <name>Wei Qian</name>
+    </author>
+    <author>
+      <name>Craig A. Rolling</name>
+    </author>
+    <author>
+      <name>Gang Cheng</name>
+    </author>
+    <author>
+      <name>Yuhong Yang</name>
+    </author>
+  </entry>
+</feed>
