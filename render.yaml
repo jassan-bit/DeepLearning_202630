@@ -1,0 +1,12 @@
+# Blueprint prepared for a later deployment. This file creates no service itself.
+services:
+  - type: web
+    name: deeplearning-e3-dashboard
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: false
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: '1'

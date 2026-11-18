@@ -6,16 +6,67 @@ Este repositorio reúne **tres Jupyter Books**, cada uno con índice, configurac
 |---|---|---|---|
 | E1 | [`book/`](book/) | [Abrir E1](https://jassan-bit.github.io/DeepLearning_202630/intro.html) | Informe y estudios realizados |
 | E2 | [`book_e2/`](book_e2/) | [Abrir E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html) | Benchmark ejecutado: 16 sistemas y 608 fechas; requisitos pendientes documentados |
-| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Avances A/B y candidato C con teoría, implementación y pruebas sintéticas; R1/R3 pendientes |
+| E3 | [`book_e3/`](book_e3/) | [Abrir E3](https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html) | Diez semillas E3, comparación histórica de 17 sistemas y dashboard CPU; R1/defensa R2/R3 y despliegue público pendientes |
 
 [Selector de los tres entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html). La infraestructura de compilación es común; cada JBook se construye desde su propia carpeta. Los apartados experimentales que siguen corresponden a **E1**.
+
+## Dashboard E3
+
+La aplicación Dash tiene **Contexto, EDA y Modelos**. Conserva los 17 sistemas
+del informe y ofrece inferencia CPU bajo demanda con cuatro artefactos ONNX:
+MLP16, LSTM32, GRU32 y CNN-LSTM con atención temporal y salida aditiva positiva.
+Los otros trece sistemas muestran resultados guardados. La tabla usa medias de
+las réplicas; las curvas y los cuatro artefactos usan la semilla representativa
+fija 271801, sin elegirla por su error de prueba. E3 aún no tiene un intervalo
+calibrado; los intervalos de las referencias reutilizan sus cuantiles guardados.
+
+Desde la raíz, con Python 3.12:
+
+```bash
+python -m venv .venv-dashboard
+source .venv-dashboard/bin/activate
+python -m pip install -r requirements.txt
+gunicorn --bind 127.0.0.1:8050 --workers 1 --threads 1 --timeout 120 app:server
+```
+
+Abrir `http://127.0.0.1:8050`. La aplicación no descarga datos, calibra o entrena
+al arrancar. Los modelos se cargan bajo demanda, con una sesión residente,
+`CPUExecutionProvider` y hashes comprobados. El tema visual es local; no necesita
+una CDN. Las cargas CSV se validan y no se guardan. El código de entrenamiento
+permanece separado del servidor, como explica [training/README.md](training/README.md).
+
+La [ficha del modelo](MODEL_CARD.md) y la [declaración de datos y privacidad](DATA_STATEMENT.md)
+explican el objetivo, fuentes y límites. El [capítulo 9](book_e3/sections/09_dashboard_predictivo.md)
+recoge los recorridos verificados y los requisitos pendientes. La explicación
+local mide sensibilidad al reemplazar una barra por la referencia de ajuste;
+su fidelidad y estabilidad entre semillas no están certificadas.
+
+```bash
+docker build -t e3-dashboard .
+docker run --rm -p 8050:8050 e3-dashboard
+```
+
+El Dockerfile fija la imagen base y las dependencias y ejecuta un usuario sin
+privilegios. Si el entorno de construcción carece de DNS, admite ruedas
+preparadas en un host Linux de la misma plataforma y Python 3.12:
+
+```bash
+python -m pip download --no-deps -r requirements-dashboard.lock.txt --dest deployment/wheels
+docker build --build-arg DASHBOARD_OFFLINE=1 -t e3-dashboard .
+```
+
+Las ruedas no se versionan ni quedan incorporadas como capa de la imagen.
+`render.yaml` es una configuración preparada, sin servicio activado o URL
+pública. GitHub Pages sirve el informe; ejecutar Dash requiere un servidor
+Python. El despliegue en Render y su prueba de humo pública se documentarán
+cuando se realicen.
 
 La [sección 5 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) contiene la réplica externa de TimeMixer y el piloto sobre tres modelos en ETTh1. Su [paquete descargable](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip) reúne código y evidencias; estas ejecuciones no modifican los resultados de E1 ni completan el benchmark Bitcoin D7.
 
 La [sección 6 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/06_benchmark_final.html) presenta la comparación tabular, la eficiencia, la inferencia y la discusión del benchmark. La [tabla A2 medida](book_e2/_static/e2_benchmark_final_20261113/benchmark_A2.csv) contiene el benchmark ejecutado de 16 sistemas sobre 608 fechas. Los paquetes anteriores conservan su alcance histórico; el [estado vigente de E2](book_e2/intro.md) documenta el cierre y sus limitaciones.
 
 
-Los [protocolos históricos de E2](book_e2/sections/09_protocolo_registrado.md) conservan sus registros y recibos. No definen el catálogo actual ni acreditan el nuevo híbrido. La nueva especificación del mecanismo E3, su implementación, presupuesto y preregistro siguen pendientes; no se alteran los datos o resultados previos.
+Los [protocolos históricos de E2](book_e2/sections/09_protocolo_registrado.md) conservan sus registros y recibos. No definen el catálogo actual ni acreditan el nuevo híbrido. E3 dispone de implementaciones, pilotos, diez réplicas y análisis posterior; la novedad, el diseño confirmatorio justo, potencia y preregistro siguen requiriendo cierre. El dashboard no modifica los pesos o las recetas históricas.
 
 
 Proyecto de Deep Learning, 2026-30: **E1 con GRU32, LSTM32 y MLP16; E2 con benchmark ejecutado de 16 sistemas; E3 con candidato CNN-LSTM-atención en revisión de novedad**.

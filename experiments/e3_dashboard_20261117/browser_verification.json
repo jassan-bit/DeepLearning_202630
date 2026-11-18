@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-11-18T00:26:21.573239+00:00",
+  "scope": "local_automated_browser_acceptance_not_Render_deployment_or_human_reproduction",
+  "server_url": "http://127.0.0.1:8050",
+  "python": "3.12.14",
+  "chromium": "154.0.8037.57",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 800,
+      "height": 1050
+    }
+  ],
+  "checks": [
+    {
+      "check": "Three-page navigation",
+      "passed": true,
+      "detail": [
+        "/",
+        "/",
+        "/eda",
+        "/modelos"
+      ]
+    },
+    {
+      "check": "Context includes real cohort and task",
+      "passed": true,
+      "detail": "PROYECTO DE DEEP LEARNING\n\nEntender la volatilidad.\nExplorar la evidencia.\n\n¿Cuánto puede variar Bitcoin durante el próximo día? Explora los datos, compara 17 sistemas y examina sus pronósticos con sus límites.\n\nExplorar los datos\nComparar modelos\n\nE"
+    },
+    {
+      "check": "Accessible document /model-card",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessible document /data-statement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Health includes complete catalogue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "EDA shared mask n=1316",
+      "passed": true,
+      "detail": "1.316 observaciones · 2023-01-08 a 2026-08-31"
+    },
+    {
+      "check": "EDA shared mask n=608",
+      "passed": true,
+      "detail": "608 observaciones · 2025-01-01 a 2026-08-31"
+    },
+    {
+      "check": "EDA shared mask n=0",
+      "passed": true,
+      "detail": "0 observaciones · cambia los filtros para recuperar una muestra."
+    },
+    {
+      "check": "EDA shared mask n=608",
+      "passed": true,
+      "detail": "608 observaciones · 2025-01-01 a 2026-08-31"
+    },
+    {
+      "check": "EDA trace supports follow the same 608-row mask",
+      "passed": true,
+      "detail": {
+        "series": 608,
+        "histogram": 608,
+        "feature": 608,
+        "partitions": 608
+      }
+    },
+    {
+      "check": "EDA shared mask n=608",
+      "passed": true,
+      "detail": "608 observaciones · 2025-01-01 a 2026-08-31"
+    },
+    {
+      "check": "EDA shared mask n=0",
+      "passed": true,
+      "detail": "0 observaciones · cambia los filtros para recuperar una muestra."
+    },
+    {
+      "check": "Empty EDA explains missing diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Empty EDA clears all stale traces",
+      "passed": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "check": "Model page represents all 17 systems",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Leaderboard contains all 17 rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Leaderboard sort changes the visible order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Leaderboard filtering preserves the requested row",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Model diagnostics render",
+      "passed": true,
+      "detail": 6
+    },
+    {
+      "check": "Model card opens inside the application",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Pareto uses the four measured CPU exports",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "check": "Live CPU prediction returns a result",
+      "passed": true,
+      "detail": "PRONÓSTICO σ₇\n0.017826\nFecha objetivo: 2025-01-01\nINTERVALO NOMINAL 90%\n[0.006856, 0.028795]\nLa cobertura depende de los datos y del cambio de distribución.\n\nMLP16 · semilla 271801 · 132.98 ms en CPU\n\nTiempo de esta consulta: incluye carga si procede, preprocesamiento e inferencia y excluye la explicación. El resultado corresponde a la última consulta calculada; vuelve a calcular tras cambiar la entrada.\n\nNo excede los rangos observados en ajuste; esto no certifica fiabilidad.\n\nExplicación del c"
+    },
+    {
+      "check": "Reference interval has an explicit nominal level",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E3 missing calibrated interval is explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Displayed E3 forecast matches its frozen representative",
+      "passed": true,
+      "detail": {
+        "shown_six_decimals": 0.016867,
+        "frozen": 0.016866754764803968
+      }
+    },
+    {
+      "check": "Valid uploaded CSV preserves the same raw-window forecast",
+      "passed": true,
+      "detail": {
+        "uploaded_six_decimals": 0.016867,
+        "frozen": 0.016866754764803968
+      }
+    },
+    {
+      "check": "Invalid uploaded CSV is explained without a trace",
+      "passed": true,
+      "detail": "Las columnas deben ser: date,open,high,low,close,volume, en ese orden."
+    },
+    {
+      "check": "Tablet has no document overflow: /",
+      "passed": true,
+      "detail": {
+        "width": 800,
+        "scroll": 800
+      }
+    },
+    {
+      "check": "EDA shared mask n=1316",
+      "passed": true,
+      "detail": "1.316 observaciones · 2023-01-08 a 2026-08-31"
+    },
+    {
+      "check": "Tablet has no document overflow: /eda",
+      "passed": true,
+      "detail": {
+        "width": 800,
+        "scroll": 800
+      }
+    },
+    {
+      "check": "Tablet has no document overflow: /modelos",
+      "passed": true,
+      "detail": {
+        "width": 800,
+        "scroll": 800
+      }
+    },
+    {
+      "check": "Keyboard skip link is reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No uncaught browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "No browser console error",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "No internal HTTP 5xx",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "uncaught_browser_errors": [],
+  "browser_console_errors": [],
+  "internal_HTTP_5xx": [],
+  "failed_requests": [],
+  "screenshots": [
+    {
+      "name": "contexto_desktop.png",
+      "bytes": 330909,
+      "sha256": "35f6a3c2cf9d7e67b745da4d5e6fb113db002de83c78b497e1905853e3766bdb"
+    },
+    {
+      "name": "eda_desktop.png",
+      "bytes": 441650,
+      "sha256": "9fc24ccf5f6d9264f581b7851823b4e70f9154379a85ab7db99f2342a858e377"
+    },
+    {
+      "name": "modelos_desktop.png",
+      "bytes": 882207,
+      "sha256": "03317cbe888f0370a00dbf4bdd0202b3a7bf9c07fedff8f0095b99b2115ddc86"
+    },
+    {
+      "name": "contexto_tablet.png",
+      "bytes": 335948,
+      "sha256": "4e677f2065299e3e27506b8d02ca915f7b19c0df9d52a45b57032648eb9283fe"
+    },
+    {
+      "name": "eda_tablet.png",
+      "bytes": 433585,
+      "sha256": "bfd09ac40d0c229fb7a135326120b4de3bea49cb779513708bef3ac60ffe0277"
+    },
+    {
+      "name": "modelos_tablet.png",
+      "bytes": 734516,
+      "sha256": "f9adfcad408fd83a66ec165d189f06a945af55bf1a4ea5120b2b2111524ae74c"
+    }
+  ],
+  "test_cases": 6,
+  "failures": 0,
+  "errors": 0,
+  "render_deployed": false,
+  "R1_R2_R3_certified": false,
+  "status": "passed",
+  "source_hashes": {
+    "app.py": "a92d469b0b6c394e2141cef9c0f585191e05e0950e316e65edcb2944f2d36214",
+    "pages/contexto.py": "05cc96671d41776c7f4d2f8ff4ef737ce49431c3f0a1cc406ed1466adae91163",
+    "pages/eda.py": "68c86036b12951d8181b3f8f13361df8af174374cca049e347baedfe601f348d",
+    "pages/modelos.py": "7cd988ad0883dd9092cfa2af77f827f559665c5c70907b30314afca4b1d99c0e",
+    "requirements-dashboard.lock.txt": "1ebe85974424491721c6736c6d79c351364a7e8262dbd98a9d0a6bd3c079489a"
+  }
+}

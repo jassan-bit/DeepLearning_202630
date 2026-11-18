@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "model": "MLP16",
+  "seed": 271801,
+  "representative_seed_rule": "smallest fixed seed ID, not selected by test performance",
+  "format": "ONNX",
+  "opset": 17,
+  "model_sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50",
+  "softplus_export_representation": "inherited TorchScript graph",
+  "input_shape": [
+    1,
+    7,
+    5
+  ],
+  "input_dtype": "float32",
+  "uses_observable_floor": false,
+  "floor_input_dtype": null,
+  "output_scale": 0.020953875259434797,
+  "preprocessing": {
+    "mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "fit_count": 655,
+    "fit_end": "2024-10-31",
+    "target_scale": 0.020953875259434797
+  },
+  "calibration_q": 0.01096934474265791,
+  "interval_nominal_coverage": 0.9,
+  "historical_608_coverage_percent_for_this_seed": 97.20394736842105,
+  "output_unit": "original population sigma7, not annualized",
+  "horizon_days": 1,
+  "raw_schema": [
+    "date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "max_csv_bytes": 102400,
+  "ood": {
+    "method": "per-lag/channel observed range in standardized fit windows",
+    "minimum_standardized": [
+      [
+        -5.815190315246582,
+        -6.30404806137085,
+        -6.1665849685668945,
+        -6.436119079589844,
+        -1.9340888261795044
+      ],
+      [
+        -5.522439956665039,
+        -4.82453727722168,
+        -5.64715051651001,
+        -4.798757553100586,
+        -1.9340888261795044
+      ],
+      [
+        -4.106070041656494,
+        -4.372659683227539,
+        -4.238033771514893,
+        -4.413619518280029,
+        -1.9340888261795044
+      ],
+      [
+        -3.773941993713379,
+        -4.199136734008789,
+        -4.187868595123291,
+        -4.091274738311768,
+        -1.9340888261795044
+      ],
+      [
+        -3.495267391204834,
+        -3.54236102104187,
+        -3.652169704437256,
+        -3.5603647232055664,
+        -1.9340888261795044
+      ],
+      [
+        -3.036283254623413,
+        -2.1551120281219482,
+        -3.0230884552001953,
+        -2.38340163230896,
+        -1.9340888261795044
+      ],
+      [
+        -2.0189127922058105,
+        -0.2222953587770462,
+        -1.9134747982025146,
+        0.14736202359199524,
+        -1.9340888261795044
+      ]
+    ],
+    "maximum_standardized": [
+      [
+        4.302679061889648,
+        4.436797142028809,
+        4.448424339294434,
+        4.726393222808838,
+        3.1940417289733887
+      ],
+      [
+        4.127811431884766,
+        4.3880391120910645,
+        4.20363712310791,
+        4.188823223114014,
+        3.1940417289733887
+      ],
+      [
+        3.6630725860595703,
+        3.999451160430908,
+        3.481027126312256,
+        4.440602779388428,
+        3.1940417289733887
+      ],
+      [
+        3.8807389736175537,
+        3.9784624576568604,
+        3.12408709526062,
+        3.0700740814208984,
+        3.1940417289733887
+      ],
+      [
+        2.6958882808685303,
+        2.8271923065185547,
+        2.6552720069885254,
+        2.7748353481292725,
+        3.1940417289733887
+      ],
+      [
+        2.4406442642211914,
+        2.698812961578369,
+        2.1082446575164795,
+        2.1224265098571777,
+        3.1940417289733887
+      ],
+      [
+        1.8766244649887085,
+        1.8361636400222778,
+        0.5432756543159485,
+        0.14736202359199524,
+        3.1940417289733887
+      ]
+    ],
+    "fit_only": true,
+    "not_a_calibrated_reliability_guarantee": true
+  },
+  "explanation_reference_raw": [
+    [
+      16541.77,
+      16628.0,
+      16499.01,
+      16616.75,
+      96925.41374
+    ],
+    [
+      16617.17,
+      16799.23,
+      16548.7,
+      16672.87,
+      121888.57191
+    ],
+    [
+      16672.78,
+      16778.4,
+      16605.28,
+      16675.18,
+      159541.53733
+    ],
+    [
+      16675.65,
+      16991.87,
+      16652.66,
+      16850.36,
+      220362.18862
+    ],
+    [
+      16850.36,
+      16879.82,
+      16753.0,
+      16831.85,
+      163473.56641
+    ],
+    [
+      16831.85,
+      17041.0,
+      16679.0,
+      16950.65,
+      207401.28415
+    ],
+    [
+      16950.31,
+      16981.91,
+      16908.0,
+      16943.57,
+      104526.5688
+    ]
+  ],
+  "explanation_reference_target_date": "2023-01-08",
+  "scientific_source": {
+    "type": "inherited_E2_TorchScript",
+    "sha256": "896c08ecf1f3ac0fc64c5fb9afde1afd9b7e2e973fd767ddec41048e1ad5356a",
+    "original_checkpoint_sha256": "0cd28c59d6b8bdc008bae49e7fc40fb733941b2adef86f58f784e9d1e989b4c2"
+  },
+  "data_source": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "immutable_commit": "af3f1223ad5899ed63016d2af2d09bae8470ab00"
+  },
+  "roundtrip": {
+    "model": "MLP16",
+    "seed": 271801,
+    "evaluation_dates": 608,
+    "date_start": "2025-01-01",
+    "date_end": "2026-08-31",
+    "declared_absolute_tolerance_original_sigma7": 1e-06,
+    "maximum_absolute_error_vs_CPU_memory": 9.99158632913888e-09,
+    "maximum_absolute_error_vs_frozen_saved_predictions": 1.0055243065271169e-08,
+    "RMSE_CPU_memory": 0.004482100226352679,
+    "RMSE_ONNX": 0.004482100129298238,
+    "RMSE_ONNX_minus_memory": -9.705444087293458e-11,
+    "RMSE_frozen_saved_predictor": 0.004482100265311161,
+    "within_tolerance": true,
+    "cpu_median_ms": 0.02539800334488973,
+    "cpu_p95_ms": 0.04798119734914507,
+    "latency_scope": "preprocessing + warm ORT inference, one CPU thread, batch one, 10 warmups/100 calls; excludes explanation",
+    "onnx_bytes": 3319,
+    "trainable_parameters": 593,
+    "FLOPs": null,
+    "runtime_peak_memory": null,
+    "no_refit_no_recalibration": true
+  },
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5"
+  }
+}
