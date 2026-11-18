@@ -82,6 +82,8 @@ El informe deberá identificar revisor humano y relación con el proyecto; fecha
 
 ## Autoría, contribuciones y uso de IA
 
+La revisión externa de R1 se presenta por la modalidad de **IA declarada** documentada en [6.13](06_modelo_original.md), conforme a la indicación docente comunicada por el autor el 18 de noviembre de 2026. Se empleó ChatGPT/Codex para búsqueda, cribado, lectura focal, comparación técnica, dictamen y repetición de dos cadenas nativas; la {download}`declaración específica <../_static/e3_r1_ai_substitution_20261118/ai_use_declaration.md>` conserva ese alcance. Este componente se documenta como completado por IA y no hubo revisión humana. La conclusión científica de R1 sigue pendiente; las responsabilidades personales del autor y el registro de reproducción de la sección anterior conservan sus estados propios.
+
 La preparación del [piloto exploratorio de momentos](07_diseno_riguroso.md) empleó ChatGPT/Codex para implementación del modelo, ejecutor, guardado y reanudación en GitHub, pruebas sobre datos artificiales, revisión de código y documentación del notebook. La ejecución posterior del piloto está respaldada por sus resultados guardados y se distingue del corte inicial de preparación. La asistencia de IA también intervino en los ejecutores de réplicas, el análisis estadístico posterior y la actualización del libro. Sus commits, versiones, métricas y consumos conservan el alcance de cada etapa; esto no equivale a una verificación humana externa y la persona autora mantiene la responsabilidad de revisar y defender el código.
 
 El [dictamen posterior sobre la cabeza de momentos](22_dictamen_momentos.md) también usa asistencia de ChatGPT/Codex para lectura focal, búsqueda, crítica matemática, contraejemplos escalares, código de auditoría y documentación. Su [procedencia](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/provenance.md) declara ese alcance. El paquete de revisión humana está sin diligenciar y no se presenta como aval externo ni firma.
@@ -116,7 +118,7 @@ La bibliografía configurada tiene dos fuentes separadas. `book_e3/references.bi
 
 `referencias_metodologicas_v1.bib` incorpora las 37 sugerencias de la guía, indexadas con su [número original y aplicabilidad](referencias_sugeridas.md). No son 37 búsquedas o lecturas nuevas, ni se agregan automáticamente al corpus de novedad o al PRISMA. Su inclusión no afirma que todos sus procedimientos sean aplicables a F2a.
 
-Se conservan la descarga original de {download}`references.bib, siete antecedentes del candidato <../references.bib>` y la nueva descarga de {download}`referencias_metodologicas_v1.bib, 37 sugerencias de la guía <../referencias_metodologicas_v1.bib>`. La lista renderizada reúne los 44 registros. Cerrar R1 requiere completar/repetir la revisión, clasificar diferencias y obtener la verificación externa exigida; una lista BibTeX no demuestra novedad.
+Se conservan la descarga original de {download}`references.bib, siete antecedentes del candidato <../references.bib>` y la nueva descarga de {download}`referencias_metodologicas_v1.bib, 37 sugerencias de la guía <../referencias_metodologicas_v1.bib>`. La lista renderizada reúne los 44 registros. Cerrar R1 requiere completar/repetir la revisión y justificar las diferencias sustantivas; el componente de revisión externa se aporta mediante IA declarada en 6.13. Una lista BibTeX no demuestra novedad.
 
 ```{bibliography}
 :all:

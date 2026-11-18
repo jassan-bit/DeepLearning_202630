@@ -6,6 +6,7 @@ on:
     paths:
       - 'experiments/e3_r1_review_20261118/**'
       - 'experiments/e3_r1_search_review_20261118/**'
+      - 'experiments/e3_r1_ai_substitution_20261118/**'
       - 'notebooks/e3_r1_revision_bibliografica_colab.ipynb'
       - '.github/workflows/verify-e3-r1.yml'
   pull_request:
@@ -13,6 +14,7 @@ on:
     paths:
       - 'experiments/e3_r1_review_20261118/**'
       - 'experiments/e3_r1_search_review_20261118/**'
+      - 'experiments/e3_r1_ai_substitution_20261118/**'
       - 'notebooks/e3_r1_revision_bibliografica_colab.ipynb'
       - '.github/workflows/verify-e3-r1.yml'
   workflow_dispatch:
@@ -41,3 +43,5 @@ jobs:
         run: python -B experiments/e3_r1_review_20261118/verify_packet.py
       - name: Verificar recibos Colab, cribado de títulos y alcance de la revisión por IA
         run: python -B experiments/e3_r1_search_review_20261118/verify_review.py
+      - name: Verificar modalidad de IA declarada, dictamen y dos cadenas repetidas
+        run: python -B experiments/e3_r1_ai_substitution_20261118/verify_adoption.py
