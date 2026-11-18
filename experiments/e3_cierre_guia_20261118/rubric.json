@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "scope": "Guide concordance and unscored rubric; not an academic evaluation or grade calculator",
+  "review_date_local": "2026-11-18",
+  "timezone": "America/Bogota",
+  "source_guide": {
+    "section": "14",
+    "tables": [
+      8,
+      9
+    ],
+    "pages": [
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      59,
+      60
+    ]
+  },
+  "grade_scale": {
+    "minimum": 0,
+    "maximum": 5
+  },
+  "components": [
+    {
+      "id": 1,
+      "component": "Correcciones del Entregable 2",
+      "weight_percent": 7,
+      "criterion_summary": "Trazabilidad, resultados consistentes recalculados cuando proceda, ranking antes/después, auditoría de fuga y determinismo."
+    },
+    {
+      "id": 2,
+      "component": "Mejores configuraciones y artefactos",
+      "weight_percent": 7,
+      "criterion_summary": "Selección estadística, ajuste final, exportación, ida y vuelta, metadatos y coste de inferencia."
+    },
+    {
+      "id": 3,
+      "component": "Dashboard: Contexto y EDA",
+      "weight_percent": 8,
+      "criterion_summary": "Contenido mínimo, callbacks, panel F2a e interpretación de cada figura."
+    },
+    {
+      "id": 4,
+      "component": "Dashboard: Modelos",
+      "weight_percent": 9,
+      "criterion_summary": "Catálogo completo, predicción con explicación e incertidumbre, OOD, diagnósticos, comparación y ficha."
+    },
+    {
+      "id": 5,
+      "component": "Dashboard: diseño, UX y despliegue",
+      "weight_percent": 5,
+      "criterion_summary": "Calidad visual, responsividad, recursos, robustez, seguridad, consistencia y URL funcional."
+    },
+    {
+      "id": 6,
+      "component": "Modelo original: revisión y diseño",
+      "weight_percent": 8,
+      "criterion_summary": "Matriz/declaración de novedad, procedencia, paper guía, limitación con evidencia, hipótesis falsable, formulación y pseudocódigo."
+    },
+    {
+      "id": 7,
+      "component": "Modelo original: implementación y demostración",
+      "weight_percent": 10,
+      "criterion_summary": "Núcleo propio o adaptación sustantiva, demostración/verificación numérica, complejidad, pruebas, ablación e interpretabilidad."
+    },
+    {
+      "id": 8,
+      "component": "Evaluación ampliada y robustez",
+      "weight_percent": 10,
+      "criterion_summary": "Preregistro, equidad, conjuntos adicionales, familia completa, sensibilidad, perturbaciones, escalabilidad, calibración, incertidumbre y eficiencia."
+    },
+    {
+      "id": 9,
+      "component": "Pruebas de hipótesis y adecuación",
+      "weight_percent": 15,
+      "criterion_summary": "Tres pruebas por contraste, supuestos, Holm, potencia por contraste/conjunta, IC, efectos y ajuste/sobreajuste."
+    },
+    {
+      "id": 10,
+      "component": "Informe en Jupyter Book",
+      "weight_percent": 14,
+      "criterion_summary": "Estructura completa, contenedor, reproducibilidad, redacción, figuras y bibliografía."
+    },
+    {
+      "id": 11,
+      "component": "Sustentación",
+      "weight_percent": 7,
+      "criterion_summary": "Claridad, dominio técnico, demostración en vivo y respuestas."
+    }
+  ],
+  "weight_total_percent": 100,
+  "formula": {
+    "weighted_points_0_to_100": "sum(weight_percent_i * component_score_0_to_100_i / 100)",
+    "final_grade": "min(assessed_cap, 5 * weighted_points / 100)",
+    "evaluation_order": [
+      "assess weighted rubric points",
+      "apply cap from academically assessed R1, R2 and R3"
+    ]
+  },
+  "cap_rules": {
+    "priority": "lowest unmet condition governs",
+    "R3_assessable_only_when_R1_and_R2_accredited": true,
+    "cases": [
+      {
+        "cap": 3.0,
+        "condition": "R1=no or R2=no, independent of model performance"
+      },
+      {
+        "cap": 4.0,
+        "condition": "R1=yes and R2=yes and R3=no"
+      },
+      {
+        "cap": 5.0,
+        "condition": "R1=yes and R2=yes and R3=yes"
+      }
+    ],
+    "pending_is_not_a_demonstrated_no": true
+  },
+  "insufficient_power": {
+    "before_freezing": "Increase seeds when the prior analysis cannot detect the practical margin; do not relax the standard after results.",
+    "inconclusive_prior_declared_low_power_with_MDE": "Conditional cap 4.0 when R1/R2 are accredited; not interpreted by itself as poor-quality work.",
+    "inconclusive_without_power_analysis": "Conditional cap 4.0 when R1/R2 are accredited and the 15-percent hypothesis-testing/adequacy component is at the en-desarrollo level.",
+    "mean_advantage_alone_does_not_grant_cap_5": true
+  },
+  "performance_levels": [
+    "Sobresaliente",
+    "Satisfactorio",
+    "En desarrollo",
+    "Insuficiente"
+  ],
+  "performance_level_numeric_scores": null,
+  "checklist_section_counts": [
+    7,
+    6,
+    6,
+    3,
+    4,
+    6,
+    5,
+    7,
+    1
+  ],
+  "checklist_condition_total": 45,
+  "checklist": [
+    {
+      "section": "14.5.1",
+      "title": "Contribución y novedad",
+      "condition_count": 7,
+      "conditions": [
+        {
+          "id": "14.5.1-01",
+          "requirement": "Mecanismo nuevo y transferible para el problema, con diferencia algorítmica sustantiva."
+        },
+        {
+          "id": "14.5.1-02",
+          "requirement": "Si hay transferencia: fuente citada, justificación y adaptación documentadas en `experiments/procedencia.md`."
+        },
+        {
+          "id": "14.5.1-03",
+          "requirement": "Limitación de los métodos, preferiblemente del paper guía, citada o cuantificada por piloto."
+        },
+        {
+          "id": "14.5.1-04",
+          "requirement": "Hipótesis falsable y predicciones secundarias anteriores a los experimentos finales."
+        },
+        {
+          "id": "14.5.1-05",
+          "requirement": "Propiedad formal, supuestos explícitos y verificación numérica."
+        },
+        {
+          "id": "14.5.1-06",
+          "requirement": "Núcleo escrito desde la formulación, sin importar el modelo ni copiar el núcleo ajeno; comprensión defendible."
+        },
+        {
+          "id": "14.5.1-07",
+          "requirement": "Matriz y declaración de novedad, búsqueda repetida al final y verificación por un tercero."
+        }
+      ]
+    },
+    {
+      "section": "14.5.2",
+      "title": "Comparación justa",
+      "condition_count": 6,
+      "conditions": [
+        {
+          "id": "14.5.2-01",
+          "requirement": "Benchmarks fuertes/recientes, ajustados y congelados después del Bloque A."
+        },
+        {
+          "id": "14.5.2-02",
+          "requirement": "Familia completa, sin selección posterior de rivales."
+        },
+        {
+          "id": "14.5.2-03",
+          "requirement": "Mismo presupuesto, particiones, preprocesamiento y fuente de pesos preentrenados."
+        },
+        {
+          "id": "14.5.2-04",
+          "requirement": "Capacidad controlada con parámetros/FLOPs y benchmark de tamaño comparable si el propio es mayor."
+        },
+        {
+          "id": "14.5.2-05",
+          "requirement": "Estándar/protocolo con fecha y tag previos; confirmatorio y exploratorio separados."
+        },
+        {
+          "id": "14.5.2-06",
+          "requirement": "Bitácora Nd y desarrollo separado de confirmación."
+        }
+      ]
+    },
+    {
+      "section": "14.5.3",
+      "title": "Evidencia estadística",
+      "condition_count": 6,
+      "conditions": [
+        {
+          "id": "14.5.3-01",
+          "requirement": "Al menos diez semillas o más por potencia, media/DE/IC95 % bootstrap, MDE y potencia conjunta."
+        },
+        {
+          "id": "14.5.3-02",
+          "requirement": "Tres pruebas admisibles por contraste, Holm y potencia ≥0,90 por contraste."
+        },
+        {
+          "id": "14.5.3-03",
+          "requirement": "Efecto con IC y relevancia frente a δ."
+        },
+        {
+          "id": "14.5.3-04",
+          "requirement": "Comparación global que incluya al original."
+        },
+        {
+          "id": "14.5.3-05",
+          "requirement": "Prueba entre conjuntos: Friedman–Iman–Davenport y Holm, o bayesiana con ROPE."
+        },
+        {
+          "id": "14.5.3-06",
+          "requirement": "Sensibilidad a prueba, métrica secundaria y subconjunto de semillas."
+        }
+      ]
+    },
+    {
+      "section": "14.5.4",
+      "title": "Generalización de la evidencia",
+      "condition_count": 3,
+      "conditions": [
+        {
+          "id": "14.5.4-01",
+          "requirement": "Al menos tres conjuntos de naturaleza distinta, elegidos antes de conocer resultados y fuera del diseño."
+        },
+        {
+          "id": "14.5.4-02",
+          "requirement": "Evaluación bajo cambio de distribución: periodo, dominio o fuente."
+        },
+        {
+          "id": "14.5.4-03",
+          "requirement": "Mejor media en al menos dos de tres adicionales y ausencia de inferioridad significativa frente a cualquier rival en cualquiera."
+        }
+      ]
+    },
+    {
+      "section": "14.5.5",
+      "title": "Validez del modelo",
+      "condition_count": 4,
+      "conditions": [
+        {
+          "id": "14.5.5-01",
+          "requirement": "Auditoría de fuga: duplicados, unidad de partición, preentrenamiento y exposición del test."
+        },
+        {
+          "id": "14.5.5-02",
+          "requirement": "Tablas A y B de ajuste/sobreajuste superadas."
+        },
+        {
+          "id": "14.5.5-03",
+          "requirement": "Calibración antes/después de la recalibración, adaptada a la tarea."
+        },
+        {
+          "id": "14.5.5-04",
+          "requirement": "Incertidumbre: cobertura empírica frente a nominal y por subgrupo."
+        }
+      ]
+    },
+    {
+      "section": "14.5.6",
+      "title": "Análisis que explican el resultado",
+      "condition_count": 6,
+      "conditions": [
+        {
+          "id": "14.5.6-01",
+          "requirement": "Ablación, incluidas adaptaciones, con las mismas pruebas, familia propia y control de capacidad."
+        },
+        {
+          "id": "14.5.6-02",
+          "requirement": "Sensibilidad a hiperparámetros propios y estabilidad por semilla."
+        },
+        {
+          "id": "14.5.6-03",
+          "requirement": "Robustez a ruido, perturbaciones y reducción de muestra."
+        },
+        {
+          "id": "14.5.6-04",
+          "requirement": "Interpretabilidad con fidelidad, estabilidad, comparación con mejor benchmark y descarte de atajos."
+        },
+        {
+          "id": "14.5.6-05",
+          "requirement": "Errores y escenarios donde no supera a los benchmarks."
+        },
+        {
+          "id": "14.5.6-06",
+          "requirement": "Parámetros, FLOPs, latencia, memoria, entrenamiento y energía con Pareto."
+        }
+      ]
+    },
+    {
+      "section": "14.5.7",
+      "title": "Reproducibilidad",
+      "condition_count": 5,
+      "conditions": [
+        {
+          "id": "14.5.7-01",
+          "requirement": "Archivo con DOI, Docker, semillas y determinismo documentados."
+        },
+        {
+          "id": "14.5.7-02",
+          "requirement": "Maestro por ejecución que genere informe y dashboard."
+        },
+        {
+          "id": "14.5.7-03",
+          "requirement": "Pruebas unitarias ejecutadas en CI."
+        },
+        {
+          "id": "14.5.7-04",
+          "requirement": "Datos o instrucciones exactas de obtención y licencias verificadas."
+        },
+        {
+          "id": "14.5.7-05",
+          "requirement": "Reproducción independiente desde cero en contenedor, por persona ajena al código, con discrepancia máxima."
+        }
+      ]
+    },
+    {
+      "section": "14.5.8",
+      "title": "Productos del entregable",
+      "condition_count": 7,
+      "conditions": [
+        {
+          "id": "14.5.8-01",
+          "requirement": "Correcciones E2 con trazabilidad completa y recálculo consistente."
+        },
+        {
+          "id": "14.5.8-02",
+          "requirement": "Mejores configuraciones exportadas, ida y vuelta y `metadata.json`."
+        },
+        {
+          "id": "14.5.8-03",
+          "requirement": "Dash Plotly en Render, prueba de humo, contingencia y funcionamiento en sustentación."
+        },
+        {
+          "id": "14.5.8-04",
+          "requirement": "Jupyter Book sin errores, ficha de modelo y declaración de datos."
+        },
+        {
+          "id": "14.5.8-05",
+          "requirement": "Procedencia del mecanismo transferido, cuando corresponda."
+        },
+        {
+          "id": "14.5.8-06",
+          "requirement": "Declaración de autoría, contribuciones individuales y uso de IA."
+        },
+        {
+          "id": "14.5.8-07",
+          "requirement": "Sustentación: demostración en vivo y capacidad de explicar/modificar el algoritmo."
+        }
+      ]
+    },
+    {
+      "section": "14.5.9",
+      "title": "Decisión previa al congelamiento del protocolo",
+      "condition_count": 1,
+      "conditions": [
+        {
+          "id": "14.5.9-01",
+          "requirement": "Definir antes del cierre el hallazgo alternativo que sostendrá el trabajo si no se acredita superioridad significativa y consistente."
+        }
+      ]
+    }
+  ],
+  "evidence_policy": {
+    "no_evidence_does_not_mean_completed": true,
+    "rows_are_not_weighted_components_or_completion_percentages": true,
+    "task_specific_adaptations_require_justification": true
+  },
+  "current_project_assessment": {
+    "component_scores": null,
+    "weighted_points": null,
+    "cap": null,
+    "grade": null,
+    "R1": "pending_accreditation",
+    "R2": "pending_academic_defense",
+    "R3": "not_certified"
+  }
+}

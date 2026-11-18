@@ -14,6 +14,8 @@ El estándar exigido es **teórico**: al menos una propiedad formal con verifica
 
 La justificación deberá conectar el cómputo y perfil del equipo con el análisis de potencia real. El registro tendrá fecha/tag anteriores al congelamiento, sin retrofecharlos. La regla completa de comparación y el hallazgo alternativo deben fijarse antes de confirmar, como explican las [secciones 8](08_verificacion_estadistica.md) y [14.5.9](14_evaluacion_calificacion.md).
 
+El nombre `standard.md` del ejemplo de A.1 se corresponde aquí con `experiments/estandar.md`. La ubicación y la fecha real identifican el documento; cambiar su nombre o completar sus campos no crea un registro previo, una aprobación del estándar o un tag de congelamiento.
+
 Fuente editable: [estandar_plantilla.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/estandar_plantilla.md).
 
 ## A.2 Declaración de procedencia del mecanismo
@@ -43,7 +45,7 @@ La {download}`tabla propuesta de contrastes <../_static/e3_plantillas_v1/contras
 | Contraste y slot | Candidato frente a cada rival, con tres procedimientos distintos cuya admisibilidad F2a sigue pendiente. |
 | Prueba, nula, estimando y supuestos | Cerrar antes de confirmar; identificar unidad independiente y ámbito temporal/semilla. No basta nombrar tres métodos. |
 | Estadístico, diferencia e IC95 %, efecto e IC | Vacíos hasta disponer de ejecución válida, fuente y recibo. No transferir valores de E2 ni llenar con ceros. |
-| p crudo, p Holm y máximo por rival | Vacíos. Propuesta: Holm sobre 16 rivales para cada procedimiento previamente cerrado; todas las pruebas exigidas deben rechazar. El máximo ajustado gobierna cada rival. |
+| p crudo, p Holm y máximo por rival | Vacíos. La familia y su ajuste deben quedar cerrados en el protocolo. El formato histórico propone Holm sobre 16 rivales por procedimiento; esa propuesta no es una decisión confirmatoria vigente. Todas las pruebas exigidas deben rechazar y el máximo de sus p ajustados gobierna cada rival. |
 | Decisión frente a δ y decisión conjunta | Vacías. Superar a todos requiere todos los rivales y condiciones R3; no elegir el menor p ni excluir un resultado no concluyente. |
 
 La primaria sigue siendo la media de RMSE individuales en unidades de σ7. La ganancia propuesta es RMSErival−RMSEoriginal y δ=0,00025772842664981106, como margen heredado, no como resultado. Una hipótesis sobre MSE diaria no contrasta directamente ganancia de RMSE mayor que δ; **δ² no es una conversión válida del margen**. MCS no aporta por sí solo un contraste pareado de relevancia práctica. La ausencia de rechazo no se etiqueta «equivalente»: TOST/ROPE requieren margen y reglas previos.
@@ -54,13 +56,15 @@ Fuente editable: [contrastes_confirmatorios_plantilla.csv](https://github.com/ja
 
 El {download}`checklist de 17 ítems <../_static/e3_plantillas_v1/checklist_reproducibilidad.csv>` reproduce los diecisiete ítems de la guía y añade estado, evidencia y vacío específico. No hay marcas de cumplimiento integral. «Parcial» reconoce evidencia real sin certificar todo lo agrupado en una fila.
 
+El CSV descargable conserva el corte histórico `v1`. La tabla siguiente actualiza los estados del libro con la evidencia posterior; no reescribe aquel archivo ni transforma sus campos en certificaciones. Para el cierre deberán revisarse otra vez los 17 ítems sobre la misma versión entregada.
+
 | N.º | Ítem de A.5 | Estado actual resumido |
 |---|---|---|
 | 1 | Estándar escrito antes de congelar. | Declaración canónica fechada disponible; tag y revisión pendientes, sin retrofechar experimentos. |
 | 2 | Benchmarks congelados con hash después de A. | Parcial: freeze histórico disponible; Bloque A aún abierto. |
 | 3 | Limitación cuantificada, hipótesis y predicciones secundarias. | Parcial: formulación/motivación; evidencia y registro finales pendientes. |
 | 4 | Fuente y procedencia completas si hay transferencia. | Parcial: registro candidato y antecedentes; cierre por validar. |
-| 5 | Propiedad formal, supuestos y verificación numérica. | Parcial y específica por arquitectura; las pruebas del primer módulo y de momentos no se trasladan a la referencia aditiva. |
+| 5 | Propiedad formal, supuestos y verificación numérica. | Evidencia separada por arquitectura: la cota condicional de la cabeza aditiva tiene su propia comprobación de 1728 pares y 96 gradientes sintéticos. Las pruebas del primer módulo y de momentos conservan su identidad. Falta demostrar un beneficio de esa propiedad en los datos reales. |
 | 6 | Bitácora Nd y desarrollo distinto de confirmación. | Pilotos y réplicas documentados; conciliación global y separación confirmatoria pendientes. |
 | 7 | Protocolo con tag/fecha previos. | Protocolo confirmatorio pendiente; el plan versionado del cálculo posterior no lo sustituye. |
 | 8 | Potencia, MDE y potencia conjunta. | Pendiente del candidato. |
@@ -68,11 +72,11 @@ El {download}`checklist de 17 ítems <../_static/e3_plantillas_v1/checklist_repr
 | 10 | Tres pruebas por contraste y máximo de p ajustados. | Tres procedimientos posteriores calculados con ámbitos declarados; pertinencia para la afirmación confirmatoria y demás requisitos por justificar. |
 | 11 | Tres conjuntos elegidos antes de resultados y fuera del diseño. | Pendiente; ninguno seleccionado. |
 | 12 | Sensibilidad a prueba, métrica y semillas. | Análisis posterior disponible: bloques 7/14/28, MAE y subconjuntos descriptivos de semillas; no completa la robustez ampliada. |
-| 13 | Unitarias en CI y exportación con ida y vuelta. | Parcial: software/workflows y tres TorchScript sobre calibración; integración final pendiente. |
-| 14 | Dashboard desde maestro y prueba de consistencia. | Pendiente; aplicación no construida. |
-| 15 | Docker y reproducción independiente con discrepancia. | Pendiente; sin recibo humano externo. |
-| 16 | Humo del despliegue y contingencia. | Pendiente; no servicio Render acreditado. |
-| 17 | Archivo/DOI, fichas, datos, contribuciones e IA. | Parcial: fuentes y asistencia declaradas; paquete final/firmas pendientes. |
+| 13 | Unitarias en CI y exportación con ida y vuelta. | El CI del dashboard pasó 25 casos unitarios y seis recorridos de navegador. Cuatro ONNX de la semilla 271801 tienen paridad en 608 fechas con tolerancia 10⁻⁶ en σ₇; se conservan los tres TorchScript históricos. Faltan la política final común y las demás exportaciones. |
+| 14 | Dashboard desde maestro y prueba de consistencia. | Aplicación de tres páginas y 17 sistemas disponible: el catálogo deriva de las tablas ampliadas del libro y su igualdad se comprueba automáticamente. Las curvas representan una semilla y no sustituyen las medias de diez réplicas; el maestro final conserva campos pendientes. |
+| 15 | Docker y reproducción independiente con discrepancia. | El contenedor del servicio fue construido y probado localmente. La reconstrucción científica integral por una persona ajena al código, con discrepancia máxima por campo/unidad, sigue pendiente. Son alcances distintos. |
+| 16 | Humo del despliegue y contingencia. | Servicio Docker gratuito de Render creado, observado en construcción con commit `ccefa68`: [URL asignada](https://deeplearning-e3-dashboard.onrender.com). El cliente de humo pasó en Gunicorn y Docker locales; estado Live, humo público y respaldo de la versión pública todavía sin verificar. |
+| 17 | Archivo/DOI, fichas, datos, contribuciones e IA. | MODEL_CARD.md, DATA_STATEMENT.md, CITATION.cff y asistencia de IA declarada disponibles para el corte técnico. Archivo persistente/DOI, licencias/derechos finales, contribuciones ratificadas y firmas siguen pendientes; las fichas no los sustituyen. |
 
 Fuente editable: [checklist_reproducibilidad.csv](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/checklist_reproducibilidad.csv). La evidencia detallada y las condiciones de cierre siguen en las [secciones 12–14](12_lista_entregables.md) y el [anexo final](cierre_reproducibilidad.md).
 
@@ -80,23 +84,23 @@ Fuente editable: [checklist_reproducibilidad.csv](https://github.com/jassan-bit/
 
 El {download}`catálogo preventivo de 16 errores <../_static/e3_plantillas_v1/errores_frecuentes.csv>` conserva los dieciséis casos de A.6, cada uno con síntoma observable y diagnóstico/corrección. **No afirma que el usuario haya cometido esos errores** ni sustituye una auditoría con evidencia.
 
-| N.º | Error de A.6 | Corrección preventiva resumida |
-|---|---|---|
-| 1 | Novedad sólo de aplicación. | Clasificar mecanismo, pérdida/entrenamiento o aplicación; la última no acredita R1. |
-| 2 | Transferencia sin citar la fuente. | Atribuir fuente y registrar adaptación en procedencia. |
-| 3 | Transferencia sin adaptación. | Exigir cambio algorítmico sustantivo; no inventarlo para completar una casilla. |
-| 4 | Demostración decorativa. | Supuestos, demostración y verificación controlada con alcance explícito. |
-| 5 | Diseñar sobre confirmación. | Separación real, Nd y sesgo de selección declarados. |
-| 6 | Reajustar benchmarks para comparar. | Congelar tras A; cambios posteriores documentados exigen nuevo protocolo. |
-| 7 | Presupuesto desigual disfrazado. | Igualar tiempo total o reportar ambos análisis. |
-| 8 | Contrastes sin control familiar. | Familia previa y Holm sobre p válidos. |
-| 9 | Elegir la prueba favorable. | Todas las exigidas y máximo de p ajustados. |
-| 10 | Diseño sin potencia. | Dimensionar antes de congelar: 16 rivales reales, potencia por contraste/conjunta y semillas suficientes. |
-| 11 | Relajar el estándar tras resultados. | Mantener estándar e historial; declarar límites sin reducir exigencias. |
-| 12 | Conjuntos adicionales usados para ajustar. | Si guiaron diseño, declararlos desarrollo; no evidencia independiente. |
-| 13 | Dashboard desincronizado. | Maestro único y prueba automática app–informe. |
-| 14 | Entrada fuera de dominio sin aviso. | Rangos/distancias train y advertencia, sin promesa de fiabilidad. |
-| 15 | Entorno no reproducible. | Versiones exactas y Docker probado en entorno limpio. |
-| 16 | Despliegue sin contingencia. | Humo, apertura previa y respaldo real identificado como grabado. |
+| N.º | Error de A.6 | Síntoma observable que motiva revisar | Diagnóstico y corrección preventiva |
+|---|---|---|---|
+| 1 | Novedad sólo de aplicación. | El mecanismo ya existe y sólo cambia el dominio de uso. | Clasificar mecanismo, pérdida/entrenamiento o aplicación; si la diferencia es sólo aplicación, no acredita R1. |
+| 2 | Transferencia sin citar la fuente. | El mecanismo trasladado se presenta como invención propia. | Citar la fuente original, describir la adaptación en procedencia y presentarla como tal. |
+| 3 | Transferencia sin adaptación. | El modelo se traslada sin modificar el mecanismo; sólo cambian sus entradas. | Introducir y justificar una modificación algorítmica sustantiva. Un cambio de datos o hiperparámetros no basta para R1. |
+| 4 | Demostración decorativa. | Se enuncia un teorema sin hipótesis explícitas o verificación. | Formular supuestos, demostrar formalmente y verificar numéricamente la propiedad con alcance delimitado. |
+| 5 | Diseñar sobre confirmación. | La ventaja de validación desaparece en prueba o en conjuntos adicionales. | Separar desarrollo y confirmación, registrar Nd y estimar el sesgo de selección; la desaparición de la ventaja exige análisis, no prueba por sí sola la causa. |
+| 6 | Reajustar benchmarks para comparar. | Los rivales se modifican después de conocer el resultado del candidato. | Congelar tras el Bloque A; cualquier corrección documentada exige revisar el protocolo y sus productos dependientes. |
+| 7 | Presupuesto desigual disfrazado. | Hay igual número de intentos, pero el modelo propio consume mucho más cómputo. | Igualar el tiempo de cómputo total o reportar ambos análisis y el presupuesto real; no confundir intentos con coste. |
+| 8 | Contrastes sin control familiar. | Se anuncian muchas diferencias con p crudos frente a rivales sin ajuste. | Declarar la familia completa y aplicar Holm sobre p válidos, conservando valores crudos y ajustados. |
+| 9 | Elegir la prueba favorable. | Sólo se presenta el procedimiento que rechaza. | Reportar todas las pruebas exigidas; todas deben rechazar y el máximo de sus p ajustados gobierna la decisión por rival. |
+| 10 | Diseño sin potencia. | No se rechaza frente a la familia pese a una media favorable. | Dimensionar antes de congelar con la familia real —16 rivales aquí—, potencia por contraste/conjunta y semillas suficientes. La ausencia de rechazo no demuestra equivalencia. |
+| 11 | Relajar el estándar tras resultados. | Se reduce la familia o el número de pruebas después de no rechazar toda la familia. | Mantener el estándar y el historial; declarar límites sin reducir las exigencias después de congelar el protocolo. |
+| 12 | Conjuntos adicionales usados para ajustar. | Los conjuntos usados para diseñar se presentan después como evidencia independiente. | Elegirlos antes de observar el desempeño; si guiaron cambios, declararlos parte del desarrollo. |
+| 13 | Dashboard desincronizado. | Las cifras de la aplicación difieren de las del informe para la misma versión y estimando. | Generar ambos desde la misma tabla maestra y comprobar automáticamente su igualdad, identificando versión y alcance. |
+| 14 | Entrada fuera de dominio sin aviso. | Se muestran predicciones como fiables para datos alejados del entrenamiento. | Verificar rangos o distancias de ajuste y advertir al usuario; el control no garantiza fiabilidad dentro del rango. |
+| 15 | Entorno no reproducible. | El proyecto funciona en la máquina del autor y falla al reconstruir el contenedor. | Fijar versiones y construir/probar el Dockerfile en un entorno limpio, conservando logs y discrepancias. |
+| 16 | Despliegue sin contingencia. | La URL no responde durante la sustentación. | Ejecutar el humo, abrir la URL con antelación y conservar capturas o vídeo reales de respaldo, con su versión y alcance. |
 
 Fuente editable: [errores_frecuentes.csv](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_plantillas_v1/errores_frecuentes.csv). El catálogo orienta correcciones documentadas; cada estado se respaldará con evidencia, sin resultados, registros o firmas ficticios.

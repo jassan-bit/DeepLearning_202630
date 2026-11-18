@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "review_date_local": "2026-11-18",
+  "timezone": "America/Bogota",
+  "scope": "operator_screenshot_observation_not_public_service_verification",
+  "evidence_source": "Screenshots supplied by the operator in this review",
+  "service_name": "deeplearning-e3-dashboard",
+  "service_id": "srv-dbugrmhsrm7s73er3dk0",
+  "render_service_url": "https://deeplearning-e3-dashboard.onrender.com",
+  "runtime_observed": "Docker",
+  "plan_observed": "Free",
+  "creation_observed": true,
+  "last_observed_deployment_status": "Building",
+  "displayed_commit_prefix": "ccefa68",
+  "expected_source_commit": "ccefa68111cc29e9f75eb724c15a94655d63ca55",
+  "remote_commit_identity_verified": false,
+  "live_verified": false,
+  "public_smoke_executed": false,
+  "render_public_smoke_passed": false,
+  "proof_limits": [
+    "Assigned URL and service creation are visible in the supplied screenshot.",
+    "A Building status does not establish Live, HTTP success, prediction parity, or public smoke acceptance.",
+    "The expected commit resolves the screenshot prefix against the repository; deployment logs must still corroborate it.",
+    "Local and container smoke receipts retain their original scope and are not public deployment evidence."
+  ],
+  "prepared_workflow": "https://github.com/jassan-bit/DeepLearning_202630/actions/workflows/verify-e3-render-smoke.yml",
+  "required_workflow_inputs": {
+    "dashboard_url": "https://deeplearning-e3-dashboard.onrender.com",
+    "deployment_commit": "ccefa68111cc29e9f75eb724c15a94655d63ca55"
+  },
+  "new_model_fits": 0,
+  "new_model_calibrations": 0
+}

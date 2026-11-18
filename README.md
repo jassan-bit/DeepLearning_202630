@@ -58,27 +58,30 @@ docker build --build-arg DASHBOARD_OFFLINE=1 -t e3-dashboard .
 Las ruedas no se versionan ni quedan incorporadas como capa de la imagen.
 GitHub Pages sirve el informe; ejecutar Dash requiere un servidor Python.
 
-### Crear el servicio en Render y comprobarlo
+### Servicio creado en Render y verificación pendiente
 
-Todavía no existe un servicio Render de E3. El [blueprint `render.yaml`](render.yaml)
-selecciona Docker y el plan gratuito, con `/healthz` y despliegue automático
-desactivado. El Dockerfile fija Python 3.12.14 y un proceso/hilo de Gunicorn.
+El operador ya creó [deeplearning-e3-dashboard](https://deeplearning-e3-dashboard.onrender.com).
+Las capturas aportadas muestran Docker, Free y la construcción del commit
+`ccefa68`; no acreditan Live o un humo público aprobado. El [blueprint `render.yaml`](render.yaml)
+mantiene `/healthz` y despliegue automático desactivado. El Dockerfile fija
+Python 3.12.14 y un proceso/hilo de Gunicorn.
 
-1. Abrir [Crear el servicio desde el blueprint](https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630)
-   en la cuenta de Render y revisar repositorio, rama `main`, runtime Docker y plan gratuito.
-2. Revisar el log de construcción y arranque. Conservar la URL HTTPS real y el
-   commit de 40 caracteres que identifica el despliegue. El enlace anterior abre
-   el panel de creación de Render; no es la URL de una aplicación funcionando.
-3. Ejecutar el cliente de humo desde otro proceso, sustituyendo los dos valores
-   del ejemplo por la URL y el commit reales:
+1. Revisar Events/Logs del servicio existente, su rama `main`, runtime Docker y
+   plan gratuito. El [enlace al blueprint](https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630)
+   conserva el procedimiento de creación; es distinto de la URL de la aplicación.
+2. Cuando Render indique Live, conservar el log de construcción/arranque y el
+   commit completo. La captura de construcción mostró `ccefa68`; el ejemplo
+   siguiente resuelve ese prefijo y debe cotejarse con el log efectivo.
+3. Ejecutar el cliente de humo desde otro proceso; actualizar el SHA si se ha
+   desplegado otra versión:
 
 ```bash
 python -m venv work/render-smoke-venv
 work/render-smoke-venv/bin/python -m pip install -r requirements-dashboard-dev.lock.txt
 work/render-smoke-venv/bin/python -m playwright install --with-deps chromium
 work/render-smoke-venv/bin/python experiments/e3_bloques_fg_20261117/smoke_render.py \
-  --url https://NOMBRE-REAL.onrender.com \
-  --deployment-commit SHA-REAL-DE-40-CARACTERES \
+  --url https://deeplearning-e3-dashboard.onrender.com \
+  --deployment-commit ccefa68111cc29e9f75eb724c15a94655d63ca55 \
   --output work/render-public-smoke/report.json \
   --screenshots-dir work/render-public-smoke/captures
 ```

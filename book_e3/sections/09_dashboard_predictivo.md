@@ -1,6 +1,6 @@
 # 9 Bloque E Dashboard predictivo en Dash Plotly
 
-**Estado: prototipo local verificado, con cuatro modelos ONNX en vivo; despliegue público en Render pendiente.** Este bloque pasa del diseño documental a una aplicación multipágina con **Contexto, EDA y Modelos**. Integra datos y pronósticos conservados, y su registro de inferencia sólo habilita artefactos exportados con metadatos y comprobaciones de integridad. La publicación de este libro en GitHub Pages es distinta del servicio Dash.
+**Estado: prototipo local verificado, con cuatro modelos ONNX en vivo; servicio Render creado, con funcionamiento y humo públicos por verificar.** Este bloque pasa del diseño documental a una aplicación multipágina con **Contexto, EDA y Modelos**. Integra datos y pronósticos conservados, y su registro de inferencia sólo habilita artefactos exportados con metadatos y comprobaciones de integridad. La publicación de este libro en GitHub Pages es distinta del servicio Dash.
 
 El [Bloque B](05_configuraciones_exportacion.md) conserva el linaje de selección y exportación; el [modelo de referencia](06_modelo_original.md) y el [análisis posterior](08_verificacion_estadistica.md) mantienen sus alcances. Hacer utilizable la evidencia no acredita novedad, defensa del autor o R3 ni convierte un calendario conocido en confirmación prospectiva.
 

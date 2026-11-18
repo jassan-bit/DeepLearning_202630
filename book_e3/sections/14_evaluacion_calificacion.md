@@ -2,6 +2,8 @@
 
 **Estado: matriz documental de requisitos y evidencia, sin nota ni tope asignados al avance actual.** Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas de evaluación pertenecen a esa guía; describirlas no acredita su cumplimiento ni constituye una evaluación del docente.
 
+La nota se expresa en la escala de **0 a 5** y se determina en dos pasos: primero se obtiene el puntaje ponderado de la rúbrica y después se aplica el tope que corresponda al estado **evaluado** de R1, R2 y R3. Una condición pendiente no se convierte en «no» para fijar ese tope, y una casilla sin evidencia no se marca cumplida para completar la rúbrica.
+
 La evidencia se consulta en las [correcciones de E2](04_correcciones_e2.md), [artefactos](05_configuraciones_exportacion.md), [candidato](06_modelo_original.md), [diseño riguroso](07_diseno_riguroso.md), [verificación estadística](08_verificacion_estadistica.md) y [diseño del dashboard](09_dashboard_predictivo.md). Las actividades pendientes conservan su estado; esta ampliación no entrena modelos, ejecuta contrastes ni calcula calificaciones.
 
 La matriz incorpora el corte posterior del **17 de noviembre de 2026**: diez semillas por red de E2 y de la referencia E3 de 1210 parámetros, tres trayectorias clásicas deterministas y análisis de los 17 sistemas sobre 608 fechas. Actualizar una casilla con evidencia retrospectiva no la convierte en cumplimiento confirmatorio ni transfiere las propiedades del primer módulo de 1211 parámetros a la receta evaluada.
@@ -18,11 +20,21 @@ La guía establece estos casos **condicionales**, sujetos a evidencia y evaluaci
 
 La condición incumplida de menor nivel determina el caso; **R3 sólo se evalúa cuando R1 y R2 están acreditadas**. «Pendiente de acreditar» no equivale a un «no» demostrado. En este proyecto siguen abiertas la revisión de novedad R1, la comprensión y defensa académica de R2 y la evaluación de R3; por ello esta tabla no se usa para fijar un tope actual. Las 35 pruebas del primer módulo y la demostración de su cabeza latente no acreditan por sí solas novedad, autoría responsable, defensa o superioridad de mercado.
 
-La potencia se dimensiona **antes de congelar**: al menos 0,90 por contraste y potencia conjunta reportada, con diez semillas como mínimo o el número mayor requerido. Si el piloto muestra insuficiencia, la guía exige aumentar las semillas antes del cierre; no permite rebajar el estándar después de observar los resultados. Bajo el supuesto de R1 y R2 acreditadas, la guía contempla el caso de resultado no concluyente con potencia insuficiente declarada y MDE reportada dentro de la regla de 4,0. Si falta análisis de potencia, además sitúa el componente de pruebas de hipótesis del 15 % en «en desarrollo». Son reglas condicionales de evaluación, no una autorización para omitir el dimensionamiento ni una calificación de este avance. Una media mejor sin los rechazos exigidos no acredita R3.
+La potencia se dimensiona **antes de congelar**: al menos 0,90 por contraste y potencia conjunta reportada, con diez semillas como mínimo o el número mayor requerido. La guía distingue estas situaciones:
+
+| Situación | Regla de la guía | Evidencia que debe conservarse |
+|---|---|---|
+| El análisis previo muestra que las semillas disponibles no permiten detectar el margen práctico δ. | Aumentar las semillas antes de congelar el protocolo; el estándar no se reduce después de ver los resultados. | Piloto, estimación de dispersión, MDE, potencia por contraste y conjunta y número de semillas finalmente fijado. |
+| El resultado es no concluyente y procede de un diseño sin potencia, declarado de antemano y con MDE reportada. | Con R1 y R2 acreditadas, se evalúa con tope 4,0. La falta de rechazo no se interpreta por sí sola como falta de calidad del trabajo. | Declaración previa, análisis de potencia, MDE y discusión del resultado no concluyente. |
+| El resultado es no concluyente y no hay análisis de potencia. | Con R1 y R2 acreditadas, también corresponde el tope 4,0; además, el componente de pruebas de hipótesis y adecuación —15 %— se evalúa en «en desarrollo». | Identificar la ausencia del análisis; no rellenarla con potencia observada o con una justificación retrospectiva. |
+
+Las dos últimas reglas son condicionales y no desplazan el tope 3,0 si se establece que R1 o R2 no se cumplen. Tampoco autorizan a omitir el dimensionamiento ni asignan una calificación a este avance. **El tope 5,0 no se concede por una media mejor cuando faltan los rechazos exigidos.**
 
 ## 14.2 Rúbrica ponderada
 
 Se conservan exactamente los once componentes y pesos del Cuadro 9. Los criterios de clasificación se adaptan a la ruta temporal F2a cuando corresponde.
+
+El {download}`registro estructurado de la rúbrica <../_static/e3_cierre_guia_20261118/rubric.json>` conserva los once pesos, las 45 condiciones y las reglas de topes/potencia. Sus campos de nota, tope y puntuaciones del proyecto están vacíos; el archivo permite comprobar la transcripción y no calcula ni atribuye una calificación.
 
 | Componente | Peso | Evidencia que valora la guía |
 |---|---:|---|
@@ -39,6 +51,8 @@ Se conservan exactamente los once componentes y pesos del Cuadro 9. Los criterio
 | Sustentación | 7 % | Claridad, dominio técnico, demostración en vivo y respuestas. |
 | **Total** | **100 %** | Los pesos no son puntuaciones ya obtenidas. |
 
+La [rúbrica estructurada y su inventario de condiciones](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_cierre_guia_20261118/rubric.json) conserva esos once pesos, las reglas condicionales y los nueve apartados de 14.5. Sus campos de nota y tope actuales están vacíos; el archivo sirve para comprobar concordancia, no para emitir una calificación automática.
+
 ## 14.3 Cálculo de la nota final
 
 Si el evaluador determina un cumplimiento por componente $q_i$ entre 0 y 100 y aplica los pesos $w_i$ de la tabla, el puntaje ponderado queda en la escala de 0 a 100:
@@ -47,9 +61,9 @@ $$
 P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 \qquad
 \mathrm{Nota\ final}=\min\left(\mathrm{Tope},\;5{,}0\times\frac{P_{\mathrm{ponderado}}}{100}\right).
-$$
+$$ (eq-e3-final-grade)
 
-El tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Aquí no se asignan valores a $q_i$, no se estima el puntaje y no se calcula una nota o tope del proyecto.
+En la ecuación {eq}`eq-e3-final-grade`, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a $q_i$, no se estima el puntaje y no se calcula una nota o tope del proyecto.
 
 ## 14.4 Niveles de desempeño por componente
 
@@ -67,6 +81,8 @@ Los niveles describen criterios de la guía; no clasifican automáticamente los 
 La guía exige simultáneamente R1/R2/R3 acreditadas y 100 % de la rúbrica. **Una exigencia sin evidencia no puede marcarse cumplida**, aunque esté descrita en un plan. Las matrices siguientes distinguen evidencia parcial, pendiente y alcance no aplicable por justificar; no usan casillas aprobadas ni porcentajes de avance.
 
 «Parcial» identifica evidencia real que todavía no cubre todo el requisito. «Pendiente» indica que falta ejecutarlo o acreditarlo, sin convertir esa ausencia en un fallo científico demostrado. Los documentos de diseño y protocolos en borrador son evidencia documental; no sustituyen resultados, firmas, recibos de CI o validación externa.
+
+Se conservan las **45 condiciones** de la guía, distribuidas en nueve apartados: **7 + 6 + 6 + 3 + 4 + 6 + 5 + 7 + 1**. Son condiciones de evidencia que pueden apoyar más de un componente, no 45 componentes ponderados ni un porcentaje de avance que se obtenga contando filas. Los pesos repetidos en los encabezados de 14.5 identifican esa relación y no se vuelven a sumar. Una adaptación a F2a o un «no aplica» requieren justificación específica; no equivalen automáticamente a una casilla aprobada.
 
 ### 14.5.1 Contribución y novedad
 
@@ -164,7 +180,7 @@ Corresponde a correcciones —7 %—, artefactos —7 %—, dashboard —8 %, 9 
 |---|---|---|---|
 | Correcciones E2 con trazabilidad completa y recálculo consistente. | Parcial. | Tabla de revisión interna y auditorías de [sección 4](04_correcciones_e2.md). | Cerrar los controles pendientes; recalcular dependencias y ranking antes/después si una corrección modifica resultados. No se recibieron observaciones del docente. |
 | Mejores configuraciones exportadas, ida y vuelta y `metadata.json`. | Cuatro ONNX verificados; catálogo completo pendiente. | MLP16, LSTM32, GRU32 y E3, semilla 271801, con paridad en 608 fechas y tolerancia absoluta 10⁻⁶; TorchScript históricos conservados. | Exportaciones de otros trece sistemas, política final común y demás campos completos del catálogo. Los límites de semilla y de tratamiento no se borran al exportar. |
-| Dash Plotly en Render, prueba de humo, contingencia y funcionamiento en sustentación. | Prototipo y contenedor locales comprobados; servicio público por crear. | Tres páginas y 17 sistemas, cuatro artefactos ONNX CPU y recorridos del [capítulo 9](09_dashboard_predictivo.md); guion reproducible y procedimiento público en [10](10_despliegue_render.md). | URL Render, recursos y prueba de humo públicos, contingencia y sustentación comprobadas. Un guion preparado o un resultado local conserva ese alcance; publicar el libro no despliega Dash. |
+| Dash Plotly en Render, prueba de humo, contingencia y funcionamiento en sustentación. | Prototipo y contenedor locales comprobados; servicio creado, funcionamiento público pendiente de verificar. | Tres páginas y 17 sistemas, cuatro artefactos ONNX CPU y recorridos del [capítulo 9](09_dashboard_predictivo.md). La última captura aportada muestra Docker + Free, construcción del commit `ccefa68` y la [URL asignada por Render](https://deeplearning-e3-dashboard.onrender.com). El guion y el workflow de humo están en [10](10_despliegue_render.md). | Confirmar estado Live, commit de despliegue, páginas, cuatro consultas/explicaciones, tiempos y recibo de humo público; completar contingencia y funcionamiento durante la sustentación. Una URL asignada o la captura de construcción no acreditan un servicio operativo, y los resultados locales conservan su alcance. |
 | Jupyter Book sin errores, ficha de modelo y declaración de datos. | Publicación técnica de base comprobada; cierre científico pendiente. | Fuentes, resumen con aportes técnicos, mapa científico 1–16, ecuaciones numeradas y bibliografía en [11](11_informe_tecnico.md); MODEL_CARD.md y DATA_STATEMENT.md del prototipo. La [matriz de 12](12_lista_entregables.md) relaciona los trece productos con su cierre. | Reconstruir/verificar la versión final y ratificar derechos, contenidos y responsabilidades humanas; los archivos no son una firma ni cierran R1/R2/R3. |
 | Procedencia del mecanismo transferido, cuando corresponda. | Parcial. | Registro candidato y atribuciones en [sección 6](06_modelo_original.md). | Cerrar fuente/adaptación e integrar `experiments/procedencia.md` final, sin fingir novedad de componentes conocidos. |
 | Declaración de autoría, contribuciones individuales y uso de IA. | Parcial documental; validación pendiente. | Asistencia de IA reconocida en código, teoría y procedencia. | Declaración final firmada, contribuciones individuales y comprensión responsable del autor; la asistencia declarada no acredita una firma ni defensa. |
