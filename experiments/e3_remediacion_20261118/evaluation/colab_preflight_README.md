@@ -2,7 +2,7 @@
 
 El cuaderno `notebooks/e3_remediacion_preflight_colab.ipynb` prepara la revisión del entorno y de las 17 recetas reales. Abrirlo en Colab, seleccionar **Entorno de ejecución → Cambiar tipo de entorno de ejecución → GPU → T4** (o la disponible) y luego **Ejecutar todas**. No pegar comandos en la última celda vacía del cuaderno histórico de innovación.
 
-El cuaderno consulta `main`, guarda el HEAD realmente obtenido y verifica siete fuentes mediante `colab_source_lock.json`. Para los 13 rivales E2 descarga exclusivamente el ZIP D02 público de 7.84 MB, fijado por commit, tamaño y SHA-256. Su inventario verifica 12 constructores, cuatro metadatos, 13 recetas y 76 archivos de autores con sus licencias. No descarga datos de mercado, pesos entrenados ni exige credenciales. El despacho real `_builder` conserva la variante publicada TiDE v2.
+El cuaderno consulta `main`, guarda el HEAD realmente obtenido y verifica siete fuentes mediante `colab_source_lock.json`. Para los 13 rivales E2 descarga exclusivamente el ZIP D02 público de 7.84 MB, fijado por commit, tamaño y SHA-256. Su inventario verifica 12 constructores, cuatro metadatos, 13 recetas y 76 archivos de autores con sus licencias. El ejecutor no descarga datos de mercado ni pesos entrenados. El cuaderno usa GITHUB_TOKEN para guardar los recibos en GitHub. El despacho real `_builder` conserva la variante publicada TiDE v2.
 
 Cada neuronal ejecuta un forward y backward con ventanas artificiales normalizadas `[4,7,5]`, comprueba parámetros, salida finita no negativa `[4]`, gradientes finitos y guardado/recarga de `state_dict` con salida idéntica en el mismo dispositivo. No crea optimizadores ni actualiza pesos. Los 13 rivales devuelven sigma7 dividida por la escala objetivo; el candidato devuelve unidades originales. No se comparan esos valores como rendimiento. El candidato es exactamente `InnovationModel('additive_positive_head')`, 1210 parámetros, con A no negativa sintética y escalas sintéticas explícitas; no se transfieren propiedades de otra arquitectura.
 
@@ -59,3 +59,28 @@ subprocess.run(
 La verificación local entregada contiene 17 perfiles pasados, 14 backwards neuronales, un ajuste ARIMA sintético, guard bloqueado y cero métricas o predicciones de mercado. Las pruebas cubren cambios de fuentes, manifiestos inválidos, tags/orden temporal, extracción insegura y la distinción entre hardware visible y modelos efectivamente ejecutados en CUDA. El cuaderno se entrega sin salidas que simulen una ejecución GPU.
 
 La marca `GPU_execution_verified` sólo figura en el recibo global tras comprobar los contratos; el bloque `environment` describe disponibilidad de hardware. Los recibos y estáticos anteriores conservan su versión original.
+
+
+## Persistencia de recibos en GitHub
+
+La versión actual del cuaderno valida acceso al repositorio antes de preparar
+CUDA y guarda al terminar todos los JSON/logs de evidencia, su ZIP y un
+manifiesto de hashes, mediante `colab_github.save_run`. Requiere un token
+con Contents: Read and write para este repositorio en el secreto Colab
+`GITHUB_TOKEN` o una entrada oculta. El token no se escribe en archivos.
+
+Cada ejecución crea una rama nueva `e3-colab-receipts-<RUN_ID>`, con los
+archivos en `runs/colab_preflight/<RUN_ID>/`. La rama contiene un commit
+atómico y se verifica por lectura remota. El manifiesto determinista permite
+reintentar el mismo guardado sin repetir GPU. No se sobrescriben ejecuciones.
+Si falla la escritura, se conserva la sesión y se reintenta sólo la celda
+de guardado tras corregir el secreto. El ZIP debe coincidir exactamente
+con los JSON/logs seleccionados del directorio de evidencia.
+
+El enlace `https://jassan-bit.github.io/DeepLearning_202630/intro.html` abre
+E1. E3 se publica en `/entregable3/intro.html`; el selector de libros es
+`/entregables.html`. Todos pertenecen al mismo repositorio.
+
+La implementación no recupera el ZIP perdido de la sesión L4 anterior ni
+afirma una nueva ejecución. La primera ejecución con este guardado queda
+pendiente hasta que Colab imprima su URL de GitHub.

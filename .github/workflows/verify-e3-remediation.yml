@@ -80,6 +80,9 @@ jobs:
           python -m unittest discover \
             -s experiments/e3_remediacion_20261118/evaluation -p test_colab_runtime.py -v \
             2>&1 | tee "$CI_E3_DIR/colab_runtime_contracts.log"
+          python -m unittest discover \
+            -s experiments/e3_remediacion_20261118/evaluation -p test_colab_github.py -v \
+            2>&1 | tee "$CI_E3_DIR/colab_github_contracts.log"
 
       - name: Descargar fuera del contenedor los once insumos por manifiesto SHA256
         run: |
