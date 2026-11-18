@@ -1,0 +1,124 @@
+{
+  "model": "iTransformer",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 795403,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 38,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "35cdddefe900be8d0c001eedc236bbf129dcf3752b2cbaddac28f206f3067739",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 1.4883311359999425,
+  "GPU_peak_memory_bytes": 81033216,
+  "configuration": {
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0024351218185910935,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "IT-D7-r1__hpo_v1",
+      "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+      "warmup_fraction": 0,
+      "weight_decay": 0.0009190165913202242
+    },
+    "frozen_architecture": {
+      "D7_changes": [
+        "seq_len7 and five OHLCV variable tokens",
+        "preserve original normalization and full256-wide two-layer inverted encoder",
+        "replace per-covariate projector and its OHLCV denormalization with scalar task head"
+      ],
+      "actual_parameter_count": 795403,
+      "author_commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+      "author_repository": "thuml/iTransformer",
+      "author_source_files": {
+        "LICENSE": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849",
+        "layers/Embed.py": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+        "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+        "layers/Transformer_EncDec.py": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+        "model/iTransformer.py": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+        "run.py": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+        "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+        "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+      },
+      "backbone_family_replaced": false,
+      "calendar_inputs": false,
+      "configuration_choice_source": "official ETTh1_96_96 script d256/ff256/enc2 plus run.py heads8",
+      "dropout": 0.3,
+      "forecast_horizon_days": 1,
+      "frozen_body_parameter_count": 795403,
+      "history_days": 7,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271802,
+      "input_channels": 5,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "iTransformer",
+      "nas": false,
+      "original_OHLCV_denormalization_applied": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "output_link": "Softplus",
+      "paper_replication_claimed": false,
+      "pretrained_weights": "none",
+      "readout": "Linear(1290,1) then Softplus",
+      "readout_input_dim": 1290,
+      "registered_trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+      "requested_existing_dropout": 0.3,
+      "role": "E2_candidate",
+      "same_window_moments": "five means and five population standard deviations of the same scaled D7",
+      "source_presets_inspected": [
+        "run.py",
+        "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh"
+      ],
+      "source_roots_verified": true,
+      "structure": {
+        "activation": "gelu",
+        "d_ff": 256,
+        "d_model": 256,
+        "e_layers": 2,
+        "factor": 1,
+        "n_heads": 8,
+        "use_norm": true
+      },
+      "target": "sigma7 / training-only y_scale",
+      "target_lags_added": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0024351218185910935,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "IT-D7-r1__hpo_v1",
+        "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+        "warmup_fraction": 0,
+        "weight_decay": 0.0009190165913202242
+      },
+      "training_recipe_id": "IT-D7-r1__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}

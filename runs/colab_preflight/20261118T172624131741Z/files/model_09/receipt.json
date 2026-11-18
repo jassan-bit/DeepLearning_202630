@@ -1,0 +1,135 @@
+{
+  "model": "PatchTST",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 16388,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 57,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "4a0f199dae5931cc38b37474f48fa64fbce0583f339d1ef48659bfa8b3991af3",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.9511709459998201,
+  "GPU_peak_memory_bytes": 68607488,
+  "configuration": {
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0014458517173583036,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "warmup_fraction": 0.1,
+      "weight_decay": 0.0
+    },
+    "frozen_architecture": {
+      "actual_dropout": {
+        "encoder": 0.3,
+        "fc": 0.3,
+        "head": 0.0
+      },
+      "actual_parameter_count": 16388,
+      "architecture_policy_id": "e2-published-bodies-d7-v1",
+      "author_repository": "yuqinie98/PatchTST",
+      "body": "original supervised TSTiEncoder and Flatten_Head",
+      "calendar_covariates_added": false,
+      "d_ff": 128,
+      "d_model": 16,
+      "dropout": 0.3,
+      "encoder_layers": 3,
+      "exact_published_long_context_preset": false,
+      "head_dropout": 0.0,
+      "horizon": 1,
+      "initialization_seed": 271801,
+      "input_shape": [
+        7,
+        5
+      ],
+      "left_padding": 0,
+      "market_data_read": false,
+      "model": "PatchTST",
+      "n_heads": 4,
+      "nas": false,
+      "normalization": "author BatchNorm, post-norm",
+      "output": "positive sigma7 / training-only target scale",
+      "padding": "author end replication of last observed value",
+      "paper_replication_claimed": false,
+      "patch_count": 4,
+      "patch_len": 3,
+      "published_source_preset": {
+        "dropout": 0.3,
+        "evidence": "scripts/PatchTST/etth1.sh at the verified author commit",
+        "fc_dropout": 0.3,
+        "head_dropout": 0.0,
+        "patch_len": 16,
+        "seq_len": 336,
+        "stride": 8
+      },
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "registered_trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "residual_attention": true,
+      "restored_published_body": true,
+      "revin_statistics_scope": "seven actual observed days before padding",
+      "right_padding": 2,
+      "same_window_moment_features": 0,
+      "scalar_readout": "Linear(5,1) then Softplus before OHLCV denormalization",
+      "source_commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+      "source_files_verified_at_build": true,
+      "source_flatten_head_preserved": true,
+      "source_verification": {
+        "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+        "repository": "yuqinie98/PatchTST",
+        "verification_scope": "declared file subset, not whole repository",
+        "verified_files": {
+          "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+          "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+          "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6",
+          "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+          "scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+        }
+      },
+      "stride": 2,
+      "structural_architecture_search": false,
+      "target_lags_added": false,
+      "task_adaptations": [
+        "Observed context 7 instead of source ETTh1 336; fixed P3/S2 rather than P16/S8",
+        "P3/S2 D7 geometry follows the prior documentary adaptation proposal",
+        "Five OHLCV channel predictions combined into one scalar before source denormalization"
+      ],
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0014458517173583036,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "PT-D7-PUBLISHED-v1",
+        "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+        "warmup_fraction": 0.1,
+        "weight_decay": 0.0
+      },
+      "training_recipe_id": "PT-D7-PUBLISHED-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}

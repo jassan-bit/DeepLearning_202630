@@ -1,0 +1,1916 @@
+{
+  "schema_version": 1,
+  "scope": "synthetic_preflight_not_confirmation",
+  "started_at_utc": "2026-11-18T17:29:46.094499+00:00",
+  "repository_HEAD": "1ff136f71c0ffcd1dbd918efbc078a8d9653ed21",
+  "preflight_script_sha256": "8bb75b053e18468ad66f49632ef63e3215bc48779ec717aebf2fb3d81374f806",
+  "source_gate": {
+    "passed": true,
+    "reviewed_source_commit": "73d8958c50a69fbea46deb828f03f89385318789",
+    "files": [
+      {
+        "path": "src/original_model.py",
+        "expected_sha256": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+        "verified": true
+      },
+      {
+        "path": "src/e3_development.py",
+        "expected_sha256": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+        "verified": true
+      },
+      {
+        "path": "src/e3_innovation_model.py",
+        "expected_sha256": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1",
+        "verified": true
+      },
+      {
+        "path": "scripts/e2_standalone_code.py",
+        "expected_sha256": "b5062652a15c55b3d93fd5580453f77fed77336ffb78eb836730bf02203e51a5",
+        "verified": true
+      },
+      {
+        "path": "scripts/e2_temporal_controls.py",
+        "expected_sha256": "36e5a8b15e51ddf7d36397e2b6e71734afb36c6894cac0a71c9364b277fcc139",
+        "verified": true
+      },
+      {
+        "path": "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json",
+        "expected_sha256": "c3ce43d3cb81767ee3fc0daa0ccfe8432a3326643e28e51273a49cc1fe01c2fe",
+        "verified": true
+      },
+      {
+        "path": "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json.sha256",
+        "expected_sha256": "624b0c1dde0cebf59390a921e6e4830ea51dff81658293b329e152f74a7b86ae",
+        "verified": true
+      }
+    ],
+    "lock_sha256": "fd40840002296d55b93d02d43182778a036cad84cfc0b65d679edcd4cc31dba2"
+  },
+  "environment": {
+    "python": "3.12.12",
+    "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+    "requested_device": "cuda:0",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3",
+      "statsmodels": "0.14.5",
+      "einops": "0.8.1"
+    },
+    "approved": true,
+    "blockers": [],
+    "torch": "2.8.0+cu126",
+    "cuda_runtime": "12.6",
+    "cuda_available": true,
+    "cudnn_version": 91002,
+    "cpu_count": 12,
+    "GPU": {
+      "name": "NVIDIA A100-SXM4-40GB",
+      "total_memory_bytes": 42405855232,
+      "capability": [
+        8,
+        0
+      ],
+      "device_count": 1
+    },
+    "nvidia_smi": "NVIDIA A100-SXM4-40GB, 580.82.07, 40960 MiB"
+  },
+  "candidate_profile": {
+    "class": "src.e3_innovation_model.InnovationModel",
+    "variant": "additive_positive_head",
+    "parameters": 1210,
+    "synthetic_only_configuration": {
+      "u_scale": 0.01,
+      "y_scale": 0.02,
+      "seed": 271801
+    },
+    "future_real_scaler_must_be_train_only": true
+  },
+  "family": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA",
+    "CNN-LSTM-atencion-aditiva E3"
+  ],
+  "models": [
+    {
+      "model": "FCN-1D",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 268929,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 14,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "4a2ff9ec8dae3af14bba7f5f0cc56922f6245865c13b3159dbe7e599a5e16e8c",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.4988676350003516,
+      "GPU_peak_memory_bytes": 71534080,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0,
+          "learning_rate": 0.0005695394539643588,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+          "weight_decay": 0.0010040757709281222
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 268929,
+          "dropout": 0.0,
+          "frozen_body_parameter_count": 268929,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271804,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "FCN-1D",
+          "nas": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "registered_trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+          "requested_existing_dropout": 0.0,
+          "role": "E2_candidate",
+          "source_roots_verified": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0,
+            "learning_rate": 0.0005695394539643588,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+            "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+            "weight_decay": 0.0010040757709281222
+          },
+          "training_recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.8202924669999447
+    },
+    {
+      "model": "ResNet-1D",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 522955,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 52,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "9d3a452018fa8c92e3f47ce54c4c0b1b8a2428927aee61c222a5458b4dbb2663",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.5950831440000002,
+      "GPU_peak_memory_bytes": 80817664,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0,
+          "learning_rate": 0.0007579440150228985,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+          "weight_decay": 0.0
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 522955,
+          "dropout": 0.0,
+          "frozen_body_parameter_count": 522955,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271804,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "ResNet-1D",
+          "nas": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "registered_trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+          "requested_existing_dropout": 0.0,
+          "role": "E2_candidate",
+          "source_roots_verified": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0,
+            "learning_rate": 0.0007579440150228985,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+            "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+            "weight_decay": 0.0
+          },
+          "training_recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.87024768099991
+    },
+    {
+      "model": "Inception-1D",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 490561,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 50,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "0ef171a5f9dbaea617e1504d08aba444b7c5fc4240ed9067c763cb2513948cf2",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.6000122700002066,
+      "GPU_peak_memory_bytes": 75106304,
+      "configuration": {
+        "trial": {
+          "batch_size": 32,
+          "dropout": 0,
+          "learning_rate": 0.0007394620646713903,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+          "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+          "weight_decay": 1.818489584292255e-06
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 490561,
+          "dropout": 0.0,
+          "frozen_body_parameter_count": 490561,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271805,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "Inception-1D",
+          "nas": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "registered_trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+          "requested_existing_dropout": 0.0,
+          "role": "E2_candidate",
+          "source_roots_verified": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 32,
+            "dropout": 0,
+            "learning_rate": 0.0007394620646713903,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+            "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+            "weight_decay": 1.818489584292255e-06
+          },
+          "training_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.920583656999952
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 8739,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 10,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "8c9066e21e642f2ba9b195005c8db18e29f6c324e826fbe5ce60b514bea7c73c",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.3307313680002153,
+      "GPU_peak_memory_bytes": 75742720,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.3,
+          "learning_rate": 0.0017219847334995647,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "SAE-D7-PUBLISHED-v1",
+          "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+          "weight_decay": 0.002593603165890561
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 8739,
+          "adaptations": [
+            "lag25 to D7",
+            "source eight variables to five OHLCV channels",
+            "training-only auxiliary reconstruction target X/s",
+            "scalar volatility output with Softplus and caller-owned target scaling"
+          ],
+          "additional_nas_dense_group": false,
+          "auxiliary_decoder_output_channels": 5,
+          "auxiliary_scale": 6.436119079589844,
+          "dropout": 0.3,
+          "dropout_policy": "Existing supervised dropout modules only; no auxiliary dropout",
+          "initialization_seed": 271804,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_training_claimed": false,
+          "model": "LSTM-autoencoder con predictor",
+          "moment_features_added": false,
+          "nas_required_for_this_fixed_body": false,
+          "pretraining_executed": true,
+          "pretraining_required": true,
+          "published_hidden_units": [
+            25,
+            26
+          ],
+          "published_reference_dropout": 0.3,
+          "recipe_id": "SAE-D7-PUBLISHED-v1",
+          "registered_trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+          "source": {
+            "author_commit": "8668132ef6f8855dbab289c5a2b2478f871c4c4b",
+            "author_file": "2layer_evaluate.py",
+            "author_hosted_text_url": "https://www.academia.edu/111461009/Unsupervised_Pre_training_of_a_Deep_LSTM_based_Stacked_Autoencoder_for_Multivariate_Time_Series_Forecasting_Problems",
+            "author_locators": "hidden_layers lines138; AE construction/targets lines211-224; encoder transfer/predictor lines232-260",
+            "author_repository": "https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder",
+            "author_weights_reused": false,
+            "backend_or_original_experiment_replication_claimed": false,
+            "independent_port": "scripts/e2_recipe_models.py",
+            "independent_port_sha256": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+            "paper_doi": "10.1038/s41598-019-55320-6",
+            "paper_url": "https://www.nature.com/articles/s41598-019-55320-6",
+            "pdf_downloaded_or_hashed": false,
+            "verified_at_date": "2026-11-12",
+            "verified_scope": "Architecture/learning sections pp7-8 and Table2 p11, author-hosted article text; pinned author implementation"
+          },
+          "target_history_added": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0.3,
+            "learning_rate": 0.0017219847334995647,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "SAE-D7-PUBLISHED-v1",
+            "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+            "weight_decay": 0.002593603165890561
+          },
+          "training_recipe_id": "SAE-D7-PUBLISHED-v1"
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.6196663499999886
+    },
+    {
+      "model": "TimesNet",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 1173099,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 57,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "f440f3002b9059caa6bc10a6bca6444f4558195105ab3732d6d34847b3866396",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 1.312952170999779,
+      "GPU_peak_memory_bytes": 90795008,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.1,
+          "learning_rate": 0.0028381684707835583,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "TN-D7-PUBLISHED-v1",
+          "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+          "weight_decay": 1.1922133659036039e-05
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 1173099,
+          "architecture_policy_id": "e2-published-bodies-d7-v1",
+          "architecture_search": false,
+          "body_output_shape": [
+            1,
+            5
+          ],
+          "factory_version": "e2-published-periodic-v1",
+          "fft_dc_guard": "Exclude bin0 from topk domain, including constant/tied spectra",
+          "fft_effective_length": 8,
+          "fft_selection": "pinned batch-mean topk over non-DC bins; no per-example replacement",
+          "fixed_body": {
+            "d_ff": 32,
+            "d_model": 32,
+            "layers": 2
+          },
+          "fixed_top_k": 3,
+          "frozen_parameter_reason": "Official branches not called with x_mark=None; TimeMixer PDM.layer_norm is registered but never called upstream",
+          "frozen_unused_source_parameters": [
+            "enc_embedding.temporal_embedding.embed.weight"
+          ],
+          "future_covariates": false,
+          "historical_recipe_replaced": false,
+          "inference_batch_size1_enforced": true,
+          "inference_policy": "In eval, invoke the unchanged forecasting body separately for each window in caller order, preventing later windows from influencing FFT selection",
+          "initialization_seed": 271802,
+          "input_shape": [
+            7,
+            5
+          ],
+          "model": "TimesNet",
+          "nas": false,
+          "num_kernels": 6,
+          "output": "positive sigma7/a; caller restores target units",
+          "paper_replication_claimed": false,
+          "period_rounding": "floor matches pinned author code; paper equation uses ceil",
+          "preset_source": "TimesNet v3 Appendix B k1..5; Table7 two layers and d_model rule; pinned run.py/ETTh1 d_ff32 and six kernels",
+          "recipe_id": "TN-D7-PUBLISHED-v1",
+          "registered_trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+          "restored_published_body": true,
+          "same_window_moments": 0,
+          "source_forecast_complete": true,
+          "source_verification": {
+            "commit": "4e938a1767106324dd753b2a44832bf870a0252e",
+            "repository": "thuml/Time-Series-Library",
+            "verification_scope": "Every declared file for this author tree, not the whole repository",
+            "verified_files": [
+              {
+                "path": "LICENSE",
+                "sha256": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2"
+              },
+              {
+                "path": "layers/AutoCorrelation.py",
+                "sha256": "354b44e54bdd39380c9f5c2bfaaf3b967fdbe80dc7998741dbfdfa5d521a040c"
+              },
+              {
+                "path": "layers/Autoformer_EncDec.py",
+                "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+              },
+              {
+                "path": "layers/Conv_Blocks.py",
+                "sha256": "16d9f2d9e4fa094dc357901e32beecda9839709bcca02625e6447186933ce4e1"
+              },
+              {
+                "path": "layers/Crossformer_EncDec.py",
+                "sha256": "ee2cc5c8d3a44f4de67ce986e6b442488826a20fa4d8f87991941a75587936a1"
+              },
+              {
+                "path": "layers/DWT_Decomposition.py",
+                "sha256": "422af1eec77df1b9dcfdea3d457e545c8575da69da4f505f27ba54db0c9f7764"
+              },
+              {
+                "path": "layers/ETSformer_EncDec.py",
+                "sha256": "4ba2a0b76381602e32341fcc1a6a74ca86d2347905589fb34a74f8e54d7023e3"
+              },
+              {
+                "path": "layers/Embed.py",
+                "sha256": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35"
+              },
+              {
+                "path": "layers/FourierCorrelation.py",
+                "sha256": "cea1095b3a94764f240e6ac67280d6ea7fac9f5ef54de137cd1f5e5adab1305f"
+              },
+              {
+                "path": "layers/MSGBlock.py",
+                "sha256": "01d3d446a214c33062ba098f251a1e49ed8a342dd4372e973a0a8c0dde5cd8c0"
+              },
+              {
+                "path": "layers/MambaBlock.py",
+                "sha256": "cbcbbd6cbb83366e40ffe5926da16b4ca0aa11b6649e2259750994b60527a390"
+              },
+              {
+                "path": "layers/MultiWaveletCorrelation.py",
+                "sha256": "cf0b8faf45a1b7fab4a3c1c521623c0762e2f9d7375b20ba9a9acd2142747342"
+              },
+              {
+                "path": "layers/Pyraformer_EncDec.py",
+                "sha256": "ab92396677a9ad2e49c7bf171e15c96108d388b8898d29ee520d18dfe0bd5306"
+              },
+              {
+                "path": "layers/SelfAttention_Family.py",
+                "sha256": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794"
+              },
+              {
+                "path": "layers/StandardNorm.py",
+                "sha256": "3f690dc5fc0e395d4f1ffe6396717548d18bd04f4518258308bbe5f392703f5f"
+              },
+              {
+                "path": "layers/TimeFilter_layers.py",
+                "sha256": "3441713bdb54de1153afe3d5e746de4e251c07b545492180a073c4f275df6b9f"
+              },
+              {
+                "path": "layers/Transformer_EncDec.py",
+                "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+              },
+              {
+                "path": "layers/__init__.py",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "path": "models/TimesNet.py",
+                "sha256": "f64c4bed1fd7347090044a0163bd4209c9f9ec1c1b19ceff47842df36b64bba7"
+              },
+              {
+                "path": "requirements.txt",
+                "sha256": "1467f08eca3f4b749addf69042955eeb547dfb13a8a569e7e881b545c696df9f"
+              },
+              {
+                "path": "run.py",
+                "sha256": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4"
+              },
+              {
+                "path": "scripts/long_term_forecast/ETT_script/TimesNet_ETTh1.sh",
+                "sha256": "8490506e32ef9ee8f3a62a4286b35be552a3035d243d87104bd02e9cc381922e"
+              },
+              {
+                "path": "utils/ADFtest.py",
+                "sha256": "fcc30ead66778d2f70409740f8d54287fbeb032cd080695879a370722f7a4b26"
+              },
+              {
+                "path": "utils/__init__.py",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "path": "utils/augmentation.py",
+                "sha256": "17bac803a96fb6c98d0822052c1edc9f6bc72ae37eec5aa859e9e2918d537b69"
+              },
+              {
+                "path": "utils/dtw.py",
+                "sha256": "a12084ab35783e4c09ddfadb54b0253f1fa8a3499abd88c772f93f499bcffa2a"
+              },
+              {
+                "path": "utils/dtw_metric.py",
+                "sha256": "308c56507b01a945f38796f2f9b4bb104adc213ab574aa2693f93635c9748889"
+              },
+              {
+                "path": "utils/losses.py",
+                "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+              },
+              {
+                "path": "utils/m4_summary.py",
+                "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+              },
+              {
+                "path": "utils/masking.py",
+                "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+              },
+              {
+                "path": "utils/metrics.py",
+                "sha256": "0a565c3f64d7cd29d9a87dee0c22d48f4a6a329476f893458cc18a35fa46a5df"
+              },
+              {
+                "path": "utils/print_args.py",
+                "sha256": "423454ec7e2cefe6d24a458903f6080e866efdbe78c0ac2481b2cf32d44c558a"
+              },
+              {
+                "path": "utils/timefeatures.py",
+                "sha256": "319b3da2ef15ccae95162b1b4f4a9a0b0da63fa0062a7f6006a06dd567258d85"
+              },
+              {
+                "path": "utils/tools.py",
+                "sha256": "f47237f29d2a27570ef11871d9acdc51d1742b3bd1d8d09e5226e4140f4ad024"
+              }
+            ]
+          },
+          "task_head": "Linear(5,1)+Softplus outside the complete forecasting body",
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0.1,
+            "learning_rate": 0.0028381684707835583,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "TN-D7-PUBLISHED-v1",
+            "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+            "weight_decay": 1.1922133659036039e-05
+          },
+          "training_recipe_id": "TN-D7-PUBLISHED-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 3.621823467000013
+    },
+    {
+      "model": "TSMixer",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 35044,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 62,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "9241f41a92bf9ccad8085eea9f695b388d3912844f3ab2817ccc43ce53c230c1",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.42655479299992294,
+      "GPU_peak_memory_bytes": 68887552,
+      "configuration": {
+        "trial": {
+          "batch_size": 32,
+          "dropout": 0.3,
+          "learning_rate": 0.0011417384292299172,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "TSM-D7-r1__hpo_v1",
+          "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+          "weight_decay": 7.976479621456176e-06
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 35044,
+          "dropout": 0.3,
+          "frozen_body_parameter_count": 35044,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271806,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "TSMixer",
+          "nas": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "registered_trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+          "requested_existing_dropout": 0.3,
+          "role": "E2_candidate",
+          "source_roots_verified": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 32,
+            "dropout": 0.3,
+            "learning_rate": 0.0011417384292299172,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "TSM-D7-r1__hpo_v1",
+            "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+            "weight_decay": 7.976479621456176e-06
+          },
+          "training_recipe_id": "TSM-D7-r1__hpo_v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.720074308000221
+    },
+    {
+      "model": "TiDE",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 163384,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 29,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "0db1c4588a33d82fcf95db60a3858437fa6fae438cf4541a535e82976e596a7e",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.3404727520000961,
+      "GPU_peak_memory_bytes": 70850560,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.0,
+          "learning_rate": 0.00013961276714916928,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+          "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+          "weight_decay": 2.7796158898151984e-05
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 163384,
+          "all_parameters_expected_to_have_nonzero_gradients": false,
+          "body_output_shape": [
+            1,
+            5
+          ],
+          "categorical_covariate_count": 0,
+          "dropout": 0.0,
+          "dynamic_covariate_count": 0,
+          "horizon": 1,
+          "inactive_initialization_consequence": "At source zero-bias/ReLU initialization, time_encoder.lin_a bias and lin_b weight have zero task gradients; source graph is retained without pruning or reinitialization",
+          "initialization_seed": 271805,
+          "input_shape": [
+            7,
+            5
+          ],
+          "model": "TiDE",
+          "nas": false,
+          "no_calendar_covariates_added": true,
+          "no_future_ohlcv_added": true,
+          "no_moment_features_added": true,
+          "no_target_history_added": true,
+          "output": "sigma7 / caller-owned positive training-only target scale",
+          "paper_original_task_replication_claimed": false,
+          "r0_inactive_branch_retained": true,
+          "readout": "Linear(5,1) then Softplus",
+          "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+          "registered_trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+          "restored_published_body": true,
+          "semantic_backend_port": "TensorFlow/Keras to PyTorch; see separate parity receipt",
+          "series_count": 5,
+          "series_ids": "fixed OHLCV positions; not extra market inputs",
+          "source": {
+            "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+            "files_sha256": {
+              "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+              "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+              "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+              "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854"
+            },
+            "license": "Apache-2.0",
+            "repository": "google-research/google-research",
+            "verification_scope": "Four declared files, not the complete repository"
+          },
+          "source_default_preset": {
+            "decoder_output_dim": 4,
+            "dropout_rate": 0.0,
+            "final_decoder_hidden": 64,
+            "hidden_dims": [
+              256,
+              256
+            ],
+            "layer_norm": false,
+            "series_embedding_dim": 16,
+            "time_encoder_dims": [
+              64,
+              4
+            ],
+            "transform": false
+          },
+          "source_forecast_graph_complete": true,
+          "source_selected_ETTh1_preset_reproduced": false,
+          "structural_architecture_search": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0.0,
+            "learning_rate": 0.00013961276714916928,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+            "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+            "weight_decay": 2.7796158898151984e-05
+          },
+          "training_recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.6196645609998086
+    },
+    {
+      "model": "TimeMixer",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 9447,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 61,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "cc99a990ecbabf251da674cdd7983c8dc63dc6c8c3f9c6c6f1a9bcb0d0bee489",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.5952940580000359,
+      "GPU_peak_memory_bytes": 70502912,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.1,
+          "learning_rate": 0.0006677459949385749,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "TM-D7-PUBLISHED-v1",
+          "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+          "weight_decay": 2.0903286086513016e-05
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 9447,
+          "architecture_policy_id": "e2-published-bodies-d7-v1",
+          "architecture_search": false,
+          "body_output_shape": [
+            1,
+            5
+          ],
+          "down_sampling_layers": 1,
+          "factory_version": "e2-published-periodic-v1",
+          "fixed_body": {
+            "d_ff": 32,
+            "d_model": 32,
+            "layers": 4
+          },
+          "frozen_parameter_reason": "Official branches not called with x_mark=None; TimeMixer PDM.layer_norm is registered but never called upstream",
+          "frozen_unused_source_parameters": [
+            "pdm_blocks.0.layer_norm.weight",
+            "pdm_blocks.0.layer_norm.bias",
+            "pdm_blocks.1.layer_norm.weight",
+            "pdm_blocks.1.layer_norm.bias",
+            "pdm_blocks.2.layer_norm.weight",
+            "pdm_blocks.2.layer_norm.bias",
+            "pdm_blocks.3.layer_norm.weight",
+            "pdm_blocks.3.layer_norm.bias",
+            "enc_embedding.temporal_embedding.embed.weight"
+          ],
+          "future_covariates": false,
+          "historical_recipe_replaced": false,
+          "initialization_seed": 271803,
+          "input_shape": [
+            7,
+            5
+          ],
+          "model": "TimeMixer",
+          "moving_average": 25,
+          "nas": false,
+          "output": "positive sigma7/a; caller restores target units",
+          "paper_replication_claimed": false,
+          "preset_source": "TimeMixer v1 Table7 M4 short-term; pinned M4 Monthly script: four PDM, d_model32, d_ff32, M1, avg2",
+          "preset_source_url": "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/short_term_forecast/M4/TimeMixer.sh",
+          "recipe_id": "TM-D7-PUBLISHED-v1",
+          "registered_trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+          "restored_published_body": true,
+          "same_window_moments": 0,
+          "scale_lengths": [
+            7,
+            3
+          ],
+          "source_forecast_complete": true,
+          "source_verification": {
+            "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+            "repository": "kwuking/TimeMixer",
+            "verification_scope": "Every declared file for this author tree, not the whole repository",
+            "verified_files": [
+              {
+                "path": "LICENSE",
+                "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+              },
+              {
+                "path": "layers/AutoCorrelation.py",
+                "sha256": "35fc23e552419a53ebf12de5eb39a276aeb379f3f49ad5cf85ad0527a8c18feb"
+              },
+              {
+                "path": "layers/Autoformer_EncDec.py",
+                "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+              },
+              {
+                "path": "layers/Conv_Blocks.py",
+                "sha256": "25c80a3f21bfcd403e9b3672cb1d3639b19e24d156e791060754b9ad32b90f3f"
+              },
+              {
+                "path": "layers/DWT_Decomposition.py",
+                "sha256": "365356b4017ff144e92e655c24631bd422ec066741f5130fb6dd9e6f1a186e91"
+              },
+              {
+                "path": "layers/Embed.py",
+                "sha256": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b"
+              },
+              {
+                "path": "layers/FourierCorrelation.py",
+                "sha256": "457afe4aa2a8ececf50bc359840edb3c9ed455cb02748b69fd01488215e186ca"
+              },
+              {
+                "path": "layers/SelfAttention_Family.py",
+                "sha256": "34026dd7d5644a2e1dab912f2bb661c91d458015796133e681f40b98fbc10cfd"
+              },
+              {
+                "path": "layers/StandardNorm.py",
+                "sha256": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df"
+              },
+              {
+                "path": "layers/Transformer_EncDec.py",
+                "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+              },
+              {
+                "path": "layers/__init__.py",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "path": "models/TimeMixer.py",
+                "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be"
+              },
+              {
+                "path": "requirements.txt",
+                "sha256": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9"
+              },
+              {
+                "path": "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+                "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+              },
+              {
+                "path": "utils/__init__.py",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "path": "utils/data_analysis.py",
+                "sha256": "4176dc3ebb06988635085a397021d3b264056fc4251878b60abeee5b8aa94d69"
+              },
+              {
+                "path": "utils/losses.py",
+                "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+              },
+              {
+                "path": "utils/m4_summary.py",
+                "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+              },
+              {
+                "path": "utils/masking.py",
+                "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+              },
+              {
+                "path": "utils/metrics.py",
+                "sha256": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a"
+              },
+              {
+                "path": "utils/timefeatures.py",
+                "sha256": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971"
+              },
+              {
+                "path": "utils/tools.py",
+                "sha256": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376"
+              }
+            ]
+          },
+          "task_head": "Linear(5,1)+Softplus outside the complete forecasting body",
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0.1,
+            "learning_rate": 0.0006677459949385749,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "TM-D7-PUBLISHED-v1",
+            "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+            "weight_decay": 2.0903286086513016e-05
+          },
+          "training_recipe_id": "TM-D7-PUBLISHED-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.920541917999799
+    },
+    {
+      "model": "PatchTST",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 16388,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 57,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "4a0f199dae5931cc38b37474f48fa64fbce0583f339d1ef48659bfa8b3991af3",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.9511709459998201,
+      "GPU_peak_memory_bytes": 68607488,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.3,
+          "learning_rate": 0.0014458517173583036,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "PT-D7-PUBLISHED-v1",
+          "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+          "warmup_fraction": 0.1,
+          "weight_decay": 0.0
+        },
+        "frozen_architecture": {
+          "actual_dropout": {
+            "encoder": 0.3,
+            "fc": 0.3,
+            "head": 0.0
+          },
+          "actual_parameter_count": 16388,
+          "architecture_policy_id": "e2-published-bodies-d7-v1",
+          "author_repository": "yuqinie98/PatchTST",
+          "body": "original supervised TSTiEncoder and Flatten_Head",
+          "calendar_covariates_added": false,
+          "d_ff": 128,
+          "d_model": 16,
+          "dropout": 0.3,
+          "encoder_layers": 3,
+          "exact_published_long_context_preset": false,
+          "head_dropout": 0.0,
+          "horizon": 1,
+          "initialization_seed": 271801,
+          "input_shape": [
+            7,
+            5
+          ],
+          "left_padding": 0,
+          "market_data_read": false,
+          "model": "PatchTST",
+          "n_heads": 4,
+          "nas": false,
+          "normalization": "author BatchNorm, post-norm",
+          "output": "positive sigma7 / training-only target scale",
+          "padding": "author end replication of last observed value",
+          "paper_replication_claimed": false,
+          "patch_count": 4,
+          "patch_len": 3,
+          "published_source_preset": {
+            "dropout": 0.3,
+            "evidence": "scripts/PatchTST/etth1.sh at the verified author commit",
+            "fc_dropout": 0.3,
+            "head_dropout": 0.0,
+            "patch_len": 16,
+            "seq_len": 336,
+            "stride": 8
+          },
+          "recipe_id": "PT-D7-PUBLISHED-v1",
+          "registered_trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+          "residual_attention": true,
+          "restored_published_body": true,
+          "revin_statistics_scope": "seven actual observed days before padding",
+          "right_padding": 2,
+          "same_window_moment_features": 0,
+          "scalar_readout": "Linear(5,1) then Softplus before OHLCV denormalization",
+          "source_commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+          "source_files_verified_at_build": true,
+          "source_flatten_head_preserved": true,
+          "source_verification": {
+            "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+            "repository": "yuqinie98/PatchTST",
+            "verification_scope": "declared file subset, not whole repository",
+            "verified_files": {
+              "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+              "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+              "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+              "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6",
+              "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+              "scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+            }
+          },
+          "stride": 2,
+          "structural_architecture_search": false,
+          "target_lags_added": false,
+          "task_adaptations": [
+            "Observed context 7 instead of source ETTh1 336; fixed P3/S2 rather than P16/S8",
+            "P3/S2 D7 geometry follows the prior documentary adaptation proposal",
+            "Five OHLCV channel predictions combined into one scalar before source denormalization"
+          ],
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0.3,
+            "learning_rate": 0.0014458517173583036,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "PT-D7-PUBLISHED-v1",
+            "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+            "warmup_fraction": 0.1,
+            "weight_decay": 0.0
+          },
+          "training_recipe_id": "PT-D7-PUBLISHED-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 3.321234520999951
+    },
+    {
+      "model": "iTransformer",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 795403,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 38,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "35cdddefe900be8d0c001eedc236bbf129dcf3752b2cbaddac28f206f3067739",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 1.4883311359999425,
+      "GPU_peak_memory_bytes": 81033216,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.3,
+          "learning_rate": 0.0024351218185910935,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "IT-D7-r1__hpo_v1",
+          "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+          "warmup_fraction": 0,
+          "weight_decay": 0.0009190165913202242
+        },
+        "frozen_architecture": {
+          "D7_changes": [
+            "seq_len7 and five OHLCV variable tokens",
+            "preserve original normalization and full256-wide two-layer inverted encoder",
+            "replace per-covariate projector and its OHLCV denormalization with scalar task head"
+          ],
+          "actual_parameter_count": 795403,
+          "author_commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+          "author_repository": "thuml/iTransformer",
+          "author_source_files": {
+            "LICENSE": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849",
+            "layers/Embed.py": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+            "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+            "layers/Transformer_EncDec.py": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+            "model/iTransformer.py": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+            "run.py": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+            "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+            "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+          },
+          "backbone_family_replaced": false,
+          "calendar_inputs": false,
+          "configuration_choice_source": "official ETTh1_96_96 script d256/ff256/enc2 plus run.py heads8",
+          "dropout": 0.3,
+          "forecast_horizon_days": 1,
+          "frozen_body_parameter_count": 795403,
+          "history_days": 7,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271802,
+          "input_channels": 5,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "iTransformer",
+          "nas": false,
+          "original_OHLCV_denormalization_applied": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "output_link": "Softplus",
+          "paper_replication_claimed": false,
+          "pretrained_weights": "none",
+          "readout": "Linear(1290,1) then Softplus",
+          "readout_input_dim": 1290,
+          "registered_trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+          "requested_existing_dropout": 0.3,
+          "role": "E2_candidate",
+          "same_window_moments": "five means and five population standard deviations of the same scaled D7",
+          "source_presets_inspected": [
+            "run.py",
+            "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh"
+          ],
+          "source_roots_verified": true,
+          "structure": {
+            "activation": "gelu",
+            "d_ff": 256,
+            "d_model": 256,
+            "e_layers": 2,
+            "factor": 1,
+            "n_heads": 8,
+            "use_norm": true
+          },
+          "target": "sigma7 / training-only y_scale",
+          "target_lags_added": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0.3,
+            "learning_rate": 0.0024351218185910935,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "IT-D7-r1__hpo_v1",
+            "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+            "warmup_fraction": 0,
+            "weight_decay": 0.0009190165913202242
+          },
+          "training_recipe_id": "IT-D7-r1__hpo_v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 3.9724712479996924
+    },
+    {
+      "model": "MLP16",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 593,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 4,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "b14e173b5c410feff8cb771715934c2385deca561337d7378372eec2cf146942",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.3086426679997203,
+      "GPU_peak_memory_bytes": 68176384,
+      "configuration": {
+        "trial": {
+          "batch_size": 32,
+          "dropout": 0,
+          "learning_rate": 0.0015009848657423612,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+          "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+          "weight_decay": 0.00074420992767983
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 593,
+          "dropout": 0.0,
+          "frozen_body_parameter_count": 593,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271802,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "MLP16",
+          "nas": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "registered_trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+          "requested_existing_dropout": 0.0,
+          "role": "reinitialized_E1_reference",
+          "source_roots_verified": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 32,
+            "dropout": 0,
+            "learning_rate": 0.0015009848657423612,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+            "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+            "weight_decay": 0.00074420992767983
+          },
+          "training_recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.619714111999656
+    },
+    {
+      "model": "LSTM32",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 5025,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 6,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "bb56b15db3a5ae087d0d7f3e634d2c9037bf9a2cc8ff1864fd2b5f70e3e14435",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.32657714100014346,
+      "GPU_peak_memory_bytes": 75689472,
+      "configuration": {
+        "trial": {
+          "batch_size": 64,
+          "dropout": 0.3,
+          "learning_rate": 0.002356406147809842,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+          "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+          "weight_decay": 0.0
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 5025,
+          "dropout": 0.3,
+          "frozen_body_parameter_count": 5025,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271804,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "LSTM32",
+          "nas": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "registered_trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+          "requested_existing_dropout": 0.3,
+          "role": "reinitialized_E1_reference",
+          "source_roots_verified": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 64,
+            "dropout": 0.3,
+            "learning_rate": 0.002356406147809842,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+            "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+            "weight_decay": 0.0
+          },
+          "training_recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.6700571989999844
+    },
+    {
+      "model": "GRU32",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 3777,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 6,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "a2edd7b143d402b6c87a7676acb95475de88819369c3987a2421596e2b390aee",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.32779336500016143,
+      "GPU_peak_memory_bytes": 75649536,
+      "configuration": {
+        "trial": {
+          "batch_size": 16,
+          "dropout": 0.1,
+          "learning_rate": 0.00045773135527551936,
+          "optimization_seeds": [
+            271201,
+            271202
+          ],
+          "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+          "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+          "weight_decay": 0.006658367249304354
+        },
+        "frozen_architecture": {
+          "actual_parameter_count": 3777,
+          "dropout": 0.1,
+          "frozen_body_parameter_count": 3777,
+          "iTransformer_existing_dropout_rate_bridge": false,
+          "initialization_seed": 271805,
+          "input_shape": [
+            7,
+            5
+          ],
+          "market_data_read": false,
+          "model": "GRU32",
+          "nas": false,
+          "output": "positive sigma7/a; inversion belongs to caller",
+          "registered_trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+          "requested_existing_dropout": 0.1,
+          "role": "reinitialized_E1_reference",
+          "source_roots_verified": false,
+          "training_axes_applied": false,
+          "training_hpo_record": {
+            "batch_size": 16,
+            "dropout": 0.1,
+            "learning_rate": 0.00045773135527551936,
+            "optimization_seeds": [
+              271201,
+              271202
+            ],
+            "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+            "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+            "weight_decay": 0.006658367249304354
+          },
+          "training_recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+          "training_registry_version": "e2-training-registry-v1",
+          "weights_pretrained": false,
+          "weights_reused": false
+        }
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.6200946730000396
+    },
+    {
+      "model": "Persistence",
+      "status": "passed",
+      "device": "cpu_classical",
+      "fixture": "artificial positive dated volatility history; no market data",
+      "output_shape": [
+        1
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": false,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "synthetic_only": true,
+      "synthetic_ARIMA_fits": 0,
+      "parameter_fits_on_market_data": 0,
+      "causal_exact_lag_verified": true,
+      "checkpoint_sha256": "f7275e8ccca9df10b99f2b3c929d91c8167282218b45adda3fb0cd741c075559",
+      "checkpoint_reload_identical": true,
+      "worker_wall_seconds": 0.465070710999953
+    },
+    {
+      "model": "SeasonalNaive",
+      "status": "passed",
+      "device": "cpu_classical",
+      "fixture": "artificial positive dated volatility history; no market data",
+      "output_shape": [
+        1
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": false,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "synthetic_only": true,
+      "synthetic_ARIMA_fits": 0,
+      "parameter_fits_on_market_data": 0,
+      "causal_exact_lag_verified": true,
+      "checkpoint_sha256": "45572794f559877a41061ed8ef0337bc2bb1e37a7004cada495dec56f29f2e58",
+      "checkpoint_reload_identical": true,
+      "worker_wall_seconds": 0.46533685599979435
+    },
+    {
+      "model": "ARIMA",
+      "status": "passed",
+      "device": "cpu_classical",
+      "fixture": "artificial positive dated volatility history; no market data",
+      "output_shape": [
+        1
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": false,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "synthetic_only": true,
+      "synthetic_ARIMA_fits": 1,
+      "forecast_before_observe_guard_passed": true,
+      "parameter_fits_on_market_data": 0,
+      "checkpoint_sha256": "00c4827c65dc1d1e650ff83075e2805c906b80586498d9027fd609fb0fd2a3cb",
+      "checkpoint_reload_identical": true,
+      "order": [
+        2,
+        0,
+        1
+      ],
+      "forecast_origin": "2000-06-08T00:00:00",
+      "fit_receipt": {
+        "status": "fitted",
+        "source_commit": "synthetic_preflight_only_not_market_fit",
+        "order": [
+          2,
+          0,
+          1
+        ],
+        "origin": "2000-06-08T00:00:00",
+        "fit_cutoff": "2000-05-31T00:00:00",
+        "expected_statsmodels": "0.14.5",
+        "python": "3.12.12",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3",
+        "scipy": "1.17.0",
+        "retries": 0,
+        "filter_method": "extend, fixed parameters",
+        "warnings": [],
+        "history_start": "2000-01-01T00:00:00",
+        "calendar_count": 152,
+        "valid_count": 152,
+        "mask_sha256": "ef8a0e6546c483d03087cd787954c390372c97df3dff6a142103b120fb31e28c",
+        "history_sha256": "8bef2a9eaf788caa952fd98b083b07a6700b694e3fde9ffc129cb389bd36159d",
+        "scale": 0.019998092195219502,
+        "statsmodels": "0.14.5",
+        "optimizer": {
+          "method": "lbfgs",
+          "maxiter": 200,
+          "pgtol": 1e-05,
+          "factr": 10000000.0,
+          "disp": false
+        },
+        "initialization": "version-pinned statsmodels defaults; no restarts",
+        "trend": "c",
+        "seasonal_order": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "enforce_stationarity": true,
+        "enforce_invertibility": true,
+        "converged": true,
+        "parameters": [
+          0.9968056942263127,
+          1.3363714012375403,
+          -0.38989554544296584,
+          0.9999360205542153,
+          2.4615873197529515e-05
+        ],
+        "log_likelihood": 585.7248563583771,
+        "state_at_cutoff": [
+          -0.057155738312698795,
+          0.029207082734605677
+        ],
+        "state_cov_at_cutoff": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.6095708374541873e-07
+          ]
+        ],
+        "duration_seconds": 1.0903178710000248
+      },
+      "worker_wall_seconds": 1.6677320920002785
+    },
+    {
+      "model": "CNN-LSTM-atencion-aditiva E3",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 1210,
+      "fixture_shape": [
+        4,
+        7,
+        5
+      ],
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "input_contract": "artificial normalized OHLCV features; not raw market bars",
+      "output_units": "sigma7_original_synthetic_scale",
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 10,
+      "optimizer_steps": 0,
+      "synthetic_only": true,
+      "real_data_model_fits": 0,
+      "checkpoint_sha256": "d7d3e755a1bd47cf4969eded8a03a36923d10d877af47c75cd9891ee814b0a3f",
+      "checkpoint_reload_identical": true,
+      "elapsed_seconds": 0.45339154500015866,
+      "GPU_peak_memory_bytes": 75582464,
+      "configuration": {
+        "class": "src.e3_innovation_model.InnovationModel",
+        "variant": "additive_positive_head",
+        "parameters": 1210,
+        "synthetic_only_configuration": {
+          "u_scale": 0.01,
+          "y_scale": 0.02,
+          "seed": 271801
+        },
+        "future_real_scaler_must_be_train_only": true
+      },
+      "author_files_verified": 76,
+      "worker_wall_seconds": 2.820392279000316
+    }
+  ],
+  "campaign_guard": {
+    "allowed": false,
+    "blockers": [
+      "No hay manifiesto final de campaña ni tag anotado de protocolo.",
+      "Datasets admitidos: 0 de 3; candidatos de metadatos no son admisiones.",
+      "Faltan tratamiento común de 17 sistemas, presupuesto y potencia final de la batería."
+    ],
+    "real_training_dispatched": false,
+    "R1_R3_verified": false
+  },
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "new_hypothesis_tests": 0,
+  "GPU_execution_verified": true,
+  "R1_R3_verified": false,
+  "source_package": {
+    "url": "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/c4a4a1e68e9844cdfb81de0075177ced0cd96c07/book_e2/_static/entregables_independientes_v2_20261115/02_codigo_modelos.zip",
+    "archive_sha256": "5423c85bf220729c826e47a1c37d79a49ce2ba8b0e8f764c47ab9c0796b4bcae",
+    "inventory": {
+      "version": "e2-standalone-code-v1",
+      "status": "verified",
+      "scientific_source_commit": "1e8745497b484518f766b6da5c19be8362d9add7",
+      "original_constructor_files_verified": 12,
+      "original_constructor_metadata_files_verified": 4,
+      "author_files_verified": 76,
+      "author_subsets": [
+        {
+          "model": "PatchTST",
+          "files": 6,
+          "license": "Apache-2.0"
+        },
+        {
+          "model": "TSMixer",
+          "files": 2,
+          "license": "Apache-2.0"
+        },
+        {
+          "model": "TiDE",
+          "files": 4,
+          "license": "Apache-2.0"
+        },
+        {
+          "model": "TimeMixer",
+          "files": 22,
+          "license": "Apache-2.0"
+        },
+        {
+          "model": "TimesNet",
+          "files": 34,
+          "license": "MIT"
+        },
+        {
+          "model": "iTransformer",
+          "files": 8,
+          "license": "MIT"
+        }
+      ],
+      "models": [
+        {
+          "model": "FCN-1D",
+          "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+          "parameters": 268929
+        },
+        {
+          "model": "ResNet-1D",
+          "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+          "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+          "parameters": 522955
+        },
+        {
+          "model": "Inception-1D",
+          "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+          "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+          "parameters": 490561
+        },
+        {
+          "model": "LSTM-autoencoder con predictor",
+          "recipe_id": "SAE-D7-PUBLISHED-v1",
+          "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+          "parameters": 8739
+        },
+        {
+          "model": "TimesNet",
+          "recipe_id": "TN-D7-PUBLISHED-v1",
+          "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+          "parameters": 1173099
+        },
+        {
+          "model": "TSMixer",
+          "recipe_id": "TSM-D7-r1__hpo_v1",
+          "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+          "parameters": 35044
+        },
+        {
+          "model": "TiDE",
+          "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+          "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+          "parameters": 163384
+        },
+        {
+          "model": "TimeMixer",
+          "recipe_id": "TM-D7-PUBLISHED-v1",
+          "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+          "parameters": 9447
+        },
+        {
+          "model": "PatchTST",
+          "recipe_id": "PT-D7-PUBLISHED-v1",
+          "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+          "parameters": 16388
+        },
+        {
+          "model": "iTransformer",
+          "recipe_id": "IT-D7-r1__hpo_v1",
+          "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+          "parameters": 795403
+        },
+        {
+          "model": "MLP16",
+          "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+          "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+          "parameters": 593
+        },
+        {
+          "model": "LSTM32",
+          "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+          "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+          "parameters": 5025
+        },
+        {
+          "model": "GRU32",
+          "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+          "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+          "parameters": 3777
+        }
+      ],
+      "scope": {
+        "market_data_read": false,
+        "trained_weights_loaded": false,
+        "new_model_fits": 0,
+        "predictive_accuracy_evaluated": false,
+        "absolute_historical_result_paths_used": false
+      }
+    }
+  },
+  "status": "passed_synthetic_only",
+  "synthetic_neural_backward_count": 14,
+  "synthetic_ARIMA_fit_count": 1
+}

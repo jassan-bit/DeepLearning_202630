@@ -1,0 +1,92 @@
+{
+  "model": "ARIMA",
+  "status": "passed",
+  "device": "cpu_classical",
+  "fixture": "artificial positive dated volatility history; no market data",
+  "output_shape": [
+    1
+  ],
+  "finite_nonnegative": true,
+  "synthetic_backward_executed": false,
+  "optimizer_steps": 0,
+  "real_data_model_fits": 0,
+  "synthetic_only": true,
+  "synthetic_ARIMA_fits": 1,
+  "forecast_before_observe_guard_passed": true,
+  "parameter_fits_on_market_data": 0,
+  "checkpoint_sha256": "00c4827c65dc1d1e650ff83075e2805c906b80586498d9027fd609fb0fd2a3cb",
+  "checkpoint_reload_identical": true,
+  "order": [
+    2,
+    0,
+    1
+  ],
+  "forecast_origin": "2000-06-08T00:00:00",
+  "fit_receipt": {
+    "status": "fitted",
+    "source_commit": "synthetic_preflight_only_not_market_fit",
+    "order": [
+      2,
+      0,
+      1
+    ],
+    "origin": "2000-06-08T00:00:00",
+    "fit_cutoff": "2000-05-31T00:00:00",
+    "expected_statsmodels": "0.14.5",
+    "python": "3.12.12",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "retries": 0,
+    "filter_method": "extend, fixed parameters",
+    "warnings": [],
+    "history_start": "2000-01-01T00:00:00",
+    "calendar_count": 152,
+    "valid_count": 152,
+    "mask_sha256": "ef8a0e6546c483d03087cd787954c390372c97df3dff6a142103b120fb31e28c",
+    "history_sha256": "8bef2a9eaf788caa952fd98b083b07a6700b694e3fde9ffc129cb389bd36159d",
+    "scale": 0.019998092195219502,
+    "statsmodels": "0.14.5",
+    "optimizer": {
+      "method": "lbfgs",
+      "maxiter": 200,
+      "pgtol": 1e-05,
+      "factr": 10000000.0,
+      "disp": false
+    },
+    "initialization": "version-pinned statsmodels defaults; no restarts",
+    "trend": "c",
+    "seasonal_order": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "enforce_stationarity": true,
+    "enforce_invertibility": true,
+    "converged": true,
+    "parameters": [
+      0.9968056942263127,
+      1.3363714012375403,
+      -0.38989554544296584,
+      0.9999360205542153,
+      2.4615873197529515e-05
+    ],
+    "log_likelihood": 585.7248563583771,
+    "state_at_cutoff": [
+      -0.057155738312698795,
+      0.029207082734605677
+    ],
+    "state_cov_at_cutoff": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.6095708374541873e-07
+      ]
+    ],
+    "duration_seconds": 1.0903178710000248
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "model": "LSTM-autoencoder con predictor",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 8739,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 10,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "8c9066e21e642f2ba9b195005c8db18e29f6c324e826fbe5ce60b514bea7c73c",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.3307313680002153,
+  "GPU_peak_memory_bytes": 75742720,
+  "configuration": {
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0017219847334995647,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+      "weight_decay": 0.002593603165890561
+    },
+    "frozen_architecture": {
+      "actual_parameter_count": 8739,
+      "adaptations": [
+        "lag25 to D7",
+        "source eight variables to five OHLCV channels",
+        "training-only auxiliary reconstruction target X/s",
+        "scalar volatility output with Softplus and caller-owned target scaling"
+      ],
+      "additional_nas_dense_group": false,
+      "auxiliary_decoder_output_channels": 5,
+      "auxiliary_scale": 6.436119079589844,
+      "dropout": 0.3,
+      "dropout_policy": "Existing supervised dropout modules only; no auxiliary dropout",
+      "initialization_seed": 271804,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_training_claimed": false,
+      "model": "LSTM-autoencoder con predictor",
+      "moment_features_added": false,
+      "nas_required_for_this_fixed_body": false,
+      "pretraining_executed": true,
+      "pretraining_required": true,
+      "published_hidden_units": [
+        25,
+        26
+      ],
+      "published_reference_dropout": 0.3,
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "registered_trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+      "source": {
+        "author_commit": "8668132ef6f8855dbab289c5a2b2478f871c4c4b",
+        "author_file": "2layer_evaluate.py",
+        "author_hosted_text_url": "https://www.academia.edu/111461009/Unsupervised_Pre_training_of_a_Deep_LSTM_based_Stacked_Autoencoder_for_Multivariate_Time_Series_Forecasting_Problems",
+        "author_locators": "hidden_layers lines138; AE construction/targets lines211-224; encoder transfer/predictor lines232-260",
+        "author_repository": "https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder",
+        "author_weights_reused": false,
+        "backend_or_original_experiment_replication_claimed": false,
+        "independent_port": "scripts/e2_recipe_models.py",
+        "independent_port_sha256": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+        "paper_doi": "10.1038/s41598-019-55320-6",
+        "paper_url": "https://www.nature.com/articles/s41598-019-55320-6",
+        "pdf_downloaded_or_hashed": false,
+        "verified_at_date": "2026-11-12",
+        "verified_scope": "Architecture/learning sections pp7-8 and Table2 p11, author-hosted article text; pinned author implementation"
+      },
+      "target_history_added": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0017219847334995647,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "SAE-D7-PUBLISHED-v1",
+        "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+        "weight_decay": 0.002593603165890561
+      },
+      "training_recipe_id": "SAE-D7-PUBLISHED-v1"
+    }
+  },
+  "author_files_verified": 76
+}

@@ -1,0 +1,77 @@
+{
+  "model": "FCN-1D",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 268929,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 14,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "4a2ff9ec8dae3af14bba7f5f0cc56922f6245865c13b3159dbe7e599a5e16e8c",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.4988676350003516,
+  "GPU_peak_memory_bytes": 71534080,
+  "configuration": {
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0,
+      "learning_rate": 0.0005695394539643588,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "weight_decay": 0.0010040757709281222
+    },
+    "frozen_architecture": {
+      "actual_parameter_count": 268929,
+      "dropout": 0.0,
+      "frozen_body_parameter_count": 268929,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271804,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "FCN-1D",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "requested_existing_dropout": 0.0,
+      "role": "E2_candidate",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0,
+        "learning_rate": 0.0005695394539643588,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+        "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+        "weight_decay": 0.0010040757709281222
+      },
+      "training_recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}

@@ -1,0 +1,77 @@
+{
+  "model": "MLP16",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 593,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 4,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "b14e173b5c410feff8cb771715934c2385deca561337d7378372eec2cf146942",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.3086426679997203,
+  "GPU_peak_memory_bytes": 68176384,
+  "configuration": {
+    "trial": {
+      "batch_size": 32,
+      "dropout": 0,
+      "learning_rate": 0.0015009848657423612,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+      "weight_decay": 0.00074420992767983
+    },
+    "frozen_architecture": {
+      "actual_parameter_count": 593,
+      "dropout": 0.0,
+      "frozen_body_parameter_count": 593,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271802,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "MLP16",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+      "requested_existing_dropout": 0.0,
+      "role": "reinitialized_E1_reference",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 32,
+        "dropout": 0,
+        "learning_rate": 0.0015009848657423612,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+        "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+        "weight_decay": 0.00074420992767983
+      },
+      "training_recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}

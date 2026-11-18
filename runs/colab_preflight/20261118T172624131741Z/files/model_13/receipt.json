@@ -1,0 +1,77 @@
+{
+  "model": "GRU32",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 3777,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 6,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "a2edd7b143d402b6c87a7676acb95475de88819369c3987a2421596e2b390aee",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.32779336500016143,
+  "GPU_peak_memory_bytes": 75649536,
+  "configuration": {
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.1,
+      "learning_rate": 0.00045773135527551936,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+      "weight_decay": 0.006658367249304354
+    },
+    "frozen_architecture": {
+      "actual_parameter_count": 3777,
+      "dropout": 0.1,
+      "frozen_body_parameter_count": 3777,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271805,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "GRU32",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+      "requested_existing_dropout": 0.1,
+      "role": "reinitialized_E1_reference",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.1,
+        "learning_rate": 0.00045773135527551936,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+        "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+        "weight_decay": 0.006658367249304354
+      },
+      "training_recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}

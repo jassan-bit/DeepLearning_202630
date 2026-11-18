@@ -1,0 +1,77 @@
+{
+  "model": "Inception-1D",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 490561,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 50,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "0ef171a5f9dbaea617e1504d08aba444b7c5fc4240ed9067c763cb2513948cf2",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.6000122700002066,
+  "GPU_peak_memory_bytes": 75106304,
+  "configuration": {
+    "trial": {
+      "batch_size": 32,
+      "dropout": 0,
+      "learning_rate": 0.0007394620646713903,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "weight_decay": 1.818489584292255e-06
+    },
+    "frozen_architecture": {
+      "actual_parameter_count": 490561,
+      "dropout": 0.0,
+      "frozen_body_parameter_count": 490561,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271805,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "Inception-1D",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "requested_existing_dropout": 0.0,
+      "role": "E2_candidate",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 32,
+        "dropout": 0,
+        "learning_rate": 0.0007394620646713903,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+        "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+        "weight_decay": 1.818489584292255e-06
+      },
+      "training_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}

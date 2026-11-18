@@ -1,0 +1,38 @@
+{
+  "model": "CNN-LSTM-atencion-aditiva E3",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 1210,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_original_synthetic_scale",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 10,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "d7d3e755a1bd47cf4969eded8a03a36923d10d877af47c75cd9891ee814b0a3f",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.45339154500015866,
+  "GPU_peak_memory_bytes": 75582464,
+  "configuration": {
+    "class": "src.e3_innovation_model.InnovationModel",
+    "variant": "additive_positive_head",
+    "parameters": 1210,
+    "synthetic_only_configuration": {
+      "u_scale": 0.01,
+      "y_scale": 0.02,
+      "seed": 271801
+    },
+    "future_real_scaler_must_be_train_only": true
+  },
+  "author_files_verified": 76
+}

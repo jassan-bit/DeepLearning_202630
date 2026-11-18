@@ -1,0 +1,122 @@
+{
+  "model": "TiDE",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 163384,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 29,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "0db1c4588a33d82fcf95db60a3858437fa6fae438cf4541a535e82976e596a7e",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.3404727520000961,
+  "GPU_peak_memory_bytes": 70850560,
+  "configuration": {
+    "trial": {
+      "batch_size": 16,
+      "dropout": 0.0,
+      "learning_rate": 0.00013961276714916928,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "weight_decay": 2.7796158898151984e-05
+    },
+    "frozen_architecture": {
+      "actual_parameter_count": 163384,
+      "all_parameters_expected_to_have_nonzero_gradients": false,
+      "body_output_shape": [
+        1,
+        5
+      ],
+      "categorical_covariate_count": 0,
+      "dropout": 0.0,
+      "dynamic_covariate_count": 0,
+      "horizon": 1,
+      "inactive_initialization_consequence": "At source zero-bias/ReLU initialization, time_encoder.lin_a bias and lin_b weight have zero task gradients; source graph is retained without pruning or reinitialization",
+      "initialization_seed": 271805,
+      "input_shape": [
+        7,
+        5
+      ],
+      "model": "TiDE",
+      "nas": false,
+      "no_calendar_covariates_added": true,
+      "no_future_ohlcv_added": true,
+      "no_moment_features_added": true,
+      "no_target_history_added": true,
+      "output": "sigma7 / caller-owned positive training-only target scale",
+      "paper_original_task_replication_claimed": false,
+      "r0_inactive_branch_retained": true,
+      "readout": "Linear(5,1) then Softplus",
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "registered_trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "restored_published_body": true,
+      "semantic_backend_port": "TensorFlow/Keras to PyTorch; see separate parity receipt",
+      "series_count": 5,
+      "series_ids": "fixed OHLCV positions; not extra market inputs",
+      "source": {
+        "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+        "files_sha256": {
+          "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+          "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+          "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854"
+        },
+        "license": "Apache-2.0",
+        "repository": "google-research/google-research",
+        "verification_scope": "Four declared files, not the complete repository"
+      },
+      "source_default_preset": {
+        "decoder_output_dim": 4,
+        "dropout_rate": 0.0,
+        "final_decoder_hidden": 64,
+        "hidden_dims": [
+          256,
+          256
+        ],
+        "layer_norm": false,
+        "series_embedding_dim": 16,
+        "time_encoder_dims": [
+          64,
+          4
+        ],
+        "transform": false
+      },
+      "source_forecast_graph_complete": true,
+      "source_selected_ETTh1_preset_reproduced": false,
+      "structural_architecture_search": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.0,
+        "learning_rate": 0.00013961276714916928,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+        "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+        "weight_decay": 2.7796158898151984e-05
+      },
+      "training_recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}

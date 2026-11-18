@@ -1,0 +1,77 @@
+{
+  "model": "LSTM32",
+  "status": "passed",
+  "device": "cuda:0",
+  "parameters": 5025,
+  "fixture_shape": [
+    4,
+    7,
+    5
+  ],
+  "output_shape": [
+    4
+  ],
+  "finite_nonnegative": true,
+  "input_contract": "artificial normalized OHLCV features; not raw market bars",
+  "output_units": "sigma7_divided_by_training_target_scale; not compared across models",
+  "synthetic_backward_executed": true,
+  "finite_gradient_tensors": 6,
+  "optimizer_steps": 0,
+  "synthetic_only": true,
+  "real_data_model_fits": 0,
+  "checkpoint_sha256": "bb56b15db3a5ae087d0d7f3e634d2c9037bf9a2cc8ff1864fd2b5f70e3e14435",
+  "checkpoint_reload_identical": true,
+  "elapsed_seconds": 0.32657714100014346,
+  "GPU_peak_memory_bytes": 75689472,
+  "configuration": {
+    "trial": {
+      "batch_size": 64,
+      "dropout": 0.3,
+      "learning_rate": 0.002356406147809842,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+      "weight_decay": 0.0
+    },
+    "frozen_architecture": {
+      "actual_parameter_count": 5025,
+      "dropout": 0.3,
+      "frozen_body_parameter_count": 5025,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "initialization_seed": 271804,
+      "input_shape": [
+        7,
+        5
+      ],
+      "market_data_read": false,
+      "model": "LSTM32",
+      "nas": false,
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "registered_trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+      "requested_existing_dropout": 0.3,
+      "role": "reinitialized_E1_reference",
+      "source_roots_verified": false,
+      "training_axes_applied": false,
+      "training_hpo_record": {
+        "batch_size": 64,
+        "dropout": 0.3,
+        "learning_rate": 0.002356406147809842,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+        "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+        "weight_decay": 0.0
+      },
+      "training_recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "training_registry_version": "e2-training-registry-v1",
+      "weights_pretrained": false,
+      "weights_reused": false
+    }
+  },
+  "author_files_verified": 76
+}
