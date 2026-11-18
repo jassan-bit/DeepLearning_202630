@@ -1,6 +1,6 @@
 # 11 Bloque G Informe técnico en Jupyter Book
 
-El informe debe permitir entender y reconstruir el trabajo con estructura científica: resumen, problema y contribuciones, antecedentes, método, diseño experimental, resultados, discusión, límites y conclusiones. El libro distingue evidencia ejecutada, resultados heredados y tareas pendientes. La CNN-LSTM con atención temporal por contenido y salida aditiva positiva tiene entrenamiento, validación y prueba histórica en diez semillas, además de la comparación estadística posterior. Ya existe un prototipo local de Dash con Contexto, EDA y Modelos, catálogo de 17 sistemas y cuatro artefactos ONNX para inferencia CPU. La campaña confirmatoria y el despliegue público en Render siguen pendientes.
+El informe debe permitir entender y reconstruir el trabajo con estructura científica: resumen, problema y contribuciones, antecedentes, método, diseño experimental, resultados, discusión, límites y conclusiones. El libro distingue evidencia ejecutada, resultados heredados y tareas pendientes. La CNN-LSTM con atención temporal por contenido y salida aditiva positiva tiene entrenamiento, validación y prueba histórica en diez semillas, además de la comparación estadística posterior. El código y las evidencias del prototipo Dash con Contexto, EDA y Modelos están publicados: catálogo de 17 sistemas y cuatro artefactos ONNX para inferencia CPU. La campaña confirmatoria y el despliegue público en Render siguen pendientes.
 
 Las fuentes de E3 están en **`book_e3/`**. `book/` corresponde a E1 y `book_e2/` a E2; se conservan sus contenidos y direcciones. El Cuadro 7 de la guía, página 58, fija contenidos científicos mínimos; la numeración operativa 1–16 de este libro permite localizarlos sin confundir un capítulo de evaluación o entregables con resultados científicos nuevos.
 
@@ -10,7 +10,7 @@ La concordancia siguiente conserva los doce apartados del Cuadro 7, numerados 0�
 
 | N.º y capítulo del Cuadro 7 | Contenido mínimo científico | Ubicación en la organización 1–16 | Estado y cierre pendiente |
 |---|---|---|---|
-| 0 Introducción | Resumen ejecutivo de máximo 250 palabras con cifras, problema, motivación, contribuciones enumeradas, objetivos, mapa y URL del dashboard. | [Portada](../intro.md), [1 Introducción](01_introduccion.md) y [3 Panorama](03_panorama_general.md). | Problema y resultados históricos disponibles; resumen final de la entrega y URL Render pendientes. |
+| 0 Introducción | Resumen ejecutivo de máximo 250 palabras con cifras, problema, motivación, contribuciones enumeradas, objetivos, mapa y URL del dashboard. | [Portada](../intro.md), [1 Introducción](01_introduccion.md) y [3 Panorama](03_panorama_general.md). | Resumen con cifras y aportes técnicos enumerados disponible, junto al problema, objetivos y mapa; conserva los límites de R1/R2/R3. La URL pública Render sigue pendiente. |
 | 1 Trazabilidad de correcciones | Observaciones E2, acciones, evidencia, impacto y ranking antes/después cuando cambie. | [4 Correcciones E2](04_correcciones_e2.md). | Hallazgos internos, auditorías y ranking de seis frente a diez semillas documentados. La ampliación de semillas no se presenta como corrección de datos; no se inventan observaciones docentes. Cierre integral pendiente. |
 | 2 Datos: EDA y auditoría | EDA específico temporal, auditoría de fuga, Data Card con fuente/licencia/sesgos e interpretación de figuras. | [1 Introducción](01_introduccion.md), [4 Correcciones](04_correcciones_e2.md), [dashboard](09_dashboard_predictivo.md) y DATA_STATEMENT.md. | EDA interactivo sobre 1316 observaciones con fechas de entradas t−1 y objetivo t; fuente/hash y controles descritos. Resolver controles parciales y ratificar los derechos de cada fuente. |
 | 3 Modelos benchmark | Top 10 y baselines, definiciones, hiperparámetros, presupuesto, configuraciones y exportación. | [5 Configuraciones y exportación](05_configuraciones_exportacion.md). | Catálogo completo de E2 y la referencia E3; cuatro ONNX verificados en 608 fechas para la semilla representante 271801. Otros trece sistemas usan resultados precalculados; costes y exportación completa pendientes. |
@@ -43,7 +43,7 @@ El bundle `data/e3_dashboard_v1/` deriva el catálogo de la misma tabla ampliada
 
 **Figuras, tablas y ecuaciones.** Cada figura debe tener título, ejes/unidades, leyenda e interpretación; cada tabla, descripción y referencia en el texto. Las barras de métricas requerirán incertidumbre válida y rotulada, sin inventar barras de error cuando falte su estimación. Los métodos y muestras que soportan esa incertidumbre deben quedar explícitos.
 
-Las ecuaciones actuales usan MyST y símbolos definidos, pero su numeración y referencias no están completas en todo el libro. El cierre deberá asignar identificadores y números consistentes, citar las ecuaciones pertinentes y verificar el renderizado. La demostración latente disponible no se amplía a OHLCV crudo por añadir numeración o una figura.
+Las ecuaciones usan MyST y símbolos definidos. La configuración activa `numfig`, `math_numfig` y `math_number_all`; las ecuaciones principales tienen etiquetas únicas y referencias funcionales. La revisión técnica de las secciones 1–8 y la formulación preliminar conservó sus fórmulas y comprobó la numeración y las referencias en HTML mediante una construcción estricta. La ecuación de discrepancia de este capítulo sigue el mismo formato y se incorpora a la verificación final del libro. Esa comprobación se registra por versión. La demostración latente disponible no se amplía a OHLCV crudo por añadir numeración o una figura.
 
 **Construcción y publicación.** Desde la raíz del repositorio, los comandos de verificación del libro E3 son:
 
@@ -54,6 +54,8 @@ python scripts/check_book_links.py --book-dir book_e3
 ```
 
 La ruta genérica `book/` de la guía se adapta aquí a `book_e3/` para construir E3 y preservar E1. Deben comprobarse páginas, navegación, descargas, ecuaciones, citas, figuras y enlaces. La publicación en GitHub Pages o una carpeta HTML comprimida debe conservar commit y procedencia; un HTML que compile no acredita ejecución científica ni el servicio Render.
+
+Como referencia técnica comprobada, el [commit `7c17957871f9390e73889c2bcb19e730870fd9bc`](https://github.com/jassan-bit/DeepLearning_202630/commit/7c17957871f9390e73889c2bcb19e730870fd9bc) pasó la [compilación y publicación de los tres libros](https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213071892), incluida la verificación de sus páginas servidas. E3 conservó 39 páginas HTML y las 118 descargas anteriores; el comprobador local recorrió 3940 enlaces. Ese recibo corresponde a esa versión y las ampliaciones posteriores deben repetir la verificación. `books_manifest.json` vincula los productos publicados con su commit fuente; no es un DOI ni el recibo de reproducción científica por un tercero.
 
 **Entornos y reconstrucción independiente.** El [perfil de servicio de la sección 10](10_despliegue_render.md) dispone de dependencias fijadas y ejecuta cuatro ONNX con CPUExecutionProvider sin importar Torch. La imagen Docker se construyó y su servicio local respondió en las ocho rutas verificadas, con usuario sin privilegios, sistema de archivos de sólo lectura y límite de 512 MiB. Esa comprobación local no acredita el servicio Render. La reproducción científica requiere otro perfil, con framework, versiones, datos y ejecutores adecuados; exportar o repetir una auditoría no equivale a reproducir todo el proyecto.
 
@@ -77,6 +79,63 @@ La disponibilidad de datos autorizados y artefactos es un prerrequisito. La [aud
 | Reproducción independiente | Recibo del tercero, contenedor desde cero y máxima discrepancia contra la tabla entregada. | Pendiente de ejecutar y documentar. |
 | Archivo persistente y DOI | Versión final archivada y enlace persistente a código, datos permitidos y evidencias. | Pendiente de la entrega final; no se inventa un DOI. |
 | Autoría, contribuciones e IA | Aportes individuales y herramientas usadas, revisados por el autor. | Asistencia declarada; validación, firmas y defensa académica pendientes del autor, sin firmas simuladas. |
-| Bibliografía y referencias cruzadas | Registros BibTeX, citas, lista bibliográfica y enlaces verificados por build. | Siete antecedentes del candidato y 37 sugerencias metodológicas en archivos separados; conservar su procedencia y cerrar la comprobación estricta del conjunto. |
+| Bibliografía y referencias cruzadas | Registros BibTeX, citas, lista bibliográfica y enlaces verificados por build. | Siete antecedentes del candidato y 37 sugerencias metodológicas en archivos separados. El corte técnico de base pasó la construcción estricta; las ampliaciones requieren repetirla, conservando los estados de lectura y la procedencia. |
 
 El cierre mantendrá conclusiones acordes con lo realmente observado. R1, comprensión/defensa de R2 y R3 no se acreditan mediante esta reorganización, la bibliografía o una compilación. Los resultados desfavorables, ausencias y límites de reproducción deben permanecer junto a las afirmaciones que condicionan.
+
+## 11.3 De cada producto a su generador
+
+Una tabla o una figura se considera reconstruible cuando se identifican sus entradas exactas, el generador, el entorno y la comprobación de la salida. Se distinguen tres operaciones: reconstruir agregados a partir de predicciones guardadas, ejecutar los modelos exportados y volver a entrenar una receta. Los ejecutores enumerados aquí permiten verificar las dos primeras y recuperar un historial guardado; sus recibos no acreditan la reconstrucción de toda la campaña de entrenamiento.
+
+| Producto del informe o del dashboard | Generador y entorno | Entradas y comprobación disponible |
+|---|---|---|
+| Métricas, contrastes, efectos, MCS y figuras del análisis posterior. | `experiments/e3_estadistica_posterior_20261117/run.py`, con las versiones de su `requirements.txt`; `plots.py` genera `ranking_rmse.svg` y `gains_ci.svg`. | Once archivos fijados por commit/SHA256, plan y código registrados. Regenera resultados desde las trayectorias guardadas; conserva la diferencia entre ámbitos temporal y de semillas. |
+| Tabla descriptiva ampliada, IC entre semillas y métricas por predictor. | `experiments/e3_revision_bloque_d_20261117/metrics_supplement.py`, con NumPy 2.3.5. | Las 143 trayectorias guardadas y sus cuantiles E2. `--check --mirror` compara los CSV publicados y rechaza cambios de alineación o hash. E3 sigue sin cuantiles predictivos. |
+| Catálogo, observaciones y curvas de la aplicación. | `experiments/e3_dashboard_20261117/build_data.py`, en el entorno del dashboard. | Cohorte auditada y tablas del libro admitidas por hash. `--download --check` reconstruye el bundle y exige igualdad de bytes con sus archivos versionados. |
+| Predicciones ONNX de la semilla representante 271801. | `experiments/e3_dashboard_20261117/verify_serving.py`, con el lock de inferencia. | Compara los cuatro modelos sobre las mismas 608 ventanas contra predicciones congeladas, sin entrenamiento; declara la tolerancia absoluta 10⁻⁶ en σ₇ y escribe un recibo nuevo. |
+| Historial de 40 épocas del candidato y mejor época 38. | `experiments/e3_dashboard_20261117/extract_training_history.py`, en un entorno científico separado con Torch. | Verifica el checkpoint fuente antes de extraer su historial. Recupera valores ya registrados, con escalas MSE de entrenamiento y RMSE de validación distintas; no vuelve a entrenar. |
+| Gráficos interactivos y capturas de la aplicación. | `e3_dashboard/plots.py`, callbacks de `pages/` y `tests/test_e3_dashboard_browser.py`. | Los gráficos usan los bundles versionados. Las capturas requieren ejecutar y recorrer la aplicación real; el recibo registra dimensiones, hashes, errores y seis casos de navegador. |
+
+Los comandos siguientes se ejecutan desde la raíz. El cálculo estadístico utiliza su entorno de análisis; la aplicación utiliza el entorno de inferencia. Las salidas de una reproducción se escriben en `work/` para conservar los resultados entregados.
+
+```bash
+# Entorno de análisis estadístico fijado en el directorio del ejecutor.
+python experiments/e3_estadistica_posterior_20261117/run.py \
+  --data work/e3_statistical_inputs --download \
+  --output work/e3_reproduccion/estadistica
+
+python experiments/e3_revision_bloque_d_20261117/metrics_supplement.py \
+  --data-dir work/e3_statistical_inputs --download --check \
+  --mirror book_e3/_static/e3_revision_bloque_d_20261117
+```
+
+```bash
+# Entorno de inferencia instalado con requirements.txt.
+python experiments/e3_dashboard_20261117/build_data.py --download --check
+
+python experiments/e3_dashboard_20261117/verify_serving.py \
+  --npz work/e3_dashboard_inputs/current_cohort_arrays.npz --download \
+  --output work/e3_reproduccion/serving.json
+```
+
+La [ejecución de CI del dashboard correspondiente al corte de base](https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213072051) aprobó 25 casos unitarios, la reconstrucción del bundle, la comparación ONNX y seis recorridos de navegador. Su job científico aprobó 60 casos y omitió una comparación opcional que requiere SciPy; esa comparación sí formó parte de los 61 casos aprobados en el entorno científico local. Los recibos separan esas coberturas. Ninguno sustituye la evaluación de una URL Render ni el acta de una persona independiente.
+
+## 11.4 Acta de reproducción independiente
+
+El tercero debe trabajar sobre una versión inmutable y un contenedor científico identificado por digest. Antes de ejecutar se fijan las filas que debe producir, las tolerancias por campo y el criterio de aceptación; no se relajan tras observar discrepancias. El acta debe permitir reconstruir estas decisiones:
+
+1. Identificar a la persona y su relación con el proyecto, versión fuente, imagen, hardware, versiones y comandos reales. Confirmar el acceso autorizado a todos los insumos.
+2. Registrar si reconstruye agregados, exportaciones o toda la campaña de entrenamiento, y ejecutar desde cero el alcance declarado. Una operación parcial conserva ese nombre en el resultado.
+3. Comparar primero los identificadores de dataset, partición, modelo, semilla y métrica, el número de filas y los valores ausentes. Un conjunto de filas diferente no se corrige comparando sólo su intersección.
+4. Para cada campo numérico comparable, publicar la discrepancia máxima, las tolerancias absoluta/relativa y los pares que las exceden. Conservar stdout, errores, tiempos y productos; documentar también una reproducción fallida.
+5. Adjuntar el concepto firmado por la persona y discutir las diferencias por precisión, hardware, datos, no determinismo o procedimiento. La verificación automatizada ayuda a preparar el acta, pero no firma por el tercero.
+
+Para un campo métrico $k$, sea $\mathcal I_k$ el conjunto completo de filas emparejadas declarado antes de la ejecución. La discrepancia absoluta máxima es
+
+```{math}
+:label: eq-e3-reproduccion-discrepancia
+D_{\infty,k} = \max_{i\in\mathcal I_k}
+\left|z^{\mathrm{tercero}}_{i,k}-z^{\mathrm{referencia}}_{i,k}\right|.
+```
+
+La ecuación {eq}`eq-e3-reproduccion-discrepancia` se evalúa **por campo y unidad**, sin mezclar en un máximo RMSE, segundos o memoria. Cada par debe cumplir la tolerancia declarada, absoluta más relativa al valor de referencia. Los campos ausentes se mantienen ausentes y no se reemplazan por cero. La tabla del acta contendrá campo/unidad, número de pares, máxima discrepancia absoluta, tolerancias, cantidad de incumplimientos y dictamen. No se rellena aquí con ceros: la reproducción humana de la campaña E3 sigue pendiente y todavía no existe una discrepancia máxima observada de ese alcance.

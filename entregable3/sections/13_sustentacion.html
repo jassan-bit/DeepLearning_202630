@@ -61,6 +61,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/13_sustentacion';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -390,7 +392,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-tiempo">13.1 Distribución del tiempo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-la-demostracion">13.2 Preparación de la demostración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-y-comprobaciones-tecnicas">13.3 Preguntas y comprobaciones técnicas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensayo-y-trazabilidad">13.4 Ensayo y trazabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-tecnica-ensayo-y-trazabilidad">13.4 Práctica técnica, ensayo y trazabilidad</a></li>
 </ul>
             </nav>
         </div>
@@ -425,7 +427,7 @@
 <tr class="row-odd"><td><p>02:00–05:00</p></td>
 <td class="text-right"><p>3 min</p></td>
 <td><p>Benchmark, mejores configuraciones y predicción en vivo con explicación local.</p></td>
-<td><p>Tabla de 17 sistemas con estados honestos; configuración elegida en validación; entrada admitida, pronóstico, intervalo y explicación del mismo caso/artefacto.</p></td>
+<td><p>Tabla de 17 sistemas; configuración elegida en validación; entrada admitida, pronóstico, intervalo cuando exista y explicación del mismo caso/artefacto. E3 debe mostrar que no dispone de intervalo calibrado.</p></td>
 </tr>
 <tr class="row-even"><td><p>05:00–10:00</p></td>
 <td class="text-right"><p>5 min</p></td>
@@ -455,9 +457,32 @@
 <section id="preparacion-de-la-demostracion">
 <h2>13.2 Preparación de la demostración<a class="headerlink" href="#preparacion-de-la-demostracion" title="Link to this heading">#</a></h2>
 <p>El ensayo local puede recorrer Contexto, EDA y Modelos y usar MLP16, LSTM32, GRU32 y CNN-LSTM E3 mediante ONNX Runtime CPU. Los otros trece sistemas se muestran con resultados precalculados. La tabla resume diez semillas por red; cada curva e inferencia usa la semilla representante 271801, fijada por su ID. Se distinguirán esas unidades durante la exposición.</p>
-<p>Se prepararán los ejemplos históricos verificados y una entrada CSV válida. El pronóstico E3 no tiene un intervalo calibrado: debe explicarse esa ausencia. La sensibilidad local por intervenciones del mismo artefacto no se presentará como una atribución causal o como fidelidad y estabilidad globales ya demostradas. El historial E3 de la semilla 271801 conserva 40 épocas y mejor época 38; la pérdida normalizada durante entrenamiento y la RMSE de validación tienen ejes y unidades distintos.</p>
+<p>Se prepararán los ejemplos históricos verificados y una entrada CSV válida de siete barras diarias consecutivas anteriores a la fecha objetivo. Los tres ejemplos conservados se fijaron por posiciones cronológicas, no por aciertos del modelo. La predicción es volatilidad poblacional σ7 a un día, sin anualización; no es una probabilidad de subida ni una predicción del precio. El intervalo nominal del 90 % de los tres predictores E2 reutiliza su calibración congelada. El pronóstico E3 no tiene un intervalo calibrado: debe explicarse esa ausencia.</p>
+<p>La sensibilidad local por intervenciones del mismo artefacto no se presentará como una atribución causal o como fidelidad y estabilidad globales ya demostradas. El aviso fuera de dominio sólo contrasta rangos observados en ajuste: su ausencia no certifica fiabilidad. El historial E3 de la semilla 271801 conserva 40 épocas y mejor época 38; la pérdida normalizada durante entrenamiento y la RMSE de validación tienen ejes y unidades distintos.</p>
 <p>La <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">prueba de humo pública</span></a> recorrerá las páginas y cada modelo habilitado, con sus estados, errores, intervalo/explicación disponibles y tiempos medidos. Distinguirá arranque frío y respuesta caliente y conservará la URL, versión y registros. Las comprobaciones locales del capítulo 9 preparan ese recorrido; no lo sustituyen. Las capturas o vídeos de contingencia identificarán su versión y carácter grabado.</p>
 <p>La explicación debe distinguir el líder por validación disponible de E2 del líder descriptivo de prueba, una métrica de cohorte de una predicción de semilla representante y un nominal de cobertura de su verificación empírica. Se mantendrán visibles la exposición histórica del test y los límites de la evaluación del candidato.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Evidencia disponible antes del ensayo</p></th>
+<th class="head"><p>Alcance que se puede defender</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Aplicación y capturas verificadas</span></a></p></td>
+<td><p>25 casos unitarios y seis recorridos de navegador; el contenedor local también pasó los seis. Son pruebas automatizadas de software, no una sustentación o reproducción humana.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">Exportaciones e ida y vuelta</span></a></p></td>
+<td><p>Cuatro ONNX contrastados sobre 608 ventanas por modelo, con tolerancia absoluta declarada de <span class="math notranslate nohighlight">\(10^{-6}\)</span> en σ7. La paridad no es una nueva evaluación científica ni calibra a E3.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Pruebas del módulo científico</span></a></p></td>
+<td><p>Se conservan 61 casos aprobados en el entorno local. El CI del dashboard registra 60 aprobados y una omisión opcional de la referencia SciPy para cuantiles de otra cabeza; no se cuentan como 61 casos ejecutados en ese CI ni como evidencia de dominio personal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Servicio Render, ensayo y defensa</p></td>
+<td><p>La URL pública y su prueba de humo deben acreditarse en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>. No se registran aquí como realizados el ensayo cronometrado, la exposición o las respuestas del autor.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="preguntas-y-comprobaciones-tecnicas">
 <h2>13.3 Preguntas y comprobaciones técnicas<a class="headerlink" href="#preguntas-y-comprobaciones-tecnicas" title="Link to this heading">#</a></h2>
@@ -469,39 +494,53 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>¿Qué limitación concreta del paper guía o métodos existentes resuelve el mecanismo y qué evidencia la sustenta?</p></td>
-<td><p>Estudiar <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a>; el estrés retrospectivo motiva una hipótesis, pero su corrección por el candidato no se ha demostrado en mercado.</p></td>
+<td><p>Presentar la limitación y su evidencia de <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a>, separadas de la ganancia descriptiva. La receta evaluada tiene 1210 parámetros y salida aditiva positiva; no lleva la penalización/saturación del primer diseño ni la cabeza de momentos. Sus diez semillas dan RMSE media 0,0029394324 en 608 fechas conocidas. Ese resultado no demuestra por sí solo que haya corregido causalmente la limitación propuesta.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Si proviene de otra aplicación, ¿qué adaptación algorítmica hizo y por qué era necesaria?</p></td>
-<td><p>Explicar fuente, diferencias y equivalencias con trabajos cercanos. La revisión de novedad y la verificación externa siguen abiertas.</p></td>
+<td><p>Mostrar fuente original, formulación anterior, cambio programado y comparación con los trabajos cercanos. Si se defiende un mecanismo propio, sustentar igualmente su diferencia con la literatura. No basta trasladar datos o cambiar hiperparámetros; la revisión de novedad y la verificación humana externa siguen abiertas.</p></td>
 </tr>
 <tr class="row-even"><td><p>¿Qué propiedad demuestra y qué supuestos no cumplen exactamente los datos reales?</p></td>
-<td><p>Derivar la cota latente de la sección 7, sus normas/restricciones y límites; no extenderla al codificador o OHLCV crudo sin una prueba adicional.</p></td>
+<td><p>Derivar la cota de la cabeza aditiva de <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7.3</span></a>, con piso, escala y pesos fijos y filas latentes acotadas. Allí <span class="math notranslate nohighlight">\(K/a_{\rm tr}=77{,}32121111929344\)</span>; se comprobaron 1728 pares sintéticos y 96 normas de gradiente, sin violaciones observadas con la tolerancia declarada. La prueba formal, no el número finito de ensayos, sostiene la desigualdad. No hay una cota del encoder respecto de OHLCV crudo ni una demostración de que esa propiedad cause la menor RMSE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>¿Cuántas variantes Nd probó y cómo controló selección sobre validación?</p></td>
-<td><p>Explicar el corte inicial de cuatro variantes artificiales, las ocho recetas de desarrollo y las diez réplicas de una receta; Nd global sigue sin conciliar. La bitácora posterior conserva fechas y no transforma decisiones conocidas en preregistro.</p></td>
+<tr class="row-odd"><td><p>¿Cuántas variantes <span class="math notranslate nohighlight">\(N_d\)</span> probó y cómo controló selección sobre validación?</p></td>
+<td><p>Mostrar el <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">inventario y la bitácora</span></a>: el corte inicial de cuatro variantes artificiales, ocho recetas de desarrollo completadas y diez réplicas de una receta son conteos distintos. <span class="math notranslate nohighlight">\(N_d\)</span> global sigue sin conciliar. La consolidación posterior conserva las fechas originales y no convierte decisiones conocidas en preregistro ni corrige por sí sola el sesgo del ganador.</p></td>
 </tr>
 <tr class="row-even"><td><p>Al retirar un componente, ¿qué predijo la hipótesis y qué observó?</p></td>
-<td><p>Separar intervenciones de software de la ablación estadística, todavía no ejecutada. El factorial y el control de capacidad no tienen métricas BTC.</p></td>
+<td><p>Escribir la predicción secundaria antes de mostrar el resultado y distinguir qué receta se interviene. Las pruebas funcionales del primer diseño y los controles de los pilotos no completan la ablación estadística del aporte finalmente defendido. El factorial, las interacciones con IC y el control de capacidad correspondientes siguen pendientes.</p></td>
 </tr>
 <tr class="row-odd"><td><p>¿Quién integra la familia y cómo corrigió comparaciones múltiples?</p></td>
-<td><p>Enumerar los 16 rivales más E3 y mostrar los 48 contrastes posteriores con Holm global; explicar el máximo por rival y los ámbitos de las pruebas, sin convertirlos en una campaña confirmatoria.</p></td>
+<td><p>Enumerar los diez del Top 10, MLP16, LSTM32, GRU32, Persistence, SeasonalNaive y ARIMA: 16 rivales frente a E3. Mostrar en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8</span></a> los 48 contrastes posteriores, Holm global a 0,05 y el máximo de los tres p ajustados por rival. La nula de ganancia usa <span class="math notranslate nohighlight">\(\delta=0{,}00025772842664981106\)</span>. Los procedimientos temporal e inicialización tienen alcances distintos; los 48 rechazos y la permanencia de E3 entre diez sistemas del MCS90 no acreditan automáticamente R3 o un ganador único.</p></td>
 </tr>
 <tr class="row-even"><td><p>¿Qué MDE y potencia conjunta alcanzó?</p></td>
-<td><p>El piloto y dimensionamiento del candidato están pendientes. No trasladar la potencia histórica de E2 ni multiplicar marginales bajo independencia no justificada.</p></td>
+<td><p>No se han dimensionado prospectivamente para este candidato. La guía pide un piloto con al menos cinco semillas, potencia de al menos 0,90 por contraste y potencia conjunta reportada. Diez semillas observadas y p pequeños no sustituyen ese cálculo. No trasladar la potencia histórica de E2 ni multiplicar marginales bajo independencia no justificada.</p></td>
 </tr>
 <tr class="row-odd"><td><p>¿Dónde no supera a los benchmarks y por qué?</p></td>
-<td><p>Conservar el resultado adverso del primer piloto y el diagnóstico posterior de las 18 fechas de objetivo alto donde la aditiva fue peor que M00 proyectado. Contrastar errores históricos en la vista Modelos sin atribuir una causa o régimen observable al origen que no se haya demostrado.</p></td>
+<td><p>Conservar el primer piloto desfavorable y el diagnóstico posterior de las 18 fechas de objetivo alto: la aditiva tuvo RMSE 22,50 % mayor que M00 proyectado. Ese grupo usa volatilidad realizada y no define un régimen observable al pronosticar. Examinar los errores compartidos en Modelos y presentar las causas como hipótesis por comprobar, sin ocultar el resultado adverso.</p></td>
 </tr>
 <tr class="row-even"><td><p>¿Qué cambia al retirar el conjunto adicional más desfavorable?</p></td>
-<td><p>Los tres conjuntos siguen sin elegir/evaluar; la sensibilidad se prefija y no permite retirar un dataset para mejorar la afirmación principal.</p></td>
+<td><p>Todavía no se han elegido/evaluado los tres conjuntos exigidos; no hay un resultado que recalcular. Una futura sensibilidad debe mostrar la conclusión con y sin cada conjunto y mantener visible el análisis completo. No permite eliminar el conjunto desfavorable para mejorar la afirmación principal; los usados para rediseñar pasan a desarrollo.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Durante las preguntas el docente podrá pedir derivar un gradiente, modificar una pérdida o parte del mecanismo y ejecutar una prueba unitaria o un experimento reducido. La persona autora debe poder explicar qué cambia en la formulación, los supuestos, la cota y los tests. Que el código pase CI no demuestra ese dominio técnico. La imposibilidad de explicarlo es evidencia en contra de las condiciones R1 y R2, según la guía.</p>
 </section>
-<section id="ensayo-y-trazabilidad">
-<h2>13.4 Ensayo y trazabilidad<a class="headerlink" href="#ensayo-y-trazabilidad" title="Link to this heading">#</a></h2>
+<section id="practica-tecnica-ensayo-y-trazabilidad">
+<h2>13.4 Práctica técnica, ensayo y trazabilidad<a class="headerlink" href="#practica-tecnica-ensayo-y-trazabilidad" title="Link to this heading">#</a></h2>
+<p>Para preparar una derivación breve, la persona autora deberá explicar la salida <span class="math notranslate nohighlight">\(\widehat y=\sqrt A+a_{\rm tr}[10^{-4}+\operatorname{softplus}(z)]\)</span>, con <span class="math notranslate nohighlight">\(A\)</span> observable al origen y <span class="math notranslate nohighlight">\(a_{\rm tr}\)</span> calculado sólo en ajuste. Con ambos fijos, <span class="math notranslate nohighlight">\(\partial\widehat y/\partial z=a_{\rm tr}\operatorname{sigmoid}(z)\)</span>. Para la pérdida de un caso <span class="math notranslate nohighlight">\(\ell=(\widehat y-y)^2/a_{\rm tr}^2\)</span>, resulta <span class="math notranslate nohighlight">\(\partial\ell/\partial z=2(\widehat y-y)\operatorname{sigmoid}(z)/a_{\rm tr}\)</span>; al promediar un lote aparece además su factor <span class="math notranslate nohighlight">\(1/B\)</span>. Debe poder conectar esa cuenta con el <code class="docutils literal notranslate"><span class="pre">forward</span></code>, el escalado, autograd y los supuestos de la cota. Repetir esta fórmula no acredita que haya comprendido o defendido el código.</p>
+<p>Los comandos se preparan <strong>antes</strong> de la exposición, desde la raíz de un checkout completo y en los entornos separados fijados en el repositorio. El entorno científico se instala con <code class="docutils literal notranslate"><span class="pre">requirements-e3-original-cpu.lock.txt</span></code>; una comprobación breve de los parámetros compartidos, pérdida/gradientes y guardado/carga es:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OPENBLAS_NUM_THREADS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>tests/test_innovation_model.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-k<span class="w"> </span><span class="s1">'three_variants_share_seeded_parameters or normalized_loss_is_exactly_specified or mixed_precision_state_roundtrip'</span><span class="w"> </span>-q
+</pre></div>
+</div>
+<p>Estos casos usan ventanas y etiquetas sintéticas y abarcan las tres cabezas v2; no se atribuye todo el conjunto exclusivamente a la aditiva. Si el docente pide un cambio, se trabajará sobre una copia de práctica identificada por revisión, indicando qué comportamiento o prueba debería cambiar antes de ejecutarla. El resultado no reemplaza la versión congelada ni una ablación de mercado.</p>
+<p>En el entorno de inferencia fijado por <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, el siguiente recorrido comprueba admisión de CSV, transformación/piso, intervalos disponibles, caché, integridad y sensibilidad de los cuatro artefactos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OPENBLAS_NUM_THREADS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-s<span class="w"> </span>tests<span class="w"> </span>-p<span class="w"> </span><span class="s1">'test_e3_dashboard_inference.py'</span><span class="w"> </span>-v
+</pre></div>
+</div>
+<p>Esta segunda comprobación sí realiza inferencias CPU de ingeniería sobre pesos conservados; no entrena ni recalibra. No demuestra dominio individual, fidelidad causal o disponibilidad de Render. La prueba de humo sobre la URL pública seguirá el procedimiento del capítulo 10.</p>
 <p>El ensayo deberá registrar fecha, participantes, versión, duración por bloque, ejemplo usado y fallos/acciones pendientes. Se prepararán comandos concretos en el entorno fijado y con insumos verificados; la prueba de software no se describirá como una campaña científica completa.</p>
 <p>No se afirma que el ensayo o la sustentación hayan ocurrido. El <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo final</span></a> mantiene separados el uso de IA, la revisión personal pendiente y las firmas; la <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">sección 14</span></a> conserva los criterios de evaluación sin asignar calificación actual.</p>
 </section>
@@ -576,7 +615,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-del-tiempo">13.1 Distribución del tiempo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-la-demostracion">13.2 Preparación de la demostración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-y-comprobaciones-tecnicas">13.3 Preguntas y comprobaciones técnicas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensayo-y-trazabilidad">13.4 Ensayo y trazabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-tecnica-ensayo-y-trazabilidad">13.4 Práctica técnica, ensayo y trazabilidad</a></li>
 </ul>
   </nav></div>
 

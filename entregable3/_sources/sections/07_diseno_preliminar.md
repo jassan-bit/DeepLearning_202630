@@ -22,13 +22,13 @@ $$
 d_j(H)=\sqrt{\|h_j-(PH)_j\|_2^2+\varepsilon^2},\qquad
 s_j=q^\top h_j-\lambda d_j(H),\qquad
 a=\operatorname{softmax}(s/\tau).
-$$
+$$ (eq-e3-preliminary-discordance-attention)
 
 $$
 v_j=\frac{B h_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 c=\sum_{j=1}^{7}a_jv_j,\qquad
 f(H)=\operatorname{softplus}(w^\top c+b).
-$$
+$$ (eq-e3-preliminary-bounded-readout)
 
 $B>0$ es un radio de saturación escalar, no una matriz; $\varepsilon>0$, $\lambda\ge0$ y $\tau>0$. La salida recupera la escala original con la media positiva del objetivo de entrenamiento. La regla candidata combina penalización de discordancia y saturación radial; su procedencia y su novedad deben contrastarse con trabajos cercanos antes de adoptarla.
 
@@ -40,7 +40,7 @@ $$
 |f(H)-f(H')|\le
 W\left[1+\frac{B\sqrt7}{2\tau_{\min}}
 \left(Q+\Lambda\|I-P\|_2\right)\right]\|H-H'\|_F.
-$$
+$$ (eq-e3-preliminary-lipschitz-bound)
 
 La ruta de demostración usa que la saturación radial y Softplus son 1-Lipschitz, cada valor tiene norma acotada por $B$, la discordancia tiene constante $\|I-P\|_2$ y el jacobiano de softmax tiene norma espectral a lo sumo $1/2$. La demostración completa y la verificación numérica de la cabeza latente se presentan en el Bloque C; no se extienden automáticamente al predictor desde OHLCV crudo.
 

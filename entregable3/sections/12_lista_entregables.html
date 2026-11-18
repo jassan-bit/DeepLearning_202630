@@ -389,6 +389,7 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-los-trece-productos">12.1 Registro de los trece productos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identidad-y-evidencia-de-la-entrega">12.2 Identidad y evidencia de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-de-cierre">12.3 Secuencia de cierre</a></li>
 </ul>
             </nav>
         </div>
@@ -402,7 +403,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lista-de-entregables">
 <h1>12 Lista de entregables<a class="headerlink" href="#lista-de-entregables" title="Link to this heading">#</a></h1>
-<p>Este registro aplica los <strong>trece productos</strong> exigidos por la Sección 12 de la guía. Es una lista de cierre documental y de evidencia, no una declaración de entrega completa. «Disponible con alcance» significa que existe el producto descrito; «parcial» señala requisitos pendientes del mismo producto. Un estado pendiente no se convierte en evidencia por incluirlo en el índice.</p>
+<p>Este registro aplica los <strong>trece productos</strong> exigidos por la Sección 12 de la guía. Cada fila relaciona el producto con su evidencia y una condición verificable de cierre. «Disponible con alcance» significa que existe el producto descrito; «parcial» señala requisitos pendientes del mismo producto. La publicación de fuentes, la verificación técnica y la acreditación científica se registran por separado: un producto puede compilar o pasar sus pruebas y conservar requisitos científicos pendientes.</p>
 <section id="registro-de-los-trece-productos">
 <h2>12.1 Registro de los trece productos<a class="headerlink" href="#registro-de-los-trece-productos" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -416,23 +417,23 @@
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>URL pública del dashboard en Render, funcional durante la sustentación.</p></td>
-<td><p><a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Prototipo Dash local</span></a> con tres páginas, 17 sistemas y cuatro modelos ONNX en CPU; <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">plan de despliegue</span></a>.</p></td>
-<td><p><strong>Pendiente del servicio público.</strong> La aplicación existe; falta la URL Render y su comprobación de funcionamiento. GitHub Pages publica el informe.</p></td>
+<td><p><a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Código y evidencias de Dash</span></a> con tres páginas, 17 sistemas y cuatro modelos ONNX en CPU; <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">procedimiento de despliegue</span></a>.</p></td>
+<td><p><strong>Pendiente del servicio público.</strong> Se cierra con URL HTTPS Render, versión desplegada, fecha y prueba de humo de páginas y cuatro predicciones/explicaciones. GitHub Pages publica el informe y conserva su función propia.</p></td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p>Repositorio con estructura de la sección 9, README de instalación/uso/despliegue, dependencias exactas, Dockerfile, semillas, licencia y CITATION.cff.</p></td>
 <td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630">Repositorio</a>, <code class="docutils literal notranslate"><span class="pre">app.py</span></code>, <code class="docutils literal notranslate"><span class="pre">pages/</span></code>, <code class="docutils literal notranslate"><span class="pre">e3_dashboard/</span></code>, README, Dockerfile, CITATION.cff y dependencias fijadas de servicio/desarrollo.</p></td>
-<td><p><strong>Parcial.</strong> Entorno ONNX Runtime sin Torch e imagen local construidos y comprobados; faltan el despliegue y validación en Render y las licencias/ratificaciones finales. El README de <code class="docutils literal notranslate"><span class="pre">training/</span></code> separa las ejecuciones científicas.</p></td>
+<td><p><strong>Parcial.</strong> ONNX Runtime sin Torch e imagen local comprobados; el README de <code class="docutils literal notranslate"><span class="pre">training/</span></code> separa las ejecuciones científicas. Faltan la licencia propia del proyecto y la ratificación de derechos de cada fuente: las licencias MIT de Bootstrap/Bootswatch sólo cubren esos recursos. Cierre con archivo de licencia aprobado, CITATION revisado e instalación reproducida sobre la versión entregada.</p></td>
 </tr>
 <tr class="row-even"><td><p>3</p></td>
 <td><p>Jupyter Book, fuentes y versión compilada/publicada, con los contenidos de la sección 11.</p></td>
-<td><p>Este libro, <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>, bibliografía, <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">mapa de capítulos</span></a> y <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">análisis estadístico posterior</span></a>.</p></td>
-<td><p><strong>Parcial.</strong> Hay trazabilidad de los resultados guardados y del cálculo estadístico; faltan el contenedor y la reproducción independiente de la campaña completa.</p></td>
+<td><p>Este libro, <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>, bibliografía, <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">mapa científico dentro de las secciones 1–16</span></a> y <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">análisis estadístico posterior</span></a>.</p></td>
+<td><p><strong>Publicación técnica comprobada; contenido científico parcial.</strong> El corte de base pasó compilación estricta, comprobación de enlaces y verificación de las páginas servidas. Cierre final con los resultados y límites completos, productos reconstruibles y recibo del tercero de la campaña.</p></td>
 </tr>
 <tr class="row-odd"><td><p>4</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">src/original_model.py</span></code> con docstrings y pruebas en CI.</p></td>
 <td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/src/original_model.py">Módulo inicial</a>, <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/tests/test_original_model.py">pruebas</a> y workflow <code class="docutils literal notranslate"><span class="pre">verify-e3-original.yml</span></code>; la referencia aditiva se implementa en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/src/e3_innovation_model.py">src/e3_innovation_model.py</a>.</p></td>
-<td><p><strong>Disponible con identidades distintas.</strong> Los 35 casos artificiales del corte inicial pertenecen al núcleo de 1211 parámetros; no son un recibo intercambiable para la referencia aditiva de 1210 parámetros. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a> identifica código, pruebas y límites de cada mecanismo. La evidencia de software no certifica comprensión del autor, novedad ni R3.</p></td>
+<td><p><strong>Disponible con identidades distintas.</strong> Los 35 casos artificiales iniciales pertenecen al núcleo de 1211 parámetros. La referencia evaluada tiene 1210; la <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a> distingue código, pruebas y límites. Cierre con el código de la receta entregada identificado por hash, sus docstrings y CI vigente; la explicación y modificación en vivo corresponden al autor y siguen sin acreditarse por esos tests.</p></td>
 </tr>
 <tr class="row-even"><td><p>5</p></td>
 <td><p>Declaración de estándar, protocolo preregistrado con fecha/tag y bitácora de diseño.</p></td>
@@ -442,42 +443,42 @@
 <tr class="row-odd"><td><p>6</p></td>
 <td><p>Procedencia del mecanismo, fuente, cita completa y modificaciones algorítmicas.</p></td>
 <td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/procedencia.md">Procedencia del candidato</a>, formulación y antecedentes de la <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a>.</p></td>
-<td><p><strong>Parcial.</strong> Deben cerrarse equivalencias, novedad, revisión de fuentes y adaptación, y consolidarse el documento final <code class="docutils literal notranslate"><span class="pre">experiments/procedencia.md</span></code>. La procedencia actual declara asistencia de IA.</p></td>
+<td><p><strong>Parcial.</strong> Cierre con <code class="docutils literal notranslate"><span class="pre">experiments/procedencia.md</span></code> revisado, fuente original identificada, diferencias algorítmicas clasificadas y matriz de novedad respaldada por búsquedas. Conservar la declaración de asistencia de IA y los hallazgos de equivalencia; un traslado de ruta no demuestra novedad.</p></td>
 </tr>
 <tr class="row-even"><td><p>7</p></td>
 <td><p>Demostración formal anexa, con supuestos y verificación numérica.</p></td>
 <td><p><a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">Demostraciones separadas por arquitectura</span></a> y <a class="reference download internal" download="" href="../_downloads/baebf3f0c6b03093bbfcfebf157eef77/theory.md"><code class="xref download docutils literal notranslate"><span class="pre">derivación</span> <span class="pre">íntegra</span></code></a> del primer módulo.</p></td>
-<td><p><strong>Disponible con alcance.</strong> El primer módulo conserva su cota y 256 pares artificiales. La cabeza aditiva actual tiene otra cota condicional, con 1728 pares y 96 gradientes sintéticos. No cubren OHLCV crudo ni prueban novedad o mejora de mercado; falta demostrar la relevancia predictiva de la propiedad.</p></td>
+<td><p><strong>Disponible con alcance.</strong> Primer módulo: cota y 256 pares artificiales; cabeza aditiva: otra cota condicional, 1728 pares y 96 gradientes sintéticos. Cierre con supuestos vinculados a la receta entregada y evidencia de que la propiedad importa en los datos reales. Las verificaciones latentes no establecen una cota sobre OHLCV crudo ni prueban novedad o mejora de mercado.</p></td>
 </tr>
 <tr class="row-odd"><td><p>8</p></td>
 <td><p>Tabla maestra CSV/parquet con Top 10, baselines, original, tres conjuntos adicionales, métricas por ejecución, semillas, tiempos y costes.</p></td>
 <td><p><a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">Tabla de configuraciones</span></a>, fuentes de <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloques_ab_20261115/</span></code> y <a class="reference download internal" download="" href="../_downloads/0bf20be134132d812eba1b43760104f0/metrics.csv"><code class="xref download docutils literal notranslate"><span class="pre">métricas</span> <span class="pre">posteriores</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">17</span> <span class="pre">sistemas</span></code></a>, ampliadas en el capítulo 8.</p></td>
-<td><p><strong>Parcial.</strong> El catálogo de Dash deriva de esas métricas y su igualdad está probada. Faltan los tres conjuntos adicionales y todos los campos comparables de recursos y exportación; las curvas representantes no sustituyen las medias de diez semillas.</p></td>
+<td><p><strong>Parcial.</strong> Dash deriva de las mismas métricas y prueba su igualdad. Cierre con los tres conjuntos adicionales y todos los campos de recursos medidos en condiciones comunes, datos por ejecución y agregados trazables. Las curvas representantes no sustituyen las medias de diez semillas; los campos sin medida permanecen ausentes.</p></td>
 </tr>
 <tr class="row-even"><td><p>9</p></td>
 <td><p>Artefactos exportados con <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> y prueba de ida y vuelta.</p></td>
 <td><p>Cuatro ONNX en <code class="docutils literal notranslate"><span class="pre">artifacts/e3_dashboard_v1/</span></code>: MLP16, LSTM32, GRU32 y CNN-LSTM E3, todos de la semilla 271801. Las tres exportaciones TorchScript históricas se conservan.</p></td>
-<td><p><strong>Disponible con alcance parcial.</strong> Paridad contra memoria CPU y predicciones congeladas en las 608 fechas, con tolerancia absoluta 10⁻⁶ en σ₇. Faltan los otros trece modelos y una política final de ajuste común; exportar no modifica el entrenamiento histórico.</p></td>
+<td><p><strong>Disponible con alcance parcial.</strong> Paridad contra memoria CPU y predicciones congeladas en las 608 fechas, con tolerancia absoluta 10⁻⁶ en σ₇. Cierre con política final común y artefactos/recibos de los otros trece sistemas. El modo precalculado por límites de memoria se justifica para el dashboard en la sección 9 y conserva su alcance; no se registra como una exportación realizada.</p></td>
 </tr>
 <tr class="row-odd"><td><p>10</p></td>
 <td><p>MODEL_CARD.md y DATA_STATEMENT.md.</p></td>
 <td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/MODEL_CARD.md">MODEL_CARD.md</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/DATA_STATEMENT.md">DATA_STATEMENT.md</a>, con usos, fuentes, métricas y límites.</p></td>
-<td><p><strong>Disponibles como documentación de este corte.</strong> La revisión humana, los derechos de datos y los requisitos científicos abiertos conservan su estado; estos archivos no son firmas o una acreditación de novedad.</p></td>
+<td><p><strong>Disponibles como documentación de este corte.</strong> Cierre con revisión del autor y coherencia contra la versión final de datos/modelo, incluyendo licencia, riesgos y uso previsto. Los requisitos científicos abiertos conservan su estado; estas fichas no acreditan R1/R3 ni reemplazan una firma.</p></td>
 </tr>
 <tr class="row-even"><td><p>11</p></td>
 <td><p>Archivo versionado del repositorio con identificador persistente, citado en el cierre.</p></td>
-<td><p>Fuentes y commits en GitHub.</p></td>
-<td><p><strong>Pendiente.</strong> Faltan archivo verificable de la versión entregada e identificador persistente, por ejemplo DOI. Un enlace mutable a <code class="docutils literal notranslate"><span class="pre">main</span></code> o una release de E2 no los sustituye.</p></td>
+<td><p>Fuentes y commits en GitHub; <code class="docutils literal notranslate"><span class="pre">CITATION.cff</span></code> permite citar el repositorio.</p></td>
+<td><p><strong>Pendiente.</strong> Cierre con versión exacta archivada, contenido/hash comprobados, identificador persistente resoluble y cita en el último capítulo. Un enlace mutable a <code class="docutils literal notranslate"><span class="pre">main</span></code>, CITATION sin DOI o una release de E2 no sustituyen el archivo de E3.</p></td>
 </tr>
 <tr class="row-odd"><td><p>12</p></td>
 <td><p>Declaración firmada de autoría, contribuciones y uso de herramientas, incluida IA, en el último capítulo.</p></td>
 <td><p>Procedencia existente y <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">registro de autoría por cerrar</span></a>.</p></td>
-<td><p><strong>Parcial.</strong> Usos de IA descritos; contribuciones individuales y firmas deben ser confirmadas por cada integrante. No se generan firmas ni certificaciones de comprensión.</p></td>
+<td><p><strong>Parcial.</strong> Cierre con contribuciones, herramientas, alcance de IA y firmas ratificados por cada integrante en el último capítulo. El nombre de autor en la portada o CITATION no sustituye esa declaración; no se generan firmas ni certificaciones de comprensión.</p></td>
 </tr>
 <tr class="row-even"><td><p>13</p></td>
 <td><p>Reporte de reproducción independiente y prueba de humo, anexos al libro.</p></td>
-<td><p>Comprobaciones locales de datos, inferencia, historial y app; requisitos de servicio en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>, <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a> y el <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo de cierre</span></a>.</p></td>
-<td><p><strong>Pendiente del cierre independiente y público.</strong> Los tests locales no equivalen a una persona ajena reproduciendo la campaña científica ni al humo de una URL Render.</p></td>
+<td><p>Comprobaciones locales y CI de datos, inferencia, historial y app; procedimiento de servicio en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>, acta y discrepancia por campo en <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>, y <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo de cierre</span></a>.</p></td>
+<td><p><strong>Pendiente del cierre independiente y público.</strong> Se requieren dos recibos con sus alcances: persona ajena que reconstruye la campaña y publica su máxima discrepancia, y humo contra la URL Render con páginas, predicciones, explicaciones y tiempos. Un recibo de CI, un humo local o una revisión de otro agente de IA no los reemplazan.</p></td>
 </tr>
 </tbody>
 </table>
@@ -486,11 +487,22 @@
 <section id="identidad-y-evidencia-de-la-entrega">
 <h2>12.2 Identidad y evidencia de la entrega<a class="headerlink" href="#identidad-y-evidencia-de-la-entrega" title="Link to this heading">#</a></h2>
 <p>Cada producto final deberá identificar versión/commit o tag, fecha real, fuente y hash cuando corresponda, junto con el comando o procedimiento que lo produce y el informe de su comprobación. El archivo persistente se vinculará a esa versión exacta. Se conservarán diferencias, fallos, resultados negativos y límites de reproducción.</p>
+<p>El corte técnico de base es el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/7c17957871f9390e73889c2bcb19e730870fd9bc">commit <code class="docutils literal notranslate"><span class="pre">7c17957871f9390e73889c2bcb19e730870fd9bc</span></code></a>. La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213071892">publicación verificada de los tres libros</a> y el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213072051">CI del dashboard</a> documentan ese corte. E3 conserva 39 páginas HTML y las 118 descargas anteriores; los tests del dashboard incluyen 25 casos unitarios y seis recorridos reales de navegador. El contenedor local del servicio alcanzó aproximadamente 186 MiB bajo un límite configurado de 512 MiB en su prueba individual; esa medición no acredita capacidad, concurrencia o funcionamiento en Render. Estos identificadores permiten revisar lo comprobado sin tratar esta versión como el archivo final con DOI.</p>
 <p>Las rutas exigidas por la guía se distinguen de los documentos de trabajo anidados que existen hoy. Copiar un borrador a un nombre canónico no lo convierte en preregistro ni resuelve su contenido pendiente. La selección de recetas y los resultados históricos conservan su identidad; no se editan para completar casillas del candidato.</p>
 <p>La <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">rúbrica</span></a> determina cómo se evalúan los productos y la evidencia. Esta tabla no asigna una nota ni un tope de calificación, y no sustituye los criterios R1, R2 y R3.</p>
 <p>El suplemento del <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">capítulo 8</span></a> amplía la tabla BTC con sMAPE, R², cobertura/anchura de E2 desde cuantiles conservados e IC de RMSE entre diez semillas para las redes. Se distinguen los campos ausentes de E3 y los clásicos deterministas. No incorpora datos adicionales, recursos no medidos o una calibración nueva, por lo que el maestro final sigue parcial.</p>
 <p>El cálculo posterior de la <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a> conserva <strong>133 predictores de E2</strong> —trece redes con diez semillas y tres trayectorias deterministas— y diez semillas del modelo E3 de 1210 parámetros con cabeza positiva aditiva. Los <a class="reference download internal" download="" href="../_downloads/29e3a1414499a70f9d5dc7ef6e55972c/primary_contrasts.csv"><code class="xref download docutils literal notranslate"><span class="pre">48</span> <span class="pre">contrastes</span> <span class="pre">primarios</span></code></a> rechazan tras Holm global; sus ámbitos de incertidumbre distintos, el entrenamiento E2 con 655 ejemplos frente a 532 de E3 y la exposición previa al calendario impiden convertir ese resultado en un cierre confirmatorio de R3. El MCS90 auxiliar conserva diez sistemas, incluido E3, y no demuestra un ganador único. Completar este cálculo no acredita R1, R2, suficiencia de potencia o todos los requisitos de R3. La guía pide pruebas distintas apropiadas, cuya pertinencia debe justificarse; no añade una condición literal de homogeneidad de sus ámbitos.</p>
 <p>El <a class="reference internal" href="apendice_a_plantillas.html"><span class="std std-doc">Apéndice A</span></a> aporta archivos editables para preparar estándar, procedencia, bitácora, contrastes y verificaciones. Son plantillas identificadas como tales; no completan los productos pendientes mediante nombres, fechas, firmas o resultados ficticios. La <a class="reference internal" href="15_integridad_academica.html"><span class="std std-doc">sección 15</span></a> mantiene las reglas de atribución y trazabilidad durante ese cierre.</p>
+</section>
+<section id="secuencia-de-cierre">
+<h2>12.3 Secuencia de cierre<a class="headerlink" href="#secuencia-de-cierre" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Completar el servicio Render y anexar su prueba pública de humo, con el commit desplegado y el comportamiento de inicio tras inactividad. Verificar otra vez la URL antes de sustentar y conservar la contingencia documentada del capítulo 10.</p></li>
+<li><p>Resolver con el autor las licencias, las contribuciones y la declaración de herramientas; mantener separados los permisos del proyecto y los de sus datos o recursos externos.</p></li>
+<li><p>Cerrar el protocolo previo a las futuras ejecuciones, la evaluación y los campos del maestro que siguen pendientes. Los resultados actuales conservan su carácter retrospectivo y sus resultados adversos.</p></li>
+<li><p>Ejecutar la reproducción humana independiente con su contenedor científico, versión y tolerancias fijadas, y anexar la tabla de discrepancias definida en el capítulo 11. Si falla, registrar y resolver la causa antes de declarar cierre.</p></li>
+<li><p>Fijar la versión entregada, reconstruir y verificar el libro, comprobar la coherencia del dashboard con el maestro y archivar esa versión con identificador persistente. Citarla en el último capítulo y revisar nuevamente las trece filas contra los productos efectivamente archivados.</p></li>
+</ol>
 </section>
 </section>
 
@@ -562,6 +574,7 @@
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-los-trece-productos">12.1 Registro de los trece productos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identidad-y-evidencia-de-la-entrega">12.2 Identidad y evidencia de la entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencia-de-cierre">12.3 Secuencia de cierre</a></li>
 </ul>
   </nav></div>
 

@@ -389,6 +389,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-informe">Alcance del informe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-motivacion">1.1 Antecedentes y motivación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuatro-componentes-obligatorios-y-objetivos">1.2 Cuatro componentes obligatorios y objetivos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avances-y-limites-actuales">1.3 Avances y límites actuales</a></li>
@@ -406,15 +408,25 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
 <h1>1 Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h1>
+<section id="resumen">
+<h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
+<p>Se estudia el pronóstico de la volatilidad diaria de BTCUSDT de Binance Spot. A partir de siete barras OHLCV pasadas se estima σ₇ con horizonte de un día; el problema es de regresión temporal y no de dirección del precio. La evidencia reúne 1316 ventanas auditadas y 17 sistemas, con 133 predictores de E2 y diez réplicas de E3 sobre las mismas 608 fechas de prueba.</p>
+<p>La referencia E3 combina CNN causal, LSTM unidireccional, atención temporal por contenido y salida aditiva positiva, con 1210 parámetros. En diez semillas obtiene RMSE media 0,0029394324 y desviación estándar 0,0000471254; la reducción descriptiva frente al mejor rival E2 es 24,10 %. Los 48 contrastes posteriores rechazan tras Holm, pero sus ámbitos de incertidumbre difieren y el MCS conserva diez sistemas.</p>
+<p>Los aportes técnicos documentados son: (1) trazabilidad de datos, recetas, correcciones y resultados congelados; (2) comparación estadística reproducible desde predicciones guardadas, con supuestos y límites explícitos; y (3) dashboard multipágina con 17 sistemas, cuatro exportaciones ONNX CPU verificadas y trece modalidades precalculadas. No se presentan esos productos como prueba de originalidad científica.</p>
+<p>Persisten exposición previa al calendario y tratamientos de ajuste distintos. Faltan evaluación en tres conjuntos adicionales, potencia confirmatoria, calibración de E3, reproducción humana independiente y URL pública verificada en Render. R1, la defensa de R2 y R3 permanecen abiertos.</p>
+</section>
+<section id="alcance-del-informe">
+<h2>Alcance del informe<a class="headerlink" href="#alcance-del-informe" title="Link to this heading">#</a></h2>
 <p>Este tercer entregable da continuidad al proyecto de pronóstico de volatilidad de Bitcoin. La guía exige reunir <strong>correcciones de E2, un producto predictivo, una contribución neuronal defendible y un informe científico reproducible</strong>, sus cuatro componentes obligatorios. El avance actual incluye una CNN-LSTM con atención entrenada en diez semillas y su evaluación estadística retrospectiva; todavía no equivale al cierre de los cuatro productos.</p>
-<p>El problema es BTCUSDT de Binance Spot. Al inicio del día <span class="math notranslate nohighlight">\(t\)</span> se utilizan las siete barras OHLCV anteriores para estimar la desviación poblacional de siete retornos logarítmicos, sin anualizar y con horizonte de un día:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>El problema es BTCUSDT de Binance Spot. Al inicio del día <span class="math notranslate nohighlight">\(t\)</span> se utilizan las siete barras OHLCV anteriores para estimar la desviación poblacional de siete retornos logarítmicos, sin anualizar y con horizonte de un día, según la ecuación <a class="reference internal" href="#equation-eq-e3-objective-sigma7">(1)</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-objective-sigma7">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-e3-objective-sigma7" title="Link to this equation">#</a></span>\[
 r_t=\log(C_t/C_{t-1}),\qquad
 \bar r_t=\frac17\sum_{j=0}^{6}r_{t-j},\qquad
 \sigma_7(t)=\sqrt{\frac17\sum_{j=0}^{6}(r_{t-j}-\bar r_t)^2}.
 \]</div>
 <p>La etiqueta requiere ocho cierres y contiene el retorno del día objetivo, aún desconocido al emitir el pronóstico. Las entradas son las siete barras de <span class="math notranslate nohighlight">\([t-7,t)\)</span>, ordenadas de antigua a reciente, con cinco canales. El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html">contrato de E2</a> define <code class="docutils literal notranslate"><span class="pre">relative_window</span></code>, escaladores de entrenamiento, disponibilidad y máscaras. Se conserva la ruta metodológica temporal <strong>F2a</strong>; no se importan pruebas de clasificación o de conjuntos independientes sin justificar su aplicación.</p>
+</section>
 <section id="antecedentes-y-motivacion">
 <h2>1.1 Antecedentes y motivación<a class="headerlink" href="#antecedentes-y-motivacion" title="Link to this heading">#</a></h2>
 <p>E1 estableció las referencias neuronales. El corte histórico de E2 comparó diez candidatos, tres referencias neuronales y tres comparadores clásicos: <strong>16 sistemas sobre 608 fechas conocidas</strong>, con seis semillas por red. En ese corte, LSTM-autoencoder obtuvo la menor RMSE media, <strong>0,00380343</strong>. Sus veinte contrastes primarios y su conclusión histórica conservan identidad; no se sustituyen por el análisis posterior de E3.</p>
@@ -438,7 +450,7 @@ r_t=\log(C_t/C_{t-1}),\qquad
 </tr>
 <tr class="row-odd"><td><p>Dashboard predictivo</p></td>
 <td><p>Aplicación <strong>Dash Plotly</strong>, desplegada en <strong>Render</strong>, con <strong>Contexto, EDA y Modelos</strong>; Top 10 con su configuración seleccionada y artefactos ligeros, o resultados precalculados con justificación de recursos</p></td>
-<td><p>Diseño en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a> y <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>; tres referencias exportadas con alcance limitado. Aplicación integrada, perfil final de inferencia, URL y prueba de humo pendientes.</p></td>
+<td><p>Aplicación integrada con 17 sistemas y cuatro ONNX CPU verificados en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>; los otros trece usan precálculos. Perfil de servicio y contenedor locales comprobados; URL y prueba de humo públicas en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a> pendientes.</p></td>
 </tr>
 <tr class="row-even"><td><p>Modelo neuronal original o transferido</p></td>
 <td><p>Mecanismo, capa, pérdida o entrenamiento con diferencia sustantiva, fuentes atribuidas, implementación algorítmica, propiedad formal pertinente y comparación justa, reproducible y con protocolo previo</p></td>
@@ -457,7 +469,7 @@ r_t=\log(C_t/C_{t-1}),\qquad
 <h2>1.3 Avances y límites actuales<a class="headerlink" href="#avances-y-limites-actuales" title="Link to this heading">#</a></h2>
 <p>El inventario inicial de <strong>81 predictores y 167 metadatos</strong> corresponde a su corte histórico, no al tamaño actual de la extensión E2. Se conserva porque documenta escaladores, calibradores y artefactos ya verificados. La comparación posterior incorpora <strong>133 predictores E2 y diez de E3</strong>, con fechas y objetivos idénticos y sin borrar los resultados anteriores.</p>
 <p>El proceso E3 utilizó <strong>532 ejemplos de ajuste y 116 de validación</strong>, mientras que E2 utilizó <strong>655 de ajuste y 53 de calibración</strong>. Compartir las 608 fechas de prueba y diez semillas por red no iguala esos tratamientos. Las fechas de prueba ya eran conocidas y no se presentan como una confirmación ciega. Los análisis retrospectivos, la variación entre semillas, las propiedades formales históricas y las pruebas de software conservan alcances diferentes.</p>
-<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">capítulo 8</span></a> ya incluye métricas, efectos, p-valores, Holm, sensibilidades y MCS. En cambio, sMAPE y R² aún deben incorporarse a la tabla resumida vigente; la cobertura y anchura de intervalos del candidato requieren una etapa de calibración separada. Tampoco están cerrados la evaluación en tres conjuntos adicionales, el dimensionamiento de potencia, la adecuación completa y los demás estudios de robustez.</p>
+<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">capítulo 8</span></a> ya incluye métricas, efectos, p-valores, Holm, sensibilidades y MCS. La tabla ampliada incorpora sMAPE y R² desde las predicciones guardadas: E3 obtiene medias de <strong>11,10 %</strong> y <strong>0,9118</strong>, respectivamente. La cobertura y anchura de intervalos del candidato requieren una etapa de calibración separada. Tampoco están cerrados la evaluación en tres conjuntos adicionales, el dimensionamiento de potencia, la adecuación completa y los demás estudios de robustez.</p>
 <p><strong>R1, la defensa académica de R2 y R3 siguen abiertos.</strong> La demostración del primer módulo de atención modificada no se transfiere automáticamente a la receta aditiva actual. La implementación, el resultado favorable y la publicación del libro no acreditan por sí solos novedad, dominio humano del código o entrega completa.</p>
 </section>
 <section id="como-leer-el-informe">
@@ -534,6 +546,8 @@ r_t=\log(C_t/C_{t-1}),\qquad
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-informe">Alcance del informe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antecedentes-y-motivacion">1.1 Antecedentes y motivación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuatro-componentes-obligatorios-y-objetivos">1.2 Cuatro componentes obligatorios y objetivos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avances-y-limites-actuales">1.3 Avances y límites actuales</a></li>

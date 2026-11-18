@@ -473,15 +473,15 @@
 </tbody>
 </table>
 </div>
-<p>La métrica primaria es la <strong>media de las RMSE individuales</strong>, en unidades originales de sigma7 poblacional, sin anualización:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>La ecuación <a class="reference internal" href="#equation-eq-e3-primary-mean-rmse-gain">(28)</a> define la métrica primaria como la <strong>media de las RMSE individuales</strong>, en unidades originales de sigma7 poblacional, sin anualización:</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-primary-mean-rmse-gain">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eq-e3-primary-mean-rmse-gain" title="Link to this equation">#</a></span>\[
 M_j=\frac1{R_j}\sum_{r=1}^{R_j}\sqrt{\frac1{608}\sum_{t=1}^{608}(y_t-\widehat y_{j,r,t})^2},\qquad
 \widehat\Delta_j=M_j-M_{\mathrm{E3}}.
 \]</div>
 <p>Positivo favorece a E3. No se sustituye esta media por la RMSE de un ensemble o por la raíz del MSE agregado entre semillas. Se mantiene el margen del borrador:</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-superiority-hypotheses">
+<span class="eqno">(29)<a class="headerlink" href="#equation-eq-e3-superiority-hypotheses" title="Link to this equation">#</a></span>\[
 H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 \qquad\delta=0{,}00025772842664981106.
 \]</div>
@@ -770,8 +770,8 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 </table>
 </div>
 <p>La tabla incorpora la CNN-LSTM y las diez semillas de cada red, sin elegir una réplica por rendimiento. MAE, sMAPE y R² se calculan por predictor y después se promedian. sMAPE se expresa en porcentaje; RMSE, MAE y anchura usan unidades originales de σ7, sin anualización. Para una trayectoria,</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-smape-rsquared">
+<span class="eqno">(30)<a class="headerlink" href="#equation-eq-e3-smape-rsquared" title="Link to this equation">#</a></span>\[
 \operatorname{sMAPE}=\frac{200}{n}\sum_t\frac{|y_t-\widehat y_t|}{|y_t|+|\widehat y_t|},\qquad
 R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 \]</div>
@@ -813,8 +813,8 @@ R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 </table>
 </div>
 <p>Para HAC se usa la influencia</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-rmse-influence-hac">
+<span class="eqno">(31)<a class="headerlink" href="#equation-eq-e3-rmse-influence-hac" title="Link to this equation">#</a></span>\[
 \psi_{j,t}=\frac1{R_j}\sum_r\frac{e_{j,r,t}^2-\overline{e_{j,r}^2}}{2\operatorname{RMSE}_{j,r}},
 \qquad z_j=\frac{\widehat\Delta_j-\delta}{\operatorname{SE}_{\rm HAC}(\psi_j-\psi_{\rm E3})}.
 \]</div>
@@ -888,11 +888,11 @@ R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 <h3>8.7.1 Control del error por familia<a class="headerlink" href="#control-del-error-por-familia" title="Link to this heading">#</a></h3>
 <p>Se fijó <strong>una familia principal de 48 hipótesis</strong>, con Holm a alfa=0,05. Este control es más amplio que las tres familias de dieciséis propuestas en el borrador. No se eligió la prueba de menor p ni se excluyeron rivales después de ver el resultado. Para la descripción conjunta por rival se exige que los tres p ajustados sean menores que 0,05.</p>
 <p>Para p ordenados <span class="math notranslate nohighlight">\(p_{(1)}\le\cdots\le p_{(m)}\)</span>, el ajuste monótono es</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-holm-adjustment">
+<span class="eqno">(32)<a class="headerlink" href="#equation-eq-e3-holm-adjustment" title="Link to this equation">#</a></span>\[
 p^{\rm Holm}_{(i)}=\min\left\{1,\max_{1\le k\le i}(m-k+1)p_{(k)}\right\}.
 \]</div>
-<p>En este corte <span class="math notranslate nohighlight">\(m=48\)</span>. Se informa por rival el <strong>máximo</strong> de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.</p>
+<p>En este corte <span class="math notranslate nohighlight">\(m=48\)</span> en la ecuación <a class="reference internal" href="#equation-eq-e3-holm-adjustment">(32)</a>. Se informa por rival el <strong>máximo</strong> de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.</p>
 <div class="pst-scrollable-table-container"><table class="table" id="id3">
 <caption><span class="caption-number">Tabla 4 </span><span class="caption-text">Contrastes principales frente al margen heredado</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
 <thead>
@@ -1052,8 +1052,8 @@ p^{\rm Holm}_{(i)}=\min\left\{1,\max_{1\le k\le i}(m-k+1)p_{(k)}\right\}.
 <p><strong>No se estimó potencia prospectiva, potencia conjunta ni MDE a partir de este test.</strong> Diez semillas cumplen una cantidad de repeticiones; no demuestran el objetivo de potencia de la guía. Calcular potencia observada usando el efecto de este mismo resultado no reemplazaría un dimensionamiento previo con un piloto adecuado.</p>
 <p>La guía exige un piloto con <strong>al menos cinco semillas</strong> para estimar la dispersión de diferencias pareadas frente a cada rival y dimensionar la campaña antes de congelarla: potencia de al menos 0,90 por contraste, potencia conjunta reportada y diez semillas como mínimo o más si hace falta. Deben incluirse las decisiones de las tres pruebas y Holm; semillas y calendario no son fuentes de incertidumbre intercambiables. El piloto y la alternativa planificada no se eligen retrospectivamente para declarar suficiente el tamaño ya usado.</p>
 <p>La aproximación normal bilateral ilustrada en la guía, con <span class="math notranslate nohighlight">\(\alpha'=0,05/m\)</span>, es</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-power-normal-approximation">
+<span class="eqno">(33)<a class="headerlink" href="#equation-eq-e3-power-normal-approximation" title="Link to this equation">#</a></span>\[
 R\simeq\frac{(z_{1-\alpha'/2}+z_{1-\beta})^2\,\widehat\sigma_d^{\,2}}{g^2},
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la distancia de la alternativa planificada a la frontera de la nula y <span class="math notranslate nohighlight">\(\widehat\sigma_d\)</span> la dispersión pertinente. Si se contrasta igualdad y se planifica detectar una diferencia δ, entonces <span class="math notranslate nohighlight">\(g=\delta\)</span>. Para <strong>nuestra nula de relevancia</strong> <span class="math notranslate nohighlight">\(\Delta\le\delta\)</span>, una alternativa futura <span class="math notranslate nohighlight">\(\Delta_1&gt;\delta\)</span> da <span class="math notranslate nohighlight">\(g=\Delta_1-\delta\)</span>; poner δ en el denominador cambiaría el problema. La elección bilateral/unilateral y su cuantil debe fijarse de acuerdo con la hipótesis, no por el resultado. Esta fórmula no incorpora por sí sola dependencia temporal, estimación de hiperparámetros o incertidumbre conjunta.</p>
@@ -1068,8 +1068,8 @@ R\simeq\frac{(z_{1-\alpha'/2}+z_{1-\beta})^2\,\widehat\sigma_d^{\,2}}{g^2},
 <p>Las unidades se mantienen diferenciadas: una serie compartida, bloques temporales, diecisiete sistemas y sus inicializaciones. Los 6080 pares semilla-fecha de una red <strong>no se tratan como 6080 casos iid</strong>. La t entre semillas y la inferencia temporal condicionan aspectos distintos; no forman una estimación conjunta de incertidumbre de entrenamiento, selección y mercado.</p>
 <p>La <a class="reference download internal" download="" href="../_downloads/8c4cbadde81c34cd1d5cb9eb9300121a/effects.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">de</span> <span class="pre">efectos</span></code></a> incluye Cohen dz de ganancias pareadas entre semillas e intervalos bootstrap nominales, con su alcance condicionado al calendario. No se interpreta como efecto entre mercados independientes.</p>
 <p>Una campaña con varias series, particiones o unidades debe declarar su jerarquía antes de inferir: observaciones correlacionadas se agregan a la unidad pertinente o se modelan con dependencia explícita. El esquema de efectos mixtos de la guía,</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-mixed-effects-schema">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-e3-mixed-effects-schema" title="Link to this equation">#</a></span>\[
 y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 \]</div>
 <p>se refiere al efecto del modelo <span class="math notranslate nohighlight">\(j\)</span>, de la unidad <span class="math notranslate nohighlight">\(i\)</span> y de la semilla <span class="math notranslate nohighlight">\(r\)</span>; no autoriza tratar cada día de una serie como un efecto aleatorio iid. Su uso exigiría justificar estructura, correlación y estimabilidad y contrastar al original con cada rival con el control familiar fijado. No se ha ajustado ese modelo aquí. En varios conjuntos se reportarán también diferencias, IC, efectos y probabilidad de superioridad estimada sobre unidades válidas, con el significado de esa probabilidad explícito.</p>

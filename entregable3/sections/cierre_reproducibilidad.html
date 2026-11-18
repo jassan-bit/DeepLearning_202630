@@ -413,6 +413,7 @@
 <p>La revisión focal y la bibliografía no establecen ausencia de antecedentes. <strong>R1, la defensa académica de R2 y R3 permanecen pendientes.</strong> La guía requiere tres pruebas distintas apropiadas; sus rechazos no sustituyen el diseño justo, la potencia previa, los conjuntos adicionales ni los restantes requisitos. Los tests de software conservan su alcance y las propiedades de los mecanismos anteriores no se transfieren automáticamente al modelo de 1210 parámetros.</p>
 <p>La paridad ONNX se comprobó en 608 fechas frente a memoria CPU y pronósticos congelados, con tolerancia absoluta 10⁻⁶ en σ₇. La etapa de ingeniería ejecutó inferencias CPU, sin ajustar pesos o calibradores ni usar GPU; el análisis estadístico anterior mantiene su alcance sin inferencia nueva. El historial de entrenamiento de una semilla se recuperó del checkpoint y no es una ejecución nueva.</p>
 <p>Las etapas siguientes son cerrar auditorías y fuentes admisibles, revisión/hipótesis/diseño, separación de confirmación, datasets, presupuesto y potencia antes de un protocolo definitivo; completar evaluación ampliada, explicaciones y calibración faltantes; verificar el paquete final, desplegar el servicio y reproducir la campaña de forma independiente. La app local, las fichas y los reportes de ingeniería son productos con alcance concreto; no convierten los borradores históricos en preregistros ni el prototipo en una entrega completa.</p>
+<p>La revisión de los bloques F/G conecta el procedimiento de despliegue y humo de <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>, la estructura científica y el acta del tercero de <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>, la matriz de los trece entregables de <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">12</span></a> y el guion de exposición de <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">13</span></a>. El resumen con aportes técnicos y las ecuaciones numeradas mejoran la comunicación y trazabilidad del informe; no acreditan por sí solos novedad, confirmación o una reproducción ejecutada. Render todavía no tiene un servicio del proyecto cuya URL pueda verificarse aquí.</p>
 </section>
 <section id="lista-de-reproducibilidad-al-cierre">
 <h2>Lista de reproducibilidad al cierre<a class="headerlink" href="#lista-de-reproducibilidad-al-cierre" title="Link to this heading">#</a></h2>
@@ -425,12 +426,12 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Versión de fuentes</p></td>
-<td><p>Git, manifiestos de los cortes y fuentes del libro.</p></td>
-<td><p>Vincular la entrega exacta con archivo verificable, tag y DOI/identificador persistente.</p></td>
+<td><p>Git, manifiestos de los cortes, CITATION.cff y fuentes del libro.</p></td>
+<td><p>Vincular la entrega exacta con archivo verificable, tag y DOI/identificador persistente; CITATION sin ese identificador no lo sustituye.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Entorno documental</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">requirements-book.lock.txt</span></code>, configuración y workflow de construcción de los tres libros.</p></td>
-<td><p>Mantener instrucciones verificadas para reconstruir esta versión; esto no ejecuta la campaña científica.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">requirements-book.lock.txt</span></code>, configuración y workflow de construcción de los tres libros; ecuaciones MyST numeradas y referencias cruzadas del informe.</p></td>
+<td><p>Reconstruir/verificar la versión final con sus enlaces y recursos preservados; esto no ejecuta la campaña científica.</p></td>
 </tr>
 <tr class="row-even"><td><p>Entornos científicos y de servicio</p></td>
 <td><p>Dependencias fijadas e imagen Docker local de ONNX Runtime sin Torch, comprobada en ocho rutas con usuario sin privilegios y sólo lectura; entorno científico separado.</p></td>
@@ -454,7 +455,7 @@
 </tr>
 <tr class="row-odd"><td><p>Datos y derechos</p></td>
 <td><p>DATA_STATEMENT.md, hashes y 1316 observaciones de ventanas auditadas; fechas t−1/t diferenciadas y auditoría 12 PASS, 3 PARTIAL y 1 NA.</p></td>
-<td><p>Resolver controles abiertos y ratificar derechos por fuente; la declaración y los hashes no cierran por sí solos el Bloque A o una licencia.</p></td>
+<td><p>Resolver controles abiertos, ratificar derechos por fuente y aprobar la licencia propia del proyecto. La declaración y los hashes no cierran por sí solos el Bloque A o esas licencias; las MIT de recursos externos conservan su alcance.</p></td>
 </tr>
 <tr class="row-even"><td><p>Artefactos y paridad</p></td>
 <td><p>Cuatro ONNX y metadatos verificados en 608 fechas para la semilla 271801 con tolerancia 10⁻⁶; tres TorchScript históricos conservados.</p></td>
@@ -469,20 +470,20 @@
 <td><p>Costes comparables completos y energía medida o estimada con método explícito; no inventar kWh ni confundir reloj, CPU y horas GPU.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Verificación de software</p></td>
-<td><p>42 pruebas estadísticas históricas en CI; dashboard con 25 casos locales y seis recorridos de navegador, 35 comprobaciones y ningún error reportado.</p></td>
-<td><p>Conservar recibos de la versión final y la prueba pública; estos tests y los checks de bytes no demuestran reproducción científica humana.</p></td>
+<td><p>42 pruebas estadísticas históricas y 50 A/B con sus alcances. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213072051">CI del dashboard del corte de base</a> aprobó 25 casos y seis recorridos de navegador; científico: 60 aprobados y una referencia SciPy opcional omitida, incluida en los 61 aprobados localmente.</p></td>
+<td><p>Conservar los recibos de la versión final y la prueba pública sin sumar coberturas como ejecuciones de una campaña científica; estos tests y los checks de bytes no demuestran reproducción humana.</p></td>
 </tr>
 <tr class="row-even"><td><p>Reproducción independiente</p></td>
-<td><p>Requisitos y procedimiento previsto en <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>.</p></td>
-<td><p>Una persona ajena al código, entorno limpio en contenedor, tabla principal regenerada y discrepancia máxima reportada.</p></td>
+<td><p><a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">Acta prevista en 11</span></a>, con filas completas emparejadas, tolerancias previas y discrepancia máxima separada por campo/unidad.</p></td>
+<td><p>Una persona ajena al código, contenedor científico limpio, tabla principal regenerada, discrepancias observadas y concepto firmado.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Servicio público</p></td>
-<td><p>Prototipo local de tres páginas y cuatro modelos CPU descrito en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>; preparación de despliegue en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>.</p></td>
-<td><p>URL Render y humo público por página/modelo, logs, tiempos y contingencia basados en esa versión desplegada.</p></td>
+<td><p>Prototipo local de tres páginas y cuatro modelos CPU descrito en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>; guion y procedimiento de humo en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>.</p></td>
+<td><p>Crear el servicio Render y registrar URL HTTPS, humo público por página/modelo, logs, tiempos y contingencia de esa versión desplegada. Un guion o recibo local no se registra como éxito público.</p></td>
 </tr>
 <tr class="row-even"><td><p>Autoría y defensa</p></td>
-<td><p>Procedencia del candidato declara asistencia IA.</p></td>
-<td><p>Contribuciones individuales confirmadas, firmas humanas y dominio del algoritmo comprobado durante preparación/defensa.</p></td>
+<td><p>Procedencia con asistencia IA y <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">guion de 20 minutos</span></a>, con 18 de contenido y dos de margen, nueve preguntas y comandos de práctica comprobados.</p></td>
+<td><p>Contribuciones individuales confirmadas, firmas humanas, ensayo y dominio del algoritmo comprobado durante la defensa.</p></td>
 </tr>
 </tbody>
 </table>
@@ -491,8 +492,8 @@
 </section>
 <section id="registro-de-reproduccion-independiente-por-completar">
 <h2>Registro de reproducción independiente por completar<a class="headerlink" href="#registro-de-reproduccion-independiente-por-completar" title="Link to this heading">#</a></h2>
-<p>El informe deberá identificar revisor humano y relación con el proyecto; fecha; commit/tag y archivo/DOI; digest del contenedor; hardware; versiones; hashes de datos/artefactos; comandos y logs; semillas; productos regenerados y productos sólo comprobados. La tabla principal se comparará con la versión entregada usando tolerancias fijadas previamente, y se reportarán discrepancia máxima, localización de diferencias, fallos y causa investigada.</p>
-<p><strong>Estado: no ejecutado ni firmado.</strong> No hay una discrepancia cero que informar de esa reproducción. Los errores cero de las tres exportaciones y las comprobaciones CI mantienen su alcance propio.</p>
+<p>El informe deberá identificar revisor humano y relación con el proyecto; fecha; commit/tag y archivo/DOI; digest del contenedor científico; hardware; versiones; hashes de datos/artefactos; comandos y logs; semillas; productos regenerados y productos sólo comprobados. La <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">sección 11.4</span></a> define la máxima discrepancia por campo y unidad sobre todas las filas emparejadas. Se fijarán antes las tolerancias absoluta y relativa, se conservarán ausencias y se reportarán diferencias, incumplimientos, fallos y causa investigada, sin mezclar segundos, memoria y métricas en un único máximo.</p>
+<p><strong>Estado: no ejecutado ni firmado.</strong> No hay una discrepancia cero que informar de esa reproducción. Las comprobaciones de las tres TorchScript históricas y cuatro ONNX recientes conservan sus tolerancias y alcances propios, igual que CI.</p>
 </section>
 <section id="autoria-contribuciones-y-uso-de-ia">
 <h2>Autoría, contribuciones y uso de IA<a class="headerlink" href="#autoria-contribuciones-y-uso-de-ia" title="Link to this heading">#</a></h2>
@@ -501,6 +502,7 @@
 <p>La <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">propuesta posterior al cierre v2</span></a> también fue preparada con asistencia de ChatGPT/Codex para revisión focal, formulación, demostración, crítica matemática, verificación escalar, pruebas y documentación. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/provenance.md">declaración de procedencia</a> atribuye los componentes conocidos y mantiene pendiente la revisión humana, la novedad y la defensa del estudiante. No se entrenó una red nueva en ese corte.</p>
 <p>La autoría declarada en la portada se mantiene como dato del proyecto. No se atribuyen automáticamente contribuciones individuales ni se afirma una firma o defensa que no se haya verificado.</p>
 <p>La implementación del dashboard, sus componentes de datos e inferencia, exportaciones, validaciones, pruebas, fichas y documentación también empleó asistencia de IA. Los recibos de navegador y de software describen comprobaciones técnicas, no la revisión humana independiente ni una defensa académica. La persona autora debe revisar y poder modificar este código y sus supuestos.</p>
+<p>La revisión de las secciones 10–13 también emplea asistencia de ChatGPT/Codex para el guion de humo, la estructura y numeración del informe, el registro de productos y la preparación técnica de la exposición. Los comandos de práctica sintética y de inferencia son comprobaciones de ingeniería; no constituyen un ensayo personal realizado, acta del tercero, firma o defensa del estudiante.</p>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/procedencia.md">procedencia existente</a> declara que el módulo candidato fue escrito con asistencia de IA desde la formulación. La asistencia también se ha usado para organizar requisitos, redactar documentación, preparar herramientas de auditoría/exportación y comprobar software. Los capítulos deben conservar ese alcance y la revisión humana pendiente; no se presentan como implementación o demostración comprendidas y defendidas por la persona autora sólo porque existan archivos.</p>
 <p>Antes de la entrega, cada integrante deberá completar y confirmar este registro y firmar su propia declaración:</p>
 <div class="pst-scrollable-table-container"><table class="table">

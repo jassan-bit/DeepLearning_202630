@@ -824,9 +824,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Archivo con DOI, Docker, semillas y determinismo documentados.</p></td>
-<td><p>Parcial; paquete final pendiente.</p></td>
-<td><p>Dockerfile y dependencias de servicio sin Torch, README y semillas/precisión documentadas; estado de imagen y recursos en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">sección 10</span></a>.</p></td>
-<td><p>Archivo E3 persistente con DOI y reproducción integral. No atribuir determinismo global NumPy o paridad entre plataformas no demostrados.</p></td>
+<td><p>Contenedor de servicio local comprobado; paquete científico final pendiente.</p></td>
+<td><p>Imagen Docker de ONNX Runtime sin Torch construida y probada localmente, README y semillas/precisión documentadas; estado de imagen y recursos en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">sección 10</span></a>.</p></td>
+<td><p>Archivo E3 persistente con DOI, contenedor científico integral y reproducción humana. No atribuir determinismo global NumPy o paridad entre plataformas no demostrados.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Maestro por ejecución que genere informe y dashboard.</p></td>
 <td><p>Disponible para las métricas BTC actuales; maestro final parcial.</p></td>
@@ -834,9 +834,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Completar campos de recursos, calibración E3 y conjuntos adicionales; las curvas de la semilla representante no son la media de diez modelos.</p></td>
 </tr>
 <tr class="row-even"><td><p>Pruebas unitarias ejecutadas en CI.</p></td>
-<td><p>Evidencia histórica y local con ámbitos distintos.</p></td>
-<td><p>Los 42 casos estadísticos ya aprobaron en CI. El dashboard dispone de 25 casos locales —datos 9, inferencia 11, historial 3 y app 2— y seis recorridos de navegador con 35 comprobaciones, sin errores reportados.</p></td>
-<td><p>Conservar recibos del paquete exacto y del workflow del dashboard. Ni estos checks ni los casos históricos certifican reproducción humana, defensa académica o servicio Render.</p></td>
+<td><p>Evidencia local y CI identificada por corte y alcance.</p></td>
+<td><p>Los 42 casos estadísticos históricos conservan su recibo. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213072051">CI del dashboard del corte de base</a> aprobó sus 25 casos y seis recorridos de navegador; el job científico aprobó 60 y omitió una referencia opcional SciPy, incluida en los 61 aprobados localmente. La comprobación A/B conserva 50 casos aprobados.</p></td>
+<td><p>Conservar los recibos de la versión final sin sumar coberturas distintas como una campaña científica. Ni estos checks ni los casos históricos certifican reproducción humana, defensa académica o servicio Render.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Datos o instrucciones exactas de obtención y licencias verificadas.</p></td>
 <td><p>Parcial.</p></td>
@@ -845,8 +845,8 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </tr>
 <tr class="row-even"><td><p>Reproducción independiente desde cero en contenedor, por persona ajena al código, con discrepancia máxima.</p></td>
 <td><p>Pendiente.</p></td>
-<td><p>Auditores y comprobaciones de software con alcances propios.</p></td>
-<td><p>Persona externa, entorno limpio, comandos y recibo verificable de reproducción final; un subagente de IA no sustituye ese requisito.</p></td>
+<td><p>Auditores de software y <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">acta propuesta por campo/unidad</span></a>, con emparejamiento de filas y tolerancias previas.</p></td>
+<td><p>Persona externa, contenedor científico limpio, comandos, máxima discrepancia observada y concepto firmado; un subagente de IA no sustituye ese requisito y no hay una discrepancia cero que atribuirle.</p></td>
 </tr>
 </tbody>
 </table>
@@ -875,14 +875,14 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Exportaciones de otros trece sistemas, política final común y demás campos completos del catálogo. Los límites de semilla y de tratamiento no se borran al exportar.</p></td>
 </tr>
 <tr class="row-even"><td><p>Dash Plotly en Render, prueba de humo, contingencia y funcionamiento en sustentación.</p></td>
-<td><p>Prototipo local comprobado; servicio público pendiente.</p></td>
-<td><p>Tres páginas y 17 sistemas, cuatro artefactos ONNX CPU y verificación de recorridos locales del <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a>.</p></td>
-<td><p>URL Render, recursos y prueba de humo públicos, contingencia y sustentación comprobadas. Publicar el libro no despliega Dash.</p></td>
+<td><p>Prototipo y contenedor locales comprobados; servicio público por crear.</p></td>
+<td><p>Tres páginas y 17 sistemas, cuatro artefactos ONNX CPU y recorridos del <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a>; guion reproducible y procedimiento público en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>.</p></td>
+<td><p>URL Render, recursos y prueba de humo públicos, contingencia y sustentación comprobadas. Un guion preparado o un resultado local conserva ese alcance; publicar el libro no despliega Dash.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Jupyter Book sin errores, ficha de modelo y declaración de datos.</p></td>
-<td><p>Disponible documentalmente con cierre pendiente.</p></td>
-<td><p>Fuentes del libro, MODEL_CARD.md y DATA_STATEMENT.md específicos de este prototipo, con métricas, procedencia y límites.</p></td>
-<td><p>Validar el paquete final y ratificar derechos, contenidos y responsabilidades humanas; los archivos no son una firma ni cierran R1/R2/R3.</p></td>
+<td><p>Publicación técnica de base comprobada; cierre científico pendiente.</p></td>
+<td><p>Fuentes, resumen con aportes técnicos, mapa científico 1–16, ecuaciones numeradas y bibliografía en <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>; MODEL_CARD.md y DATA_STATEMENT.md del prototipo. La <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">matriz de 12</span></a> relaciona los trece productos con su cierre.</p></td>
+<td><p>Reconstruir/verificar la versión final y ratificar derechos, contenidos y responsabilidades humanas; los archivos no son una firma ni cierran R1/R2/R3.</p></td>
 </tr>
 <tr class="row-even"><td><p>Procedencia del mecanismo transferido, cuando corresponda.</p></td>
 <td><p>Parcial.</p></td>
@@ -895,9 +895,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Declaración final firmada, contribuciones individuales y comprensión responsable del autor; la asistencia declarada no acredita una firma ni defensa.</p></td>
 </tr>
 <tr class="row-even"><td><p>Sustentación: demostración en vivo y capacidad de explicar/modificar el algoritmo.</p></td>
-<td><p>Pendiente.</p></td>
-<td><p>Código, formulación y comandos de reproducción disponibles.</p></td>
-<td><p>Defensa efectiva por el estudiante, preguntas técnicas y modificación/ejecución en vivo; el archivo y sus tests no reemplazan esa evidencia.</p></td>
+<td><p>Ensayo y defensa pendientes.</p></td>
+<td><p><a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">Guion de 20 minutos</span></a>, con 18 de contenido y dos de margen, nueve preguntas y comandos de práctica comprobados.</p></td>
+<td><p>Defensa efectiva por el estudiante, preguntas técnicas y modificación/ejecución en vivo sobre la versión identificada; el guion y sus tests no reemplazan esa evidencia.</p></td>
 </tr>
 </tbody>
 </table>

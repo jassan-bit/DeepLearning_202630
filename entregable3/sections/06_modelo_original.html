@@ -560,13 +560,13 @@
 <h2>6.5 Primer mecanismo implementado: formulación y reproducción<a class="headerlink" href="#primer-mecanismo-implementado-formulacion-y-reproduccion" title="Link to this heading">#</a></h2>
 <p>Esta sección conserva la formulación histórica de penalización y saturación del primer módulo. Sus constantes, conteo de parámetros, pruebas y descargas pertenecen a ese código; la implementación posterior de momentos se distingue en 6.7 y la receta de referencia v2 en el apartado 7.5.</p>
 <p>El encoder usa convolución con relleno sólo histórico, activación tanh y LSTM unidireccional. Recibe ventanas ya estandarizadas y produce estados <span class="math notranslate nohighlight">\(H=(h_1,\ldots,h_7)\)</span>. Una matriz fija <span class="math notranslate nohighlight">\(P\)</span>, independiente de <span class="math notranslate nohighlight">\(H\)</span>, calcula promedios causales. La cabeza implementa</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-v1-discordance-attention">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-e3-v1-discordance-attention" title="Link to this equation">#</a></span>\[
 d_j=\sqrt{\|h_j-(PH)_j\|_2^2+\varepsilon^2},\qquad
 a=\operatorname{softmax}\bigl((Hq-\lambda d)/\tau\bigr),
 \]</div>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-v1-bounded-readout">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-e3-v1-bounded-readout" title="Link to this equation">#</a></span>\[
 v_j=\frac{Bh_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 f(H)=\operatorname{softplus}\left(w^\top\sum_j a_jv_j+b\right).
 \]</div>
@@ -618,20 +618,20 @@ python<span class="w"> </span>scripts/e3_verify_original.py<span class="w"> </sp
 <section id="propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente">
 <h2>6.7 Propuesta posterior: cabeza de momentos y dictamen vigente<a class="headerlink" href="#propuesta-posterior-cabeza-de-momentos-y-dictamen-vigente" title="Link to this heading">#</a></h2>
 <p>La propuesta conserva el mismo codificador y atención por contenido. Con los seis retornos conocidos al origen, define</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-moment-target-decomposition">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-e3-moment-target-decomposition" title="Link to this equation">#</a></span>\[
 A=\frac17\sum_{i=t-6}^{t-1}(r_i-\bar r_6)^2,\qquad
 U=|r_t-\bar r_6|,\quad V=U^2,\quad
 Y=\sigma_7(t)=\sqrt{A+cV},\quad c=6/49.
 \]</div>
 <p><code class="docutils literal notranslate"><span class="pre">A</span></code> se calcula con historia observable; <code class="docutils literal notranslate"><span class="pre">U,V,V²</span></code> son etiquetas de entrenamiento, nunca entradas disponibles al pronosticar. Tres lecturas escalares del contexto producirían</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-moment-parameterization">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-e3-moment-parameterization" title="Link to this equation">#</a></span>\[
 m=s_u^2\operatorname{softplus}(a),\qquad
 q=m^2(1+b^2),\qquad \rho=\frac{d^2}{1+d^2},
 \]</div>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-moment-interpolated-mean">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-e3-moment-interpolated-mean" title="Link to this equation">#</a></span>\[
 L=\sqrt A+\frac{cm}{\sqrt{A+cq/m}+\sqrt A},\qquad
 H=\sqrt{A+cm},\qquad
 \widehat\mu=L+\rho(H-L).
@@ -648,23 +648,23 @@ H=\sqrt{A+cm},\qquad
 <section id="formulacion-de-la-referencia-efectivamente-evaluada">
 <h3>Formulación de la referencia efectivamente evaluada<a class="headerlink" href="#formulacion-de-la-referencia-efectivamente-evaluada" title="Link to this heading">#</a></h3>
 <p>Para una ventana estandarizada <span class="math notranslate nohighlight">\(X\in\mathbb R^{7\times5}\)</span>, el encoder aplica una convolución causal de kernel 3 y ocho canales, <code class="docutils literal notranslate"><span class="pre">tanh</span></code> y una LSTM unidireccional de doce estados. Si <span class="math notranslate nohighlight">\(H=(h_1,\ldots,h_7)\)</span> es su salida, la atención usa</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-additive-content-attention">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-e3-additive-content-attention" title="Link to this equation">#</a></span>\[
 q=\frac{q_{\rm raw}}{\sqrt{1+\|q_{\rm raw}\|^2}},\quad
 \tau=0.25+\operatorname{softplus}(\tau_{\rm raw}),\quad
 \alpha_j=\frac{\exp(h_j^\top q/\tau)}{\sum_k\exp(h_k^\top q/\tau)},\quad
 c_H=\sum_j\alpha_jh_j.
 \]</div>
 <p>No se penalizan los scores ni se saturan los valores. La consulta no es otro modelo entrenado por separado: es un vector de parámetros de esta misma red. La lectura es</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-e3-additive-output">
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-e3-additive-output" title="Link to this equation">#</a></span>\[
 w=\frac{4w_{\rm raw}}{\sqrt{1+\|w_{\rm raw}\|^2}},\qquad
 z=w^\top c_H+b,\qquad
 \widehat y=\sqrt A+a_{\rm tr}\,[10^{-4}+\operatorname{softplus}(z)].
 \]</div>
-<p><span class="math notranslate nohighlight">\(A\)</span> es el piso observable definido en 6.7, calculado a partir de los seis retornos de la ventana; <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> es la media del objetivo en los 532 ejemplos de ajuste. El encoder y la atención usan float32; la lectura y la salida usan float64. La pérdida de esta receta es únicamente <span class="math notranslate nohighlight">\(\operatorname{mean}[(\widehat y-y)^2/a_{\rm tr}^2]\)</span>: <strong>no usa NLL, cuadratura para predecir, una escala Student ni intervalos calibrados</strong>. La palabra «aditiva» se refiere a sumar un exceso positivo al piso, no a una segunda clase de atención.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> es el piso observable definido en la ecuación <a class="reference internal" href="#equation-eq-e3-moment-target-decomposition">(5)</a> de 6.7, calculado a partir de los seis retornos de la ventana; <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> es la media del objetivo en los 532 ejemplos de ajuste. El encoder y la atención usan float32; la lectura y la salida usan float64. La pérdida de esta receta es únicamente <span class="math notranslate nohighlight">\(\operatorname{mean}[(\widehat y-y)^2/a_{\rm tr}^2]\)</span>: <strong>no usa NLL, cuadratura para predecir, una escala Student ni intervalos calibrados</strong>. La palabra «aditiva» se refiere a sumar un exceso positivo al piso, no a una segunda clase de atención.</p>
 <p>La propiedad de soporte se verifica directamente: para <span class="math notranslate nohighlight">\(A\ge0\)</span>, <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> y <span class="math notranslate nohighlight">\(z\)</span> real finito, <code class="docutils literal notranslate"><span class="pre">softplus(z)&gt;0</span></code>, por lo que <span class="math notranslate nohighlight">\(\widehat y&gt;\sqrt A+10^{-4}a_{\rm tr}\)</span> en aritmética exacta. Además, con <span class="math notranslate nohighlight">\(A\)</span> fijo, <span class="math notranslate nohighlight">\(\partial\widehat y/\partial z=a_{\rm tr}\operatorname{sigmoid}(z)\in(0,a_{\rm tr})\)</span>. Es una propiedad conocida de esta parametrización escalar; <strong>no es una cota global del mapa OHLCV, una prueba de novedad ni una garantía de menor error</strong>. Los casos sintéticos de salida comprueban la fórmula y el respeto del piso con tolerancia numérica. La cota latente del módulo de 1211 parámetros no se hereda al retirar la saturación.</p>
-<p>El apartado <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7.3</span></a> aporta una derivación independiente para la cabeza aditiva: con el piso y los parámetros fijos y las filas latentes acotadas por <span class="math notranslate nohighlight">\(\sqrt{12}\)</span>, obtiene <span class="math notranslate nohighlight">\(K_{\rm ad}=77{,}32121111929344\,a_{\rm tr}\)</span>. Su verificación usa estados sintéticos y no pesos entrenados. Es una cota condicional conocida de atención sobre estados acotados; tampoco acredita originalidad o explica por sí sola la mejora histórica.</p>
+<p>El apartado <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7.3</span></a> aporta una derivación independiente para la cabeza aditiva, expresada en la cota <a class="reference internal" href="07_diseno_riguroso.html#equation-eq-e3-additive-lipschitz-bound">(24)</a>: con el piso y los parámetros fijos y las filas latentes acotadas por <span class="math notranslate nohighlight">\(\sqrt{12}\)</span>, obtiene <span class="math notranslate nohighlight">\(K_{\rm ad}=77{,}32121111929344\,a_{\rm tr}\)</span>. Su verificación usa estados sintéticos y no pesos entrenados. Es una cota condicional conocida de atención sobre estados acotados; tampoco acredita originalidad o explica por sí sola la mejora histórica.</p>
 <p>El conteo auditable es CNN 128 + LSTM 1056 + consulta, lectura, sesgo y temperatura 26 = <strong>1210</strong>. Para longitud <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(f\)</span> variables, <span class="math notranslate nohighlight">\(c\)</span> canales, kernel <span class="math notranslate nohighlight">\(k\)</span> y estado <span class="math notranslate nohighlight">\(h\)</span>, el coste por muestra incluye <span class="math notranslate nohighlight">\(O(nkfc+n(ch+h^2)+n^2h)\)</span>. El último término sigue presente en el código eager heredado porque calcula la referencia densa <span class="math notranslate nohighlight">\(PH\)</span> aunque su penalización esté desactivada; no se declara un coste lineal de una implementación optimizada inexistente. Faltan los FLOPs completos y la curva empírica de escalabilidad de esta receta.</p>
 </section>
 <section id="pseudocodigo-descriptivo-de-la-ejecucion-cerrada">

@@ -22,11 +22,11 @@ El estándar no se relaja por falta de tiempo o por un resultado desfavorable. S
 
 ## 2.2 Métrica, márgenes y afirmaciones
 
-La primaria es la **media de RMSE individuales por ejecución**, en unidades originales de sigma7; no la RMSE de un ensemble. Para cada rival se orienta la ganancia como RMSE del rival menos RMSE de E3. Se conserva el margen heredado
+La primaria es la **media de RMSE individuales por ejecución**, en unidades originales de sigma7; no la RMSE de un ensemble. Para cada rival se orienta la ganancia como RMSE del rival menos RMSE de E3, definida en la ecuación {eq}`eq-e3-primary-mean-rmse-gain`. Se conserva el margen heredado
 
 $$
 \delta=0{,}00025772842664981106.
-$$
+$$ (eq-e3-practical-margin-standard)
 
 El borrador heredó **el mismo valor numérico para δg**, pero su hipótesis es diferente: δ se refiere a una ganancia entre modelos y δg a una brecha entre ajuste y evaluación comparable. Compartir valor numérico no hace intercambiables sus significados. Falta justificar y ejecutar la evaluación de brecha del candidato bajo un diseño apropiado; los diagnósticos CPU de E2 no la sustituyen.
 

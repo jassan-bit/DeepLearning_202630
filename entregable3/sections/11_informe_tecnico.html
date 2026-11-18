@@ -61,6 +61,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'sections/11_informe_tecnico';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -389,6 +391,8 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-minima-de-capitulos">11.1 Estructura mínima de capítulos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-tecnicos-del-libro">11.2 Requisitos técnicos del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-cada-producto-a-su-generador">11.3 De cada producto a su generador</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acta-de-reproduccion-independiente">11.4 Acta de reproducción independiente</a></li>
 </ul>
             </nav>
         </div>
@@ -402,7 +406,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-g-informe-tecnico-en-jupyter-book">
 <h1>11 Bloque G Informe técnico en Jupyter Book<a class="headerlink" href="#bloque-g-informe-tecnico-en-jupyter-book" title="Link to this heading">#</a></h1>
-<p>El informe debe permitir entender y reconstruir el trabajo con estructura científica: resumen, problema y contribuciones, antecedentes, método, diseño experimental, resultados, discusión, límites y conclusiones. El libro distingue evidencia ejecutada, resultados heredados y tareas pendientes. La CNN-LSTM con atención temporal por contenido y salida aditiva positiva tiene entrenamiento, validación y prueba histórica en diez semillas, además de la comparación estadística posterior. Ya existe un prototipo local de Dash con Contexto, EDA y Modelos, catálogo de 17 sistemas y cuatro artefactos ONNX para inferencia CPU. La campaña confirmatoria y el despliegue público en Render siguen pendientes.</p>
+<p>El informe debe permitir entender y reconstruir el trabajo con estructura científica: resumen, problema y contribuciones, antecedentes, método, diseño experimental, resultados, discusión, límites y conclusiones. El libro distingue evidencia ejecutada, resultados heredados y tareas pendientes. La CNN-LSTM con atención temporal por contenido y salida aditiva positiva tiene entrenamiento, validación y prueba histórica en diez semillas, además de la comparación estadística posterior. El código y las evidencias del prototipo Dash con Contexto, EDA y Modelos están publicados: catálogo de 17 sistemas y cuatro artefactos ONNX para inferencia CPU. La campaña confirmatoria y el despliegue público en Render siguen pendientes.</p>
 <p>Las fuentes de E3 están en <strong><code class="docutils literal notranslate"><span class="pre">book_e3/</span></code></strong>. <code class="docutils literal notranslate"><span class="pre">book/</span></code> corresponde a E1 y <code class="docutils literal notranslate"><span class="pre">book_e2/</span></code> a E2; se conservan sus contenidos y direcciones. El Cuadro 7 de la guía, página 58, fija contenidos científicos mínimos; la numeración operativa 1–16 de este libro permite localizarlos sin confundir un capítulo de evaluación o entregables con resultados científicos nuevos.</p>
 <section id="estructura-minima-de-capitulos">
 <h2>11.1 Estructura mínima de capítulos<a class="headerlink" href="#estructura-minima-de-capitulos" title="Link to this heading">#</a></h2>
@@ -419,7 +423,7 @@
 <tr class="row-even"><td><p>0 Introducción</p></td>
 <td><p>Resumen ejecutivo de máximo 250 palabras con cifras, problema, motivación, contribuciones enumeradas, objetivos, mapa y URL del dashboard.</p></td>
 <td><p><a class="reference internal" href="../intro.html"><span class="std std-doc">Portada</span></a>, <a class="reference internal" href="01_introduccion.html"><span class="std std-doc">1 Introducción</span></a> y <a class="reference internal" href="03_panorama_general.html"><span class="std std-doc">3 Panorama</span></a>.</p></td>
-<td><p>Problema y resultados históricos disponibles; resumen final de la entrega y URL Render pendientes.</p></td>
+<td><p>Resumen con cifras y aportes técnicos enumerados disponible, junto al problema, objetivos y mapa; conserva los límites de R1/R2/R3. La URL pública Render sigue pendiente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>1 Trazabilidad de correcciones</p></td>
 <td><p>Observaciones E2, acciones, evidencia, impacto y ranking antes/después cuando cambie.</p></td>
@@ -491,7 +495,7 @@
 <p>El cálculo estadístico posterior ya dispone de un ejecutor y exportador en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_estadistica_posterior_20261117">experiments/e3_estadistica_posterior_20261117</a>, con once insumos inmutables y verificación SHA256. Regenera las métricas, contrastes y figuras desde las predicciones guardadas, sin volver a entrenar ni inferir. Sus <strong>42 pruebas de métodos e insumos</strong> y la verificación de CI se documentan en la <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>; no equivalen a la reconstrucción humana de toda la campaña.</p>
 <p>El bundle <code class="docutils literal notranslate"><span class="pre">data/e3_dashboard_v1/</span></code> deriva el catálogo de la misma tabla ampliada del libro y conserva sus métricas. Las curvas del dashboard muestran la semilla representante 271801, fijada por su identificador, mientras la tabla resume diez inicializaciones neuronales. El historial de 40 épocas de esa semilla E3 y su mejor época 38 se recuperan del checkpoint existente; MSE normalizada durante las actualizaciones y RMSE de validación en σ₇ se muestran con unidades separadas, sin presentarlas como una prueba de brecha train–validación.</p>
 <p><strong>Figuras, tablas y ecuaciones.</strong> Cada figura debe tener título, ejes/unidades, leyenda e interpretación; cada tabla, descripción y referencia en el texto. Las barras de métricas requerirán incertidumbre válida y rotulada, sin inventar barras de error cuando falte su estimación. Los métodos y muestras que soportan esa incertidumbre deben quedar explícitos.</p>
-<p>Las ecuaciones actuales usan MyST y símbolos definidos, pero su numeración y referencias no están completas en todo el libro. El cierre deberá asignar identificadores y números consistentes, citar las ecuaciones pertinentes y verificar el renderizado. La demostración latente disponible no se amplía a OHLCV crudo por añadir numeración o una figura.</p>
+<p>Las ecuaciones usan MyST y símbolos definidos. La configuración activa <code class="docutils literal notranslate"><span class="pre">numfig</span></code>, <code class="docutils literal notranslate"><span class="pre">math_numfig</span></code> y <code class="docutils literal notranslate"><span class="pre">math_number_all</span></code>; las ecuaciones principales tienen etiquetas únicas y referencias funcionales. La revisión técnica de las secciones 1–8 y la formulación preliminar conservó sus fórmulas y comprobó la numeración y las referencias en HTML mediante una construcción estricta. La ecuación de discrepancia de este capítulo sigue el mismo formato y se incorpora a la verificación final del libro. Esa comprobación se registra por versión. La demostración latente disponible no se amplía a OHLCV crudo por añadir numeración o una figura.</p>
 <p><strong>Construcción y publicación.</strong> Desde la raíz del repositorio, los comandos de verificación del libro E3 son:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-book.lock.txt
 jupyter-book<span class="w"> </span>build<span class="w"> </span>book_e3<span class="w"> </span>--all<span class="w"> </span>--warningiserror<span class="w"> </span>--keep-going
@@ -499,6 +503,7 @@ python<span class="w"> </span>scripts/check_book_links.py<span class="w"> </span
 </pre></div>
 </div>
 <p>La ruta genérica <code class="docutils literal notranslate"><span class="pre">book/</span></code> de la guía se adapta aquí a <code class="docutils literal notranslate"><span class="pre">book_e3/</span></code> para construir E3 y preservar E1. Deben comprobarse páginas, navegación, descargas, ecuaciones, citas, figuras y enlaces. La publicación en GitHub Pages o una carpeta HTML comprimida debe conservar commit y procedencia; un HTML que compile no acredita ejecución científica ni el servicio Render.</p>
+<p>Como referencia técnica comprobada, el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/7c17957871f9390e73889c2bcb19e730870fd9bc">commit <code class="docutils literal notranslate"><span class="pre">7c17957871f9390e73889c2bcb19e730870fd9bc</span></code></a> pasó la <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213071892">compilación y publicación de los tres libros</a>, incluida la verificación de sus páginas servidas. E3 conservó 39 páginas HTML y las 118 descargas anteriores; el comprobador local recorrió 3940 enlaces. Ese recibo corresponde a esa versión y las ampliaciones posteriores deben repetir la verificación. <code class="docutils literal notranslate"><span class="pre">books_manifest.json</span></code> vincula los productos publicados con su commit fuente; no es un DOI ni el recibo de reproducción científica por un tercero.</p>
 <p><strong>Entornos y reconstrucción independiente.</strong> El <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">perfil de servicio de la sección 10</span></a> dispone de dependencias fijadas y ejecuta cuatro ONNX con CPUExecutionProvider sin importar Torch. La imagen Docker se construyó y su servicio local respondió en las ocho rutas verificadas, con usuario sin privilegios, sistema de archivos de sólo lectura y límite de 512 MiB. Esa comprobación local no acredita el servicio Render. La reproducción científica requiere otro perfil, con framework, versiones, datos y ejecutores adecuados; exportar o repetir una auditoría no equivale a reproducir todo el proyecto.</p>
 <p>Una persona ajena al código deberá ejecutar la reconstrucción desde cero en el contenedor científico, obtener la tabla principal y compararla con la versión entregada. Se conservarán identidad/rol del revisor, commit, digest de imagen, datos/versiones, hardware, comandos, resultados, tolerancias y discrepancia máxima observada. El informe distinguirá diferencias por precisión, hardware y no determinismo. Esa reproducción todavía no se ha realizado para la campaña E3; una revisión de otro agente de IA no se registra como la persona independiente.</p>
 <p>La disponibilidad de datos autorizados y artefactos es un prerrequisito. La <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">auditoría vigente</span></a> verifica 1316 ventanas, incluidas las 608 de prueba, y conserva <strong>12 controles PASS, 3 PARTIAL y 1 NA</strong>. Esto corrige el antiguo límite de disponibilidad de esas entradas; no cierra por sí solo el Bloque A, los derechos de cada fuente o la reproducción integral. Las diez semillas de E3 sí tienen resultados de mercado guardados; los tres conjuntos adicionales siguen sin elegirse. Un manifiesto o un resultado precalculado no sustituye los demás insumos y procedimientos necesarios para reconstruir la entrega.</p>
@@ -561,12 +566,87 @@ python<span class="w"> </span>scripts/check_book_links.py<span class="w"> </span
 </tr>
 <tr class="row-even"><td><p>Bibliografía y referencias cruzadas</p></td>
 <td><p>Registros BibTeX, citas, lista bibliográfica y enlaces verificados por build.</p></td>
-<td><p>Siete antecedentes del candidato y 37 sugerencias metodológicas en archivos separados; conservar su procedencia y cerrar la comprobación estricta del conjunto.</p></td>
+<td><p>Siete antecedentes del candidato y 37 sugerencias metodológicas en archivos separados. El corte técnico de base pasó la construcción estricta; las ampliaciones requieren repetirla, conservando los estados de lectura y la procedencia.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>El cierre mantendrá conclusiones acordes con lo realmente observado. R1, comprensión/defensa de R2 y R3 no se acreditan mediante esta reorganización, la bibliografía o una compilación. Los resultados desfavorables, ausencias y límites de reproducción deben permanecer junto a las afirmaciones que condicionan.</p>
+</section>
+<section id="de-cada-producto-a-su-generador">
+<h2>11.3 De cada producto a su generador<a class="headerlink" href="#de-cada-producto-a-su-generador" title="Link to this heading">#</a></h2>
+<p>Una tabla o una figura se considera reconstruible cuando se identifican sus entradas exactas, el generador, el entorno y la comprobación de la salida. Se distinguen tres operaciones: reconstruir agregados a partir de predicciones guardadas, ejecutar los modelos exportados y volver a entrenar una receta. Los ejecutores enumerados aquí permiten verificar las dos primeras y recuperar un historial guardado; sus recibos no acreditan la reconstrucción de toda la campaña de entrenamiento.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Producto del informe o del dashboard</p></th>
+<th class="head"><p>Generador y entorno</p></th>
+<th class="head"><p>Entradas y comprobación disponible</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Métricas, contrastes, efectos, MCS y figuras del análisis posterior.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/e3_estadistica_posterior_20261117/run.py</span></code>, con las versiones de su <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>; <code class="docutils literal notranslate"><span class="pre">plots.py</span></code> genera <code class="docutils literal notranslate"><span class="pre">ranking_rmse.svg</span></code> y <code class="docutils literal notranslate"><span class="pre">gains_ci.svg</span></code>.</p></td>
+<td><p>Once archivos fijados por commit/SHA256, plan y código registrados. Regenera resultados desde las trayectorias guardadas; conserva la diferencia entre ámbitos temporal y de semillas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tabla descriptiva ampliada, IC entre semillas y métricas por predictor.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/e3_revision_bloque_d_20261117/metrics_supplement.py</span></code>, con NumPy 2.3.5.</p></td>
+<td><p>Las 143 trayectorias guardadas y sus cuantiles E2. <code class="docutils literal notranslate"><span class="pre">--check</span> <span class="pre">--mirror</span></code> compara los CSV publicados y rechaza cambios de alineación o hash. E3 sigue sin cuantiles predictivos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Catálogo, observaciones y curvas de la aplicación.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/e3_dashboard_20261117/build_data.py</span></code>, en el entorno del dashboard.</p></td>
+<td><p>Cohorte auditada y tablas del libro admitidas por hash. <code class="docutils literal notranslate"><span class="pre">--download</span> <span class="pre">--check</span></code> reconstruye el bundle y exige igualdad de bytes con sus archivos versionados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Predicciones ONNX de la semilla representante 271801.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/e3_dashboard_20261117/verify_serving.py</span></code>, con el lock de inferencia.</p></td>
+<td><p>Compara los cuatro modelos sobre las mismas 608 ventanas contra predicciones congeladas, sin entrenamiento; declara la tolerancia absoluta 10⁻⁶ en σ₇ y escribe un recibo nuevo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Historial de 40 épocas del candidato y mejor época 38.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">experiments/e3_dashboard_20261117/extract_training_history.py</span></code>, en un entorno científico separado con Torch.</p></td>
+<td><p>Verifica el checkpoint fuente antes de extraer su historial. Recupera valores ya registrados, con escalas MSE de entrenamiento y RMSE de validación distintas; no vuelve a entrenar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gráficos interactivos y capturas de la aplicación.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">e3_dashboard/plots.py</span></code>, callbacks de <code class="docutils literal notranslate"><span class="pre">pages/</span></code> y <code class="docutils literal notranslate"><span class="pre">tests/test_e3_dashboard_browser.py</span></code>.</p></td>
+<td><p>Los gráficos usan los bundles versionados. Las capturas requieren ejecutar y recorrer la aplicación real; el recibo registra dimensiones, hashes, errores y seis casos de navegador.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los comandos siguientes se ejecutan desde la raíz. El cálculo estadístico utiliza su entorno de análisis; la aplicación utiliza el entorno de inferencia. Las salidas de una reproducción se escriben en <code class="docutils literal notranslate"><span class="pre">work/</span></code> para conservar los resultados entregados.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Entorno de análisis estadístico fijado en el directorio del ejecutor.</span>
+python<span class="w"> </span>experiments/e3_estadistica_posterior_20261117/run.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span>work/e3_statistical_inputs<span class="w"> </span>--download<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/e3_reproduccion/estadistica
+
+python<span class="w"> </span>experiments/e3_revision_bloque_d_20261117/metrics_supplement.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-dir<span class="w"> </span>work/e3_statistical_inputs<span class="w"> </span>--download<span class="w"> </span>--check<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mirror<span class="w"> </span>book_e3/_static/e3_revision_bloque_d_20261117
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Entorno de inferencia instalado con requirements.txt.</span>
+python<span class="w"> </span>experiments/e3_dashboard_20261117/build_data.py<span class="w"> </span>--download<span class="w"> </span>--check
+
+python<span class="w"> </span>experiments/e3_dashboard_20261117/verify_serving.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--npz<span class="w"> </span>work/e3_dashboard_inputs/current_cohort_arrays.npz<span class="w"> </span>--download<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/e3_reproduccion/serving.json
+</pre></div>
+</div>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213072051">ejecución de CI del dashboard correspondiente al corte de base</a> aprobó 25 casos unitarios, la reconstrucción del bundle, la comparación ONNX y seis recorridos de navegador. Su job científico aprobó 60 casos y omitió una comparación opcional que requiere SciPy; esa comparación sí formó parte de los 61 casos aprobados en el entorno científico local. Los recibos separan esas coberturas. Ninguno sustituye la evaluación de una URL Render ni el acta de una persona independiente.</p>
+</section>
+<section id="acta-de-reproduccion-independiente">
+<h2>11.4 Acta de reproducción independiente<a class="headerlink" href="#acta-de-reproduccion-independiente" title="Link to this heading">#</a></h2>
+<p>El tercero debe trabajar sobre una versión inmutable y un contenedor científico identificado por digest. Antes de ejecutar se fijan las filas que debe producir, las tolerancias por campo y el criterio de aceptación; no se relajan tras observar discrepancias. El acta debe permitir reconstruir estas decisiones:</p>
+<ol class="arabic simple">
+<li><p>Identificar a la persona y su relación con el proyecto, versión fuente, imagen, hardware, versiones y comandos reales. Confirmar el acceso autorizado a todos los insumos.</p></li>
+<li><p>Registrar si reconstruye agregados, exportaciones o toda la campaña de entrenamiento, y ejecutar desde cero el alcance declarado. Una operación parcial conserva ese nombre en el resultado.</p></li>
+<li><p>Comparar primero los identificadores de dataset, partición, modelo, semilla y métrica, el número de filas y los valores ausentes. Un conjunto de filas diferente no se corrige comparando sólo su intersección.</p></li>
+<li><p>Para cada campo numérico comparable, publicar la discrepancia máxima, las tolerancias absoluta/relativa y los pares que las exceden. Conservar stdout, errores, tiempos y productos; documentar también una reproducción fallida.</p></li>
+<li><p>Adjuntar el concepto firmado por la persona y discutir las diferencias por precisión, hardware, datos, no determinismo o procedimiento. La verificación automatizada ayuda a preparar el acta, pero no firma por el tercero.</p></li>
+</ol>
+<p>Para un campo métrico <span class="math notranslate nohighlight">\(k\)</span>, sea <span class="math notranslate nohighlight">\(\mathcal I_k\)</span> el conjunto completo de filas emparejadas declarado antes de la ejecución. La discrepancia absoluta máxima es</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-reproduccion-discrepancia">
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-e3-reproduccion-discrepancia" title="Link to this equation">#</a></span>\[D_{\infty,k} = \max_{i\in\mathcal I_k}
+\left|z^{\mathrm{tercero}}_{i,k}-z^{\mathrm{referencia}}_{i,k}\right|.\]</div>
+<p>La ecuación <a class="reference internal" href="#equation-eq-e3-reproduccion-discrepancia">(35)</a> se evalúa <strong>por campo y unidad</strong>, sin mezclar en un máximo RMSE, segundos o memoria. Cada par debe cumplir la tolerancia declarada, absoluta más relativa al valor de referencia. Los campos ausentes se mantienen ausentes y no se reemplazan por cero. La tabla del acta contendrá campo/unidad, número de pares, máxima discrepancia absoluta, tolerancias, cantidad de incumplimientos y dictamen. No se rellena aquí con ceros: la reproducción humana de la campaña E3 sigue pendiente y todavía no existe una discrepancia máxima observada de ese alcance.</p>
 </section>
 </section>
 
@@ -638,6 +718,8 @@ python<span class="w"> </span>scripts/check_book_links.py<span class="w"> </span
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-minima-de-capitulos">11.1 Estructura mínima de capítulos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-tecnicos-del-libro">11.2 Requisitos técnicos del libro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-cada-producto-a-su-generador">11.3 De cada producto a su generador</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acta-de-reproduccion-independiente">11.4 Acta de reproducción independiente</a></li>
 </ul>
   </nav></div>
 

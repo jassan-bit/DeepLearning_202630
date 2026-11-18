@@ -78,12 +78,12 @@ El encoder usa convolución con relleno sólo histórico, activación tanh y LST
 $$
 d_j=\sqrt{\|h_j-(PH)_j\|_2^2+\varepsilon^2},\qquad
 a=\operatorname{softmax}\bigl((Hq-\lambda d)/\tau\bigr),
-$$
+$$ (eq-e3-v1-discordance-attention)
 
 $$
 v_j=\frac{Bh_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 f(H)=\operatorname{softplus}\left(w^\top\sum_j a_jv_j+b\right).
-$$
+$$ (eq-e3-v1-bounded-readout)
 
 Los parámetros efectivos satisfacen cotas mediante normalizaciones suaves; no se presume que cualquier peso libre esté acotado sin esa parametrización. La salida es positiva en unidades $\sigma_7/a_{\rm tr}$ y el pipeline invierte la escala del objetivo fuera del módulo. Los detalles, derivadas y algoritmo completos están en la demostración descargable y en la [sección 7.3](07_diseno_riguroso.md).
 
@@ -144,20 +144,20 @@ $$
 A=\frac17\sum_{i=t-6}^{t-1}(r_i-\bar r_6)^2,\qquad
 U=|r_t-\bar r_6|,\quad V=U^2,\quad
 Y=\sigma_7(t)=\sqrt{A+cV},\quad c=6/49.
-$$
+$$ (eq-e3-moment-target-decomposition)
 
 `A` se calcula con historia observable; `U,V,V²` son etiquetas de entrenamiento, nunca entradas disponibles al pronosticar. Tres lecturas escalares del contexto producirían
 
 $$
 m=s_u^2\operatorname{softplus}(a),\qquad
 q=m^2(1+b^2),\qquad \rho=\frac{d^2}{1+d^2},
-$$
+$$ (eq-e3-moment-parameterization)
 
 $$
 L=\sqrt A+\frac{cm}{\sqrt{A+cq/m}+\sqrt A},\qquad
 H=\sqrt{A+cm},\qquad
 \widehat\mu=L+\rho(H-L).
-$$
+$$ (eq-e3-moment-interpolated-mean)
 
 Aquí `m,q` representan momentos de `V`; este `q` no es la consulta de atención de la sección 6.5. Con momentos verdaderos y positivos, la región realizable de la media es `[L,H)` cuando `q>m²`; `L` se alcanza y `H` es supremo no alcanzado. Si `q=m²`, ambas cotas coinciden. Con momentos estimados, la región calculada puede no contener la media verdadera: no es un intervalo de predicción ni garantiza menor MSE.
 
@@ -182,7 +182,7 @@ q=\frac{q_{\rm raw}}{\sqrt{1+\|q_{\rm raw}\|^2}},\quad
 \tau=0.25+\operatorname{softplus}(\tau_{\rm raw}),\quad
 \alpha_j=\frac{\exp(h_j^\top q/\tau)}{\sum_k\exp(h_k^\top q/\tau)},\quad
 c_H=\sum_j\alpha_jh_j.
-$$
+$$ (eq-e3-additive-content-attention)
 
 No se penalizan los scores ni se saturan los valores. La consulta no es otro modelo entrenado por separado: es un vector de parámetros de esta misma red. La lectura es
 
@@ -190,13 +190,13 @@ $$
 w=\frac{4w_{\rm raw}}{\sqrt{1+\|w_{\rm raw}\|^2}},\qquad
 z=w^\top c_H+b,\qquad
 \widehat y=\sqrt A+a_{\rm tr}\,[10^{-4}+\operatorname{softplus}(z)].
-$$
+$$ (eq-e3-additive-output)
 
-$A$ es el piso observable definido en 6.7, calculado a partir de los seis retornos de la ventana; $a_{\rm tr}>0$ es la media del objetivo en los 532 ejemplos de ajuste. El encoder y la atención usan float32; la lectura y la salida usan float64. La pérdida de esta receta es únicamente $\operatorname{mean}[(\widehat y-y)^2/a_{\rm tr}^2]$: **no usa NLL, cuadratura para predecir, una escala Student ni intervalos calibrados**. La palabra «aditiva» se refiere a sumar un exceso positivo al piso, no a una segunda clase de atención.
+$A$ es el piso observable definido en la ecuación {eq}`eq-e3-moment-target-decomposition` de 6.7, calculado a partir de los seis retornos de la ventana; $a_{\rm tr}>0$ es la media del objetivo en los 532 ejemplos de ajuste. El encoder y la atención usan float32; la lectura y la salida usan float64. La pérdida de esta receta es únicamente $\operatorname{mean}[(\widehat y-y)^2/a_{\rm tr}^2]$: **no usa NLL, cuadratura para predecir, una escala Student ni intervalos calibrados**. La palabra «aditiva» se refiere a sumar un exceso positivo al piso, no a una segunda clase de atención.
 
 La propiedad de soporte se verifica directamente: para $A\ge0$, $a_{\rm tr}>0$ y $z$ real finito, `softplus(z)>0`, por lo que $\widehat y>\sqrt A+10^{-4}a_{\rm tr}$ en aritmética exacta. Además, con $A$ fijo, $\partial\widehat y/\partial z=a_{\rm tr}\operatorname{sigmoid}(z)\in(0,a_{\rm tr})$. Es una propiedad conocida de esta parametrización escalar; **no es una cota global del mapa OHLCV, una prueba de novedad ni una garantía de menor error**. Los casos sintéticos de salida comprueban la fórmula y el respeto del piso con tolerancia numérica. La cota latente del módulo de 1211 parámetros no se hereda al retirar la saturación.
 
-El apartado [7.3](07_diseno_riguroso.md) aporta una derivación independiente para la cabeza aditiva: con el piso y los parámetros fijos y las filas latentes acotadas por $\sqrt{12}$, obtiene $K_{\rm ad}=77{,}32121111929344\,a_{\rm tr}$. Su verificación usa estados sintéticos y no pesos entrenados. Es una cota condicional conocida de atención sobre estados acotados; tampoco acredita originalidad o explica por sí sola la mejora histórica.
+El apartado [7.3](07_diseno_riguroso.md) aporta una derivación independiente para la cabeza aditiva, expresada en la cota {eq}`eq-e3-additive-lipschitz-bound`: con el piso y los parámetros fijos y las filas latentes acotadas por $\sqrt{12}$, obtiene $K_{\rm ad}=77{,}32121111929344\,a_{\rm tr}$. Su verificación usa estados sintéticos y no pesos entrenados. Es una cota condicional conocida de atención sobre estados acotados; tampoco acredita originalidad o explica por sí sola la mejora histórica.
 
 El conteo auditable es CNN 128 + LSTM 1056 + consulta, lectura, sesgo y temperatura 26 = **1210**. Para longitud $n$, $f$ variables, $c$ canales, kernel $k$ y estado $h$, el coste por muestra incluye $O(nkfc+n(ch+h^2)+n^2h)$. El último término sigue presente en el código eager heredado porque calcula la referencia densa $PH$ aunque su penalización esté desactivada; no se declara un coste lineal de una implementación optimizada inexistente. Faltan los FLOPs completos y la curva empírica de escalabilidad de esta receta.
 

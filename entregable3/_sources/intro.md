@@ -10,12 +10,12 @@ El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guí
 | [2 Estándar de profundidad exigido](sections/02_estandar_profundidad.md) | Requisitos teóricos, potencia, semillas y compromisos previos. |
 | [3 Panorama general del entregable](sections/03_panorama_general.md) | Bloques A–G, dependencias y estado de avance. |
 | [4 Bloque A Correcciones del Entregable 2](sections/04_correcciones_e2.md) | Trazabilidad y auditorías vigentes, con sus pendientes. |
-| [5 Bloque B Selección de configuraciones y exportación](sections/05_configuraciones_exportacion.md) | Selección por validación, checkpoints y tres exportaciones verificadas; requisitos de cierre. |
+| [5 Bloque B Selección de configuraciones y exportación](sections/05_configuraciones_exportacion.md) | Selección por validación, checkpoints, tres TorchScript históricos y cuatro ONNX CPU verificados; requisitos de cierre. |
 | [6 Bloque C El modelo original](sections/06_modelo_original.md) | Arquitectura evaluada, antecedentes, formulación y evidencia específica para R1/R2/R3. |
 | [7 Diseño riguroso del modelo original](sections/07_diseno_riguroso.md) | Hipótesis, disciplina de diseño, sustento teórico y ablación. |
 | [8 Bloque D Verificación estadística y evaluación ampliada](sections/08_verificacion_estadistica.md) | Comparación posterior de diez semillas, alcances de incertidumbre, MCS y requisitos aún pendientes de R3. |
 | [9 Bloque E Dashboard predictivo en Dash Plotly](sections/09_dashboard_predictivo.md) | Aplicación Contexto, EDA y Modelos, 17 sistemas y cuatro artefactos ONNX CPU con contratos y evidencia. |
-| [10 Bloque F Despliegue en Render](sections/10_despliegue_render.md) | Perfil de servicio preparado; despliegue público, prueba de humo en Render y contingencia pendientes. |
+| [10 Bloque F Despliegue en Render](sections/10_despliegue_render.md) | Blueprint, cliente de humo y verificación local; creación del servicio y humo público pendientes. |
 | [11 Bloque G Informe técnico en Jupyter Book](sections/11_informe_tecnico.md) | Estructura científica, mapa del Cuadro 7 y requisitos de reproducción. |
 | [12 Lista de entregables](sections/12_lista_entregables.md) | Trece productos, evidencia existente y pendientes de cierre. |
 | [13 Sustentación](sections/13_sustentacion.md) | Guion de 20 minutos, demostración y preparación de preguntas. |
@@ -56,6 +56,8 @@ El [diseño riguroso del capítulo 7](sections/07_diseno_riguroso.md) distingue 
 La revisión del [Bloque D](sections/08_verificacion_estadistica.md) incorpora los campos del protocolo, las seis condiciones simultáneas de R3, la pertinencia de las pruebas, las ilustraciones de potencia y los estudios de robustez y reporte exigidos. `experiments/protocolo.md` es un borrador consolidado posterior, con decisiones abiertas y sin tag confirmatorio; no registra retrospectivamente los resultados conocidos.
 
 Para avanzar al cierre faltan, entre otros productos, justificar una contribución admisible con revisión de literatura y defensa del autor, preparar la evaluación comparable con potencia y tres conjuntos adicionales y exportar/verificar el catálogo para el dashboard. La revisión no cambia predicciones, p-valores o recetas, ni convierte pendientes en requisitos cumplidos. Los archivos y enlaces históricos se conservan.
+
+La revisión de los [bloques F](sections/10_despliegue_render.md) y [G](sections/11_informe_tecnico.md) incorpora un cliente de humo para las tres páginas y los cuatro modelos habilitados, probado contra Gunicorn y Docker locales, con estados separados de la comprobación pública pendiente. El informe añade un resumen de 217 palabras, numeración y referencias de ecuaciones, generadores por producto y un procedimiento de reproducción humana con discrepancia por campo. La [lista de trece entregables](sections/12_lista_entregables.md) fija evidencia y condiciones de cierre; la [sustentación](sections/13_sustentacion.md) conserva 18 minutos de contenido y dos de navegación/transiciones, con preguntas y práctica técnica. La URL Render, la reproducción humana, la licencia propia, las firmas y el archivo persistente conservan sus pendientes.
 
 ## Libros del curso
 

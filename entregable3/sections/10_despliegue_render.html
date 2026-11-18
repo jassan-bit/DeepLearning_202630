@@ -388,6 +388,12 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-despliegue">10.1 Pasos de despliegue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conservar-la-aplicacion-local-verificada">1. Conservar la aplicación local verificada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-python-dependencias-y-contenedor-reproducibles">2. Mantener Python, dependencias y contenedor reproducibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versionar-codigo-artefactos-y-metadatos">3. Versionar código, artefactos y metadatos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-web-service-desde-el-blueprint">4. Crear el Web Service desde el blueprint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificar-construccion-arranque-y-url-publica">5. Verificar construcción, arranque y URL pública</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-el-guion-de-humo-contra-la-url-real">6. Ejecutar el guion de humo contra la URL real</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-del-plan-y-contingencia">Recursos del plan y contingencia</a></li>
 </ul>
 </li>
@@ -404,101 +410,114 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-f-despliegue-en-render">
 <h1>10 Bloque F Despliegue en Render<a class="headerlink" href="#bloque-f-despliegue-en-render" title="Link to this heading">#</a></h1>
-<p><strong>Estado: aplicación CPU preparada y probada localmente; URL Render y prueba de humo pública pendientes.</strong> El <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a> documenta la aplicación multipágina, cuatro artefactos ONNX y sus controles. El repositorio contiene <code class="docutils literal notranslate"><span class="pre">app.py</span></code>, dependencias fijadas, <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> y <code class="docutils literal notranslate"><span class="pre">render.yaml</span></code>; no se ha activado una cuenta o servicio de Render. GitHub Pages publica el informe y las evidencias, y no ejecuta el servidor Dash.</p>
-<p>El objetivo es una URL pública HTTPS en Render que permita usar las tres páginas del dashboard sin instalación local. El despliegue conservará las modalidades reales: cuatro modelos con inferencia CPU y trece con resultados precalculados, con sus límites visibles.</p>
+<p><strong>Estado: servicio Render inexistente; preparación y prueba local aprobadas; URL y humo públicos no ejecutados.</strong> El usuario confirmó «sin servicio». El repositorio ya contiene una aplicación funcional y el contenedor probado, pero GitHub Pages publica este informe y no ejecuta Dash. No se presenta una dirección de servicio inventada como URL del dashboard.</p>
+<p>La ruta preparada es <a class="reference external" href="https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630">crear el servicio desde el blueprint de este repositorio</a>. Ese enlace abre la configuración de Render y requiere la cuenta del propietario; <strong>no es la URL de la aplicación ni acredita que el servicio exista</strong>. El blueprint solicita el plan <code class="docutils literal notranslate"><span class="pre">free</span></code>, runtime Docker y <code class="docutils literal notranslate"><span class="pre">autoDeploy:</span> <span class="pre">false</span></code>. No se ha activado un servicio o un plan de pago.</p>
+<p>El objetivo de cierre es una URL HTTPS pública de Render que permita recorrer Contexto, EDA y Modelos sin instalación local, con cuatro ONNX en CPU y trece sistemas precalculados. El <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a> conserva la implementación y sus límites. El estado estructurado se descarga en <a class="reference download internal" download="" href="../_downloads/e9abbb51f2c3cbdb047430b1cc824e61/deployment_readiness.json"><code class="xref download docutils literal notranslate"><span class="pre">deployment_readiness.json</span></code></a>.</p>
 <section id="pasos-de-despliegue">
 <h2>10.1 Pasos de despliegue<a class="headerlink" href="#pasos-de-despliegue" title="Link to this heading">#</a></h2>
-<p>Los pasos siguientes son condiciones de cierre, no operaciones declaradas como realizadas. La aplicación y sus artefactos de producción deben verificarse antes de conectar el despliegue automático.</p>
-<p><strong>1. Conservar la verificación local y del servidor.</strong> <code class="docutils literal notranslate"><span class="pre">app.py</span></code> crea la aplicación con <code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code> y expone <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> para Gunicorn. La evidencia de navegación, callbacks, entradas inválidas y predicción se conserva en el capítulo 9. El comando de arranque está en el README. Esa comprobación local debe repetirse sobre la versión efectivamente desplegada en Render.</p>
-<p>El arranque no entrenará, hará HPO ni reajustará normalización o calibradores. El servicio importará sólo los módulos de interfaz, datos, inferencia y explicación admitidos, sin importar el pipeline de entrenamiento. Un cambio de página no cargará todos los modelos.</p>
-<p><strong>2. Mantener el perfil de inferencia, Python y contenedor.</strong> <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> usa el lock de ejecución CPU con versiones exactas, incluidos Gunicorn y ONNX Runtime; no instala Torch ni el framework de entrenamiento. Las evidencias tienen alcances distintos:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Evidencia actual</p></th>
-<th class="head"><p>Dependencia y alcance</p></th>
-<th class="head"><p>Trabajo previo a producción</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Tres TorchScript históricos de E2</p></td>
-<td><p>Requieren Torch y conservan su paridad sobre 53 fechas de calibración.</p></td>
-<td><p>Mantener el recibo histórico; el servicio actual utiliza sus exportaciones ONNX.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Cuatro ONNX y <code class="docutils literal notranslate"><span class="pre">e3_dashboard.inference</span></code></p></td>
-<td><p>CPUExecutionProvider, contrato raw D7×5, escaladores fijos, una sesión en caché y paridad sobre 608 fechas con tolerancia 10⁻⁶.</p></td>
-<td><p>Repetir la prueba de humo en el entorno público y vigilar recursos con su configuración efectiva.</p></td>
-</tr>
-<tr class="row-even"><td><p>Metadatos, rangos de ajuste y cuantiles guardados</p></td>
-<td><p>E2 dispone de q por predictor; E3 mantiene intervalo sin calibrar. Los controles de entrada y dominio están separados.</p></td>
-<td><p>Conservar hashes y límites de interpretación; la sensibilidad por oclusión no acredita fidelidad o estabilidad explicativa.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>La ruta implementada es <strong>ONNX + ONNX Runtime con <code class="docutils literal notranslate"><span class="pre">CPUExecutionProvider</span></code></strong> para MLP16, LSTM32, GRU32 y CNN-LSTM aditiva E3, semilla representativa 271801. La paridad de las 608 ventanas está verificada para esos cuatro; no para los otros trece sistemas. Los resultados precalculados no se presentan como inferencia en vivo. El contrato y la escala se verifican por predictor, con la diferencia entre memoria y exportación documentada.</p>
-<p>El runtime de servicio excluye PyTorch y las dependencias de entrenamiento. La reconstrucción científica conserva un entorno separado con el framework. El Dockerfile copia sólo código de servicio, datos permitidos y artefactos ONNX, utiliza usuario sin privilegios y no inicia el pipeline científico. La comprobación de la imagen y del navegador se distingue de una reproducción humana independiente de los experimentos.</p>
-<p>El perfil local usa <strong>Python 3.12.14</strong>, ONNX Runtime 1.23.2 y locks separados de ejecución y desarrollo. El Dockerfile fija el digest de su imagen base; sus recibos identifican el entorno y la forma de construcción. Python 3.11.9 sigue siendo un ejemplo de la guía, no el perfil probado aquí.</p>
-<p><strong>3. Versionar el código y resolver el almacenamiento de artefactos.</strong> El repositorio conservará código, dependencias, metadatos, hashes y procedencia. Los pesos que superen el límite vigente por archivo se gestionarán con Git LFS o almacenamiento externo documentado, con versión inmutable y comprobación de integridad. El despliegue debe obtener el contenido binario real, no sólo un puntero LFS o un nombre de archivo.</p>
-<p>La descarga/caché de pesos verificará SHA-256 y fallo explícito por ausencia o corrupción. Los identificadores de modelo procederán de un registro permitido; no se aceptarán rutas, URLs o pesos suministrados por el usuario. Las licencias de código y datos mantendrán su alcance propio. Un modelo sin artefacto de inferencia validado seguirá mostrando los resultados precalculados y la justificación documentada.</p>
-<p><strong>4. Configurar el Web Service de Render.</strong> Una vez aprobada la construcción local, el servicio se conectará a la rama y versión revisadas. Para la vía nativa Python, los comandos previstos son:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Construcción: pip install -r requirements.txt
-Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 1 --timeout 120
+<section id="conservar-la-aplicacion-local-verificada">
+<h3>1. Conservar la aplicación local verificada<a class="headerlink" href="#conservar-la-aplicacion-local-verificada" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code> inicia la aplicación local en <code class="docutils literal notranslate"><span class="pre">127.0.0.1:8050</span></code>, con <code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code>; <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> es la entrada WSGI de Gunicorn. El capítulo 9 conserva 25 casos unitarios del dashboard y seis recorridos reales de navegador, incluidos filtros, entradas inválidas, navegación y predicción. No son una certificación de Render ni una reproducción humana independiente de la campaña científica.</p>
+<p>El nuevo cliente de humo también recorrió las tres páginas contra Gunicorn y contra el contenedor local, y ejecutó una predicción con explicación para <strong>cada uno de los cuatro ONNX</strong>, sin entrenamiento ni recalibración. Los recibos locales permanecen identificados como tales:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/4a7085a53e23c0736521bcc416345b62/smoke_local_preflight.json"><code class="xref download docutils literal notranslate"><span class="pre">smoke_local_preflight.json</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/2c20d45b37b12a970aba11cfcc8bbbcb/smoke_container_preflight.json"><code class="xref download docutils literal notranslate"><span class="pre">smoke_container_preflight.json</span></code></a>.</p></li>
+</ul>
+</section>
+<section id="mantener-python-dependencias-y-contenedor-reproducibles">
+<h3>2. Mantener Python, dependencias y contenedor reproducibles<a class="headerlink" href="#mantener-python-dependencias-y-contenedor-reproducibles" title="Link to this heading">#</a></h3>
+<p>La vía implementada y probada es <strong>Docker</strong>, con Python <strong>3.12.14</strong> y la imagen base fijada por digest en <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>. <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> incluye las 40 versiones exactas del lock de ejecución; entre ellas Gunicorn 23.0.0 y ONNX Runtime 1.23.2. El runtime excluye Torch, TensorFlow, JAX, Playwright y las herramientas de entrenamiento; el cliente de humo utiliza el lock de desarrollo separado.</p>
+<p>El contenedor copia únicamente código de servicio, datos admitidos y los ONNX verificados; ejecuta el proceso como UID 10001, sin privilegios. Su comando efectivo es:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gunicorn --bind "0.0.0.0:${PORT:-8050}" --workers 1 --threads 1 --timeout 120 app:server
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">$PORT</span></code> lo proporciona Render; el enlace a <code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code> evita que el proceso quede accesible sólo desde la interfaz local. El repositorio incluye un blueprint Docker en <code class="docutils literal notranslate"><span class="pre">render.yaml</span></code>, con <code class="docutils literal notranslate"><span class="pre">autoDeploy:</span> <span class="pre">false</span></code> y healthcheck <code class="docutils literal notranslate"><span class="pre">/healthz</span></code>; el archivo no crea un servicio por sí mismo. El proceso local se comprueba con un worker y un hilo. La concurrencia, tiempos y recursos efectivos de Render quedan por medir.</p>
-<p>El diseño inicial usa <strong>un worker, carga serial y un modelo activo bajo demanda</strong>. El máximo de dos modelos por proceso de la sección 9 es un techo de caché, no una obligación de mantener dos simultáneamente. Las sesiones de inferencia se obtendrán después de validar el modelo solicitado, sin una <code class="docutils literal notranslate"><span class="pre">InferenceSession</span></code> global que cargue un modelo al importar el módulo. Si el servicio se implementa con runtime Docker, su configuración deberá reflejar esa vía y el target de servicio probado, sin mezclarla con un build nativo no verificado.</p>
-<p><strong>5. Revisar construcción, arranque y funcionamiento público.</strong> Se inspeccionarán logs y dependencias instaladas, URL HTTPS, recuperación ante errores, disponibilidad de artefactos y comportamiento de las tres páginas. Se medirán arranque frío, carga/evicción, RSS conjunto y transitorio, latencia completa y coste de explicaciones con la configuración efectiva. Una carga inválida no debe detener el servicio, revelar una traza interna o producir un pronóstico sustituido por cero.</p>
-<p>El ejemplo de clasificación con Softmax de la guía ilustra un patrón de callback, pero no es la salida de este problema. Aquí el modelo produce una predicción continua de σ₇ con h=1, la escala se invierte exactamente una vez y el intervalo, cuando se habilite y verifique, usará el calibrador del mismo predictor. No se convertirán salidas de regresión en probabilidades de clase.</p>
-<p><strong>6. Ejecutar y conservar la prueba de humo pública.</strong> El guion deberá recorrer la URL Render y cada modelo habilitado. La lista procede del registro real de cuatro ONNX; los trece precalculados mantienen sus fuentes y su justificación. La verificación local del capítulo 9 no se renombra como prueba de la URL pública.</p>
+<p>Render suministra <code class="docutils literal notranslate"><span class="pre">PORT</span></code>; Gunicorn escucha en <code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>. El proceso usa un worker y un hilo, <code class="docutils literal notranslate"><span class="pre">CPUExecutionProvider</span></code>, ejecución serial y una única sesión de modelo residente bajo demanda. El cambio de modelo desaloja la sesión anterior. No existe una sesión ONNX global creada al importar la aplicación.</p>
+<p>La prueba de la imagen conservada en <a class="reference download internal" download="" href="../_downloads/4c81ff7390ecbbcbe6795cd64263f436/docker_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">docker_verification.json</span></code></a> utilizó un límite local de 512 MiB y un CPU, sin OOM, y observó un pico próximo a 186 MiB durante ese recorrido. <strong>Ese perfil local no demuestra la memoria, concurrencia o capacidad del plan vigente de Render.</strong> Python 3.11.9 y los dos hilos del ejemplo de la guía no son el perfil medido aquí.</p>
+</section>
+<section id="versionar-codigo-artefactos-y-metadatos">
+<h3>3. Versionar código, artefactos y metadatos<a class="headerlink" href="#versionar-codigo-artefactos-y-metadatos" title="Link to this heading">#</a></h3>
+<p>Los cuatro ONNX conservan los pesos publicados de la semilla representativa 271801. Sus archivos pesan entre 3.319 y 23.138 bytes, por lo que estos cuatro no requieren Git LFS. Los metadatos documentan preprocesamiento, semilla, escala, versiones, integridad y prueba de ida y vuelta. La paridad completa sobre 608 fechas usa tolerancia absoluta de <code class="docutils literal notranslate"><span class="pre">1e-6</span></code> en unidades originales de σ₇; los resultados del nuevo humo sobre un ejemplo no sustituyen esa prueba.</p>
+<p>La aplicación verifica hashes y usa un registro permitido de modelos. No acepta rutas, URLs o pesos del usuario, ni reajusta normalización o calibradores con el CSV. Los trece sistemas sin exportación de servicio validada conservan su modo precalculado. Si se añaden pesos mayores, su almacenamiento inmutable, descarga, licencias e integridad deberán documentarse antes de habilitarlos. Las condiciones de redistribución de datos y la licencia propia mantienen su estado en las fichas; no se inventa una licencia al desplegar.</p>
+</section>
+<section id="crear-el-web-service-desde-el-blueprint">
+<h3>4. Crear el Web Service desde el blueprint<a class="headerlink" href="#crear-el-web-service-desde-el-blueprint" title="Link to this heading">#</a></h3>
+<p>Abrir <a class="reference external" href="https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630">Crear servicio en Render</a>, conectar el repositorio revisado y confirmar la configuración que muestra la cuenta. La configuración versionada solicita:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deeplearning-e3-dashboard</span>
+<span class="w">    </span><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker</span>
+<span class="w">    </span><span class="nt">plan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">free</span>
+<span class="w">    </span><span class="nt">dockerfilePath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./Dockerfile</span>
+<span class="w">    </span><span class="nt">healthCheckPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/healthz</span>
+<span class="w">    </span><span class="nt">autoDeploy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">envVars</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PYTHONUNBUFFERED</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'1'</span>
+</pre></div>
+</div>
+<p>Con runtime Docker, Render construye <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> y usa su <code class="docutils literal notranslate"><span class="pre">CMD</span></code>; no se añade a la vez un <code class="docutils literal notranslate"><span class="pre">buildCommand</span></code> de Python nativo. <code class="docutils literal notranslate"><span class="pre">autoDeploy:</span> <span class="pre">false</span></code> mantiene los despliegues bajo una acción explícita del propietario. Cada despliegue deberá conservar el SHA efectivo mostrado por Render y su log de construcción/arranque. La configuración por sí sola no crea la cuenta o el servicio.</p>
+<p>Antes de confirmar se deben consultar las condiciones actuales de <a class="reference external" href="https://render.com/docs/free">servicios gratuitos</a>, <a class="reference external" href="https://render.com/docs/docker">Docker</a>, <a class="reference external" href="https://render.com/docs/blueprint-spec">blueprints</a> y <a class="reference external" href="https://render.com/docs/health-checks">healthchecks</a>. La selección del plan del archivo no acredita disponibilidad, gratuidad o límites de una cuenta concreta. Esta revisión no activó recursos de pago.</p>
+</section>
+<section id="verificar-construccion-arranque-y-url-publica">
+<h3>5. Verificar construcción, arranque y URL pública<a class="headerlink" href="#verificar-construccion-arranque-y-url-publica" title="Link to this heading">#</a></h3>
+<p>El log debe mostrar instalación correcta, arranque WSGI y el healthcheck <code class="docutils literal notranslate"><span class="pre">/healthz</span></code> con <code class="docutils literal notranslate"><span class="pre">status=ok</span></code>, <code class="docutils literal notranslate"><span class="pre">service=e3-dashboard</span></code> y 17 sistemas. Se conservarán URL HTTPS, identificador del servicio, commit, fecha y configuración efectiva. La espera hasta que el servicio responda debe medirse; sólo se llamará «arranque frío» si se acredita el estado previo de inactividad.</p>
+<p>Se comprobarán navegación y callbacks, disponibilidad de artefactos, recuperación ante errores, carga y desalojo de modelos, latencia completa y coste de explicaciones. Una entrada inválida no debe detener la aplicación, revelar trazas internas o producir un valor cero de sustitución. La aceptación local del capítulo 9 ya cubre esas entradas; su funcionamiento público deberá contrastarse sobre la versión desplegada.</p>
+<p>El ejemplo Softmax de la guía corresponde a clasificación. Este problema pronostica <strong>σ₇ continua con h=1</strong>: el servicio aplica la escala guardada exactamente una vez y no convierte la salida en probabilidades. MLP16, LSTM32 y GRU32 usan su intervalo nominal heredado del 90 %; E3 declara <strong>sin intervalo calibrado</strong>. La dispersión entre semillas no sustituye ese intervalo. Cada sensibilidad por oclusión es un contraste local y no una explicación causal o una descomposición aditiva garantizada.</p>
+</section>
+<section id="ejecutar-el-guion-de-humo-contra-la-url-real">
+<h3>6. Ejecutar el guion de humo contra la URL real<a class="headerlink" href="#ejecutar-el-guion-de-humo-contra-la-url-real" title="Link to this heading">#</a></h3>
+<p>El cliente ya implementado se conserva como <a class="reference download internal" download="" href="../_downloads/82ef712c5abe67737647ef946cfbda96/smoke_render.py"><code class="xref download docutils literal notranslate"><span class="pre">smoke_render.py</span></code></a> y su procedimiento como <a class="reference download internal" download="" href="../_downloads/4ebc571c996901331755689a1d39245e/README_smoke.md"><code class="xref download docutils literal notranslate"><span class="pre">README_smoke.md</span></code></a>. Puede ejecutarse desde un entorno de desarrollo o mediante el workflow manual <strong>Verificar cliente de humo E3 y despliegue público solicitado</strong>. Las versiones de Playwright y Chromium pertenecen al cliente de comprobación, nunca al servicio.</p>
+<p>Los valores de este ejemplo son marcadores que deben sustituirse; no identifican un despliegue existente:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>experiments/e3_bloques_fg_20261117/smoke_render.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--url<span class="w"> </span>https://NOMBRE-REAL.onrender.com<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deployment-commit<span class="w"> </span>SHA-REAL-DE-40-CARACTERES<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>work/render-public-smoke/report.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--screenshots-dir<span class="w"> </span>work/render-public-smoke/captures
+</pre></div>
+</div>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Comprobación del servicio</p></th>
-<th class="head"><p>Evidencia esperada</p></th>
-<th class="head"><p>Estado</p></th>
+<tr class="row-odd"><th class="head"><p>Comprobación automatizada</p></th>
+<th class="head"><p>Criterio fijado antes de medir</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Contexto, EDA y Modelos</p></td>
-<td><p>URL/versión, navegación y callbacks de cada página.</p></td>
-<td><p>Implementados en local; verificación pública pendiente.</p></td>
+<tr class="row-even"><td><p>Disponibilidad inicial</p></td>
+<td><p>Healthcheck correcto antes de 180 s; conservar intentos y estados transitorios.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Filtros y datos insuficientes</p></td>
-<td><p>Todas las figuras e insights actualizados, n efectivo y mensajes claros.</p></td>
-<td><p>Pendiente.</p></td>
+<tr class="row-odd"><td><p>Tres páginas y callbacks</p></td>
+<td><p>HTTP 200; navegación y componentes completos antes de 30 s por página; EDA vacía las seis figuras con la misma máscara.</p></td>
 </tr>
-<tr class="row-even"><td><p>Cada modelo en vivo</p></td>
-<td><p>Un ejemplo permitido, contrato temporal, salida finita y procedencia del artefacto.</p></td>
-<td><p>Cuatro ONNX verificados localmente; prueba pública pendiente.</p></td>
+<tr class="row-even"><td><p>Registro visible</p></td>
+<td><p>Diecisiete filas en Modelos y ejecución de los cuatro identificadores habilitados.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Preprocesamiento y escala</p></td>
-<td><p>Coincidencia con la referencia validada en tolerancia declarada.</p></td>
-<td><p>Pendiente de integración completa.</p></td>
+<tr class="row-odd"><td><p>Integridad visible</p></td>
+<td><p>Ficha del modelo, declaración de datos y CSS iguales por SHA-256 al checkout del cliente.</p></td>
 </tr>
-<tr class="row-even"><td><p>Intervalo y explicación</p></td>
-<td><p>Mismo predictor/caso, unidades, nominal y límites de cobertura/fidelidad.</p></td>
-<td><p>Pendiente.</p></td>
+<tr class="row-even"><td><p>Cada ONNX en vivo</p></td>
+<td><p>Callback real HTTP 200, salida finita y no negativa, caso fijo <code class="docutils literal notranslate"><span class="pre">evaluation-0</span></code> y diferencia ≤ <code class="docutils literal notranslate"><span class="pre">1e-6</span></code> frente a su predictor guardado.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Entradas inválidas y OOD</p></td>
-<td><p>Rechazo o aviso correcto, sin caída ni exposición de rutas/secretos.</p></td>
-<td><p>Pendiente.</p></td>
+<tr class="row-odd"><td><p>Incertidumbre y explicación</p></td>
+<td><p>Nominal del 90 % en referencias; ausencia calibrada explícita en E3; siete sensibilidades finitas y límites de interpretación visibles.</p></td>
 </tr>
-<tr class="row-even"><td><p>Recursos y tiempos</p></td>
-<td><p>Arranque frío/caliente, carga bajo demanda y latencias frente a umbrales prefijados.</p></td>
-<td><p>Pendiente: sin mediciones Render.</p></td>
+<tr class="row-even"><td><p>Respuesta completa</p></td>
+<td><p>Antes de 30 s por predictor, incluyendo red, explicación y renderizado; registrar aparte la latencia CPU sin explicación.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Modalidades precalculadas</p></td>
-<td><p>Catálogo completo, fuentes y justificación de restricciones.</p></td>
-<td><p>Diecisiete sistemas en la interfaz local; comprobar en Render.</p></td>
+<tr class="row-odd"><td><p>Errores tras estar listo</p></td>
+<td><p>Sin HTTP 5xx internos, errores de consola ni excepciones no capturadas de navegador.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>El informe de humo conservará fecha, commit, entorno, URLs visitadas, identificadores de casos permitidos, modelo/versión, estados HTTP, resultados, tiempos y errores, con extractos de logs identificados por versión e instante. Esos extractos excluirán secretos, rutas internas e inputs privados. Sus umbrales de aceptación se fijarán antes de medir. Actualmente no hay una URL Render, captura de funcionamiento o resultado de humo que pueda declararse aprobado.</p>
+<p>El caso fijado corresponde al objetivo <strong>2025-01-01</strong>, elegido por posición cronológica y no por rendimiento. En el contenedor local las cuatro consultas completas, incluida explicación, tardaron respectivamente <strong>1.792, 326, 250 y 256 ms</strong> para MLP16, LSTM32, GRU32 y E3. La mayor diferencia frente al pronóstico guardado fue menor que <code class="docutils literal notranslate"><span class="pre">3.86e-7</span></code>; la interfaz muestra seis decimales. Son observaciones de una consulta por modelo y de ese entorno local: no constituyen percentiles de latencia, métricas nuevas, evaluación remota o una prueba de toda la distribución de entradas.</p>
+<p>El guion devuelve código de salida distinto de cero ante fallo y conserva un JSON con tiempos, estados HTTP, errores, huellas y resultados. La admisión de URL exige un origen HTTPS <code class="docutils literal notranslate"><span class="pre">nombre.onrender.com</span></code>; loopback requiere <code class="docutils literal notranslate"><span class="pre">--allow-local</span></code> y <strong>nunca</strong> puede producir <code class="docutils literal notranslate"><span class="pre">render_public_smoke_passed=true</span></code>. Los seis contratos de ese cliente se verifican sin red en CI. La prueba pública sólo se ejecuta al invocar manualmente el workflow con una URL existente y el SHA declarado.</p>
+<p><strong>La identidad de versión tiene un límite explícito:</strong> el healthcheck actual no expone un commit. El SHA introducido queda como declaración del operador y <code class="docutils literal notranslate"><span class="pre">remote_commit_identity_verified</span></code> sigue en <code class="docutils literal notranslate"><span class="pre">false</span></code>; debe cotejarse y anexarse el log de Render. Las huellas de recursos y la paridad son comprobaciones adicionales y no se presentan como una atestación completa del código remoto.</p>
+<p>En esta entrega, <code class="docutils literal notranslate"><span class="pre">render_service_url</span></code> es <code class="docutils literal notranslate"><span class="pre">null</span></code> y el humo público está <strong>NO EJECUTADO: no existe servicio</strong>. No hay capturas, logs o vídeo de Render que puedan declararse aprobados. Los recibos locales aprobados conservan <code class="docutils literal notranslate"><span class="pre">render_public_smoke_passed=false</span></code>.</p>
+</section>
 <section id="recursos-del-plan-y-contingencia">
 <h3>Recursos del plan y contingencia<a class="headerlink" href="#recursos-del-plan-y-contingencia" title="Link to this heading">#</a></h3>
-<p>Antes de desplegar se verificarán los límites vigentes del plan en la documentación oficial de Render. Se contemplarán suspensión por inactividad, arranque frío, memoria/CPU, almacenamiento y persistencia. Los RSS de procesos CPU de exportación y las latencias forward de las tres referencias no acreditan capacidad del servicio completo ni su comportamiento concurrente.</p>
-<p>Si se requiere reducir tamaño, se evaluarán compresión o cuantización con paridad, pérdida de métrica frente al margen heredado y equivalencia cuando proceda. Cargar resultados precalculados o elegir un plan con más recursos exige justificación y contabilidad; este documento no selecciona ni activa un plan de pago. El entrenamiento seguirá fuera del servidor.</p>
-<p>Para la sustentación se comprobará la URL con antelación y se preparará un vídeo breve de esa versión, con fecha. Las capturas locales del capítulo 9 son evidencia de la aplicación local; no prueban un servicio público. Ante una interrupción se explicará el estado y se usará el respaldo como contingencia; la URL Render funcional y su prueba de humo siguen siendo entregables propios.</p>
+<p>La suspensión por inactividad, el tiempo de espera, la memoria/CPU efectiva y la persistencia deben contrastarse con el plan actual y medirse en el servicio real. El cliente de navegador no puede deducir memoria pico remota o concurrencia. Si un modelo excede los recursos disponibles, se documentará su modalidad precalculada o una compresión validada con paridad y pérdida de métrica frente al margen heredado; no se reentrena dentro del servidor ni se activa automáticamente un plan mayor.</p>
+<p>Antes de la sustentación se abrirá la URL con antelación, se repetirá el humo y se grabará un vídeo breve de esa versión, con fecha y capturas. Si falla el servicio durante la exposición, se explicará el incidente y el alcance del respaldo. Las capturas locales del capítulo 9 y un vídeo futuro no sustituyen una URL Render funcional ni un recibo público aprobado. El <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">capítulo 12</span></a> debe conservar esos pendientes y el <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">capítulo 13</span></a> distingue la demostración real de la contingencia.</p>
 </section>
 </section>
 </section>
@@ -570,6 +589,12 @@ Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 1 --timeo
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-de-despliegue">10.1 Pasos de despliegue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conservar-la-aplicacion-local-verificada">1. Conservar la aplicación local verificada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantener-python-dependencias-y-contenedor-reproducibles">2. Mantener Python, dependencias y contenedor reproducibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#versionar-codigo-artefactos-y-metadatos">3. Versionar código, artefactos y metadatos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-el-web-service-desde-el-blueprint">4. Crear el Web Service desde el blueprint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificar-construccion-arranque-y-url-publica">5. Verificar construcción, arranque y URL pública</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-el-guion-de-humo-contra-la-url-real">6. Ejecutar el guion de humo contra la URL real</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-del-plan-y-contingencia">Recursos del plan y contingencia</a></li>
 </ul>
 </li>
