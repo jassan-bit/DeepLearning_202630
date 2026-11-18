@@ -8,7 +8,7 @@ La referencia E3 combina CNN causal, LSTM, atención temporal y salida aditiva p
 
 Los aportes técnicos son: (1) trazabilidad y controles reproducibles de predicciones; (2) reproducción automática en Docker de once tablas idénticas; y (3) dashboard con 17 sistemas y cuatro ONNX CPU verificados. No se presentan como novedad acreditada. Un diagnóstico posterior separado obtiene cobertura 94,49 % para nominal 90 %, pero 86,22 % en 2026Q1; sus calibradores no están desplegados.
 
-La revisión compara once trabajos y ocho lecturas focales. Persisten tratamientos distintos, exposición al calendario y cero datasets adicionales admitidos. El cuaderno Colab prepara la campaña futura, sin ejecutarla. R1, defensa R2, R3, reproducción humana, DOI y funcionamiento público de Render siguen abiertos.
+La revisión compara once trabajos y ocho lecturas focales. D01 WIKI/AAPL se admite para σ₇ de precio bruto en siete sesiones y horizonte próxima sesión: un archivo de tres admitido, cero evaluados por modelos y dos pendientes. Siguen abiertos tratamiento común, potencia y protocolo futuro. No se añadieron entrenamientos reales; el histórico se conserva. R1, defensa R2, R3, reproducción humana, DOI y Render siguen abiertos.
 
 ## Alcance del informe
 
@@ -51,7 +51,7 @@ El inventario inicial de **81 predictores y 167 metadatos** corresponde a su cor
 
 El proceso E3 utilizó **532 ejemplos de ajuste y 116 de validación**, mientras que E2 utilizó **655 de ajuste y 53 de calibración**. Compartir las 608 fechas de prueba y diez semillas por red no iguala esos tratamientos. Las fechas de prueba ya eran conocidas y no se presentan como una confirmación ciega. Los análisis retrospectivos, la variación entre semillas, las propiedades formales históricas y las pruebas de software conservan alcances diferentes.
 
-El [capítulo 8](08_verificacion_estadistica.md) conserva métricas, efectos, p-valores, Holm, sensibilidades y MCS históricos. Añade, por separado, el control de piso común y un diagnóstico posterior de intervalos E3: cobertura media **94,49 %** y anchura **0,01096344 σ₇**, con subcobertura temporal en 2026Q1. El dashboard aún no utiliza estos cuantiles. La planificación de potencia es condicional y no certifica la batería completa; hay tres fuentes candidatas y **cero conjuntos adicionales admitidos**. Siguen abiertos el protocolo futuro, la adecuación completa y los demás estudios de robustez.
+El [capítulo 8](08_verificacion_estadistica.md) conserva métricas, efectos, p-valores, Holm, sensibilidades y MCS históricos. Añade, por separado, el control de piso común y un diagnóstico posterior de intervalos E3: cobertura media **94,49 %** y anchura **0,01096344 σ₇**, con subcobertura temporal en 2026Q1. El dashboard aún no utiliza estos cuantiles. La planificación de potencia es condicional y no certifica la batería completa; el estado actual es **1 de 3 archivos admitidos, 0 evaluados por modelos y 2 pendientes**, tras cerrar D01 para la tarea RAW entre sesiones. La revisión derivada de calendario y política es posterior al reporte original del usuario, cuyo cero inicial se conserva. Siguen abiertos el protocolo futuro, la adecuación completa y los demás estudios de robustez.
 
 **R1, la defensa académica de R2 y R3 siguen abiertos.** La demostración del primer módulo de atención modificada no se transfiere automáticamente a la receta aditiva actual. La implementación, el resultado favorable y la publicación del libro no acreditan por sí solos novedad, dominio humano del código o entrega completa.
 

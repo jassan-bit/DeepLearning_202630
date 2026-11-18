@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-18T18:28:40.969287+00:00",
+  "kind": "dataset_admission_decision",
+  "dataset_id": "D01",
+  "status": "admitted_for_declared_raw_session_task",
+  "admitted": true,
+  "datasets_admitted_after_review": 1,
+  "datasets_total_required": 3,
+  "datasets_evaluated": 0,
+  "input": {
+    "provider_repository": "bokeh/bokeh_sampledata",
+    "provider_commit": "3e831d2779ca74c087c7eee05d538015c97b1e52",
+    "provider_path": "src/bokeh_sampledata/_data/stocks.csv.gz",
+    "sha256": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd",
+    "instrument": "AAPL",
+    "rows": 3270,
+    "first": "2000-03-01",
+    "last": "2013-03-01",
+    "declared_license": "Public domain",
+    "rights_basis": "Pinned primary distributor source-verified declaration with copy/redistribution permission; not a new CC0 license"
+  },
+  "task": {
+    "clock": "NASDAQ trading session labels; published calendar alias to XNYS",
+    "window_bars": 7,
+    "target_return_count": 7,
+    "horizon_sessions": 1,
+    "target": "Population standard deviation of seven unadjusted close log returns ending in the target session; ddof=0; not annualized",
+    "forecast_information": "Only the seven completed OHLCV bars preceding the target session",
+    "target_values_computed_for_admission": false,
+    "possible_window_target_pairs_by_structure": 3263,
+    "UTC_calendar_day_equivalence_claimed": false
+  },
+  "policy": {
+    "id": "RAW_KEEP_ALL",
+    "adjusted_close_used": false,
+    "price_adjustment": "none",
+    "rows_removed": 0,
+    "rows_filled": 0,
+    "all_large_moves_retained": true,
+    "large_move_flags_are_not_automatic_split_labels": true,
+    "interpretation": "Quoted raw-price volatility includes mechanical corporate-action effects; it is not adjusted economic or total-return volatility"
+  },
+  "calendar": {
+    "reference_package": "exchange-calendars",
+    "version": "4.11.3",
+    "requested": "NASDAQ",
+    "resolved": "XNYS",
+    "ordered_sessions_matched": 3270,
+    "missing": [],
+    "extra": [],
+    "csv_sha256": "05911b2c78202d985f55a16f1a8919a8526fa48ccd82cffd6bf7eaa72ec0be60",
+    "scope": "Session-date coverage against one documented alias implementation, not independent calendars or intraday timestamp certification"
+  },
+  "evidence": {
+    "reported_audit_commit": "648f2b91b477b5f4226cad3af5928088accd74ed",
+    "executed_audit_source": "568aee0445a6eaba0f13c11deb2d6d64aa4f3fbd",
+    "reported_run_id": "20261118T181551067867Z",
+    "reported_datasets_admitted_at_initial_audit": 0,
+    "original_report_preserved_without_changes": true,
+    "subsequent_review": "Separate calendar validation and explicit raw task/policy close D01 file admission before any model performance is consulted",
+    "legacy_technical_report_reference": "The source evidence technical_review.json pointer names the preparatory local report; its contents are versioned as technical_snapshot.json in the executed source and quality is embedded in the saved dataset_audit.json"
+  },
+  "model_protocol_frozen": false,
+  "real_campaign_allowed": false,
+  "remaining_campaign_gates": [
+    "D02 and D03 admission",
+    "common partitions, treatment, budget and full-battery power",
+    "final dated protocol and candidate identity before performance evaluation"
+  ],
+  "historical_E2_E3_training_preserved": true,
+  "automatic_retraining_requested": false,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "new_hypothesis_tests": 0,
+  "R1_R3_verified": false,
+  "independent_human_reproduction_accredited": false,
+  "decision_method": "AI-assisted source, calendar and methodological review; not institutional approval or human reproduction"
+}
