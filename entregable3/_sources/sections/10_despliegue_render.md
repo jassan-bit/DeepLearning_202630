@@ -1,10 +1,10 @@
 # 10 Bloque F Despliegue en Render
 
-**Estado: servicio Render inexistente; preparación y prueba local aprobadas; URL y humo públicos no ejecutados.** El usuario confirmó «sin servicio». El repositorio ya contiene una aplicación funcional y el contenedor probado, pero GitHub Pages publica este informe y no ejecuta Dash. No se presenta una dirección de servicio inventada como URL del dashboard.
+**Estado: servicio Render creado, con URL asignada y construcción observada; disponibilidad y humo públicos por verificar.** Las capturas aportadas por el operador muestran `deeplearning-e3-dashboard`, runtime Docker, plan Free y la construcción del commit `ccefa68`. La dirección asignada es [https://deeplearning-e3-dashboard.onrender.com](https://deeplearning-e3-dashboard.onrender.com). El estado observado **Building** no acredita que el servicio haya alcanzado Live ni que responda correctamente. GitHub Pages sigue publicando este informe y no ejecuta Dash.
 
-La ruta preparada es [crear el servicio desde el blueprint de este repositorio](https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630). Ese enlace abre la configuración de Render y requiere la cuenta del propietario; **no es la URL de la aplicación ni acredita que el servicio exista**. El blueprint solicita el plan `free`, runtime Docker y `autoDeploy: false`. No se ha activado un servicio o un plan de pago.
+El servicio se creó desde el [blueprint de este repositorio](https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630). Ese enlace abre la configuración de Render y requiere la cuenta del propietario; **es el panel de creación, distinto de la URL de la aplicación**. El archivo solicita el plan `free`, runtime Docker y `autoDeploy: false`; las capturas muestran Docker y Free. No se declara contratación de un plan de pago ni capacidad remota medida.
 
-El objetivo de cierre es una URL HTTPS pública de Render que permita recorrer Contexto, EDA y Modelos sin instalación local, con cuatro ONNX en CPU y trece sistemas precalculados. El [capítulo 9](09_dashboard_predictivo.md) conserva la implementación y sus límites. El estado estructurado se descarga en {download}`deployment_readiness.json <../_static/e3_bloques_fg_20261117/deployment_readiness.json>`.
+El objetivo de cierre es verificar que esa URL permita recorrer Contexto, EDA y Modelos sin instalación local, con cuatro ONNX en CPU y trece sistemas precalculados. El [capítulo 9](09_dashboard_predictivo.md) conserva la implementación y sus límites. El {download}`deployment_readiness.json <../_static/e3_bloques_fg_20261117/deployment_readiness.json>` mantiene sus bytes y el estado anterior a la creación; la {download}`observación posterior del servicio <../_static/e3_cierre_guia_20261118/render_service_observation.json>` registra la URL y la evidencia limitada de las capturas. Ninguno de esos documentos es un recibo de humo público aprobado.
 
 ## 10.1 Pasos de despliegue
 
@@ -37,9 +37,9 @@ Los cuatro ONNX conservan los pesos publicados de la semilla representativa 2718
 
 La aplicación verifica hashes y usa un registro permitido de modelos. No acepta rutas, URLs o pesos del usuario, ni reajusta normalización o calibradores con el CSV. Los trece sistemas sin exportación de servicio validada conservan su modo precalculado. Si se añaden pesos mayores, su almacenamiento inmutable, descarga, licencias e integridad deberán documentarse antes de habilitarlos. Las condiciones de redistribución de datos y la licencia propia mantienen su estado en las fichas; no se inventa una licencia al desplegar.
 
-### 4. Crear el Web Service desde el blueprint
+### 4. Conservar la configuración del Web Service creado
 
-Abrir [Crear servicio en Render](https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630), conectar el repositorio revisado y confirmar la configuración que muestra la cuenta. La configuración versionada solicita:
+La creación ya se observó en la cuenta del operador. Para reconstruir o revisar su configuración se conserva [el enlace al blueprint](https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630), con el repositorio y la rama `main`. La configuración versionada solicita:
 
 ```yaml
 services:
@@ -71,12 +71,12 @@ El ejemplo Softmax de la guía corresponde a clasificación. Este problema prono
 
 El cliente ya implementado se conserva como {download}`smoke_render.py <../_static/e3_bloques_fg_20261117/smoke_render.py>` y su procedimiento como {download}`README_smoke.md <../_static/e3_bloques_fg_20261117/README_smoke.md>`. Puede ejecutarse desde un entorno de desarrollo o mediante el workflow manual **Verificar cliente de humo E3 y despliegue público solicitado**. Las versiones de Playwright y Chromium pertenecen al cliente de comprobación, nunca al servicio.
 
-Los valores de este ejemplo son marcadores que deben sustituirse; no identifican un despliegue existente:
+La URL siguiente ya está asignada al servicio. El SHA completo resuelve el prefijo de construcción observado y debe cotejarse con el log efectivo de Render antes de ejecutar el humo. Si se despliega otro commit, se registrará ese valor real:
 
 ```bash
 python experiments/e3_bloques_fg_20261117/smoke_render.py \
-  --url https://NOMBRE-REAL.onrender.com \
-  --deployment-commit SHA-REAL-DE-40-CARACTERES \
+  --url https://deeplearning-e3-dashboard.onrender.com \
+  --deployment-commit ccefa68111cc29e9f75eb724c15a94655d63ca55 \
   --output work/render-public-smoke/report.json \
   --screenshots-dir work/render-public-smoke/captures
 ```
@@ -98,7 +98,7 @@ El guion devuelve código de salida distinto de cero ante fallo y conserva un JS
 
 **La identidad de versión tiene un límite explícito:** el healthcheck actual no expone un commit. El SHA introducido queda como declaración del operador y `remote_commit_identity_verified` sigue en `false`; debe cotejarse y anexarse el log de Render. Las huellas de recursos y la paridad son comprobaciones adicionales y no se presentan como una atestación completa del código remoto.
 
-En esta entrega, `render_service_url` es `null` y el humo público está **NO EJECUTADO: no existe servicio**. No hay capturas, logs o vídeo de Render que puedan declararse aprobados. Los recibos locales aprobados conservan `render_public_smoke_passed=false`.
+La observación actual registra `render_service_url=https://deeplearning-e3-dashboard.onrender.com`, creación observada y último estado aportado **Building**. El humo público sigue **NO EJECUTADO / SIN RECIBO APROBADO**; las capturas muestran la creación y construcción, no una aceptación del servicio. No se dispone aquí de un log de arranque ni vídeo que permita certificar su funcionamiento. Los recibos locales conservan `render_public_smoke_passed=false`. Cuando Render indique Live, se podrá ejecutar [el workflow manual de humo](https://github.com/jassan-bit/DeepLearning_202630/actions/workflows/verify-e3-render-smoke.yml), en `main`, con la URL asignada y el SHA cotejado con el log.
 
 ### Recursos del plan y contingencia
 

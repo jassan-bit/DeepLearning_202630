@@ -1,6 +1,6 @@
 # 13 Sustentación
 
-La guía exige **20 minutos de exposición sobre el dashboard desplegado**, seguidos de preguntas. Este capítulo es un guion de preparación, no una defensa realizada. El prototipo local ya tiene Contexto, EDA y Modelos, catálogo de 17 sistemas y cuatro modelos ONNX en CPU; la URL Render y la comprobación del servicio público siguen pendientes. Las pruebas de software no acreditan comprensión individual del autor.
+La guía exige **20 minutos de exposición sobre el dashboard desplegado**, seguidos de preguntas. Este capítulo es un guion de preparación, no una defensa realizada. El prototipo local ya tiene Contexto, EDA y Modelos, catálogo de 17 sistemas y cuatro modelos ONNX en CPU; el servicio Render ya tiene [URL asignada](https://deeplearning-e3-dashboard.onrender.com), con construcción observada y funcionamiento/humo públicos por verificar. Las pruebas de software no acreditan comprensión individual del autor.
 
 ## 13.1 Distribución del tiempo
 

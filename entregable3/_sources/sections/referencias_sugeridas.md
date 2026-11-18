@@ -1,6 +1,6 @@
 # Referencias metodológicas sugeridas por la guía
 
-Las 37 referencias siguientes proceden de las páginas 54–57 de *Entregable3DeepLearningProject.pdf*, aportado por el usuario. Se conserva su numeración original y se estructuran sus metadatos bibliográficos. Esta incorporación documental no registra nuevas búsquedas, lecturas de originales ni verificación externa de esos metadatos.
+Las 37 referencias siguientes proceden de las páginas 54–57 de *Entregable3DeepLearningProject.pdf*, aportado por el usuario. Se conserva su numeración original y se estructuran sus metadatos bibliográficos. La transcripción inicial no acreditaba búsquedas o lecturas de originales. Esta revisión añade una comprobación editorial puntual de las referencias 9 y 25, documentada al final; no afirma haber verificado externamente las 37 referencias ni leído sus textos completos.
 
 La aplicabilidad se refiere a la ruta temporal F2a del proyecto: pronóstico de σ₇, con RMSE primaria, dependencia temporal y variabilidad entre semillas. Cada procedimiento deberá corresponder al estimando, las unidades y los supuestos del protocolo que se ejecute; una referencia sugerida no acredita que su prueba ya se haya aplicado.
 
@@ -16,7 +16,7 @@ La aplicabilidad se refiere a la ruta temporal F2a del proyecto: pronóstico de 
 | 6 | Inferencia del error de generalización y corrección de varianza. {cite:p}`guia_nadeau2003` | La corrección de Nadeau–Bengio corresponde a determinados diseños de particiones con entrenamientos solapados. No se aplica automáticamente a una única trayectoria de prueba ni reemplaza una estimación temporal de varianza. |
 | 7 | Contrastes para comparar algoritmos de clasificación. {cite:p}`guia_dietterich1998` | Los diseños de particiones de clasificación requieren adaptación justificada. Aleatorizar fechas para imitar una validación 5×2 destruiría la disponibilidad causal del pronóstico. |
 | 8 | Selección de pruebas de significancia en lenguaje. {cite:p}`guia_dror2018` | Aporta criterios de correspondencia entre métrica, prueba y unidad. En F2a, el pareado y el remuestreo deben respetar la dependencia temporal, en lugar de asumir ejemplos intercambiables. |
-| 9 | Fuentes de varianza en benchmarks. {cite:p}`guia_bouthillier2021` | Separar variación por semilla, partición, datos y ajuste de hiperparámetros. Seis semillas sobre las mismas fechas no representan seis mercados independientes. |
+| 9 | Fuentes de varianza en benchmarks. {cite:p}`guia_bouthillier2021` | Separar variación por semilla, partición, datos y ajuste de hiperparámetros. Las réplicas por semilla de una misma red sobre las mismas fechas no representan mercados independientes. |
 | 10 | Reporte del proceso experimental. {cite:p}`guia_dodge2019` | Registrar intentos, presupuesto, paradas y fallos, además de la receta seleccionada en validación. Ayuda a documentar el esfuerzo de diseño y ajuste. |
 | 11 | Claridad y límites de las afirmaciones científicas. {cite:p}`guia_lipton2019` | Distinguir el mecanismo, la evidencia que lo sustenta y el alcance de cada conclusión. Un nombre nuevo o una explicación intuitiva requiere respaldo adicional. |
 | 12 | Fuga de información y reproducibilidad. {cite:p}`guia_kapoor2023` | Auditar disponibilidad temporal, transformaciones, selección, particiones y pipeline efectivo. Los hashes de archivos y las fechas guardadas sólo cubren parte de esa auditoría. |
@@ -29,7 +29,7 @@ La aplicabilidad se refiere a la ruta temporal F2a del proyecto: pronóstico de 
 | 19 | Capacidad predictiva condicional: Giacomini–White. {cite:p}`guia_giacomini2006` | Deben especificarse información condicionante, esquema de estimación y condiciones de validez. Su uso no se decide después de observar qué prueba produce el p más favorable. |
 | 20 | Contraste de Clark–West para modelos anidados. {cite:p}`guia_clark2007` | Requiere anidamiento y un esquema compatible con el contraste. Comparar dos redes, o hacer una red más grande, no demuestra por sí solo el anidamiento necesario. |
 | 21 | Model Confidence Set. {cite:p}`guia_hansen2011` | Ofrece un conjunto de modelos bajo una pérdida, familia y nivel declarados. Pertenecer al conjunto no demuestra equivalencia práctica ni identifica obligatoriamente un ganador único. |
-| 22 | Bootstrap estacionario. {cite:p}`guia_politis1994` | Pertinente para remuestrear dependencia temporal bajo sus supuestos. Debe fijarse la política de longitud de bloques y conservar el pareado entre modelos. |
+| 22 | Bootstrap estacionario. {cite:p}`guia_politis1994` | Pertinente para remuestrear dependencia temporal bajo sus supuestos. Debe fijarse la política de longitud de bloques y conservar el pareado entre modelos. El remuestreo por bloques del análisis posterior usa bloques circulares; se conserva esa identidad y no se presenta como ejecución del bootstrap estacionario de esta referencia. |
 | 23 | Tamaños de efecto para datos ordinales. {cite:p}`guia_romano2006` | Ayuda a contextualizar efectos por rangos y los umbrales citados por la guía. Su origen en encuestas ordinales no convierte esos umbrales en relevancia económica validada para volatilidad. |
 | 24 | Reglas de puntuación estrictamente propias. {cite:p}`guia_gneiting2007` | Orienta la evaluación coherente de pronósticos probabilísticos. Debe distinguirse el objetivo puntual, los intervalos y la distribución completa que realmente se estiman. |
 | 25 | Predicción conforme. {cite:p}`guia_angelopoulos2023` | Sus garantías dependen del método y de supuestos como intercambiabilidad. Para series de tiempo se debe justificar la adaptación y medir cobertura temporal y condicional. |
@@ -56,8 +56,19 @@ Las repeticiones por semillas describen variabilidad de optimización sobre una 
 
 En σ₇ continuo, los diagnósticos de regresión, cobertura de intervalos y calidad probabilística deben corresponder a la salida producida. AUC, ROC y la calibración de probabilidades de clasificación sólo serían pertinentes para otra tarea definida expresamente. Las explicaciones visuales y de lenguaje requieren adaptación al modelo temporal, referencias de entrada coherentes y comprobaciones de fidelidad; sus nombres no acreditan una explicación causal.
 
+Declarar no aplicable una operación de clasificación concreta no elimina los requisitos temporales: se mantienen las pruebas apropiadas, familia completa, potencia, margen, tres conjuntos adicionales, adecuación, robustez y evaluación de incertidumbre. Tampoco convierte una técnica alternativa en un resultado ejecutado. La [sección 8](08_verificacion_estadistica.md) identifica lo calculado y lo pendiente; en particular, citar predicción conforme no crea un calibrador para E3 ni demuestra cobertura nominal bajo dependencia temporal.
+
 ## Bibliografía estructurada
 
 {download}`Descargar las 37 referencias metodológicas sugeridas en BibTeX <../referencias_metodologicas_v1.bib>`.
 
 Este archivo versionado conserva los campos aportados por la guía y usa claves con prefijo `guia_`. Los nombres abreviados y las listas con *et al.* se mantienen sin completar autores no suministrados; tampoco se añadieron DOI o URL no aportados. Las siete referencias del mecanismo candidato se conservan en su fichero independiente.
+
+## Comprobación editorial puntual de esta revisión
+
+| N.º conservado | Metadatos contrastados | Fuente primaria y alcance |
+|---|---|---|
+| 9 | Autoría, título y procedencia de *Accounting for Variance in Machine Learning Benchmarks*, MLSys 2021. | [Registro oficial de MLSys](https://proceedings.mlsys.org/paper_files/paper/2021/hash/0184b0cd3cfb185989f858a1d9f5c1eb-Abstract.html). Comprobación de la ficha editorial; no registra lectura completa o una nueva ejecución del método. |
+| 25 | *Conformal Prediction: A Gentle Introduction*, 2023, volumen 16(4), páginas 494–591 y DOI `10.1561/2200000101`. | [Ficha editorial de Foundations and Trends in Machine Learning](https://www.emerald.com/ftmal/article-abstract/16/4/494/1332423/Conformal-Prediction-A-Gentle-Introduction). Confirma los metadatos del registro ya conservado; no amplía sus garantías a los datos temporales del proyecto. |
+
+No se detectó una errata bibliográfica material que justifique reemplazar el BibTeX histórico. Las otras 35 referencias mantienen su procedencia como metadatos aportados por la guía, sin una verificación editorial nueva declarada en esta revisión. La lista metodológica y esta comprobación puntual no se suman como trabajos leídos a la revisión de novedad del candidato.

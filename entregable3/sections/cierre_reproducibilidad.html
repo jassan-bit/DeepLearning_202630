@@ -387,7 +387,10 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-provisionales-y-limites">Conclusiones provisionales y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-reproducibilidad-al-cierre">Lista de reproducibilidad al cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-reproducibilidad-al-cierre">Lista de reproducibilidad al cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-con-las-17-casillas-de-a-5">Correspondencia con las 17 casillas de A.5</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-reproduccion-independiente-por-completar">Registro de reproducción independiente por completar</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoria-contribuciones-y-uso-de-ia">Autoría, contribuciones y uso de IA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-de-partida-y-alcance-de-lectura">Bibliografía de partida y alcance de lectura</a></li>
@@ -407,13 +410,13 @@
 <p>Este anexo cierra la navegación del informe con los requisitos de reproducción y autoría de las secciones 11–12 y 15. Es un <strong>registro provisional</strong>, no un acta de entrega, firma o reproducción independiente. Las <a class="reference internal" href="16_conclusiones.html"><span class="std std-doc">conclusiones de la sección 16</span></a> mantienen la diferencia entre documentación publicada, software comprobado y resultados científicos pendientes.</p>
 <section id="conclusiones-provisionales-y-limites">
 <h2>Conclusiones provisionales y límites<a class="headerlink" href="#conclusiones-provisionales-y-limites" title="Link to this heading">#</a></h2>
-<p>E2 aporta un benchmark de 16 sistemas sobre 608 fechas, con diez semillas por cada una de sus trece redes y una trayectoria por clásico: <strong>133 predictores</strong>. E3 dispone de diez réplicas de la <strong>CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva y 1210 parámetros</strong>. El prototipo local de Dash representa los 17 sistemas y ejecuta cuatro ONNX CPU —MLP16, LSTM32, GRU32 y E3— para la semilla representante 271801. Las tres exportaciones TorchScript históricas se conservan; el servicio público en Render sigue pendiente.</p>
+<p>E2 aporta un benchmark de 16 sistemas sobre 608 fechas, con diez semillas por cada una de sus trece redes y una trayectoria por clásico: <strong>133 predictores</strong>. E3 dispone de diez réplicas de la <strong>CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva y 1210 parámetros</strong>. La aplicación Dash comprobada localmente representa los 17 sistemas y ejecuta cuatro ONNX CPU —MLP16, LSTM32, GRU32 y E3— para la semilla representante 271801. Las tres exportaciones TorchScript históricas se conservan. El servicio Docker gratuito ya fue creado en <a class="reference external" href="https://deeplearning-e3-dashboard.onrender.com">Render</a>; la captura aportada por la persona autora muestra su construcción, mientras la verificación de estado Live y el humo público siguen pendientes.</p>
 <p>El primer candidato tiene formulación, implementación asistida por IA, demostración de una cota de su cabeza latente y 35 pruebas históricas con datos artificiales. Los pilotos v1/v2 aportan cinco recetas entrenadas en desarrollo y la referencia aditiva v2. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/4cd455d90fb72fe78beeb885dc5dadc4ea9edeb4/runs/momentos_v1">piloto posterior por momentos</a> <strong>completó sus tres recetas</strong>: <code class="docutils literal notranslate"><span class="pre">moment_joint</span></code> obtuvo RMSE de validación 0,0032589201 frente a 0,0031446148 de la referencia aditiva y no superó la heurística de continuación del 2 %. Las diez réplicas aditivas repiten una receta; no son diez diseños nuevos. El Nd global continúa pendiente de conciliación.</p>
 <p>La aditiva evaluada tiene <strong>RMSE media 0,0029394324</strong>, DE muestral <strong>0,0000471254</strong> y MAE media <strong>0,0018928273</strong> sobre las mismas 608 fechas del 1 de enero de 2025 al 31 de agosto de 2026. El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">análisis estadístico posterior</span></a> ya completó los 48 contrastes primarios y todos rechazan tras Holm global, bajo los supuestos y ámbitos de incertidumbre declarados. El MCS90 auxiliar conserva diez sistemas, incluido E3; no determina un ganador único. E2 usó 655 ejemplos de ajuste y 53 de calibración; E3, 532 de ajuste y 116 de validación, sin abrir el bloque de calibración. No se afirma igualdad de tratamiento ni se convierte el calendario conocido en una confirmación ciega.</p>
 <p>La revisión focal y la bibliografía no establecen ausencia de antecedentes. <strong>R1, la defensa académica de R2 y R3 permanecen pendientes.</strong> La guía requiere tres pruebas distintas apropiadas; sus rechazos no sustituyen el diseño justo, la potencia previa, los conjuntos adicionales ni los restantes requisitos. Los tests de software conservan su alcance y las propiedades de los mecanismos anteriores no se transfieren automáticamente al modelo de 1210 parámetros.</p>
 <p>La paridad ONNX se comprobó en 608 fechas frente a memoria CPU y pronósticos congelados, con tolerancia absoluta 10⁻⁶ en σ₇. La etapa de ingeniería ejecutó inferencias CPU, sin ajustar pesos o calibradores ni usar GPU; el análisis estadístico anterior mantiene su alcance sin inferencia nueva. El historial de entrenamiento de una semilla se recuperó del checkpoint y no es una ejecución nueva.</p>
-<p>Las etapas siguientes son cerrar auditorías y fuentes admisibles, revisión/hipótesis/diseño, separación de confirmación, datasets, presupuesto y potencia antes de un protocolo definitivo; completar evaluación ampliada, explicaciones y calibración faltantes; verificar el paquete final, desplegar el servicio y reproducir la campaña de forma independiente. La app local, las fichas y los reportes de ingeniería son productos con alcance concreto; no convierten los borradores históricos en preregistros ni el prototipo en una entrega completa.</p>
-<p>La revisión de los bloques F/G conecta el procedimiento de despliegue y humo de <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>, la estructura científica y el acta del tercero de <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>, la matriz de los trece entregables de <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">12</span></a> y el guion de exposición de <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">13</span></a>. El resumen con aportes técnicos y las ecuaciones numeradas mejoran la comunicación y trazabilidad del informe; no acreditan por sí solos novedad, confirmación o una reproducción ejecutada. Render todavía no tiene un servicio del proyecto cuya URL pueda verificarse aquí.</p>
+<p>Las etapas siguientes son cerrar auditorías y fuentes admisibles, revisión/hipótesis/diseño, separación de confirmación, datasets, presupuesto y potencia antes de un protocolo definitivo; completar evaluación ampliada, explicaciones y calibración faltantes; verificar el paquete final y el servicio Render creado y reproducir la campaña de forma independiente. La app local, las fichas y los reportes de ingeniería son productos con alcance concreto; no convierten los borradores históricos en preregistros ni el prototipo en una entrega completa.</p>
+<p>La revisión de los bloques F/G conecta el procedimiento de despliegue y humo de <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>, la estructura científica y el acta del tercero de <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>, la matriz de los trece entregables de <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">12</span></a> y el guion de exposición de <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">13</span></a>. El resumen de 217 palabras, los aportes técnicos y las 38 ecuaciones verificadas en el corte F/G mejoran la comunicación y trazabilidad del informe; las 37 expresiones anteriores se conservaron. Esta revisión añade una etiqueta y referencia a la fórmula de calificación ya existente, sin cambiar su expresión. Esas comprobaciones no acreditan novedad, confirmación o una reproducción ejecutada. La URL asignada a Render se registra como observación del despliegue, con el commit <code class="docutils literal notranslate"><span class="pre">ccefa68</span></code> mostrado en construcción, sin certificar disponibilidad o resultado de humo.</p>
 </section>
 <section id="lista-de-reproducibilidad-al-cierre">
 <h2>Lista de reproducibilidad al cierre<a class="headerlink" href="#lista-de-reproducibilidad-al-cierre" title="Link to this heading">#</a></h2>
@@ -434,8 +437,8 @@
 <td><p>Reconstruir/verificar la versión final con sus enlaces y recursos preservados; esto no ejecuta la campaña científica.</p></td>
 </tr>
 <tr class="row-even"><td><p>Entornos científicos y de servicio</p></td>
-<td><p>Dependencias fijadas e imagen Docker local de ONNX Runtime sin Torch, comprobada en ocho rutas con usuario sin privilegios y sólo lectura; entorno científico separado.</p></td>
-<td><p>Desplegar y verificar el servicio público; contenedor científico completo y reproducción humana siguen pendientes.</p></td>
+<td><p>Dependencias fijadas e imagen Docker local de ONNX Runtime sin Torch, comprobada en ocho rutas con usuario sin privilegios y sólo lectura; entorno científico separado. Servicio Render creado en modalidad Docker/Free.</p></td>
+<td><p>Verificar el funcionamiento público y su configuración efectiva; contenedor científico completo y reproducción humana siguen pendientes.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Hardware y precisión</p></td>
 <td><p>Perfiles CUDA de las corridas E3 y CPU del análisis estadístico y exportaciones, con versiones y alcance.</p></td>
@@ -470,7 +473,7 @@
 <td><p>Costes comparables completos y energía medida o estimada con método explícito; no inventar kWh ni confundir reloj, CPU y horas GPU.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Verificación de software</p></td>
-<td><p>42 pruebas estadísticas históricas y 50 A/B con sus alcances. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44213072051">CI del dashboard del corte de base</a> aprobó 25 casos y seis recorridos de navegador; científico: 60 aprobados y una referencia SciPy opcional omitida, incluida en los 61 aprobados localmente.</p></td>
+<td><p>42 pruebas estadísticas históricas y 50 A/B con sus alcances. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44221521963">CI del dashboard del corte documental</a> aprobó 25 casos y seis recorridos de navegador; científico: 60 aprobados y una referencia SciPy opcional omitida, incluida en los 61 aprobados localmente. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44221521926">cliente de humo</a> añadió seis contratos aprobados; su ejecución pública quedó omitida en ese push.</p></td>
 <td><p>Conservar los recibos de la versión final y la prueba pública sin sumar coberturas como ejecuciones de una campaña científica; estos tests y los checks de bytes no demuestran reproducción humana.</p></td>
 </tr>
 <tr class="row-even"><td><p>Reproducción independiente</p></td>
@@ -478,8 +481,8 @@
 <td><p>Una persona ajena al código, contenedor científico limpio, tabla principal regenerada, discrepancias observadas y concepto firmado.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Servicio público</p></td>
-<td><p>Prototipo local de tres páginas y cuatro modelos CPU descrito en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>; guion y procedimiento de humo en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>.</p></td>
-<td><p>Crear el servicio Render y registrar URL HTTPS, humo público por página/modelo, logs, tiempos y contingencia de esa versión desplegada. Un guion o recibo local no se registra como éxito público.</p></td>
+<td><p>Aplicación local de tres páginas y cuatro modelos CPU descrita en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>; guion de humo en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>. Servicio <code class="docutils literal notranslate"><span class="pre">deeplearning-e3-dashboard</span></code> creado, con URL HTTPS asignada y captura de construcción Docker/Free del commit <code class="docutils literal notranslate"><span class="pre">ccefa68</span></code>.</p></td>
+<td><p>Confirmar Live y registrar humo público por página/modelo, versión, logs, tiempos y contingencia. La URL asignada, un guion o un recibo local no se registran como éxito público.</p></td>
 </tr>
 <tr class="row-even"><td><p>Autoría y defensa</p></td>
 <td><p>Procedencia con asistencia IA y <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">guion de 20 minutos</span></a>, con 18 de contenido y dos de margen, nueve preguntas y comandos de práctica comprobados.</p></td>
@@ -488,7 +491,108 @@
 </tbody>
 </table>
 </div>
+<section id="correspondencia-con-las-17-casillas-de-a-5">
+<h3>Correspondencia con las 17 casillas de A.5<a class="headerlink" href="#correspondencia-con-las-17-casillas-de-a-5" title="Link to this heading">#</a></h3>
+<p>La <a class="reference internal" href="apendice_a_plantillas.html"><span class="std std-doc">plantilla A.5 de la guía</span></a> contiene <strong>17 casillas</strong>. La tabla siguiente conserva cada requisito y lo relaciona con evidencia y cierre pendiente. Los estados describen el alcance observado; no son casillas marcadas ni una calificación. Un requisito compuesto permanece parcial mientras falte cualquiera de sus elementos. La ausencia de un insumo o de un recibo no se sustituye por cero, una firma o una comprobación supuesta.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ítem A.5</p></th>
+<th class="head"><p>Requisito de la guía</p></th>
+<th class="head"><p>Evidencia y alcance actual</p></th>
+<th class="head"><p>Estado y condición de cierre</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A5-01</p></td>
+<td><p>Estándar de profundidad declarado por escrito antes de congelar el protocolo.</p></td>
+<td><p>El <a class="reference internal" href="02_estandar_profundidad.html"><span class="std std-doc">estándar exigido</span></a> y el borrador canónico identifican los compromisos de la guía.</p></td>
+<td><p><strong>Pendiente de registro prospectivo.</strong> Confirmar la declaración y fecha reales antes de congelar el protocolo definitivo; la consolidación posterior no adquiere esa anterioridad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-02</p></td>
+<td><p>Resultados de benchmarks congelados con hash tras el Bloque A.</p></td>
+<td><p>Recetas, snapshots y <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">selección/exportación</span></a> conservan identificadores; la ampliación de semillas no retunea las recetas.</p></td>
+<td><p><strong>Parcial.</strong> Cerrar las correcciones aplicables del Bloque A y documentar el congelamiento del benchmark que se usará en la confirmación, con hashes y correcciones trazables.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-03</p></td>
+<td><p>Limitación cuantificada, preferentemente del paper guía, e hipótesis con predicciones secundarias registradas.</p></td>
+<td><p>Los <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">capítulos 6</span></a> y <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a> conservan motivaciones, pilotos, diagnósticos adversos y formulaciones.</p></td>
+<td><p><strong>Parcial.</strong> Vincular la limitación elegida con evidencia cuantificada y la hipótesis del mecanismo; registrar sus predicciones antes de los experimentos finales. Los diagnósticos posteriores conservan su fecha.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-04</p></td>
+<td><p>Fuente citada y procedencia completa cuando el mecanismo sea transferido.</p></td>
+<td><p>Hay atribución de componentes conocidos y <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">procedencia</span></a>, con asistencia de IA declarada.</p></td>
+<td><p><strong>Parcial.</strong> Completar la clasificación de la diferencia y el documento de procedencia del mecanismo finalmente defendido, incluida la adaptación sustantiva si procede. No se declara novedad o no aplicabilidad por falta de revisión.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-05</p></td>
+<td><p>Demostración formal con supuestos explícitos y verificación numérica.</p></td>
+<td><p>Propiedades separadas por arquitectura; la cabeza aditiva tiene una cota condicional con 1728 pares y 96 gradientes sintéticos comprobados en <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">7</span></a>.</p></td>
+<td><p><strong>Disponible con alcance.</strong> Vincular la propiedad a la receta entregada, mantener sus supuestos y justificar su pertinencia; la cota latente no cubre automáticamente OHLCV crudo ni prueba originalidad o beneficio de mercado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-06</p></td>
+<td><p>Bitácora con Nd y desarrollo separado de confirmación.</p></td>
+<td><p>V1/v2 y momentos conservan ocho recetas completadas; diez réplicas aditivas repiten una receta. La bitácora consolidada es posterior.</p></td>
+<td><p><strong>Parcial.</strong> Conciliar Nd global, intentos y decisiones, y fijar una partición de confirmación que no haya influido en diseño. El subtotal de ocho recetas no sustituye Nd.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-07</p></td>
+<td><p>Protocolo preregistrado con tag y fecha previos a los experimentos definitivos.</p></td>
+<td><p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/protocolo.md">protocolo canónico</a> mantiene decisiones abiertas y fecha real de consolidación.</p></td>
+<td><p><strong>Pendiente.</strong> Resolver decisiones, registrar tag y fecha anteriores a futuras ejecuciones confirmatorias y conservar desviaciones; el borrador no se retrofecha.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-08</p></td>
+<td><p>Potencia, diferencia mínima detectable y potencia conjunta reportadas.</p></td>
+<td><p>Hay <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">ilustraciones de planificación</span></a>, diez semillas observadas y un margen heredado.</p></td>
+<td><p><strong>Pendiente del candidato.</strong> Ejecutar el piloto y dimensionar pares/semillas antes del congelamiento, con MDE y potencia conjunta. Las ilustraciones y p pequeños no son una estimación de potencia confirmatoria.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-09</p></td>
+<td><p>Familia completa Top 10 y baselines, con Holm sobre toda la familia.</p></td>
+<td><p>La comparación retrospectiva conserva 16 rivales y 48 contrastes, sin excluir sistemas o semillas y con Holm global.</p></td>
+<td><p><strong>Disponible en el análisis posterior.</strong> Conservar esa familia y su regla en el protocolo confirmatorio; el resultado retrospectivo no adquiere condición preregistrada por pasar la auditoría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-10</p></td>
+<td><p>Tres pruebas por contraste; el máximo de los p ajustados gobierna la decisión.</p></td>
+<td><p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">capítulo 8</span></a> informa los tres procedimientos, sus ámbitos y la decisión conjunta por rival.</p></td>
+<td><p><strong>Parcial para R3.</strong> Justificar su pertinencia temporal, supuestos, potencia y alcance; mantener todos los procedimientos exigidos. Los 48 rechazos no cierran los demás requisitos de R3.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-11</p></td>
+<td><p>Tres conjuntos adicionales elegidos antes de conocer resultados y no usados para diseñar.</p></td>
+<td><p>No se han seleccionado ni evaluado los tres conjuntos exigidos.</p></td>
+<td><p><strong>Pendiente.</strong> Registrar selección y diferencias respecto de BTC antes de ver el desempeño; los conjuntos que influyan en el diseño pasan a desarrollo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-12</p></td>
+<td><p>Sensibilidad de la conclusión a prueba alternativa, métrica secundaria y subconjunto de semillas.</p></td>
+<td><p>Hay sensibilidades temporales y por semillas, y métricas ampliadas con sus alcances en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8</span></a>.</p></td>
+<td><p><strong>Parcial.</strong> Completar los ejes previstos y documentar si se conserva R3, sin seleccionar sólo el análisis favorable ni presentar como registrada una decisión posterior.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-13</p></td>
+<td><p>Pruebas unitarias en CI y exportación con ida y vuelta.</p></td>
+<td><p>CI conserva 25 casos del dashboard y seis recorridos de navegador; cuatro ONNX verifican 608 fechas con tolerancia 10⁻⁶. Los seis contratos del cliente de humo tienen otro alcance.</p></td>
+<td><p><strong>Disponible con alcance parcial.</strong> Mantener recibos de la versión entregada y completar artefactos/verificaciones del catálogo final. La paridad de una semilla por modelo no es una media de diez ni una reproducción de entrenamiento.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-14</p></td>
+<td><p>Dashboard alimentado por la tabla maestra con prueba automática de consistencia.</p></td>
+<td><p>El catálogo de 17 sistemas deriva de las mismas métricas del informe; la igualdad de esos campos y las ausencias se comprueban automáticamente.</p></td>
+<td><p><strong>Disponible para el catálogo actual.</strong> Conservar la prueba al completar el maestro final, recursos y conjuntos adicionales. Las curvas representantes siguen identificadas aparte de la media entre semillas.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-15</p></td>
+<td><p>Docker funcional y reproducción independiente dentro del contenedor, con discrepancia máxima.</p></td>
+<td><p>El contenedor del servicio pasó comprobaciones locales; el <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">acta del tercero</span></a> define filas completas y discrepancia por campo/unidad.</p></td>
+<td><p><strong>Parcial.</strong> Una persona ajena al código debe reconstruir la campaña desde el contenedor científico limpio, producir la tabla principal y firmar el recibo con diferencias observadas. CI y otro agente de IA no sustituyen ese tercero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5-16</p></td>
+<td><p>Prueba de humo del despliegue y contingencia.</p></td>
+<td><p>El cliente pasó contra Gunicorn y Docker locales. Hay servicio Render y URL asignada; la captura recibida muestra construcción del commit ccefa68.</p></td>
+<td><p><strong>Pendiente de verificación pública.</strong> Confirmar Live y ejecutar el humo por las tres páginas y cuatro modelos sobre la URL real; conservar logs, tiempos y contingencia de esa versión. La captura de construcción no acredita disponibilidad.</p></td>
+</tr>
+<tr class="row-even"><td><p>A5-17</p></td>
+<td><p>Repositorio archivado con DOI, fichas, declaración de datos, contribuciones y uso de IA.</p></td>
+<td><p>Hay Git, CITATION.cff, MODEL_CARD.md, DATA_STATEMENT.md y declaración de asistencia al final de este anexo.</p></td>
+<td><p><strong>Parcial.</strong> Archivar la versión final con DOI, revisar derechos y licencia propia, ratificar fichas y contribuciones y obtener las firmas humanas; no se simulan identificadores, atribuciones individuales o avales.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Las verificaciones <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_build_handoff_book.py</span> <span class="pre">--check</span></code> y <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_verify_original.py</span> <span class="pre">--check</span></code> tienen ámbitos de evidencia y software definidos. La construcción <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">book_e3</span> <span class="pre">--all</span> <span class="pre">--warningiserror</span> <span class="pre">--keep-going</span></code> y el comprobador de enlaces verifican documentación. Ninguno de esos comandos, por sí solo, entrena la campaña E3, reproduce un servicio Render o convierte a la IA en una persona independiente del código.</p>
+</section>
 </section>
 <section id="registro-de-reproduccion-independiente-por-completar">
 <h2>Registro de reproducción independiente por completar<a class="headerlink" href="#registro-de-reproduccion-independiente-por-completar" title="Link to this heading">#</a></h2>
@@ -503,6 +607,7 @@
 <p>La autoría declarada en la portada se mantiene como dato del proyecto. No se atribuyen automáticamente contribuciones individuales ni se afirma una firma o defensa que no se haya verificado.</p>
 <p>La implementación del dashboard, sus componentes de datos e inferencia, exportaciones, validaciones, pruebas, fichas y documentación también empleó asistencia de IA. Los recibos de navegador y de software describen comprobaciones técnicas, no la revisión humana independiente ni una defensa académica. La persona autora debe revisar y poder modificar este código y sus supuestos.</p>
 <p>La revisión de las secciones 10–13 también emplea asistencia de ChatGPT/Codex para el guion de humo, la estructura y numeración del informe, el registro de productos y la preparación técnica de la exposición. Los comandos de práctica sintética y de inferencia son comprobaciones de ingeniería; no constituyen un ensayo personal realizado, acta del tercero, firma o defensa del estudiante.</p>
+<p>La revisión de las secciones 14–16 y las plantillas de cierre también usa ChatGPT/Codex para contrastar los criterios con la guía, ordenar su correspondencia con evidencias, revisar enlaces y precisar el alcance de los estados. La persona autora debe ratificar la exactitud de ese registro y poder defender sus decisiones; la revisión asistida no asigna una nota, completa un requisito sin evidencia ni firma declaraciones humanas.</p>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/procedencia.md">procedencia existente</a> declara que el módulo candidato fue escrito con asistencia de IA desde la formulación. La asistencia también se ha usado para organizar requisitos, redactar documentación, preparar herramientas de auditoría/exportación y comprobar software. Los capítulos deben conservar ese alcance y la revisión humana pendiente; no se presentan como implementación o demostración comprendidas y defendidas por la persona autora sólo porque existan archivos.</p>
 <p>Antes de la entrega, cada integrante deberá completar y confirmar este registro y firmar su propia declaración:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -784,7 +889,10 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-provisionales-y-limites">Conclusiones provisionales y límites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-reproducibilidad-al-cierre">Lista de reproducibilidad al cierre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-de-reproducibilidad-al-cierre">Lista de reproducibilidad al cierre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correspondencia-con-las-17-casillas-de-a-5">Correspondencia con las 17 casillas de A.5</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-reproduccion-independiente-por-completar">Registro de reproducción independiente por completar</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoria-contribuciones-y-uso-de-ia">Autoría, contribuciones y uso de IA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-de-partida-y-alcance-de-lectura">Bibliografía de partida y alcance de lectura</a></li>
