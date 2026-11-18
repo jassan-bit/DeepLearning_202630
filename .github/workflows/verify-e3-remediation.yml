@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'experiments/e3_remediacion_20261118/**'
+      - 'experiments/e3_a100_receipts_20261118/**'
       - 'experiments/e3_estadistica_posterior_20261117/**'
       - 'experiments/e3_revision_bloque_d_20261117/metrics_supplement.py'
       - 'book_e3/_static/e3_estadistica_posterior_20261117/**'
@@ -18,6 +19,7 @@ on:
     branches: [main]
     paths:
       - 'experiments/e3_remediacion_20261118/**'
+      - 'experiments/e3_a100_receipts_20261118/**'
       - 'experiments/e3_estadistica_posterior_20261117/**'
       - 'experiments/e3_revision_bloque_d_20261117/metrics_supplement.py'
       - 'book_e3/_static/e3_estadistica_posterior_20261117/**'
@@ -83,6 +85,23 @@ jobs:
           python -m unittest discover \
             -s experiments/e3_remediacion_20261118/evaluation -p test_colab_github.py -v \
             2>&1 | tee "$CI_E3_DIR/colab_github_contracts.log"
+
+      - name: Verificar el archivo A100 guardado y la tabla de sus recibos
+        run: |
+          set -euo pipefail
+          python experiments/e3_a100_receipts_20261118/verify.py \
+            --inputs experiments/e3_a100_receipts_20261118 \
+            --output "$CI_E3_DIR/a100-audit" | tee "$CI_E3_DIR/a100_audit.log"
+          python - <<'PY_CHECK'
+          import json, os
+          from pathlib import Path
+          expected = Path('experiments/e3_a100_receipts_20261118')
+          actual = Path(os.environ['CI_E3_DIR']) / 'a100-audit'
+          assert (expected / 'per_model.csv').read_bytes() == (actual / 'per_model.csv').read_bytes()
+          before = json.loads((expected / 'audit.json').read_text())
+          after = json.loads((actual / 'audit.json').read_text())
+          assert {k:v for k,v in before.items() if k != 'audited_at_utc'} == {k:v for k,v in after.items() if k != 'audited_at_utc'}
+          PY_CHECK
 
       - name: Descargar fuera del contenedor los once insumos por manifiesto SHA256
         run: |

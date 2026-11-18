@@ -14,7 +14,7 @@ El ejecutor de contratos conserva los perfiles revisados en los locks existentes
 
 El cuaderno prepara por defecto un **venv CUDA separado** mediante `colab_runtime.prepare_runtime`: reutiliza las funciones de preparación del helper E2 publicado y el lock E2 completo, fijados a commit y SHA-256. Obtiene su propio Python 3.12.12 aunque el kernel sea Python 3.13, instala las dependencias en `/content/e3-preflight-gpu-runtime-v1` y devuelve el intérprete y entorno que ejecutan los 17 contratos. El Python y Torch base de Colab no cambian; no se reinicia el kernel. La primera descarga de wheels puede sumar varios GB y tardar varios minutos. No se descargan wheels CUDA si no hay GPU visible.
 
-Un venv completo se verifica y reutiliza. Un entorno parcial o cuyo lock cambió se conserva y se rechaza: debe elegirse otra carpeta local del runtime, por ejemplo `v2`. Si falla la preparación se guarda ese bloqueo en el recibo y siguen bloqueados los modelos y la campaña. La prueba local del asistente es CPU. La persona autora reportó la instalación y ejecución CUDA completa en NVIDIA L4 (17/17 perfiles) sobre el commit `530479e4`; el ZIP de recibos aún está pendiente de adjuntar y auditar. Véase `experiments/e3_gpu_colab_20261118/observation.json`.
+Un venv completo se verifica y reutiliza. Un entorno parcial o cuyo lock cambió se conserva y se rechaza: debe elegirse otra carpeta local del runtime, por ejemplo `v2`. Si falla la preparación se guarda ese bloqueo en el recibo y siguen bloqueados los modelos y la campaña. La prueba local del asistente es CPU. La persona autora reportó 17/17 perfiles aprobados en NVIDIA L4 sobre `530479e4`; el ZIP de esa sesión se perdió y su observación permanece en `experiments/e3_gpu_colab_20261118/observation.json`. Una nueva ejecución A100, distinta, ya completó el guardado y la auditoría de sus recibos, según el registro actual descrito al final.
 
 ## Guard de campaña
 
@@ -81,6 +81,16 @@ El enlace `https://jassan-bit.github.io/DeepLearning_202630/intro.html` abre
 E1. E3 se publica en `/entregable3/intro.html`; el selector de libros es
 `/entregables.html`. Todos pertenecen al mismo repositorio.
 
-La implementación no recupera el ZIP perdido de la sesión L4 anterior ni
-afirma una nueva ejecución. La primera ejecución con este guardado queda
-pendiente hasta que Colab imprima su URL de GitHub.
+La primera ejecución con este guardado ya se completó en A100: run
+`20261118T172624131741Z`, código `1ff136f71c0ffcd1dbd918efbc078a8d9653ed21` y resultados
+`47d2f316a50d9268cb6484a547e8a2f0cc0413eb`. Los [recibos inmutables](https://github.com/jassan-bit/DeepLearning_202630/tree/47d2f316a50d9268cb6484a547e8a2f0cc0413eb/runs/colab_preflight/20261118T172624131741Z)
+incluyen 17 perfiles aprobados, 14 neuronales en CUDA y tres comparadores CPU.
+La auditoría verificó los 40 miembros del ZIP y los 42 archivos persistidos,
+sin discrepancias de bytes. El registro técnico está en
+`experiments/e3_a100_receipts_20261118/`.
+
+El ZIP no contiene pesos ni tensores: la auditoría no reejecutó GPU ni
+recalculó gradientes o salidas. El ZIP anterior L4 no se recuperó y no se
+confunde con esta ejecución A100. La persistencia y revisión de recibos no
+acreditan reproducción humana independiente, R1/R3 o una campaña de mercado;
+siguen pendientes los tres datasets admitidos y el protocolo final.
