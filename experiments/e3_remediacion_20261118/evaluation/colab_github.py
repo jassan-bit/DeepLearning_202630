@@ -22,6 +22,14 @@ MAX_TEXT_BYTES = 1024 * 1024
 MAX_ZIP_BYTES = 10 * 1024 * 1024
 MAX_TOTAL_BYTES = 20 * 1024 * 1024
 MAX_FILES = 256
+_PROFILES = {
+    "preflight": {"receipt": "preflight_receipt.json", "kind": "synthetic_preflight_receipts",
+                  "branch": "e3-colab-receipts-", "prefix": "runs/colab_preflight/",
+                  "message": "Guardar recibos Colab preflight "},
+    "dataset": {"receipt": "dataset_audit.json", "kind": "dataset_admission_audit",
+                "branch": "e3-dataset-audit-", "prefix": "runs/dataset_admission/",
+                "message": "Guardar auditoría técnica de admisión de datos "},
+}
 
 
 class StorageError(RuntimeError):
@@ -121,7 +129,8 @@ def _regular_path(path, *, directory=False):
     return path
 
 
-def _snapshot(output_dir, zip_path, token, source_commit, run_id):
+def _snapshot(output_dir, zip_path, token, source_commit, run_id, *, profile="preflight"):
+    config = _PROFILES[profile]
     if re.fullmatch(r"[0-9a-f]{40}", source_commit or "") is None:
         raise StorageError("full_source_commit_required")
     if re.fullmatch(r"[0-9]{8}T[0-9]{12}Z", run_id or "") is None:
@@ -154,16 +163,33 @@ def _snapshot(output_dir, zip_path, token, source_commit, run_id):
             if token.encode() in raw or token in relative:
                 raise StorageError("credential_in_snapshot_refused")
             selected[relative] = raw
-    if not selected or len(selected) > MAX_FILES or "preflight_receipt.json" not in selected:
-        raise StorageError("complete_preflight_receipt_required")
+    if not selected or len(selected) > MAX_FILES or config["receipt"] not in selected:
+        raise StorageError("complete_" + profile + "_receipt_required")
+    other_receipt = _PROFILES["dataset" if profile == "preflight" else "preflight"]["receipt"]
+    if other_receipt in selected:
+        raise StorageError("mixed_snapshot_profiles_refused")
     try:
-        receipt = json.loads(selected["preflight_receipt.json"])
-        if (receipt.get("repository_HEAD") != source_commit or not isinstance(receipt.get("status"), str)
+        receipt = json.loads(selected[config["receipt"]])
+        if (receipt.get("repository_HEAD") != source_commit
                 or any(type(receipt.get(k)) is not int or receipt[k] != 0 for k in
                        ("new_real_data_fits", "new_market_predictions", "new_hypothesis_tests"))):
-            raise StorageError("preflight_source_or_zero_market_contract_mismatch")
+            raise StorageError(profile + "_source_or_zero_market_contract_mismatch")
+        if profile == "preflight" and not isinstance(receipt.get("status"), str):
+            raise StorageError("invalid_preflight_status")
+        if profile == "dataset":
+            datasets, admitted = receipt.get("datasets"), receipt.get("datasets_admitted")
+            if (receipt.get("kind") != "dataset_admission_audit" or not isinstance(datasets, list)
+                    or not all(isinstance(item, dict) for item in datasets)
+                    or type(admitted) is not int or not 0 <= admitted <= len(datasets)):
+                raise StorageError("invalid_dataset_admission_audit_contract")
+            if any(k in receipt and receipt[k] is not False for k in
+                   ("R1_R3_verified", "R1_R3_certified", "R1_accredited", "R3_accredited")):
+                raise StorageError("dataset_audit_cannot_certify_R1_R3")
+            if all(type(item.get("admitted")) is bool for item in datasets):
+                if sum(item["admitted"] for item in datasets) != admitted:
+                    raise StorageError("dataset_admission_count_mismatch")
     except (ValueError, TypeError, AttributeError):
-        raise StorageError("invalid_preflight_receipt_json") from None
+        raise StorageError("invalid_" + profile + "_receipt_json") from None
     if archive.stat().st_size > MAX_ZIP_BYTES or token in archive.name:
         raise StorageError("snapshot_zip_size_or_name_refused")
     zipped = archive.read_bytes()
@@ -196,12 +222,16 @@ def _snapshot(output_dir, zip_path, token, source_commit, run_id):
         raise StorageError("snapshot_total_size_refused")
     files = {"files/" + name: raw for name, raw in selected.items()}
     files["receipts.zip"] = zipped
-    manifest = {"schema_version": "1.0", "kind": "synthetic_preflight_receipts",
+    manifest = {"schema_version": "1.0", "kind": config["kind"],
                 "source_commit": source_commit, "run_id": run_id,
-                "preflight_status": receipt["status"],
                 "scope": "Persistence only; no models or market experiments executed by uploader.",
                 "files": {name: {"bytes": len(raw), "sha256": _sha(raw), "git_blob_sha1": _git_sha(raw)}
                           for name, raw in sorted(files.items())}}
+    if profile == "preflight":
+        manifest["preflight_status"] = receipt["status"]
+    else:
+        manifest.update(datasets_total=len(receipt["datasets"]),
+                        datasets_admitted_reported=receipt["datasets_admitted"], R1_R3_verified=False)
     manifest_raw = _canonical(manifest)
     files["storage_manifest.json"] = manifest_raw
     return files, _sha(manifest_raw), _sha(zipped)
@@ -231,12 +261,30 @@ def save_run(output_dir, zip_path, token, source_commit, run_id, *, repository=R
     Keep any local upload receipt outside output_dir: the ZIP must contain
     exactly its JSON/log files. Returned URLs contain no credentials.
     """
+    return _save_profile(output_dir, zip_path, token, source_commit, run_id,
+                         repository=repository, profile="preflight")
+
+
+def save_dataset_audit(output_dir, zip_path, token, source_commit, run_id, *, repository=REPOSITORY):
+    """Persist JSON/log admission evidence, including a blocked zero-admission audit.
+
+    Requires dataset_audit.json with kind, repository_HEAD, datasets,
+    datasets_admitted and the three zero-market counters. It cannot certify
+    R1/R3. Raw CSV, model checkpoints and other binary data are not selected.
+    The ZIP must contain exactly the selected JSON/log evidence.
+    """
+    return _save_profile(output_dir, zip_path, token, source_commit, run_id,
+                         repository=repository, profile="dataset")
+
+
+def _save_profile(output_dir, zip_path, token, source_commit, run_id, *, repository, profile):
     token, repository = _token(token), _repo(repository)
-    files, manifest_sha, zip_sha = _snapshot(output_dir, zip_path, token, source_commit, run_id)
+    files, manifest_sha, zip_sha = _snapshot(output_dir, zip_path, token, source_commit, run_id, profile=profile)
     validate_credentials(token, repository=repository)
     api = "/repos/" + repository
-    branch = "e3-colab-receipts-" + run_id
-    prefix = "runs/colab_preflight/" + run_id
+    config = _PROFILES[profile]
+    branch = config["branch"] + run_id
+    prefix = config["prefix"] + run_id
     source = _request("GET", api + "/git/commits/" + source_commit, token)
     if source.get("sha") != source_commit or not re.fullmatch(r"[0-9a-f]{40}", source.get("tree", {}).get("sha", "")):
         raise StorageError("source_commit_identity_mismatch")
@@ -272,7 +320,7 @@ def save_run(output_dir, zip_path, token, source_commit, run_id, *, repository=R
         tree = _request("POST", api + "/git/trees", token, {"base_tree": base_tree, "tree": entries})
         _verify_tree(_request("GET", api + "/git/trees/" + tree["sha"] + "?recursive=1", token), old, expected, prefix)
         commit = _request("POST", api + "/git/commits", token,
-                          {"message": "Guardar recibos Colab preflight " + run_id,
+                          {"message": config["message"] + run_id,
                            "tree": tree["sha"], "parents": [source_commit]})
         checked = {"ref": "refs/heads/" + branch, "object": {"type": "commit", "sha": commit["sha"]}}
         verify_existing(checked)

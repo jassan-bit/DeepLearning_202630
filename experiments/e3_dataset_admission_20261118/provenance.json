@@ -1,0 +1,74 @@
+{
+  "repository": "bokeh/bokeh_sampledata",
+  "commit": "3e831d2779ca74c087c7eee05d538015c97b1e52",
+  "metadata_sources": {
+    "licenses/datasets.json": {
+      "url": "https://raw.githubusercontent.com/bokeh/bokeh_sampledata/3e831d2779ca74c087c7eee05d538015c97b1e52/licenses/datasets.json",
+      "bytes": 54515,
+      "sha256": "bd3d589077abb8180a93702c331aa1e5b2b2c8b53081b72c507dc87c78626937",
+      "git_blob_sha1": "e8231ee0c41561f80fe45f225b603a7700fe88de"
+    },
+    "licenses/README.md": {
+      "url": "https://raw.githubusercontent.com/bokeh/bokeh_sampledata/3e831d2779ca74c087c7eee05d538015c97b1e52/licenses/README.md",
+      "bytes": 4285,
+      "sha256": "190f2a4cdbcd51b4262357c573acb641ea3f9f9775a0b88011351a7cbcd1db27",
+      "git_blob_sha1": "65660bb865d2cccbdd9c7ad44a8c280fddbef55e"
+    },
+    "src/bokeh_sampledata/stocks.py": {
+      "url": "https://raw.githubusercontent.com/bokeh/bokeh_sampledata/3e831d2779ca74c087c7eee05d538015c97b1e52/src/bokeh_sampledata/stocks.py",
+      "bytes": 4719,
+      "sha256": "2a150dea156c6524934fed1d6976eddf6140fef3fb8761bd6e93c32c4fa12786",
+      "git_blob_sha1": "49b09075c51da01930d3b459096ba2e0229f5f88"
+    }
+  },
+  "stock_license_entry": {
+    "module": "stocks",
+    "files": [
+      "stocks.csv.gz"
+    ],
+    "recorded_license": "Public domain",
+    "status": "source-verified",
+    "sources": [
+      "https://web.archive.org/web/20150411011214/https://www.quandl.com/data/WIKI",
+      "https://data.nasdaq.com/databases/WIKIP",
+      "https://www.kaggle.com/datasets/marketneutral/quandl-wiki-prices-us-equites/versions/1"
+    ],
+    "attribution": "Quandl WIKI Prices. Archived copy supplied by marketneutral on Kaggle.",
+    "notes": "Historical prices supplied as is by the source, without an independent accuracy guarantee. Extract the original Bokeh date ranges through 2013-03-01 from the WIKI_PRICES.csv archive. Preserve unadjusted open, high, low, close and volume, and the source adjusted close. Convert integral volume to integer and sort chronologically. WIKI GOOGL supplies the pre-2014 Google history exposed as the legacy GOOG dictionary. All original trading dates and row counts are preserved. Adjusted close reflects the archived source snapshot, including corporate actions after the selected dates, rather than the former 2013 export. Store all five series in one gzip CSV with a legacy ticker column.",
+    "verified_source_terms": "The archived Quandl publisher page declares the WIKI data public domain and explicitly permits copying, distribution and inclusion in commercial or noncommercial products.",
+    "sha256": {
+      "stocks.csv.gz": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd"
+    },
+    "replaces": {
+      "sources": [
+        "https://github.com/bokeh/bokeh/commit/aadae019f42b846dc15a1956b1fa0ab9f521d546",
+        "https://github.com/bokeh/bokeh/commit/44770ba6da0019bfcb18514b6d1b61fe582836bc",
+        "https://uk.help.yahoo.com/kb/finance/article-data-availability-yahoo-finance-sln2310.html"
+      ],
+      "attribution": "Yahoo Finance historical stock CSV exports for AAPL, FB, GOOG, IBM and MSFT, supplied to Bokeh by Bryan Van de Ven in 2013.",
+      "notes": "Historical Bokeh samples were Yahoo Finance CSV exports. This extract uses Quandl WIKI values and retains the same trading dates and Python API.",
+      "sha256": {
+        "AAPL.csv": "855f0b122ac0e4c5b9464d1862f6c56bcd2c1cd7eb94db6fa6c798546964dff8",
+        "FB.csv": "85a671cce990c65a466345136ce3e849f6bd0e264a138306728f5dcb5e9e698c",
+        "GOOG.csv": "69754634a56ad48422ea769734225f00a92d55750052e3e8e3adbca18116f495",
+        "IBM.csv": "869438773969350798819547aed0ea16cf9e92ccde84c00069f72c144978d6b1",
+        "MSFT.csv": "b3d95da3b72a786616c10b196999c5fc2f7e42dc37be0723ae9038a9244f0f82"
+      },
+      "files": [
+        "AAPL.csv",
+        "FB.csv",
+        "GOOG.csv",
+        "IBM.csv",
+        "MSFT.csv"
+      ]
+    },
+    "license_expression": null,
+    "uncompressed_sha256": {
+      "stocks.csv.gz": "e73fe05d106b7da1abe8f947264c514afd02cef5c9db4864b9437c84d6bd6069"
+    },
+    "source_archive_sha256": "adfd226694c6f3ec2c56b585d973764180a39a3ec516601721e90096dc1de94f",
+    "source_file_sha256": "ca7fb174c7948db85638917d25ff65d438e27d5cb23675da784c54db01e3d003"
+  },
+  "technical_report": "technical_review.json",
+  "scope": "Read-only file and provenance audit; no models, predictions or statistical contrasts. Stock sessions differ from UTC daily sampling; raw-price corporate-action policy remains explicit."
+}
