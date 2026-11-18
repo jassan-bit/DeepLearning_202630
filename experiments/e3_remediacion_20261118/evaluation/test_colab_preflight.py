@@ -10,7 +10,9 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest import mock
 import zipfile
@@ -138,6 +140,53 @@ def campaign_at_fixture_time(manifest, root=preflight.ROOT):
 
 
 class ColabPreflightGateTests(unittest.TestCase):
+    def test_gpu_hardware_metadata_does_not_certify_model_execution(self):
+        # All hardware and worker responses here are deliberately mocked.
+        # This tests receipt semantics; it supplies no GPU execution evidence.
+        cuda = SimpleNamespace(is_available=lambda: True,
+            get_device_properties=lambda _: SimpleNamespace(name="Fixture GPU", total_memory=1024),
+            get_device_capability=lambda _: (8, 9), device_count=lambda: 1)
+        torch = SimpleNamespace(__version__="2.8.0+cu126", cuda=cuda,
+            version=SimpleNamespace(cuda="12.6"),
+            backends=SimpleNamespace(cudnn=SimpleNamespace(version=lambda: 90100)))
+        with mock.patch.dict(sys.modules, {"torch": torch}), \
+                mock.patch.object(preflight.importlib.metadata, "version", side_effect=lambda name: preflight.APPROVED_DEPENDENCIES[name]), \
+                mock.patch.object(preflight.subprocess, "check_output", return_value="Fixture GPU; no hardware executed"), \
+                mock.patch.object(preflight.sys, "version_info", (3, 12, 12)):
+            hardware = preflight.environment("cuda:0")
+        self.assertTrue(hardware["cuda_available"])
+        self.assertEqual(hardware["GPU"]["name"], "Fixture GPU")
+        self.assertNotIn("GPU_execution_verified", hardware)
+        for case, candidate_device, expected in (("one_neural_CPU", "cpu", False),
+                                                  ("all_fourteen_neural_GPU", "cuda:0", True)):
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                args = SimpleNamespace(output=root / "output", device="cuda:0", package_root=root / "D02")
+                def synthetic_worker(command, **kwargs):
+                    name = command[command.index("--worker") + 1]
+                    output = Path(command[command.index("--output") + 1])
+                    device = candidate_device if name == preflight.CANDIDATE else (
+                        "cpu_classical" if name in preflight.CLASSICAL else "cuda:0")
+                    preflight.write_new(output / "receipt.json", {
+                        "model": name, "status": "passed", "device": device,
+                        "synthetic_backward_executed": name not in preflight.CLASSICAL,
+                        "checkpoint_reload_identical": True, "fixture_only_no_GPU_executed": True})
+                    return SimpleNamespace(returncode=0)
+                with mock.patch.object(preflight, "environment", return_value=hardware), \
+                        mock.patch.object(preflight, "source_gate", return_value={"passed": True}), \
+                        mock.patch.object(preflight, "git", return_value="fixture-HEAD"), \
+                        mock.patch.object(preflight, "portable_inventory", return_value=({}, {}, {})), \
+                        mock.patch.object(preflight.subprocess, "run", side_effect=synthetic_worker) as worker, \
+                        mock.patch("builtins.print"):
+                    self.assertEqual(preflight.run(args), 0)
+                self.assertEqual(worker.call_count, 17)
+                before = json.loads((args.output / "hardware_and_source_receipt.json").read_text())
+                after = json.loads((args.output / "preflight_receipt.json").read_text())
+                self.assertFalse(before["GPU_execution_verified"])
+                self.assertNotIn("GPU_execution_verified", before["environment"])
+                self.assertEqual(after["GPU_execution_verified"], expected)
+                self.assertNotIn("GPU_execution_verified", after["environment"])
+
     def test_source_gate_rejects_changed_source_with_unchanged_lock(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

@@ -10,11 +10,11 @@ Persistence y SeasonalNaive ejercitan sus rezagos 1 y 7 sobre una historia fecha
 
 ## Entorno y bloqueos
 
-Se conservan los perfiles revisados en los locks existentes, sin instalarlos automáticamente: Python 3.12; Torch 2.8.0+cpu para la comprobación local o Torch 2.8.0+cu126 y CUDA 12.6 para Colab; NumPy 2.3.5, SciPy 1.17.0, pandas 2.2.3, statsmodels 0.14.5 y einops 0.8.1. Los imports autores de iTransformer también requieren `reformer-pytorch` y sus dependencias del perfil E2 existente. Un paquete ausente conserva el fallo concreto de su receta, nunca una sustitución silenciosa.
+El ejecutor de contratos conserva los perfiles revisados en los locks existentes y no instala paquetes por sí solo: Python 3.12; Torch 2.8.0+cpu para la comprobación local o Torch 2.8.0+cu126 y CUDA 12.6 para Colab; NumPy 2.3.5, SciPy 1.17.0, pandas 2.2.3, statsmodels 0.14.5 y einops 0.8.1. Los imports autores de iTransformer también requieren `reformer-pytorch` y sus dependencias del perfil E2 existente. Un paquete ausente conserva el fallo concreto de su receta, nunca una sustitución silenciosa.
 
 El cuaderno prepara por defecto un **venv CUDA separado** mediante `colab_runtime.prepare_runtime`: reutiliza las funciones de preparación del helper E2 publicado y el lock E2 completo, fijados a commit y SHA-256. Obtiene su propio Python 3.12.12 aunque el kernel sea Python 3.13, instala las dependencias en `/content/e3-preflight-gpu-runtime-v1` y devuelve el intérprete y entorno que ejecutan los 17 contratos. El Python y Torch base de Colab no cambian; no se reinicia el kernel. La primera descarga de wheels puede sumar varios GB y tardar varios minutos. No se descargan wheels CUDA si no hay GPU visible.
 
-Un venv completo se verifica y reutiliza. Un entorno parcial o cuyo lock cambió se conserva y se rechaza: debe elegirse otra carpeta local del runtime, por ejemplo `v2`. Si falla la preparación se guarda ese bloqueo en el recibo y siguen bloqueados los modelos y la campaña. La prueba local es CPU: **la instalación y ejecución CUDA completa de Colab todavía no se han ejecutado aquí**.
+Un venv completo se verifica y reutiliza. Un entorno parcial o cuyo lock cambió se conserva y se rechaza: debe elegirse otra carpeta local del runtime, por ejemplo `v2`. Si falla la preparación se guarda ese bloqueo en el recibo y siguen bloqueados los modelos y la campaña. La prueba local del asistente es CPU. La persona autora reportó la instalación y ejecución CUDA completa en NVIDIA L4 (17/17 perfiles) sobre el commit `530479e4`; el ZIP de recibos aún está pendiente de adjuntar y auditar. Véase `experiments/e3_gpu_colab_20261118/observation.json`.
 
 ## Guard de campaña
 
@@ -56,4 +56,6 @@ subprocess.run(
 
 `test_colab_runtime.py` verifica en CPU el lock completo, la eliminación de configuración del kernel y credenciales del entorno hijo, el rechazo previo a red si falta GPU, la selección del intérprete aislado y la conservación de un runtime con recibo incompatible. Sus fixtures de rutas no simulan una instalación o ejecución GPU real.
 
-La verificación local entregada contiene 17 perfiles pasados, 14 backwards neuronales, un ajuste ARIMA sintético, guard bloqueado y cero métricas o predicciones de mercado. Las cuatro pruebas negativas cubren cambios de fuentes, manifiestos inválidos, tags/orden temporal y extracción insegura. El cuaderno se entrega sin salidas que simulen una ejecución GPU.
+La verificación local entregada contiene 17 perfiles pasados, 14 backwards neuronales, un ajuste ARIMA sintético, guard bloqueado y cero métricas o predicciones de mercado. Las pruebas cubren cambios de fuentes, manifiestos inválidos, tags/orden temporal, extracción insegura y la distinción entre hardware visible y modelos efectivamente ejecutados en CUDA. El cuaderno se entrega sin salidas que simulen una ejecución GPU.
+
+La marca `GPU_execution_verified` sólo figura en el recibo global tras comprobar los contratos; el bloque `environment` describe disponibilidad de hardware. Los recibos y estáticos anteriores conservan su versión original.

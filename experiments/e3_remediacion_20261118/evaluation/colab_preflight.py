@@ -74,7 +74,7 @@ def source_gate(root=ROOT):
 
 def environment(device):
     result = {"python": platform.python_version(), "platform": platform.platform(), "requested_device": device,
-        "packages": {}, "approved": True, "blockers": [], "GPU_execution_verified": False}
+        "packages": {}, "approved": True, "blockers": []}
     for name, expected in APPROVED_DEPENDENCIES.items():
         try:
             actual = importlib.metadata.version(name)
@@ -424,8 +424,15 @@ def run(args):
         result["models"].append(item)
         print(f"{index + 1}/17 {name}: {item['status']}", flush=True)
     passed = all(r["status"] == "passed" for r in result["models"])
+    neural_names = {*NEURAL, CANDIDATE}
+    neural_receipts = [r for r in result["models"] if r["model"] in neural_names]
+    gpu_models_verified = (passed and args.device.startswith("cuda")
+        and len(neural_receipts) == len(neural_names)
+        and {r["model"] for r in neural_receipts} == neural_names
+        and all(r.get("device") == args.device and r.get("synthetic_backward_executed") is True
+                and r.get("checkpoint_reload_identical") is True for r in neural_receipts))
     result.update(status="passed_synthetic_only" if passed else "failed_synthetic_contracts",
-        GPU_execution_verified=passed and args.device.startswith("cuda"),
+        GPU_execution_verified=gpu_models_verified,
         synthetic_neural_backward_count=sum(bool(r.get("synthetic_backward_executed")) for r in result["models"]),
         synthetic_ARIMA_fit_count=sum(r.get("synthetic_ARIMA_fits", 0) for r in result["models"]))
     write_new(args.output / "preflight_receipt.json", result)
