@@ -1,0 +1,236 @@
+{
+  "schema_version": "1.0",
+  "status": "AIREVIEWONLY",
+  "access_date_utc": "2026-11-18",
+  "completed_at_utc": "2026-11-18T20:33:51Z",
+  "reviewer_type": "AI",
+  "human_external_review_completed": false,
+  "candidate": {
+    "repository": "jassan-bit/DeepLearning_202630",
+    "commit": "314f6e7e888b0748c8790cf3c0d9f4fc71bd6a0b",
+    "variant": "additive_positive_head",
+    "parameters_by_source_inspection": 1210,
+    "code_files": [
+      {
+        "path": "src/e3_innovation_model.py",
+        "git_blob_sha": "8ae948e3a08bdd374337322f2f6193f13cd66391",
+        "locators": [
+          "load_innovation_data lines122–141",
+          "InnovationModel lines254–322",
+          "calibrate_bias",
+          "loss_components"
+        ]
+      },
+      {
+        "path": "src/e3_development.py",
+        "git_blob_sha": "02d008bf77a983ca75ae71146ac24e57989a4d13",
+        "locators": [
+          "DevelopmentModel.__init__"
+        ]
+      },
+      {
+        "path": "src/original_model.py",
+        "locators": [
+          "CandidateConfig",
+          "CausalEncoder",
+          "BoundedDiscordanceAttention.effective_parameters",
+          "attention_components"
+        ]
+      }
+    ],
+    "access_method": "GitHub plugin read-only, commit-pinned"
+  },
+  "bibliographic_collection": {
+    "commit": "edf6fe312987fd7299f6ca850a20a67e4f1c3cbc",
+    "prefix": "runs/r1_search/20261118T202323797581Z",
+    "effective_bases": [
+      "Crossref",
+      "arXiv",
+      "OpenAlex"
+    ],
+    "successful_queries_per_base": 6,
+    "returned_rows_per_query": 10,
+    "returned_rows": 180,
+    "unique_work_count_not_established": true,
+    "collection_screening_complete": false,
+    "collection_scope": "first page only; title/metadata collection is not body reading",
+    "receipt_url": "https://github.com/jassan-bit/DeepLearning_202630/blob/edf6fe312987fd7299f6ca850a20a67e4f1c3cbc/runs/r1_search/20261118T202323797581Z/search_receipt.json"
+  },
+  "sources": [
+    {
+      "id": "CONSTRAINTNET_2020",
+      "title": "Sample-Specific Output Constraints for Neural Networks",
+      "authors": [
+        "Mathis Brosowsky",
+        "Olaf Dünkel",
+        "Daniel Slieter",
+        "Marius Zöllner"
+      ],
+      "version_read": "arXiv:2003.10258v1, 23 March 2020",
+      "url": "https://arxiv.org/html/2003.10258",
+      "access": "primary_preprint_body_read",
+      "body_locators": [
+        "§3.1 Eqs1–2",
+        "§3.2 Eq3",
+        "§3.3 Eq5",
+        "§3.4 training"
+      ],
+      "body_browse_lines": "62–166",
+      "related_final_publication": {
+        "doi": "10.1609/aaai.v35i8.16841",
+        "year": 2021,
+        "final_body_read": false,
+        "blocked_urls": [
+          "https://ojs.aaai.org/index.php/AAAI/article/view/16841",
+          "https://ojs.aaai.org/index.php/AAAI/article/view/16841/16648"
+        ],
+        "result": "access-denied page"
+      },
+      "limitation": "Preprint differs in metadata from final; no detailed final-version equivalence assumed."
+    },
+    {
+      "id": "DNS_SOFTPLUS",
+      "title": "A Smooth Shadow-Rate Dynamic Nelson-Siegel Model for Yields at the Zero Lower Bound",
+      "authors": [
+        "Daan Opschoor",
+        "Michel van der Wel"
+      ],
+      "doi": "10.1080/07350015.2024.2365779",
+      "published_online": "2024-07-15",
+      "journal": "Journal of Business & Economic Statistics",
+      "volume": 43,
+      "issue": 2,
+      "pages": "298–311",
+      "issue_year": 2025,
+      "metadata_observed_at": "Publisher's PDF cover names Daan Opschoor and Michel van der Wel at lines35–36 and article first page line51; institution wrapper citation lines13–15 supplies volume/issue/pages.",
+      "url": "https://pure.eur.nl/ws/portalfiles/portal/158886821/A_Smooth_Shadow-Rate_Dynamic_Nelson-Siegel_Model_for_Yields_at_the_Zero_Lower_Bound.pdf",
+      "access": "primary_publisher_pdf_at_author_institution_body_read",
+      "body_locators": [
+        "§2.2 Eq4 printedp3",
+        "§2.2 Eq6 printedp4, PDFpage6 (zero-based5)"
+      ],
+      "body_browse_lines": "363–459",
+      "equation_visually_verified": true,
+      "reading_scope": "targeted methods passage, not entire article",
+      "comparison_limit": "Fixed yield lower bound, DNS latent factors; no rolling-sigma7 or CNN-LSTM claim.",
+      "blocked_alternative_urls": [
+        "https://www.tandfonline.com/doi/full/10.1080/07350015.2024.2365779",
+        "https://pure.eur.nl/files/158711514/A_Smooth_Shadow-Rate_Dynamic_Nelson-Siegel_Model_for_Yields_at_the_Zero_Lower_Bound.pdf"
+      ],
+      "additional_primary_version_opened": {
+        "url": "https://papers.tinbergen.nl/22011.pdf",
+        "version": "27 January 2022 working paper",
+        "locator": "printedp7 footnote9 notes Softplus alternative",
+        "not_conflated_with_final": true
+      }
+    },
+    {
+      "id": "OC_BNN",
+      "title": "Incorporating Interpretable Output Constraints in Bayesian Neural Networks",
+      "authors": [
+        "Wanqian Yang",
+        "Lars Lorch",
+        "Moritz A. Graule",
+        "Himabindu Lakkaraju",
+        "Finale Doshi-Velez"
+      ],
+      "arxiv": "2010.10969v2",
+      "version_date": "2021-01-06",
+      "url": "https://arxiv.org/html/2010.10969",
+      "access": "primary_body_read",
+      "body_locators": [
+        "§4 Definitions4.1–4.4",
+        "§4.1 Eq4",
+        "§4.2 Eq7 and hard-guarantee discussion",
+        "§4.3 Eqs8–9"
+      ],
+      "body_browse_lines": "94–165",
+      "limitation": "Mechanism comparison; no crypto-floor identity asserted."
+    },
+    {
+      "id": "CRYPTO_QUANTILE",
+      "title": "Probabilistic Forecasting Cryptocurrencies Volatility: From Point to Quantile Forecasts",
+      "authors": [
+        "Grzegorz Dudek",
+        "Witold Orzeszko",
+        "Piotr Fiszeder"
+      ],
+      "arxiv": "2508.15922v1",
+      "version_date": "2025-08-21",
+      "url": "https://arxiv.org/html/2508.15922",
+      "access": "primary_body_read",
+      "body_locators": [
+        "§II Eq1 (realized variance)",
+        "§III-A Eqs2–4",
+        "§III-B Eqs5–6",
+        "§III-C Eqs7–8"
+      ],
+      "body_browse_lines": "93–172",
+      "limitation": "Daily intraday realized variance and quantile meta-models differ from candidate estimand/head."
+    },
+    {
+      "id": "MDPI_CNNLSTM",
+      "title": "An Advanced CNN-LSTM Model for Cryptocurrency Forecasting",
+      "authors_short": "Livieris et al.",
+      "doi": "10.3390/electronics10030287",
+      "year": 2021,
+      "journal": "Electronics",
+      "volume": 10,
+      "issue": 3,
+      "article_number": 287,
+      "url": "https://www.mdpi.com/2079-9292/10/3/287",
+      "access": "primary_publisher_html_body_read",
+      "body_locators": [
+        "§3 architecture",
+        "§4 transformed prices",
+        "§5 lags and linear output"
+      ],
+      "body_browse_lines": "218–281",
+      "reading_attribution": "Supporting AI agent read §§3–5; lead review directly read §5 lines264–281.",
+      "limitation": "Price and directional-movement targets; no identical variance-floor mechanism inferred."
+    },
+    {
+      "id": "PHYSICA_A_ABSTRACT",
+      "title": "Deep learning in predicting cryptocurrency volatility",
+      "authors": [
+        "Valeria D’Amato",
+        "Susanna Levantesi",
+        "Gabriella Piscopo"
+      ],
+      "doi": "10.1016/j.physa.2022.127158",
+      "year": 2022,
+      "journal": "Physica A: Statistical Mechanics and its Applications",
+      "volume": 596,
+      "article_number": 127158,
+      "url": "https://iris.uniroma1.it/handle/11573/1628787",
+      "access": "abstract_only",
+      "body_read": false,
+      "locators": [
+        "Institutional abstract lines23–26",
+        "Attachment access restriction line52"
+      ],
+      "reading_attribution": "Supporting AI agent",
+      "blocked_url": "https://www.sciencedirect.com/science/article/pii/S0378437122001704",
+      "blocked_status": "403",
+      "limitation": "Exact target, activation, loss and floor cannot be determined from abstract."
+    }
+  ],
+  "supplementary_web_queries": [
+    "\"rolling standard deviation\" \"lower bound\" neural network forecast",
+    "\"volatility\" \"softplus\" \"lower bound\" forecast",
+    "\"conditional\" \"rolling variance\" \"known\" forecast neural",
+    "\"A Smooth Shadow-Rate Dynamic Nelson-Siegel Model\" pdf author"
+  ],
+  "scope_limits": [
+    "Selected primary methods passages only; not systematic review or exhaustive backward/forward citation search.",
+    "No prior project novelty dictamens read before this analysis.",
+    "No training outcomes used to establish originality.",
+    "No claim that unobserved prior work does not exist."
+  ],
+  "mutations": {
+    "model_changes": 0,
+    "training_runs": 0,
+    "new_market_predictions": 0,
+    "github_writes": 0
+  }
+}
