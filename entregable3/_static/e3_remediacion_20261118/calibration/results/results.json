@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "completed_at_utc": "2026-11-18T14:29:18.049875+00:00",
+  "scope": "new_retrospective_interval_diagnostic_on_frozen_E3_predictors",
+  "analysis_plan_sha256": "1a574de294488105956b62aca1c6f2490a7bce7cb6bbb83f165853ffa79fb512",
+  "script_sha256": "5b498b921a905abc4603b0f8fef9b30c56b1288274c9b03edec625bed4afdaf4",
+  "input_manifest_sha256": "9a57fed9a01801ee1a0a6bea28243103e31b79ffe88fa6b8a9672d9bbd8b4fc5",
+  "source_model_sha256": {
+    "src/original_model.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "src/e3_development.py": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+    "src/e3_innovation_model.py": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1"
+  },
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.8.0+cpu",
+    "device": "cpu",
+    "torch_threads": 1
+  },
+  "original_campaign": {
+    "plan_sha256": "0b2dbfea9f14f1506f09fd42b8e74fc299a91438b2a6c01fec6e4181fa7afa8c",
+    "calibration_members_allowed": false,
+    "calibration_members_opened": false,
+    "amended": false,
+    "point_prediction_file_sha256": "b82ba0a8a0371ea5643d9ff666a3ac5a1a4e91018b95a640bd88b1be50bb5133"
+  },
+  "new_diagnostic": {
+    "calibration_members_opened": true,
+    "new_conformal_quantiles": 10,
+    "calibration_forward_windows": 530,
+    "calibration_forward_calls": 530,
+    "evaluation_forward_calls": 0,
+    "model_fit_steps": 0,
+    "scaler_updates": 0,
+    "original_calibrator_updates": 0,
+    "serving_updates": 0,
+    "test_predictions_changed": false,
+    "best_seed_selection": false
+  },
+  "calibration": {
+    "n": 53,
+    "first": "2024-11-08",
+    "last": "2024-12-30",
+    "alpha": 0.1,
+    "rank": 49,
+    "same_q_for_each_predictor": false,
+    "q_depends_on_evaluation_targets": false
+  },
+  "evaluation": {
+    "n_dates": 608,
+    "seeds": [
+      271801,
+      271802,
+      271803,
+      271804,
+      271805,
+      271806,
+      271807,
+      271808,
+      271809,
+      271810
+    ],
+    "first": "2025-01-01",
+    "last": "2026-08-31"
+  },
+  "chronology": {
+    "target_dates_disjoint": true,
+    "calibration_after_fit_and_validation": true,
+    "calibration_latest_target_before_first_evaluation": true,
+    "known_input_support_overlap_calibration_evaluation": true,
+    "overlap_note": "The first evaluation input includes Dec25–31; calibration targets run through Dec30. Those values are known at the Jan1 forecast origin, but overlap/dependence precludes an iid coverage claim."
+  },
+  "original_fit_target_quartiles": {
+    "q25": 0.012421869358027193,
+    "q75": 0.026577276251655846,
+    "source_count": 532
+  },
+  "per_seed": [
+    {
+      "seed": 271801,
+      "checkpoint_sha256": "4d440b71db042b916bc4daa95031bd222fd1c3c7a94974cff9dca7b43d9df5c9",
+      "best_epoch": 38,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005402463770651868,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.0029102930325790397,
+      "n": 608,
+      "coverage_percent": 94.07894736842105,
+      "mean_width_sigma7": 0.010802872557899766,
+      "mean_interval_score_alpha_0_1": 0.015194401188325152,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.921052631578947
+    },
+    {
+      "seed": 271802,
+      "checkpoint_sha256": "3882bad0306c198c64e39f7892e93f1e2d089c1454f39679b4d4f6e8d6f3237d",
+      "best_epoch": 40,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005398221324709154,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.00289132751784498,
+      "n": 608,
+      "coverage_percent": 94.24342105263158,
+      "mean_width_sigma7": 0.010794350273695064,
+      "mean_interval_score_alpha_0_1": 0.015237608070793572,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.756578947368421
+    },
+    {
+      "seed": 271803,
+      "checkpoint_sha256": "b13d6cb03a6eb48d07eb4c90ba966244ed46b1315fa4f82e78dfa0ba1740de5b",
+      "best_epoch": 38,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005409514428305503,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.0029031246207106916,
+      "n": 608,
+      "coverage_percent": 94.4078947368421,
+      "mean_width_sigma7": 0.010817128661464557,
+      "mean_interval_score_alpha_0_1": 0.01512960540454757,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.592105263157895
+    },
+    {
+      "seed": 271804,
+      "checkpoint_sha256": "789d769348954f9edc7dae69455db8589852aa5f150c383d26c38ac88a1b3a63",
+      "best_epoch": 19,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005617752163034201,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.0029374193181716367,
+      "n": 608,
+      "coverage_percent": 94.4078947368421,
+      "mean_width_sigma7": 0.01123325568730395,
+      "mean_interval_score_alpha_0_1": 0.015531684989579847,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.592105263157895
+    },
+    {
+      "seed": 271805,
+      "checkpoint_sha256": "f3d03b37af2c3a43a0401cdf4efcd5ba4d85444cdfd3f1fa5842b235a371483c",
+      "best_epoch": 32,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005394534085222533,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.002901627854886925,
+      "n": 608,
+      "coverage_percent": 94.24342105263158,
+      "mean_width_sigma7": 0.010787146335728536,
+      "mean_interval_score_alpha_0_1": 0.01502375006514718,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.756578947368421
+    },
+    {
+      "seed": 271806,
+      "checkpoint_sha256": "b368bd7ae2d34a3d6388f4d18c75aa25ee61c759efb3bbda6a3d8dac941d1d54",
+      "best_epoch": 18,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005456291828374985,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.002952784786691468,
+      "n": 608,
+      "coverage_percent": 94.4078947368421,
+      "mean_width_sigma7": 0.01091059513258619,
+      "mean_interval_score_alpha_0_1": 0.015422914495147677,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.592105263157895
+    },
+    {
+      "seed": 271807,
+      "checkpoint_sha256": "c5920d964f7008b53f37e6f93dff5f9b065dce629c3e4198e291c66fbe5a4930",
+      "best_epoch": 39,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005390601507556773,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.0028950736697908614,
+      "n": 608,
+      "coverage_percent": 94.24342105263158,
+      "mean_width_sigma7": 0.010779207880739397,
+      "mean_interval_score_alpha_0_1": 0.015286017701087477,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.756578947368421
+    },
+    {
+      "seed": 271808,
+      "checkpoint_sha256": "20837e23d886710dc55a925c9ceb77151989903923d806843806df7c538ddcb7",
+      "best_epoch": 9,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005441184388030068,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.0029848750639683026,
+      "n": 608,
+      "coverage_percent": 94.4078947368421,
+      "mean_width_sigma7": 0.0108804558855181,
+      "mean_interval_score_alpha_0_1": 0.015538527788658657,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 5.592105263157895
+    },
+    {
+      "seed": 271809,
+      "checkpoint_sha256": "64ebdf556506e53cb435679cd3830533f446ce0da9cfc08fb8c29eb6826a70b4",
+      "best_epoch": 1,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005603525374872378,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.0030191532061762385,
+      "n": 608,
+      "coverage_percent": 95.23026315789474,
+      "mean_width_sigma7": 0.011205756541981136,
+      "mean_interval_score_alpha_0_1": 0.015532626204806393,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 4.769736842105264
+    },
+    {
+      "seed": 271810,
+      "checkpoint_sha256": "d5e587bf2411af36d6599825f15c8d94ffa68d231ae0e01efc451483f25de60e",
+      "best_epoch": 1,
+      "calibration_n": 53,
+      "calibration_order_rank": 49,
+      "q_sigma7": 0.005712736236180429,
+      "calibration_empirical_coverage_percent": 92.45283018867924,
+      "unchanged_point_RMSE": 0.002998645117399736,
+      "n": 608,
+      "coverage_percent": 95.23026315789474,
+      "mean_width_sigma7": 0.011423668137961923,
+      "mean_interval_score_alpha_0_1": 0.015710612565338136,
+      "lower_miss_percent": 0.0,
+      "upper_miss_percent": 4.769736842105264
+    }
+  ],
+  "summary": {
+    "q_sigma7": {
+      "mean_over_10_seeds": 0.005482682510693789,
+      "sample_SD_between_seeds": 0.00011707616240834959,
+      "min": 0.005390601507556773,
+      "max": 0.005712736236180429
+    },
+    "coverage_percent": {
+      "mean_over_10_seeds": 94.49013157894737,
+      "sample_SD_between_seeds": 0.4047374742388568,
+      "min": 94.07894736842105,
+      "max": 95.23026315789474
+    },
+    "mean_width_sigma7": {
+      "mean_over_10_seeds": 0.010963443709487862,
+      "sample_SD_between_seeds": 0.00023423821453897394,
+      "min": 0.010779207880739397,
+      "max": 0.011423668137961923
+    },
+    "mean_interval_score_alpha_0_1": {
+      "mean_over_10_seeds": 0.015360774847343167,
+      "sample_SD_between_seeds": 0.00021910193821406883,
+      "min": 0.01502375006514718,
+      "max": 0.015710612565338136
+    },
+    "unchanged_point_RMSE": {
+      "mean_over_10_seeds": 0.002939432418821988,
+      "sample_SD_between_seeds": 4.712541790127227e-05,
+      "min": 0.00289132751784498,
+      "max": 0.0030191532061762385
+    }
+  },
+  "conditional_calendar_uncertainty": {
+    "method": {
+      "calendar_resampling": "circular moving-block bootstrap, fixed q and fitted predictors",
+      "block_days": 14,
+      "resamples": 4999,
+      "random_seed": 20261118,
+      "interval_level": 0.95,
+      "scope": "marginal intervals conditional on calibration and fitted predictors; not calibration-quantile uncertainty or simultaneous intervals"
+    },
+    "metrics": {
+      "covered": {
+        "estimate": 94.49013157894737,
+        "marginal_calendar_bootstrap_CI95": [
+          92.43421052631578,
+          96.3157894736842
+        ]
+      },
+      "width": {
+        "estimate": 0.01096344370948786,
+        "marginal_calendar_bootstrap_CI95": [
+          0.010959601085688428,
+          0.010965365021387577
+        ]
+      },
+      "interval_score": {
+        "estimate": 0.015360774847343165,
+        "marginal_calendar_bootstrap_CI95": [
+          0.013138105575644257,
+          0.01826591335648525
+        ]
+      }
+    }
+  },
+  "elapsed_seconds_including_admission_and_forward": 3.7682701039993844,
+  "guaranteed_90_percent_coverage_claimed": false,
+  "R1_R2_R3_certified": false,
+  "human_independent_reproduction": false,
+  "deployed_E3_interval_unchanged_and_uncalibrated": true,
+  "limits": [
+    "Overlapping rolling targets and a chronological calibration period do not establish exchangeability. The finite-sample rank convention does not give a 90% coverage guarantee here.",
+    "This explicitly post hoc analysis is not the forbidden calibration hidden inside the original campaign.",
+    "The public historical evaluation calendar was already known. Threshold choices are not a prospective claim.",
+    "Calendar bootstrap intervals condition on the fitted models and q; they omit calibration-quantile uncertainty and are not simultaneous.",
+    "Realized-target-level groups are retrospective diagnostics and are not available for forecast routing.",
+    "No dashboard or public deployment was changed or validated by this diagnostic."
+  ]
+}

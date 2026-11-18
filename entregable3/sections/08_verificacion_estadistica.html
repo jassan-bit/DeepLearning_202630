@@ -411,6 +411,19 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-obligatorio-de-resultados">8.9 Reporte obligatorio de resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suplemento-exploratorio-piso-observable-y-proyeccion-fisica">8.10 Suplemento exploratorio: piso observable y proyección física</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restriccion-conocida-al-emitir-el-pronostico">Restricción conocida al emitir el pronóstico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-sobre-la-familia-completa">Resultado sobre la familia completa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobaciones-y-limites">Comprobaciones y límites</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suplemento-exploratorio-calibracion-posterior-de-e3">8.11 Suplemento exploratorio: calibración posterior de E3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-ejecutada-potencia-condicional-y-admision-de-datos">8.12 Preparación ejecutada: potencia condicional y admisión de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escenarios-de-semillas-y-calendario">Escenarios de semillas y calendario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-candidatos-cero-conjuntos-admitidos">Tres candidatos, cero conjuntos admitidos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuaderno-preparado-para-colab-con-gpu">Cuaderno preparado para Colab con GPU</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -426,6 +439,7 @@
 <h1>8 Bloque D Verificación estadística y evaluación ampliada<a class="headerlink" href="#bloque-d-verificacion-estadistica-y-evaluacion-ampliada" title="Link to this heading">#</a></h1>
 <p><strong>Corte del 17 de noviembre de 2026: análisis retrospectivo ejecutado sobre predicciones congeladas.</strong> La CNN-LSTM con atención de contenido y salida aditiva positiva tiene diez semillas; cada una de las trece redes rivales también tiene diez. Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista cada uno. La comparación incluye los diecisiete sistemas sobre las mismas 608 fechas, sin eliminar rivales, semillas ni observaciones.</p>
 <p>Los <strong>48 contrastes principales</strong> —dieciséis rivales por tres procedimientos— rechazaron sus nulas frente al margen heredado, con <strong>Holm sobre los 48 p-valores</strong> y máximo p ajustado <strong>0,0019</strong>. Las sensibilidades temporales conservaron esa decisión. Este resultado está condicionado al calendario y a los supuestos de cada método: <strong>no acredita por sí solo R3</strong>, un diseño confirmatorio previo o la originalidad del mecanismo. El MCS auxiliar conserva diez sistemas, incluido E3; no identifica un ganador único.</p>
+<p>Los suplementos <strong>8.10–8.12, ejecutados el 18 de noviembre</strong>, añaden una auditoría del piso observable, un diagnóstico retrospectivo de intervalos y dimensionamiento condicional para una evaluación futura. Mantienen separados esos resultados nuevos de las tablas, las predicciones y los 48 contrastes del corte anterior. Incluyen resultados adversos: el control sólo piso tiene menor MAE que E3 y la cobertura posterior cae por debajo del nominal en 2026Q1. Ninguno acredita una campaña confirmatoria o R3.</p>
 <section id="protocolo-experimental-pre-registrado">
 <h2>8.1 Protocolo experimental pre-registrado<a class="headerlink" href="#protocolo-experimental-pre-registrado" title="Link to this heading">#</a></h2>
 <p><strong>No existe un preregistro confirmatorio de esta comparación.</strong> El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/c4a4a1e68e9844cdfb81de0075177ced0cd96c07/experiments/e3_bloque_d/protocolo_borrador.md">borrador de Bloque D</a> continúa identificado como borrador. El plan de esta etapa se fijó en el commit <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/4a21b0329b99e864ec64fc2df49260aa874141bf">4a21b032</a>, después de conocer las predicciones y sus métricas medias y antes de calcular estos p-valores. El código probado se fijó en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/0213266404a0aa3af985d7306dce6b13892c71ec">02132664</a> antes de ejecutar el análisis.</p>
@@ -453,7 +467,7 @@
 <td><p><a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">Procedencia y antecedentes</span></a>, con componentes conocidos y revisión abierta. No inventar una fuente o adaptación para completar la casilla.</p></td>
 </tr>
 <tr class="row-even"><td><p>Tres conjuntos adicionales</p></td>
-<td><p>Aún sin elegir: fijar tarea, fuentes, licencia, versión/hash y diferencias en al menos dos ejes antes de conocer su desempeño.</p></td>
+<td><p>Sin selección final ni admisión: el inventario posterior de 8.12 tiene tres candidatos y cero admitidos. Fijar tarea, fuentes, licencia, versión/hash y diferencias en al menos dos ejes antes de conocer su desempeño.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Particiones, ejecuciones, semillas y determinismo</p></td>
 <td><p>Calendario y diez inicializaciones registrados para la comparación histórica; cerrar separación confirmatoria, número final dimensionado y políticas/tolerancias por backend para la campaña futura.</p></td>
@@ -473,15 +487,15 @@
 </tbody>
 </table>
 </div>
-<p>La ecuación <a class="reference internal" href="#equation-eq-e3-primary-mean-rmse-gain">(28)</a> define la métrica primaria como la <strong>media de las RMSE individuales</strong>, en unidades originales de sigma7 poblacional, sin anualización:</p>
+<p>La ecuación <a class="reference internal" href="#equation-eq-e3-primary-mean-rmse-gain">(30)</a> define la métrica primaria como la <strong>media de las RMSE individuales</strong>, en unidades originales de sigma7 poblacional, sin anualización:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-primary-mean-rmse-gain">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eq-e3-primary-mean-rmse-gain" title="Link to this equation">#</a></span>\[
+<span class="eqno">(30)<a class="headerlink" href="#equation-eq-e3-primary-mean-rmse-gain" title="Link to this equation">#</a></span>\[
 M_j=\frac1{R_j}\sum_{r=1}^{R_j}\sqrt{\frac1{608}\sum_{t=1}^{608}(y_t-\widehat y_{j,r,t})^2},\qquad
 \widehat\Delta_j=M_j-M_{\mathrm{E3}}.
 \]</div>
 <p>Positivo favorece a E3. No se sustituye esta media por la RMSE de un ensemble o por la raíz del MSE agregado entre semillas. Se mantiene el margen del borrador:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-superiority-hypotheses">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eq-e3-superiority-hypotheses" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-eq-e3-superiority-hypotheses" title="Link to this equation">#</a></span>\[
 H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 \qquad\delta=0{,}00025772842664981106.
 \]</div>
@@ -510,9 +524,9 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 <td><p>Épocas finales fijadas por la receta previa</p></td>
 <td><p>116 ejemplos; 2024-07-08 a 2024-10-31</p></td>
 </tr>
-<tr class="row-odd"><td><p>Calibración posterior</p></td>
+<tr class="row-odd"><td><p>Calibración de la campaña histórica</p></td>
 <td><p>53 ejemplos; 2024-11-08 a 2024-12-30</p></td>
-<td><p>No utilizada en esta receta; ese bloque no se abrió</p></td>
+<td><p>No utilizada en la campaña original; el diagnóstico separado de 8.11 abre esas ventanas después</p></td>
 </tr>
 <tr class="row-even"><td><p>Prueba común</p></td>
 <td><p>608 fechas</p></td>
@@ -526,7 +540,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 </table>
 </div>
 <p>La ampliación de E2 añadió cuatro semillas por red, <strong>52 ajustes</strong>, sin retunear las recetas. Los tres clásicos siguen almacenados una sola vez. Los ajustes y calibradores nuevos quedaron confirmados antes de producir sus nuevas predicciones de prueba. La CNN-LSTM se reutilizó desde su réplica de diez semillas.</p>
-<p><strong>Tener diez semillas por red no iguala las particiones, la selección ni el presupuesto de entrenamiento.</strong> Estos contrastes comparan las recetas ejecutadas; no aíslan un efecto causal de arquitectura. Se conservan separados los 5130,970719594005 segundos registrados de la ampliación E2 y los 948,439625042 segundos cerrados de E3. Esta etapa estadística ejecutó cero ajustes y cero inferencias nuevas, en CPU.</p>
+<p><strong>Tener diez semillas por red no iguala las particiones, la selección ni el presupuesto de entrenamiento.</strong> Estos contrastes comparan las recetas ejecutadas; no aíslan un efecto causal de arquitectura. Se conservan separados los 5130,970719594005 segundos registrados de la ampliación E2 y los 948,439625042 segundos cerrados de E3. La etapa estadística del 17 de noviembre ejecutó cero ajustes y cero inferencias nuevas, en CPU; los 530 forwards de calibración del suplemento 8.11 se registran aparte.</p>
 <p>La equidad futura requiere fijar la misma herramienta y número de intentos de HPO, máximo de épocas, criterio de parada y espacio relativo de búsqueda; el mismo número de configuraciones no iguala tiempo cuando su coste difiere. Debe declararse si el presupuesto se mide en configuraciones, cómputo o ambos, e igualar el tiempo total o reportar ambos análisis cuando corresponda. El esfuerzo de diseño se registra aparte del HPO. No se cambia la receta congelada de un rival para favorecer retrospectivamente la comparación.</p>
 <p>El preprocesamiento, las variables disponibles, aumentos aplicables, particiones, fuente de pesos preentrenados y métrica deben ser comunes en el protocolo pertinente. Se reportarán parámetros y FLOPs de todos los modelos; si el original resulta sustancialmente mayor que el mejor benchmark, se incluirá una comparación de capacidad comparable o una discusión explícita del efecto del tamaño. Las medidas existentes de GPU, eager CPU y TorchScript tienen condiciones distintas: faltan una contabilidad completa por modelo de entrenamiento/inferencia, hardware, memoria pico y energía estimada con método. Una trayectoria determinista se conserva como tal: duplicarla diez veces no produce incertidumbre de inicialización.</p>
 </section>
@@ -534,6 +548,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 <h2>8.3 Evaluación en conjuntos de datos adicionales<a class="headerlink" href="#evaluacion-en-conjuntos-de-datos-adicionales" title="Link to this heading">#</a></h2>
 <p><strong>Pendiente.</strong> Este análisis sólo usa una cronología BTC conocida. No se han evaluado tres conjuntos adicionales ni se ha demostrado consistencia entre dominios. Las semillas no son conjuntos de datos independientes; por eso no se ejecuta Friedman, Iman–Davenport o un diagrama de diferencia crítica usando las diez inicializaciones como si fueran diez mercados.</p>
 <p>La elección y evaluación de los conjuntos adicionales, sus márgenes por escala, licencias, auditorías y comparación completa siguen requiriendo un diseño previo. No se promedian RMSE de escalas distintas ni se denomina confirmación independiente a otro tramo ya expuesto.</p>
+<p>El inventario preparatorio del 18 de noviembre, resumido en <strong>8.12</strong>, identifica tres candidatos mediante metadatos y términos, con <strong>cero conjuntos admitidos o evaluados</strong>. Documenta posibilidades y bloqueos; no completa la elección final, la inspección de archivos o la consistencia entre dominios.</p>
 <p>Cada conjunto debe mantener la <strong>misma tarea y métrica primaria</strong> y diferir del principal en al menos dos ejes pertinentes de la guía: tamaño, dominio, ruido, dimensionalidad o desbalance cuando sea aplicable. En esta regresión no se inventa un desbalance de clases; la distribución del objetivo puede describirse como contexto sin convertirla automáticamente en otro eje acreditado. Su ficha debe identificar fuente pública, licencia/condiciones, versión y hash, periodo/unidad independiente, ejes de diferencia, particiones, auditoría de fuga, presupuesto y margen con unidades. Los 17 sistemas se evalúan en cada conjunto; una limitación de memoria del dashboard no autoriza excluir un rival científico.</p>
 <p>La consolidación podrá usar Friedman con corrección de Iman–Davenport y comparaciones por pares con Holm, o una alternativa bayesiana de rangos con signo y ROPE previamente justificada. La elección se fija antes de ver los resultados, con rangos y márgenes pertinentes; con sólo tres conjuntos la potencia global es limitada. Se informarán también diferencias, IC y efectos por conjunto y la consistencia del resultado, sin mezclar RMSE de escalas distintas en un promedio bruto. Un conjunto usado para rediseñar el modelo pasa a desarrollo y deja de aportar confirmación independiente.</p>
 </section>
@@ -549,8 +564,8 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1. Mejor media primaria frente a cada rival</p></td>
-<td><p>E3 tiene la menor RMSE media individual de los 17 sistemas; MAE también favorable.</p></td>
-<td><p>Observado en el calendario histórico, con tratamientos de entrenamiento distintos.</p></td>
+<td><p>E3 tiene la menor RMSE media individual de los 17 sistemas históricos; MAE también favorable dentro de esa familia.</p></td>
+<td><p>Observado en el calendario histórico, con tratamientos de entrenamiento distintos. El control posterior sólo piso de 8.10 conserva su resultado adverso de MAE fuera de esa familia.</p></td>
 </tr>
 <tr class="row-odd"><td><p>2. Al menos tres pruebas distintas admisibles por contraste, control familiar y ganancia mayor que δ</p></td>
 <td><p>48/48 rechazos bajo tres procedimientos posteriores, con Holm global48.</p></td>
@@ -771,12 +786,12 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 </div>
 <p>La tabla incorpora la CNN-LSTM y las diez semillas de cada red, sin elegir una réplica por rendimiento. MAE, sMAPE y R² se calculan por predictor y después se promedian. sMAPE se expresa en porcentaje; RMSE, MAE y anchura usan unidades originales de σ7, sin anualización. Para una trayectoria,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-smape-rsquared">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eq-e3-smape-rsquared" title="Link to this equation">#</a></span>\[
+<span class="eqno">(32)<a class="headerlink" href="#equation-eq-e3-smape-rsquared" title="Link to this equation">#</a></span>\[
 \operatorname{sMAPE}=\frac{200}{n}\sum_t\frac{|y_t-\widehat y_t|}{|y_t|+|\widehat y_t|},\qquad
 R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 \]</div>
 <p>con contribución cero cuando ambos valores de un término sMAPE son cero. La media de R² no es el R² de un ensamble. E3 obtiene sMAPE <strong>11,0977 %</strong> y R² medio <strong>0,911779</strong> en este calendario. La <a class="reference download internal" download="" href="../_downloads/21a464a1feed7a1b9898c6a3be2613d7/ranking_table.csv"><span class="xref download myst">tabla abreviada del corte estadístico</span></a> conserva sus bytes; el suplemento amplía métricas descriptivas y no cambia sus p-valores.</p>
-<p>La cobertura y anchura de E2 se reconstruyen exclusivamente con los cuantiles residuales <strong>ya congelados</strong> de cada predictor, mediante <span class="math notranslate nohighlight">\([\max(0,\widehat y-q),\widehat y+q]\)</span>; no se ajustó un nuevo calibrador con prueba. Son medias de las coberturas y anchuras individuales, no de un intervalo de ensamble. <strong>E3 no tiene un cuantil ni intervalo calibrado congelado</strong>, por lo que sus dos campos continúan pendientes. La DE entre semillas no rellena esas casillas y el nominal 90 % no constituye garantía individual bajo dependencia o cambio temporal.</p>
+<p>La cobertura y anchura de E2 se reconstruyen exclusivamente con los cuantiles residuales <strong>ya congelados</strong> de cada predictor, mediante <span class="math notranslate nohighlight">\([\max(0,\widehat y-q),\widehat y+q]\)</span>; no se ajustó un nuevo calibrador con prueba. Son medias de las coberturas y anchuras individuales, no de un intervalo de ensamble. <strong>La campaña original E3 no produjo un cuantil ni intervalo calibrado</strong>, por lo que sus dos campos permanecen ausentes en esta tabla histórica y en el servicio. El suplemento separado <strong>8.11</strong> sí calcula diez cuantiles posteriores; no reescribe estos campos o el protocolo anterior. La DE entre semillas no rellena esas casillas y el nominal 90 % no constituye garantía individual bajo dependencia o cambio temporal.</p>
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../_images/ranking_rmse.svg"><img alt="Los diecisiete sistemas ordenados por RMSE medio; las redes incluyen su desviación estándar entre diez semillas." src="../_images/ranking_rmse.svg" style="width: 100%;" />
 </a>
@@ -814,7 +829,7 @@ R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 </div>
 <p>Para HAC se usa la influencia</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-rmse-influence-hac">
-<span class="eqno">(31)<a class="headerlink" href="#equation-eq-e3-rmse-influence-hac" title="Link to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-eq-e3-rmse-influence-hac" title="Link to this equation">#</a></span>\[
 \psi_{j,t}=\frac1{R_j}\sum_r\frac{e_{j,r,t}^2-\overline{e_{j,r}^2}}{2\operatorname{RMSE}_{j,r}},
 \qquad z_j=\frac{\widehat\Delta_j-\delta}{\operatorname{SE}_{\rm HAC}(\psi_j-\psi_{\rm E3})}.
 \]</div>
@@ -889,10 +904,10 @@ R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 <p>Se fijó <strong>una familia principal de 48 hipótesis</strong>, con Holm a alfa=0,05. Este control es más amplio que las tres familias de dieciséis propuestas en el borrador. No se eligió la prueba de menor p ni se excluyeron rivales después de ver el resultado. Para la descripción conjunta por rival se exige que los tres p ajustados sean menores que 0,05.</p>
 <p>Para p ordenados <span class="math notranslate nohighlight">\(p_{(1)}\le\cdots\le p_{(m)}\)</span>, el ajuste monótono es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-holm-adjustment">
-<span class="eqno">(32)<a class="headerlink" href="#equation-eq-e3-holm-adjustment" title="Link to this equation">#</a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-e3-holm-adjustment" title="Link to this equation">#</a></span>\[
 p^{\rm Holm}_{(i)}=\min\left\{1,\max_{1\le k\le i}(m-k+1)p_{(k)}\right\}.
 \]</div>
-<p>En este corte <span class="math notranslate nohighlight">\(m=48\)</span> en la ecuación <a class="reference internal" href="#equation-eq-e3-holm-adjustment">(32)</a>. Se informa por rival el <strong>máximo</strong> de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.</p>
+<p>En este corte <span class="math notranslate nohighlight">\(m=48\)</span> en la ecuación <a class="reference internal" href="#equation-eq-e3-holm-adjustment">(34)</a>. Se informa por rival el <strong>máximo</strong> de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.</p>
 <div class="pst-scrollable-table-container"><table class="table" id="id3">
 <caption><span class="caption-number">Tabla 4 </span><span class="caption-text">Contrastes principales frente al margen heredado</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
 <thead>
@@ -1049,11 +1064,11 @@ p^{\rm Holm}_{(i)}=\min\left\{1,\max_{1\le k\le i}(m-k+1)p_{(k)}\right\}.
 </section>
 <section id="potencia-y-numero-de-semillas">
 <h3>8.7.2 Potencia y número de semillas<a class="headerlink" href="#potencia-y-numero-de-semillas" title="Link to this heading">#</a></h3>
-<p><strong>No se estimó potencia prospectiva, potencia conjunta ni MDE a partir de este test.</strong> Diez semillas cumplen una cantidad de repeticiones; no demuestran el objetivo de potencia de la guía. Calcular potencia observada usando el efecto de este mismo resultado no reemplazaría un dimensionamiento previo con un piloto adecuado.</p>
+<p><strong>El corte histórico no estimó potencia prospectiva, potencia conjunta ni MDE a partir de este test.</strong> Diez semillas cumplen una cantidad de repeticiones; no demuestran el objetivo de potencia de la guía. Calcular potencia observada usando el efecto de este mismo resultado no reemplazaría un dimensionamiento previo con un piloto adecuado. El suplemento <strong>8.12</strong> añade referencias condicionales de tamaño y MDE usando dispersión histórica y alternativas declaradas; no estima la potencia real de la campaña o de su batería completa.</p>
 <p>La guía exige un piloto con <strong>al menos cinco semillas</strong> para estimar la dispersión de diferencias pareadas frente a cada rival y dimensionar la campaña antes de congelarla: potencia de al menos 0,90 por contraste, potencia conjunta reportada y diez semillas como mínimo o más si hace falta. Deben incluirse las decisiones de las tres pruebas y Holm; semillas y calendario no son fuentes de incertidumbre intercambiables. El piloto y la alternativa planificada no se eligen retrospectivamente para declarar suficiente el tamaño ya usado.</p>
 <p>La aproximación normal bilateral ilustrada en la guía, con <span class="math notranslate nohighlight">\(\alpha'=0,05/m\)</span>, es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-power-normal-approximation">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eq-e3-power-normal-approximation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-e3-power-normal-approximation" title="Link to this equation">#</a></span>\[
 R\simeq\frac{(z_{1-\alpha'/2}+z_{1-\beta})^2\,\widehat\sigma_d^{\,2}}{g^2},
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la distancia de la alternativa planificada a la frontera de la nula y <span class="math notranslate nohighlight">\(\widehat\sigma_d\)</span> la dispersión pertinente. Si se contrasta igualdad y se planifica detectar una diferencia δ, entonces <span class="math notranslate nohighlight">\(g=\delta\)</span>. Para <strong>nuestra nula de relevancia</strong> <span class="math notranslate nohighlight">\(\Delta\le\delta\)</span>, una alternativa futura <span class="math notranslate nohighlight">\(\Delta_1&gt;\delta\)</span> da <span class="math notranslate nohighlight">\(g=\Delta_1-\delta\)</span>; poner δ en el denominador cambiaría el problema. La elección bilateral/unilateral y su cuantil debe fijarse de acuerdo con la hipótesis, no por el resultado. Esta fórmula no incorpora por sí sola dependencia temporal, estimación de hiperparámetros o incertidumbre conjunta.</p>
@@ -1069,7 +1084,7 @@ R\simeq\frac{(z_{1-\alpha'/2}+z_{1-\beta})^2\,\widehat\sigma_d^{\,2}}{g^2},
 <p>La <a class="reference download internal" download="" href="../_downloads/8c4cbadde81c34cd1d5cb9eb9300121a/effects.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">de</span> <span class="pre">efectos</span></code></a> incluye Cohen dz de ganancias pareadas entre semillas e intervalos bootstrap nominales, con su alcance condicionado al calendario. No se interpreta como efecto entre mercados independientes.</p>
 <p>Una campaña con varias series, particiones o unidades debe declarar su jerarquía antes de inferir: observaciones correlacionadas se agregan a la unidad pertinente o se modelan con dependencia explícita. El esquema de efectos mixtos de la guía,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-mixed-effects-schema">
-<span class="eqno">(34)<a class="headerlink" href="#equation-eq-e3-mixed-effects-schema" title="Link to this equation">#</a></span>\[
+<span class="eqno">(36)<a class="headerlink" href="#equation-eq-e3-mixed-effects-schema" title="Link to this equation">#</a></span>\[
 y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 \]</div>
 <p>se refiere al efecto del modelo <span class="math notranslate nohighlight">\(j\)</span>, de la unidad <span class="math notranslate nohighlight">\(i\)</span> y de la semilla <span class="math notranslate nohighlight">\(r\)</span>; no autoriza tratar cada día de una serie como un efecto aleatorio iid. Su uso exigiría justificar estructura, correlación y estimabilidad y contrastar al original con cada rival con el control familiar fijado. No se ha ajustado ese modelo aquí. En varios conjuntos se reportarán también diferencias, IC, efectos y probabilidad de superioridad estimada sobre unidades válidas, con el significado de esa probabilidad explícito.</p>
@@ -1210,7 +1225,7 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 </table>
 </div>
 <p>E3 permanece junto a ARIMA, FCN-1D, GRU32, Inception-1D, LSTM-autoencoder, MLP16, Persistence, ResNet-1D y TimeMixer. <strong>Pertenecer al conjunto no prueba equivalencia ni un ganador único</strong>. Ese resultado global de MSE no se renombra como contraste de ganancia RMSE mayor que delta. El <a class="reference download internal" download="" href="../_downloads/cadef13df1ad14ec5408fdceb50fc056/mcs.json"><code class="xref download docutils literal notranslate"><span class="pre">detalle</span> <span class="pre">secuencial</span> <span class="pre">del</span> <span class="pre">MCS</span></code></a> incluye pérdidas, estadísticos y p.</p>
-<p>Continúan pendientes la sensibilidad a hiperparámetros propios, las ablaciones comparables, las perturbaciones y curvas de tamaño de muestra, la calibración y cobertura del candidato, diagnósticos completos de adecuación, explicaciones verificadas, costes comparables y los tres conjuntos adicionales. Las sensibilidades de bloques y semillas aquí reportadas no sustituyen esos estudios.</p>
+<p>Continúan pendientes la sensibilidad a hiperparámetros propios, las ablaciones comparables, las perturbaciones y curvas de tamaño de muestra, diagnósticos completos de adecuación, explicaciones verificadas, costes comparables y los tres conjuntos adicionales. La auditoría física de <strong>8.10</strong> y la calibración posterior de <strong>8.11</strong> aportan diagnósticos ejecutados con alcance exploratorio; no completan la validación probabilística confirmatoria o su integración en el servicio. Las sensibilidades de bloques y semillas aquí reportadas conservan su alcance histórico.</p>
 </section>
 <section id="estudios-exigidos-por-la-tabla-5">
 <h3>Estudios exigidos por la Tabla 5<a class="headerlink" href="#estudios-exigidos-por-la-tabla-5" title="Link to this heading">#</a></h3>
@@ -1237,10 +1252,10 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 <td><p>Falta un periodo, dominio o fuente fuera de toda decisión de diseño. Los conjuntos adicionales y sus derechos/particiones se eligen antes de ver desempeño; reutilizar un calendario conocido no lo vuelve independiente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Calibración y reglas de puntuación</p></td>
-<td><p>Falta calibración de E3 con datos autorizados y evaluación separada. Intercepto/pendiente y residuos son pertinentes a la salida puntual; pinball, CRPS o log-score requieren cuantiles/distribución definidos. No se inventan ECE o probabilidades de clasificación para este objetivo.</p></td>
+<td><p>El suplemento 8.11 calcula diez cuantiles posteriores con 53 ventanas de calibración y reporta score de intervalo sobre pronósticos históricos guardados. La campaña original y la app conservan su perfil sin intervalo E3. Faltan validación confirmatoria y los demás diagnósticos de adecuación; pinball, CRPS o log-score requieren las salidas que los definan. No se inventan ECE o probabilidades de clasificación para este objetivo.</p></td>
 </tr>
 <tr class="row-even"><td><p>Cuantificación de incertidumbre</p></td>
-<td><p>E2 conserva cuantiles residuales por predictor; E3 no tiene intervalos calibrados congelados. Faltan cobertura empírica, IC temporal, subgrupos y anchura de E3. El nominal 90 % no es garantía individual y la dependencia limita intercambiabilidad. La DE de semillas no reemplaza un intervalo predictivo.</p></td>
+<td><p>E2 conserva sus cuantiles históricos; 8.11 añade cobertura, anchura, subgrupos e IC temporales posteriores para E3. La cobertura agregada de 94,49 % cae a 86,22 % en 2026Q1 y no demuestra calibración uniforme. El nominal 90 % no es garantía individual; el bootstrap condiciona en modelos y cuantiles fijos. La DE de semillas no reemplaza un intervalo predictivo.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Eficiencia y frontera de Pareto</p></td>
 <td><p>Parámetros y algunos costes están inventariados; faltan FLOPs completos, latencias CPU/GPU, memoria pico, entrenamiento y energía con método común. Las tres referencias TorchScript no representan el catálogo completo ni una medición de Render.</p></td>
@@ -1264,9 +1279,9 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Tabla de 17 sistemas</p></td>
+<tr class="row-even"><td><p>Tabla histórica de 17 sistemas</p></td>
 <td><p>RMSE, DE, MAE, sMAPE y R²; cobertura/anchura E2 reconstruidas de cuantiles congelados e IC bootstrap entre semillas disponibles por separado</p></td>
-<td><p>Mismas fechas y tratamientos de entrenamiento distintos; E3 sin intervalos calibrados y recursos completos comparables pendientes</p></td>
+<td><p>Mismas fechas y tratamientos de entrenamiento distintos; campaña original y servicio sin intervalos E3. Los diagnósticos nuevos se separan en 8.10–8.12; recursos completos comparables pendientes</p></td>
 </tr>
 <tr class="row-odd"><td><p>Familia completa</p></td>
 <td><p>48 contrastes, p crudos/Holm, estadísticos, efectos, IC, diagnósticos y conclusión</p></td>
@@ -1281,16 +1296,16 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 <td><p>MSE auxiliar; no ganador único o equivalencia</p></td>
 </tr>
 <tr class="row-even"><td><p>Potencia y MDE</p></td>
-<td><p>Declarados como no estimados</p></td>
-<td><p>Requieren un diseño/piloto pertinente</p></td>
+<td><p>Ausentes en el diseño histórico; 8.12 añade 864 escenarios condicionales y referencias de MDE</p></td>
+<td><p>No son potencia real o conjunta acreditada; requieren un diseño/piloto nuevo pertinente</p></td>
 </tr>
 <tr class="row-odd"><td><p>Tablas A/B del original</p></td>
 <td><p>Criterios y diagnósticos necesarios identificados en 8.6</p></td>
 <td><p>Pendientes de E3 con riesgos comparables, interpretación y fuentes; no se heredan de otras redes</p></td>
 </tr>
 <tr class="row-even"><td><p>Tabla por conjunto adicional y prueba consolidada</p></td>
-<td><p>Especificación de selección y análisis en 8.3</p></td>
-<td><p>Tres conjuntos sin elegir/evaluar, con familia completa y controles aplicados a cada uno</p></td>
+<td><p>Especificación de selección en 8.3 e inventario preparatorio de tres candidatos en 8.12</p></td>
+<td><p>Cero admitidos/evaluados; faltan selección final y familia completa con controles aplicados a cada conjunto</p></td>
 </tr>
 <tr class="row-odd"><td><p>Figuras y tablas de robustez/eficiencia/calidad</p></td>
 <td><p>Matriz de estudios en 8.8 y antecedentes con su alcance</p></td>
@@ -1311,6 +1326,235 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 <p>Los <a class="reference download internal" download="" href="../_downloads/28931a05af967a3f2ab55b842f94bbd9/result.json"><code class="xref download docutils literal notranslate"><span class="pre">resultados</span> <span class="pre">numéricos</span> <span class="pre">completos</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/5c929cad8ef64b477d28b16ac29ff652/manifest.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span> <span class="pre">de</span> <span class="pre">artefactos</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/431b2075bf532893ae8ea2edf8bb4017/publication_manifest.json"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">de</span> <span class="pre">publicación</span></code></a> permiten comprobar las tablas. El código y sus pruebas se conservan en <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_estadistica_posterior_20261117">experiments/e3_estadistica_posterior_20261117</a>.</p>
 <p>Para reproducir, se instalan las versiones de <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> y se ejecuta <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">experiments/e3_estadistica_posterior_20261117/run.py</span> <span class="pre">--download</span> <span class="pre">--output</span> <span class="pre">work/e3_estadistica_reproduccion</span></code>; <code class="docutils literal notranslate"><span class="pre">report.py</span></code> exporta las tablas de lectura desde esa salida. Los datos se descargan desde commits inmutables y se verifican por SHA256. No se reentrena el modelo ni se requieren GPU o Google Drive.</p>
 <p>La conclusión admisible es <strong>evidencia retrospectiva favorable a la receta E3 bajo los procedimientos y supuestos declarados</strong>. No se retrofecha el protocolo, no se oculta la diferencia de entrenamiento y no se transforma este análisis en certificación R1, R2 o R3.</p>
+</section>
+<section id="suplemento-exploratorio-piso-observable-y-proyeccion-fisica">
+<span id="e3-suplemento-piso"></span><h2>8.10 Suplemento exploratorio: piso observable y proyección física<a class="headerlink" href="#suplemento-exploratorio-piso-observable-y-proyeccion-fisica" title="Link to this heading">#</a></h2>
+<p>La auditoría del 18 de noviembre verifica las <strong>143 trayectorias congeladas</strong>, sus once insumos por SHA256 y la cohorte cruda auditada. Conserva los <strong>17 sistemas y las 608 fechas</strong>, sin seleccionar semillas o eliminar observaciones. Sólo realiza operaciones sobre entradas y pronósticos guardados: <strong>cero ajustes, cero nuevos forwards y cero contrastes de hipótesis</strong>. La proyección y el control sólo piso son comparadores exploratorios posteriores, separados del catálogo y de los 48 contrastes anteriores.</p>
+<section id="restriccion-conocida-al-emitir-el-pronostico">
+<h3>Restricción conocida al emitir el pronóstico<a class="headerlink" href="#restriccion-conocida-al-emitir-el-pronostico" title="Link to this heading">#</a></h3>
+<p>La entrada de una fecha objetivo <span class="math notranslate nohighlight">\(t\)</span> tiene siete cierres completos, desde <span class="math notranslate nohighlight">\(t-7\)</span> hasta <span class="math notranslate nohighlight">\(t-1\)</span>. Proporciona seis retornos logarítmicos conocidos, cuya media es <span class="math notranslate nohighlight">\(\mu_6\)</span>; el retorno <span class="math notranslate nohighlight">\(r_t\)</span> todavía no se conoce. La identidad para el objetivo poblacional, sin anualizar, es</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-audit-observable-floor">
+<span class="eqno">(37)<a class="headerlink" href="#equation-eq-e3-audit-observable-floor" title="Link to this equation">#</a></span>\[
+A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
+\qquad
+\sigma_{7,t}^{2}=A_t+\frac6{49}(r_t-\mu_6)^2,
+\qquad b_t=\sqrt{A_t}.
+\]</div>
+<p>El divisor de <span class="math notranslate nohighlight">\(A_t\)</span> es siete, aunque use seis retornos; <span class="math notranslate nohighlight">\(A_t\)</span> es varianza y <span class="math notranslate nohighlight">\(b_t\)</span> está en unidades de σ₇. El piso es alcanzable cuando el retorno desconocido coincide con la media conocida. Se calcula exclusivamente con los siete cierres pasados, sin usar <span class="math notranslate nohighlight">\(r_t\)</span>, el objetivo realizado o estadísticas ajustadas.</p>
+<p>La transformación <span class="math notranslate nohighlight">\(p_t^+=\max(p_t,b_t)\)</span> tiene una propiedad elemental: si <span class="math notranslate nohighlight">\(y_t\ge b_t\)</span> y <span class="math notranslate nohighlight">\(p_t&lt;b_t\)</span>, entonces</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-audit-projection-loss">
+<span class="eqno">(38)<a class="headerlink" href="#equation-eq-e3-audit-projection-loss" title="Link to this equation">#</a></span>\[
+(p_t-y_t)^2-(b_t-y_t)^2=(b_t-p_t)(2y_t-b_t-p_t)\ge0,
+\qquad
+|p_t-y_t|-|b_t-y_t|=b_t-p_t\ge0.
+\]</div>
+<p>Por encima del piso la salida queda idéntica. Por ello la proyección no aumenta ninguna de esas pérdidas por observación cuando se cumple la premisa. No demuestra novedad, calibración o superioridad fuera de muestra; cuantifica una incoherencia física de las salidas respecto a este objetivo e historia conocidos.</p>
+</section>
+<section id="resultado-sobre-la-familia-completa">
+<h3>Resultado sobre la familia completa<a class="headerlink" href="#resultado-sobre-la-familia-completa" title="Link to this heading">#</a></h3>
+<p>Se encontraron <strong>20.007 incumplimientos entre 86.944 pares predictor–fecha: 23,01 %</strong>. Las trece redes E2 tienen salidas inferiores al piso; E3 y Persistence no tienen ninguna y sus pronósticos quedan idénticos. El conteo principal usa tolerancia absoluta de <span class="math notranslate nohighlight">\(10^{-12}\)</span> en σ₇ y conserva también el conteo estricto. La proyección usa el máximo exacto. Las parejas solapadas y las semillas no constituyen observaciones de mercado independientes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sistema de referencia</p></th>
+<th class="head text-right"><p>RMSE antes</p></th>
+<th class="head text-right"><p>RMSE tras proyección</p></th>
+<th class="head text-right"><p>MAE antes</p></th>
+<th class="head text-right"><p>MAE tras proyección</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>E3 aditiva, diez semillas</p></td>
+<td class="text-right"><p>0,0029394324</p></td>
+<td class="text-right"><p>0,0029394324</p></td>
+<td class="text-right"><p>0,0018928273</p></td>
+<td class="text-right"><p>0,0018928273</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM-autoencoder, mejor rival bruto</p></td>
+<td class="text-right"><p>0,0038728895</p></td>
+<td class="text-right"><p>0,0035990849</p></td>
+<td class="text-right"><p>0,0028608472</p></td>
+<td class="text-right"><p>0,0025607201</p></td>
+</tr>
+<tr class="row-even"><td><p>TSMixer, mejor rival proyectado</p></td>
+<td class="text-right"><p>0,0048215434</p></td>
+<td class="text-right"><p>0,0032780684</p></td>
+<td class="text-right"><p>0,0034346292</p></td>
+<td class="text-right"><p>0,0020128791</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persistence, trayectoria única</p></td>
+<td class="text-right"><p>0,0040855959</p></td>
+<td class="text-right"><p>0,0040855959</p></td>
+<td class="text-right"><p>0,0023531639</p></td>
+<td class="text-right"><p>0,0023531639</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esta selección de lectura se acompaña de la <a class="reference download internal" download="" href="../_downloads/624f3f70bfcb2cbfcc6799a738bd02d8/per_model.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">completa</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">17</span> <span class="pre">sistemas</span></code></a> y las <a class="reference download internal" download="" href="../_downloads/4bd15ad86b18b58600234a97b04135a1/per_predictor.csv"><code class="xref download docutils literal notranslate"><span class="pre">143</span> <span class="pre">filas</span> <span class="pre">por</span> <span class="pre">predictor</span></code></a>, con tasas, magnitudes y cambios de rango. RMSE mantiene la media de las RMSE individuales. El máximo aumento observado de pérdida cuadrática y absoluta fue cero en todos los pares.</p>
+<p>Al aplicar la misma proyección a todos los sistemas, la ventaja relativa RMSE de E3 frente al mejor rival disponible pasa de <strong>24,10 % a 10,33 %</strong>. La brecha absoluta disminuye de <strong>0,0009334571 a 0,0003386360</strong>, un <strong>63,72 %</strong> descriptivo. Cambia el rival de referencia entre ambas comparaciones; ese porcentaje no atribuye causalmente una fracción de la mejora a una pieza de E3. Muestra que una regla algebraica sencilla mejora las salidas rivales sin cambiar sus pesos y debe considerarse al aislar la contribución defendida.</p>
+<p>El control adicional <strong>predecir sólo <span class="math notranslate nohighlight">\(b_t\)</span></strong>, sin aprendizaje, tiene RMSE <strong>0,0035275805</strong>, un 20,01 % mayor que E3, pero MAE <strong>0,0018227552</strong>, un <strong>3,70 % menor que E3</strong>. Se conserva este resultado adverso. El control está fuera de la familia histórica y no recibe un contraste añadido retrospectivamente. La diferencia entre RMSE y MAE requiere estudiar errores y colas; estas cifras no identifican una causa.</p>
+</section>
+<section id="comprobaciones-y-limites">
+<h3>Comprobaciones y límites<a class="headerlink" href="#comprobaciones-y-limites" title="Link to this heading">#</a></h3>
+<p>Los 608 objetivos son idénticos a los del panel fijado y ninguno queda por debajo del piso. Se verifican geometría OHLCV, fechas consecutivas y solapamiento cronológico exacto de seis barras. El piso recalculado coincide con el guardado por E3 y otra identidad por diferencias entre pares verifica la varianza. Un bloque separado reconstruye <strong>607 etiquetas</strong> con el cierre de la ventana siguiente, con discrepancia máxima <strong>1,2577×10⁻¹⁶</strong> en σ₇: ese cierre futuro sólo audita etiquetas y nunca entra en el cálculo del piso o la proyección. No existe una ventana siguiente para esa reconstrucción del último objetivo, cuya admisión conserva el respaldo del NPZ y panel verificados.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/fe76de4b8d354a3f5fe623f1a7cde56e/run_audit.py"><code class="xref download docutils literal notranslate"><span class="pre">ejecutor</span></code></a>, sus <a class="reference download internal" download="" href="../_downloads/ae3c8ebc401d334ef957cd0ec15eb98b/sources_and_admission.json"><code class="xref download docutils literal notranslate"><span class="pre">fuentes</span> <span class="pre">y</span> <span class="pre">admisión</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/ef9aefa6bdb0acd412d0df57a36f5bc6/floor_by_date.csv"><code class="xref download docutils literal notranslate"><span class="pre">piso</span> <span class="pre">por</span> <span class="pre">fecha</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/d2b920a9f35a8e78c76a613f8100c704/summary.json"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">numérico</span></code></a> permiten reproducir el diagnóstico. Las <a class="reference download internal" download="" href="../_downloads/79a111ba42e5d28ce0db55dd5d89f859/test_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">nueve</span> <span class="pre">pruebas</span> <span class="pre">numéricas</span></code></a> verifican unidades, orientación, divisor, futuro excluido, estimando y premisa de la proyección. Heredan el contrato temporal de la cohorte auditada y no cierran sus tres controles parciales. La <a class="reference download internal" download="" href="../_downloads/1658cd8961c8f49578b5458c19fe135c/README.md"><code class="xref download docutils literal notranslate"><span class="pre">descripción</span> <span class="pre">íntegra</span></code></a> conserva los comandos y límites de originalidad y reproducción.</p>
+</section>
+</section>
+<section id="suplemento-exploratorio-calibracion-posterior-de-e3">
+<span id="e3-suplemento-calibracion"></span><h2>8.11 Suplemento exploratorio: calibración posterior de E3<a class="headerlink" href="#suplemento-exploratorio-calibracion-posterior-de-e3" title="Link to this heading">#</a></h2>
+<p>La campaña original prohibió abrir la calibración y registró <code class="docutils literal notranslate"><span class="pre">calibration_members_opened:false</span></code>. El diagnóstico del <strong>18 de noviembre</strong> verifica y conserva ese historial, pero abre esas ventanas <strong>en una etapa posterior identificada como tal</strong>. Calcula diez cuantiles nuevos, sin reentrenar ni modificar pronósticos puntuales. El calendario de evaluación ya era conocido; el <a class="reference download internal" download="" href="../_downloads/5c75002b5a1cb8c6f6af689f9398fdd0/analysis_plan.json"><code class="xref download docutils literal notranslate"><span class="pre">plan</span> <span class="pre">de</span> <span class="pre">este</span> <span class="pre">diagnóstico</span></code></a> no es un preregistro confirmatorio. <strong>Los cuantiles no están activados en la aplicación</strong>: la ficha y el runtime de E3 conservan su ausencia de intervalo calibrado.</p>
+<p>Se usan las diez semillas 271801–271810 y sus <code class="docutils literal notranslate"><span class="pre">best_model_state</span></code> congelados, con bytes y SHA256 verificados. Se conservan el escalador de los <strong>532 ejemplos de ajuste</strong> y la selección original con <strong>116 de validación</strong>. Las <strong>53 ventanas de calibración</strong>, de 2024-11-08 a 2024-12-30, se transforman con ese escalador E3; no se reutilizan tensores escalados por E2 ni se actualizan estadísticas. Se ejecutan <strong>530 forwards CPU nuevos de calibración</strong> y cero forwards de evaluación. Para evaluar los intervalos se reutilizan las <strong>6080 predicciones puntuales guardadas</strong> sobre las 608 fechas conocidas.</p>
+<p>Con nominal 90 %, cada predictor utiliza el residuo absoluto de rango <strong>49 de 53</strong>, porque <code class="docutils literal notranslate"><span class="pre">ceil((53+1)×0,90)=49</span></code>, sin interpolación. Su intervalo es <code class="docutils literal notranslate"><span class="pre">[max(0,predicción−q),predicción+q]</span></code>, con el cuantil de ese mismo predictor. No se elige la semilla de mejor cobertura ni se forma un ensamble. Además de cobertura y anchura, se calcula el score de intervalo a α=0,10, que penaliza anchura y observaciones fuera de ambos extremos; menor es mejor.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Resultado posterior E3</p></th>
+<th class="head text-right"><p>Media de los diez predictores</p></th>
+<th class="head"><p>Alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cobertura empírica</p></td>
+<td class="text-right"><p><strong>94,4901 %</strong></p></td>
+<td><p>608 fechas históricas; nominal 90 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Anchura media</p></td>
+<td class="text-right"><p><strong>0,01096344 σ₇</strong></p></td>
+<td><p>Intervalos individuales, sin ensamble</p></td>
+</tr>
+<tr class="row-even"><td><p>Score de intervalo, α=0,10</p></td>
+<td class="text-right"><p><strong>0,01536077 σ₇</strong></p></td>
+<td><p>Regla propia que considera anchura y fallos</p></td>
+</tr>
+<tr class="row-odd"><td><p>RMSE puntual</p></td>
+<td class="text-right"><p><strong>0,0029394324 σ₇</strong></p></td>
+<td><p>Idéntica a la campaña original</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La cobertura agregada no se mantiene uniformemente en el tiempo:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Diagnóstico posterior</p></th>
+<th class="head text-right"><p>Fechas por predictor</p></th>
+<th class="head text-right"><p>Cobertura media</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2025Q1</p></td>
+<td class="text-right"><p>90</p></td>
+<td class="text-right"><p>95,00 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025Q2</p></td>
+<td class="text-right"><p>91</p></td>
+<td class="text-right"><p>93,41 %</p></td>
+</tr>
+<tr class="row-even"><td><p>2025Q3</p></td>
+<td class="text-right"><p>92</p></td>
+<td class="text-right"><p>97,72 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025Q4</p></td>
+<td class="text-right"><p>92</p></td>
+<td class="text-right"><p>96,20 %</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>2026Q1</strong></p></td>
+<td class="text-right"><p><strong>90</strong></p></td>
+<td class="text-right"><p><strong>86,22 %</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>2026Q2</p></td>
+<td class="text-right"><p>91</p></td>
+<td class="text-right"><p>97,36 %</p></td>
+</tr>
+<tr class="row-even"><td><p>2026Q3, julio–agosto</p></td>
+<td class="text-right"><p>62</p></td>
+<td class="text-right"><p>95,81 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>Objetivo superior al q75 original de ajuste</p></td>
+<td class="text-right"><p>86</p></td>
+<td class="text-right"><p><strong>84,53 %</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Todos los fallos de cobertura ocurrieron por el extremo superior. El umbral q75 procede del ajuste original, pero asignar ese último grupo utiliza el <strong>objetivo ya realizado</strong>: describe fallos retrospectivos y no es una regla disponible para dirigir pronósticos futuros. Ningún grupo modificó q o la selección de semillas.</p>
+<p>El bootstrap circular pareado de bloques de 14 días, con 4999 remuestras, da IC95 % marginal <strong>[92,4342 %; 96,3158 %]</strong> para cobertura media y <strong>[0,01313811; 0,01826591] σ₇</strong> para el score. Resamplea conjuntamente los días de las diez semillas y condiciona en los modelos y cuantiles ya estimados: omite la incertidumbre de estimar q con 53 ventanas y no proporciona intervalos simultáneos.</p>
+<p>Los objetivos de calibración y prueba son disjuntos y ordenados, pero sus historias móviles se solapan: la primera entrada de enero contiene 2024-12-25–31 y la calibración termina el 30 de diciembre. Son datos conocidos al pronosticar; la dependencia y el cambio temporal no acreditan intercambiabilidad. <strong>La corrección de rango finito y la cobertura global de 94,49 % no garantizan cobertura nominal del 90 % en periodos o casos futuros.</strong> El descenso en 2026Q1 conserva esa limitación de forma observable.</p>
+<p>Se publican los <a class="reference download internal" download="" href="../_downloads/d4cbf2223c10b9dc954cd73b313e3947/per_seed_intervals.csv"><code class="xref download docutils literal notranslate"><span class="pre">cuantiles</span> <span class="pre">y</span> <span class="pre">métricas</span> <span class="pre">por</span> <span class="pre">semilla</span></code></a>, los <a class="reference download internal" download="" href="../_downloads/2f4fbd68b5ea9eb77ca237c1c22758c8/calibration_predictions.csv"><code class="xref download docutils literal notranslate"><span class="pre">530</span> <span class="pre">pronósticos</span> <span class="pre">de</span> <span class="pre">calibración</span></code></a>, los <a class="reference download internal" download="" href="../_downloads/6207e761b66c695f9638389cbad46a30/subgroup_diagnostics.csv"><code class="xref download docutils literal notranslate"><span class="pre">diagnósticos</span> <span class="pre">de</span> <span class="pre">subgrupos</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/72d87c95b8e96de508f02970720a0681/results.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">completo</span></code></a>. El <a class="reference download internal" download="" href="../_downloads/5f83b7b1260ce6e4316220b07eafbf0d/run.py"><code class="xref download docutils literal notranslate"><span class="pre">ejecutor</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/6360268fc0d0095405c5850576745538/verify_results.py"><code class="xref download docutils literal notranslate"><span class="pre">verificador</span> <span class="pre">de</span> <span class="pre">resultados</span></code></a> distinguen el cálculo nuevo de la reconstrucción sin forwards adicionales. Su <a class="reference download internal" download="" href="../_downloads/80af16e769a467254e18a321134d7700/verification.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">de</span> <span class="pre">verificación</span></code></a> comprueba quince entradas, ocho matrices originales, precisiones, cuantiles y métricas; no acredita reproducción humana independiente. La <a class="reference download internal" download="" href="../_downloads/9207ac6fe381a5cb8430dc9f7237c793/README.md"><code class="xref download docutils literal notranslate"><span class="pre">documentación</span> <span class="pre">del</span> <span class="pre">diagnóstico</span></code></a> mantiene comandos, pruebas y limitaciones.</p>
+</section>
+<section id="preparacion-ejecutada-potencia-condicional-y-admision-de-datos">
+<span id="e3-preparacion-potencia-datos"></span><h2>8.12 Preparación ejecutada: potencia condicional y admisión de datos<a class="headerlink" href="#preparacion-ejecutada-potencia-condicional-y-admision-de-datos" title="Link to this heading">#</a></h2>
+<p>Esta etapa verifica insumos y calcula <strong>864 escenarios de planificación: 432 por semillas y 432 temporales</strong>. No inicia una campaña, no estima potencia observada del resultado, no convierte el test histórico en piloto prospectivo y no acredita potencia conjunta real. Tampoco ajusta modelos, ejecuta inferencias, recalibra o añade contrastes. El <a class="reference download internal" download="" href="../_downloads/f4f304a3e89eafd618b556ac43455881/power_planning.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">de</span> <span class="pre">dimensionamiento</span></code></a> conserva todas las alternativas y sus supuestos.</p>
+<section id="escenarios-de-semillas-y-calendario">
+<h3>Escenarios de semillas y calendario<a class="headerlink" href="#escenarios-de-semillas-y-calendario" title="Link to this heading">#</a></h3>
+<p>Se recupera la DE de las ganancias pareadas de RMSE a partir de las diez inicializaciones sobre las 608 fechas conocidas. Frente a un clásico, su trayectoria permanece única: la dispersión de diez ganancias procede del candidato, no de diez reentrenamientos ficticios del rival. La planificación adopta alternativas declaradas <code class="docutils literal notranslate"><span class="pre">g₁=1,25δ</span></code>, <code class="docutils literal notranslate"><span class="pre">1,5δ</span></code> y <code class="docutils literal notranslate"><span class="pre">2δ</span></code>; la distancia frente a la nula es <strong>g₁−δ</strong>, y no se utiliza la ganancia media observada como alternativa.</p>
+<p>Para el componente t por semillas se usa la distribución t no central, bajo ganancias pareadas normales e independientes y una DE futura igual a la asumida. El umbral unilateral conservador es <code class="docutils literal notranslate"><span class="pre">0,05/48</span></code>, como referencia para los 48 componentes de Holm; no se calcula la potencia exacta de su procedimiento adaptativo. Con alternativa <code class="docutils literal notranslate"><span class="pre">g₁=2δ</span></code>, los máximos de pares requeridos sobre los 16 rivales son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Meta marginal por procedimiento</p></th>
+<th class="head text-right"><p>DE histórica</p></th>
+<th class="head text-right"><p>Cota superior simultánea de DE</p></th>
+<th class="head text-right"><p>Sensibilidad 2×DE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0,90</p></td>
+<td class="text-right"><p>280</p></td>
+<td class="text-right"><p>1614</p></td>
+<td class="text-right"><p>1103</p></td>
+</tr>
+<tr class="row-odd"><td><p>0,9666667</p></td>
+<td class="text-right"><p>354</p></td>
+<td class="text-right"><p>2048</p></td>
+<td class="text-right"><p>1399</p></td>
+</tr>
+<tr class="row-even"><td><p>0,9979167</p></td>
+<td class="text-right"><p><strong>515</strong></p></td>
+<td class="text-right"><p>2996</p></td>
+<td class="text-right"><p>2046</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>TiDE determina estos máximos. La cota superior de DE usa teoría normal χ² con cola <code class="docutils literal notranslate"><span class="pre">0,05/16</span></code>; con diez pares la incertidumbre de esa dispersión es material. <strong>515 pares sólo satisfarían la meta marginal del componente t bajo el escenario y los supuestos declarados</strong>. No son el tamaño suficiente de la batería completa, una potencia comprobada del proyecto o una recomendación de entrenar cientos de semillas.</p>
+<p>Si las 48 decisiones alcanzaran potencia marginal de al menos 0,9979167, la desigualdad de la unión daría una cota conjunta de 0,90 sin exigir independencia. Aquí no se han dimensionado ni validado todos los procedimientos; la potencia conjunta real continúa abierta. Las correlaciones históricas de ganancias y los productos de potencias bajo independencia hipotética conservan un significado descriptivo o ilustrativo.</p>
+<p>La referencia temporal se calcula por separado, con influencia del RMSE, HAC Bartlett de rezagos 7/14/28 y aproximación normal. HAC14 con <code class="docutils literal notranslate"><span class="pre">g₁=2δ</span></code> y objetivo marginal 0,90 da una extrapolación máxima de <strong>420.677 fechas</strong>, determinada por SeasonalNaive. Esa cifra extrema no es un horizonte recomendado: prolonga supuestos de estacionariedad y dispersión muy lejos de las 608 fechas y aplica la misma alternativa cercana a la frontera a rivales muy diferentes. Indica que hacen falta un piloto nuevo, alternativas y varianzas justificadas y un diseño viable antes del congelamiento. Aumentar semillas no crea periodos de mercado independientes.</p>
+<p>Las <a class="reference download internal" download="" href="../_downloads/46047d48763536bfcefb6b8c2e207e80/seed_planning.csv"><code class="xref download docutils literal notranslate"><span class="pre">432</span> <span class="pre">filas</span> <span class="pre">de</span> <span class="pre">planificación</span> <span class="pre">por</span> <span class="pre">semillas</span></code></a>, las <a class="reference download internal" download="" href="../_downloads/9089ff7997349f34fe47d86c8f536139/calendar_planning.csv"><code class="xref download docutils literal notranslate"><span class="pre">432</span> <span class="pre">referencias</span> <span class="pre">temporales</span></code></a> y las <a class="reference download internal" download="" href="../_downloads/0d4dc60b1e07ae6fa452a5da02e8e436/seed_variance_inputs.csv"><code class="xref download docutils literal notranslate"><span class="pre">dispersiones</span> <span class="pre">de</span> <span class="pre">entrada</span></code></a> permiten revisar todos los rivales. El <a class="reference download internal" download="" href="../_downloads/1ef83409a5b6fc8fa587ba980db03680/power_planning.py"><code class="xref download docutils literal notranslate"><span class="pre">ejecutor</span> <span class="pre">de</span> <span class="pre">planificación</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/77bd412818200f75247504ad788f78d8/verification.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">de</span> <span class="pre">reproducción</span> <span class="pre">automatizada</span></code></a> conservan nueve pruebas numéricas y reconstrucción idéntica de los productos; no certifican potencia real o reproducción humana independiente.</p>
+</section>
+<section id="tres-candidatos-cero-conjuntos-admitidos">
+<h3>Tres candidatos, cero conjuntos admitidos<a class="headerlink" href="#tres-candidatos-cero-conjuntos-admitidos" title="Link to this heading">#</a></h3>
+<p>La búsqueda preparatoria identifica los siguientes candidatos por metadatos, procedencia y términos. No descargó archivos de mercado, entrenó modelos o observó resultados de rendimiento de esos candidatos <strong>en esa búsqueda</strong>; no afirma desconocimiento global de todos sus resultados.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Candidato</p></th>
+<th class="head"><p>Diferencias propuestas frente a BTC Binance</p></th>
+<th class="head"><p>Bloqueos de admisión</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>WIKI/AAPL diario, periodo propuesto 2000–2013, mediante Bokeh</p></td>
+<td><p>Fuente, acción frente a cripto, calendario y sesiones bursátiles</p></td>
+<td><p>Archivo/versión/hash sin fijar, trazabilidad de derechos por cerrar, política causal de ajustes corporativos y calidad sin comprobar</p></td>
+</tr>
+<tr class="row-odd"><td><p>HF Data Library / IEX SPY, V2 Clean, minuto a sesión diaria</p></td>
+<td><p>Fuente/venue, ETF frente a cripto y reloj de sesiones</p></td>
+<td><p>CC BY 4.0 de compilación no sustituye derechos upstream de IEX; acceso, archivo, limpieza causal y agregación sin verificar</p></td>
+</tr>
+<tr class="row-even"><td><p>Zielak / Bitstamp BTCUSD, minuto a día UTC, calendario anterior propuesto</p></td>
+<td><p>Exchange/fuente, calendario y USD frente a USDT</p></td>
+<td><p>Tarjeta indexada declara CC BY-SA 4.0, no CC0; faltan derechos upstream, versión, cobertura y agregación UTC verificadas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Los tres conservan estado no admitido.</strong> AAPL y SPY requieren σ₇ de siete retornos entre sesiones y horizonte próxima sesión: es una adaptación homóloga, distinta del contrato UTC continuo. No se inventan velas en fines de semana o festivos. Si se exige el contrato UTC idéntico, deben excluirse y continuar la búsqueda. Los calendarios, los dos ejes de diferencia exigidos, el tamaño utilizable y la independencia deben verificarse; cambiar un activo o contar tres series no acredita por sí solo esos requisitos.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/a1e8475b110bb7c3ad471c74e196ba95/dataset_admission.md"><code class="xref download docutils literal notranslate"><span class="pre">expediente</span> <span class="pre">de</span> <span class="pre">admisión</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/0e4500254331c3f433e3a0fc35c2ac04/dataset_candidates.json"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">estructurado</span></code></a> conservan fuentes, accesos observados y bloqueos exactos. El <a class="reference download internal" download="" href="../_downloads/57934b37f297a8c83e1044fdaaef9d86/campaign_readiness.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">de</span> <span class="pre">preparación</span> <span class="pre">de</span> <span class="pre">campaña</span></code></a> audita las 17 identidades y once puntos de entrada por inspección sintáctica; no ejecuta las recetas ni demuestra que todas sean operativas en el entorno actual.</p>
+<p>Antes de cualquier confirmación siguen pendientes candidato y mecanismo defendidos, datos admitidos, particiones y escaladores comunes, política de calibración, HPO o recetas fijas con presupuesto comparable, piloto pertinente, potencia de la batería y protocolo fechado. El entrenamiento histórico E2 de 655 ejemplos frente a 532 de E3 conserva su diferencia. La <a class="reference download internal" download="" href="../_downloads/114fdb5631ebe0da4c7101c518d212c9/README.md"><code class="xref download docutils literal notranslate"><span class="pre">documentación</span> <span class="pre">de</span> <span class="pre">preparación</span></code></a> describe la reproducción y estos límites. Los tres suplementos añaden evidencia delimitada y resultados adversos; <strong>R3 permanece sin acreditar</strong>.</p>
+</section>
+<section id="cuaderno-preparado-para-colab-con-gpu">
+<h3>Cuaderno preparado para Colab con GPU<a class="headerlink" href="#cuaderno-preparado-para-colab-con-gpu" title="Link to this heading">#</a></h3>
+<p>El usuario dispone de Colab con GPU. El nuevo <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/e3_remediacion_preflight_colab.ipynb">cuaderno de preflight</a> prepara un entorno CUDA aislado y comprueba <strong>los 17 perfiles reales con datos artificiales</strong>. No modifica el Torch del kernel de Colab, no solicita credenciales ni descarga observaciones de mercado. Sus descargas de paquetes pueden requerir varios GB y varios minutos. La primera celda fija y registra las fuentes; se selecciona <strong>Entorno de ejecución → Cambiar tipo de entorno de ejecución → GPU</strong>, y se ejecuta el cuaderno completo.</p>
+<p>La comprobación local <strong>CPU</strong> pasó los 17 perfiles: 14 redes con forward, gradiente finito y recarga idéntica; ARIMA con un ajuste exclusivamente sintético; persistencia y estacional con rezagos artificiales. La GPU todavía requiere un recibo de ejecución real de Colab. El <a class="reference download internal" download="" href="../_downloads/5dd98f175784a75dcb277268e541092f/e3_remediacion_preflight_colab.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">cuaderno</span> <span class="pre">descargable</span></code></a>, la <a class="reference download internal" download="" href="../_downloads/15361eb84d8d6d7987adb7af84b640d3/colab_preflight_README.md"><code class="xref download docutils literal notranslate"><span class="pre">documentación</span> <span class="pre">del</span> <span class="pre">preflight</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/0b30d7989bc8a1b2916d3e221a2cb253/colab_cpu_preflight.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">CPU</span></code></a> delimitan esa evidencia. Estos controles no comparan desempeño ni ejecutan entrenamientos con datos reales. Incluso si la GPU pasa, el guard de campaña mantiene pendientes las tres admisiones, el protocolo y el tratamiento/presupuesto/potencia finales.</p>
+</section>
 </section>
 </section>
 
@@ -1402,6 +1646,19 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reporte-obligatorio-de-resultados">8.9 Reporte obligatorio de resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suplemento-exploratorio-piso-observable-y-proyeccion-fisica">8.10 Suplemento exploratorio: piso observable y proyección física</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restriccion-conocida-al-emitir-el-pronostico">Restricción conocida al emitir el pronóstico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-sobre-la-familia-completa">Resultado sobre la familia completa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobaciones-y-limites">Comprobaciones y límites</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suplemento-exploratorio-calibracion-posterior-de-e3">8.11 Suplemento exploratorio: calibración posterior de E3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-ejecutada-potencia-condicional-y-admision-de-datos">8.12 Preparación ejecutada: potencia condicional y admisión de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escenarios-de-semillas-y-calendario">Escenarios de semillas y calendario</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tres-candidatos-cero-conjuntos-admitidos">Tres candidatos, cero conjuntos admitidos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuaderno-preparado-para-colab-con-gpu">Cuaderno preparado para Colab con GPU</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

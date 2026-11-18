@@ -31,7 +31,7 @@ Los capítulos [6](sections/06_modelo_original.md) y [7](sections/07_diseno_rigu
 
 La [sección 8](sections/08_verificacion_estadistica.md) incorpora el análisis posterior ya completado: los **48 contrastes primarios** rechazan sus nulas y los 16 rivales cumplen la regla conjunta de los tres procedimientos. Sus ámbitos de incertidumbre, supuestos y relación con la Tabla 4 temporal se explican por separado; disponer de tres métodos no acredita automáticamente las tres pruebas exigidas para R3. E2 usa 655 ejemplos de entrenamiento y 53 de calibración; E3 usa 532 de ajuste y 116 de validación para parada, sin calibración adicional. No se declara igualdad de presupuestos. El MCS al 90 % conserva diez sistemas, incluido el candidato, y no identifica un ganador único.
 
-La [tabla ampliada de los 17 sistemas](_static/e3_revision_bloque_d_20261117/metrics_extended.csv) añade sMAPE y R² desde las predicciones guardadas y reconstruye los intervalos heredados de E2, sin recalibrar. E3 obtiene **sMAPE medio 11,10 % y R² medio 0,9118**; su cobertura y anchura siguen sin calcular por falta de calibrador. Los IC entre semillas tienen alcance distinto de los intervalos predictivos. Las RMSE, MAE y pruebas históricas conservan sus resultados.
+La [tabla ampliada de los 17 sistemas](_static/e3_revision_bloque_d_20261117/metrics_extended.csv) conserva sMAPE medio **11,10 %** y R² medio **0,9118**, y los intervalos heredados de E2. Su corte original no calculó intervalos E3. El [diagnóstico posterior separado del capítulo 8](sections/08_verificacion_estadistica.md) añade diez calibradores: cobertura histórica **94,49 %** para nominal 90 %, pero **86,22 % en 2026Q1**. No están activados en el dashboard ni acreditan cobertura uniforme temporal. Las métricas puntuales y los 48 contrastes históricos no cambian.
 
 **La novedad R1, la defensa académica de R2 y la superioridad R3 siguen sin acreditarse.** La comparación utiliza un calendario histórico conocido y no constituye una campaña confirmatoria ciega ni demuestra potencia o reproducción en mercados independientes. Los bloques A y B conservan sus pendientes de cierre, al igual que el despliegue en Render. Las plantillas no se convierten retrospectivamente en preregistros ni firmas. La bibliografía inicial y las revisiones focales posteriores distinguen antecedentes, procedencia y alcance de lectura; se conservan las 37 referencias sugeridas por la guía. El análisis estadístico reutilizó predicciones congeladas sin nuevos ajustes o inferencias; la etapa del dashboard sí ejecuta inferencia CPU para comprobar los artefactos, sin entrenar ni recalibrar.
 
@@ -41,7 +41,7 @@ La [concordancia y los anexos](sections/concordancia_secciones.md) permiten loca
 
 La cabeza de momentos y su dictamen se conservan como una línea histórica de desarrollo en los capítulos 6 y 7 y los anexos [F](sections/21_propuesta_momentos.md) y [G](sections/22_dictamen_momentos.md). Sus formulaciones, instrucciones de Colab y cortes de admisibilidad no describen el sistema de la comparación vigente: ésta evalúa la cabeza positiva aditiva. Ese historial tampoco selecciona la adaptación por momentos como aporte original.
 
-El [anexo final](sections/cierre_reproducibilidad.md) distingue conclusiones provisionales, evidencia de software, reproducción científica pendiente y declaración de autoría sin firmas. La rúbrica no se convierte en una calificación automática del proyecto.
+El [anexo final](sections/cierre_reproducibilidad.md) conserva autoría sin firmas y distingue la reproducción automática ya ejecutada de la humana pendiente. El nuevo [contenedor científico](sections/11_informe_tecnico.md) reconstruyó **11 de 11 CSV idénticos**, desde 143 trayectorias guardadas, sin entrenar ni inferir. Su archivo versionado descargable tiene SHA-256; el depósito persistente con DOI continúa pendiente. La rúbrica no se convierte en una calificación automática del proyecto.
 
 El [Apéndice A](sections/apendice_a_plantillas.md) ofrece las seis plantillas y su paquete descargable; las [referencias sugeridas](sections/referencias_sugeridas.md) conservan los 37 números de la guía y aclaran qué métodos son pertinentes para F2a.
 
@@ -66,3 +66,11 @@ La revisión de las [secciones 14](sections/14_evaluacion_calificacion.md), [15]
 - [Entregable 1](https://jassan-bit.github.io/DeepLearning_202630/intro.html).
 - [Entregable 2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/intro.html).
 - [Selector de entregables](https://jassan-bit.github.io/DeepLearning_202630/entregables.html).
+
+## Correctivos posteriores del 18 de noviembre de 2026
+
+La revisión de [literatura](sections/06_modelo_original.md) compara once trabajos y ocho lecturas focales de texto completo. Identifica antecedentes de atención, estabilidad y restricciones de salida; **R1 sigue sin acreditarse** y la cobertura efectiva de tres bases no está cerrada.
+
+El [control de soporte de la etiqueta](sections/08_verificacion_estadistica.md) modifica la interpretación del resultado: aplicar el mismo piso observable a los rivales reduce la ventaja RMSE descriptiva de **24,10 % a 10,33 %**; el mejor rival cambia de SAE a TSMixer. Un control sin aprendizaje que usa sólo ese piso obtiene **3,70 % menos MAE que E3**, aunque mayor RMSE. Ambos resultados se conservan, sin atribuir causalmente la diferencia al mecanismo.
+
+La planificación de potencia y el cuaderno de preparación para **Colab con GPU** están en el [capítulo 8](sections/08_verificacion_estadistica.md). Hay **tres fuentes candidatas y cero datasets admitidos**: todavía faltan derechos, hashes y contratos de calendario/objetivo, además del protocolo y presupuesto común. El cuaderno comprueba el entorno y las recetas; no inicia la nueva campaña con esos requisitos abiertos. La verificación pública de Render y la reproducción humana siguen pendientes.

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "review_date_local": "2026-11-18",
+  "timezone": "America/Bogota",
+  "scope": "new_retrospective_interval_diagnostic_on_frozen_E3_predictors",
+  "original_campaign_amended": false,
+  "original_campaign_calibration_members_allowed": false,
+  "original_campaign_calibration_members_opened": false,
+  "not_a_confirmatory_preregistration": true,
+  "new_analysis_uses_previously_excluded_calibration_members": true,
+  "reason": "Assess interval quality after the published evaluation; do not alter its point predictions, original protocol, hypotheses or serving artefacts.",
+  "predictor_seeds": [271801, 271802, 271803, 271804, 271805, 271806, 271807, 271808, 271809, 271810],
+  "checkpoint_state": "best_model_state selected by the original validation rule",
+  "preprocessing": "reuse the original 532-fit statistics; verify them without changing them",
+  "calibration": {"n": 53, "first": "2024-11-08", "last": "2024-12-30", "alpha": 0.1, "residual": "absolute prediction error in original unannualized sigma7", "rank": "ceil((n+1)*(1-alpha))", "rank_for_53": 49, "pool_seeds": false},
+  "evaluation": {"n": 608, "first": "2025-01-01", "last": "2026-08-31", "predictions": "unchanged saved predictions from each matching frozen predictor", "new_evaluation_model_forward_calls": 0},
+  "interval": {"lower": "max(0, prediction-q_seed)", "upper": "prediction+q_seed", "nominal_coverage": 0.9},
+  "metrics": ["empirical coverage", "mean interval width", "proper interval score at alpha=0.1", "lower and upper miss rates"],
+  "subgroups": ["calendar quarter", "realized target level using original fit-only quartile thresholds; retrospective diagnostic, not an observable routing rule"],
+  "uncertainty": {"calendar_resampling": "circular moving-block bootstrap, fixed q and fitted predictors", "block_days": 14, "resamples": 4999, "random_seed": 20261118, "interval_level": 0.95, "scope": "marginal intervals conditional on calibration and fitted predictors; not calibration-quantile uncertainty or simultaneous intervals"},
+  "acceptance": {"point_RMSE_absolute_tolerance": 1e-12, "refit_model": false, "update_scaler": false, "update_original_calibrator": false, "activate_in_dashboard": false, "R1_R2_R3_certified": false},
+  "dependence_limit": "Overlapping rolling targets and a chronological calibration period do not establish exchangeability. The finite-sample rank convention does not give a 90% coverage guarantee here."
+}

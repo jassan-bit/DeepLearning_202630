@@ -405,6 +405,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-previa-al-congelamiento-del-protocolo">14.5.9 Decisión previa al congelamiento del protocolo</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-posterior-que-modifica-la-interpretacion">Evidencia posterior que modifica la interpretación</a></li>
 </ul>
             </nav>
         </div>
@@ -544,12 +545,12 @@
 <h2>14.3 Cálculo de la nota final<a class="headerlink" href="#calculo-de-la-nota-final" title="Link to this heading">#</a></h2>
 <p>Si el evaluador determina un cumplimiento por componente <span class="math notranslate nohighlight">\(q_i\)</span> entre 0 y 100 y aplica los pesos <span class="math notranslate nohighlight">\(w_i\)</span> de la tabla, el puntaje ponderado queda en la escala de 0 a 100:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-final-grade">
-<span class="eqno">(36)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
+<span class="eqno">(40)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
 P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 \qquad
 \mathrm{Nota\ final}=\min\left(\mathrm{Tope},\;5{,}0\times\frac{P_{\mathrm{ponderado}}}{100}\right).
 \]</div>
-<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(36)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a <span class="math notranslate nohighlight">\(q_i\)</span>, no se estima el puntaje y no se calcula una nota o tope del proyecto.</p>
+<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(40)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a <span class="math notranslate nohighlight">\(q_i\)</span>, no se estima el puntaje y no se calcula una nota o tope del proyecto.</p>
 </section>
 <section id="niveles-de-desempeno-por-componente">
 <h2>14.4 Niveles de desempeño por componente<a class="headerlink" href="#niveles-de-desempeno-por-componente" title="Link to this heading">#</a></h2>
@@ -739,9 +740,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Al menos tres conjuntos de naturaleza distinta, elegidos antes de conocer resultados y fuera del diseño.</p></td>
-<td><p>Pendiente.</p></td>
-<td><p>Criterios de fuente pública, dos ejes de diferencia, licencia/versión/hash en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.3</span></a>.</p></td>
-<td><p>Elegirlos y evaluar original y todos los rivales con presupuesto comparable. Ninguno está seleccionado.</p></td>
+<td><p>Pendiente: tres fuentes candidatas y cero admitidas.</p></td>
+<td><p>Revisión de admisión en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>, con derechos, hashes, calendario y homología de σ₇/horizonte pendientes.</p></td>
+<td><p>Admitirlos antes de resultados, cerrar protocolo/potencia y evaluar candidato y familia con presupuesto común. Una fuente propuesta no equivale a un dataset evaluado.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Evaluación bajo cambio de distribución: periodo, dominio o fuente.</p></td>
 <td><p>Pendiente E3.</p></td>
@@ -780,14 +781,14 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Baseline trivial, riesgos comparables, contraste de brecha, residuos y consistencia del candidato; no heredar adecuación de otras redes.</p></td>
 </tr>
 <tr class="row-even"><td><p>Calibración antes/después de la recalibración, adaptada a la tarea.</p></td>
-<td><p>Pendiente del candidato.</p></td>
-<td><p>Diagnósticos F2a y reglas probabilísticas previstos.</p></td>
-<td><p>Pendiente/intercepto, residuos y calibración probabilística aplicables, con recalibración sólo en datos autorizados y evaluación separada; pinball para cuantiles, CRPS/log-score cuando la salida lo permita.</p></td>
+<td><p>Diagnóstico posterior de intervalos ejecutado; validación confirmatoria pendiente.</p></td>
+<td><p>Diez cuantiles calculados con 53 ventanas y 530 forwards CPU, sin cambiar los pronósticos puntuales; cobertura, anchura y score de intervalo en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.11</span></a>.</p></td>
+<td><p>Calibración probabilística y de regresión completa según la salida, validación temporal prefijada y activación verificada en el servicio. Este diagnóstico posterior no reforma la campaña original.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Incertidumbre: cobertura empírica frente a nominal y por subgrupo.</p></td>
-<td><p>E2 histórico descrito; candidato y servicio pendientes.</p></td>
-<td><p>Tabla extendida de <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>: cobertura y anchura de E2 reconstruidas con sus cuantiles guardados, nominal 0,90. E3 carece de calibrador.</p></td>
-<td><p>Cobertura/ancho de E3, subgrupos prefijados e IC temporales y verificación del servicio. El IC entre semillas no es un intervalo predictivo y nominal no es garantía individual.</p></td>
+<td><p>Diagnóstico posterior E3 disponible; servicio pendiente.</p></td>
+<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Sección 8</span></a>: diez cuantiles nuevos, cobertura histórica 94,49 % para nominal 90 %, anchura 0,01096344 σ₇; 2026Q1 cae a 86,22 %. No cambia el protocolo original ni activa cuantiles en el dashboard.</p></td>
+<td><p>Subgrupos y evaluación prefijados, validez bajo cambio temporal y comprobación del servicio. El IC entre semillas no es intervalo predictivo ni garantiza cobertura individual.</p></td>
 </tr>
 </tbody>
 </table>
@@ -852,9 +853,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Archivo con DOI, Docker, semillas y determinismo documentados.</p></td>
-<td><p>Contenedor de servicio local comprobado; paquete científico final pendiente.</p></td>
-<td><p>Imagen Docker de ONNX Runtime sin Torch construida y probada localmente, README y semillas/precisión documentadas; estado de imagen y recursos en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">sección 10</span></a>.</p></td>
-<td><p>Archivo E3 persistente con DOI, contenedor científico integral y reproducción humana. No atribuir determinismo global NumPy o paridad entre plataformas no demostrados.</p></td>
+<td><p>Contenedores de servicio y reanálisis comprobados; DOI pendiente.</p></td>
+<td><p><a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">Sección 11</span></a>: archivo determinista con SHA-256, Docker científico desde extracción limpia, once CSV idénticos y discrepancias por campo/unidad cero. Sin entrenamientos o inferencias.</p></td>
+<td><p>Depósito persistente con DOI, derechos ratificados, reproducción humana y reentrenamiento completo. La igualdad de agregados no acredita determinismo universal o entre plataformas.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Maestro por ejecución que genere informe y dashboard.</p></td>
 <td><p>Disponible para las métricas BTC actuales; maestro final parcial.</p></td>
@@ -872,9 +873,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Consolidar distribución autorizada, licencias e instrucciones de la entrega final; no reconstruir OHLCV desde predicciones ni confundir admisión de predicciones con deserialización independiente de todos los pesos.</p></td>
 </tr>
 <tr class="row-even"><td><p>Reproducción independiente desde cero en contenedor, por persona ajena al código, con discrepancia máxima.</p></td>
-<td><p>Pendiente.</p></td>
-<td><p>Auditores de software y <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">acta propuesta por campo/unidad</span></a>, con emparejamiento de filas y tolerancias previas.</p></td>
-<td><p>Persona externa, contenedor científico limpio, comandos, máxima discrepancia observada y concepto firmado; un subagente de IA no sustituye ese requisito y no hay una discrepancia cero que atribuirle.</p></td>
+<td><p>Humana pendiente; reproducción automática de agregados completada.</p></td>
+<td><p><a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">Contenedor científico y recibo</span></a>: 431 filas, 3963 pares numéricos, 101 grupos campo/unidad con error máximo cero. No reentrena 143 predictores.</p></td>
+<td><p>Persona externa, ejecución desde cero, alcance, discrepancias y concepto firmado. El recibo automático no se atribuye a una persona ni se convierte en acta humana.</p></td>
 </tr>
 </tbody>
 </table>
@@ -954,6 +955,10 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <p>La consecuencia de un R3 evaluado y no satisfecho, bajo R1/R2 acreditadas, es la regla condicional descrita en 14.1. No se aplica aquí a condiciones aún pendientes. La selección posterior de semillas, conjuntos, métricas, análisis o rivales para sostener superioridad contraviene la guía y anula esa afirmación; se conservarán el historial, los resultados desfavorables y las desviaciones declaradas.</p>
 <p>La <a class="reference internal" href="15_integridad_academica.html"><span class="std std-doc">sección 15</span></a> desarrolla esas reglas de integridad y la <a class="reference internal" href="16_conclusiones.html"><span class="std std-doc">16</span></a> conserva las conclusiones compatibles con la evidencia actual. El <a class="reference internal" href="apendice_a_plantillas.html"><span class="std std-doc">Apéndice A</span></a> ofrece registros editables sin marcar requisitos como cumplidos por disponer de una plantilla.</p>
 </section>
+</section>
+<section id="evidencia-posterior-que-modifica-la-interpretacion">
+<h2>Evidencia posterior que modifica la interpretación<a class="headerlink" href="#evidencia-posterior-que-modifica-la-interpretacion" title="Link to this heading">#</a></h2>
+<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">control común del capítulo 8</span></a> reduce la ventaja RMSE descriptiva de E3 a <strong>10,33 %</strong> frente al mejor rival proyectado, y el control sólo piso mejora su MAE en <strong>3,70 %</strong>. Esta evidencia limita la atribución al mecanismo y se conserva junto con la subcobertura temporal del calibrador posterior. La revisión de once antecedentes no acredita R1. La planificación de potencia y el preflight Colab no satisfacen R3: faltan tres datasets admitidos, protocolo y campaña bajo tratamiento común. Las mejoras de documentación y reproducción automática no habilitan por sí solas un tope mayor.</p>
 </section>
 </section>
 
@@ -1039,6 +1044,7 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-previa-al-congelamiento-del-protocolo">14.5.9 Decisión previa al congelamiento del protocolo</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-posterior-que-modifica-la-interpretacion">Evidencia posterior que modifica la interpretación</a></li>
 </ul>
   </nav></div>
 

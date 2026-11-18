@@ -1,0 +1,174 @@
+{
+  "prediction_panel": {
+    "sources": {
+      "combined_predictors.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/combined_predictors.json",
+        "sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+        "bytes": 3393801
+      },
+      "e2_per_seed_metrics.csv": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/per_seed_metrics.csv",
+        "sha256": "d53c970cc37d000a0d05d4666adcaa04384e317ccac33b6fb3717f750c650e4e",
+        "bytes": 12138
+      },
+      "e2_comparison.csv": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/comparison.csv",
+        "sha256": "1b33b37f1971e1668904828dae07e7522813553d255164ff228052d8201b699a",
+        "bytes": 1450
+      },
+      "e2_summary.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/summary.json",
+        "sha256": "d033a3cb9a537e555826a1e46d80ba1abf47fafb06dde4d195679262049da55e",
+        "bytes": 17619
+      },
+      "e2_snapshot.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/snapshot.json",
+        "sha256": "ded84adce601ba908f3634a47171d04e3d0491b65532199cb9ba532e92fc667d",
+        "bytes": 169594
+      },
+      "e2_plan.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/plan.json",
+        "sha256": "45fb6a14137b03642737521731c4b56a1312980bfbeca0319182a9ffd600cc07",
+        "bytes": 24226
+      },
+      "e3_evaluation_predictions.csv": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/evaluation_predictions.csv",
+        "sha256": "b82ba0a8a0371ea5643d9ff666a3ac5a1a4e91018b95a640bd88b1be50bb5133",
+        "bytes": 486813
+      },
+      "e3_per_seed_metrics.csv": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/per_seed_metrics.csv",
+        "sha256": "2fd1f3c6ec918d0c4371a3e3cf25864c271fd5250d459c3ef99d96ab7d31b2ff",
+        "bytes": 1115
+      },
+      "e3_summary.json": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/summary.json",
+        "sha256": "7c90c800adcca2218ea94553081cbcf744f3b9d9ff657ece17402df40be8f176",
+        "bytes": 9498
+      },
+      "e3_plan.json": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/plan.json",
+        "sha256": "57de7c087113163b18fb384ffc73fed5dbf6045b37b42eae43c6261b1f76b148",
+        "bytes": 6416
+      },
+      "old_e2_predictions.json": {
+        "commit": "2121b048d3b379c2c28dfe366cba35a1c08a3617",
+        "path": "runs/f2a-65ae74b547a6073b2c286dea-posthoc/artifacts/e2_f2a_input.json",
+        "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+        "bytes": 1371654
+      }
+    },
+    "E2_commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+    "E3_commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+    "E2_extension_plan_fingerprint": "5437fb3019a6b56e72b84928156b017b152b59bf1d04e33cfd82319a280c3845",
+    "E3_source_plan_fingerprint": "0b2dbfea9f14f1506f09fd42b8e74fc299a91438b2a6c01fec6e4181fa7afa8c",
+    "old_81_preserved": true,
+    "old_81_source_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+    "historical_seed_excluded": 20261116,
+    "rows_dropped": 0,
+    "targets_exactly_equal": true,
+    "all_608_mask_true": true,
+    "E2_predictors": 133,
+    "E3_predictors": 10,
+    "rival_family_size": 16,
+    "metric_comparison_rtol": 1e-12,
+    "metric_comparison_atol": 1e-15,
+    "maximum_saved_metric_absolute_difference": 0.0,
+    "legacy_original_analysis_ignored": true,
+    "legacy_E3_summary_E2_seed_count_ignored": true,
+    "model_order_rationale": "E3 candidate, ten frozen E2 candidates, three E1 neural references, three deterministic references",
+    "E3_model_label": "CNN-LSTM con atención de contenido y salida aditiva positiva (E3)",
+    "E3_architecture": {
+      "family": "causal_CNN_LSTM_temporal_content_attention",
+      "trainable_parameters": 1210,
+      "variant": "additive_positive_head"
+    },
+    "E2_data_protocol": {
+      "all_52_fits_calibrated_and_remote_acknowledged_before_new_evaluation": true,
+      "calibration_end": "2024-12-30",
+      "calibration_examples": 53,
+      "calibration_start": "2024-11-08",
+      "evaluation_end": "2026-08-31",
+      "evaluation_examples": 608,
+      "evaluation_start": "2025-01-01",
+      "prediction_batch_size": 1,
+      "same_training_scaler_for_calibration_and_evaluation": true,
+      "target": "population sigma7 of daily Close log returns, ddof0, unannualized; h1",
+      "training_end": "2024-10-31",
+      "training_examples": 655,
+      "training_signature": "7077ed2c3da26013c018727b32efc168efba478c7397e81cfd4302195b825ff3"
+    },
+    "E3_data_protocol": {
+      "all_ten_training_complete_and_acknowledged_before_evaluation": true,
+      "calibration_members_allowed": false,
+      "evaluation_count": 608,
+      "evaluation_end": "2026-08-31",
+      "evaluation_start": "2025-01-01",
+      "fit_count": 532,
+      "fit_end": "2024-06-30",
+      "purged_count": 7,
+      "scaler_policy": "reuse_exact_v2_saved_532_fit_scaler_no_refit",
+      "target": "population sigma7 of daily Close log returns, ddof0, unannualized; h1",
+      "validation_count": 116,
+      "validation_end": "2024-10-31",
+      "validation_start": "2024-07-08"
+    },
+    "known_calendar_posterior": true,
+    "equal_training_budget_claimed": false,
+    "input_validation_only": true,
+    "hypothesis_tests_performed": false
+  },
+  "prediction_loader_source": {
+    "path": "experiments/e3_estadistica_posterior_20261117/inputs.py",
+    "sha256": "58d9cde8af881f9a987e449e6b70c301aa37c4b35fd4061e4d8bb5110b7e6302"
+  },
+  "raw_cohort": {
+    "commit": "af3f1223ad5899ed63016d2af2d09bae8470ab00",
+    "path": "book_e2/_static/e2_scientific_closure_20261116/data_audit/current_cohort_arrays.npz",
+    "sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "bytes": 460090,
+    "members_read": [
+      "evaluation_raw",
+      "evaluation_y_original",
+      "evaluation_dates"
+    ]
+  },
+  "scientific_formula_source": {
+    "commit": "73d8958c50a69fbea46deb828f03f89385318789",
+    "path": "src/e3_innovation_model.py",
+    "sha256": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1",
+    "function": "load_innovation_data",
+    "past_returns": 6,
+    "variance_denominator": 7
+  },
+  "dates": {
+    "start": "2025-01-01",
+    "end": "2026-08-31",
+    "n": 608,
+    "input_support": "t-7 through t-1; no realized r_t argument in floor or projection",
+    "consecutive_target_dates_verified": true,
+    "adjacent_six_bar_overlap_verified": true
+  },
+  "minimum_target_minus_floor_sigma7": 4.1088257796140226e-10,
+  "targets_below_floor_count": 0,
+  "maximum_abs_difference_from_E3_saved_floor": 0.0,
+  "maximum_abs_difference_pairwise_variance_identity": 8.673617379884035e-19,
+  "label_reconstruction": {
+    "dates": 607,
+    "maximum_absolute_difference_sigma7": 1.2576745200831851e-16,
+    "last_date_unavailable_next_window": "2026-08-31",
+    "future_close_used_only_for_frozen_label_audit_never_floor_or_projection": true,
+    "all_608_targets_exactly_equal_pinned_cohort": true
+  },
+  "remaining_limit": "Chronology inherits the pinned raw-cohort audit's t-7..t-1 contract; checks do not independently re-download exchange data or close its three partial controls."
+}

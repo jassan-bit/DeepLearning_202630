@@ -48,3 +48,5 @@ La revisión de [14](14_evaluacion_calificacion.md) a [16](16_conclusiones.md) c
 | Referencias 1–37 | [Índice metodológico](referencias_sugeridas.md): numeración de la guía, pertinencia F2a y comprobación editorial puntual, sin confundir metadatos con lectura o ejecución. |
 
 Las seis plantillas editables, el paquete y sus descargas anteriores permanecen intactos. La actualización de sus estados se explica en las páginas vigentes, sin reescribir los registros históricos. Los Cuadros 7–9 conservan sus números de origen y su correspondencia en 11 y 14; no originan capítulos principales adicionales.
+
+La remediación del 18 de noviembre se integra sin cambiar los capítulos 1–16: [6–7](06_modelo_original.md), revisión focal y control del soporte; [8](08_verificacion_estadistica.md), proyección, intervalos posteriores y preparación Colab/potencia; [11](11_informe_tecnico.md), contenedor científico y archivo determinista; [12](12_lista_entregables.md), estados de entrega. La evidencia histórica descargable mantiene sus bytes y alcances. R1/R3, reproducción humana, DOI y humo público no se marcan completados.

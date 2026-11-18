@@ -1,0 +1,204 @@
+{
+  "fecha_auditoria_utc": "2026-11-18",
+  "tipo": "inventario_preparatorio_de_metadatos",
+  "estado": "tres_candidatos_cero_admitidos",
+  "seleccion_final_prerregistrada": false,
+  "validacion_tecnica_realizada": false,
+  "numero_candidatos": 3,
+  "numero_datasets_admitidos": 0,
+  "alcance": {
+    "investigacion": "Consulta de metadatos, documentación y términos públicos; sin descargar archivos de datos, ajustar modelos ni calcular rendimiento.",
+    "exposicion_a_resultados": "No se observaron resultados de rendimiento de los candidatos en esta búsqueda. Esto no afirma desconocimiento global, ausencia de otros resultados publicados ni falta de exposición previa fuera de esta búsqueda.",
+    "limitacion": "Las declaraciones de licencia, procedencia y cobertura no sustituyen una verificación de derechos upstream ni la inspección de un archivo inmutable."
+  },
+  "referencia_local": {
+    "archivo": "book_e3/_static/books_alignment_20261108.json",
+    "mercado": "Binance Spot BTCUSDT",
+    "periodo_contextual": "2023-2026",
+    "zona_horaria": "UTC",
+    "entrada": "7 velas diarias OHLCV anteriores al objetivo",
+    "objetivo": "Desviación estándar poblacional de 7 retornos logarítmicos diarios de cierre; ddof=0, sin anualización",
+    "horizonte": "1 día de calendario",
+    "calendario_evaluacion_conocido": "2025-01-01 a 2026-08-31",
+    "nota": "La referencia es evidencia local heredada; esta búsqueda no revalida su archivo de mercado."
+  },
+  "criterios_propuestos_antes_de_observar_rendimiento": [
+    "Conservar OHLCV financiero y la construcción sigma7; no presentar temperatura u otro objetivo como la misma tarea.",
+    "Exigir al menos dos diferencias identificables respecto a la referencia: fuente o mercado, instrumento o clase de activo, calendario o reloj de negociación, y longitud de historia verificable.",
+    "Elegir fuentes, instrumentos y límites temporales mediante procedencia, cobertura y características documentadas; nunca mediante resultados de predicción.",
+    "No contar un cambio de activo por sí solo como dos ejes; no contar ruido o volatilidad mayor como diferencia demostrada sin diagnósticos de datos.",
+    "Fijar versión, periodo, política de ajustes, agregación, faltantes, particiones y umbral de tamaño antes de evaluar modelos. Los periodos de este inventario son propuestas, no decisiones finales."
+  ],
+  "contrato_temporal": {
+    "cripto": "Las agregaciones a día UTC y h=1 día de calendario deberán comprobarse con marcas temporales del archivo; no se deducen del nombre diario.",
+    "renta_variable": "Los candidatos de renta variable requieren sigma7 de 7 retornos entre sesiones y h=1 próxima sesión. Es una variante homóloga, no el contrato idéntico de 7 días UTC consecutivos y próximo día de calendario.",
+    "cierres_de_mercado": "No rellenar fines de semana o festivos con OHLCV inventado para aparentar equivalencia.",
+    "si_se_exige_contrato_utc_estricto": "Excluir los dos candidatos de renta variable y continuar la búsqueda de archivos cripto con derechos y calendario verificables."
+  },
+  "candidatos": [
+    {
+      "id": "D01",
+      "nombre": "WIKI/AAPL histórico diario mediante el archivo de Bokeh",
+      "instrumento": "AAPL, acción estadounidense",
+      "periodo_propuesto": "2000-03-01 a 2013-03-01",
+      "estado_periodo": "Los límites aparecen en la documentación del extracto; filas y cobertura efectiva no comprobadas.",
+      "version": "Documentación consultada de Bokeh 3.10.2 e inventario en la rama main; commit y paquete inmutables aún no fijados.",
+      "esquema_declarado": "ticker, date, open, high, low, close, volume, adj_close",
+      "acceso": "Documentación e inventario accesibles; no se descargó el archivo de datos. La página actual de Nasdaq sólo pudo verificarse mediante contenido indexado y devolvió 404 al abrirla.",
+      "licencia_declarada": "Dominio público para los datos WIKI; no se etiqueta como CC0 ni se aplica la licencia de software BSD a los datos por extensión.",
+      "derechos_upstream": "El resultado indexado del editor Nasdaq declara dominio público. Bokeh documenta un aviso histórico de Quandl que permite redistribución; ese aviso archivado no fue accesible directamente en esta auditoría. La declaración está identificada, pero no equivale a verificar toda la cadena de derechos o los bytes del extracto.",
+      "ejes_frente_a_referencia": [
+        "Fuente: WIKI/Bokeh frente a Binance Spot",
+        "Instrumento y clase de activo: acción AAPL frente a BTCUSDT",
+        "Calendario: historia anterior, distinta del periodo 2023-2026",
+        "Reloj de mercado: sesiones bursátiles frente a días UTC continuos"
+      ],
+      "ruido": "No medido; los ajustes corporativos constituyen una cuestión de definición y calidad pendiente.",
+      "estado_admision": "no_admitido",
+      "bloqueos": [
+        "Fijar commit o versión de paquete, archivo y SHA-256; los hashes publicados en el inventario no fueron recalculados.",
+        "Comprobar filas, fechas, precios positivos, volumen no negativo, duplicados, coherencia OHLC y faltantes por sesión.",
+        "Fijar una política causal de acciones corporativas: OHLC sin ajustar y adj_close con ajustes posteriores no pueden mezclarse silenciosamente.",
+        "Resolver el contrato próxima sesión frente a próximo día UTC antes de admitir la tarea.",
+        "Conservar la evidencia indexada del editor y recuperar el aviso histórico o una confirmación equivalente para cerrar la trazabilidad de derechos.",
+        "Determinar tamaño utilizable y particiones mediante el protocolo de evaluación, sin consultar rendimiento."
+      ],
+      "fuentes": [
+        {
+          "url": "https://data.nasdaq.com/databases/WIKIP",
+          "tipo": "editor_upstream",
+          "accesibilidad_observada": "contenido_indexado_del_editor; apertura_directa_404",
+          "sustenta": "Descripción WIKI como historia bursátil diaria de dominio público."
+        },
+        {
+          "url": "https://docs.bokeh.org/en/3.10.2/docs/reference/sampledata.html#stocks",
+          "tipo": "documentacion_del_distribuidor_del_extracto",
+          "accesibilidad_observada": "accesible",
+          "sustenta": "Procedencia WIKI, esquema OHLCV, cobertura y advertencia sobre ajustes de adj_close."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/bokeh/bokeh_sampledata/main/licenses/datasets.json",
+          "tipo": "inventario_del_distribuidor_del_extracto",
+          "accesibilidad_observada": "accesible; rama_mutable",
+          "sustenta": "Procedencia, declaraciones de derechos y hashes publicados; no verificación local de los archivos."
+        },
+        {
+          "url": "https://web.archive.org/web/20150411011214/https://www.quandl.com/data/WIKI",
+          "tipo": "aviso_historico_del_editor_referenciado_por_Bokeh",
+          "accesibilidad_observada": "no_accesible_mediante_la_herramienta",
+          "sustenta": "Referencia documental pendiente de recuperación directa; su contenido no se verificó de primera mano."
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "nombre": "HF Data Library / IEX SPY, minuto a sesión diaria",
+      "instrumento": "SPY, ETF de renta variable estadounidense",
+      "periodo_propuesto": "2022-03-07 a 2026-11-17",
+      "estado_periodo": "Inicio general publicado para la biblioteca y corte propuesto; inicio y fin efectivos de SPY no comprobados.",
+      "version": "V2 Clean propuesta; snapshot inmutable y archivo por ticker aún no fijados.",
+      "esquema_declarado": "datetime, Open, High, Low, Close, Volume, source a frecuencia de un minuto; requiere agregación diaria definida por sesión",
+      "acceso": "Documentación y términos accesibles. El portal ofrece descargas por ticker/API; la portada menciona descargas básicas sin cuenta y los términos requieren cuenta para descargar. El acceso operativo no se probó.",
+      "licencia_declarada": "CC BY 4.0 para compilación y documentación de HF Data Library, sujeta a términos upstream de IEX y términos académicos del editor.",
+      "derechos_upstream": "IEX conserva derechos sobre los datos. Sus términos históricos contemplan distribución con atribución y enlace obligatorio a sus términos. HF Data Library limita su servicio y datos a investigación académica o educativa. No se declara una licencia CC BY irrestricta para los datos subyacentes.",
+      "ejes_frente_a_referencia": [
+        "Fuente y venue: IEX HIST mediante HF Data Library frente a Binance Spot",
+        "Instrumento y clase de activo: ETF SPY frente a BTCUSDT",
+        "Reloj de mercado: sesión regular estadounidense frente a día UTC continuo"
+      ],
+      "calendario": "Parte de los años propuestos coincide con la referencia BTC; no se presenta como calendario disjunto ni como réplica estadísticamente independiente.",
+      "ruido": "El editor declara datos de un solo venue y preservación de huecos; su impacto y magnitud no se midieron.",
+      "estado_admision": "no_admitido",
+      "bloqueos": [
+        "Fijar snapshot, versión de limpieza, archivo SPY y SHA-256, y comprobar cobertura y tamaño efectivos.",
+        "Resolver el acceso permitido y la discrepancia documental sobre requisitos de cuenta sin eludir controles.",
+        "Definir agregación de minutos a sesión, zona America/New_York, horario de verano, medias sesiones y calendario de festivos.",
+        "Revisar el método de limpieza V2 y su posible uso de datos futuros antes de emplearlo en una tarea causal.",
+        "Comprobar ajustes por splits, unidades de volumen, huecos, duplicados y consistencia OHLC; no usar medidas de volatilidad precalculadas como sustituto automático de sigma7.",
+        "Cerrar el contrato próxima sesión frente a próximo día UTC y conservar la atribución y términos obligatorios de IEX y del editor.",
+        "Fijar particiones y tamaño mínimo mediante el protocolo, sin consultar rendimiento."
+      ],
+      "fuentes": [
+        {
+          "url": "https://hfdatalibrary.com/",
+          "tipo": "editor_del_dataset",
+          "accesibilidad_observada": "accesible",
+          "sustenta": "Fuente IEX HIST, SPY entre los tickers, inicio general y versiones Raw/Clean; no cobertura efectiva del archivo SPY."
+        },
+        {
+          "url": "https://hfdatalibrary.com/pages/license",
+          "tipo": "licencia_del_editor",
+          "accesibilidad_observada": "accesible",
+          "sustenta": "Alcance CC BY 4.0 para compilación/documentación y derechos subyacentes de IEX."
+        },
+        {
+          "url": "https://hfdatalibrary.com/pages/terms",
+          "tipo": "terminos_del_editor",
+          "accesibilidad_observada": "accesible; fecha_efectiva_2026-10-10",
+          "sustenta": "Investigación académica/educativa, condiciones de cuenta y obligaciones sobre datos upstream."
+        },
+        {
+          "url": "https://www.iex.io/legal/hist-data-terms",
+          "tipo": "terminos_del_propietario_upstream",
+          "accesibilidad_observada": "accesible",
+          "sustenta": "Retención de derechos de IEX y atribución con enlace requerida al distribuir datos históricos."
+        },
+        {
+          "url": "https://hfdatalibrary.com/pages/versions",
+          "tipo": "documentacion_del_editor",
+          "accesibilidad_observada": "accesible",
+          "sustenta": "Versiones Raw/Clean; causalidad y bytes no validados."
+        }
+      ]
+    },
+    {
+      "id": "D03",
+      "nombre": "Zielak / Bitstamp BTCUSD histórico, minuto a día UTC",
+      "instrumento": "BTC/USD en Bitstamp",
+      "periodo_propuesto": "2012-01-01 a 2022-12-31, condicionado a cobertura real",
+      "estado_periodo": "Propuesta de calendario anterior a 2023; no se verificó la primera ni la última observación utilizable.",
+      "version": "Actualización diaria declarada; la versión 713 apareció indexada pero no se fijó ni verificó como snapshot inmutable.",
+      "esquema_declarado": "OHLCV de un minuto de BTC/USD de Bitstamp; requiere verificar esquema y unidades en el archivo",
+      "acceso": "Tarjeta primaria de Kaggle verificada mediante contenido indexado; repositorio de automatización del publicador accesible; no se descargó el archivo de mercado.",
+      "licencia_declarada": "CC BY-SA 4.0 según la tarjeta primaria indexada de Kaggle; no CC0.",
+      "derechos_upstream": "La declaración del distribuidor no resuelve por sí sola los derechos de Bitstamp. La documentación API de Bitstamp exige un Data License Agreement para uso comercial por empresas. No se verificó un permiso upstream suficiente para el uso y la redistribución exactos previstos.",
+      "ejes_frente_a_referencia": [
+        "Fuente y exchange: Bitstamp frente a Binance Spot",
+        "Calendario propuesto: anterior a 2023 frente a 2023-2026",
+        "Denominación adicional: USD frente a USDT"
+      ],
+      "ruido": "No medido; no se afirma que el cambio de exchange produzca mayor o menor ruido.",
+      "estado_admision": "no_admitido",
+      "bloqueos": [
+        "Resolver derechos upstream para investigación, transformación, publicación de derivados y eventual redistribución; conservar las condiciones CC BY-SA aplicables sin extenderlas a derechos ajenos.",
+        "Fijar versión inmutable, archivo y SHA-256; verificar directamente la licencia que acompaña a esa versión.",
+        "Confirmar marcas temporales, zona y fronteras UTC, esquema, unidades de volumen y cobertura efectiva anterior a 2023.",
+        "Definir agregación OHLCV de minuto a día y tratamiento de intervalos sin transacciones, huecos, duplicados y días incompletos.",
+        "Comprobar precios positivos, volumen no negativo, coherencia OHLC y reconstrucción de sigma7.",
+        "Determinar tamaño mínimo, particiones y embargo antes de evaluar modelos; no descargar el archivo completo para cerrar sólo metadatos."
+      ],
+      "fuentes": [
+        {
+          "url": "https://www.kaggle.com/mczielinski/Bitcoin-historical-data",
+          "tipo": "tarjeta_del_publicador",
+          "accesibilidad_observada": "contenido_indexado; version_no_fijada",
+          "sustenta": "Declaración actual indexada CC BY-SA 4.0; no garantiza derechos upstream ni licencia histórica de una versión aún no fijada."
+        },
+        {
+          "url": "https://github.com/mczielinski/kaggle-bitcoin",
+          "tipo": "repositorio_del_publicador",
+          "accesibilidad_observada": "accesible",
+          "sustenta": "Automatización y procedencia Bitstamp BTC/USD de un minuto con actualización diaria."
+        },
+        {
+          "url": "https://www.bitstamp.net/api/",
+          "tipo": "condiciones_del_proveedor_upstream",
+          "accesibilidad_observada": "accesible",
+          "sustenta": "Cláusula Commercial Use y requisito de Data License Agreement para uso comercial por empresas."
+        }
+      ]
+    }
+  ],
+  "regla_de_cierre": "Este inventario no autoriza entrenamiento ni evaluación. La admisión requiere expediente de derechos y archivo inmutable inspeccionado, contrato de tarea explícito y protocolo fijado antes de observar resultados.",
+  "independencia": "Tres series candidatas no equivalen a tres réplicas estadísticamente independientes; pueden compartir shocks, calendario y proveedores."
+}

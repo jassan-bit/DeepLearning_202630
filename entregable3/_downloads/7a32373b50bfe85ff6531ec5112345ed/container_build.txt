@@ -1,0 +1,67 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.84kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+#2 DONE 0.0s
+
+#3 [stage-0  1/10] FROM docker.io/library/python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 10.88MB 0.1s
+#4 transferring context: 75.76MB 0.4s done
+#4 DONE 0.4s
+
+#5 [stage-0  2/10] WORKDIR /analysis
+#5 CACHED
+
+#6 [stage-0  3/10] COPY deployment/science/requirements.lock.txt /analysis/deployment/science/requirements.lock.txt
+#6 DONE 0.9s
+
+#7 [stage-0  4/10] RUN --mount=type=bind,source=deployment/science/offline_packages,target=/tmp/packages,readonly     if [ "1" = "1" ]; then       python -m pip install --no-cache-dir --no-index --find-links=/tmp/packages -r deployment/science/requirements.lock.txt;     else       python -m pip install --no-cache-dir -r deployment/science/requirements.lock.txt;     fi && python -m pip check
+#7 2.141 Looking in links: /tmp/packages
+#7 2.145 Processing /tmp/packages/contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r deployment/science/requirements.lock.txt (line 1))
+#7 2.153 Processing /tmp/packages/cycler-0.12.1-py3-none-any.whl (from -r deployment/science/requirements.lock.txt (line 2))
+#7 2.156 Processing /tmp/packages/fonttools-4.68.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r deployment/science/requirements.lock.txt (line 3))
+#7 2.176 Processing /tmp/packages/kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r deployment/science/requirements.lock.txt (line 4))
+#7 2.180 Processing /tmp/packages/matplotlib-3.10.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r deployment/science/requirements.lock.txt (line 5))
+#7 2.202 Processing /tmp/packages/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r deployment/science/requirements.lock.txt (line 6))
+#7 2.229 Processing /tmp/packages/packaging-26.3-py3-none-any.whl (from -r deployment/science/requirements.lock.txt (line 7))
+#7 2.232 Processing /tmp/packages/pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r deployment/science/requirements.lock.txt (line 8))
+#7 2.246 Processing /tmp/packages/pyparsing-3.3.3-py3-none-any.whl (from -r deployment/science/requirements.lock.txt (line 9))
+#7 2.249 Processing /tmp/packages/python_dateutil-4.0.0-py3-none-any.whl (from -r deployment/science/requirements.lock.txt (line 10))
+#7 2.252 Processing /tmp/packages/scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r deployment/science/requirements.lock.txt (line 11))
+#7 2.301 Processing /tmp/packages/tzdata-2026.6-py2.py3-none-any.whl (from -r deployment/science/requirements.lock.txt (line 12))
+#7 2.367 Installing collected packages: tzdata, pyparsing, pillow, packaging, numpy, kiwisolver, fonttools, cycler, scipy, python-dateutil, contourpy, matplotlib
+#7 11.03 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#7 11.03 Successfully installed contourpy-1.4.0 cycler-0.12.1 fonttools-4.68.0 kiwisolver-1.5.1 matplotlib-3.10.8 numpy-2.3.5 packaging-26.3 pillow-13.0.0 pyparsing-3.3.3 python-dateutil-4.0.0 scipy-1.17.0 tzdata-2026.6
+#7 11.94 No broken requirements found.
+#7 DONE 12.0s
+
+#8 [stage-0  5/10] COPY experiments/e3_estadistica_posterior_20261117 /analysis/experiments/e3_estadistica_posterior_20261117
+#8 DONE 2.4s
+
+#9 [stage-0  6/10] COPY experiments/e3_revision_bloque_d_20261117/metrics_supplement.py /analysis/experiments/e3_revision_bloque_d_20261117/metrics_supplement.py
+#9 DONE 2.1s
+
+#10 [stage-0  7/10] COPY experiments/e3_remediacion_20261118/reproduction /analysis/experiments/e3_remediacion_20261118/reproduction
+#10 DONE 2.3s
+
+#11 [stage-0  8/10] COPY book_e3/_static/e3_estadistica_posterior_20261117 /analysis/book_e3/_static/e3_estadistica_posterior_20261117
+#11 DONE 2.5s
+
+#12 [stage-0  9/10] COPY book_e3/_static/e3_revision_bloque_d_20261117 /analysis/book_e3/_static/e3_revision_bloque_d_20261117
+#12 DONE 2.1s
+
+#13 [stage-0 10/10] RUN chmod -R a+rX /analysis
+#13 DONE 1.6s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 1.9s done
+#14 writing image sha256:24cf10a3e1c8b17444653ad925d83445596d56c08179b53cd054c4ab50b75a6b done
+#14 naming to docker.io/library/e3-scientific-replay:bundle-v1 done
+#14 DONE 1.9s
