@@ -1,0 +1,1320 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "started_at_utc": "2026-11-18T14:32:44.803730+00:00",
+  "scope": "automated_CPU_replay_from_frozen_predictions_not_retraining_or_independent_human_reproduction",
+  "reference_source_commit": "73d8958c50a69fbea46deb828f03f89385318789",
+  "model_fits": 0,
+  "model_inferences": 0,
+  "new_calibrations": 0,
+  "statistical_analysis_reexecuted": true,
+  "human_independent_reproduction": false,
+  "R1_R2_R3_certified": false,
+  "tables": [
+    {
+      "name": "metrics.csv",
+      "status": "passed",
+      "rows": 17,
+      "keys": [
+        "model"
+      ],
+      "columns": [
+        "model",
+        "R",
+        "RMSE_mean",
+        "RMSE_sample_SD",
+        "MAE_mean",
+        "train_n",
+        "calendar_n",
+        "seed_values_are_not_independent_datasets"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "98456dbb18e21ad91c60a0fea7987eb8000350ef94858ccef2dc5c04034baa52",
+      "observed_sha256": "98456dbb18e21ad91c60a0fea7987eb8000350ef94858ccef2dc5c04034baa52",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 3,
+      "exact_text_or_missing_cells": 37,
+      "field_discrepancies": [
+        {
+          "field": "R",
+          "unit": "count",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_mean",
+          "unit": "sigma7_original",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_sample_SD",
+          "unit": "sigma7_original",
+          "numeric_pairs": 14,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "MAE_mean",
+          "unit": "sigma7_original",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "train_n",
+          "unit": "count",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "calendar_n",
+          "unit": "count",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "primary_contrasts.csv",
+      "status": "passed",
+      "rows": 48,
+      "keys": [
+        "rival",
+        "method"
+      ],
+      "columns": [
+        "rival",
+        "original",
+        "method",
+        "gain_RMSE",
+        "delta",
+        "null",
+        "alternative",
+        "uncertainty_scope",
+        "block_days",
+        "primary",
+        "status",
+        "reason",
+        "p_raw",
+        "statistic",
+        "statistic_name",
+        "standard_error",
+        "gain_ci95",
+        "ci_method",
+        "bonferroni_lower_bound",
+        "exceedances",
+        "bootstrap_repetitions",
+        "p_value_resolution",
+        "monte_carlo_standard_error_approx",
+        "p_holm",
+        "reject",
+        "HAC_lags",
+        "HAC_kernel",
+        "reference_distribution",
+        "seed_n",
+        "degrees_of_freedom",
+        "paired_gain_sample_SD",
+        "paired_Cohen_dz",
+        "paired_Cohen_dz_ci95",
+        "Cohen_dz_reference",
+        "Cohen_dz_estimable_bootstrap_draws",
+        "Shapiro_W",
+        "Shapiro_p_diagnostic",
+        "Shapiro_use"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "218ec87857902bab24757295375949e947e36088397439d68b334897e9cdb64c",
+      "observed_sha256": "218ec87857902bab24757295375949e947e36088397439d68b334897e9cdb64c",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 656,
+      "exact_text_or_missing_cells": 1216,
+      "field_discrepancies": [
+        {
+          "field": "gain_RMSE",
+          "unit": "sigma7_original",
+          "numeric_pairs": 48,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "delta",
+          "unit": "sigma7_original",
+          "numeric_pairs": 48,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "block_days",
+          "unit": "days",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_raw",
+          "unit": "dimensionless",
+          "numeric_pairs": 48,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "statistic",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "standard_error",
+          "unit": "sigma7_original",
+          "numeric_pairs": 48,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "gain_ci95",
+          "unit": "sigma7_original",
+          "numeric_pairs": 96,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "bonferroni_lower_bound",
+          "unit": "sigma7_original",
+          "numeric_pairs": 48,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "exceedances",
+          "unit": "count",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "bootstrap_repetitions",
+          "unit": "count",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_value_resolution",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "monte_carlo_standard_error_approx",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_holm",
+          "unit": "dimensionless",
+          "numeric_pairs": 48,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "statistic",
+          "unit": "dimensionless_test_statistic",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "HAC_lags",
+          "unit": "days",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "seed_n",
+          "unit": "count",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "degrees_of_freedom",
+          "unit": "count",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_gain_sample_SD",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_Cohen_dz",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_Cohen_dz_ci95",
+          "unit": "dimensionless",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Cohen_dz_estimable_bootstrap_draws",
+          "unit": "count",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Shapiro_W",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Shapiro_p_diagnostic",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "effects.csv",
+      "status": "passed",
+      "rows": 16,
+      "keys": [
+        "rival"
+      ],
+      "columns": [
+        "rival",
+        "original",
+        "gain_RMSE",
+        "relative_RMSE_reduction_percent",
+        "paired_Cohen_dz",
+        "paired_Cohen_dz_ci95",
+        "Cohen_dz_scope",
+        "gain_ci95_temporal"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "546028c2ed99d08762a47909f1b0064f1ab867567be57b6cff12039c9f818ea3",
+      "observed_sha256": "546028c2ed99d08762a47909f1b0064f1ab867567be57b6cff12039c9f818ea3",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 0,
+      "exact_text_or_missing_cells": 48,
+      "field_discrepancies": [
+        {
+          "field": "gain_RMSE",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "relative_RMSE_reduction_percent",
+          "unit": "percent",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_Cohen_dz",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_Cohen_dz_ci95",
+          "unit": "dimensionless",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "gain_ci95_temporal",
+          "unit": "sigma7_original",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "verdicts.csv",
+      "status": "passed",
+      "rows": 16,
+      "keys": [
+        "rival"
+      ],
+      "columns": [
+        "rival",
+        "all_three_estimable",
+        "all_three_Holm48_reject",
+        "gain_above_delta_descriptive",
+        "conditional_exploratory_verdict",
+        "sensitivity_all_three_reject"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "6c0971a38c6bf62d511f9547fd2720de2dbc0dcf1afbd66e0929bd91cafd3e95",
+      "observed_sha256": "6c0971a38c6bf62d511f9547fd2720de2dbc0dcf1afbd66e0929bd91cafd3e95",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 0,
+      "exact_text_or_missing_cells": 80,
+      "field_discrepancies": [],
+      "failures": []
+    },
+    {
+      "name": "mae_secondary.csv",
+      "status": "passed",
+      "rows": 16,
+      "keys": [
+        "rival"
+      ],
+      "columns": [
+        "rival",
+        "metric",
+        "gain_MAE",
+        "null",
+        "alternative",
+        "null_boundary",
+        "no_practical_MAE_margin_claimed",
+        "block_days",
+        "scope",
+        "status",
+        "reason",
+        "p_raw",
+        "statistic",
+        "statistic_name",
+        "standard_error",
+        "gain_ci95",
+        "ci_method",
+        "bonferroni_lower_bound",
+        "exceedances",
+        "bootstrap_repetitions",
+        "p_value_resolution",
+        "monte_carlo_standard_error_approx",
+        "p_holm",
+        "reject"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "30c630ac1e7aa972fd7d5c6c36986ccf9e52752b0cfda0f69e73215d13919d37",
+      "observed_sha256": "30c630ac1e7aa972fd7d5c6c36986ccf9e52752b0cfda0f69e73215d13919d37",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 16,
+      "exact_text_or_missing_cells": 176,
+      "field_discrepancies": [
+        {
+          "field": "gain_MAE",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "null_boundary",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "block_days",
+          "unit": "days",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_raw",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "statistic",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "standard_error",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "gain_ci95",
+          "unit": "sigma7_original",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "bonferroni_lower_bound",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "exceedances",
+          "unit": "count",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "bootstrap_repetitions",
+          "unit": "count",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_value_resolution",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "monte_carlo_standard_error_approx",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_holm",
+          "unit": "dimensionless",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "seed_subgroups.csv",
+      "status": "passed",
+      "rows": 28,
+      "keys": [
+        "model",
+        "subgroup"
+      ],
+      "columns": [
+        "model",
+        "subgroup",
+        "seed_ids",
+        "RMSE_mean",
+        "MAE_mean",
+        "descriptive_only",
+        "no_hypothesis_test"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "76cc5d82b45f164893face19bf771e3de0076bc5417684a0f33883980d5ff0d6",
+      "observed_sha256": "76cc5d82b45f164893face19bf771e3de0076bc5417684a0f33883980d5ff0d6",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 0,
+      "exact_text_or_missing_cells": 112,
+      "field_discrepancies": [
+        {
+          "field": "seed_ids",
+          "unit": "seed_identifier",
+          "numeric_pairs": 140,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_mean",
+          "unit": "sigma7_original",
+          "numeric_pairs": 28,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "MAE_mean",
+          "unit": "sigma7_original",
+          "numeric_pairs": 28,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "sensitivities.csv",
+      "status": "passed",
+      "rows": 96,
+      "keys": [
+        "@row"
+      ],
+      "columns": [
+        "rival",
+        "original",
+        "method",
+        "gain_RMSE",
+        "delta",
+        "null",
+        "alternative",
+        "uncertainty_scope",
+        "block_days",
+        "primary",
+        "status",
+        "reason",
+        "p_raw",
+        "statistic",
+        "statistic_name",
+        "standard_error",
+        "gain_ci95",
+        "ci_method",
+        "bonferroni_lower_bound",
+        "exceedances",
+        "bootstrap_repetitions",
+        "p_value_resolution",
+        "monte_carlo_standard_error_approx",
+        "p_holm",
+        "reject",
+        "HAC_lags",
+        "HAC_kernel",
+        "reference_distribution",
+        "seed_n",
+        "degrees_of_freedom",
+        "paired_gain_sample_SD",
+        "paired_Cohen_dz",
+        "paired_Cohen_dz_ci95",
+        "Cohen_dz_reference",
+        "Cohen_dz_estimable_bootstrap_draws",
+        "Shapiro_W",
+        "Shapiro_p_diagnostic",
+        "Shapiro_use"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "48186acf0ca33fb54ceb5e046111003fbae44ada915430916475efa11441b56a",
+      "observed_sha256": "48186acf0ca33fb54ceb5e046111003fbae44ada915430916475efa11441b56a",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 1312,
+      "exact_text_or_missing_cells": 2432,
+      "field_discrepancies": [
+        {
+          "field": "gain_RMSE",
+          "unit": "sigma7_original",
+          "numeric_pairs": 96,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "delta",
+          "unit": "sigma7_original",
+          "numeric_pairs": 96,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "block_days",
+          "unit": "days",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_raw",
+          "unit": "dimensionless",
+          "numeric_pairs": 96,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "statistic",
+          "unit": "sigma7_original",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "standard_error",
+          "unit": "sigma7_original",
+          "numeric_pairs": 96,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "gain_ci95",
+          "unit": "sigma7_original",
+          "numeric_pairs": 192,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "bonferroni_lower_bound",
+          "unit": "sigma7_original",
+          "numeric_pairs": 96,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "exceedances",
+          "unit": "count",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "bootstrap_repetitions",
+          "unit": "count",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_value_resolution",
+          "unit": "dimensionless",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "monte_carlo_standard_error_approx",
+          "unit": "dimensionless",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "p_holm",
+          "unit": "dimensionless",
+          "numeric_pairs": 96,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "statistic",
+          "unit": "dimensionless_test_statistic",
+          "numeric_pairs": 64,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "HAC_lags",
+          "unit": "days",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "seed_n",
+          "unit": "count",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "degrees_of_freedom",
+          "unit": "count",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_gain_sample_SD",
+          "unit": "sigma7_original",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_Cohen_dz",
+          "unit": "dimensionless",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "paired_Cohen_dz_ci95",
+          "unit": "dimensionless",
+          "numeric_pairs": 64,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Cohen_dz_estimable_bootstrap_draws",
+          "unit": "count",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Shapiro_W",
+          "unit": "dimensionless",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Shapiro_p_diagnostic",
+          "unit": "dimensionless",
+          "numeric_pairs": 32,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "metrics_extended.csv",
+      "status": "passed",
+      "rows": 17,
+      "keys": [
+        "model"
+      ],
+      "columns": [
+        "model",
+        "R",
+        "calendar_n",
+        "RMSE_mean",
+        "RMSE_sample_SD",
+        "MAE_mean",
+        "sMAPE_percent",
+        "R2_mean",
+        "coverage90_percent",
+        "mean_interval_width90",
+        "interval_status"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "2a3bd6e5921a977ea5aa91ad9bced23968bad235cbe7925680d9f76091f1632c",
+      "observed_sha256": "2a3bd6e5921a977ea5aa91ad9bced23968bad235cbe7925680d9f76091f1632c",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 5,
+      "exact_text_or_missing_cells": 39,
+      "field_discrepancies": [
+        {
+          "field": "R",
+          "unit": "count",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "calendar_n",
+          "unit": "count",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_mean",
+          "unit": "sigma7_original",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_sample_SD",
+          "unit": "sigma7_original",
+          "numeric_pairs": 14,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "MAE_mean",
+          "unit": "sigma7_original",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "sMAPE_percent",
+          "unit": "percent",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "R2_mean",
+          "unit": "dimensionless",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "coverage90_percent",
+          "unit": "percent",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "mean_interval_width90",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "metrics_extended_table.csv",
+      "status": "passed",
+      "rows": 17,
+      "keys": [
+        "Sistema"
+      ],
+      "columns": [
+        "Sistema",
+        "RMSE media",
+        "DE entre semillas",
+        "MAE",
+        "sMAPE (%)",
+        "R² medio",
+        "Cobertura 90% (%)",
+        "Anchura media"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "edc8d79e2a4625cbf2a19a9f9c56985a2e500a1fff42991b9413cb29293ebc08",
+      "observed_sha256": "edc8d79e2a4625cbf2a19a9f9c56985a2e500a1fff42991b9413cb29293ebc08",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 0,
+      "exact_text_or_missing_cells": 22,
+      "field_discrepancies": [
+        {
+          "field": "RMSE media",
+          "unit": "sigma7_original",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "DE entre semillas",
+          "unit": "sigma7_original",
+          "numeric_pairs": 14,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "MAE",
+          "unit": "sigma7_original",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "sMAPE (%)",
+          "unit": "percent",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "R² medio",
+          "unit": "dimensionless",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Cobertura 90% (%)",
+          "unit": "percent",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "Anchura media",
+          "unit": "sigma7_original",
+          "numeric_pairs": 16,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "metrics_uncertainty.csv",
+      "status": "passed",
+      "rows": 17,
+      "keys": [
+        "model"
+      ],
+      "columns": [
+        "model",
+        "R",
+        "RMSE_mean",
+        "RMSE_sample_SD",
+        "RMSE_seed_bootstrap_CI95_low",
+        "RMSE_seed_bootstrap_CI95_high",
+        "scope"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "3f9a7a02757b372c70295d3b5f78c35a729cda3fcf452f0bd64da194fcc872ea",
+      "observed_sha256": "3f9a7a02757b372c70295d3b5f78c35a729cda3fcf452f0bd64da194fcc872ea",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 9,
+      "exact_text_or_missing_cells": 43,
+      "field_discrepancies": [
+        {
+          "field": "R",
+          "unit": "count",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_mean",
+          "unit": "sigma7_original",
+          "numeric_pairs": 17,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_sample_SD",
+          "unit": "sigma7_original",
+          "numeric_pairs": 14,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_seed_bootstrap_CI95_low",
+          "unit": "sigma7_original",
+          "numeric_pairs": 14,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE_seed_bootstrap_CI95_high",
+          "unit": "sigma7_original",
+          "numeric_pairs": 14,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "metrics_per_predictor.csv",
+      "status": "passed",
+      "rows": 143,
+      "keys": [
+        "model",
+        "seed"
+      ],
+      "columns": [
+        "model",
+        "seed",
+        "RMSE",
+        "MAE",
+        "sMAPE_percent",
+        "R2",
+        "coverage90_percent",
+        "mean_interval_width90"
+      ],
+      "same_row_order": true,
+      "bytes_identical": true,
+      "reference_sha256": "8ddd0a620690fcfc2ff0d26d2b4d62d0d65fef02b520e83f98852be000f778d7",
+      "observed_sha256": "8ddd0a620690fcfc2ff0d26d2b4d62d0d65fef02b520e83f98852be000f778d7",
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-12,
+      "missing_cells_preserved": 20,
+      "exact_text_or_missing_cells": 166,
+      "field_discrepancies": [
+        {
+          "field": "seed",
+          "unit": "seed_identifier",
+          "numeric_pairs": 140,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "RMSE",
+          "unit": "sigma7_original",
+          "numeric_pairs": 143,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "MAE",
+          "unit": "sigma7_original",
+          "numeric_pairs": 143,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "sMAPE_percent",
+          "unit": "percent",
+          "numeric_pairs": 143,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "R2",
+          "unit": "dimensionless",
+          "numeric_pairs": 143,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "coverage90_percent",
+          "unit": "percent",
+          "numeric_pairs": 133,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        },
+        {
+          "field": "mean_interval_width90",
+          "unit": "sigma7_original",
+          "numeric_pairs": 133,
+          "maximum_absolute_difference": 0.0,
+          "location_of_maximum": null,
+          "tolerance_violations": 0
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "errors": [],
+  "tolerance_rule": "abs(observed-reference) <= 1e-14 + 1e-12*abs(reference); comparisons grouped by field and unit",
+  "limits": [
+    "The saved 143 forecast trajectories are inputs; their training and forward passes are not repeated.",
+    "This replays the posterior analysis on a known calendar; it is not a new confirmatory experiment.",
+    "No pooled maximum mixes distinct metrics, probabilities, counts, or units.",
+    "A human external reviewer must still independently run and sign their own reproduction receipt."
+  ],
+  "verified_inputs": {
+    "combined_predictors.json": {
+      "sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+      "bytes": 3393801
+    },
+    "e2_per_seed_metrics.csv": {
+      "sha256": "d53c970cc37d000a0d05d4666adcaa04384e317ccac33b6fb3717f750c650e4e",
+      "bytes": 12138
+    },
+    "e2_comparison.csv": {
+      "sha256": "1b33b37f1971e1668904828dae07e7522813553d255164ff228052d8201b699a",
+      "bytes": 1450
+    },
+    "e2_summary.json": {
+      "sha256": "d033a3cb9a537e555826a1e46d80ba1abf47fafb06dde4d195679262049da55e",
+      "bytes": 17619
+    },
+    "e2_snapshot.json": {
+      "sha256": "ded84adce601ba908f3634a47171d04e3d0491b65532199cb9ba532e92fc667d",
+      "bytes": 169594
+    },
+    "e2_plan.json": {
+      "sha256": "45fb6a14137b03642737521731c4b56a1312980bfbeca0319182a9ffd600cc07",
+      "bytes": 24226
+    },
+    "e3_evaluation_predictions.csv": {
+      "sha256": "b82ba0a8a0371ea5643d9ff666a3ac5a1a4e91018b95a640bd88b1be50bb5133",
+      "bytes": 486813
+    },
+    "e3_per_seed_metrics.csv": {
+      "sha256": "2fd1f3c6ec918d0c4371a3e3cf25864c271fd5250d459c3ef99d96ab7d31b2ff",
+      "bytes": 1115
+    },
+    "e3_summary.json": {
+      "sha256": "7c90c800adcca2218ea94553081cbcf744f3b9d9ff657ece17402df40be8f176",
+      "bytes": 9498
+    },
+    "e3_plan.json": {
+      "sha256": "57de7c087113163b18fb384ffc73fed5dbf6045b37b42eae43c6261b1f76b148",
+      "bytes": 6416
+    },
+    "old_e2_predictions.json": {
+      "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+      "bytes": 1371654
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "libraries": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "matplotlib": "3.10.8"
+    },
+    "Torch_available": false,
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "code_sha256": {
+    "experiments/e3_estadistica_posterior_20261117/analysis.py": "adc00955effb3b1c60c139515e1d2badb9bb26fc8540866f839b73aad0372c07",
+    "experiments/e3_estadistica_posterior_20261117/inputs.py": "58d9cde8af881f9a987e449e6b70c301aa37c4b35fd4061e4d8bb5110b7e6302",
+    "experiments/e3_estadistica_posterior_20261117/mcs.py": "bb14d47277a06e4c59ac1145633dd1f5d6c23f065cac5885b5433324aeca6af4",
+    "experiments/e3_estadistica_posterior_20261117/plots.py": "2d2a19eb772ca75f087934ebffc73c34d09c24414cfdab4d2356c5768caa2f06",
+    "experiments/e3_estadistica_posterior_20261117/run.py": "e2000ee48723f144e166c4ea7334a751f1a9e80a12e97c5d33c0aa5089f71265",
+    "experiments/e3_estadistica_posterior_20261117/plan.json": "41dbf0d10ba50b4a4f495c6525d8bb2b4e59328a84dce620c51724225f0eb2c7",
+    "experiments/e3_estadistica_posterior_20261117/requirements.txt": "815360a00e0e1d7a128cade3de11b66d3fe997cbd6e2c69f8081eb9bc8b88197",
+    "experiments/e3_revision_bloque_d_20261117/metrics_supplement.py": "dde36955f0d11a40b0c2550f7da87ceb1e9a76f5c9a1bb097607218ac5701597"
+  },
+  "replay_script_sha256": "26b46e82ca9fa91728fd8ae8b4f04e0079183a0bc6b5fe8d664ef29239c5a7f4",
+  "requirements_sha256": "9f09356005494729d8dc8cb0ed5149ec672e25b8a1341a5efe0a10f63824c119",
+  "commands": [
+    [
+      "/usr/local/bin/python",
+      "experiments/e3_estadistica_posterior_20261117/run.py",
+      "--data",
+      "/inputs",
+      "--output",
+      "/output/statistics"
+    ],
+    [
+      "/usr/local/bin/python",
+      "experiments/e3_revision_bloque_d_20261117/metrics_supplement.py",
+      "--data-dir",
+      "/inputs",
+      "--output",
+      "/output/supplement"
+    ]
+  ],
+  "systems": 17,
+  "saved_predictors": 143,
+  "common_dates": 608,
+  "elapsed_seconds": 4.837296374000289,
+  "finished_at_utc": "2026-11-18T14:32:49.641027+00:00"
+}

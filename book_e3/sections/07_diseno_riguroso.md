@@ -2,7 +2,7 @@
 
 El mecanismo y su estado de admisibilidad se describen en el [Bloque C](06_modelo_original.md). Este capítulo integra el diseño inicial de atención, los pilotos de desarrollo completados y la posterior réplica de la **salida aditiva positiva de 1210 parámetros** en diez semillas. La [sección 8](08_verificacion_estadistica.md) presenta la comparación estadística posterior ya calculada. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. Ese análisis no convierte el diseño en un protocolo confirmatorio.
 
-Este capítulo aplica la sección 7 de la guía: identificar una limitación, formular una explicación refutable, registrar las decisiones y contrastar teoría y ablaciones. Los apartados 7.1–7.4 distinguen los diseños históricos de la referencia evaluada; 7.5–7.8 conservan los pilotos y su cierre, 7.9 identifica la comparación posterior vigente y 7.10 reúne la revisión de requisitos. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) conservan el detalle técnico y las fechas de esas decisiones.
+Este capítulo aplica la sección 7 de la guía: identificar una limitación, formular una explicación refutable, registrar las decisiones y contrastar teoría y ablaciones. Los apartados 7.1–7.4 distinguen los diseños históricos de la referencia evaluada; 7.5–7.8 conservan los pilotos y su cierre, 7.9 identifica la comparación posterior vigente, 7.10 reúne la revisión de requisitos y 7.11 añade el control posterior de soporte del 18 de noviembre. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) conservan el detalle técnico y las fechas de esas decisiones.
 
 | Arquitectura | Pregunta de diseño documentada | Alcance de la evidencia |
 |---|---|---|
@@ -344,11 +344,11 @@ El código del análisis se fija en [0213266](https://github.com/jassan-bit/Deep
 
 ## 7.10 Revisión del diseño frente a la guía
 
-La revisión del 17 de noviembre de 2026 conserva las decisiones y los resultados con su fecha y arquitectura. La {download}`matriz de requisitos y evidencia <../_static/e3_diseno_riguroso_20261117/requirements_review.csv>` permite seguir los pendientes sin presentar un plan como una ejecución.
+La revisión histórica del 17 de noviembre de 2026 conserva las decisiones y los resultados con su fecha y arquitectura. La {download}`matriz de requisitos y evidencia <../_static/e3_diseno_riguroso_20261117/requirements_review.csv>` permite seguir los pendientes sin presentar un plan como una ejecución; el control posterior del 18 de noviembre se identifica por separado en 7.11 y en la primera fila siguiente.
 
 | Exigencia | Evidencia actual | Para cerrar |
 |---|---|---|
-| D1: limitación concreta y cuantificada | Estrés artificial de E2, diagnóstico posterior del piso y resultados por régimen documentados. | Limitación específica que la contribución finalmente defendida pretende corregir, sin trasladar automáticamente el calendario de ETTh1 ni una corrupción artificial a BTC. |
+| D1: limitación concreta y cuantificada | Estrés artificial de E2, diagnóstico posterior del piso y resultados por régimen documentados; el control posterior de 7.11 cuantifica el efecto de respetar el soporte en los pronósticos congelados. | Conservar el carácter retrospectivo y resolver la limitación que sostendrá la contribución, sin atribuir causalmente la ganancia a la arquitectura ni trasladar automáticamente el calendario de ETTh1 o una corrupción artificial a BTC. |
 | D2: fuente propia o transferida y adaptación | Componentes conocidos y fuentes atribuidos; tres líneas de diseño diferenciadas. | Resolver la diferencia sustantiva y, si hay transferencia, aplicación de origen, motivo de transferibilidad y modificación desde la formulación. |
 | D3–D5: hipótesis, predicciones secundarias y éxito/fracaso previos | Propuesta histórica para penalización/saturación; heurísticas de desarrollo y resultados favorables y adversos conservados. | Hipótesis específica del mecanismo defendido, subconjuntos observables, magnitudes y reglas cerradas antes de una nueva evaluación confirmatoria. No retrofecharlas. |
 | Registro de iteraciones y $N_d$ | Bitácora parcial consolidada; ocho recetas neuronales históricas y diez réplicas posteriores de una de ellas. | Conciliar todas las propuestas, parametrizaciones, intentos y fallos; cuantificar y discutir selección sin tomar ocho como $N_d$ global. |
@@ -361,3 +361,44 @@ La revisión del 17 de noviembre de 2026 conserva las decisiones y los resultado
 | Inferencia, capacidad y conclusión prudente | Regla de familia de ablación separada y controles de capacidad documentados. | Mismas pruebas pertinentes, Holm dentro de esa familia, presupuestos y semillas comparables, variantes de tamaño igualado cuando cambie capacidad; contribución observada no equivale a mecanismo causal demostrado. |
 
 Esta revisión no selecciona un mecanismo nuevo, abre entrenamiento de mercado o aprueba un protocolo confirmatorio. La siguiente decisión de investigación debe resolver qué aporte se sostendrá con evidencia y comprensión del autor, conservando la referencia aditiva como resultado reproducible dentro de su alcance.
+
+(control-posterior-del-soporte-causal-y-proyeccion)=
+## 7.11 Control posterior del soporte causal y proyección
+
+La auditoría del **18 de noviembre de 2026** comprueba una limitación específica: varios pronósticos guardados no respetan el piso observable de la σ₇ objetivo. Es un control exploratorio posterior sobre la cronología conocida, separado de los pilotos de 7.5/7.8 y de los 48 contrastes originales. El {download}`resumen reproducible <../_static/e3_remediacion_20261118/constraint_audit/results/summary.json>` conserva definiciones, métricas y alcance; no hubo nuevos ajustes, forwards de modelos, calibraciones, conjuntos ni pruebas de hipótesis.
+
+### Identidad conocida y garantía de la proyección
+
+Sean $r_i=\log(C_i/C_{i-1})$ y $\bar r_6$ la media de los seis retornos conocidos al origen. Para la desviación estándar **poblacional, diaria y sin anualizar** de siete retornos,
+
+$$
+\bar r_6=\frac16\sum_{i=t-6}^{t-1}r_i,\qquad
+A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\bar r_6)^2,\qquad
+Y_t^2=A_t+\frac6{49}(r_t-\bar r_6)^2.
+$$ (eq-e3-support-audit-identity)
+
+Es la identidad de 6.7 expresada para este control, sin una nueva pretensión de originalidad. $A_t$ sólo requiere los siete cierres históricos $C_{t-7},\ldots,C_{t-1}$; el retorno futuro no interviene en el piso $L_t=\sqrt{A_t}$. Como $Y_t\ge L_t$, proyectar cualquier pronóstico puntual $p$ mediante
+
+$$
+\pi_t(p)=\max(p,L_t),\qquad
+|Y_t-\pi_t(p)|\le |Y_t-p|
+$$ (eq-e3-support-projection)
+
+no aumenta la pérdida absoluta ni la cuadrática: si $p\ge L_t$ no cambia; si $p<L_t\le Y_t$, se acerca al objetivo. La garantía supone objetivo y piso correctamente definidos y disponibles causalmente. No garantiza mejor calibración, eficiencia ni comportamiento fuera de ese soporte; tampoco atribuye un efecto al entrenamiento o a la atención.
+
+### Resultado sobre las trayectorias congeladas
+
+Se aplicó esa transformación a **143 predictores de los 17 sistemas**, en las mismas 608 fechas: **86.944 pares predictor–fecha**, sin eliminar filas. La métrica sigue siendo la media de las RMSE individuales. La aditiva ya respeta el piso y permanece igual. El mejor rival descriptivo cambia al proyectar toda la familia; por eso las dos ventajas siguientes no son una comparación con un único rival fijo.
+
+| Resultado descriptivo | Pronósticos originales | Pronósticos proyectados |
+|---|---:|---:|
+| RMSE media E3 | 0,0029394324 | 0,0029394324 |
+| Mejor rival por RMSE | LSTM-autoencoder: 0,0038728895 | TSMixer: 0,0032780684 |
+| Ventaja relativa de E3 frente al mejor rival disponible | **24,10 %** | **10,33 %** |
+| Diferencia absoluta de RMSE frente al mejor rival disponible | 0,0009334571 | 0,0003386360 |
+
+La reducción descriptiva de esa diferencia es **63,72 %**, pero **no es una fracción causal explicada por el piso**: cambian el posprocesamiento y el rival mejor situado, mientras persisten diferencias de entrenamiento, selección y presupuesto. El resultado evidencia la importancia de incluir este control físico común; no demuestra que la arquitectura cause la ventaja restante. Las pérdidas absoluta y cuadrática no aumentaron en ningún par auditado.
+
+El control determinista **sólo piso**, independiente de la familia original de 17 sistemas, obtuvo RMSE **0,0035275805** y MAE **0,0018227552**. Su MAE fue **3,70 % menor** que el MAE medio de E3, **0,0018928273**: es un resultado adverso a una afirmación de dominio general por métricas. E3 conserva mejor RMSE que ese control; ninguno de estos valores es una prueba de significancia o una explicación causal.
+
+Los pronósticos y contrastes históricos permanecen identificados por su tratamiento original: no se sustituyen sus 48 p-valores por esta proyección ni se incorpora retrospectivamente el control al protocolo previo. Faltan comparación justa, ablaciones de la receta defendida, adecuación, potencia y confirmación independiente. La {ref}`revisión ampliada de antecedentes <revision-focal-ampliada-20261118>` delimita además qué partes del mecanismo son conocidas. **Este control no es un nuevo preregistro ni acredita R1, R2 o R3.**

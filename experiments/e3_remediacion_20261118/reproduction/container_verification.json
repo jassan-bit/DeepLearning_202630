@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "verification_kind": "automated_from_extracted_versioned_bundle_on_clean_CPU_container",
+  "reference_source_commit": "73d8958c50a69fbea46deb828f03f89385318789",
+  "archive": {
+    "name": "reproduction_bundle_v1.tar.gz",
+    "bytes": 70337,
+    "sha256": "c08265b7ff75793883359dc5bd84b2493975003c23848ec21d9f3de21d2509bd"
+  },
+  "archive_entries": 31,
+  "archive_repacked_from_extracted_files_byte_identical": true,
+  "input_fetch": {
+    "fresh_directory": true,
+    "immutable_public_files": 11,
+    "sha256_and_byte_sizes_passed": true
+  },
+  "build": {
+    "status": "passed",
+    "context": "extracted_reproduction_bundle_v1",
+    "dependencies": "offline exact-version wheels, downloaded separately; not archived or committed",
+    "base": "python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+    "image_id": "sha256:24cf10a3e1c8b17444653ad925d83445596d56c08179b53cd054c4ab50b75a6b",
+    "build_log_sha256": "6107e7501aa02ce222f4c1ac8aefa218713ec2fa71334b33ba86dc6e7f4f0a92",
+    "build_log_path": "container_build.txt"
+  },
+  "container": {
+    "name": "e3-science-bundle-v1-20261118",
+    "state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-18T14:32:44.377530993Z",
+      "FinishedAt": "2026-11-18T14:32:49.655302697Z"
+    },
+    "network": "none",
+    "read_only_rootfs": true,
+    "non_root_user": "1000:1000",
+    "input_read_only": true,
+    "configured_memory_bytes": 1073741824,
+    "configured_cpu_limit": 1.0,
+    "configured_pids_limit": 128,
+    "configured_tmpfs": {
+      "/tmp": "rw,nosuid,size=64m"
+    },
+    "limits_are_not_peak_resource_measurements": true,
+    "run_log_path": "container_run.txt"
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "packages": {
+      "contourpy": "1.4.0",
+      "cycler": "0.12.1",
+      "fonttools": "4.68.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.10.8",
+      "numpy": "2.3.5",
+      "packaging": "26.3",
+      "pillow": "13.0.0",
+      "pyparsing": "3.3.3",
+      "python-dateutil": "4.0.0",
+      "scipy": "1.17.0",
+      "tzdata": "2026.6"
+    },
+    "Torch_available": false
+  },
+  "result": {
+    "systems": 17,
+    "saved_predictors": 143,
+    "common_dates": 608,
+    "CSV_tables_checked": 11,
+    "CSV_tables_byte_identical": 11,
+    "CSV_rows_checked": 431,
+    "numeric_field_unit_groups": 101,
+    "numeric_pairs_checked": 3963,
+    "all_field_unit_maximum_absolute_differences_equal_zero": true,
+    "all_field_unit_tolerance_violations_equal_zero": true,
+    "replay_elapsed_seconds": 4.837296374000289,
+    "model_fits": 0,
+    "model_inferences": 0,
+    "new_calibrations": 0,
+    "statistical_analysis_reexecuted": true
+  },
+  "tests": {
+    "command": "python -m unittest discover -s tests -p test_e3_scientific_replay.py -v",
+    "passed": 8,
+    "failed": 0,
+    "executed_from_extracted_bundle": true
+  },
+  "replay_script_sha256": "26b46e82ca9fa91728fd8ae8b4f04e0079183a0bc6b5fe8d664ef29239c5a7f4",
+  "requirements_sha256": "9f09356005494729d8dc8cb0ed5149ec672e25b8a1341a5efe0a10f63824c119",
+  "receipt": {
+    "path": "reproduction_report.json",
+    "sha256": "6a05cb1810979b07f5af4743cdcfad6183d201fb072094a3652b0178ec17a4ae"
+  },
+  "field_unit_discrepancies": {
+    "path": "field_discrepancies.csv",
+    "sha256": "108fa5f7a54a5bb9ba3a054e767d63dbe4a4de4f08f6888c57c3f82b21d13455"
+  },
+  "pending": [
+    "Independent human reproduction and signed report",
+    "Persistent repository deposit / DOI",
+    "Final source/data redistribution-rights verification"
+  ],
+  "R1_R2_R3_certified": false,
+  "human_independent_reproduction": false,
+  "DOI": null
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "scope": "synthetic_preflight_not_confirmation",
+  "started_at_utc": "2026-11-18T14:43:51.588634+00:00",
+  "repository_HEAD": "b3b7f5210e8a81fe3e0f35493221bcb0f6f8c4e4",
+  "preflight_script_sha256": "c8dc0f5efb7c5ed58b2796852a6f9ab2ea0dc03eaba82fe723750f7e9dad114a",
+  "source_gate": {
+    "passed": true,
+    "reviewed_source_commit": "73d8958c50a69fbea46deb828f03f89385318789",
+    "files": [
+      {
+        "path": "src/original_model.py",
+        "expected_sha256": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+        "verified": true
+      },
+      {
+        "path": "src/e3_development.py",
+        "expected_sha256": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+        "verified": true
+      },
+      {
+        "path": "src/e3_innovation_model.py",
+        "expected_sha256": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1",
+        "verified": true
+      },
+      {
+        "path": "scripts/e2_standalone_code.py",
+        "expected_sha256": "b5062652a15c55b3d93fd5580453f77fed77336ffb78eb836730bf02203e51a5",
+        "verified": true
+      },
+      {
+        "path": "scripts/e2_temporal_controls.py",
+        "expected_sha256": "36e5a8b15e51ddf7d36397e2b6e71734afb36c6894cac0a71c9364b277fcc139",
+        "verified": true
+      },
+      {
+        "path": "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json",
+        "expected_sha256": "c3ce43d3cb81767ee3fc0daa0ccfe8432a3326643e28e51273a49cc1fe01c2fe",
+        "verified": true
+      },
+      {
+        "path": "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json.sha256",
+        "expected_sha256": "624b0c1dde0cebf59390a921e6e4830ea51dff81658293b329e152f74a7b86ae",
+        "verified": true
+      }
+    ],
+    "lock_sha256": "fd40840002296d55b93d02d43182778a036cad84cfc0b65d679edcd4cc31dba2"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "requested_device": "cuda:0",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3",
+      "statsmodels": "0.14.5",
+      "einops": "0.8.1"
+    },
+    "approved": false,
+    "blockers": [
+      "Torch 2.8.0+cpu; perfil revisado para cuda:0: 2.8.0+cu126. No se sustituye automáticamente el runtime CUDA.",
+      "GPU CUDA 12.6 disponible requerida para este perfil; la ejecución GPU todavía no se verificó."
+    ],
+    "GPU_execution_verified": false,
+    "torch": "2.8.0+cpu",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "cudnn_version": null,
+    "cpu_count": 5
+  },
+  "candidate_profile": {
+    "class": "src.e3_innovation_model.InnovationModel",
+    "variant": "additive_positive_head",
+    "parameters": 1210,
+    "synthetic_only_configuration": {
+      "u_scale": 0.01,
+      "y_scale": 0.02,
+      "seed": 271801
+    },
+    "future_real_scaler_must_be_train_only": true
+  },
+  "family": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA",
+    "CNN-LSTM-atencion-aditiva E3"
+  ],
+  "models": [],
+  "campaign_guard": {
+    "allowed": false,
+    "blockers": [
+      "No hay manifiesto final de campaña ni tag anotado de protocolo.",
+      "Datasets admitidos: 0 de 3; candidatos de metadatos no son admisiones.",
+      "Faltan tratamiento común de 17 sistemas, presupuesto y potencia final de la batería."
+    ],
+    "real_training_dispatched": false,
+    "R1_R3_verified": false
+  },
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "new_hypothesis_tests": 0,
+  "GPU_execution_verified": false,
+  "R1_R3_verified": false,
+  "status": "blocked_before_synthetic_models"
+}

@@ -1,0 +1,191 @@
+name: Verificar remediación científica E3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/e3_remediacion_20261118/**'
+      - 'experiments/e3_estadistica_posterior_20261117/**'
+      - 'experiments/e3_revision_bloque_d_20261117/metrics_supplement.py'
+      - 'book_e3/_static/e3_estadistica_posterior_20261117/**'
+      - 'book_e3/_static/e3_revision_bloque_d_20261117/**'
+      - 'deployment/science/**'
+      - 'tests/test_e3_scientific_replay.py'
+      - 'requirements-e2-training-gpu.lock.txt'
+      - 'DATA_STATEMENT.md'
+      - '.github/workflows/verify-e3-remediation.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'experiments/e3_remediacion_20261118/**'
+      - 'experiments/e3_estadistica_posterior_20261117/**'
+      - 'experiments/e3_revision_bloque_d_20261117/metrics_supplement.py'
+      - 'book_e3/_static/e3_estadistica_posterior_20261117/**'
+      - 'book_e3/_static/e3_revision_bloque_d_20261117/**'
+      - 'deployment/science/**'
+      - 'tests/test_e3_scientific_replay.py'
+      - 'requirements-e2-training-gpu.lock.txt'
+      - 'DATA_STATEMENT.md'
+      - '.github/workflows/verify-e3-remediation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+
+jobs:
+  contracts-and-frozen-replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+
+      - name: Verificar el archivo v1 y preparar salidas temporales
+        run: |
+          set -euo pipefail
+          ci_e3_dir="$(mktemp -d "${RUNNER_TEMP}/e3-remediation.XXXXXX")"
+          echo "CI_E3_DIR=$ci_e3_dir" >> "$GITHUB_ENV"
+          python experiments/e3_remediacion_20261118/reproduction/make_bundle.py --check \
+            | tee "$ci_e3_dir/bundle_check.json"
+          tar -xzf experiments/e3_remediacion_20261118/reproduction/reproduction_bundle_v1.tar.gz \
+            -C "$ci_e3_dir"
+          mkdir "$ci_e3_dir/inputs" "$ci_e3_dir/output"
+
+      - name: Contratos stdlib de calibración, tablas y barreras Colab
+        # Calibration's six contracts do not call its deferred Torch inference.
+        # Do not dispatch the 17-model synthetic preflight or a real campaign.
+        run: |
+          set -euo pipefail
+          python -m unittest discover \
+            -s experiments/e3_remediacion_20261118/calibration -p test_calibration.py -v \
+            2>&1 | tee "$CI_E3_DIR/calibration_contracts.log"
+          python -m unittest discover -s tests -p test_e3_scientific_replay.py -v \
+            2>&1 | tee "$CI_E3_DIR/replay_contracts.log"
+          python -m unittest discover \
+            -s experiments/e3_remediacion_20261118/evaluation -p test_colab_preflight.py -v \
+            2>&1 | tee "$CI_E3_DIR/colab_gate_contracts.log"
+          python -m unittest discover \
+            -s experiments/e3_remediacion_20261118/evaluation -p test_colab_runtime.py -v \
+            2>&1 | tee "$CI_E3_DIR/colab_runtime_contracts.log"
+
+      - name: Descargar fuera del contenedor los once insumos por manifiesto SHA256
+        run: |
+          set -euo pipefail
+          python "$CI_E3_DIR/e3-scientific-replay-v1/experiments/e3_remediacion_20261118/reproduction/reproduce.py" \
+            fetch --data "$CI_E3_DIR/inputs" > "$CI_E3_DIR/fetch_receipt.json"
+
+      - name: Construir una sola imagen con el lock científico, sin Torch
+        # The extracted v1 contains deployment/science/requirements.lock.txt.
+        # Download wheels once on the host; install only inside Docker, offline.
+        run: |
+          set -euo pipefail
+          ci_e3_bundle="$CI_E3_DIR/e3-scientific-replay-v1"
+          python -m pip download --no-deps --only-binary=:all: \
+            -r "$ci_e3_bundle/deployment/science/requirements.lock.txt" \
+            --dest "$ci_e3_bundle/deployment/science/offline_packages" \
+            2>&1 | tee "$CI_E3_DIR/science_wheel_download.log"
+          docker build -f "$ci_e3_bundle/deployment/science/Dockerfile" \
+            --build-arg SCIENCE_OFFLINE=1 --network none \
+            --tag e3-scientific-replay:ci "$ci_e3_bundle" \
+            2>&1 | tee "$CI_E3_DIR/docker_build.log"
+
+      - name: Contratos numéricos de soporte y planificación en la misma imagen
+        run: |
+          set -euo pipefail
+          test "$(id -u)" -ne 0
+          run_numeric_contracts() {
+            docker run --rm --read-only --network none \
+              --tmpfs /tmp:rw,nosuid,nodev,size=64m \
+              --memory=1g --cpus=1 --pids-limit=128 \
+              --user "$(id -u):$(id -g)" \
+              --cap-drop ALL --security-opt no-new-privileges \
+              --mount "type=bind,src=$GITHUB_WORKSPACE,dst=/checkout,readonly" \
+              --workdir /checkout --entrypoint python e3-scientific-replay:ci \
+              -m unittest discover "$@" -v
+          }
+          run_numeric_contracts \
+            -s experiments/e3_remediacion_20261118/constraint_audit -p test_constraint_audit.py \
+            2>&1 | tee "$CI_E3_DIR/constraint_contracts.log"
+          run_numeric_contracts \
+            -s experiments/e3_remediacion_20261118/evaluation -p test_power_planning.py \
+            2>&1 | tee "$CI_E3_DIR/power_contracts.log"
+
+      - name: Reproducir once tablas sin red, con usuario y entradas sin privilegios
+        run: |
+          set -euo pipefail
+          test "$(id -u)" -ne 0
+          docker run --rm --read-only --network none \
+            --tmpfs /tmp:rw,nosuid,nodev,size=64m \
+            --memory=1g --cpus=1 --pids-limit=128 \
+            --user "$(id -u):$(id -g)" \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --mount "type=bind,src=$CI_E3_DIR/inputs,dst=/inputs,readonly" \
+            --mount "type=bind,src=$CI_E3_DIR/output,dst=/output" \
+            e3-scientific-replay:ci \
+            2>&1 | tee "$CI_E3_DIR/container_run.log"
+
+      - name: Comprobar recibo, once tablas y once insumos exactos
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ['CI_E3_DIR'])
+          package = root / 'e3-scientific-replay-v1/experiments/e3_remediacion_20261118/reproduction'
+          expected_inputs = json.loads((package / 'input_manifest.json').read_text())['files']
+          expected_tables = json.loads((package / 'reference_manifest.json').read_text())['tables']
+          fetched = json.loads((root / 'fetch_receipt.json').read_text())
+          receipt_path = root / 'output/reproduction_report.json'
+          receipt = json.loads(receipt_path.read_text())
+          assert receipt['status'] == 'passed' and receipt['errors'] == []
+          assert len(receipt['tables']) == len(expected_tables) == 11
+          assert [row['name'] for row in receipt['tables']] == [row['name'] for row in expected_tables]
+          assert all(row['status'] == 'passed' for row in receipt['tables'])
+          assert len(expected_inputs) == 11
+          assert set(fetched['verified_inputs']) == set(receipt['verified_inputs']) == set(expected_inputs)
+          for name, record in expected_inputs.items():
+              expected = {key: record[key] for key in ('sha256', 'bytes')}
+              assert fetched['verified_inputs'][name] == receipt['verified_inputs'][name] == expected
+          assert receipt['model_fits'] == receipt['model_inferences'] == receipt['new_calibrations'] == 0
+          assert fetched['model_fits'] == fetched['model_inferences'] == 0
+          assert receipt['environment']['python'] == '3.12.14'
+          assert receipt['environment']['Torch_available'] is False
+          assert receipt['human_independent_reproduction'] is False
+          assert receipt['R1_R2_R3_certified'] is False
+          result = {'status': 'passed', 'tables_verified': 11, 'inputs_verified': 11,
+                    'model_fits': 0, 'model_inferences': 0, 'new_calibrations': 0,
+                    'receipt_sha256': hashlib.sha256(receipt_path.read_bytes()).hexdigest(),
+                    'scope': 'automatic replay of frozen forecasts; no human reproduction certification'}
+          (root / 'ci_validation.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result))
+          PY
+
+      - name: Conservar recibos y logs de la ejecución
+        if: ${{ always() && env.CI_E3_DIR != '' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-remediation-scientific-replay-${{ github.sha }}
+          path: |
+            ${{ env.CI_E3_DIR }}/bundle_check.json
+            ${{ env.CI_E3_DIR }}/fetch_receipt.json
+            ${{ env.CI_E3_DIR }}/ci_validation.json
+            ${{ env.CI_E3_DIR }}/*.log
+            ${{ env.CI_E3_DIR }}/output/reproduction_report.json
+            ${{ env.CI_E3_DIR }}/output/generator_*.log
+          if-no-files-found: error

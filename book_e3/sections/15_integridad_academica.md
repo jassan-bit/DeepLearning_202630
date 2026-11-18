@@ -56,3 +56,5 @@ El estado real se apoya en fuentes y registros verificables, sin completar casil
 - La [declaración del último anexo](cierre_reproducibilidad.md) mantiene el uso de IA, la responsabilidad personal y las firmas/defensa pendientes, sin certificaciones simuladas.
 
 Ante una nueva evidencia, corrección o desviación se deberá actualizar el registro correspondiente y la interpretación que dependa de ella. La consecuencia académica de una eventual infracción corresponde al procedimiento institucional; este capítulo no imputa una infracción ni asigna nota o tope al avance actual.
+
+La revisión posterior conserva también la evidencia adversa: el control sólo piso mejora la MAE de E3, la proyección común reduce su ventaja RMSE y el intervalo posterior tiene subcobertura en 2026Q1. La búsqueda focal y el reanálisis en contenedor recibieron asistencia de IA. Sus recibos no son una certificación de novedad ni un acta humana; el [anexo final](cierre_reproducibilidad.md) mantiene la responsabilidad y confirmación personal pendientes.

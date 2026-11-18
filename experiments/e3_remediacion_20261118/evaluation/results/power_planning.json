@@ -1,0 +1,955 @@
+{
+  "schema_version": 1,
+  "status": "preparatory_historical_variance_planning_not_preregistered",
+  "review_date_local": "2026-11-18",
+  "timezone": "America/Bogota",
+  "source_review_commit": "73d8958c50a69fbea46deb828f03f89385318789",
+  "alpha": 0.05,
+  "rivals": 16,
+  "procedures_per_rival": 3,
+  "family_test_count": 48,
+  "inherited_BTC_RMSE_margin": 0.00025772842664981106,
+  "source_inputs": {
+    "sources": {
+      "combined_predictors.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/combined_predictors.json",
+        "sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+        "bytes": 3393801
+      },
+      "e2_per_seed_metrics.csv": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/per_seed_metrics.csv",
+        "sha256": "d53c970cc37d000a0d05d4666adcaa04384e317ccac33b6fb3717f750c650e4e",
+        "bytes": 12138
+      },
+      "e2_comparison.csv": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/comparison.csv",
+        "sha256": "1b33b37f1971e1668904828dae07e7522813553d255164ff228052d8201b699a",
+        "bytes": 1450
+      },
+      "e2_summary.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/summary.json",
+        "sha256": "d033a3cb9a537e555826a1e46d80ba1abf47fafb06dde4d195679262049da55e",
+        "bytes": 17619
+      },
+      "e2_snapshot.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/snapshot.json",
+        "sha256": "ded84adce601ba908f3634a47171d04e3d0491b65532199cb9ba532e92fc667d",
+        "bytes": 169594
+      },
+      "e2_plan.json": {
+        "commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+        "path": "runs/e2_extension_10_semillas_v1/plan.json",
+        "sha256": "45fb6a14137b03642737521731c4b56a1312980bfbeca0319182a9ffd600cc07",
+        "bytes": 24226
+      },
+      "e3_evaluation_predictions.csv": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/evaluation_predictions.csv",
+        "sha256": "b82ba0a8a0371ea5643d9ff666a3ac5a1a4e91018b95a640bd88b1be50bb5133",
+        "bytes": 486813
+      },
+      "e3_per_seed_metrics.csv": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/per_seed_metrics.csv",
+        "sha256": "2fd1f3c6ec918d0c4371a3e3cf25864c271fd5250d459c3ef99d96ab7d31b2ff",
+        "bytes": 1115
+      },
+      "e3_summary.json": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/summary.json",
+        "sha256": "7c90c800adcca2218ea94553081cbcf744f3b9d9ff657ece17402df40be8f176",
+        "bytes": 9498
+      },
+      "e3_plan.json": {
+        "commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+        "path": "runs/estabilidad_aditiva_v1/plan.json",
+        "sha256": "57de7c087113163b18fb384ffc73fed5dbf6045b37b42eae43c6261b1f76b148",
+        "bytes": 6416
+      },
+      "old_e2_predictions.json": {
+        "commit": "2121b048d3b379c2c28dfe366cba35a1c08a3617",
+        "path": "runs/f2a-65ae74b547a6073b2c286dea-posthoc/artifacts/e2_f2a_input.json",
+        "sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+        "bytes": 1371654
+      }
+    },
+    "E2_commit": "5e9023ea821bfa9fb0b92340d518413f6ab89161",
+    "E3_commit": "510c3bddfdc9926322e3210ac61ee1f5eeffad2e",
+    "E2_extension_plan_fingerprint": "5437fb3019a6b56e72b84928156b017b152b59bf1d04e33cfd82319a280c3845",
+    "E3_source_plan_fingerprint": "0b2dbfea9f14f1506f09fd42b8e74fc299a91438b2a6c01fec6e4181fa7afa8c",
+    "old_81_preserved": true,
+    "old_81_source_sha256": "65ae74b547a6073b2c286dea8039a2e7a1b1f6063b1d9ac0eb760c9ce727d187",
+    "historical_seed_excluded": 20261116,
+    "rows_dropped": 0,
+    "targets_exactly_equal": true,
+    "all_608_mask_true": true,
+    "E2_predictors": 133,
+    "E3_predictors": 10,
+    "rival_family_size": 16,
+    "metric_comparison_rtol": 1e-12,
+    "metric_comparison_atol": 1e-15,
+    "maximum_saved_metric_absolute_difference": 0.0,
+    "legacy_original_analysis_ignored": true,
+    "legacy_E3_summary_E2_seed_count_ignored": true,
+    "model_order_rationale": "E3 candidate, ten frozen E2 candidates, three E1 neural references, three deterministic references",
+    "E3_model_label": "CNN-LSTM con atención de contenido y salida aditiva positiva (E3)",
+    "E3_architecture": {
+      "family": "causal_CNN_LSTM_temporal_content_attention",
+      "trainable_parameters": 1210,
+      "variant": "additive_positive_head"
+    },
+    "E2_data_protocol": {
+      "all_52_fits_calibrated_and_remote_acknowledged_before_new_evaluation": true,
+      "calibration_end": "2024-12-30",
+      "calibration_examples": 53,
+      "calibration_start": "2024-11-08",
+      "evaluation_end": "2026-08-31",
+      "evaluation_examples": 608,
+      "evaluation_start": "2025-01-01",
+      "prediction_batch_size": 1,
+      "same_training_scaler_for_calibration_and_evaluation": true,
+      "target": "population sigma7 of daily Close log returns, ddof0, unannualized; h1",
+      "training_end": "2024-10-31",
+      "training_examples": 655,
+      "training_signature": "7077ed2c3da26013c018727b32efc168efba478c7397e81cfd4302195b825ff3"
+    },
+    "E3_data_protocol": {
+      "all_ten_training_complete_and_acknowledged_before_evaluation": true,
+      "calibration_members_allowed": false,
+      "evaluation_count": 608,
+      "evaluation_end": "2026-08-31",
+      "evaluation_start": "2025-01-01",
+      "fit_count": 532,
+      "fit_end": "2024-06-30",
+      "purged_count": 7,
+      "scaler_policy": "reuse_exact_v2_saved_532_fit_scaler_no_refit",
+      "target": "population sigma7 of daily Close log returns, ddof0, unannualized; h1",
+      "validation_count": 116,
+      "validation_end": "2024-10-31",
+      "validation_start": "2024-07-08"
+    },
+    "known_calendar_posterior": true,
+    "equal_training_budget_claimed": false,
+    "input_validation_only": true,
+    "hypothesis_tests_performed": false
+  },
+  "code_sha256": {
+    "power_planning.py": "fb13e55f51a1b4d16abb06418103e5618d5cf50a19e46d30ad6e9f9ccae53eb7",
+    "frozen_inputs.py": "58d9cde8af881f9a987e449e6b70c301aa37c4b35fd4061e4d8bb5110b7e6302",
+    "frozen_analysis.py": "adc00955effb3b1c60c139515e1d2badb9bb26fc8540866f839b73aad0372c07"
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "observed_mean_gain_used_as_planned_alternative": false,
+  "candidate_model_fits": 0,
+  "rival_model_fits": 0,
+  "new_model_inferences": 0,
+  "new_calibrations": 0,
+  "new_hypothesis_tests": 0,
+  "R3_verified": false,
+  "seed_variance_inputs": [
+    {
+      "rival": "FCN-1D",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.0002185453632417676,
+      "SD_upper_95_family16_normal_theory": 0.0005291058612302262,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "ResNet-1D",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.00044034159741167164,
+      "SD_upper_95_family16_normal_theory": 0.001066082193087995,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "Inception-1D",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.00028964135753482687,
+      "SD_upper_95_family16_normal_theory": 0.0007012317152518186,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "LSTM-autoencoder con predictor",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.00030199003017546486,
+      "SD_upper_95_family16_normal_theory": 0.0007311282775748859,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "TimesNet",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.0005329949455057606,
+      "SD_upper_95_family16_normal_theory": 0.0012903991440953437,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "TSMixer",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.0004596013773109575,
+      "SD_upper_95_family16_normal_theory": 0.001112710784422797,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "TiDE",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.0009794841803542843,
+      "SD_upper_95_family16_normal_theory": 0.002371364979427253,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "TimeMixer",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.0005737667799417421,
+      "SD_upper_95_family16_normal_theory": 0.0013891091613347456,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "PatchTST",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.0002489743219419323,
+      "SD_upper_95_family16_normal_theory": 0.0006027754196256551,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "iTransformer",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 5.53362300288503e-05,
+      "SD_upper_95_family16_normal_theory": 0.00013397092124191586,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "MLP16",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.0002363496260099581,
+      "SD_upper_95_family16_normal_theory": 0.0005722105953952396,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "LSTM32",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.00014288200443525765,
+      "SD_upper_95_family16_normal_theory": 0.0003459222602100471,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "GRU32",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 10,
+      "seed_SD_RMSE_gain": 0.00017097389631390219,
+      "SD_upper_95_family16_normal_theory": 0.0004139336992337781,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "Persistence",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 1,
+      "seed_SD_RMSE_gain": 4.712541790127223e-05,
+      "SD_upper_95_family16_normal_theory": 0.00011409226192048352,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "SeasonalNaive",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 1,
+      "seed_SD_RMSE_gain": 4.7125417901272005e-05,
+      "SD_upper_95_family16_normal_theory": 0.00011409226192048297,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    },
+    {
+      "rival": "ARIMA",
+      "candidate_seeds": 10,
+      "rival_saved_trajectories": 1,
+      "seed_SD_RMSE_gain": 4.712541790127223e-05,
+      "SD_upper_95_family16_normal_theory": 0.00011409226192048352,
+      "deterministic_rival_replicated_or_refitted": false,
+      "variance_scope": "initialization_conditional_on_the_known_608_date_calendar"
+    }
+  ],
+  "coupling": {
+    "common_marginal_power_illustration": 0.9,
+    "all16_if_contrast_decisions_were_independent": 0.18530201888518416,
+    "all48_if_test_decisions_were_independent": 0.00636268544113595,
+    "all48_union_lower_bound_with_marginal_0_90": 0.0,
+    "marginal_target_sufficient_for_joint_0_90_by_union_bound": 0.9979166666666667,
+    "historical_seed_gain_correlation_min": -0.5993151223910606,
+    "historical_seed_gain_correlation_max": 1.0,
+    "historical_correlation_scope": "16 gain vectors across ten initializations on one fixed calendar; not p-value dependence or future joint power",
+    "actual_joint_power_estimated": false,
+    "no_independence_product_is_used_as_actual_power": true
+  },
+  "limitations": [
+    "The ten seeds and 608 dates were already known; their SDs are planning inputs, not a prospective pilot or observed power estimate.",
+    "Noncentral-t results require iid normal paired gains and the assumed future SD; the SD upper bound additionally needs that model.",
+    "The one-sided null is gain<=delta; planned excess is g1-delta. The observed positive mean gain is never inserted as the alternative.",
+    "Bonferroni alpha/48 is a conservative reference for every Holm test. No power for the adaptive Holm procedure is claimed.",
+    "The higher marginal targets imply a joint bound ONLY if all corresponding tests attain those marginal powers. Only the seed-t and a temporal normal reference are dimensioned here; bootstrap and finite-sample HAC battery power remain open.",
+    "Historical gain correlations across ten seeds are descriptive, not future joint-power estimates. Seeds and dates are not interchangeable iid repetitions.",
+    "Calendar calculations reuse a delta-method influence and HAC7/14/28. Future stationarity, dependence, marginal gain distribution and covariance can change; the ceilings are sensitivity references, not guaranteed forecast horizons.",
+    "Extreme extrapolations are not operational sample-size recommendations. A uniform alternative just above delta for every weak and strong rival can be implausible; this diagnostic requires revisiting justified pilot assumptions before a future freeze, never weakening the standard after results.",
+    "The inherited delta is in BTC sigma7 units. Other datasets require independently justified practical margins before their results are seen.",
+    "A new admissible development pilot, common training/HPO policies, fixed procedures, selected datasets and a genuinely future protocol freeze are still required."
+  ],
+  "seed_planning_row_count": 432,
+  "calendar_planning_row_count": 432,
+  "seed_family_reference_summaries": [
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 4398,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 1103,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 280,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 5581,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 1399,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 354,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 8168,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 2046,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_sample_SD",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 515,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 25750,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 6441,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 1614,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 32687,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 8176,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 2048,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 47852,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 11967,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "historical_upper_SD_simultaneous16",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 2996,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 17574,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 4398,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 1103,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 22308,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 5581,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 1399,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_required_seed_pairs_across_16": 32657,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_required_seed_pairs_across_16": 8168,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    },
+    {
+      "variance_reference": "twice_historical_SD_sensitivity",
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_required_seed_pairs_across_16": 2046,
+      "binding_rivals": [
+        "TiDE"
+      ],
+      "nonestimable_rivals": [],
+      "scope": "seed_t_component_only_not_full_battery"
+    }
+  ],
+  "calendar_family_reference_summaries": [
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 4928821,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 1232206,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 308052,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 6256897,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 1564225,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 391057,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 9160184,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 2290046,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 7,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 572512,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 6730826,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 1682707,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 420677,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 8544455,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 2136114,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 534029,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 12509199,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 3127300,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 14,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 781825,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 7521400,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 1880350,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "one_procedure_90",
+      "marginal_target": 0.9,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 470088,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 9548050,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 2387013,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "three_procedure_rival_union_bound_90",
+      "marginal_target": 0.9666666666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 596754,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.25,
+      "maximum_reference_calendar_dates_across_16": 13978477,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 0.5,
+      "maximum_reference_calendar_dates_across_16": 3494620,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    },
+    {
+      "HAC_Bartlett_lags": 28,
+      "target_scenario": "all_48_decisions_union_bound_90",
+      "marginal_target": 0.9979166666666667,
+      "planned_excess_over_delta": 1.0,
+      "maximum_reference_calendar_dates_across_16": 873655,
+      "binding_rivals": [
+        "SeasonalNaive"
+      ],
+      "scope": "temporal_normal_HAC_variance_reference_not_guaranteed_horizon"
+    }
+  ]
+}
