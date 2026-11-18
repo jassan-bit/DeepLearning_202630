@@ -1,0 +1,101 @@
+{
+  "kind": "dataset_admission_audit",
+  "repository_HEAD": "568aee0445a6eaba0f13c11deb2d6d64aa4f3fbd",
+  "recorded_at_utc": "2026-11-18T18:15:54.895639+00:00",
+  "scope": "Source and basic data quality inspection; no target tensor, fit, prediction or statistical test.",
+  "datasets": [
+    {
+      "id": "D01",
+      "instrument": "AAPL",
+      "admitted": false,
+      "technical_file_inspected": true,
+      "basic_OHLCV_checks_passed": true,
+      "quality": {
+        "rows": 3270,
+        "first": "2000-03-01",
+        "last": "2013-03-01",
+        "unique_dates": 3270,
+        "strictly_sorted": true,
+        "weekend_rows": 0,
+        "max_calendar_gap_days": 7,
+        "missing_numeric_rows": 0,
+        "invalid_OHLCV_rows": 0,
+        "close_ratio_flags": [
+          {
+            "date": "2000-06-21",
+            "previous": "2000-06-20",
+            "close_ratio": 0.5494320987654321
+          },
+          {
+            "date": "2000-09-29",
+            "previous": "2000-09-28",
+            "close_ratio": 0.48130841121495327
+          },
+          {
+            "date": "2005-02-28",
+            "previous": "2005-02-25",
+            "close_ratio": 0.5041015844476908
+          }
+        ],
+        "rows_removed": 0,
+        "adjusted_close_used": false,
+        "flags_are_not_automatic_split_labels": true,
+        "trading_calendar_verified": false,
+        "target_values_or_model_metrics_computed": false
+      },
+      "source": {
+        "repository": "bokeh/bokeh_sampledata",
+        "commit": "3e831d2779ca74c087c7eee05d538015c97b1e52",
+        "path": "src/bokeh_sampledata/_data/stocks.csv.gz",
+        "bytes": 294246,
+        "sha256": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd",
+        "uncompressed_sha256": "e73fe05d106b7da1abe8f947264c514afd02cef5c9db4864b9437c84d6bd6069",
+        "declared_license": "Public domain",
+        "source_rights_statement_status": "verified_primary_distributor_statement"
+      },
+      "prospective_task_contract": {
+        "clock": "trading_session",
+        "window": 7,
+        "horizon": "next_trading_session",
+        "target": "population standard deviation of 7 close log returns; ddof=0; not annualized",
+        "UTC_calendar_equivalence_claimed": false,
+        "target_not_built_in_this_step": true
+      },
+      "remaining_gates": [
+        "corporate-action policy with event evidence; keep genuine crashes",
+        "exchange-session calendar validation",
+        "common partitions and final prospective protocol"
+      ]
+    },
+    {
+      "id": "D02",
+      "instrument": "SPY",
+      "admitted": false,
+      "technical_file_inspected": false,
+      "remaining_gates": [
+        "provider account/access, raw version and rights conditions",
+        "causal cleaning and session aggregation"
+      ]
+    },
+    {
+      "id": "D03",
+      "instrument": "Bitstamp BTCUSD",
+      "admitted": false,
+      "technical_file_inspected": false,
+      "remaining_gates": [
+        "immutable data version and upstream terms",
+        "UTC aggregation and coverage"
+      ]
+    }
+  ],
+  "datasets_admitted": 0,
+  "datasets_with_file_inspected": 1,
+  "raw_input_preserved_in_source_repository": true,
+  "full_source_price_file_opened_by_automated_audit": true,
+  "forecast_performance_used_for_selection": false,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "new_hypothesis_tests": 0,
+  "R1_R3_verified": false,
+  "real_campaign_allowed": false
+}
