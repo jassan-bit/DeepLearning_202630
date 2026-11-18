@@ -63,7 +63,8 @@ jobs:
           else:
               raise SystemExit('El dashboard no arrancó dentro del límite de prueba')
           PY
-          python -m pytest tests/test_e3_dashboard_browser.py -q
+          # The unittest runner also writes the browser acceptance receipt.
+          python tests/test_e3_dashboard_browser.py
       - name: Conservar evidencias de interfaz y paridad
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
