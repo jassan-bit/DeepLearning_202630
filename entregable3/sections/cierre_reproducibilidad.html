@@ -407,11 +407,12 @@
 <p>Este anexo cierra la navegación del informe con los requisitos de reproducción y autoría de las secciones 11–12 y 15. Es un <strong>registro provisional</strong>, no un acta de entrega, firma o reproducción independiente. Las <a class="reference internal" href="16_conclusiones.html"><span class="std std-doc">conclusiones de la sección 16</span></a> mantienen la diferencia entre documentación publicada, software comprobado y resultados científicos pendientes.</p>
 <section id="conclusiones-provisionales-y-limites">
 <h2>Conclusiones provisionales y límites<a class="headerlink" href="#conclusiones-provisionales-y-limites" title="Link to this heading">#</a></h2>
-<p>E2 aporta un benchmark de 16 sistemas sobre 608 fechas, con diez semillas por cada una de sus trece redes y una trayectoria por clásico: <strong>133 predictores</strong>. Su ampliación conserva las seis semillas históricas y las recetas seleccionadas. E3 dispone de diez réplicas de la <strong>CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva y 1210 parámetros</strong>. Las tres exportaciones TorchScript verificadas en calibración histórica pertenecen a referencias de E2; el servicio en Render sigue pendiente.</p>
+<p>E2 aporta un benchmark de 16 sistemas sobre 608 fechas, con diez semillas por cada una de sus trece redes y una trayectoria por clásico: <strong>133 predictores</strong>. E3 dispone de diez réplicas de la <strong>CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva y 1210 parámetros</strong>. El prototipo local de Dash representa los 17 sistemas y ejecuta cuatro ONNX CPU —MLP16, LSTM32, GRU32 y E3— para la semilla representante 271801. Las tres exportaciones TorchScript históricas se conservan; el servicio público en Render sigue pendiente.</p>
 <p>El primer candidato tiene formulación, implementación asistida por IA, demostración de una cota de su cabeza latente y 35 pruebas históricas con datos artificiales. Los pilotos v1/v2 aportan cinco recetas entrenadas en desarrollo y la referencia aditiva v2. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/4cd455d90fb72fe78beeb885dc5dadc4ea9edeb4/runs/momentos_v1">piloto posterior por momentos</a> <strong>completó sus tres recetas</strong>: <code class="docutils literal notranslate"><span class="pre">moment_joint</span></code> obtuvo RMSE de validación 0,0032589201 frente a 0,0031446148 de la referencia aditiva y no superó la heurística de continuación del 2 %. Las diez réplicas aditivas repiten una receta; no son diez diseños nuevos. El Nd global continúa pendiente de conciliación.</p>
 <p>La aditiva evaluada tiene <strong>RMSE media 0,0029394324</strong>, DE muestral <strong>0,0000471254</strong> y MAE media <strong>0,0018928273</strong> sobre las mismas 608 fechas del 1 de enero de 2025 al 31 de agosto de 2026. El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">análisis estadístico posterior</span></a> ya completó los 48 contrastes primarios y todos rechazan tras Holm global, bajo los supuestos y ámbitos de incertidumbre declarados. El MCS90 auxiliar conserva diez sistemas, incluido E3; no determina un ganador único. E2 usó 655 ejemplos de ajuste y 53 de calibración; E3, 532 de ajuste y 116 de validación, sin abrir el bloque de calibración. No se afirma igualdad de tratamiento ni se convierte el calendario conocido en una confirmación ciega.</p>
 <p>La revisión focal y la bibliografía no establecen ausencia de antecedentes. <strong>R1, la defensa académica de R2 y R3 permanecen pendientes.</strong> La guía requiere tres pruebas distintas apropiadas; sus rechazos no sustituyen el diseño justo, la potencia previa, los conjuntos adicionales ni los restantes requisitos. Los tests de software conservan su alcance y las propiedades de los mecanismos anteriores no se transfieren automáticamente al modelo de 1210 parámetros.</p>
-<p>Las etapas siguientes son cerrar auditorías y fuentes admisibles, revisión/hipótesis/diseño, separación de confirmación, datasets, presupuesto y potencia antes de un protocolo definitivo; completar la evaluación confirmatoria y ampliada; construir y verificar la aplicación y su reproducción. La comparación posterior ya realizada se conserva. Los borradores y las páginas de diseño mantienen sus fechas y no se convierten retrospectivamente en preregistros o productos funcionales.</p>
+<p>La paridad ONNX se comprobó en 608 fechas frente a memoria CPU y pronósticos congelados, con tolerancia absoluta 10⁻⁶ en σ₇. La etapa de ingeniería ejecutó inferencias CPU, sin ajustar pesos o calibradores ni usar GPU; el análisis estadístico anterior mantiene su alcance sin inferencia nueva. El historial de entrenamiento de una semilla se recuperó del checkpoint y no es una ejecución nueva.</p>
+<p>Las etapas siguientes son cerrar auditorías y fuentes admisibles, revisión/hipótesis/diseño, separación de confirmación, datasets, presupuesto y potencia antes de un protocolo definitivo; completar evaluación ampliada, explicaciones y calibración faltantes; verificar el paquete final, desplegar el servicio y reproducir la campaña de forma independiente. La app local, las fichas y los reportes de ingeniería son productos con alcance concreto; no convierten los borradores históricos en preregistros ni el prototipo en una entrega completa.</p>
 </section>
 <section id="lista-de-reproducibilidad-al-cierre">
 <h2>Lista de reproducibilidad al cierre<a class="headerlink" href="#lista-de-reproducibilidad-al-cierre" title="Link to this heading">#</a></h2>
@@ -432,8 +433,8 @@
 <td><p>Mantener instrucciones verificadas para reconstruir esta versión; esto no ejecuta la campaña científica.</p></td>
 </tr>
 <tr class="row-even"><td><p>Entornos científicos y de servicio</p></td>
-<td><p>Locks CPU del software existente y reportes con versiones.</p></td>
-<td><p>Contenedores probados separados: científico con framework; servicio ONNX Runtime sin framework de entrenamiento, conforme a sección 10.</p></td>
+<td><p>Dependencias fijadas e imagen Docker local de ONNX Runtime sin Torch, comprobada en ocho rutas con usuario sin privilegios y sólo lectura; entorno científico separado.</p></td>
+<td><p>Desplegar y verificar el servicio público; contenedor científico completo y reproducción humana siguen pendientes.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Hardware y precisión</p></td>
 <td><p>Perfiles CUDA de las corridas E3 y CPU del análisis estadístico y exportaciones, con versiones y alcance.</p></td>
@@ -448,16 +449,16 @@
 <td><p>Espacios/presupuestos y ajuste final comparables, Nd global conciliado, fallos/decisiones y protocolo previo a la confirmación.</p></td>
 </tr>
 <tr class="row-even"><td><p>Métricas y tabla maestra</p></td>
-<td><p>Métricas de 17 sistemas, diez semillas por red, contrastes, efectos e IC posteriores; calendario y ámbitos de incertidumbre declarados.</p></td>
-<td><p>Tres conjuntos adicionales, calibración del candidato, campos de recursos/exportación completos y fuente común de informe/dashboard.</p></td>
+<td><p>Tabla ampliada de 17 sistemas y bundle del dashboard derivado de ella con igualdad probada; curvas de semilla representante, efectos e IC con sus unidades declaradas.</p></td>
+<td><p>Tres conjuntos adicionales, calibración de E3 y todos los campos comparables de recursos/exportación del catálogo final.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Datos y derechos</p></td>
-<td><p>Data Card/contrato, hashes y 1316 ventanas verificadas, incluidas las 608 de prueba; auditoría 12 PASS, 3 PARTIAL y 1 NA.</p></td>
-<td><p>Resolver controles pendientes, consolidar instrucciones exactas y derechos por fuente y DATA_STATEMENT final; la auditoría no cierra por sí sola el Bloque A.</p></td>
+<td><p>DATA_STATEMENT.md, hashes y 1316 observaciones de ventanas auditadas; fechas t−1/t diferenciadas y auditoría 12 PASS, 3 PARTIAL y 1 NA.</p></td>
+<td><p>Resolver controles abiertos y ratificar derechos por fuente; la declaración y los hashes no cierran por sí solos el Bloque A o una licencia.</p></td>
 </tr>
 <tr class="row-even"><td><p>Artefactos y paridad</p></td>
-<td><p>Tres TorchScript y paridad puntual en 53 fechas de calibración.</p></td>
-<td><p>Exportaciones de producción ONNX y demás artefactos aplicables, metadata y pruebas completas de preprocesamiento/salida/intervalo con tolerancias previas.</p></td>
+<td><p>Cuatro ONNX y metadatos verificados en 608 fechas para la semilla 271801 con tolerancia 10⁻⁶; tres TorchScript históricos conservados.</p></td>
+<td><p>Trece exportaciones restantes, política común de ajuste y verificaciones completas de incertidumbre y explicación. El intervalo E3 no está calibrado.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Checkpoints y estados</p></td>
 <td><p>Snapshots de las fases nuevas de E2 y diez checkpoints E3 con pesos, estados de optimización/RNG y metadatos; los modelos seleccionados de E2 y los artefactos de servicio tienen otro alcance.</p></td>
@@ -468,16 +469,16 @@
 <td><p>Costes comparables completos y energía medida o estimada con método explícito; no inventar kWh ni confundir reloj, CPU y horas GPU.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Verificación de software</p></td>
-<td><p>Workflows de handoff/modelo y <strong>42 pruebas de métodos e insumos estadísticos en CI</strong>, más comprobaciones del libro.</p></td>
-<td><p>Tests de la aplicación futura y su coherencia con el informe. Un check de bytes no demuestra reproducción integral de resultados.</p></td>
+<td><p>42 pruebas estadísticas históricas en CI; dashboard con 25 casos locales y seis recorridos de navegador, 35 comprobaciones y ningún error reportado.</p></td>
+<td><p>Conservar recibos de la versión final y la prueba pública; estos tests y los checks de bytes no demuestran reproducción científica humana.</p></td>
 </tr>
 <tr class="row-even"><td><p>Reproducción independiente</p></td>
 <td><p>Requisitos y procedimiento previsto en <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a>.</p></td>
 <td><p>Una persona ajena al código, entorno limpio en contenedor, tabla principal regenerada y discrepancia máxima reportada.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Servicio público</p></td>
-<td><p>Plan <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a> y diseño <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>.</p></td>
-<td><p>URL Render, prueba de humo por página/modelo, logs, tiempos y contingencia basados en una app funcional.</p></td>
+<td><p>Prototipo local de tres páginas y cuatro modelos CPU descrito en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>; preparación de despliegue en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>.</p></td>
+<td><p>URL Render y humo público por página/modelo, logs, tiempos y contingencia basados en esa versión desplegada.</p></td>
 </tr>
 <tr class="row-even"><td><p>Autoría y defensa</p></td>
 <td><p>Procedencia del candidato declara asistencia IA.</p></td>
@@ -499,6 +500,7 @@
 <p>El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">dictamen posterior sobre la cabeza de momentos</span></a> también usa asistencia de ChatGPT/Codex para lectura focal, búsqueda, crítica matemática, contraejemplos escalares, código de auditoría y documentación. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/provenance.md">procedencia</a> declara ese alcance. El paquete de revisión humana está sin diligenciar y no se presenta como aval externo ni firma.</p>
 <p>La <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">propuesta posterior al cierre v2</span></a> también fue preparada con asistencia de ChatGPT/Codex para revisión focal, formulación, demostración, crítica matemática, verificación escalar, pruebas y documentación. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/provenance.md">declaración de procedencia</a> atribuye los componentes conocidos y mantiene pendiente la revisión humana, la novedad y la defensa del estudiante. No se entrenó una red nueva en ese corte.</p>
 <p>La autoría declarada en la portada se mantiene como dato del proyecto. No se atribuyen automáticamente contribuciones individuales ni se afirma una firma o defensa que no se haya verificado.</p>
+<p>La implementación del dashboard, sus componentes de datos e inferencia, exportaciones, validaciones, pruebas, fichas y documentación también empleó asistencia de IA. Los recibos de navegador y de software describen comprobaciones técnicas, no la revisión humana independiente ni una defensa académica. La persona autora debe revisar y poder modificar este código y sus supuestos.</p>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/procedencia.md">procedencia existente</a> declara que el módulo candidato fue escrito con asistencia de IA desde la formulación. La asistencia también se ha usado para organizar requisitos, redactar documentación, preparar herramientas de auditoría/exportación y comprobar software. Los capítulos deben conservar ese alcance y la revisión humana pendiente; no se presentan como implementación o demostración comprendidas y defendidas por la persona autora sólo porque existan archivos.</p>
 <p>Antes de la entrega, cada integrante deberá completar y confirmar este registro y firmar su propia declaración:</p>
 <div class="pst-scrollable-table-container"><table class="table">

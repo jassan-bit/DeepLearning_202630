@@ -1,0 +1,52 @@
+{
+  "checked_at_utc": "2026-11-18T00:12:16.758403+00:00",
+  "python": "3.12.14",
+  "models": [
+    {
+      "model": "MLP16",
+      "seed": 271801,
+      "dates": 608,
+      "maximum_absolute_error_vs_frozen": 1.0055243065271169e-08,
+      "absolute_tolerance_original_sigma7": 1e-06,
+      "RMSE_served": 0.004482100129298238,
+      "RMSE_frozen": 0.004482100265311161,
+      "model_sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50"
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271801,
+      "dates": 608,
+      "maximum_absolute_error_vs_frozen": 1.266975514016555e-07,
+      "absolute_tolerance_original_sigma7": 1e-06,
+      "RMSE_served": 0.004728904760843131,
+      "RMSE_frozen": 0.004728907440473127,
+      "model_sha256": "ee942ca947998a3c5c76fa21eabe401ce60989558faf82608e8107a830227033"
+    },
+    {
+      "model": "GRU32",
+      "seed": 271801,
+      "dates": 608,
+      "maximum_absolute_error_vs_frozen": 1.4512556209544947e-07,
+      "absolute_tolerance_original_sigma7": 1e-06,
+      "RMSE_served": 0.003959555792608273,
+      "RMSE_frozen": 0.003959557405220174,
+      "model_sha256": "1409d0cf84aac43720b4c6978f9a1bb3b5f6c9832518acab0cba279ba8a88bd2"
+    },
+    {
+      "model": "CNN-LSTM-atencion-aditiva E3",
+      "seed": 271801,
+      "dates": 608,
+      "maximum_absolute_error_vs_frozen": 2.5838713033771166e-08,
+      "absolute_tolerance_original_sigma7": 1e-06,
+      "RMSE_served": 0.0029102931283034364,
+      "RMSE_frozen": 0.0029102930325790397,
+      "model_sha256": "6928a973a6639513bc94cde15996c0b06bb5615e3c0b1a77d16d47e9c7342f3b"
+    }
+  ],
+  "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+  "Torch_imported": false,
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "GPU_used": false,
+  "scope": "Serving parity for fixed seed 271801 on the known 608-date cohort, not a new superiority test"
+}

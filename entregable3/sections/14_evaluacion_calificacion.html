@@ -793,19 +793,19 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Al menos tres severidades, curvas de degradación y aprendizaje/escalabilidad con varias semillas; separar estrés artificial de escenarios plausibles.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Interpretabilidad con fidelidad, estabilidad, comparación con mejor benchmark y descarte de atajos.</p></td>
-<td><p>Pendiente.</p></td>
-<td><p>Métodos y controles especificados en <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">sección 9</span></a>.</p></td>
-<td><p>Explicaciones reales del mismo caso/modelo y evidencia comparativa; atención no equivale por sí sola a explicación causal.</p></td>
+<td><p>Sensibilidad local disponible; estudio completo pendiente.</p></td>
+<td><p>El dashboard calcula intervenciones sobre la entrada del mismo artefacto ONNX y describe sus efectos.</p></td>
+<td><p>Comparación global con el mejor SAE, fidelidad, estabilidad entre semillas y descarte de atajos; la sensibilidad local no acredita explicación causal.</p></td>
 </tr>
 <tr class="row-even"><td><p>Errores y escenarios donde no supera a los benchmarks.</p></td>
-<td><p>Pendiente del candidato.</p></td>
-<td><p>Regímenes y análisis de errores previstos; límites económicos declarados.</p></td>
-<td><p>Resultados adversos por escenarios prefijados, errores compartidos y causas discutidas sin inferencia causal injustificada.</p></td>
+<td><p>Diagnósticos históricos disponibles; estudio confirmatorio pendiente.</p></td>
+<td><p>El dashboard muestra trayectorias y residuos de representantes fijos; se conserva el diagnóstico posterior de las 18 fechas de objetivo alto frente a M00 proyectado.</p></td>
+<td><p>Escenarios prefijados, errores compartidos y causas discutidas sin inferencia causal injustificada. Un grupo definido por el objetivo realizado no estaba disponible al pronosticar.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Parámetros, FLOPs, latencia, memoria, entrenamiento y energía con Pareto.</p></td>
-<td><p>Parcial de inventario.</p></td>
-<td><p>Parámetros del candidato; costes E2 y tres forwards TorchScript con ámbitos distintos.</p></td>
-<td><p>Mediciones comparables del conjunto completo y candidato, energía estimada y Pareto; RSS aislado no mide cabida Render ni RAM incremental.</p></td>
+<td><p>Parcial de ingeniería e inventario.</p></td>
+<td><p>Cuatro ONNX con parámetros y latencias CPU de preprocesamiento más inferencia caliente; los perfiles TorchScript históricos mantienen otro alcance.</p></td>
+<td><p>FLOPs completos, recursos comparables de los 17 sistemas, energía y perfil del servicio público. La paridad de cuatro artefactos no establece una frontera de Pareto de toda la familia.</p></td>
 </tr>
 </tbody>
 </table>
@@ -825,18 +825,18 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <tbody>
 <tr class="row-even"><td><p>Archivo con DOI, Docker, semillas y determinismo documentados.</p></td>
 <td><p>Parcial; paquete final pendiente.</p></td>
-<td><p>Repositorio, versiones CPU del candidato y política/semillas heredadas documentadas.</p></td>
-<td><p>Archivo E3 persistente con DOI y contenedor final verificados; no atribuir determinismo global NumPy o paridad entre plataformas no demostrados.</p></td>
+<td><p>Dockerfile y dependencias de servicio sin Torch, README y semillas/precisión documentadas; estado de imagen y recursos en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">sección 10</span></a>.</p></td>
+<td><p>Archivo E3 persistente con DOI y reproducción integral. No atribuir determinismo global NumPy o paridad entre plataformas no demostrados.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Maestro por ejecución que genere informe y dashboard.</p></td>
-<td><p>Parcial.</p></td>
-<td><p>Tablas E2 y maestro de artefactos de 16 sistemas; diseño de vista de 17.</p></td>
-<td><p>Fuente final común con procedencia/estados y prueba de igualdad app–libro; no añadir resultados ficticios del candidato al CSV histórico.</p></td>
+<td><p>Disponible para las métricas BTC actuales; maestro final parcial.</p></td>
+<td><p>El catálogo de 17 sistemas deriva de la tabla ampliada del libro y tiene una prueba de igualdad de valores; fuentes y hashes del bundle publicados.</p></td>
+<td><p>Completar campos de recursos, calibración E3 y conjuntos adicionales; las curvas de la semilla representante no son la media de diez modelos.</p></td>
 </tr>
 <tr class="row-even"><td><p>Pruebas unitarias ejecutadas en CI.</p></td>
-<td><p>Parcial de alcance software.</p></td>
-<td><p>35 casos históricos del primer módulo, workflows CPU de original/handoff y <strong>42 pruebas de métodos e insumos estadísticos aprobadas en CI</strong>, con recibo en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.9</span></a>.</p></td>
-<td><p>Recibos del paquete final e integración completa, exportaciones y app. Los 42 casos no son pruebas del forward de la aditiva ni acreditan una reproducción humana o el dashboard.</p></td>
+<td><p>Evidencia histórica y local con ámbitos distintos.</p></td>
+<td><p>Los 42 casos estadísticos ya aprobaron en CI. El dashboard dispone de 25 casos locales —datos 9, inferencia 11, historial 3 y app 2— y seis recorridos de navegador con 35 comprobaciones, sin errores reportados.</p></td>
+<td><p>Conservar recibos del paquete exacto y del workflow del dashboard. Ni estos checks ni los casos históricos certifican reproducción humana, defensa académica o servicio Render.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Datos o instrucciones exactas de obtención y licencias verificadas.</p></td>
 <td><p>Parcial.</p></td>
@@ -870,19 +870,19 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Cerrar los controles pendientes; recalcular dependencias y ranking antes/después si una corrección modifica resultados. No se recibieron observaciones del docente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Mejores configuraciones exportadas, ida y vuelta y <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code>.</p></td>
-<td><p>Parcial.</p></td>
-<td><p>MLP16/LSTM32/GRU32 TorchScript, paridad puntual en 53 fechas de calibración.</p></td>
-<td><p>Exportaciones/resto del catálogo, política final y prueba A2 aplicable. ONNX no está verificado; TorchScript es el formato disponible, no una conversión ONNX.</p></td>
+<td><p>Cuatro ONNX verificados; catálogo completo pendiente.</p></td>
+<td><p>MLP16, LSTM32, GRU32 y E3, semilla 271801, con paridad en 608 fechas y tolerancia absoluta 10⁻⁶; TorchScript históricos conservados.</p></td>
+<td><p>Exportaciones de otros trece sistemas, política final común y demás campos completos del catálogo. Los límites de semilla y de tratamiento no se borran al exportar.</p></td>
 </tr>
 <tr class="row-even"><td><p>Dash Plotly en Render, prueba de humo, contingencia y funcionamiento en sustentación.</p></td>
-<td><p>Pendiente.</p></td>
-<td><p>Especificación de <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">sección 9</span></a>.</p></td>
-<td><p>App, URL, recursos medidos, prueba de humo y plan de contingencia comprobados; publicar el libro no despliega Dash.</p></td>
+<td><p>Prototipo local comprobado; servicio público pendiente.</p></td>
+<td><p>Tres páginas y 17 sistemas, cuatro artefactos ONNX CPU y verificación de recorridos locales del <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a>.</p></td>
+<td><p>URL Render, recursos y prueba de humo públicos, contingencia y sustentación comprobadas. Publicar el libro no despliega Dash.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Jupyter Book sin errores, ficha de modelo y declaración de datos.</p></td>
-<td><p>Parcial documental.</p></td>
-<td><p>Fuentes y evidencias del libro E3, con esta ampliación editorial.</p></td>
-<td><p>Construcción y revisión del paquete final, <code class="docutils literal notranslate"><span class="pre">MODEL_CARD.md</span></code> y <code class="docutils literal notranslate"><span class="pre">DATA_STATEMENT.md</span></code> completos; documentos propuestos no son productos verificados.</p></td>
+<td><p>Disponible documentalmente con cierre pendiente.</p></td>
+<td><p>Fuentes del libro, MODEL_CARD.md y DATA_STATEMENT.md específicos de este prototipo, con métricas, procedencia y límites.</p></td>
+<td><p>Validar el paquete final y ratificar derechos, contenidos y responsabilidades humanas; los archivos no son una firma ni cierran R1/R2/R3.</p></td>
 </tr>
 <tr class="row-even"><td><p>Procedencia del mecanismo transferido, cuando corresponda.</p></td>
 <td><p>Parcial.</p></td>

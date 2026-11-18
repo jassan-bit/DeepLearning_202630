@@ -1,30 +1,30 @@
 # 10 Bloque F Despliegue en Render
 
-**Estado: planificación, sin aplicación Dash, URL Render ni prueba de humo verificadas.** El [diseño del dashboard](09_dashboard_predictivo.md) define el producto por construir. La publicación actual del Jupyter Book permite consultar el informe; el servicio predictivo deberá producir sus propias evidencias de construcción, acceso e inferencia. Esta actualización documental no crea `app.py`, `Dockerfile`, `render.yaml` ni una cuenta o servicio de pago.
+**Estado: aplicación CPU preparada y probada localmente; URL Render y prueba de humo pública pendientes.** El [capítulo 9](09_dashboard_predictivo.md) documenta la aplicación multipágina, cuatro artefactos ONNX y sus controles. El repositorio contiene `app.py`, dependencias fijadas, `Dockerfile` y `render.yaml`; no se ha activado una cuenta o servicio de Render. GitHub Pages publica el informe y las evidencias, y no ejecuta el servidor Dash.
 
-El objetivo es una URL pública HTTPS en Render que permita usar las tres páginas del dashboard sin instalación local. El despliegue incluirá las modalidades reales de cada modelo —inferencia habilitada, resultados precalculados o candidato sin evaluación— y mantendrá sus límites visibles.
+El objetivo es una URL pública HTTPS en Render que permita usar las tres páginas del dashboard sin instalación local. El despliegue conservará las modalidades reales: cuatro modelos con inferencia CPU y trece con resultados precalculados, con sus límites visibles.
 
 ## 10.1 Pasos de despliegue
 
 Los pasos siguientes son condiciones de cierre, no operaciones declaradas como realizadas. La aplicación y sus artefactos de producción deben verificarse antes de conectar el despliegue automático.
 
-**1. Verificar la aplicación local y el servidor.** El futuro `app.py` deberá crear la app multipágina y exponer `server = app.server` para que Gunicorn resuelva `app:server`. Se comprobarán navegación, callbacks, entradas inválidas, gestión de errores y el recorrido de inferencia con ejemplos autorizados. `python app.py` será la prueba de arranque local cuando ese archivo exista; hoy no se presenta como un comando ya ejecutado del dashboard.
+**1. Conservar la verificación local y del servidor.** `app.py` crea la aplicación con `use_pages=True` y expone `server = app.server` para Gunicorn. La evidencia de navegación, callbacks, entradas inválidas y predicción se conserva en el capítulo 9. El comando de arranque está en el README. Esa comprobación local debe repetirse sobre la versión efectivamente desplegada en Render.
 
 El arranque no entrenará, hará HPO ni reajustará normalización o calibradores. El servicio importará sólo los módulos de interfaz, datos, inferencia y explicación admitidos, sin importar el pipeline de entrenamiento. Un cambio de página no cargará todos los modelos.
 
-**2. Cerrar el perfil de inferencia, Python y el contenedor.** La guía 10.1 exige un `requirements.txt` con versiones exactas, incluidos **Gunicorn y ONNX Runtime**, y sin el framework de entrenamiento. Esa condición aún no está satisfecha por los tres artefactos actuales:
+**2. Mantener el perfil de inferencia, Python y contenedor.** `requirements.txt` usa el lock de ejecución CPU con versiones exactas, incluidos Gunicorn y ONNX Runtime; no instala Torch ni el framework de entrenamiento. Las evidencias tienen alcances distintos:
 
 | Evidencia actual | Dependencia y alcance | Trabajo previo a producción |
 |---|---|---|
-| TorchScript de MLP16, LSTM32 y GRU32 | Requieren PyTorch para cargar y ejecutar. Su paridad puntual se verificó en CPU sobre 53 fechas históricas de calibración. | Conservar esta evidencia de desarrollo y exportar a ONNX para el perfil previsto de servicio. |
-| Wrapper `predict_exported_reference` | Importa Torch, recibe ventanas ya estandarizadas y devuelve σ₇ en unidades originales. | Implementar el adaptador de producción con ONNX Runtime CPU y verificar el mismo contrato y escala. |
-| Metadatos y calibradores de E2 | Identifican pesos, escalas y q; no son un servidor ni una exportación ONNX. | Comprobar hashes, entradas/salidas, preprocesamiento, intervalos y explicaciones del flujo final. |
+| Tres TorchScript históricos de E2 | Requieren Torch y conservan su paridad sobre 53 fechas de calibración. | Mantener el recibo histórico; el servicio actual utiliza sus exportaciones ONNX. |
+| Cuatro ONNX y `e3_dashboard.inference` | CPUExecutionProvider, contrato raw D7×5, escaladores fijos, una sesión en caché y paridad sobre 608 fechas con tolerancia 10⁻⁶. | Repetir la prueba de humo en el entorno público y vigilar recursos con su configuración efectiva. |
+| Metadatos, rangos de ajuste y cuantiles guardados | E2 dispone de q por predictor; E3 mantiene intervalo sin calibrar. Los controles de entrada y dominio están separados. | Conservar hashes y límites de interpretación; la sensibilidad por oclusión no acredita fidelidad o estabilidad explicativa. |
 
-La ruta de producción prevista es **ONNX + ONNX Runtime con `CPUExecutionProvider`**. No existen aquí exportaciones ONNX verificadas del catálogo. La conversión deberá conservar receta, semilla, esquema D7×5 de las tres redes, estadísticas de entrenamiento y escala objetivo, y repetir la ida y vuelta con tolerancias explícitas. La comprobación de las 608 entradas de prueba A2 sigue pendiente; la paridad actual sobre calibración no la sustituye. También faltan exportaciones y contratos de servicio del resto del catálogo.
+La ruta implementada es **ONNX + ONNX Runtime con `CPUExecutionProvider`** para MLP16, LSTM32, GRU32 y CNN-LSTM aditiva E3, semilla representativa 271801. La paridad de las 608 ventanas está verificada para esos cuatro; no para los otros trece sistemas. Los resultados precalculados no se presentan como inferencia en vivo. El contrato y la escala se verifican por predictor, con la diferencia entre memoria y exportación documentada.
 
-El runtime de servicio excluye PyTorch y las dependencias de entrenamiento. La reconstrucción científica del experimento necesitará un entorno separado que sí contenga el framework y sus versiones. El diseño del `Dockerfile` deberá distinguir ambos perfiles o targets y demostrar sus dependencias e importaciones efectivas; este capítulo no entrega una imagen construida.
+El runtime de servicio excluye PyTorch y las dependencias de entrenamiento. La reconstrucción científica conserva un entorno separado con el framework. El Dockerfile copia sólo código de servicio, datos permitidos y artefactos ONNX, utiliza usuario sin privilegios y no inicia el pipeline científico. La comprobación de la imagen y del navegador se distingue de una reproducción humana independiente de los experimentos.
 
-Python **3.11.9 es un ejemplo de la guía**, no una versión validada para este servicio. Las exportaciones heredadas se ejecutaron con Python 3.12.14 y Torch 2.8.0+cpu; ese antecedente no verifica compatibilidad de una imagen ONNX Runtime. La versión de Python de producción se fijará después de comprobar instalación, arranque, exportación, inferencia y pruebas con el perfil exacto. Se guardarán versiones, arquitectura y digest de la imagen probada.
+El perfil local usa **Python 3.12.14**, ONNX Runtime 1.23.2 y locks separados de ejecución y desarrollo. El Dockerfile fija el digest de su imagen base; sus recibos identifican el entorno y la forma de construcción. Python 3.11.9 sigue siendo un ejemplo de la guía, no el perfil probado aquí.
 
 **3. Versionar el código y resolver el almacenamiento de artefactos.** El repositorio conservará código, dependencias, metadatos, hashes y procedencia. Los pesos que superen el límite vigente por archivo se gestionarán con Git LFS o almacenamiento externo documentado, con versión inmutable y comprobación de integridad. El despliegue debe obtener el contenido binario real, no sólo un puntero LFS o un nombre de archivo.
 
@@ -34,10 +34,10 @@ La descarga/caché de pesos verificará SHA-256 y fallo explícito por ausencia 
 
 ```text
 Construcción: pip install -r requirements.txt
-Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 120
+Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 1 --timeout 120
 ```
 
-`$PORT` lo proporciona Render; el enlace a `0.0.0.0` evita que el proceso quede accesible sólo desde la interfaz local. Los valores de hilos y timeout son una propuesta por probar, no tiempos o concurrencia ya certificados. La configuración se documentará en el futuro `render.yaml`, junto con Python validado y variables necesarias, sin exponer credenciales.
+`$PORT` lo proporciona Render; el enlace a `0.0.0.0` evita que el proceso quede accesible sólo desde la interfaz local. El repositorio incluye un blueprint Docker en `render.yaml`, con `autoDeploy: false` y healthcheck `/healthz`; el archivo no crea un servicio por sí mismo. El proceso local se comprueba con un worker y un hilo. La concurrencia, tiempos y recursos efectivos de Render quedan por medir.
 
 El diseño inicial usa **un worker, carga serial y un modelo activo bajo demanda**. El máximo de dos modelos por proceso de la sección 9 es un techo de caché, no una obligación de mantener dos simultáneamente. Las sesiones de inferencia se obtendrán después de validar el modelo solicitado, sin una `InferenceSession` global que cargue un modelo al importar el módulo. Si el servicio se implementa con runtime Docker, su configuración deberá reflejar esa vía y el target de servicio probado, sin mezclarla con un build nativo no verificado.
 
@@ -45,18 +45,18 @@ El diseño inicial usa **un worker, carga serial y un modelo activo bajo demanda
 
 El ejemplo de clasificación con Softmax de la guía ilustra un patrón de callback, pero no es la salida de este problema. Aquí el modelo produce una predicción continua de σ₇ con h=1, la escala se invierte exactamente una vez y el intervalo, cuando se habilite y verifique, usará el calibrador del mismo predictor. No se convertirán salidas de regresión en probabilidades de clase.
 
-**6. Ejecutar y conservar la prueba de humo.** El guion posterior al despliegue deberá recorrer la URL pública y cada modelo que tenga inferencia en vivo habilitada. No basta comprobar una respuesta HTTP de la portada. La lista de modelos elegibles se obtendrá del registro real; los precalculados y el candidato sin pesos BTC tendrán su estado comprobado, sin generar predicciones ficticias.
+**6. Ejecutar y conservar la prueba de humo pública.** El guion deberá recorrer la URL Render y cada modelo habilitado. La lista procede del registro real de cuatro ONNX; los trece precalculados mantienen sus fuentes y su justificación. La verificación local del capítulo 9 no se renombra como prueba de la URL pública.
 
 | Comprobación del servicio | Evidencia esperada | Estado |
 |---|---|---|
-| Contexto, EDA y Modelos | URL/versión, navegación y callbacks de cada página. | Pendiente: aplicación sin construir. |
+| Contexto, EDA y Modelos | URL/versión, navegación y callbacks de cada página. | Implementados en local; verificación pública pendiente. |
 | Filtros y datos insuficientes | Todas las figuras e insights actualizados, n efectivo y mensajes claros. | Pendiente. |
-| Cada modelo en vivo | Un ejemplo permitido, contrato temporal, salida finita y procedencia del artefacto. | Pendiente: perfil ONNX/ORT sin verificar. |
+| Cada modelo en vivo | Un ejemplo permitido, contrato temporal, salida finita y procedencia del artefacto. | Cuatro ONNX verificados localmente; prueba pública pendiente. |
 | Preprocesamiento y escala | Coincidencia con la referencia validada en tolerancia declarada. | Pendiente de integración completa. |
 | Intervalo y explicación | Mismo predictor/caso, unidades, nominal y límites de cobertura/fidelidad. | Pendiente. |
 | Entradas inválidas y OOD | Rechazo o aviso correcto, sin caída ni exposición de rutas/secretos. | Pendiente. |
 | Recursos y tiempos | Arranque frío/caliente, carga bajo demanda y latencias frente a umbrales prefijados. | Pendiente: sin mediciones Render. |
-| Modalidades precalculadas | Catálogo completo, fuentes y justificación de restricciones. | Pendiente de interfaz. |
+| Modalidades precalculadas | Catálogo completo, fuentes y justificación de restricciones. | Diecisiete sistemas en la interfaz local; comprobar en Render. |
 
 El informe de humo conservará fecha, commit, entorno, URLs visitadas, identificadores de casos permitidos, modelo/versión, estados HTTP, resultados, tiempos y errores, con extractos de logs identificados por versión e instante. Esos extractos excluirán secretos, rutas internas e inputs privados. Sus umbrales de aceptación se fijarán antes de medir. Actualmente no hay una URL Render, captura de funcionamiento o resultado de humo que pueda declararse aprobado.
 
@@ -66,4 +66,4 @@ Antes de desplegar se verificarán los límites vigentes del plan en la document
 
 Si se requiere reducir tamaño, se evaluarán compresión o cuantización con paridad, pérdida de métrica frente al margen heredado y equivalencia cuando proceda. Cargar resultados precalculados o elegir un plan con más recursos exige justificación y contabilidad; este documento no selecciona ni activa un plan de pago. El entrenamiento seguirá fuera del servidor.
 
-Para la sustentación se comprobará la URL con antelación y se prepararán capturas y un vídeo breve del dashboard realmente funcionando, con versión y fecha. Ese material está pendiente de producir y no se sustituye por maquetas presentadas como funcionamiento real. Ante una interrupción se explicará el estado y se usará el respaldo como contingencia; la URL pública funcional y su prueba de humo siguen siendo entregables propios.
+Para la sustentación se comprobará la URL con antelación y se preparará un vídeo breve de esa versión, con fecha. Las capturas locales del capítulo 9 son evidencia de la aplicación local; no prueban un servicio público. Ante una interrupción se explicará el estado y se usará el respaldo como contingencia; la URL Render funcional y su prueba de humo siguen siendo entregables propios.

@@ -404,14 +404,14 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-f-despliegue-en-render">
 <h1>10 Bloque F Despliegue en Render<a class="headerlink" href="#bloque-f-despliegue-en-render" title="Link to this heading">#</a></h1>
-<p><strong>Estado: planificación, sin aplicación Dash, URL Render ni prueba de humo verificadas.</strong> El <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">diseño del dashboard</span></a> define el producto por construir. La publicación actual del Jupyter Book permite consultar el informe; el servicio predictivo deberá producir sus propias evidencias de construcción, acceso e inferencia. Esta actualización documental no crea <code class="docutils literal notranslate"><span class="pre">app.py</span></code>, <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, <code class="docutils literal notranslate"><span class="pre">render.yaml</span></code> ni una cuenta o servicio de pago.</p>
-<p>El objetivo es una URL pública HTTPS en Render que permita usar las tres páginas del dashboard sin instalación local. El despliegue incluirá las modalidades reales de cada modelo —inferencia habilitada, resultados precalculados o candidato sin evaluación— y mantendrá sus límites visibles.</p>
+<p><strong>Estado: aplicación CPU preparada y probada localmente; URL Render y prueba de humo pública pendientes.</strong> El <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a> documenta la aplicación multipágina, cuatro artefactos ONNX y sus controles. El repositorio contiene <code class="docutils literal notranslate"><span class="pre">app.py</span></code>, dependencias fijadas, <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> y <code class="docutils literal notranslate"><span class="pre">render.yaml</span></code>; no se ha activado una cuenta o servicio de Render. GitHub Pages publica el informe y las evidencias, y no ejecuta el servidor Dash.</p>
+<p>El objetivo es una URL pública HTTPS en Render que permita usar las tres páginas del dashboard sin instalación local. El despliegue conservará las modalidades reales: cuatro modelos con inferencia CPU y trece con resultados precalculados, con sus límites visibles.</p>
 <section id="pasos-de-despliegue">
 <h2>10.1 Pasos de despliegue<a class="headerlink" href="#pasos-de-despliegue" title="Link to this heading">#</a></h2>
 <p>Los pasos siguientes son condiciones de cierre, no operaciones declaradas como realizadas. La aplicación y sus artefactos de producción deben verificarse antes de conectar el despliegue automático.</p>
-<p><strong>1. Verificar la aplicación local y el servidor.</strong> El futuro <code class="docutils literal notranslate"><span class="pre">app.py</span></code> deberá crear la app multipágina y exponer <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> para que Gunicorn resuelva <code class="docutils literal notranslate"><span class="pre">app:server</span></code>. Se comprobarán navegación, callbacks, entradas inválidas, gestión de errores y el recorrido de inferencia con ejemplos autorizados. <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code> será la prueba de arranque local cuando ese archivo exista; hoy no se presenta como un comando ya ejecutado del dashboard.</p>
+<p><strong>1. Conservar la verificación local y del servidor.</strong> <code class="docutils literal notranslate"><span class="pre">app.py</span></code> crea la aplicación con <code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code> y expone <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> para Gunicorn. La evidencia de navegación, callbacks, entradas inválidas y predicción se conserva en el capítulo 9. El comando de arranque está en el README. Esa comprobación local debe repetirse sobre la versión efectivamente desplegada en Render.</p>
 <p>El arranque no entrenará, hará HPO ni reajustará normalización o calibradores. El servicio importará sólo los módulos de interfaz, datos, inferencia y explicación admitidos, sin importar el pipeline de entrenamiento. Un cambio de página no cargará todos los modelos.</p>
-<p><strong>2. Cerrar el perfil de inferencia, Python y el contenedor.</strong> La guía 10.1 exige un <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> con versiones exactas, incluidos <strong>Gunicorn y ONNX Runtime</strong>, y sin el framework de entrenamiento. Esa condición aún no está satisfecha por los tres artefactos actuales:</p>
+<p><strong>2. Mantener el perfil de inferencia, Python y contenedor.</strong> <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> usa el lock de ejecución CPU con versiones exactas, incluidos Gunicorn y ONNX Runtime; no instala Torch ni el framework de entrenamiento. Las evidencias tienen alcances distintos:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Evidencia actual</p></th>
@@ -420,36 +420,36 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>TorchScript de MLP16, LSTM32 y GRU32</p></td>
-<td><p>Requieren PyTorch para cargar y ejecutar. Su paridad puntual se verificó en CPU sobre 53 fechas históricas de calibración.</p></td>
-<td><p>Conservar esta evidencia de desarrollo y exportar a ONNX para el perfil previsto de servicio.</p></td>
+<tr class="row-even"><td><p>Tres TorchScript históricos de E2</p></td>
+<td><p>Requieren Torch y conservan su paridad sobre 53 fechas de calibración.</p></td>
+<td><p>Mantener el recibo histórico; el servicio actual utiliza sus exportaciones ONNX.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Wrapper <code class="docutils literal notranslate"><span class="pre">predict_exported_reference</span></code></p></td>
-<td><p>Importa Torch, recibe ventanas ya estandarizadas y devuelve σ₇ en unidades originales.</p></td>
-<td><p>Implementar el adaptador de producción con ONNX Runtime CPU y verificar el mismo contrato y escala.</p></td>
+<tr class="row-odd"><td><p>Cuatro ONNX y <code class="docutils literal notranslate"><span class="pre">e3_dashboard.inference</span></code></p></td>
+<td><p>CPUExecutionProvider, contrato raw D7×5, escaladores fijos, una sesión en caché y paridad sobre 608 fechas con tolerancia 10⁻⁶.</p></td>
+<td><p>Repetir la prueba de humo en el entorno público y vigilar recursos con su configuración efectiva.</p></td>
 </tr>
-<tr class="row-even"><td><p>Metadatos y calibradores de E2</p></td>
-<td><p>Identifican pesos, escalas y q; no son un servidor ni una exportación ONNX.</p></td>
-<td><p>Comprobar hashes, entradas/salidas, preprocesamiento, intervalos y explicaciones del flujo final.</p></td>
+<tr class="row-even"><td><p>Metadatos, rangos de ajuste y cuantiles guardados</p></td>
+<td><p>E2 dispone de q por predictor; E3 mantiene intervalo sin calibrar. Los controles de entrada y dominio están separados.</p></td>
+<td><p>Conservar hashes y límites de interpretación; la sensibilidad por oclusión no acredita fidelidad o estabilidad explicativa.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>La ruta de producción prevista es <strong>ONNX + ONNX Runtime con <code class="docutils literal notranslate"><span class="pre">CPUExecutionProvider</span></code></strong>. No existen aquí exportaciones ONNX verificadas del catálogo. La conversión deberá conservar receta, semilla, esquema D7×5 de las tres redes, estadísticas de entrenamiento y escala objetivo, y repetir la ida y vuelta con tolerancias explícitas. La comprobación de las 608 entradas de prueba A2 sigue pendiente; la paridad actual sobre calibración no la sustituye. También faltan exportaciones y contratos de servicio del resto del catálogo.</p>
-<p>El runtime de servicio excluye PyTorch y las dependencias de entrenamiento. La reconstrucción científica del experimento necesitará un entorno separado que sí contenga el framework y sus versiones. El diseño del <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> deberá distinguir ambos perfiles o targets y demostrar sus dependencias e importaciones efectivas; este capítulo no entrega una imagen construida.</p>
-<p>Python <strong>3.11.9 es un ejemplo de la guía</strong>, no una versión validada para este servicio. Las exportaciones heredadas se ejecutaron con Python 3.12.14 y Torch 2.8.0+cpu; ese antecedente no verifica compatibilidad de una imagen ONNX Runtime. La versión de Python de producción se fijará después de comprobar instalación, arranque, exportación, inferencia y pruebas con el perfil exacto. Se guardarán versiones, arquitectura y digest de la imagen probada.</p>
+<p>La ruta implementada es <strong>ONNX + ONNX Runtime con <code class="docutils literal notranslate"><span class="pre">CPUExecutionProvider</span></code></strong> para MLP16, LSTM32, GRU32 y CNN-LSTM aditiva E3, semilla representativa 271801. La paridad de las 608 ventanas está verificada para esos cuatro; no para los otros trece sistemas. Los resultados precalculados no se presentan como inferencia en vivo. El contrato y la escala se verifican por predictor, con la diferencia entre memoria y exportación documentada.</p>
+<p>El runtime de servicio excluye PyTorch y las dependencias de entrenamiento. La reconstrucción científica conserva un entorno separado con el framework. El Dockerfile copia sólo código de servicio, datos permitidos y artefactos ONNX, utiliza usuario sin privilegios y no inicia el pipeline científico. La comprobación de la imagen y del navegador se distingue de una reproducción humana independiente de los experimentos.</p>
+<p>El perfil local usa <strong>Python 3.12.14</strong>, ONNX Runtime 1.23.2 y locks separados de ejecución y desarrollo. El Dockerfile fija el digest de su imagen base; sus recibos identifican el entorno y la forma de construcción. Python 3.11.9 sigue siendo un ejemplo de la guía, no el perfil probado aquí.</p>
 <p><strong>3. Versionar el código y resolver el almacenamiento de artefactos.</strong> El repositorio conservará código, dependencias, metadatos, hashes y procedencia. Los pesos que superen el límite vigente por archivo se gestionarán con Git LFS o almacenamiento externo documentado, con versión inmutable y comprobación de integridad. El despliegue debe obtener el contenido binario real, no sólo un puntero LFS o un nombre de archivo.</p>
 <p>La descarga/caché de pesos verificará SHA-256 y fallo explícito por ausencia o corrupción. Los identificadores de modelo procederán de un registro permitido; no se aceptarán rutas, URLs o pesos suministrados por el usuario. Las licencias de código y datos mantendrán su alcance propio. Un modelo sin artefacto de inferencia validado seguirá mostrando los resultados precalculados y la justificación documentada.</p>
 <p><strong>4. Configurar el Web Service de Render.</strong> Una vez aprobada la construcción local, el servicio se conectará a la rama y versión revisadas. Para la vía nativa Python, los comandos previstos son:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Construcción: pip install -r requirements.txt
-Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 120
+Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 1 --timeout 120
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">$PORT</span></code> lo proporciona Render; el enlace a <code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code> evita que el proceso quede accesible sólo desde la interfaz local. Los valores de hilos y timeout son una propuesta por probar, no tiempos o concurrencia ya certificados. La configuración se documentará en el futuro <code class="docutils literal notranslate"><span class="pre">render.yaml</span></code>, junto con Python validado y variables necesarias, sin exponer credenciales.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$PORT</span></code> lo proporciona Render; el enlace a <code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code> evita que el proceso quede accesible sólo desde la interfaz local. El repositorio incluye un blueprint Docker en <code class="docutils literal notranslate"><span class="pre">render.yaml</span></code>, con <code class="docutils literal notranslate"><span class="pre">autoDeploy:</span> <span class="pre">false</span></code> y healthcheck <code class="docutils literal notranslate"><span class="pre">/healthz</span></code>; el archivo no crea un servicio por sí mismo. El proceso local se comprueba con un worker y un hilo. La concurrencia, tiempos y recursos efectivos de Render quedan por medir.</p>
 <p>El diseño inicial usa <strong>un worker, carga serial y un modelo activo bajo demanda</strong>. El máximo de dos modelos por proceso de la sección 9 es un techo de caché, no una obligación de mantener dos simultáneamente. Las sesiones de inferencia se obtendrán después de validar el modelo solicitado, sin una <code class="docutils literal notranslate"><span class="pre">InferenceSession</span></code> global que cargue un modelo al importar el módulo. Si el servicio se implementa con runtime Docker, su configuración deberá reflejar esa vía y el target de servicio probado, sin mezclarla con un build nativo no verificado.</p>
 <p><strong>5. Revisar construcción, arranque y funcionamiento público.</strong> Se inspeccionarán logs y dependencias instaladas, URL HTTPS, recuperación ante errores, disponibilidad de artefactos y comportamiento de las tres páginas. Se medirán arranque frío, carga/evicción, RSS conjunto y transitorio, latencia completa y coste de explicaciones con la configuración efectiva. Una carga inválida no debe detener el servicio, revelar una traza interna o producir un pronóstico sustituido por cero.</p>
 <p>El ejemplo de clasificación con Softmax de la guía ilustra un patrón de callback, pero no es la salida de este problema. Aquí el modelo produce una predicción continua de σ₇ con h=1, la escala se invierte exactamente una vez y el intervalo, cuando se habilite y verifique, usará el calibrador del mismo predictor. No se convertirán salidas de regresión en probabilidades de clase.</p>
-<p><strong>6. Ejecutar y conservar la prueba de humo.</strong> El guion posterior al despliegue deberá recorrer la URL pública y cada modelo que tenga inferencia en vivo habilitada. No basta comprobar una respuesta HTTP de la portada. La lista de modelos elegibles se obtendrá del registro real; los precalculados y el candidato sin pesos BTC tendrán su estado comprobado, sin generar predicciones ficticias.</p>
+<p><strong>6. Ejecutar y conservar la prueba de humo pública.</strong> El guion deberá recorrer la URL Render y cada modelo habilitado. La lista procede del registro real de cuatro ONNX; los trece precalculados mantienen sus fuentes y su justificación. La verificación local del capítulo 9 no se renombra como prueba de la URL pública.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Comprobación del servicio</p></th>
@@ -460,7 +460,7 @@ Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeo
 <tbody>
 <tr class="row-even"><td><p>Contexto, EDA y Modelos</p></td>
 <td><p>URL/versión, navegación y callbacks de cada página.</p></td>
-<td><p>Pendiente: aplicación sin construir.</p></td>
+<td><p>Implementados en local; verificación pública pendiente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Filtros y datos insuficientes</p></td>
 <td><p>Todas las figuras e insights actualizados, n efectivo y mensajes claros.</p></td>
@@ -468,7 +468,7 @@ Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeo
 </tr>
 <tr class="row-even"><td><p>Cada modelo en vivo</p></td>
 <td><p>Un ejemplo permitido, contrato temporal, salida finita y procedencia del artefacto.</p></td>
-<td><p>Pendiente: perfil ONNX/ORT sin verificar.</p></td>
+<td><p>Cuatro ONNX verificados localmente; prueba pública pendiente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Preprocesamiento y escala</p></td>
 <td><p>Coincidencia con la referencia validada en tolerancia declarada.</p></td>
@@ -488,7 +488,7 @@ Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeo
 </tr>
 <tr class="row-odd"><td><p>Modalidades precalculadas</p></td>
 <td><p>Catálogo completo, fuentes y justificación de restricciones.</p></td>
-<td><p>Pendiente de interfaz.</p></td>
+<td><p>Diecisiete sistemas en la interfaz local; comprobar en Render.</p></td>
 </tr>
 </tbody>
 </table>
@@ -498,7 +498,7 @@ Inicio: gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeo
 <h3>Recursos del plan y contingencia<a class="headerlink" href="#recursos-del-plan-y-contingencia" title="Link to this heading">#</a></h3>
 <p>Antes de desplegar se verificarán los límites vigentes del plan en la documentación oficial de Render. Se contemplarán suspensión por inactividad, arranque frío, memoria/CPU, almacenamiento y persistencia. Los RSS de procesos CPU de exportación y las latencias forward de las tres referencias no acreditan capacidad del servicio completo ni su comportamiento concurrente.</p>
 <p>Si se requiere reducir tamaño, se evaluarán compresión o cuantización con paridad, pérdida de métrica frente al margen heredado y equivalencia cuando proceda. Cargar resultados precalculados o elegir un plan con más recursos exige justificación y contabilidad; este documento no selecciona ni activa un plan de pago. El entrenamiento seguirá fuera del servidor.</p>
-<p>Para la sustentación se comprobará la URL con antelación y se prepararán capturas y un vídeo breve del dashboard realmente funcionando, con versión y fecha. Ese material está pendiente de producir y no se sustituye por maquetas presentadas como funcionamiento real. Ante una interrupción se explicará el estado y se usará el respaldo como contingencia; la URL pública funcional y su prueba de humo siguen siendo entregables propios.</p>
+<p>Para la sustentación se comprobará la URL con antelación y se preparará un vídeo breve de esa versión, con fecha. Las capturas locales del capítulo 9 son evidencia de la aplicación local; no prueban un servicio público. Ante una interrupción se explicará el estado y se usará el respaldo como contingencia; la URL Render funcional y su prueba de humo siguen siendo entregables propios.</p>
 </section>
 </section>
 </section>

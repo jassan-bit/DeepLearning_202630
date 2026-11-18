@@ -416,13 +416,13 @@
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>URL pública del dashboard en Render, funcional durante la sustentación.</p></td>
-<td><p><a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Diseño del dashboard</span></a> y <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">plan de despliegue</span></a>.</p></td>
-<td><p><strong>Pendiente.</strong> No hay una aplicación Dash ni URL Render acreditadas. GitHub Pages publica el informe.</p></td>
+<td><p><a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Prototipo Dash local</span></a> con tres páginas, 17 sistemas y cuatro modelos ONNX en CPU; <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">plan de despliegue</span></a>.</p></td>
+<td><p><strong>Pendiente del servicio público.</strong> La aplicación existe; falta la URL Render y su comprobación de funcionamiento. GitHub Pages publica el informe.</p></td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p>Repositorio con estructura de la sección 9, README de instalación/uso/despliegue, dependencias exactas, Dockerfile, semillas, licencia y CITATION.cff.</p></td>
-<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630">Repositorio</a>, ejecutores, locks de los entornos existentes y diseño de la arquitectura futura.</p></td>
-<td><p><strong>Parcial.</strong> Faltan servicio, contenedor probado, entorno de inferencia sin framework de entrenamiento, documentación de uso y cierre de citación/licencias del producto. No se deducen de la estructura propuesta.</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630">Repositorio</a>, <code class="docutils literal notranslate"><span class="pre">app.py</span></code>, <code class="docutils literal notranslate"><span class="pre">pages/</span></code>, <code class="docutils literal notranslate"><span class="pre">e3_dashboard/</span></code>, README, Dockerfile, CITATION.cff y dependencias fijadas de servicio/desarrollo.</p></td>
+<td><p><strong>Parcial.</strong> Entorno ONNX Runtime sin Torch e imagen local construidos y comprobados; faltan el despliegue y validación en Render y las licencias/ratificaciones finales. El README de <code class="docutils literal notranslate"><span class="pre">training/</span></code> separa las ejecuciones científicas.</p></td>
 </tr>
 <tr class="row-even"><td><p>3</p></td>
 <td><p>Jupyter Book, fuentes y versión compilada/publicada, con los contenidos de la sección 11.</p></td>
@@ -451,18 +451,18 @@
 </tr>
 <tr class="row-odd"><td><p>8</p></td>
 <td><p>Tabla maestra CSV/parquet con Top 10, baselines, original, tres conjuntos adicionales, métricas por ejecución, semillas, tiempos y costes.</p></td>
-<td><p><a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">Tabla de configuraciones</span></a>, fuentes de <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloques_ab_20261115/</span></code> y <a class="reference download internal" download="" href="../_downloads/0bf20be134132d812eba1b43760104f0/metrics.csv"><code class="xref download docutils literal notranslate"><span class="pre">métricas</span> <span class="pre">posteriores</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">17</span> <span class="pre">sistemas</span></code></a>.</p></td>
-<td><p><strong>Parcial.</strong> BTC histórico ya tiene diez semillas por red de E2 y E3, tres referencias deterministas y 608 fechas comunes. Faltan los tres conjuntos adicionales y la fuente final común al informe/dashboard con todos los campos de recursos y exportación.</p></td>
+<td><p><a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">Tabla de configuraciones</span></a>, fuentes de <code class="docutils literal notranslate"><span class="pre">experiments/e3_bloques_ab_20261115/</span></code> y <a class="reference download internal" download="" href="../_downloads/0bf20be134132d812eba1b43760104f0/metrics.csv"><code class="xref download docutils literal notranslate"><span class="pre">métricas</span> <span class="pre">posteriores</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">17</span> <span class="pre">sistemas</span></code></a>, ampliadas en el capítulo 8.</p></td>
+<td><p><strong>Parcial.</strong> El catálogo de Dash deriva de esas métricas y su igualdad está probada. Faltan los tres conjuntos adicionales y todos los campos comparables de recursos y exportación; las curvas representantes no sustituyen las medias de diez semillas.</p></td>
 </tr>
 <tr class="row-even"><td><p>9</p></td>
 <td><p>Artefactos exportados con <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code> y prueba de ida y vuelta.</p></td>
-<td><p>Tres referencias E2 —MLP16, LSTM32 y GRU32— exportadas a TorchScript en <code class="docutils literal notranslate"><span class="pre">artifacts/e3_handoff/</span></code>, con metadata y reportes.</p></td>
-<td><p><strong>Parcial.</strong> Paridad puntual sobre 53 fechas de calibración; no sobre la A2 de 608 fechas. Falta la exportación de la CNN-LSTM evaluada y del resto del catálogo, así como la paridad ONNX/ORT del perfil de producción elegido en la sección 10. TorchScript es un formato admitido por la guía; las tres exportaciones existentes no cierran ese perfil del proyecto.</p></td>
+<td><p>Cuatro ONNX en <code class="docutils literal notranslate"><span class="pre">artifacts/e3_dashboard_v1/</span></code>: MLP16, LSTM32, GRU32 y CNN-LSTM E3, todos de la semilla 271801. Las tres exportaciones TorchScript históricas se conservan.</p></td>
+<td><p><strong>Disponible con alcance parcial.</strong> Paridad contra memoria CPU y predicciones congeladas en las 608 fechas, con tolerancia absoluta 10⁻⁶ en σ₇. Faltan los otros trece modelos y una política final de ajuste común; exportar no modifica el entrenamiento histórico.</p></td>
 </tr>
 <tr class="row-odd"><td><p>10</p></td>
 <td><p>MODEL_CARD.md y DATA_STATEMENT.md.</p></td>
-<td><p>Descripciones del candidato y de datos en las secciones <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6</span></a> y <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">9</span></a>, con antecedentes de E2.</p></td>
-<td><p><strong>Pendiente de consolidación.</strong> No se declaran publicados los dos archivos finales por disponer de descripciones en otros capítulos.</p></td>
+<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/MODEL_CARD.md">MODEL_CARD.md</a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/DATA_STATEMENT.md">DATA_STATEMENT.md</a>, con usos, fuentes, métricas y límites.</p></td>
+<td><p><strong>Disponibles como documentación de este corte.</strong> La revisión humana, los derechos de datos y los requisitos científicos abiertos conservan su estado; estos archivos no son firmas o una acreditación de novedad.</p></td>
 </tr>
 <tr class="row-even"><td><p>11</p></td>
 <td><p>Archivo versionado del repositorio con identificador persistente, citado en el cierre.</p></td>
@@ -476,8 +476,8 @@
 </tr>
 <tr class="row-even"><td><p>13</p></td>
 <td><p>Reporte de reproducción independiente y prueba de humo, anexos al libro.</p></td>
-<td><p>Requisitos y plantillas de evidencia en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>, <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a> y el <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo de cierre</span></a>.</p></td>
-<td><p><strong>Pendiente.</strong> Los checks de software y la construcción del sitio no equivalen a una persona ajena reproduciendo la tabla científica en contenedor o a una prueba del servicio Render.</p></td>
+<td><p>Comprobaciones locales de datos, inferencia, historial y app; requisitos de servicio en <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">10</span></a>, <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">11</span></a> y el <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo de cierre</span></a>.</p></td>
+<td><p><strong>Pendiente del cierre independiente y público.</strong> Los tests locales no equivalen a una persona ajena reproduciendo la campaña científica ni al humo de una URL Render.</p></td>
 </tr>
 </tbody>
 </table>
