@@ -8,7 +8,8 @@ permissions:
   contents: read
 jobs:
   runtime-and-browser:
-    runs-on: ubuntu-latest
+    # Playwright 1.56 provides Chromium for Ubuntu 24.04; ubuntu-latest can advance.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:

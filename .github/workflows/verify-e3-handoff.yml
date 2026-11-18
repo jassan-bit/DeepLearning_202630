@@ -26,7 +26,13 @@ jobs:
           python-version: '3.12'
       - name: Comprobar evidencia sin red ni entrenamiento
         run: |
-          python -m unittest discover -s tests -p 'test_e3_*.py' -v
+          # Keep every handoff test here; dashboard tests have their own pinned environment.
+          PYTHONPATH=tests python -m unittest -v \
+            test_e3_audit_e2_handoff \
+            test_e3_export_readiness \
+            test_e3_handoff_book \
+            test_e3_original_evidence \
+            test_e3_select_e2_configurations
           python scripts/e3_audit_e2_handoff.py --check
           python scripts/e3_select_e2_configurations.py --root . --check
           python scripts/e3_build_handoff_book.py --check
