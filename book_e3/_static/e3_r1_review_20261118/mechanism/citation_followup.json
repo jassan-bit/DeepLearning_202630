@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-18 19:33:37 UTC",
+  "assistance": "AI-assisted primary-source focal reading; not an independent human opinion",
+  "scope": "Selective backward and forward citation follow-up from five declared seeds. An observed edge verifies that the citing text contains a reference, not that the cited work is identical to E3. This is not an exhaustive citation census or completion of the three-database search.",
+  "seed_count": 5,
+  "verified_edges": 10,
+  "seed_papers": [
+    {
+      "seed": "S1",
+      "title": "Sample-Specific Output Constraints for Neural Networks",
+      "year": 2021,
+      "url": "https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf",
+      "backward": {
+        "citing_source": "https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf",
+        "citing_locator": "References, printed p.6820, Amos and Kolter2017 entry",
+        "target_title": "OptNet: Differentiable Optimization as a Layer in Neural Networks",
+        "target_url": "https://proceedings.mlr.press/v70/amos17a.html",
+        "observation": "Optimization-layer antecedent is explicitly listed.",
+        "target_access_scope": "Reference observed in seed; target body not read in this follow-up."
+      },
+      "forward": {
+        "citing_source": "https://arxiv.org/html/2307.10459v1",
+        "citing_locator": "References [5]",
+        "target_title": "Sample-Specific Output Constraints for Neural Networks",
+        "observation": "Konstantinov and Utkin2023 explicitly cite the AAAI2021 version.",
+        "citing_access_scope": "Focal reading of references and scope/conclusion; not a complete method replication."
+      }
+    },
+    {
+      "seed": "S2",
+      "title": "HARNet: A Convolutional Neural Network for Realized Volatility Forecasting",
+      "year": 2022,
+      "url": "https://arxiv.org/html/2205.07719v1",
+      "backward": {
+        "citing_source": "https://arxiv.org/html/2205.07719v1",
+        "citing_locator": "Introduction and References, Corsi2009",
+        "target_title": "A Simple Approximate Long-Memory Model of Realized Volatility",
+        "target_url": "https://doi.org/10.1093/jjfinec/nbp001",
+        "observation": "HAR is the declared structural baseline.",
+        "target_access_scope": "Citation and role observed in seed; target body not read in this follow-up."
+      },
+      "forward": {
+        "citing_source": "https://link.springer.com/article/10.1186/s40854-025-00809-5",
+        "citing_locator": "Analysis of applied forecasting models, HARNet subsection; References Reisenhofer2022",
+        "target_title": "HARNet: A Convolutional Neural Network for Realized Volatility Forecasting",
+        "observation": "Leushuis and Petkov review, published06January2026, explicitly discusses and cites HARNet.",
+        "citing_access_scope": "HARNet subsection and reference checked. Used to verify citation, not as primary evidence of E3 performance."
+      }
+    },
+    {
+      "seed": "S3",
+      "title": "The Lipschitz Constant of Self-Attention",
+      "year": 2021,
+      "url": "https://proceedings.mlr.press/v139/kim21i/kim21i.pdf",
+      "backward": {
+        "citing_source": "https://proceedings.mlr.press/v139/kim21i/kim21i.pdf",
+        "citing_locator": "Introduction and References, Vaswani et al.2017",
+        "target_title": "Attention Is All You Need",
+        "target_url": "https://arxiv.org/abs/1706.03762",
+        "observation": "Transformer attention formulation is explicitly cited.",
+        "target_access_scope": "Citation observed in seed; no new full-text reading of target in this follow-up."
+      },
+      "forward": {
+        "citing_source": "https://arxiv.org/html/2312.14820v2",
+        "citing_locator": "§1.2 Regularity of self-attention and its variants; References Kim2021",
+        "target_title": "The Lipschitz Constant of Self-Attention",
+        "observation": "Castin, Ablin and Peyre2024 discuss the unbounded-domain result and further study compact domains.",
+        "citing_access_scope": "Focal reading §1.2, §3 and references; no transfer of its theorem to E3."
+      }
+    },
+    {
+      "seed": "S4",
+      "title": "Lipschitz Normalization for Self-Attention Layers with Application to Graph Neural Networks",
+      "year": 2021,
+      "url": "https://proceedings.mlr.press/v139/dasoulas21a/dasoulas21a.pdf",
+      "backward": {
+        "citing_source": "https://proceedings.mlr.press/v139/dasoulas21a/dasoulas21a.pdf",
+        "citing_locator": "Introduction p.2456 and References, Luong et al.2015",
+        "target_title": "Effective Approaches to Attention-based Neural Machine Translation",
+        "target_url": "https://aclanthology.org/D15-1166/",
+        "observation": "Earlier recurrent content attention is explicitly cited.",
+        "target_access_scope": "Citation observed; target formula review remains in the prior dated literature matrix."
+      },
+      "forward": {
+        "citing_source": "https://arxiv.org/html/2312.14820v2",
+        "citing_locator": "§1.2 Regularity of self-attention and its variants; References Dasoulas2021",
+        "target_title": "Lipschitz Normalization for Self-Attention Layers with Application to Graph Neural Networks",
+        "observation": "Castin2024 explicitly distinguishes attention-score normalization from its compact-domain analysis.",
+        "citing_access_scope": "Selected method context and bibliography checked; no equivalence to E3 claimed."
+      }
+    },
+    {
+      "seed": "S5",
+      "title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2405.14616v1",
+      "backward": {
+        "citing_source": "https://arxiv.org/html/2405.14616v1",
+        "citing_locator": "§2.1 Temporal Modeling; References Zeng et al.2023",
+        "target_title": "Are Transformers Effective for Time Series Forecasting?",
+        "target_url": "https://arxiv.org/abs/2205.13504",
+        "observation": "DLinear is explicitly discussed as a decomposition-based predecessor.",
+        "target_access_scope": "Citation and method-family link observed; no new full-text reading of target in this follow-up."
+      },
+      "forward": {
+        "citing_source": "https://arxiv.org/html/2410.09062v1",
+        "citing_locator": "§1 Introduction [6], §2.4 and References",
+        "target_title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+        "observation": "Alex Y.Li2024 explicitly applies TimeMixer to financial volatility; its target is annualized rolling21d volatility.",
+        "citing_access_scope": "Focal reading of application, target definition and reference; exploratory preprint, not matched E3 benchmark."
+      }
+    }
+  ],
+  "discovery_method": "Two batches of four general web queries plus direct primary-source opens/finds. General searches are discovery only and are not counted as native bibliographic database searches.",
+  "limitations": [
+    "Only selected outgoing/incoming citations checked; no complete cited-by list exported.",
+    "No primary target body is labelled read merely because it appears in a bibliography.",
+    "No inference of novelty absence from a search result or citation edge.",
+    "External human repetition and opinion remain pending."
+  ],
+  "new_model_fits": 0,
+  "new_model_forwards": 0,
+  "new_hypothesis_tests": 0
+}

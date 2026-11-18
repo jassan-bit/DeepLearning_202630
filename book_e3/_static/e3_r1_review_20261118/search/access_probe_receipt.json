@@ -1,0 +1,73 @@
+{
+  "kind": "e3_r1_access_probe_receipt",
+  "recorded_at_utc": "2026-11-18T19:32:40.536Z",
+  "source_commit": "76b2397d99027457b922225cec8a4f0aab1cc04e",
+  "direct_requests": [
+    {
+      "url": "https://api.crossref.org/works?query=cryptocurrency%20volatility&rows=3",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://api.openalex.org/works?search=cryptocurrency%20volatility&per-page=3",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://dblp.org/search/publ/api?q=cryptocurrency%20volatility&format=json&h=3",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=cryptocurrency%20volatility&limit=3&fields=title,year,url",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ],
+  "tool_attempts": [
+    {
+      "kind": "native_api_web_tool",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Internal Error ()\n【turn42view0】 [wordlim: 200] Source: open({\"ref_id\":\"https://api.crossref.org/works?query=cryptocurrency%20volatility&rows=5\",\"lineno\":null}); \nURL https://api.crossref.org/works?query=cryptocurrency+volatility&rows=5 is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn42view1】 [wordlim: 200] Source: open({\"ref_id\":\"https://api.openalex.org/works?search=cryptocurrency%20volatility&per-page=5\",\"lineno\":null}); \nURL https://api.openalex.org/works?per-page=5&search=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn42view2】 [wordlim: 200] Source: open({\"ref_id\":\"https://dblp.org/search/publ/api?q=cryptocurrency%20volatility&format=json&h=5\",\"lineno\":null}); \nURL https://dblp.org/search/publ/api?format=json&h=5&q=cryptocurrency+volatility is not accessible via this tool."
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "kind": "native_interface_web_tool",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Internal Error ()\n【turn44view0】 [wordlim: 200] Source: open({\"ref_id\":\"https://search.crossref.org/?q=cryptocurrency+volatility\",\"lineno\":null}); \nURL https://search.crossref.org/?q=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn44view1】 [wordlim: 200] Source: open({\"ref_id\":\"https://explore.openalex.org/works?search=cryptocurrency%20volatility\",\"lineno\":null}); \nURL https://explore.openalex.org/works?search=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn44view2】 [wordlim: 200] Source: open({\"ref_id\":\"https://www.semanticscholar.org/search?q=cryptocurrency%20volatility&sort=relevance\",\"lineno\":null}); \nURL https://www.semanticscholar.org/search?q=cryptocurrency+volatility&sort=relevance is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn44view3】 [wordlim: 200] Source: open({\"ref_id\":\"https://dblp.org/search?q=cryptocurrency%20volatility\",\"lineno\":null}); \nURL https://dblp.org/search?q=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn44view4】 [wordlim: 200] Source: open({\"ref_id\":\"https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=cryptocurrency%20volatility\",\"lineno\":null}); \nURL https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn44view5】 [wordlim: 200] Source: open({\"ref_id\":\"https://www.acm.org/search?SearchTerm=cryptocurrency%20volatility\",\"lineno\":null}); \nURL https://www.acm.org/search?SearchTerm=cryptocurrency+volatility is not accessible via this tool."
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "kind": "alternative_native_interface_web_tool",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Internal Error ()\n【turn47view0】 [wordlim: 200] Source: open({\"ref_id\":\"https://ideas.repec.org/cgi-bin/htsearch?q=cryptocurrency+volatility\",\"lineno\":null}); \nURL https://ideas.repec.org/cgi-bin/htsearch?q=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn47view1】 [wordlim: 200] Source: open({\"ref_id\":\"https://econpapers.repec.org/scripts/search.pf?ft=cryptocurrency+volatility\",\"lineno\":null}); \nURL https://econpapers.repec.org/scripts/search.pf?ft=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn47view2】 [wordlim: 200] Source: open({\"ref_id\":\"https://scholar.google.com/scholar?q=cryptocurrency+volatility\",\"lineno\":null}); \nURL https://scholar.google.com/scholar?q=cryptocurrency+volatility is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn47view3】 [wordlim: 200] Source: open({\"ref_id\":\"https://www.base-search.net/Search/Results?lookfor=cryptocurrency+volatility&type=all&oaboost=1\",\"lineno\":null}); \nURL https://www.base-search.net/Search/Results?lookfor=cryptocurrency+volatility&oaboost=1&type=all is not accessible via this tool."
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "timing_note": "Fresh same-session requests; exact individual request UTC was not captured. recorded_at_utc is evidence assembly time.",
+  "direct_requests_count": 4,
+  "web_api_probes_count": 3,
+  "web_native_interface_probes_count": 10,
+  "distinct_transport_mechanisms": "normal configured urllib and supplied web tool; no proxy changes or bypass",
+  "native_bibliographic_responses_observed": 0,
+  "native_result_counts": null,
+  "result": "transport_unavailable_before_bibliographic_results",
+  "historical_arxiv_scope": "Earlier six native arXiv query results remain in experiments/e3_remediacion_20261118/literature/search_log.json; they are not rerun or altered here.",
+  "R1_accredited": false,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0
+}

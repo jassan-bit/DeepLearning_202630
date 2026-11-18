@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-11-18",
+  "purpose": "Identity and provenance pointers for an unperformed independent human R1 review",
+  "repository": "jassan-bit/DeepLearning_202630",
+  "source_commit": "76b2397d99027457b922225cec8a4f0aab1cc04e",
+  "source_tree": "6cd6e7dc555ec4bbc6c01e3a1c8976b639f774d4",
+  "candidate": {
+    "class": "InnovationModel",
+    "variant": "additive_positive_head",
+    "trainable_parameters": 1210,
+    "architecture": "causal CNN -> unidirectional LSTM -> content attention -> additive positive head",
+    "output": "sqrt(A) + y_scale * (1e-4 + softplus(z))",
+    "loss": "mean(((prediction - sigma7_target) / y_scale)^2)",
+    "historical_scope": "10 frozen seeds on the same 608 known Bitcoin test dates; this packet performs no fits",
+    "not_review_targets": [
+      "OriginalModel full attention mechanism with penalty/saturation (1211 parameters)",
+      "moment_joint head (1236 parameters)",
+      "innovation_density_mean"
+    ]
+  },
+  "hash_scope": "git_blob_sha1 is the Git object identifier of the exact committed file, not a SHA-256 content digest or a claim that a model was re-executed",
+  "files": [
+    {
+      "path": "book_e3/sections/06_modelo_original.md",
+      "git_blob_sha1": "e64894b69e2dbc3c423682a9d546a2f018f00ce4",
+      "size_bytes": 36912,
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/76b2397d99027457b922225cec8a4f0aab1cc04e/book_e3/sections/06_modelo_original.md"
+    },
+    {
+      "path": "experiments/e3_remediacion_20261118/literature/search_log.json",
+      "git_blob_sha1": "741ade0ade1858fb609d2fed3152fd1641b11cd2",
+      "size_bytes": 61064,
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/76b2397d99027457b922225cec8a4f0aab1cc04e/experiments/e3_remediacion_20261118/literature/search_log.json"
+    },
+    {
+      "path": "src/e3_development.py",
+      "git_blob_sha1": "02d008bf77a983ca75ae71146ac24e57989a4d13",
+      "size_bytes": 38128,
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/76b2397d99027457b922225cec8a4f0aab1cc04e/src/e3_development.py"
+    },
+    {
+      "path": "src/e3_innovation.py",
+      "git_blob_sha1": "06460e556e70f8608f1b1507afc11738a7a6c5da",
+      "size_bytes": 44078,
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/76b2397d99027457b922225cec8a4f0aab1cc04e/src/e3_innovation.py"
+    },
+    {
+      "path": "src/e3_innovation_model.py",
+      "git_blob_sha1": "8ae948e3a08bdd374337322f2f6193f13cd66391",
+      "size_bytes": 23342,
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/76b2397d99027457b922225cec8a4f0aab1cc04e/src/e3_innovation_model.py"
+    },
+    {
+      "path": "src/original_model.py",
+      "git_blob_sha1": "e5422a70b670e63697585b0de6005bd3535a44ec",
+      "size_bytes": 12281,
+      "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/76b2397d99027457b922225cec8a4f0aab1cc04e/src/original_model.py"
+    }
+  ],
+  "provenance_edges": [
+    {
+      "from": "src/e3_innovation.py",
+      "to": "src/e3_innovation_model.py:InnovationModel",
+      "relation": "instantiates the named development recipe"
+    },
+    {
+      "from": "src/e3_innovation_model.py:InnovationModel",
+      "to": "src/e3_development.py:DevelopmentModel(M00)",
+      "relation": "reuses the M00 encoder and attention; supplies its own positive head"
+    },
+    {
+      "from": "src/e3_development.py:DevelopmentModel(M00)",
+      "to": "src/original_model.py:OriginalModel",
+      "relation": "constructs primitives, disables penalty and saturation, removes penalty_raw"
+    },
+    {
+      "from": "book_e3/sections/06_modelo_original.md:6.8",
+      "to": "src/e3_innovation_model.py:InnovationModel(additive_positive_head)",
+      "relation": "documents the current evaluated candidate"
+    },
+    {
+      "from": "experiments/e3_remediacion_20261118/literature/search_log.json",
+      "to": "reviewer/REVIEW_FORM.md",
+      "relation": "provides historical query strings, not a human review"
+    }
+  ],
+  "human_review_status": "NOT_PERFORMED",
+  "new_model_fits": 0,
+  "new_market_predictions": 0,
+  "R1_certified": false
+}
