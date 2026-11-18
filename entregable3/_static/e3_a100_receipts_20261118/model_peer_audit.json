@@ -1,0 +1,520 @@
+{
+  "schema_version": "1.0",
+  "audit_type": "AI-assisted read-only receipt consistency audit",
+  "recorded_at_utc": "2026-11-18T17:39:38.468218+00:00",
+  "results_commit": "47d2f316a50d9268cb6484a547e8a2f0cc0413eb",
+  "executed_source_commit": "1ff136f71c0ffcd1dbd918efbc078a8d9653ed21",
+  "run_id": "20261118T172624131741Z",
+  "status": "passed",
+  "inputs": "Individual receipts first fetched read-only from the pinned GitHub result commit; checks persisted here reuse those files extracted by the parent byte/ZIP audit.",
+  "checks": {
+    "models": 17,
+    "unique_models": 17,
+    "passed": 17,
+    "individual_aggregate_mismatches": [],
+    "neural_cuda_models": 14,
+    "neural_backward_and_reload_passed": 14,
+    "all_neural_shape_4x7x5_to_4": true,
+    "all_neural_finite_nonnegative": true,
+    "finite_gradient_tensors_total": 456,
+    "finite_gradient_tensors_min": 4,
+    "finite_gradient_tensors_max": 62,
+    "positive_GPU_peaks": 14,
+    "GPU_peak_bytes_min": 68176384,
+    "GPU_peak_bytes_max": 90795008,
+    "classical_cpu_models": 3,
+    "all_classical_finite_nonnegative": true,
+    "classical_reloads_identical": true,
+    "synthetic_ARIMA_fits": 1,
+    "all_optimizer_steps_zero": true,
+    "all_market_model_fits_zero": true,
+    "new_real_data_fits": 0,
+    "new_market_predictions": 0,
+    "new_hypothesis_tests": 0,
+    "summed_worker_wall_seconds": 43.7349980999993
+  },
+  "environment": {
+    "python": "3.12.12",
+    "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+    "requested_device": "cuda:0",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3",
+      "statsmodels": "0.14.5",
+      "einops": "0.8.1"
+    },
+    "approved": true,
+    "blockers": [],
+    "torch": "2.8.0+cu126",
+    "cuda_runtime": "12.6",
+    "cuda_available": true,
+    "cudnn_version": 91002,
+    "cpu_count": 12,
+    "GPU": {
+      "name": "NVIDIA A100-SXM4-40GB",
+      "total_memory_bytes": 42405855232,
+      "capability": [
+        8,
+        0
+      ],
+      "device_count": 1
+    },
+    "nvidia_smi": "NVIDIA A100-SXM4-40GB, 580.82.07, 40960 MiB"
+  },
+  "source_package_inventory_status": "verified",
+  "source_package_author_files_verified": 76,
+  "frozen_neural_recipe_matches": [
+    {
+      "model": "FCN-1D",
+      "parameters": 268929,
+      "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "matched": true
+    },
+    {
+      "model": "ResNet-1D",
+      "parameters": 522955,
+      "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+      "matched": true
+    },
+    {
+      "model": "Inception-1D",
+      "parameters": 490561,
+      "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "matched": true
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "parameters": 8739,
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+      "matched": true
+    },
+    {
+      "model": "TimesNet",
+      "parameters": 1173099,
+      "recipe_id": "TN-D7-PUBLISHED-v1",
+      "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+      "matched": true
+    },
+    {
+      "model": "TSMixer",
+      "parameters": 35044,
+      "recipe_id": "TSM-D7-r1__hpo_v1",
+      "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+      "matched": true
+    },
+    {
+      "model": "TiDE",
+      "parameters": 163384,
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "matched": true
+    },
+    {
+      "model": "TimeMixer",
+      "parameters": 9447,
+      "recipe_id": "TM-D7-PUBLISHED-v1",
+      "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+      "matched": true
+    },
+    {
+      "model": "PatchTST",
+      "parameters": 16388,
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "matched": true
+    },
+    {
+      "model": "iTransformer",
+      "parameters": 795403,
+      "recipe_id": "IT-D7-r1__hpo_v1",
+      "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+      "matched": true
+    },
+    {
+      "model": "MLP16",
+      "parameters": 593,
+      "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+      "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+      "matched": true
+    },
+    {
+      "model": "LSTM32",
+      "parameters": 5025,
+      "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+      "matched": true
+    },
+    {
+      "model": "GRU32",
+      "parameters": 3777,
+      "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+      "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+      "matched": true
+    }
+  ],
+  "candidate_configuration": {
+    "class": "src.e3_innovation_model.InnovationModel",
+    "variant": "additive_positive_head",
+    "parameters": 1210,
+    "synthetic_only_configuration": {
+      "u_scale": 0.01,
+      "y_scale": 0.02,
+      "seed": 271801
+    },
+    "future_real_scaler_must_be_train_only": true
+  },
+  "ARIMA": {
+    "order": [
+      2,
+      0,
+      1
+    ],
+    "fits_synthetic_only": 1,
+    "forecast_before_observe_guard_passed": true,
+    "converged": true,
+    "checkpoint_reload_identical": true
+  },
+  "lag_controls_causal_exact": true,
+  "stage_scope": {
+    "initial_hardware_global_GPU_verified": false,
+    "initial_hardware_models_count": 0,
+    "final_global_GPU_verified": true,
+    "environment_has_ambiguous_GPU_execution_flag": false,
+    "runtime_setup_models_executed": false,
+    "explanation": "Initial hardware and setup records precede workers; their false execution flags do not contradict the final verified GPU result."
+  },
+  "campaign_guard": {
+    "allowed": false,
+    "blockers": [
+      "No hay manifiesto final de campaña ni tag anotado de protocolo.",
+      "Datasets admitidos: 0 de 3; candidatos de metadatos no son admisiones.",
+      "Faltan tratamiento común de 17 sistemas, presupuesto y potencia final de la batería."
+    ],
+    "real_training_dispatched": false,
+    "R1_R3_verified": false
+  },
+  "limitations": [
+    "Synthetic fixtures [4,7,5], not market forecasts or real-model training.",
+    "The ZIP excludes tensor/checkpoint bytes; finite gradients and identical reload are evidenced by the individual receipts and verified executed source, not recomputed here from weights.",
+    "GPU peaks are per-process PyTorch allocation for these fixtures, not total GPU memory consumption or a full-training capacity benchmark.",
+    "Summed worker wall times exclude environment installation and are not inference latency or comparative performance.",
+    "No HPO, broader evaluation, R1/R3 accreditation or independent human reproduction."
+  ],
+  "new_GPU_executions_by_auditor": 0,
+  "new_model_fits_by_auditor": 0,
+  "independent_human_reproduction_accredited": false,
+  "model_checks": [
+    {
+      "model": "FCN-1D",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 268929,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 14,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 71534080,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "ResNet-1D",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 522955,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 52,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 80817664,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "Inception-1D",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 490561,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 50,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 75106304,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 8739,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 10,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 75742720,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "TimesNet",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 1173099,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 57,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 90795008,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "TSMixer",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 35044,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 62,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 68887552,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "TiDE",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 163384,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 29,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 70850560,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "TimeMixer",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 9447,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 61,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 70502912,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "PatchTST",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 16388,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 57,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 68607488,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "iTransformer",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 795403,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 38,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 81033216,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "MLP16",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 593,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 4,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 68176384,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "LSTM32",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 5025,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 6,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 75689472,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "GRU32",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 3777,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 6,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 75649536,
+      "synthetic_ARIMA_fits": null
+    },
+    {
+      "model": "Persistence",
+      "status": "passed",
+      "device": "cpu_classical",
+      "parameters": null,
+      "output_shape": [
+        1
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": false,
+      "finite_gradient_tensors": null,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": null,
+      "synthetic_ARIMA_fits": 0
+    },
+    {
+      "model": "SeasonalNaive",
+      "status": "passed",
+      "device": "cpu_classical",
+      "parameters": null,
+      "output_shape": [
+        1
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": false,
+      "finite_gradient_tensors": null,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": null,
+      "synthetic_ARIMA_fits": 0
+    },
+    {
+      "model": "ARIMA",
+      "status": "passed",
+      "device": "cpu_classical",
+      "parameters": null,
+      "output_shape": [
+        1
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": false,
+      "finite_gradient_tensors": null,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": null,
+      "synthetic_ARIMA_fits": 1
+    },
+    {
+      "model": "CNN-LSTM-atencion-aditiva E3",
+      "status": "passed",
+      "device": "cuda:0",
+      "parameters": 1210,
+      "output_shape": [
+        4
+      ],
+      "finite_nonnegative": true,
+      "synthetic_backward_executed": true,
+      "finite_gradient_tensors": 10,
+      "optimizer_steps": 0,
+      "real_data_model_fits": 0,
+      "checkpoint_reload_identical": true,
+      "GPU_peak_memory_bytes": 75582464,
+      "synthetic_ARIMA_fits": null
+    }
+  ],
+  "available_lag_state_byte_checks": [
+    {
+      "model": "Persistence",
+      "path": "model_14/synthetic_lag_state.json",
+      "bytes": 121,
+      "expected_sha256": "f7275e8ccca9df10b99f2b3c929d91c8167282218b45adda3fb0cd741c075559",
+      "observed_sha256": "f7275e8ccca9df10b99f2b3c929d91c8167282218b45adda3fb0cd741c075559",
+      "matched": true
+    },
+    {
+      "model": "SeasonalNaive",
+      "path": "model_15/synthetic_lag_state.json",
+      "bytes": 121,
+      "expected_sha256": "45572794f559877a41061ed8ef0337bc2bb1e37a7004cada495dec56f29f2e58",
+      "observed_sha256": "45572794f559877a41061ed8ef0337bc2bb1e37a7004cada495dec56f29f2e58",
+      "matched": true
+    }
+  ]
+}
