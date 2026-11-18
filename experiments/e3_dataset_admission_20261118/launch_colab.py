@@ -50,7 +50,7 @@ if not (context and context['source']==SOURCE and (context['output']/'dataset_au
     git('sparse-checkout','init','--cone')
     git('fetch','--depth','1','origin',SOURCE)
     git('checkout','--detach',SOURCE)
-    git('sparse-checkout','set','experiments/e3_dataset_admission_20261118','experiments/e3_remediacion_20261118/evaluation')
+    git('sparse-checkout','set','experiments/e3_dataset_admission_20261118','experiments/e3_remediacion_20261118/evaluation','experiments/e3_d01_admission_20261118')
     assert git('rev-parse','HEAD')==SOURCE
     api=module('e3_dataset_git_'+run_id,checkout/'experiments/e3_remediacion_20261118/evaluation/colab_github.py')
     api.validate_credentials(_E3_GITHUB_TOKEN)
@@ -75,4 +75,5 @@ except Exception as error:
     print('Conserva la sesión: tras corregir el acceso, reejecutar esta celda reintenta sólo el guardado.')
     raise
 print('Auditoría guardada en GitHub:',DATASET_PUBLICATION['run_url'])
-print('D01: 3270 filas revisadas. Datasets admitidos: 0/3; no se entrenaron modelos.')
+current=json.loads((context['output']/'dataset_audit.json').read_text())
+print('D01: 3270 filas revisadas. Datasets admitidos:',str(current['datasets_admitted'])+'/3. Sin entrenamiento nuevo.')

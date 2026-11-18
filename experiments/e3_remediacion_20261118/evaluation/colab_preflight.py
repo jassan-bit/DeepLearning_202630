@@ -310,7 +310,7 @@ def campaign_gate(manifest=None, root=ROOT):
                 "real_training_dispatched": False, "R1_R3_verified": False}
     if manifest is None:
         return {"allowed": False, "blockers": ["No hay manifiesto final de campaña ni tag anotado de protocolo.",
-            "Datasets admitidos: 0 de 3; candidatos de metadatos no son admisiones.",
+            "Falta vincular al manifiesto final la admisión de los tres datasets; una admisión parcial no habilita la campaña.",
             "Faltan tratamiento común de 17 sistemas, presupuesto y potencia final de la batería."],
             "real_training_dispatched": False, "R1_R3_verified": False}
     root = Path(root).resolve()

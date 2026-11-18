@@ -1,13 +1,13 @@
 {
   "fecha_auditoria_utc": "2026-11-18",
   "tipo": "inventario_preparatorio_de_metadatos",
-  "estado": "tres_candidatos_cero_admitidos",
+  "estado": "un_dataset_admitido_dos_pendientes",
   "seleccion_final_prerregistrada": false,
-  "validacion_tecnica_realizada": false,
+  "validacion_tecnica_realizada": true,
   "numero_candidatos": 3,
-  "numero_datasets_admitidos": 0,
+  "numero_datasets_admitidos": 1,
   "alcance": {
-    "investigacion": "Consulta de metadatos, documentación y términos públicos; sin descargar archivos de datos, ajustar modelos ni calcular rendimiento.",
+    "investigacion": "D01: archivo inmutable inspeccionado, licencia primaria y calendario de referencia contrastados; política RAW_KEEP_ALL declarada. D02/D03 conservan el inventario de metadatos. No hubo modelos ni métricas.",
     "exposicion_a_resultados": "No se observaron resultados de rendimiento de los candidatos en esta búsqueda. Esto no afirma desconocimiento global, ausencia de otros resultados publicados ni falta de exposición previa fuera de esta búsqueda.",
     "limitacion": "Las declaraciones de licencia, procedencia y cobertura no sustituyen una verificación de derechos upstream ni la inspección de un archivo inmutable."
   },
@@ -41,12 +41,12 @@
       "nombre": "WIKI/AAPL histórico diario mediante el archivo de Bokeh",
       "instrumento": "AAPL, acción estadounidense",
       "periodo_propuesto": "2000-03-01 a 2013-03-01",
-      "estado_periodo": "Los límites aparecen en la documentación del extracto; filas y cobertura efectiva no comprobadas.",
-      "version": "Documentación consultada de Bokeh 3.10.2 e inventario en la rama main; commit y paquete inmutables aún no fijados.",
+      "estado_periodo": "3270 fechas únicas y ordenadas verificadas: 2000-03-01 a 2013-03-01; coinciden exactamente con la referencia NASDAQ(alias XNYS) de exchange-calendars 4.11.3.",
+      "version": "Bokeh sampledata commit 3e831d2779ca74c087c7eee05d538015c97b1e52, stocks.csv.gz SHA256 5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd",
       "esquema_declarado": "ticker, date, open, high, low, close, volume, adj_close",
-      "acceso": "Documentación e inventario accesibles; no se descargó el archivo de datos. La página actual de Nasdaq sólo pudo verificarse mediante contenido indexado y devolvió 404 al abrirla.",
+      "acceso": "Archivo público descargado e inspeccionado; copia inmutable versionada.",
       "licencia_declarada": "Dominio público para los datos WIKI; no se etiqueta como CC0 ni se aplica la licencia de software BSD a los datos por extensión.",
-      "derechos_upstream": "El resultado indexado del editor Nasdaq declara dominio público. Bokeh documenta un aviso histórico de Quandl que permite redistribución; ese aviso archivado no fue accesible directamente en esta auditoría. La declaración está identificada, pero no equivale a verificar toda la cadena de derechos o los bytes del extracto.",
+      "derechos_upstream": "El inventario primario fijado de Bokeh identifica la fuente WIKI como dominio público/source-verified y declara permiso de copia y redistribución del editor. Se conserva atribución; no se renombra como CC0 ni se aplica la licencia de software a los datos.",
       "ejes_frente_a_referencia": [
         "Fuente: WIKI/Bokeh frente a Binance Spot",
         "Instrumento y clase de activo: acción AAPL frente a BTCUSDT",
@@ -54,15 +54,8 @@
         "Reloj de mercado: sesiones bursátiles frente a días UTC continuos"
       ],
       "ruido": "No medido; los ajustes corporativos constituyen una cuestión de definición y calidad pendiente.",
-      "estado_admision": "no_admitido",
-      "bloqueos": [
-        "Fijar commit o versión de paquete, archivo y SHA-256; los hashes publicados en el inventario no fueron recalculados.",
-        "Comprobar filas, fechas, precios positivos, volumen no negativo, duplicados, coherencia OHLC y faltantes por sesión.",
-        "Fijar una política causal de acciones corporativas: OHLC sin ajustar y adj_close con ajustes posteriores no pueden mezclarse silenciosamente.",
-        "Resolver el contrato próxima sesión frente a próximo día UTC antes de admitir la tarea.",
-        "Conservar la evidencia indexada del editor y recuperar el aviso histórico o una confirmación equivalente para cerrar la trazabilidad de derechos.",
-        "Determinar tamaño utilizable y particiones mediante el protocolo de evaluación, sin consultar rendimiento."
-      ],
+      "estado_admision": "admitido_para_sigma7_precio_bruto_7sesiones_h1sesion",
+      "bloqueos": [],
       "fuentes": [
         {
           "url": "https://data.nasdaq.com/databases/WIKIP",
@@ -87,7 +80,18 @@
           "tipo": "aviso_historico_del_editor_referenciado_por_Bokeh",
           "accesibilidad_observada": "no_accesible_mediante_la_herramienta",
           "sustenta": "Referencia documental pendiente de recuperación directa; su contenido no se verificó de primera mano."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/bokeh/bokeh_sampledata/3e831d2779ca74c087c7eee05d538015c97b1e52/licenses/datasets.json",
+          "tipo": "inventario_primario_inmutable",
+          "accesibilidad_observada": "bytes y SHA256 verificados",
+          "sustenta": "Declaración actual de dominio público/source-verified de stocks y permiso de copia/redistribución."
         }
+      ],
+      "limitaciones_admision": [
+        "RAW_KEEP_ALL conserva efectos mecánicos de acciones corporativas y no estima volatilidad económica ajustada",
+        "Siete sesiones y h=próxima sesión no son siete días UTC; no se rellenan fines de semana",
+        "El protocolo de modelos, particiones y otros dos datasets siguen pendientes"
       ]
     },
     {
@@ -199,6 +203,12 @@
       ]
     }
   ],
-  "regla_de_cierre": "Este inventario no autoriza entrenamiento ni evaluación. La admisión requiere expediente de derechos y archivo inmutable inspeccionado, contrato de tarea explícito y protocolo fijado antes de observar resultados.",
-  "independencia": "Tres series candidatas no equivalen a tres réplicas estadísticamente independientes; pueden compartir shocks, calendario y proveedores."
+  "regla_de_cierre": "La admisión del archivo y tarea D01 no habilita modelos. Los otros dos conjuntos y el protocolo de comparación deben cerrarse antes de observar rendimiento; la selección final de la familia no está prerregistrada.",
+  "independencia": "Tres series candidatas no equivalen a tres réplicas estadísticamente independientes; pueden compartir shocks, calendario y proveedores.",
+  "alcance_validacion_tecnica": [
+    "D01"
+  ],
+  "decision_actual": "experiments/e3_d01_admission_20261118/admission_decision.json",
+  "historial_inicial": "b57f21e81a1a9d12ad4da27ef3c84ed072c426df: inventario inicial de tres candidatos y cero admitidos",
+  "real_campaign_allowed": false
 }

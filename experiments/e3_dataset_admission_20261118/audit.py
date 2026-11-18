@@ -72,7 +72,8 @@ def run(output, source_commit):
     reader = csv.DictReader(io.StringIO(csv_raw.decode('utf-8')))
     if reader.fieldnames != FIELDS:
         raise ValueError('Source schema differs')
-    qc = inspect_aapl(list(reader))
+    source_rows = list(reader)
+    qc = inspect_aapl(source_rows)
     if (qc['rows'],qc['first'],qc['last'],qc['unique_dates']) != (3270,'2000-03-01','2013-03-01',3270):
         raise ValueError('Pinned AAPL coverage differs')
     if not qc['strictly_sorted'] or qc['missing_numeric_rows'] or qc['invalid_OHLCV_rows']:
@@ -105,10 +106,34 @@ def run(output, source_commit):
         'forecast_performance_used_for_selection':False,'new_real_data_fits':0,
         'new_market_predictions':0,'new_hypothesis_tests':0,'R1_R3_verified':False,
         'real_campaign_allowed':False}
+    decision_path=HERE.parent/'e3_d01_admission_20261118/admission_decision.json'
+    if decision_path.is_file():
+        decision=json.loads(decision_path.read_text())
+        if not (decision.get('admitted') is True and decision['input']['sha256']==DATA_SHA
+                and decision['policy']['id']=='RAW_KEEP_ALL'
+                and decision['policy']['adjusted_close_used'] is False
+                and decision['calendar']['ordered_sessions_matched']==3270
+                and decision['calendar']['missing']==decision['calendar']['extra']==[]):
+            raise ValueError('D01 admission decision does not match the inspected file/task')
+        calendar_path=decision_path.parent/'NASDAQ_sessions_20000301_20130301.csv'
+        calendar_raw=calendar_path.read_bytes()
+        if sha(calendar_raw) != decision['calendar']['csv_sha256']:
+            raise ValueError('Calendar reference bytes differ')
+        sessions=[r['date'] for r in csv.DictReader(io.StringIO(calendar_raw.decode()))]
+        if sessions != [r['Date'] for r in source_rows if r['Ticker']=='AAPL']:
+            raise ValueError('Dataset dates differ from admitted sessions')
+        report['datasets'][0]['quality']['trading_calendar_verified']=True
+        report['datasets'][0]['admitted']=True
+        report['datasets'][0]['remaining_gates']=[]
+        report['datasets'][0]['admission_decision']='experiments/e3_d01_admission_20261118/admission_decision.json'
+        report['datasets'][0]['task_contract_status']='admitted_raw_session_definition; model protocol still pending'
+        report['datasets_admitted']=1
+        report['remaining_campaign_gates']=decision['remaining_campaign_gates']
+        report['initial_zero_admission_report_preserved']=decision['evidence']['reported_audit_commit']
     output.mkdir(parents=True)
     for name, value in [('dataset_audit.json',report),('source_evidence.json',provenance)]:
         (output/name).write_text(json.dumps(value,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
     (output/'audit.log').write_text('D01 AAPL: 3270 rows; 0 basic OHLCV failures; no filtering, adjusted-close use or modelling.\n')
     print(json.dumps({'D01_rows':3270,'D01_basic_OHLCV':'passed','sources_inspected':1,
-        'datasets_admitted':0,'new_real_data_fits':0,'new_market_predictions':0,'output':str(output)}))
+        'datasets_admitted':report['datasets_admitted'],'new_real_data_fits':0,'new_market_predictions':0,'output':str(output)}))
     return report

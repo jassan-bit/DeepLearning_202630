@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "audit_type": "AI-assisted read-only dataset-audit persistence/profile review",
+  "recorded_at_utc": "2026-11-18T18:22:41.979Z",
+  "status": "passed_with_nonblocking_editorial_observation",
+  "results_commit": "648f2b91b477b5f4226cad3af5928088accd74ed",
+  "source_commit": "568aee0445a6eaba0f13c11deb2d6d64aa4f3fbd",
+  "run_id": "20261118T181551067867Z",
+  "results_branch": "e3-dataset-audit-20261118T181551067867Z",
+  "checks": {
+    "dataset_profile": true,
+    "source_head": true,
+    "branch_ref": true,
+    "dataset_total": true,
+    "dataset_count": true,
+    "no_model_experiments": true,
+    "no_R1_R3": true,
+    "real_campaign_blocked": true,
+    "no_preflight_file": true,
+    "no_raw_CSV_published": true,
+    "all_json_log_evidence_present": true,
+    "helper_same_as_reviewed_code": true
+  },
+  "manifest_files_excluding_manifest_itself": 4,
+  "persisted_files_including_manifest": 5,
+  "source_evidence_file": "files/source_evidence.json",
+  "technical_evidence_file": "files/dataset_audit.json",
+  "reported_technical_summary": {
+    "dataset": "D01",
+    "instrument": "AAPL",
+    "source": {
+      "repository": "bokeh/bokeh_sampledata",
+      "commit": "3e831d2779ca74c087c7eee05d538015c97b1e52",
+      "path": "src/bokeh_sampledata/_data/stocks.csv.gz",
+      "bytes": 294246,
+      "sha256": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd",
+      "uncompressed_sha256": "e73fe05d106b7da1abe8f947264c514afd02cef5c9db4864b9437c84d6bd6069",
+      "declared_license": "Public domain",
+      "source_rights_statement_status": "verified_primary_distributor_statement"
+    },
+    "rows": 3270,
+    "unique_dates": 3270,
+    "date_first": "2000-03-01",
+    "date_last": "2013-03-01",
+    "strictly_sorted": true,
+    "weekend_rows": 0,
+    "max_calendar_gap_days": 7,
+    "missing_numeric_rows": 0,
+    "invalid_OHLCV_rows": 0,
+    "rows_removed": 0,
+    "adjusted_close_used": false,
+    "large_close_ratio_flag_dates": [
+      "2000-06-21",
+      "2000-09-29",
+      "2005-02-28"
+    ],
+    "flags_are_not_automatic_split_labels": true,
+    "trading_calendar_verified": false,
+    "target_values_or_model_metrics_computed": false,
+    "task_contract": {
+      "clock": "trading_session",
+      "window": 7,
+      "horizon": "next_trading_session",
+      "target": "population standard deviation of 7 close log returns; ddof=0; not annualized",
+      "UTC_calendar_equivalence_claimed": false,
+      "target_not_built_in_this_step": true
+    },
+    "remaining_gates": [
+      "corporate-action policy with event evidence; keep genuine crashes",
+      "exchange-session calendar validation",
+      "common partitions and final prospective protocol"
+    ]
+  },
+  "datasets_inspected": 1,
+  "datasets_admitted": 0,
+  "other_candidates": [
+    {
+      "id": "D02",
+      "instrument": "SPY",
+      "admitted": false,
+      "technical_file_inspected": false
+    },
+    {
+      "id": "D03",
+      "instrument": "Bitstamp BTCUSD",
+      "admitted": false,
+      "technical_file_inspected": false
+    }
+  ],
+  "persistence_profile": {
+    "branch_prefix": "e3-dataset-audit-",
+    "path_prefix": "runs/dataset_admission/",
+    "explicit_source_base_tree": true,
+    "source_parent_pinned": true,
+    "readback_integrity_and_exact_existing_retry_reviewed_in_source": true,
+    "main_reference_mutation_in_uploader": false,
+    "raw_price_files_in_results_manifest": false
+  },
+  "main_ref_observed_during_audit": {
+    "sha": "b57f21e81a1a9d12ad4da27ef3c84ed072c426df",
+    "equals_result_commit": false,
+    "note": "Current main is not the results commit. Other authorized main updates may occur; source uploader only creates its unique results branch."
+  },
+  "observations": [
+    {
+      "severity": "nonblocking_editorial",
+      "path": "files/source_evidence.json",
+      "field": "technical_report",
+      "value": "technical_review.json",
+      "referenced_file_present_in_results_manifest": false,
+      "explanation": "The legacy technical_review.json pointer is not uploaded; the actual technical summary is embedded in dataset_audit.json#/datasets/0/quality. Preserve this historical snapshot and clarify the pointer in derived documentation."
+    }
+  ],
+  "limitations": [
+    "This peer review checks persistence/profile consistency and the reported technical figures; it does not reparse the underlying publisher price file or independently recompute its row-quality statistics.",
+    "Primary licensing statements are recorded in source_evidence.json; this review does not provide an independent legal determination.",
+    "ZIP byte integrity and source-tree preservation are checked separately by the root byte audit.",
+    "No target tensor, model fit, market forecast, statistical hypothesis test, new GPU execution, R1/R3 certification or independent human reproduction was performed here.",
+    "Trading-session calendar, corporate-action/RAW-price policy and common partitions/prospective protocol remain open in this saved audit."
+  ],
+  "new_model_fits_by_auditor": 0,
+  "new_GPU_executions_by_auditor": 0,
+  "independent_human_reproduction_accredited": false
+}

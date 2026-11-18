@@ -20,7 +20,7 @@ Un venv completo se verifica y reutiliza. Un entorno parcial o cuyo lock cambió
 
 `campaign_gate` falla de forma cerrada si no existe un manifiesto final. Para una futura revisión exige identidad del candidato, los 17 sistemas, tres datasets realmente admitidos y contratos sigma7/h1 con reloj explícito; manifiestos de procedencia, licencias, auditoría técnica y exposición atados a archivos y hashes; tratamiento común, presupuesto con cargos de fallos y potencia individual/conjunta de toda la batería; y un tag Git anotado cuyos bytes coincidan con el manifiesto. Verifica que tag y congelamiento precedan al primer ajuste/evaluación, que el congelamiento ya exista y que el primer trabajo siga planificado en el futuro.
 
-La comprobación tipada de archivos y fechas ayuda a revisar el protocolo; no sustituye la revisión humana de las decisiones científicas, las licencias, la novedad ni los cálculos. Este cuaderno no incluye un despachador de entrenamientos reales. El estado actual sigue siendo **0 datasets admitidos y campaña bloqueada**, incluso después de pasar los contratos sintéticos. No acredita R1 ni R3.
+La comprobación tipada de archivos y fechas ayuda a revisar el protocolo; no sustituye la revisión humana de las decisiones científicas, las licencias, la novedad ni los cálculos. Este cuaderno no incluye un despachador de entrenamientos reales. El estado posterior de fuentes es **D01 admitido (1/3) y campaña bloqueada**: véase `experiments/e3_d01_admission_20261118/admission_decision.json`. Pasar contratos sintéticos no sustituye los otros dos datasets ni el protocolo común. No acredita R1 ni R3.
 
 ## Comandos
 

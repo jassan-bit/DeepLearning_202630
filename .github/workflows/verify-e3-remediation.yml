@@ -6,6 +6,8 @@ on:
     paths:
       - 'experiments/e3_remediacion_20261118/**'
       - 'experiments/e3_a100_receipts_20261118/**'
+      - 'experiments/e3_dataset_admission_20261118/**'
+      - 'experiments/e3_d01_admission_20261118/**'
       - 'experiments/e3_estadistica_posterior_20261117/**'
       - 'experiments/e3_revision_bloque_d_20261117/metrics_supplement.py'
       - 'book_e3/_static/e3_estadistica_posterior_20261117/**'
@@ -20,6 +22,8 @@ on:
     paths:
       - 'experiments/e3_remediacion_20261118/**'
       - 'experiments/e3_a100_receipts_20261118/**'
+      - 'experiments/e3_dataset_admission_20261118/**'
+      - 'experiments/e3_d01_admission_20261118/**'
       - 'experiments/e3_estadistica_posterior_20261117/**'
       - 'experiments/e3_revision_bloque_d_20261117/metrics_supplement.py'
       - 'book_e3/_static/e3_estadistica_posterior_20261117/**'
@@ -85,6 +89,14 @@ jobs:
           python -m unittest discover \
             -s experiments/e3_remediacion_20261118/evaluation -p test_colab_github.py -v \
             2>&1 | tee "$CI_E3_DIR/colab_github_contracts.log"
+          python -m unittest discover \
+            -s experiments/e3_remediacion_20261118/evaluation -p test_colab_github_dataset.py -v \
+            2>&1 | tee "$CI_E3_DIR/dataset_storage_contracts.log"
+          python -m unittest discover \
+            -s experiments/e3_dataset_admission_20261118 -p test_audit.py -v \
+            2>&1 | tee "$CI_E3_DIR/dataset_inspection_contracts.log"
+          python experiments/e3_d01_admission_20261118/verify.py \
+            | tee "$CI_E3_DIR/D01_admission.json"
 
       - name: Verificar el archivo A100 guardado y la tabla de sus recibos
         run: |

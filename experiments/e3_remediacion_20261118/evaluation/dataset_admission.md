@@ -1,4 +1,6 @@
-# Inventario preparatorio de datasets: 0 admitidos
+# Admisión de datasets: D01 admitido, dos pendientes
+
+**Estado posterior: D01 admitido para la tarea RAW de sesiones; D02 y D03 pendientes.** El inventario que sigue conserva el corte inicial anterior a la inspección del archivo. Sus bloqueos se resuelven para D01 en la sección final y en la decisión versionada; no representan el estado actual de ese candidato.
 
 **Fecha de auditoría: 2026-11-18 (UTC).** Se proponen tres candidatos a partir de metadatos públicos, procedencia y términos documentados. No constituyen una selección final prerregistrada ni una validación técnica. No se descargaron archivos de mercado, se ajustaron modelos ni se calcularon métricas. **No se observaron resultados de rendimiento de estos candidatos en esta búsqueda**; esto no afirma desconocimiento global, ausencia de resultados publicados ni ausencia de exposición previa fuera de esta búsqueda.
 
@@ -37,3 +39,8 @@ Si el protocolo exige estrictamente el contrato UTC original, D01 y D02 deben ex
 **D03:** resolver derechos upstream para el uso académico, la transformación, la publicación de derivados y la redistribución exactos previstos; CC BY-SA del distribuidor no concede derechos ajenos. Fijar versión, archivo, licencia acompañante y SHA-256; comprobar primera y última observación, marcas temporales, zona, columnas y volumen. Definir agregación a día UTC y tratamiento de minutos sin transacciones, huecos, duplicados y días incompletos. Faltan controles de precios, volumen, OHLC y reconstrucción de sigma7, además del tamaño mínimo, particiones y embargo. No procede descargar un archivo grande para resolver sólo metadatos.
 
 El cierre común exige un manifiesto de procedencia y derechos, archivos inmutables inspeccionados, contrato temporal y de objetivo explícito y un protocolo fijado antes de observar resultados. Este inventario no autoriza ni acredita entrenamiento, validación técnica, selección final o superioridad fuera del calendario BTC conocido.
+
+
+## Estado posterior de D01
+
+El inventario anterior corresponde al corte preparatorio. La revisión posterior admite D01 para la tarea RAW_KEEP_ALL de siete retornos por sesión y horizonte próxima sesión: `experiments/e3_d01_admission_20261118/admission_decision.json`. El archivo y las 3270 sesiones se verificaron, sin eliminar ni rellenar filas y sin usar Adj Close. Se conserva el efecto mecánico de acciones corporativas como limitación de volatilidad de precio cotizado bruto. Estado actual: **1 de 3 datasets admitidos, cero evaluados**. El protocolo de modelos y los otros dos conjuntos siguen pendientes. El informe original guardado en `648f2b91b477b5f4226cad3af5928088accd74ed` no se modifica.

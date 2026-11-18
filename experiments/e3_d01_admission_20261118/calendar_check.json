@@ -1,0 +1,108 @@
+{
+  "package": "exchange-calendars",
+  "version": "4.11.3",
+  "source_tag": "4.11.3",
+  "source_commit": "79a4c2cbeed5a16adee5d013edd76f5c8c82d656",
+  "wheel_filename": "exchange_calendars-4.11.3-py3-none-any.whl",
+  "wheel_bytes": 209667,
+  "wheel_sha256": "c40d9f1b50238f578f9f8c772aa895533ab03db4910da43825ca59f7ebd9e82f",
+  "published_wheel_sha256": "c40d9f1b50238f578f9f8c772aa895533ab03db4910da43825ca59f7ebd9e82f",
+  "wheel_url": "https://files.pythonhosted.org/packages/e3/dd/b30915627128b388c235ee047ca721a40a4960e8b55ea9fa4a005466774b/exchange_calendars-4.11.3-py3-none-any.whl",
+  "requested_calendar": "NASDAQ",
+  "resolved_calendar": "XNYS",
+  "alias_lines": [
+    {
+      "line": 150,
+      "text": "\"NYSE\": \"XNYS\","
+    },
+    {
+      "line": 151,
+      "text": "\"NASDAQ\": \"XNYS\","
+    },
+    {
+      "line": 153,
+      "text": "\"XNAS\": \"XNYS\","
+    }
+  ],
+  "period_start": "2000-03-01",
+  "period_end": "2013-03-01",
+  "expected_sessions": 3270,
+  "actual_AAPL_dates": 3270,
+  "actual_unique_dates": 3270,
+  "ordered_dates_equal": true,
+  "missing_sessions": [],
+  "extra_dates": [],
+  "adhoc_closures_in_period": [
+    "2001-09-11",
+    "2001-09-12",
+    "2001-09-13",
+    "2001-09-14",
+    "2004-06-11",
+    "2007-01-02",
+    "2012-10-29",
+    "2012-10-30"
+  ],
+  "adhoc_closures_absent_from_AAPL": true,
+  "explicit_closure_checks": {
+    "2001-09-10": {
+      "expected_open": true,
+      "AAPL_present": true
+    },
+    "2001-09-11": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2001-09-12": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2001-09-13": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2001-09-14": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2001-09-17": {
+      "expected_open": true,
+      "AAPL_present": true
+    },
+    "2004-06-11": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2007-01-02": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2012-10-26": {
+      "expected_open": true,
+      "AAPL_present": true
+    },
+    "2012-10-29": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2012-10-30": {
+      "expected_open": false,
+      "AAPL_present": false
+    },
+    "2012-10-31": {
+      "expected_open": true,
+      "AAPL_present": true
+    }
+  },
+  "calendar_csv_sha256": "05911b2c78202d985f55a16f1a8919a8526fa48ccd82cffd6bf7eaa72ec0be60",
+  "dataset_gzip_sha256": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd",
+  "runtime_versions": {
+    "exchange-calendars": "4.11.3",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5",
+    "pyluach": "2.3.0",
+    "toolz": "1.0.0",
+    "korean-lunar-calendar": "0.3.1",
+    "tzdata": "2026.5"
+  },
+  "scope": "Session-date check via published NASDAQ alias to XNYS, not intraday open/close timestamp certification or a market-results evaluation. No forward fills, adjustments, exclusions, model runs or statistical comparisons."
+}
