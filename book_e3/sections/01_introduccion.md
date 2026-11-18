@@ -1,14 +1,26 @@
 # 1 Introducción
 
+## Resumen
+
+Se estudia el pronóstico de la volatilidad diaria de BTCUSDT de Binance Spot. A partir de siete barras OHLCV pasadas se estima σ₇ con horizonte de un día; el problema es de regresión temporal y no de dirección del precio. La evidencia reúne 1316 ventanas auditadas y 17 sistemas, con 133 predictores de E2 y diez réplicas de E3 sobre las mismas 608 fechas de prueba.
+
+La referencia E3 combina CNN causal, LSTM unidireccional, atención temporal por contenido y salida aditiva positiva, con 1210 parámetros. En diez semillas obtiene RMSE media 0,0029394324 y desviación estándar 0,0000471254; la reducción descriptiva frente al mejor rival E2 es 24,10 %. Los 48 contrastes posteriores rechazan tras Holm, pero sus ámbitos de incertidumbre difieren y el MCS conserva diez sistemas.
+
+Los aportes técnicos documentados son: (1) trazabilidad de datos, recetas, correcciones y resultados congelados; (2) comparación estadística reproducible desde predicciones guardadas, con supuestos y límites explícitos; y (3) dashboard multipágina con 17 sistemas, cuatro exportaciones ONNX CPU verificadas y trece modalidades precalculadas. No se presentan esos productos como prueba de originalidad científica.
+
+Persisten exposición previa al calendario y tratamientos de ajuste distintos. Faltan evaluación en tres conjuntos adicionales, potencia confirmatoria, calibración de E3, reproducción humana independiente y URL pública verificada en Render. R1, la defensa de R2 y R3 permanecen abiertos.
+
+## Alcance del informe
+
 Este tercer entregable da continuidad al proyecto de pronóstico de volatilidad de Bitcoin. La guía exige reunir **correcciones de E2, un producto predictivo, una contribución neuronal defendible y un informe científico reproducible**, sus cuatro componentes obligatorios. El avance actual incluye una CNN-LSTM con atención entrenada en diez semillas y su evaluación estadística retrospectiva; todavía no equivale al cierre de los cuatro productos.
 
-El problema es BTCUSDT de Binance Spot. Al inicio del día $t$ se utilizan las siete barras OHLCV anteriores para estimar la desviación poblacional de siete retornos logarítmicos, sin anualizar y con horizonte de un día:
+El problema es BTCUSDT de Binance Spot. Al inicio del día $t$ se utilizan las siete barras OHLCV anteriores para estimar la desviación poblacional de siete retornos logarítmicos, sin anualizar y con horizonte de un día, según la ecuación {eq}`eq-e3-objective-sigma7`:
 
 $$
 r_t=\log(C_t/C_{t-1}),\qquad
 \bar r_t=\frac17\sum_{j=0}^{6}r_{t-j},\qquad
 \sigma_7(t)=\sqrt{\frac17\sum_{j=0}^{6}(r_{t-j}-\bar r_t)^2}.
-$$
+$$ (eq-e3-objective-sigma7)
 
 La etiqueta requiere ocho cierres y contiene el retorno del día objetivo, aún desconocido al emitir el pronóstico. Las entradas son las siete barras de $[t-7,t)$, ordenadas de antigua a reciente, con cinco canales. El [contrato de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/17_contrato_sincronizado.html) define `relative_window`, escaladores de entrenamiento, disponibilidad y máscaras. Se conserva la ruta metodológica temporal **F2a**; no se importan pruebas de clasificación o de conjuntos independientes sin justificar su aplicación.
 
@@ -27,7 +39,7 @@ La combinación CNN-LSTM-atención y una mejor métrica **no acreditan por sí s
 | Componente de la guía | Producto que debe entregarse | Estado comprobable |
 |---|---|---|
 | Correcciones de E2 | Observaciones aplicables resueltas, tabla de trazabilidad, auditoría e impacto consistente en resultados | Auditorías y correcciones internas documentadas en [4](04_correcciones_e2.md); cierre integral del Bloque A pendiente. No se inventan observaciones del docente. |
-| Dashboard predictivo | Aplicación **Dash Plotly**, desplegada en **Render**, con **Contexto, EDA y Modelos**; Top 10 con su configuración seleccionada y artefactos ligeros, o resultados precalculados con justificación de recursos | Diseño en [9](09_dashboard_predictivo.md) y [10](10_despliegue_render.md); tres referencias exportadas con alcance limitado. Aplicación integrada, perfil final de inferencia, URL y prueba de humo pendientes. |
+| Dashboard predictivo | Aplicación **Dash Plotly**, desplegada en **Render**, con **Contexto, EDA y Modelos**; Top 10 con su configuración seleccionada y artefactos ligeros, o resultados precalculados con justificación de recursos | Aplicación integrada con 17 sistemas y cuatro ONNX CPU verificados en [9](09_dashboard_predictivo.md); los otros trece usan precálculos. Perfil de servicio y contenedor locales comprobados; URL y prueba de humo públicas en [10](10_despliegue_render.md) pendientes. |
 | Modelo neuronal original o transferido | Mecanismo, capa, pérdida o entrenamiento con diferencia sustantiva, fuentes atribuidas, implementación algorítmica, propiedad formal pertinente y comparación justa, reproducible y con protocolo previo | Receta CNN-LSTM evaluada y desarrollo documentado en [6](06_modelo_original.md), [7](07_diseno_riguroso.md) y [8](08_verificacion_estadistica.md). La novedad, la defensa humana y los requisitos completos de R3 siguen sin acreditarse. |
 | Informe científico | Jupyter Book que documente implementación, método, experimentos, resultados, discusión y paquete de reproducción | Este libro y sus fuentes están publicados; [11](11_informe_tecnico.md) y [12](12_lista_entregables.md) distinguen lo disponible de contenedor, reproducción independiente y cierre pendientes. |
 
@@ -39,7 +51,7 @@ El inventario inicial de **81 predictores y 167 metadatos** corresponde a su cor
 
 El proceso E3 utilizó **532 ejemplos de ajuste y 116 de validación**, mientras que E2 utilizó **655 de ajuste y 53 de calibración**. Compartir las 608 fechas de prueba y diez semillas por red no iguala esos tratamientos. Las fechas de prueba ya eran conocidas y no se presentan como una confirmación ciega. Los análisis retrospectivos, la variación entre semillas, las propiedades formales históricas y las pruebas de software conservan alcances diferentes.
 
-El [capítulo 8](08_verificacion_estadistica.md) ya incluye métricas, efectos, p-valores, Holm, sensibilidades y MCS. En cambio, sMAPE y R² aún deben incorporarse a la tabla resumida vigente; la cobertura y anchura de intervalos del candidato requieren una etapa de calibración separada. Tampoco están cerrados la evaluación en tres conjuntos adicionales, el dimensionamiento de potencia, la adecuación completa y los demás estudios de robustez.
+El [capítulo 8](08_verificacion_estadistica.md) ya incluye métricas, efectos, p-valores, Holm, sensibilidades y MCS. La tabla ampliada incorpora sMAPE y R² desde las predicciones guardadas: E3 obtiene medias de **11,10 %** y **0,9118**, respectivamente. La cobertura y anchura de intervalos del candidato requieren una etapa de calibración separada. Tampoco están cerrados la evaluación en tres conjuntos adicionales, el dimensionamiento de potencia, la adecuación completa y los demás estudios de robustez.
 
 **R1, la defensa académica de R2 y R3 siguen abiertos.** La demostración del primer módulo de atención modificada no se transfiere automáticamente a la receta aditiva actual. La implementación, el resultado favorable y la publicación del libro no acreditan por sí solos novedad, dominio humano del código o entrega completa.
 

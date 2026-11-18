@@ -24,7 +24,7 @@ No se ha cerrado una transferencia desde una aplicación de origen concreta. Cit
 
 $$
 \delta=0{,}00025772842664981106
-$$
+$$ (eq-e3-design-practical-margin)
 
 en unidades originales de $\sigma_7$; no se recalcula con el resultado del candidato. La propuesta exige una ganancia de al menos $\delta$ en $S$. Quedaría refutada si no se observa ese beneficio bajo el diseño fijado o si el deterioro limpio excede el margen. Mejorar sólo la robustez no satisface la comparación principal de R3 frente al Top 10 y todos los baselines fuertes.
 
@@ -80,20 +80,20 @@ Sean $H,H'\in\mathbb R^{n\times d}$, con $n=7$ en el problema principal. Se usan
 $$
 B>0,\quad\varepsilon>0,\quad\|q\|_2\le Q,\quad\|w\|_2\le W,
 \quad0\le\lambda\le\Lambda,\quad\tau\ge\tau_{\min}>0.
-$$
+$$ (eq-e3-v1-head-assumptions)
 
 El mecanismo es
 
 $$
 r_j=(AH)_j,\quad d_j=\sqrt{\|r_j\|_2^2+\varepsilon^2},\quad
 s_j=q^\top h_j-\lambda d_j,\quad a=\operatorname{softmax}(s/\tau),
-$$
+$$ (eq-e3-v1-head-scores)
 
 $$
 v_j=\frac{B h_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 c=\sum_{j=1}^n a_jv_j,\qquad
 f(H)=\operatorname{softplus}(w^\top c+b).
-$$
+$$ (eq-e3-v1-head-values)
 
 En el código, las restricciones se cumplen mediante $q=Qu_q/\sqrt{1+\|u_q\|_2^2}$, $w=Wu_w/\sqrt{1+\|u_w\|_2^2}$, $\lambda=\Lambda\operatorname{sigmoid}(\theta_\lambda)$ y $\tau=\tau_{\min}+\operatorname{softplus}(\theta_\tau)$. $B$ y $P$ son fijos. Las constantes se guardan en la configuración; no son supuestos de norma que se atribuyan a pesos sin controlar.
 
@@ -101,35 +101,35 @@ En el código, las restricciones se cumplen mediante $q=Qu_q/\sqrt{1+\|u_q\|_2^2
 
 $$
 J_{T_B}(h)=\frac B u I-\frac B{u^3}hh^\top.
-$$
+$$ (eq-e3-saturation-jacobian)
 
 Sus autovalores son $B/u$ en direcciones ortogonales a $h$ y $B^3/u^3$ en la dirección de $h$; en $h=0$ el jacobiano es $I$. Están en $(0,1]$. Integrando sobre el segmento entre dos puntos, $\|T_B(h)-T_B(h')\|_2\le\|h-h'\|_2$. Además, $\|T_B(h)\|_2\le B$. Para la matriz $V$ de filas $v_j^\top$,
 
 $$
 \|V(H)-V(H')\|_F\le\|H-H'\|_F,
 \qquad\|V(H)\|_2\le\|V(H)\|_F\le B\sqrt n.
-$$
+$$ (eq-e3-saturation-matrix-bounds)
 
 **Lema 2: sensibilidad de los puntajes.** La igualdad $d_j(H)=\|(r_j,\varepsilon)\|_2$ y la desigualdad triangular inversa implican $|d_j(H)-d_j(H')|\le\|r_j-r'_j\|_2$. Sumando cuadrados por filas,
 
 $$
 \|d(H)-d(H')\|_2\le\|A(H-H')\|_F
 \le\|A\|_2\|H-H'\|_F.
-$$
+$$ (eq-e3-discordance-sensitivity)
 
 La parte de contenido cumple $\|(H-H')q\|_2\le Q\|H-H'\|_F$. Por tanto,
 
 $$
 \|s(H)-s(H')\|_2
 \le\bigl(Q+\Lambda\|A\|_2\bigr)\|H-H'\|_F.
-$$
+$$ (eq-e3-score-sensitivity)
 
 **Lema 3: softmax es $1/2$-Lipschitz en norma euclídea.** Su jacobiano es $J=\operatorname{diag}(a)-aa^\top$. La suma absoluta de la fila $j$ es $2a_j(1-a_j)\le1/2$. Como $J$ es simétrico, $\|J\|_2\le\|J\|_\infty\le1/2$. Integrando el jacobiano y aplicando el Lema 2,
 
 $$
 \|a(H)-a(H')\|_2
 \le\frac{Q+\Lambda\|A\|_2}{2\tau_{\min}}\|H-H'\|_F.
-$$
+$$ (eq-e3-attention-sensitivity)
 
 **Teorema.** Bajo los supuestos anteriores, para cualesquiera estados finitos $H,H'$ y los mismos parámetros de inferencia,
 
@@ -138,14 +138,14 @@ $$
 \qquad
 C_{\rm head}=W\left[1+\frac{B\sqrt n}{2\tau_{\min}}
 \left(Q+\Lambda\|I-P\|_2\right)\right].
-$$
+$$ (eq-e3-v1-head-lipschitz-bound)
 
 **Demostración.** Al escribir $c(H)=V(H)^\top a(H)$,
 
 $$
 c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 +\bigl(V(H)-V(H')\bigr)^\top a(H').
-$$
+$$ (eq-e3-context-difference)
 
 Como $a(H')$ es una distribución, $\|a(H')\|_2\le1$. Los lemas dan
 
@@ -156,7 +156,7 @@ $$
 &\le\left[1+\frac{B\sqrt n}{2\tau_{\min}}
 \left(Q+\Lambda\|I-P\|_2\right)\right]\|H-H'\|_F.
 \end{aligned}
-$$
+$$ (eq-e3-context-lipschitz-bound)
 
 Softplus es 1-Lipschitz porque su derivada es sigmoid, entre cero y uno. La proyección tiene norma $\|w\|_2\le W$ y el sesgo fijo se cancela al tomar diferencias. La composición demuestra la cota. $\square$
 
@@ -166,7 +166,7 @@ Como $c$ es combinación convexa de vectores de norma a lo sumo $B$, también se
 
 $$
 \operatorname{softplus}(b-WB)\le f(H)\le\operatorname{softplus}(b+WB).
-$$
+$$ (eq-e3-v1-head-range)
 
 Ese techo de salida puede perjudicar extremos genuinos y debe evaluarse. El promedio causal actual incluye el estado presente: en la primera posición la discordancia es $\varepsilon$, otra asimetría del diseño que debe examinarse. La atención normalizada usa toda la ventana observada y no es causal por prefijos de sus pesos; la predicción sólo es causal respecto al día objetivo si el pipeline respeta la disponibilidad temporal.
 
@@ -186,20 +186,20 @@ La ausencia de violaciones en 256 pares apoya la implementación; la afirmación
 
 ### Cota condicional de la referencia aditiva de 1210 parámetros
 
-La referencia actual conserva atención convencional por contenido y retira penalización y saturación. Por ello se demuestra por separado una propiedad conocida sobre **estados acotados**, sin trasladarle el teorema anterior. Sean $H,H'\in\mathbb R^{n\times d}$ con filas de norma a lo sumo $R$, y parámetros de inferencia fijos con $\|q\|_2\le Q$, $\|w\|_2\le W$ y $\tau\ge\tau_{\min}>0$. Sean también $A\ge0$ y $a_{\rm tr}>0$ fijos. La cabeza definida en [6.8](06_modelo_original.md) es
+La referencia actual conserva atención convencional por contenido y retira penalización y saturación. Por ello se demuestra por separado una propiedad conocida sobre **estados acotados**, sin trasladarle el teorema anterior. Sean $H,H'\in\mathbb R^{n\times d}$ con filas de norma a lo sumo $R$, y parámetros de inferencia fijos con $\|q\|_2\le Q$, $\|w\|_2\le W$ y $\tau\ge\tau_{\min}>0$. Sean también $A\ge0$ y $a_{\rm tr}>0$ fijos. La cabeza definida por las ecuaciones {eq}`eq-e3-additive-content-attention` y {eq}`eq-e3-additive-output` de [6.8](06_modelo_original.md) es
 
 $$
 \alpha(H)=\operatorname{softmax}(Hq/\tau),\qquad
 c(H)=H^\top\alpha(H),\qquad
 f_A(H)=\sqrt A+a_{\rm tr}[10^{-4}+\operatorname{softplus}(w^\top c(H)+b)].
-$$
+$$ (eq-e3-additive-head-map)
 
 El mismo límite del jacobiano de softmax da $\|\alpha(H)-\alpha(H')\|_2\le Q\|H-H'\|_F/(2\tau_{\min})$. Como $\|H\|_2\le\sqrt nR$ y $\|\alpha(H')\|_2\le1$, descomponer la diferencia del contexto y componer la lectura y softplus demuestra
 
 $$
 |f_A(H)-f_A(H')|\le K_{\rm ad}\|H-H'\|_F,\qquad
 K_{\rm ad}=a_{\rm tr}W\left(1+\frac{\sqrt n RQ}{2\tau_{\min}}\right).
-$$
+$$ (eq-e3-additive-lipschitz-bound)
 
 Cada estado oculto de la LSTM estándar tiene coordenadas $h_j=o_j\odot\tanh(C_j)$, de magnitud a lo sumo uno en aritmética real; se puede usar $R=\sqrt d$. Esto identifica un dominio que contiene los estados alcanzables, sin afirmar que todo tensor de ese dominio sea alcanzable. Para $n=7$, $d=12$, $Q=1$, $W=4$ y $\tau_{\min}=0{,}25$, resulta **$K_{\rm ad}/a_{\rm tr}=77{,}32121111929344$**. No se ha acotado la sensibilidad del encoder respecto de su entrada.
 
@@ -255,7 +255,7 @@ Para errores $E_{uv}$ sobre unidades comparables, la interacción puede expresar
 
 $$
 I=E_{11}-E_{10}-E_{01}+E_{00}.
-$$
+$$ (eq-e3-ablation-interaction)
 
 Un $I<0$ indicaría una reducción de error conjunta mayor que la suma aditiva de sus reducciones, bajo esta codificación; no se ha estimado $I$. El análisis deberá reportar efectos principales e interacciones con IC, mediante un modelo o remuestreo compatible con la dependencia temporal y las repeticiones. Los contrastes contra el modelo completo usarán las pruebas adecuadas de la Sección 8 de la guía y Holm dentro de una familia de ablación separada de la comparación principal.
 
@@ -289,7 +289,7 @@ $$
 \mathcal L=((Y-\widehat\mu)/s_y)^2
 +\lambda_m[\log\widetilde m+\widetilde V/\widetilde m]
 +\lambda_q[\log\widetilde q+\widetilde V^2/\widetilde q].
-$$
+$$ (eq-e3-moment-training-loss)
 
 Con $m_0>0$, $q_0=E[U^4\mid X]<\infty$ y una clase capaz de representar conjuntamente momentos y media verdaderos, el exceso de riesgo condicional es
 
@@ -297,7 +297,7 @@ $$
 \frac{(\widehat\mu-\mu_0)^2}{s_y^2}
 +\lambda_m[\log(m/m_0)+m_0/m-1]
 +\lambda_q[\log(q/q_0)+q_0/q-1]\ge0.
-$$
+$$ (eq-e3-moment-excess-risk)
 
 La demostración y la verificación con cinco leyes artificiales están en el [anexo F](21_propuesta_momentos.md). La cota y los scores tienen antecedentes atribuidos. El teorema no garantiza convergencia de la red, trayectoria de Faithful o mejora de RMSE; excluye el borde verdadero $m_0=q_0=0$ del score logarítmico. Con momentos estimados la región calculada puede no contener la media verdadera y **no es un intervalo de predicción**.
 

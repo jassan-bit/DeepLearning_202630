@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-18T02:05:50.541470+00:00",
+  "status": "passed",
+  "base_url": "http://127.0.0.1:18050",
+  "scope": "local_preflight_not_public_deployment",
+  "render_public_smoke_passed": false,
+  "operator_declared_deployment_commit": "7c17957871f9390e73889c2bcb19e730870fd9bc",
+  "remote_commit_identity_verified": false,
+  "identity_note": "The current health endpoint has no commit attestation; match Render deployment logs separately. Asset fingerprints and prediction parity are checked, not a full remote source proof.",
+  "thresholds_declared_before_measurement": {
+    "readiness_seconds": 180.0,
+    "navigation_and_callbacks_seconds": 30.0,
+    "prediction_with_explanation_seconds": 30.0,
+    "absolute_forecast_tolerance_original_sigma7": 1e-06
+  },
+  "client": {
+    "python": "3.12.14",
+    "smoke_script_sha256": "4dbbc83603d28224cfef4d1f8159eab55fa8dbef7c23081b5feebccf5e039190",
+    "chromium": "154.0.8037.57"
+  },
+  "new_fits": 0,
+  "new_calibrations": 0,
+  "errors": [],
+  "limits": [
+    "One fixed example per live model, not a new scientific evaluation or metric update.",
+    "No remote peak RAM, concurrency, uptime, or proven cold-start assessment.",
+    "Occlusion availability does not certify explanatory fidelity or seed stability.",
+    "This automated check is not independent human reproduction, R1, R2, or R3 certification."
+  ],
+  "readiness": {
+    "attempts": [
+      {
+        "at_utc": "2026-11-18T02:05:50.557114+00:00",
+        "HTTP": 200
+      }
+    ],
+    "budget_seconds": 180.0,
+    "is_proven_cold_start_measurement": false,
+    "wait_ms": 51.33912499877624,
+    "health": {
+      "catalogue_systems": 17,
+      "service": "e3-dashboard",
+      "status": "ok"
+    }
+  },
+  "case": {
+    "id": "evaluation-0",
+    "target_date": "2025-01-01",
+    "csv_sha256": "cd37899695e79aedad031244b33f17824224a54ae8783d3f26c53c88ba9b6f03",
+    "selection": "fixed evaluation-0; not performance selected"
+  },
+  "models": [
+    {
+      "model": "MLP16",
+      "seed": 271801,
+      "local_reference_onnx_sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50",
+      "status": "passed",
+      "HTTP": 200,
+      "displayed_prediction_six_decimals": 0.017826,
+      "frozen_prediction": 0.017825614660978317,
+      "absolute_difference": 3.8533902168430556e-07,
+      "interval_state": "nominal_90_percent",
+      "displayed_CPU_ms_excluding_explanation": 148.0,
+      "explanation": {
+        "type": "bar",
+        "labels": [
+          "t−7",
+          "t−6",
+          "t−5",
+          "t−4",
+          "t−3",
+          "t−2",
+          "t−1"
+        ],
+        "effects": [
+          -0.0009358469464121229,
+          0.0020450941267721214,
+          -0.0006953269823303902,
+          -0.0008823444995005696,
+          -0.001755798985062191,
+          0.0004437813027312401,
+          0.002364296584270467
+        ]
+      },
+      "elapsed_ms_including_network_rendering_and_explanation": 1792.2742149967235
+    },
+    {
+      "model": "LSTM32",
+      "seed": 271801,
+      "local_reference_onnx_sha256": "ee942ca947998a3c5c76fa21eabe401ce60989558faf82608e8107a830227033",
+      "status": "passed",
+      "HTTP": 200,
+      "displayed_prediction_six_decimals": 0.017011,
+      "frozen_prediction": 0.0170112457126379,
+      "absolute_difference": 2.457126379029617e-07,
+      "interval_state": "nominal_90_percent",
+      "displayed_CPU_ms_excluding_explanation": 94.17,
+      "explanation": {
+        "type": "bar",
+        "labels": [
+          "t−7",
+          "t−6",
+          "t−5",
+          "t−4",
+          "t−3",
+          "t−2",
+          "t−1"
+        ],
+        "effects": [
+          0.00011359434500909579,
+          0.000836802848999077,
+          0.0015847530186437996,
+          0.00045856510365780215,
+          0.0025724338170500204,
+          0.001761233159078536,
+          0.002113692611683116
+        ]
+      },
+      "elapsed_ms_including_network_rendering_and_explanation": 325.8132699993439
+    },
+    {
+      "model": "GRU32",
+      "seed": 271801,
+      "local_reference_onnx_sha256": "1409d0cf84aac43720b4c6978f9a1bb3b5f6c9832518acab0cba279ba8a88bd2",
+      "status": "passed",
+      "HTTP": 200,
+      "displayed_prediction_six_decimals": 0.015934,
+      "frozen_prediction": 0.015933958813548088,
+      "absolute_difference": 4.118645191217296e-08,
+      "interval_state": "nominal_90_percent",
+      "displayed_CPU_ms_excluding_explanation": 82.47,
+      "explanation": {
+        "type": "bar",
+        "labels": [
+          "t−7",
+          "t−6",
+          "t−5",
+          "t−4",
+          "t−3",
+          "t−2",
+          "t−1"
+        ],
+        "effects": [
+          0.0006026799980664421,
+          -0.00249271344760316,
+          -0.0031034166894942407,
+          -0.0015239579626581366,
+          0.0004405103071557868,
+          0.00039300905678492024,
+          0.002846951402574849
+        ]
+      },
+      "elapsed_ms_including_network_rendering_and_explanation": 249.9628150035278
+    },
+    {
+      "model": "CNN-LSTM-atencion-aditiva E3",
+      "seed": 271801,
+      "local_reference_onnx_sha256": "6928a973a6639513bc94cde15996c0b06bb5615e3c0b1a77d16d47e9c7342f3b",
+      "status": "passed",
+      "HTTP": 200,
+      "displayed_prediction_six_decimals": 0.016867,
+      "frozen_prediction": 0.016866754764803968,
+      "absolute_difference": 2.452351960322008e-07,
+      "interval_state": "explicitly_uncalibrated",
+      "displayed_CPU_ms_excluding_explanation": 95.18,
+      "explanation": {
+        "type": "bar",
+        "labels": [
+          "t−7",
+          "t−6",
+          "t−5",
+          "t−4",
+          "t−3",
+          "t−2",
+          "t−1"
+        ],
+        "effects": [
+          -0.003978522392595163,
+          -0.015042345946397147,
+          -0.008594852741008591,
+          0.0007777043210064963,
+          -0.0011397976618037486,
+          0.0007905548279244223,
+          -2.977845415580438e-05
+        ]
+      },
+      "elapsed_ms_including_network_rendering_and_explanation": 255.51972500397824
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "HTTP": 200,
+      "elapsed_ms_including_callbacks": 1276.8921620008769,
+      "title": "Entender la volatilidad.\nExplorar la evidencia."
+    },
+    {
+      "path": "/eda",
+      "HTTP": 200,
+      "elapsed_ms_including_callbacks": 2521.5499900004943,
+      "title": "Una selección, todas las vistas"
+    },
+    {
+      "path": "/modelos",
+      "HTTP": 200,
+      "elapsed_ms_including_callbacks": 1444.978840998374,
+      "title": "Comparar antes de predecir"
+    }
+  ],
+  "asset_fingerprints": [
+    {
+      "path": "/model-card",
+      "HTTP": 200,
+      "sha256": "468781641f1bddf23a275b50f85021788e652b98a47a98e37cf028594a5e3c6e",
+      "expected_sha256": "468781641f1bddf23a275b50f85021788e652b98a47a98e37cf028594a5e3c6e",
+      "matches": true
+    },
+    {
+      "path": "/data-statement",
+      "HTTP": 200,
+      "sha256": "bc5622655e49b21e2107393cb704eb37e6ee14b0c440cb122f85090e562e026f",
+      "expected_sha256": "bc5622655e49b21e2107393cb704eb37e6ee14b0c440cb122f85090e562e026f",
+      "matches": true
+    },
+    {
+      "path": "/assets/vendor/flatly-5.3.6.min.css",
+      "HTTP": 200,
+      "sha256": "9fc7027d8b071e6a77c882b03a037bbed1d6d83922bda9a4ca370e182d0503bb",
+      "expected_sha256": "9fc7027d8b071e6a77c882b03a037bbed1d6d83922bda9a4ca370e182d0503bb",
+      "matches": true
+    }
+  ],
+  "browser_errors": [],
+  "console_errors": [],
+  "HTTP_5xx_after_ready": [],
+  "blocked_cross_origin_requests": [],
+  "finished_at_utc": "2026-11-18T02:05:59.924483+00:00"
+}

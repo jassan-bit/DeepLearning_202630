@@ -29,19 +29,19 @@ Se conservan su {download}`copia de borrador para revisión <../_static/e3_revis
 | Nd y desarrollo frente a confirmación | [Bitácora consolidada parcial](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md); ocho recetas de desarrollo no son el Nd global, y diez semillas no son diez diseños. |
 | Fecha/tag y desviaciones | Registrar la versión final antes de sus experimentos y mantener una bitácora fechada de desviaciones, con motivo e impacto. Un análisis no previsto conserva alcance exploratorio y no sustenta por sí solo R3. |
 
-La métrica primaria es la **media de las RMSE individuales**, en unidades originales de sigma7 poblacional, sin anualización:
+La ecuación {eq}`eq-e3-primary-mean-rmse-gain` define la métrica primaria como la **media de las RMSE individuales**, en unidades originales de sigma7 poblacional, sin anualización:
 
 $$
 M_j=\frac1{R_j}\sum_{r=1}^{R_j}\sqrt{\frac1{608}\sum_{t=1}^{608}(y_t-\widehat y_{j,r,t})^2},\qquad
 \widehat\Delta_j=M_j-M_{\mathrm{E3}}.
-$$
+$$ (eq-e3-primary-mean-rmse-gain)
 
 Positivo favorece a E3. No se sustituye esta media por la RMSE de un ensemble o por la raíz del MSE agregado entre semillas. Se mantiene el margen del borrador:
 
 $$
 H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j>\delta,
 \qquad\delta=0{,}00025772842664981106.
-$$
+$$ (eq-e3-superiority-hypotheses)
 
 El parámetro y la incertidumbre representada dependen de cada procedimiento. Las semillas son **271801–271810**. La semilla histórica 20261116 queda fuera de la comparación. Las fechas comunes van del **1 de enero de 2025 al 31 de agosto de 2026**; este calendario ya era conocido.
 
@@ -111,7 +111,7 @@ La tabla incorpora la CNN-LSTM y las diez semillas de cada red, sin elegir una r
 $$
 \operatorname{sMAPE}=\frac{200}{n}\sum_t\frac{|y_t-\widehat y_t|}{|y_t|+|\widehat y_t|},\qquad
 R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
-$$
+$$ (eq-e3-smape-rsquared)
 
 con contribución cero cuando ambos valores de un término sMAPE son cero. La media de R² no es el R² de un ensamble. E3 obtiene sMAPE **11,0977 %** y R² medio **0,911779** en este calendario. La [tabla abreviada del corte estadístico](../_static/e3_estadistica_posterior_20261117/ranking_table.csv) conserva sus bytes; el suplemento amplía métricas descriptivas y no cambia sus p-valores.
 
@@ -141,7 +141,7 @@ Para HAC se usa la influencia
 $$
 \psi_{j,t}=\frac1{R_j}\sum_r\frac{e_{j,r,t}^2-\overline{e_{j,r}^2}}{2\operatorname{RMSE}_{j,r}},
 \qquad z_j=\frac{\widehat\Delta_j-\delta}{\operatorname{SE}_{\rm HAC}(\psi_j-\psi_{\rm E3})}.
-$$
+$$ (eq-e3-rmse-influence-hac)
 
 El bootstrap recalcula la métrica completa y compara su ruido centrado con la distancia observada al margen. Usa la corrección Monte Carlo de uno en numerador y denominador, con resolución **0,0001**. Los p no estimables permanecen en la familia mediante una contribución conservadora de uno para el ajuste y se reportan como no estimables.
 
@@ -187,9 +187,9 @@ Para p ordenados $p_{(1)}\le\cdots\le p_{(m)}$, el ajuste monótono es
 
 $$
 p^{\rm Holm}_{(i)}=\min\left\{1,\max_{1\le k\le i}(m-k+1)p_{(k)}\right\}.
-$$
+$$ (eq-e3-holm-adjustment)
 
-En este corte $m=48$. Se informa por rival el **máximo** de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.
+En este corte $m=48$ en la ecuación {eq}`eq-e3-holm-adjustment`. Se informa por rival el **máximo** de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.
 
 ```{csv-table} Contrastes principales frente al margen heredado
 :file: ../_static/e3_estadistica_posterior_20261117/contrasts_table.csv
@@ -217,7 +217,7 @@ La aproximación normal bilateral ilustrada en la guía, con $\alpha'=0,05/m$, e
 
 $$
 R\simeq\frac{(z_{1-\alpha'/2}+z_{1-\beta})^2\,\widehat\sigma_d^{\,2}}{g^2},
-$$
+$$ (eq-e3-power-normal-approximation)
 
 donde $g$ es la distancia de la alternativa planificada a la frontera de la nula y $\widehat\sigma_d$ la dispersión pertinente. Si se contrasta igualdad y se planifica detectar una diferencia δ, entonces $g=\delta$. Para **nuestra nula de relevancia** $\Delta\le\delta$, una alternativa futura $\Delta_1>\delta$ da $g=\Delta_1-\delta$; poner δ en el denominador cambiaría el problema. La elección bilateral/unilateral y su cuantil debe fijarse de acuerdo con la hipótesis, no por el resultado. Esta fórmula no incorpora por sí sola dependencia temporal, estimación de hiperparámetros o incertidumbre conjunta.
 
@@ -241,7 +241,7 @@ Una campaña con varias series, particiones o unidades debe declarar su jerarqu�
 
 $$
 y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
-$$
+$$ (eq-e3-mixed-effects-schema)
 
 se refiere al efecto del modelo $j$, de la unidad $i$ y de la semilla $r$; no autoriza tratar cada día de una serie como un efecto aleatorio iid. Su uso exigiría justificar estructura, correlación y estimabilidad y contrastar al original con cada rival con el control familiar fijado. No se ha ajustado ese modelo aquí. En varios conjuntos se reportarán también diferencias, IC, efectos y probabilidad de superioridad estimada sobre unidades válidas, con el significado de esa probabilidad explícito.
 

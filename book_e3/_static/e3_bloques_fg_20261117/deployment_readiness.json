@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "state": "PREPARED_LOCAL_VERIFIED_NO_RENDER_SERVICE",
+  "user_declared_service_status": "sin servicio",
+  "render_service_url": null,
+  "public_smoke": {
+    "status": "not_run_no_service",
+    "passed": false,
+    "evidence": null
+  },
+  "create_blueprint_url": "https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630",
+  "runtime": {
+    "kind": "docker",
+    "python": "3.12.14",
+    "image_digest": "sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+    "gunicorn_workers": 1,
+    "gunicorn_threads": 1,
+    "onnxruntime": "1.23.2",
+    "execution_provider": "CPUExecutionProvider",
+    "resident_onnx_sessions": 1,
+    "live_models": 4,
+    "precalculated_models": 13,
+    "autoDeploy": false,
+    "plan": "free",
+    "plan_selected_in_blueprint_not_activated": true
+  },
+  "local_smoke": {
+    "scope": "local_preflight_not_public_deployment",
+    "status": "passed",
+    "public_deployment_certified": false,
+    "remote_commit_identity_verified": false,
+    "models": 4,
+    "pages": 3,
+    "client_contract_tests_passed": 6,
+    "maximum_displayed_forecast_absolute_error": 3.8533902168430556e-07,
+    "reference_case_id": "evaluation-0"
+  },
+  "remaining_public_evidence": [
+    "Existing Render service and public HTTPS URL",
+    "Build/startup logs, deployed source SHA and effective service settings",
+    "Public smoke report and captured public pages",
+    "Memory/CPU/concurrency and observed wakeup under actual plan",
+    "Public demonstration video and live readiness before defense"
+  ],
+  "new_training_fits": 0,
+  "new_calibrations": 0,
+  "paid_plan_activated": false
+}

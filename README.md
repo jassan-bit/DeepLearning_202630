@@ -56,10 +56,40 @@ docker build --build-arg DASHBOARD_OFFLINE=1 -t e3-dashboard .
 ```
 
 Las ruedas no se versionan ni quedan incorporadas como capa de la imagen.
-`render.yaml` es una configuración preparada, sin servicio activado o URL
-pública. GitHub Pages sirve el informe; ejecutar Dash requiere un servidor
-Python. El despliegue en Render y su prueba de humo pública se documentarán
-cuando se realicen.
+GitHub Pages sirve el informe; ejecutar Dash requiere un servidor Python.
+
+### Crear el servicio en Render y comprobarlo
+
+Todavía no existe un servicio Render de E3. El [blueprint `render.yaml`](render.yaml)
+selecciona Docker y el plan gratuito, con `/healthz` y despliegue automático
+desactivado. El Dockerfile fija Python 3.12.14 y un proceso/hilo de Gunicorn.
+
+1. Abrir [Crear el servicio desde el blueprint](https://render.com/deploy?repo=https://github.com/jassan-bit/DeepLearning_202630)
+   en la cuenta de Render y revisar repositorio, rama `main`, runtime Docker y plan gratuito.
+2. Revisar el log de construcción y arranque. Conservar la URL HTTPS real y el
+   commit de 40 caracteres que identifica el despliegue. El enlace anterior abre
+   el panel de creación de Render; no es la URL de una aplicación funcionando.
+3. Ejecutar el cliente de humo desde otro proceso, sustituyendo los dos valores
+   del ejemplo por la URL y el commit reales:
+
+```bash
+python -m venv work/render-smoke-venv
+work/render-smoke-venv/bin/python -m pip install -r requirements-dashboard-dev.lock.txt
+work/render-smoke-venv/bin/python -m playwright install --with-deps chromium
+work/render-smoke-venv/bin/python experiments/e3_bloques_fg_20261117/smoke_render.py \
+  --url https://NOMBRE-REAL.onrender.com \
+  --deployment-commit SHA-REAL-DE-40-CARACTERES \
+  --output work/render-public-smoke/report.json \
+  --screenshots-dir work/render-public-smoke/captures
+```
+
+El mismo cliente está disponible en el workflow manual **Verificar cliente de
+humo E3 y despliegue público solicitado**. Recorre las tres páginas y consulta
+cada uno de los cuatro modelos con su explicación, paridad y tiempos. El
+[procedimiento y los límites](experiments/e3_bloques_fg_20261117/README_smoke.md)
+separan el humo local aprobado del resultado público todavía pendiente. El
+commit anotado por el operador requiere el log de Render como respaldo; el
+healthcheck actual no acredita por sí solo la identidad del commit remoto.
 
 La [sección 5 de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/05_paper_guia.html) contiene la réplica externa de TimeMixer y el piloto sobre tres modelos en ETTh1. Su [paquete descargable](https://jassan-bit.github.io/DeepLearning_202630/entregable2/_static/paper_guide_download/Paper_guia_E2_replica_piloto.zip) reúne código y evidencias; estas ejecuciones no modifican los resultados de E1 ni completan el benchmark Bitcoin D7.
 
