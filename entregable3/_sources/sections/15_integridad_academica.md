@@ -58,3 +58,11 @@ El estado real se apoya en fuentes y registros verificables, sin completar casil
 Ante una nueva evidencia, corrección o desviación se deberá actualizar el registro correspondiente y la interpretación que dependa de ella. La consecuencia académica de una eventual infracción corresponde al procedimiento institucional; este capítulo no imputa una infracción ni asigna nota o tope al avance actual.
 
 La revisión posterior conserva también la evidencia adversa: el control sólo piso mejora la MAE de E3, la proyección común reduce su ventaja RMSE y el intervalo posterior tiene subcobertura en 2026Q1. La búsqueda focal y el reanálisis en contenedor recibieron asistencia de IA. Sus recibos no son una certificación de novedad ni un acta humana; el [anexo final](cierre_reproducibilidad.md) mantiene la responsabilidad y confirmación personal pendientes.
+
+## Declaración de IA para la revisión externa de R1
+
+Se utilizó un asistente de IA de OpenAI, en este entorno de ChatGPT/Codex, para búsqueda y verificación bibliográfica, cribado de títulos, lectura focal de fuentes, comparación de fórmulas, redacción del dictamen y repetición de dos cadenas de búsqueda. La revisión técnica adicional se encargó con contexto separado de los dictámenes previos; ese procedimiento no equivale a una persona independiente ni garantiza ausencia de sesgos compartidos.
+
+El autor comunicó el 18 de noviembre de 2026 que el profesor permite sustituir al revisor humano por IA si se menciona su uso. Esa modalidad se aplica al componente de revisión externa de R1 en [6.13](06_modelo_original.md), con dictamen, dos cadenas repetidas y {download}`declaración específica de uso <../_static/e3_r1_ai_substitution_20261118/ai_use_declaration.md>`. El componente se documenta como completado por esa vía; no se inventa una revisión humana o una firma.
+
+La persona autora mantiene la responsabilidad de comprobar las fuentes, comprender y defender el trabajo y comunicar honestamente sus límites. El dictamen conserva su conclusión: la diferencia sustantiva todavía no está establecida y R1 global no queda acreditada por la modalidad de IA.
