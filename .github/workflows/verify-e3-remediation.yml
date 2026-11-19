@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'experiments/e3_remediacion_20261118/**'
+      - 'experiments/e3_cierre_integral_20261118/orchestration/verify_historical_bundle.py'
+      - 'experiments/e3_cierre_integral_20261118/orchestration/test_historical_bundle.py'
       - 'experiments/e3_a100_receipts_20261118/**'
       - 'experiments/e3_dataset_admission_20261118/**'
       - 'experiments/e3_d01_admission_20261118/**'
@@ -21,6 +23,8 @@ on:
     branches: [main]
     paths:
       - 'experiments/e3_remediacion_20261118/**'
+      - 'experiments/e3_cierre_integral_20261118/orchestration/verify_historical_bundle.py'
+      - 'experiments/e3_cierre_integral_20261118/orchestration/test_historical_bundle.py'
       - 'experiments/e3_a100_receipts_20261118/**'
       - 'experiments/e3_dataset_admission_20261118/**'
       - 'experiments/e3_d01_admission_20261118/**'
@@ -64,8 +68,14 @@ jobs:
           set -euo pipefail
           ci_e3_dir="$(mktemp -d "${RUNNER_TEMP}/e3-remediation.XXXXXX")"
           echo "CI_E3_DIR=$ci_e3_dir" >> "$GITHUB_ENV"
-          python experiments/e3_remediacion_20261118/reproduction/make_bundle.py --check \
+          # v1 is immutable. Updated current cards are not its source snapshot.
+          # Verify pinned published bytes, member hashes, paths and frozen repack.
+          python experiments/e3_cierre_integral_20261118/orchestration/verify_historical_bundle.py \
             | tee "$ci_e3_dir/bundle_check.json"
+          python -m unittest discover \
+            -s experiments/e3_cierre_integral_20261118/orchestration \
+            -p test_historical_bundle.py -v \
+            2>&1 | tee "$ci_e3_dir/historical_bundle_contracts.log"
           tar -xzf experiments/e3_remediacion_20261118/reproduction/reproduction_bundle_v1.tar.gz \
             -C "$ci_e3_dir"
           mkdir "$ci_e3_dir/inputs" "$ci_e3_dir/output"

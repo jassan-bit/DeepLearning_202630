@@ -33,7 +33,8 @@ jobs:
         run: |
           python -m pytest tests/test_e3_dashboard_data.py tests/test_e3_dashboard_inference.py tests/test_e3_dashboard_history.py tests/test_e3_dashboard_app.py -q
           python experiments/e3_dashboard_20261117/build_data.py --download --check
-          python experiments/e3_dashboard_20261117/verify_serving.py \
+          python -m unittest discover -s experiments/e3_cierre_integral_20261118/serving -p 'test_verify_serving_v2.py' -v
+          python experiments/e3_cierre_integral_20261118/serving/verify_serving_v2.py \
             --npz work/e3_dashboard_inputs/current_cohort_arrays.npz --download \
             --output /tmp/e3-serving-ci.json
       - name: Verificar admisión, guardado y cliente V2 sin red
