@@ -3,6 +3,7 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 HERE=Path(__file__).resolve().parent
 def load(name):
@@ -40,6 +41,23 @@ class PlotTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'differs from its manifest'):
                 plots.run(self.analysis,self.root/'rejected')
         finally:path.write_bytes(raw)
+
+    def test_interrupted_export_resumes_without_publishing_a_truncated_png(self):
+        output=self.root/'interrupted_figures';original_link=plots.os.link
+        def stop_before_noise_png(source,target):
+            if Path(target).name=='noise_D01.png':raise KeyboardInterrupt('simulated Colab disconnect')
+            return original_link(source,target)
+        with patch.object(plots.os,'link',side_effect=stop_before_noise_png):
+            with self.assertRaises(KeyboardInterrupt):plots.run(self.analysis,output)
+        self.assertFalse((output/'noise_D01.png').exists())
+        self.assertFalse((output/'figures_manifest.json').exists())
+        before={p.name:p.read_bytes() for p in output.iterdir() if p.is_file()}
+        self.assertEqual(set(before),{'rmse_D01.png','rmse_D01.svg'})
+        result=plots.run(self.analysis,output)
+        for name,raw in before.items():self.assertEqual((output/name).read_bytes(),raw)
+        self.assertEqual((output/'noise_D01.png').read_bytes()[:8],b'\x89PNG\r\n\x1a\n')
+        self.assertEqual(len(result['files']),6)
+        self.assertEqual(plots.run(self.analysis,output),result)
 
 
 if __name__=='__main__':unittest.main()

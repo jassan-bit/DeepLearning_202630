@@ -198,6 +198,54 @@ def _gpu_profile(source,python,env):
     return json.loads(raw.strip().splitlines()[-1])
 
 
+def _package_cache(source,base):
+    """Verify vendor bytes; retain incomplete caches before retrying acquisition.
+
+    This helper uses only standard-library inventory functions and is invoked
+    under the isolated scientific Python by prepare_package, before any fit.
+    """
+    preflight=load(Path(source)/OLD/'colab_preflight.py','extended_package_preflight')
+    destination=Path(base)/'e3-immutable-source-package-c4a4a1e68e98'
+    if destination.is_symlink():raise ValueError('Immutable package cache symlink refused')
+
+    def verify():
+        archive=destination/'02_codigo_modelos.zip'
+        if (archive.is_symlink() or archive.stat().st_size!=7839993
+                or hashlib.sha256(archive.read_bytes()).hexdigest()!=preflight.PACKAGE_SHA256):
+            raise ValueError('Immutable source archive differs from pinned size/hash')
+        candidates=list((destination/'extracted').rglob('code/scripts/e2_standalone_code.py'))
+        if len(candidates)!=1:raise ValueError('Immutable package extraction is incomplete')
+        package=candidates[0].parents[2]
+        inventory,_,_=preflight.portable_inventory(package)
+        return package,inventory
+
+    quarantine=None
+    if destination.exists():
+        try:package,inventory=verify()
+        except (OSError,ValueError,KeyError):
+            quarantine=destination.with_name(destination.name+'-quarantine-'+stamp())
+            destination.rename(quarantine)
+    if not destination.exists():
+        preflight.acquire_package(destination)
+        package,inventory=verify()
+    return {'path':str(package),'archive_sha256':preflight.PACKAGE_SHA256,
+            'archive_bytes':7839993,'inventory_sha256':hashlib.sha256(canonical(inventory)).hexdigest(),
+            'quarantined_cache':None if quarantine is None else str(quarantine),
+            'new_real_data_fits':0,'source_verified':True}
+
+
+def prepare_package(source,base,python,env):
+    code=('import importlib.util,json,sys\n'
+          's=importlib.util.spec_from_file_location("audit_package_cache",sys.argv[1])\n'
+          'm=importlib.util.module_from_spec(s);s.loader.exec_module(m)\n'
+          'print(json.dumps(m._package_cache(sys.argv[2],sys.argv[3])))')
+    raw=subprocess.check_output([str(python),'-c',code,str(source/SCOPE/'orchestration/controller.py'),
+        str(source),str(base)],cwd=source,env=env,text=True)
+    receipt=json.loads(raw.strip().splitlines()[-1])
+    if receipt.get('source_verified') is not True:raise ValueError('Immutable package was not verified')
+    return Path(receipt['path']),receipt
+
+
 def analysis_runtime(source,base,log):
     """CPU plotting/statistics environment, separate from kernel and CUDA lock."""
     folder=Path(base)/'e3-extended-analysis-runtime-v1';folder.mkdir(parents=True,exist_ok=True)
@@ -258,7 +306,7 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
     if local and local.get('master_run_id')==master:
         context.update({k:local[k] for k in ('admission_output','admission_run_id') if k in local})
     atomic(session,canonical(context))
-    if previous and not (output/'protocol.json').exists():
+    if previous and (not (output/'protocol.json').exists() or not statefile.exists()):
         print('Restaurando auditoría y checkpoints desde GitHub:',previous['run_url'],flush=True)
         continuation.restore(output,token,source_commit,previous['protocol_sha256'],api,
                              master_run_id=master,statefile=statefile)
@@ -300,6 +348,10 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
         atomic(protocol_path,protocol_api.canonical(p))
     else:p=json.loads(protocol_path.read_bytes())
     protocol_api.verify_compute_profile(p,actual_profile)
+    print('Verificando el paquete fuente inmutable; una caché incompleta se conserva aparte.',flush=True)
+    package,package_receipt=prepare_package(source,base,gpu_python,gpu_env)
+    if not (output/'immutable_package.json').exists():
+        atomic(output/'immutable_package.json',canonical(package_receipt))
     if not freeze_path.exists():
         atomic(freeze_path,canonical(protocol_api.freeze(protocol_path,source_commit,master,token,api)))
     protocol_api.verify_receipt(protocol_path,freeze_path,source_commit)
@@ -330,7 +382,7 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
     command=[gpu_python,source/SCOPE/'evaluation/run.py','--output',output,
         '--source-commit',source_commit,'--admission',output/'admission/admission.json',
         '--protocol',protocol_path,'--freeze-receipt',freeze_path,'--npz',npz,
-        '--btc-history',*history_paths,'--device','cuda:0']
+        '--btc-history',*history_paths,'--device','cuda:0','--package-path',package]
     try:
         print('Comienza la auditoría real: 19 sistemas, cuatro conjuntos y diez semillas neuronales.',flush=True)
         print('Presupuesto máximo por ajuste: 120 s; los checkpoints se guardan cada tres trabajos.',flush=True)

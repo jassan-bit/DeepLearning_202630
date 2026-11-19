@@ -11,7 +11,9 @@ import csv
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
+import tempfile
 
 import numpy as np
 
@@ -28,7 +30,15 @@ def _write(path,raw):
     path.parent.mkdir(parents=True,exist_ok=True)
     if path.exists():require(path.read_bytes()==raw,'Existing figure differs; preserve and choose another output')
     else:
-        with path.open('xb') as stream:stream.write(raw)
+        temporary=None
+        try:
+            with tempfile.NamedTemporaryFile(dir=path.parent,prefix='.partial-'+path.name+'.',delete=False) as stream:
+                temporary=Path(stream.name);stream.write(raw);stream.flush();os.fsync(stream.fileno())
+            try:os.link(temporary,path)
+            except FileExistsError:
+                require(path.read_bytes()==raw,'Existing figure differs; preserve and choose another output')
+        finally:
+            if temporary is not None:temporary.unlink(missing_ok=True)
 
 
 def load_tables(directory):

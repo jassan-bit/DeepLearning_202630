@@ -14,9 +14,11 @@ import importlib.util
 import io
 import json
 import math
+import os
 from pathlib import Path
 import platform
 import sys
+import tempfile
 
 import numpy as np
 
@@ -55,7 +57,17 @@ def write(path,raw):
     if path.exists():
         require(path.read_bytes()==raw,'Existing result differs; preserve it and use a new output directory')
     else:
-        with path.open('xb') as stream:stream.write(raw)
+        # Publish only complete bytes, without replacing an existing result.
+        # An interrupted staging file is not an analysis product or commit marker.
+        temporary=None
+        try:
+            with tempfile.NamedTemporaryFile(dir=path.parent,prefix='.partial-'+path.name+'.',delete=False) as stream:
+                temporary=Path(stream.name);stream.write(raw);stream.flush();os.fsync(stream.fileno())
+            try:os.link(temporary,path)
+            except FileExistsError:
+                require(path.read_bytes()==raw,'Existing result differs; preserve it and use a new output directory')
+        finally:
+            if temporary is not None:temporary.unlink(missing_ok=True)
 
 
 def csv_bytes(rows):
@@ -588,22 +600,31 @@ def run(panel_csv,protocol_json,output,*,run_manifest=None,resources_csv=None,
                 and previous.get('auxiliary_inputs')==auxiliary,
                 'Existing analysis binds different inputs or code; preserve and choose a new output directory')
         require((output/'output_manifest.json').is_file(),'Partial output manifest missing; preserve and choose a new analysis directory')
-        manifest=json.loads((output/'output_manifest.json').read_bytes())
+        manifest_raw=(output/'output_manifest.json').read_bytes()
+        require(previous.get('output_manifest_sha256')==digest(manifest_raw),
+                'Existing analysis output manifest differs from its final receipt')
+        manifest=json.loads(manifest_raw)
         for name,record in manifest['files'].items():
             path=output/name
             require(path.is_file() and path.stat().st_size==record['bytes']
                     and digest(path.read_bytes())==record['sha256'],'Existing analysis output failed its manifest')
         return previous
     tables=analyze(panels,cfg)
-    for name,rows in tables.items():write(output/(name+'.csv'),csv_bytes(rows))
+    product_names=[]
+    for name,rows in tables.items():
+        name=name+'.csv';write(output/name,csv_bytes(rows));product_names.append(name)
     resources=audit_resources(resources_csv,cfg)
-    if resources['rows']:write(output/'resources_supplied.csv',csv_bytes(resources.pop('rows')))
+    if resources['rows']:
+        write(output/'resources_supplied.csv',csv_bytes(resources.pop('rows')))
+        product_names.append('resources_supplied.csv')
     else:resources.pop('rows')
     curves,curve_rows=learning_curves(learning_csv,learning_index,panels,cfg)
-    if curve_rows:write(output/'sample_size_metrics.csv',csv_bytes(curve_rows))
+    if curve_rows:
+        write(output/'sample_size_metrics.csv',csv_bytes(curve_rows));product_names.append('sample_size_metrics.csv')
     curves.pop('rows',None)
     hpo,hpo_rows=hpo_sensitivity(hpo_sensitivity_csv,panels,cfg,protocol)
-    if hpo_rows:write(output/'hpo_sensitivity_metrics.csv',csv_bytes(hpo_rows))
+    if hpo_rows:
+        write(output/'hpo_sensitivity_metrics.csv',csv_bytes(hpo_rows));product_names.append('hpo_sensitivity_metrics.csv')
     hpo.pop('rows',None)
     remaining=[]
     if curves.get('status')!='actual_resized_fit_receipts_and_predictions_bound':
@@ -634,10 +655,18 @@ def run(panel_csv,protocol_json,output,*,run_manifest=None,resources_csv=None,
             'Bootstrap simultaneous interval tails can be sparsely sampled; the report exposes their counts',
             'Calibration order-statistic intervals are nominal; serial dependence and shift prevent a universal coverage guarantee',
             'The floor computed from corrupted inputs need not lower-bound the clean true sigma target; exceedances are not invalid data']}
+    # The manifest is deterministic across retries. The receipt is the final
+    # commit marker, so a stop after the manifest safely recomputes/reuses tables
+    # instead of treating an incomplete directory as completed.
+    manifest={name:{'sha256':digest((output/name).read_bytes()),'bytes':(output/name).stat().st_size}
+              for name in sorted(product_names)}
+    manifest_raw=canonical({'protocol_sha256':receipt['protocol_sha256'],
+        'input_panel_sha256':input_proof['sha256'],'auxiliary_inputs':auxiliary,
+        'analysis_code_sha256':receipt['analysis_code_sha256'],
+        'reused_statistics_sha256':receipt['reused_statistics_sha256'],'files':manifest})
+    write(output/'output_manifest.json',manifest_raw)
+    receipt['output_manifest_sha256']=digest(manifest_raw)
     write(output/'analysis_receipt.json',canonical(receipt))
-    manifest={p.name:{'sha256':digest(p.read_bytes()),'bytes':p.stat().st_size}
-              for p in sorted(output.iterdir()) if p.is_file() and p.name!='output_manifest.json'}
-    write(output/'output_manifest.json',canonical({'protocol_sha256':receipt['protocol_sha256'],'files':manifest}))
     print(json.dumps({'status':'analyzed_actual_saved_panel','datasets':len(cfg['datasets']),
         'models':len(cfg['family']),'scenarios':len(cfg['scenarios']),'new_model_fits':0,'R3_accredited':False}),flush=True)
     return receipt
