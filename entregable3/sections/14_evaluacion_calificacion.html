@@ -423,6 +423,7 @@
 <p>La nota se expresa en la escala de <strong>0 a 5</strong> y se determina en dos pasos: primero se obtiene el puntaje ponderado de la rúbrica y después se aplica el tope que corresponda al estado <strong>evaluado</strong> de R1, R2 y R3. Una condición pendiente no se convierte en «no» para fijar ese tope, y una casilla sin evidencia no se marca cumplida para completar la rúbrica.</p>
 <p>La evidencia se consulta en las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">correcciones de E2</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">artefactos</span></a>, <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">candidato</span></a>, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">diseño riguroso</span></a>, <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">verificación estadística</span></a> y <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">diseño del dashboard</span></a>. Las actividades pendientes conservan su estado; esta ampliación no entrena modelos, ejecuta contrastes ni calcula calificaciones.</p>
 <p>La matriz incorpora el corte posterior del <strong>17 de noviembre de 2026</strong>: diez semillas por red de E2 y de la referencia E3 de 1210 parámetros, tres trayectorias clásicas deterministas y análisis de los 17 sistemas sobre 608 fechas. Actualizar una casilla con evidencia retrospectiva no la convierte en cumplimiento confirmatorio ni transfiere las propiedades del primer módulo de 1211 parámetros a la receta evaluada.</p>
+<p>La auditoría ampliada de <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8.17</span></a> añade un corte real en ejecución: 3/3 archivos admitidos, protocolo exploratorio previo y <strong>251 trabajos completos guardados</strong>. D01 cubre los 19 sistemas y D02 cuatro redes; el análisis final y la potencia completa siguen pendientes. Estos datos actualizan el inventario de evidencia, sin asignar nota, tope ni acreditación de R1/R3.</p>
 <section id="tope-de-calificacion-segun-el-modelo-original">
 <h2>14.1 Tope de calificación según el modelo original<a class="headerlink" href="#tope-de-calificacion-segun-el-modelo-original" title="Link to this heading">#</a></h2>
 <p>La guía establece estos casos <strong>condicionales</strong>, sujetos a evidencia y evaluación académica:</p>
@@ -652,14 +653,14 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Cierre A, controles aplicables y anclas del benchmark confirmatorio; el freeze histórico no cierra A automáticamente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Familia completa, sin selección posterior de rivales.</p></td>
-<td><p>Comparación retrospectiva calculada; confirmación pendiente.</p></td>
-<td><p>Diez candidatos, tres referencias neuronales y tres clásicos: <strong>16 rivales</strong> frente a E3; 48 contrastes primarios sobre las mismas 608 fechas, sin excluir sistemas o semillas.</p></td>
-<td><p>Campaña confirmatoria con requisitos de equidad, potencia y evaluación ampliada. El m≈12 ilustrativo no reduce esta familia.</p></td>
+<td><p>Comparación retrospectiva calculada; auditoría de 19 sistemas en curso.</p></td>
+<td><p>La familia histórica conserva <strong>16 rivales</strong> frente a E3 y 48 contrastes primarios sobre 608 fechas. La auditoría nueva añade dos controles: D01 completó sus 19 sistemas y D02 cuatro redes, según 8.17.</p></td>
+<td><p>Completar y analizar toda la familia en los cuatro conjuntos de la auditoría; cerrar equidad, potencia y requisitos confirmatorios. El m≈12 ilustrativo no reduce ninguna familia.</p></td>
 </tr>
 <tr class="row-even"><td><p>Mismo presupuesto, particiones, preprocesamiento y fuente de pesos preentrenados.</p></td>
-<td><p>Diferencia de tratamiento documentada; equidad pendiente.</p></td>
-<td><p>E2: 655 ejemplos de ajuste y 53 de calibración; E3: 532 de ajuste y 116 de validación, sin calibración en el corte científico original. La adopción posterior de servicio no modifica esos tratamientos. Recetas y consumos separados en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.2</span></a>.</p></td>
-<td><p>Ejecutar un protocolo común futuro; no atribuir el resultado exclusivamente a la arquitectura ni asumir que diez semillas o una misma forma de entrada demuestran equidad.</p></td>
+<td><p>Diferencia histórica documentada; procedimiento común nuevo en ejecución.</p></td>
+<td><p>E2 histórico: 655 ejemplos de ajuste y 53 de calibración; E3: 532 de ajuste y 116 de validación. La auditoría de 8.17 fija un procedimiento y presupuesto comunes, con contratos de información y recursos declarados.</p></td>
+<td><p>Completar la ejecución y revisar sus consumos y comparabilidad; no atribuir el resultado histórico exclusivamente a la arquitectura ni asumir que diez semillas o una misma forma de entrada demuestran equidad.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Capacidad controlada con parámetros/FLOPs y benchmark de tamaño comparable si el propio es mayor.</p></td>
 <td><p>Parcial de inventario.</p></td>
@@ -667,9 +668,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Medición comparable y variante ajustada en tamaño si procede. Para esta casilla de 5,0, discutir el tamaño no sustituye esa variante.</p></td>
 </tr>
 <tr class="row-even"><td><p>Estándar/protocolo con fecha y tag previos; confirmatorio y exploratorio separados.</p></td>
-<td><p>Pendiente de cierre y registro.</p></td>
-<td><p>Estándar operativo y <code class="docutils literal notranslate"><span class="pre">experiments/protocolo.md</span></code> canónico disponibles; este último es un borrador posterior, <strong>no congelado</strong>, con campos abiertos. El análisis histórico mantiene su alcance en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>.</p></td>
-<td><p>Cerrar decisiones y revisión y registrar fechas/tags reales antes de futuras ejecuciones confirmatorias; disponer del archivo no completa un preregistro.</p></td>
+<td><p>Auditoría exploratoria registrada antes de sus ajustes; cierre confirmatorio pendiente.</p></td>
+<td><p>El borrador histórico <code class="docutils literal notranslate"><span class="pre">experiments/protocolo.md</span></code> conserva sus campos abiertos. La auditoría de 8.17 tiene un protocolo propio y tag anterior a los ajustes, con fuente y hashes fijados.</p></td>
+<td><p>Completar el estándar y el dimensionamiento de la batería confirmatoria. El tag de la auditoría no registra retrospectivamente el análisis histórico ni acredita R3.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Bitácora Nd y desarrollo separado de confirmación.</p></td>
 <td><p>Registro consolidado parcial; Nd global sin conciliar.</p></td>
@@ -740,9 +741,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Al menos tres conjuntos de naturaleza distinta, elegidos antes de conocer resultados y fuera del diseño.</p></td>
-<td><p>Parcial: <strong>1 de 3 archivos admitidos, 0 evaluados por modelos y 2 pendientes</strong>.</p></td>
-<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Sección 8.13</span></a>: D01 WIKI/AAPL, fuentes y hashes fijados, 3270/3270 sesiones y política <code class="docutils literal notranslate"><span class="pre">RAW_KEEP_ALL</span></code>, con <code class="docutils literal notranslate"><span class="pre">Adj</span> <span class="pre">Close</span></code> excluido; tarea σ₇ de precio bruto entre sesiones.</p></td>
-<td><p>Admitir D02/D03, registrar diversidad y exposición previa y cerrar protocolo, presupuesto y potencia antes de evaluar a la familia. La admisión de archivo no es evidencia de generalización o superioridad.</p></td>
+<td><p>Parcial: <strong>3/3 archivos admitidos; evaluación completa de D01 y parcial de D02</strong>.</p></td>
+<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Sección 8.17</span></a>: D01 WIKI/AAPL, D02 ETHUSDT Spot y D03 BTCUSD_PERP, con diversidad y dependencia declaradas. D01 guarda resultados de los 19 sistemas y D02 de cuatro redes.</p></td>
+<td><p>Completar D02/D03 y el análisis bajo el procedimiento prefijado, con potencia y alcance de generalización justificados. Los tres archivos no representan tres mercados independientes y la admisión no demuestra superioridad.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Evaluación bajo cambio de distribución: periodo, dominio o fuente.</p></td>
 <td><p>Pendiente E3.</p></td>
@@ -958,7 +959,7 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </section>
 <section id="evidencia-posterior-que-modifica-la-interpretacion">
 <h2>Evidencia posterior que modifica la interpretación<a class="headerlink" href="#evidencia-posterior-que-modifica-la-interpretacion" title="Link to this heading">#</a></h2>
-<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">control común del capítulo 8</span></a> reduce la ventaja RMSE descriptiva de E3 a <strong>10,33 %</strong> frente al mejor rival proyectado, y el control sólo piso mejora su MAE en <strong>3,70 %</strong>. Esta evidencia limita la atribución al mecanismo y se conserva junto con la subcobertura temporal del calibrador posterior. La revisión de once antecedentes no acredita R1. La planificación de potencia y el preflight Colab no satisfacen R3: faltan D02/D03, el protocolo común y una campaña evaluada con presupuesto y potencia definidos; D01 está admitido como archivo para RAW entre sesiones, sin resultados nuevos de modelos. Las mejoras de documentación y reproducción automática no habilitan por sí solas un tope mayor.</p>
+<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">control común del capítulo 8</span></a> reduce la ventaja RMSE descriptiva de E3 a <strong>10,33 %</strong> frente al mejor rival proyectado, y el control sólo piso mejora su MAE en <strong>3,70 %</strong>. Esta evidencia limita la atribución al mecanismo y se conserva junto con la subcobertura temporal del calibrador posterior. La revisión de once antecedentes no acredita R1. La planificación de potencia y el preflight Colab no satisfacen R3. La auditoría posterior ya admite los tres archivos y ejecuta ajustes bajo un protocolo exploratorio y presupuesto prefijados: D01 completó los 19 sistemas y D02 cuatro redes. Faltan completar la familia y los conjuntos, generar el análisis final y cerrar la potencia de la batería. Sus 251 trabajos completos guardados no acreditan por sí solos superioridad ni un tope mayor.</p>
 <p>El <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">expediente de R1 de 6.11</span></a> conserva comparación formal, trazabilidad y un formulario externo vacío. La región admisible de la cabeza aditiva tiene un antecedente de guarda por muestra; la equivalencia escalar no identifica clases neuronales o entrenamiento. La ejecución posterior de <strong>6.12</strong> ya tiene respuestas verificadas de tres bases, con 180 ocurrencias de metadatos y un cribado de títulos separado del recibo original. Las consultas amplias y el examen limitado a primeras páginas no acreditan exhaustividad. La diferencia sustantiva y las lecturas requeridas siguen pendientes. Conforme a la indicación docente comunicada por el autor, 6.13 adopta la revisión por IA declarada como sustitución del revisor humano para ese componente y documenta sus dos consultas repetidas. No se marca R1 como acreditada por los metadatos, el cribado o los dictámenes asistidos; tampoco se asigna aquí una nota o un tope al proyecto.</p>
 <p>La indicación de <strong>6.13</strong> retira el carácter humano como condición de modalidad para esa revisión externa, con uso de IA mencionado. El componente se documenta como completado mediante dictamen y dos cadenas repetidas por IA. Esto no convierte el concepto crítico en una acreditación favorable de novedad ni completa el resto de 14.5.1; R1, la defensa de R2 y R3 conservan sus pendientes científicos y académicos.</p>
 </section>
