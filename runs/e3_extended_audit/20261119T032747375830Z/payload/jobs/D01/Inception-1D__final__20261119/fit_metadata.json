@@ -1,0 +1,98 @@
+{
+  "status": "completed",
+  "model": "Inception-1D",
+  "seed": 20261119,
+  "fit_request_sha256": "a8815a1c4d393ed3bade2309cfafd5b7ae6d4d9a423a94d919da7564b753445a",
+  "source_identity": {
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "audit_request_sha256": "7326b1cf16cccbdf11c64c014762aa8e2bdfbee84f965a3b70b9353d4c188f7f",
+    "dataset": "D01",
+    "data_sha256": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1",
+    "kind": "final"
+  },
+  "configuration": {
+    "dropout": 0.0,
+    "training_registry_version": "e2-training-registry-v1",
+    "model": "Inception-1D",
+    "training_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+    "registered_trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+    "initialization_seed": 20261119,
+    "weights_pretrained": false,
+    "role": "E2_candidate",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; inversion belongs to caller",
+    "nas": false,
+    "frozen_body_parameter_count": 490561,
+    "actual_parameter_count": 490561,
+    "training_hpo_record": {
+      "batch_size": 32,
+      "dropout": 0,
+      "learning_rate": 0.0007394620646713903,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "weight_decay": 1.818489584292255e-06
+    },
+    "training_axes_applied": false,
+    "weights_reused": false,
+    "requested_existing_dropout": 0.0,
+    "iTransformer_existing_dropout_rate_bridge": false,
+    "source_roots_verified": false,
+    "market_data_read": false
+  },
+  "scaler_sha256": "94887b693fb17b67348815018fd04b4601e9d99f1c4c13a157a07162fbd35274",
+  "parameters": 490561,
+  "phase_budget_seconds": {
+    "supervised": 120.0
+  },
+  "total_allocated_phase_seconds": 120.0,
+  "whole_system_budget_seconds": 120.0,
+  "phase_resources": {
+    "supervised": {
+      "status": "completed",
+      "request_sha256": "8122c9b1f8972c29443b83fdcd90c68d3acc177224130b90ad3064269034fb19",
+      "best_epoch": 1,
+      "epochs": 9,
+      "optimizer_steps": 513,
+      "best_validation_mse_scaled": 0.02773327413712544,
+      "checkpoint_sha256": "0a337eea1a659342086be7d1b9b72960ad1018a8efbbb7d24dd962e47089cce2",
+      "stop_reason": "early_stopping",
+      "budget_seconds": 120.0,
+      "started_unix": 1795058822.3563738,
+      "immutable_deadline_unix": 1795058942.3563738,
+      "finalized_unix": 1795058834.0697577,
+      "elapsed_wall_including_setup_io_and_restart_seconds": 11.713383913040161,
+      "deadline_overrun_seconds": 0.0,
+      "measured_completed_epoch_seconds": 11.182420510000611,
+      "resume_segments": 0,
+      "active_compute_lost_in_an_unclosed_crash_segment_is_unknown": false,
+      "deadline_includes_restart_downtime": true,
+      "wall_budget_is_process_hard_timeout": false,
+      "budget_check_boundary": "before each minibatch; a batch and its validation/checkpoint may overrun",
+      "epoch_boundary_resume": true,
+      "partial_epoch_policy": "restore previous durable model/optimizer/RNG; deadline is never reset",
+      "untrained_checkpoint_accepted": false
+    }
+  },
+  "optimizer_steps": 513,
+  "training_epoch_seconds": 11.182420510000611,
+  "measured_fit_wall_seconds_this_segment": 11.788525555999968,
+  "batch_boundary_deadline_overrun_seconds": 0.0,
+  "hard_process_timeout_enforced": false,
+  "SAE_pretraining_executed": false,
+  "legacy_initial_bias_calibration_executed": false,
+  "training_loss": "raw_sigma7_MSE",
+  "validation_selection": "common_projected_sigma7_MSE",
+  "validation_projected_RMSE": 0.004614826274049126,
+  "validation_raw_RMSE": 0.01701704936165191,
+  "GPU": "NVIDIA A100-SXM4-80GB",
+  "peak_GPU_allocated_bytes": 131891200,
+  "GPU_memory_scope": "Process allocated peak after reset; includes any caller-resident models/tensors",
+  "selected_model_sha256": "8f504260388642977f266696a87f96dc175437e232d2bed392dea65dea89eab3"
+}
