@@ -1,0 +1,98 @@
+{
+  "status": "completed",
+  "model": "FCN-1D",
+  "seed": 20261117,
+  "fit_request_sha256": "56a2fc4de807cdb2fb500759fc5f7d1751aeeb9e81a1986f5fae6434ef61dea0",
+  "source_identity": {
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "audit_request_sha256": "7326b1cf16cccbdf11c64c014762aa8e2bdfbee84f965a3b70b9353d4c188f7f",
+    "dataset": "D02",
+    "data_sha256": "0b02d3f47d020dde37e5a18f5371e9608ecce0907e7296760a7281524bc6b510",
+    "kind": "hpo_lr1"
+  },
+  "configuration": {
+    "dropout": 0.0,
+    "training_registry_version": "e2-training-registry-v1",
+    "model": "FCN-1D",
+    "training_recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+    "registered_trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+    "initialization_seed": 20261117,
+    "weights_pretrained": false,
+    "role": "E2_candidate",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; inversion belongs to caller",
+    "nas": false,
+    "frozen_body_parameter_count": 268929,
+    "actual_parameter_count": 268929,
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0,
+      "learning_rate": 0.0005695394539643588,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+      "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+      "weight_decay": 0.0010040757709281222
+    },
+    "training_axes_applied": false,
+    "weights_reused": false,
+    "requested_existing_dropout": 0.0,
+    "iTransformer_existing_dropout_rate_bridge": false,
+    "source_roots_verified": false,
+    "market_data_read": false
+  },
+  "scaler_sha256": "0bd465e18e0808c7610292861b47bf38c71ea250ec223865d298c42776b7669d",
+  "parameters": 268929,
+  "phase_budget_seconds": {
+    "supervised": 120.0
+  },
+  "total_allocated_phase_seconds": 120.0,
+  "whole_system_budget_seconds": 120.0,
+  "phase_resources": {
+    "supervised": {
+      "status": "completed",
+      "request_sha256": "71849d10c36c05120ce7f9d3938345e3ca50d03cb9d7e1d48444ea944e6df2b4",
+      "best_epoch": 13,
+      "epochs": 21,
+      "optimizer_steps": 525,
+      "best_validation_mse_scaled": 0.01950536891809857,
+      "checkpoint_sha256": "a1dbfb0570b62f722b449d33748c321f7fd2af4003cef9edc2fcb5a8045438ff",
+      "stop_reason": "early_stopping",
+      "budget_seconds": 120.0,
+      "started_unix": 1795063099.309213,
+      "immutable_deadline_unix": 1795063219.309213,
+      "finalized_unix": 1795063103.4413967,
+      "elapsed_wall_including_setup_io_and_restart_seconds": 4.132183790206909,
+      "deadline_overrun_seconds": 0.0,
+      "measured_completed_epoch_seconds": 3.452011568000671,
+      "resume_segments": 0,
+      "active_compute_lost_in_an_unclosed_crash_segment_is_unknown": false,
+      "deadline_includes_restart_downtime": true,
+      "wall_budget_is_process_hard_timeout": false,
+      "budget_check_boundary": "before each minibatch; a batch and its validation/checkpoint may overrun",
+      "epoch_boundary_resume": true,
+      "partial_epoch_policy": "restore previous durable model/optimizer/RNG; deadline is never reset",
+      "untrained_checkpoint_accepted": false
+    }
+  },
+  "optimizer_steps": 525,
+  "training_epoch_seconds": 3.452011568000671,
+  "measured_fit_wall_seconds_this_segment": 4.159871276000558,
+  "batch_boundary_deadline_overrun_seconds": 0.0,
+  "hard_process_timeout_enforced": false,
+  "SAE_pretraining_executed": false,
+  "legacy_initial_bias_calibration_executed": false,
+  "training_loss": "raw_sigma7_MSE",
+  "validation_selection": "common_projected_sigma7_MSE",
+  "validation_projected_RMSE": 0.006003184674432469,
+  "validation_raw_RMSE": 0.012441393709479819,
+  "GPU": "NVIDIA A100-SXM4-80GB",
+  "peak_GPU_allocated_bytes": 79218176,
+  "GPU_memory_scope": "Process allocated peak after reset; includes any caller-resident models/tensors",
+  "selected_model_sha256": "41d515acf82b0024b6cd739a14bf9d2925072e1fd27a061e31f72ad8aeaf9e97"
+}

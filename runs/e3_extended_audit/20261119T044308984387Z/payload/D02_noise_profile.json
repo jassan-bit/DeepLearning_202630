@@ -1,0 +1,30 @@
+{
+  "version": "e3-ohlcv-observation-stress-v1",
+  "family": "ohlcv_observation_noise",
+  "dataset": "D02",
+  "partition": "fit",
+  "fit_rows": 805,
+  "fit_first_date": "2018-01-01",
+  "fit_last_date": "2020-03-15",
+  "fit_end_declared": "2020-03-15",
+  "fit_dates_sha256": "7ee07ec196ab0dfabad253d5a1a712671a98f26a04fabfcb6c625e92972ddc2f",
+  "fit_ohlcv_float64_le_sha256": "7a70118ecc470f50aaebe37ed134fdc544aaae4826923d7837228ce1528a112c",
+  "price_scale": 0.034290098993529416,
+  "price_scale_method": "1.4826_times_MAD",
+  "price_scale_input": "consecutive_Close_log_returns_in_supplied_fit_bars",
+  "volume_scale": 0.7504089785958767,
+  "volume_scale_method": "1.4826_times_MAD",
+  "volume_scale_input": "log1p_native_volume_in_supplied_fit_bars",
+  "volume_units": "ETH",
+  "severity_factors": {
+    "1": 0.25,
+    "2": 0.5,
+    "3": 1.0
+  },
+  "standard_normal_truncation": 3.0,
+  "selection_assertion": "Caller supplies FIT bars; helper does not access a dataset or targets",
+  "fit_date_digest_bound_to_external_manifest": false,
+  "independent_provenance_verified": false,
+  "scope": "Fixed-target input observation corruption, not an economic generating law",
+  "profile_sha256": "4111727160fd0f636ea42b4f23151461329f3ff3755d5cb0eb501815b75391c9"
+}
