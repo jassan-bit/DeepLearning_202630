@@ -1,0 +1,143 @@
+{
+  "status": "completed",
+  "model": "TiDE",
+  "seed": 20261125,
+  "fit_request_sha256": "9437231ae3aa8b871c58e8393965bc9250553c7717aaaf2840cd35f54dee26e5",
+  "source_identity": {
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "audit_request_sha256": "7326b1cf16cccbdf11c64c014762aa8e2bdfbee84f965a3b70b9353d4c188f7f",
+    "dataset": "D01",
+    "data_sha256": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1",
+    "kind": "final"
+  },
+  "configuration": {
+    "model": "TiDE",
+    "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+    "training_recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+    "input_shape": [
+      7,
+      5
+    ],
+    "horizon": 1,
+    "source": {
+      "repository": "google-research/google-research",
+      "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+      "files_sha256": {
+        "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+        "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854",
+        "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      "license": "Apache-2.0",
+      "verification_scope": "Four declared files, not the complete repository"
+    },
+    "source_default_preset": {
+      "hidden_dims": [
+        256,
+        256
+      ],
+      "time_encoder_dims": [
+        64,
+        4
+      ],
+      "decoder_output_dim": 4,
+      "final_decoder_hidden": 64,
+      "transform": false,
+      "layer_norm": false,
+      "dropout_rate": 0.0,
+      "series_embedding_dim": 16
+    },
+    "source_selected_ETTh1_preset_reproduced": false,
+    "source_forecast_graph_complete": true,
+    "semantic_backend_port": "TensorFlow/Keras to PyTorch; see separate parity receipt",
+    "dynamic_covariate_count": 0,
+    "categorical_covariate_count": 0,
+    "series_count": 5,
+    "series_ids": "fixed OHLCV positions; not extra market inputs",
+    "body_output_shape": [
+      1,
+      5
+    ],
+    "readout": "Linear(5,1) then Softplus",
+    "output": "sigma7 / caller-owned positive training-only target scale",
+    "no_target_history_added": true,
+    "no_future_ohlcv_added": true,
+    "no_calendar_covariates_added": true,
+    "no_moment_features_added": true,
+    "r0_inactive_branch_retained": true,
+    "inactive_initialization_consequence": "At source zero-bias/ReLU initialization, time_encoder.lin_a bias and lin_b weight have zero task gradients; source graph is retained without pruning or reinitialization",
+    "all_parameters_expected_to_have_nonzero_gradients": false,
+    "structural_architecture_search": false,
+    "nas": false,
+    "restored_published_body": true,
+    "weights_pretrained": false,
+    "weights_reused": false,
+    "paper_original_task_replication_claimed": false,
+    "dropout": 0.0,
+    "initialization_seed": 20261125,
+    "actual_parameter_count": 163384,
+    "training_axes_applied": false,
+    "registered_trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0.0,
+      "learning_rate": 0.00013961276714916928,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "weight_decay": 2.7796158898151984e-05
+    }
+  },
+  "scaler_sha256": "94887b693fb17b67348815018fd04b4601e9d99f1c4c13a157a07162fbd35274",
+  "parameters": 163384,
+  "phase_budget_seconds": {
+    "supervised": 120.0
+  },
+  "total_allocated_phase_seconds": 120.0,
+  "whole_system_budget_seconds": 120.0,
+  "phase_resources": {
+    "supervised": {
+      "status": "completed",
+      "request_sha256": "967ad4a2931c78f7bbb5ed03001e2f090f9c0644742e3c665a036511b4f0f806",
+      "best_epoch": 6,
+      "epochs": 14,
+      "optimizer_steps": 798,
+      "best_validation_mse_scaled": 0.044933961032726434,
+      "checkpoint_sha256": "4aee3ad01ced561bad225b083249c20093e3ac7a852637ca5701f5280c4f2289",
+      "stop_reason": "early_stopping",
+      "budget_seconds": 120.0,
+      "started_unix": 1795061786.41927,
+      "immutable_deadline_unix": 1795061906.41927,
+      "finalized_unix": 1795061793.9582658,
+      "elapsed_wall_including_setup_io_and_restart_seconds": 7.538995742797852,
+      "deadline_overrun_seconds": 0.0,
+      "measured_completed_epoch_seconds": 7.055714213001011,
+      "resume_segments": 0,
+      "active_compute_lost_in_an_unclosed_crash_segment_is_unknown": false,
+      "deadline_includes_restart_downtime": true,
+      "wall_budget_is_process_hard_timeout": false,
+      "budget_check_boundary": "before each minibatch; a batch and its validation/checkpoint may overrun",
+      "epoch_boundary_resume": true,
+      "partial_epoch_policy": "restore previous durable model/optimizer/RNG; deadline is never reset",
+      "untrained_checkpoint_accepted": false
+    }
+  },
+  "optimizer_steps": 798,
+  "training_epoch_seconds": 7.055714213001011,
+  "measured_fit_wall_seconds_this_segment": 7.577150533000349,
+  "batch_boundary_deadline_overrun_seconds": 0.0,
+  "hard_process_timeout_enforced": false,
+  "SAE_pretraining_executed": false,
+  "legacy_initial_bias_calibration_executed": false,
+  "training_loss": "raw_sigma7_MSE",
+  "validation_selection": "common_projected_sigma7_MSE",
+  "validation_projected_RMSE": 0.005874110315482537,
+  "validation_raw_RMSE": 0.007947228339121626,
+  "GPU": "NVIDIA A100-SXM4-80GB",
+  "peak_GPU_allocated_bytes": 87302656,
+  "GPU_memory_scope": "Process allocated peak after reset; includes any caller-resident models/tensors",
+  "selected_model_sha256": "f70d3eefc7da60e64efa3794d9b893176d1e19578386446d11ed08961dad00ee"
+}
