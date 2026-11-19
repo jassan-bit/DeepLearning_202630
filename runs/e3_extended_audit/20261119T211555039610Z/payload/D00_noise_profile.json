@@ -1,0 +1,30 @@
+{
+  "version": "e3-ohlcv-observation-stress-v1",
+  "family": "ohlcv_observation_noise",
+  "dataset": "D00",
+  "partition": "fit",
+  "fit_rows": 544,
+  "fit_first_date": "2023-01-01",
+  "fit_last_date": "2024-06-29",
+  "fit_end_declared": "2024-06-29",
+  "fit_dates_sha256": "b829e16492c6cdcd224dbb94bc7d72a81896e2a91d5a15333b13f508ef8a3da1",
+  "fit_ohlcv_float64_le_sha256": "aac13a1a3029f923d22ac8e6e825c5b65515130cb143d8652b909ea781cd2b6c",
+  "price_scale": 0.0168463526204843,
+  "price_scale_method": "1.4826_times_MAD",
+  "price_scale_input": "consecutive_Close_log_returns_in_supplied_fit_bars",
+  "volume_scale": 0.6638820966995795,
+  "volume_scale_method": "1.4826_times_MAD",
+  "volume_scale_input": "log1p_native_volume_in_supplied_fit_bars",
+  "volume_units": "BTC",
+  "severity_factors": {
+    "1": 0.25,
+    "2": 0.5,
+    "3": 1.0
+  },
+  "standard_normal_truncation": 3.0,
+  "selection_assertion": "Caller supplies FIT bars; helper does not access a dataset or targets",
+  "fit_date_digest_bound_to_external_manifest": false,
+  "independent_provenance_verified": false,
+  "scope": "Fixed-target input observation corruption, not an economic generating law",
+  "profile_sha256": "740e65273f753b711af720f6d92ba26a10807a7b53206f6c0da838d32aca5594"
+}
