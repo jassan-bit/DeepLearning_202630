@@ -1,0 +1,57 @@
+{
+  "kind": "e3_closure_storage_offline_verification",
+  "created_at_utc": "2026-11-19T00:01:24.721584+00:00",
+  "status": "passed_offline_simulation",
+  "python": "3.12.14",
+  "source_sha256": {
+    "experiments/e3_cierre_integral_20261118/orchestration/github_store.py": "8eaf2b78006f90fdc52bc3e0dcffa860c36ae5f75de3e23e22c7521a57d0cdde",
+    "experiments/e3_cierre_integral_20261118/orchestration/test_github_store.py": "7871cd9a7dd0974c14a0f70b74660b55bef4f1749b137a99cc360f8281c4e60d",
+    "experiments/e3_remediacion_20261118/evaluation/test_colab_github.py": "4ead15050725f1cb04f6987bc871dce80f147acbc50cc740277553b122e2c7ea",
+    "experiments/e3_remediacion_20261118/evaluation/colab_github.py": "7ff1eca1c5cf7ec857095ab325dbff8fc15d888c4069e8b984b08163dae3b873"
+  },
+  "test_suites": [
+    {
+      "suite": "stage_storage",
+      "tests_run": 14,
+      "subtests_run": 46,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "log": "test_archive_nesting_duplicates_encryption_and_expansion_are_bounded (verification_stage_tests.StagePersistenceContracts.test_archive_nesting_duplicates_encryption_and_expansion_are_bounded) ... ok\ntest_changed_local_bytes_cannot_overwrite_an_existing_run (verification_stage_tests.StagePersistenceContracts.test_changed_local_bytes_cannot_overwrite_an_existing_run) ... ok\ntest_corrupt_uploaded_blob_or_missing_old_source_never_creates_a_ref (verification_stage_tests.StagePersistenceContracts.test_corrupt_uploaded_blob_or_missing_old_source_never_creates_a_ref) ... ok\ntest_development_pilot_can_persist_an_honest_fit_counter_without_certifying_R1_R3 (verification_stage_tests.StagePersistenceContracts.test_development_pilot_can_persist_an_honest_fit_counter_without_certifying_R1_R3) ... ok\ntest_exact_cpu_binary_snapshot_preserves_the_full_source_tree (verification_stage_tests.StagePersistenceContracts.test_exact_cpu_binary_snapshot_preserves_the_full_source_tree) ... ok\ntest_existing_ref_commit_or_tree_tampering_is_refused_without_new_writes (verification_stage_tests.StagePersistenceContracts.test_existing_ref_commit_or_tree_tampering_is_refused_without_new_writes) ... ok\ntest_false_scientific_accreditation_or_cpu_fits_fail_before_upload (verification_stage_tests.StagePersistenceContracts.test_false_scientific_accreditation_or_cpu_fits_fail_before_upload) ... ok\ntest_filesystem_and_embedded_archive_paths_or_symlinks_are_refused (verification_stage_tests.StagePersistenceContracts.test_filesystem_and_embedded_archive_paths_or_symlinks_are_refused) ... ok\ntest_identical_retry_and_lost_ack_only_read_the_existing_snapshot (verification_stage_tests.StagePersistenceContracts.test_identical_retry_and_lost_ack_only_read_the_existing_snapshot) ... ok\ntest_invalid_profile_run_or_exceeded_budget_fails_before_any_request (verification_stage_tests.StagePersistenceContracts.test_invalid_profile_run_or_exceeded_budget_fails_before_any_request) ... ok\ntest_missing_malformed_or_nonobject_stage_receipt_has_a_fixed_local_error (verification_stage_tests.StagePersistenceContracts.test_missing_malformed_or_nonobject_stage_receipt_has_a_fixed_local_error) ... ok\ntest_new_tree_must_be_complete_and_exact_before_reference_publication (verification_stage_tests.StagePersistenceContracts.test_new_tree_must_be_complete_and_exact_before_reference_publication) ... ok\ntest_secret_in_bytes_or_filename_is_rejected_before_any_api_request (verification_stage_tests.StagePersistenceContracts.test_secret_in_bytes_or_filename_is_rejected_before_any_api_request) ... ok\ntest_secret_in_compressed_zip_pt_or_npz_is_rejected_without_deserializing (verification_stage_tests.StagePersistenceContracts.test_secret_in_compressed_zip_pt_or_npz_is_rejected_without_deserializing) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.121s\n\nOK\n"
+    },
+    {
+      "suite": "shared_fake_and_existing_storage_contracts",
+      "tests_run": 8,
+      "subtests_run": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "log": "test_atomic_results_branch_preserves_source_and_exact_bytes (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_atomic_results_branch_preserves_source_and_exact_bytes) ... ok\ntest_blob_or_tree_integrity_failure_never_creates_a_branch (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_blob_or_tree_integrity_failure_never_creates_a_branch) ... ok\ntest_changed_existing_run_is_refused_without_overwriting (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_changed_existing_run_is_refused_without_overwriting) ... ok\ntest_identical_retry_and_lost_ack_do_not_require_another_gpu_run (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_identical_retry_and_lost_ack_do_not_require_another_gpu_run) ... ok\ntest_read_only_role_check_does_not_claim_token_write_scope (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_read_only_role_check_does_not_claim_token_write_scope) ... ok\ntest_size_limits_fail_closed_without_uploading_a_partial_result (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_size_limits_fail_closed_without_uploading_a_partial_result) ... ok\ntest_symlinks_and_literal_secret_fail_before_any_api_request (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_symlinks_and_literal_secret_fail_before_any_api_request) ... ok\ntest_zip_cannot_hide_extra_or_different_receipts_or_credentials (e3_closure_existing_github_fixtures.GitHubPersistenceContracts.test_zip_cannot_hide_extra_or_different_receipts_or_credentials) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.028s\n\nOK\n"
+    }
+  ],
+  "total_tests": 22,
+  "live_GitHub_API_called": false,
+  "real_credentials_used": false,
+  "external_references_created": 0,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "verification_scope": [
+    "artificial binary ZIP CHECKSUM PT NPZ fixture bytes and hashes",
+    "preserved source tree with executable mode",
+    "new results branch only; main untouched",
+    "idempotent retry and lost acknowledgement recovery",
+    "conflicting receipt branch and changed local results rejected",
+    "literal and compressed credential rejection before API",
+    "filesystem and archive traversal, symlinks, duplicates, encryption, nesting and expansion bounds",
+    "invalid receipt, fake accreditation and CPU real-fit counters rejected",
+    "corrupt uploaded blob and incomplete or modified tree never publish a reference"
+  ],
+  "limitations": [
+    "FakeGitHub models API responses; this is not a live GitHub write acceptance.",
+    "Scientific validity, model quality and a real campaign remain outside these storage tests."
+  ]
+}

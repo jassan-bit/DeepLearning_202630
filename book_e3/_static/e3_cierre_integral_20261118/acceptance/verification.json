@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "status": "passed_mocked_contracts_only",
+  "started_at_utc": "2026-11-19T00:01:00.736239+00:00",
+  "finished_at_utc": "2026-11-19T00:01:00.982545+00:00",
+  "scope": "Actual local reference integrity and mocked software contracts; not an executed browser or public deployment acceptance.",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/e3_cierre_integral_20261118/acceptance",
+    "-p",
+    "test_smoke_render_v2.py",
+    "-v"
+  ],
+  "returncode": 0,
+  "python": "3.12.14",
+  "tests_passed": 29,
+  "public_deployment_attempt_performed": false,
+  "browser_started": false,
+  "network_requests_performed": false,
+  "render_public_smoke_passed": false,
+  "public_deployment_smoke_passed": false,
+  "AI_assistance_used": true,
+  "new_fits": 0,
+  "new_calibrations": 0,
+  "frozen_reference_case": {
+    "id": "evaluation-0",
+    "target_date": "2025-01-01",
+    "csv_sha256": "cd37899695e79aedad031244b33f17824224a54ae8783d3f26c53c88ba9b6f03"
+  },
+  "reference_models": [
+    {
+      "id": "MLP16",
+      "seed": 271801,
+      "onnx_sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50",
+      "metadata_sha256": "35a1acc15bfe76d38398eef11c028c854797d7dde897898f822a270eab73117b",
+      "prediction": 0.017825614660978317,
+      "has_interval": true,
+      "q": 0.01096934474265791,
+      "interval_kind": "nominal_90_percent"
+    },
+    {
+      "id": "LSTM32",
+      "seed": 271801,
+      "onnx_sha256": "ee942ca947998a3c5c76fa21eabe401ce60989558faf82608e8107a830227033",
+      "metadata_sha256": "511475aafde95c938c7905a63186fc19c8e894c18358ca2fc0de3192a3aaffb2",
+      "prediction": 0.0170112457126379,
+      "has_interval": true,
+      "q": 0.009597029724600765,
+      "interval_kind": "nominal_90_percent"
+    },
+    {
+      "id": "GRU32",
+      "seed": 271801,
+      "onnx_sha256": "1409d0cf84aac43720b4c6978f9a1bb3b5f6c9832518acab0cba279ba8a88bd2",
+      "metadata_sha256": "5942b60725ae07b7dfede5cc0912bdedd5194be4c826d167cfd93f259a567a29",
+      "prediction": 0.015933958813548088,
+      "has_interval": true,
+      "q": 0.008742432407899556,
+      "interval_kind": "nominal_90_percent"
+    },
+    {
+      "id": "CNN-LSTM-atencion-aditiva E3",
+      "seed": 271801,
+      "onnx_sha256": "6928a973a6639513bc94cde15996c0b06bb5615e3c0b1a77d16d47e9c7342f3b",
+      "metadata_sha256": "9de8be6acceebc94eaf4567cbc3d2d205c29d0cfe611a850dd0f47d330adcb61",
+      "prediction": 0.016866754764803968,
+      "has_interval": true,
+      "q": 0.005402463770651868,
+      "interval_kind": "posterior_90_percent",
+      "interval_profile": "posterior_absolute_residual_90_v2",
+      "coverage_statement": "Intervalo posterior nominal del 90 % del mismo predictor. Cobertura histórica 94,08 % en 608 fechas; 85,56 % en 2026Q1. Sin garantía bajo cambio temporal."
+    },
+    {
+      "id": "TSMixer",
+      "seed": 271801,
+      "onnx_sha256": "10cedceea5da544268ecda882d9ee3d9f4abc153448a599a3a9947b7cf74d255",
+      "metadata_sha256": "886f713cb78cf1e454bd35e95dce835aeb993835b64981937eedd18ea0c71d43",
+      "prediction": 0.013540439307689667,
+      "has_interval": true,
+      "q": 0.007345522909209999,
+      "interval_kind": "nominal_90_percent"
+    }
+  ],
+  "reference_files": {
+    "data/e3_dashboard_v1/examples.json": {
+      "sha256": "7b9c8e7fcf9c1c9aaa9685525b77aca69a62e35f9d8807f34ed2866da95aef9a",
+      "bytes": 2480
+    },
+    "data/e3_dashboard_v1/predictions.json": {
+      "sha256": "f9e1681790e51626aaf67ac95097edad4bed8418bfb547993be2d3c197844979",
+      "bytes": 251550
+    },
+    "artifacts/e3_dashboard_v1/manifest.json": {
+      "sha256": "cfa44a6f6006e917f8868811bdeee344ca8dda9cc55ea2a9f67229263b949fbc",
+      "bytes": 713
+    },
+    "artifacts/e3_dashboard_v1/mlp16/metadata.json": {
+      "sha256": "35a1acc15bfe76d38398eef11c028c854797d7dde897898f822a270eab73117b",
+      "bytes": 6019
+    },
+    "artifacts/e3_dashboard_v1/mlp16/model.onnx": {
+      "sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50",
+      "bytes": 3319
+    },
+    "artifacts/e3_dashboard_v1/lstm32/metadata.json": {
+      "sha256": "511475aafde95c938c7905a63186fc19c8e894c18358ca2fc0de3192a3aaffb2",
+      "bytes": 6025
+    },
+    "artifacts/e3_dashboard_v1/lstm32/model.onnx": {
+      "sha256": "ee942ca947998a3c5c76fa21eabe401ce60989558faf82608e8107a830227033",
+      "bytes": 23138
+    },
+    "artifacts/e3_dashboard_v1/gru32/metadata.json": {
+      "sha256": "5942b60725ae07b7dfede5cc0912bdedd5194be4c826d167cfd93f259a567a29",
+      "bytes": 6025
+    },
+    "artifacts/e3_dashboard_v1/gru32/model.onnx": {
+      "sha256": "1409d0cf84aac43720b4c6978f9a1bb3b5f6c9832518acab0cba279ba8a88bd2",
+      "bytes": 17245
+    },
+    "artifacts/e3_dashboard_v1/cnn_lstm_attention_e3/metadata.json": {
+      "sha256": "9de8be6acceebc94eaf4567cbc3d2d205c29d0cfe611a850dd0f47d330adcb61",
+      "bytes": 6411
+    },
+    "artifacts/e3_dashboard_v1/cnn_lstm_attention_e3/model.onnx": {
+      "sha256": "6928a973a6639513bc94cde15996c0b06bb5615e3c0b1a77d16d47e9c7342f3b",
+      "bytes": 13949
+    },
+    "artifacts/e3_serving_extensions_v2/manifest.json": {
+      "sha256": "893d05ca4412a089f416ea4abeefd096d122d7bf079678c8ed97bbb02eea9f19",
+      "bytes": 229
+    },
+    "artifacts/e3_serving_extensions_v2/tsmixer/metadata.json": {
+      "sha256": "886f713cb78cf1e454bd35e95dce835aeb993835b64981937eedd18ea0c71d43",
+      "bytes": 7198
+    },
+    "artifacts/e3_serving_extensions_v2/tsmixer/model.onnx": {
+      "sha256": "10cedceea5da544268ecda882d9ee3d9f4abc153448a599a3a9947b7cf74d255",
+      "bytes": 165263
+    },
+    "experiments/e3_cierre_integral_20261118/serving/export_capabilities/tsmixer/cpu_examples.json": {
+      "sha256": "b7741f6c567f4dd99533b2f7a629c98c1bd81bb45981d4599a98dfc455310a12",
+      "bytes": 3381
+    },
+    "artifacts/e3_serving_calibration_v2/manifest.json": {
+      "sha256": "f98e9ff7580fee8ef6eb5c6e91c5ff13b45ba41eecf055c5210e0318821548a1",
+      "bytes": 252
+    },
+    "artifacts/e3_serving_calibration_v2/e3_additive_271801.json": {
+      "sha256": "457ae6a75e3235e68066cdd479cff621c5725ab18cad55e09f7fd8032565ed03",
+      "bytes": 7083
+    }
+  },
+  "historical_smoke_unchanged_sha256": "4dbbc83603d28224cfef4d1f8159eab55fa8dbef7c23081b5feebccf5e039190",
+  "files_sha256": {
+    "experiments/e3_cierre_integral_20261118/acceptance/README.md": "7f9185e47856af7f29890320a6d19882bc6a6ea19a593e1a02a6e6d21720cb4e",
+    "experiments/e3_cierre_integral_20261118/acceptance/smoke_render_v2.py": "54ba00ebf49308fe525f7f4b27b4befa5f98912f2abdc61fc2d818eb314583ad",
+    "experiments/e3_cierre_integral_20261118/acceptance/test_smoke_render_v2.py": "8caeb02b7f5ff927b1f448f17c05efa926e48cc32f059049140d3fd0bbf019b3",
+    "experiments/e3_cierre_integral_20261118/acceptance/tests.log": "a5b9d5c75288c405b22ba77b62d41704e10fedfc565e8a7715cb23aeb47f884b"
+  },
+  "R1_accredited": false,
+  "R3_accredited": false
+}

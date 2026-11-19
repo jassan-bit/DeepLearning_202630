@@ -215,9 +215,16 @@ def update_model(model_id):
         return "Modelo no disponible.", empty, empty, empty, empty
     dates, targets = bundle["predictions"]["dates"], bundle["predictions"]["targets"]
     prediction, q = chosen["predictions"], chosen.get("q")
+    profile = None
+    if model_id == E3:
+        from e3_dashboard.inference import interval_metadata
+        interval_info = interval_metadata(model_id)
+        q, profile = interval_info["q"], interval_info["profile"]
     errors = np.asarray(prediction) - np.asarray(targets)
     rmse, mae = float(np.sqrt(np.mean(errors ** 2))), float(np.mean(np.abs(errors)))
-    interval_note = "Intervalo nominal heredado del 90 %, con límites temporales." if q is not None else "Este predictor no tiene un intervalo calibrado."
+    interval_note = (profile["coverage_statement"] if profile else
+                     "Intervalo nominal heredado del 90 %, con límites temporales." if q is not None else
+                     "Este predictor no tiene un intervalo calibrado habilitado.")
     summary = [html.Strong(model_id), html.Span(f" · semilla {chosen['seed']} · {len(dates)} fechas"), html.Br(),
                f"RMSE de esta trayectoria: {rmse:.6f} · MAE: {mae:.6f}. {interval_note}"]
     return (summary, plots.forecast_figure(dates, targets, prediction, q),
@@ -314,9 +321,10 @@ def run_prediction(clicks, model_id, source, example_id, contents, target_date):
     forecast_cards = [html.Div([html.Small("PRONÓSTICO σ₇"), html.Strong(f"{result['prediction']:.6f}"), html.Span(f"Fecha objetivo: {target_date}")], className="forecast-value")]
     if interval is not None:
         nominal = result.get("nominal_coverage")
-        forecast_cards.append(html.Div([html.Small(f"INTERVALO NOMINAL {nominal:.0%}" if nominal is not None else "INTERVALO"), html.Strong(f"[{interval[0]:.6f}, {interval[1]:.6f}]"), html.Span("La cobertura depende de los datos y del cambio de distribución.")], className="forecast-interval"))
+        label = "INTERVALO POSTERIOR NOMINAL" if result.get("calibration_profile") else "INTERVALO NOMINAL"
+        forecast_cards.append(html.Div([html.Small(f"{label} {nominal:.0%}" if nominal is not None else "INTERVALO"), html.Strong(f"[{interval[0]:.6f}, {interval[1]:.6f}]"), html.Span(result.get("coverage_scope", "La cobertura depende de los datos y del cambio de distribución."))], className="forecast-interval"))
     else:
-        forecast_cards.append(html.Div([html.Small("INCERTIDUMBRE"), html.Strong("Sin intervalo calibrado"), html.Span("No se sustituye por la dispersión entre semillas.")], className="forecast-interval"))
+        forecast_cards.append(html.Div([html.Small("INCERTIDUMBRE"), html.Strong("Sin intervalo aplicable"), html.Span(result.get("coverage_scope", "No se sustituye por la dispersión entre semillas."))], className="forecast-interval"))
     output = [html.Div(forecast_cards, className="forecast-grid"), html.P(f"{result.get('model_id', model_id)} · semilla {result.get('seed', '—')} · {result['latency_ms']:.2f} ms en CPU", className="figure-insight"),
               html.P("Tiempo de esta consulta: incluye carga si procede, preprocesamiento e inferencia y excluye la explicación. El resultado corresponde a la última consulta calculada; vuelve a calcular tras cambiar la entrada.", className="figure-insight")]
     if result.get("ood"):
@@ -335,7 +343,8 @@ def show_model_card(clicks, opened):
 @callback(Output("pareto-panel", "children"), Input("model-select", "value"))
 def update_pareto(_model):
     comparable = [row for row in _live_models()
-                  if row.get("roundtrip", {}).get("cpu_median_ms") is not None
+                  if row.get("latency_measurement_profile") == "legacy_four_cpu_20261117"
+                  and row.get("roundtrip", {}).get("cpu_median_ms") is not None
                   and row["roundtrip"].get("RMSE_ONNX") is not None]
     if len(comparable) < 2:
         return dbc.Alert("Aún no hay al menos dos mediciones de latencia con un mismo perfil que permitan trazar una frontera comparable.", color="light")
@@ -349,4 +358,4 @@ def update_pareto(_model):
     nondominated.sort(key=latency)
     figure.add_scatter(x=[latency(r) for r in nondominated], y=[error(r) for r in nondominated], mode="lines", line={"color": "#12354a", "dash": "dot"}, name="Frontera en este perfil")
     figure.update_layout(template="plotly_white", xaxis_title="Latencia CPU mediana (ms) · menor es mejor", yaxis_title="RMSE del predictor exportado · menor es mejor", title="Cuatro artefactos ONNX · semilla 271801", margin={"l": 65, "r": 25, "t": 65, "b": 60}, showlegend=False)
-    return [dcc.Graph(figure=figure, config={"displaylogo": False}), html.P(f"Se muestran {len(comparable)} predictores sobre 608 fechas: un hilo CPU, lote uno, 10 calentamientos y 100 llamadas. La latencia incluye preprocesamiento e inferencia caliente y excluye explicación. No es el ranking medio de diez semillas ni una frontera de toda la familia; faltan los otros 13 sistemas.", className="figure-insight")]
+    return [dcc.Graph(figure=figure, config={"displaylogo": False}), html.P(f"Se muestran {len(comparable)} predictores sobre 608 fechas: un hilo CPU, lote uno, 10 calentamientos y 100 llamadas. La latencia incluye preprocesamiento e inferencia caliente y excluye explicación. TSMixer tiene una medición separada y no se mezcla con este perfil. No es el ranking medio de diez semillas ni una frontera de toda la familia; faltan los otros 13 sistemas en este perfil.", className="figure-insight")]

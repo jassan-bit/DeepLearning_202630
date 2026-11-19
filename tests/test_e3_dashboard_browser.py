@@ -201,7 +201,10 @@ class DashboardBrowserTests(unittest.TestCase):
         self.page.wait_for_function("""() => document.querySelector('#prediction-result').innerText
             .includes('CNN-LSTM-atencion-aditiva E3')""")
         e3_text = self.page.locator("#prediction-result").inner_text()
-        self.verify("E3 missing calibrated interval is explicit", "Sin intervalo calibrado" in e3_text)
+        self.verify("E3 posterior interval and temporal limitation are explicit",
+                    "INTERVALO POSTERIOR NOMINAL" in e3_text and "90%" in e3_text
+                    and "94,08" in e3_text and "85,56" in e3_text
+                    and "Sin garantía" in e3_text, e3_text[:700])
         shown = float(self.page.locator("#prediction-result .forecast-value strong").inner_text())
         examples = json.loads((ROOT / "data/e3_dashboard_v1/examples.json").read_bytes())
         trajectories = json.loads((ROOT / "data/e3_dashboard_v1/predictions.json").read_bytes())
@@ -209,6 +212,17 @@ class DashboardBrowserTests(unittest.TestCase):
         frozen = trajectories["models"]["CNN-LSTM-atencion-aditiva E3"]["predictions"][index]
         self.verify("Displayed E3 forecast matches its frozen representative", math.isfinite(shown) and abs(shown-frozen) < 1e-6,
                     {"shown_six_decimals": shown, "frozen": frozen})
+        self.choose("live-model", "TSMixer")
+        self.predict()
+        self.page.wait_for_function("() => document.querySelector('#prediction-result').innerText.includes('TSMixer')")
+        tsmixer_text = self.page.locator("#prediction-result").inner_text()
+        tsmixer_shown = float(self.page.locator("#prediction-result .forecast-value strong").inner_text())
+        tsmixer_frozen = trajectories["models"]["TSMixer"]["predictions"][index]
+        self.verify("TSMixer extension is live with its original interval and frozen forecast",
+                    "INTERVALO NOMINAL" in tsmixer_text and "90%" in tsmixer_text
+                    and math.isfinite(tsmixer_shown) and abs(tsmixer_shown-tsmixer_frozen) < 1e-6,
+                    {"shown_six_decimals": tsmixer_shown, "frozen": tsmixer_frozen})
+        self.choose("live-model", "CNN-LSTM")
         # Actual malformed file upload, not a direct call to the parsing helper.
         upload_option = self.page.locator("#live-source input[value='upload']")
         if upload_option.count():

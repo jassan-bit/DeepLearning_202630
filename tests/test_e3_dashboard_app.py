@@ -10,6 +10,32 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DashboardApplicationTests(unittest.TestCase):
+    def test_health_exposes_only_valid_source_sha_and_render_precedence(self):
+        program = r'''
+import json, os
+from unittest.mock import patch
+import app
+client = app.server.test_client()
+cases = [({}, None, None),
+         ({"APP_SOURCE_COMMIT":"b"*40}, "b"*40, "APP_SOURCE_COMMIT"),
+         ({"APP_SOURCE_COMMIT":"b"*40,"RENDER_GIT_COMMIT":"A"*40}, "a"*40, "RENDER_GIT_COMMIT"),
+         ({"RENDER_GIT_COMMIT":"invalid_private_value"}, None, None),
+         ({"RENDER_GIT_COMMIT":"invalid_private_value","APP_SOURCE_COMMIT":"b"*40}, "b"*40, "APP_SOURCE_COMMIT")]
+for env, expected, field in cases:
+    with patch.dict(os.environ, env, clear=True):
+        response = client.get("/healthz")
+    assert response.status_code == 200
+    health = response.get_json()
+    assert health["status"] == "ok" and health["catalogue_systems"] == 17
+    assert health["source_commit"] == expected and health["source_commit_source"] == field
+    assert "invalid_private_value" not in response.get_data(as_text=True)
+print(json.dumps({"health_cases":len(cases)}))
+'''
+        result = subprocess.run([sys.executable, "-c", program], cwd=ROOT,
+                                capture_output=True, text=True, timeout=45)
+        self.assertEqual(result.returncode, 0, result.stderr[-2000:])
+        self.assertEqual(json.loads(result.stdout.strip())["health_cases"], 5)
+
     def test_production_lock_excludes_training_and_browser_frameworks(self):
         lines = (ROOT / "requirements-dashboard.lock.txt").read_text().splitlines()
         packages = {line.split("==", 1)[0].lower().replace("_", "-")

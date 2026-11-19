@@ -1,6 +1,6 @@
 # Declaración de datos del dashboard E3
 
-**Fecha: 17 de noviembre de 2026, America/Bogota.** Esta declaración describe
+**Fecha: 18 de noviembre de 2026, America/Bogota.** Esta declaración describe
 los datos derivados y pronósticos históricos del prototipo académico. No
 otorga una licencia a los datos de un tercero ni certifica un cierre integral
 de la auditoría.
@@ -34,8 +34,11 @@ ventanas solapadas.
 
 Los huecos de las particiones se conservan y no se imputan silenciosamente.
 La partición E3 de ajuste/validación es distinta: 532 ejemplos de ajuste, siete
-purgados y 116 de validación de desarrollo; no usó el bloque de calibración de
-E2. Las fechas de evaluación ya tienen exposición histórica y no se presentan
+purgados y 116 de validación de desarrollo; su receta de entrenamiento no usó
+el bloque de calibración de E2. El corte posterior de servicio del 18 de
+noviembre adopta para el representante E3 un cuantil residual ya calculado
+con esas 53 fechas, separado del ajuste y la selección de época. Las fechas de
+evaluación ya tienen exposición histórica y no se presentan
 como confirmación ciega nueva.
 
 ## Datos que muestra la aplicación
@@ -60,10 +63,34 @@ elegida por identificador, y la única trayectoria de cada clásico. La media
 de RMSE de diez ejecuciones no se confunde con la RMSE de esa curva.
 
 Los intervalos históricos E2 se reconstruyen de sus cuantiles residuales
-guardados, sin recalibración. E3 no tiene un intervalo calibrado congelado;
-sus campos de cobertura/anchura siguen ausentes. Un nominal de 90 % no
-garantiza cobertura individual bajo dependencia temporal o cambio de
-distribución. Los IC entre semillas son otra cantidad.
+guardados, sin recalibración. En el corte original de E3 sus campos de
+cobertura/anchura estaban ausentes. El servicio actualizado incorpora un
+perfil posterior exclusivo de la semilla **271801**, con
+`q = 0.005402463770651868` sigma7 y la regla
+`[max(0, predicción−q), predicción+q]`. La calibración comprende las 53 fechas
+objetivo del 8 de noviembre al 30 de diciembre de 2024, posteriores a su ajuste
+y validación. Para objetivos anteriores o iguales al 30 de diciembre de 2024,
+el runtime no aplica ese intervalo. No se modificaron los datos históricos,
+pronósticos puntuales, pesos o cuantil.
+
+La cobertura nominal es 90 %. La cobertura histórica **individual** del
+representante E3 es 94,078947 % en las 608 fechas y 85,555556 % en 2026Q1;
+la anchura media es 0,01080287256 sigma7. Son cantidades diferentes de la media
+de cobertura entre diez semillas y del IC entre semillas. La comprobación de
+661 ventanas ORT conserva la cobertura de evaluación; una diferencia numérica
+en el residuo situado en el cuantil cambia la inclusión de una observación de
+calibración (48/53 en ORT frente a 49/53 en el cálculo original), sin retocar q.
+El nominal no garantiza cobertura individual o por grupo bajo dependencia
+temporal o cambio de distribución.
+
+La inferencia actual admite cinco representantes ONNX CPU: MLP16, LSTM32,
+GRU32, E3 y TSMixer. Este último conserva la calibración E2 de su semilla
+271801, sin recalibración. Las otras nueve redes siguen pendientes de
+exportación y paridad. Persistence y SeasonalNaive requieren más historia de
+cierres que las siete barras admitidas, y ARIMA requiere su estado causal
+fechado; se muestran como históricos hasta definir y verificar ese contrato
+adicional. Esta distinción no elimina sus resultados del catálogo de 17
+sistemas ni demuestra una imposibilidad de ejecutarlos en CPU.
 
 ## Calidad, sesgos y disponibilidad
 
@@ -106,8 +133,15 @@ de entrenamiento, y un aviso OOD no es una garantía de error futuro.
 - [Diez réplicas E3](https://github.com/jassan-bit/DeepLearning_202630/tree/510c3bddfdc9926322e3210ac61ee1f5eeffad2e/runs/estabilidad_aditiva_v1).
 - [Definiciones de las métricas descriptivas](https://github.com/jassan-bit/DeepLearning_202630/tree/b3b7f5210e8a81fe3e0f35493221bcb0f6f8c4e4/experiments/e3_revision_bloque_d_20261117).
 - [Correcciones y límites de la auditoría](https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/04_correcciones_e2.html).
+- [Perfil residual posterior E3](artifacts/e3_serving_calibration_v2/e3_additive_271801.json) y [verificación de su runtime](experiments/e3_cierre_integral_20261118/serving/calibration_runtime_verification.json).
+- [Procedencia de la extensión TSMixer](artifacts/e3_serving_extensions_v2/tsmixer/provenance.json) y [contratos de los sistemas pendientes](experiments/e3_cierre_integral_20261118/serving/export_capabilities/capability_matrix.csv).
 
 El manifiesto del bundle debe vincular cada archivo servido con su SHA256,
 fuente y versión. La asistencia de IA en la preparación y revisión está
 declarada; la persona autora conserva la responsabilidad de comprobar
 procedencia, derechos, interpretación y uso.
+
+Las comprobaciones locales no equivalen a aceptación de la URL pública en
+Render ni a reproducción humana independiente de la entrega completa. El
+candidato V3 de 1262 parámetros sigue siendo un prototipo sin ajuste y no
+utiliza estas métricas o intervalos como evidencia propia.

@@ -1,0 +1,104 @@
+{
+  "status": "passed_local_container_only",
+  "verified_at_utc": "2026-11-18T23:56:39.095395+00:00",
+  "python": "3.12.14",
+  "source_hashes": {
+    "app.py": "d69720d4ffea680ea65158f28abadf3709e30812728c11e59829802c247fcf7b",
+    "pages/modelos.py": "349ef952a33bc728b9dd9f38f0da738798c4a688e22823903ae2b955e93523ad",
+    "pages/contexto.py": "330a5954792d0dc3b4c72eee104f62faa4f868cac3a0be164ed60bca39785283",
+    "e3_dashboard/inference.py": "e96d0906fc2de34c6462a13cc0239b51c02721a5247a8cd76551f70b33d2bdc8",
+    "artifacts/e3_serving_calibration_v2/manifest.json": "f98e9ff7580fee8ef6eb5c6e91c5ff13b45ba41eecf055c5210e0318821548a1",
+    "artifacts/e3_serving_extensions_v2/manifest.json": "893d05ca4412a089f416ea4abeefd096d122d7bf079678c8ed97bbb02eea9f19"
+  },
+  "HTTP_statuses": {
+    "/": 200,
+    "/eda": 200,
+    "/modelos": 200,
+    "/healthz": 200
+  },
+  "health": {
+    "catalogue_systems": 17,
+    "service": "e3-dashboard",
+    "source_commit": null,
+    "source_commit_source": null,
+    "status": "ok"
+  },
+  "forbidden_imports": [],
+  "example_target_date": "2025-01-01",
+  "results": [
+    {
+      "model_id": "CNN-LSTM-atencion-aditiva E3",
+      "prediction_sigma7": 0.016866751974174483,
+      "absolute_error_vs_frozen": 2.790629484439311e-09,
+      "interval": [
+        0.011464288203522615,
+        0.022269215744826352
+      ],
+      "calibration_profile": "posterior_absolute_residual_90_v2",
+      "explanation_days": 7
+    },
+    {
+      "model_id": "GRU32",
+      "prediction_sigma7": 0.015933963652951688,
+      "absolute_error_vs_frozen": 4.839403600076508e-09,
+      "interval": [
+        0.007191531245052132,
+        0.024676396060851244
+      ],
+      "calibration_profile": null,
+      "explanation_days": 7
+    },
+    {
+      "model_id": "LSTM32",
+      "prediction_sigma7": 0.01701125024653204,
+      "absolute_error_vs_frozen": 4.533894138597505e-09,
+      "interval": [
+        0.007414220521931275,
+        0.026608279971132805
+      ],
+      "calibration_profile": null,
+      "explanation_days": 7
+    },
+    {
+      "model_id": "MLP16",
+      "prediction_sigma7": 0.017825614490525908,
+      "absolute_error_vs_frozen": 1.704524091317161e-10,
+      "interval": [
+        0.006856269747867998,
+        0.028794959233183818
+      ],
+      "calibration_profile": null,
+      "explanation_days": 7
+    },
+    {
+      "model_id": "TSMixer",
+      "prediction_sigma7": 0.013540439180763385,
+      "absolute_error_vs_frozen": 1.2692628198474054e-10,
+      "interval": [
+        0.006194916271553386,
+        0.020885962089973384
+      ],
+      "calibration_profile": null,
+      "explanation_days": 7
+    }
+  ],
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "public_Render_acceptance": false,
+  "container_image": {
+    "id": "sha256:3e31b000f1f25b306d790a2461c24388955a5f3300c7bdcb367ef1b270d697cc",
+    "size_bytes": 707030509,
+    "user": "10001:10001",
+    "tag": "e3-dashboard:serving-v2",
+    "read_only": true,
+    "network": "none",
+    "capabilities_dropped": "ALL",
+    "source_environment_commit_supplied": false
+  },
+  "host_build_source_hashes": {
+    "Dockerfile": "ae7b2c525140f56971c43792543203f2a4ff1128b5a0df69c5ca727325d619ea",
+    ".dockerignore": "9f4a7b453f7e406f234c5c9a5d59973ed4a1cbaf570e327516e1c99f7c4b41e6",
+    "requirements-dashboard.lock.txt": "1ebe85974424491721c6736c6d79c351364a7e8262dbd98a9d0a6bd3c079489a",
+    "experiments/e3_cierre_integral_20261118/serving/verify_container_runtime.py": "ea5d08bc851fb5c56601d48326acb97255b02aecf12f89ca52790d48830f914f"
+  }
+}

@@ -23,6 +23,8 @@ COPY --chown=10001:10001 assets ./assets
 COPY --chown=10001:10001 data/e3_dashboard_v1 ./data/e3_dashboard_v1
 COPY --chown=10001:10001 data/e3_dashboard_training_v1 ./data/e3_dashboard_training_v1
 COPY --chown=10001:10001 artifacts/e3_dashboard_v1 ./artifacts/e3_dashboard_v1
+COPY --chown=10001:10001 artifacts/e3_serving_calibration_v2 ./artifacts/e3_serving_calibration_v2
+COPY --chown=10001:10001 artifacts/e3_serving_extensions_v2 ./artifacts/e3_serving_extensions_v2
 USER 10001:10001
 EXPOSE 8050
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \

@@ -1,0 +1,61 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.78kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 648B done
+#3 DONE 0.0s
+
+#4 [stage-0  1/13] FROM docker.io/library/python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 6.80kB 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-0  9/13] COPY --chown=10001:10001 data/e3_dashboard_v1 ./data/e3_dashboard_v1
+#6 CACHED
+
+#7 [stage-0  5/13] COPY --chown=10001:10001 app.py MODEL_CARD.md DATA_STATEMENT.md ./
+#7 CACHED
+
+#8 [stage-0  7/13] COPY --chown=10001:10001 e3_dashboard ./e3_dashboard
+#8 CACHED
+
+#9 [stage-0 12/13] COPY --chown=10001:10001 artifacts/e3_serving_calibration_v2 ./artifacts/e3_serving_calibration_v2
+#9 CACHED
+
+#10 [stage-0  8/13] COPY --chown=10001:10001 assets ./assets
+#10 CACHED
+
+#11 [stage-0  3/13] COPY requirements.txt requirements-dashboard.lock.txt ./
+#11 CACHED
+
+#12 [stage-0  6/13] COPY --chown=10001:10001 pages ./pages
+#12 CACHED
+
+#13 [stage-0 11/13] COPY --chown=10001:10001 artifacts/e3_dashboard_v1 ./artifacts/e3_dashboard_v1
+#13 CACHED
+
+#14 [stage-0  4/13] RUN --mount=type=bind,source=deployment/wheels,target=/tmp/wheels,readonly     if [ "1" = "1" ]; then       python -m pip install --no-cache-dir --no-index --find-links=/tmp/wheels -r requirements.txt;     else       python -m pip install --no-cache-dir -r requirements.txt;     fi && python -m pip check
+#14 CACHED
+
+#15 [stage-0 10/13] COPY --chown=10001:10001 data/e3_dashboard_training_v1 ./data/e3_dashboard_training_v1
+#15 CACHED
+
+#16 [stage-0  2/13] WORKDIR /app
+#16 CACHED
+
+#17 [stage-0 13/13] COPY --chown=10001:10001 artifacts/e3_serving_extensions_v2 ./artifacts/e3_serving_extensions_v2
+#17 CACHED
+
+#18 exporting to image
+#18 exporting layers done
+#18 writing image sha256:3e31b000f1f25b306d790a2461c24388955a5f3300c7bdcb367ef1b270d697cc done
+#18 naming to docker.io/library/e3-dashboard:serving-v2 done
+#18 DONE 0.0s

@@ -36,6 +36,13 @@ jobs:
           python experiments/e3_dashboard_20261117/verify_serving.py \
             --npz work/e3_dashboard_inputs/current_cohort_arrays.npz --download \
             --output /tmp/e3-serving-ci.json
+      - name: Verificar admisión, guardado y cliente V2 sin red
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python -m unittest discover -s experiments/e3_cierre_integral_20261118/data -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_cierre_integral_20261118/orchestration -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_cierre_integral_20261118/acceptance -p 'test_*.py' -v
       - name: Instalar Chromium de pruebas
         run: python -m playwright install --with-deps chromium
       - name: Recorrer la aplicación real en escritorio y tablet
@@ -98,3 +105,7 @@ jobs:
           python -m pip install -r requirements-e3-original-cpu.lock.txt
           python -m pip check
           python -m pytest tests/test_original_model.py tests/test_innovation_model.py -q
+          python -m pip install scipy==1.17.0
+          python -m pip check
+          python -m unittest discover -s experiments/e3_cierre_integral_20261118/mechanism -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_cierre_integral_20261118/campaign -p 'test_*.py' -v

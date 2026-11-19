@@ -1,0 +1,50 @@
+{
+  "scope": "Offline CPU orchestration and sanitized health source identity; no network or models fitted",
+  "new_real_data_fits": 0,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "python": "3.12.14",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "experiments/e3_cierre_integral_20261118/orchestration",
+        "-p",
+        "test_cpu_stage.py",
+        "-v"
+      ],
+      "tests_passed": 7,
+      "returncode": 0,
+      "completed_at_utc": "2026-11-19T00:15:38.462039+00:00",
+      "scope": "Offline; installer target mocked, actual Colab installation awaits user execution"
+    },
+    {
+      "command": [
+        "/workspace/e3_dashboard_venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_e3_dashboard_app.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "tests_passed": 3,
+      "completed_at_utc": "2026-11-19T00:07:35.764829+00:00",
+      "reason_for_recheck": "Footer updated after first health-source test"
+    }
+  ],
+  "sha256": {
+    "experiments/e3_cierre_integral_20261118/orchestration/cpu_stage.py": "2bde031e8cf97563ae7bdaa1d6de658225dcc545af122860cadfd994efdb9ef3",
+    "experiments/e3_cierre_integral_20261118/orchestration/launch_cpu_colab.py": "c658c42acee5e06db7e97e4c4fb9d5b300e7c1d9da047f9f8bfda03917d05a58",
+    "experiments/e3_cierre_integral_20261118/orchestration/test_cpu_stage.py": "8313556d269cf7e8a6f7aeaade5c2ec9c330773abad16b66f3a33bdef763aefe",
+    "app.py": "8c02363eb0632704962a4b96c5ae9e59a95b2757fb02bd7768200abe79d829a6",
+    "tests/test_e3_dashboard_app.py": "cead699df313c9889ab956a6c80bfea7ed762482d73d539f6b85b96c274b5c3c"
+  }
+}

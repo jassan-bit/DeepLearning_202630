@@ -90,7 +90,7 @@ def layout():
                     html.Dt("Cohortes auditadas"), html.Dd(f'{counts["training"]} de entrenamiento E2 · {counts["calibration"]} de calibración E2 · {counts["evaluation"]} de prueba.'),
                     html.Dt("Fechas del objetivo"), html.Dd(f"{dates[0]} — {dates[-1]}"),
                     html.Dt("Tipo de problema"), html.Dd("Pronóstico temporal de una variable continua."),
-                    html.Dt("E3"), html.Dd("532 ejemplos de ajuste y 116 de validación; no tiene intervalos calibrados en esta receta."),
+                    html.Dt("E3"), html.Dd("532 ejemplos de ajuste y 116 de validación. El representante usa un intervalo posterior nominal del 90 % con 53 fechas de calibración separadas; sus límites temporales se muestran junto al resultado."),
                 ], className="data-card-list"),
                 dbc.Button("Leer declaración de datos", id="data-statement-open", outline=True, color="primary", size="sm"),
             ], className="content-card h-100"), md=7),

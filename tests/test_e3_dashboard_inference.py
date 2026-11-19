@@ -1,6 +1,7 @@
 """Serving admission, exact interventions and artifact integrity, without Torch."""
 import csv
 from datetime import date, timedelta
+import hashlib
 import io
 import json
 from pathlib import Path
@@ -85,20 +86,88 @@ class Serving(unittest.TestCase):
     def tearDown(self):
         serving.clear_cache()
 
-    def test_four_models_and_intervals_have_explicit_capabilities(self):
-        self.assertEqual(len(serving.available_models()), 4)
+    def test_five_models_and_intervals_have_explicit_capabilities(self):
+        self.assertEqual(len(serving.available_models()), 5)
         for model in serving.available_models():
-            result = serving.predict_csv(model["id"], csv_window(reference(model["id"])), "2023-01-08")
+            self.assertTrue(model["has_interval"])
+            result = serving.predict_csv(model["id"], csv_window(reference(model["id"]), "2025-01-08"), "2025-01-08")
             self.assertGreaterEqual(result["prediction"], 0)
             self.assertEqual(result["seed"], 271801)
             if model["id"].endswith(" E3"):
-                self.assertIsNone(result["interval"])
-                self.assertIsNone(result["nominal_coverage"])
+                q = .005402463770651868
+                self.assertEqual(result["interval"], [max(0, result["prediction"]-q), result["prediction"]+q])
+                self.assertEqual(result["nominal_coverage"], .9)
+                self.assertEqual(result["calibration_profile"], "posterior_absolute_residual_90_v2")
+                self.assertAlmostEqual(result["historical_coverage_percent_for_this_seed"], 94.07894736842105)
+                self.assertIn("85,56", result["coverage_scope"])
             else:
                 meta, _ = serving._metadata(model["id"])
                 self.assertEqual(result["interval"], [max(0, result["prediction"]-meta["calibration_q"]),
                                                        result["prediction"]+meta["calibration_q"]])
             self.assertEqual(len(result["explanation"]["attributions"]), 7)
+
+    def test_posterior_calibrator_is_not_applied_before_it_existed(self):
+        model_id = "CNN-LSTM-atencion-aditiva E3"
+        raw = reference(model_id)
+        old = serving.predict_csv(model_id, csv_window(raw), "2023-01-08")
+        after = serving.predict_csv(model_id, csv_window(raw, "2025-01-08"), "2025-01-08")
+        self.assertEqual(old["prediction"], after["prediction"])
+        self.assertIsNone(old["interval"])
+        self.assertIsNone(old["nominal_coverage"])
+        self.assertIn("2024-12-30", old["coverage_scope"])
+        self.assertIsNotNone(after["interval"])
+
+    def test_tsmixer_extension_preserves_three_frozen_forecasts(self):
+        path = ROOT / "experiments/e3_cierre_integral_20261118/serving/export_capabilities/tsmixer/cpu_examples.json"
+        fixture = json.loads(path.read_bytes())
+        meta, _ = serving._metadata("TSMixer")
+        self.assertEqual(meta["model_sha256"], fixture["model_sha256"])
+        for case in fixture["cases"]:
+            result = serving.predict_csv("TSMixer", csv_window(case["raw_ohlcv"], case["target_date"]), case["target_date"])
+            self.assertLess(abs(result["prediction"]-case["expected_frozen_prediction_sigma7"]),
+                            fixture["absolute_tolerance_sigma7"])
+            self.assertEqual(result["nominal_coverage"], .9)
+
+    def test_extension_rejects_duplicate_ids_and_changed_model_bytes(self):
+        import shutil
+        for fault in ("duplicate_id", "model_bytes"):
+            with tempfile.TemporaryDirectory() as folder:
+                copied = Path(folder) / "extension"
+                shutil.copytree(serving.EXTENSION_ROOT, copied)
+                if fault == "duplicate_id":
+                    manifest = json.loads((copied / "manifest.json").read_bytes())
+                    manifest["models"][0]["id"] = "MLP16"
+                    (copied / "manifest.json").write_text(json.dumps(manifest))
+                else:
+                    path = copied / "tsmixer/model.onnx"
+                    raw = bytearray(path.read_bytes()); raw[-1] ^= 1; path.write_bytes(raw)
+                serving.clear_cache()
+                with patch.object(serving, "EXTENSION_ROOT", copied):
+                    with self.assertRaises(RuntimeError):
+                        serving.predict_csv("TSMixer", csv_window(reference("TSMixer")), "2023-01-08")
+
+    def test_corrupt_or_wrong_predictor_calibration_fails_closed(self):
+        import shutil
+        for change in ("bytes", "seed", "checkpoint_sha256", "model_sha256", "base_metadata_sha256", "q_sigma7"):
+            with tempfile.TemporaryDirectory() as folder:
+                copied = Path(folder) / "calibration"
+                shutil.copytree(serving.CALIBRATION_ROOT, copied)
+                manifest_path = copied / "manifest.json"
+                manifest = json.loads(manifest_path.read_bytes())
+                entry = manifest["models"][0]
+                path = copied / entry["file"]
+                if change == "bytes":
+                    raw = bytearray(path.read_bytes()); raw[-1] ^= 1; path.write_bytes(raw)
+                else:
+                    profile = json.loads(path.read_bytes())
+                    profile[change] = 271802 if change == "seed" else .01 if change == "q_sigma7" else "0"*64
+                    raw = (json.dumps(profile) + "\n").encode()
+                    path.write_bytes(raw)
+                    entry.update(bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+                    manifest_path.write_text(json.dumps(manifest))
+                with patch.object(serving, "CALIBRATION_ROOT", copied):
+                    with self.assertRaises(RuntimeError):
+                        serving.interval_metadata("CNN-LSTM-atencion-aditiva E3")
 
     def test_cache_reuses_only_current_model_and_evicts_before_next_load(self):
         serving.predict_csv("MLP16", csv_window(reference()), "2023-01-08")
@@ -133,7 +202,7 @@ class Serving(unittest.TestCase):
                         serving.predict_csv("MLP16", csv_window(reference()), "2023-01-08")
 
     def test_training_and_torch_are_not_imported_in_runtime_process(self):
-        code = "from e3_dashboard.inference import available_models; import sys; assert len(available_models())==4; assert 'torch' not in sys.modules; assert not any(x.startswith('src.e3_') for x in sys.modules)"
+        code = "from e3_dashboard.inference import available_models; import sys; assert len(available_models())==5; assert 'torch' not in sys.modules; assert not any(x.startswith('src.e3_') for x in sys.modules)"
         subprocess.run([sys.executable, "-c", code], cwd=ROOT, check=True, capture_output=True)
 
     def test_occlusion_is_the_exact_predictor_contrast_and_reference_identity(self):

@@ -19,6 +19,8 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACT_ROOT = ROOT / "artifacts/e3_dashboard_v1"
+EXTENSION_ROOT = ROOT / "artifacts/e3_serving_extensions_v2"
+CALIBRATION_ROOT = ROOT / "artifacts/e3_serving_calibration_v2"
 MAX_UPLOAD_BYTES = 102400
 FEATURES = ("open", "high", "low", "close", "volume")
 _LOCK = RLock()
@@ -35,24 +37,116 @@ def _sha(raw):
 
 
 def _registry():
-    path = ARTIFACT_ROOT / "manifest.json"
-    if not path.is_file():
-        return []
-    document = json.loads(path.read_bytes())
-    if document.get("schema_version") != 1:
-        raise RuntimeError("El catálogo de inferencia no es compatible.")
-    return document["models"]
+    result, seen = [], set()
+    for root in (ARTIFACT_ROOT, EXTENSION_ROOT):
+        path = root / "manifest.json"
+        if not path.is_file():
+            continue
+        try:
+            document = json.loads(path.read_bytes())
+            if document.get("schema_version") != 1:
+                raise ValueError()
+            for row in document["models"]:
+                slug = row["slug"]
+                if (row["id"] in seen or not isinstance(slug, str)
+                        or Path(slug).name != slug or slug in ("", ".", "..")
+                        or (root / slug).is_symlink()):
+                    raise ValueError()
+                seen.add(row["id"])
+                result.append({**row, "_artifact_root": root})
+        except (OSError, KeyError, TypeError, ValueError):
+            raise RuntimeError("El catálogo de inferencia no es compatible.") from None
+    return result
 
 
 def _metadata(model_id):
     entry = next((x for x in _registry() if x["id"] == model_id), None)
     if entry is None:
         raise InputError("Este modelo está disponible como resultado histórico; su inferencia en vivo no está habilitada.")
-    folder = ARTIFACT_ROOT / entry["slug"]
+    folder = entry["_artifact_root"] / entry["slug"]
     raw = (folder / "metadata.json").read_bytes()
     if _sha(raw) != entry["metadata_sha256"]:
         raise RuntimeError("No se pudo verificar el artefacto de inferencia.")
-    return json.loads(raw), folder
+    return _with_serving_calibration(json.loads(raw), _sha(raw)), folder
+
+
+def _with_serving_calibration(meta, base_metadata_sha):
+    """Adopt a versioned posterior q only for its exact frozen predictor.
+
+    Historical model metadata and diagnostic files remain unchanged. An absent
+    adoption profile leaves the point-only capability explicit; corruption of a
+    declared profile fails before its interval can be used.
+    """
+    manifest_path = CALIBRATION_ROOT / "manifest.json"
+    if not manifest_path.is_file():
+        return meta
+    try:
+        manifest = json.loads(manifest_path.read_bytes())
+        if manifest.get("schema_version") != 1:
+            raise ValueError()
+        rows = manifest["models"]
+        if len({r["model_id"] for r in rows}) != len(rows):
+            raise ValueError()
+        entry = next((r for r in rows if r["model_id"] == meta["model"]), None)
+        if entry is None:
+            return meta
+        name = entry["file"]
+        if Path(name).name != name or not name.endswith(".json"):
+            raise ValueError()
+        path = CALIBRATION_ROOT / name
+        if path.is_symlink():
+            raise ValueError()
+        raw = path.read_bytes()
+        if len(raw) != entry["bytes"] or _sha(raw) != entry["sha256"]:
+            raise ValueError()
+        profile = json.loads(raw)
+        if (profile["schema_version"] != 1 or profile["model_id"] != meta["model"]
+                or profile["seed"] != meta["seed"]
+                or profile["base_metadata_sha256"] != base_metadata_sha
+                or profile["model_sha256"] != meta["model_sha256"]
+                or profile["checkpoint_sha256"] != meta["scientific_source"]["checkpoint_sha256"]
+                or profile["output_scale"] != meta["output_scale"]
+                or profile["output_unit"] != meta["output_unit"]):
+            raise ValueError()
+        # Reconstruct the saved finite-sample order statistic, without fitting a
+        # new q or opening new data. This catches unit, seed and rank mistakes.
+        residuals = profile["absolute_calibration_residuals_sigma7"]
+        dates = profile["calibration_dates"]
+        alpha, q = profile["alpha"], profile["q_sigma7"]
+        if (len(residuals) != profile["calibration_n"] or len(dates) != len(residuals)
+                or dates != sorted(set(dates)) or len(dates) < 1
+                or not all(type(v) in (int, float) and math.isfinite(v) and v >= 0 for v in residuals)
+                or not math.isfinite(alpha) or not 0 < alpha < 1
+                or not math.isfinite(q) or q < 0):
+            raise ValueError()
+        rank = math.ceil((len(residuals) + 1) * (1-alpha))
+        if (rank != profile["order_rank"] or rank > len(residuals)
+                or sorted(residuals)[rank-1] != q
+                or dates[0] != profile["calibration_first_target"]
+                or dates[-1] != profile["calibration_last_target"]
+                or dates[-1] != profile["applicable_after_target_date"]
+                or profile["nominal_coverage"] != 1-alpha
+                or profile["refit_model"] is not False or profile["refit_quantile"] is not False):
+            raise ValueError()
+        for value in dates:
+            if date.fromisoformat(value).isoformat() != value:
+                raise ValueError()
+        if dates[0] <= profile["chronology"]["validation_last_target"]:
+            raise ValueError()
+    except (OSError, KeyError, TypeError, ValueError, IndexError):
+        raise RuntimeError("No se pudo verificar el perfil de calibración del predictor.") from None
+    result = dict(meta)
+    result.update(calibration_q=q, interval_nominal_coverage=1-alpha,
+                  historical_608_coverage_percent_for_this_seed=profile["historical_evaluation"]["coverage_percent"],
+                  serving_calibration=profile)
+    return result
+
+
+def interval_metadata(model_id):
+    """Public, session-free description of the matching interval capability."""
+    meta, _ = _metadata(model_id)
+    return {"q": meta["calibration_q"], "nominal_coverage": meta["interval_nominal_coverage"],
+            "profile": meta.get("serving_calibration")}
 
 
 def available_models():
@@ -63,6 +157,8 @@ def available_models():
         result.append({"id": entry["id"], "label": entry["id"], "seed": meta["seed"],
                        "has_interval": meta["calibration_q"] is not None,
                        "explanation_method": "occlusion_raw_window",
+                       "latency_measurement_profile": ("legacy_four_cpu_20261117" if entry["_artifact_root"] == ARTIFACT_ROOT
+                                                       else "tsmixer_cpu_20261118"),
                        "roundtrip": meta["roundtrip"]})
     return result
 
@@ -196,11 +292,22 @@ def predict_csv(model_id, csv_text, target_date):
         explanation = occlusion_explanation(raw, meta["explanation_reference_raw"],
                                             lambda item: _run(item, meta, session), prediction)
     q = meta["calibration_q"]
+    profile = meta.get("serving_calibration")
+    scope = (profile["coverage_statement"] if profile else
+             "Calibrador histórico del mismo predictor; sin garantía bajo cambio temporal.")
+    if profile and str(target_date) <= profile["applicable_after_target_date"]:
+        q = None
+        scope = ("El calibrador posterior usa datos hasta " + profile["calibration_last_target"]
+                 + "; no se aplica a esa fecha objetivo anterior o coincidente.")
+    if q is None and not profile:
+        scope = "Este predictor no tiene un intervalo calibrado habilitado."
     return {"model_id": model_id, "seed": meta["seed"], "target_date": str(target_date),
             "prediction": prediction,
             "interval": None if q is None else [max(0.0, prediction - q), prediction + q],
-            "nominal_coverage": None if q is None else 0.9,
-            "coverage_scope": "Calibrador histórico del mismo predictor; sin garantía bajo cambio temporal." if q is not None else "E3 no tiene un intervalo calibrado.",
+            "nominal_coverage": None if q is None else meta["interval_nominal_coverage"],
+            "coverage_scope": scope,
+            "calibration_profile": None if profile is None else profile["profile"],
+            "historical_coverage_percent_for_this_seed": None if profile is None else profile["historical_evaluation"]["coverage_percent"],
             "latency_ms": latency_ms,
             "latency_scope": "carga si procede, preprocesamiento e inferencia; excluye explicación",
             "ood": bool(outside.any()), "ood_fraction": float(outside.mean()),

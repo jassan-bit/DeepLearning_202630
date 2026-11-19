@@ -319,3 +319,26 @@ El {download}`expediente de adopción de la modalidad <../_static/e3_r1_ai_subst
 La {download}`evidencia de las dos consultas <../_static/e3_r1_ai_substitution_20261118/query_check/evidence.json>` conserva URLs, cadenas, encabezados, conteos y decisiones. Fueron nuevas solicitudes y observaciones mediante la herramienta web; ésta indicó una captura del día, sin exponer una hora de transacción del servidor. Las cadenas léxicas son las mismas, pero la interfaz y la API histórica con expansión OR no representan una solicitud idéntica: sus conteos no se comparan como cambios del índice. El control de consultas no añadió lecturas de cuerpos a las del dictamen técnico.
 
 El {download}`registro de adopción del dictamen <../_static/e3_r1_ai_substitution_20261118/review_adoption.json>` distingue la modalidad autorizada y completada del resultado científico. **R1 global sigue pendiente de acreditación:** la diferencia algorítmica sustantiva y el cierre bibliográfico no quedan demostrados por cambiar la modalidad del revisor. La defensa del autor y los requisitos de R2/R3 conservan sus estados. Los informes históricos, el formulario humano vacío, los modelos, los entrenamientos y las predicciones se conservan sin cambios.
+
+## 6.14 Candidato V3: ley atómica del retorno desconocido y transformación exacta
+
+La nueva propuesta aborda una limitación concreta de la cabeza aditiva: imponer el piso observable garantiza soporte, pero no modela la distribución del retorno que falta para completar la etiqueta. **V3 es un candidato de desarrollo sin resultados de mercado todavía.** No sustituye la referencia aditiva de 1210 parámetros en las tablas históricas o en el servicio, ni hereda su RMSE.
+
+Sean los seis retornos ya conocidos $r_1,\ldots,r_6$, su media $\bar r_6$ y $A=\frac{1}{7}\sum_{i=1}^{6}(r_i-\bar r_6)^2$. Si $U=|r_{\mathrm{futuro}}-\bar r_6|$, la identidad algebraica de la etiqueta poblacional es
+
+```{math}
+:label: eq-e3-v3-pushforward
+\sigma_7=\sqrt{A+\frac{6}{49}U^2},\qquad
+\widehat\sigma_7=\sum_{k=1}^{3}p_k(X)
+\sqrt{A+\frac{6}{49}u_k(X)^2}.
+```
+
+La red aprende **tres átomos positivos ordenados** $u_k$ y sus probabilidades $p_k$. Predice la esperanza exacta bajo esa ley finita, no la raíz de una varianza esperada. Entrena con MSE normalizado de σ₇ y CRPS normalizado de $U$, con peso 0,1 fijado antes del piloto. La pérdida CRPS se calcula exactamente como $\sum_k p_k|u_k-U|-\frac12\sum_{k,l}p_kp_l|u_k-u_l|$; es una regla conocida, no una invención de este proyecto.
+
+El codificador y la atención se reutilizan de M00. La cabeza añade átomos y masas aprendidas: **1262 parámetros** en `atom_crps` y `atom_mse_only`, y **1236** en el control `fixed_probs`. Las tres variantes comparten átomos y predicciones iniciales; el control de probabilidades fijas tiene menor capacidad y se declara así, sin añadir parámetros inactivos para aparentar igualdad. El control aditivo histórico y M00 proyectado permanecen en el piloto común.
+
+La {download}`demostración y sus supuestos <../_static/e3_cierre_integral_20261118/mechanism/theory.md>` acredita soporte, orden, la identidad de transformación y propiedades respecto de $A$ **manteniendo fija la ley**. No demuestra monotonicidad de todo el pipeline cuando la red también cambia sus átomos con $X$. La interpretación poblacional requiere que la verdadera ley condicional pertenezca a la clase finita; tres átomos pueden estar mal especificados. No se afirma consistencia universal, calibración de mercado o superioridad.
+
+El {download}`recibo de siete pruebas sintéticas <../_static/e3_cierre_integral_20261118/mechanism/verification.json>` registra Python 3.12.14 y Torch 2.8.0+cpu: conteos y estados, CRPS por enumeración, gradientes, propiedades, escala y serialización. Hubo **cero ajustes y pronósticos de mercado**. El [módulo fuente](https://github.com/jassan-bit/DeepLearning_202630/blob/main/src/e3_overlap_model_v3.py), las {download}`comparaciones de afirmaciones <../_static/e3_cierre_integral_20261118/mechanism/claim_comparison.csv>` y la {download}`procedencia y declaración de IA <../_static/e3_cierre_integral_20261118/mechanism/provenance.json>` hacen revisable la adaptación.
+
+**La novedad de V3 sigue sin acreditar.** Gneiting y Raftery (2007), §4.2 y ecuación (21), sustentan CRPS; Bishop (1994) anticipa la predicción neuronal de leyes condicionales; Bellemare, Dabney y Munos (2017) constituyen un antecedente de aproximaciones categóricas en otro contexto. El expediente distingue lectura focal del primero y consulta de resúmenes/metadatos de los otros dos. La revisión de la aditiva en 6.13 no se transfiere automáticamente a V3: faltan la comparación focal de esta formulación, los resultados de sus ablaciones bajo tratamiento común y el dictamen sobre si la adaptación es sustantiva. Se declara la asistencia de IA en formulación, código y verificación, conforme a la modalidad docente comunicada por el autor.

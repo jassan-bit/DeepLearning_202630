@@ -1,5 +1,7 @@
 """E3 multipage dashboard. Training modules are never imported by this app."""
 from pathlib import Path
+import os
+import re
 
 import dash
 import dash_bootstrap_components as dbc
@@ -45,7 +47,7 @@ app.layout = html.Div([
     html.Footer(dbc.Container([
         html.Div([
             html.Strong("Jassan Arteta · Deep Learning 2026-30"),
-            html.Span("Evidencia al 17 nov. 2026 · dashboard E3 v1", className="footer-version"),
+            html.Span("Evidencia al 18 nov. 2026 · dashboard E3 v2", className="footer-version"),
         ], className="footer-heading"),
         html.P("Las cargas se procesan para responder y no se guardan en esta aplicación. "
                "Los pronósticos describen volatilidad, no la dirección del precio.", className="footer-note"),
@@ -65,7 +67,15 @@ def health():
         count = len(catalogue())
     except (OSError, ValueError, KeyError):
         return jsonify(status="unavailable", service="e3-dashboard"), 503
-    return jsonify(status="ok", service="e3-dashboard", catalogue_systems=count)
+    source_commit = None
+    source_field = None
+    for name in ("RENDER_GIT_COMMIT", "APP_SOURCE_COMMIT"):
+        value = os.environ.get(name, "").strip().lower()
+        if re.fullmatch(r"[0-9a-f]{40}", value):
+            source_commit, source_field = value, name
+            break
+    return jsonify(status="ok", service="e3-dashboard", catalogue_systems=count,
+                   source_commit=source_commit, source_commit_source=source_field)
 
 
 @server.get("/model-card")

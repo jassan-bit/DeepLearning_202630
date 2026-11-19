@@ -1,6 +1,6 @@
 # Ficha del modelo CNN-LSTM con atención de E3
 
-**Versión documental: 17 de noviembre de 2026, America/Bogota.** Responsable del
+**Versión documental: 18 de noviembre de 2026, America/Bogota.** Responsable del
 proyecto: Jassan Arteta. La preparación de código, cálculos y documentación usa
 asistencia de IA declarada; esta ficha no sustituye la revisión y defensa del
 autor ni acredita una evaluación académica.
@@ -12,6 +12,8 @@ temporal por contenido → salida aditiva positiva**, con **1210 parámetros**.
 «Aditiva» describe la cabeza de salida; la atención no es otro modelo entrenado
 por separado. No es el primer módulo con penalización de discordancia y
 saturación de 1211 parámetros ni la cabeza de momentos de 1236 parámetros.
+El candidato V3 de 1262 parámetros es un prototipo sin ajuste; no sustituye a
+este predictor ni hereda sus métricas, calibrador o exportación.
 
 Su uso previsto es explorar pronósticos académicos de volatilidad de
 Binance Spot BTCUSDT y sus limitaciones. La salida es la desviación estándar
@@ -35,12 +37,23 @@ esas siete barras; la etiqueta del siguiente día no es una entrada. La salida
 puntual está en unidades originales de sigma7. No se vuelve a multiplicar una
 escala si el artefacto de servicio ya la invierte.
 
-La receta de E3 **no tiene un calibrador ni intervalos predictivos congelados**.
-Por ello no se comunica cobertura nominal de un intervalo E3 inexistente. La
-dispersión o un IC entre semillas tampoco son un intervalo de predicción para
-un día nuevo. Las capacidades habilitadas del artefacto de servicio se describen
-en el informe de exportación y en el capítulo 9, sin trasladar evidencia de
-otro modelo o de otra semilla.
+La receta histórica de E3 no incorporó un calibrador. El **corte de servicio
+del 18 de noviembre** adopta por separado un diagnóstico residual posterior
+ya calculado para la semilla 271801. El perfil versionado usa
+`q = 0.005402463770651868` en unidades originales de sigma7 y el intervalo
+`[max(0, predicción−q), predicción+q]`, con nivel nominal del 90 %. Sus 53
+fechas objetivo de calibración van del 8 de noviembre al 30 de diciembre de
+2024; no intervienen en el ajuste o la selección de época de este predictor.
+El runtime sólo comunica el intervalo para fechas objetivo **posteriores al
+30 de diciembre de 2024**. Para fechas anteriores o iguales conserva el
+pronóstico puntual y devuelve el intervalo ausente.
+
+El perfil se vincula mediante hashes al ONNX, checkpoint, metadatos originales,
+escala y semilla. No cambia los pesos, escalador, pronósticos puntuales o cuantil.
+Es una adopción posterior de servicio; el plan original y su decisión de no
+activar el diagnóstico en el dashboard se conservan como corte histórico.
+La dispersión o un IC entre semillas tampoco son un intervalo de predicción
+para un día nuevo.
 
 ## Artefacto de servicio del representante
 
@@ -52,12 +65,44 @@ tolerancia declarada **10⁻⁶** en unidades originales de sigma7. La RMSE ONNX
 de ese predictor es **0,0029102931283034364**, con diferencia frente a memoria
 de **−2,27307322×10⁻¹³**. No es la RMSE media de diez semillas.
 
-La exportación no ajustó pesos ni calibró intervalos. El servicio mantiene una
-sesión residente con carga serializada y verifica los hashes de artefacto y
+La exportación original no ajustó pesos ni calibró intervalos. La verificación
+del servicio actualizado ejecutó 661 ventanas históricas en ONNX Runtime CPU:
+53 de calibración y 608 de evaluación. El error puntual máximo frente a las
+predicciones conservadas fue **2,58387130×10⁻⁸ sigma7**, dentro de la misma
+tolerancia de 10⁻⁶. Con el cuantil conservado, la cobertura del representante
+es **94,078947 %** en las 608 fechas y **85,555556 %** en 2026Q1. Su anchura
+media histórica es **0,01080287256 sigma7**. Son resultados del predictor
+individual; no sustituyen la media de diez semillas ni garantizan cobertura
+futura o por subgrupo bajo dependencia temporal.
+
+Una observación de calibración situada en el cuantil cambia de inclusión por
+el redondeo de la conversión: la cobertura empírica de calibración es 48/53
+(90,566038 %) en ORT, frente a 49/53 (92,452830 %) en el cálculo CPU original.
+El error máximo de calibración es 3,01696685×10⁻¹⁰ sigma7. No se retocó el
+cuantil para eliminar ese efecto y la cobertura de evaluación se conserva.
+
+El servicio mantiene una sesión residente con carga serializada y verifica
+los hashes de artefacto y
 metadatos. El control OOD usa rangos de ajuste por retardo/canal. La explicación
 local de oclusión reemplaza barras completas por una referencia de ajuste y
 reporta sensibilidad; fidelidad explicativa y estabilidad entre semillas
 siguen pendientes. La latencia de explicación se registra por separado.
+
+El catálogo actualizado habilita cinco predictores ONNX CPU: MLP16, LSTM32,
+GRU32, este E3 y TSMixer. La extensión TSMixer conserva el checkpoint de la
+semilla 271801 y su cuantil E2 original `0.007345522909209999`, sin ajuste nuevo.
+Su error máximo frente a las 608 predicciones congeladas es
+**2,28505873×10⁻⁸ sigma7**, dentro de 10⁻⁶; se contrastaron también las 53
+predicciones de calibración. Su cobertura histórica individual es 89,309211 %.
+Estos resultados no se atribuyen al modelo E3.
+
+Nueve redes del catálogo histórico siguen pendientes de recuperar/exportar
+con sus pesos y recetas originales y comprobar su paridad; no se acredita una
+exclusión definitiva por recursos. Los tres controles clásicos se muestran
+como resultados históricos: siete cierres no determinan los ocho que necesita
+Persistence, los catorce que necesita SeasonalNaive al terminar en t−1, ni el
+estado causal fechado de ARIMA. Habilitarlos requiere un contrato adicional
+de historia o estado y su verificación; no exige que deban usar ONNX.
 
 ## Entrenamiento y selección conservados
 
@@ -66,7 +111,7 @@ siguen pendientes. La latencia de explicación se registra por separado.
 | Ajuste E3 | 532 ejemplos, hasta 2024-06-30. |
 | Separación ajuste–validación | Siete ejemplos purgados. |
 | Validación de desarrollo | 116 fechas, 2024-07-08 a 2024-10-31; seleccionó mejor época y parada. |
-| Calibración E3 | No utilizada por la receta congelada. |
+| Calibración E3 | No utilizada por la receta de entrenamiento; el corte posterior de servicio adopta el cuantil de 53 fechas sólo para el representante 271801. |
 | Receta | MSE normalizada, AdamW, tasa 0,001, lotes 32, hasta 40 épocas, paciencia 8. |
 | Réplicas del análisis actual | Diez semillas, 271801–271810; se conservan todas. |
 | Semilla histórica separada | 20261116; no integra la media actual de prueba. |
@@ -97,7 +142,7 @@ representativo de la aplicación.
 | sMAPE medio | 11,097711472596185 % |
 | R² medio | 0,911778724568431 |
 | IC95 % bootstrap de RMSE entre semillas | [0,002913282254796285; 0,0029684039720926795] |
-| Cobertura y anchura predictivas de E3 | Pendientes de calibración. |
+| Cobertura y anchura predictivas de la media de diez semillas | No se incorporan a esta tabla puntual; el perfil de servicio individual se documenta por separado. |
 
 El IC cuantifica variación de inicialización condicionada al calendario
 conocido; no es incertidumbre temporal, predictiva o simultánea de la familia.
@@ -110,7 +155,8 @@ acreditan automáticamente tres pruebas admisibles de la Tabla 4 o R3.
 
 El calendario ya era conocido y el análisis es retrospectivo. La potencia
 prospectiva y conjunta, comparación plenamente justa, tres conjuntos
-adicionales, adecuación completa, calibración y estudios de robustez siguen
+adicionales, adecuación completa, validación prospectiva de calibración y
+estudios de robustez siguen
 pendientes. La novedad R1, comprensión y defensa del autor para R2 y cierre R3
 no se certifican con este dashboard.
 
@@ -134,9 +180,13 @@ comportamiento del artefacto y no explican causalmente el mercado.
 - [Informe: diseño y límites](https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/07_diseno_riguroso.html).
 - [Informe: métodos estadísticos y requisitos pendientes](https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/08_verificacion_estadistica.html).
 - [Declaración de los datos](DATA_STATEMENT.md).
+- [Perfil posterior del representante](artifacts/e3_serving_calibration_v2/e3_additive_271801.json) y [verificación ORT de 661 ventanas](experiments/e3_cierre_integral_20261118/serving/calibration_runtime_verification.json).
+- [Extensión TSMixer y paridad](artifacts/e3_serving_extensions_v2/tsmixer/roundtrip.json) y [matriz de capacidades pendientes](experiments/e3_cierre_integral_20261118/serving/export_capabilities/capability_matrix.csv).
 
 Los metadatos de cada artefacto, sus hashes y pruebas de ida y vuelta deben
 acompañar la versión de servicio. La aplicación sólo carga artefactos ya
 entrenados; no optimiza hiperparámetros, ajusta pesos o recalibra con la entrada
 del usuario. El despliegue público en Render y su prueba de humo son una etapa
-distinta de la publicación del informe en GitHub Pages.
+distinta de la publicación del informe en GitHub Pages. Las verificaciones
+locales y del contenedor no acreditan por sí solas la aceptación pública de
+Render; ésta debe vincular la URL y el commit que efectivamente sirve.
