@@ -1,0 +1,98 @@
+{
+  "status": "completed",
+  "model": "TSMixer",
+  "seed": 20261120,
+  "fit_request_sha256": "62e54391ac9ee2a4159b4cfc8187cac003679955b9fbd312a47b518160eea83e",
+  "source_identity": {
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "audit_request_sha256": "7326b1cf16cccbdf11c64c014762aa8e2bdfbee84f965a3b70b9353d4c188f7f",
+    "dataset": "D03",
+    "data_sha256": "523beddb7d5252b7855ee562ee99e8bcd95ec932c0937ac21709d17d82f7eead",
+    "kind": "curve_50"
+  },
+  "configuration": {
+    "dropout": 0.3,
+    "training_registry_version": "e2-training-registry-v1",
+    "model": "TSMixer",
+    "training_recipe_id": "TSM-D7-r1__hpo_v1",
+    "registered_trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+    "initialization_seed": 20261120,
+    "weights_pretrained": false,
+    "role": "E2_candidate",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; inversion belongs to caller",
+    "nas": false,
+    "frozen_body_parameter_count": 35044,
+    "actual_parameter_count": 35044,
+    "training_hpo_record": {
+      "batch_size": 32,
+      "dropout": 0.3,
+      "learning_rate": 0.0011417384292299172,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TSM-D7-r1__hpo_v1",
+      "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+      "weight_decay": 7.976479621456176e-06
+    },
+    "training_axes_applied": false,
+    "weights_reused": false,
+    "requested_existing_dropout": 0.3,
+    "iTransformer_existing_dropout_rate_bridge": false,
+    "source_roots_verified": false,
+    "market_data_read": false
+  },
+  "scaler_sha256": "c52ec6a6f26d19b86c2ba0e268275c42da637482cfc380a51cebc41439ecc760",
+  "parameters": 35044,
+  "phase_budget_seconds": {
+    "supervised": 120.0
+  },
+  "total_allocated_phase_seconds": 120.0,
+  "whole_system_budget_seconds": 120.0,
+  "phase_resources": {
+    "supervised": {
+      "status": "completed",
+      "request_sha256": "6afea972d416c51b47c629b9969f30f8b1067644ed53acda4a8b11be54b97654",
+      "best_epoch": 27,
+      "epochs": 35,
+      "optimizer_steps": 490,
+      "best_validation_mse_scaled": 0.047109826503042726,
+      "checkpoint_sha256": "442aaca91ac586f590d45ccbd4f25ed7cb27b3d54eda0ad7b19f83bbb039711c",
+      "stop_reason": "early_stopping",
+      "budget_seconds": 120.0,
+      "started_unix": 1795117351.9776514,
+      "immutable_deadline_unix": 1795117471.9776514,
+      "finalized_unix": 1795117364.2508519,
+      "elapsed_wall_including_setup_io_and_restart_seconds": 12.273200511932373,
+      "deadline_overrun_seconds": 0.0,
+      "measured_completed_epoch_seconds": 10.737725643008162,
+      "resume_segments": 0,
+      "active_compute_lost_in_an_unclosed_crash_segment_is_unknown": false,
+      "deadline_includes_restart_downtime": true,
+      "wall_budget_is_process_hard_timeout": false,
+      "budget_check_boundary": "before each minibatch; a batch and its validation/checkpoint may overrun",
+      "epoch_boundary_resume": true,
+      "partial_epoch_policy": "restore previous durable model/optimizer/RNG; deadline is never reset",
+      "untrained_checkpoint_accepted": false
+    }
+  },
+  "optimizer_steps": 490,
+  "training_epoch_seconds": 10.737725643008162,
+  "measured_fit_wall_seconds_this_segment": 12.315797515002487,
+  "batch_boundary_deadline_overrun_seconds": 0.0,
+  "hard_process_timeout_enforced": false,
+  "SAE_pretraining_executed": false,
+  "legacy_initial_bias_calibration_executed": false,
+  "training_loss": "raw_sigma7_MSE",
+  "validation_selection": "common_projected_sigma7_MSE",
+  "validation_projected_RMSE": 0.0074940291745735355,
+  "validation_raw_RMSE": 0.007941401198597401,
+  "GPU": "NVIDIA A100-SXM4-80GB",
+  "peak_GPU_allocated_bytes": 135477248,
+  "GPU_memory_scope": "Process allocated peak after reset; includes any caller-resident models/tensors",
+  "selected_model_sha256": "3065f4036cf5caac0f18f1fc6e0eef36957d43304a692cb2f25952df122aa8cd"
+}
