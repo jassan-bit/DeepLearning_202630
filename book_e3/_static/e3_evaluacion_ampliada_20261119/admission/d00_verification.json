@@ -1,0 +1,38 @@
+{
+  "kind": "e3_known_BTC_daily_history_verification",
+  "recorded_at_utc": "2026-11-19T01:34:16.290265+00:00",
+  "source_commit": "18429f618a4540f2973dc397e6fbcb8808f2b300",
+  "stdlib_tests_passed": 4,
+  "stdlib_command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/e3_evaluacion_ampliada_20261119/admission",
+    "-p",
+    "test_d00_history.py",
+    "-v"
+  ],
+  "actual_npz_parity_executed": true,
+  "parity_command": [
+    "/workspace/e3_dashboard_venv/bin/python",
+    "experiments/e3_evaluacion_ampliada_20261119/admission/d00_history.py",
+    "--output",
+    "experiments/e3_evaluacion_ampliada_20261119/admission/d00_inputs",
+    "--npz",
+    "/workspace/e3_frozen_eval/inputs/current_cohort_arrays.npz"
+  ],
+  "manifest": "d00_inputs/d00_history_manifest.json",
+  "source_sha256": {
+    "d00_history.py": "a603bc32b71323b060f36985f4adeb248ca3fc191b222dfcecd02cf93fb6709e",
+    "test_d00_history.py": "95fb6cb3c5b2abfbd3d7624e6312dad1fc1c3efc1046dc7aefc4d55f70ae1c6b"
+  },
+  "new_real_data_fits": 0,
+  "model_predictions": 0,
+  "additional_dataset_targets_opened": false,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "note": "Known BTC only; preserved blank March24 and one-ULP evaluation-volume serialization difference are not filled or rounded."
+}

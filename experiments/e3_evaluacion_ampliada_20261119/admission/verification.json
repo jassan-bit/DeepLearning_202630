@@ -1,0 +1,43 @@
+{
+  "kind": "e3_extended_admission_controller_verification",
+  "recorded_at_utc": "2026-11-19T01:28:26.954914+00:00",
+  "python": "3.12.14",
+  "source_commit_of_unchanged_collector": "18429f618a4540f2973dc397e6fbcb8808f2b300",
+  "collector_sha256": "d5063e6c5a5eb79d58fff33ccbefdb6e62fe2ed4ba4441f64fbd523bc17c486b",
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/e3_evaluacion_ampliada_20261119/admission",
+    "-p",
+    "test_admission.py",
+    "-v"
+  ],
+  "tests_passed": 6,
+  "test_status": "passed_offline_generated_receipts_only",
+  "real_local_collector_run": {
+    "report": "local_probe/admission.json",
+    "datasets_admitted": 1,
+    "D01_rows": 3270,
+    "D01_sha256": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1",
+    "D02_D03_blocker": "HTTP CONNECT proxy403 before receiving data",
+    "new_real_data_fits": 0,
+    "new_market_predictions": 0,
+    "target_values_computed": false
+  },
+  "synthetic_three_file_test_is_not_actual_three_file_admission": true,
+  "Render_required": false,
+  "GPU_required": false,
+  "new_real_data_fits": 0,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "source_sha256": {
+    "colab.py": "ef3f3ce1d015d8ccd741cf0425e7d672e87a888947284fb92b55db8cdb47b6ab",
+    "test_admission.py": "8050f1e16bdf15219b6e97931820b84c230bf2123df7dc15464857378167bc07",
+    "README.md": "a1bea6d51d216c90bc898a6c144411bb6d6b35a977b1eb43c853a1a4bec96700"
+  },
+  "README_note": "Expanded after controller tests to document separately verified D00 helper; controller sources unchanged."
+}

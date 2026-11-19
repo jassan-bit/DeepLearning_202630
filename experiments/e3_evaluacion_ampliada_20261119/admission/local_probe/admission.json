@@ -1,0 +1,86 @@
+{
+  "collector_sha256": "d5063e6c5a5eb79d58fff33ccbefdb6e62fe2ed4ba4441f64fbd523bc17c486b",
+  "datasets": [
+    {
+      "UTC_day_equivalence_claimed": false,
+      "admitted": true,
+      "attribution": "Quandl WIKI Prices; archived by marketneutral; Bokeh sampledata",
+      "bytes": 146576,
+      "calendar_sha256": "05911b2c78202d985f55a16f1a8919a8526fa48ccd82cffd6bf7eaa72ec0be60",
+      "clock": "trading_session",
+      "first": "2000-03-01",
+      "id": "D01",
+      "last": "2013-03-01",
+      "license": "Public domain per pinned WIKI/Bokeh declaration",
+      "path": "datasets/D01.csv",
+      "policy": "RAW_KEEP_ALL; Adj Close excluded; corporate-action jumps retained",
+      "possible_window_target_pairs": 3263,
+      "role": "reserved_confirmation",
+      "rows": 3270,
+      "sha256": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1",
+      "source_sha256": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd",
+      "status": "admitted_for_declared_RAW_session_task",
+      "target_values_computed": false,
+      "volume_units": "AAPL shares, raw"
+    },
+    {
+      "admitted": false,
+      "error": "source_unavailable:URLError:<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "error_type": "AdmissionError",
+      "id": "D02",
+      "missing_values_filled": false,
+      "requested_first": "2018-01-01",
+      "requested_last": "2021-12-31",
+      "status": "blocked",
+      "symbol": "ETHUSDT",
+      "target_values_computed": false
+    },
+    {
+      "admitted": false,
+      "error": "source_unavailable:URLError:<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "error_type": "AdmissionError",
+      "id": "D03",
+      "missing_values_filled": false,
+      "requested_first": "2020-09-01",
+      "requested_last": "2024-12-31",
+      "status": "blocked",
+      "symbol": "BTCUSD_PERP",
+      "target_values_computed": false
+    }
+  ],
+  "datasets_admitted": 1,
+  "datasets_evaluated_by_models": 0,
+  "datasets_required": 3,
+  "dependence_and_exposure": [
+    "D02 and D03 share Binance as distributor and crypto market shocks.",
+    "D03 BTC derivative shares its underlying with legacy BTC Spot; 2023-2024 overlaps dates already known from legacy fitting.",
+    "D01 sessions and crypto UTC days are homologous clocks, not identical durations.",
+    "These are not three statistically independent markets or globally blind calendars."
+  ],
+  "kind": "e3_additional_OHLCV_admission",
+  "new_market_predictions": 0,
+  "new_real_data_fits": 0,
+  "new_statistical_contrasts": 0,
+  "protocol_frozen": false,
+  "real_campaign_allowed": false,
+  "recorded_at_utc": "2026-11-19T01:25:07.216900+00:00",
+  "schema_version": 1,
+  "scope": "Physical file and declared task admission only; model protocol, common budget and prospective power remain separate gates.",
+  "selection": "D02/D03 replace unadmitted metadata-only candidates before model performance; chosen by rights, access, product and period.",
+  "source_commit": "18429f618a4540f2973dc397e6fbcb8808f2b300",
+  "source_documents": [
+    {
+      "bytes": 9807,
+      "path": "sources/BINANCE_VISION_TERMS.md",
+      "sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+      "url": "https://github.com/binance/binance-public-data/blob/d571690eb66760763b0bd6e27e8cd35603c7e244/TERMS_AND_CONDITIONS.md"
+    },
+    {
+      "bytes": 5282,
+      "path": "sources/BINANCE_VISION_README.md",
+      "sha256": "2e133d9945a9263a02781369078e72805eff074680f305cd5460016471c6caad",
+      "url": "https://github.com/binance/binance-public-data/blob/d571690eb66760763b0bd6e27e8cd35603c7e244/README.md"
+    }
+  ],
+  "target_values_computed": false
+}

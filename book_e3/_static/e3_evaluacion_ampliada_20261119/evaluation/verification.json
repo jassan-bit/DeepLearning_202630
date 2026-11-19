@@ -1,0 +1,50 @@
+{
+  "kind": "e3_extended_worker_implementation_verification",
+  "checked_at_utc": "2026-11-19T01:54:26.944847+00:00",
+  "status": "passed_26_synthetic_tests",
+  "command": [
+    "/tmp/e3_v3_model_venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/e3_evaluacion_ampliada_20261119/evaluation",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "test_count": 26,
+  "test_run_seconds": 23.885,
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "statsmodels": "0.14.5",
+    "device": "cpu"
+  },
+  "actual_neural_optimizer_fits_on_generated_data": true,
+  "actual_SAE_three_phase_pretraining_tested": true,
+  "actual_statsmodels_ARIMA_missing_Kalman_days_tested": true,
+  "coordinator_19_systems_4_domains": "mocked model workers; real panel generation/selection/sharding/reuse",
+  "GPU_execution_verified": false,
+  "all_neural_recipes_fit_in_this_suite": false,
+  "additional_market_datasets_evaluated": 0,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "AI_assistance_declared": true,
+  "source_sha256": {
+    "README.md": "1ebbd87514d702e31cd33de829c0194ae92b6874fcb90f4757d37da0d2765428",
+    "classical.py": "a203453646914a132918db383c9c04f02ebaf59f2645c0ef157afdd6d45bebad",
+    "data.py": "22615ba4c1b3ffbb6523036b14d98b7459da290955a8ea416fcf6249c0872bbf",
+    "fitting.py": "446d2d4f687788c3db1c10a4a0ab8e65ad4e42819a2e4ed201b2a3533e0003b2",
+    "phase.py": "4e5e389a375a1fd288e25668df69f8dc4cf40867d06e809e95fcc1d8f04e7a50",
+    "run.py": "55dd1cbde85f565b1aca9d74d44b44b27ab84d2c016677d15223cee5a94f49f3",
+    "test_evaluation.py": "1bbb0f4291bddf00f010df5c261892164450811a66f49d1591e08a3a179ccaa7",
+    "test_fitting.py": "4dd08d018a9428d105ad23043ebfa12c504f104fcd152749a18aca0f61ee5bd4",
+    "test_phase.py": "c6b2750f45d7b26a3a2c283f6063f06ba10230bbee7da61984119f4b7d33b2da",
+    "tests.log": "7c7ed73a2304a31e507ff5543ef021dae6d1610f8383707b053aee31e1f5e466"
+  }
+}

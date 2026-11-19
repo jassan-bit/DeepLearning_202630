@@ -1,0 +1,52 @@
+{
+  "kind": "e3_extended_robustness_software_verification",
+  "status": "passed_synthetic_contracts_only",
+  "checked_at_utc": "2026-11-19T01:55:07.811413+00:00",
+  "command": [
+    "/workspace/e3_science_replay_venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/e3_evaluacion_ampliada_20261119/robustness",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "tests_passed": 20,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8"
+  },
+  "coverage": [
+    "Complete family/seed/date/scenario and raw/projected forecast contracts",
+    "Sharded-panel SHA256/size/row validation and missing/corrupt shard rejection",
+    "Calibration independence from test-target changes",
+    "Individual RMSE versus ensemble RMSE",
+    "Block-resampling scopes and simultaneous-family sizes",
+    "Actual resized-fit receipt binding and subset-scaler validation",
+    "All HPO trials and validation-only selection; test-best trial cannot replace it",
+    "Timestamp-keyed coherent OHLCV noise and integer contract volume",
+    "Actual temporary PNG/SVG exports, conditional interval bars, synthetic watermark and manifest-bound idempotence"
+  ],
+  "actual_market_data_analyzed_here": false,
+  "new_market_fits": 0,
+  "new_market_model_inference": 0,
+  "temporary_synthetic_figures_exported": true,
+  "synthetic_figures_published_as_results": false,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "sha256": {
+    "test_plots.py": "ec9164d03ec13db8e611e73f9cd91c05fa2bdf8c3a0338bae27291da235be0c5",
+    "plots.py": "f7cb0b97392face8b90f19780f9e26e38c1f2af2391ef12d0f2d0c4962978778",
+    "test_perturb.py": "1ce6e13d8580c481a330cc348ef94f7800ec17cfdbf98ec3059577af5b86677c",
+    "test_analyze.py": "ef8a856058ae57e4b809287e7932c5114c8264374344cd051de61c3c5a4df8b3",
+    "analysis_spec.json": "29a69c8f5d372b70ac4dfb73347486748544d8763d094ea7981e05d73aec9b95",
+    "README.md": "e9f53a0fe8f20945e632e75da4802705fd679eb160cd72d7decc134508769675",
+    "analyze.py": "e97d2df9e75f3660d21968cd83d6ec40eb73bae5d0b2255c5832fd98b471890d",
+    "perturb.py": "dfe1c53d3f94f782389421c3e983086035842823c2f568ac8743eea49bbaf159",
+    "tests.log": "18ca37e85879a91efd5dd4281d7272c72aff759e0df4e37b7f2a196049ea33db"
+  }
+}

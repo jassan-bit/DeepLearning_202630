@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "kind": "e3_audit_continuation_software_verification",
+  "checked_at_utc": "2026-11-19T01:49:46.920275+00:00",
+  "status": "fifteen_offline_contracts_passed",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/e3_evaluacion_ampliada_20261119/orchestration",
+    "-p",
+    "test_continuation.py",
+    "-v"
+  ],
+  "tests_passed": 15,
+  "execution_seconds": 0.116,
+  "python": "3.12.14",
+  "network_calls_performed": false,
+  "GitHub_writes_performed": false,
+  "GPU_used": false,
+  "real_model_fits": 0,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "synthetic_GitHub_API": true,
+  "Torch_checkpoints_deserialized": false,
+  "stable_view_directory_switch_tested": true,
+  "SVG_bytes_restored": true,
+  "ancestor_ref_loss_recovered_from_commit_parents": true,
+  "historical_helper_file_modified": false,
+  "historical_helper_sha256": "8eaf2b78006f90fdc52bc3e0dcffa860c36ae5f75de3e23e22c7521a57d0cdde",
+  "source_sha256": {
+    "continuation.py": "ba1829fdd39ef063080df2898b6e26e4f226539fec9170b88ad7ed36192d0970",
+    "test_continuation.py": "cebd5a13ec91c47be218bcc42c755aa79054d79fe37613559a9f99b46f3d2b38",
+    "continuation_README.md": "4606994ef9f9181051c5cf645145c9cfd7943732e4f56871000cdfa72813c851"
+  },
+  "scope": "Exact Git-object byte persistence and recovery in mocked requests only; actual Colab/GitHub upload awaits execution."
+}
