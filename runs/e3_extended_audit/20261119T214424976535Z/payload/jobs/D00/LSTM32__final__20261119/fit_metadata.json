@@ -1,0 +1,98 @@
+{
+  "status": "completed",
+  "model": "LSTM32",
+  "seed": 20261119,
+  "fit_request_sha256": "978f705c23f8e8f4aaaa6c1fa1102f3227abfb3485413ae4c79642cc958458bb",
+  "source_identity": {
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "audit_request_sha256": "7326b1cf16cccbdf11c64c014762aa8e2bdfbee84f965a3b70b9353d4c188f7f",
+    "dataset": "D00",
+    "data_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "kind": "final"
+  },
+  "configuration": {
+    "dropout": 0.3,
+    "training_registry_version": "e2-training-registry-v1",
+    "model": "LSTM32",
+    "training_recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+    "registered_trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+    "initialization_seed": 20261119,
+    "weights_pretrained": false,
+    "role": "reinitialized_E1_reference",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; inversion belongs to caller",
+    "nas": false,
+    "frozen_body_parameter_count": 5025,
+    "actual_parameter_count": 5025,
+    "training_hpo_record": {
+      "batch_size": 64,
+      "dropout": 0.3,
+      "learning_rate": 0.002356406147809842,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+      "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+      "weight_decay": 0.0
+    },
+    "training_axes_applied": false,
+    "weights_reused": false,
+    "requested_existing_dropout": 0.3,
+    "iTransformer_existing_dropout_rate_bridge": false,
+    "source_roots_verified": false,
+    "market_data_read": false
+  },
+  "scaler_sha256": "121e91ff18e6d0ee9369f360d3eddf4fd0aada7c7d7007190f36f106f5818020",
+  "parameters": 5025,
+  "phase_budget_seconds": {
+    "supervised": 120.0
+  },
+  "total_allocated_phase_seconds": 120.0,
+  "whole_system_budget_seconds": 120.0,
+  "phase_resources": {
+    "supervised": {
+      "status": "completed",
+      "request_sha256": "9de81953af7298ae482ab2422fd22feea17c53da7eaa66de0fb4b2524c5b14a0",
+      "best_epoch": 16,
+      "epochs": 24,
+      "optimizer_steps": 408,
+      "best_validation_mse_scaled": 0.02234796281826237,
+      "checkpoint_sha256": "a5e7070b78785e8c421ecb76b0a7f2abcf7c0370ef91c674118f53a6b58be0b9",
+      "stop_reason": "early_stopping",
+      "budget_seconds": 120.0,
+      "started_unix": 1795124615.3624446,
+      "immutable_deadline_unix": 1795124735.3624446,
+      "finalized_unix": 1795124617.155993,
+      "elapsed_wall_including_setup_io_and_restart_seconds": 1.793548345565796,
+      "deadline_overrun_seconds": 0.0,
+      "measured_completed_epoch_seconds": 1.4178409060041304,
+      "resume_segments": 0,
+      "active_compute_lost_in_an_unclosed_crash_segment_is_unknown": false,
+      "deadline_includes_restart_downtime": true,
+      "wall_budget_is_process_hard_timeout": false,
+      "budget_check_boundary": "before each minibatch; a batch and its validation/checkpoint may overrun",
+      "epoch_boundary_resume": true,
+      "partial_epoch_policy": "restore previous durable model/optimizer/RNG; deadline is never reset",
+      "untrained_checkpoint_accepted": false
+    }
+  },
+  "optimizer_steps": 408,
+  "training_epoch_seconds": 1.4178409060041304,
+  "measured_fit_wall_seconds_this_segment": 1.8113531150011113,
+  "batch_boundary_deadline_overrun_seconds": 0.0,
+  "hard_process_timeout_enforced": false,
+  "SAE_pretraining_executed": false,
+  "legacy_initial_bias_calibration_executed": false,
+  "training_loss": "raw_sigma7_MSE",
+  "validation_selection": "common_projected_sigma7_MSE",
+  "validation_projected_RMSE": 0.003084488265296765,
+  "validation_raw_RMSE": 0.005149485665713459,
+  "GPU": "NVIDIA A100-SXM4-80GB",
+  "peak_GPU_allocated_bytes": 91068928,
+  "GPU_memory_scope": "Process allocated peak after reset; includes any caller-resident models/tensors",
+  "selected_model_sha256": "ef47be781bccfdf639ca3946c0cd9670a9dde1639a86b46b316f47ca4c40b67d"
+}
