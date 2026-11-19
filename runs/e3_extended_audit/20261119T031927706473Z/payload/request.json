@@ -1,0 +1,243 @@
+{
+  "kind": "e3_extended_fitting_audit",
+  "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+  "protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+  "protocol": {
+    "R1_accredited": false,
+    "R3_accredited": false,
+    "additional_validation_use": "automated prefixed HPO only; no mechanism redesign",
+    "admission_receipt_sha256": "bcad9a4ca0cc13ca75e7368fa02121b714ea17607a951ab5e1c57250dfad3e93",
+    "admission_source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "analysis": {
+      "between_dataset_rank_inference": "descriptive; dependent financial domains",
+      "block_lengths": [
+        7,
+        14,
+        28
+      ],
+      "bootstrap_repetitions": 9999,
+      "bootstrap_seed": 2026111902,
+      "calibrator_refitted_under_stress": false,
+      "perturbation_severities": [
+        0.25,
+        0.5,
+        1.0
+      ],
+      "scenarios": [
+        "unperturbed",
+        "ohlcv_observation_noise_1",
+        "ohlcv_observation_noise_2",
+        "ohlcv_observation_noise_3"
+      ],
+      "target_under_perturbation": "original clean sigma7"
+    },
+    "analytic_controls": [
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "auxiliary_sources": [
+      "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171",
+      "9563ef557e180f34ee37dce3b1480c38aaefd7063df21c031644973310e28deb"
+    ],
+    "candidate": "CNN-LSTM-atencion-aditiva E3",
+    "compute_profile": {
+      "GPU": "NVIDIA A100-SXM4-80GB",
+      "capability": [
+        8,
+        0
+      ],
+      "cuda_runtime": "12.6",
+      "device": "cuda:0",
+      "driver": "580.82.07",
+      "torch": "2.8.0+cu126",
+      "total_memory_bytes": 85094825984
+    },
+    "dataset_provenance": {
+      "D01": {
+        "clock": "trading_session",
+        "first": "2000-03-01",
+        "last": "2013-03-01",
+        "license": "Public domain per pinned WIKI/Bokeh declaration",
+        "rows": 3270,
+        "volume_units": "AAPL shares, raw"
+      },
+      "D02": {
+        "clock": "UTC_daily",
+        "first": "2018-01-01",
+        "last": "2021-12-31",
+        "license": "CC-BY-NC-SA-4.0",
+        "rows": 1461,
+        "volume_units": "ETH"
+      },
+      "D03": {
+        "clock": "UTC_daily",
+        "first": "2020-09-01",
+        "last": "2024-12-31",
+        "license": "CC-BY-NC-SA-4.0",
+        "rows": 1583,
+        "volume_units": "contracts"
+      }
+    },
+    "datasets": {
+      "D00": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+      "D01": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1",
+      "D02": "0b02d3f47d020dde37e5a18f5371e9608ecce0907e7296760a7281524bc6b510",
+      "D03": "523beddb7d5252b7855ee562ee99e8bcd95ec932c0937ac21709d17d82f7eead"
+    },
+    "domain_dependence": [
+      "D02 and D03 share Binance as distributor and crypto market shocks.",
+      "D03 BTC derivative shares its underlying with legacy BTC Spot; 2023-2024 overlaps dates already known from legacy fitting.",
+      "D01 sessions and crypto UTC days are homologous clocks, not identical durations.",
+      "These are not three statistically independent markets or globally blind calendars."
+    ],
+    "evidence_mode": "prespecified_exploratory_audit",
+    "failure_policy": "retain failed jobs and exact common test dates; no substitute model or test-row deletion",
+    "family": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "fit_diagnostic_burn_in": 7,
+    "fit_diagnostic_mask": "burnin7_and_classical_lag_availability",
+    "globally_blind_market_calendar_claimed": false,
+    "hpo_seed": 20261117,
+    "hpo_sensitivity": {
+      "additional_optimizer_fits": 0,
+      "models": "all fourteen neural models",
+      "seed": 20261117,
+      "test_access": "only after validation winner is durably recorded",
+      "test_result_changes_winner": false,
+      "trials": "all three fixed learning rates"
+    },
+    "information_contract": {
+      "classical": "causal history of past sigma labels; broader than seven bars",
+      "identical_information_set_claimed": false,
+      "neural": "seven past OHLCV observations"
+    },
+    "interval": {
+      "alpha": 0.1,
+      "calibration": "absolute residual quantile on unperturbed calibration only"
+    },
+    "interval_alpha": 0.1,
+    "kind": "e3_extended_evaluation_protocol",
+    "learning_curves": {
+      "calendar_span_confounding_disclosed": true,
+      "fractions": [
+        0.25,
+        0.5,
+        1.0
+      ],
+      "full_fraction_reuses_final_fit": true,
+      "hyperparameters": "fixed winner from full fit/validation HPO",
+      "models": [
+        "CNN-LSTM-atencion-aditiva E3",
+        "TSMixer"
+      ],
+      "seeds": [
+        20261118,
+        20261119,
+        20261120
+      ],
+      "subset": "nested chronological prefixes of fit only"
+    },
+    "panel_layout": "one dataset/model CSV, immutable hash manifest; no monolithic panel",
+    "planning_status": "not_dimensioned_for_full_temporal_multidataset_battery",
+    "projection": {
+      "applies_to": "all nineteen systems, HPO and final panels",
+      "keep_raw_prediction": true,
+      "policy": "max(raw_prediction,sqrt(A_available_input))"
+    },
+    "schema_version": 1,
+    "seeds": [
+      20261118,
+      20261119,
+      20261120,
+      20261121,
+      20261122,
+      20261123,
+      20261124,
+      20261125,
+      20261126,
+      20261127
+    ],
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "split": {
+      "D00": "original532fit_116validation_53calibration_608known_test",
+      "purge": 7,
+      "ratios": [
+        0.55,
+        0.15,
+        0.1
+      ]
+    },
+    "training": {
+      "SAE_three_phases_share_one_fit_budget": true,
+      "batch_size": 32,
+      "epoch_and_HPO_selection": "common projected validation sigma MSE",
+      "gradient_clip": 1.0,
+      "lr_grid": [
+        0.0003,
+        0.001,
+        0.003
+      ],
+      "max_epochs": 40,
+      "optimizer": "AdamW",
+      "patience": 8,
+      "per_fit_seconds": 120.0,
+      "training_loss": "raw normalized sigma MSE",
+      "weight_decay": 0.0
+    }
+  },
+  "freeze_receipt_sha256": "dd7a0dc10cc6700a9b98a3a18d6eafe33d8812e0e789c5030ac95ebb3da3822f",
+  "device": "cuda:0",
+  "compute_profile": {
+    "device": "cuda:0",
+    "GPU": "NVIDIA A100-SXM4-80GB",
+    "total_memory_bytes": 85094825984,
+    "capability": [
+      8,
+      0
+    ],
+    "torch": "2.8.0+cu126",
+    "cuda_runtime": "12.6",
+    "driver": "580.82.07"
+  },
+  "synthetic_test_only": false,
+  "family": [
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA",
+    "CNN-LSTM-atencion-aditiva E3",
+    "floor_only",
+    "floor_plus_mean_excess"
+  ]
+}
