@@ -1,0 +1,98 @@
+{
+  "status": "completed",
+  "model": "Inception-1D",
+  "seed": 20261124,
+  "fit_request_sha256": "237ac6de3fe32c67177f0ff5a7e4f298052db162a9342028afc1b3e5d7cef378",
+  "source_identity": {
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "audit_request_sha256": "7326b1cf16cccbdf11c64c014762aa8e2bdfbee84f965a3b70b9353d4c188f7f",
+    "dataset": "D00",
+    "data_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "kind": "final"
+  },
+  "configuration": {
+    "dropout": 0.0,
+    "training_registry_version": "e2-training-registry-v1",
+    "model": "Inception-1D",
+    "training_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+    "registered_trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+    "initialization_seed": 20261124,
+    "weights_pretrained": false,
+    "role": "E2_candidate",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; inversion belongs to caller",
+    "nas": false,
+    "frozen_body_parameter_count": 490561,
+    "actual_parameter_count": 490561,
+    "training_hpo_record": {
+      "batch_size": 32,
+      "dropout": 0,
+      "learning_rate": 0.0007394620646713903,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "weight_decay": 1.818489584292255e-06
+    },
+    "training_axes_applied": false,
+    "weights_reused": false,
+    "requested_existing_dropout": 0.0,
+    "iTransformer_existing_dropout_rate_bridge": false,
+    "source_roots_verified": false,
+    "market_data_read": false
+  },
+  "scaler_sha256": "121e91ff18e6d0ee9369f360d3eddf4fd0aada7c7d7007190f36f106f5818020",
+  "parameters": 490561,
+  "phase_budget_seconds": {
+    "supervised": 120.0
+  },
+  "total_allocated_phase_seconds": 120.0,
+  "whole_system_budget_seconds": 120.0,
+  "phase_resources": {
+    "supervised": {
+      "status": "completed",
+      "request_sha256": "3835b1f97f4b832234abd5fc15a3be2c90caaa7e8af1cde7b2bfb0150fee9723",
+      "best_epoch": 3,
+      "epochs": 11,
+      "optimizer_steps": 187,
+      "best_validation_mse_scaled": 0.030513502736778608,
+      "checkpoint_sha256": "a960624e9d69034fe856e3e5210a0d38ef6101c42bcec21c178967d8313c3c5f",
+      "stop_reason": "early_stopping",
+      "budget_seconds": 120.0,
+      "started_unix": 1795123114.2658837,
+      "immutable_deadline_unix": 1795123234.2658837,
+      "finalized_unix": 1795123119.0940735,
+      "elapsed_wall_including_setup_io_and_restart_seconds": 4.828189849853516,
+      "deadline_overrun_seconds": 0.0,
+      "measured_completed_epoch_seconds": 4.044563537998329,
+      "resume_segments": 0,
+      "active_compute_lost_in_an_unclosed_crash_segment_is_unknown": false,
+      "deadline_includes_restart_downtime": true,
+      "wall_budget_is_process_hard_timeout": false,
+      "budget_check_boundary": "before each minibatch; a batch and its validation/checkpoint may overrun",
+      "epoch_boundary_resume": true,
+      "partial_epoch_policy": "restore previous durable model/optimizer/RNG; deadline is never reset",
+      "untrained_checkpoint_accepted": false
+    }
+  },
+  "optimizer_steps": 187,
+  "training_epoch_seconds": 4.044563537998329,
+  "measured_fit_wall_seconds_this_segment": 4.869553521999478,
+  "batch_boundary_deadline_overrun_seconds": 0.0,
+  "hard_process_timeout_enforced": false,
+  "SAE_pretraining_executed": false,
+  "legacy_initial_bias_calibration_executed": false,
+  "training_loss": "raw_sigma7_MSE",
+  "validation_selection": "common_projected_sigma7_MSE",
+  "validation_projected_RMSE": 0.003604210806828327,
+  "validation_raw_RMSE": 0.015340805756078945,
+  "GPU": "NVIDIA A100-SXM4-80GB",
+  "peak_GPU_allocated_bytes": 94134784,
+  "GPU_memory_scope": "Process allocated peak after reset; includes any caller-resident models/tensors",
+  "selected_model_sha256": "31d30e8dff3ae46b94e68bd1631aa2c19913e831755578528dd4aa937ea0bcf8"
+}
