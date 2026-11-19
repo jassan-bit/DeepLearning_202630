@@ -1,10 +1,11 @@
 {
   "kind": "e3_extended_controller_implementation_verification",
-  "scope": "Offline mocked HTTP/CUDA controller, interrupted source-cache recovery and synthetic artifact contracts; no actual market fitting, CUDA execution or GitHub mutation performed.",
-  "started_at_utc": "2026-11-19T02:14:54.414510+00:00",
-  "completed_at_utc": "2026-11-19T02:14:54.681417+00:00",
+  "scope": "Offline mocked HTTP/CUDA controller, verified failed-admission source upgrade, local/remote cache-reuse dispatch, interrupted cache recovery and synthetic artifact contracts; no actual market fitting, CUDA execution or GitHub mutation performed.",
+  "started_at_utc": "2026-11-19T02:37:50.871256+00:00",
+  "completed_at_utc": "2026-11-19T02:37:51.169931+00:00",
   "command": [
     "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
     "-m",
     "unittest",
     "discover",
@@ -15,14 +16,15 @@
     "-v"
   ],
   "returncode": 0,
-  "tests_passed": 17,
+  "tests_passed": 23,
   "python": "3.12.14",
   "new_real_data_fits": 0,
   "real_GPU_execution_verified": false,
   "R1_accredited": false,
   "R3_accredited": false,
   "files_sha256": {
-    "experiments/e3_evaluacion_ampliada_20261119/orchestration/controller.py": "19b6c509cbfc79f6636bb4523b8aecef502d245c0f111436e1afaaeaeb2fd1d1",
-    "experiments/e3_evaluacion_ampliada_20261119/orchestration/test_controller.py": "cf07977e35cf543835a9737fe6e515d463ffc5a0bd5f11c6895f35eb1a7762f0"
+    "experiments/e3_evaluacion_ampliada_20261119/orchestration/controller.py": "47e92273aa069e3e7b397340fcb15cefb02bc55611e2a2b7d71ebf14987a1dfe",
+    "experiments/e3_evaluacion_ampliada_20261119/orchestration/test_controller.py": "dd7740d92952e258d187e71a466467d571b88ffbbe75f089b5fbfd31a5e8b380",
+    "experiments/e3_evaluacion_ampliada_20261119/orchestration/launch_colab.py": "d78e223e19a74ffd624b1a5baf7c0654c3e78132c0330d1a226c78633385c30f"
   }
 }

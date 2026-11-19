@@ -139,14 +139,15 @@ class ControllerTests(unittest.TestCase):
             self.fail('Unknown requested master must stop before admission or CUDA setup')
         with patch.object(controller,'checkout',return_value=self.source),patch.object(controller,'load',side_effect=load):
             with self.assertRaisesRegex(ValueError,'accidental new campaign'):
-                controller.run(SOURCE,'fixture-token',base=self.root/'colab',master_run_id=RUN)
+                controller.run(SOURCE,'fixture-token',base=self.root/'colab',master_run_id=RUN,
+                    admission_reuse_url='https://github.com/fixture/old-cpu-admission')
 
     def test_incomplete_admission_retries_preserve_one_audit_and_create_a_new_data_attempt(self):
         saves=[];continuation=SimpleNamespace(discover_runs=lambda *args:[])
         def admit(source,output,sha):
             self.write(output/'stage_receipt.json',{'datasets_admitted':2})
             return {'datasets_admitted':2}
-        admission=SimpleNamespace(run_stage=admit)
+        admission=SimpleNamespace(run_stage=admit,seed_cache=lambda *args,**kwargs:None)
         store=SimpleNamespace(save=lambda output,token,sha,run_id,api,profile:
                               saves.append(run_id) or {'run_url':'https://github.com/fixture/'+run_id})
         def load(path,name):
@@ -166,6 +167,169 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual(second['status'],'blocked_at_physical_admission')
         self.assertEqual(saves,[RUN,RUN2])
         self.assertEqual(json.loads((base/'e3_extended_audit_session.json').read_bytes())['master_run_id'],RUN)
+
+    def test_failed_local_admission_can_upgrade_source_without_changing_audit_master(self):
+        base=self.root/'colab';out=base/('e3-extended-audit-'+RUN);out.mkdir(parents=True)
+        old=base/('e3-extended-admission-'+RUN);events=[]
+        old_receipt=self.write(old/'stage_receipt.json',{'datasets_admitted':2,'source_commit':OLD_SOURCE}).read_bytes()
+        self.write(base/'e3_extended_audit_session.json',{'source_commit':OLD_SOURCE,'master_run_id':RUN,
+            'output':str(out),'admission_output':str(old),'admission_run_id':RUN})
+        def request(method,path,token,**kwargs):
+            if '/compare/' in path:return {'status':'ahead','base_commit':{'sha':OLD_SOURCE},
+                                          'merge_base_commit':{'sha':OLD_SOURCE}}
+            self.assertTrue(path.endswith('e3-extended-audit-protocol-'+RUN));return None
+        self.api._request=request
+        def seed(checkout,new,sha,**kwargs):
+            events.append('seed');self.assertEqual(kwargs['previous_output'],str(old));self.assertEqual(sha,SOURCE)
+            self.write(new/'data/responses/D02/reused.zip',b'unchanged cached bytes')
+        def admit(checkout,new,sha):
+            events.append('admit');self.assertTrue((new/'data/responses/D02/reused.zip').is_file())
+            self.write(new/'stage_receipt.json',{'datasets_admitted':2,'source_commit':sha})
+            return {'datasets_admitted':2}
+        admission=SimpleNamespace(inspect_failed_stage=lambda folder:{'source_commit':OLD_SOURCE,
+            'datasets_admitted':2,'stage_receipt_sha256':'1'*64,'admission_sha256':'2'*64},
+            seed_cache=seed,run_stage=admit)
+        continuation=SimpleNamespace(discover_runs=lambda *args:[])
+        def save(new,token,sha,run_id,api,profile):
+            events.append('save');self.assertEqual((sha,run_id),(SOURCE,RUN2))
+            return {'run_url':'https://github.com/fixture/new-admission'}
+        def load(path,name):
+            name=Path(path).name
+            if name=='colab_github.py':return self.api
+            if name=='continuation.py':return continuation
+            if name=='colab.py':return admission
+            if name=='protocol.py':return SimpleNamespace()
+            if name=='github_store.py':return SimpleNamespace(save=save)
+            self.fail('A failed admission must not reach CUDA setup or the old controller')
+        with patch.object(controller,'checkout',return_value=self.source),patch.object(controller,'load',side_effect=load),\
+             patch.object(controller,'stamp',return_value=RUN2):
+            result=controller.run(SOURCE,'fixture-token',base=base)
+        self.assertEqual(result['status'],'blocked_at_physical_admission');self.assertEqual(events,['seed','admit','save'])
+        context=json.loads((base/'e3_extended_audit_session.json').read_bytes())
+        self.assertEqual(context['master_run_id'],RUN);self.assertEqual(context['source_commit'],SOURCE)
+        self.assertEqual(context['source_upgrades'][0]['from_source_commit'],OLD_SOURCE)
+        self.assertEqual((old/'stage_receipt.json').read_bytes(),old_receipt)
+
+    def test_source_upgrade_is_forbidden_after_local_or_remote_protocol_or_audit_state(self):
+        for marker in ('protocol.json','freeze_receipt.json','jobs','state','remote_tag','remote_audit'):
+            with self.subTest(marker=marker):
+                base=self.root/marker;out=base/('e3-extended-audit-'+RUN);out.mkdir(parents=True)
+                old=base/('e3-extended-admission-'+RUN);old.mkdir()
+                local={'source_commit':OLD_SOURCE,'master_run_id':RUN,'output':str(out),
+                       'admission_output':str(old),'admission_run_id':RUN}
+                if marker in ('protocol.json','freeze_receipt.json'):self.write(out/marker,{})
+                if marker=='jobs':(out/'jobs').mkdir()
+                if marker=='state':self.write(base/('e3-extended-continuation-'+RUN+'.json'),{})
+                self.api._request=lambda *args,**kwargs:({'object':{'sha':'c'*40}} if marker=='remote_tag' else None)
+                admission=SimpleNamespace(inspect_failed_stage=lambda path:{'source_commit':OLD_SOURCE})
+                with patch.object(controller,'load',return_value=admission):
+                    result=controller._preprotocol_upgrade(self.source,base,local,
+                        {'source_commit':OLD_SOURCE} if marker=='remote_audit' else None,'fixture-token',self.api)
+                self.assertIsNone(result)
+
+    def test_preprotocol_upgrade_accepts_a_real_hash_verified_failed_stage(self):
+        repo=Path(__file__).resolve().parents[3]
+        admission=controller.load(repo/controller.SCOPE/'admission/colab.py','upgrade_real_admission_fixture')
+        base=self.root/'colab';out=base/('e3-extended-audit-'+RUN);out.mkdir(parents=True)
+        old=base/('e3-extended-admission-'+RUN)
+        def collect(folder,source):
+            report={'kind':'e3_additional_OHLCV_admission','source_commit':source,
+                'datasets_required':3,'datasets_admitted':0,
+                'datasets':[{'id':name,'admitted':False} for name in ('D01','D02','D03')],
+                'datasets_evaluated_by_models':0,'new_real_data_fits':0,'new_market_predictions':0,
+                'new_statistical_contrasts':0,'target_values_computed':False,
+                'protocol_frozen':False,'real_campaign_allowed':False}
+            self.write(folder/'admission.json',report)
+            self.write(folder/'responses/D03/retained.zip',b'fabricated checksum-bound source cache')
+            manifest={p.relative_to(folder).as_posix():{'bytes':p.stat().st_size,
+                'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in folder.rglob('*') if p.is_file()}
+            self.write(folder/'raw_manifest.json',{'kind':'admission_raw_file_manifest',
+                'source_commit':source,'files':manifest})
+            return report
+        admission.run_stage(repo,old,OLD_SOURCE,collector=collect)
+        local={'source_commit':OLD_SOURCE,'master_run_id':RUN,'output':str(out),
+               'admission_output':str(old),'admission_run_id':RUN}
+        self.api._request=lambda *args,**kwargs:None
+        proof=controller._preprotocol_upgrade(repo,base,local,None,'fixture-token',self.api)
+        self.assertEqual(proof['source_commit'],OLD_SOURCE)
+        self.assertEqual(proof['new_real_data_fits'],0)
+        self.assertTrue(proof['no_local_or_remote_protocol'])
+        self.assertEqual(proof['stage_receipt_sha256'],hashlib.sha256((old/'stage_receipt.json').read_bytes()).hexdigest())
+
+    def test_remote_admission_url_seeds_a_fresh_session_before_collection(self):
+        base=self.root/'colab';events=[];url='https://github.com/fixture/old-cpu-admission'
+        def seed(checkout,new,sha,**kwargs):
+            events.append('seed');self.assertEqual(kwargs['reuse_url'],url)
+            self.assertIsNone(kwargs['previous_output'])
+            self.write(new/'data/datasets/D02.csv',b'cached admitted bytes')
+            self.write(new/'cache_reuse.json',{'new_real_data_fits':0,'source_commit':OLD_SOURCE})
+        def admit(checkout,new,sha):
+            events.append('admit');self.assertTrue((new/'data/datasets/D02.csv').is_file())
+            self.write(new/'stage_receipt.json',{'datasets_admitted':2});return {'datasets_admitted':2}
+        def save(new,*args,**kwargs):
+            events.append('save');self.assertTrue((new/'cache_reuse.json').is_file())
+            return {'run_url':'https://github.com/fixture/retried'}
+        def load(path,name):
+            name=Path(path).name
+            if name=='colab_github.py':return self.api
+            if name=='continuation.py':return SimpleNamespace(discover_runs=lambda *args:[])
+            if name=='protocol.py':return SimpleNamespace()
+            if name=='colab.py':return SimpleNamespace(seed_cache=seed,run_stage=admit)
+            if name=='github_store.py':return SimpleNamespace(save=save)
+            self.fail('A failed admission must stop before model execution')
+        with patch.object(controller,'checkout',return_value=self.source),patch.object(controller,'load',side_effect=load),\
+             patch.object(controller,'stamp',return_value=RUN):
+            result=controller.run(SOURCE,'fixture-token',base=base,admission_reuse_url=url)
+        self.assertEqual(result['new_real_data_fits'],0);self.assertEqual(events,['seed','admit','save'])
+        context=json.loads((base/'e3_extended_audit_session.json').read_bytes())
+        self.assertEqual(context['admission_reuse_url'],url)
+
+    def test_launcher_passes_the_explicit_admission_reuse_url(self):
+        path=Path(__file__).with_name('launch_colab.py')
+        launch_spec=importlib.util.spec_from_file_location('extended_launcher_tested',path)
+        launch=importlib.util.module_from_spec(launch_spec);launch_spec.loader.exec_module(launch)
+        calls=[];url='https://github.com/fixture/old-cpu-admission'
+        fake=SimpleNamespace(run=lambda *args,**kwargs:calls.append((args,kwargs)) or {'status':'fixture'})
+        fake_spec=SimpleNamespace(name='extended_launcher_controller_fixture',
+                                  loader=SimpleNamespace(exec_module=lambda module:None))
+        namespace={'E3_EXTENDED_SOURCE_COMMIT':SOURCE,'_E3_GITHUB_TOKEN':'fixture-token',
+                   'E3_EXTENDED_ADMISSION_REUSE_URL':url,'E3_EXTENDED_START_NEW':False}
+        with patch.object(launch.subprocess,'run'),patch.object(launch.subprocess,'check_output',return_value=SOURCE),\
+             patch.object(launch.importlib.util,'spec_from_file_location',return_value=fake_spec),\
+             patch.object(launch.importlib.util,'module_from_spec',return_value=fake):
+            result=launch.main(namespace)
+        self.assertEqual(result['status'],'fixture')
+        self.assertEqual(calls[0][1]['admission_reuse_url'],url)
+        self.assertIs(calls[0][1]['start_new'],False)
+
+    def test_interrupted_retry_keeps_new_download_progress_instead_of_reseeding_old_receipts(self):
+        base=self.root/'colab';calls=[];url='https://github.com/fixture/old-cpu-admission'
+        def seed(checkout,new,sha,**kwargs):
+            calls.append('seed')
+            self.write(new/'cache_reuse.json',{'kind':'e3_admission_cache_reuse','source_commit':sha})
+            self.write(new/'data/responses/D03/download_receipts.json',{'copied_old_month':True})
+        def admit(checkout,new,sha):
+            calls.append('collect')
+            path=new/'data/responses/D03/download_receipts.json'
+            if calls.count('collect')==1:
+                self.write(path,{'copied_old_month':True,'new_verified_daily_progress':True})
+                raise OSError('synthetic interruption during admission')
+            self.assertTrue(json.loads(path.read_bytes())['new_verified_daily_progress'])
+            self.write(new/'stage_receipt.json',{'datasets_admitted':2});return {'datasets_admitted':2}
+        def load(path,name):
+            name=Path(path).name
+            if name=='colab_github.py':return self.api
+            if name=='continuation.py':return SimpleNamespace(discover_runs=lambda *args:[])
+            if name=='protocol.py':return SimpleNamespace()
+            if name=='colab.py':return SimpleNamespace(seed_cache=seed,run_stage=admit)
+            if name=='github_store.py':return SimpleNamespace(save=lambda *args,**kwargs:{'run_url':'https://github.com/fixture/retry'})
+            self.fail('Admission interruption must not reach models')
+        with patch.object(controller,'checkout',return_value=self.source),patch.object(controller,'load',side_effect=load),\
+             patch.object(controller,'stamp',return_value=RUN):
+            with self.assertRaisesRegex(OSError,'interruption during admission'):
+                controller.run(SOURCE,'fixture-token',base=base,admission_reuse_url=url)
+            result=controller.run(SOURCE,'fixture-token',base=base)
+        self.assertEqual(calls,['seed','collect','collect']);self.assertEqual(result['new_real_data_fits'],0)
 
     def test_changed_gpu_cohort_stops_before_new_optimization(self):
         base=self.root/'colab';out=base/('e3-extended-audit-'+RUN)

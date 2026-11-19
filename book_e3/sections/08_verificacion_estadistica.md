@@ -546,8 +546,10 @@ La familia contiene **19 sistemas**: los 17 históricos —incluido el candidato
 |---|---|---|
 | D00 BTC histórico | Cohorte NPZ fijada; 532 ajuste, 116 validación, 53 calibración y 608 prueba conocida. Historia diaria original para los clásicos. | Los resultados anteriores existen; los nuevos ajustes bajo política común aún no se han ejecutado. |
 | D01 WIKI/AAPL RAW | Siete observaciones entre sesiones; `Adj Close` excluido y saltos corporativos conservados. | 3270 filas admitidas; cero modelos nuevos evaluados. |
-| D02 ETHUSDT Spot | Días UTC, 2018–2021; volumen en ETH. | Bytes pendientes de admisión en Colab. |
-| D03 BTCUSD_PERP COIN-M | Días UTC, septiembre de 2020–2024; volumen en contratos. | Bytes pendientes de admisión en Colab. |
+| D02 ETHUSDT Spot | Días UTC, 2018–2021; volumen en ETH. | 1461 días admitidos en Colab, con 48 ZIP mensuales y sus checksums; cero modelos nuevos evaluados. |
+| D03 BTCUSD_PERP COIN-M | Días UTC, septiembre de 2020–2024; volumen en contratos. | Bloqueado por el ZIP mensual oficial incompleto de agosto de 2023; recuperación diaria pendiente. |
+
+La [admisión Colab `20261119T022547490732Z`](https://github.com/jassan-bit/DeepLearning_202630/tree/e3-closure-cpu-20261119T022547490732Z/runs/e3_closure_cpu/20261119T022547490732Z) confirma **2/3 archivos admitidos y cero ajustes nuevos**. El ZIP D03 de agosto de 2023 coincide con su checksum oficial, pero sólo contiene las observaciones del 1 al 27; faltan los días 28–31. El {download}`diagnóstico de sus bytes <../_static/e3_evaluacion_ampliada_20261119/admission/incident_202308.json>` conserva hashes y procedencia. Se prepara la recuperación del mes completo mediante ZIP diarios oficiales y checksums, con calendario exacto y coincidencia de los 27 días comunes. Si no se verifica todo el mes, D03 seguirá bloqueado. No se imputan observaciones, se acorta el periodo o se altera el recibo fallido.
 
 La historia auxiliar BTC conserva el hueco del 24 de marzo de 2023 y sus objetivos no construibles; no rellena OHLCV o etiquetas. Su comprobación reconstruye las 1316 etiquetas conocidas dentro de precisión numérica. Los clásicos usan historia causal de etiquetas más amplia que las siete barras neuronales. La máscara común de diagnóstico de ajuste se fija por disponibilidad de rezagos antes de conocer errores; no elimina fechas de prueba. Estos contratos se reportan en vez de afirmar idéntica información para todas las familias.
 

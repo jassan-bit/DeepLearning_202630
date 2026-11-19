@@ -1,0 +1,51 @@
+{
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "checked": [
+    "checksum before fallback",
+    "full 31 daily acquisitions",
+    "strict UTC timestamps and named dates",
+    "Decimal exact overlap equality",
+    "no tolerance, imputation, deletion or period reduction",
+    "hash mismatch and absent source fail closed",
+    "rollback of dataset/month receipt on failure",
+    "original valid parsed and HTTP metadata preserved",
+    "daily progress and missing-day retry",
+    "completed retry byte-idempotent without HTTP",
+    "collector hash binds new and historical modules",
+    "source documents from historical sources folder",
+    "blocked run and raw manifest persisted",
+    "generic internal missing days and microsecond daily units"
+  ],
+  "collector_components": {
+    "historical_base_sha256": "d5063e6c5a5eb79d58fff33ccbefdb6e62fe2ed4ba4441f64fbd523bc17c486b",
+    "recovery_module_sha256": "9fcfc43ab91883f41dd10e05cedd61f0600e398e19cc152a8aae13153d960585"
+  },
+  "collector_sha256": "fc16cfec9307e6185a61574368ed7f0ea5149b7e1dd8cc45d8951f3491842430",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/e3_evaluacion_ampliada_20261119/admission",
+    "-p",
+    "test_collect_recovery.py",
+    "-v"
+  ],
+  "datasets_actually_admitted": 0,
+  "exit_code": 0,
+  "fixture": "Synthetic OHLCV with exact August 2023 1..27 calendar defect; not recovered market observations",
+  "kind": "strict_monthly_daily_recovery_offline_verification",
+  "log": "collect_recovery_tests.log",
+  "log_sha256": "90c6d1415e15b6b6929f31b5e27fc68adfad71269ecaddbf31fdb698a142c7ec",
+  "network_requests": 0,
+  "new_market_predictions": 0,
+  "new_real_data_fits": 0,
+  "new_statistical_contrasts": 0,
+  "passed": true,
+  "real_campaign_allowed": false,
+  "recorded_at_utc": "2026-11-19T02:36:19.746934+00:00",
+  "test_sha256": "ac3b17f592bbdcfac55b7b0e87923144851bcaff32f88d9e69816b2c440565fe",
+  "tests": 15
+}

@@ -97,6 +97,36 @@ def _select_run(rows,master_run_id=None):
     return selected[0] if selected else None
 
 
+def _preprotocol_upgrade(source,base,local,previous,token,api):
+    """Allow a collector fix only for a proved, never-started local audit.
+
+    Once a protocol, a tag, jobs or durable audit state exists, source pinning
+    remains absolute. A failed CPU admission is not a frozen model campaign.
+    """
+    if previous is not None or not local:return None
+    master=local.get('master_run_id','');attempt=local.get('admission_run_id','')
+    if (re.fullmatch('[0-9]{8}T[0-9]{12}Z',master) is None
+            or re.fullmatch('[0-9]{8}T[0-9]{12}Z',attempt) is None):return None
+    output=base/('e3-extended-audit-'+master)
+    admitted=base/('e3-extended-admission-'+attempt)
+    if local.get('output')!=str(output) or local.get('admission_output')!=str(admitted):return None
+    if any(p.is_symlink() for p in (output,admitted,*output.parents,*admitted.parents)):
+        raise ValueError('Preprotocol recovery symlink refused')
+    state=base/('e3-extended-continuation-'+master+'.json')
+    view=base/('e3-extended-persist-view-'+master)
+    # At a blocked physical admission the audit output has no products. Reject
+    # any unexpected files too, instead of inferring they are safe to discard.
+    if (state.exists() or any(output.rglob('*')) or any(view.rglob('*'))):return None
+    admission=load(source/SCOPE/'admission/colab.py','extended_controller_upgrade_admission')
+    try:proof=admission.inspect_failed_stage(admitted)
+    except (OSError,ValueError,KeyError):return None
+    if proof.get('source_commit')!=local.get('source_commit'):return None
+    tag='/repos/'+REPOSITORY+'/git/ref/tags/e3-extended-audit-protocol-'+master
+    if api._request('GET',tag,token,allow_missing=True) is not None:return None
+    return {**proof,'previous_admission_output':str(admitted),
+            'master_run_id':master,'no_local_or_remote_protocol':True}
+
+
 def _stop(process):
     if process.poll() is None:
         process.terminate()
@@ -270,7 +300,7 @@ def analysis_runtime(source,base,log):
 def _public(row):return {k:v for k,v in row.items() if not k.startswith('_')}
 
 
-def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None):
+def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None,admission_reuse_url=None):
     if re.fullmatch('[0-9a-f]{40}',source_commit or '') is None:raise ValueError('Full source SHA required')
     base=Path(base).absolute();base.mkdir(parents=True,exist_ok=True)
     if any(p.is_symlink() for p in (base,*base.parents)):raise ValueError('Base symlink refused')
@@ -291,12 +321,16 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
         print('Esta auditoría ya está terminada y guardada:',previous['run_url'],flush=True)
         return {'status':'already_completed',**_public(previous),'R3_accredited':False}
     old_source=previous['source_commit'] if previous else (local.get('source_commit') if local else source_commit)
+    upgrade=None
     if old_source!=source_commit:
         _main_ancestry(api,token,old_source,source_commit)
-        old_checkout=checkout(old_source,base)
-        original=load(old_checkout/SCOPE/'orchestration/controller.py','extended_original_controller')
-        return original.run(old_source,token,base=base,start_new=False,
-                            master_run_id=previous['master_run_id'] if previous else requested)
+        upgrade=_preprotocol_upgrade(source,base,local,previous,token,api)
+        if upgrade is None:
+            old_checkout=checkout(old_source,base)
+            original=load(old_checkout/SCOPE/'orchestration/controller.py','extended_original_controller')
+            return original.run(old_source,token,base=base,start_new=False,
+                                master_run_id=previous['master_run_id'] if previous else requested)
+        print('Admisión fallida sin protocolo ni ajustes: se conserva el master y se actualiza su recolector.',flush=True)
     master=requested or (previous['master_run_id'] if previous else stamp())
     if re.fullmatch('[0-9]{8}T[0-9]{12}Z',master) is None:raise ValueError('Invalid master run ID')
     output=base/('e3-extended-audit-'+master)
@@ -304,7 +338,15 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
     statefile=base/('e3-extended-continuation-'+master+'.json')
     context={'source_commit':source_commit,'master_run_id':master,'output':str(output)}
     if local and local.get('master_run_id')==master:
-        context.update({k:local[k] for k in ('admission_output','admission_run_id') if k in local})
+        context.update({k:local[k] for k in ('admission_output','admission_run_id','admission_cache_source',
+                                           'admission_reuse_url','source_upgrades') if k in local})
+    if upgrade is not None:
+        context['source_upgrades']=[*context.get('source_upgrades',[]),
+            {'from_source_commit':old_source,'to_source_commit':source_commit,**upgrade}]
+    if admission_reuse_url is not None:
+        if not isinstance(admission_reuse_url,str) or not admission_reuse_url.strip():
+            raise ValueError('An explicit nonempty GitHub admission URL is required for cache reuse')
+        context['admission_reuse_url']=admission_reuse_url.strip()
     atomic(session,canonical(context))
     if previous and (not (output/'protocol.json').exists() or not statefile.exists()):
         print('Restaurando auditoría y checkpoints desde GitHub:',previous['run_url'],flush=True)
@@ -322,9 +364,24 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
             # A completed failed admission remains immutable in its own branch.
             # A later network retry is a NEW physical-admission attempt, never
             # an overwrite or a second logical market-training campaign.
+            context['admission_cache_source']=str(admitted)
             admission_run_id=stamp();admitted=base/('e3-extended-admission-'+admission_run_id)
         context.update(admission_output=str(admitted),admission_run_id=admission_run_id)
         atomic(session,canonical(context))
+        if not (admitted/'stage_receipt.json').exists():
+            cached=context.get('admission_cache_source')
+            reuse=context.get('admission_reuse_url')
+            cache_provenance=admitted/'cache_reuse.json'
+            if cache_provenance.is_file():
+                proof=json.loads(cache_provenance.read_bytes())
+                if proof.get('kind')!='e3_admission_cache_reuse' or proof.get('source_commit')!=source_commit:
+                    raise ValueError('Preserved admission cache belongs to another source or scope')
+                # The collector may have extended download_receipts.json since
+                # seeding. Its official checksums are revalidated by run_stage;
+                # never reseed the old receipt over newer local progress.
+            elif (cached and Path(cached).is_dir()) or reuse:
+                admission.seed_cache(source,admitted,source_commit,
+                    previous_output=cached,reuse_url=reuse,token=token,api=api)
         receipt=admission.run_stage(source,admitted,source_commit)
         storage=load(source/'experiments/e3_cierre_integral_20261118/orchestration/github_store.py','extended_controller_admission_store')
         saved=storage.save(admitted,token,source_commit,admission_run_id,api,profile='cpu')
@@ -336,6 +393,8 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
             if p.is_file() and (p.name=='admission.json' or p.relative_to(admitted/'data').parts[0] in {'datasets','sources'}):
                 _copy_once(p,output/'admission'/p.relative_to(admitted/'data'))
         atomic(output/'admission_storage.json',canonical(saved))
+        if context.get('source_upgrades'):
+            atomic(output/'preprotocol_source_upgrades.json',canonical(context['source_upgrades']))
     runtime=load(source/OLD/'colab_runtime.py','extended_controller_runtime')
     gpu_python,gpu_env,runtime_receipt=runtime.prepare_runtime(base/'e3-preflight-gpu-runtime-v1')
     # Re-sanitize even an injected/setup environment before any scientific process.

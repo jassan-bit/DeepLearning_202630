@@ -6,7 +6,7 @@ rama nueva de GitHub. No instala Playwright, no comprueba Render y no utiliza
 GPU. La admisión precede a la evaluación; no construye objetivos sigma7, entrena
 modelos o acredita R1/R3.
 
-## Estado comprobado en este corte
+## Corte inicial conservado
 
 Las búsquedas exhaustivas de los prefijos exactos `e3-closure-cpu-` y
 `e3-closure-pilot-` no devolvieron ramas. Se conserva el resultado en
@@ -19,6 +19,14 @@ respuesta 403 antes de recibir datos. Ese 403 describe el acceso de este
 entorno, no demuestra que falten precios o que la fuente esté caída. No hubo
 ajustes, inferencias de modelos o contrastes. El CSV D01 normalizado es
 `local_probe/datasets/D01.csv`; sus bytes están ligados a `admission.json`.
+
+## Admisión posterior y recuperación del calendario
+
+La ejecución Colab `20261119T022547490732Z`, con fuente `0f34c97`, sí está guardada en la rama `e3-closure-cpu-20261119T022547490732Z`. Admite D01 y D02; D02 tiene 1461 días UTC y 48 ZIP mensuales con checksum verificado. No se entrenaron modelos.
+
+D03 se detiene en agosto de 2023: su ZIP mensual coincide con el checksum oficial, pero contiene sólo los días 1–27. `incident_202308.json` vincula el recibo y los hashes. La recuperación usa el mes completo de archivos diarios oficiales con sus checksums, exige el calendario íntegro y acuerdo en todos los días comunes; un archivo diario ausente o discrepante mantiene el bloqueo. No se rellenan valores ni se acorta el periodo. Los bytes y recibos fallidos se conservan en su intento original; los archivos cacheados se revalidan en una admisión nueva.
+
+En este entorno el acceso directo a Binance Vision sigue bloqueado por el túnel. Las pruebas del recuperador no acreditan que ya se hayan obtenido los diarios reales; esa comprobación ocurre en Colab.
 
 D01 representa WIKI/AAPL bruto entre sesiones. D02 es ETHUSDT Spot 2018–2021;
 D03 es BTCUSD_PERP COIN-M 2020-09–2024. Los dos últimos comparten distribuidor

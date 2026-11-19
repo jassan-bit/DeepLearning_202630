@@ -1,0 +1,53 @@
+{
+  "kind": "e3_physical_data_calendar_incident",
+  "source_commit": "0f34c9719c3fdce5cff1a7d634622c5c93a69ef3",
+  "prior_results_commit": "c25ba1e0a827b04d0069ccde98f1365d64d8109a",
+  "prior_run_id": "20261119T022547490732Z",
+  "prior_results_url": "https://github.com/jassan-bit/DeepLearning_202630/tree/e3-closure-cpu-20261119T022547490732Z/runs/e3_closure_cpu/20261119T022547490732Z",
+  "admission_report_sha256": "e6e07696a079bee6bfd07cc8ea6f0a915f54400fc89c68bbd317679327cfbee4",
+  "datasets": [
+    {
+      "id": "D01",
+      "admitted": true,
+      "rows": 3270,
+      "sha256": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1"
+    },
+    {
+      "id": "D02",
+      "admitted": true,
+      "rows": 1461,
+      "sha256": "0b02d3f47d020dde37e5a18f5371e9608ecce0907e7296760a7281524bc6b510"
+    },
+    {
+      "id": "D03",
+      "admitted": false,
+      "error": "monthly_calendar_order_duplicates_or_missing_days"
+    }
+  ],
+  "monthly_archive": {
+    "path": "data/responses/D03/BTCUSD_PERP-1d-2023-08.zip",
+    "bytes": 1712,
+    "git_blob_sha": "90e127113f8a62766e6b601da2336f7246b89014",
+    "sha256": "253f7076c16d89435cfd0d715ffa3a00272bc07ca83ebc0b91ce272db1e99926",
+    "official_checksum_matches": true,
+    "calendar_first": "2023-08-01",
+    "calendar_last": "2023-08-27",
+    "observations": 27,
+    "missing_dates": [
+      "2023-08-28",
+      "2023-08-29",
+      "2023-08-30",
+      "2023-08-31"
+    ],
+    "duplicate_dates": [],
+    "sorted": true
+  },
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "new_statistical_contrasts": 0,
+  "recovery_policy": "Use the complete month of official daily archives and checksums, exact calendar and agreement with every overlapping monthly OHLCV observation. Preserve incomplete monthly bytes and all prior receipts. No imputation, dropped observations or shortened period.",
+  "daily_recovery_executed_here": false,
+  "source_access_limit": "Direct Binance Vision requests in this workspace return a tunnel HTTP403; existence and contents of daily archives must be physically verified in Colab.",
+  "R3_accredited": false,
+  "AI_assistance_declared": true
+}
