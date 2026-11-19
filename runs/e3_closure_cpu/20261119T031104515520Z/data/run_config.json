@@ -1,0 +1,35 @@
+{
+  "D01_source_sha256": "5abadf99b2d394f920120a27de6f0df129859d71d4cfb0bf661bcc99446ab1fd",
+  "collector_components": {
+    "historical_base_sha256": "d5063e6c5a5eb79d58fff33ccbefdb6e62fe2ed4ba4441f64fbd523bc17c486b",
+    "recovery_module_sha256": "9fcfc43ab91883f41dd10e05cedd61f0600e398e19cc152a8aae13153d960585"
+  },
+  "collector_sha256": "fc16cfec9307e6185a61574368ed7f0ea5149b7e1dd8cc45d8951f3491842430",
+  "kind": "e3_additional_OHLCV_admission",
+  "license_source_commit": "d571690eb66760763b0bd6e27e8cd35603c7e244",
+  "protocol_frozen": false,
+  "recovery_policy": "checksum_valid_incomplete_month_to_all_official_daily_archives_v1",
+  "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+  "specifications": [
+    {
+      "end": "2021-12-31",
+      "id": "D02",
+      "market": "spot",
+      "prefix": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1d/",
+      "product": "altcoin spot",
+      "start": "2018-01-01",
+      "symbol": "ETHUSDT",
+      "volume_units": "ETH"
+    },
+    {
+      "end": "2024-12-31",
+      "id": "D03",
+      "market": "coin_margined_perpetual",
+      "prefix": "https://data.binance.vision/data/futures/cm/monthly/klines/BTCUSD_PERP/1d/",
+      "product": "coin-margined perpetual derivative",
+      "start": "2020-09-01",
+      "symbol": "BTCUSD_PERP",
+      "volume_units": "contracts"
+    }
+  ]
+}
