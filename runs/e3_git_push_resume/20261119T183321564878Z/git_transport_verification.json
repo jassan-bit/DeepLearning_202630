@@ -1,0 +1,34 @@
+{
+  "checks": [
+    "Exact independent Git write-tree SHA and unchanged executable/symlink/submodule/original siblings",
+    "Historical 256 KiB checkpoint blob genuinely absent before and after staging and audit PACK pushes",
+    "Frozen parent only reachable through advanced remote HEAD; push.negotiate=true excludes server parent closure",
+    "Implicit fetch disabled via GIT_NO_LAZY_FETCH and remote.origin.promisor=false; advanced-HEAD test also omits environment variable",
+    "Current UTC immutable per-role commit journal; exact author/message/parent/tree retained across restart",
+    "Exact tree/parent staging reuse, including differing staging commit metadata",
+    "Existing conflicting branches and main refs rejected without overwrite",
+    "Absent-ref --force-with-lease=<ref>: plus --atomic rejects concurrent even fast-forwardable branch creation",
+    "Lost successful push response reconciled with exact remote SHA",
+    "Ephemeral 0700 askpass reads env-only token; no token in argv, config, script, journals, cache or local command environments",
+    "Wrong bases, missing blobs, malformed paths, part/root mismatch and credential URLs fail closed",
+    "Bounded read_blob fetches only an exact missing blob proven in an already verified local commit tree, with --no-filter --no-tags --no-write-fetch-head; no arbitrary commit/history fetch",
+    "Blob type and 48 MiB maximum size checked before content read; raw size and Git SHA checked before return; commit raw Git SHA checked before parsing",
+    "Base/cache/journal symlinks refused; generic TOKEN/PAT/SECRET/CREDENTIAL environment entries stripped"
+  ],
+  "generated_utc": "2026-11-19T18:49:57.599605+00:00",
+  "git_version": "git version 2.52.0",
+  "limitations": [
+    "The test executes local Git servers; actual GitHub/Colab authentication and transfer are deliberately unexecuted."
+  ],
+  "proven_algorithm_unchanged": true,
+  "scope": "Offline local file:// bare-Git remotes only; no GitHub/HTTP, model fits, or scientific source/state/output modifications",
+  "sha256": {
+    "git_stage_transport.py": "c2c3b3e3ff0099c49c5a4ac25733b749706efa0027998d02bb879ddc61114232",
+    "incremental_git_trees.py": "bb414e0ef6c645f93cc23fb6a5a2e2e2932347c5ebb014a7127bd54f2b9e6665",
+    "test_git_stage_transport.py": "72fc070cf5808d5343f0122e997f2ff5f098c2b69e14736b42d812047c3be4d5"
+  },
+  "status": "passed",
+  "test_command": "python test_git_stage_transport.py",
+  "test_count": 11,
+  "tests_passed": 11
+}
