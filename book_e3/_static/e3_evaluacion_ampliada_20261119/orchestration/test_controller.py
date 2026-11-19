@@ -170,6 +170,7 @@ class ControllerTests(unittest.TestCase):
     def test_changed_gpu_cohort_stops_before_new_optimization(self):
         base=self.root/'colab';out=base/('e3-extended-audit-'+RUN)
         self.write(out/'protocol.json',{'compute_profile':{'device':'cuda:0','GPU':'original-A100'}})
+        self.write(base/('e3-extended-continuation-'+RUN+'.json'),{'fixture':True})
         self.write(out/'jobs/known/checkpoint.pt',b'preserved original weights')
         row={'master_run_id':RUN,'source_commit':SOURCE,'stage_status':'running',
              'analysis_complete':False,'protocol_sha256':'d'*64}
@@ -189,6 +190,83 @@ class ControllerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'cohort changed'):
                 controller.run(SOURCE,'fixture-token',base=base)
         self.assertEqual((out/'jobs/known/checkpoint.pt').read_bytes(),b'preserved original weights')
+
+    def test_protocol_present_without_final_restore_state_is_restored_again(self):
+        base=self.root/'colab';out=base/('e3-extended-audit-'+RUN);events=[]
+        self.write(out/'protocol.json',{'compute_profile':{'device':'cuda:0','GPU':'original-A100'}})
+        row={'master_run_id':RUN,'source_commit':SOURCE,'stage_status':'running',
+             'analysis_complete':False,'protocol_sha256':'d'*64,'run_url':'https://github.com/fixture/run'}
+        def restore(output,*args,**kwargs):
+            events.append('restore')
+            self.assertTrue((output/'protocol.json').is_file())
+            self.write(output/'resources.csv',b'previously missing trailing restore payload')
+            self.write(kwargs['statefile'],{'fixture':'restore completion marker'})
+        def runtime(path):
+            events.append('runtime')
+            self.assertTrue((out/'resources.csv').is_file())
+            raise RuntimeError('stop after restoration')
+        continuation=SimpleNamespace(discover_runs=lambda *args:[row],restore=restore)
+        def load(path,name):
+            name=Path(path).name
+            if name=='colab_github.py':return self.api
+            if name=='continuation.py':return continuation
+            if name=='protocol.py':return SimpleNamespace()
+            if name=='colab_runtime.py':return SimpleNamespace(prepare_runtime=runtime)
+            self.fail('Partial restoration must finish before other scientific work')
+        with patch.object(controller,'checkout',return_value=self.source),patch.object(controller,'load',side_effect=load):
+            with self.assertRaisesRegex(RuntimeError,'stop after restoration'):
+                controller.run(SOURCE,'fixture-token',base=base)
+        self.assertEqual(events,['restore','runtime'])
+
+    def test_interrupted_package_download_is_retained_then_reacquired_and_verified(self):
+        base=self.root/'colab';base.mkdir();attempts=[];inventories=[]
+        raw=b'v'*7839993;expected=hashlib.sha256(raw).hexdigest()
+        destination=base/'e3-immutable-source-package-c4a4a1e68e98'
+        def acquire(folder):
+            attempts.append(folder);folder.mkdir()
+            if len(attempts)==1:
+                self.write(folder/'02_codigo_modelos.zip',b'interrupted download')
+                raise OSError('synthetic interrupted download')
+            self.write(folder/'02_codigo_modelos.zip',raw)
+            package=folder/'extracted/package'
+            self.write(package/'code/scripts/e2_standalone_code.py',b'verified fixture source')
+            return package
+        def inventory(package):
+            inventories.append(package)
+            self.assertEqual((package/'code/scripts/e2_standalone_code.py').read_bytes(),b'verified fixture source')
+            return {'status':'verified','synthetic_fixture':True},{},{}
+        preflight=SimpleNamespace(PACKAGE_SHA256=expected,acquire_package=acquire,portable_inventory=inventory)
+        with patch.object(controller,'load',return_value=preflight),patch.object(controller,'stamp',return_value=RUN):
+            with self.assertRaisesRegex(OSError,'interrupted download'):
+                controller._package_cache(self.source,base)
+            receipt=controller._package_cache(self.source,base)
+            cached=controller._package_cache(self.source,base)
+        quarantine=base/(destination.name+'-quarantine-'+RUN)
+        self.assertEqual((quarantine/'02_codigo_modelos.zip').read_bytes(),b'interrupted download')
+        self.assertEqual(len(attempts),2);self.assertEqual(len(inventories),2)
+        self.assertEqual(receipt['archive_sha256'],expected)
+        self.assertEqual(receipt['quarantined_cache'],str(quarantine))
+        self.assertTrue(receipt['source_verified']);self.assertEqual(receipt['new_real_data_fits'],0)
+        self.assertIsNone(cached['quarantined_cache'])
+
+    def test_unpinned_fresh_archive_is_refused_before_inventory_or_fitting(self):
+        base=self.root/'colab';base.mkdir()
+        def acquire(folder):
+            folder.mkdir();self.write(folder/'02_codigo_modelos.zip',b'w'*7839993)
+        def forbidden(*args):self.fail('Inventory must not run on an archive with an unpinned digest')
+        preflight=SimpleNamespace(PACKAGE_SHA256='0'*64,acquire_package=acquire,portable_inventory=forbidden)
+        with patch.object(controller,'load',return_value=preflight):
+            with self.assertRaisesRegex(ValueError,'pinned size/hash'):
+                controller._package_cache(self.source,base)
+        self.assertTrue((base/'e3-immutable-source-package-c4a4a1e68e98/02_codigo_modelos.zip').is_file())
+
+    def test_package_preparation_uses_the_isolated_scientific_interpreter(self):
+        receipt={'path':str(self.root/'verified-package'),'source_verified':True}
+        with patch.object(controller.subprocess,'check_output',return_value=json.dumps(receipt)) as call:
+            package,saved=controller.prepare_package(self.source,self.root,Path('/isolated/gpu/python'),{'SAFE':'yes'})
+        self.assertEqual(call.call_args.args[0][0],'/isolated/gpu/python')
+        self.assertEqual(call.call_args.kwargs['env'],{'SAFE':'yes'})
+        self.assertEqual(package,self.root/'verified-package');self.assertEqual(saved,receipt)
 
     def test_scientific_environment_excludes_credentials_and_python_injection(self):
         with patch.dict(os.environ,{'GITHUB_TOKEN':'never-forward','MY_PASSWORD':'never-forward',
@@ -257,6 +335,7 @@ class ControllerTests(unittest.TestCase):
                 def lines():
                     if name=='run.py':
                         events.append('worker')
+                        parent.assertEqual(command[command.index('--package-path')+1],str(base/'verified-package'))
                         for i in range(3):
                             job=output/'jobs/D00'/('model'+str(i))
                             parent.write(job/'result.json',{'status':'completed'})
@@ -283,6 +362,7 @@ class ControllerTests(unittest.TestCase):
         profile={'device':'cuda:0','GPU':'synthetic-fixture'}
         with patch.object(controller,'checkout',return_value=self.source),patch.object(controller,'load',side_effect=load),\
              patch.object(controller,'stamp',return_value=RUN),patch.object(controller,'_gpu_profile',return_value=profile),\
+             patch.object(controller,'prepare_package',return_value=(base/'verified-package',{'source_verified':True})),\
              patch.object(controller,'analysis_runtime',return_value=(Path('/isolated/analysis/python'),{},{})),\
              patch.object(controller.subprocess,'Popen',side_effect=Worker):
             result=controller.run(SOURCE,'fixture-token',base=base)
@@ -293,6 +373,7 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual(sum(p.startswith('jobs/') and p.endswith('result.json') for p in snapshots[1]),3)
         self.assertIn('admission/datasets/D03.csv',snapshots[0])
         self.assertIn('inputs/development.csv',snapshots[0])
+        self.assertIn('immutable_package.json',snapshots[0])
         self.assertIn('figures/figures_manifest.json',snapshots[-1])
         status=json.loads(snapshots[-1]['controller_status.json'])
         self.assertEqual(status['stage_status'],'completed');self.assertTrue(status['analysis_complete'])

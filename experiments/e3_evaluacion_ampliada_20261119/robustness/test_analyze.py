@@ -194,6 +194,36 @@ class AnalysisTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'failed its manifest'):
             audit.run(self.panel,self.protocol_path,self.folder/'output')
 
+    def test_stop_after_manifest_can_resume_without_changing_completed_tables(self):
+        output=self.folder/'interrupted';original_write=audit.write
+        def stop_after_manifest(path,raw):
+            original_write(path,raw)
+            if Path(path).name=='output_manifest.json':raise KeyboardInterrupt('simulated Colab interruption')
+        with patch.object(audit,'write',side_effect=stop_after_manifest):
+            with self.assertRaises(KeyboardInterrupt):audit.run(self.panel,self.protocol_path,output)
+        self.assertTrue((output/'output_manifest.json').is_file())
+        self.assertFalse((output/'analysis_receipt.json').exists())
+        before={p.name:p.read_bytes() for p in output.iterdir() if p.is_file()}
+        # A process killed during atomic staging can leave a temporary file;
+        # it must not become a declared scientific product on retry.
+        (output/'.partial-analysis_receipt.json.abandoned').write_bytes(b'partial')
+        result=audit.run(self.panel,self.protocol_path,output)
+        for name,raw in before.items():self.assertEqual((output/name).read_bytes(),raw)
+        manifest_raw=(output/'output_manifest.json').read_bytes();manifest=json.loads(manifest_raw)
+        self.assertEqual(result['output_manifest_sha256'],audit.digest(manifest_raw))
+        self.assertNotIn('analysis_receipt.json',manifest['files'])
+        self.assertTrue(all(not name.startswith('.') for name in manifest['files']))
+        with patch.object(audit,'analyze',side_effect=AssertionError('Completed retry must reuse its receipt')):
+            self.assertEqual(audit.run(self.panel,self.protocol_path,output),result)
+
+    def test_atomic_publication_cannot_expose_a_truncated_final_result(self):
+        path=self.folder/'atomic'/'result.csv'
+        with patch.object(audit.os,'link',side_effect=KeyboardInterrupt('stopped before atomic publication')):
+            with self.assertRaises(KeyboardInterrupt):audit.write(path,b'complete content\n')
+        self.assertFalse(path.exists());self.assertEqual(list(path.parent.iterdir()),[])
+        audit.write(path,b'complete content\n')
+        self.assertEqual(path.read_bytes(),b'complete content\n')
+
     def curve_fixture(self):
         cfg,panels,_=audit.read_panel(self.panel,self.protocol);cfg['learning_comparator']='rival'
         records=[];rows=[]

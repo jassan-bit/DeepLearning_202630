@@ -1,4 +1,5 @@
 test_all_hpo_trials_are_described_without_reselecting_on_test (test_analyze.AnalysisTests.test_all_hpo_trials_are_described_without_reselecting_on_test) ... ok
+test_atomic_publication_cannot_expose_a_truncated_final_result (test_analyze.AnalysisTests.test_atomic_publication_cannot_expose_a_truncated_final_result) ... ok
 test_calibration_noise_and_duplicate_predictions_are_rejected (test_analyze.AnalysisTests.test_calibration_noise_and_duplicate_predictions_are_rejected) ... ok
 test_complete_analysis_uses_individual_rmse_not_ensemble_and_outputs_all_models (test_analyze.AnalysisTests.test_complete_analysis_uses_individual_rmse_not_ensemble_and_outputs_all_models) ... Robustness D01: synchronized temporal blocks 3, draws 199
 Robustness D01: synchronized temporal blocks 5, draws 199
@@ -17,6 +18,14 @@ test_real_audit_requires_nineteen_systems_four_datasets_and_ten_seeds (test_anal
 test_sample_curves_cannot_reuse_full_data_scaler_or_omit_fits (test_analyze.AnalysisTests.test_sample_curves_cannot_reuse_full_data_scaler_or_omit_fits) ... ok
 test_sample_curves_require_distinct_real_fit_receipts_and_clean_scalers (test_analyze.AnalysisTests.test_sample_curves_require_distinct_real_fit_receipts_and_clean_scalers) ... ok
 test_sharded_manifest_matches_flat_panel_and_rejects_missing_or_corrupt_payload (test_analyze.AnalysisTests.test_sharded_manifest_matches_flat_panel_and_rejects_missing_or_corrupt_payload) ... ok
+test_stop_after_manifest_can_resume_without_changing_completed_tables (test_analyze.AnalysisTests.test_stop_after_manifest_can_resume_without_changing_completed_tables) ... Robustness D01: synchronized temporal blocks 3, draws 199
+Robustness D01: synchronized temporal blocks 5, draws 199
+Robustness D01: synchronized temporal blocks 7, draws 199
+Robustness D01: synchronized temporal blocks 3, draws 199
+Robustness D01: synchronized temporal blocks 5, draws 199
+Robustness D01: synchronized temporal blocks 7, draws 199
+{"status": "analyzed_actual_saved_panel", "datasets": 1, "models": 5, "scenarios": 4, "new_model_fits": 0, "R3_accredited": false}
+ok
 test_test_target_change_cannot_change_a_clean_calibrator (test_analyze.AnalysisTests.test_test_target_change_cannot_change_a_clean_calibrator) ... Robustness D01: synchronized temporal blocks 3, draws 199
 Robustness D01: synchronized temporal blocks 5, draws 199
 Robustness D01: synchronized temporal blocks 7, draws 199
@@ -36,8 +45,10 @@ Robustness D01: synchronized temporal blocks 7, draws 199
 test_actual_export_has_error_bar_scope_watermark_and_byte_verified_retry (test_plots.PlotTests.test_actual_export_has_error_bar_scope_watermark_and_byte_verified_retry) ... {"figures": 3, "files": 6, "synthetic_fixture": true, "new_model_fits": 0}
 ok
 test_changed_input_table_cannot_produce_a_new_unbound_figure (test_plots.PlotTests.test_changed_input_table_cannot_produce_a_new_unbound_figure) ... ok
+test_interrupted_export_resumes_without_publishing_a_truncated_png (test_plots.PlotTests.test_interrupted_export_resumes_without_publishing_a_truncated_png) ... {"figures": 3, "files": 6, "synthetic_fixture": true, "new_model_fits": 0}
+ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 1.382s
+Ran 23 tests in 2.081s
 
 OK

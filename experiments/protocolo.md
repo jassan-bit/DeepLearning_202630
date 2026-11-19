@@ -154,7 +154,7 @@ requieren hipótesis/márgenes propios; ausencia de rechazo no basta.
 
 ## 6. Tres conjuntos adicionales y robustez
 
-**En el corte inicial de este borrador no había conjuntos adicionales seleccionados.** Se proponían tres fuentes
+**Ningún conjunto adicional está seleccionado.** Se registrarán tres fuentes
 públicas de la misma tarea y primaria, cada una distinta del principal en al
 menos dos ejes: tamaño, dominio, ruido, desbalance o dimensionalidad. Fuente,
 licencia, versión/hash y razón de selección se fijan antes de conocer desempeño.
@@ -206,9 +206,3 @@ los análisis no previstos serán exploratorios. Cambiar arquitectura, pérdida 
 espacio de búsqueda después del cierre exige nueva versión y conserva el
 historial. La asistencia de IA está declarada; el autor debe revisar y defender
 el contenido y ninguna comprobación automática sustituye su responsabilidad.
-
-## Actualización posterior: auditoría ampliada preespecificada
-
-Se seleccionaron D01 WIKI/AAPL RAW, D02 ETHUSDT Spot y D03 BTCUSD_PERP COIN-M. Sólo D01 tiene sus bytes admitidos en este entorno; los otros dos esperan la ejecución Colab. Ninguno tiene resultados nuevos de modelos. El protocolo ejecutable posterior está en `experiments/e3_evaluacion_ampliada_20261119/orchestration/protocol.py`: 17 sistemas históricos más dos controles analíticos, cuatro conjuntos incluyendo BTC, procedimiento común de ajuste, calibración separada y estudios de robustez. Conserva una proyección física común y los pronósticos crudos.
-
-El cuaderno genera la instancia con hashes de los tres archivos realmente admitidos y crea un tag anotado antes de sus ajustes. Es una auditoría exploratoria preespecificada; no modifica el corte histórico de este documento ni simula un preregistro anterior. La potencia completa y R3 no quedan acreditadas. Los conjuntos cripto comparten exposiciones y uno comparte subyacente/fechas BTC; la fuente de las etiquetas clásicas y el efecto del ruido tienen límites explícitos. El desarrollo de V3 sigue separado y los entrenamientos históricos se conservan.
