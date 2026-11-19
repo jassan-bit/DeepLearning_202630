@@ -1,0 +1,148 @@
+{
+  "GPU_training_tested_in_this_environment": false,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "focused_tests": {
+    "actual_pinned_CSV_NPZ_and_server_protocol_used": true,
+    "command": "python -m unittest -v test_worker_compat",
+    "errors": 0,
+    "failed": 0,
+    "passed": 12,
+    "portable_test_paths": "E3_SCIENTIFIC_CHECKOUT and E3_NPZ_PATH overrides; repository ancestor and Colab source/input detection with local fixture fallback; invalid explicit overrides raise clearly",
+    "real_model_fits_executed": 0
+  },
+  "kind": "e3_D00_parser_worker_local_verification",
+  "market_input_bytes_edited": false,
+  "master_run_id": "20261119T031104515520Z",
+  "new_market_predictions": 0,
+  "new_real_data_fits": 0,
+  "post_freeze_parser_amendment_disclosed": true,
+  "protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+  "recorded_at_utc": "2026-11-19T20:39:15.715252+00:00",
+  "scientific_source_files_preserved_sha256": {
+    "admission/d00_history.py": "a603bc32b71323b060f36985f4adeb248ca3fc191b222dfcecd02cf93fb6709e",
+    "evaluation/data.py": "22615ba4c1b3ffbb6523036b14d98b7459da290955a8ea416fcf6249c0872bbf",
+    "evaluation/run.py": "55dd1cbde85f565b1aca9d74d44b44b27ab84d2c016677d15223cee5a94f49f3"
+  },
+  "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+  "source_files_edited": false,
+  "standalone_preflight_cli_exit_code": 0,
+  "standalone_preflight_local_output_scope": "Empty local verification output, not the Colab campaign restore; the 597 retained production jobs are validated by the launcher and preflight in Colab.",
+  "standalone_preflight_receipt": {
+    "AI_assistance_declared": true,
+    "R1_accredited": false,
+    "R3_accredited": false,
+    "amendment_scope": "In-memory auxiliary BTC history parser accepts the already documented all-missing calendar bar; immutable source and input bytes stay unchanged.",
+    "arithmetic": "Original numpy.std(numpy.diff(numpy.log(eight consecutive observed closes)), ddof=0)",
+    "calendar_rows": 1339,
+    "cohort_parity": {
+      "additional_dataset_targets_opened": false,
+      "known_targets_compared": 1316,
+      "model_fits": 0,
+      "model_predictions": 0,
+      "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+      "partitions": {
+        "calibration": {
+          "all_OHLCV_values_bit_identical": true,
+          "dates": 53,
+          "first": "2024-11-08",
+          "last": "2024-12-30",
+          "maximum_absolute_input_error": 0.0,
+          "maximum_absolute_sigma7_error": 3.469446951953614e-17,
+          "maximum_volume_float64_ULP_difference": 0.0,
+          "raw_price_fields_bit_identical": true,
+          "volume_used_by_classical_target_history": false
+        },
+        "evaluation": {
+          "all_OHLCV_values_bit_identical": false,
+          "dates": 608,
+          "first": "2025-01-01",
+          "last": "2026-08-31",
+          "maximum_absolute_input_error": 7.275957614183426e-12,
+          "maximum_absolute_sigma7_error": 1.2576745200831851e-16,
+          "maximum_volume_float64_ULP_difference": 1.0,
+          "raw_price_fields_bit_identical": true,
+          "volume_used_by_classical_target_history": false
+        },
+        "training": {
+          "all_OHLCV_values_bit_identical": true,
+          "dates": 655,
+          "first": "2023-01-08",
+          "last": "2024-10-31",
+          "maximum_absolute_input_error": 0.0,
+          "maximum_absolute_sigma7_error": 6.765421556309548e-17,
+          "maximum_volume_float64_ULP_difference": 0.0,
+          "raw_price_fields_bit_identical": true,
+          "volume_used_by_classical_target_history": false
+        }
+      }
+    },
+    "cohort_rows_removed": 0,
+    "cohorts": {
+      "calibration": 53,
+      "fit": 532,
+      "test": 608,
+      "validation": 116
+    },
+    "daily_axis_rows": 1332,
+    "existing_jobs_before_and_after": {
+      "completed_job_results": 0,
+      "result_inventory_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "fit_diagnostic_rows": 518,
+    "frozen_source_sha256": {
+      "admission/d00_history.py": "a603bc32b71323b060f36985f4adeb248ca3fc191b222dfcecd02cf93fb6709e",
+      "evaluation/data.py": "22615ba4c1b3ffbb6523036b14d98b7459da290955a8ea416fcf6249c0872bbf",
+      "evaluation/run.py": "55dd1cbde85f565b1aca9d74d44b44b27ab84d2c016677d15223cee5a94f49f3"
+    },
+    "input_files": [
+      {
+        "bytes": 460090,
+        "file": "current_cohort_arrays.npz",
+        "sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683"
+      },
+      {
+        "bytes": 60427,
+        "file": "daily_market_development.csv",
+        "sha256": "bf6bb5160af924aef6a15c3684aeae932df3017e8639888bb7e91ce787900171"
+      },
+      {
+        "bytes": 45135,
+        "file": "daily_market_evaluation.csv",
+        "sha256": "9563ef557e180f34ee37dce3b1480c38aaefd7063df21c031644973310e28deb"
+      }
+    ],
+    "kind": "e3_disclosed_D00_parser_compatibility_preflight",
+    "master_run_id": "20261119T031104515520Z",
+    "missing_OHLCV_dates": [
+      "2023-03-24"
+    ],
+    "missing_required_control_lags": [],
+    "models_constructed": 0,
+    "new_campaign_started": false,
+    "new_market_predictions": 0,
+    "new_real_data_fits": 0,
+    "numpy_version": "2.3.5",
+    "observed_sigma7_dates": 1324,
+    "post_freeze_execution_amendment": true,
+    "predeclared_fit_diagnostic_exclusions": 14,
+    "protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+    "protocol_tag_object_sha": "ba8b5c6fde85cef3deb57b072ab3570a53585b29",
+    "retained_missing_sigma7_calendar_states": [
+      "2023-03-24",
+      "2023-03-25",
+      "2023-03-26",
+      "2023-03-27",
+      "2023-03-28",
+      "2023-03-29",
+      "2023-03-30",
+      "2023-03-31"
+    ],
+    "rows_filled": 0,
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "status": "passed_data_only",
+    "worker_sha256": "2f1c10c6fc21534444f63e60a894c2cede16ecdc50b4adeedddd8381d88caefc"
+  },
+  "test_file_sha256": "1933e99de03209cf039cd8708328cfd2e4d701442ec20d3c626e74875de9b882",
+  "worker_sha256": "2f1c10c6fc21534444f63e60a894c2cede16ecdc50b4adeedddd8381d88caefc"
+}

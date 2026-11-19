@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "original_error_reproduced": "could not convert string to float: ''",
+  "calendar_rows": 1339,
+  "missing_dates": [
+    "2023-03-24"
+  ],
+  "valid_sigma7_history_dates": 1324,
+  "all_valid_outputs_bit_identical_to_original_algorithm": true,
+  "gap_spanning_windows_excluded": true,
+  "NPZ_parity": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "partitions": {
+      "training": {
+        "dates": 655,
+        "first": "2023-01-08",
+        "last": "2024-10-31",
+        "maximum_absolute_sigma7_error": 6.765421556309548e-17,
+        "maximum_absolute_input_error": 0.0,
+        "raw_price_fields_bit_identical": true,
+        "maximum_volume_float64_ULP_difference": 0.0,
+        "all_OHLCV_values_bit_identical": true,
+        "volume_used_by_classical_target_history": false
+      },
+      "calibration": {
+        "dates": 53,
+        "first": "2024-11-08",
+        "last": "2024-12-30",
+        "maximum_absolute_sigma7_error": 3.469446951953614e-17,
+        "maximum_absolute_input_error": 0.0,
+        "raw_price_fields_bit_identical": true,
+        "maximum_volume_float64_ULP_difference": 0.0,
+        "all_OHLCV_values_bit_identical": true,
+        "volume_used_by_classical_target_history": false
+      },
+      "evaluation": {
+        "dates": 608,
+        "first": "2025-01-01",
+        "last": "2026-08-31",
+        "maximum_absolute_sigma7_error": 1.2576745200831851e-16,
+        "maximum_absolute_input_error": 7.275957614183426e-12,
+        "raw_price_fields_bit_identical": true,
+        "maximum_volume_float64_ULP_difference": 1.0,
+        "all_OHLCV_values_bit_identical": false,
+        "volume_used_by_classical_target_history": false
+      }
+    },
+    "known_targets_compared": 1316,
+    "additional_dataset_targets_opened": false,
+    "model_fits": 0,
+    "model_predictions": 0
+  },
+  "frozen_NPZ_arrays_unchanged": true,
+  "cohort_sizes": {
+    "fit": 532,
+    "validation": 116,
+    "calibration": 53,
+    "test": 608
+  },
+  "strict_rejections": [
+    "reversed_order",
+    "mismatched_hash",
+    "partial_missing_row"
+  ],
+  "new_real_data_fits": 0,
+  "model_predictions": 0
+}
