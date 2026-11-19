@@ -1,0 +1,174 @@
+{
+  "CRPS": null,
+  "PIT": null,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "analysis_code_sha256": "9b2d38a89480756901aad7fd97d09a728653842014f9059a01b0e355f67482bb",
+  "auxiliary_inputs": {
+    "hpo_sensitivity": "5e261842d021adc6a0f31100ac5677897a59180cbcbef05ba114c526d1ea70d8",
+    "learning_index": "b3f30fae825983e8f8cc6224d9323d9ff823dce1ef0d0cf8a0e828c83e624bb4",
+    "learning_panel": "02086cb8e794e6335f236f45f8eb1e1af980273e444e16bf90fef41119e32dd8",
+    "resources": "3d1a4da9bc5d190d34d73a8395d4804ccd7f8611fe9f1917d8dc04a6a3170dec",
+    "run_manifest": "288eadf7430e97e1df76eb96efa9ecdf1f697dba834771f5544ee5be5f99acc1"
+  },
+  "bindings": {
+    "prospective_freeze_verified": false,
+    "protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+    "protocol_tag": "e3-extended-audit-protocol-20261119T031104515520Z",
+    "reason": "Content bindings are checked; a JSON declaration is not an independent timestamp or an R3 verdict.",
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "status": "hash_bindings_checked"
+  },
+  "calibration_order_statistics_computed": 580,
+  "calibration_targets_used_for_fit": true,
+  "completed_at_utc": "2026-11-19T22:11:20.869117+00:00",
+  "configuration": {
+    "B": 9999,
+    "alpha": 0.1,
+    "blocks": [
+      7,
+      14,
+      28
+    ],
+    "candidate": "CNN-LSTM-atencion-aditiva E3",
+    "confidence": 0.95,
+    "datasets": [
+      "D00",
+      "D01",
+      "D02",
+      "D03"
+    ],
+    "deterministic": [
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "family": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "history_models": [
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA"
+    ],
+    "learning_comparator": "TSMixer",
+    "scenarios": [
+      "unperturbed",
+      "ohlcv_observation_noise_1",
+      "ohlcv_observation_noise_2",
+      "ohlcv_observation_noise_3"
+    ],
+    "seed": 2026111902,
+    "seeds": [
+      "20261118",
+      "20261119",
+      "20261120",
+      "20261121",
+      "20261122",
+      "20261123",
+      "20261124",
+      "20261125",
+      "20261126",
+      "20261127"
+    ],
+    "splits": [
+      "fit",
+      "validation",
+      "calibration",
+      "test"
+    ],
+    "synthetic": false
+  },
+  "distributional_score_reason": "Point forecasts and a single interval do not define a predictive distribution",
+  "hyperparameter_sensitivity": {
+    "groups": 168,
+    "hpo_seed": "20261117",
+    "panel_sha256": "5e261842d021adc6a0f31100ac5677897a59180cbcbef05ba114c526d1ea70d8",
+    "selection_timing_independently_attested_here": false,
+    "selection_timing_source": "Executor stores its closed validation selection before test forwards",
+    "status": "all_fixed_trials_described_with_validation_argmin_checked",
+    "test_based_reselection_performed": false
+  },
+  "input_panel": {
+    "all_shard_hashes_verified": true,
+    "all_shard_row_counts_verified": true,
+    "chronology_scope": "Target dates checked here; raw input/label support purge is checked by the fitting executor.",
+    "declared_classical_invariant_groups": 36,
+    "declared_rows": 1874560,
+    "files": 76,
+    "format": "sharded_csv_manifest",
+    "path": "/content/e3-extended-audit-20261119T031104515520Z/panel_manifest.json",
+    "rows": 1874560,
+    "sha256": "5f91f7622b5eb160dd5de14cb38edbc872f0fd9963c94afa24450250bec2aeb5",
+    "target_support_purge_verified_here": false,
+    "targets_equal_across_models_seeds_scenarios": true
+  },
+  "kind": "e3-extended-robustness-v1",
+  "limitations": [
+    "D00 is a known historical BTC calendar, not a new blind test",
+    "D02/D03 share crypto exposure; D03 overlaps BTC underlying and some legacy dates",
+    "Time-block CIs condition on fitted seed trajectories; seed SD is a different uncertainty axis",
+    "Bootstrap simultaneous interval tails can be sparsely sampled; the report exposes their counts",
+    "Calibration order-statistic intervals are nominal; serial dependence and shift prevent a universal coverage guarantee",
+    "The floor computed from corrupted inputs need not lower-bound the clean true sigma target; exceedances are not invalid data"
+  ],
+  "new_model_fits": 0,
+  "new_model_inference": 0,
+  "output_manifest_sha256": "f2e2d2ea5cc9c5e117aad583c95ea7cd0ac22dfd3f10f4b0a30cacc4746d396f",
+  "protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+  "remaining_evidence": [
+    "Complete comparable resource/energy/FLOPs measurements",
+    "Classical raw full-history perturbation differs from D7 corruption and is not claimed here",
+    "Temporal test adequacy, prospective power and a full R3 decision remain separate"
+  ],
+  "resources": {
+    "FLOPs": null,
+    "all_hardware_comparable_verified": false,
+    "energy_joules": null,
+    "energy_or_FLOPs_inferred_from_parameter_count": false,
+    "missing_fields_are_not_zero": true,
+    "missing_fit_groups": [],
+    "status": "all_model_measurement_rows_present"
+  },
+  "reused_statistics_sha256": "adc00955effb3b1c60c139515e1d2badb9bb26fc8540866f839b73aad0372c07",
+  "robustness_component_complete": false,
+  "runtime": {
+    "device": "CPU",
+    "numpy": "2.3.5",
+    "python": "3.13.16"
+  },
+  "sample_size_curves": {
+    "base_reused_groups": 24,
+    "fit_groups": 72,
+    "index_sha256": "b3f30fae825983e8f8cc6224d9323d9ff823dce1ef0d0cf8a0e828c83e624bb4",
+    "isolated_random_sample_size_effect_claimed": false,
+    "new_fit_groups": 48,
+    "predictions_sha256": "02086cb8e794e6335f236f45f8eb1e1af980273e444e16bf90fef41119e32dd8",
+    "prefix_calendar_span_confounded": true,
+    "relabelled_full_fit_curves_accepted": false,
+    "status": "actual_resized_fit_receipts_and_predictions_bound"
+  },
+  "schema_version": 1,
+  "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+  "test_targets_used_for_calibration_or_selection": false
+}

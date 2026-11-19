@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/content/e3-extended-source-5a07d6157a9796ca54416dc5dea1e1527e731597/experiments/e3_evaluacion_ampliada_20261119/robustness/plots.py", line 178, in <module>
+    args=parser.parse_args();run(args.analysis_dir,args.output)
+                             ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/e3-extended-source-5a07d6157a9796ca54416dc5dea1e1527e731597/experiments/e3_evaluacion_ampliada_20261119/robustness/plots.py", line 73, in run
+    import matplotlib
+  File "/content/e3-extended-analysis-runtime-v1/venv/lib/python3.13/site-packages/matplotlib/__init__.py", line 1299, in <module>
+    rcParams['backend'] = os.environ.get('MPLBACKEND')
+    ~~~~~~~~^^^^^^^^^^^
+  File "/content/e3-extended-analysis-runtime-v1/venv/lib/python3.13/site-packages/matplotlib/__init__.py", line 774, in __setitem__
+    raise ValueError(f"Key {key}: {ve}") from None
+ValueError: Key backend: 'module://matplotlib_inline.backend_inline' is not a valid value for backend; supported values are ['gtk3agg', 'gtk3cairo', 'gtk4agg', 'gtk4cairo', 'macosx', 'nbagg', 'notebook', 'qtagg', 'qtcairo', 'qt5agg', 'qt5cairo', 'tkagg', 'tkcairo', 'webagg', 'wx', 'wxagg', 'wxcairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template']
