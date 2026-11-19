@@ -97,3 +97,5 @@ Reconstituye datos históricos; no entrena o ejecuta modelos y no acredita R3.
 Los derechos y procedencia E1/E2 permanecen separados de los nuevos términos
 de Vision. Cuatro pruebas stdlib comprueban caché fijado, huecos preservados,
 rechazo de corrupción y calendarios, además de la paridad real del manifiesto.
+
+La consola posterior `20261119T024543618052Z` informa 3/3 admitidos; el guardado se interrumpió por un límite secundario de GitHub, no por permisos. Se conserva ese intento completo y sus bytes para revalidarlos y persistirlos con transporte regulado, antes del protocolo o del primer ajuste. Hasta recuperar el recibo público, la admisión completa permanece como evidencia comunicada por consola.

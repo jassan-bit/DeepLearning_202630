@@ -24,6 +24,7 @@ ADMISSION = 'experiments/e3_evaluacion_ampliada_20261119/admission'
 COLLECTOR = ADMISSION+'/collect_recovery.py'
 GITHUB_API = 'experiments/e3_remediacion_20261118/evaluation/colab_github.py'
 GITHUB_STORE = 'experiments/e3_cierre_integral_20261118/orchestration/github_store.py'
+GITHUB_TRANSPORT = 'experiments/e3_evaluacion_ampliada_20261119/orchestration/github_transport.py'
 EXPECTED_IDS = ('D01', 'D02', 'D03')
 MAX_REUSE_FILE = 48*1024**2
 MAX_REUSE_TOTAL = 256*1024**2
@@ -73,21 +74,20 @@ def _cache_name(name):
             p.startswith('.partial-') for p in PurePosixPath(name).parts)
 
 
-def _failed_scope(stage,report):
+def _preprotocol_scope(stage,report):
     """An admission retry may reuse bytes only before any scientific campaign."""
     if not isinstance(stage,dict) or not isinstance(report,dict):
         raise ValueError('Admission scope requires object receipts')
     source=_source(stage.get('source_commit'))
     if (stage.get('kind')!='e3_closure_stage_receipt' or stage.get('profile')!='cpu'
             or stage.get('stage')!='additional_dataset_admission_only'
-            or stage.get('status')!='incomplete_admission'
             or stage.get('admission_report')!='data/admission.json'
             or report.get('kind')!='e3_additional_OHLCV_admission'
             or report.get('source_commit')!=source):
-        raise ValueError('Only a failed physical-admission stage can seed a retry')
+        raise ValueError('Only a physical-admission stage before its protocol can seed a retry')
     for obj in (stage,report):
         if (obj.get('datasets_required')!=3 or type(obj.get('datasets_admitted')) is not int
-                or not 0<=obj['datasets_admitted']<3
+                or not 0<=obj['datasets_admitted']<=3
                 or any(type(obj.get(k)) is not int or obj[k]!=0 for k in
                        ('datasets_evaluated_by_models','new_real_data_fits','new_market_predictions','new_statistical_contrasts'))
                 or obj.get('target_values_computed') is not False
@@ -97,6 +97,9 @@ def _failed_scope(stage,report):
     if (stage.get('R1_accredited') is not False or stage.get('R3_accredited') is not False
             or stage['datasets_admitted']!=report['datasets_admitted']):
         raise ValueError('Cache source accreditation or admission count differs')
+    expected_status='all_three_files_admitted' if stage['datasets_admitted']==3 else 'incomplete_admission'
+    if stage.get('status')!=expected_status:
+        raise ValueError('Admission status differs from its admitted dataset count')
     rows=report.get('datasets',[])
     if (not isinstance(rows,list) or any(not isinstance(r,dict) for r in rows)
             or [r.get('id') for r in rows]!=list(EXPECTED_IDS)
@@ -130,7 +133,7 @@ def _publish_new(path,raw):
 
 
 def _check_reuse_inventory(stage,report,raw_manifest,files):
-    source=_failed_scope(stage,report)
+    source=_preprotocol_scope(stage,report)
     if (not isinstance(raw_manifest,dict) or raw_manifest.get('kind')!='admission_raw_file_manifest'
             or raw_manifest.get('source_commit')!=source
             or not isinstance(raw_manifest.get('files'),dict)):
@@ -173,7 +176,7 @@ def _local_cache(previous):
         'raw_manifest_sha256':_sha(manifest_raw)}
 
 
-def inspect_failed_stage(previous_output):
+def inspect_preprotocol_stage(previous_output):
     """Prove a local stage is preprotocol and bind its reusable source bytes."""
     previous=_regular_directory(previous_output)
     _,origin=_local_cache(previous)
@@ -183,6 +186,13 @@ def inspect_failed_stage(previous_output):
             'new_real_data_fits':0,'new_market_predictions':0,
             'new_statistical_contrasts':0,'datasets_evaluated_by_models':0,
             'target_values_computed':False,'protocol_frozen':False}
+
+
+def inspect_failed_stage(previous_output):
+    """Compatibility guard for callers specifically requiring an incomplete stage."""
+    receipt=inspect_preprotocol_stage(previous_output)
+    if receipt['datasets_admitted']==3:raise ValueError('The physical admission is already complete')
+    return receipt
 
 
 def _remote_cache(url,token,api):
@@ -253,7 +263,7 @@ def _remote_cache(url,token,api):
     needed=['stage_receipt.json','data/admission.json','data/raw_manifest.json']
     payload={name:_checked(blob(name),inventory[name]) for name in needed}
     stage=json.loads(payload['stage_receipt.json']);report=json.loads(payload['data/admission.json'])
-    if _failed_scope(stage,report)!=source:raise ValueError('Cache stage and storage source differ')
+    if _preprotocol_scope(stage,report)!=source:raise ValueError('Cache stage and storage source differ')
     raw_manifest=json.loads(payload['data/raw_manifest.json'])
     if not isinstance(raw_manifest,dict):raise ValueError('Raw cache manifest must be an object')
     _checked(payload['data/admission.json'],raw_manifest.get('files',{}).get('admission.json',{}))
@@ -403,6 +413,7 @@ def checkout_source(source_commit, base):
                         REPO,str(directory)], env=env, check=True)
         subprocess.run(['git','sparse-checkout','init','--cone'], cwd=directory, env=env, check=True)
         subprocess.run(['git','sparse-checkout','set',ADMISSION,
+                        'experiments/e3_evaluacion_ampliada_20261119/orchestration',
                         'experiments/e3_cierre_integral_20261118/data',
                         'experiments/e3_cierre_integral_20261118/orchestration',
                         'experiments/e3_remediacion_20261118/evaluation',
@@ -425,6 +436,7 @@ def run(source_commit, token, *, base='/content', resume_output=None):
     base.mkdir(parents=True, exist_ok=True)
     checkout = checkout_source(source, base)
     api = _load(checkout/GITHUB_API, 'e3_extended_admission_github_api')
+    api = _load(checkout/GITHUB_TRANSPORT, 'e3_extended_admission_transport').wrap(api)
     store = _load(checkout/GITHUB_STORE, 'e3_extended_admission_github_store')
     token = api._token(token)
     api.validate_credentials(token)

@@ -101,7 +101,8 @@ def _preprotocol_upgrade(source,base,local,previous,token,api):
     """Allow a collector fix only for a proved, never-started local audit.
 
     Once a protocol, a tag, jobs or durable audit state exists, source pinning
-    remains absolute. A failed CPU admission is not a frozen model campaign.
+    remains absolute. A CPU physical admission is not a frozen model campaign,
+    including a 3/3 admission whose evidence upload failed before GPU setup.
     """
     if previous is not None or not local:return None
     master=local.get('master_run_id','');attempt=local.get('admission_run_id','')
@@ -118,7 +119,7 @@ def _preprotocol_upgrade(source,base,local,previous,token,api):
     # any unexpected files too, instead of inferring they are safe to discard.
     if (state.exists() or any(output.rglob('*')) or any(view.rglob('*'))):return None
     admission=load(source/SCOPE/'admission/colab.py','extended_controller_upgrade_admission')
-    try:proof=admission.inspect_failed_stage(admitted)
+    try:proof=admission.inspect_preprotocol_stage(admitted)
     except (OSError,ValueError,KeyError):return None
     if proof.get('source_commit')!=local.get('source_commit'):return None
     tag='/repos/'+REPOSITORY+'/git/ref/tags/e3-extended-audit-protocol-'+master
@@ -306,6 +307,7 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
     if any(p.is_symlink() for p in (base,*base.parents)):raise ValueError('Base symlink refused')
     source=checkout(source_commit,base)
     api=load(source/OLD/'colab_github.py','extended_controller_api')
+    api=load(source/SCOPE/'orchestration/github_transport.py','extended_controller_transport').wrap(api)
     token=api._token(token);api.validate_credentials(token)
     continuation=load(source/SCOPE/'orchestration/continuation.py','extended_controller_continuation')
     session=base/'e3_extended_audit_session.json'
@@ -330,7 +332,7 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
             original=load(old_checkout/SCOPE/'orchestration/controller.py','extended_original_controller')
             return original.run(old_source,token,base=base,start_new=False,
                                 master_run_id=previous['master_run_id'] if previous else requested)
-        print('Admisión fallida sin protocolo ni ajustes: se conserva el master y se actualiza su recolector.',flush=True)
+        print('Admisión física sin protocolo ni ajustes: se conserva el master y se actualiza su código.',flush=True)
     master=requested or (previous['master_run_id'] if previous else stamp())
     if re.fullmatch('[0-9]{8}T[0-9]{12}Z',master) is None:raise ValueError('Invalid master run ID')
     output=base/('e3-extended-audit-'+master)
@@ -360,10 +362,11 @@ def run(source_commit,token,*,base='/content',start_new=False,master_run_id=None
         admission_run_id=context.get('admission_run_id',master)
         admitted=Path(context.get('admission_output',base/('e3-extended-admission-'+master)))
         old_receipt=admitted/'stage_receipt.json'
-        if old_receipt.exists() and json.loads(old_receipt.read_bytes()).get('datasets_admitted')!=3:
-            # A completed failed admission remains immutable in its own branch.
-            # A later network retry is a NEW physical-admission attempt, never
-            # an overwrite or a second logical market-training campaign.
+        if old_receipt.exists() and (upgrade is not None
+                or json.loads(old_receipt.read_bytes()).get('datasets_admitted')!=3):
+            # A completed physical admission remains immutable at its source.
+            # A retry or verified preprotocol source upgrade creates a NEW
+            # admission attempt, preserving the logical market audit master.
             context['admission_cache_source']=str(admitted)
             admission_run_id=stamp();admitted=base/('e3-extended-admission-'+admission_run_id)
         context.update(admission_output=str(admitted),admission_run_id=admission_run_id)

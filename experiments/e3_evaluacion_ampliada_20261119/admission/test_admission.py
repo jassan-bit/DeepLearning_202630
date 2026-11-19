@@ -58,10 +58,10 @@ class AdmissionTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def failed(self,folder=None):
+    def failed(self,folder=None,admitted=2):
         folder=folder or self.base/'failed'
         stage.run_stage(self.base,folder,OLD_SOURCE,
-            collector=lambda output,source:fixture(output,source,admitted=2))
+            collector=lambda output,source:fixture(output,source,admitted=admitted))
         for name,raw in [('responses/D02/archive.zip',b'raw original archive fixture'),
                          ('responses/D02/archive.zip.CHECKSUM',b'official checksum fixture'),
                          ('responses/D02/download_receipts.json',b'{"first_http_observation":true}'),
@@ -213,6 +213,33 @@ class AdmissionTests(unittest.TestCase):
         self.assertGreater(len(calls),8)
         self.assertFalse(any(b'synthetic_reuse_token' in p.read_bytes() for p in self.output.rglob('*') if p.is_file()))
 
+    def test_complete_three_file_admission_can_be_reused_before_a_protocol(self):
+        old=self.failed(admitted=3)
+        before={p.relative_to(old).as_posix():p.read_bytes() for p in old.rglob('*') if p.is_file()}
+        proof=stage.inspect_preprotocol_stage(old)
+        self.assertEqual(proof['datasets_admitted'],3)
+        self.assertEqual(proof['new_real_data_fits'],0)
+        with self.assertRaisesRegex(ValueError,'already complete'):stage.inspect_failed_stage(old)
+        local=stage.seed_cache(self.base,self.output,SOURCE,previous_output=old)
+        self.assertTrue((self.output/'data/datasets/D03.csv').is_file())
+        self.assertEqual(local['new_real_data_fits'],0);self.assertFalse(local['protocol_frozen'])
+        api,_=self.remote(old)
+        recovered=stage.seed_cache(self.base,self.base/'remote-complete',SOURCE,
+            reuse_url=REUSE_URL,token='synthetic_reuse_token',api=api)
+        self.assertEqual(recovered['origin']['source_commit'],OLD_SOURCE)
+        self.assertEqual(recovered['new_market_predictions'],0)
+        self.assertEqual(before,{p.relative_to(old).as_posix():p.read_bytes() for p in old.rglob('*') if p.is_file()})
+
+    def test_complete_admission_rejects_scientific_scope_and_inconsistent_status(self):
+        old=self.failed(admitted=3);path=old/'stage_receipt.json';saved=json.loads(path.read_bytes())
+        for field,value in [('status','incomplete_admission'),('protocol_frozen',True),
+                            ('target_values_computed',True),('new_real_data_fits',1),
+                            ('new_market_predictions',1),('new_statistical_contrasts',1)]:
+            with self.subTest(field=field):
+                record={**saved,field:value};path.write_bytes(stage._canonical(record))
+                with self.assertRaises(ValueError):stage.inspect_preprotocol_stage(old)
+                self.assertFalse(self.output.exists())
+
     def test_remote_corrupted_storage_hash_and_foreign_url_are_refused(self):
         old=self.failed()
         def corrupt(storage):storage['files']['data/datasets/D02.csv']['sha256']='0'*64
@@ -233,7 +260,10 @@ class AdmissionTests(unittest.TestCase):
         api=load(ROOT/'experiments/e3_remediacion_20261118/evaluation/colab_github.py','admission_fixture_api')
         store=load(ROOT/'experiments/e3_cierre_integral_20261118/orchestration/github_store.py','admission_fixture_store')
         events=[];token='synthetic_admission_token_not_persisted'
+        def wrap(value):
+            self.assertIs(value,api);events.append('wrapped');return value
         def validate(value):
+            self.assertEqual(events,['wrapped'])
             self.assertEqual(value,token);events.append('validated')
         def save(output,value,source,run_id,actual_api,profile):
             self.assertEqual(profile,'cpu');self.assertIs(actual_api,api)
@@ -245,16 +275,18 @@ class AdmissionTests(unittest.TestCase):
             return {'run_url':'https://github.com/fixture/results','commit_sha':'b'*40,'saved':True}
         real_run_stage=stage.run_stage
         def run_stage(checkout,output,source):
-            self.assertEqual(events,['validated'])
+            self.assertEqual(events,['wrapped','validated'])
             return real_run_stage(checkout,output,source,collector=fixture)
         def loader(path,name):
-            return api if Path(path).name=='colab_github.py' else SimpleNamespace(save=save)
+            if Path(path).name=='colab_github.py':return api
+            if Path(path).name=='github_transport.py':return SimpleNamespace(wrap=wrap)
+            return SimpleNamespace(save=save)
         with patch.object(stage,'checkout_source',return_value=ROOT), \
              patch.object(stage,'_load',side_effect=loader), \
              patch.object(api,'validate_credentials',side_effect=validate), \
              patch.object(stage,'run_stage',side_effect=run_stage):
             result=stage.run(SOURCE,token,base=self.base,resume_output=self.output)
-        self.assertEqual(events,['validated','saved'])
+        self.assertEqual(events,['wrapped','validated','saved'])
         self.assertTrue(result['storage']['saved'])
 
 
