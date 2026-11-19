@@ -1,0 +1,26 @@
+{
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "checks": [
+    "bad inherited backend fails before writing output",
+    "same frozen source exports PNG and SVG under Agg",
+    "four datasets and nineteen systems per RMSE plot",
+    "all four plot types exercised",
+    "all PNG signatures and table/image hashes verified",
+    "all SVG watermarks verified",
+    "retry preserves every output byte",
+    "changed table rejected before output",
+    "input analysis and frozen source bytes preserved"
+  ],
+  "figures": 16,
+  "fix": "Set MPLBACKEND=Agg in plotting child environment before Python imports matplotlib",
+  "image_files": 32,
+  "matplotlib": "3.10.8",
+  "new_model_fits": 0,
+  "new_model_inference": 0,
+  "plotter_sha256": "c9a80471098e73be3f4bff18e5095cf9261618eb5efb70355e164bfaa567e0c5",
+  "python": "Python 3.12.14",
+  "regression_error_reproduced": true,
+  "statistical_resamples": 0,
+  "status": "passed_synthetic_software_only"
+}
