@@ -1,0 +1,92 @@
+{
+  "created_utc": "2026-11-18T23:48:14.666112+00:00",
+  "scope": "13 systems absent from original four-model ONNX live registry; one CPU session policy",
+  "baseline_live_registry": "artifacts/e3_dashboard_v1/manifest.json",
+  "baseline_live_registry_sha256": "cfa44a6f6006e917f8868811bdeee344ca8dda9cc55ea2a9f67229263b949fbc",
+  "source_main_revision_consulted_by_root": "1bae73b5373c11466b226fb3efab706237b5e68b",
+  "source_files_actual_bytes": [
+    {
+      "path": "scripts/e2_final_models_attention.py",
+      "sha256": "a3f1a2a7534142f505fbf36bddf92e0abf4f76d89ac1a1fb61874559e5aafa07"
+    },
+    {
+      "path": "scripts/e2_final_models_mlp.py",
+      "sha256": "beeada2f6754f0ca3ff1304ec090a7259a774cc7ea611fa912428cf9210f6c68"
+    },
+    {
+      "path": "scripts/e2_published_patchtst.py",
+      "sha256": "99aae30754cf33fe12883b4af2f4f957cfc32ec9f4bcc2eb71dfb34b39974d5f"
+    },
+    {
+      "path": "scripts/e2_published_periodic.py",
+      "sha256": "a0ead3e4c394cb7d832e50e2821e0c73a3bb09652ed5e977a87f119941517af9"
+    },
+    {
+      "path": "scripts/e2_published_registry.py",
+      "sha256": "0704784aa0bb2887908d12ad12345094c8f6a707918aa695dbc11cda88092fec"
+    },
+    {
+      "path": "scripts/e2_published_sae.py",
+      "sha256": "0436d73f9724bb065dc3642f18218cb35cda5e9abfa4de5090f8c5d69eb6c1aa"
+    },
+    {
+      "path": "scripts/e2_published_tide.py",
+      "sha256": "5ba7a01a30c52793b566a44525e4f5ccfaf0254e9c6cdd2667c56a34319c747a"
+    },
+    {
+      "path": "scripts/e2_recipe_models.py",
+      "sha256": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75"
+    },
+    {
+      "path": "scripts/e2_temporal_controls.py",
+      "sha256": "36e5a8b15e51ddf7d36397e2b6e71734afb36c6894cac0a71c9364b277fcc139"
+    },
+    {
+      "path": "scripts/e2_training_models.py",
+      "sha256": "46be0644e0ed9d966163b17f171092e81b6a82dd734efc7954d6104f5ee5360b"
+    }
+  ],
+  "frozen_predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+  "deployment_master_sha256": "d850dd6487a898fa4f7793a1f4f72acb7be1e9a0950051b8e69eea2be5370ee7",
+  "inspected_weight_root": "/workspace/work/e3_ab/weights",
+  "inspected_payloads": [
+    {
+      "path_under_inspected_weight_root": "final-fit/237a2b476e55cf17/271801/fit/selected_model.pt",
+      "bytes": 183649,
+      "sha256": "9ead27bd519975e8a62abc79c92ee326aec8bece71170828666b9964ae454be7"
+    },
+    {
+      "path_under_inspected_weight_root": "final-fit/238acbba3345ad8b/271801/fit/selected_model.pt",
+      "bytes": 31765,
+      "sha256": "aa0601e3b77f9fccd3a0d9ea83932c7aa0af3826e068b9f59ce56cacddb016af"
+    },
+    {
+      "path_under_inspected_weight_root": "final-fit/8acb5d2e8a816bf7/271801/fit/selected_model.pt",
+      "bytes": 36757,
+      "sha256": "15fe5c6d527a56fa002b8fbd207a7316a59bd228e471cdf4411d68b44275cc54"
+    },
+    {
+      "path_under_inspected_weight_root": "final-fit/fd0ab5b8db3b57c7/271801/fit/selected_model.pt",
+      "bytes": 18525,
+      "sha256": "0cd28c59d6b8bdc008bae49e7fc40fb733941b2adef86f58f784e9d1e989b4c2"
+    }
+  ],
+  "weight_search_scope_limitation": "Inventory covers this declared local root, not all remote releases or all possible workspace locations. Missing recovery does not prove missing original weights.",
+  "summary": {
+    "systems_audited": 13,
+    "new_verified_ONNX_exports": 1,
+    "historical_only_justified_by_current_information_contract": 3,
+    "neural_exports_still_pending": 9,
+    "additional_models_enabled_live": 0,
+    "new_training_runs": 0,
+    "new_calibration_fits": 0,
+    "blanket_resource_exclusion_for_remaining_neural_systems_supported": false
+  },
+  "matrix_sha256": "a48a6fc1ce0f3cda2729877dc6ada567e7a3217c1f255496b64a8e9eb6721b26",
+  "limits": [
+    "No attempt was fabricated for checkpoints not recovered.",
+    "TimesNet FFT and numpy period dispatch are actual source-level hazards; no universal ONNX impossibility is claimed.",
+    "Remaining neural systems require measured export/parity or a documented actual deployment constraint.",
+    "New TSMixer artifact is an audit output until explicitly adopted by the runtime."
+  ]
+}

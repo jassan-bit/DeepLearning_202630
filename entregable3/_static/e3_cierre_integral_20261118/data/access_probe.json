@@ -1,0 +1,31 @@
+{
+  "kind": "actual_access_probe_only",
+  "assembled_at_utc": "2026-11-18T23:48:22.057239+00:00",
+  "baseline_repository_commit": "1bae73b5373c11466b226fb3efab706237b5e68b",
+  "collector_is_not_yet_published": true,
+  "collector_sha256": "d5063e6c5a5eb79d58fff33ccbefdb6e62fe2ed4ba4441f64fbd523bc17c486b",
+  "requests": [
+    {
+      "dataset": "D02",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1d/ETHUSDT-1d-2018-01.zip.CHECKSUM",
+      "requested_at_utc": "2026-11-18T23:48:22.036749+00:00",
+      "status": "transport_or_source_unavailable",
+      "error_type": "AdmissionError",
+      "error": "source_unavailable:URLError:<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "dataset_admitted_by_this_probe": false
+    },
+    {
+      "dataset": "D03",
+      "url": "https://data.binance.vision/data/futures/cm/monthly/klines/BTCUSD_PERP/1d/BTCUSD_PERP-1d-2020-09.zip.CHECKSUM",
+      "requested_at_utc": "2026-11-18T23:48:22.037044+00:00",
+      "status": "transport_or_source_unavailable",
+      "error_type": "AdmissionError",
+      "error": "source_unavailable:URLError:<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "dataset_admitted_by_this_probe": false
+    }
+  ],
+  "datasets_admitted_by_probe": 0,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "scope": "Two configured normal HTTPS requests; no proxy changes or workaround; earlier probe is retained separately."
+}

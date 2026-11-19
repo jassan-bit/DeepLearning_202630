@@ -1,0 +1,64 @@
+{
+  "artifact": "e3-overlap-atomic-v3-development",
+  "prepared_at_utc": "2026-11-18T23:51:26.517920+00:00",
+  "scope": "New development candidate. Mathematical and software evidence only; not R1 accreditation or R3 superiority.",
+  "AI_assistance": {
+    "used": true,
+    "role": "Codex AI prepared formulation, implementation, source attributions and synthetic checks.",
+    "independent_human_review_performed_by_this_agent": false,
+    "professor_exception_reported_by_user": "AI review may substitute the human review if AI use is disclosed.",
+    "exception_does_not_establish_novelty": true
+  },
+  "implementation_origin": {
+    "shared_encoder": "src/e3_development.py: DevelopmentModel M00 encoder, content-attention query and temperature reused; original scalar readout excluded.",
+    "new_code": "src/e3_overlap_model_v3.py implements ordered atomic law, exact finite-law transformation and CRPS loss from the displayed formulas.",
+    "external_code_copied": false,
+    "new_real_data_fits": 0,
+    "new_market_predictions": 0,
+    "legacy_checkpoints_modified": false,
+    "development_choices": {
+      "K": 3,
+      "lambda_CRPS": 0.1,
+      "minimum_normalized_increment": 0.0001
+    },
+    "not_retroactive_preregistration": true
+  },
+  "known_antecedents": [
+    {
+      "authors": "Tilmann Gneiting and Adrian E. Raftery",
+      "year": 2007,
+      "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+      "doi": "10.1198/016214506000001437",
+      "primary_url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
+      "actually_consulted": "Section 4.2, printed page 367, equation (21) and following strict-propriety / loss-orientation paragraph.",
+      "attribution": "CRPS energy representation and strict propriety are established results. This implementation uses the negative of their reward-oriented score."
+    },
+    {
+      "authors": "Christopher M. Bishop",
+      "year": 1994,
+      "title": "Mixture Density Networks",
+      "report": "NCRG/94/004",
+      "primary_url": "https://www.microsoft.com/en-us/research/publication/mixture-density-networks/",
+      "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/bishop-ncrg-94-004.pdf",
+      "actually_consulted": "Primary institutional abstract and metadata. PDF opened but text extraction was illegible; no full-body reading claimed.",
+      "attribution": "Neural prediction of conditional probability distributions through mixture models predates this project. V3 is a discrete atomic law, not a reproduction of a continuous mixture density model."
+    },
+    {
+      "authors": "Marc G. Bellemare, Will Dabney and Remi Munos",
+      "year": 2017,
+      "title": "A Distributional Perspective on Reinforcement Learning",
+      "primary_url": "https://proceedings.mlr.press/v70/bellemare17a.html",
+      "actually_consulted": "Primary abstract and bibliographic metadata; no full-body reading claimed.",
+      "attribution": "Categorical distributional approximations are an antecedent in another setting; V3 does not implement C51, Bellman updates or reinforcement learning."
+    }
+  ],
+  "claims_not_established": [
+    "R1 novelty",
+    "R3 superiority",
+    "market calibration",
+    "universal consistency",
+    "global neural-input monotonicity",
+    "ONNX export"
+  ],
+  "required_next_evidence": "Common development pilot, focused literature comparison of this V3, declared design selection, then future frozen confirmatory protocol and admitted datasets."
+}

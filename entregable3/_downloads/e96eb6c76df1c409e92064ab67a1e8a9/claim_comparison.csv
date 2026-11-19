@@ -1,0 +1,8 @@
+element,antecedente_o_corte,diferencia_V3,alcance,estado
+Codificador,CNN-LSTM y atención M00 conocidos,Se conserva encoder y pooling de 1197 parámetros,no se reclama una arquitectura base nueva,known_component
+Soporte,Guarda aditiva histórica 1210 y ConstraintNet,Se empuja una ley aprendida del componente futuro por la identidad de sigma7,no basta para acreditar novedad,target_specific_adaptation_candidate
+Distribución,Escala half-Student fija en V2,3 posiciones atómicas y 2 masas libres aprendidas,no es una densidad continua ni garantía de calibración,structural_change_implemented
+Momentos,Cabeza histórica de momentos 1236,Se puntúa la ley finita con CRPS en vez de sólo dos momentos,coincidir en conteo con fixed_probs no identifica modelos,structural_change_implemented
+Entrenamiento,MSE puntual de la aditiva,MSE de sigma más CRPS normalizado de U,la auxiliar puede perjudicar MSE bajo mala especificación,training_change_to_test
+Esperanza,Cuadratura half-Student V2,Suma exacta bajo la ley finita aprendida,no significa esperanza exacta bajo ley real,finite_model_property
+Novedad,Revisión IA de la aditiva anterior,Nuevo objeto de investigación con comparación propia pendiente,el aval de modalidad IA no acredita R1,not_accredited

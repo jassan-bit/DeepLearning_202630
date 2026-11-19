@@ -428,6 +428,9 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d01-admitido-para-7-raw-entre-sesiones">8.13 D01 admitido para σ₇ RAW entre sesiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#admision-fisica-preparada-para-dos-conjuntos-adicionales">8.14 Admisión física preparada para dos conjuntos adicionales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-comun-de-desarrollo-preparado-para-gpu">8.15 Piloto común de desarrollo preparado para GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-persistencia-de-las-siguientes-ejecuciones">8.16 Potencia condicional y persistencia de las siguientes ejecuciones</a></li>
 </ul>
             </nav>
         </div>
@@ -491,15 +494,15 @@
 </tbody>
 </table>
 </div>
-<p>La ecuación <a class="reference internal" href="#equation-eq-e3-primary-mean-rmse-gain">(30)</a> define la métrica primaria como la <strong>media de las RMSE individuales</strong>, en unidades originales de sigma7 poblacional, sin anualización:</p>
+<p>La ecuación <a class="reference internal" href="#equation-eq-e3-primary-mean-rmse-gain">(31)</a> define la métrica primaria como la <strong>media de las RMSE individuales</strong>, en unidades originales de sigma7 poblacional, sin anualización:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-primary-mean-rmse-gain">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eq-e3-primary-mean-rmse-gain" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-eq-e3-primary-mean-rmse-gain" title="Link to this equation">#</a></span>\[
 M_j=\frac1{R_j}\sum_{r=1}^{R_j}\sqrt{\frac1{608}\sum_{t=1}^{608}(y_t-\widehat y_{j,r,t})^2},\qquad
 \widehat\Delta_j=M_j-M_{\mathrm{E3}}.
 \]</div>
 <p>Positivo favorece a E3. No se sustituye esta media por la RMSE de un ensemble o por la raíz del MSE agregado entre semillas. Se mantiene el margen del borrador:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-superiority-hypotheses">
-<span class="eqno">(31)<a class="headerlink" href="#equation-eq-e3-superiority-hypotheses" title="Link to this equation">#</a></span>\[
+<span class="eqno">(32)<a class="headerlink" href="#equation-eq-e3-superiority-hypotheses" title="Link to this equation">#</a></span>\[
 H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 \qquad\delta=0{,}00025772842664981106.
 \]</div>
@@ -790,7 +793,7 @@ H_{0,j}:\Delta_j\le\delta,\qquad H_{1,j}:\Delta_j&gt;\delta,
 </div>
 <p>La tabla incorpora la CNN-LSTM y las diez semillas de cada red, sin elegir una réplica por rendimiento. MAE, sMAPE y R² se calculan por predictor y después se promedian. sMAPE se expresa en porcentaje; RMSE, MAE y anchura usan unidades originales de σ7, sin anualización. Para una trayectoria,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-smape-rsquared">
-<span class="eqno">(32)<a class="headerlink" href="#equation-eq-e3-smape-rsquared" title="Link to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-eq-e3-smape-rsquared" title="Link to this equation">#</a></span>\[
 \operatorname{sMAPE}=\frac{200}{n}\sum_t\frac{|y_t-\widehat y_t|}{|y_t|+|\widehat y_t|},\qquad
 R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 \]</div>
@@ -833,7 +836,7 @@ R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 </div>
 <p>Para HAC se usa la influencia</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-rmse-influence-hac">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eq-e3-rmse-influence-hac" title="Link to this equation">#</a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-e3-rmse-influence-hac" title="Link to this equation">#</a></span>\[
 \psi_{j,t}=\frac1{R_j}\sum_r\frac{e_{j,r,t}^2-\overline{e_{j,r}^2}}{2\operatorname{RMSE}_{j,r}},
 \qquad z_j=\frac{\widehat\Delta_j-\delta}{\operatorname{SE}_{\rm HAC}(\psi_j-\psi_{\rm E3})}.
 \]</div>
@@ -908,10 +911,10 @@ R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 <p>Se fijó <strong>una familia principal de 48 hipótesis</strong>, con Holm a alfa=0,05. Este control es más amplio que las tres familias de dieciséis propuestas en el borrador. No se eligió la prueba de menor p ni se excluyeron rivales después de ver el resultado. Para la descripción conjunta por rival se exige que los tres p ajustados sean menores que 0,05.</p>
 <p>Para p ordenados <span class="math notranslate nohighlight">\(p_{(1)}\le\cdots\le p_{(m)}\)</span>, el ajuste monótono es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-holm-adjustment">
-<span class="eqno">(34)<a class="headerlink" href="#equation-eq-e3-holm-adjustment" title="Link to this equation">#</a></span>\[
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-e3-holm-adjustment" title="Link to this equation">#</a></span>\[
 p^{\rm Holm}_{(i)}=\min\left\{1,\max_{1\le k\le i}(m-k+1)p_{(k)}\right\}.
 \]</div>
-<p>En este corte <span class="math notranslate nohighlight">\(m=48\)</span> en la ecuación <a class="reference internal" href="#equation-eq-e3-holm-adjustment">(34)</a>. Se informa por rival el <strong>máximo</strong> de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.</p>
+<p>En este corte <span class="math notranslate nohighlight">\(m=48\)</span> en la ecuación <a class="reference internal" href="#equation-eq-e3-holm-adjustment">(35)</a>. Se informa por rival el <strong>máximo</strong> de sus tres p ajustados: todos deben rechazar. Holm controla el error familiar bajo p válidos sin exigir independencia entre pruebas; no corrige una prueba inválida o el uso previo del test para diseñar.</p>
 <div class="pst-scrollable-table-container"><table class="table" id="id3">
 <caption><span class="caption-number">Tabla 4 </span><span class="caption-text">Contrastes principales frente al margen heredado</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
 <thead>
@@ -1072,7 +1075,7 @@ p^{\rm Holm}_{(i)}=\min\left\{1,\max_{1\le k\le i}(m-k+1)p_{(k)}\right\}.
 <p>La guía exige un piloto con <strong>al menos cinco semillas</strong> para estimar la dispersión de diferencias pareadas frente a cada rival y dimensionar la campaña antes de congelarla: potencia de al menos 0,90 por contraste, potencia conjunta reportada y diez semillas como mínimo o más si hace falta. Deben incluirse las decisiones de las tres pruebas y Holm; semillas y calendario no son fuentes de incertidumbre intercambiables. El piloto y la alternativa planificada no se eligen retrospectivamente para declarar suficiente el tamaño ya usado.</p>
 <p>La aproximación normal bilateral ilustrada en la guía, con <span class="math notranslate nohighlight">\(\alpha'=0,05/m\)</span>, es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-power-normal-approximation">
-<span class="eqno">(35)<a class="headerlink" href="#equation-eq-e3-power-normal-approximation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(36)<a class="headerlink" href="#equation-eq-e3-power-normal-approximation" title="Link to this equation">#</a></span>\[
 R\simeq\frac{(z_{1-\alpha'/2}+z_{1-\beta})^2\,\widehat\sigma_d^{\,2}}{g^2},
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la distancia de la alternativa planificada a la frontera de la nula y <span class="math notranslate nohighlight">\(\widehat\sigma_d\)</span> la dispersión pertinente. Si se contrasta igualdad y se planifica detectar una diferencia δ, entonces <span class="math notranslate nohighlight">\(g=\delta\)</span>. Para <strong>nuestra nula de relevancia</strong> <span class="math notranslate nohighlight">\(\Delta\le\delta\)</span>, una alternativa futura <span class="math notranslate nohighlight">\(\Delta_1&gt;\delta\)</span> da <span class="math notranslate nohighlight">\(g=\Delta_1-\delta\)</span>; poner δ en el denominador cambiaría el problema. La elección bilateral/unilateral y su cuantil debe fijarse de acuerdo con la hipótesis, no por el resultado. Esta fórmula no incorpora por sí sola dependencia temporal, estimación de hiperparámetros o incertidumbre conjunta.</p>
@@ -1088,7 +1091,7 @@ R\simeq\frac{(z_{1-\alpha'/2}+z_{1-\beta})^2\,\widehat\sigma_d^{\,2}}{g^2},
 <p>La <a class="reference download internal" download="" href="../_downloads/8c4cbadde81c34cd1d5cb9eb9300121a/effects.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">de</span> <span class="pre">efectos</span></code></a> incluye Cohen dz de ganancias pareadas entre semillas e intervalos bootstrap nominales, con su alcance condicionado al calendario. No se interpreta como efecto entre mercados independientes.</p>
 <p>Una campaña con varias series, particiones o unidades debe declarar su jerarquía antes de inferir: observaciones correlacionadas se agregan a la unidad pertinente o se modelan con dependencia explícita. El esquema de efectos mixtos de la guía,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-mixed-effects-schema">
-<span class="eqno">(36)<a class="headerlink" href="#equation-eq-e3-mixed-effects-schema" title="Link to this equation">#</a></span>\[
+<span class="eqno">(37)<a class="headerlink" href="#equation-eq-e3-mixed-effects-schema" title="Link to this equation">#</a></span>\[
 y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 \]</div>
 <p>se refiere al efecto del modelo <span class="math notranslate nohighlight">\(j\)</span>, de la unidad <span class="math notranslate nohighlight">\(i\)</span> y de la semilla <span class="math notranslate nohighlight">\(r\)</span>; no autoriza tratar cada día de una serie como un efecto aleatorio iid. Su uso exigiría justificar estructura, correlación y estimabilidad y contrastar al original con cada rival con el control familiar fijado. No se ha ajustado ese modelo aquí. En varios conjuntos se reportarán también diferencias, IC, efectos y probabilidad de superioridad estimada sobre unidades válidas, con el significado de esa probabilidad explícito.</p>
@@ -1338,7 +1341,7 @@ y_{ijr}=\mu+\alpha_j+u_i+v_r+\varepsilon_{ijr},
 <h3>Restricción conocida al emitir el pronóstico<a class="headerlink" href="#restriccion-conocida-al-emitir-el-pronostico" title="Link to this heading">#</a></h3>
 <p>La entrada de una fecha objetivo <span class="math notranslate nohighlight">\(t\)</span> tiene siete cierres completos, desde <span class="math notranslate nohighlight">\(t-7\)</span> hasta <span class="math notranslate nohighlight">\(t-1\)</span>. Proporciona seis retornos logarítmicos conocidos, cuya media es <span class="math notranslate nohighlight">\(\mu_6\)</span>; el retorno <span class="math notranslate nohighlight">\(r_t\)</span> todavía no se conoce. La identidad para el objetivo poblacional, sin anualizar, es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-audit-observable-floor">
-<span class="eqno">(37)<a class="headerlink" href="#equation-eq-e3-audit-observable-floor" title="Link to this equation">#</a></span>\[
+<span class="eqno">(38)<a class="headerlink" href="#equation-eq-e3-audit-observable-floor" title="Link to this equation">#</a></span>\[
 A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 \qquad
 \sigma_{7,t}^{2}=A_t+\frac6{49}(r_t-\mu_6)^2,
@@ -1347,7 +1350,7 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 <p>El divisor de <span class="math notranslate nohighlight">\(A_t\)</span> es siete, aunque use seis retornos; <span class="math notranslate nohighlight">\(A_t\)</span> es varianza y <span class="math notranslate nohighlight">\(b_t\)</span> está en unidades de σ₇. El piso es alcanzable cuando el retorno desconocido coincide con la media conocida. Se calcula exclusivamente con los siete cierres pasados, sin usar <span class="math notranslate nohighlight">\(r_t\)</span>, el objetivo realizado o estadísticas ajustadas.</p>
 <p>La transformación <span class="math notranslate nohighlight">\(p_t^+=\max(p_t,b_t)\)</span> tiene una propiedad elemental: si <span class="math notranslate nohighlight">\(y_t\ge b_t\)</span> y <span class="math notranslate nohighlight">\(p_t&lt;b_t\)</span>, entonces</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-audit-projection-loss">
-<span class="eqno">(38)<a class="headerlink" href="#equation-eq-e3-audit-projection-loss" title="Link to this equation">#</a></span>\[
+<span class="eqno">(39)<a class="headerlink" href="#equation-eq-e3-audit-projection-loss" title="Link to this equation">#</a></span>\[
 (p_t-y_t)^2-(b_t-y_t)^2=(b_t-p_t)(2y_t-b_t-p_t)\ge0,
 \qquad
 |p_t-y_t|-|b_t-y_t|=b_t-p_t\ge0.
@@ -1406,7 +1409,7 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 </section>
 <section id="suplemento-exploratorio-calibracion-posterior-de-e3">
 <span id="e3-suplemento-calibracion"></span><h2>8.11 Suplemento exploratorio: calibración posterior de E3<a class="headerlink" href="#suplemento-exploratorio-calibracion-posterior-de-e3" title="Link to this heading">#</a></h2>
-<p>La campaña original prohibió abrir la calibración y registró <code class="docutils literal notranslate"><span class="pre">calibration_members_opened:false</span></code>. El diagnóstico del <strong>18 de noviembre</strong> verifica y conserva ese historial, pero abre esas ventanas <strong>en una etapa posterior identificada como tal</strong>. Calcula diez cuantiles nuevos, sin reentrenar ni modificar pronósticos puntuales. El calendario de evaluación ya era conocido; el <a class="reference download internal" download="" href="../_downloads/5c75002b5a1cb8c6f6af689f9398fdd0/analysis_plan.json"><code class="xref download docutils literal notranslate"><span class="pre">plan</span> <span class="pre">de</span> <span class="pre">este</span> <span class="pre">diagnóstico</span></code></a> no es un preregistro confirmatorio. <strong>Los cuantiles no están activados en la aplicación</strong>: la ficha y el runtime de E3 conservan su ausencia de intervalo calibrado.</p>
+<p>La campaña original prohibió abrir la calibración y registró <code class="docutils literal notranslate"><span class="pre">calibration_members_opened:false</span></code>. El diagnóstico del <strong>18 de noviembre</strong> verifica y conserva ese historial, pero abre esas ventanas <strong>en una etapa posterior identificada como tal</strong>. Calcula diez cuantiles nuevos, sin reentrenar ni modificar pronósticos puntuales. El calendario de evaluación ya era conocido; el <a class="reference download internal" download="" href="../_downloads/5c75002b5a1cb8c6f6af689f9398fdd0/analysis_plan.json"><code class="xref download docutils literal notranslate"><span class="pre">plan</span> <span class="pre">de</span> <span class="pre">este</span> <span class="pre">diagnóstico</span></code></a> no es un preregistro confirmatorio. <strong>En aquel corte los cuantiles no se activaron en la aplicación</strong>. La ampliación posterior del <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a> adopta sólo el del representante 271801, con metadatos separados y restricción temporal; la cobertura individual del predictor servido no es la media de diez semillas descrita aquí.</p>
 <p>Se usan las diez semillas 271801–271810 y sus <code class="docutils literal notranslate"><span class="pre">best_model_state</span></code> congelados, con bytes y SHA256 verificados. Se conservan el escalador de los <strong>532 ejemplos de ajuste</strong> y la selección original con <strong>116 de validación</strong>. Las <strong>53 ventanas de calibración</strong>, de 2024-11-08 a 2024-12-30, se transforman con ese escalador E3; no se reutilizan tensores escalados por E2 ni se actualizan estadísticas. Se ejecutan <strong>530 forwards CPU nuevos de calibración</strong> y cero forwards de evaluación. Para evaluar los intervalos se reutilizan las <strong>6080 predicciones puntuales guardadas</strong> sobre las 608 fechas conocidas.</p>
 <p>Con nominal 90 %, cada predictor utiliza el residuo absoluto de rango <strong>49 de 53</strong>, porque <code class="docutils literal notranslate"><span class="pre">ceil((53+1)×0,90)=49</span></code>, sin interpolación. Su intervalo es <code class="docutils literal notranslate"><span class="pre">[max(0,predicción−q),predicción+q]</span></code>, con el cuantil de ese mismo predictor. No se elige la semilla de mejor cobertura ni se forma un ensamble. Además de cobertura y anchura, se calcula el score de intervalo a α=0,10, que penaliza anchura y observaciones fuera de ambos extremos; menor es mejor.</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -1587,6 +1590,53 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 <p>La política <strong><code class="docutils literal notranslate"><span class="pre">RAW_KEEP_ALL</span></code></strong> conserva todas las filas y los OHLCV sin ajustar y excluye <code class="docutils literal notranslate"><span class="pre">Adj</span> <span class="pre">Close</span></code> tanto de entradas como de etiquetas. No se corrigen precios por splits, no se eliminan saltos ni se seleccionan etiquetas después de observar resultados de modelos. Los efectos mecánicos de acciones corporativas y los movimientos de mercado permanecen en la serie: <strong>σ₇ describe volatilidad del precio cotizado bruto, no volatilidad económica ajustada por splits/dividendos</strong>. El contrato de sesiones es una adaptación explícita y no se presenta como el reloj diario UTC continuo de BTCUSDT. La <a class="reference download internal" download="" href="../_downloads/fe0c39a1410f3f877aef2fda92cbb02e/admission_decision.json"><code class="xref download docutils literal notranslate"><span class="pre">decisión</span> <span class="pre">de</span> <span class="pre">admisión</span></code></a>, la <a class="reference download internal" download="" href="../_downloads/253cfa7f633445b5142320851a1dd70f/policy.md"><code class="xref download docutils literal notranslate"><span class="pre">política</span> <span class="pre">RAW</span></code></a> y la <a class="reference download internal" download="" href="../_downloads/e94f74ae10f91f7480200fd15407eb90/README.md"><code class="xref download docutils literal notranslate"><span class="pre">documentación</span> <span class="pre">del</span> <span class="pre">alcance</span></code></a> fijan esa definición.</p>
 <p>La <a class="reference download internal" download="" href="../_downloads/29e292ad5fbc6b6f710823d36028beda/calendar_check.json"><code class="xref download docutils literal notranslate"><span class="pre">comprobación</span> <span class="pre">de</span> <span class="pre">calendario</span></code></a>, las <a class="reference download internal" download="" href="../_downloads/065012905c4172e1c8b0229147ce38fb/NASDAQ_sessions_20000301_20130301.csv"><code class="xref download docutils literal notranslate"><span class="pre">3270</span> <span class="pre">sesiones</span> <span class="pre">de</span> <span class="pre">referencia</span></code></a>, la <a class="reference download internal" download="" href="../_downloads/7ac4de908b9a61ca6b67ec93458dfa1f/byte_audit.json"><code class="xref download docutils literal notranslate"><span class="pre">auditoría</span> <span class="pre">de</span> <span class="pre">bytes</span> <span class="pre">del</span> <span class="pre">registro</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/93ccd3cb344efd5cf1925934f364af36/verify.py"><code class="xref download docutils literal notranslate"><span class="pre">verificador</span></code></a> permiten revisar el cierre del archivo. <strong>Admitir D01 no requiere declarar ya cerrado el protocolo MODEL ni habilita entrenamiento.</strong> Los entrenamientos históricos existen y se conservan; esta etapa no añade ajustes, predicciones de mercado ni contrastes de modelos. La campaña futura continúa bloqueada hasta resolver D02/D03 y fijar el protocolo común, las particiones, el tratamiento, el presupuesto y la potencia. Ese protocolo podrá justificar ajustes futuros; no se reentrena por rutina. La admisión de un archivo no acredita evaluación ampliada, reproducción humana independiente, R1/R3, DOI o aceptación pública de Render.</p>
 </section>
+<section id="admision-fisica-preparada-para-dos-conjuntos-adicionales">
+<h2>8.14 Admisión física preparada para dos conjuntos adicionales<a class="headerlink" href="#admision-fisica-preparada-para-dos-conjuntos-adicionales" title="Link to this heading">#</a></h2>
+<p>El nuevo recolector sustituye los candidatos de metadatos aún no admitidos <strong>antes de observar rendimiento de modelos</strong>. Conserva D01 WIKI/AAPL RAW de 8.13 y añade estas especificaciones:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Identificador</p></th>
+<th class="head"><p>Fuente y periodo fijados</p></th>
+<th class="head"><p>Unidad y tamaño esperado</p></th>
+<th class="head"><p>Estado observado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D01</p></td>
+<td><p>WIKI/AAPL, 2000-03-01–2013-03-01.</p></td>
+<td><p>3270 sesiones; volumen en acciones.</p></td>
+<td><p>Archivo y calendario admitidos; cero modelos evaluados.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D02</p></td>
+<td><p>Binance Vision Spot ETHUSDT, 2018-01-01–2021-12-31.</p></td>
+<td><p>1461 días UTC; volumen en ETH.</p></td>
+<td><p>48 ZIP y CHECKSUM mensuales por verificar en Colab.</p></td>
+</tr>
+<tr class="row-even"><td><p>D03</p></td>
+<td><p>Binance Vision COIN-M BTCUSD_PERP, 2020-09-01–2024-12-31.</p></td>
+<td><p>1583 días UTC; volumen en <strong>contratos</strong>, no BTC.</p></td>
+<td><p>52 ZIP y CHECKSUM mensuales por verificar en Colab.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La selección aporta acciones cotizadas, un criptoactivo al contado y un derivado con margen en moneda. <strong>No son tres mercados independientes o globalmente ciegos:</strong> D02/D03 comparten distribuidor y factores cripto; D03 comparte subyacente BTC y fechas 2023–2024 ya conocidas en el ajuste histórico. D01 usa sesiones bursátiles, distintas de días UTC. Estas dependencias deben incorporarse al protocolo y al alcance del veredicto; cambiar de archivo no las elimina.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/3c8dfd6f9a6321be43bfdd5685f71f8b/collect.py"><code class="xref download docutils literal notranslate"><span class="pre">recolector</span> <span class="pre">CPU</span></code></a> verifica SHA-256 oficial de cada ZIP, nombres seguros, exactamente doce columnas de origen, cierres UTC, milisegundos/microsegundos, OHLCV coherentes y calendario completo sin duplicados o relleno. D01 se vuelve a verificar contra sus bytes y calendario fijados; se conserva <code class="docutils literal notranslate"><span class="pre">RAW_KEEP_ALL</span></code>. El caché mantiene los primeros bytes observados y permite reanudar descargas; una fuente cambiada exige una salida nueva, sin sobrescribir silenciosamente la anterior.</p>
+<p>Las <a class="reference download internal" download="" href="../_downloads/067aa40091cb6c146ec6bc8097a8c184/source_provenance.json"><code class="xref download docutils literal notranslate"><span class="pre">fuentes</span> <span class="pre">y</span> <span class="pre">derechos</span></code></a> fijan <code class="docutils literal notranslate"><span class="pre">binance/binance-public-data</span></code> al commit <code class="docutils literal notranslate"><span class="pre">d571690eb66760763b0bd6e27e8cd35603c7e244</span></code>. Sus términos 1.0, de 26 de agosto de 2026, especifican <strong>CC BY-NC-SA 4.0</strong> e incluyen derivados como modelos, indicadores y gráficos. Su alcance no se convierte en MIT o CC0 y no se traslada automáticamente a la cohorte histórica obtenida por otra vía. La licencia propia del código y los derechos de datos son decisiones distintas.</p>
+<p>Las <a class="reference download internal" download="" href="../_downloads/5df035e6fc0a62f9f01f32eb44dea523/local_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">nueve</span> <span class="pre">pruebas</span> <span class="pre">offline</span></code></a> incluyen los 3270 registros físicos de D01, calendarios y rechazos de archivos malformados. Los sondeos de D02/D03 en este entorno devolvieron 403 del proxy: <strong>no hay todavía recibo de admisión de esos dos conjuntos ni evaluación ampliada nueva</strong>. La ejecución real de Colab deberá conservar archivos, respuestas y <code class="docutils literal notranslate"><span class="pre">admission.json</span></code>; tres admisiones físicas tampoco equivalen a tres evaluaciones de modelos.</p>
+</section>
+<section id="piloto-comun-de-desarrollo-preparado-para-gpu">
+<h2>8.15 Piloto común de desarrollo preparado para GPU<a class="headerlink" href="#piloto-comun-de-desarrollo-preparado-para-gpu" title="Link to this heading">#</a></h2>
+<p>La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">propuesta V3</span></a> requiere ajustes nuevos de desarrollo para evaluar una modificación que aún no tiene resultados. Se conservan todos los entrenamientos históricos. El ejecutor nuevo utiliza únicamente los miembros de entrenamiento de la cohorte fijada, con <strong>532 ventanas de ajuste, 116 de validación y siete de purga</strong>; el escalador se estima sólo en ajuste. No abre los miembros de calibración o las 608 ventanas de prueba para seleccionar esta propuesta.</p>
+<p>La primera ejecución compara V3 con CRPS, V3 sólo MSE, probabilidades fijas, aditiva histórica y M00 proyectado, además de controles analíticos. El modo ampliado contiene <strong>18 sistemas</strong>: Top 10, seis referencias, aditiva histórica y V3. Mantiene a la aditiva como rival; no se retira un competidor fuerte al cambiar de candidato. SAE conserva sus fases de preentrenamiento y ajuste supervisado, y ARIMA pronostica causalmente antes de incorporar el objetivo observado. Los checkpoints registran pesos, optimizador y RNG para reanudar; la igualdad entre plataformas no se presume.</p>
+<p>La coincidencia de particiones, preprocesamiento y criterio de validación mejora la comparación del piloto. <strong>Todavía faltan una política final común de HPO/presupuesto y el protocolo confirmatorio</strong>, así como las evaluaciones y estudios de robustez en los conjuntos adicionales. Una victoria de desarrollo no acredita R3 ni recupera el cegamiento del BTC histórico.</p>
+</section>
+<section id="potencia-condicional-y-persistencia-de-las-siguientes-ejecuciones">
+<h2>8.16 Potencia condicional y persistencia de las siguientes ejecuciones<a class="headerlink" href="#potencia-condicional-y-persistencia-de-las-siguientes-ejecuciones" title="Link to this heading">#</a></h2>
+<p>El planificador nuevo sólo admite un panel completo del piloto común de 18 sistemas y al menos diez semillas emparejadas. Para planificación modela tres procedimientos unilaterales sobre diferencias de RMSE entre semillas —t emparejada, Wilcoxon y signo exacto— y aplica <strong>Holm a los 51 valores p de la familia completa</strong>. La decisión conjunta exige el rechazo de los tres procedimientos para cada uno de los 17 rivales. Los procedimientos están relacionados y su interpretación de localización común depende del modelo de planificación; no son tres réplicas independientes de evidencia temporal.</p>
+<p>La simulación y sus sensibilidades estiman potencia condicional bajo supuestos y ganancias de desarrollo observadas. <strong>Un piloto de controles incompleto no dimensiona la batería; tampoco certifica potencia de nuevos dominios, validez temporal o superioridad futura.</strong> El código no congela automáticamente el protocolo ni convierte resultados conocidos en un preregistro. Semillas, margen de relevancia, presupuesto, familia final y reglas entre conjuntos deberán fijarse antes de la campaña confirmatoria.</p>
+<p>Los <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/notebooks">cuadernos de CPU y GPU</a> fijan el SHA del código y guardan las evidencias en ramas nuevas. La etapa CPU recoge admisiones y prueba Render; la etapa GPU ejecuta desarrollo y conserva snapshots de los trabajos, sus checkpoints y el panel completo. Los <a class="reference download internal" download="" href="../_downloads/fa1a2301b1aed746ca43c21cee105bff/storage_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">contratos</span> <span class="pre">de</span> <span class="pre">persistencia</span></code></a> comprueban preservación del árbol fuente, bytes, reintentos, conflictos y rechazo de secretos incluso en ZIP/PT/NPZ comprimidos. Los recibos siguen declarando <code class="docutils literal notranslate"><span class="pre">R1_accredited=false</span></code> y <code class="docutils literal notranslate"><span class="pre">R3_accredited=false</span></code>; registrar una ejecución no acredita sus conclusiones científicas.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1694,6 +1744,9 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d01-admitido-para-7-raw-entre-sesiones">8.13 D01 admitido para σ₇ RAW entre sesiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#admision-fisica-preparada-para-dos-conjuntos-adicionales">8.14 Admisión física preparada para dos conjuntos adicionales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-comun-de-desarrollo-preparado-para-gpu">8.15 Piloto común de desarrollo preparado para GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-persistencia-de-las-siguientes-ejecuciones">8.16 Potencia condicional y persistencia de las siguientes ejecuciones</a></li>
 </ul>
   </nav></div>
 

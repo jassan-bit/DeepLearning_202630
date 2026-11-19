@@ -455,7 +455,7 @@
 <p>No se ha cerrado una transferencia desde una aplicación de origen concreta. Citar antecedentes de atención y estabilidad no demuestra por sí solo esa transferencia ni su adaptación sustantiva. Si se defiende una transferencia, deberán identificarse la fuente exacta, la propiedad o estructura compartida que permite trasladarla y el cambio algorítmico requerido en BTC. Si se defiende una combinación propia, deberá demostrarse su diferencia frente a los trabajos cercanos. La revisión pendiente no se completa asignando una procedencia retrospectiva por conveniencia.</p>
 <p><strong>D3. Hipótesis del mecanismo, propuesta para desarrollo.</strong> Si la penalización y la saturación reducen la influencia de estados discordantes por el mecanismo previsto, el modelo completo deberá reducir la RMSE frente al mismo codificador con atención convencional de contenido en un conjunto de estrés <span class="math notranslate nohighlight">\(S\)</span> definido antes de evaluar, sin un deterioro limpio superior al margen heredado. Para BTCUSDT se conserva</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-design-practical-margin">
-<span class="eqno">(10)<a class="headerlink" href="#equation-eq-e3-design-practical-margin" title="Link to this equation">#</a></span>\[
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-e3-design-practical-margin" title="Link to this equation">#</a></span>\[
 \delta=0{,}00025772842664981106
 \]</div>
 <p>en unidades originales de <span class="math notranslate nohighlight">\(\sigma_7\)</span>; no se recalcula con el resultado del candidato. La propuesta exige una ganancia de al menos <span class="math notranslate nohighlight">\(\delta\)</span> en <span class="math notranslate nohighlight">\(S\)</span>. Quedaría refutada si no se observa ese beneficio bajo el diseño fijado o si el deterioro limpio excede el margen. Mejorar sólo la robustez no satisface la comparación principal de R3 frente al Top 10 y todos los baselines fuertes.</p>
@@ -513,18 +513,18 @@
 <p>La propiedad del primer diseño es una cota Lipschitz de la <strong>cabeza sobre estados latentes</strong>. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación del Bloque C</span></a> y la <a class="reference download internal" download="" href="../_downloads/baebf3f0c6b03093bbfcfebf157eef77/theory.md"><code class="xref download docutils literal notranslate"><span class="pre">demostración</span> <span class="pre">íntegra</span> <span class="pre">con</span> <span class="pre">derivadas</span> <span class="pre">y</span> <span class="pre">pseudocódigo</span></code></a> conservan su desarrollo. La demostración siguiente es autocontenida; no extiende la garantía al preprocesamiento, a la CNN o a la LSTM. La propiedad de la propuesta posterior por momentos se integra en 7.6.</p>
 <p>Sean <span class="math notranslate nohighlight">\(H,H'\in\mathbb R^{n\times d}\)</span>, con <span class="math notranslate nohighlight">\(n=7\)</span> en el problema principal. Se usan norma euclídea, norma de Frobenius y norma espectral para vectores, estados y operadores, respectivamente. Sean <span class="math notranslate nohighlight">\(P\)</span> una matriz causal fija e independiente de <span class="math notranslate nohighlight">\(H\)</span>, <span class="math notranslate nohighlight">\(A=I-P\)</span> y parámetros de inferencia fijos tales que</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-assumptions">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eq-e3-v1-head-assumptions" title="Link to this equation">#</a></span>\[
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-e3-v1-head-assumptions" title="Link to this equation">#</a></span>\[
 B&gt;0,\quad\varepsilon&gt;0,\quad\|q\|_2\le Q,\quad\|w\|_2\le W,
 \quad0\le\lambda\le\Lambda,\quad\tau\ge\tau_{\min}&gt;0.
 \]</div>
 <p>El mecanismo es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-scores">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eq-e3-v1-head-scores" title="Link to this equation">#</a></span>\[
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-e3-v1-head-scores" title="Link to this equation">#</a></span>\[
 r_j=(AH)_j,\quad d_j=\sqrt{\|r_j\|_2^2+\varepsilon^2},\quad
 s_j=q^\top h_j-\lambda d_j,\quad a=\operatorname{softmax}(s/\tau),
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-values">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eq-e3-v1-head-values" title="Link to this equation">#</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-e3-v1-head-values" title="Link to this equation">#</a></span>\[
 v_j=\frac{B h_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 c=\sum_{j=1}^n a_jv_j,\qquad
 f(H)=\operatorname{softplus}(w^\top c+b).
@@ -532,36 +532,36 @@ f(H)=\operatorname{softplus}(w^\top c+b).
 <p>En el código, las restricciones se cumplen mediante <span class="math notranslate nohighlight">\(q=Qu_q/\sqrt{1+\|u_q\|_2^2}\)</span>, <span class="math notranslate nohighlight">\(w=Wu_w/\sqrt{1+\|u_w\|_2^2}\)</span>, <span class="math notranslate nohighlight">\(\lambda=\Lambda\operatorname{sigmoid}(\theta_\lambda)\)</span> y <span class="math notranslate nohighlight">\(\tau=\tau_{\min}+\operatorname{softplus}(\theta_\tau)\)</span>. <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(P\)</span> son fijos. Las constantes se guardan en la configuración; no son supuestos de norma que se atribuyan a pesos sin controlar.</p>
 <p><strong>Lema 1: valores acotados y transformación 1-Lipschitz.</strong> Para <span class="math notranslate nohighlight">\(T_B(h)=Bh/u\)</span>, <span class="math notranslate nohighlight">\(u=\sqrt{B^2+\|h\|_2^2}\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-saturation-jacobian">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eq-e3-saturation-jacobian" title="Link to this equation">#</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-e3-saturation-jacobian" title="Link to this equation">#</a></span>\[
 J_{T_B}(h)=\frac B u I-\frac B{u^3}hh^\top.
 \]</div>
 <p>Sus autovalores son <span class="math notranslate nohighlight">\(B/u\)</span> en direcciones ortogonales a <span class="math notranslate nohighlight">\(h\)</span> y <span class="math notranslate nohighlight">\(B^3/u^3\)</span> en la dirección de <span class="math notranslate nohighlight">\(h\)</span>; en <span class="math notranslate nohighlight">\(h=0\)</span> el jacobiano es <span class="math notranslate nohighlight">\(I\)</span>. Están en <span class="math notranslate nohighlight">\((0,1]\)</span>. Integrando sobre el segmento entre dos puntos, <span class="math notranslate nohighlight">\(\|T_B(h)-T_B(h')\|_2\le\|h-h'\|_2\)</span>. Además, <span class="math notranslate nohighlight">\(\|T_B(h)\|_2\le B\)</span>. Para la matriz <span class="math notranslate nohighlight">\(V\)</span> de filas <span class="math notranslate nohighlight">\(v_j^\top\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-saturation-matrix-bounds">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eq-e3-saturation-matrix-bounds" title="Link to this equation">#</a></span>\[
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-e3-saturation-matrix-bounds" title="Link to this equation">#</a></span>\[
 \|V(H)-V(H')\|_F\le\|H-H'\|_F,
 \qquad\|V(H)\|_2\le\|V(H)\|_F\le B\sqrt n.
 \]</div>
 <p><strong>Lema 2: sensibilidad de los puntajes.</strong> La igualdad <span class="math notranslate nohighlight">\(d_j(H)=\|(r_j,\varepsilon)\|_2\)</span> y la desigualdad triangular inversa implican <span class="math notranslate nohighlight">\(|d_j(H)-d_j(H')|\le\|r_j-r'_j\|_2\)</span>. Sumando cuadrados por filas,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-discordance-sensitivity">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eq-e3-discordance-sensitivity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-e3-discordance-sensitivity" title="Link to this equation">#</a></span>\[
 \|d(H)-d(H')\|_2\le\|A(H-H')\|_F
 \le\|A\|_2\|H-H'\|_F.
 \]</div>
 <p>La parte de contenido cumple <span class="math notranslate nohighlight">\(\|(H-H')q\|_2\le Q\|H-H'\|_F\)</span>. Por tanto,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-score-sensitivity">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eq-e3-score-sensitivity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-e3-score-sensitivity" title="Link to this equation">#</a></span>\[
 \|s(H)-s(H')\|_2
 \le\bigl(Q+\Lambda\|A\|_2\bigr)\|H-H'\|_F.
 \]</div>
 <p><strong>Lema 3: softmax es <span class="math notranslate nohighlight">\(1/2\)</span>-Lipschitz en norma euclídea.</strong> Su jacobiano es <span class="math notranslate nohighlight">\(J=\operatorname{diag}(a)-aa^\top\)</span>. La suma absoluta de la fila <span class="math notranslate nohighlight">\(j\)</span> es <span class="math notranslate nohighlight">\(2a_j(1-a_j)\le1/2\)</span>. Como <span class="math notranslate nohighlight">\(J\)</span> es simétrico, <span class="math notranslate nohighlight">\(\|J\|_2\le\|J\|_\infty\le1/2\)</span>. Integrando el jacobiano y aplicando el Lema 2,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-attention-sensitivity">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eq-e3-attention-sensitivity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(19)<a class="headerlink" href="#equation-eq-e3-attention-sensitivity" title="Link to this equation">#</a></span>\[
 \|a(H)-a(H')\|_2
 \le\frac{Q+\Lambda\|A\|_2}{2\tau_{\min}}\|H-H'\|_F.
 \]</div>
 <p><strong>Teorema.</strong> Bajo los supuestos anteriores, para cualesquiera estados finitos <span class="math notranslate nohighlight">\(H,H'\)</span> y los mismos parámetros de inferencia,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-lipschitz-bound">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eq-e3-v1-head-lipschitz-bound" title="Link to this equation">#</a></span>\[
+<span class="eqno">(20)<a class="headerlink" href="#equation-eq-e3-v1-head-lipschitz-bound" title="Link to this equation">#</a></span>\[
 |f(H)-f(H')|\le C_{\rm head}\|H-H'\|_F,
 \qquad
 C_{\rm head}=W\left[1+\frac{B\sqrt n}{2\tau_{\min}}
@@ -569,13 +569,13 @@ C_{\rm head}=W\left[1+\frac{B\sqrt n}{2\tau_{\min}}
 \]</div>
 <p><strong>Demostración.</strong> Al escribir <span class="math notranslate nohighlight">\(c(H)=V(H)^\top a(H)\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-context-difference">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eq-e3-context-difference" title="Link to this equation">#</a></span>\[
+<span class="eqno">(21)<a class="headerlink" href="#equation-eq-e3-context-difference" title="Link to this equation">#</a></span>\[
 c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 +\bigl(V(H)-V(H')\bigr)^\top a(H').
 \]</div>
 <p>Como <span class="math notranslate nohighlight">\(a(H')\)</span> es una distribución, <span class="math notranslate nohighlight">\(\|a(H')\|_2\le1\)</span>. Los lemas dan</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-context-lipschitz-bound">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eq-e3-context-lipschitz-bound" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(22)<a class="headerlink" href="#equation-eq-e3-context-lipschitz-bound" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{aligned}
 \|c(H)-c(H')\|_2
 &amp;\le B\sqrt n\,\|a(H)-a(H')\|_2+\|V(H)-V(H')\|_F\\
@@ -587,7 +587,7 @@ c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 <p>La prueba usa aritmética real y puede ser conservadora. En unidades originales de <span class="math notranslate nohighlight">\(\sigma_7\)</span>, la constante se multiplica por la media de entrenamiento <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span>. Obtener una cota desde OHLCV crudo exigiría demostrar también las constantes del codificador y de sus transformaciones. Esas constantes no se han cuantificado aquí; tampoco se demuestra mejor RMSE, calibración o R3.</p>
 <p>Como <span class="math notranslate nohighlight">\(c\)</span> es combinación convexa de vectores de norma a lo sumo <span class="math notranslate nohighlight">\(B\)</span>, también se obtiene</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-range">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eq-e3-v1-head-range" title="Link to this equation">#</a></span>\[
+<span class="eqno">(23)<a class="headerlink" href="#equation-eq-e3-v1-head-range" title="Link to this equation">#</a></span>\[
 \operatorname{softplus}(b-WB)\le f(H)\le\operatorname{softplus}(b+WB).
 \]</div>
 <p>Ese techo de salida puede perjudicar extremos genuinos y debe evaluarse. El promedio causal actual incluye el estado presente: en la primera posición la discordancia es <span class="math notranslate nohighlight">\(\varepsilon\)</span>, otra asimetría del diseño que debe examinarse. La atención normalizada usa toda la ventana observada y no es causal por prefijos de sus pesos; la predicción sólo es causal respecto al día objetivo si el pipeline respeta la disponibilidad temporal.</p>
@@ -629,14 +629,14 @@ c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 <h3>Cota condicional de la referencia aditiva de 1210 parámetros<a class="headerlink" href="#cota-condicional-de-la-referencia-aditiva-de-1210-parametros" title="Link to this heading">#</a></h3>
 <p>La referencia actual conserva atención convencional por contenido y retira penalización y saturación. Por ello se demuestra por separado una propiedad conocida sobre <strong>estados acotados</strong>, sin trasladarle el teorema anterior. Sean <span class="math notranslate nohighlight">\(H,H'\in\mathbb R^{n\times d}\)</span> con filas de norma a lo sumo <span class="math notranslate nohighlight">\(R\)</span>, y parámetros de inferencia fijos con <span class="math notranslate nohighlight">\(\|q\|_2\le Q\)</span>, <span class="math notranslate nohighlight">\(\|w\|_2\le W\)</span> y <span class="math notranslate nohighlight">\(\tau\ge\tau_{\min}&gt;0\)</span>. Sean también <span class="math notranslate nohighlight">\(A\ge0\)</span> y <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> fijos. La cabeza definida por las ecuaciones <a class="reference internal" href="06_modelo_original.html#equation-eq-e3-additive-content-attention">(8)</a> y <a class="reference internal" href="06_modelo_original.html#equation-eq-e3-additive-output">(9)</a> de <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6.8</span></a> es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-additive-head-map">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eq-e3-additive-head-map" title="Link to this equation">#</a></span>\[
+<span class="eqno">(24)<a class="headerlink" href="#equation-eq-e3-additive-head-map" title="Link to this equation">#</a></span>\[
 \alpha(H)=\operatorname{softmax}(Hq/\tau),\qquad
 c(H)=H^\top\alpha(H),\qquad
 f_A(H)=\sqrt A+a_{\rm tr}[10^{-4}+\operatorname{softplus}(w^\top c(H)+b)].
 \]</div>
 <p>El mismo límite del jacobiano de softmax da <span class="math notranslate nohighlight">\(\|\alpha(H)-\alpha(H')\|_2\le Q\|H-H'\|_F/(2\tau_{\min})\)</span>. Como <span class="math notranslate nohighlight">\(\|H\|_2\le\sqrt nR\)</span> y <span class="math notranslate nohighlight">\(\|\alpha(H')\|_2\le1\)</span>, descomponer la diferencia del contexto y componer la lectura y softplus demuestra</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-additive-lipschitz-bound">
-<span class="eqno">(24)<a class="headerlink" href="#equation-eq-e3-additive-lipschitz-bound" title="Link to this equation">#</a></span>\[
+<span class="eqno">(25)<a class="headerlink" href="#equation-eq-e3-additive-lipschitz-bound" title="Link to this equation">#</a></span>\[
 |f_A(H)-f_A(H')|\le K_{\rm ad}\|H-H'\|_F,\qquad
 K_{\rm ad}=a_{\rm tr}W\left(1+\frac{\sqrt n RQ}{2\tau_{\min}}\right).
 \]</div>
@@ -757,7 +757,7 @@ K_{\rm ad}=a_{\rm tr}W\left(1+\frac{\sqrt n RQ}{2\tau_{\min}}\right).
 <p>La exigencia general de aislar al menos tres componentes debe justificarse sobre el modelo que finalmente se defienda, sin contar tres innovaciones por tres intervenciones ni trasladar las de otro núcleo. Los controles convencionales pueden responder preguntas de dependencia arquitectónica, pero no demuestran que esos bloques sean nuevos. Para la referencia aditiva sigue pendiente el plan de ablación correspondiente al aporte que se presente: los pilotos v1, v2 y por momentos comparan preguntas y recetas distintas.</p>
 <p>Para errores <span class="math notranslate nohighlight">\(E_{uv}\)</span> sobre unidades comparables, la interacción puede expresarse como</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-ablation-interaction">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eq-e3-ablation-interaction" title="Link to this equation">#</a></span>\[
+<span class="eqno">(26)<a class="headerlink" href="#equation-eq-e3-ablation-interaction" title="Link to this equation">#</a></span>\[
 I=E_{11}-E_{10}-E_{01}+E_{00}.
 \]</div>
 <p>Un <span class="math notranslate nohighlight">\(I&lt;0\)</span> indicaría una reducción de error conjunta mayor que la suma aditiva de sus reducciones, bajo esta codificación; no se ha estimado <span class="math notranslate nohighlight">\(I\)</span>. El análisis deberá reportar efectos principales e interacciones con IC, mediante un modelo o remuestreo compatible con la dependencia temporal y las repeticiones. Los contrastes contra el modelo completo usarán las pruebas adecuadas de la Sección 8 de la guía y Holm dentro de una familia de ablación separada de la comparación principal.</p>
@@ -799,14 +799,14 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 <p>La identidad conocida del objetivo es <span class="math notranslate nohighlight">\(Y=\sqrt{A+cV}\)</span>, con <span class="math notranslate nohighlight">\(c=6/49\)</span>, <span class="math notranslate nohighlight">\(A\)</span> observable al origen y <span class="math notranslate nohighlight">\(V=U^2\)</span> una etiqueta futura. Aquí <span class="math notranslate nohighlight">\(A\)</span> es un escalar de la varianza histórica, distinto del operador latente del apartado 7.3. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación del capítulo 6</span></a> propone estimar los escalares <span class="math notranslate nohighlight">\(m\approx E[V\mid X]\)</span>, <span class="math notranslate nohighlight">\(q\approx E[V^2\mid X]\)</span> y una posición <span class="math notranslate nohighlight">\(\rho\)</span> de la media entre sus cotas <span class="math notranslate nohighlight">\(L,H\)</span>.</p>
 <p>Con escalas positivas obtenidas sólo de ajuste, <span class="math notranslate nohighlight">\(\widetilde V=V/s_u^2\)</span>, <span class="math notranslate nohighlight">\(\widetilde m=m/s_u^2\)</span>, <span class="math notranslate nohighlight">\(\widetilde q=q/s_u^4\)</span>, el criterio propuesto es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-moment-training-loss">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eq-e3-moment-training-loss" title="Link to this equation">#</a></span>\[
+<span class="eqno">(27)<a class="headerlink" href="#equation-eq-e3-moment-training-loss" title="Link to this equation">#</a></span>\[
 \mathcal L=((Y-\widehat\mu)/s_y)^2
 +\lambda_m[\log\widetilde m+\widetilde V/\widetilde m]
 +\lambda_q[\log\widetilde q+\widetilde V^2/\widetilde q].
 \]</div>
 <p>Con <span class="math notranslate nohighlight">\(m_0&gt;0\)</span>, <span class="math notranslate nohighlight">\(q_0=E[U^4\mid X]&lt;\infty\)</span> y una clase capaz de representar conjuntamente momentos y media verdaderos, el exceso de riesgo condicional es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-moment-excess-risk">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eq-e3-moment-excess-risk" title="Link to this equation">#</a></span>\[
+<span class="eqno">(28)<a class="headerlink" href="#equation-eq-e3-moment-excess-risk" title="Link to this equation">#</a></span>\[
 \frac{(\widehat\mu-\mu_0)^2}{s_y^2}
 +\lambda_m[\log(m/m_0)+m_0/m-1]
 +\lambda_q[\log(q/q_0)+q_0/q-1]\ge0.
@@ -945,14 +945,14 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 <h3>Identidad conocida y garantía de la proyección<a class="headerlink" href="#identidad-conocida-y-garantia-de-la-proyeccion" title="Link to this heading">#</a></h3>
 <p>Sean <span class="math notranslate nohighlight">\(r_i=\log(C_i/C_{i-1})\)</span> y <span class="math notranslate nohighlight">\(\bar r_6\)</span> la media de los seis retornos conocidos al origen. Para la desviación estándar <strong>poblacional, diaria y sin anualizar</strong> de siete retornos,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-support-audit-identity">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eq-e3-support-audit-identity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(29)<a class="headerlink" href="#equation-eq-e3-support-audit-identity" title="Link to this equation">#</a></span>\[
 \bar r_6=\frac16\sum_{i=t-6}^{t-1}r_i,\qquad
 A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\bar r_6)^2,\qquad
 Y_t^2=A_t+\frac6{49}(r_t-\bar r_6)^2.
 \]</div>
 <p>Es la identidad de 6.7 expresada para este control, sin una nueva pretensión de originalidad. <span class="math notranslate nohighlight">\(A_t\)</span> sólo requiere los siete cierres históricos <span class="math notranslate nohighlight">\(C_{t-7},\ldots,C_{t-1}\)</span>; el retorno futuro no interviene en el piso <span class="math notranslate nohighlight">\(L_t=\sqrt{A_t}\)</span>. Como <span class="math notranslate nohighlight">\(Y_t\ge L_t\)</span>, proyectar cualquier pronóstico puntual <span class="math notranslate nohighlight">\(p\)</span> mediante</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-support-projection">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eq-e3-support-projection" title="Link to this equation">#</a></span>\[
+<span class="eqno">(30)<a class="headerlink" href="#equation-eq-e3-support-projection" title="Link to this equation">#</a></span>\[
 \pi_t(p)=\max(p,L_t),\qquad
 |Y_t-\pi_t(p)|\le |Y_t-p|
 \]</div>

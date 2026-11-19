@@ -1,0 +1,53 @@
+{
+  "kind": "e3_campaign_implementation_verification",
+  "checked_at_utc": "2026-11-19T00:20:58.110628+00:00",
+  "status": "thirteen_synthetic_tests_passed",
+  "command": "/tmp/e3_v3_model_venv/bin/python experiments/e3_cierre_integral_20261118/campaign/test_campaign.py -q",
+  "test_count": 13,
+  "test_run_seconds": 1.344,
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "device": "cpu",
+    "threads": 1
+  },
+  "actual_CPU_optimizer_fits_on_generated_data": true,
+  "actual_SAE_AE1_AE2_supervised_tested": true,
+  "actual_epoch_optimizer_rng_resume_equivalence_tested": true,
+  "checkpoint_bytes_pass_hardened_storage_snapshot_test": true,
+  "controller_incremental_persistence_test": "fake worker and fake GitHub requests; real hardened snapshot validation",
+  "source_package_inventory": "Verified local immutable D02:13 constructor recipes,76 author files; no market/model data loaded by inventory",
+  "full_18_system_GPU_execution_tested": false,
+  "real_GPU_stage_executed": false,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "new_test_predictions": 0,
+  "additional_datasets_evaluated": 0,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "real_campaign_allowed": false,
+  "read_only_AI_review": {
+    "agent": "resume_distribution_model",
+    "result": "No blocking loss/scaling/SAE/leakage defect found; common sigma-MSE validation intentional. Equal epoch policy is not equal compute and remains development only."
+  },
+  "implementation_sha256": {
+    "data.py": "ef01031520cf73902930179bb4091d34a8a646738511e0cdbb08978d4a4b02d9",
+    "pilot.py": "ba4e749166e4191e48da8b8160233b219c54403d24e314cfce353db493a31866",
+    "power.py": "8e5049001fe65ac218a95dd886573aee89b560bddab6ef0c71d7fa25d8221323",
+    "colab.py": "e17adf96a76381e1a2af8aa98cfb28ba3619063789f91e430d916f2184728f31",
+    "test_campaign.py": "58941ff5c6886271f24667a101a2b459ca68c0831130e187b6542b8622aa044d",
+    "README.md": "69a950b19cf0ab5556ad56a6481e104c4a5373d5fe7ad81a8175e67c45c04321"
+  },
+  "remaining_blockers": [
+    "Actual Colab GPU development outputs have not been produced for the new mechanism",
+    "Full18 family paired pilot needs at least10 new seeds before conditional power dimensioning",
+    "Final common HPO/compute/capacity policy and temporal/data-set power battery are not frozen",
+    "Additional-data physical admissions await CPU Colab receipts",
+    "No final confirmatory campaign manifest or annotated protocol tag"
+  ],
+  "phase_start_before_first_checkpoint_failure_tested": true,
+  "immutable_phase_marker_preserved_on_resume_tested": true,
+  "attempt_counter_scope": "Unique attempted jobs from immutable phase_started markers; existing checkpoints fallback, available checkpoint count separate"
+}
