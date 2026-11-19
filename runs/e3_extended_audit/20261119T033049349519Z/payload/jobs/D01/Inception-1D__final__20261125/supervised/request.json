@@ -1,0 +1,39 @@
+{
+  "identity": {
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "audit_request_sha256": "7326b1cf16cccbdf11c64c014762aa8e2bdfbee84f965a3b70b9353d4c188f7f",
+    "dataset": "D01",
+    "data_sha256": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1",
+    "kind": "final",
+    "model": "Inception-1D",
+    "seed": 20261125,
+    "phase": "supervised",
+    "request_sha256": "9d4e1701a528bc07046e14c1856e15f7e62aa993b614d445da8c6dac0a652374"
+  },
+  "config": {
+    "SAE_three_phases_share_one_fit_budget": true,
+    "batch_size": 32,
+    "epoch_and_HPO_selection": "common projected validation sigma MSE",
+    "gradient_clip": 1.0,
+    "max_epochs": 40,
+    "optimizer": "AdamW",
+    "patience": 8,
+    "per_fit_seconds": 120.0,
+    "training_loss": "raw normalized sigma MSE",
+    "weight_decay": 0.0,
+    "learning_rate": 0.001
+  },
+  "budget_seconds": 120.0,
+  "train_shape": [
+    1794,
+    7,
+    5
+  ],
+  "validation_shape": [
+    489,
+    7,
+    5
+  ],
+  "torch": "2.8.0+cu126",
+  "device": "cuda:0"
+}
