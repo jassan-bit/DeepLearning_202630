@@ -533,3 +533,48 @@ El planificador nuevo sólo admite un panel completo del piloto común de 18 sis
 La simulación y sus sensibilidades estiman potencia condicional bajo supuestos y ganancias de desarrollo observadas. **Un piloto de controles incompleto no dimensiona la batería; tampoco certifica potencia de nuevos dominios, validez temporal o superioridad futura.** El código no congela automáticamente el protocolo ni convierte resultados conocidos en un preregistro. Semillas, margen de relevancia, presupuesto, familia final y reglas entre conjuntos deberán fijarse antes de la campaña confirmatoria.
 
 Los [cuadernos de CPU y GPU](https://github.com/jassan-bit/DeepLearning_202630/tree/main/notebooks) fijan el SHA del código y guardan las evidencias en ramas nuevas. La etapa CPU recoge admisiones y prueba Render; la etapa GPU ejecuta desarrollo y conserva snapshots de los trabajos, sus checkpoints y el panel completo. Los {download}`contratos de persistencia <../_static/e3_cierre_integral_20261118/orchestration/storage_verification.json>` comprueban preservación del árbol fuente, bytes, reintentos, conflictos y rechazo de secretos incluso en ZIP/PT/NPZ comprimidos. Los recibos siguen declarando `R1_accredited=false` y `R3_accredited=false`; registrar una ejecución no acredita sus conclusiones científicas.
+
+## 8.17 Auditoría ampliada ejecutable y estudios de robustez
+
+Para producir la evidencia que falta se implementó una nueva campaña, conservando los resultados históricos. **El ejecutor está preparado y probado con datos generados; todavía no hay resultados nuevos de modelos en los tres conjuntos adicionales.** El [cuaderno Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/e3_evaluacion_ampliada_robustez_colab.ipynb) reúne admisión, preespecificación, ajustes, evaluación, análisis, figuras y continuación desde GitHub. La prueba de Render tiene su propio flujo y no bloquea esta auditoría.
+
+### Comparación y datos fijados antes de evaluar
+
+La familia contiene **19 sistemas**: los 17 históricos —incluido el candidato aditivo de 1210 parámetros— y dos controles analíticos, `floor_only` y `floor_plus_mean_excess`. Este último estima un exceso medio sólo en ajuste; tiene un parámetro estadístico, sin optimizador neuronal. Se conservan los pronósticos crudos y se aplica **la misma proyección `max(pronóstico, sqrt(A))` a todos** como comparación principal. Así el piso físico no se ofrece exclusivamente al candidato. V3 continúa en una investigación de desarrollo separada.
+
+| Conjunto | Contrato de la auditoría | Estado empírico actual |
+|---|---|---|
+| D00 BTC histórico | Cohorte NPZ fijada; 532 ajuste, 116 validación, 53 calibración y 608 prueba conocida. Historia diaria original para los clásicos. | Los resultados anteriores existen; los nuevos ajustes bajo política común aún no se han ejecutado. |
+| D01 WIKI/AAPL RAW | Siete observaciones entre sesiones; `Adj Close` excluido y saltos corporativos conservados. | 3270 filas admitidas; cero modelos nuevos evaluados. |
+| D02 ETHUSDT Spot | Días UTC, 2018–2021; volumen en ETH. | Bytes pendientes de admisión en Colab. |
+| D03 BTCUSD_PERP COIN-M | Días UTC, septiembre de 2020–2024; volumen en contratos. | Bytes pendientes de admisión en Colab. |
+
+La historia auxiliar BTC conserva el hueco del 24 de marzo de 2023 y sus objetivos no construibles; no rellena OHLCV o etiquetas. Su comprobación reconstruye las 1316 etiquetas conocidas dentro de precisión numérica. Los clásicos usan historia causal de etiquetas más amplia que las siete barras neuronales. La máscara común de diagnóstico de ajuste se fija por disponibilidad de rezagos antes de conocer errores; no elimina fechas de prueba. Estos contratos se reportan en vez de afirmar idéntica información para todas las familias.
+
+D01–D03 diversifican instrumento, producto, tamaño y periodo, pero **no son tres mercados independientes**. Los dos criptoactivos comparten exposiciones y D03 comparte subyacente y parte de las fechas BTC. La auditoría no convierte sus rangos en evidencia de una población de dominios independientes.
+
+### Ajuste común, selección y presupuesto
+
+La rejilla prefijada usa tres tasas —0,0003; 0,001; 0,003— y una semilla HPO separada. El ganador se elige por el mismo MSE de validación proyectado. Se fijan diez semillas finales por red y conjunto, con escalas estimadas sólo en ajuste, calibración separada y purgas de siete soportes. La validación adicional sirve exclusivamente al HPO automático prefijado; si sus resultados guían un rediseño humano del mecanismo, esa exposición deberá declararse como desarrollo.
+
+El límite de **120 segundos por ajuste** incluye las tres fases de SAE mediante un presupuesto compartido. Los 168 ajustes HPO, 560 finales y 48 adicionales para curvas suman 776 ajustes neuronales; se añaden cuatro ajustes ARIMA. Su techo nominal es **26 horas**, además de instalación, inferencia, estadísticas y persistencia. Se registran pasos, tiempos, parámetros y excesos en fronteras de lote/iteración; no se llama timeout duro a un límite que no puede interrumpir un kernel activo. El perfil de GPU y software se fija en el protocolo; la continuación con hardware distinto se detiene.
+
+### Estudios previstos y evidencia exigida a sus salidas
+
+| Estudio | Evidencia que generará la ejecución real |
+|---|---|
+| Evaluación adicional | Panel completo por conjunto, partición, modelo, semilla y fecha; RMSE, MAE, sMAPE y R². Ningún rival se sustituye ni se descartan fechas por rendimiento. |
+| Incertidumbre de métricas | IC por bloques temporales de 7/14/28, ganancias emparejadas y dispersión entre semillas con ámbitos diferenciados. No se promedian RMSE de distintas escalas. |
+| Calibración y cambio temporal | Cuantil nominal del 90 % obtenido sólo de calibración limpia; cobertura, anchura, score de intervalo y grupos temporales. No se fabrica CRPS/PIT desde un punto y un solo intervalo. |
+| Perturbaciones | Tres severidades coherentes de OHLCV con escala estimada en ajuste, objetivos limpios y calibrador congelado. Los clásicos conservan su pronóstico crudo; su proyección puede cambiar con el piso corrupto. No se afirma perturbación idéntica de todo su historial. |
+| Sensibilidad HPO | Evaluación secundaria de las tres tasas ya ajustadas, después de guardar la selección por validación; no cambia el ganador por su resultado de prueba. |
+| Tamaño de muestra | Ajustes reales al 25/50/100 % para candidato y TSMixer, preseleccionados, con tres semillas; 100 % reutiliza el ajuste final. Los prefijos también cambian la cobertura temporal, por lo que no se atribuye causalmente todo efecto sólo al tamaño. |
+| Recursos y figuras | Tiempos y parámetros observados, figuras con IC o dispersión identificada; FLOPs y energía ausentes se conservan como ausencias. |
+
+Los {download}`detalles de la auditoría <../_static/e3_evaluacion_ampliada_20261119/README.md>` y la {download}`revisión metodológica <../_static/e3_evaluacion_ampliada_20261119/protocol_review/recommendations.md>` identifican supuestos y limitaciones. Los paneles se fragmentan para evitar archivos monolíticos y cada bloque guarda hashes, checkpoints y estados necesarios para continuar una sesión nueva. Un fallo conserva su evidencia y no activa una arquitectura de sustitución.
+
+### Preespecificación verificable y alcance de la conclusión
+
+El controlador genera el protocolo con los hashes de los tres archivos realmente admitidos y crea un **tag anotado real antes de los ajustes**. Ese registro es una preespecificación de auditoría exploratoria, no un preregistro retroactivo ni una certificación de R3. La batería temporal y entre conjuntos todavía no tiene potencia completa dimensionada; el plan anterior de 18 sistemas y 51 pruebas entre semillas no se reutiliza como dimensionamiento de esta familia.
+
+La documentación, las pruebas sintéticas y el nuevo cuaderno no completan por sí solos el componente. Será necesario inspeccionar sus predicciones, calibración, perturbaciones, curvas, recursos y fallos reales. El resultado conservará `R1_accredited=false` y `R3_accredited=false` hasta la evaluación científica que corresponda.

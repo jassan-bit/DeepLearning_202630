@@ -431,6 +431,13 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#admision-fisica-preparada-para-dos-conjuntos-adicionales">8.14 Admisión física preparada para dos conjuntos adicionales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-comun-de-desarrollo-preparado-para-gpu">8.15 Piloto común de desarrollo preparado para GPU</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-persistencia-de-las-siguientes-ejecuciones">8.16 Potencia condicional y persistencia de las siguientes ejecuciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-ampliada-ejecutable-y-estudios-de-robustez">8.17 Auditoría ampliada ejecutable y estudios de robustez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-y-datos-fijados-antes-de-evaluar">Comparación y datos fijados antes de evaluar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-comun-seleccion-y-presupuesto">Ajuste común, selección y presupuesto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estudios-previstos-y-evidencia-exigida-a-sus-salidas">Estudios previstos y evidencia exigida a sus salidas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preespecificacion-verificable-y-alcance-de-la-conclusion">Preespecificación verificable y alcance de la conclusión</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -1637,6 +1644,88 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 <p>La simulación y sus sensibilidades estiman potencia condicional bajo supuestos y ganancias de desarrollo observadas. <strong>Un piloto de controles incompleto no dimensiona la batería; tampoco certifica potencia de nuevos dominios, validez temporal o superioridad futura.</strong> El código no congela automáticamente el protocolo ni convierte resultados conocidos en un preregistro. Semillas, margen de relevancia, presupuesto, familia final y reglas entre conjuntos deberán fijarse antes de la campaña confirmatoria.</p>
 <p>Los <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/notebooks">cuadernos de CPU y GPU</a> fijan el SHA del código y guardan las evidencias en ramas nuevas. La etapa CPU recoge admisiones y prueba Render; la etapa GPU ejecuta desarrollo y conserva snapshots de los trabajos, sus checkpoints y el panel completo. Los <a class="reference download internal" download="" href="../_downloads/fa1a2301b1aed746ca43c21cee105bff/storage_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">contratos</span> <span class="pre">de</span> <span class="pre">persistencia</span></code></a> comprueban preservación del árbol fuente, bytes, reintentos, conflictos y rechazo de secretos incluso en ZIP/PT/NPZ comprimidos. Los recibos siguen declarando <code class="docutils literal notranslate"><span class="pre">R1_accredited=false</span></code> y <code class="docutils literal notranslate"><span class="pre">R3_accredited=false</span></code>; registrar una ejecución no acredita sus conclusiones científicas.</p>
 </section>
+<section id="auditoria-ampliada-ejecutable-y-estudios-de-robustez">
+<h2>8.17 Auditoría ampliada ejecutable y estudios de robustez<a class="headerlink" href="#auditoria-ampliada-ejecutable-y-estudios-de-robustez" title="Link to this heading">#</a></h2>
+<p>Para producir la evidencia que falta se implementó una nueva campaña, conservando los resultados históricos. <strong>El ejecutor está preparado y probado con datos generados; todavía no hay resultados nuevos de modelos en los tres conjuntos adicionales.</strong> El <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/e3_evaluacion_ampliada_robustez_colab.ipynb">cuaderno Colab</a> reúne admisión, preespecificación, ajustes, evaluación, análisis, figuras y continuación desde GitHub. La prueba de Render tiene su propio flujo y no bloquea esta auditoría.</p>
+<section id="comparacion-y-datos-fijados-antes-de-evaluar">
+<h3>Comparación y datos fijados antes de evaluar<a class="headerlink" href="#comparacion-y-datos-fijados-antes-de-evaluar" title="Link to this heading">#</a></h3>
+<p>La familia contiene <strong>19 sistemas</strong>: los 17 históricos —incluido el candidato aditivo de 1210 parámetros— y dos controles analíticos, <code class="docutils literal notranslate"><span class="pre">floor_only</span></code> y <code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code>. Este último estima un exceso medio sólo en ajuste; tiene un parámetro estadístico, sin optimizador neuronal. Se conservan los pronósticos crudos y se aplica <strong>la misma proyección <code class="docutils literal notranslate"><span class="pre">max(pronóstico,</span> <span class="pre">sqrt(A))</span></code> a todos</strong> como comparación principal. Así el piso físico no se ofrece exclusivamente al candidato. V3 continúa en una investigación de desarrollo separada.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conjunto</p></th>
+<th class="head"><p>Contrato de la auditoría</p></th>
+<th class="head"><p>Estado empírico actual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D00 BTC histórico</p></td>
+<td><p>Cohorte NPZ fijada; 532 ajuste, 116 validación, 53 calibración y 608 prueba conocida. Historia diaria original para los clásicos.</p></td>
+<td><p>Los resultados anteriores existen; los nuevos ajustes bajo política común aún no se han ejecutado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D01 WIKI/AAPL RAW</p></td>
+<td><p>Siete observaciones entre sesiones; <code class="docutils literal notranslate"><span class="pre">Adj</span> <span class="pre">Close</span></code> excluido y saltos corporativos conservados.</p></td>
+<td><p>3270 filas admitidas; cero modelos nuevos evaluados.</p></td>
+</tr>
+<tr class="row-even"><td><p>D02 ETHUSDT Spot</p></td>
+<td><p>Días UTC, 2018–2021; volumen en ETH.</p></td>
+<td><p>Bytes pendientes de admisión en Colab.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D03 BTCUSD_PERP COIN-M</p></td>
+<td><p>Días UTC, septiembre de 2020–2024; volumen en contratos.</p></td>
+<td><p>Bytes pendientes de admisión en Colab.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La historia auxiliar BTC conserva el hueco del 24 de marzo de 2023 y sus objetivos no construibles; no rellena OHLCV o etiquetas. Su comprobación reconstruye las 1316 etiquetas conocidas dentro de precisión numérica. Los clásicos usan historia causal de etiquetas más amplia que las siete barras neuronales. La máscara común de diagnóstico de ajuste se fija por disponibilidad de rezagos antes de conocer errores; no elimina fechas de prueba. Estos contratos se reportan en vez de afirmar idéntica información para todas las familias.</p>
+<p>D01–D03 diversifican instrumento, producto, tamaño y periodo, pero <strong>no son tres mercados independientes</strong>. Los dos criptoactivos comparten exposiciones y D03 comparte subyacente y parte de las fechas BTC. La auditoría no convierte sus rangos en evidencia de una población de dominios independientes.</p>
+</section>
+<section id="ajuste-comun-seleccion-y-presupuesto">
+<h3>Ajuste común, selección y presupuesto<a class="headerlink" href="#ajuste-comun-seleccion-y-presupuesto" title="Link to this heading">#</a></h3>
+<p>La rejilla prefijada usa tres tasas —0,0003; 0,001; 0,003— y una semilla HPO separada. El ganador se elige por el mismo MSE de validación proyectado. Se fijan diez semillas finales por red y conjunto, con escalas estimadas sólo en ajuste, calibración separada y purgas de siete soportes. La validación adicional sirve exclusivamente al HPO automático prefijado; si sus resultados guían un rediseño humano del mecanismo, esa exposición deberá declararse como desarrollo.</p>
+<p>El límite de <strong>120 segundos por ajuste</strong> incluye las tres fases de SAE mediante un presupuesto compartido. Los 168 ajustes HPO, 560 finales y 48 adicionales para curvas suman 776 ajustes neuronales; se añaden cuatro ajustes ARIMA. Su techo nominal es <strong>26 horas</strong>, además de instalación, inferencia, estadísticas y persistencia. Se registran pasos, tiempos, parámetros y excesos en fronteras de lote/iteración; no se llama timeout duro a un límite que no puede interrumpir un kernel activo. El perfil de GPU y software se fija en el protocolo; la continuación con hardware distinto se detiene.</p>
+</section>
+<section id="estudios-previstos-y-evidencia-exigida-a-sus-salidas">
+<h3>Estudios previstos y evidencia exigida a sus salidas<a class="headerlink" href="#estudios-previstos-y-evidencia-exigida-a-sus-salidas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Estudio</p></th>
+<th class="head"><p>Evidencia que generará la ejecución real</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Evaluación adicional</p></td>
+<td><p>Panel completo por conjunto, partición, modelo, semilla y fecha; RMSE, MAE, sMAPE y R². Ningún rival se sustituye ni se descartan fechas por rendimiento.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Incertidumbre de métricas</p></td>
+<td><p>IC por bloques temporales de 7/14/28, ganancias emparejadas y dispersión entre semillas con ámbitos diferenciados. No se promedian RMSE de distintas escalas.</p></td>
+</tr>
+<tr class="row-even"><td><p>Calibración y cambio temporal</p></td>
+<td><p>Cuantil nominal del 90 % obtenido sólo de calibración limpia; cobertura, anchura, score de intervalo y grupos temporales. No se fabrica CRPS/PIT desde un punto y un solo intervalo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Perturbaciones</p></td>
+<td><p>Tres severidades coherentes de OHLCV con escala estimada en ajuste, objetivos limpios y calibrador congelado. Los clásicos conservan su pronóstico crudo; su proyección puede cambiar con el piso corrupto. No se afirma perturbación idéntica de todo su historial.</p></td>
+</tr>
+<tr class="row-even"><td><p>Sensibilidad HPO</p></td>
+<td><p>Evaluación secundaria de las tres tasas ya ajustadas, después de guardar la selección por validación; no cambia el ganador por su resultado de prueba.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tamaño de muestra</p></td>
+<td><p>Ajustes reales al 25/50/100 % para candidato y TSMixer, preseleccionados, con tres semillas; 100 % reutiliza el ajuste final. Los prefijos también cambian la cobertura temporal, por lo que no se atribuye causalmente todo efecto sólo al tamaño.</p></td>
+</tr>
+<tr class="row-even"><td><p>Recursos y figuras</p></td>
+<td><p>Tiempos y parámetros observados, figuras con IC o dispersión identificada; FLOPs y energía ausentes se conservan como ausencias.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <a class="reference download internal" download="" href="../_downloads/3562682c28bb95c4c26dc157f34331c7/README.md"><code class="xref download docutils literal notranslate"><span class="pre">detalles</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">auditoría</span></code></a> y la <a class="reference download internal" download="" href="../_downloads/04f6010e620b8e6f0119df74cca3536d/recommendations.md"><code class="xref download docutils literal notranslate"><span class="pre">revisión</span> <span class="pre">metodológica</span></code></a> identifican supuestos y limitaciones. Los paneles se fragmentan para evitar archivos monolíticos y cada bloque guarda hashes, checkpoints y estados necesarios para continuar una sesión nueva. Un fallo conserva su evidencia y no activa una arquitectura de sustitución.</p>
+</section>
+<section id="preespecificacion-verificable-y-alcance-de-la-conclusion">
+<h3>Preespecificación verificable y alcance de la conclusión<a class="headerlink" href="#preespecificacion-verificable-y-alcance-de-la-conclusion" title="Link to this heading">#</a></h3>
+<p>El controlador genera el protocolo con los hashes de los tres archivos realmente admitidos y crea un <strong>tag anotado real antes de los ajustes</strong>. Ese registro es una preespecificación de auditoría exploratoria, no un preregistro retroactivo ni una certificación de R3. La batería temporal y entre conjuntos todavía no tiene potencia completa dimensionada; el plan anterior de 18 sistemas y 51 pruebas entre semillas no se reutiliza como dimensionamiento de esta familia.</p>
+<p>La documentación, las pruebas sintéticas y el nuevo cuaderno no completan por sí solos el componente. Será necesario inspeccionar sus predicciones, calibración, perturbaciones, curvas, recursos y fallos reales. El resultado conservará <code class="docutils literal notranslate"><span class="pre">R1_accredited=false</span></code> y <code class="docutils literal notranslate"><span class="pre">R3_accredited=false</span></code> hasta la evaluación científica que corresponda.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1747,6 +1836,13 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#admision-fisica-preparada-para-dos-conjuntos-adicionales">8.14 Admisión física preparada para dos conjuntos adicionales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-comun-de-desarrollo-preparado-para-gpu">8.15 Piloto común de desarrollo preparado para GPU</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-condicional-y-persistencia-de-las-siguientes-ejecuciones">8.16 Potencia condicional y persistencia de las siguientes ejecuciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-ampliada-ejecutable-y-estudios-de-robustez">8.17 Auditoría ampliada ejecutable y estudios de robustez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-y-datos-fijados-antes-de-evaluar">Comparación y datos fijados antes de evaluar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-comun-seleccion-y-presupuesto">Ajuste común, selección y presupuesto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estudios-previstos-y-evidencia-exigida-a-sus-salidas">Estudios previstos y evidencia exigida a sus salidas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preespecificacion-verificable-y-alcance-de-la-conclusion">Preespecificación verificable y alcance de la conclusión</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
