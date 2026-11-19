@@ -1,0 +1,24 @@
+{
+  "kind": "e3_colab_storage_secondary_rate_limit_incident",
+  "evidence_origin": "User-provided Colab console and HTTP diagnostic; the successful admission receipt has not yet been persisted or retrieved from GitHub.",
+  "source_commit": "189ab39b192756ec04f07a593377491335200909",
+  "admission_output": "/content/e3-extended-admission-20261119T024543618052Z",
+  "reported_datasets_admitted": 3,
+  "datasets_required": 3,
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "protocol_frozen": false,
+  "persisted_successful_admission_verified": false,
+  "error": {
+    "http_status": 403,
+    "path": "/repos/jassan-bit/DeepLearning_202630/git/blobs",
+    "classification": "secondary_rate_limit",
+    "message": "You have exceeded a secondary rate limit. Please wait a few minutes before you try again.",
+    "primary_requests_remaining": 4546,
+    "retry_after_seconds": 60,
+    "required_permissions_header": null
+  },
+  "remediation": "Preserve the completed physical admission, serialize and pace GitHub writes, respect server Retry-After, reuse content-addressed blobs, and retry persistence before any model fitting.",
+  "R1_accredited": false,
+  "R3_accredited": false
+}

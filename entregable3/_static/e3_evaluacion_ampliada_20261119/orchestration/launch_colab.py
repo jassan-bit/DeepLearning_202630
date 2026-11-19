@@ -61,7 +61,8 @@ def main(namespace):
         raise ValueError('E3_EXTENDED_START_NEW debe ser booleano.')
     namespace['E3_EXTENDED_START_NEW']=False
     result=controller.run(source,token,base=base,start_new=start_new,
-                          master_run_id=namespace.get('E3_EXTENDED_MASTER_RUN'))
+                          master_run_id=namespace.get('E3_EXTENDED_MASTER_RUN'),
+                          admission_reuse_url=namespace.get('E3_EXTENDED_ADMISSION_REUSE_URL'))
     namespace['_E3_EXTENDED_AUDIT_RESULT']=result
     return result
 
