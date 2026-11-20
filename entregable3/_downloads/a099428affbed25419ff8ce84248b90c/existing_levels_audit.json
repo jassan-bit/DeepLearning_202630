@@ -1,0 +1,952 @@
+{
+  "status": "passed",
+  "AI_assistance_declared": true,
+  "observed_at_UTC": "2026-11-20T17:49:16.699556+00:00",
+  "reports": [
+    {
+      "level": "A",
+      "source_commit": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+      "url": "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/7db8040619f602d7c52ae0c8bf54f7b6f5b5110e/book_e3/_static/e3_remediacion_20261118/reproduction/reproduction_report.json",
+      "HTTP": 200,
+      "bytes": 40147,
+      "sha256": "6a05cb1810979b07f5af4743cdcfad6183d201fb072094a3652b0178ec17a4ae",
+      "receipt_verified": true,
+      "work_reexecuted_by_this_audit": false,
+      "details": {
+        "tables": [
+          {
+            "name": "metrics.csv",
+            "rows": 17,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "R",
+                "unit": "count",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_mean",
+                "unit": "sigma7_original",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_sample_SD",
+                "unit": "sigma7_original",
+                "numeric_pairs": 14,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "MAE_mean",
+                "unit": "sigma7_original",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "train_n",
+                "unit": "count",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "calendar_n",
+                "unit": "count",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "primary_contrasts.csv",
+            "rows": 48,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "gain_RMSE",
+                "unit": "sigma7_original",
+                "numeric_pairs": 48,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "delta",
+                "unit": "sigma7_original",
+                "numeric_pairs": 48,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "block_days",
+                "unit": "days",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_raw",
+                "unit": "dimensionless",
+                "numeric_pairs": 48,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "statistic",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "standard_error",
+                "unit": "sigma7_original",
+                "numeric_pairs": 48,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "gain_ci95",
+                "unit": "sigma7_original",
+                "numeric_pairs": 96,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "bonferroni_lower_bound",
+                "unit": "sigma7_original",
+                "numeric_pairs": 48,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "exceedances",
+                "unit": "count",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "bootstrap_repetitions",
+                "unit": "count",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_value_resolution",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "monte_carlo_standard_error_approx",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_holm",
+                "unit": "dimensionless",
+                "numeric_pairs": 48,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "statistic",
+                "unit": "dimensionless_test_statistic",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "HAC_lags",
+                "unit": "days",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "seed_n",
+                "unit": "count",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "degrees_of_freedom",
+                "unit": "count",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_gain_sample_SD",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_Cohen_dz",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_Cohen_dz_ci95",
+                "unit": "dimensionless",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Cohen_dz_estimable_bootstrap_draws",
+                "unit": "count",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Shapiro_W",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Shapiro_p_diagnostic",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "effects.csv",
+            "rows": 16,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "gain_RMSE",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "relative_RMSE_reduction_percent",
+                "unit": "percent",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_Cohen_dz",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_Cohen_dz_ci95",
+                "unit": "dimensionless",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "gain_ci95_temporal",
+                "unit": "sigma7_original",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "verdicts.csv",
+            "rows": 16,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": []
+          },
+          {
+            "name": "mae_secondary.csv",
+            "rows": 16,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "gain_MAE",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "null_boundary",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "block_days",
+                "unit": "days",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_raw",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "statistic",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "standard_error",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "gain_ci95",
+                "unit": "sigma7_original",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "bonferroni_lower_bound",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "exceedances",
+                "unit": "count",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "bootstrap_repetitions",
+                "unit": "count",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_value_resolution",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "monte_carlo_standard_error_approx",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_holm",
+                "unit": "dimensionless",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "seed_subgroups.csv",
+            "rows": 28,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "seed_ids",
+                "unit": "seed_identifier",
+                "numeric_pairs": 140,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_mean",
+                "unit": "sigma7_original",
+                "numeric_pairs": 28,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "MAE_mean",
+                "unit": "sigma7_original",
+                "numeric_pairs": 28,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "sensitivities.csv",
+            "rows": 96,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "gain_RMSE",
+                "unit": "sigma7_original",
+                "numeric_pairs": 96,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "delta",
+                "unit": "sigma7_original",
+                "numeric_pairs": 96,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "block_days",
+                "unit": "days",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_raw",
+                "unit": "dimensionless",
+                "numeric_pairs": 96,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "statistic",
+                "unit": "sigma7_original",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "standard_error",
+                "unit": "sigma7_original",
+                "numeric_pairs": 96,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "gain_ci95",
+                "unit": "sigma7_original",
+                "numeric_pairs": 192,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "bonferroni_lower_bound",
+                "unit": "sigma7_original",
+                "numeric_pairs": 96,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "exceedances",
+                "unit": "count",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "bootstrap_repetitions",
+                "unit": "count",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_value_resolution",
+                "unit": "dimensionless",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "monte_carlo_standard_error_approx",
+                "unit": "dimensionless",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "p_holm",
+                "unit": "dimensionless",
+                "numeric_pairs": 96,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "statistic",
+                "unit": "dimensionless_test_statistic",
+                "numeric_pairs": 64,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "HAC_lags",
+                "unit": "days",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "seed_n",
+                "unit": "count",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "degrees_of_freedom",
+                "unit": "count",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_gain_sample_SD",
+                "unit": "sigma7_original",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_Cohen_dz",
+                "unit": "dimensionless",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "paired_Cohen_dz_ci95",
+                "unit": "dimensionless",
+                "numeric_pairs": 64,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Cohen_dz_estimable_bootstrap_draws",
+                "unit": "count",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Shapiro_W",
+                "unit": "dimensionless",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Shapiro_p_diagnostic",
+                "unit": "dimensionless",
+                "numeric_pairs": 32,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "metrics_extended.csv",
+            "rows": 17,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "R",
+                "unit": "count",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "calendar_n",
+                "unit": "count",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_mean",
+                "unit": "sigma7_original",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_sample_SD",
+                "unit": "sigma7_original",
+                "numeric_pairs": 14,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "MAE_mean",
+                "unit": "sigma7_original",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "sMAPE_percent",
+                "unit": "percent",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "R2_mean",
+                "unit": "dimensionless",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "coverage90_percent",
+                "unit": "percent",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "mean_interval_width90",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "metrics_extended_table.csv",
+            "rows": 17,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "RMSE media",
+                "unit": "sigma7_original",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "DE entre semillas",
+                "unit": "sigma7_original",
+                "numeric_pairs": 14,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "MAE",
+                "unit": "sigma7_original",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "sMAPE (%)",
+                "unit": "percent",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "R\u00b2 medio",
+                "unit": "dimensionless",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Cobertura 90% (%)",
+                "unit": "percent",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "Anchura media",
+                "unit": "sigma7_original",
+                "numeric_pairs": 16,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "metrics_uncertainty.csv",
+            "rows": 17,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "R",
+                "unit": "count",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_mean",
+                "unit": "sigma7_original",
+                "numeric_pairs": 17,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_sample_SD",
+                "unit": "sigma7_original",
+                "numeric_pairs": 14,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_seed_bootstrap_CI95_low",
+                "unit": "sigma7_original",
+                "numeric_pairs": 14,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE_seed_bootstrap_CI95_high",
+                "unit": "sigma7_original",
+                "numeric_pairs": 14,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          },
+          {
+            "name": "metrics_per_predictor.csv",
+            "rows": 143,
+            "bytes_identical": true,
+            "absolute_tolerance": 1e-14,
+            "relative_tolerance": 1e-12,
+            "discrepancies_by_field": [
+              {
+                "field": "seed",
+                "unit": "seed_identifier",
+                "numeric_pairs": 140,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "RMSE",
+                "unit": "sigma7_original",
+                "numeric_pairs": 143,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "MAE",
+                "unit": "sigma7_original",
+                "numeric_pairs": 143,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "sMAPE_percent",
+                "unit": "percent",
+                "numeric_pairs": 143,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "R2",
+                "unit": "dimensionless",
+                "numeric_pairs": 143,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "coverage90_percent",
+                "unit": "percent",
+                "numeric_pairs": 133,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              },
+              {
+                "field": "mean_interval_width90",
+                "unit": "sigma7_original",
+                "numeric_pairs": 133,
+                "maximum_absolute_difference": 0.0,
+                "location_of_maximum": null,
+                "tolerance_violations": 0
+              }
+            ]
+          }
+        ],
+        "original_execution_started": "2026-11-18T14:32:44.803730+00:00",
+        "original_execution_finished": "2026-11-18T14:32:49.641027+00:00"
+      }
+    },
+    {
+      "level": "B",
+      "source_commit": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+      "url": "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/7db8040619f602d7c52ae0c8bf54f7b6f5b5110e/experiments/e3_completion_20261120/reproduction/fifteen_replay/receipt.json",
+      "HTTP": 200,
+      "bytes": 6158,
+      "sha256": "d4049e76c74e184706bc434dd032a5e52002dccca3d4fad6716f1ee4d2ea99b4",
+      "receipt_verified": true,
+      "work_reexecuted_by_this_audit": false,
+      "details": {
+        "checkpoints": 15,
+        "saved_prediction_rows": 825,
+        "state_used": "best",
+        "absolute_tolerance_sigma7": 1e-06,
+        "max_absolute_error_sigma7": 1.7901474420878305e-08
+      }
+    }
+  ],
+  "level_C_training_reproduced": false,
+  "human_independent_reproduction_observed": false,
+  "new_model_fits": 0,
+  "model_inferences": 0,
+  "new_calibrations": 0,
+  "scope": "Published historical receipt verification, not reexecution of A/B and not C."
+}

@@ -15,7 +15,7 @@ El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guí
 | [7 Diseño riguroso del modelo original](sections/07_diseno_riguroso.md) | Hipótesis, disciplina de diseño, sustento teórico y ablación. |
 | [8 Bloque D Verificación estadística y evaluación ampliada](sections/08_verificacion_estadistica.md) | Comparación histórica y auditoría ampliada completada: 19 sistemas en cuatro conjuntos, 796 trabajos, análisis y 16 figuras. |
 | [9 Bloque E Dashboard predictivo en Dash Plotly](sections/09_dashboard_predictivo.md) | Aplicación Contexto, EDA y Modelos, 17 sistemas y cinco artefactos ONNX CPU con contratos y evidencia. |
-| [10 Bloque F Despliegue en Render](sections/10_despliegue_render.md) | Servicio Docker/Free creado con URL asignada; funcionamiento y humo públicos por verificar. |
+| [10 Bloque F Despliegue en Render](sections/10_despliegue_render.md) | Servicio público con HTTP 200 pero SHA sin identificar; perfil14 opcional probado por separado y aceptación pública pendiente. |
 | [11 Bloque G Informe técnico en Jupyter Book](sections/11_informe_tecnico.md) | Estructura científica, mapa del Cuadro 7 y requisitos de reproducción. |
 | [12 Lista de entregables](sections/12_lista_entregables.md) | Trece productos, evidencia existente y pendientes de cierre. |
 | [13 Sustentación](sections/13_sustentacion.md) | Guion de 20 minutos, demostración y preparación de preguntas. |
@@ -24,6 +24,9 @@ El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guí
 | [16 Conclusiones](sections/16_conclusiones.md) | Avances acreditados, límites y capacidades pendientes de demostrar. |
 
 ## Estado del proyecto
+
+**Seguimiento posterior a la publicación, 20 de noviembre de 2026.** Se cerró la {ref}`decisión científica <e3-followup-scientific-decision>` con **NO-GO para confirmar V3 y R3 no acreditada**, conservando el resultado adverso y los 796 trabajos/30 ajustes. La {ref}`reproducción del ONNX público <e3-followup-reproduction-archive>` pasó 55 fechas en un contenedor nuevo sin red, con error máximo de 7,83×10⁻⁹ sigma7 y sin reexportar. Se entrega una {download}`matriz actual por requisito, versión, comprobación y falta concreta <_static/e3_followup_20261120/requirements_matrix.csv>` y un suplemento documental DRAFT con manifiesto y derechos pendientes. El {ref}`perfil ampliado de producto <e3-followup-profile14>` se prueba por separado del servicio público: no cambia pesos o cuantiles ni habilita V3. El sondeo remoto nuevo volvió a obtener Render HTTP 200 sin SHA identificable y DOI 404; esos dos cierres requieren las acciones concretas del propietario.
+
 
 
 **Cierre técnico del 20 de noviembre de 2026, hora de Bogotá.** Se completaron las nueve exportaciones neuronales pendientes: **14 representantes históricos ONNX verificados**, con cinco habilitados en el perfil del dashboard. V3 sigue siendo un perfil experimental separado, sin calibrador ni promoción. El {ref}`cierre técnico <e3-completion-20261120>` aporta hashes, paridad y costes medidos. El [archivo público de nueve ONNX](https://github.com/jassan-bit/DeepLearning_202630/releases/download/e3-nine-onnx-4ef050d047b1/e3-nine-onnx-20261120.zip) pasó 5949 casos en un runner nuevo y su descarga completa fue verificada por SHA256. [V3 experimental](https://github.com/jassan-bit/DeepLearning_202630/tree/4ef050d047b1f85d39f9b47fce86a784820880c4/artifacts/e3_experimental_v3_20261120) está publicado por separado, sin habilitación en el servicio. Los {download}`recibos posteriores a la aprobación <_static/e3_completion_publication_20261120/remote_publication_observation.json>` distinguen la publicación real del corte de preparación conservado.
