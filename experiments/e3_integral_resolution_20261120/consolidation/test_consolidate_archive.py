@@ -3,6 +3,7 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
 import tarfile
 import tempfile
@@ -105,11 +106,32 @@ class Guards(unittest.TestCase):
             with self.assertRaises(ValueError):m.add_C(root,manifest,m.file_sha(manifest),p/'payload2')
 
     def test_C_rejects_raw_NPZ_and_unapproved_CSV_even_with_manifest(self):
-        for name,raw in [('inputs/cohort.npz',b'raw fixture'),('references/other.csv',b'open,high,low,close\n1,2,0,1\n')]:
+        for name,raw in [('inputs/cohort.npz',b'raw fixture'),('references/other.csv',b'open,high,low,close\n1,2,0,1\n'),
+                         ('validation/other.stdout',b'unreviewed output'),('validation/guards.stdout',b'changed receipt')]:
             with self.subTest(name=name),tempfile.TemporaryDirectory() as d:
                 p=Path(d);root=p/'C';root.mkdir();f=root/name;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(raw)
                 manifest=root/'MANIFEST.json';manifest.write_bytes(m.json_bytes(manifest_for({name:raw})))
                 with self.assertRaises(ValueError):m.add_C(root,manifest,m.file_sha(manifest),p/'payload')
+
+    def test_real_frozen_C_addon_all24_members_are_compatible(self):
+        explicit=os.environ.get('E3_C_ADDON_TEST_ROOT')
+        root=Path(explicit) if explicit else Path(__file__).resolve().parent.parent/'reproduction_C_preparation'
+        if not root.is_dir() and not explicit:
+            self.skipTest('Full frozen C kit absent; set E3_C_ADDON_TEST_ROOT to run real-manifest compatibility')
+        manifest=root/'MANIFEST.json'
+        self.assertEqual(m.file_sha(manifest),'e8ab147d6c6e74d581b8b61504dc64ce6ecbbe79f3c2a2e9a1c344537028d5a7')
+        original=manifest.read_bytes();record=json.loads(original)
+        self.assertEqual(len(record['files']),23)
+        with tempfile.TemporaryDirectory() as d:
+            payload=Path(d)/'payload';result=m.add_C(root,manifest,m.sha(original),payload)
+            self.assertEqual(result['members'],24)
+            self.assertFalse(result['training_executed']);self.assertFalse(result['human_execution_claimed'])
+            copied=payload/'tools/reproduction_C_preparation'
+            for name,wanted in m.manifest_records(record).items():
+                self.assertEqual((copied/name).stat().st_size,wanted['bytes'])
+                self.assertEqual(m.file_sha(copied/name),wanted['sha256'])
+            self.assertEqual((copied/'MANIFEST.json').read_bytes(),original)
+            self.assertEqual((copied/'validation/blocked_execute.stderr').read_bytes(),(root/'validation/blocked_execute.stderr').read_bytes())
 
     def test_rebuild_is_deterministic_and_reextraction_rejects_tamper(self):
         with tempfile.TemporaryDirectory() as d:

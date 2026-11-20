@@ -26,6 +26,9 @@ una licencia global al repositorio.
    Sus935 filas son825 salidas neuronales+110 de controles ya públicos del
    desarrollo, no predicciones nuevas. No se incluyen NPZ, raw inputs o pesos
    de entrenamiento. La preparación del kit C no acredita su ejecución humana.
+   Tres recibos de validación `.stdout`/`.stderr` se permiten exclusivamente por
+   sus paths, tamaños y hashes independientes fijados en `C_VALIDATION_LOGS`.
+   No se acepta una extensión de log de forma general ni un recibo modificado.
 
 ## Ejecución
 
@@ -66,3 +69,10 @@ Tampoco es un preregistro, nueva candidata, reproducción humana o R3 acreditada
 Pruebas: `python -m unittest discover -s . -p test_consolidate_archive.py -v`.
 Son fixtures de software declarados, sin datos de mercado o ejecución de grafos.
 El resultado real sólo lo establece el recibo de una ejecución completa.
+
+Para exigir además la compatibilidad del kit C real de24 miembros, el runner
+debe fijar `E3_C_ADDON_TEST_ROOT` a su carpeta descargada. Esa prueba valida el
+manifiesto congelado `e8ab147d6c6e74d581b8b61504dc64ce6ecbbe79f3c2a2e9a1c344537028d5a7`
+y compara cada miembro copiado, sin importar ni ejecutar los modelos o driver.
+Sin el kit opcional y sin la variable, sólo esa prueba se marca omitida; no se
+declara superada.

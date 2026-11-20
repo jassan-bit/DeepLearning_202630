@@ -56,6 +56,10 @@ FORBIDDEN = {'.pt', '.pth', '.npz', '.npy', '.whl', '.pkl', '.pickle', '.safeten
 ADDON_EXTENSIONS = {'.py', '.md', '.rst', '.json', '.csv', '.txt', '.yml', '.yaml', '.lock', '.sha256', '.sh', '.cff', '.ini', '.toml'}
 C_REFERENCE = {'path': 'references/assessment_predictions.csv', 'bytes': 71967,
                'sha256': '0399c7c80f46ac2fdfccaf218a2866fe110f7ec5051d8484e488299c679ad193'}
+C_VALIDATION_LOGS = {
+ 'validation/blocked_execute.stderr': {'bytes': 685, 'sha256': '26c56fee97719799b3019a06b026110001251c88d8b1a9fd92ffd30384345ba1'},
+ 'validation/default_dry_run.stdout': {'bytes': 1649, 'sha256': '1eca3712a15ed15f83011b06be6a36ece154e17aab1fa6b82dc52c9e1a68953f'},
+ 'validation/guards.stdout': {'bytes': 1309, 'sha256': 'aff9fe4939d24c8010dc10c8ffcd9341ca2d188bd9228c0ff31e9fbf3cf50890'}}
 
 
 def require(ok, message):
@@ -221,8 +225,10 @@ def add_C(root, manifest_path, manifest_sha, payload):
     for name, wanted in records.items():
         path = root / safe(name)
         require(path.is_file() and not path.is_symlink() and path.resolve().is_relative_to(root), 'Unsafe or missing C addon source')
-        require(PurePosixPath(name).suffix.lower() in ADDON_EXTENSIONS and wanted['bytes'] <= 2_000_000, 'Non-source C addon member')
+        require((PurePosixPath(name).suffix.lower() in ADDON_EXTENSIONS or name in C_VALIDATION_LOGS)
+                and wanted['bytes'] <= 2_000_000, 'Non-source C addon member: ' + name)
         value = path.read_bytes(); checked(value, wanted, name)
+        if name in C_VALIDATION_LOGS: checked(value, C_VALIDATION_LOGS[name], name)
         if PurePosixPath(name).suffix.lower() == '.csv':
             require(name == C_REFERENCE['path'], 'Only the fixed historical C reference CSV is allowed')
             checked(value, C_REFERENCE, name)

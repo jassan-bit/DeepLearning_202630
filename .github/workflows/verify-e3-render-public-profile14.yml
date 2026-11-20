@@ -10,7 +10,7 @@ jobs:
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'create' && github.event.ref_type == 'branch' &&
-       github.event.ref == 'e3-render-public-acceptance-archive-consolidate-8d03a73d-v1')
+       github.event.ref == 'e3-render-public-acceptance-archive-consolidate-8d03a73d-v2')
     runs-on: ubuntu-24.04
     timeout-minutes: 18
     steps:
@@ -34,6 +34,8 @@ jobs:
           github-token: ${{ github.token }}
           path: /tmp/e3-base-review
       - name: Verify consolidation integrity guards without executing models
+        env:
+          E3_C_ADDON_TEST_ROOT: ${{ github.workspace }}/experiments/e3_integral_resolution_20261120/reproduction_C_preparation
         run: python -m unittest discover -s experiments/e3_integral_resolution_20261120/consolidation -p test_consolidate_archive.py -v
       - name: Verify C preparation guards without training or inference
         run: python -m unittest discover -s experiments/e3_integral_resolution_20261120/reproduction_C_preparation -p test_historical_C_driver.py -v
@@ -58,7 +60,7 @@ jobs:
     needs: consolidate-and-check
     if: >-
       github.event_name == 'create' && github.event.ref_type == 'branch' &&
-      github.event.ref == 'e3-render-public-acceptance-archive-consolidate-8d03a73d-v1'
+      github.event.ref == 'e3-render-public-acceptance-archive-consolidate-8d03a73d-v2'
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     permissions:
