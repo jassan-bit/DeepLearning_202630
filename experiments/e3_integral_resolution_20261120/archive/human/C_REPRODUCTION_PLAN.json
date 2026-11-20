@@ -1,0 +1,72 @@
+{
+  "status": "prepared_scope_and_environment_not_training_execution",
+  "purpose": "Independent historical training reproduction, separate from prospectively confirming V3. This plan does not reopen NO-GO.",
+  "new_master_required": true,
+  "overwrite_historical_master_forbidden": true,
+  "originals": [
+    {
+      "object": "aditiva extended audit",
+      "master_run_id": "20261119T031104515520Z",
+      "result_commit": "16a4504f6fb9208c7d6f89b65017194fa20470da",
+      "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+      "jobs": 796,
+      "neural_fits": 776,
+      "ARIMA_fits": 4,
+      "analytic_controls": 16,
+      "fit_budget_seconds": 120,
+      "nominal_sum_fit_budget_seconds": 93600,
+      "source_protocol_path": "book_e3/_static/e3_audit_completed_20261119T234320461006Z/protocol.json"
+    },
+    {
+      "object": "V3 development pilot",
+      "master_run_id": "20261120T031424176339Z",
+      "result_commit": "8eaa581bc34b615a8507c9e384a3e4be29084720",
+      "source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+      "fits": 30,
+      "fit_budget_seconds": 120,
+      "nominal_sum_fit_budget_seconds": 3600,
+      "source_plan_path": "experiments/e3_evidence_close_20261120/pilot/archive/payload/plan.json"
+    }
+  ],
+  "original_GPU_software_cohort": {
+    "python": "3.12.12",
+    "torch": "2.8.0+cu126",
+    "numpy": "2.3.5",
+    "cuda_runtime": "12.6",
+    "cudnn": 91002,
+    "device": "cuda:0",
+    "cpu_threads": 2,
+    "deterministic_algorithms": true,
+    "allow_tf32": false,
+    "GPU": {
+      "name": "NVIDIA A100-SXM4-80GB",
+      "total_memory_bytes": 85094825984,
+      "capability": [
+        8,
+        0
+      ]
+    }
+  },
+  "cohort_notes": "A10080GB original. A different GPU/software must define a separate reproduction cohort, not falsify an exact historical resume. CUDA/driver/backend may preclude bitwise identical training.",
+  "nominal_fit_budget_hours_if_all_historical_fits_repeated": 27.0,
+  "budget_limits": "Sum of nominal immutable120s opportunities, not actual GPU hours or end-to-end runtime. Original wall-clock stopping means matched software/GPU does not guarantee identical epoch counts; downtime and I/O cannot be converted to GPU consumption.",
+  "prior_tolerances_apply_to": [
+    "A aggregate tables from frozen predictions",
+    "B accepted forward outputs"
+  ],
+  "training_tolerance_policy": "C-specific tolerance and scope must be declared by the external person before execution. A=1e-14+1e-12 and B=1e-6 do not justify accepting arbitrary training differences. No C tolerance has been invented.",
+  "inputs_before_C": [
+    "Verified source snapshot and all job-level requests, selection manifests, data, RNG/optimizer states and runtime locks",
+    "External person identity and declared relationship; date/time; selected historical scope; explicit resource budget",
+    "New isolated reproduction ID and output root; original snapshot mounted/read only",
+    "Prespecified C comparison products, tolerances and expected hardware dependence",
+    "Training driver reviewed to use new IDs and no writes to originals; original notebook resume commands are not safe fresh-run commands"
+  ],
+  "training_driver_command": null,
+  "missing_driver_reason": "A safe new historical-reproduction campaign driver is not supplied by the accepted ONNX replay; using a resume cell would risk modifying the original campaign. Human A/B commands are executable now; C remains separately planned.",
+  "training_executed": false,
+  "GPU_used": false,
+  "human_independent_execution_observed": false,
+  "R3_accredited": false,
+  "AI_assistance_declared": true
+}
