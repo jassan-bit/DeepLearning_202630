@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-11-20T01:40:18Z",
+  "AI_assistance_declared": true,
+  "scope": "Bounded recheck of one outgoing and one incoming citation for three primary seed papers. Every edge below was observed in the citing paper itself. This is not an exhaustive cited-by census, a complete review, or a proof of novelty.",
+  "discovery": "Previously recorded seed edges were re-opened and verified with the web tool on primary publisher/arXiv originals. No general search result was counted as an observed citation.",
+  "seed_count": 3,
+  "verified_edges": 6,
+  "seeds": [
+    {
+      "title": "Sample-Specific Output Constraints for Neural Networks",
+      "authors": "Mathis Brosowsky, Florian Keck, Olaf Dünkel, Marius Zöllner",
+      "year": 2021,
+      "source": "https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf",
+      "backward": {
+        "relation": "seed explicitly cites target",
+        "locator": "Related Work, printed p.6813; References, printed p.6820 (PDF page9), Amos and Kolter2017 entry",
+        "target_title": "OptNet: Differentiable Optimization as a Layer in Neural Networks",
+        "target_authors": "Brandon Amos and J. Zico Kolter",
+        "target_year": 2017,
+        "target_source": "https://proceedings.mlr.press/v70/amos17a.html",
+        "target_access": "Publisher metadata and abstract re-opened; target full body not newly read here.",
+        "method_relation": "The seed discusses optimization/projection layers as an earlier way of enforcing output constraints."
+      },
+      "forward": {
+        "relation": "later primary paper explicitly cites seed",
+        "citing_title": "A New Computationally Simple Approach for Implementing Neural Networks with Output Hard Constraints",
+        "citing_authors": "Andrei V. Konstantinov and Lev V. Utkin",
+        "citing_year": 2023,
+        "citing_source": "https://arxiv.org/html/2307.10459v1",
+        "locator": "References [5], Brosowsky et al., AAAI2021 pp.6812–6821",
+        "access": "Primary arXiv abstract, method scope and bibliography re-opened. No full method replication.",
+        "method_relation": "Another hard-output-constraint construction. Its existence does not establish identity with E3 or a substantive adaptation in E3."
+      }
+    },
+    {
+      "title": "Lipschitz Normalization for Self-Attention Layers with Application to Graph Neural Networks",
+      "authors": "George Dasoulas, Kevin Scaman, Aladin Virmaux",
+      "year": 2021,
+      "source": "https://proceedings.mlr.press/v139/dasoulas21a/dasoulas21a.pdf",
+      "backward": {
+        "relation": "seed explicitly cites target",
+        "locator": "Introduction, printed p.2456; References, PDF page11, Luong et al.2015 entry",
+        "target_title": "Effective Approaches to Attention-based Neural Machine Translation",
+        "target_authors": "Thang Luong, Hieu Pham, Christopher D. Manning",
+        "target_year": 2015,
+        "target_source": "https://aclanthology.org/D15-1166/",
+        "target_DOI": "10.18653/v1/D15-1166",
+        "target_access": "ACL metadata re-opened; target full-text formula reading belongs to the separately dated focal review.",
+        "method_relation": "Recurrent content-based attention is explicitly identified as earlier sequential-data work."
+      },
+      "forward": {
+        "relation": "later primary paper explicitly cites seed",
+        "citing_title": "How Smooth Is Attention?",
+        "citing_authors": "Valérie Castin, Pierre Ablin, Gabriel Peyré",
+        "citing_year": 2024,
+        "citing_source": "https://arxiv.org/html/2312.14820v2",
+        "locator": "Section1.2, Regularity of self-attention and its variants; References Dasoulas et al.(2021), ICML pp.2456–2466",
+        "access": "Primary related-work discussion and reference entry re-opened.",
+        "method_relation": "The later paper distinguishes previous Lipschitz normalization from compact-domain regularity analyses; no such theorem is automatically transferred to E3."
+      }
+    },
+    {
+      "title": "TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting",
+      "authors": "Shiyu Wang et al.",
+      "year": 2024,
+      "source": "https://arxiv.org/html/2405.14616v1",
+      "backward": {
+        "relation": "seed explicitly cites target",
+        "locator": "Section2.1 Temporal Modeling, DLinear discussion; References Zeng et al.(2023)",
+        "target_title": "Are Transformers Effective for Time Series Forecasting?",
+        "target_authors": "Ailing Zeng, Muxi Chen, Lei Zhang, Qiang Xu",
+        "target_source": "https://arxiv.org/abs/2205.13504",
+        "target_year_note": "arXiv submitted2022; TimeMixer cites the AAAI2023 version.",
+        "target_access": "arXiv author/title/version metadata and abstract re-opened; no new full-body reading.",
+        "method_relation": "DLinear and decomposition-based linear forecasting precede the seed's multiscale PDM/FMM construction."
+      },
+      "forward": {
+        "relation": "later primary preprint explicitly cites seed",
+        "citing_title": "Volatility Forecasting in Global Financial Markets Using TimeMixer",
+        "citing_authors": "Alex Y. Li",
+        "citing_year": 2024,
+        "citing_source": "https://arxiv.org/html/2410.09062v1",
+        "locator": "Introduction citation[6], Sections2.4–2.8; References[6]",
+        "access": "Primary preprint introduction, architecture scope, figure attribution and bibliography re-opened.",
+        "method_relation": "The financial application explicitly derives from TimeMixer. The target-definition difference from sigma7 must be reviewed separately; this citation edge alone proves neither equivalence nor superiority."
+      }
+    }
+  ],
+  "limitations": [
+    "One outgoing and one incoming edge per seed only; not all references or all citing works.",
+    "Abstract or bibliographic metadata are not labelled full-text reading.",
+    "Known-method citation and overlap do not prove copying or a historical transfer by the student.",
+    "No absence-of-prior-art conclusion is inferred from these edges.",
+    "No database coverage or independent-review credit is created by rechecking these six citations."
+  ],
+  "new_model_fits": 0,
+  "new_model_inference": 0,
+  "new_hypothesis_tests": 0
+}

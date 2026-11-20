@@ -20,7 +20,7 @@ La propuesta por momentos de la sección 6.7 estudia otra limitación: una escal
 
 | Condición | Evidencia actual | Estado que debe conservarse |
 |---|---|---|
-| R1 Novedad para el fenómeno y la tarea | Revisiones focales del mecanismo de atención y de la cabeza de momentos; sus componentes conocidos se atribuyen. El dictamen no selecciona todavía la adaptación por momentos como aporte original. | Pendientes la revisión bibliográfica completa y la diferencia sustantiva. La revisión externa por IA declarada se aporta conforme a la indicación docente documentada en 6.13; no se declara novedad ni ausencia de novedad demostradas. |
+| R1 Novedad para el fenómeno y la tarea | La {ref}`comparación de cierre de 6.15 <e3-r1-comparison-close>` examina diez trabajos cercanos de la referencia aditiva y distingue antecedentes, accesos y diferencias. La {ref}`decisión de 6.16 <e3-r1-adaptation-decision>` conserva V3 como adaptación candidata de estructura y entrenamiento. | La revisión delimitada no establece una diferencia sustantiva para la aditiva ni acredita la prioridad y utilidad de V3. La modalidad de revisión externa por IA declarada de 6.13 permanece completada; R1 global sigue sin acreditarse. |
 | R2 Núcleo algorítmico propio y defendible | El modelo aditivo evaluado se construye con los módulos locales `InnovationModel`, `DevelopmentModel` y `OriginalModel`, usando primitivas de PyTorch. Hay pruebas específicas de su salida y de los gradientes, además del código histórico de las otras variantes; la asistencia de IA está declarada. | La implementación y sus pruebas no acreditan por sí solas comprensión, autoría responsable y defensa del estudiante; esa verificación humana sigue pendiente. |
 | R3 Superioridad estadísticamente verificada | Pilotos de desarrollo y comparación posterior completa frente a 16 rivales: los 48 contrastes primarios rechazan tras Holm, con ámbitos temporal y de inicialización distintos. | No se acredita R3. El corte histórico conserva calendario conocido y tratamientos distintos; el {ref}`cierre de 8.18 <e3-final-extended-audit>` añade comparación común en cuatro conjuntos y la menor RMSE media descriptiva del candidato en los cuatro. Esa auditoría no calcula la nueva batería de tres pruebas con Holm ni certifica potencia prospectiva o independencia entre mercados. |
 
@@ -69,7 +69,7 @@ El cierre de la revisión exige al menos cinco cadenas en inglés y español en 
 | Selección de desarrollo | La cabeza aditiva v2 obtiene la menor RMSE global del piloto; half-t5 con auxiliares y el piloto por momentos no superan sus heurísticas. La aditiva se replica sin nueva selección. | Conservarla como referencia, sin promoverla a aporte original o ganador único. |
 | Diseño y confirmación | Resultados históricos, diez réplicas aditivas y análisis posterior completo de la familia conservados; no hay preregistro confirmatorio de estos resultados. | La comparación común exploratoria y los tres conjuntos adicionales ya tienen resultados en el {ref}`cierre de 8.18 <e3-final-extended-audit>`; siguen pendientes potencia prospectiva, batería formal y diseño confirmatorio apropiado. |
 
-La [sección 7](07_diseno_riguroso.md) integra método, pilotos, propiedades y controles. Las cinco recetas de v1/v2 y las tres del piloto por momentos forman un subtotal histórico de ocho; las diez semillas aditivas repiten una receta. El **$N_d$ global sigue pendiente de conciliación** de propuestas, parametrizaciones, variantes y ensayos y no se reduce a ese subtotal. Los conjuntos adicionales todavía no se han elegido y el análisis posterior no se presenta como preregistro confirmatorio.
+La [sección 7](07_diseno_riguroso.md) integra método, pilotos, propiedades y controles. Las cinco recetas de v1/v2 y las tres del piloto por momentos forman un subtotal histórico de ocho; las diez semillas aditivas repiten una receta. El **$N_d$ global sigue pendiente de conciliación** de propuestas, parametrizaciones, variantes y ensayos y no se reduce a ese subtotal. D01–D03 ya fueron seleccionados, admitidos y evaluados junto con D00 en el {ref}`cierre de 8.18 <e3-final-extended-audit>`. Sus resultados conocidos no constituyen confirmación ciega de una adaptación posterior.
 
 ## 6.5 Primer mecanismo implementado: formulación y reproducción
 
@@ -244,7 +244,7 @@ Ese recibo precede a la exportación ONNX verificada el **18 de noviembre a las 
 | Literatura y R1 | Lecturas focales, consultas históricas y respuestas posteriores verificadas de tres bases en 6.12. | Afinar consultas y completar cribado, lecturas, seguimiento de citas y diferencia sustantiva. El dictamen externo y dos repeticiones de cadenas por IA declarada se aportan en 6.13. |
 | R3 y evaluación amplia | Diez semillas y análisis posterior frente a 16 rivales, con límites explícitos. | Potencia por contraste y conjunta, protocolo confirmatorio justo y al menos tres conjuntos adicionales elegidos antes de sus resultados; ver capítulos 7 y 8. |
 
-La {download}`matriz de revisión de requisitos <../_static/e3_revision_bc_20261117/c_requirements_review.csv>` conserva el mismo corte histórico de revisión; el avance posterior de exportación se documenta arriba y en las secciones 5.2 y 9. No sustituye la model card, la declaración de datos, la bitácora de diseños ni la declaración de asistencia de IA de los capítulos correspondientes. La siguiente decisión de investigación debe resolver qué mecanismo se defenderá como contribución; una mejor RMSE de esta referencia convencional no resuelve esa decisión por sí sola.
+La {download}`matriz de revisión de requisitos <../_static/e3_revision_bc_20261117/c_requirements_review.csv>` conserva el mismo corte histórico de revisión; el avance posterior de exportación se documenta arriba y en las secciones 5.2 y 9. La política común y los tres conjuntos adicionales ya tienen resultados en el {ref}`cierre de 8.18 <e3-final-extended-audit>`; las filas históricas de pendientes no describen ese estado posterior. La revisión no sustituye la model card, la declaración de datos, la bitácora de diseños ni la declaración de IA. La {ref}`decisión de 6.16 <e3-r1-adaptation-decision>` identifica V3 como candidato distinto; una mejor RMSE de la aditiva no demuestra su novedad ni se transfiere a V3.
 
 (revision-focal-ampliada-20261118)=
 ## 6.10 Revisión focal ampliada del 18 de noviembre
@@ -343,4 +343,109 @@ La {download}`demostración y sus supuestos <../_static/e3_cierre_integral_20261
 
 El {download}`recibo de siete pruebas sintéticas <../_static/e3_cierre_integral_20261118/mechanism/verification.json>` registra Python 3.12.14 y Torch 2.8.0+cpu: conteos y estados, CRPS por enumeración, gradientes, propiedades, escala y serialización. Hubo **cero ajustes y pronósticos de mercado**. El [módulo fuente](https://github.com/jassan-bit/DeepLearning_202630/blob/main/src/e3_overlap_model_v3.py), las {download}`comparaciones de afirmaciones <../_static/e3_cierre_integral_20261118/mechanism/claim_comparison.csv>` y la {download}`procedencia y declaración de IA <../_static/e3_cierre_integral_20261118/mechanism/provenance.json>` hacen revisable la adaptación.
 
-**La novedad de V3 sigue sin acreditar.** Gneiting y Raftery (2007), §4.2 y ecuación (21), sustentan CRPS; Bishop (1994) anticipa la predicción neuronal de leyes condicionales; Bellemare, Dabney y Munos (2017) constituyen un antecedente de aproximaciones categóricas en otro contexto. El expediente distingue lectura focal del primero y consulta de resúmenes/metadatos de los otros dos. La revisión de la aditiva en 6.13 no se transfiere automáticamente a V3: faltan la comparación focal de esta formulación, los resultados de sus ablaciones bajo tratamiento común y el dictamen sobre si la adaptación es sustantiva. Se declara la asistencia de IA en formulación, código y verificación, conforme a la modalidad docente comunicada por el autor.
+**La novedad de V3 sigue sin acreditar.** Gneiting y Raftery (2007), §4.2 y ecuación (21), sustentan CRPS; Bishop (1994) anticipa la predicción neuronal de leyes condicionales; Bellemare, Dabney y Munos (2017) constituyen un antecedente de aproximaciones categóricas en otro contexto. El expediente original distingue lectura focal del primero y consulta de resúmenes/metadatos de los otros dos. La {ref}`comparación posterior de 6.16 <e3-r1-adaptation-decision>` amplía los antecedentes y explicita qué cambia en V3. La revisión de la aditiva en 6.13 no se transfiere automáticamente a esta propuesta: la prioridad de la composición, su utilidad y las ablaciones comparables siguen abiertas. Se declara la asistencia de IA en formulación, código y verificación, conforme a la modalidad docente comunicada por el autor.
+
+(e3-r1-comparison-close)=
+## 6.15 Comparación bibliográfica de cierre de la referencia aditiva
+
+**Revisión del 19 de noviembre de 2026 en Colombia, 20 de noviembre en UTC; asistencia de IA declarada.** El objeto evaluado es exactamente `InnovationModel('additive_positive_head')`, de **1210 parámetros**, en la auditoría de 796 trabajos de 8.18. Se distingue de v1, la cabeza de momentos y V3. La guía permite una transferencia citada con modificación sustantiva; no convierte un cambio de aplicación, enlace positivo o hiperparámetros en R1.
+
+La comparación delimitada está cerrada como **dictamen sobre las fuentes examinadas**. No equivale a una búsqueda exhaustiva mundial, a demostrar que toda posible contribución carece de novedad o a acreditar R1. La {download}`identidad y procedencia de los modelos <../_static/e3_r1_close_20261120/model_identity.json>` registra los hashes comprobados frente al commit del libro `f666a215`, la fuente científica `5a07d615` y las dos clases distintas. No se modificaron los modelos, pesos o resultados.
+
+### Alcance de búsqueda, cribado y lectura
+
+El recolector Colab anterior conservó **180 ocurrencias** de seis cadenas bilingües en Crossref, arXiv y OpenAlex, con diez registros por cadena y base. Tras deduplicar identificadores quedaron 166 registros canónicos y 14 repeticiones; identificadores diferentes no se consideran automáticamente trabajos diferentes o versiones idénticas. El cierre conserva aquel registro de tres bases y sus primeras páginas, sin inventar cobertura adicional.
+
+La cola de 48 títulos prioritarios y dos inciertos tuvo **50 decisiones documentadas**. Se leyeron **41 resúmenes completos**: 32 de respuestas nativas guardadas y nueve recuperados en fuentes primarias. Otros tres sólo ofrecieron extractos parciales, uno una ficha editorial sin resumen y cinco carecieron de resumen primario verificable. Registrar una decisión de acceso no significa haber leído ese resumen. El {download}`cribado final por identificador <../_static/e3_r1_close_20261120/search_review/abstract_screening_all_50.csv>` y su {download}`resumen de alcance <../_static/e3_r1_close_20261120/search_review/abstract_screening_summary.json>` preservan esas diferencias.
+
+La repetición actual de seis cadenas en las tres API produjo **18 fallos de transporte antes de recibir bibliografía**, todos con túnel 403. Sus conteos son desconocidos, no cero: véase el {download}`recibo de repetición <../_static/e3_r1_close_20261120/search_review/fresh_native_search_receipt.json>`. Se añadieron accesos primarios y seguimiento focal; no se contabilizan como otra ejecución exitosa de las tres bases. La modalidad externa por IA ya adoptada en 6.13 permanece completada según la indicación docente comunicada por el autor; no se inventa una firma humana.
+
+### Diez trabajos cercanos y diferencia que permiten sostener
+
+La matriz completa distingue tarea, fórmula, localizador, acceso, coincidencias, diferencias y consecuencia para R1. **Ocho cuerpos estuvieron accesibles para lectura de secciones seleccionadas; dos fuentes se limitaron a resumen o extracto primario.** No son diez lecturas completas de principio a fin.
+
+| Fuente primaria | Lectura efectivamente observada | Diferencia frente a la referencia |
+|---|---|---|
+| [Brosowsky, Keck, Dünkel and Zöllner (2021)](https://cdn.aaai.org/ojs/16841/16841-13-20335-1-2-20210518.pdf) | Cuerpo accesible; secciones seleccionadas | Piso de σ₇ y enlace softplus frente a una guarda por muestra con exponencial; la familia de soporte tiene antecedente directo. |
+| [Dasoulas, Scaman and Virmaux (2021)](https://proceedings.mlr.press/v139/dasoulas21a/dasoulas21a.pdf) | Cuerpo accesible; secciones seleccionadas | Mantiene consulta aprendida y pooling softmax; no implementa el denominador de LipschitzNorm. |
+| [Luong, Pham and Manning (2015)](https://aclanthology.org/D15-1166.pdf) | Cuerpo accesible; secciones seleccionadas | Consulta paramétrica de pooling frente a consulta del decodificador; la atención sobre estados recurrentes es conocida. |
+| [Kim, Papamakarios and Mnih (2021)](https://proceedings.mlr.press/v139/kim21i/kim21i.pdf) | Cuerpo accesible; secciones seleccionadas | Cota condicionada a estados acotados; no se transfiere una garantía global de robustez desde OHLCV. |
+| [Wang et al. (2024)](https://arxiv.org/html/2405.14616v1) | Cuerpo accesible; secciones seleccionadas | Cabeza aditiva CNN–LSTM frente a mezcla multiescala; la diferencia no prueba una corrección de un defecto del paper guía. |
+| [Reisenhofer, Bayer and Hautsch (2022)](https://arxiv.org/html/2205.07719v1) | Cuerpo accesible; secciones seleccionadas | σ₇ poblacional centrada de siete retornos frente a la tarea de varianza realizada y estructura HAR de la fuente. |
+| [Huang, Sangiorgi and Urquhart (2024)](https://research.birmingham.ac.uk/en/publications/forecasting-bitcoin-volatility-using-machine-learning-techniques/) | Resumen/extracto primario; cuerpo no leído | Arquitectura y definición del objetivo requieren distinguirse; el resumen no permite atribuir ecuaciones del cuerpo no leído. |
+| [Peng et al. (2024)](https://www.sciencedirect.com/science/article/pii/S0957417423020225) | Resumen/extracto primario; cuerpo no leído | Pronóstico de σ₇ frente a tendencia de múltiples criptomonedas; la familia CNN–LSTM–atención tiene antecedente. |
+| [Dudek, Orzeszko and Fiszeder (2025)](https://arxiv.org/html/2508.15922v1) | Cuerpo accesible; secciones seleccionadas | Media puntual de σ₇ centrada frente a cuantiles de varianza diaria realizada a partir de retornos intradía; el pronóstico probabilístico cripto ya existe. |
+| [Yang, Lorch, Graule, Lakkaraju and Doshi-Velez (2020)](https://arxiv.org/html/2010.10969v1) | Cuerpo accesible; secciones seleccionadas | Guarda determinista frente a restricciones probabilísticas mediante priors bayesianos; las restricciones interpretables tienen antecedentes. |
+
+Se conservan la {download}`matriz CSV <../_static/e3_r1_close_20261120/primary_review/comparison_matrix.csv>`, su {download}`versión legible <../_static/e3_r1_close_20261120/primary_review/comparison_matrix.md>` y las {download}`fuentes con localizadores <../_static/e3_r1_close_20261120/primary_review/sources.json>`. La dirección de las citas se volvió a comprobar desde tres semillas —ConstraintNet, Dasoulas y TimeMixer—, con **seis relaciones observadas**, una anterior y una posterior para cada una. El {download}`seguimiento de citas <../_static/e3_r1_close_20261120/primary_review/citation_followup.json>` no se presenta como un censo exhaustivo de todos sus citantes.
+
+También se consultaron los README de los repositorios oficiales [TimeMixer](https://github.com/kwuking/TimeMixer/tree/e24610583b36fdd8c76cc17a8df4e65759a5f460) y [HARNet](https://github.com/mdsunivie/HARNet/tree/3b2832f163ec52cab2435163e82f2e816ae348c9), sus tareas y contexto de resultados. El {download}`registro de repositorios <../_static/e3_r1_close_20261120/code_review/repository_observations.json>` fija esos commits. Fue una inspección delimitada de documentación, no una auditoría de todos sus archivos; no se copió su implementación al proyecto. Las tablas de otros objetivos —por ejemplo varianza realizada intradía— no se comparan numéricamente con σ₇ centrada como si midieran la misma tarea.
+
+### Diferencia escalar precisa frente a la guarda conocida
+
+La referencia usa `b=√A`, escala positiva `s` e incremento mínimo `ε=10⁻⁴`:
+
+```{math}
+:label: eq-e3-r1-guard-comparison
+\widehat y=b+s[\varepsilon+\operatorname{softplus}(z)]
+=(b+s\varepsilon)+\exp\{\log[s\operatorname{softplus}(z)]\}.
+```
+
+ConstraintNet describe `exp(v)+b` como guarda sobre un umbral por muestra en la página impresa 6816. La igualdad anterior es una reparametrización escalar en aritmética real; explica por qué la propiedad «piso más exceso positivo» tiene antecedente directo. **No demuestra equivalencia entre redes de capacidad fija, gradientes, optimizadores o resultados de entrenamiento.** Esos efectos necesitarían sus controles; no se afirman por la identidad. La verificación escalar histórica y sus 1000 casos artificiales conservan el alcance descrito en el expediente de 6.11.
+
+La consulta aprendida y el pooling softmax también tienen antecedentes explícitos. La cota con estados acotados y la identidad de varianza aportan sustento técnico, pero no se reclaman como descubrimientos matemáticos. El resultado de mercado de la referencia sigue siendo válido con su alcance experimental; su rendimiento no establece causalmente la utilidad de cada componente ni la novedad.
+
+### Declaración y relación con el paper guía
+
+**Declaración que sí sostiene esta revisión:** se implementó y evaluó una referencia CNN–LSTM con atención de contenido y soporte explícito para σ₇, y se examinó su comparación común con 18 rivales en cuatro conjuntos. En el repertorio consultado se identificaron antecedentes de sus mecanismos genéricos. La revisión no establece una adaptación algorítmica sustantiva de la aditiva que permita acreditar R1; tampoco prueba la inexistencia mundial de cualquier composición relacionada.
+
+TimeMixer conserva su condición de paper guía y trabajo cercano. La limitación de calendario de ETTh1 y la corrupción artificial antigua no demuestran que este modelo corrija un defecto de TimeMixer en BTC. El soporte observable de la etiqueta y el deterioro con ruido son limitaciones medibles del problema; no una explicación causal ya probada. La {ref}`decisión siguiente <e3-r1-adaptation-decision>` se apoya en una modificación explícita del modelo de salida y de su entrenamiento, con antecedentes atribuidos.
+
+(e3-r1-adaptation-decision)=
+## 6.16 Adaptación candidata que puede defenderse: V3 existente
+
+**Decisión de diseño:** conservar la aditiva como referencia evaluada y estudiar **V3**, ya implementada en 6.14, como única adaptación candidata. No se selecciona otra arquitectura ni se cambian ahora K=3 o λ=0,1 usando el resultado de prueba. V3 muestra diferencias verificables de **estructura y entrenamiento**; su prioridad para el fenómeno y tarea, utilidad y cumplimiento global de R1 siguen sin establecerse.
+
+| Elemento | Aditiva evaluada | V3 de desarrollo |
+|---|---|---|
+| Salida aprendida | Un exceso escalar positivo. | Tres posiciones positivas ordenadas y sus masas aprendidas para la magnitud futura U. |
+| Pronóstico σ₇ | `√A + sY(ε+softplus(z))`. | `Σ pₖ √(A + (6/49)uₖ²)`: transformar cada átomo antes de promediar. |
+| Entrenamiento | MSE normalizado de σ₇. | MSE normalizado de σ₇ más 0,1 CRPS normalizado de U. |
+| Parámetros | 1210. | 1262 en `atom_crps` y `atom_mse_only`; 1236 con masas fijas. |
+| Evidencia de mercado | Auditoría completa de 8.18 y resultados históricos separados. | **No se ejecutaron ajustes ni predicciones de mercado en esta revisión.** No hereda los 796 trabajos. |
+
+Con seis retornos conocidos y su media m, `A=Σ(rᵢ−m)²/7` es observable; `U=|r_futuro−m|` sólo es una etiqueta al ajustar. La modificación preserva la identidad `Y=√(A+(6/49)U²)` y aprende una ley finita `Gₓ=Σpₖδᵤₖ`. La media que calcula es exacta **bajo esa ley programada**, no bajo una ley de mercado conocida. Las escalas de U y de Y se estiman únicamente en ajuste. La formulación y el código preexistentes están en 6.14; el {download}`dictamen detallado de adaptación <../_static/e3_r1_close_20261120/adaptation_design/decision.md>` fija su objeto, fuentes y controles.
+
+### Procedencia y alcance de la diferencia
+
+La predicción neuronal de distribuciones condicionales es conocida desde Bishop y sus aplicaciones a volatilidad financiera aparecen en Schittenkopf, Dorffner y Dockner; CRPS pertenece a la literatura de puntuación propia. C51 es un antecedente categórico en aprendizaje por refuerzo, con soporte fijo y actualizaciones Bellman/KL: V3 no implementa ese algoritmo ni hereda sus garantías.
+
+| Antecedente | Alcance de acceso | Qué obliga a reconocer |
+|---|---|---|
+| [Bishop (1994)](https://www.microsoft.com/en-us/research/publication/mixture-density-networks/) | Resumen institucional; extracción del PDF ilegible. | La predicción neuronal de una ley condicional no es nueva. |
+| [Schittenkopf, Dorffner y Dockner (1998)](https://research.wu.ac.at/ws/portalfiles/portal/18954278/document.pdf) | Lectura focal del cuerpo, §2 ec. (1)–(9), §3 caso ATX. | Las mezclas neuronales ya se aplicaron a volatilidad financiera; su objetivo no se equipara a σ₇ centrada. |
+| [Bellemare, Dabney y Munos (2017)](https://proceedings.mlr.press/v70/bellemare17a/bellemare17a.pdf) | Lectura focal, §4.1–4.2. | Soporte categórico fijo y Bellman/KL en otro problema; V3 aprende posiciones y usa CRPS supervisado. |
+| [Gneiting y Raftery (2007)](https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf) | Lectura focal anterior reutilizada, §4.2 ec. (21). | CRPS y su propiedad estricta son conocidos; la normalización y los supuestos se declaran. |
+| [Feng, Li y Zhang (2023)](https://aimspress.com/article/doi/10.3934/era.2023194) | Resumen editorial y metadatos; no lectura del cuerpo. | Es otro antecedente de previsión probabilística de volatilidad, no prueba de la composición exacta de V3. |
+
+La candidata adapta la **composición específica**: ley del único componente futuro no observado de una volatilidad móvil solapada, transformación dependiente de la historia antes de tomar la media y señal auxiliar propia de U. Una descripción amplia como «modelo probabilístico con soporte para volatilidad» no sería una afirmación de novedad admisible. La {download}`decisión estructurada <../_static/e3_r1_close_20261120/adaptation_design/decision.json>` distingue esa modificación concreta de los componentes conocidos.
+
+### Limitación precisa y prueba que todavía falta
+
+Conocer sólo `E[U²|X]` no determina `E[√(A+cU²)|X]`, por lo que un control que sustituye la ley por su segundo momento puede perder información relevante. **Eso no demuestra una incapacidad de la aditiva:** una cabeza escalar flexible entrenada con MSE puede representar la misma media puntual que V3. La justificación investigable es una restricción inductiva y señal auxiliar; su beneficio de muestra finita puede resultar favorable o adverso.
+
+El {ref}`análisis de 7.12 <e3-r1-v3-design-protocol>` aporta cotas delimitadas, contraejemplos y una hipótesis futura refutable. No se afirma que una ley de tres átomos corrija el ruido o la infracobertura observados en 8.18. Tampoco se deriva calibración real de usar CRPS. El resultado analítico favorable compara exclusivamente la esperanza no lineal con el control de sustitución por segundo momento bajo la ley correcta, no con la red aditiva.
+
+Los controles propuestos aíslan la pérdida (`atom_mse_only`), las masas (`fixed_probs`, con menor capacidad declarada) y la agregación exacta frente a la sustitución por segundo momento (`atom_plugin`). El expediente analítico precede a la implementación de este último control. El seguimiento de {ref}`7.13 <e3-v3-controlled-development-pilot>` incorpora su código y fija un piloto común; preparar y verificar el software no completa la ablación de mercado exigida.
+
+### Frontera entre diseño y confirmación
+
+La comparación actual tiene **19 sistemas**, incluidos la aditiva, `floor_only` y `floor_plus_mean_excess`. Añadir V3 supone 20 sistemas; el planificador histórico de 18 no dimensiona automáticamente esa familia. Antes de un piloto nuevo deben fijarse presupuesto, variantes, semillas, regla de continuación, margen de desarrollo y fallos. Una eventual confirmación necesita su versión/tag, adecuación temporal, potencia por contraste y conjunta y las semillas suficientes.
+
+Los resultados de D00–D03 ya están expuestos. Si guían decisiones sobre V3, esos conjuntos se reportan como desarrollo o evaluación exploratoria para la adaptación, sin recuperar cegamiento ni convertir los 796 trabajos en entrenamientos de V3.
+
+### Expediente descargable y estado del componente
+
+El {download}`paquete de cierre <../_static/e3_r1_close_20261120/review_bundle.zip>` reúne comparación, cribado por identificador, fuentes, citas, procedencia, decisión, comprobación analítica y manifiesto. El {download}`control de integridad <../_static/e3_r1_close_20261120/packet_manifest.json>` fija los archivos; las respuestas y paquetes históricos mantienen sus propios hashes. No se redistribuyen cuerpos completos de artículos ni los cachés íntegros de resúmenes.
+
+Este cierre mejora la evidencia de revisión y diseño: especifica objeto, antecedentes, diferencia, limitación, hipótesis, matemáticas y controles. **La aditiva continúa como referencia experimental; V3 queda como adaptación candidata con utilidad y prioridad por contrastar. R1 y R3 no se marcan acreditadas y no se asigna una nota automática.**

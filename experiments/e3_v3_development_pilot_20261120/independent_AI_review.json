@@ -1,0 +1,74 @@
+{
+  "status": "passed_scoped_independent_AI_code_review",
+  "review_modality": "AI; not a human review or observation of student defense",
+  "scope": "New V3 exposed-development pilot only; no claim of R1, R3, novelty priority or generalization",
+  "tests": [
+    {
+      "suite": "test_pilot_engine.py",
+      "passed": 13,
+      "seconds": 1.823,
+      "runtime": "Python3.12.14/Torch2.8.0+cpu",
+      "synthetic_fixture": true
+    },
+    {
+      "suite": "test_git_store_review.py",
+      "passed": 6,
+      "seconds": 0.782,
+      "runtime": "Python3.12.14/local filtered bare Git",
+      "synthetic_fixture": true
+    },
+    {
+      "suite": "test_launcher_review.py",
+      "passed": 3,
+      "seconds": 0.008,
+      "runtime": "Python3.12.14/mocked Colab dependencies",
+      "synthetic_fixture": true
+    }
+  ],
+  "reviewed_sha256": {
+    "pilot_engine.py": "6c54d1f35e305e10c5fc6882b4e410bb1fb31b53349efe3c340810a173dc3363",
+    "test_pilot_engine.py": "e567f264b6ad506e516b23eb539908ff23731dda98d53969f298dc9af7ef2e03",
+    "launch_colab.py": "0e8a9d82a596947658acffe78f716fc86804bda0f6e069f418856442c08544b0",
+    "git_checkpoint_store.py": "8e50dbf84e30779ff933a799a4c5a45fbd9cb4ecbe9961303580ef04a93f5997",
+    "plugin_control.py": "3c118a7a3005784c0d7c099a799435e8571319e96a5c43610f8b3daf533be4f4",
+    "test_git_store_review.py": "d15c6629b343dee94ceaf92dcec480c0155bdfcff3ba2527da956fbbde932a61",
+    "test_launcher_review.py": "cd81440f58c1e26ef5d6edade686fdbc38295a25723f453b1081ba3e8e99b14a"
+  },
+  "scientific_boundaries_verified": [
+    "Only three NPZ training_* members materialized; calibration/test poison arrays never indexed",
+    "532 fit rows;116 historically exposed development validation rows split54selection/7purge/55assessment with8daytargetgap",
+    "Only selection54 drives HPO and early stopping; all30neuralfits must finish before assessment55 scoring",
+    "Five neural recipes include additive,fullatomic,noCRPS,fixedmasses,secondmomentplugin; two fit-only analytical floor controls",
+    "Three HPO rates and three finalseeds per neural recipe; no implicit fallback from incomplete controls",
+    "Immutable120s wallopportunity per optimizer phase; includes remote durability waits and downtime; not process hardtimeout",
+    "Point metrics common acrossrecipes; CRPS_U not fabricated for scalaradditive; fixed_probs lowercapacity explicit",
+    "Continuation2% heuristic is development decision only; no pvalues, R1orR3 accreditation",
+    "Complete synthetic30fit pipeline checks all job files+closedselection precede first assessment; cachedrestart leaves all30checkpoint hashes unchanged"
+  ],
+  "storage_boundaries_verified": [
+    "Actual blob:none fetch fixture verifies manifestblob absent before restore",
+    "Two snapshots andfreshcache byteexactrestore pass; immutable source/main/oldaudit refs preserved",
+    "Concurrentwriter,removedpreviousfile,symlink/nonemptyrestore refuse safely",
+    "LostpushACK accepted only afterremote exactcandidatecommit verification",
+    "Credential rejected in raw and compressed evidence; scientificchildenvironment strips secretvariables",
+    "Preparedplan andreceipt remotelypublished before scientificworker invoked",
+    "Launcher mock fixture follows FROZEN_FILES including quadrature JSON and its SHA256 sidecar; all lock files exist before worker invocation"
+  ],
+  "bugs_found_and_corrected_before_publication": [
+    "Missingblob size inspected beforeexplicitfetch in freshpartialclone restore",
+    "write-tree attemptedtofetch intentionallyabsent sourceblobs; verifiedbasetree nowwrittenwith--missing-ok",
+    "Launcher identitylock andworker engine filename aligned to pilot_engine.py"
+  ],
+  "limitations": [
+    "No live GitHub push bythisreview; publication behavior testedagainstactual localbareGitserver",
+    "No Colab GPU orrealmarketfitting performed here; CUDA runtime still requiresuserexecution",
+    "Cloudreset beforefirstvalidatedcheckpoint remoteACK canlosepartialjob; immutabledeadline notrenewed; safePhaseIncomplete maystop",
+    "Latercloudreset restoresmostrecentremotecheckpoint; lostlocalepochs not silently counted; restartdowntime consumes120s",
+    "Sourcehashes identifyreviewedfiles; regenerate ifintegration changes them"
+  ],
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "old_796_jobs_mutated": false,
+  "R1_accredited": false,
+  "R3_accredited": false
+}
