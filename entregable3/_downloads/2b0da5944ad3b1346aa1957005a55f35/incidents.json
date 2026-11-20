@@ -1,0 +1,80 @@
+{
+  "kind": "source_scoped_incident_register",
+  "incident_classes_documented": 6,
+  "terminal_user_console_captures": 4,
+  "observed_terminal_captures_not_total_physical_attempts": true,
+  "final_audit_model_job_failures": [],
+  "reason_final_empty_does_not_erase_incidents": "The final evaluation receipt lists completed unique jobs; transport and worker interruptions are separate event types.",
+  "incidents": [
+    {
+      "incident_id": "I01",
+      "classification": "data_admission_or_transport",
+      "evidence_origin": "pinned_project_record",
+      "source_record": "admission_calendar_incident.json",
+      "description": "Calendario de agosto de 2023 con días 28–31 ausentes; checksum válido no acredita calendario completo; recuperación diaria documentada posteriormente.",
+      "new_model_designs_from_incident": 0,
+      "physical_invocations_count": null,
+      "timestamp_reconstructed": false
+    },
+    {
+      "incident_id": "I02",
+      "classification": "data_admission_or_transport",
+      "evidence_origin": "pinned_project_record",
+      "source_record": "admission_storage_incident.json",
+      "description": "No era prueba de permisos inválidos: Retry-After=60 y saldo ordinario4546; cero ajustes informados en ese corte.",
+      "new_model_designs_from_incident": 0,
+      "physical_invocations_count": null,
+      "timestamp_reconstructed": false
+    },
+    {
+      "incident_id": "I03",
+      "classification": "transport_or_worker_process",
+      "evidence_origin": "user_uploaded_Colab_console_excerpt_not_independent_execution_observation",
+      "original_console_sha256": "03200f6d3ea3ce9d588809b1bb82e65ab48f40c5f7e7fa6a728e3426aa8b6904",
+      "reported_terminal_error": "github_transport_network_read_failed operation=git_blob_read attempts=1",
+      "corroborating_source_record": null,
+      "description": "Fallo de lectura de blob al guardar; no se confunde con otra arquitectura.",
+      "new_model_designs_from_incident": 0,
+      "physical_invocations_count": null,
+      "timestamp_reconstructed": false
+    },
+    {
+      "incident_id": "I04",
+      "classification": "transport_or_worker_process",
+      "evidence_origin": "user_uploaded_Colab_console_excerpt_not_independent_execution_observation",
+      "original_console_sha256": "633983a93b7f33cc7a14be9652ea757ff2d4cf0766e6bdee1470fc831d376ae2",
+      "reported_terminal_error": "github_transport_http_error operation=git_trees_read status=404 attempts=1",
+      "corroborating_source_record": null,
+      "description": "Lectura de árbol HTTP404; preservar instantánea y reconciliar transporte.",
+      "new_model_designs_from_incident": 0,
+      "physical_invocations_count": null,
+      "timestamp_reconstructed": false
+    },
+    {
+      "incident_id": "I05",
+      "classification": "transport_or_worker_process",
+      "evidence_origin": "user_uploaded_Colab_console_excerpt_not_independent_execution_observation",
+      "original_console_sha256": "edf5fe3773e87fd41a29d8fd0e677d4876a9567de23613f66698d124e1824fad",
+      "reported_terminal_error": "github_transport_http_error operation=git_trees_write status=422 attempts=1",
+      "corroborating_source_record": null,
+      "description": "Escritura de árbol HTTP422; reparación de persistencia, no diseño neuronal.",
+      "new_model_designs_from_incident": 0,
+      "physical_invocations_count": null,
+      "timestamp_reconstructed": false
+    },
+    {
+      "incident_id": "I06",
+      "classification": "transport_or_worker_process",
+      "evidence_origin": "user_uploaded_Colab_console_excerpt_not_independent_execution_observation",
+      "original_console_sha256": "37870ba2226c93edabd7faa47f3bc54a28ac8ba08dcbdcb3d4d9089f38bccd09",
+      "reported_terminal_error": "Worker exited with status 1; evidence retained",
+      "corroborating_source_record": "plot_backend_recovery.json",
+      "description": "Salida del trabajador después de evaluación y análisis; el recibo posterior de Agg acredita reutilización de796trabajos y análisis sin reentrenar.",
+      "new_model_designs_from_incident": 0,
+      "physical_invocations_count": null,
+      "timestamp_reconstructed": false
+    }
+  ],
+  "not_counted_as_failures": "The zero-element initialization warning is not by itself a failed fit.",
+  "remaining": "Exact total restart/physical invocation counts and unarchived cohort-mismatch errors cannot be recovered from these records."
+}

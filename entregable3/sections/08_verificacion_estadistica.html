@@ -450,6 +450,18 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-abierto-para-r3-y-para-el-entregable">Qué queda abierto para R3 y para el entregable</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-v3-terminado-ablaciones-y-resultado-adverso-de-desarrollo">8.19 Piloto V3 terminado: ablaciones y resultado adverso de desarrollo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-ejecuto-y-que-se-verifico-despues">Qué se ejecutó y qué se verificó después</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-de-las-siete-recetas-y-decision-original">Resultado de las siete recetas y decisión original</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adecuacion-posible-con-las-predicciones-disponibles">Adecuación posible con las predicciones disponibles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adecuacion-retrospectiva-con-predicciones-guardadas">8.20 Adecuación retrospectiva con predicciones guardadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-controles-triviales-y-cobertura">Brecha, controles triviales y cobertura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnosticos-de-residuos-dos-ejecuciones-dos-familias">Diagnósticos de residuos: dos ejecuciones, dos familias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-reproduccion-y-requisitos-abiertos">Recursos, reproducción y requisitos abiertos</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -506,7 +518,7 @@
 <td><p>Registrar número de configuraciones, épocas/parada y tiempo real por modelo, con capacidad y hardware. La comparación histórica no declara presupuesto equivalente. La auditoría exploratoria de 8.17 fija rejilla y presupuesto común; la potencia por contraste y conjunta sigue pendiente.</p></td>
 </tr>
 <tr class="row-even"><td><p>Nd y desarrollo frente a confirmación</p></td>
-<td><p><a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md">Bitácora consolidada parcial</a>; ocho recetas de desarrollo no son el Nd global, y diez semillas no son diez diseños.</p></td>
+<td><p><a class="reference internal" href="07_diseno_riguroso.html#e3-design-inventory-reconciled"><span class="std std-ref">Inventario conciliado de 7.14</span></a>: variantes, controles, propuestas, 183 ensayos HPO y 844 trabajos con ámbitos separados. No se cuentan semillas como diseños ni se inventan decisiones sin registro.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Fecha/tag y desviaciones</p></td>
 <td><p>Registrar la versión final antes de sus experimentos y mantener una bitácora fechada de desviaciones, con motivo e impacto. Un análisis no previsto conserva alcance exploratorio y no sustenta por sí solo R3.</p></td>
@@ -904,7 +916,7 @@ R^2=1-\frac{\sum_t(y_t-\widehat y_t)^2}{\sum_t(y_t-\overline y)^2},
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Dependencia de residuos y de pérdidas</p></td>
-<td><p>Ljung–Box, ARCH-LM y BDS cuando sus supuestos sean pertinentes; examinar autocorrelación, heterocedasticidad y dependencia no lineal. No fueron ejecutados para cerrar adecuación de E3 en esta etapa.</p></td>
+<td><p>La <a class="reference internal" href="#e3-existing-adequacy-close-20261120"><span class="std std-ref">actualización de 8.20</span></a> ejecuta Ljung–Box(7/14) y ARCH-LM(7) en dos versiones de pesos y familias diagnósticas separadas, con supuestos y resultados adversos. BDS no se añade sin justificar su pertinencia. Son diagnósticos retrospectivos y no acreditan adecuación completa.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Distribución y calibración puntual</p></td>
 <td><p>Jarque–Bera como diagnóstico, Mincer–Zarnowitz y residuos con intercepto/pendiente y cohortes claramente definidas. La falta de normalidad de residuos no se sustituye por Shapiro entre diez ganancias de semillas.</p></td>
@@ -2127,6 +2139,221 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 <p>El cierre operativo está verificado. Los recibos científicos mantienen <strong><code class="docutils literal notranslate"><span class="pre">R1_accredited=false</span></code> y <code class="docutils literal notranslate"><span class="pre">R3_accredited=false</span></code></strong>, y la actualización no asigna una calificación automática.</p>
 </section>
 </section>
+<section id="piloto-v3-terminado-ablaciones-y-resultado-adverso-de-desarrollo">
+<span id="e3-v3-pilot-completed-20261120"></span><h2>8.19 Piloto V3 terminado: ablaciones y resultado adverso de desarrollo<a class="headerlink" href="#piloto-v3-terminado-ablaciones-y-resultado-adverso-de-desarrollo" title="Link to this heading">#</a></h2>
+<p><strong>El piloto completó sus 30 ajustes y no superó la heurística de continuación.</strong> El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z">resultado inmutable</a> corresponde al código <code class="docutils literal notranslate"><span class="pre">8f65eac34aaf49293924ae8328c235cedbdd2866</span></code>, ejecución <code class="docutils literal notranslate"><span class="pre">20261120T031424176339Z</span></code>, snapshot 93. Se conservan sus <a class="reference download internal" download="" href="../_downloads/5de24818552e335869d2c82fcbc56fc8/pilot_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">final</span></code></a>, <a class="reference download internal" download="" href="../_downloads/6f093c3092b27315fbfa9baf969dbc25/plan.json"><code class="xref download docutils literal notranslate"><span class="pre">plan</span></code></a> y <a class="reference download internal" download="" href="../_downloads/a2a2766ac528b3be86ec819885b8b35f/development_verdict.json"><code class="xref download docutils literal notranslate"><span class="pre">veredicto</span> <span class="pre">original</span></code></a>. Los 796 trabajos anteriores pertenecen a la referencia aditiva y no se convierten en entrenamientos V3.</p>
+<section id="que-se-ejecuto-y-que-se-verifico-despues">
+<h3>Qué se ejecutó y qué se verificó después<a class="headerlink" href="#que-se-ejecuto-y-que-se-verifico-despues" title="Link to this heading">#</a></h3>
+<p>El estudio original realizó 15 ajustes HPO y 15 finales: cinco recetas neuronales, tres tasas con una semilla HPO y tres semillas finales por receta; además evaluó los dos controles analíticos. Las 532 ventanas de ajuste y las 54 de selección conservan su función. Tras siete fechas purgadas, la evaluación usa <strong>55 fechas, del 7 de septiembre al 31 de octubre de 2024</strong>, ya expuestas históricamente como desarrollo. Los recibos declaran cero miembros de calibración/prueba abiertos y ningún conjunto D01–D03 usado en este piloto.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/90216ed193ed4506f144dba0bc3115ec/archive_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">control</span> <span class="pre">de</span> <span class="pre">integridad</span></code></a> comprueba <strong>19 archivos originales</strong>, cinco hashes de artefactos y los enlaces del plan, admisión, launcher y estado. De las predicciones guardadas se recalculan <strong>17 trayectorias y 935 filas</strong>, con los mismos objetivos y fechas. Las 935 filas no son 935 observaciones independientes. Los 30 recibos de fase registran estados entrenados y terminados, sin exceso de plazo declarado en este piloto; ese dato no se extrapola a los recursos de la auditoría histórica. No se descargaron ni reprodujeron checkpoints, ni los 259 archivos completos del snapshot.</p>
+</section>
+<section id="resultado-de-las-siete-recetas-y-decision-original">
+<h3>Resultado de las siete recetas y decisión original<a class="headerlink" href="#resultado-de-las-siete-recetas-y-decision-original" title="Link to this heading">#</a></h3>
+<p>La métrica principal permanece fijada como <strong>media de las RMSE individuales</strong>, no RMSE de un ensamble medio ni una métrica elegida después del resultado. La <a class="reference download internal" download="" href="../_downloads/5825169d766bbd17b6b9a8b3df16dbbe/metrics_recomputed.csv"><code class="xref download docutils literal notranslate"><span class="pre">recomputación</span> <span class="pre">completa</span></code></a> y las <a class="reference download internal" download="" href="../_downloads/7680c860e94eec3658ee4dcfacf35fdd/ablation_comparisons.csv"><code class="xref download docutils literal notranslate"><span class="pre">comparaciones</span> <span class="pre">de</span> <span class="pre">ablación</span></code></a> conservan todas las recetas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Receta</p></th>
+<th class="head text-right"><p>Trayectorias</p></th>
+<th class="head text-right"><p>RMSE media individual</p></th>
+<th class="head text-right"><p>DE entre semillas</p></th>
+<th class="head text-right"><p>MAE media</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code></p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0,002073833</p></td>
+<td class="text-right"><p>0,000023659</p></td>
+<td class="text-right"><p>0,001644275</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixed_probs</span></code></p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0,002083649</p></td>
+<td class="text-right"><p>0,000040853</p></td>
+<td class="text-right"><p>0,001557355</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code></p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0,002094286</p></td>
+<td class="text-right"><p>0,000031909</p></td>
+<td class="text-right"><p>0,001549696</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code></p></td>
+<td class="text-right"><p>1 analítica</p></td>
+<td class="text-right"><p>0,002114231</p></td>
+<td class="text-right"><p>No aplica</p></td>
+<td class="text-right"><p>0,001813483</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">atom_crps</span></code> —V3 completa—</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0,002129916</p></td>
+<td class="text-right"><p>0,000013719</p></td>
+<td class="text-right"><p>0,001591685</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aditiva</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0,002157281</p></td>
+<td class="text-right"><p>0,000022490</p></td>
+<td class="text-right"><p>0,001811966</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">floor_only</span></code></p></td>
+<td class="text-right"><p>1 analítica</p></td>
+<td class="text-right"><p>0,002790341</p></td>
+<td class="text-right"><p>No aplica</p></td>
+<td class="text-right"><p>0,001831766</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La V3 completa tiene <strong>2,70 % más RMSE que <code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code></strong>, el mejor control neuronal y global, y aproximadamente 0,74 % más que el control de piso más exceso. Mejora un 1,27 % frente a la aditiva, pero eso no satisface la regla frente al mejor de los controles completos. Para superar la heurística del 2 %, su RMSE debía ser como máximo <strong>0,002032356</strong>. El veredicto permanece <strong><code class="docutils literal notranslate"><span class="pre">continuation_heuristic_passed=false</span></code></strong>. La completa pierde en RMSE frente a las tres ablaciones neuronales en las tres semillas emparejadas; estos conteos no son una prueba estadística ni establecen un efecto causal general de cada componente.</p>
+<p>Retirar CRPS, fijar masas y sustituir la lectura exacta ya tienen evidencia empírica <strong>de desarrollo</strong>. La variante de masas fijas tiene 1236 parámetros y las de masas aprendidas 1262; no se disimula esa diferencia de capacidad. La menor MAE de otro control y los CRPS_U guardados se conservan como resultados secundarios, sin reemplazar RMSE para rescatar la decisión. <strong>La variante sin CRPS no se promueve automáticamente a modelo final.</strong> El resultado adverso no constituye una sanción de integridad ni demuestra por sí mismo ausencia de novedad; muestra que este piloto no aporta la utilidad exigida por su regla original.</p>
+<figure class="align-default" id="fig-e3-v3-pilot-saved-results">
+<a class="reference internal image-reference" href="../_images/pilot_rmse_and_dependence.png"><img alt="../_images/pilot_rmse_and_dependence.png" src="../_images/pilot_rmse_and_dependence.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Figura 8 </span><span class="caption-text">Resultados de desarrollo guardados. Los puntos muestran semillas, las barras su media de RMSE individuales y los rombos controles analíticos. Las correlaciones de residuos son promedios descriptivos entre semillas, sin intervalos ni pruebas. La dispersión entre semillas no mide incertidumbre entre mercados o calendarios. <a class="reference download internal" download="" href="../_downloads/869f501c324794ea1d735d0a00592252/pilot_rmse_and_dependence.svg"><span class="xref download myst">SVG descargable</span></a>.</span><a class="headerlink" href="#fig-e3-v3-pilot-saved-results" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="adecuacion-posible-con-las-predicciones-disponibles">
+<h3>Adecuación posible con las predicciones disponibles<a class="headerlink" href="#adecuacion-posible-con-las-predicciones-disponibles" title="Link to this heading">#</a></h3>
+<p>El <a class="reference download internal" download="" href="../_downloads/131cc235cde7d9c7e59d9bf8a609227b/analyze_saved_pilot.py"><code class="xref download docutils literal notranslate"><span class="pre">reanálisis</span> <span class="pre">reproducible</span></code></a> añade <a class="reference download internal" download="" href="../_downloads/115c3eb87d54b83ae2887b926b539bb2/residual_diagnostics.csv"><code class="xref download docutils literal notranslate"><span class="pre">errores</span> <span class="pre">y</span> <span class="pre">correlaciones</span> <span class="pre">por</span> <span class="pre">trayectoria</span></code></a> y <a class="reference download internal" download="" href="../_downloads/da3f6dd7ace2b32b7f2237d69293775e/monthly_diagnostics.csv"><code class="xref download docutils literal notranslate"><span class="pre">cortes</span> <span class="pre">mensuales</span> <span class="pre">completos</span></code></a>. Son diagnósticos posteriores al resultado, sin remuestreos ni valores p. En la completa, el sesgo medio <code class="docutils literal notranslate"><span class="pre">predicción</span> <span class="pre">−</span> <span class="pre">objetivo</span></code> es −0,00026448 y la correlación descriptiva media del residuo a siete días es −0,320. Una correlación pequeña en otro desfase no prueba independencia de ventanas solapadas.</p>
+<p>Los dos meses se conservan juntos: en septiembre —24 fechas—, las RMSE medias son 0,002012253 para la completa y 0,002022917 sin CRPS; en octubre —31—, 0,002216532 y 0,002112206. No se selecciona septiembre para declarar éxito: la decisión usa las 55 fechas y la regla previa. Las cinco recetas seleccionaron la tasa máxima de la cuadrícula, 0,003; esto delimita la sensibilidad estudiada, sin autorizar una búsqueda nueva guiada por esta evaluación.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/d85ac0cd5539904ed7f4106dfc80b156/adequacy_scope_matrix.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">alcance</span> <span class="pre">de</span> <span class="pre">adecuación</span></code></a> identifica límites que no pueden cerrarse con estos archivos. Faltan predicciones de ajuste y riesgos comparables para completar las Tablas A/B y la brecha de sobreajuste. Los CRPS_U originales y su agregación sí están disponibles, pero faltan leyes atómicas por observación e intervalos guardados para recalcular independientemente esa puntuación o certificar calibración. Tampoco se reconstruyen retrospectivamente margen formal, potencia prospectiva, tres pruebas apropiadas por contraste o una familia confirmatoria. Los tres conjuntos adicionales de 8.18 se mantienen como otra auditoría; no fueron evaluados por V3 aquí.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/9e00cfba42350ff47e9af6ce9057b64f/verify_saved_pilot.py"><code class="xref download docutils literal notranslate"><span class="pre">verificador</span> <span class="pre">aritmético</span> <span class="pre">independiente</span></code></a> y su <a class="reference download internal" download="" href="../_downloads/9cdedbf654fd18b743d9f51faddf2935/independent_arithmetic_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span></code></a> usan una segunda formulación con la biblioteca estándar. Esta actualización declara asistencia de IA y ejecuta <strong>cero entrenamientos, inferencias o remuestreos nuevos</strong>. Se mantienen <strong><code class="docutils literal notranslate"><span class="pre">R1_accredited=false</span></code> y <code class="docutils literal notranslate"><span class="pre">R3_accredited=false</span></code></strong>; cualquier modificación posterior deberá registrarse como diseño nuevo, preservando este resultado, su protocolo y el conjunto de ensayos.</p>
+</section>
+</section>
+<section id="adecuacion-retrospectiva-con-predicciones-guardadas">
+<span id="e3-existing-adequacy-close-20261120"></span><h2>8.20 Adecuación retrospectiva con predicciones guardadas<a class="headerlink" href="#adecuacion-retrospectiva-con-predicciones-guardadas" title="Link to this heading">#</a></h2>
+<p>Este cierre completa evidencia que podía calcularse a partir de archivos ya
+guardados. Verifica las doce tablas de la auditoría de 8.18 y cuatro paneles
+inmutables del candidato; de estos últimos conserva sólo 18.080 predicciones
+de prueba limpia, correspondientes a diez semillas en cada conjunto. No entrena
+modelos, realiza inferencia ni repite los 9.999 remuestreos anteriores. El
+<a class="reference download internal" download="" href="../_downloads/feee19d59015ea74a2f5f3a978c6dff1/input_manifest.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span> <span class="pre">de</span> <span class="pre">entradas</span></code></a>
+y el <a class="reference download internal" download="" href="../_downloads/038eb9693c71a50779da0f11ff453a80/adequacy_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">del</span> <span class="pre">reanálisis</span></code></a>
+fijan el origen, los filtros y los hashes; se declara asistencia de IA.</p>
+<section id="brecha-controles-triviales-y-cobertura">
+<h3>Brecha, controles triviales y cobertura<a class="headerlink" href="#brecha-controles-triviales-y-cobertura" title="Link to this heading">#</a></h3>
+<p>Las métricas de ajuste y de las particiones posteriores ya estaban guardadas.
+Las <a class="reference download internal" download="" href="../_downloads/a07fe871ee2b9aef864c33f247e44067/descriptive_fit_heldout_gaps.csv"><code class="xref download docutils literal notranslate"><span class="pre">doce</span> <span class="pre">comparaciones</span> <span class="pre">de</span> <span class="pre">brecha</span></code></a>
+emparejan semillas dentro de cada conjunto. La tabla resume prueba limpia:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conjunto</p></th>
+<th class="head text-right"><p>RMSE prueba / RMSE ajuste¹</p></th>
+<th class="head text-right"><p>Cobertura media, nominal 90 %</p></th>
+<th class="head text-right"><p>Menor cobertura trimestral media²</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D00</p></td>
+<td class="text-right"><p>0,9364</p></td>
+<td class="text-right"><p>94,51 %</p></td>
+<td class="text-right"><p>86,44 % —2026Q1—</p></td>
+</tr>
+<tr class="row-odd"><td><p>D01</p></td>
+<td class="text-right"><p>0,2945</p></td>
+<td class="text-right"><p>91,50 %</p></td>
+<td class="text-right"><p>82,10 % —2012Q4—</p></td>
+</tr>
+<tr class="row-even"><td><p>D02</p></td>
+<td class="text-right"><p>0,7802</p></td>
+<td class="text-right"><p>91,88 %</p></td>
+<td class="text-right"><p>90,11 % —2021Q2—</p></td>
+</tr>
+<tr class="row-odd"><td><p>D03</p></td>
+<td class="text-right"><p>0,6716</p></td>
+<td class="text-right"><p>89,29 %</p></td>
+<td class="text-right"><p>85,71 % —2024Q1—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>¹ Cociente de RMSE medias individuales, sin ensamblar predicciones. Las
+particiones corresponden a periodos y regímenes distintos; una razón menor
+que uno <strong>no demuestra ausencia de sobreajuste</strong>, en particular en D01. Se
+conservan también la dispersión y la brecha emparejada entre semillas sobre
+el calendario fijo. No se reconstruye un margen de brecha ni potencia previos.</p>
+<p>² Mínimo descriptivo entre todos los trimestres guardados, no una selección
+previa para contrastar. La <a class="reference download internal" download="" href="../_downloads/cffff251381bec1d50433beeca53973c/coverage_drift_readout.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">de</span> <span class="pre">cobertura</span> <span class="pre">y</span> <span class="pre">deriva</span></code></a>
+conserva fechas, rangos entre semillas y ámbito de cada valor.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/d2452b1328cc209fae7d5520d2a6085b/trivial_baseline_comparison.csv"><code class="xref download docutils literal notranslate"><span class="pre">comparación</span> <span class="pre">con</span> <span class="pre">cinco</span> <span class="pre">controles</span> <span class="pre">triviales</span></code></a>
+incluye los dos controles de piso, persistencia, estacional y ARIMA. Aunque el
+candidato tiene menor RMSE, su <strong>MAE supera a la de <code class="docutils literal notranslate"><span class="pre">floor_only</span></code> en 5,63 % en D00
+y 26,59 % en D01</strong>. Una ventaja en la métrica de entrenamiento no se interpreta
+como superioridad en todas las pérdidas o escenarios.</p>
+</section>
+<section id="diagnosticos-de-residuos-dos-ejecuciones-dos-familias">
+<h3>Diagnósticos de residuos: dos ejecuciones, dos familias<a class="headerlink" href="#diagnosticos-de-residuos-dos-ejecuciones-dos-familias" title="Link to this heading">#</a></h3>
+<p>Se calcularon Ljung–Box a rezagos 7/14, ARCH-LM a 7 y la hipótesis conjunta de
+Mincer–Zarnowitz —intercepto cero y pendiente uno— con HAC Bartlett de rezago
+14. Son rezagos en observaciones, que representan sesiones en D01. Se usa una
+regresión auxiliar sobre predicciones ya guardadas; no se ajusta nuevamente el
+modelo de pronóstico. Las ventanas del objetivo comparten retornos y las diez
+semillas no constituyen diez mercados independientes.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/11d44ea2cfda24e937c7165cef0af5ed/extended_candidate_residual_diagnostics.csv"><code class="xref download docutils literal notranslate"><span class="pre">familia</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">auditoría</span> <span class="pre">ampliada</span></code></a>
+contiene <strong>160 valores p diagnósticos</strong>, ajustados conjuntamente por Holm:
+cuatro conjuntos × diez semillas × cuatro procedimientos/rezagos. Entre los
+resultados adversos se encuentran los siguientes rangos entre semillas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conjunto y diagnóstico</p></th>
+<th class="head text-right"><p>Rango de p ajustado, Holm160</p></th>
+<th class="head"><p>Lectura delimitada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D00, ARCH-LM(7)</p></td>
+<td class="text-right"><p>8,15 × 10⁻¹³ a 0,02882</p></td>
+<td><p>Dependencia de residuos cuadrados compatible con efecto ARCH, bajo los supuestos del diagnóstico.</p></td>
+</tr>
+<tr class="row-odd"><td><p>D01, Mincer–Zarnowitz con HAC(14)</p></td>
+<td class="text-right"><p>1,40 × 10⁻¹⁸ a 4,63 × 10⁻¹⁰</p></td>
+<td><p>Desviación de la calibración lineal de la media. Las pendientes se sitúan entre 0,9452 y 0,9702.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La tabla completa conserva los resultados restantes. Los valores grandes o una
+falta de rechazo no certifican adecuación. La normalidad no es requisito general
+para que un pronóstico de regresión sea útil: Jarque–Bera se aporta como
+estadístico de forma, con asimetría y curtosis, <strong>sin interpretar su p iid</strong> bajo
+dependencia serial. La asimetría positiva y las colas pronunciadas se conservan.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/67b7dab08336a92dc0b14f0ca68eda40/historical_residual_diagnostics.csv"><code class="xref download docutils literal notranslate"><span class="pre">diagnóstico</span> <span class="pre">histórico</span> <span class="pre">separado</span></code></a>
+utiliza las diez trayectorias de 608 fechas del commit <code class="docutils literal notranslate"><span class="pre">510c3bdd</span></code>, con pesos
+anteriores y una familia propia Holm40. No se mezcla con Holm160 ni se atribuye
+a V3. Las dos familias son retrospectivas y auxiliares: <strong>no son las tres pruebas
+de superioridad por rival de R3</strong>, no justifican potencia prospectiva y no
+completan automáticamente las Tablas A/B.</p>
+<p>Los valores p están condicionados a los supuestos de dependencia, momentos y
+aproximación asintótica. Holm no corrige un p marginal inválido. Los datos
+expuestos no recuperan cegamiento y una decisión posterior no se convierte en
+preregistro. Tampoco se fabrican PIT o CRPS para un punto acompañado sólo por
+un intervalo; esa salida no define una distribución predictiva completa.</p>
+</section>
+<section id="recursos-reproduccion-y-requisitos-abiertos">
+<h3>Recursos, reproducción y requisitos abiertos<a class="headerlink" href="#recursos-reproduccion-y-requisitos-abiertos" title="Link to this heading">#</a></h3>
+<p>El <a class="reference download internal" download="" href="../_downloads/a93bcaafdbddb04a5be43b478a9e6a7f/resource_field_inventory.csv"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">de</span> <span class="pre">campos</span> <span class="pre">de</span> <span class="pre">recursos</span></code></a>
+distingue dato suministrado, ausente o no aplicable. <strong>900 filas de fases
+representan 796 trabajos</strong>, con fases adicionales del autoencoder. Tres
+segmentos mantienen cómputo activo desconocido tras una interrupción. El máximo
+exceso de plazo, 35.283,63 segundos, incluye desconexión y <strong>no es una medida de
+9,8 horas de cómputo GPU</strong>. No se completa energía o FLOPs usando parámetros,
+ni se certifica igualdad de cómputo total real por compartir un límite nominal.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/c441fb9ca419aba25c612f037f31f616/README.md"><code class="xref download docutils literal notranslate"><span class="pre">metodología</span> <span class="pre">y</span> <span class="pre">comandos</span></code></a>,
+el <a class="reference download internal" download="" href="../_downloads/947ee971bdafec9b11062906e5c1ca2e/audit_existing_predictions.py"><code class="xref download docutils literal notranslate"><span class="pre">script</span> <span class="pre">de</span> <span class="pre">reanálisis</span></code></a>
+y la <a class="reference download internal" download="" href="../_downloads/1a81c73f83f3936ad7635a1b173dae2b/reference_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">verificación</span> <span class="pre">independiente</span></code></a>
+permiten reproducirlo sin red ni modelos: se comprobaron 250 resultados numéricos
+contra statsmodels y 200 ajustes de Holm. La concordancia informática no
+demuestra los supuestos científicos. La <a class="reference download internal" download="" href="../_downloads/86bf4cc7c6036297293e726851890fbc/closure_matrix.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">cierre</span></code></a>
+separa lo calculado de lo pendiente: margen/criterios de adecuación y potencia
+previos, interpretación de estabilidad y distribución, datos realmente reservados,
+familia confirmatoria pertinente, recursos completos y reproducción independiente.
+<strong>Este cierre aporta diagnósticos; no acredita R1 o R3 ni supera formalmente
+las Tablas A/B por retrospectiva.</strong></p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2254,6 +2481,18 @@ A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\mu_6)^2,
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figuras-de-la-familia-completa-y-galeria">Figuras de la familia completa y galería</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descargas-y-trazabilidad-del-cierre">Descargas y trazabilidad del cierre</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-queda-abierto-para-r3-y-para-el-entregable">Qué queda abierto para R3 y para el entregable</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-v3-terminado-ablaciones-y-resultado-adverso-de-desarrollo">8.19 Piloto V3 terminado: ablaciones y resultado adverso de desarrollo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-se-ejecuto-y-que-se-verifico-despues">Qué se ejecutó y qué se verificó después</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-de-las-siete-recetas-y-decision-original">Resultado de las siete recetas y decisión original</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adecuacion-posible-con-las-predicciones-disponibles">Adecuación posible con las predicciones disponibles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adecuacion-retrospectiva-con-predicciones-guardadas">8.20 Adecuación retrospectiva con predicciones guardadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-controles-triviales-y-cobertura">Brecha, controles triviales y cobertura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnosticos-de-residuos-dos-ejecuciones-dos-familias">Diagnósticos de residuos: dos ejecuciones, dos familias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-reproduccion-y-requisitos-abiertos">Recursos, reproducción y requisitos abiertos</a></li>
 </ul>
 </li>
 </ul>

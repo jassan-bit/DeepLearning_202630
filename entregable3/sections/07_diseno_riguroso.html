@@ -418,6 +418,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-controlado-de-desarrollo-de-v3">7.13 Piloto controlado de desarrollo de V3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conciliacion-documental-de-disenos-selecciones-e-intentos">7.14 Conciliación documental de diseños, selecciones e intentos</a></li>
 </ul>
             </nav>
         </div>
@@ -482,7 +483,7 @@
 </section>
 <section id="disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion">
 <h2>7.2 Disciplina de diseño: evitar el sobreajuste al conjunto de validación<a class="headerlink" href="#disciplina-de-diseno-evitar-el-sobreajuste-al-conjunto-de-validacion" title="Link to this heading">#</a></h2>
-<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md">bitácora inicial</a> registra cuatro variantes de software comprobadas con entradas artificiales: completa, sin penalización, sin saturación y sin contenido. Su conteo de cero recetas entrenadas en mercado corresponde al corte anterior a los pilotos. <strong>V1/v2 reunieron cinco recetas neuronales y el piloto por momentos completó otras tres.</strong> Las diez réplicas aditivas posteriores conservan una receta, sin diez diseños nuevos. El <span class="math notranslate nohighlight">\(N_d\)</span> global sigue pendiente de conciliación e incluye también propuestas, parametrizaciones y ensayos descartados; no se reduce al subtotal de ocho recetas. Antes de confirmar debe declararse el inventario completo con fecha, evidencia, métricas y decisión.</p>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_bloque_c_20261115/design_log.md">bitácora inicial</a> registra cuatro variantes de software comprobadas con entradas artificiales: completa, sin penalización, sin saturación y sin contenido. Su conteo de cero recetas entrenadas en mercado corresponde al corte anterior a los pilotos. <strong>V1/v2 reunieron cinco recetas neuronales y el piloto por momentos completó otras tres.</strong> Las diez réplicas aditivas posteriores conservan una receta, sin diez diseños nuevos. La <a class="reference internal" href="#e3-design-inventory-reconciled"><span class="std std-ref">conciliación documental de 7.14</span></a> identifica variantes, controles, propuestas, parametrizaciones e intentos y deduplica alias. Separa las 15 recetas neuronales implementadas de las réplicas y las 183 oportunidades HPO observadas. Sus límites de corpus y una referencia conceptual ambigua permanecen explícitos; la consolidación posterior no es un preregistro ni acredita todas las decisiones informales.</p>
 <p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md">bitácora canónica de consolidación</a>, fechada el 17 de noviembre de 2026, enlaza el <a class="reference download internal" download="" href="../_downloads/b3f6f358b9fc0910700fe7b1dfa822ec/design_log.md"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">posterior</span> <span class="pre">de</span> <span class="pre">diseño</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/50b3ff637fb9cb68ddef8d2273756d4a/design_inventory.csv"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">de</span> <span class="pre">variantes</span> <span class="pre">y</span> <span class="pre">ejecuciones</span></code></a>. La consolidación conserva las fuentes históricas y los campos desconocidos; no es un registro previo de aquellos experimentos ni un cierre del <span class="math notranslate nohighlight">\(N_d\)</span> global. Las fechas de un plan o del nombre de una carpeta no se convierten en fechas verificadas de ejecución.</p>
 <p>El ajuste diminuto de una prueba unitaria realizó 350 pasos de Adam sobre ocho ejemplos artificiales. Comprueba capacidad de ajuste del software; no constituye entrenamiento de BTC, validación del mecanismo económico ni selección de hiperparámetros con los datos de E1/E2.</p>
 <p>La separación de datos para las siguientes fases debe conservar estos roles:</p>
@@ -1069,19 +1070,19 @@ Y_t^2=A_t+\frac6{49}(r_t-\bar r_6)^2.
 <tbody>
 <tr class="row-even"><td><p>V3 <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code></p></td>
 <td><p>Ley, transformación y entrenamiento propuestos.</p></td>
-<td><p>Prototipo existente, 1262 parámetros; sin resultado de mercado aportado por este cierre.</p></td>
+<td><p>1262 parámetros; el corte analítico inicial no aportó mercado. El piloto posterior de <a class="reference internal" href="08_verificacion_estadistica.html#e3-v3-pilot-completed-20261120"><span class="std std-ref">8.19</span></a> completó sus ajustes y falló la heurística.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code></p></td>
 <td><p>Efecto de retirar CRPS.</p></td>
-<td><p>Implementado, mismo inicio y 1262 parámetros. La ablación comparable de mercado sigue pendiente.</p></td>
+<td><p>Mismo inicio y 1262 parámetros; tres semillas finales de desarrollo ejecutadas. Tuvo la menor RMSE media del piloto; ese orden no es significancia ni lo promueve automáticamente a candidata.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixed_probs</span></code></p></td>
 <td><p>Efecto de aprender masas frente a uniformes.</p></td>
-<td><p>Implementado, 1236 parámetros; diferencia de capacidad declarada, sin parámetros inactivos para aparentar igualdad.</p></td>
+<td><p>1236 parámetros y tres semillas finales de desarrollo ejecutadas; diferencia de capacidad declarada, sin parámetros inactivos para aparentar igualdad.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Sustitución por segundo momento</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">√(A+cΣpₖuₖ²)</span></code> frente a <code class="docutils literal notranslate"><span class="pre">Σpₖ√(A+cuₖ²)</span></code>.</p></td>
-<td><p>Control analítico del expediente; la implementación posterior <code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code>, con 1262 parámetros, y su política común se documentan en 7.13. Sin evaluación de mercado aportada aquí.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code>,1262 parámetros; política de 7.13 y tres semillas finales ejecutadas en 8.19. La comparación de redes entrenadas no mantiene necesariamente la misma ley final.</p></td>
 </tr>
 <tr class="row-even"><td><p>Aditiva y familia actual</p></td>
 <td><p>Referencia de 1210 parámetros y los 18 rivales restantes, incluidos ambos controles de piso.</p></td>
@@ -1116,7 +1117,7 @@ Sólo después, si procede, registrar la versión y un protocolo confirmatorio
 </section>
 <section id="piloto-controlado-de-desarrollo-de-v3">
 <span id="e3-v3-controlled-development-pilot"></span><h2>7.13 Piloto controlado de desarrollo de V3<a class="headerlink" href="#piloto-controlado-de-desarrollo-de-v3" title="Link to this heading">#</a></h2>
-<p>El siguiente paso es un piloto acotado, con decisiones fijadas antes de sus ajustes. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_v3_development_pilot_20261120">código y controles</a> se publican por separado del controlador de los 796 trabajos. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_v3_controlled_pilot_colab.ipynb">cuaderno Colab</a> prepara un intérprete aislado, registra la GPU realmente asignada y guarda el plan en una rama nueva de GitHub antes del primer ajuste. Esta preparación no aporta resultados de entrenamiento de V3 ni acredita R1.</p>
+<p>El plan siguiente fijó un piloto acotado antes de sus ajustes. <strong>Su ejecución posterior ya terminó</strong> y se incorpora en <a class="reference internal" href="08_verificacion_estadistica.html#e3-v3-pilot-completed-20261120"><span class="std std-ref">8.19</span></a>, conservando esta especificación y su regla anterior al resultado. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_v3_development_pilot_20261120">código y controles</a> se publican por separado del controlador de los 796 trabajos. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_v3_controlled_pilot_colab.ipynb">cuaderno Colab</a> prepara un intérprete aislado, registra la GPU realmente asignada y guarda el plan en una rama nueva de GitHub antes del primer ajuste. El corte de preparación no aportaba resultados de entrenamiento; el recibo posterior de 8.19 sí acredita 30 ajustes de desarrollo. Ni el código ni ese recibo acreditan automáticamente R1.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Decisión previa</p></th>
@@ -1152,8 +1153,47 @@ Sólo después, si procede, registrar la versión y un protocolo confirmatorio
 </table>
 </div>
 <p>El control <code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code> conserva la ley atómica y su inicialización, la pérdida CRPS y el número de parámetros de <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code>; reemplaza únicamente su lectura por <code class="docutils literal notranslate"><span class="pre">√(A+cΣpₖuₖ²)</span></code>. Su configuración y versión son distintas para impedir que una reanudación mezcle variantes. Las pruebas sintéticas contrastan igualdad de la ley, desigualdad de Jensen, gradientes, extremos numéricos y restauración del estado. Las diferencias observadas al entrenar ambos controles no serían una prueba de que la aditiva carece de capacidad para representar la media.</p>
-<p>El guardado utiliza objetos Git empaquetados y verifica cada publicación. Publica el plan antes del primer ajuste y, por receta, el inicio, el primer checkpoint validado y el cierre. Conserva modelo, optimizador, generadores aleatorios, selección, plazo e identidad del software; una reanudación exige el mismo perfil registrado y recupera únicamente lo guardado. Si se pierde el estado local antes del primer checkpoint remoto validado y vence el plazo, el ajuste queda incompleto: no se renueva su presupuesto. Los resultados nuevos se guardan en <code class="docutils literal notranslate"><span class="pre">runs/e3_v3_development_pilot/</span></code>, sin sobrescribir el master anterior. El recibo final distinguirá ajustes nuevos de cachés reutilizadas y declarará el uso de IA. <strong>Hasta disponer de ese recibo, este apartado acredita preparación y pruebas de software, sin resultados de mercado nuevos.</strong></p>
-<p>Si la heurística falla, se reporta el resultado y se decide la siguiente modificación en la bitácora. Si se supera, todavía corresponde repetir la búsqueda de antecedentes de la composición precisa, conciliar el inventario global de diseños y preparar un protocolo confirmatorio con datos adecuados, familia, potencia y presupuesto. Ninguno de esos estados se marca completado por este piloto.</p>
+<p>El guardado utiliza objetos Git empaquetados y verifica cada publicación. Publica el plan antes del primer ajuste y, por receta, el inicio, el primer checkpoint validado y el cierre. Conserva modelo, optimizador, generadores aleatorios, selección, plazo e identidad del software; una reanudación exige el mismo perfil registrado y recupera únicamente lo guardado. Si se pierde el estado local antes del primer checkpoint remoto validado y vence el plazo, el ajuste queda incompleto: no se renueva su presupuesto. Los resultados nuevos se guardan en <code class="docutils literal notranslate"><span class="pre">runs/e3_v3_development_pilot/</span></code>, sin sobrescribir el master anterior. El recibo final de <code class="docutils literal notranslate"><span class="pre">20261120T031424176339Z</span></code> ya distingue los 30 ajustes completados y mantiene la declaración de IA; sus hashes, tablas y veredicto se incorporan en <a class="reference internal" href="08_verificacion_estadistica.html#e3-v3-pilot-completed-20261120"><span class="std std-ref">8.19</span></a>. Este plan no se convierte retrospectivamente en una confirmación.</p>
+<p>La heurística <strong>falló</strong> en la ejecución posterior: la candidata completa fue 2,70 % peor que el mejor control. Se reporta el resultado adverso y se conserva la regla. Cualquier modificación o elección futura debe anotarse como decisión nueva, sin promover automáticamente la ablación ganadora. La revisión de prioridad y un eventual protocolo confirmatorio con datos adecuados, familia y potencia mantienen sus requisitos propios. El inventario retrospectivo se consolida en 7.14; no recupera prerregistro o independencia temporal.</p>
+</section>
+<section id="conciliacion-documental-de-disenos-selecciones-e-intentos">
+<span id="e3-design-inventory-reconciled"></span><h2>7.14 Conciliación documental de diseños, selecciones e intentos<a class="headerlink" href="#conciliacion-documental-de-disenos-selecciones-e-intentos" title="Link to this heading">#</a></h2>
+<p>La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md">bitácora canónica actualizada</a> incorpora una conciliación retrospectiva posterior a los resultados conocidos. El <a class="reference download internal" download="" href="../_downloads/653f38757d68955877d6f59e5ae3cb0a/design_inventory.csv"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">de</span> <span class="pre">identidades</span></code></a>, la <a class="reference download internal" download="" href="../_downloads/33f64554a9b065f8611ca9a996ae55cb/design_aliases.csv"><code class="xref download docutils literal notranslate"><span class="pre">tabla</span> <span class="pre">de</span> <span class="pre">alias</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/7daa5de6ad27f498a3b161156a11bbe3/reconciliation.json"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">estructurado</span></code></a> fijan los conteos y sus unidades. Los registros históricos conservan sus bytes y fechas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Unidad documental</p></th>
+<th class="head text-right"><p>Conteo reconciliado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Variantes neuronales funcionales implementadas</p></td>
+<td class="text-right"><p><strong>15</strong>: cinco iniciales, tres v2, tres por momentos y cuatro atómicas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Variantes neuronales distintas con ajuste de mercado</p></td>
+<td class="text-right"><p><strong>12</strong>; las tres intervenciones iniciales restantes sólo tienen evidencia artificial.</p></td>
+</tr>
+<tr class="row-even"><td><p>Controles analíticos o de transformación examinados</p></td>
+<td class="text-right"><p><strong>4</strong>, incluido full proyectado, omitido en el subtotal previo de tres.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Propuestas neuronales sin implementación acreditada</p></td>
+<td class="text-right"><p><strong>3</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Entradas de diseño documentadas con identidad propia</p></td>
+<td class="text-right"><p><strong>22</strong>; un bosquejo de referencia Faithful sigue sin especificación suficiente para decidir si sería una entrada adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ensayos HPO conservados</p></td>
+<td class="text-right"><p><strong>183</strong>: 168 en la auditoría y 15 en el piloto V3.</p></td>
+</tr>
+<tr class="row-even"><td><p>Trabajos completos en los alcances conciliados</p></td>
+<td class="text-right"><p><strong>844</strong>: 18 neuronales históricos, los 796 de auditoría y 30 neuronales V3.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los 22 registros son un conteo <strong>del corpus disponible</strong>, no de todas las ideas informales o decisiones sin archivo. El intervalo 22–23 sólo representa la ambigüedad identificada de aquel bosquejo dentro del corpus; no constituye un límite superior de todas las oportunidades de selección. La conciliación cierra las identidades observables y deja una ausencia concreta, en lugar de equiparar ocho recetas, diez semillas o 796 trabajos al Nd global.</p>
+<p>La completa inicial y full/M11 se deduplican; M00 y la aditiva conservan sus identidades. Las 93 corridas de la aditiva —una v2, diez de estabilidad, 76 de auditoría y seis del nuevo piloto— son repeticiones de una estructura. Las pérdidas distintas sí definen recetas. El <a class="reference download internal" download="" href="../_downloads/de93e0abfa87a7f7b4b3f10a0ea1e52d/selection_opportunities.csv"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">selección</span></code></a> separa tasas, inicialización y validaciones; las decisiones de cuadratura 64/128/256 o pruebas artificiales no se ocultan ni se cuentan como arquitecturas entrenadas en mercado.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/8a2a2a464795699a49499c70f4d998dc/attempt_ledger.csv.gz"><code class="xref download docutils literal notranslate"><span class="pre">ledger</span> <span class="pre">comprimido</span> <span class="pre">de</span> <span class="pre">intentos</span></code></a> contiene 824 ajustes neuronales, cuatro ARIMA y 16 trabajos sin optimizador. Los 900 renglones de recursos históricos corresponden a fases de 796 trabajos únicos; el autoencoder tiene tres fases que comparten presupuesto. El <a class="reference download internal" download="" href="../_downloads/2b0da5944ad3b1346aa1957005a55f35/incidents.json"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">incidentes</span></code></a> conserva interrupciones de admisión, transporte y trabajador. Tres fases históricas mantienen cómputo perdido desconocido; los sobrepasos de plazo que incluyen desconexiones no se presentan como horas GPU medidas.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/2782bf34f0ec9f33a55a74f4dc7901a4/verify_inventory.py"><code class="xref download docutils literal notranslate"><span class="pre">verificador</span> <span class="pre">reproducible</span></code></a>, las <a class="reference download internal" download="" href="../_downloads/55cc2668037be7d2743b26ed3c6e2fb5/sources.zip"><code class="xref download docutils literal notranslate"><span class="pre">fuentes</span> <span class="pre">propias</span> <span class="pre">congeladas</span></code></a> y su <a class="reference download internal" download="" href="../_downloads/c6d73d2e6b709fda8603d12bb4c84280/source_manifest.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span></code></a> permiten reconstruir la conciliación sin PyTorch, NPZ, pesos o entrenamiento. Se declara IA; los 21 blobs fuente se cotejaron con sus commits públicos. El conteo no corrige por sí solo el sesgo de selección, restaura cegamiento o acredita R1/R3. La V3 completa conserva su resultado adverso y la heurística incumplida, sin promocionar retrospectivamente al control ganador.</p>
 </section>
 </section>
 
@@ -1252,6 +1292,7 @@ Sólo después, si procede, registrar la versión y un protocolo confirmatorio
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-controlado-de-desarrollo-de-v3">7.13 Piloto controlado de desarrollo de V3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conciliacion-documental-de-disenos-selecciones-e-intentos">7.14 Conciliación documental de diseños, selecciones e intentos</a></li>
 </ul>
   </nav></div>
 

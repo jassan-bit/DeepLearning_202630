@@ -397,6 +397,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-del-plan-y-contingencia">Recursos del plan y contingencia</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobacion-externa-y-aceptacion-preparada-para-el-cierre">10.2 Comprobación externa y aceptación preparada para el cierre</a></li>
 </ul>
             </nav>
         </div>
@@ -525,6 +526,14 @@
 <p>Antes de la sustentación se abrirá la URL con antelación, se repetirá el humo y se grabará un vídeo breve de esa versión, con fecha y capturas. Si falla el servicio durante la exposición, se explicará el incidente y el alcance del respaldo. Las capturas locales del capítulo 9 y un vídeo futuro no sustituyen una URL Render funcional ni un recibo público aprobado. El <a class="reference internal" href="12_lista_entregables.html"><span class="std std-doc">capítulo 12</span></a> debe conservar esos pendientes y el <a class="reference internal" href="13_sustentacion.html"><span class="std std-doc">capítulo 13</span></a> distingue la demostración real de la contingencia.</p>
 </section>
 </section>
+<section id="comprobacion-externa-y-aceptacion-preparada-para-el-cierre">
+<span id="e3-current-public-acceptance-handoff"></span><h2>10.2 Comprobación externa y aceptación preparada para el cierre<a class="headerlink" href="#comprobacion-externa-y-aceptacion-preparada-para-el-cierre" title="Link to this heading">#</a></h2>
+<p>La comprobación del 19 de noviembre de 2026, hora de Bogotá, verificó las referencias locales del cliente V2 existente: <strong>17 archivos para cinco ONNX</strong>, metadatos y el intervalo posterior E3, sin inferencia. Sus blobs se cotejaron con la fuente publicada. La <a class="reference download internal" download="" href="../_downloads/9ee7dd63e007ad2a442c5e6c00dbcd29/render_readiness_attempt.json"><code class="xref download docutils literal notranslate"><span class="pre">sonda</span> <span class="pre">de</span> <span class="pre">disponibilidad</span></code></a> ejecutó el helper <code class="docutils literal notranslate"><span class="pre">wake_service</span></code> de ese cliente durante diez segundos. No ejecutó el navegador ni obtuvo HTTP del servidor de origen; no sustituye el recorrido público completo de 180/30/30 segundos.</p>
+<p>Las <a class="reference download internal" download="" href="../_downloads/d7244e08688ea09df7d0f8f35498675d/network_observations.json"><code class="xref download docutils literal notranslate"><span class="pre">consultas</span> <span class="pre">públicas</span></code></a> fallaron en el túnel del proxy del entorno con 403. Ese fallo corresponde al acceso del cliente y no permite afirmar que Render esté caído. Se mantiene <strong>aceptación pública sin acreditar</strong>, junto con la observación anterior Live comunicada por el operador. Tampoco se dispone del SHA efectivo actual confirmado en su log; no se adivinó a partir de <code class="docutils literal notranslate"><span class="pre">main</span></code> ni de la autodeclaración de <code class="docutils literal notranslate"><span class="pre">/healthz</span></code>.</p>
+<p>Queda preparado el <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_evidence_close_20261120/release/render_public_acceptance_colab.py">helper de aceptación CPU para Colab</a> y su <a class="reference download internal" download="" href="../_downloads/f04f76c213d085a8538ab14a6e52dd8e/README.md"><code class="xref download docutils literal notranslate"><span class="pre">procedimiento</span> <span class="pre">completo</span></code></a>. Tras <strong>Manual Deploy</strong>, el propietario copia el SHA de 40 caracteres del despliegue y lo introduce en el helper. Éste obtiene las referencias de esa versión, verifica los clientes revisados y ejecuta el V2 original, con sus tres páginas, cinco predicciones, intervalos, explicaciones y huellas. El entorno de Playwright es separado, no requiere GPU y no reentrena ni recalibra.</p>
+<p>El ZIP de salida conserva recibo, contexto y capturas; debe persistirse antes de cerrar Colab. Sólo su aprobación permite registrar el humo público. La concordancia de SHA autodeclarado conserva el límite de no ser una atestación completa del código remoto. El plan del servicio y los pesos/calibradores permanecen como estaban; este cierre no contrata recursos ni convierte el catálogo histórico en el de la auditoría nueva.</p>
+<p>La <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_cierre_publico_cpu_colab.ipynb">celda CPU fijada al código revisado</a> solicita el SHA del log de despliegue y verifica el helper antes de ejecutarlo. También se conserva su <a class="reference download internal" download="" href="../_downloads/6757439b82f9071b7df63bbdb58a5d5f/colab_cell.py"><code class="xref download docutils literal notranslate"><span class="pre">código</span> <span class="pre">de</span> <span class="pre">arranque</span></code></a> para pegarlo directamente en Colab. Guarda el ZIP de salida y súbelo a GitHub antes de cerrar la sesión; el helper no promete un guardado remoto que no realiza.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -603,6 +612,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-del-plan-y-contingencia">Recursos del plan y contingencia</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobacion-externa-y-aceptacion-preparada-para-el-cierre">10.2 Comprobación externa y aceptación preparada para el cierre</a></li>
 </ul>
   </nav></div>
 

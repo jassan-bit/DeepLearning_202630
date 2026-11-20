@@ -30,7 +30,7 @@ Se conservan su {download}`copia de borrador para revisión <../_static/e3_revis
 | Particiones, ejecuciones, semillas y determinismo | Calendario y diez inicializaciones registrados para la comparación histórica; 8.17 fija particiones, purgas y semillas de la auditoría exploratoria. Quedan pendientes la separación confirmatoria y el número final dimensionado por potencia. |
 | Familia, pruebas, ajustes y nivel | Los 16 rivales permanecen completos. El análisis posterior tiene Holm global48, α=0,05 y MCS auxiliar al 90 %; justificar las pruebas y familias definitivas antes de confirmar. |
 | Optimización, cómputo y potencia | Registrar número de configuraciones, épocas/parada y tiempo real por modelo, con capacidad y hardware. La comparación histórica no declara presupuesto equivalente. La auditoría exploratoria de 8.17 fija rejilla y presupuesto común; la potencia por contraste y conjunta sigue pendiente. |
-| Nd y desarrollo frente a confirmación | [Bitácora consolidada parcial](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/design_log.md); ocho recetas de desarrollo no son el Nd global, y diez semillas no son diez diseños. |
+| Nd y desarrollo frente a confirmación | {ref}`Inventario conciliado de 7.14 <e3-design-inventory-reconciled>`: variantes, controles, propuestas, 183 ensayos HPO y 844 trabajos con ámbitos separados. No se cuentan semillas como diseños ni se inventan decisiones sin registro. |
 | Fecha/tag y desviaciones | Registrar la versión final antes de sus experimentos y mantener una bitácora fechada de desviaciones, con motivo e impacto. Un análisis no previsto conserva alcance exploratorio y no sustenta por sí solo R3. |
 
 La ecuación {eq}`eq-e3-primary-mean-rmse-gain` define la métrica primaria como la **media de las RMSE individuales**, en unidades originales de sigma7 poblacional, sin anualización:
@@ -175,7 +175,7 @@ El pareado de fechas, objetivos y coordenadas de semilla fue verificado. El pare
 
 | Diagnóstico pertinente a F2 | Qué debe comprobarse y alcance actual |
 |---|---|
-| Dependencia de residuos y de pérdidas | Ljung–Box, ARCH-LM y BDS cuando sus supuestos sean pertinentes; examinar autocorrelación, heterocedasticidad y dependencia no lineal. No fueron ejecutados para cerrar adecuación de E3 en esta etapa. |
+| Dependencia de residuos y de pérdidas | La {ref}`actualización de 8.20 <e3-existing-adequacy-close-20261120>` ejecuta Ljung–Box(7/14) y ARCH-LM(7) en dos versiones de pesos y familias diagnósticas separadas, con supuestos y resultados adversos. BDS no se añade sin justificar su pertinencia. Son diagnósticos retrospectivos y no acreditan adecuación completa. |
 | Distribución y calibración puntual | Jarque–Bera como diagnóstico, Mincer–Zarnowitz y residuos con intercepto/pendiente y cohortes claramente definidas. La falta de normalidad de residuos no se sustituye por Shapiro entre diez ganancias de semillas. |
 | Ajuste y sobreajuste del original | Tablas A/B propias, baseline trivial, brecha con el margen δg, riesgos comparables y consistencia dentro/fuera de muestra. δg conserva el valor numérico heredado cuando corresponda, pero su nula de brecha no es la de ganancia mayor que δ. Los diagnósticos de otras redes no acreditan a E3. |
 | Calidad probabilística | PIT, cobertura, cuantiles, pinball, CRPS o log-verosimilitud sólo cuando exista la salida probabilística y el procedimiento que los defina. La cabeza aditiva es puntual: una colección de semillas no es por sí sola una distribución predictiva calibrada. |
@@ -772,3 +772,150 @@ La evaluación de los tres archivos adicionales, el tratamiento común, la sensi
 4. **Contribución y producto:** la novedad sustantiva de R1 y la defensa académica de R2 siguen sus requisitos propios. La reproducción integral independiente de esta campaña, el servicio Render, el catálogo exportado y el depósito DOI no se completan por guardar estas figuras. El replay Docker histórico conserva su ámbito anterior de 11 CSV y 143 trayectorias.
 
 El cierre operativo está verificado. Los recibos científicos mantienen **`R1_accredited=false` y `R3_accredited=false`**, y la actualización no asigna una calificación automática.
+
+(e3-v3-pilot-completed-20261120)=
+## 8.19 Piloto V3 terminado: ablaciones y resultado adverso de desarrollo
+
+**El piloto completó sus 30 ajustes y no superó la heurística de continuación.** El [resultado inmutable](https://github.com/jassan-bit/DeepLearning_202630/tree/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z) corresponde al código `8f65eac34aaf49293924ae8328c235cedbdd2866`, ejecución `20261120T031424176339Z`, snapshot 93. Se conservan sus {download}`recibo final <../_static/e3_evidence_close_20261120/pilot/archive/payload/pilot_receipt.json>`, {download}`plan <../_static/e3_evidence_close_20261120/pilot/archive/payload/plan.json>` y {download}`veredicto original <../_static/e3_evidence_close_20261120/pilot/archive/payload/development_verdict.json>`. Los 796 trabajos anteriores pertenecen a la referencia aditiva y no se convierten en entrenamientos V3.
+
+### Qué se ejecutó y qué se verificó después
+
+El estudio original realizó 15 ajustes HPO y 15 finales: cinco recetas neuronales, tres tasas con una semilla HPO y tres semillas finales por receta; además evaluó los dos controles analíticos. Las 532 ventanas de ajuste y las 54 de selección conservan su función. Tras siete fechas purgadas, la evaluación usa **55 fechas, del 7 de septiembre al 31 de octubre de 2024**, ya expuestas históricamente como desarrollo. Los recibos declaran cero miembros de calibración/prueba abiertos y ningún conjunto D01–D03 usado en este piloto.
+
+El {download}`control de integridad <../_static/e3_evidence_close_20261120/pilot/generated/archive_verification.json>` comprueba **19 archivos originales**, cinco hashes de artefactos y los enlaces del plan, admisión, launcher y estado. De las predicciones guardadas se recalculan **17 trayectorias y 935 filas**, con los mismos objetivos y fechas. Las 935 filas no son 935 observaciones independientes. Los 30 recibos de fase registran estados entrenados y terminados, sin exceso de plazo declarado en este piloto; ese dato no se extrapola a los recursos de la auditoría histórica. No se descargaron ni reprodujeron checkpoints, ni los 259 archivos completos del snapshot.
+
+### Resultado de las siete recetas y decisión original
+
+La métrica principal permanece fijada como **media de las RMSE individuales**, no RMSE de un ensamble medio ni una métrica elegida después del resultado. La {download}`recomputación completa <../_static/e3_evidence_close_20261120/pilot/generated/metrics_recomputed.csv>` y las {download}`comparaciones de ablación <../_static/e3_evidence_close_20261120/pilot/generated/ablation_comparisons.csv>` conservan todas las recetas:
+
+| Receta | Trayectorias | RMSE media individual | DE entre semillas | MAE media |
+|---|---:|---:|---:|---:|
+| `atom_mse_only` | 3 | 0,002073833 | 0,000023659 | 0,001644275 |
+| `fixed_probs` | 3 | 0,002083649 | 0,000040853 | 0,001557355 |
+| `atom_plugin` | 3 | 0,002094286 | 0,000031909 | 0,001549696 |
+| `floor_plus_mean_excess` | 1 analítica | 0,002114231 | No aplica | 0,001813483 |
+| `atom_crps` —V3 completa— | 3 | 0,002129916 | 0,000013719 | 0,001591685 |
+| Aditiva | 3 | 0,002157281 | 0,000022490 | 0,001811966 |
+| `floor_only` | 1 analítica | 0,002790341 | No aplica | 0,001831766 |
+
+La V3 completa tiene **2,70 % más RMSE que `atom_mse_only`**, el mejor control neuronal y global, y aproximadamente 0,74 % más que el control de piso más exceso. Mejora un 1,27 % frente a la aditiva, pero eso no satisface la regla frente al mejor de los controles completos. Para superar la heurística del 2 %, su RMSE debía ser como máximo **0,002032356**. El veredicto permanece **`continuation_heuristic_passed=false`**. La completa pierde en RMSE frente a las tres ablaciones neuronales en las tres semillas emparejadas; estos conteos no son una prueba estadística ni establecen un efecto causal general de cada componente.
+
+Retirar CRPS, fijar masas y sustituir la lectura exacta ya tienen evidencia empírica **de desarrollo**. La variante de masas fijas tiene 1236 parámetros y las de masas aprendidas 1262; no se disimula esa diferencia de capacidad. La menor MAE de otro control y los CRPS_U guardados se conservan como resultados secundarios, sin reemplazar RMSE para rescatar la decisión. **La variante sin CRPS no se promueve automáticamente a modelo final.** El resultado adverso no constituye una sanción de integridad ni demuestra por sí mismo ausencia de novedad; muestra que este piloto no aporta la utilidad exigida por su regla original.
+
+```{figure} ../_static/e3_evidence_close_20261120/pilot/generated/pilot_rmse_and_dependence.png
+:name: fig-e3-v3-pilot-saved-results
+:width: 100%
+
+Resultados de desarrollo guardados. Los puntos muestran semillas, las barras su media de RMSE individuales y los rombos controles analíticos. Las correlaciones de residuos son promedios descriptivos entre semillas, sin intervalos ni pruebas. La dispersión entre semillas no mide incertidumbre entre mercados o calendarios. [SVG descargable](../_static/e3_evidence_close_20261120/pilot/generated/pilot_rmse_and_dependence.svg).
+```
+
+### Adecuación posible con las predicciones disponibles
+
+El {download}`reanálisis reproducible <../_static/e3_evidence_close_20261120/pilot/analyze_saved_pilot.py>` añade {download}`errores y correlaciones por trayectoria <../_static/e3_evidence_close_20261120/pilot/generated/residual_diagnostics.csv>` y {download}`cortes mensuales completos <../_static/e3_evidence_close_20261120/pilot/generated/monthly_diagnostics.csv>`. Son diagnósticos posteriores al resultado, sin remuestreos ni valores p. En la completa, el sesgo medio `predicción − objetivo` es −0,00026448 y la correlación descriptiva media del residuo a siete días es −0,320. Una correlación pequeña en otro desfase no prueba independencia de ventanas solapadas.
+
+Los dos meses se conservan juntos: en septiembre —24 fechas—, las RMSE medias son 0,002012253 para la completa y 0,002022917 sin CRPS; en octubre —31—, 0,002216532 y 0,002112206. No se selecciona septiembre para declarar éxito: la decisión usa las 55 fechas y la regla previa. Las cinco recetas seleccionaron la tasa máxima de la cuadrícula, 0,003; esto delimita la sensibilidad estudiada, sin autorizar una búsqueda nueva guiada por esta evaluación.
+
+La {download}`matriz de alcance de adecuación <../_static/e3_evidence_close_20261120/pilot/generated/adequacy_scope_matrix.csv>` identifica límites que no pueden cerrarse con estos archivos. Faltan predicciones de ajuste y riesgos comparables para completar las Tablas A/B y la brecha de sobreajuste. Los CRPS_U originales y su agregación sí están disponibles, pero faltan leyes atómicas por observación e intervalos guardados para recalcular independientemente esa puntuación o certificar calibración. Tampoco se reconstruyen retrospectivamente margen formal, potencia prospectiva, tres pruebas apropiadas por contraste o una familia confirmatoria. Los tres conjuntos adicionales de 8.18 se mantienen como otra auditoría; no fueron evaluados por V3 aquí.
+
+El {download}`verificador aritmético independiente <../_static/e3_evidence_close_20261120/pilot/verify_saved_pilot.py>` y su {download}`recibo <../_static/e3_evidence_close_20261120/pilot/generated/independent_arithmetic_verification.json>` usan una segunda formulación con la biblioteca estándar. Esta actualización declara asistencia de IA y ejecuta **cero entrenamientos, inferencias o remuestreos nuevos**. Se mantienen **`R1_accredited=false` y `R3_accredited=false`**; cualquier modificación posterior deberá registrarse como diseño nuevo, preservando este resultado, su protocolo y el conjunto de ensayos.
+
+(e3-existing-adequacy-close-20261120)=
+## 8.20 Adecuación retrospectiva con predicciones guardadas
+
+Este cierre completa evidencia que podía calcularse a partir de archivos ya
+guardados. Verifica las doce tablas de la auditoría de 8.18 y cuatro paneles
+inmutables del candidato; de estos últimos conserva sólo 18.080 predicciones
+de prueba limpia, correspondientes a diez semillas en cada conjunto. No entrena
+modelos, realiza inferencia ni repite los 9.999 remuestreos anteriores. El
+{download}`manifiesto de entradas <../_static/e3_evidence_close_20261120/adequacy/archive/input_manifest.json>`
+y el {download}`recibo del reanálisis <../_static/e3_evidence_close_20261120/adequacy/results/adequacy_receipt.json>`
+fijan el origen, los filtros y los hashes; se declara asistencia de IA.
+
+### Brecha, controles triviales y cobertura
+
+Las métricas de ajuste y de las particiones posteriores ya estaban guardadas.
+Las {download}`doce comparaciones de brecha <../_static/e3_evidence_close_20261120/adequacy/results/descriptive_fit_heldout_gaps.csv>`
+emparejan semillas dentro de cada conjunto. La tabla resume prueba limpia:
+
+| Conjunto | RMSE prueba / RMSE ajuste¹ | Cobertura media, nominal 90 % | Menor cobertura trimestral media² |
+|---|---:|---:|---:|
+| D00 | 0,9364 | 94,51 % | 86,44 % —2026Q1— |
+| D01 | 0,2945 | 91,50 % | 82,10 % —2012Q4— |
+| D02 | 0,7802 | 91,88 % | 90,11 % —2021Q2— |
+| D03 | 0,6716 | 89,29 % | 85,71 % —2024Q1— |
+
+¹ Cociente de RMSE medias individuales, sin ensamblar predicciones. Las
+particiones corresponden a periodos y regímenes distintos; una razón menor
+que uno **no demuestra ausencia de sobreajuste**, en particular en D01. Se
+conservan también la dispersión y la brecha emparejada entre semillas sobre
+el calendario fijo. No se reconstruye un margen de brecha ni potencia previos.
+
+² Mínimo descriptivo entre todos los trimestres guardados, no una selección
+previa para contrastar. La {download}`tabla de cobertura y deriva <../_static/e3_evidence_close_20261120/adequacy/results/coverage_drift_readout.csv>`
+conserva fechas, rangos entre semillas y ámbito de cada valor.
+
+La {download}`comparación con cinco controles triviales <../_static/e3_evidence_close_20261120/adequacy/results/trivial_baseline_comparison.csv>`
+incluye los dos controles de piso, persistencia, estacional y ARIMA. Aunque el
+candidato tiene menor RMSE, su **MAE supera a la de `floor_only` en 5,63 % en D00
+y 26,59 % en D01**. Una ventaja en la métrica de entrenamiento no se interpreta
+como superioridad en todas las pérdidas o escenarios.
+
+### Diagnósticos de residuos: dos ejecuciones, dos familias
+
+Se calcularon Ljung–Box a rezagos 7/14, ARCH-LM a 7 y la hipótesis conjunta de
+Mincer–Zarnowitz —intercepto cero y pendiente uno— con HAC Bartlett de rezago
+14. Son rezagos en observaciones, que representan sesiones en D01. Se usa una
+regresión auxiliar sobre predicciones ya guardadas; no se ajusta nuevamente el
+modelo de pronóstico. Las ventanas del objetivo comparten retornos y las diez
+semillas no constituyen diez mercados independientes.
+
+La {download}`familia de la auditoría ampliada <../_static/e3_evidence_close_20261120/adequacy/results/extended_candidate_residual_diagnostics.csv>`
+contiene **160 valores p diagnósticos**, ajustados conjuntamente por Holm:
+cuatro conjuntos × diez semillas × cuatro procedimientos/rezagos. Entre los
+resultados adversos se encuentran los siguientes rangos entre semillas:
+
+| Conjunto y diagnóstico | Rango de p ajustado, Holm160 | Lectura delimitada |
+|---|---:|---|
+| D00, ARCH-LM(7) | 8,15 × 10⁻¹³ a 0,02882 | Dependencia de residuos cuadrados compatible con efecto ARCH, bajo los supuestos del diagnóstico. |
+| D01, Mincer–Zarnowitz con HAC(14) | 1,40 × 10⁻¹⁸ a 4,63 × 10⁻¹⁰ | Desviación de la calibración lineal de la media. Las pendientes se sitúan entre 0,9452 y 0,9702. |
+
+La tabla completa conserva los resultados restantes. Los valores grandes o una
+falta de rechazo no certifican adecuación. La normalidad no es requisito general
+para que un pronóstico de regresión sea útil: Jarque–Bera se aporta como
+estadístico de forma, con asimetría y curtosis, **sin interpretar su p iid** bajo
+dependencia serial. La asimetría positiva y las colas pronunciadas se conservan.
+
+El {download}`diagnóstico histórico separado <../_static/e3_evidence_close_20261120/adequacy/results/historical_residual_diagnostics.csv>`
+utiliza las diez trayectorias de 608 fechas del commit `510c3bdd`, con pesos
+anteriores y una familia propia Holm40. No se mezcla con Holm160 ni se atribuye
+a V3. Las dos familias son retrospectivas y auxiliares: **no son las tres pruebas
+de superioridad por rival de R3**, no justifican potencia prospectiva y no
+completan automáticamente las Tablas A/B.
+
+Los valores p están condicionados a los supuestos de dependencia, momentos y
+aproximación asintótica. Holm no corrige un p marginal inválido. Los datos
+expuestos no recuperan cegamiento y una decisión posterior no se convierte en
+preregistro. Tampoco se fabrican PIT o CRPS para un punto acompañado sólo por
+un intervalo; esa salida no define una distribución predictiva completa.
+
+### Recursos, reproducción y requisitos abiertos
+
+El {download}`inventario de campos de recursos <../_static/e3_evidence_close_20261120/adequacy/results/resource_field_inventory.csv>`
+distingue dato suministrado, ausente o no aplicable. **900 filas de fases
+representan 796 trabajos**, con fases adicionales del autoencoder. Tres
+segmentos mantienen cómputo activo desconocido tras una interrupción. El máximo
+exceso de plazo, 35.283,63 segundos, incluye desconexión y **no es una medida de
+9,8 horas de cómputo GPU**. No se completa energía o FLOPs usando parámetros,
+ni se certifica igualdad de cómputo total real por compartir un límite nominal.
+
+La {download}`metodología y comandos <../_static/e3_evidence_close_20261120/adequacy/README.md>`,
+el {download}`script de reanálisis <../_static/e3_evidence_close_20261120/adequacy/audit_existing_predictions.py>`
+y la {download}`verificación independiente <../_static/e3_evidence_close_20261120/adequacy/results/reference_verification.json>`
+permiten reproducirlo sin red ni modelos: se comprobaron 250 resultados numéricos
+contra statsmodels y 200 ajustes de Holm. La concordancia informática no
+demuestra los supuestos científicos. La {download}`matriz de cierre <../_static/e3_evidence_close_20261120/adequacy/closure_matrix.csv>`
+separa lo calculado de lo pendiente: margen/criterios de adecuación y potencia
+previos, interpretación de estabilidad y distribución, datos realmente reservados,
+familia confirmatoria pertinente, recursos completos y reproducción independiente.
+**Este cierre aporta diagnósticos; no acredita R1 o R3 ni supera formalmente
+las Tablas A/B por retrospectiva.**

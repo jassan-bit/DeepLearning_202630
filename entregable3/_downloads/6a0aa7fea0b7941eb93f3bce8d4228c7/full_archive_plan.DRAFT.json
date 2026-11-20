@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "state": "assembly_plan_not_full_archive_or_publication_receipt",
+  "scope": "Full deliverable needs source, all required immutable evidence, authorized data/instructions, artifacts and locks; a documentary supplement does not supply all of these.",
+  "final_documentation_source_commit": null,
+  "known_evidence_base_commit": "29f9a26f1fd05484c6581ea6538ad7cb5a4781cb",
+  "components": [
+    {
+      "kind": "final_repository_source",
+      "commit": "FILL_WITH_ACTUAL_FINAL_PUBLICATION_COMMIT",
+      "download_URL_pattern": "https://github.com/jassan-bit/DeepLearning_202630/archive/{commit}.zip",
+      "verification": "Record exact40hexcommit, downloaded byte count and SHA256; inspect archive paths and rights. A main-branch source ZIP does not automatically include results kept only in other branches."
+    },
+    {
+      "kind": "prior_796_job_audit_delta_chain",
+      "master_run_id": "20261119T031104515520Z",
+      "terminal_commit": "16a4504f6fb9208c7d6f89b65017194fa20470da",
+      "terminal_path": "runs/e3_extended_audit/20261119T234320461006Z",
+      "terminal_sequence": 193,
+      "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+      "protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+      "verification": "The terminal part is a delta. Follow stage_receipt.previous_part through the retained chain, verify receipt and storage manifests, hydrate the logical master without overwriting inconsistent bytes, and verify its796completedjobs. Do not call terminalpart193alone a full snapshot. Keep source/runtime/data/artifact references and document any unavailable input. No retraining is needed for collection."
+    },
+    {
+      "kind": "V3_development_pilot_cumulative_snapshot",
+      "master_run_id": "20261120T031424176339Z",
+      "commit": "8eaa581bc34b615a8507c9e384a3e4be29084720",
+      "path": "runs/e3_v3_development_pilot/20261120T031424176339Z",
+      "sequence": 93,
+      "source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+      "verification": "Verify snapshot_manifest, plan and artifact/checkpoint hashes; retain all30completedfits and the failed continuation heuristic. Preserved snapshot is development evidence, not confirmatory R3."
+    },
+    {
+      "kind": "data_rights_and_reconstruction",
+      "known_training_archive_commit": "af3f1223ad5899ed63016d2af2d09bae8470ab00",
+      "known_training_archive_path": "book_e2/_static/e2_scientific_closure_20261116/data_audit/current_cohort_arrays.npz",
+      "known_training_archive_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+      "verification": "Check per-source rights for historicalBTC/WIKI-AAPL/ETHUSDT/BTCUSD_PERP and derived outputs. Include only inputs that may be redistributed; otherwise supply exact original URLs, dates, checksums and admitted reconstruction instructions. Public GitHub availability is not an inferred open license."
+    },
+    {
+      "kind": "independent_reproduction",
+      "state": "pending",
+      "verification": "Specify whether the reviewer reproduces aggregates, inference or full training. The historical11CSV/143trajectory container and the new CSV-only supplement have narrower scopes than the796trainingcampaign. Preserve independent execution identity, image/source/data hashes, commands and maximum discrepancy."
+    }
+  ],
+  "DOI": "10.5281/zenodo.24356217",
+  "DOI_reserved_not_verified_published": true,
+  "license_selected": false,
+  "new_fits": 0,
+  "AI_assistance_declared": true
+}

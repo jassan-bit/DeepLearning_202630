@@ -1,0 +1,23 @@
+design_id,canonical_name,parent_id,category,evidence_state,parameters,mechanism_change,training_loss,implementation_context,decision,source_record,parameter_scope,completed_neural_fits_in_named_sources
+N01,full,,neural,market_fitted,1211,penalty+saturation+content,MSE,v1_full,Preservar: peor que M00 en v1.,legacy_inventory.csv,trainable_total,1
+N02,without_penalty,N01,neural,synthetic_only,1210,remove_penalty,MSE,not_market_fitted,Sólo intervención funcional artificial; no RMSE de mercado.,initial_design_log.md,trainable_total,0
+N03,without_saturation,N01,neural,synthetic_only,1211,remove_saturation,MSE,not_market_fitted,Sólo intervención funcional artificial; no RMSE de mercado.,initial_design_log.md,trainable_total,0
+N04,without_content,N01,neural,synthetic_only,1199,remove_query,MSE,not_market_fitted,Contenido convencional; no tercera innovación.,initial_design_log.md,trainable_total,0
+N05,M00,N01,neural,market_fitted,1210,remove_penalty_and_saturation,MSE,v1_M00,Referencia conjunta; no aísla dos componentes.,v1_design_log.md,trainable_total,1
+N06,additive_positive_head,N05,neural,market_fitted,1210,observable_floor_plus_positive_excess,normalized_MSE,v2_additive,Conservar como referencia; repeticiones no crean diseños.,legacy_inventory.csv,trainable_total,93
+N07,innovation_mean_only,N05,neural,market_fitted,1210,half_t5_mean_quadrature128,normalized_MSE,v2_half_t_mean,Control sin NLL; conservar resultado.,legacy_inventory.csv,trainable_total,1
+N08,innovation_density_mean,N07,neural,market_fitted,1210,same_half_t_mean,normalized_MSE+0.1_NLL_U,v2_half_t_joint,No supera heurística exploratoria.,legacy_inventory.csv,trainable_total,1
+N09,moment_joint,N05,neural,market_fitted,1236,moment_envelope_three_heads,normalized_MSE+0.1_m_score+0.1_q_score,moments_joint,"3,635 % peor que aditiva congelada; no promover.",legacy_inventory.csv,trainable_total,1
+N10,moment_mean_only,N09,neural,market_fitted,1236,same_moment_mean_ancestors,normalized_MSE,moments_mean_only,No afirmar identificación de momentos sin sus scores.,legacy_inventory.csv,trainable_total,1
+N11,direct_moment_aux,N09,neural,market_fitted,1236,direct_mean_same_auxiliary_heads,normalized_MSE+0.1_m_score+0.1_q_score,moments_direct,Control de vínculo entre media y momentos.,legacy_inventory.csv,trainable_total,1
+N12,atom_crps,N05,neural,market_fitted,1262,learned_three_atom_law_exact_pushforward_mean,normalized_MSE+0.1_CRPS_U,atomic_full,"No supera regla: RMSE 2,7043 % peor que N13.",v3_plan.json,trainable_total,6
+N13,atom_mse_only,N12,neural,market_fitted,1262,same_atomic_law_remove_CRPS,normalized_MSE,atomic_no_CRPS,Mejor control en desarrollo; no promoción automática.,v3_plan.json,trainable_total,6
+N14,fixed_probs,N12,neural,market_fitted,1236,uniform_fixed_masses,normalized_MSE+0.1_CRPS_U,atomic_fixed_masses,Capacidad menor declarada; no parámetros inactivos.,v3_plan.json,trainable_total,6
+N15,atom_plugin,N12,neural,market_fitted,1262,second_moment_plugin_same_law,normalized_MSE+0.1_CRPS_U,atomic_plugin,"Aísla agregación, no superioridad frente a aditiva.",v3_plan.json,trainable_total,6
+C01,floor_only,,analytical_control,evaluated,0,sqrt_A,none,analytic,Sin ajuste neuronal.,v1_design_log.md,analytical_or_fit_mean_statistic,0
+C02,floor_plus_mean_excess,C01,analytical_control,evaluated,1,sqrt_A+fit_only_mean_excess,fit_only_empirical_mean,analytic_fit_statistic,Un parámetro estadístico; no optimizador neuronal.,legacy_inventory.csv,analytical_or_fit_mean_statistic,0
+C03,frozen_M00_projected,N05,analytical_control,evaluated,1210,max_saved_M00_floor,none_new,saved_prediction_transform,"Reutiliza pesos; 1210 son heredados, cero parámetros nuevos.",v1_design_log.md,inherited_checkpoint_zero_new,0
+C04,frozen_full_projected,N01,analytical_control,evaluated,1211,max_saved_full_floor,none_new,saved_prediction_transform,Diagnóstico posterior omitido del subtotal antiguo de tres controles.,v1_design_log.md,inherited_checkpoint_zero_new,0
+P01,faithful_inspired_detached_aux,N11,neural_proposal,proposed_not_implemented,1236,separate_aux_gradients_from_mean_context,point+auxiliary_scores_proposed,not_market_fitted,Comparador conceptual: sin garantía Faithful ni ejecución acreditada.,moment_design_spec.json,proposed_not_instantiated,0
+P02,moment_Jensen_plugin,N09,neural_proposal,proposed_not_implemented,1210,sqrt_A_plus_c_m,not_frozen,not_market_fitted,No confundir con N15: una cabeza de momento no es la ley atómica.,moment_design_spec.json,proposed_not_instantiated,0
+P03,fixed_q_9m2_learned_rho,N09,neural_proposal,proposed_not_implemented,1223,fixed_q_to_m_squared_ratio,not_frozen,not_market_fitted,"Capacidad propuesta, no instanciada o evaluada en mercado.",moment_design_spec.json,proposed_not_instantiated,0
