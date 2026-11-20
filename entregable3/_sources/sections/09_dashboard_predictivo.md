@@ -1,6 +1,6 @@
 # 9 Bloque E Dashboard predictivo en Dash Plotly
 
-**Estado: perfil local verificado con cinco modelos ONNX en vivo y doce sistemas precalculados; el operador informa Render Live, sin recibo de humo público aprobado de esta versión.** La aplicación multipágina ofrece **Contexto, EDA y Modelos**. Integra datos y pronósticos conservados, y su registro de inferencia sólo habilita artefactos exportados con metadatos y comprobaciones de integridad. La publicación de este libro en GitHub Pages es distinta del servicio Dash.
+**Estado: Render H desplegado y aceptación pública de los clientes de cinco y catorce aprobada.** La aplicación conserva **Contexto, EDA y Modelos** con sus cinco predictores y añade `/perfil-14` para las catorce redes históricas. El catálogo mantiene 17 sistemas; los tres clásicos necesitan historia/estado adicional y conservan sus trayectorias. El {ref}`cierre público de 10.10 <e3-render-public-acceptance-20261120>` documenta la URL, el SHA efectivo, las comprobaciones y seis capturas. V3 sigue deshabilitada. GitHub Pages publica el libro con su propia identidad.
 
 El [Bloque B](05_configuraciones_exportacion.md) conserva el linaje de selección y exportación; el [modelo de referencia](06_modelo_original.md) y el [análisis posterior](08_verificacion_estadistica.md) mantienen sus alcances. Hacer utilizable la evidencia no acredita novedad, defensa del autor o R3 ni convierte un calendario conocido en confirmación prospectiva.
 
@@ -18,7 +18,7 @@ Las curvas y residuos usan un predictor representativo por sistema: semilla **27
 
 | Catálogo | Evidencia histórica | Capacidad del prototipo y límite |
 |---|---|---|
-| FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder, TimesNet, TiDE, TimeMixer, PatchTST e iTransformer | Métricas y trayectorias conservadas de E2. | Nueve redes con resultados precalculados y diagnósticos en el perfil vigente. Su exportación offline ya está verificada, según el {ref}`cierre técnico <e3-completion-20261120>`; su habilitación y aceptación pública son decisiones separadas. No se presume que excedan memoria sin medirlos. |
+| FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder, TimesNet, TiDE, TimeMixer, PatchTST e iTransformer | Métricas y trayectorias conservadas de E2. | Disponibles para inferencia en `/perfil-14`, con pesos, escaladores y cuantiles originales; aceptación pública aprobada en 10.10. Las vistas históricas conservan sus precálculos. La exportación previa mantiene la evidencia del {ref}`cierre técnico <e3-completion-20261120>`; no se presume una exclusión por memoria. |
 | MLP16, LSTM32 y GRU32 | Pesos y calibradores heredados; las tres exportaciones TorchScript anteriores conservan su alcance. | ONNX CPU de la semilla 271801, con ida y vuelta sobre las 608 ventanas de prueba. El intervalo reutiliza el q del mismo predictor, sin recalibrar. |
 | TSMixer | Receta, checkpoint, escalador y calibrador originales de la semilla 271801. | Quinto ONNX en vivo mediante extensión versionada; paridad en 608 ventanas de evaluación y 53 de calibración. Conserva su q original. |
 | Persistence, SeasonalNaive y ARIMA | Una trayectoria por comparador, con contrato temporal propio. | Precálculos justificados bajo el formulario actual: necesitan más historia o estado que siete barras OHLCV. No se multiplican como semillas independientes. |
@@ -206,4 +206,4 @@ La actualización conserva pesos, ejemplos, tabla histórica, cuantiles y calibr
 
 La fecha del perfil histórico permanece identificada; una actualización del texto no actualiza la población ni los parámetros del modelo. El intervalo posterior E3 ya forma parte del perfil local descrito en 9.4: su aceptación pública es un requisito separado. Estos cambios de fuente necesitan el despliegue de su versión en Render y el recibo del cliente CPU de 10.2 antes de afirmar que se han verificado en la URL pública.
 
-El {ref}`perfil14 optativo del seguimiento <e3-followup-profile14>` añade una vista de catorce predictores históricos sin cambiar las tres vistas originales o sus cinco modelos. Las pruebas locales pasaron; la configuración habitual no habilita la ampliación automáticamente y Render conserva su aceptación pendiente.
+El {ref}`perfil14 optativo del seguimiento <e3-followup-profile14>` añade una vista de catorce predictores históricos sin cambiar las tres vistas originales o sus cinco modelos. Las pruebas locales y el posterior Manual Deploy conservan sus identidades; ambos clientes públicos aprobaron sobre Render H en 10.10. La ampliación usa `Dockerfile.profile14`, con V3 deshabilitada.

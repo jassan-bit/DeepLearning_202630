@@ -1,6 +1,6 @@
 # 5 Bloque B Selección de configuraciones y exportación
 
-Este bloque reúne la selección documentada de los **16 sistemas de E2** y la ingeniería de inferencia disponible. El perfil vigente habilita **cinco ONNX en CPU** de la semilla 271801: MLP16, LSTM32, GRU32, la CNN-LSTM aditiva de E3 y TSMixer. Conserva los otros **doce sistemas como resultados precalculados**: nueve redes que ya tienen exportación offline verificada y tres clásicos cuyo contrato necesita más historia o estado que las siete barras admitidas. El {ref}`cierre técnico <e3-completion-20261120>` aporta las nueve conversiones adicionales, sin modificar el registro habilitado, los pesos ni los calibradores vigentes. El funcionamiento público de esta versión se verifica por separado en la [sección 10](10_despliegue_render.md). Las configuraciones se eligen desde validación. Las métricas de prueba histórica se muestran con su alcance, sin utilizarlas para cambiar la receta o escoger una semilla favorable.
+Este bloque reúne la selección documentada de los **16 sistemas de E2** y los artefactos de inferencia. Las vistas originales habilitan cinco ONNX CPU de la semilla 271801: MLP16, LSTM32, GRU32, CNN-LSTM aditiva E3 y TSMixer. La ampliación `/perfil-14` incorpora las otras nueve redes históricas y pasó la {ref}`aceptación pública de 10.10 <e3-render-public-acceptance-20261120>` sobre Render H. Los tres clásicos conservan historia/estado adicional al contrato de siete barras. Pesos, escaladores y cuantiles no cambian; V3 sigue experimental y deshabilitada. Las configuraciones se eligen desde validación. La aceptación del producto no modifica la receta, las medias científicas o la elección de semilla.
 
 ## 5.1 Criterio de selección
 
@@ -87,7 +87,7 @@ E3 adopta en `artifacts/e3_serving_calibration_v2/` el cuantil posterior existen
 
 ### Pendientes para cerrar B
 
-El cierre posterior verificó **las nueve exportaciones neuronales restantes**, con sus recibos y pruebas de paridad offline en las 608 ventanas de prueba y 53 de calibración. Junto con las cinco existentes, completan catorce representantes neuronales ONNX verificados; no equivalen a catorce modelos habilitados. El {ref}`cierre técnico <e3-completion-20261120>` conserva los archivos y sus límites. La {download}`matriz de capacidades del corte del 18 de noviembre <../_static/e3_cierre_integral_20261118/serving/export_capabilities/capability_matrix.csv>` mantiene su estado histórico: TSMixer exportado, tres clásicos justificados bajo el contrato de siete barras y nueve redes todavía pendientes en aquel corte. Los checkpoints deben vincularse al artefacto seleccionado y verificarse con su configuración y procedencia; conservar estados o completar conversiones no cierra la política común de ajuste final. Siguen pendientes los costes completos comparables y la integración/aceptación de los artefactos nuevos. Exportar una réplica no cambia la comparación científica de medias entre diez semillas.
+El cierre posterior verificó **las nueve exportaciones neuronales restantes**, con sus recibos y pruebas de paridad offline en las 608 ventanas de prueba y 53 de calibración. Junto con las cinco existentes, completan catorce representantes neuronales ONNX verificados. Esa exportación no implicó su habilitación automática; el despliegue y la aceptación pública de las catorce redes se ejecutaron después y están comprobados en 10.10. El {ref}`cierre técnico <e3-completion-20261120>` conserva los archivos y sus límites. La {download}`matriz de capacidades del corte del 18 de noviembre <../_static/e3_cierre_integral_20261118/serving/export_capabilities/capability_matrix.csv>` mantiene su estado histórico: TSMixer exportado, tres clásicos justificados bajo el contrato de siete barras y nueve redes todavía pendientes en aquel corte. Los checkpoints deben vincularse al artefacto seleccionado y verificarse con su configuración y procedencia; conservar estados o completar conversiones no cierra la política común de ajuste final. Los costes completos comparables conservan sus campos pendientes; la integración y aceptación técnica de las nueve redes adicionales están aprobadas para Render H en 10.10. Exportar una réplica no cambia la comparación científica de medias entre diez semillas.
 
 No se aplicó cuantización ni se atribuyó un límite de memoria a modelos no medidos. Los modelos que no quepan en el despliegue deberán conservar resultados precalculados y una justificación sustentada; la pérdida por compresión, si se aplica, se evaluará frente a δ. La guía permite TorchScript. El perfil CPU sin framework de entrenamiento de la [sección 10](10_despliegue_render.md) dispone de cinco ONNX para la aplicación local; los tres TorchScript conservan su alcance histórico. El servicio público y los pendientes señalados siguen sin completar ese cierre.
 
@@ -138,10 +138,10 @@ contrasta hashes de checkpoints y ONNX y conserva el alcance de cada
 verificación; esa revisión no reejecutó los modelos.
 
 Se dispone así de **catorce representantes neuronales ONNX verificados
-offline**. El perfil de la aplicación sigue habilitando **cinco**, con los
-otros **doce sistemas precalculados**: nueve redes sin integración en ese
-perfil y tres clásicos cuyo estado o historia no se determina con siete
-barras. La V3 experimental es otro artefacto y no amplía automáticamente
+offline**. En aquel corte offline, el perfil original habilitaba **cinco**, con los
+otros **doce sistemas precalculados**. El cierre posterior de 10.10 ya
+verifica las catorce redes en `/perfil-14`; los tres clásicos mantienen
+los requisitos de historia o estado que no se determinan con siete barras. La V3 experimental es otro artefacto y no amplía automáticamente
 el registro del dashboard. Las conversiones no modifican las medias de
 diez semillas ni el alcance de los experimentos científicos anteriores.
 
@@ -151,7 +151,7 @@ La recreación previa de FCN-1D en otro runner produjo un SHA distinto y se detu
 
 El [perfil V3 experimental](https://github.com/jassan-bit/DeepLearning_202630/tree/4ef050d047b1f85d39f9b47fce86a784820880c4/artifacts/e3_experimental_v3_20261120) está archivado aparte: **15.368 bytes**, SHA256 `881dd637837265829aa96900d7a0c864dcdab113a57a91485feb20fd2a443abc`. La {download}`lectura pública de V3 <../_static/e3_completion_publication_20261120/V3_public_raw_integrity.json>` verificó HTTP 200 y todos sus bytes, sin ejecutar el modelo. No tiene calibrador ni se incorpora al registro del dashboard.
 
-La comprobación offline no acredita la aceptación pública de Render, su SHA efectivo, la capacidad con sesiones concurrentes o la habilitación de los nueve modelos. V3 experimental sigue sin calibrador ni promoción.
+La exportación offline y la aceptación pública son comprobaciones distintas. El cierre posterior de 10.10 acredita Render H y los nueve modelos integrados, con los clientes de cinco y catorce; no mide capacidad remota concurrente. V3 experimental sigue sin calibrador ni promoción.
 
 ### Medición CPU bajo el mismo procedimiento
 
@@ -201,4 +201,4 @@ separa los bytes auditados de los archivos no incluidos en cada paquete.
 No acredita R2/R3 ni cambia el {ref}`dictamen documental favorable y acotado de R1 para V3 <e3-r1-substantive-verdict-20261120>`, que permanece
 separado de la aditiva y de la evaluación institucional.
 
-El {ref}`perfil14 optativo <e3-followup-profile14>` integra los catorce ONNX históricos y conserva pesos, escaladores y cuantiles. Sus pruebas locales de adaptadores, API y navegador no equivalen a aceptación pública de Render; V3 continúa separada y deshabilitada.
+El {ref}`perfil14 optativo <e3-followup-profile14>` integra los catorce ONNX históricos y conserva pesos, escaladores y cuantiles. Las pruebas locales conservan su alcance; la aceptación pública posterior de ambos clientes está aprobada en 10.10. V3 continúa separada y deshabilitada.
