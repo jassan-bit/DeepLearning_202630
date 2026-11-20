@@ -1,0 +1,164 @@
+{
+  "kind": "R1_actual_mechanism_and_theory_audit",
+  "review_date_local": "2026-11-20",
+  "timezone": "America/Bogota",
+  "AI_assistance_declared": true,
+  "read_only_repository_base": "29cedb5228ebcecce2a354a1d0ab89adf3936f12",
+  "pilot_source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+  "pilot_results_commit": "8eaa581bc34b615a8507c9e384a3e4be29084720",
+  "verified_inputs": [
+    {
+      "location": "repository",
+      "path": "src/original_model.py",
+      "bytes": 12281,
+      "sha256": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f"
+    },
+    {
+      "location": "repository",
+      "path": "src/e3_development.py",
+      "bytes": 38128,
+      "sha256": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe"
+    },
+    {
+      "location": "repository",
+      "path": "src/e3_innovation_model.py",
+      "bytes": 23342,
+      "sha256": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1"
+    },
+    {
+      "location": "repository",
+      "path": "src/e3_overlap_model_v3.py",
+      "bytes": 10521,
+      "sha256": "30a0e4daa480e803932482c93928e4e250e338eb3daff3fc801e73ed2cec434b"
+    },
+    {
+      "location": "repository",
+      "path": "book_e3/_static/e3_cierre_integral_20261118/mechanism/theory.md",
+      "bytes": 6309,
+      "sha256": "02d5eed9893745c72b30f634888bf8ec3e2d6270a43dbef0b2db32f53119ba8d"
+    },
+    {
+      "location": "repository",
+      "path": "book_e3/_static/e3_r1_close_20261120/adaptation_design/analytic_checks.py",
+      "bytes": 6024,
+      "sha256": "03a987be015322bcaee84bed6460e8b5b67aeade1ec77e56c870e74955a1095d"
+    },
+    {
+      "location": "repository",
+      "path": "book_e3/_static/e3_r1_close_20261120/adaptation_design/analytic_verification.json",
+      "bytes": 26972,
+      "sha256": "1ba0435e9b378331b948ffc6f34d930ab47aeddad31bb4821773792fce183a5f"
+    },
+    {
+      "location": "repository",
+      "path": "experiments/e3_evidence_close_20261120/pilot/archive/payload/plan.json",
+      "bytes": 4173,
+      "sha256": "eb5fbbade2b1dd3ab098821b2ab0c270504c824b1b0e0a17ed52b3bebafc55bd"
+    },
+    {
+      "location": "packet",
+      "path": "frozen_sources/plugin_control.py",
+      "original_repository_path": "experiments/e3_v3_development_pilot_20261120/plugin_control.py",
+      "source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+      "bytes": 5514,
+      "sha256": "3c118a7a3005784c0d7c099a799435e8571319e96a5c43610f8b3daf533be4f4"
+    },
+    {
+      "location": "packet",
+      "path": "frozen_sources/pilot_engine.py",
+      "original_repository_path": "experiments/e3_v3_development_pilot_20261120/pilot_engine.py",
+      "source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+      "bytes": 29115,
+      "sha256": "6c54d1f35e305e10c5fc6882b4e410bb1fb31b53349efe3c340810a173dc3363"
+    }
+  ],
+  "target": {
+    "population_ddof": 0,
+    "annualized": false,
+    "known_returns": 6,
+    "future_returns": 1,
+    "floor_variance": "A=(1/7)*sum(ri-m6)^2",
+    "unknown_magnitude": "U=abs(r7-m6)",
+    "transform": "sqrt(A+(6/49)*U^2)",
+    "auxiliary_target_computed_from_primary_label": true,
+    "auxiliary_target_is_model_input": false,
+    "signed_future_return_identifiable": false
+  },
+  "implemented_model": {
+    "class": "OverlapDistributionModel",
+    "variant": "atom_crps",
+    "K": 3,
+    "atoms": "a_k=sU*sum_{j<=k}(1e-4+softplus(z_j))",
+    "masses": "softmax(ell_1,ell_2,0)",
+    "aggregation": "sum_k p_k*sqrt(A+(6/49)*a_k^2)",
+    "loss": "mean(((mu-Y)/sY)^2)+0.1*mean(CRPS(G/sU,U/sU))",
+    "CRPS_applies_to": "U magnitude, not sigma7 directly",
+    "parameters": 1262,
+    "shared_parameters": 1197,
+    "parameter_source": "static source and frozen pilot plan, no model constructed"
+  },
+  "controls": {
+    "additive_positive_head": {
+      "parameters": 1210,
+      "loss": "normalized sigma7 MSE",
+      "head": "sqrt(A)+sY*(1e-4+softplus(w_eff dot h+b))"
+    },
+    "atom_mse_only": {
+      "parameters": 1262,
+      "lambda_crps": 0,
+      "same_atomic_parameterization": true
+    },
+    "fixed_probs": {
+      "parameters": 1236,
+      "lambda_crps": 0.1,
+      "p": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "capacity_matched": false
+    },
+    "atom_plugin": {
+      "parameters": 1262,
+      "lambda_crps": 0.1,
+      "head": "sqrt(A+(6/49)*sum_k p_k*a_k^2)",
+      "same_atomic_law_at_equal_parameters": true,
+      "same_law_after_training_guaranteed": false
+    }
+  },
+  "implemented_change": {
+    "structure": true,
+    "training_objective": true,
+    "application_change_only": false,
+    "description": "scalar excess readout replaced by learned finite magnitude law, task-specific pushforward mean and auxiliary proper score",
+    "more_expressive_point_class_proved": false,
+    "new_information_added_by_U": false,
+    "world_first_required_by_this_audit": false,
+    "R3_superiority_required_for_R1_by_this_audit": false
+  },
+  "formal_review": {
+    "support": true,
+    "ordered_atoms_real_arithmetic": true,
+    "finite_law_exact_mean": true,
+    "partial_sensitivity_fixed_law": true,
+    "Jensen_and_curvature": true,
+    "oracle_plugin_risk_identity": true,
+    "joint_population_minimum_under_exact_representability": true,
+    "standard_results_are_not_claimed_novel_theorems": true,
+    "universal_true_law_representability": false,
+    "optimizer_convergence_proved": false,
+    "market_calibration_proved": false,
+    "superiority_over_additive_proved": false
+  },
+  "decision_scope": {
+    "mechanism_level_difference_documented": true,
+    "formal_property_reviewed_with_explicit_assumptions": true,
+    "literature_priority_evaluated_here": false,
+    "R1_final_accreditation_emitted_here": false,
+    "requires_literature_judgment_for_problem": true
+  },
+  "new_model_fits": 0,
+  "new_model_inference": 0,
+  "new_pilot_analyses": 0,
+  "new_statistical_resampling": 0
+}

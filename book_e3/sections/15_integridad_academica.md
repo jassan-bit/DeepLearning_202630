@@ -1,6 +1,6 @@
 # 15 Integridad académica
 
-Las reglas de esta sección proceden de la guía, páginas 47–48, y se aplican a afirmaciones, código, datos, diseño experimental y documentación. Describirlas no constituye un veredicto sobre una persona, una sanción ni una calificación del avance. Las [condiciones de evaluación](14_evaluacion_calificacion.md) se conservan como reglas condicionales; R1 y R3 siguen pendientes, al igual que la comprensión y defensa académica exigidas para R2.
+Las reglas de esta sección proceden de la guía, páginas 47–48, y se aplican a afirmaciones, código, datos, diseño experimental y documentación. Describirlas no constituye un veredicto sobre una persona, una sanción ni una calificación del avance. Las [condiciones de evaluación](14_evaluacion_calificacion.md) se conservan como reglas condicionales. R1 de la aditiva no está acreditada; la revisión específica de V3 en 6.18 es favorable y acotada. R3 y la comprensión y defensa académica exigidas para R2 siguen pendientes.
 
 ## Novedad, transferencia y atribución
 
@@ -10,7 +10,7 @@ Si el mecanismo procede de otra aplicación, deben citarse con precisión su fue
 
 Se permite consultar documentación, artículos y repositorios como inspiración, citándolos. Copiar código sin atribución, descargar/ejecutar una implementación ajena como si fuera el núcleo propio o presentar como propia una implementación de otra persona no satisface R2 según la guía. Usar primitivas del framework es distinto de atribuirse una arquitectura o mecanismo importado; el aporte debe localizarse y explicarse desde su formulación.
 
-La [revisión y procedencia del candidato](06_modelo_original.md) mantienen abiertas las equivalencias con trabajos cercanos. La atención por contenido y los bloques CNN/LSTM son conocidos; la saturación radial tampoco se presenta como una función inventada aquí. La revisión focal, una lista BibTeX o una consulta bloqueada no prueban ausencia de antecedentes. Los registros distinguen lecturas verificadas, evidencia heredada y búsquedas todavía pendientes.
+La [revisión y procedencia del candidato](06_modelo_original.md) separan la referencia aditiva de V3: la primera no acredita diferencia sustantiva; la segunda cuenta con el dictamen técnico favorable y acotado de 6.18, revisable ante nuevos antecedentes. La atención por contenido y los bloques CNN/LSTM son conocidos; la saturación radial tampoco se presenta como una función inventada aquí. La revisión focal, una lista BibTeX o una consulta bloqueada no prueban ausencia de antecedentes. Los registros distinguen lecturas verificadas, evidencia heredada y búsquedas todavía pendientes.
 
 ## Autoría, herramientas de IA y comprensión
 
@@ -37,7 +37,7 @@ Las prohibiciones concretas y su aplicación al registro del proyecto son:
 | No usar el conjunto de prueba para decidir hiperparámetros, umbrales o parada. | Separar desarrollo y confirmación y declarar exposición previa. Los periodos ya evaluados en E1/E2 no recuperan cegamiento al volver a puntuarse. |
 | No usar los conjuntos adicionales para diseñar y presentarlos luego como evidencia independiente. | D01–D03 se admitieron y evaluaron bajo la política común de la auditoría exploratoria del {ref}`cierre de 8.18 <e3-final-extended-audit>`. Conservar la selección y el registro de exposiciones previos; si los resultados influyen ahora en cambios del mecanismo, declarar ese uso como desarrollo. Las dependencias entre instrumentos y el calendario BTC conocido siguen explícitos. |
 | No presentar una hipótesis decidida tras observar resultados como confirmatoria. | Conservar el carácter propuesto de D1–D5 y del protocolo en borrador; análisis nuevos sobre resultados conocidos mantienen su fecha y alcance exploratorio. |
-| No omitir variantes evaluadas de la bitácora. | Registrar propuestas, parametrizaciones, pruebas, intentos, fallos y descartes. V1/v2 conservan cinco recetas entrenadas y el piloto por momentos completó otras tres. Las diez semillas aditivas repiten una receta; el Nd global sigue pendiente de conciliación y no se reduce al subtotal de ocho recetas. |
+| No omitir variantes evaluadas de la bitácora. | Registrar propuestas, parametrizaciones, pruebas, intentos, fallos y descartes. V1/v2 conservan cinco recetas entrenadas y el piloto por momentos completó otras tres. Las diez semillas aditivas repiten una receta; la conciliación de 7.14 identifica 22 entradas del corpus y un bosquejo Faithful ambiguo. No equivale a contar todas las ideas informales ni se reduce al subtotal histórico de ocho recetas. |
 | No presentar como válida una demostración que no se sostiene. | Verificar cada supuesto, derivación y comprobación. La cota demostrada cubre la cabeza latente con parámetros fijos; no se atribuye sin prueba al pipeline completo OHLCV ni a mejor desempeño de mercado. |
 | No omitir o alterar la fecha del protocolo pre-registrado. | Registrar fecha y tag Git reales anteriores a los experimentos definitivos; conservar versiones y desviaciones. El borrador actual no se retrofecha ni se presenta como preregistro congelado. |
 
@@ -67,7 +67,7 @@ Se utilizó un asistente de IA de OpenAI, en este entorno de ChatGPT/Codex, para
 
 El autor comunicó el 18 de noviembre de 2026 que el profesor permite sustituir al revisor humano por IA si se menciona su uso. Esa modalidad se aplica al componente de revisión externa de R1 en [6.13](06_modelo_original.md), con dictamen, dos cadenas repetidas y {download}`declaración específica de uso <../_static/e3_r1_ai_substitution_20261118/ai_use_declaration.md>`. El componente se documenta como completado por esa vía; no se inventa una revisión humana o una firma.
 
-La persona autora mantiene la responsabilidad de comprobar las fuentes, comprender y defender el trabajo y comunicar honestamente sus límites. El dictamen conserva su conclusión: la diferencia sustantiva todavía no está establecida y R1 global no queda acreditada por la modalidad de IA.
+La persona autora mantiene la responsabilidad de comprobar las fuentes, comprender y defender el trabajo y comunicar honestamente sus límites. El dictamen de aquel corte conserva su conclusión sobre la referencia entonces examinada; autorizar IA no acreditaba novedad por sí solo. La revisión posterior específica de V3 se distingue en 6.18 y en la actualización siguiente.
 
 
 ## Trazabilidad del cierre con evidencia existente
@@ -75,3 +75,12 @@ La persona autora mantiene la responsabilidad de comprobar las fuentes, comprend
 La consolidación del piloto, inventario, procedencia y adecuación se preparó con asistencia de IA declarada. Los verificadores y la revisión independiente por IA contrastaron hashes, versiones, aritmética y alcances; no observaron una defensa del estudiante ni emitieron una firma humana. Se aplica la indicación docente comunicada para sustituir al revisor externo de R1, conservando esa modalidad identificada. No se extiende ese permiso a declarar realizadas la sustentación o una reproducción humana independiente que no constan.
 
 Se conservan el fracaso de la heurística de V3 completa, las ablaciones que la superan, las métricas adversas y los cómputos antiguos desconocidos por interrupción. Los 200 diagnósticos retrospectivos de residuos se separan en sus dos familias y no se renombran como contrastes confirmatorios de superioridad. Ni el registro posterior de Nd ni el código del suplemento retrofechan un protocolo, recuperan calendarios ciegos o justifican cambiar una regla después de observar sus resultados.
+
+
+## Revisión específica de V3 y corrección bibliográfica
+
+La {ref}`revisión de 6.18 <e3-r1-substantive-verdict-20261120>` fue preparada con asistencia de IA en auditoría de código, lectura focal, interpretación de la guía y redacción. Una tarea separada emitió el dictamen técnico favorable y acotado para V3, repitió dos cadenas y registró su evidencia. Es la modalidad IA autorizada comunicada por el autor, no una revisión humana o una decisión institucional. No se atribuyen a ese concepto la defensa de R2 o la confirmación R3.
+
+Se atribuyen las posiciones y masas aprendidas a sus antecedentes, se reconoce la equivalencia con CRPS ponderado y se corrige la identificación de los dos trabajos MDN de 1998 mediante una fe de erratas nueva. La inspiración histórica no se inventa a partir de un hallazgo bibliográfico posterior. Los artículos no accesibles no se declaran leídos y las nuevas llamadas API bloqueadas no se cuentan como búsquedas efectivas.
+
+El resultado adverso del piloto y su regla permanecen intactos. La revisión de novedad no promueve `atom_mse_only`, no transfiere los 796 trabajos a V3 ni retrofecha el dictamen. La ambigüedad Faithful se conserva con un formulario de aclaración basado en registros existentes. No se repiten entrenamientos, inferencias de modelos o remuestreos para este cierre documental.
