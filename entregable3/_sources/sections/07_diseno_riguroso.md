@@ -1,6 +1,6 @@
 # 7 Diseño riguroso del modelo original
 
-El mecanismo y su estado de admisibilidad se describen en el [Bloque C](06_modelo_original.md). Este capítulo integra el diseño inicial de atención, los pilotos de desarrollo completados y la posterior réplica de la **salida aditiva positiva de 1210 parámetros** en diez semillas. La [sección 8](08_verificacion_estadistica.md) presenta la comparación estadística posterior ya calculada. R1 y R3 siguen abiertos; la comprensión y defensa académica de R2 deben verificarse con el autor. Ese análisis no convierte el diseño en un protocolo confirmatorio.
+El mecanismo y su estado de admisibilidad se describen en el [Bloque C](06_modelo_original.md). Este capítulo integra el diseño inicial de atención, los pilotos de desarrollo completados y la posterior réplica de la **salida aditiva positiva de 1210 parámetros** en diez semillas. La [sección 8](08_verificacion_estadistica.md) presenta la comparación estadística posterior ya calculada. La referencia aditiva conserva su estado de R1; la revisión específica de V3 tiene un dictamen técnico favorable y acotado en {ref}`6.18 <e3-r1-substantive-verdict-20261120>`. R3 y la comprensión/defensa académica de R2 mantienen sus requisitos. Ese análisis no convierte el diseño en un protocolo confirmatorio.
 
 Este capítulo aplica la sección 7 de la guía: identificar una limitación, formular una explicación refutable, registrar las decisiones y contrastar teoría y ablaciones. Los apartados 7.1–7.4 distinguen los diseños históricos de la referencia evaluada; 7.5–7.8 conservan los pilotos y su cierre, 7.9 identifica la comparación posterior vigente, 7.10 reúne la revisión de requisitos y 7.11 añade el control posterior de soporte del 18 de noviembre. Los anexos [B](17_revision_post_piloto.md) a [G](22_dictamen_momentos.md) conservan el detalle técnico y las fechas de esas decisiones.
 
@@ -460,7 +460,7 @@ El {download}`código Python estándar <../_static/e3_r1_close_20261120/adaptati
 | Cabeza aditiva que reproduce la media | La inversión del enlace softplus reconstruye el mismo punto del ejemplo cuando el exceso supera su incremento mínimo. No hay una imposibilidad general de representación de la aditiva. |
 | Pérdida auxiliar bajo aproximación | Entre dos leyes aproximadas de tres átomos, añadir CRPS con λ=0,1 cambia el orden del riesgo conjunto y empeora el riesgo puntual. No son óptimos globales ni un experimento de entrenamiento; es un contraejemplo a una garantía incondicional de mejora puntual. |
 
-Estas comprobaciones no importan PyTorch, cargan precios, optimizan modelos o generan pronósticos de mercado. Los números artificiales no se interpretan como rentabilidades plausibles o resultados del benchmark. La demostración y la verificación sostienen propiedades delimitadas, mientras la utilidad empírica del mecanismo permanece por contrastar.
+Estas comprobaciones no importan PyTorch, cargan precios, optimizan modelos o generan pronósticos de mercado. Los números artificiales no se interpretan como rentabilidades plausibles o resultados del benchmark. La demostración y la verificación sostienen propiedades delimitadas. La utilidad se evaluó después en el piloto de 8.19 y la receta completa no superó su heurística; novedad y utilidad se juzgan por separado en 6.18.
 
 ### Ablaciones, capacidad y objeto de la comparación
 
@@ -540,3 +540,63 @@ La completa inicial y full/M11 se deduplican; M00 y la aditiva conservan sus ide
 El {download}`ledger comprimido de intentos <../_static/e3_evidence_close_20261120/inventory/attempt_ledger.csv.gz>` contiene 824 ajustes neuronales, cuatro ARIMA y 16 trabajos sin optimizador. Los 900 renglones de recursos históricos corresponden a fases de 796 trabajos únicos; el autoencoder tiene tres fases que comparten presupuesto. El {download}`registro de incidentes <../_static/e3_evidence_close_20261120/inventory/incidents.json>` conserva interrupciones de admisión, transporte y trabajador. Tres fases históricas mantienen cómputo perdido desconocido; los sobrepasos de plazo que incluyen desconexiones no se presentan como horas GPU medidas.
 
 El {download}`verificador reproducible <../_static/e3_evidence_close_20261120/inventory/verify_inventory.py>`, las {download}`fuentes propias congeladas <../_static/e3_evidence_close_20261120/inventory/sources.zip>` y su {download}`manifiesto <../_static/e3_evidence_close_20261120/inventory/source_manifest.json>` permiten reconstruir la conciliación sin PyTorch, NPZ, pesos o entrenamiento. Se declara IA; los 21 blobs fuente se cotejaron con sus commits públicos. El conteo no corrige por sí solo el sesgo de selección, restaura cegamiento o acredita R1/R3. La V3 completa conserva su resultado adverso y la heurística incumplida, sin promocionar retrospectivamente al control ganador.
+
+
+(e3-r1-formal-scope-20261120)=
+## 7.15 Propiedad revisada y equivalencias de la adaptación V3
+
+La {ref}`revisión específica de 6.18 <e3-r1-substantive-verdict-20261120>`
+apoya la adaptación de lectura y pérdida para esta tarea. La propiedad formal
+sigue siendo una propiedad correcta de un mecanismo que utiliza herramientas
+conocidas: no se exige convertirla en teorema inédito para cumplir la guía.
+
+**Soporte y esperanza finita.** Si $A\geq0$, $a_k\geq0$, $p_k\geq0$ y
+$\sum p_k=1$, cada $T_A(a_k)\geq\sqrt A$; por tanto,
+$\mu_G=\sum p_kT_A(a_k)\geq\sqrt A$. La suma es exacta para la ley de tres
+átomos aprendida, no para la ley desconocida del mercado. Con $V=U^2$,
+$v\mapsto\sqrt{A+cv}$ es cóncava, de modo que
+$\mu_G\leq\sqrt{A+c\mathbb E_G[V]}$. Si $A>0$ y V tiene soporte finito,
+la cota por curvatura de 7.12 es válida. No se extiende sin condiciones a
+$A=0$ con soporte en cero ni a una garantía sobre todo el pipeline.
+
+**Riesgo condicionado al oráculo.** Sólo si G es la ley verdadera condicional,
+la media transformada minimiza el riesgo cuadrático y la diferencia frente
+al plug-in es el cuadrado de la diferencia entre ambas lecturas. Una ley
+aprendida de tres átomos puede estar mal especificada; la identidad no prueba
+mejor RMSE que una cabeza aditiva flexible ni convergencia del ajuste.
+
+**CRPS_U no es una nueva regla.** Para $A>0$, el mapa
+$y=T_A(u)=\sqrt{A+cu^2}$ es monótono en $u\geq0$ y su inversa es
+$h_A(y)=\sqrt{(y^2-A)/c}$. Si $F_Y$ es la ley transformada, cambiar la variable
+en la representación integral de CRPS da
+
+$$
+\operatorname{CRPS}(G_U,U)
+=\int_{\sqrt A}^{\infty}
+\bigl(F_Y(y)-\mathbf1\{Y\leq y\}\bigr)^2
+\frac{y}{\sqrt c\sqrt{y^2-A}}\,dy.
+$$ (eq-e3-r1-weighted-crps)
+
+La expresión se entiende por el integral impropio en la frontera; para las
+leyes finitas de la revisión es integrable. En $A=0$ el peso se reduce a
+$1/\sqrt c$ fuera del punto frontera. Dividir por $s_U$ proporciona la
+normalización del código. Por tanto, CRPS_U equivale a un CRPS ponderado en
+Y; en general **no** es el CRPS sin ponderar de sigma7. El carácter propio
+del score no demuestra calibración empírica de la ley finita ajustada.
+
+La {download}`nota de cambio de variable <../_static/e3_r1_substantive_20261120/literature_distribution/change_of_variable_note.md>`
+atribuye CRPS y su familia ponderada. La
+{download}`auditoría formal <../_static/e3_r1_substantive_20261120/code_theory/theory_audit.md>`
+expone supuestos, derivadas parciales y objeciones. El
+{download}`verificador estático <../_static/e3_r1_substantive_20261120/code_theory/verify_static_audit.py>`
+comprobó diez insumos, los 28 coeficientes racionales de la identidad de
+sigma7 poblacional, los conteos 1210/1262/1236 y la coherencia de los cien
+casos finitos **ya guardados**. No importó Torch, ejecutó redes o repitió el
+piloto. El {download}`recibo <../_static/e3_r1_substantive_20261120/code_theory/static_verification.json>`
+no se presenta como certificación automática de novedad.
+
+U deriva de la misma etiqueta Y y A; no agrega información futura independiente.
+La diferencia defendida es la elección de ley, lectura y objetivo. No se
+reclama que un predictor aditivo suficientemente flexible no pueda producir
+esa misma media. Esta delimitación permite defender la adaptación sin
+atribuirle nuevas reglas de scoring o promesas de superioridad.

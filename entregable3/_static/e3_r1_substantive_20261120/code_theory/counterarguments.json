@@ -1,0 +1,73 @@
+{
+  "AI_assistance_declared": true,
+  "arguments": [
+    {
+      "objection": "Es sólo cambiar el activo o nombres de capas.",
+      "answer": "No: se sustituye una lectura escalar por dos lecturas de ley y su pushforward, y cambia la función objetivo y sus gradientes.",
+      "limit": "Esto prueba diferencia programada, no prioridad del conjunto para el problema.",
+      "evidence": [
+        "M05",
+        "M06",
+        "M07",
+        "M08"
+      ]
+    },
+    {
+      "objection": "Es composición directa de métodos conocidos.",
+      "answer": "Los componentes son conocidos; debe contrastarse la cadena concreta de magnitud faltante, ventana solapada, ley aprendida, transformación y objetivo doble.",
+      "limit": "La auditoría de código no resuelve por sí misma si esa adaptación ya existe para este problema.",
+      "evidence": [
+        "M01",
+        "M05",
+        "M06",
+        "M07"
+      ]
+    },
+    {
+      "objection": "La red aditiva no puede aprender la media correcta.",
+      "answer": "No se sostiene: una cabeza escalar puede igualar el punto del contraejemplo si su exceso supera el incremento mínimo.",
+      "limit": "El ejemplo no demuestra equivalencia universal de clases con el codificador fijo.",
+      "evidence": [
+        "M08",
+        "M14"
+      ]
+    },
+    {
+      "objection": "La etiqueta U da información nueva del retorno.",
+      "answer": "U se reconstruye de Y y A; no aporta observación externa ni signo de retorno.",
+      "limit": "La adaptación está en representación y pérdida, no en nuevos datos.",
+      "evidence": [
+        "M01",
+        "M07"
+      ]
+    },
+    {
+      "objection": "El CRPS ya calibra la volatilidad en mercado.",
+      "answer": "El score se calcula en U; el pushforward es exacto bajo la ley finita y las conclusiones poblacionales requieren ley verdadera representable.",
+      "limit": "No hay una comprobación de calibración de mercado; CRPS_U y CRPS_sigma no son iguales en general.",
+      "evidence": [
+        "M06",
+        "M07",
+        "M13"
+      ]
+    },
+    {
+      "objection": "La propiedad matemática debe ser un teorema inédito para cumplir R1.",
+      "answer": "La guía exige una propiedad demostrada y verificada, no invención mundial de la propiedad.",
+      "limit": "Demostrar una propiedad estándar no acredita novedad algorítmica por sí solo.",
+      "evidence": [
+        "M13",
+        "M14"
+      ]
+    },
+    {
+      "objection": "El piloto adverso refuta novedad.",
+      "answer": "No: el resultado refuta continuación bajo la regla empírica registrada en el piloto, no prioridad bibliográfica.",
+      "limit": "No se cambia la regla del2porciento ni se promociona atom_mse_only.",
+      "evidence": [
+        "M09",
+        "M12"
+      ]
+    }
+  ]
+}

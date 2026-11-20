@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "kind": "guide_interpretation_and_baseline_R1_requirement_map",
+  "base_commit": "29cedb5228ebcecce2a354a1d0ab89adf3936f12",
+  "recorded_date_local": "2026-11-20",
+  "timezone": "America/Bogota",
+  "guide_file": "Entregable3DeepLearningProject.pdf",
+  "guide_sha256": "d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364",
+  "AI_assistance_declared": true,
+  "new_literature_search_claimed": false,
+  "new_model_fits": 0,
+  "new_market_predictions": 0,
+  "new_statistical_resamples": 0,
+  "current_search_and_algorithm_review_to_be_integrated_by_parent": true,
+  "R1_accredited_by_this_requirements_extraction": false,
+  "requirements": [
+    {
+      "id": "R1-01",
+      "classification": "R1 estricto",
+      "guide_locator": "§6, p.7",
+      "requirement": "El modelo no ha sido usado en la literatura para el mismo fenómeno y la misma tarea de predicción.",
+      "interpretation": "La guía exige novedad para el problema, no invención mundial del mecanismo.",
+      "baseline_evidence_status": "No acreditado en el corte base; V3 es una candidata específica, no hereda el dictamen de la aditiva.",
+      "evidence": "book_e3/sections/06_modelo_original.md:23; 405–451",
+      "minimum_remaining_material": "Cerrar contraste de V3 con los antecedentes y declarar el alcance real de búsqueda."
+    },
+    {
+      "id": "R1-02",
+      "classification": "R1 estricto",
+      "guide_locator": "§6, p.7",
+      "requirement": "La diferencia es de mecanismo, función de pérdida o esquema de entrenamiento, no sólo de aplicación.",
+      "interpretation": "Un cambio de datos o hiperparámetros no basta; compartir clase de salidas puntuales tampoco prueba identidad de algoritmos.",
+      "baseline_evidence_status": "Diferencia programada de estructura y entrenamiento documentada; falta el contraste final con trabajos cercanos.",
+      "evidence": "book_e3/sections/06_modelo_original.md:407–439",
+      "minimum_remaining_material": "Explicar cambio con ecuación, algoritmo, código y comparación directa; examinar objeción de composición de piezas conocidas."
+    },
+    {
+      "id": "R1-03",
+      "classification": "R1 estricto condicional a transferencia",
+      "guide_locator": "§6, p.7; §14.5.1, p.44",
+      "requirement": "Fuente original citada con precisión y modificación algorítmica sustantiva, no sólo cambio de datos o hiperparámetros.",
+      "interpretation": "La transferencia está permitida; presentarla como adaptación.",
+      "baseline_evidence_status": "Procedencia y familias atribuidas; la sustancialidad específica es la decisión pendiente en el corte base.",
+      "evidence": "experiments/procedencia.md; book_e3/sections/06_modelo_original.md:419–436",
+      "minimum_remaining_material": "Delimitar qué se toma de cada fuente y qué transformación/entrenamiento se agrega."
+    },
+    {
+      "id": "LIT-01",
+      "classification": "Evidencia de R1",
+      "guide_locator": "§6.3, p.12",
+      "requirement": "Consultar al menos tres bases de datos.",
+      "interpretation": "Ejemplos de la guía no son una lista cerrada; las respuestas son bibliográficas, no prueba de exhaustividad.",
+      "baseline_evidence_status": "Ejecución histórica acotada: seis respuestas válidas por Crossref/arXiv/OpenAlex. No es nueva consulta V3 completa.",
+      "evidence": "book_e3/_static/e3_r1_close_20261120/search_review/guide_evidence_status.json",
+      "minimum_remaining_material": "Conservar identidades y cobertura por candidato; no convertir fallos de transporte en cero hallazgos."
+    },
+    {
+      "id": "LIT-02",
+      "classification": "Evidencia de R1",
+      "guide_locator": "§6.3, p.12",
+      "requirement": "Al menos cinco cadenas con mecanismo, problema y sinónimos en inglés y español; incluir otras aplicaciones y fecha.",
+      "interpretation": "Deben permitir rastrear origen y aplicación; no se exige que los términos conocidos sean inéditos.",
+      "baseline_evidence_status": "Seis cadenas históricas y seis de repetición, con precisión limitada; revisar cobertura específica V3.",
+      "evidence": "book_e3/_static/e3_r1_close_20261120/search_review/guide_evidence_status.json",
+      "minimum_remaining_material": "Añadir sólo consultas focales que cubran vacíos de ley finita/push-forward/volatilidad solapada; guardar cadenas exactas y fechas."
+    },
+    {
+      "id": "LIT-03",
+      "classification": "Evidencia de R1",
+      "guide_locator": "§6.3, p.12",
+      "requirement": "Matriz de novedad: título, resumen y, cuando corresponda, texto completo de trabajos cercanos.",
+      "interpretation": "La guía no obliga a leer cuerpos íntegros de todos los resultados; sí identificar qué parte se leyó realmente.",
+      "baseline_evidence_status": "Matriz aditiva de diez trabajos y cinco antecedentes V3; acceso parcial explícito en algunos.",
+      "evidence": "book_e3/sections/06_modelo_original.md:349–400; 419–436; experiments/e3_evidence_close_20261120/contribution/literature_crosswalk.csv",
+      "minimum_remaining_material": "Cerrar las lecturas decisivas para evaluar el cambio específico; nunca presentar metadatos como cuerpo leído."
+    },
+    {
+      "id": "LIT-04",
+      "classification": "Evidencia de R1",
+      "guide_locator": "§6.3, p.12",
+      "requirement": "Seguimiento de citas hacia atrás y adelante desde tres a cinco trabajos cercanos, incluidos paper guía y fuente transferida.",
+      "interpretation": "Un grafo completo mundial no es requisito; el alcance de seguimiento debe ser verificable.",
+      "baseline_evidence_status": "Seguimiento focal previo: seis aristas de tres semillas; verificar cuáles cubren V3.",
+      "evidence": "book_e3/_static/e3_r1_close_20261120/primary_review/citation_followup.json",
+      "minimum_remaining_material": "Identificar tres a cinco semillas pertinentes al mecanismo defendido y registrar aristas/lecturas, sin inventar cobertura."
+    },
+    {
+      "id": "LIT-05",
+      "classification": "Evidencia de R1",
+      "guide_locator": "§6.3, p.12",
+      "requirement": "Revisar repositorios de código y tablas de resultados para detectar implementaciones previas.",
+      "interpretation": "Leer un README no equivale a auditar código completo o todas las tablas.",
+      "baseline_evidence_status": "Dos README oficiales previos fijados; comparación de código de V3 pendiente de dictamen focal.",
+      "evidence": "book_e3/_static/e3_r1_close_20261120/code_review/repository_observations.json",
+      "minimum_remaining_material": "Documentar búsqueda de implementación de la composición específica y alcance inspeccionado."
+    },
+    {
+      "id": "LIT-06",
+      "classification": "Evidencia de R1",
+      "guide_locator": "§6.3, p.12",
+      "requirement": "Declaración precisa y diferencias frente a trabajos cercanos; clasificar mecanismo, pérdida/entrenamiento o sólo aplicación.",
+      "interpretation": "Afirmación acotada a búsqueda descrita; no es prueba de ausencia mundial.",
+      "baseline_evidence_status": "Contribución delimitada disponible; declaración afirmativa de novedad no adoptada en el corte base.",
+      "evidence": "experiments/e3_evidence_close_20261120/contribution/contribution_declaration.md; mechanism_loss_training_application.csv",
+      "minimum_remaining_material": "Escribir una afirmación única defendible, con fuente más cercana y límites, o identificar el vacío exacto."
+    },
+    {
+      "id": "LIT-07",
+      "classification": "Evidencia de R1",
+      "guide_locator": "§6.3, p.12",
+      "requirement": "Repetir la búsqueda antes de la entrega final y registrar la fecha.",
+      "interpretation": "Una repetición bloqueada es un intento, no una respuesta bibliográfica válida; tampoco invalida respuestas históricas.",
+      "baseline_evidence_status": "Dieciocho intentos nativos recientes fallaron antes de recibir bibliografía; accesos primarios focales distinguidos.",
+      "evidence": "book_e3/_static/e3_r1_close_20261120/search_review/fresh_native_search_receipt.json",
+      "minimum_remaining_material": "Registrar consultas focales actuales efectivas y fallidas, con sus alcances; no declarar nueva cobertura nativa que no ocurrió."
+    },
+    {
+      "id": "LIT-08",
+      "classification": "Evidencia de R1, modalidad autorizada",
+      "guide_locator": "§6.3, p.12, modificada por indicación docente comunicada",
+      "requirement": "Revisor externo repite al menos dos cadenas y anexa su concepto; en este proyecto puede ser IA declarada.",
+      "interpretation": "Modalidad IA ya autorizada; no volver a exigir persona o firma humana para esta revisión.",
+      "baseline_evidence_status": "Componente de modalidad completado para la aditiva; la revisión actual debe pronunciarse expresamente sobre V3.",
+      "evidence": "book_e3/sections/06_modelo_original.md:305–323; book_e3/_static/e3_r1_ai_substitution_20261118/review_adoption.json",
+      "minimum_remaining_material": "Conservar adopción y dos consultas previas; anexar dictamen IA específico de la candidata defendida, sin llamarlo humano."
+    },
+    {
+      "id": "JOINT-03",
+      "classification": "Checklist conjunta R1/R2, motivación",
+      "guide_locator": "§6.1, p.8; §14.5.1, p.44",
+      "requirement": "Limitación documentada y cuantificada; preferiblemente la del paper guía.",
+      "interpretation": "Una limitación alternativa está permitida con evidencia equivalente; no debe inventarse incapacidad de una red flexible.",
+      "baseline_evidence_status": "No linealidad de E[sqrt(A+cU²)] respecto al segundo momento demostrada; aditiva puede representar la misma media.",
+      "evidence": "book_e3/sections/06_modelo_original.md:437–445; book_e3/sections/07_diseno_riguroso.md:411–463",
+      "minimum_remaining_material": "Distinguir limitación del plug-in de una incapacidad de la aditiva; no prometer que CRPS mejora siempre."
+    },
+    {
+      "id": "JOINT-04",
+      "classification": "Checklist conjunta R1/R2, disciplina experimental",
+      "guide_locator": "§14.5.1, p.44",
+      "requirement": "Hipótesis falsable y predicciones secundarias antes de los experimentos finales.",
+      "interpretation": "No se convierte un plan posterior al calendario expuesto en prerregistro confirmatorio.",
+      "baseline_evidence_status": "Hipótesis/controles anteriores al piloto y regla del 2% en plan; piloto fallido. No hay protocolo confirmatorio completo.",
+      "evidence": "book_e3/sections/07_diseno_riguroso.md:411–426; 500–519; experiments/e3_evidence_close_20261120/pilot/archive/payload/plan.json",
+      "minimum_remaining_material": "Citar fecha/commit de cada decisión; conservar secundarias abiertas y no añadirlas como históricamente fijadas."
+    },
+    {
+      "id": "JOINT-05",
+      "classification": "Checklist conjunta y propiedad exigida para modelo original",
+      "guide_locator": "§7.3, p.19; §14.5.1, p.44; Cuadro8 p.59",
+      "requirement": "Al menos una propiedad teórica demostrada formalmente, con supuestos explícitos y verificación numérica.",
+      "interpretation": "No se exige un teorema inédito ni superioridad universal del pipeline.",
+      "baseline_evidence_status": "Propiedades delimitadas de soporte/ley finita/Jensen/riesgo y cien leyes artificiales documentadas.",
+      "evidence": "book_e3/sections/06_modelo_original.md:325–346; book_e3/sections/07_diseno_riguroso.md:427–463; book_e3/_static/e3_r1_close_20261120/adaptation_design/analytic_verification.json",
+      "minimum_remaining_material": "Conservar hipótesis de ley verdadera/representabilidad y no extender riesgo-oráculo a red aditiva o mercado."
+    },
+    {
+      "id": "R2-01",
+      "classification": "R2, no R1 estricto",
+      "guide_locator": "§6, pp.7–8; §14.5.1, p.44",
+      "requirement": "Núcleo propio desde la formulación, sin import del modelo ni copia de código ajeno; comprensión defendible.",
+      "interpretation": "PyTorch y capas primitivas están permitidas. Una defensa no observada no demuestra copia.",
+      "baseline_evidence_status": "Código y procedencia documentados; defensa efectiva del estudiante no observada.",
+      "evidence": "src/e3_overlap_model_v3.py; experiments/procedencia.md; book_e3/sections/06_modelo_original.md:23–25",
+      "minimum_remaining_material": "Auditar código y atribución; no transformar la revisión IA en defensa académica ni exigirla como prueba matemática de novedad."
+    },
+    {
+      "id": "R3-01",
+      "classification": "R3, no R1",
+      "guide_locator": "§6, p.8; §14.1 p.42; Cuadro8 p.59",
+      "requirement": "Superioridad estadística frente al Top10 y baselines fuertes conforme a la batería de la sección8.",
+      "interpretation": "Fallar la heurística de desarrollo o no superar rivales no refuta novedad; no basta para afirmar superioridad.",
+      "baseline_evidence_status": "No acreditado; treinta ajustes V3 son desarrollo, separados de796 previos; heurística fallida.",
+      "evidence": "experiments/e3_evidence_close_20261120/pilot/archive/payload/development_verdict.json; book_e3/sections/08_verificacion_estadistica.md:8.19",
+      "minimum_remaining_material": "No repetir campañas para cerrar revisión R1; no relajar la regla ni promover automáticamente la ablación ganadora."
+    },
+    {
+      "id": "ND-01",
+      "classification": "Disciplina de diseño/comparación; no definición estricta de R1",
+      "guide_locator": "§7.1; §14.5.2, p.44",
+      "requirement": "Bitácora de diseños y desarrollo separado de confirmación.",
+      "interpretation": "Diseños, hiperparámetros, semillas e intentos tienen unidades diferentes; no se exige inventar pensamientos no registrados.",
+      "baseline_evidence_status": "Veintidós identidades documentadas y un bosquejo ambiguo; 183HPO;844trabajos en ámbitos declarados.",
+      "evidence": "experiments/e3_evidence_close_20261120/inventory/reconciliation.json; experiments/design_log.md; book_e3/sections/07_diseno_riguroso.md:522–542",
+      "minimum_remaining_material": "Conservar alcance del corpus y resolver alias sólo con registro contemporáneo; no usar incertidumbre irreconstruible como prueba automática de no-novedad."
+    }
+  ]
+}

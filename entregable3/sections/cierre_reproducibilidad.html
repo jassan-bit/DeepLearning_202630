@@ -413,9 +413,9 @@
 <section id="conclusiones-provisionales-y-limites">
 <h2>Conclusiones provisionales y límites<a class="headerlink" href="#conclusiones-provisionales-y-limites" title="Link to this heading">#</a></h2>
 <p>E2 aporta un benchmark de 16 sistemas sobre 608 fechas, con diez semillas por cada una de sus trece redes y una trayectoria por clásico: <strong>133 predictores</strong>. E3 dispone de diez réplicas de la <strong>CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva y 1210 parámetros</strong>. El corte de servicio del 18 de noviembre representa los 17 sistemas y habilita cinco ONNX CPU —MLP16, LSTM32, GRU32, E3 y TSMixer— para la semilla representante 271801. Las tres exportaciones TorchScript históricas se conservan. La persona autora comunica estado Live del servicio gratuito de <a class="reference external" href="https://deeplearning-e3-dashboard.onrender.com">Render</a>; su aceptación pública de la versión actual mediante humo y commit servido sigue pendiente. Las capturas de construcción conservan su alcance histórico.</p>
-<p>El primer candidato tiene formulación, implementación asistida por IA, demostración de una cota de su cabeza latente y 35 pruebas históricas con datos artificiales. Los pilotos v1/v2 aportan cinco recetas entrenadas en desarrollo y la referencia aditiva v2. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/4cd455d90fb72fe78beeb885dc5dadc4ea9edeb4/runs/momentos_v1">piloto posterior por momentos</a> <strong>completó sus tres recetas</strong>: <code class="docutils literal notranslate"><span class="pre">moment_joint</span></code> obtuvo RMSE de validación 0,0032589201 frente a 0,0031446148 de la referencia aditiva y no superó la heurística de continuación del 2 %. Las diez réplicas aditivas repiten una receta; no son diez diseños nuevos. El Nd global continúa pendiente de conciliación.</p>
+<p>El primer candidato tiene formulación, implementación asistida por IA, demostración de una cota de su cabeza latente y 35 pruebas históricas con datos artificiales. Los pilotos v1/v2 aportan cinco recetas entrenadas en desarrollo y la referencia aditiva v2. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/4cd455d90fb72fe78beeb885dc5dadc4ea9edeb4/runs/momentos_v1">piloto posterior por momentos</a> <strong>completó sus tres recetas</strong>: <code class="docutils literal notranslate"><span class="pre">moment_joint</span></code> obtuvo RMSE de validación 0,0032589201 frente a 0,0031446148 de la referencia aditiva y no superó la heurística de continuación del 2 %. Las diez réplicas aditivas repiten una receta; no son diez diseños nuevos. La conciliación de 7.14 ya identifica 22 entradas del corpus y un bosquejo Faithful ambiguo, con 183 ensayos HPO separados de las semillas; no reconstruye ideas sin registro.</p>
 <p>En el corte histórico, la aditiva evaluada tiene <strong>RMSE media 0,0029394324</strong>, DE muestral <strong>0,0000471254</strong> y MAE media <strong>0,0018928273</strong> sobre las mismas 608 fechas del 1 de enero de 2025 al 31 de agosto de 2026. El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">análisis estadístico posterior</span></a> ya completó los 48 contrastes primarios y todos rechazan tras Holm global, bajo los supuestos y ámbitos de incertidumbre declarados. El MCS90 auxiliar conserva diez sistemas, incluido E3; no determina un ganador único. E2 usó 655 ejemplos de ajuste y 53 de calibración; la receta E3 usó 532 de ajuste y 116 de validación y no empleó ese bloque para entrenar o seleccionar época. La adopción posterior de un cuantil para el servicio no cambia esas recetas. No se afirma igualdad de tratamiento ni se convierte el calendario conocido en una confirmación ciega.</p>
-<p>La revisión focal y la bibliografía no establecen ausencia de antecedentes. <strong>R1, la defensa académica de R2 y R3 permanecen pendientes.</strong> La guía requiere tres pruebas distintas apropiadas; sus rechazos no sustituyen el diseño justo, la potencia previa, los conjuntos adicionales ni los restantes requisitos. Los tests de software conservan su alcance y las propiedades de los mecanismos anteriores no se transfieren automáticamente al modelo de 1210 parámetros.</p>
+<p>La revisión focal y la bibliografía no establecen ausencia de antecedentes. <strong>La referencia aditiva no acredita R1; la revisión específica posterior de V3 en 6.18 tiene dictamen técnico favorable y acotado. La defensa académica de R2 y R3 permanecen pendientes.</strong> La guía requiere tres pruebas distintas apropiadas; sus rechazos no sustituyen el diseño justo, la potencia previa, los conjuntos adicionales ni los restantes requisitos. Los tests de software conservan su alcance y las propiedades de los mecanismos anteriores no se transfieren automáticamente al modelo de 1210 parámetros.</p>
 <p>La paridad de los cuatro ONNX originales se comprobó en 608 fechas frente a memoria CPU y pronósticos congelados, con tolerancia absoluta 10⁻⁶ en σ₇. La extensión TSMixer conserva su cuantil E2 y verifica 608 predicciones más 53 de calibración, con error máximo frente a los puntos congelados 2,28505873×10⁻⁸ σ₇. El representante E3 adopta por separado un perfil posterior <code class="docutils literal notranslate"><span class="pre">q</span> <span class="pre">=</span> <span class="pre">0.005402463770651868</span></code>, obtenido de 53 fechas del 8 de noviembre al 30 de diciembre de 2024. Sólo se aplica a objetivos posteriores al 30 de diciembre; su cobertura individual histórica es <strong>94,078947 %</strong> en 608 fechas y <strong>85,555556 %</strong> en 2026Q1. No se confunde con la media de diez semillas ni garantiza cobertura futura. La comprobación ORT de 661 ventanas conserva q; el redondeo en una observación situada en el cuantil produce 48/53 cubiertas en calibración frente a 49/53 en el cálculo original. No se corrigió ese efecto reajustando q. El <a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">recibo y los límites</span></a> separan estas inferencias de ingeniería CPU, sin ajustes de pesos, de la etapa estadística sin inferencia nueva. El historial de entrenamiento recuperado tampoco es una ejecución nueva.</p>
 <p><strong>Corte de preparación anterior a la auditoría ampliada, del 19 de noviembre de 2026.</strong> Al preparar ese corte, D01 WIKI/AAPL RAW conserva <strong>3270 sesiones admitidas</strong>; D02 ETHUSDT Spot 2018–2021 y D03 BTCUSD_PERP de septiembre de 2020 a diciembre de 2024 están seleccionados, pero sus bytes siguen sin admisión. Hay <strong>cero conjuntos adicionales evaluados por modelos</strong>. La nueva etapa Colab CPU prepara la descarga/verificación, el humo público de cinco modelos y la persistencia de recibos en una rama nueva de GitHub; su existencia no se registra como ejecución exitosa. Tampoco hay un resultado observado de desarrollo GPU del nuevo candidato. La selección no acredita independencia entre mercados o cegamiento global de los calendarios, ni congela el protocolo confirmatorio.</p>
 <p>Tras la auditoría exploratoria completada, quedan por cerrar las auditorías aplicables, revisión/hipótesis/diseño, separación confirmatoria, suficiencia entre dominios, batería formal y potencia antes de una confirmación; completar las explicaciones, recursos y validación prospectiva de calibración; verificar el paquete final y el servicio Render y reproducir la campaña de forma independiente. La app local, las fichas y los reportes de ingeniería son productos con alcance concreto; no convierten los borradores históricos en preregistros ni el prototipo en una entrega completa.</p>
@@ -454,7 +454,7 @@
 </tr>
 <tr class="row-odd"><td><p>Hiperparámetros y esfuerzo</p></td>
 <td><p>Recibos históricos, pilotos y réplicas congeladas conservados. La auditoría ampliada ejecutó rejilla común de tres tasas y límite de 120 s por ajuste, compartido entre las fases SAE.</p></td>
-<td><p>Nd global conciliado, comparabilidad integral de recursos, potencia suficiente y diseño previo a la confirmación; igual límite no equivale a idéntico consumo efectivo.</p></td>
+<td><p>Aclaración del bosquejo Faithful, comparabilidad integral de recursos, potencia suficiente y diseño previo a la confirmación; igual límite no equivale a idéntico consumo efectivo.</p></td>
 </tr>
 <tr class="row-even"><td><p>Métricas y tabla maestra</p></td>
 <td><p>Once CSV históricos reconstruidos desde 143 trayectorias y 608 fechas: 11/11 idénticos. La auditoría ampliada del <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">cierre de 8.18</span></a> añade 76 paneles, 12 tablas y 16 figuras con manifiestos separados. El dashboard conserva el catálogo histórico de 17 sistemas y distingue curvas representantes.</p></td>
@@ -534,8 +534,8 @@
 </tr>
 <tr class="row-odd"><td><p>A5-06</p></td>
 <td><p>Bitácora con Nd y desarrollo separado de confirmación.</p></td>
-<td><p>V1/v2 y momentos conservan ocho recetas completadas; diez réplicas aditivas repiten una receta. La bitácora consolidada es posterior.</p></td>
-<td><p><strong>Parcial.</strong> Conciliar Nd global, intentos y decisiones, y fijar una partición de confirmación que no haya influido en diseño. El subtotal de ocho recetas no sustituye Nd.</p></td>
+<td><p>La conciliación de 7.14 identifica 22 entradas y un bosquejo ambiguo, con propuestas, variantes, intentos y decisiones separados de las semillas. El subtotal histórico de ocho recetas conserva su alcance.</p></td>
+<td><p><strong>Parcial.</strong> Aclarar el bosquejo sólo con registros existentes y fijar cualquier confirmación antes de sus resultados, con datos no usados para diseñar. La conciliación retrospectiva no reconstruye cegamiento.</p></td>
 </tr>
 <tr class="row-even"><td><p>A5-07</p></td>
 <td><p>Protocolo preregistrado con tag y fecha previos a los experimentos definitivos.</p></td>
@@ -617,7 +617,7 @@
 </section>
 <section id="autoria-contribuciones-y-uso-de-ia">
 <h2>Autoría, contribuciones y uso de IA<a class="headerlink" href="#autoria-contribuciones-y-uso-de-ia" title="Link to this heading">#</a></h2>
-<p>La revisión externa de R1 se presenta por la modalidad de <strong>IA declarada</strong> documentada en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6.13</span></a>, conforme a la indicación docente comunicada por el autor el 18 de noviembre de 2026. Se empleó ChatGPT/Codex para búsqueda, cribado, lectura focal, comparación técnica, dictamen y repetición de dos cadenas nativas; la <a class="reference download internal" download="" href="../_downloads/6fbf461dbab006d018d373f43043cd7d/ai_use_declaration.md"><code class="xref download docutils literal notranslate"><span class="pre">declaración</span> <span class="pre">específica</span></code></a> conserva ese alcance. Este componente se documenta como completado por IA y no hubo revisión humana. La conclusión científica de R1 sigue pendiente; las responsabilidades personales del autor y el registro de reproducción de la sección anterior conservan sus estados propios.</p>
+<p>La revisión externa de R1 se presenta por la modalidad de <strong>IA declarada</strong> documentada en <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6.13</span></a>, conforme a la indicación docente comunicada por el autor el 18 de noviembre de 2026. Se empleó ChatGPT/Codex para búsqueda, cribado, lectura focal, comparación técnica, dictamen y repetición de dos cadenas, con el alcance del recibo correspondiente; la <a class="reference download internal" download="" href="../_downloads/6fbf461dbab006d018d373f43043cd7d/ai_use_declaration.md"><code class="xref download docutils literal notranslate"><span class="pre">declaración</span> <span class="pre">específica</span></code></a> conserva ese alcance. Este componente se documenta como completado por IA y no hubo revisión humana. Aquel concepto no acreditó R1 de la aditiva; el dictamen específico posterior de 6.18 es favorable y acotado para V3; las responsabilidades personales del autor y el registro de reproducción de la sección anterior conservan sus estados propios.</p>
 <p>La preparación del <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">piloto exploratorio de momentos</span></a> empleó ChatGPT/Codex para implementación del modelo, ejecutor, guardado y reanudación en GitHub, pruebas sobre datos artificiales, revisión de código y documentación del notebook. La ejecución posterior del piloto está respaldada por sus resultados guardados y se distingue del corte inicial de preparación. La asistencia de IA también intervino en los ejecutores de réplicas, el análisis estadístico posterior y la actualización del libro. Sus commits, versiones, métricas y consumos conservan el alcance de cada etapa; esto no equivale a una verificación humana externa y la persona autora mantiene la responsabilidad de revisar y defender el código.</p>
 <p>El <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">dictamen posterior sobre la cabeza de momentos</span></a> también usa asistencia de ChatGPT/Codex para lectura focal, búsqueda, crítica matemática, contraejemplos escalares, código de auditoría y documentación. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_dictamen_momentos_20261116/provenance.md">procedencia</a> declara ese alcance. El paquete de revisión humana está sin diligenciar y no se presenta como aval externo ni firma.</p>
 <p>La <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">propuesta posterior al cierre v2</span></a> también fue preparada con asistencia de ChatGPT/Codex para revisión focal, formulación, demostración, crítica matemática, verificación escalar, pruebas y documentación. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/e3_mecanismo_momentos_20261116/provenance.md">declaración de procedencia</a> atribuye los componentes conocidos y mantiene pendiente la revisión humana, la novedad y la defensa del estudiante. No se entrenó una red nueva en ese corte.</p>
@@ -662,185 +662,205 @@
 </section>
 <section id="bibliografia-de-partida-y-alcance-de-lectura">
 <h2>Bibliografía de partida y alcance de lectura<a class="headerlink" href="#bibliografia-de-partida-y-alcance-de-lectura" title="Link to this heading">#</a></h2>
-<p>La bibliografía configurada tiene dos fuentes separadas. <code class="docutils literal notranslate"><span class="pre">book_e3/references.bib</span></code> conserva intactos los siete registros del corte del candidato. Los originales de Kim y colaboradores <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id4" title="Hyunjik Kim, George Papamakarios, and Andriy Mnih. The lipschitz constant of self-attention. In Proceedings of the 38th International Conference on Machine Learning, volume 139 of Proceedings of Machine Learning Research, 5562–5571. 2021. URL: https://proceedings.mlr.press/v139/kim21i.html.">Kim <em>et al.</em>, 2021</a>]</span> y Dasoulas y colaboradores <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id5" title="George Dasoulas, Kevin Scaman, and Aladin Virmaux. Lipschitz normalization for self-attention layers with application to graph neural networks. In Proceedings of the 38th International Conference on Machine Learning, volume 139 of Proceedings of Machine Learning Research, 2456–2466. 2021. URL: https://proceedings.mlr.press/v139/dasoulas21a.html.">Dasoulas <em>et al.</em>, 2021</a>]</span> tuvieron lectura focal documentada; la matriz de la <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a> distingue los otros antecedentes, metadatos heredados y límites de consulta.</p>
+<p>La bibliografía configurada conserva las dos fuentes históricas y añade una tercera para el cierre específico de V3. <code class="docutils literal notranslate"><span class="pre">book_e3/references.bib</span></code> conserva intactos los siete registros del corte del candidato. Los originales de Kim y colaboradores <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id5" title="Hyunjik Kim, George Papamakarios, and Andriy Mnih. The lipschitz constant of self-attention. In Proceedings of the 38th International Conference on Machine Learning, volume 139 of Proceedings of Machine Learning Research, 5562–5571. 2021. URL: https://proceedings.mlr.press/v139/kim21i.html.">Kim <em>et al.</em>, 2021</a>]</span> y Dasoulas y colaboradores <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id6" title="George Dasoulas, Kevin Scaman, and Aladin Virmaux. Lipschitz normalization for self-attention layers with application to graph neural networks. In Proceedings of the 38th International Conference on Machine Learning, volume 139 of Proceedings of Machine Learning Research, 2456–2466. 2021. URL: https://proceedings.mlr.press/v139/dasoulas21a.html.">Dasoulas <em>et al.</em>, 2021</a>]</span> tuvieron lectura focal documentada; la matriz de la <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">sección 6</span></a> distingue los otros antecedentes, metadatos heredados y límites de consulta.</p>
 <p><code class="docutils literal notranslate"><span class="pre">referencias_metodologicas_v1.bib</span></code> incorpora las 37 sugerencias de la guía, indexadas con su <a class="reference internal" href="referencias_sugeridas.html"><span class="std std-doc">número original y aplicabilidad</span></a>. No son 37 búsquedas o lecturas nuevas, ni se agregan automáticamente al corpus de novedad o al PRISMA. Su inclusión no afirma que todos sus procedimientos sean aplicables a F2a.</p>
-<p>Se conservan la descarga original de <a class="reference download internal" download="" href="../_downloads/33e59b5ca9ec342068223d604c3f8d55/references.bib"><code class="xref download docutils literal notranslate"><span class="pre">references.bib,</span> <span class="pre">siete</span> <span class="pre">antecedentes</span> <span class="pre">del</span> <span class="pre">candidato</span></code></a> y la nueva descarga de <a class="reference download internal" download="" href="../_downloads/cba4eef7d5b1a135da6be8901d6923b5/referencias_metodologicas_v1.bib"><code class="xref download docutils literal notranslate"><span class="pre">referencias_metodologicas_v1.bib,</span> <span class="pre">37</span> <span class="pre">sugerencias</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">guía</span></code></a>. La lista renderizada reúne los 44 registros. Cerrar R1 requiere completar/repetir la revisión y justificar las diferencias sustantivas; el componente de revisión externa se aporta mediante IA declarada en 6.13. Una lista BibTeX no demuestra novedad.</p>
-<div class="docutils container" id="id3">
+<p>Se conservan la descarga original de <a class="reference download internal" download="" href="../_downloads/33e59b5ca9ec342068223d604c3f8d55/references.bib"><code class="xref download docutils literal notranslate"><span class="pre">references.bib,</span> <span class="pre">siete</span> <span class="pre">antecedentes</span> <span class="pre">del</span> <span class="pre">candidato</span></code></a> y la nueva descarga de <a class="reference download internal" download="" href="../_downloads/cba4eef7d5b1a135da6be8901d6923b5/referencias_metodologicas_v1.bib"><code class="xref download docutils literal notranslate"><span class="pre">referencias_metodologicas_v1.bib,</span> <span class="pre">37</span> <span class="pre">sugerencias</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">guía</span></code></a>. Esas dos fuentes reúnen los 44 registros históricos. La nueva <a class="reference download internal" download="" href="../_downloads/130dfb924a4742f15d13653e4d0bfa09/referencias_r1_v3_20261120.bib"><code class="xref download docutils literal notranslate"><span class="pre">bibliografía</span> <span class="pre">específica</span> <span class="pre">V3,</span> <span class="pre">cinco</span> <span class="pre">referencias</span></code></a> añade los MDN, el proxy móvil, FQF y mezcla-GARCH, con accesos delimitados; la lista renderizada reúne 49 registros. La <a class="reference internal" href="06_modelo_original.html#e3-r1-substantive-verdict-20261120"><span class="std std-ref">revisión de 6.18</span></a> justifica la adaptación mediante matrices y un dictamen IA favorable y acotado, distinto de aprobar una lista bibliográfica o acreditar la aditiva. Bishop <span class="bibtex-citation" id="id3">[<a class="reference internal" href="#id49" title="Christopher M. Bishop. Mixture density networks. 1994. Technical Report NCRG/94/004. Institutional abstract verified; this review does not claim a readable new extraction of the report body. URL: https://www.microsoft.com/en-us/research/publication/mixture-density-networks/.">Bishop, 1994</a>]</span> conserva su alcance de resumen institucional; no se simula lectura del cuerpo.</p>
+<div class="docutils container" id="id4">
 <div role="list" class="citation-list">
-<div class="citation" id="id11" role="doc-biblioentry">
+<div class="citation" id="id50" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<p>J. Demšar. Statistical comparisons of classifiers over multiple data sets. <em>Journal of Machine Learning Research</em>, 7:1–30, 2006.</p>
+<p>Christian Schittenkopf, Georg Dorffner, and Engelbert J. Dockner. Identifying stochastic processes with mixture density networks. 1998. Working Paper 11, May 1998. Focal body reading recorded; distinct from Working Paper 15, Volatility Prediction with Mixture Density Networks. URL: <a class="reference external" href="https://research.wu.ac.at/ws/portalfiles/portal/18954278/document.pdf">https://research.wu.ac.at/ws/portalfiles/portal/18954278/document.pdf</a>, <a class="reference external" href="https://doi.org/10.57938/a6057c38-dbad-42dc-bebc-bd2c71fe537f">doi:10.57938/a6057c38-dbad-42dc-bebc-bd2c71fe537f</a>.</p>
+</div>
+<div class="citation" id="id51" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Jacopo De Stefani, Olivier Caelen, Dalila Hattab, and Gianluca Bontempi. Machine learning for multi-step ahead forecasting of volatility proxies. In <em>MIDAS 2017</em>, volume 1941 of CEUR Workshop Proceedings, 17–28. 2017. Primary proceedings body read focally; target and methods are scoped in the R1 comparison matrix. URL: <a class="reference external" href="https://ceur-ws.org/Vol-1941/MIDAS2017_paper3.pdf">https://ceur-ws.org/Vol-1941/MIDAS2017_paper3.pdf</a>.</p>
+</div>
+<div class="citation" id="id52" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<p>Derek Yang, Li Zhao, Zichuan Lin, Tao Qin, Jiang Bian, and Tie-Yan Liu. Fully parameterized quantile function for distributional reinforcement learning. In <em>Advances in Neural Information Processing Systems</em>, volume 32. 2019. Primary paper read focally, sections 3.1–3.4. Learning both locations and masses is an attributed antecedent, not a V3 invention. URL: <a class="reference external" href="https://proceedings.neurips.cc/paper/2019/hash/f471223d1a1614b58a7dc45c9d01df19-Abstract.html">https://proceedings.neurips.cc/paper/2019/hash/f471223d1a1614b58a7dc45c9d01df19-Abstract.html</a>.</p>
+</div>
+<div class="citation" id="id53" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<p>Wenhui Feng, Yuan Li, and Xingfa Zhang. A mixture deep neural network garch model for volatility forecasting. <em>Electronic Research Archive</em>, 2023. New primary focal body reading, section 3; earlier metadata-only access remains recorded in the historical packet. URL: <a class="reference external" href="https://aimspress.com/article/doi/10.3934/era.2023194">https://aimspress.com/article/doi/10.3934/era.2023194</a>, <a class="reference external" href="https://doi.org/10.3934/era.2023194">doi:10.3934/era.2023194</a>.</p>
 </div>
 <div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
-<p>S. García and F. Herrera. An extension on “statistical comparisons of classifiers over multiple data sets” for all pairwise comparisons. <em>Journal of Machine Learning Research</em>, 9:2677–2694, 2008.</p>
+<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
+<p>J. Demšar. Statistical comparisons of classifiers over multiple data sets. <em>Journal of Machine Learning Research</em>, 7:1–30, 2006.</p>
 </div>
 <div class="citation" id="id13" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
-<p>R. L. Iman and J. M. Davenport. Approximations of the critical region of the Friedman statistic. <em>Communications in Statistics - Theory and Methods</em>, 9(6):571–595, 1980.</p>
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<p>S. García and F. Herrera. An extension on “statistical comparisons of classifiers over multiple data sets” for all pairwise comparisons. <em>Journal of Machine Learning Research</em>, 9:2677–2694, 2008.</p>
 </div>
 <div class="citation" id="id14" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
-<p>A. Benavoli, G. Corani, J. Demšar, and M. Zaffalon. Time for a change: a tutorial for comparing multiple classifiers through Bayesian analysis. <em>Journal of Machine Learning Research</em>, 18(77):1–36, 2017.</p>
+<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
+<p>R. L. Iman and J. M. Davenport. Approximations of the critical region of the Friedman statistic. <em>Communications in Statistics - Theory and Methods</em>, 9(6):571–595, 1980.</p>
 </div>
 <div class="citation" id="id15" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
-<p>E. R. DeLong, D. M. DeLong, and D. L. Clarke-Pearson. Comparing the areas under two or more correlated receiver operating characteristic curves. <em>Biometrics</em>, 44(3):837–845, 1988.</p>
+<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
+<p>A. Benavoli, G. Corani, J. Demšar, and M. Zaffalon. Time for a change: a tutorial for comparing multiple classifiers through Bayesian analysis. <em>Journal of Machine Learning Research</em>, 18(77):1–36, 2017.</p>
 </div>
 <div class="citation" id="id16" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
-<p>C. Nadeau and Y. Bengio. Inference for the generalization error. <em>Machine Learning</em>, 52:239–281, 2003.</p>
+<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
+<p>E. R. DeLong, D. M. DeLong, and D. L. Clarke-Pearson. Comparing the areas under two or more correlated receiver operating characteristic curves. <em>Biometrics</em>, 44(3):837–845, 1988.</p>
 </div>
 <div class="citation" id="id17" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
-<p>T. G. Dietterich. Approximate statistical tests for comparing supervised classification learning algorithms. <em>Neural Computation</em>, 10(7):1895–1923, 1998.</p>
+<span class="label"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></span>
+<p>C. Nadeau and Y. Bengio. Inference for the generalization error. <em>Machine Learning</em>, 52:239–281, 2003.</p>
 </div>
 <div class="citation" id="id18" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
-<p>R. Dror, G. Baumer, S. Shlomov, and R. Reichart. The hitchhiker’s guide to testing statistical significance in natural language processing. In <em>Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics</em>, 1383–1392. 2018.</p>
+<span class="label"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></span>
+<p>T. G. Dietterich. Approximate statistical tests for comparing supervised classification learning algorithms. <em>Neural Computation</em>, 10(7):1895–1923, 1998.</p>
 </div>
 <div class="citation" id="id19" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
-<p>X. Bouthillier, P. Delaunay, M. Bronzi, A. Trofimov, B. Nichyporuk, J. Szeto, and others. Accounting for variance in machine learning benchmarks. In <em>Proceedings of Machine Learning and Systems</em>, volume 3, 747–769. 2021.</p>
+<span class="label"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></span>
+<p>R. Dror, G. Baumer, S. Shlomov, and R. Reichart. The hitchhiker’s guide to testing statistical significance in natural language processing. In <em>Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics</em>, 1383–1392. 2018.</p>
 </div>
 <div class="citation" id="id20" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></span>
-<p>J. Dodge, S. Gururangan, D. Card, R. Schwartz, and N. A. Smith. Show your work: improved reporting of experimental results. In <em>Proceedings of EMNLP-IJCNLP</em>, 2185–2194. 2019.</p>
+<span class="label"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></span>
+<p>X. Bouthillier, P. Delaunay, M. Bronzi, A. Trofimov, B. Nichyporuk, J. Szeto, and others. Accounting for variance in machine learning benchmarks. In <em>Proceedings of Machine Learning and Systems</em>, volume 3, 747–769. 2021.</p>
 </div>
 <div class="citation" id="id21" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></span>
-<p>Z. C. Lipton and J. Steinhardt. Troubling trends in machine learning scholarship. <em>ACM Queue</em>, 17(1):45–77, 2019.</p>
+<span class="label"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></span>
+<p>J. Dodge, S. Gururangan, D. Card, R. Schwartz, and N. A. Smith. Show your work: improved reporting of experimental results. In <em>Proceedings of EMNLP-IJCNLP</em>, 2185–2194. 2019.</p>
 </div>
 <div class="citation" id="id22" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></span>
-<p>S. Kapoor and A. Narayanan. Leakage and the reproducibility crisis in machine-learning-based science. <em>Patterns</em>, 4(9):100804, 2023.</p>
+<span class="label"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></span>
+<p>Z. C. Lipton and J. Steinhardt. Troubling trends in machine learning scholarship. <em>ACM Queue</em>, 17(1):45–77, 2019.</p>
 </div>
 <div class="citation" id="id23" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></span>
-<p>C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger. On calibration of modern neural networks. In <em>Proceedings of the 34th International Conference on Machine Learning</em>, volume 70 of PMLR, 1321–1330. 2017.</p>
+<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
+<p>S. Kapoor and A. Narayanan. Leakage and the reproducibility crisis in machine-learning-based science. <em>Patterns</em>, 4(9):100804, 2023.</p>
 </div>
 <div class="citation" id="id24" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></span>
-<p>L. Grinsztajn, E. Oyallon, and G. Varoquaux. Why do tree-based models still outperform deep learning on typical tabular data? In <em>Advances in Neural Information Processing Systems</em>, volume 35. 2022.</p>
+<span class="label"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></span>
+<p>C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger. On calibration of modern neural networks. In <em>Proceedings of the 34th International Conference on Machine Learning</em>, volume 70 of PMLR, 1321–1330. 2017.</p>
 </div>
 <div class="citation" id="id25" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></span>
-<p>A. Zeng, M. Chen, L. Zhang, and Q. Xu. Are transformers effective for time series forecasting? In <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, volume 37, 11121–11128. 2023.</p>
+<span class="label"><span class="fn-bracket">[</span>18<span class="fn-bracket">]</span></span>
+<p>L. Grinsztajn, E. Oyallon, and G. Varoquaux. Why do tree-based models still outperform deep learning on typical tabular data? In <em>Advances in Neural Information Processing Systems</em>, volume 35. 2022.</p>
 </div>
 <div class="citation" id="id26" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
-<p>D. Hendrycks and T. Dietterich. Benchmarking neural network robustness to common corruptions and perturbations. In <em>International Conference on Learning Representations</em>. 2019.</p>
+<span class="label"><span class="fn-bracket">[</span>19<span class="fn-bracket">]</span></span>
+<p>A. Zeng, M. Chen, L. Zhang, and Q. Xu. Are transformers effective for time series forecasting? In <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, volume 37, 11121–11128. 2023.</p>
 </div>
 <div class="citation" id="id27" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></span>
-<p>F. X. Diebold and R. S. Mariano. Comparing predictive accuracy. <em>Journal of Business and Economic Statistics</em>, 13(3):253–263, 1995.</p>
+<span class="label"><span class="fn-bracket">[</span>20<span class="fn-bracket">]</span></span>
+<p>D. Hendrycks and T. Dietterich. Benchmarking neural network robustness to common corruptions and perturbations. In <em>International Conference on Learning Representations</em>. 2019.</p>
 </div>
 <div class="citation" id="id28" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>18<span class="fn-bracket">]</span></span>
-<p>D. Harvey, S. Leybourne, and P. Newbold. Testing the equality of prediction mean squared errors. <em>International Journal of Forecasting</em>, 13(2):281–291, 1997.</p>
+<span class="label"><span class="fn-bracket">[</span>21<span class="fn-bracket">]</span></span>
+<p>F. X. Diebold and R. S. Mariano. Comparing predictive accuracy. <em>Journal of Business and Economic Statistics</em>, 13(3):253–263, 1995.</p>
 </div>
 <div class="citation" id="id29" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>19<span class="fn-bracket">]</span></span>
-<p>R. Giacomini and H. White. Tests of conditional predictive ability. <em>Econometrica</em>, 74(6):1545–1578, 2006.</p>
+<span class="label"><span class="fn-bracket">[</span>22<span class="fn-bracket">]</span></span>
+<p>D. Harvey, S. Leybourne, and P. Newbold. Testing the equality of prediction mean squared errors. <em>International Journal of Forecasting</em>, 13(2):281–291, 1997.</p>
 </div>
 <div class="citation" id="id30" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>20<span class="fn-bracket">]</span></span>
-<p>T. E. Clark and K. D. West. Approximately normal tests for equal predictive accuracy in nested models. <em>Journal of Econometrics</em>, 138(1):291–311, 2007.</p>
+<span class="label"><span class="fn-bracket">[</span>23<span class="fn-bracket">]</span></span>
+<p>R. Giacomini and H. White. Tests of conditional predictive ability. <em>Econometrica</em>, 74(6):1545–1578, 2006.</p>
 </div>
 <div class="citation" id="id31" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>21<span class="fn-bracket">]</span></span>
-<p>P. R. Hansen, A. Lunde, and J. M. Nason. The model confidence set. <em>Econometrica</em>, 79(2):453–497, 2011.</p>
+<span class="label"><span class="fn-bracket">[</span>24<span class="fn-bracket">]</span></span>
+<p>T. E. Clark and K. D. West. Approximately normal tests for equal predictive accuracy in nested models. <em>Journal of Econometrics</em>, 138(1):291–311, 2007.</p>
 </div>
 <div class="citation" id="id32" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>22<span class="fn-bracket">]</span></span>
-<p>D. N. Politis and J. P. Romano. The stationary bootstrap. <em>Journal of the American Statistical Association</em>, 89(428):1303–1313, 1994.</p>
+<span class="label"><span class="fn-bracket">[</span>25<span class="fn-bracket">]</span></span>
+<p>P. R. Hansen, A. Lunde, and J. M. Nason. The model confidence set. <em>Econometrica</em>, 79(2):453–497, 2011.</p>
 </div>
 <div class="citation" id="id33" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>23<span class="fn-bracket">]</span></span>
-<p>J. Romano, J. D. Kromrey, J. Coraggio, and J. Skowronek. Appropriate statistics for ordinal level data: should we really be using t-test and Cohen’s d for evaluating group differences on the NSSE and other surveys? In <em>Annual Meeting of the Florida Association of Institutional Research</em>. 2006.</p>
+<span class="label"><span class="fn-bracket">[</span>26<span class="fn-bracket">]</span></span>
+<p>D. N. Politis and J. P. Romano. The stationary bootstrap. <em>Journal of the American Statistical Association</em>, 89(428):1303–1313, 1994.</p>
 </div>
 <div class="citation" id="id34" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>24<span class="fn-bracket">]</span></span>
-<p>T. Gneiting and A. E. Raftery. Strictly proper scoring rules, prediction, and estimation. <em>Journal of the American Statistical Association</em>, 102(477):359–378, 2007.</p>
+<span class="label"><span class="fn-bracket">[</span>27<span class="fn-bracket">]</span></span>
+<p>J. Romano, J. D. Kromrey, J. Coraggio, and J. Skowronek. Appropriate statistics for ordinal level data: should we really be using t-test and Cohen’s d for evaluating group differences on the NSSE and other surveys? In <em>Annual Meeting of the Florida Association of Institutional Research</em>. 2006.</p>
 </div>
 <div class="citation" id="id35" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>25<span class="fn-bracket">]</span></span>
-<p>A. N. Angelopoulos and S. Bates. Conformal prediction: a gentle introduction. <em>Foundations and Trends in Machine Learning</em>, 16(4):494–591, 2023.</p>
+<span class="label"><span class="fn-bracket">[</span>28<span class="fn-bracket">]</span></span>
+<p>T. Gneiting and A. E. Raftery. Strictly proper scoring rules, prediction, and estimation. <em>Journal of the American Statistical Association</em>, 102(477):359–378, 2007.</p>
 </div>
 <div class="citation" id="id36" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>26<span class="fn-bracket">]</span></span>
-<p>R. R. Selvaraju, M. Cogswell, A. Das, R. Vedantam, D. Parikh, and D. Batra. Grad-CAM: visual explanations from deep networks via gradient-based localization. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>, 618–626. 2017.</p>
+<span class="label"><span class="fn-bracket">[</span>29<span class="fn-bracket">]</span></span>
+<p>A. N. Angelopoulos and S. Bates. Conformal prediction: a gentle introduction. <em>Foundations and Trends in Machine Learning</em>, 16(4):494–591, 2023.</p>
 </div>
 <div class="citation" id="id37" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>27<span class="fn-bracket">]</span></span>
-<p>M. Sundararajan, A. Taly, and Q. Yan. Axiomatic attribution for deep networks. In <em>Proceedings of the 34th International Conference on Machine Learning</em>, volume 70 of PMLR, 3319–3328. 2017.</p>
+<span class="label"><span class="fn-bracket">[</span>30<span class="fn-bracket">]</span></span>
+<p>R. R. Selvaraju, M. Cogswell, A. Das, R. Vedantam, D. Parikh, and D. Batra. Grad-CAM: visual explanations from deep networks via gradient-based localization. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>, 618–626. 2017.</p>
 </div>
 <div class="citation" id="id38" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>28<span class="fn-bracket">]</span></span>
-<p>S. M. Lundberg and S.-I. Lee. A unified approach to interpreting model predictions. In <em>Advances in Neural Information Processing Systems</em>, volume 30. 2017.</p>
+<span class="label"><span class="fn-bracket">[</span>31<span class="fn-bracket">]</span></span>
+<p>M. Sundararajan, A. Taly, and Q. Yan. Axiomatic attribution for deep networks. In <em>Proceedings of the 34th International Conference on Machine Learning</em>, volume 70 of PMLR, 3319–3328. 2017.</p>
 </div>
 <div class="citation" id="id39" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>29<span class="fn-bracket">]</span></span>
-<p>E. Strubell, A. Ganesh, and A. McCallum. Energy and policy considerations for deep learning in NLP. In <em>Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</em>, 3645–3650. 2019.</p>
+<span class="label"><span class="fn-bracket">[</span>32<span class="fn-bracket">]</span></span>
+<p>S. M. Lundberg and S.-I. Lee. A unified approach to interpreting model predictions. In <em>Advances in Neural Information Processing Systems</em>, volume 30. 2017.</p>
 </div>
 <div class="citation" id="id40" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>30<span class="fn-bracket">]</span></span>
-<p>P. Henderson, J. Hu, J. Romoff, E. Brunskill, D. Jurafsky, and J. Pineau. Towards the systematic reporting of the energy and carbon footprints of machine learning. <em>Journal of Machine Learning Research</em>, 21(248):1–43, 2020.</p>
+<span class="label"><span class="fn-bracket">[</span>33<span class="fn-bracket">]</span></span>
+<p>E. Strubell, A. Ganesh, and A. McCallum. Energy and policy considerations for deep learning in NLP. In <em>Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</em>, 3645–3650. 2019.</p>
 </div>
 <div class="citation" id="id41" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>31<span class="fn-bracket">]</span></span>
-<p>M. Mitchell, S. Wu, A. Zaldivar, P. Barnes, L. Vasserman, B. Hutchinson, and others. Model cards for model reporting. In <em>Proceedings of the Conference on Fairness, Accountability, and Transparency</em>, 220–229. 2019.</p>
+<span class="label"><span class="fn-bracket">[</span>34<span class="fn-bracket">]</span></span>
+<p>P. Henderson, J. Hu, J. Romoff, E. Brunskill, D. Jurafsky, and J. Pineau. Towards the systematic reporting of the energy and carbon footprints of machine learning. <em>Journal of Machine Learning Research</em>, 21(248):1–43, 2020.</p>
 </div>
 <div class="citation" id="id42" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>32<span class="fn-bracket">]</span></span>
-<p>J. Pineau, P. Vincent-Lamarre, K. Sinha, V. Larivière, A. Beygelzimer, F. d’Alché-Buc, E. Fox, and H. Larochelle. Improving reproducibility in machine learning research. <em>Journal of Machine Learning Research</em>, 22(164):1–20, 2021.</p>
+<span class="label"><span class="fn-bracket">[</span>35<span class="fn-bracket">]</span></span>
+<p>M. Mitchell, S. Wu, A. Zaldivar, P. Barnes, L. Vasserman, B. Hutchinson, and others. Model cards for model reporting. In <em>Proceedings of the Conference on Fairness, Accountability, and Transparency</em>, 220–229. 2019.</p>
 </div>
 <div class="citation" id="id43" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>33<span class="fn-bracket">]</span></span>
-<p>T. Akiba, S. Sano, T. Yanase, T. Ohta, and M. Koyama. Optuna: a next-generation hyperparameter optimization framework. In <em>Proceedings of the 25th ACM SIGKDD</em>, 2623–2631. 2019.</p>
+<span class="label"><span class="fn-bracket">[</span>36<span class="fn-bracket">]</span></span>
+<p>J. Pineau, P. Vincent-Lamarre, K. Sinha, V. Larivière, A. Beygelzimer, F. d’Alché-Buc, E. Fox, and H. Larochelle. Improving reproducibility in machine learning research. <em>Journal of Machine Learning Research</em>, 22(164):1–20, 2021.</p>
 </div>
 <div class="citation" id="id44" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>34<span class="fn-bracket">]</span></span>
-<p>S. Holm. A simple sequentially rejective multiple test procedure. <em>Scandinavian Journal of Statistics</em>, 6(2):65–70, 1979.</p>
+<span class="label"><span class="fn-bracket">[</span>37<span class="fn-bracket">]</span></span>
+<p>T. Akiba, S. Sano, T. Yanase, T. Ohta, and M. Koyama. Optuna: a next-generation hyperparameter optimization framework. In <em>Proceedings of the 25th ACM SIGKDD</em>, 2623–2631. 2019.</p>
 </div>
 <div class="citation" id="id45" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>35<span class="fn-bracket">]</span></span>
-<p>Y. Benjamini and Y. Hochberg. Controlling the false discovery rate: a practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society: Series B</em>, 57(1):289–300, 1995.</p>
+<span class="label"><span class="fn-bracket">[</span>38<span class="fn-bracket">]</span></span>
+<p>S. Holm. A simple sequentially rejective multiple test procedure. <em>Scandinavian Journal of Statistics</em>, 6(2):65–70, 1979.</p>
 </div>
 <div class="citation" id="id46" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>36<span class="fn-bracket">]</span></span>
-<p>D. J. Schuirmann. A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability. <em>Journal of Pharmacokinetics and Biopharmaceutics</em>, 15(6):657–680, 1987.</p>
+<span class="label"><span class="fn-bracket">[</span>39<span class="fn-bracket">]</span></span>
+<p>Y. Benjamini and Y. Hochberg. Controlling the false discovery rate: a practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society: Series B</em>, 57(1):289–300, 1995.</p>
 </div>
 <div class="citation" id="id47" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>37<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>40<span class="fn-bracket">]</span></span>
+<p>D. J. Schuirmann. A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability. <em>Journal of Pharmacokinetics and Biopharmaceutics</em>, 15(6):657–680, 1987.</p>
+</div>
+<div class="citation" id="id48" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>41<span class="fn-bracket">]</span></span>
 <p>B. Efron and R. J. Tibshirani. <em>An introduction to the bootstrap</em>. Chapman &amp; Hall, 1993.</p>
 </div>
-<div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">38</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">42</a><span class="fn-bracket">]</span></span>
 <p>Hyunjik Kim, George Papamakarios, and Andriy Mnih. The lipschitz constant of self-attention. In <em>Proceedings of the 38th International Conference on Machine Learning</em>, volume 139 of Proceedings of Machine Learning Research, 5562–5571. 2021. URL: <a class="reference external" href="https://proceedings.mlr.press/v139/kim21i.html">https://proceedings.mlr.press/v139/kim21i.html</a>.</p>
 </div>
-<div class="citation" id="id5" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">39</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">43</a><span class="fn-bracket">]</span></span>
 <p>George Dasoulas, Kevin Scaman, and Aladin Virmaux. Lipschitz normalization for self-attention layers with application to graph neural networks. In <em>Proceedings of the 38th International Conference on Machine Learning</em>, volume 139 of Proceedings of Machine Learning Research, 2456–2466. 2021. URL: <a class="reference external" href="https://proceedings.mlr.press/v139/dasoulas21a.html">https://proceedings.mlr.press/v139/dasoulas21a.html</a>.</p>
 </div>
-<div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>40<span class="fn-bracket">]</span></span>
-<p>Shiyu Wang, Haixu Wu, Xiaoming Shi, Tengge Hu, Huakun Luo, Lintao Ma, James Y. Zhang, and Jun Zhou. Timemixer: decomposable multiscale mixing for time series forecasting. In <em>International Conference on Learning Representations</em>. 2024. URL: <a class="reference external" href="https://openreview.net/forum?id=7oLshfEIC2">https://openreview.net/forum?id=7oLshfEIC2</a>.</p>
+<div class="citation" id="id49" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">44</a><span class="fn-bracket">]</span></span>
+<p>Christopher M. Bishop. Mixture density networks. 1994. Technical Report NCRG/94/004. Institutional abstract verified; this review does not claim a readable new extraction of the report body. URL: <a class="reference external" href="https://www.microsoft.com/en-us/research/publication/mixture-density-networks/">https://www.microsoft.com/en-us/research/publication/mixture-density-networks/</a>.</p>
 </div>
 <div class="citation" id="id7" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>41<span class="fn-bracket">]</span></span>
-<p>Thang Luong, Hieu Pham, and Christopher D. Manning. Effective approaches to attention-based neural machine translation. In <em>Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing</em>, 1412–1421. 2015. URL: <a class="reference external" href="https://aclanthology.org/D15-1166/">https://aclanthology.org/D15-1166/</a>, <a class="reference external" href="https://doi.org/10.18653/v1/D15-1166">doi:10.18653/v1/D15-1166</a>.</p>
+<span class="label"><span class="fn-bracket">[</span>45<span class="fn-bracket">]</span></span>
+<p>Shiyu Wang, Haixu Wu, Xiaoming Shi, Tengge Hu, Huakun Luo, Lintao Ma, James Y. Zhang, and Jun Zhou. Timemixer: decomposable multiscale mixing for time series forecasting. In <em>International Conference on Learning Representations</em>. 2024. URL: <a class="reference external" href="https://openreview.net/forum?id=7oLshfEIC2">https://openreview.net/forum?id=7oLshfEIC2</a>.</p>
 </div>
 <div class="citation" id="id8" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>42<span class="fn-bracket">]</span></span>
-<p>P. Peng, Y. Chen, W. Lin, and J. Z. Wang. Attention-based cnn–lstm for high-frequency multiple cryptocurrency trend prediction. <em>Expert Systems with Applications</em>, 2024. Bibliographic metadata inherited from the received Scopus export; original body not newly read in this pass. <a class="reference external" href="https://doi.org/10.1016/j.eswa.2023.121520">doi:10.1016/j.eswa.2023.121520</a>.</p>
+<span class="label"><span class="fn-bracket">[</span>46<span class="fn-bracket">]</span></span>
+<p>Thang Luong, Hieu Pham, and Christopher D. Manning. Effective approaches to attention-based neural machine translation. In <em>Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing</em>, 1412–1421. 2015. URL: <a class="reference external" href="https://aclanthology.org/D15-1166/">https://aclanthology.org/D15-1166/</a>, <a class="reference external" href="https://doi.org/10.18653/v1/D15-1166">doi:10.18653/v1/D15-1166</a>.</p>
 </div>
 <div class="citation" id="id9" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>43<span class="fn-bracket">]</span></span>
-<p>H. Wang, Y. Huang, Z. Chen, X. Yang, X. Yi, H. Dong, and X. Yang. Estimation of realized volatility of cryptocurrencies using ceemdan-rf-lstm. <em>Future Generation Computer Systems</em>, 2024. Metadata and critical assessment inherited from E2; original not independently reread here. <a class="reference external" href="https://doi.org/10.1016/j.future.2024.04.043">doi:10.1016/j.future.2024.04.043</a>.</p>
+<span class="label"><span class="fn-bracket">[</span>47<span class="fn-bracket">]</span></span>
+<p>P. Peng, Y. Chen, W. Lin, and J. Z. Wang. Attention-based cnn–lstm for high-frequency multiple cryptocurrency trend prediction. <em>Expert Systems with Applications</em>, 2024. Bibliographic metadata inherited from the received Scopus export; original body not newly read in this pass. <a class="reference external" href="https://doi.org/10.1016/j.eswa.2023.121520">doi:10.1016/j.eswa.2023.121520</a>.</p>
 </div>
 <div class="citation" id="id10" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>44<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>48<span class="fn-bracket">]</span></span>
+<p>H. Wang, Y. Huang, Z. Chen, X. Yang, X. Yi, H. Dong, and X. Yang. Estimation of realized volatility of cryptocurrencies using ceemdan-rf-lstm. <em>Future Generation Computer Systems</em>, 2024. Metadata and critical assessment inherited from E2; original not independently reread here. <a class="reference external" href="https://doi.org/10.1016/j.future.2024.04.043">doi:10.1016/j.future.2024.04.043</a>.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>49<span class="fn-bracket">]</span></span>
 <p>Rafael Reisenhofer, Xandro Bayer, and Nikolaus Hautsch. Harnet: a convolutional neural network for realized volatility forecasting. 2022. Preprint identity from received arXiv export; inherited E2 focal review. URL: <a class="reference external" href="https://arxiv.org/abs/2205.07719">https://arxiv.org/abs/2205.07719</a>, <a class="reference external" href="https://arxiv.org/abs/2205.07719">arXiv:2205.07719</a>.</p>
 </div>
 </div>

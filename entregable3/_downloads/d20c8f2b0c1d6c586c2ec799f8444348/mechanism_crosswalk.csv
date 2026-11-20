@@ -1,0 +1,15 @@
+id,elemento,formulacion,repository_path,lines_or_section,tipo_de_cambio,limite
+M01,Etiqueta y causalidad,A=S6/7; U=abs(r7-m6); Y=sqrt(A+6U²/49),src/e3_innovation_model.py,122-150,Identidad conocida adaptada al objetivo,ddof=0 diario no anualizado; U sólo etiqueta; no nueva observación
+M02,Preparación de X,logprecios anclados al último cierre; log1p volumen; estadísticas sólo fit,src/e3_innovation_model.py,132-145,Preprocesamiento preservado,No prueba novedad; exposición del calendario sigue
+M03,Codificador,CNN causal + LSTM unidireccional M00,src/original_model.py,110-127,Componente conocido preservado,No hereda la cota del primer mecanismo con penalización/saturación
+M04,Atención,q=qraw/sqrt(1+||qraw||²); tau=.25+softplus; softmax,src/e3_overlap_model_v3.py,129-136,Componente conocido preservado,No se atribuye originalidad a atención
+M05,Ley aprendida,"3 átomos positivos ordenados y softmax(ell1,ell2,0)",src/e3_overlap_model_v3.py,138-155,Cambio estructural frente a cabeza escalar,Componentes discretos y mezclas conocidos; no prioridad por código solo
+M06,Lectura,mu=sum p_k sqrt(A+c a_k²),src/e3_overlap_model_v3.py,156-164,Pushforward ligado a identidad del objetivo,Exacta sólo bajo ley finita aprendida; no exactitud de mercado
+M07,Pérdida,MSE_sigma normalizado + .1 CRPS_U normalizado,src/e3_overlap_model_v3.py,61-80,Cambio de objetivo y gradientes,CRPS_U no es CRPS_sigma; etiqueta auxiliar no información nueva
+M08,Aditiva,sqrt(A)+sY[epsilon+softplus(score)],src/e3_innovation_model.py,282-303,Referencia escalar de 1210 parámetros,Puede representar puntos admisibles; no imposibilidad general
+M09,Sin CRPS,lambda=0 con igual parametrización atómica,src/e3_overlap_model_v3.py,90-115,Ablación de pérdida,1262 parámetros; ley no identificada por media MSE sola
+M10,Masas fijas,p_k=1/3 sin lectura de logits,src/e3_overlap_model_v3.py,113-155,Ablación estructural,1236 parámetros; capacidad menor declarada
+M11,Segundo momento,b=sqrt(A+c sum p_k a_k²),experiments/e3_v3_development_pilot_20261120/plugin_control.py,22-87,Ablación de agregación,"1262 parámetros; misma ley sólo a parámetros iguales, no al terminar ajustes"
+M12,Validación y selección,MSE_sigma para todas las recetas; auxiliar sólo al ajustar,experiments/e3_v3_development_pilot_20261120/pilot_engine.py,258-301,Política común de métrica de selección,No es nueva preregistración ni R3
+M13,Propiedad oracle,R(b)-R(mu_G)=(b-mu_G)^2 bajo ley verdadera,book_e3/_static/e3_cierre_integral_20261118/mechanism/theory.md,Proposiciones1-3,Propiedad estándar demostrada para adaptación,"No comparación universal con aditiva, calibración o convergencia"
+M14,Verificación anterior,100 leyes finitas y contraejemplos guardados,book_e3/_static/e3_r1_close_20261120/adaptation_design/analytic_verification.json,cases0-99; resumen,Evidencia numérica sintética previa preservada,No mercado ni 100 pruebas de novedad

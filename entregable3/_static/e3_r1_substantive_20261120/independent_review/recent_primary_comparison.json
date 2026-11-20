@@ -1,0 +1,36 @@
+{
+  "AI_assistance_declared": true,
+  "source_body_redistributed": false,
+  "sources": [
+    {
+      "source_id": "IR_APP2026_01",
+      "authors": "Shamaila Butt; Muhammad Ali Chohan; Mohammad Abrar; Karima Sayari; Shahid Kamal",
+      "year": 2026,
+      "title": "Task-Aware Exchange Rate Forecasting: A Unified Empirical Framework for Level, Return, and Volatility Prediction",
+      "doi": "10.3390/risks14090207",
+      "primary_url": "https://www.mdpi.com/2227-9091/14/9/207",
+      "access_scope": "Primary publisher HTML, title/metadata and focused body §§3.2.3,3.4,3.6; not a claim of whole-paper reading",
+      "locator": "§3.2.3 Eqs6–7; §3.4 Eqs9–23; §3.6 training protocol. Observed HTML lines303–454.",
+      "target": "SD of the next10 first-difference returns, all unobserved at origin; past rolling SD is a feature.",
+      "mechanism_loss_training": "Direct linear/recurrent/attention point forecasts with Huber training for deep models; comparative task-aware empirical study.",
+      "V3_difference": "V3 learns a finite law of the sole unknown magnitude in a partly observed rolling target and applies the known-A transform before expectation, with MSE_Y plus CRPS_U. This distinction is not merely FX versus BTC or window10 versus7.",
+      "novelty_inference": "No matching V3 composition is described in the method sections read. This source alone neither establishes absence elsewhere nor validates V3 performance.",
+      "comparison_category": "mechanism_and_loss_training_difference; neighboring financial-volatility task"
+    },
+    {
+      "source_id": "IR_APP2026_02",
+      "authors": "Abdul Kadar Muhammad Masum; Md. Abul Kalam Azad; Mirza Nadim Saad; Al-Amain; Mohammad Azam Khan; A. B. M. Yasir Arafat",
+      "year": 2026,
+      "title": "Audit-Ready Machine Learning for Short-Horizon Equity Prediction: A Dual-Target Benchmark With Fold-Isolated Preprocessing",
+      "doi": "10.1002/eng2.70893",
+      "primary_url": "https://onlinelibrary.wiley.com/doi/10.1002/eng2.70893",
+      "access_scope": "Primary publisher HTML, abstract/introduction and focused §3 target/model descriptions; not a claim of whole-paper reading",
+      "locator": "§3 Eqs1–3 and7; model descriptions Eqs13–16 and Table4. Observed HTML lines298–389.",
+      "target": "Next-day signed simple return and absolute next-day return as a volatility proxy; rolling SD is a predictor.",
+      "mechanism_loss_training": "Matched direct tabular/recurrent/attention/graph point predictors; multitask LSTM heads, Huber training mentioned for return head and nonnegative handling for volatility forecasts.",
+      "V3_difference": "V3 models a law of centered magnitude U and maps it to a partly observed rolling-SD label; its joint proper-score and transformed-mean objective is not the direct absolute-return target in this source.",
+      "novelty_inference": "No matching V3 composition is described in the method sections read; do not claim no possible relation outside inspected portions.",
+      "comparison_category": "mechanism_and_loss_training_difference; different proxy task"
+    }
+  ]
+}
