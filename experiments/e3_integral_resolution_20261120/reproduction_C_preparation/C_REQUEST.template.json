@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "purpose": "historical_training_reproduction_subset_not_confirmation",
+  "new_run_id": null,
+  "operator": {
+    "name": null,
+    "relationship_to_design": null,
+    "independent_of_design": false
+  },
+  "allow_training": false,
+  "recorded_at_utc": null,
+  "scope": "two_original_pilot_final_jobs_smallest_registered_seed",
+  "resources": {
+    "max_nominal_fit_seconds": 240.0,
+    "max_wall_seconds": 600,
+    "device": "cuda:0",
+    "cpu_threads": 2
+  },
+  "cohort_policy": "same_as_original",
+  "expected_cohort": {
+    "python": "3.12.12",
+    "torch": "2.8.0+cu126",
+    "numpy": "2.3.5",
+    "cuda_runtime": "12.6",
+    "cudnn": 91002,
+    "device": "cuda:0",
+    "cpu_threads": 2,
+    "deterministic_algorithms": true,
+    "allow_tf32": false,
+    "GPU": {
+      "name": "NVIDIA A100-SXM4-80GB",
+      "total_memory_bytes": 85094825984,
+      "capability": [
+        8,
+        0
+      ]
+    }
+  },
+  "tolerances": {
+    "prediction_sigma7": {
+      "abs_tol": null,
+      "rel_tol": null,
+      "rationale": null
+    }
+  },
+  "acknowledgements": {
+    "exposed_development_calendar": false,
+    "not_confirmation": false,
+    "original_inputs_read_only": false,
+    "no_historical_master_writes": false,
+    "historical_network_durability_wait_not_replayed": false,
+    "partial_C_not_full_historical_reproduction": false
+  },
+  "signature_claimed": false,
+  "human_execution_verified_by_software": false
+}
