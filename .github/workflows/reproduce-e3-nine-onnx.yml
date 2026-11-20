@@ -1,0 +1,54 @@
+name: Recreate and publish nine frozen ONNX exports
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/e3_completion_20261120/export_ci/**'
+      - '.github/workflows/reproduce-e3-nine-onnx.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  recreate-frozen-exports:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      CUDA_VISIBLE_DEVICES: ''
+      PYTHONOPTIMIZE: '0'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout: experiments/e3_completion_20261120/export_ci
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Prepare fixed CPU export dependencies in an isolated runner
+        run: |
+          python -m pip install -r experiments/e3_completion_20261120/export_ci/requirements-cpu-ci.txt
+          python -m pip check
+          python -m pip freeze > /tmp/e3-onnx-pip-freeze.txt
+      - name: Recreate nine frozen graphs and pass the combined integrity and parity gate
+        run: |
+          python experiments/e3_completion_20261120/export_ci/ci_export_all.py --standard-wrapper experiments/e3_completion_20261120/export_ci/standard/ci_export_standard.py --temporal-wrapper experiments/e3_completion_20261120/export_ci/temporal/ci_export_temporal.py --workdir /tmp/e3-private-exports --output /tmp/e3-public-exports
+      - name: Publish checked public output only and verify the public download hash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python experiments/e3_completion_20261120/export_ci/publish_exports.py --standard /tmp/e3-public-exports/standard --temporal /tmp/e3-public-exports/temporal --output /tmp/e3-export-release
+      - name: Retain exported output, environment and failure logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-frozen-onnx-${{ github.run_id }}
+          path: |
+            /tmp/e3-export-release/
+            /tmp/e3-public-exports/
+            /tmp/e3-onnx-pip-freeze.txt
+            /tmp/e3-private-exports/standard/*.log
+            /tmp/e3-private-exports/temporal/*.log
+          retention-days: 90
+          if-no-files-found: warn
