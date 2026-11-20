@@ -1,0 +1,75 @@
+{
+  "observed_at_utc": "2026-11-20T17:47:17.973240+00:00",
+  "role": "independent AI QA; not human reproduction or academic acceptance",
+  "base_commit": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+  "request_sha256": "37f3d168971af892511525ddded54d0aafc79b75af2d8e6b27ef1b9675fd26a4",
+  "findings": [
+    {
+      "id": "Q01",
+      "severity": "medium",
+      "path": "book_e3/sections/11_informe_tecnico.md",
+      "line": 18,
+      "finding": "Current concordance table says global Nd reconciliation is pending although §7.14 and §11.3 already cite a completed bounded reconciliation.",
+      "change": "State 22 documented identities plus one ambiguous conceptual reference; distinguish closed corpus reconciliation from unrecorded informal designs."
+    },
+    {
+      "id": "Q02",
+      "severity": "medium",
+      "path": "book_e3/sections/11_informe_tecnico.md",
+      "line": 23,
+      "finding": "Current concordance row says R1 remains unaccredited without distinguishing additive reference and bounded favorable V3 technical verdict.",
+      "change": "Specify additive R1 unaccredited; V3 has bounded AI technical verdict, academic acceptance and defense still pending."
+    },
+    {
+      "id": "Q03",
+      "severity": "low",
+      "path": "book_e3/sections/08_verificacion_estadistica.md",
+      "line": 160,
+      "finding": "The book calls the guide temporal category F2a; guide Cuadro 4 p26 says F2 Temporal. Related references occur in 05:41,08:156,11:20,16:13.",
+      "change": "Use F2 Temporal for the guide, or explicitly mark F2a as an inherited project label, not a literal guide category. Do not rewrite frozen historical files."
+    },
+    {
+      "id": "Q04",
+      "severity": "medium",
+      "path": "book_e3/sections/08_verificacion_estadistica.md",
+      "line": 471,
+      "finding": "A historical A100 cut says current admission is 1/3 although later 8.18 completed 3/3 and 796 jobs.",
+      "change": "Replace estado actual with en aquel corte, retaining the observation and later link."
+    },
+    {
+      "id": "Q05",
+      "severity": "low",
+      "path": "book_e3/sections/16_conclusiones.md",
+      "line": 12,
+      "finding": "The product limitation says quedan nueve exportaciones neuronales verificadas, which may imply nine still missing exports rather than nine verified exports pending integration.",
+      "change": "Say integrate/accept the nine already verified exports; separate new profile readiness from live Render acceptance."
+    },
+    {
+      "id": "Q06",
+      "severity": "low",
+      "path": "book_e3/sections/10_despliegue_render.md",
+      "line": 3,
+      "finding": "Editorial spacing HTTP200 and del20de noviembre in current-state lead.",
+      "change": "Normalize spaces without altering identifiers or URLs."
+    }
+  ],
+  "positive_checks": [
+    "V3 technical R1 verdict is properly bounded at chapter6 lead and chapter1/current state.",
+    "14 verified historical ONNX versus five enabled default models is generally explicit.",
+    "DOI remains reserved/private-draft in chapter11; no false public DOI claim found.",
+    "Negative pilot and transfer exposure limits remain visible in intro and conclusions."
+  ],
+  "scientific_constraints_verified_from_guide": {
+    "power_per_contrast_minimum": 0.9,
+    "joint_power": "report and discuss; no invented >=.90 requirement",
+    "pilot_minimum_seeds": 5,
+    "final_seed_minimum": 10,
+    "more_seeds_if_power_requires": true,
+    "guide_temporal_family_literal": "F2. Temporal",
+    "source_pages": [
+      3,
+      26,
+      27
+    ]
+  }
+}

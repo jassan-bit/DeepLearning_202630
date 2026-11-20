@@ -1,0 +1,62 @@
+{
+  "AI_assistance_declared": true,
+  "observed_at_UTC": "2026-11-20T17:50:00.637139+00:00",
+  "docker_server_version": "28.4.0",
+  "build": {
+    "command": "docker build --network none --pull=false --no-cache -t e3-accepted-v3-replay:20261120 .",
+    "network": "none",
+    "no_cache": true,
+    "base_digest": "sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+    "wheel_hash_lock": "requirements-runtime.lock",
+    "wheel_count": 9,
+    "image_ID": "sha256:269982445847ba5ab36166d8d96f44cad195d6ec4a62b73596f973b275ea4b0b",
+    "image_bytes": 362136466,
+    "exit_code": 0
+  },
+  "execution": {
+    "exit_code": 0,
+    "network": "none",
+    "root_filesystem": "read-only",
+    "input_mounts": "read-only",
+    "output_mount": "writeable output only",
+    "UID": 65534,
+    "GID": 65534,
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "CPU_limit_logical": 1,
+    "memory_limit_bytes": 268435456,
+    "PID_limit": 64,
+    "GPU": false,
+    "Torch_installed": false,
+    "exporter_installed": false,
+    "ONNX_reexport": false
+  },
+  "incidences": [
+    {
+      "phase": "build launcher",
+      "cause": "default Docker buildx config attempted read-only home directory",
+      "resolution": "task-specific DOCKER_CONFIG in writable delivery directory",
+      "new_fits": 0,
+      "model_forwards": 0
+    },
+    {
+      "phase": "first container launch",
+      "exit_code": 2,
+      "cause": "payload directory/file not readable by UID65534 under host restrictive umask",
+      "evidence": "failed_permissions.log",
+      "resolution": "explicit read/traverse permissions only on new replay payload and input directories",
+      "new_fits": 0,
+      "model_forwards": 0
+    },
+    {
+      "phase": "CSV serialization after first successful numerical replay",
+      "cause": "NumPy scalar repr wrapped numerical CSV values as np.float64(...)",
+      "resolution": "serialize repr(float(value)) and rerun only the 55-date CPU replay; numerical values unchanged",
+      "former_numerical_receipt": "first_passing_receipt.json",
+      "final_CSV_numerical_fields_parse_as_float": true,
+      "new_model_fits": 0,
+      "new_scientific_dates": 0
+    }
+  ],
+  "scope": "Fresh isolated automated replay; no human independence or level-C training claim"
+}

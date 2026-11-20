@@ -1,0 +1,12 @@
+# Opt-in reviewed profile. Do not auto-deploy a scientific candidate.
+services:
+  - type: web
+    name: deeplearning-e3-dashboard
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.profile14
+    healthCheckPath: /healthz
+    autoDeploy: false
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: '1'

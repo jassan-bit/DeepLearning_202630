@@ -1,0 +1,103 @@
+name: E3 optional historical14 profile, CPU only
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'e3_profile14.py'
+      - 'e3_dashboard_v3/**'
+      - 'Dockerfile.profile14*'
+      - 'experiments/e3_product_followup_20261120/verify_profile14.py'
+      - 'experiments/e3_product_followup_20261120/smoke_profile14.py'
+      - 'experiments/e3_product_followup_20261120/acceptance_reference.json'
+      - '.github/workflows/check-e3-profile14.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  container-and-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Install bounded browser client without scientific training runtime
+        run: |
+          python -m pip install playwright==1.56.0 greenlet==3.5.6 pyee==13.0.1
+          python -m pip check
+          python -m playwright install --with-deps chromium
+      - name: Build exact optional production Dockerfile from the complete repository
+        run: docker build --file Dockerfile.profile14 --tag e3-profile14-ci .
+      - name: Fetch the two immutable historical replay inputs and verify their bytes
+        run: |
+          mkdir -p /tmp/e3-profile14-ci/inputs
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, urllib.request
+          targets = [
+            ('cohort.npz', 'https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/af3f1223ad5899ed63016d2af2d09bae8470ab00/book_e2/_static/e2_scientific_closure_20261116/data_audit/current_cohort_arrays.npz', '186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683', 460090),
+            ('predictions.json', 'https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/5e9023ea821bfa9fb0b92340d518413f6ab89161/runs/e2_extension_10_semillas_v1/combined_predictors.json', 'df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655', 3393801),
+          ]
+          for name, url, digest, size in targets:
+              with urllib.request.urlopen(url, timeout=60) as response:
+                  raw = response.read(10_000_000)
+              assert len(raw) == size and hashlib.sha256(raw).hexdigest() == digest
+              path = Path('/tmp/e3-profile14-ci/inputs') / name
+              path.write_bytes(raw)
+              path.chmod(0o444)
+          PY
+      - name: Verify14 contracts, nine adapter replays, intervals, OOD and safe errors offline
+        env:
+          CI_SOURCE_COMMIT: ${{ github.sha }}
+        run: |
+          docker run --rm --network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=96m \
+            --memory 512m --cpus 1 --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            -e APP_SOURCE_COMMIT="$CI_SOURCE_COMMIT" \
+            -v "$PWD/experiments/e3_product_followup_20261120/verify_profile14.py:/verify_profile14.py:ro" \
+            -v /tmp/e3-profile14-ci/inputs/cohort.npz:/cohort.npz:ro \
+            -v /tmp/e3-profile14-ci/inputs/predictions.json:/predictions.json:ro \
+            e3-profile14-ci python /verify_profile14.py --cohort /cohort.npz --predictions /predictions.json \
+            > /tmp/e3-profile14-ci/container_checks.json
+          cat /tmp/e3-profile14-ci/container_checks.json
+      - name: Exercise the original five-model client and the optional14 browser profile
+        env:
+          CI_SOURCE_COMMIT: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker run -d --name e3-profile14-ci --read-only --tmpfs /tmp:rw,noexec,nosuid,size=96m \
+            --memory 512m --cpus 1 --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            -e APP_SOURCE_COMMIT="$CI_SOURCE_COMMIT" -p 127.0.0.1:8067:8050 e3-profile14-ci
+          trap 'docker logs e3-profile14-ci > /tmp/e3-profile14-ci/server.log 2>&1; docker inspect e3-profile14-ci > /tmp/e3-profile14-ci/container_inspect.json; docker rm -f e3-profile14-ci' EXIT
+          python - <<'PY'
+          import time, urllib.request
+          for attempt in range(60):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8067/healthz', timeout=3) as response:
+                      assert response.status == 200
+                  break
+              except (OSError, AssertionError):
+                  time.sleep(1)
+          else:
+              raise SystemExit('Profile14 container did not become ready')
+          PY
+          python experiments/e3_cierre_integral_20261118/acceptance/smoke_render_v2.py \
+            --url http://127.0.0.1:8067 --allow-local --deployment-commit "$CI_SOURCE_COMMIT" \
+            --output /tmp/e3-profile14-ci/original_five_client.json \
+            --screenshots-dir /tmp/e3-profile14-ci/original_five_screenshots
+          python experiments/e3_product_followup_20261120/smoke_profile14.py \
+            --url http://127.0.0.1:8067 --allow-local --expected-sha "$CI_SOURCE_COMMIT" \
+            --output /tmp/e3-profile14-ci/profile14_browser.json \
+            --screenshots-dir /tmp/e3-profile14-ci/profile14_screenshots
+          docker stats --no-stream --format '{{json .}}' e3-profile14-ci > /tmp/e3-profile14-ci/docker_stats.json
+          cat /tmp/e3-profile14-ci/profile14_browser.json
+      - name: Preserve executed receipts even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-profile14-${{ github.sha }}
+          path: /tmp/e3-profile14-ci/
+          retention-days: 90
+          if-no-files-found: warn

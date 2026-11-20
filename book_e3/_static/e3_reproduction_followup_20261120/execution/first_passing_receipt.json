@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "started_at_UTC": "2026-11-20T17:47:37.513205+00:00",
+  "finished_at_UTC": "2026-11-20T17:47:37.549755+00:00",
+  "AI_assistance_declared": true,
+  "level": "B",
+  "execution_kind": "automated accepted-binary replay in separate process/container",
+  "inputs": [
+    {
+      "path": "model.onnx",
+      "bytes": 15368,
+      "sha256": "881dd637837265829aa96900d7a0c864dcdab113a57a91485feb20fd2a443abc"
+    },
+    {
+      "path": "metadata.json",
+      "bytes": 3757,
+      "sha256": "910edac639d725be044609c4bd3b7bdf543f8ea72061317c3178ae2a0f001d6e"
+    },
+    {
+      "path": "roundtrip_predictions.csv",
+      "bytes": 6532,
+      "sha256": "dc93a04747af4c5feec9913b18ff6b094616ec52ed43c059ec9a9203e9a5b1ae"
+    },
+    {
+      "path": "cohort.npz",
+      "bytes": 460090,
+      "sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683"
+    }
+  ],
+  "profile_id": "e3-v3-atom-crps-experimental-20261120",
+  "seed": 20261118,
+  "source_state": "best validated state, epoch37; not latest epoch40",
+  "comparison": {
+    "rows": 55,
+    "date_order_exact": true,
+    "input_contract": [
+      {
+        "name": "values",
+        "type": "tensor(float)",
+        "shape": [
+          1,
+          7,
+          5
+        ]
+      },
+      {
+        "name": "A",
+        "type": "tensor(double)",
+        "shape": [
+          1
+        ]
+      }
+    ],
+    "units": "daily unannualized population sigma7 ddof0",
+    "absolute_tolerance_sigma7": 1e-06,
+    "max_absolute_error_vs_frozen_GPU_sigma7": 7.828650949726068e-09,
+    "max_absolute_error_vs_accepted_ORT_sigma7": 0.0,
+    "finite_outputs": true,
+    "structural_floor_violations": 0,
+    "discrepancy_file": "discrepancies.csv"
+  },
+  "opened_NPZ_members": [
+    "training_raw",
+    "training_dates"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "onnxruntime": "1.23.2",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+  },
+  "resources": {
+    "elapsed_seconds": 0.0514206140069291,
+    "process_peak_RSS_KiB": 69012,
+    "scope": "whole process; shared host, no cross-model performance claim",
+    "threads": 1,
+    "provider": "CPUExecutionProvider"
+  },
+  "new_model_fits": 0,
+  "optimizer_steps": 0,
+  "reexports": 0,
+  "new_calibrations": 0,
+  "new_scientific_dates": 0,
+  "torch_imported": false,
+  "human_independent_reproduction_observed": false,
+  "level_C_training_reproduced": false,
+  "R3_accredited": false,
+  "default_serving_enabled": false,
+  "excludes": [
+    "training reconstruction",
+    "independent human validation",
+    "Render acceptance",
+    "prospective confirmation",
+    "new market evaluation"
+  ]
+}

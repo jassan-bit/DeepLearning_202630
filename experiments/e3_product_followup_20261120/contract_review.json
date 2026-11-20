@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-11-20T17:46:51.813283+00:00",
+  "python": "3.12.14",
+  "onnxruntime": "1.23.2",
+  "models": [
+    {
+      "model": "FCN-1D",
+      "seed": 271801,
+      "model_sha256": "80df90b1cb38fbde7f47c8d4ca43f04a5df0c6936a740eda1e5ec7a87c8df1d1",
+      "metadata_sha256": "ca2017f8c02c58bed8c615bcd5fc19ad9b935755bb8dc849f5928745640e1e50",
+      "model_bytes": 1092005,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.006570312208881386,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": false,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271801,
+      "model_sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428",
+      "metadata_sha256": "1d61945f60adaf7ea4a74089c638a5799acbe14027afcef5394cf0be9226d548",
+      "model_bytes": 2070967,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.007587061606981974,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": false,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271801,
+      "model_sha256": "0ed6c1348d5bc1ea3312aaf00d59f8651cb4949212eeb38c42a732c8f33480d3",
+      "metadata_sha256": "3c2d8d1622250a32bd40433c9577c100f9de114ae38c7f310a1b25a6bb015046",
+      "model_bytes": 41397,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.009205569452985844,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": false,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "PatchTST",
+      "seed": 271801,
+      "model_sha256": "f36ecb0397bd63cd86062e527e8769ae922ece64fe5660d0eaa57f3e65046861",
+      "metadata_sha256": "768415bd0aa5f555d873e94a31941c0c3245f90be1c3f7e8627ed8a401ef8d08",
+      "model_bytes": 107745,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.016008127390891344,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": true,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271801,
+      "model_sha256": "01e2283793b019d90f77489bb8cbfb82845638772532c0f00302e98a708a050b",
+      "metadata_sha256": "c9654ca983fbe162cbc922a55f14fbf2297e40ae93657b8ea92eb3f03855ca56",
+      "model_bytes": 2156012,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.0072527258390185645,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": false,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "TiDE",
+      "seed": 271801,
+      "model_sha256": "8c93d7789414f9db51fd0ce25595bbcdb5948c5379e22b2bc00b5e7d518217e4",
+      "metadata_sha256": "29399af9d7263198f6f03cfee826de24da4abacb5f4700a87e07980e75b44a32",
+      "model_bytes": 664848,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.011361150287153492,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": true,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "TimeMixer",
+      "seed": 271801,
+      "model_sha256": "1cbab4bdf3040a981936220d2899e848f2319a4671dff61f371f25f7d1d8f18c",
+      "metadata_sha256": "6fa20b3071bd8e2c0a27dd95d359a5044965dd794b1ee7e1f2f3e848aa025c84",
+      "model_bytes": 172380,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.010437534506757353,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": true,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "TimesNet",
+      "seed": 271801,
+      "model_sha256": "ac110c3cc1c0d6830f03919dce1723e97a0f2ce94bea8aa03161dacd5c1382bf",
+      "metadata_sha256": "5cbe708cac16a256955eab193fce50b90a342a8b6280680bde4eda6aa1b788b3",
+      "model_bytes": 4805411,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.008915908046701174,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": true,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    },
+    {
+      "model": "iTransformer",
+      "seed": 271801,
+      "model_sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd",
+      "metadata_sha256": "fabf1ef30634dd56c8cd4b76f40490af29ceefd51343ca35a3d22cca71e49cf5",
+      "model_bytes": 3201493,
+      "input": [
+        {
+          "name": "windows",
+          "type": "tensor(float)",
+          "shape": [
+            1,
+            7,
+            5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "normalized_prediction",
+          "type": "tensor(float)",
+          "shape": [
+            1
+          ]
+        }
+      ],
+      "output_scale": 0.020953875259434797,
+      "calibration_q_sigma7": 0.006383923988913291,
+      "calibration_valid_after": "2024-12-30",
+      "fit_count": 655,
+      "has_ood_in_original_metadata": true,
+      "has_reference_in_original_metadata": false,
+      "requires_contract_extension": true,
+      "extension_scope": "Add verified fit-only OOD limits and first fit raw reference where absent; do not alter original metadata, preprocessing, weights or q.",
+      "status": "passed_binary_identity_and_contract"
+    }
+  ],
+  "models_checked": 9,
+  "new_model_fits": 0,
+  "new_exports": 0,
+  "new_calibration_fits": 0,
+  "scientific_confirmation": false,
+  "limitations": [
+    "Verifies binary identity, shape and metadata binding; functional parity and product tests are separate.",
+    "Local private registry paths are locators, not public scientific evidence URLs.",
+    "No service acceptance or deployment is asserted."
+  ],
+  "shared_E2_fit_descriptor_check": {
+    "cohort_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "scaler_mean_exact": true,
+    "scaler_std_exact": true,
+    "minimum_exact": true,
+    "maximum_exact": true,
+    "reference_raw_exact": true,
+    "reference_target": "2023-01-08",
+    "fit_count": 655
+  }
+}

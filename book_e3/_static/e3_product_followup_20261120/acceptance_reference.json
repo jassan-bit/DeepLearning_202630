@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "profile_sha256": "33eb501dbe7b9bdf525ddfd5c1a4c919191cb1a021adaa8856b382fea1f4947e",
+  "case": {
+    "id": "evaluation-0",
+    "label": "Ventana histórica · objetivo 2025-01-01",
+    "target_date": "2025-01-01",
+    "csv_text": "date,open,high,low,close,volume\r\n2024-12-25,98663.58,99569.15,97632.02,99429.6,14474.1651\r\n2024-12-26,99429.61,99963.7,95199.14,95791.6,21192.36727\r\n2024-12-27,95791.6,97544.58,93500.01,94299.03,26501.26429\r\n2024-12-28,94299.03,95733.99,94135.66,95300.0,8385.8929\r\n2024-12-29,95300.0,95340.0,93009.52,93738.2,13576.00578\r\n2024-12-30,93738.19,95024.5,91530.45,92792.05,27619.4225\r\n2024-12-31,92792.05,96250.0,92033.73,93576.0,19612.03389\r\n",
+    "csv_sha256": "cd37899695e79aedad031244b33f17824224a54ae8783d3f26c53c88ba9b6f03",
+    "source_npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "selection_policy": "fixed_chronological_positions_0_303_607_not_performance"
+  },
+  "models": [
+    {
+      "id": "CNN-LSTM-atencion-aditiva E3",
+      "seed": 271801,
+      "prediction": 0.016866754764803968,
+      "q_sigma7": 0.005402463770651868,
+      "model_sha256": "6928a973a6639513bc94cde15996c0b06bb5615e3c0b1a77d16d47e9c7342f3b",
+      "metadata_sha256": "9de8be6acceebc94eaf4567cbc3d2d205c29d0cfe611a850dd0f47d330adcb61",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "FCN-1D",
+      "seed": 271801,
+      "prediction": 0.014843283221125603,
+      "q_sigma7": 0.006570312208881386,
+      "model_sha256": "80df90b1cb38fbde7f47c8d4ca43f04a5df0c6936a740eda1e5ec7a87c8df1d1",
+      "metadata_sha256": "ca2017f8c02c58bed8c615bcd5fc19ad9b935755bb8dc849f5928745640e1e50",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "GRU32",
+      "seed": 271801,
+      "prediction": 0.015933958813548088,
+      "q_sigma7": 0.008742432407899556,
+      "model_sha256": "1409d0cf84aac43720b4c6978f9a1bb3b5f6c9832518acab0cba279ba8a88bd2",
+      "metadata_sha256": "5942b60725ae07b7dfede5cc0912bdedd5194be4c826d167cfd93f259a567a29",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "Inception-1D",
+      "seed": 271801,
+      "prediction": 0.014822128228843212,
+      "q_sigma7": 0.007587061606981974,
+      "model_sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428",
+      "metadata_sha256": "1d61945f60adaf7ea4a74089c638a5799acbe14027afcef5394cf0be9226d548",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "LSTM-autoencoder con predictor",
+      "seed": 271801,
+      "prediction": 0.014539471827447414,
+      "q_sigma7": 0.009205569452985844,
+      "model_sha256": "0ed6c1348d5bc1ea3312aaf00d59f8651cb4949212eeb38c42a732c8f33480d3",
+      "metadata_sha256": "3c2d8d1622250a32bd40433c9577c100f9de114ae38c7f310a1b25a6bb015046",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "LSTM32",
+      "seed": 271801,
+      "prediction": 0.0170112457126379,
+      "q_sigma7": 0.009597029724600765,
+      "model_sha256": "ee942ca947998a3c5c76fa21eabe401ce60989558faf82608e8107a830227033",
+      "metadata_sha256": "511475aafde95c938c7905a63186fc19c8e894c18358ca2fc0de3192a3aaffb2",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "MLP16",
+      "seed": 271801,
+      "prediction": 0.017825614660978317,
+      "q_sigma7": 0.01096934474265791,
+      "model_sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50",
+      "metadata_sha256": "35a1acc15bfe76d38398eef11c028c854797d7dde897898f822a270eab73117b",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "PatchTST",
+      "seed": 271801,
+      "prediction": 0.018745051696896553,
+      "q_sigma7": 0.016008127390891344,
+      "model_sha256": "f36ecb0397bd63cd86062e527e8769ae922ece64fe5660d0eaa57f3e65046861",
+      "metadata_sha256": "768415bd0aa5f555d873e94a31941c0c3245f90be1c3f7e8627ed8a401ef8d08",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "ResNet-1D",
+      "seed": 271801,
+      "prediction": 0.015521850436925888,
+      "q_sigma7": 0.0072527258390185645,
+      "model_sha256": "01e2283793b019d90f77489bb8cbfb82845638772532c0f00302e98a708a050b",
+      "metadata_sha256": "c9654ca983fbe162cbc922a55f14fbf2297e40ae93657b8ea92eb3f03855ca56",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "TSMixer",
+      "seed": 271801,
+      "prediction": 0.013540439307689667,
+      "q_sigma7": 0.007345522909209999,
+      "model_sha256": "10cedceea5da544268ecda882d9ee3d9f4abc153448a599a3a9947b7cf74d255",
+      "metadata_sha256": "886f713cb78cf1e454bd35e95dce835aeb993835b64981937eedd18ea0c71d43",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "TiDE",
+      "seed": 271801,
+      "prediction": 0.01738697662949562,
+      "q_sigma7": 0.011361150287153492,
+      "model_sha256": "8c93d7789414f9db51fd0ce25595bbcdb5948c5379e22b2bc00b5e7d518217e4",
+      "metadata_sha256": "29399af9d7263198f6f03cfee826de24da4abacb5f4700a87e07980e75b44a32",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "TimeMixer",
+      "seed": 271801,
+      "prediction": 0.01960415206849575,
+      "q_sigma7": 0.010437534506757353,
+      "model_sha256": "1cbab4bdf3040a981936220d2899e848f2319a4671dff61f371f25f7d1d8f18c",
+      "metadata_sha256": "6fa20b3071bd8e2c0a27dd95d359a5044965dd794b1ee7e1f2f3e848aa025c84",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "TimesNet",
+      "seed": 271801,
+      "prediction": 0.01919744908809662,
+      "q_sigma7": 0.008915908046701174,
+      "model_sha256": "ac110c3cc1c0d6830f03919dce1723e97a0f2ce94bea8aa03161dacd5c1382bf",
+      "metadata_sha256": "5cbe708cac16a256955eab193fce50b90a342a8b6280680bde4eda6aa1b788b3",
+      "calibration_valid_after": "2024-12-30"
+    },
+    {
+      "id": "iTransformer",
+      "seed": 271801,
+      "prediction": 0.020173491910099983,
+      "q_sigma7": 0.006383923988913291,
+      "model_sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd",
+      "metadata_sha256": "fabf1ef30634dd56c8cd4b76f40490af29ceefd51343ca35a3d22cca71e49cf5",
+      "calibration_valid_after": "2024-12-30"
+    }
+  ],
+  "absolute_tolerance_sigma7": 1e-06,
+  "sources": {
+    "E2_frozen_133_predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+    "legacy_predictions_sha256": "f9e1681790e51626aaf67ac95097edad4bed8418bfb547993be2d3c197844979",
+    "additive_calibrator_sha256": "457ae6a75e3235e68066cdd479cff621c5725ab18cad55e09f7fd8032565ed03"
+  },
+  "selection": "First fixed evaluation date2025-01-01, seed271801 fixed originalrepresentative; not outcomeselected",
+  "new_fits": 0,
+  "new_calibrations": 0,
+  "scientific_confirmation": false
+}

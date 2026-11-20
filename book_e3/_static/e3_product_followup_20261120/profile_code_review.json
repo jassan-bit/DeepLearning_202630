@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-20T17:54:37.923100+00:00",
+  "reviewer": "OpenAI Codex IA, secondary code reviewer; no independent human attestation",
+  "base_commit": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+  "files": [
+    {
+      "path": "e3_dashboard_v3/runtime.py",
+      "sha256": "759a257d22428064d017450d206e4e8ba729440b104b10f4b9264cb588e46a2d",
+      "bytes": 8305
+    },
+    {
+      "path": "e3_dashboard_v3/routes.py",
+      "sha256": "f46ccca471c3c93359f69a424eefbd81adbab7e4bfe7d5127be65a2734576a9a",
+      "bytes": 1450
+    },
+    {
+      "path": "e3_dashboard_v3/profile.json",
+      "sha256": "33eb501dbe7b9bdf525ddfd5c1a4c919191cb1a021adaa8856b382fea1f4947e",
+      "bytes": 7984
+    },
+    {
+      "path": "e3_dashboard_v3/profile.html",
+      "sha256": "70cd5d592121b62ad1f2f274c6139cf9ee630ed07b631240c6b04805441c1876",
+      "bytes": 5580
+    },
+    {
+      "path": "e3_profile14.py",
+      "sha256": "0197ff06b24bb56b0264a06f4dc58f65d2fde4e135b2cb2ef3e7e4286d4c9b50",
+      "bytes": 1354
+    }
+  ],
+  "concrete_fixes": [
+    "Compare both minimum and maximum existing OOD bounds before adopting fit-only reference.",
+    "Validate exact ONNX output name/dtype/shape in addition to inputs.",
+    "Reject model_id and target_date non-string types with safe InputError400.",
+    "Expose posterior_E3_frozen_profile versus E2_frozen_original calibration kind and profile label without changing q or predictions."
+  ],
+  "checks": [
+    "Nine accepted ONNX+metadata hashes match public accepted values.",
+    "TSMixer preprocessing, complete OOD descriptor and raw explanation reference exactly equal frozen MLP E2 metadata.",
+    "No uploaded paths or serialized user code enter file loading. JSON requires exact threekeys and CSV is bounded/strict seven completed bars.",
+    "Model cache own RLock permits one profile14 session; the unchanged five-model UI has its separate cache, so up to two sessions may coexist.",
+    "Profile rejects V3 and classical IDs; original default app.py retains five predictors."
+  ],
+  "tests": "See local_acceptance.json for executed browser/API checks and declared identity limitations.",
+  "new_model_fits": 0,
+  "new_calibration_fits": 0,
+  "new_exports": 0,
+  "Render_acceptance_asserted": false
+}

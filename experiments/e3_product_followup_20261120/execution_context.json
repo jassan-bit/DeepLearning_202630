@@ -1,0 +1,118 @@
+{
+  "created_utc": "2026-11-20T17:57:57.224855+00:00",
+  "baseline_source_commit": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+  "local_service_reported_source_commit": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+  "local_service_reported_source_commit_source": "APP_SOURCE_COMMIT",
+  "identity_limitation": "This SHA was explicitly injected as a local baseline identity for acceptance-client testing. New supplemental source below was an uncommitted overlay at execution; it is NOT claimed to be present at that baseline commit or deployed on Render. Actual final commit is determined by subsequent GitHub publication and CI.",
+  "initial_clean_production_build": {
+    "Dockerfile": "Dockerfile.profile14",
+    "image_id": "sha256:99ce72d6c1b979d04df6c4831bae737f2c5d89b7f2124562306388cd1049afe5",
+    "python_base": "python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+    "DASHBOARD_OFFLINE": 1,
+    "network_during_build": "none",
+    "wheels": "40 alreadyexisting locked dashboardwheels; no dependency upgrades",
+    "artifact_assembly": "Exact nine accepted ONNX ZIP transport; no export/training",
+    "status": "passed before cosmetic interval-kind clarity update"
+  },
+  "final_source_validation": {
+    "status": "passed localhostbrowser+HTTP/API against initial cleanimage with final e3_dashboard_v3 source mounted readonly",
+    "mount": "e3_dashboard_v3:/app/e3_dashboard_v3:ro",
+    "exact_final_image_build": "Not completed locally due workspaceENOSPC; readonlyCIworkflow prepares exactcomplete repository build on publishedcommit and must be checked before ownerdeployment."
+  },
+  "source_overlay_files": [
+    {
+      "path": "e3_profile14.py",
+      "bytes": 1354,
+      "sha256": "0197ff06b24bb56b0264a06f4dc58f65d2fde4e135b2cb2ef3e7e4286d4c9b50"
+    },
+    {
+      "path": "Dockerfile.profile14",
+      "bytes": 1881,
+      "sha256": "15ea184b9cc3dd7cba0d9ef0b27e68d4954b83cd86dbb3e26f729c39ca16b828"
+    },
+    {
+      "path": "Dockerfile.profile14.dockerignore",
+      "bytes": 763,
+      "sha256": "d99c4be00fb9b37317ea7390674f37f6284c40be3df1f7572b18cd0b5adde5a0"
+    },
+    {
+      "path": "render.profile14.yaml",
+      "bytes": 322,
+      "sha256": "6ba97d312862174dafe1502ebf076c236234ec108e98a60c587470193a84805b"
+    },
+    {
+      "path": ".github/workflows/check-e3-profile14.yml",
+      "bytes": 5734,
+      "sha256": "e117606400d71d40d244d7e6cd78b23c6002ec05aa3ed127ae7d729a58f77ef7"
+    },
+    {
+      "path": "e3_dashboard_v3/profile.html",
+      "bytes": 5580,
+      "sha256": "70cd5d592121b62ad1f2f274c6139cf9ee630ed07b631240c6b04805441c1876"
+    },
+    {
+      "path": "e3_dashboard_v3/profile.json",
+      "bytes": 7984,
+      "sha256": "33eb501dbe7b9bdf525ddfd5c1a4c919191cb1a021adaa8856b382fea1f4947e"
+    },
+    {
+      "path": "e3_dashboard_v3/runtime.py",
+      "bytes": 8305,
+      "sha256": "759a257d22428064d017450d206e4e8ba729440b104b10f4b9264cb588e46a2d"
+    },
+    {
+      "path": "e3_dashboard_v3/__init__.py",
+      "bytes": 79,
+      "sha256": "57111c30fd13c3586aa0f03d4dd7a8e16362d50ada8098dd66f35b304b145d0e"
+    },
+    {
+      "path": "e3_dashboard_v3/routes.py",
+      "bytes": 1450,
+      "sha256": "f46ccca471c3c93359f69a424eefbd81adbab7e4bfe7d5127be65a2734576a9a"
+    },
+    {
+      "path": "e3_dashboard_v3/example.csv",
+      "bytes": 438,
+      "sha256": "cd37899695e79aedad031244b33f17824224a54ae8783d3f26c53c88ba9b6f03"
+    }
+  ],
+  "preserved_root_files": [
+    {
+      "path": "app.py",
+      "sha256": "f44422d93f6ec936f13693770add7ba4803c976a08a023cd1b30923291e1fdcb"
+    },
+    {
+      "path": "pages/contexto.py",
+      "sha256": "d80ff207241c2f53dc99b2f570499f4821828eeac5c4cc06aa4e187d19ec342d"
+    },
+    {
+      "path": "pages/modelos.py",
+      "sha256": "07f9b2b3dcdefaf0f01a46a39d7fa9eb71f4954a8e95d5d4a67bbe90c8c30a79"
+    },
+    {
+      "path": "MODEL_CARD.md",
+      "sha256": "99bd3f7f60fcb3e1ae1a60cbcec8883a3f602868ad73ae11660e3b34db3ca402"
+    },
+    {
+      "path": "DATA_STATEMENT.md",
+      "sha256": "181eff31c2d328ab8ebd97077aadbee470e06b81bec43119460defe8940828ef"
+    },
+    {
+      "path": "experiments/design_log.md",
+      "sha256": "99c0d894cacadc93104a112a98c73ac2f68fc6c74a33dfde1517b22f446cc972"
+    },
+    {
+      "path": "experiments/procedencia.md",
+      "sha256": "5f9473bce8547ed86715b6cf0c679a673d2e31a59d34ab7e4941d81812d05dc7"
+    }
+  ],
+  "historical_model_files_modified": 0,
+  "historical_metadata_or_quantiles_modified": 0,
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "new_forecast_dates": 0,
+  "ONNX_reexported": false,
+  "GPU_used": false,
+  "public_Render_acceptance": false,
+  "AI_assistance": "OpenAI Codex implementation and automated review/browser tests; not an independent human training reproduction."
+}

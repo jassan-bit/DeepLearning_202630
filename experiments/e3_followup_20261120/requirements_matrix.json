@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "base_commit": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+  "AI_assistance_declared": true,
+  "new_training_runs": 0,
+  "R3_accredited": false,
+  "rows": [
+    {
+      "id": "01",
+      "requirement": "Punto de partida y cambios posteriores",
+      "model_version": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+      "evidence": "initial_audit.json",
+      "executed_check": "GET conectado de branches/main; coincidencia exacta con el punto solicitado",
+      "status": "VERIFICADO",
+      "missing_concrete": "Sin cambios posteriores al iniciar el encargo",
+      "owner": "auditor IA"
+    },
+    {
+      "id": "02",
+      "requirement": "Preservación de trabajos y fuentes",
+      "model_version": "aditiva master20261119T031104515520Z; V3 piloto20261120T031424176339Z",
+      "evidence": "../e3_science_followup_20261120/execution_receipt.json; preservation.json",
+      "executed_check": "Hashes y recibos congelados; recálculo descriptivo desde CSV guardados",
+      "status": "VERIFICADO",
+      "missing_concrete": "No significa reproducción de los 796 entrenamientos ni de los 30 ajustes",
+      "owner": "auditor IA"
+    },
+    {
+      "id": "03",
+      "requirement": "Decisión científica y resultados adversos",
+      "model_version": "V3 atom_crps original",
+      "evidence": "../e3_science_followup_20261120/decision.json",
+      "executed_check": "Piloto +2.7043119888% de RMSE frente a atom_mse_only; mejor control superado en 0/3 dominios",
+      "status": "NO_GO_CONFIRMACION",
+      "missing_concrete": "No hay justificación suficiente para confirmar la receta actual; no se promueve la ablación",
+      "owner": "investigador IA; autor si reconsidera"
+    },
+    {
+      "id": "04",
+      "requirement": "Alcance de R1 y defensa R2",
+      "model_version": "V3, sin herencia a aditiva",
+      "evidence": "../e3_science_followup_20261120/SCIENTIFIC_DECISION.md; ../e3_r1_substantive_20261120",
+      "executed_check": "Dictamen técnico favorable acotado de R1 y declaración de IA conservados",
+      "status": "DOCUMENTADO_NO_APROBACION_INSTITUCIONAL",
+      "missing_concrete": "Defensa observada del autor para R2; aceptación docente de R1",
+      "owner": "autor y docente"
+    },
+    {
+      "id": "05",
+      "requirement": "Transferencia y confirmación",
+      "model_version": "15 pesos BTC V3; D01/D02/D03 expuestos",
+      "evidence": "../e3_science_followup_20261120/execution_receipt.json",
+      "executed_check": "51 trayectorias y 20400 filas cotejadas; calendarios anteriores al ajuste y solapamiento identificados",
+      "status": "RETROSPECTIVO_NO_CONFIRMATORIO",
+      "missing_concrete": "No puede recuperarse cegamiento ni disponibilidad histórica mediante documentación posterior",
+      "owner": "autor si plantea nueva investigación"
+    },
+    {
+      "id": "06",
+      "requirement": "Potencia y familia temporal F2",
+      "model_version": "V3 vs19 rivales;57 componentes",
+      "evidence": "../e3_science_followup_20261120/requirements_matrix.csv; ../e3_completion_20261120/protocol_power",
+      "executed_check": "486 escenarios analíticos revisados;3 semillas piloto<5;16 varianzas de rivales faltantes",
+      "status": "DESARROLLO_NO_POTENCIA_FINAL",
+      "missing_concrete": "Justificación científica, datos, métodos, márgenes, R y calendario finales; conjunta reportada y >=.90 por contraste",
+      "owner": "autor y revisión metodológica"
+    },
+    {
+      "id": "07",
+      "requirement": "Protocolo, registro y Colab",
+      "model_version": "candidata V3 sin campaña nueva",
+      "evidence": "../e3_science_followup_20261120/REOPENING_CHECKLIST.md; ../e3_completion_20261120/protocol_power/preflight.py",
+      "executed_check": "Preparación conserva puertas bloqueadas; ningún tag final ni entrenamiento nuevo",
+      "status": "BLOQUEADO_POR_NO_GO",
+      "missing_concrete": "No crear preregistro retrospectivo ni ejecutar campaña hasta resolver todas las puertas",
+      "owner": "autor sólo si cambia la decisión con evidencia"
+    },
+    {
+      "id": "08",
+      "requirement": "Exportaciones históricas y perfil experimental",
+      "model_version": "14 ONNX históricos; V3 aparte",
+      "evidence": "../e3_completion_publication_20261120/E3_ONNX_PARITY_REPORT.json; ../e3_product_followup_20261120",
+      "executed_check": "Nueve ONNX públicos ya aceptados;5949 replays remotos anteriores; integración nueva sin cambiar pesos o cuantiles",
+      "status": "EXPORTACIONES_PUBLICADAS",
+      "missing_concrete": "La exportación no demuestra utilidad predictiva; V3 carece de calibrador propio",
+      "owner": "ingeniería"
+    },
+    {
+      "id": "09",
+      "requirement": "Perfil de producto ampliado",
+      "model_version": "perfil14 opt-in; servicio por defecto5",
+      "evidence": "../e3_product_followup_20261120",
+      "executed_check": "14 API y navegador; cliente histórico5;5949 replays de adaptadores; contexto base más overlay explícito",
+      "status": "LOCAL_APROBADO_PUBLICO_PENDIENTE",
+      "missing_concrete": "CI de imagen exacta final aprobado antes de Manual Deploy; después aceptación pública del commit servido; no atribuir pruebas locales a Render",
+      "owner": "propietario Render"
+    },
+    {
+      "id": "10",
+      "requirement": "Aceptación pública y SHA efectivo",
+      "model_version": "Render actual; SHA desconocido",
+      "evidence": "public_probe_execution.json; public_probe_20261120T1746Z.json",
+      "executed_check": "Probe real de origen:HTTP200, salud sin SHA; el cliente existente conserva su guarda de identidad",
+      "status": "ACEPTACION_NO_INICIADA_IDENTIDAD_AUSENTE",
+      "missing_concrete": "Desplegar commit compatible, comprobar RENDER_GIT_COMMIT y ejecutar cliente con huellas/capturas",
+      "owner": "propietario Render"
+    },
+    {
+      "id": "11",
+      "requirement": "Costes y clásicos",
+      "model_version": "perfil14 histórico; Persistence/SeasonalNaive/ARIMA",
+      "evidence": "../e3_product_followup_20261120/contract_review.json; ../e3_completion_20261120/costs/measured",
+      "executed_check": "Historia y estimando examinados; coste del nuevo servicio en sus recibos; forwards previos separados",
+      "status": "ALCANCE_DE_MEDICION_EXPLICITO",
+      "missing_concrete": "Recursos/coste/latencia del Render real no se infieren del contenedor local; clásicos necesitan historia/estado",
+      "owner": "ingeniería y propietario Render"
+    },
+    {
+      "id": "12",
+      "requirement": "Reproducción A:tablas",
+      "model_version": "11 CSV históricos",
+      "evidence": "../e3_reproduction_followup_20261120/existing_levels_audit.json",
+      "executed_check": "Recibo público anterior descargado y verificado; no se repite la reconstrucción ya terminada",
+      "status": "RECIBO_A_VERIFICADO",
+      "missing_concrete": "No reproduce entrenamiento ni todas las tablas de cualquier campaña",
+      "owner": "tercero según alcance"
+    },
+    {
+      "id": "13",
+      "requirement": "Reproducción B:predicciones",
+      "model_version": "ONNX V3 público aceptado;55 fechas",
+      "evidence": "../e3_reproduction_followup_20261120",
+      "executed_check": "Descarga con hashes, contenedor nuevo sin red y comparación por campo; sin reexportar",
+      "status": "REPRODUCCION_B_AUTOMATICA_APROBADA",
+      "missing_concrete": "No es una persona independiente, ni confirmación, ni entrenamiento C",
+      "owner": "tercero si requisito humano sigue vigente"
+    },
+    {
+      "id": "14",
+      "requirement": "Reproducción C y acta independiente",
+      "model_version": "796 trabajos/30 ajustes conservados",
+      "evidence": "../e3_reproduction_followup_20261120/REPRODUCTION_FORM_DRAFT.md",
+      "executed_check": "Formulario sin firma y comandos preparados; ningún entrenamiento repetido",
+      "status": "NO_EJECUTADO",
+      "missing_concrete": "Tercero real y alcance acordado; la excepción IA de R1 no cubre automáticamente este requisito",
+      "owner": "autor, tercero y docente"
+    },
+    {
+      "id": "15",
+      "requirement": "Archivo y derechos",
+      "model_version": "suplemento documental mínimo;193 deltas indexados",
+      "evidence": "../e3_archive_followup_20261120/README.md; ../e3_archive_followup_20261120/rights_by_component.csv",
+      "executed_check": "Archivo candidato, manifiesto, cita, localizadores y verificador preparados; no se afirman4.27GB hidratados",
+      "status": "CANDIDATO_NO_DEPOSITADO",
+      "missing_concrete": "Ratificación de derechos, licencia propia y alcance del depósito; no inventar permisos de terceros",
+      "owner": "propietario"
+    },
+    {
+      "id": "16",
+      "requirement": "DOI público y bytes depositados",
+      "model_version": "10.5281/zenodo.24356217",
+      "evidence": "public_probe_execution.json; ../e3_archive_followup_20261120/verify_zenodo_deposit.py",
+      "executed_check": "2026-11-20T17:46Z:API,registro,resolvedor404; API indica identificador persistente no registrado",
+      "status": "RESERVA_PREVIA_PUBLICACION_NO_VERIFICADA",
+      "missing_concrete": "Publicar sólo tras derechos/licencia/autorización; luego verificar resolución y hashes reales del depósito",
+      "owner": "propietario Zenodo"
+    },
+    {
+      "id": "17",
+      "requirement": "Dictamen R3",
+      "model_version": "V3 frente a familia pertinente",
+      "evidence": "../e3_science_followup_20261120/decision.json",
+      "executed_check": "NO-GO científico y ausencia de diseño confirmatorio suficiente conservados",
+      "status": "NO_ACREDITADA",
+      "missing_concrete": "La finalización técnica o el cierre documental no prueban superioridad",
+      "owner": "docente"
+    }
+  ]
+}

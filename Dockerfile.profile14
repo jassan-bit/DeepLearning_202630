@@ -1,0 +1,28 @@
+# Optional profile; the original Dockerfile and default app:server stay intact.
+FROM python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+WORKDIR /app
+COPY requirements.txt requirements-dashboard.lock.txt ./
+ARG DASHBOARD_OFFLINE=0
+RUN --mount=type=bind,source=deployment/wheels,target=/tmp/wheels,readonly \
+    if [ "$DASHBOARD_OFFLINE" = "1" ]; then \
+      python -m pip install --no-cache-dir --no-index --find-links=/tmp/wheels -r requirements.txt; \
+    else \
+      python -m pip install --no-cache-dir -r requirements.txt; \
+    fi && python -m pip check
+COPY app.py MODEL_CARD.md DATA_STATEMENT.md e3_profile14.py ./
+COPY pages ./pages
+COPY e3_dashboard ./e3_dashboard
+COPY e3_dashboard_v3 ./e3_dashboard_v3
+COPY assets ./assets
+COPY data/e3_dashboard_v1 ./data/e3_dashboard_v1
+COPY data/e3_dashboard_training_v1 ./data/e3_dashboard_training_v1
+COPY artifacts/e3_dashboard_v1 ./artifacts/e3_dashboard_v1
+COPY artifacts/e3_serving_calibration_v2 ./artifacts/e3_serving_calibration_v2
+COPY artifacts/e3_serving_extensions_v2 ./artifacts/e3_serving_extensions_v2
+COPY artifacts/e3_neural_exports_20261120 ./artifacts/e3_neural_exports_20261120
+RUN python artifacts/e3_neural_exports_20261120/assemble.py --output artifacts/e3_neural_exports_expanded_20261120 && rm -rf artifacts/e3_neural_exports_20261120/parts && chown -R 10001:10001 /app
+USER 10001:10001
+EXPOSE 8050
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 CMD python -c "import os,urllib.request; urllib.request.urlopen('http://127.0.0.1:'+os.getenv('PORT','8050')+'/healthz',timeout=4).read()"
+CMD ["sh", "-c", "exec gunicorn --bind \"0.0.0.0:${PORT:-8050}\" --workers 1 --threads 1 --timeout 120 e3_profile14:server"]
