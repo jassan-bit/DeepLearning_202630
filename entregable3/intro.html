@@ -391,6 +391,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-proyecto">Estado del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-v3-preparacion-verificada-y-siguiente-paso">Piloto V3: preparación verificada y siguiente paso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-historica-y-producto-interactivo">Comparación histórica y producto interactivo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-frente-a-la-guia">Revisión frente a la guía</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libros-del-curso">Libros del curso</a></li>
@@ -476,6 +477,39 @@
 <p>El cierre incluye <strong>12 tablas de análisis y 16 figuras reales, en 32 archivos PNG/SVG</strong>, con hashes verificados. El fallo final de Matplotlib se corrigió seleccionando <code class="docutils literal notranslate"><span class="pre">Agg</span></code> antes de importar la biblioteca en el proceso aislado: se reutilizaron los trabajos y el análisis completos, sin repetir ajustes, predicciones o remuestreos. La <a class="reference internal" href="sections/08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">sección 8.18</span></a> presenta resultados, intervalos, cobertura, perturbaciones, curvas y descargas.</p>
 <p>En prueba limpia, la CNN-LSTM aditiva obtiene la <strong>menor RMSE media individual de los 19 sistemas en los cuatro conjuntos</strong>, con reducciones descriptivas de <strong>3,41 %, 7,93 %, 2,08 % y 3,46 %</strong> frente al rival más cercano, <code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code>. Esto no acredita superioridad estadística sobre toda la familia: el análisis nuevo no calculó las tres pruebas con ajuste de Holm ni potencia prospectiva. Los intervalos simultáneos frente a ese control incluyen cero en D00, D02 y D03. La cobertura nominal del 90 % alcanza <strong>89,29 % en D03</strong>, y el ruido severo aumenta sustancialmente el error. <strong>R1 y R3 continúan sin acreditarse; la defensa académica de R2 sigue pendiente.</strong></p>
 <p>La <a class="reference internal" href="sections/06_modelo_original.html#e3-r1-comparison-close"><span class="std std-ref">comparación bibliográfica de cierre</span></a> examina diez trabajos cercanos, con lectura focal de ocho cuerpos y acceso limitado de los otros dos, además de 50 decisiones de cribado con sus límites. El dictamen no establece novedad sustantiva de la aditiva. La <a class="reference internal" href="sections/06_modelo_original.html#e3-r1-adaptation-decision"><span class="std std-ref">decisión de adaptación</span></a> conserva <strong>V3</strong>, ya implementada, como candidata de estructura y entrenamiento —ley del retorno faltante, transformación de σ₇ y CRPS—, con antecedentes y 100 comprobaciones analíticas declarados. V3 no hereda los 796 trabajos ni tiene un resultado de mercado aportado por este cierre.</p>
+</section>
+<section id="piloto-v3-preparacion-verificada-y-siguiente-paso">
+<h2>Piloto V3: preparación verificada y siguiente paso<a class="headerlink" href="#piloto-v3-preparacion-verificada-y-siguiente-paso" title="Link to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/1e02551d80a624661f81981b2323087bcbb84e8f/notebooks/entregable3_v3_controlled_pilot_colab.ipynb">cuaderno Colab del piloto controlado</a> ya está publicado con código fijado por commit y comprobación SHA-256. Las <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44664541455">43 pruebas de software aprobadas en GitHub Actions</a> verifican el control de agregación, el flujo sintético, los checkpoints y el guardado. Esa aprobación corresponde a software y datos artificiales; no constituye entrenamiento ni evaluación de V3 con datos de mercado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Elemento</p></th>
+<th class="head"><p>Estado y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Comparación bibliográfica y diferencia propuesta</p></td>
+<td><p>Documentadas en <a class="reference internal" href="sections/06_modelo_original.html#e3-r1-comparison-close"><span class="std std-ref">6.15</span></a> y <a class="reference internal" href="sections/06_modelo_original.html#e3-r1-adaptation-decision"><span class="std std-ref">6.16</span></a>, con límites de acceso, antecedentes y dictamen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Recetas y controles</p></td>
+<td><p>Cinco recetas neuronales: aditiva, V3 completa, sin CRPS, masas fijas y sustitución por segundo momento; además, dos controles analíticos de piso.</p></td>
+</tr>
+<tr class="row-even"><td><p>Ajustes previstos</p></td>
+<td><p>15 de HPO y 15 finales: <strong>30 ajustes neuronales de desarrollo</strong>, con tres semillas finales por receta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Datos del piloto</p></td>
+<td><p>Sólo desarrollo BTC: 532 ventanas de ajuste; las 116 de validación se dividen en 54 de selección, siete purgadas y 55 de evaluación posterior. El calendario ya estuvo expuesto.</p></td>
+</tr>
+<tr class="row-even"><td><p>Resultados de mercado de V3</p></td>
+<td><p><strong>Pendientes de incorporar mediante un recibo verificable.</strong> La preparación y las pruebas no se presentan como una ejecución real completada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Decisión posterior</p></td>
+<td><p>Aplicar la heurística de desarrollo del 2 % frente a los controles completos y conservar resultados favorables y adversos. R1 y R3 siguen pendientes de acreditación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para ejecutarlo, se activa una GPU en Colab y se usa la celda del cuaderno. El token <code class="docutils literal notranslate"><span class="pre">GITHUB_TOKEN</span></code> debe permitir escritura de contenido en este repositorio; el lanzador lo consulta en los secretos o lo solicita con entrada oculta. <strong>Debe conservarse el identificador de ejecución impreso:</strong> tras un reinicio se introduce en <code class="docutils literal notranslate"><span class="pre">RESUME_RUN_ID</span></code> para recuperar el estado publicado, con el mismo perfil GPU/software y el plazo original. La <a class="reference internal" href="sections/07_diseno_riguroso.html#e3-v3-controlled-development-pilot"><span class="std std-ref">sección 7.13</span></a> detalla presupuesto y límites de recuperación. El plan se guarda antes del primer ajuste y los resultados van a una rama propia de GitHub. Se conservan los 796 trabajos de la referencia aditiva y la declaración de asistencia de IA.</p>
 </section>
 <section id="comparacion-historica-y-producto-interactivo">
 <h2>Comparación histórica y producto interactivo<a class="headerlink" href="#comparacion-historica-y-producto-interactivo" title="Link to this heading">#</a></h2>
@@ -593,6 +627,7 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-del-proyecto">Estado del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-v3-preparacion-verificada-y-siguiente-paso">Piloto V3: preparación verificada y siguiente paso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-historica-y-producto-interactivo">Comparación histórica y producto interactivo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-frente-a-la-guia">Revisión frente a la guía</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libros-del-curso">Libros del curso</a></li>
