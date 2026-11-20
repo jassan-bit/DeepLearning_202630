@@ -1,21 +1,13 @@
-name: Recreate and publish nine frozen ONNX exports
+name: Prepare nine frozen ONNX export references without publishing models
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'experiments/e3_completion_20261120/export_ci/**'
-      - '.github/workflows/reproduce-e3-nine-onnx.yml'
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 jobs:
-  recreate-frozen-exports:
+  public-reference-preparation:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 20
     env:
-      OMP_NUM_THREADS: '1'
-      MKL_NUM_THREADS: '1'
-      OPENBLAS_NUM_THREADS: '1'
       CUDA_VISIBLE_DEVICES: ''
       PYTHONOPTIMIZE: '0'
     steps:
@@ -26,29 +18,9 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12.14'
-      - name: Prepare fixed CPU export dependencies in an isolated runner
-        run: |
-          python -m pip install -r experiments/e3_completion_20261120/export_ci/requirements-cpu-ci.txt
-          python -m pip check
-          python -m pip freeze > /tmp/e3-onnx-pip-freeze.txt
-      - name: Recreate nine frozen graphs and pass the combined integrity and parity gate
-        run: |
-          python experiments/e3_completion_20261120/export_ci/ci_export_all.py --standard-wrapper experiments/e3_completion_20261120/export_ci/standard/ci_export_standard.py --temporal-wrapper experiments/e3_completion_20261120/export_ci/temporal/ci_export_temporal.py --workdir /tmp/e3-private-exports --output /tmp/e3-public-exports
-      - name: Publish checked public output only and verify the public download hash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          python experiments/e3_completion_20261120/export_ci/publish_exports.py --standard /tmp/e3-public-exports/standard --temporal /tmp/e3-public-exports/temporal --output /tmp/e3-export-release
-      - name: Retain exported output, environment and failure logs
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: e3-frozen-onnx-${{ github.run_id }}
-          path: |
-            /tmp/e3-export-release/
-            /tmp/e3-public-exports/
-            /tmp/e3-onnx-pip-freeze.txt
-            /tmp/e3-private-exports/standard/*.log
-            /tmp/e3-private-exports/temporal/*.log
-          retention-days: 90
-          if-no-files-found: warn
+      - name: Install fixed CPU preparation environment
+        run: python -m pip install -r experiments/e3_completion_20261120/export_ci/requirements-cpu-ci.txt
+      - name: Verify original public inputs and constructors only
+        run: python experiments/e3_completion_20261120/export_ci/standard/ci_export_standard.py --workdir /tmp/e3-reference-preparation --output /tmp/unused --prepare-only
+      - name: Explain the publication gate
+        run: echo 'No model fitting, re-export or model upload. Original accepted derivative binaries remain local pending explicit approval.'
