@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "pilot_plan_sha256": "12e38bdd1ca13af0fb5b545098cd18977a5f35610db36caa9d8f67c4b31c792c",
+    "name": "additive_positive_head",
+    "seed": 20261119,
+    "stage": "final",
+    "configuration": {
+      "version": "e3-innovation-model-v2",
+      "variant": "additive_positive_head",
+      "seed": 20261119,
+      "backbone": "unchanged_M00_CNN_LSTM_content_attention",
+      "base": {
+        "config": {
+          "history_days": 7,
+          "input_features": 5,
+          "cnn_channels": 8,
+          "hidden_size": 12,
+          "kernel_size": 3,
+          "reference_lookback": 3,
+          "radius": 1.0,
+          "epsilon": 0.0001,
+          "query_bound": 1.0,
+          "readout_bound": 4.0,
+          "penalty_bound": 1.0,
+          "initial_penalty": 0.25,
+          "temperature_min": 0.25,
+          "initial_temperature": 1.0,
+          "ablation": "full"
+        },
+        "initialization_seed": 20261119,
+        "status": "development_candidate_not_preregistered",
+        "output": "sigma7/training_target_scale",
+        "novelty_verified": false,
+        "statistical_superiority_verified": false
+      },
+      "penalty": false,
+      "radial_saturation": false,
+      "trainable_parameters": 1210,
+      "readout_precision": "float64",
+      "encoder_attention_precision": "float32",
+      "u_scale": 0.019540729290595266,
+      "y_scale": 0.02063308428641038,
+      "minimum_normalized_scale": 0.0001,
+      "nu": 5.0,
+      "lambda_nll": 0.0,
+      "quadrature_sha256": "c3ce43d3cb81767ee3fc0daa0ccfe8432a3326643e28e51273a49cc1fe01c2fe",
+      "prediction_units": "sigma7_original",
+      "base_forward_not_called": true,
+      "single_softplus_on_linear_score": true,
+      "exact_mean_claimed": false,
+      "calibration_claimed": false,
+      "R1_R3_verified": false
+    },
+    "data_admission_sha256": "8684fcf0293144898339d2bc56a407d499999e9625173098bde2bf533bba5f6c",
+    "cohort": {
+      "python": "3.12.12",
+      "torch": "2.8.0+cu126",
+      "numpy": "2.3.5",
+      "cuda_runtime": "12.6",
+      "cudnn": 91002,
+      "device": "cuda:0",
+      "cpu_threads": 2,
+      "deterministic_algorithms": true,
+      "allow_tf32": false,
+      "GPU": {
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_memory_bytes": 85094825984,
+        "capability": [
+          8,
+          0
+        ]
+      }
+    }
+  },
+  "config": {
+    "weight_decay": 0.0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip": 1.0,
+    "lambda_crps": 0.1,
+    "learning_rate": 0.003
+  },
+  "budget_seconds": 120.0,
+  "train_shape": [
+    532,
+    7,
+    5
+  ],
+  "validation_shape": [
+    54,
+    7,
+    5
+  ],
+  "torch": "2.8.0+cu126",
+  "device": "cuda:0"
+}
