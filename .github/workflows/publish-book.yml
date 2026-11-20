@@ -43,6 +43,8 @@ jobs:
           python -m unittest discover -s tests -p test_e2_protocol_amendment.py -v
           python scripts/e2_protocol_amendment.py --check --require-git
           python scripts/e2_search_plan.py --protocol book_e2/_static/search_protocol_20261109/protocol.json --k 40 --final-seeds 30
+      - name: Ensamblar suplemento documental desde partes verificadas
+        run: python experiments/e3_evidence_close_20261120/release/assemble_archive.py
       - name: Construir y verificar los tres libros independientes
         run: |
           set -euo pipefail

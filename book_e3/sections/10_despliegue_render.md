@@ -123,3 +123,6 @@ Queda preparado el [helper de aceptación CPU para Colab](https://github.com/jas
 
 El ZIP de salida conserva recibo, contexto y capturas; debe persistirse antes de cerrar Colab. Sólo su aprobación permite registrar el humo público. La concordancia de SHA autodeclarado conserva el límite de no ser una atestación completa del código remoto. El plan del servicio y los pesos/calibradores permanecen como estaban; este cierre no contrata recursos ni convierte el catálogo histórico en el de la auditoría nueva.
 
+
+
+La [celda CPU fijada al código revisado](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_cierre_publico_cpu_colab.ipynb) solicita el SHA del log de despliegue y verifica el helper antes de ejecutarlo. También se conserva su {download}`código de arranque <../_static/e3_evidence_close_20261120/release/colab_cell.py>` para pegarlo directamente en Colab. Guarda el ZIP de salida y súbelo a GitHub antes de cerrar la sesión; el helper no promete un guardado remoto que no realiza.

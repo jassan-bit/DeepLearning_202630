@@ -29,7 +29,44 @@ jobs:
       - name: Install diagnostic-only CPU dependencies
         run: python -m pip install numpy==2.3.5 scipy==1.17.0 statsmodels==0.14.6 pandas==2.3.3 patsy==1.0.3
       - name: Verify frozen evidence and unchanged model artifacts
-        run: python experiments/e3_evidence_close_20261120/verify_closure.py
+        run: |
+          python experiments/e3_evidence_close_20261120/release/assemble_archive.py
+          python experiments/e3_evidence_close_20261120/verify_closure.py
+      - name: Check source-bound ZIP and replay its extracted small analyses
+        run: |
+          python - <<'PY'
+          import hashlib, json, pathlib, subprocess, sys, tempfile, zipfile
+          release = pathlib.Path('experiments/e3_evidence_close_20261120/release')
+          archive = release / 'e3-documentary-closure-20261120-DRAFT.zip'
+          receipt = json.loads(archive.with_suffix('.zip.manifest.json').read_text())
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == receipt['sha256']
+          assert archive.stat().st_size == receipt['bytes']
+          subprocess.run([sys.executable, str(release / 'archive_transport.py'), '--archive', str(archive), '--manifest', str(archive.with_suffix('.zip.manifest.json'))], check=True)
+          prefix = 'e3-documentary-closure-20261120-DRAFT/'
+          with tempfile.TemporaryDirectory(prefix='e3-capsule-ci-') as temporary:
+              root = pathlib.Path(temporary) / prefix
+              with zipfile.ZipFile(archive) as source:
+                  assert source.testzip() is None
+                  metadata = json.loads(source.read(prefix + 'MANIFEST.json'))
+                  assert metadata['documentation_source_commit'] == receipt['documentation_source_commit']
+                  expected = {prefix + entry['archive_path'] for entry in metadata['members']} | {prefix + 'MANIFEST.json'}
+                  assert set(source.namelist()) == expected
+                  for entry in metadata['members']:
+                      body = source.read(prefix + entry['archive_path'])
+                      assert len(body) == entry['bytes'] and hashlib.sha256(body).hexdigest() == entry['sha256']
+                  source.extractall(temporary)
+              scope = 'experiments/e3_evidence_close_20261120/'
+              commands = [
+                  ['verify_closure.py', '--source-only', '--allow-missing-protected'],
+                  ['inventory/verify_inventory.py'],
+                  ['contribution/verify.py', '--upstream', 'book_e3/_static/e3_r1_close_20261120'],
+                  ['pilot/analyze_saved_pilot.py', '--verify-only'],
+                  ['adequacy/audit_existing_predictions.py', '--verify-only', '--source-dir', 'book_e3/_static/e3_audit_completed_20261119T234320461006Z'],
+              ]
+              for entry in commands:
+                  subprocess.run([sys.executable, scope + entry[0], *entry[1:]], cwd=root, check=True)
+          print(json.dumps({'prepared_archive_verified': True, 'extracted_analyses_replayed': True, 'source_commit': receipt['documentation_source_commit']}))
+          PY
       - name: Verify V3 saved trajectories and the recorded adverse verdict
         run: python experiments/e3_evidence_close_20261120/pilot/analyze_saved_pilot.py --verify-only
       - name: Reconcile design identities and documentary attribution
