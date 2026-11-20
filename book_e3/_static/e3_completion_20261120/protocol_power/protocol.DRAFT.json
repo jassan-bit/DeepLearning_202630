@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "kind": "V3_R3_PROTOCOL_DRAFT_NOT_FROZEN",
+  "recorded_at_utc": "2026-11-20T14:29:13.057250+00:00",
+  "review_date_local": "2026-11-20",
+  "timezone": "America/Bogota",
+  "base_commit": "bbd2604a9b78bab7fc8289ad07aae0a6117e884e",
+  "AI_assistance_declared": true,
+  "status": "DRAFT_BLOCKED_NO_CONFIRMATION_GO",
+  "freeze": {
+    "tag": null,
+    "tag_annotated": false,
+    "commit": null,
+    "date": null,
+    "all_fields_final": false
+  },
+  "scientific_decision": {
+    "confirmation_go": false,
+    "reason": "Original V3 pilot failed its 2% continuation heuristic; atom_crps was 2.7043119888% worse than atom_mse_only. No positive current evidence authorizes expensive confirmation; no rule change or automatic lambda0 promotion.",
+    "author_renewed_rationale_document": null,
+    "author_renewed_decision_date": null,
+    "original_pilot_rule_preserved": true,
+    "original_pilot_heuristic_passed": false,
+    "automatic_promotion_allowed": false,
+    "separate_diagnostic_decision": "decision_zero_shot.json"
+  },
+  "contribution_scope": {
+    "candidate": "atom_crps",
+    "model_source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+    "R1_documentary_verdict": "favorable_bounded_V3_only_not_institutional",
+    "R2_verified_by_author_defense": false,
+    "R3_accredited": false,
+    "additive796_preserved": true,
+    "V3_pilot30_preserved": true
+  },
+  "estimand": {
+    "task": "one-step forecast of population sigma7 of a seven-return rolling window; ddof=0; same contemporaneously available OHLCV inputs",
+    "units": "unannualized raw sigma7",
+    "known_overlap": "six returns known in input; Y^2 = A + (6/49)*U^2; A computed causally from inputs",
+    "primary": "mean across fixed individual seed RMSEs on common target dates; not ensemble RMSE or square-root of pooled seed MSE",
+    "gain": "Delta_j = E_seed[RMSE_j] - E_seed[RMSE_atom_crps]; positive favors candidate",
+    "null": "Delta_j <= delta",
+    "alternative": "Delta_j > delta",
+    "secondary": [
+      "MAE",
+      "CRPS_U for comparable full predictive distributions only",
+      "coverage and width from a separately fitted and frozen calibration split",
+      "latency and memory under common CPU batch1 conditions"
+    ],
+    "BTC_delta_inherited_reference": 0.00025772842664981106,
+    "BTC_delta_operational_justification_document": null,
+    "additional_dataset_deltas": {
+      "D01": null,
+      "D02": null,
+      "D03": null
+    },
+    "margin_selection_policy": "No margin from observed gain, favorable p-value or original 2% pilot threshold. Operational use/cost reasoning must predate final outcomes."
+  },
+  "family": {
+    "candidate": "atom_crps",
+    "rivals": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "rival_count": 19,
+    "all_system_count": 20,
+    "neural_system_count": 15,
+    "classic_system_count": 3,
+    "analytical_control_count": 2,
+    "procedures_per_rival": 3,
+    "main_component_count": 57,
+    "controls_included_in_main": [
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "no_rival_removed_for_observed_performance": true,
+    "separate_ablations": [
+      "atom_mse_only",
+      "fixed_probs",
+      "atom_plugin"
+    ],
+    "separate_secondary_families": [
+      "ablations",
+      "additional_dataset comparisons",
+      "regime subgroups",
+      "secondary metrics and robustness procedures"
+    ],
+    "do_not_import_audit796_results_as_V3": true
+  },
+  "data": {
+    "current_calendars_are_exposed": true,
+    "old_pilot55_is_development": true,
+    "old_admission_clean_test_is_exploratory_for_V3": true,
+    "independent_confirmation_admission_complete": false,
+    "new_main_panel": null,
+    "new_additional_panels": [
+      null,
+      null,
+      null
+    ],
+    "proposal": "Prospectively acquired target endpoints after this decision and a complete seven-window boundary purge, or a genuinely never-opened externally locked holdout with access log. No such panel is certified here. End date and sample duration await power and maturity.",
+    "unexposed_target_audit_sha256": null,
+    "labels_unknown_until_lock": false,
+    "minimum_axes_of_difference_per_additional_panel": 2,
+    "selection_metadata_required": [
+      "source/license/version/hash",
+      "clock",
+      "volume units",
+      "task identity",
+      "size/domain/noise axes",
+      "dependence and overlapping-underlying declaration",
+      "author exposure/access log"
+    ],
+    "WIKI_AAPL_limit": "The admitted D01 source ends in 2013. A future AAPL holdout needs a separately admitted current source; a new historical slice cannot silently become independent.",
+    "do_not_claim_three_independent_markets": true
+  },
+  "common_treatment": {
+    "window_length": 7,
+    "forecast_horizon_steps": 1,
+    "boundary_purge_windows": 7,
+    "proposed_ratios": [
+      0.55,
+      0.15,
+      0.1
+    ],
+    "ratios_status": "template only; absolute dates and resulting counts must be fixed before test outcomes",
+    "fit_scalers_on_fit_only": true,
+    "same_fit_selection_calibration_test_dates_all_systems": true,
+    "same_covariates_and_target": true,
+    "same_relative_window_preprocessing": true,
+    "same_audited_precision_and_hardware_cohort": true,
+    "target_test_opening": "once after all tuning/calibration and artifacts are hashed",
+    "neural_HPO_relative_learning_rates": [
+      0.0003,
+      0.001,
+      0.003
+    ],
+    "HPO_configurations_per_neural_system": 3,
+    "max_epochs": 40,
+    "early_stopping_patience": 8,
+    "per_fit_budget_seconds_template": 120,
+    "budget_measure": "both configurations and wall/active compute; counts alone do not equalize model cost",
+    "neural_optimizer_template": "AdamW batch32 clip1 weight_decay0; confirm frozen E2 recipes and comparable relative grids before freeze",
+    "classic_recipes": "Persistence and SeasonalNaive deterministic; ARIMA original frozen order/window. Do not create fake duplicate HPO or seeds; document any refit policy before lock.",
+    "capacity_audit": "parameters and justified FLOPs method all neural systems; report candidate/benchmark difference and matched-capacity sensitivity if necessary",
+    "fair_time_analysis_required": true
+  },
+  "sampling": {
+    "minimum_final_seed_pairs": 10,
+    "selected_final_R": null,
+    "final_seed_ids": null,
+    "seed_id_policy": "pair RNG coordinates across neural systems; no best-seed selection",
+    "deterministic_control_policy": "one trajectory per deterministic recipe; broadcast only in paired estimators, never count as new fits or independent calendars",
+    "current_pilot_seed_pairs": 3,
+    "guide_minimum_pilot_seed_pairs_for_variance": 5,
+    "current_pilot_complete_family_variances": false,
+    "temporal_unit": "ordered target endpoints with overlap/dependence, not seed x date independent rows",
+    "market_unit": "dataset/origin; initialization seeds are not markets",
+    "planning_registry_sha256": "fa39c7b874afabced34769f4fe202c930fe83fe4821059286cd051582c87c1c2",
+    "final_power_certificate": null,
+    "power_per_contrast_minimum": 0.9,
+    "joint_power_report_required": true,
+    "joint_power90_requirement_is_guide_mandatory": false,
+    "joint90_optional_planning_scenario": true
+  },
+  "proposed_F2_test_plan": {
+    "method_review_approved": false,
+    "primary_estimand_alignment_approved": false,
+    "stationary_bootstrap": {
+      "scope": "paired stationary bootstrap of the actual mean-individual-RMSE gain functional; resample same temporal blocks for every model and preserve complete paired seeds",
+      "null_boundary": "Delta=delta",
+      "mean_block_template": 14,
+      "block_sensitivity": [
+        7,
+        28
+      ],
+      "draws_template": 9999,
+      "random_seed_template": 20261120,
+      "assumptions": [
+        "weak stationarity or justified locally stationary segment",
+        "mixing and adequate block count",
+        "no leaking future values into train or resampling"
+      ],
+      "status": "DRAFT_not_executed"
+    },
+    "DM_HLN": {
+      "scope": "temporal influence-function delta-method adaptation for mean individual RMSE, not a canonical loss-difference DM falsely relabeled RMSE",
+      "overlap_lag_template": 7,
+      "forecast_horizon_steps": 1,
+      "HLN_horizon_policy": "use actual forecast horizon1, not rolling window7; sensitivity to HAC lags and any extra overlap must be justified",
+      "assumptions": [
+        "stationarity/mixing of paired influence process",
+        "positive stable HAC variance",
+        "valid first-order RMSE expansion and adequate calendar"
+      ],
+      "requires_specific_admissibility_review": true,
+      "status": "DRAFT_not_executed"
+    },
+    "GW_or_CW": {
+      "choice": "Giacomini-White-style conditional predictive-ability extension for nonnested predictors, conditional direction/margin tests using predeclared causal low/high-A instruments; Clark-West only if nesting and correction are formally established",
+      "scope": "An omnibus conditional-difference rejection alone is not evidence candidate is better. Must establish one-sided favorable direction under prescribed margin and align with primary functional.",
+      "instrument_threshold": "fit-only median A; freeze before test",
+      "assumptions": [
+        "valid fixed estimation/rolling scheme",
+        "known-at-origin instruments",
+        "stationary moments and positive HAC covariance",
+        "nonnesting/nesting classification predeclared"
+      ],
+      "requires_specific_admissibility_review": true,
+      "status": "DRAFT_not_executed"
+    },
+    "canonical_MCS_auxiliary": "May report 90% MCS with common squared-error loss; it does not establish RMSE margin or replace one of three required primary-aligned rejections merely by model survival.",
+    "why_not_claim_closed": "A named list is not proof of a valid battery. Implementations, direction and shared estimand require review/tests before registration. Three t/Wilcoxon/sign tests on seeds do not automatically satisfy temporal F2."
+  },
+  "error_control": {
+    "alpha": 0.05,
+    "main_Holm_components": 57,
+    "Holm_scope": "all19rivals x all3requiredprocedures; do not adjust each test separately to a smaller family",
+    "per_rival_rule": "max of its three globally Holm-adjusted pvalues < .05 and all direction/margin checks pass",
+    "all_rivals_rule": "all19 contrasts must pass; no best-rival or best-test selection",
+    "planning_conservative_alpha": 0.0008771929824561404,
+    "effects": "Cliff absolute >=.147 or Cohen absolute >=.2 only when unit/assumptions justify; preserve paired calendar/seed scope",
+    "intervals": "paired temporal95% intervals with clearly stated marginal/simultaneous status; lower gain bound>0, ideally>delta; report all rivals"
+  },
+  "adequacy_and_robustness": {
+    "current_status": "not prospectively established for V3",
+    "baseline": "must beat Persistence and physical controls on prescribed primary dates",
+    "generalization_gap": "fit/selection/test under same data risks; margin for acceptable gap fixed before outcomes",
+    "residual_diagnostics": [
+      "Ljung-Box",
+      "ARCH-LM",
+      "BDS where sample permits",
+      "Jarque-Bera as shape diagnostic",
+      "Mincer-Zarnowitz with HAC",
+      "temporal out/in error ratio",
+      "Giacomini-Rossi stability"
+    ],
+    "distribution_diagnostics": [
+      "PIT randomization appropriate to discrete mass atU0",
+      "coverage and width from frozen split calibration",
+      "CRPS_U proper scoring on comparable distributions",
+      "mass and floor validity checks"
+    ],
+    "calibration": "Separate calibration data never tuning/test; fit on calibration only and bind calibrator to exact model/weights/version. Do not inherit additive calibrator for V3.",
+    "robustness": [
+      "alternative block lengths7/14/28",
+      "MAE secondary without replacing primary",
+      "predefined causal regimes",
+      "input missingness/noise perturbations fixed before test",
+      "hardware/cost/seed subsets prespecified without selecting favorable subset"
+    ],
+    "Nadeau_Bengio": "Only if repeated overlapping training/test partitions actually exist and variance correction applies; not manufactured from days/seeds of one chronology.",
+    "additional_rule": "better primary mean in at least2/3 panels and no significant inferiority to any family rival in any panel; nonrejection is not demonstrated equivalence",
+    "cross_dataset": "Friedman+Iman-Davenport with paired Holm or declared Bayesian alternative, limited by three domains and dependence; report ranks/individual scales, no pooled raw RMSE"
+  },
+  "budget": {
+    "authorized": false,
+    "authorized_by_author_record": null,
+    "approved_GPU_hours": null,
+    "same_GPU_model_and_software_required": true,
+    "checkpoint_policy": "reuse existing source-hash/cohort/state protections; no change to either old master",
+    "restart_policy": "durable model/optimizer/RNG at epoch boundary; immutable original deadlines; no budget reset",
+    "cost_upper_template_seconds": null,
+    "neural_fit_upper_formula": "4 datasets *15 neural systems *(3 HPO + R final) *120 seconds; R=10 illustrative 93600s=26h, not authorized budget or power justification",
+    "additional_classic_costs_required": true,
+    "measured_cost_fields": [
+      "training active and wall time",
+      "setup/download separate",
+      "inference CPU batch1 latency with warmup",
+      "peak processRSS versus incremental memory clearly labeled",
+      "GPU/CPU/RAM/package profile",
+      "energy method or explicitly unavailable"
+    ]
+  },
+  "adapter": {
+    "status": "BLOCKED_not_V3_training_ready",
+    "legacy_orchestrator": "experiments/e3_evaluacion_ampliada_20261119/orchestration/controller.py",
+    "legacy_source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "legacy_supports_V3": false,
+    "reuse": "immutable source hashes, admission, CPU preparation, continuation identity and durable checkpoint policy; never call old additive worker as V3",
+    "V3_runner_source_commit": null,
+    "V3_runner_sha256": null,
+    "V3_runner_contract_reviewed": false,
+    "entrypoint": "preflight.py",
+    "preflight_can_train": false,
+    "training_default_enabled": false
+  },
+  "required_before_go": [
+    "author scientific rationale accepting an explicitly new limited question despite failed heuristic",
+    "genuinely unexposed common data admission and endpoints",
+    "margin justification per scale",
+    "valid tested F2 three-procedure battery matching estimand",
+    "full-family prospective power with adequate pilot variances and >=10 planned seeds",
+    "approved comparable time/configuration budget and capacity audit",
+    "exact V3 runner/version integration and tests",
+    "final protocol annotated tag and timestamp before outcomes"
+  ]
+}

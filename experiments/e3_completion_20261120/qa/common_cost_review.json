@@ -1,0 +1,143 @@
+{
+  "status": "common_ORT_cost_measurements_provenance_and_aggregation_QA_passed",
+  "AI_assistance_declared": true,
+  "new_QA_model_fits": 0,
+  "new_QA_model_predictions": 0,
+  "receipt_sha256": "05f1c13b38aa99d0a6afeaa778ab15e48af8f30e83a5f0f5fe8aea672cb66852",
+  "models_verified": 15,
+  "profile": "Fresh sequential process per model; same raw window, one logical CPU affinity, ORT CPU one intra/inter thread, batch1,10 warmups and100 timed calls; frozen model-specific scaler; no Torch in benchmark worker.",
+  "measurements_scope": "Normalized-input ORT forward, session load and first call; separately logged total process RSS. These measurements do not establish Dash, transport, explanations, incremental memory, physical-core isolation, energy or FLOPs. Filesystem caches were not flushed; loads are not certified cold.",
+  "median_latency_range_ms": [
+    0.0053785,
+    0.4333315
+  ],
+  "total_process_peak_RSS_range_MiB": [
+    45.8359375,
+    63.9921875
+  ],
+  "timing_model_calls_separate_from_diagnostic_predictions": 1665,
+  "serving_activation_or_Render_capacity_proven": false,
+  "prior_metadata_race": "Earlier measurements are preserved in costs/attempts/pre_metadata_freeze; current receipt matches every final ONNX and metadata file.",
+  "records": [
+    {
+      "model": "CNN-LSTM-atencion-aditiva E3",
+      "model_sha256": "6928a973a6639513bc94cde15996c0b06bb5615e3c0b1a77d16d47e9c7342f3b",
+      "metadata_sha256": "9de8be6acceebc94eaf4567cbc3d2d205c29d0cfe611a850dd0f47d330adcb61",
+      "median_ms": 0.0234455,
+      "p95_ms": 0.047976649999999996,
+      "process_peak_RSS_bytes": 49197056
+    },
+    {
+      "model": "FCN-1D",
+      "model_sha256": "80df90b1cb38fbde7f47c8d4ca43f04a5df0c6936a740eda1e5ec7a87c8df1d1",
+      "metadata_sha256": "ca2017f8c02c58bed8c615bcd5fc19ad9b935755bb8dc849f5928745640e1e50",
+      "median_ms": 0.2047125,
+      "p95_ms": 0.9870192999999993,
+      "process_peak_RSS_bytes": 50065408
+    },
+    {
+      "model": "GRU32",
+      "model_sha256": "1409d0cf84aac43720b4c6978f9a1bb3b5f6c9832518acab0cba279ba8a88bd2",
+      "metadata_sha256": "5942b60725ae07b7dfede5cc0912bdedd5194be4c826d167cfd93f259a567a29",
+      "median_ms": 0.011242,
+      "p95_ms": 0.03934784999999999,
+      "process_peak_RSS_bytes": 48406528
+    },
+    {
+      "model": "Inception-1D",
+      "model_sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428",
+      "metadata_sha256": "1d61945f60adaf7ea4a74089c638a5799acbe14027afcef5394cf0be9226d548",
+      "median_ms": 0.4333315,
+      "p95_ms": 0.7427954999999999,
+      "process_peak_RSS_bytes": 53075968
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "model_sha256": "0ed6c1348d5bc1ea3312aaf00d59f8651cb4949212eeb38c42a732c8f33480d3",
+      "metadata_sha256": "3c2d8d1622250a32bd40433c9577c100f9de114ae38c7f310a1b25a6bb015046",
+      "median_ms": 0.017346,
+      "p95_ms": 0.02189105,
+      "process_peak_RSS_bytes": 48791552
+    },
+    {
+      "model": "LSTM32",
+      "model_sha256": "ee942ca947998a3c5c76fa21eabe401ce60989558faf82608e8107a830227033",
+      "metadata_sha256": "511475aafde95c938c7905a63186fc19c8e894c18358ca2fc0de3192a3aaffb2",
+      "median_ms": 0.010911,
+      "p95_ms": 0.0134075,
+      "process_peak_RSS_bytes": 48427008
+    },
+    {
+      "model": "MLP16",
+      "model_sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50",
+      "metadata_sha256": "35a1acc15bfe76d38398eef11c028c854797d7dde897898f822a270eab73117b",
+      "median_ms": 0.0053785,
+      "p95_ms": 0.006035999999999999,
+      "process_peak_RSS_bytes": 48062464
+    },
+    {
+      "model": "PatchTST",
+      "model_sha256": "f36ecb0397bd63cd86062e527e8769ae922ece64fe5660d0eaa57f3e65046861",
+      "metadata_sha256": "768415bd0aa5f555d873e94a31941c0c3245f90be1c3f7e8627ed8a401ef8d08",
+      "median_ms": 0.09951950000000001,
+      "p95_ms": 0.1376008,
+      "process_peak_RSS_bytes": 50032640
+    },
+    {
+      "model": "ResNet-1D",
+      "model_sha256": "01e2283793b019d90f77489bb8cbfb82845638772532c0f00302e98a708a050b",
+      "metadata_sha256": "c9654ca983fbe162cbc922a55f14fbf2297e40ae93657b8ea92eb3f03855ca56",
+      "median_ms": 0.3134065,
+      "p95_ms": 0.36272419999999994,
+      "process_peak_RSS_bytes": 52555776
+    },
+    {
+      "model": "TSMixer",
+      "model_sha256": "10cedceea5da544268ecda882d9ee3d9f4abc153448a599a3a9947b7cf74d255",
+      "metadata_sha256": "886f713cb78cf1e454bd35e95dce835aeb993835b64981937eedd18ea0c71d43",
+      "median_ms": 0.068122,
+      "p95_ms": 0.08758854999999999,
+      "process_peak_RSS_bytes": 49803264
+    },
+    {
+      "model": "TiDE",
+      "model_sha256": "8c93d7789414f9db51fd0ce25595bbcdb5948c5379e22b2bc00b5e7d518217e4",
+      "metadata_sha256": "29399af9d7263198f6f03cfee826de24da4abacb5f4700a87e07980e75b44a32",
+      "median_ms": 0.0323635,
+      "p95_ms": 0.08445649999999998,
+      "process_peak_RSS_bytes": 49664000
+    },
+    {
+      "model": "TimeMixer",
+      "model_sha256": "1cbab4bdf3040a981936220d2899e848f2319a4671dff61f371f25f7d1d8f18c",
+      "metadata_sha256": "6fa20b3071bd8e2c0a27dd95d359a5044965dd794b1ee7e1f2f3e848aa025c84",
+      "median_ms": 0.22780250000000002,
+      "p95_ms": 0.3334691,
+      "process_peak_RSS_bytes": 51212288
+    },
+    {
+      "model": "TimesNet",
+      "model_sha256": "ac110c3cc1c0d6830f03919dce1723e97a0f2ce94bea8aa03161dacd5c1382bf",
+      "metadata_sha256": "5cbe708cac16a256955eab193fce50b90a342a8b6280680bde4eda6aa1b788b3",
+      "median_ms": 0.36864450000000004,
+      "p95_ms": 0.49918029999999997,
+      "process_peak_RSS_bytes": 67100672
+    },
+    {
+      "model": "V3 atom_crps experimental",
+      "model_sha256": "881dd637837265829aa96900d7a0c864dcdab113a57a91485feb20fd2a443abc",
+      "metadata_sha256": "910edac639d725be044609c4bd3b7bdf543f8ea72061317c3178ae2a0f001d6e",
+      "median_ms": 0.027912,
+      "p95_ms": 0.036359499999999996,
+      "process_peak_RSS_bytes": 49463296
+    },
+    {
+      "model": "iTransformer",
+      "model_sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd",
+      "metadata_sha256": "fabf1ef30634dd56c8cd4b76f40490af29ceefd51343ca35a3d22cca71e49cf5",
+      "median_ms": 0.220677,
+      "p95_ms": 0.33647455,
+      "process_peak_RSS_bytes": 54951936
+    }
+  ]
+}

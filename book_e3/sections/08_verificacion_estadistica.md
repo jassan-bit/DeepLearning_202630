@@ -919,3 +919,160 @@ previos, interpretación de estabilidad y distribución, datos realmente reserva
 familia confirmatoria pertinente, recursos completos y reproducción independiente.
 **Este cierre aporta diagnósticos; no acredita R1 o R3 ni supera formalmente
 las Tablas A/B por retrospectiva.**
+
+
+(e3-v3-frozen-transfer-20261120)=
+## 8.21 Diagnóstico V3 de transferencia con pesos y escalas fijos
+
+Después del piloto se registró una **decisión nueva y exploratoria** en el
+[commit `6aca875bd94b0a1c3457b5b8586f14a4d0e16dbe`](https://github.com/jassan-bit/DeepLearning_202630/commit/6aca875bd94b0a1c3457b5b8586f14a4d0e16dbe),
+antes de las primeras predicciones de este diagnóstico. La
+{download}`decisión fijada <../_static/e3_completion_20261120/protocol_power/decision_zero_shot.json>`
+y el {download}`recibo previo al primer forward <../_static/e3_completion_20261120/reproduction/diagnostic_transfer/before_first_forward.json>`
+vinculan sus hashes y el código ejecutado. No es un prerregistro
+confirmatorio ni recupera el cegamiento de los calendarios.
+
+Se aplicaron las **cinco recetas neuronales** del piloto con sus **tres
+semillas finales originales** —20261118, 20261119 y 20261120— y los dos
+controles analíticos a las particiones `clean_test` originales D01–D03.
+Se conservaron los quince checkpoints y las escalas BTC, incluido el
+escalador de volumen y el exceso medio del control físico. A se calcula
+causalmente en cada entrada; no se ajusta con los nuevos dominios. No hubo
+HPO, entrenamiento, calibración, corrección de escalas, proyección o
+eliminación de filas. El diagnóstico completó **51 trayectorias y 20.400
+filas finitas**, con **cero ajustes y cero fallos**. Los dos controles
+deterministas siguen siendo trayectorias únicas, no réplicas entrenadas.
+
+La {download}`geometría y las fechas de prueba <../_static/e3_completion_20261120/reproduction/reference/additional_clean_test_metadata.json>`
+conservan las purgas y los hashes de la admisión anterior: D01 contiene
+633 objetivos del 25 de agosto de 2010 al 1 de marzo de 2013; D02, 271
+del 5 de abril al 31 de diciembre de 2021; D03, 296 del 11 de marzo al
+31 de diciembre de 2024. Esos calendarios ya estuvieron expuestos durante
+la auditoría de la aditiva. Aquí se evalúan pesos BTC fijos: **no se
+reutilizan los ajustes por dominio de los 796 trabajos como si fueran V3**.
+
+La métrica primaria registrada es la media de las RMSE individuales por
+receta, en unidades originales de σ₇. Cada receta neuronal aporta tres
+trayectorias y cada control analítico una. No es la RMSE de un ensamble.
+La tabla presenta las siete recetas, sin retirar controles desfavorables:
+
+| Receta o control | D01 AAPL RAW | D02 ETHUSDT | D03 BTCUSD_PERP |
+|---|---:|---:|---:|
+| `additive_positive_head` | 0,003632257 | 0,006572682 | 0,003682024 |
+| `atom_crps` | 0,003314508 | 0,007161615 | 0,003444276 |
+| `atom_mse_only` | 0,003353165 | 0,007198866 | 0,003436307 |
+| `fixed_probs` | 0,002998234 | 0,007262353 | 0,003403212 |
+| `atom_plugin` | 0,003307610 | 0,007151505 | 0,003399681 |
+| `floor_only` | 0,002931884 | 0,007795489 | 0,004057838 |
+| `floor_plus_mean_excess` | 0,002629224 | 0,006956665 | 0,003356707 |
+
+La candidata completa **no obtiene la menor RMSE en ninguno de los tres
+dominios**. El menor error descriptivo corresponde a
+`floor_plus_mean_excess` en D01/D03 y a la aditiva en D02. El
+{download}`resumen numérico <../_static/e3_completion_20261120/reproduction/diagnostic_transfer/summary.csv>`
+conserva también MAE y CRPS_U cuando la receta proporciona la distribución
+necesaria. El {download}`recibo del diagnóstico <../_static/e3_completion_20261120/reproduction/diagnostic_transfer/diagnostic_receipt.json>`
+contiene las trayectorias, hashes, presupuesto observado y ausencia de
+p-valores. No se ajustaron intervalos ni se heredó el calibrador de la
+aditiva.
+
+### Qué permite y qué impide esta comparación
+
+Los pesos y la selección BTC proceden de **2023–2024** y se aplican a AAPL
+hasta 2013 y ETH hasta 2021. Por tanto, **no es un backtest financiero
+cronológicamente disponible**: describe transferencia retrospectiva con
+parámetros posteriores. D03 comparte el subyacente BTC y parte del
+calendario con el desarrollo, por lo que tampoco constituye un mercado
+independiente. El volumen conserva unidades distintas —acciones RAW por
+sesión, ETH o contratos por día UTC— bajo el mismo escalador BTC; no se
+corrige ese cambio después de observar resultados. Sesiones y días UTC
+son relojes homólogos, no duraciones idénticas. No se promedian RMSE de
+distintas escalas para construir un ganador global.
+
+El alcance es un diagnóstico acotado de inferencia, ejecutado con IA
+declarada. No prueba la batería de R3, adecuación completa o potencia,
+ni cambia la heurística del piloto original. Sus treinta ajustes y el
+**2,70 % de deterioro de `atom_crps` frente a `atom_mse_only`** siguen
+intactos; no se promociona automáticamente λ=0 ni otra receta ganadora.
+El {ref}`dictamen documental de R1 para V3 <e3-r1-substantive-verdict-20261120>` conserva su alcance propio.
+
+(e3-v3-prospective-preparation)=
+## 8.22 Decisión científica y preparación de potencia para V3
+
+**La confirmación sigue en NO-GO.** La
+{download}`decisión científica <../_static/e3_completion_20261120/protocol_power/scientific_decision.json>`
+conserva la regla del piloto y su resultado adverso. El diagnóstico de
+transferencia posterior aporta información limitada, pero no transforma
+los calendarios expuestos en confirmación ni autoriza otra campaña grande.
+El autor puede defender la contribución delimitada sin afirmar superioridad
+predictiva, o formular y fechar por qué merece estudiar una pregunta nueva.
+Cambiar una regla o candidata sería otra decisión posterior a los datos.
+
+Se preparó un {download}`protocolo DRAFT <../_static/e3_completion_20261120/protocol_power/protocol.DRAFT.json>`
+y su {download}`explicación metodológica <../_static/e3_completion_20261120/protocol_power/protocol.DRAFT.md>`,
+sin tag final, fechas de congelamiento inventadas ni número de semillas
+declarado suficiente. La familia propuesta reúne **20 sistemas, 19
+rivales y 57 componentes**: Top 10 y referencias E2 completos, aditiva y
+dos controles físicos frente a `atom_crps`. Las tres ablaciones forman
+otra familia. Se propone Holm global sobre los 57 p-valores y, para cada
+rival, el máximo de sus tres p ajustados; los diecinueve contrastes deben
+pasar. La batería temporal propuesta requiere todavía revisión de
+supuestos, dirección y alineación con la media individual de RMSE.
+
+### Cálculo ejecutado y límites
+
+La guía §8.7.2 exige al menos cinco semillas piloto para estimar variabilidad
+por rival; V3 tiene **tres**. De los seis controles disponibles, tres son
+ablaciones: sólo aditiva y dos analíticos pertenecen a la familia principal.
+Faltan las varianzas de los **dieciséis rivales E2**. No se transfieren a
+V3 las varianzas o los resultados de los 796 trabajos de la aditiva.
+
+El {download}`registro de escenarios <../_static/e3_completion_20261120/protocol_power/planning_registry.json>`
+precede al cálculo CPU sobre pronósticos ya guardados. Se ejecutaron
+**486 evaluaciones analíticas**, 162 de sensibilidad a semillas y 324
+temporales, con **cero simulaciones Monte Carlo**, ajustes o inferencias
+de modelos en esa etapa. El
+{download}`recibo reproducible <../_static/e3_completion_20261120/protocol_power/results/planning_receipt.json>`
+y las {download}`entradas de varianza <../_static/e3_completion_20261120/protocol_power/results/variance_inputs.csv>`
+identifican el origen de los datos y mantienen **R final y calendario
+final sin determinar**. No son cálculos de potencia observada posterior.
+
+Las alternativas hipotéticas son `g1=1,25δ`, `1,5δ` y `2δ`; la separación
+para `H0: Δ≤δ` es **g1−δ**, nunca la ganancia observada. El margen BTC
+heredado se usa sólo como referencia pendiente de justificación operativa
+para V3; no se elige desde los p-valores ni desde el umbral heurístico del
+2 %. Los demás dominios requieren márgenes en sus escalas. Se usa
+`.05/57` como nivel conservador de planificación, separado del ajuste Holm
+que aplicaría el análisis final.
+
+La {download}`sensibilidad por semillas <../_static/e3_completion_20261120/protocol_power/results/seed_sensitivity.csv>`
+representa inicialización sobre un mismo calendario; la
+{download}`sensibilidad temporal <../_static/e3_completion_20261120/protocol_power/results/calendar_sensitivity.csv>`
+usa influencias/HAC con rezagos 7/14/28. No se suman ambas varianzas sin
+identificar un modelo jerárquico ni se convierten 365 fechas hipotéticas
+en observaciones independientes adquiridas. Las 55 fechas de desarrollo
+no estabilizan por sí mismas la incertidumbre temporal de largo plazo.
+La {download}`sensibilidad de potencia conjunta <../_static/e3_completion_20261120/protocol_power/results/joint_sensitivity.json>`
+expone supuestos de dependencia y cotas; no demuestra la potencia de
+tres procedimientos F2 distintos. La guía exige marginal mínima de 0,90
+por contraste y **reportar** la conjunta; no impone conjunta 0,90.
+
+### Acciones concretas antes de una confirmación
+
+Se necesitan una nueva justificación científica del autor; admisión común
+de datos genuinamente no expuestos y objetivos aún desconocidos; márgenes
+operativos; batería F2 validada; potencia de la familia completa con
+R≥10 o más si el cálculo lo exige; presupuesto comparable autorizado;
+motor V3 revisado y tag anotado real antes de los resultados. El calendario
+de confirmación no se rellena con tramos ya conocidos; AAPL futuro exige
+admitir otra fuente porque WIKI termina en 2013.
+
+La {download}`matriz de pendientes <../_static/e3_completion_20261120/protocol_power/requirements_matrix.csv>`
+y el {download}`preflight CPU reanudable <../_static/e3_completion_20261120/protocol_power/preflight.py>`
+dejan esos requisitos preparados para revisión. Las ocho pruebas de
+fronteras matemáticas, bloqueo y reanudación pasaron; el preflight actual
+devuelve **`BLOCKED_PREPARATION_ONLY`** y no tiene una ruta que entrene.
+Preparar el documento no congela el protocolo ni acredita R3. Se conserva
+el uso de IA declarado y la separación entre dictamen documental de R1,
+defensa académica de R2 y validación predictiva de R3.
+

@@ -1,0 +1,69 @@
+{
+  "model": "TimesNet",
+  "seed": 271801,
+  "status": "passed",
+  "evaluation_dates": 608,
+  "date_start": "2025-01-01",
+  "date_end": "2026-08-31",
+  "calibration_dates": 53,
+  "declared_absolute_tolerance_original_sigma7": 1e-06,
+  "maximum_absolute_error_vs_CPU_memory": 1.9983172672155547e-08,
+  "maximum_absolute_error_vs_frozen_saved_predictions": 3.038035698010866e-08,
+  "maximum_calibration_absolute_error_vs_CPU_memory": 9.991586336077773e-09,
+  "maximum_calibration_absolute_error_vs_frozen_predictions": 1.0626978318162283e-08,
+  "RMSE_CPU_memory": 0.005281122452790283,
+  "RMSE_ONNX": 0.005281122554685885,
+  "RMSE_frozen_saved_predictor": 0.005281122426482938,
+  "historical_608_coverage_percent_for_this_seed": 94.07894736842105,
+  "within_tolerance": true,
+  "stress_cases": [
+    {
+      "case": "zeros",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "ones",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "constant_negative",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "alternating",
+      "max_absolute_error_original_sigma7": 4.995793161099993e-09,
+      "within_tolerance": true
+    },
+    {
+      "case": "symmetric",
+      "max_absolute_error_original_sigma7": 7.493689748588883e-09,
+      "within_tolerance": true
+    }
+  ],
+  "stress_within_tolerance": true,
+  "reference_checkpoint_sha256": "352da41eff4e7193b5c527a7c483458318f114f087779cedcd0e9a539090af0d",
+  "checkpoint_unchanged": true,
+  "reference_state_tensors_unchanged": true,
+  "registered_parameters": 1173099,
+  "gradient_enabled_parameters": 1173003,
+  "onnx_bytes": 4805411,
+  "model_sha256": "ac110c3cc1c0d6830f03919dce1723e97a0f2ce94bea8aa03161dacd5c1382bf",
+  "runtime_peak_RSS_process_MiB": 330.69921875,
+  "RSS_scope": "process peak including Torch, checkpoint, ORT, arrays and export; not incremental ORT memory",
+  "provisional_concurrent_forward_median_ms": 0.41921049705706537,
+  "provisional_concurrent_forward_p95_ms": 0.6379233003826809,
+  "provisional_concurrent_end_to_end_median_ms": 0.48519000119995326,
+  "provisional_concurrent_end_to_end_p95_ms": 0.682031738688238,
+  "timing_scope": "CPU one intra/inter-op thread, batch1,10warmups100calls; provisional contention, excludes explanations",
+  "calibration_q_reused_unchanged": 0.008915908046701174,
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "GPU_used": false,
+  "live_registry_updated": false,
+  "elapsed_seconds": 8.293586890009465,
+  "reference_eval_batch_policy": "each window independently; frozen TimesNet adapter already enforces this in eval",
+  "adapter": "real FFT8 butterfly, all four period branches, dynamic rank/gather with pinned CPU TopK tie order; input periods are not frozen"
+}

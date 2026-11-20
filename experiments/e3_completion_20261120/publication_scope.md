@@ -1,0 +1,7 @@
+# Alcance de esta distribución preparada
+
+El corte está construido y verificado localmente. La publicación conjunta del nuevo paquete y de los binarios derivados está pendiente de aprobación explícita del propietario, después del bloqueo de revisión automática. No se presenta el contenido nuevo como ya servido en GitHub Pages. Los commits6aca y65a previos registraron el diagnóstico y las herramientas, no esta entrega final.
+
+Este suplemento es documental: código, resultados, predicciones, tablas, recibos y localizadores. Los manifiestos originales de módulos describen sus entregas locales completas; contienen referencias a binarios externos que se excluyen de esta copia. external_binary_inventory.json enumera17omisiones (15pesos finales públicos, una copia representante y el ONNX experimental). Los nueve ONNX adicionales van en un ZIP separado para revisión; ninguno se publica mediante el ZIPdocumental ni mediante un workflow alternativo. El recibo marcado sólo para revisión privada también permanece excluido.
+
+La verificación del suplemento compara su propio manifiesto y espejo, preserva los paquetes históricos, reconcilia las predicciones guardadas y comprueba la decisiónNO-GO. No ejecuta modelos ni certifica R1/R2/R3. Los localizadores permiten recuperar pesos YA públicos; la reproducciónB se ejecutó con las entregas locales originales, no se afirma que los nuevos ONNX puedan descargarse públicamente de esta copia.

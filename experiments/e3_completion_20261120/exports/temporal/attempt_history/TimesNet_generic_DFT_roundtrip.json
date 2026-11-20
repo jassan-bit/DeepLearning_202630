@@ -1,0 +1,62 @@
+{
+  "model": "TimesNet",
+  "seed": 271801,
+  "status": "passed",
+  "evaluation_dates": 608,
+  "calibration_dates": 53,
+  "declared_absolute_tolerance_original_sigma7": 1e-06,
+  "maximum_absolute_error_vs_CPU_memory": 1.4987379497177766e-08,
+  "maximum_absolute_error_vs_frozen_saved_predictions": 1.287162197660674e-08,
+  "maximum_calibration_absolute_error_vs_CPU_memory": 9.991586336077773e-09,
+  "maximum_calibration_absolute_error_vs_frozen_predictions": 1.0626978318162283e-08,
+  "within_tolerance": true,
+  "stress_cases": [
+    {
+      "case": "zeros",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "ones",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "constant_negative",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "alternating",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "symmetric",
+      "max_absolute_error_original_sigma7": 7.493689748588883e-09,
+      "within_tolerance": true
+    }
+  ],
+  "stress_within_tolerance": true,
+  "reference_checkpoint_sha256": "352da41eff4e7193b5c527a7c483458318f114f087779cedcd0e9a539090af0d",
+  "checkpoint_unchanged": true,
+  "reference_state_tensors_unchanged": true,
+  "trainable_parameters": 1173099,
+  "onnx_bytes": 4788540,
+  "model_sha256": "2287aa090ffa1bc88c0b04975fe9ce2a2f07d9045db89293bab47379739ba885",
+  "runtime_peak_RSS_process_MiB": 329.05078125,
+  "RSS_scope": "process peak including Torch, checkpoint, ORT, arrays and export; not incremental ORT memory",
+  "provisional_concurrent_forward_median_ms": 0.3574980073608458,
+  "provisional_concurrent_forward_p95_ms": 0.4623780390829779,
+  "provisional_concurrent_end_to_end_median_ms": 0.3904920013155788,
+  "provisional_concurrent_end_to_end_p95_ms": 0.6325896130874753,
+  "timing_scope": "CPU one intra/inter-op thread, batch1,10warmups100calls; provisional contention, excludes explanations",
+  "calibration_q_reused_unchanged": 0.008915908046701174,
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "GPU_used": false,
+  "live_registry_updated": false,
+  "elapsed_seconds": 8.298011341015808,
+  "reference_eval_batch_policy": "each window independently; frozen TimesNet adapter already enforces this in eval",
+  "adapter": "finite four-period real-DFT export, dynamic topk/gather; input periods are not frozen by trace"
+}

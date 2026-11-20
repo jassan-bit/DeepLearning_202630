@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "model": "TiDE",
+  "seed": 271801,
+  "representative_seed_rule": "smallest frozen seed ID; not chosen by outcome",
+  "format": "ONNX",
+  "opset": 17,
+  "model_sha256": "8c93d7789414f9db51fd0ce25595bbcdb5948c5379e22b2bc00b5e7d518217e4",
+  "input_shape": [
+    1,
+    7,
+    5
+  ],
+  "input_dtype": "float32",
+  "uses_observable_floor": false,
+  "output_name": "normalized_prediction",
+  "output_scale": 0.020953875259434797,
+  "output_unit": "original population sigma7 ddof0, daily not annualized",
+  "horizon_days": 1,
+  "preprocessing": {
+    "mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "fit_count": 655,
+    "fit_end": "2024-10-31",
+    "target_scale": 0.020953875259434797
+  },
+  "calibration_q": 0.011361150287153492,
+  "calibration_valid_after": "2024-12-30",
+  "interval_nominal_coverage": 0.9,
+  "calibrator_source": {
+    "file_sha256": "58f3b9fa90f5b7bfc71a39978e690529eb0e28d3c8372bba8d8d4bb5662ab303",
+    "content_sha256": "5a3f9b6daf6d0abe4b8c02ba6582ed0d133d52f3c01e12c0f68dd55977e36728",
+    "q": 0.011361150287153492,
+    "n": 53,
+    "date_start": "2024-11-08",
+    "date_end": "2024-12-30",
+    "checkpoint_sha256": "59f1f529d0f0b86dc77a78284b5452a56e5fd6567e741a8ca8cef08a42aeb507"
+  },
+  "interval_limitations": "53 serially dependent historical dates, no general temporal/subgroup coverage guarantee; no refit",
+  "ood": {
+    "method": "observed standardized fit ranges only",
+    "minimum_standardized": [
+      [
+        -5.815190315246582,
+        -6.30404806137085,
+        -6.1665849685668945,
+        -6.436119079589844,
+        -1.9340888261795044
+      ],
+      [
+        -5.522439956665039,
+        -4.82453727722168,
+        -5.64715051651001,
+        -4.798757553100586,
+        -1.9340888261795044
+      ],
+      [
+        -4.106070041656494,
+        -4.372659683227539,
+        -4.238033771514893,
+        -4.413619518280029,
+        -1.9340888261795044
+      ],
+      [
+        -3.773941993713379,
+        -4.199136734008789,
+        -4.187868595123291,
+        -4.091274738311768,
+        -1.9340888261795044
+      ],
+      [
+        -3.495267391204834,
+        -3.54236102104187,
+        -3.652169704437256,
+        -3.5603647232055664,
+        -1.9340888261795044
+      ],
+      [
+        -3.036283254623413,
+        -2.1551120281219482,
+        -3.0230884552001953,
+        -2.38340163230896,
+        -1.9340888261795044
+      ],
+      [
+        -2.0189127922058105,
+        -0.2222953587770462,
+        -1.9134747982025146,
+        0.14736202359199524,
+        -1.9340888261795044
+      ]
+    ],
+    "maximum_standardized": [
+      [
+        4.302679061889648,
+        4.436797142028809,
+        4.448424339294434,
+        4.726393222808838,
+        3.1940417289733887
+      ],
+      [
+        4.127811431884766,
+        4.3880391120910645,
+        4.20363712310791,
+        4.188823223114014,
+        3.1940417289733887
+      ],
+      [
+        3.6630725860595703,
+        3.999451160430908,
+        3.481027126312256,
+        4.440602779388428,
+        3.1940417289733887
+      ],
+      [
+        3.8807389736175537,
+        3.9784624576568604,
+        3.12408709526062,
+        3.0700740814208984,
+        3.1940417289733887
+      ],
+      [
+        2.6958882808685303,
+        2.8271923065185547,
+        2.6552720069885254,
+        2.7748353481292725,
+        3.1940417289733887
+      ],
+      [
+        2.4406442642211914,
+        2.698812961578369,
+        2.1082446575164795,
+        2.1224265098571777,
+        3.1940417289733887
+      ],
+      [
+        1.8766244649887085,
+        1.8361636400222778,
+        0.5432756543159485,
+        0.14736202359199524,
+        3.1940417289733887
+      ]
+    ],
+    "not_reliability_guarantee": true
+  },
+  "scientific_source": {
+    "type": "existing_E2_frozen_final_checkpoint",
+    "checkpoint_sha256": "59f1f529d0f0b86dc77a78284b5452a56e5fd6567e741a8ca8cef08a42aeb507",
+    "checkpoint_url": "https://github.com/jassan-bit/DeepLearning_202630/releases/download/e2-reduced-results-20261112-v1-p5/final-freeze-c0e9e2589dca9fa03b34--selected_model--59f1f529d0f0b86dc77a78284b5452a56e5fd6567e741a8ca8cef08a42aeb507.pt",
+    "recipe_source_commit": "bbd2604a9b78bab7fc8289ad07aae0a6117e884e",
+    "recipe_source_verification": "Eight recipe script hashes and source manifest match immutable commit; author hashes checked by constructor",
+    "registered_trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+    "request_sha256": "90bdffaa89fb17575e6900862f94098c8ad7a937869d1a3c9f7f64e26850d762"
+  },
+  "data_source": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655"
+  },
+  "source_architecture": {
+    "model": "TiDE",
+    "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+    "training_recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+    "input_shape": [
+      7,
+      5
+    ],
+    "horizon": 1,
+    "source": {
+      "repository": "google-research/google-research",
+      "commit": "d3a4bd8f0eceddda553e47085033b537935b283f",
+      "files_sha256": {
+        "tide/models.py": "ad8fd8d498809deeed9c847a169cada42134cbd0351b03e750706132a5d151c7",
+        "tide/train.py": "3edd19eed01f92ef50cadca73fbe8a793c701d34edb5ea376c6bcc55e92f0854",
+        "tide/scripts/etth1.sh": "55e085f1513af3a4a0ef8f7244512ee78beba5ab09540192b3cd3bb37441981c",
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      "license": "Apache-2.0",
+      "verification_scope": "Four declared files, not the complete repository"
+    },
+    "source_default_preset": {
+      "hidden_dims": [
+        256,
+        256
+      ],
+      "time_encoder_dims": [
+        64,
+        4
+      ],
+      "decoder_output_dim": 4,
+      "final_decoder_hidden": 64,
+      "transform": false,
+      "layer_norm": false,
+      "dropout_rate": 0.0,
+      "series_embedding_dim": 16
+    },
+    "source_selected_ETTh1_preset_reproduced": false,
+    "source_forecast_graph_complete": true,
+    "semantic_backend_port": "TensorFlow/Keras to PyTorch; see separate parity receipt",
+    "dynamic_covariate_count": 0,
+    "categorical_covariate_count": 0,
+    "series_count": 5,
+    "series_ids": "fixed OHLCV positions; not extra market inputs",
+    "body_output_shape": [
+      1,
+      5
+    ],
+    "readout": "Linear(5,1) then Softplus",
+    "output": "sigma7 / caller-owned positive training-only target scale",
+    "no_target_history_added": true,
+    "no_future_ohlcv_added": true,
+    "no_calendar_covariates_added": true,
+    "no_moment_features_added": true,
+    "r0_inactive_branch_retained": true,
+    "inactive_initialization_consequence": "At source zero-bias/ReLU initialization, time_encoder.lin_a bias and lin_b weight have zero task gradients; source graph is retained without pruning or reinitialization",
+    "all_parameters_expected_to_have_nonzero_gradients": false,
+    "structural_architecture_search": false,
+    "nas": false,
+    "restored_published_body": true,
+    "weights_pretrained": false,
+    "weights_reused": false,
+    "paper_original_task_replication_claimed": false,
+    "dropout": 0.0,
+    "initialization_seed": 271801,
+    "actual_parameter_count": 163384,
+    "training_axes_applied": false,
+    "registered_trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0.0,
+      "learning_rate": 0.00013961276714916928,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+      "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+      "weight_decay": 2.7796158898151984e-05
+    }
+  },
+  "roundtrip": {
+    "model": "TiDE",
+    "seed": 271801,
+    "status": "passed",
+    "evaluation_dates": 608,
+    "date_start": "2025-01-01",
+    "date_end": "2026-08-31",
+    "calibration_dates": 53,
+    "declared_absolute_tolerance_original_sigma7": 1e-06,
+    "maximum_absolute_error_vs_CPU_memory": 3.247265558184442e-08,
+    "maximum_absolute_error_vs_frozen_saved_predictions": 4.695914027422199e-08,
+    "maximum_calibration_absolute_error_vs_CPU_memory": 2.997475899435553e-08,
+    "maximum_calibration_absolute_error_vs_frozen_predictions": 4.031789807568131e-08,
+    "RMSE_CPU_memory": 0.005479282832688934,
+    "RMSE_ONNX": 0.005479282906991778,
+    "RMSE_frozen_saved_predictor": 0.005479282460200002,
+    "historical_608_coverage_percent_for_this_seed": 95.72368421052632,
+    "within_tolerance": true,
+    "stress_cases": [
+      {
+        "case": "zeros",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "case": "ones",
+        "max_absolute_error_original_sigma7": 7.493689748588883e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "constant_negative",
+        "max_absolute_error_original_sigma7": 2.4978965840194434e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "alternating",
+        "max_absolute_error_original_sigma7": 1.748527608119721e-08,
+        "within_tolerance": true
+      },
+      {
+        "case": "symmetric",
+        "max_absolute_error_original_sigma7": 4.995793161099993e-09,
+        "within_tolerance": true
+      }
+    ],
+    "stress_within_tolerance": true,
+    "reference_checkpoint_sha256": "59f1f529d0f0b86dc77a78284b5452a56e5fd6567e741a8ca8cef08a42aeb507",
+    "checkpoint_unchanged": true,
+    "reference_state_tensors_unchanged": true,
+    "registered_parameters": 163384,
+    "gradient_enabled_parameters": 163384,
+    "onnx_bytes": 664848,
+    "model_sha256": "8c93d7789414f9db51fd0ce25595bbcdb5948c5379e22b2bc00b5e7d518217e4",
+    "runtime_peak_RSS_process_MiB": 271.703125,
+    "RSS_scope": "process peak including Torch, checkpoint, ORT, arrays and export; not incremental ORT memory",
+    "provisional_concurrent_forward_median_ms": 0.03342998388689011,
+    "provisional_concurrent_forward_p95_ms": 0.08238688460551193,
+    "provisional_concurrent_end_to_end_median_ms": 0.045628505176864564,
+    "provisional_concurrent_end_to_end_p95_ms": 0.2966515268781221,
+    "timing_scope": "CPU one intra/inter-op thread, batch1,10warmups100calls; provisional contention, excludes explanations",
+    "calibration_q_reused_unchanged": 0.011361150287153492,
+    "new_training_runs": 0,
+    "new_calibration_fits": 0,
+    "GPU_used": false,
+    "live_registry_updated": false,
+    "elapsed_seconds": 0.5013704109878745,
+    "reference_eval_batch_policy": "each window independently; frozen TimesNet adapter already enforces this in eval",
+    "adapter": "unchanged model forward; standard ONNX export"
+  },
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5"
+  },
+  "AI_assistance_declared": true,
+  "serving_enabled": false
+}

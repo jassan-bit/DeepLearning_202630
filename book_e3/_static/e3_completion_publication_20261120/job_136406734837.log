@@ -1,0 +1,435 @@
+﻿2026-11-20T16:09:51.5994683Z Current runner version: '2.338.2'
+2026-11-20T16:09:51.6011434Z ##[group]Runner Image Provisioner
+2026-11-20T16:09:51.6012041Z Hosted Compute Agent
+2026-11-20T16:09:51.6012521Z Version: 20261111.635
+2026-11-20T16:09:51.6012992Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-20T16:09:51.6013519Z Build Date: 2026-11-11T01:49:01Z
+2026-11-20T16:09:51.6013997Z Worker ID: {f341b917-7210-4712-ab24-991a8f972c17}
+2026-11-20T16:09:51.6014498Z Region: us-west-2
+2026-11-20T16:09:51.6014948Z Cloud: AWS
+2026-11-20T16:09:51.6015362Z ##[endgroup]
+2026-11-20T16:09:51.6016381Z ##[group]Operating System
+2026-11-20T16:09:51.6016820Z Ubuntu
+2026-11-20T16:09:51.6017185Z 24.04.5
+2026-11-20T16:09:51.6017562Z LTS
+2026-11-20T16:09:51.6017940Z ##[endgroup]
+2026-11-20T16:09:51.6018445Z ##[group]Runner Image
+2026-11-20T16:09:51.6018887Z Image: ubuntu-24.04
+2026-11-20T16:09:51.6019566Z Version: 20261116.133.1
+2026-11-20T16:09:51.6020517Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261116.133/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-20T16:09:51.6021624Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261116.133
+2026-11-20T16:09:51.6022364Z ##[endgroup]
+2026-11-20T16:09:51.6023264Z ##[group]GITHUB_TOKEN Permissions
+2026-11-20T16:09:51.6025093Z Contents: write
+2026-11-20T16:09:51.6025732Z Metadata: read
+2026-11-20T16:09:51.6026134Z ##[endgroup]
+2026-11-20T16:09:51.6027593Z Secret source: Actions
+2026-11-20T16:09:51.6028233Z Cache mode: write
+2026-11-20T16:09:51.6028805Z Prepare workflow directory
+2026-11-20T16:09:51.6289404Z Prepare all required actions
+2026-11-20T16:09:51.6325069Z Getting action download info
+2026-11-20T16:09:51.9854629Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-20T16:09:54.7205879Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-20T16:09:54.9317085Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-20T16:09:55.2392457Z Complete job name: verify-preserved-exports
+2026-11-20T16:09:55.2963340Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-11-20T16:09:55.2963920Z with:
+2026-11-20T16:09:55.2964215Z   persist-credentials: false
+2026-11-20T16:09:55.2964695Z   sparse-checkout: artifacts/e3_neural_exports_20261120
+experiments/e3_completion_20261120/export_ci
+
+2026-11-20T16:09:55.2965238Z   repository: jassan-bit/DeepLearning_202630
+2026-11-20T16:09:55.2967442Z   token: ***
+2026-11-20T16:09:55.2967694Z   ssh-strict: true
+2026-11-20T16:09:55.2967965Z   ssh-user: git
+2026-11-20T16:09:55.2968234Z   clean: true
+2026-11-20T16:09:55.2968548Z   sparse-checkout-cone-mode: true
+2026-11-20T16:09:55.2968852Z   fetch-depth: 1
+2026-11-20T16:09:55.2969352Z   fetch-tags: false
+2026-11-20T16:09:55.2969643Z   show-progress: true
+2026-11-20T16:09:55.2969950Z   lfs: false
+2026-11-20T16:09:55.2970251Z   submodules: false
+2026-11-20T16:09:55.2970519Z   set-safe-directory: true
+2026-11-20T16:09:55.2970807Z   allow-unsafe-pr-checkout: false
+2026-11-20T16:09:55.2971350Z env:
+2026-11-20T16:09:55.2971591Z   OMP_NUM_THREADS: 1
+2026-11-20T16:09:55.2971893Z   MKL_NUM_THREADS: 1
+2026-11-20T16:09:55.2972159Z   OPENBLAS_NUM_THREADS: 1
+2026-11-20T16:09:55.2972465Z ##[endgroup]
+2026-11-20T16:09:58.1348304Z Syncing repository: jassan-bit/DeepLearning_202630
+2026-11-20T16:09:58.1349890Z ##[group]Getting Git version info
+2026-11-20T16:09:58.1350397Z Working directory is '/home/runner/work/DeepLearning_202630/DeepLearning_202630'
+2026-11-20T16:09:58.1351134Z [command]/usr/bin/git version
+2026-11-20T16:09:58.5761424Z git version 2.56.1
+2026-11-20T16:09:58.5774238Z ##[endgroup]
+2026-11-20T16:09:58.5785437Z Temporarily overriding HOME='/home/runner/work/_temp/6198f5d9-8332-4a59-b813-af111b843209' before making global git config changes
+2026-11-20T16:09:58.5786372Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-20T16:09:58.5789686Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/DeepLearning_202630/DeepLearning_202630
+2026-11-20T16:09:58.6221538Z Deleting the contents of '/home/runner/work/DeepLearning_202630/DeepLearning_202630'
+2026-11-20T16:09:58.6224101Z ##[group]Initializing the repository
+2026-11-20T16:09:58.6228029Z [command]/usr/bin/git init /home/runner/work/DeepLearning_202630/DeepLearning_202630
+2026-11-20T16:09:58.7220937Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-20T16:09:58.7221641Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-20T16:09:58.7222258Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-20T16:09:58.7222636Z hint: call:
+2026-11-20T16:09:58.7222871Z hint:
+2026-11-20T16:09:58.7223188Z hint: 	git config --global init.defaultBranch <name>
+2026-11-20T16:09:58.7223508Z hint:
+2026-11-20T16:09:58.7223958Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-20T16:09:58.7224411Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-20T16:09:58.7224790Z hint:
+2026-11-20T16:09:58.7225040Z hint: 	git branch -m <name>
+2026-11-20T16:09:58.7225285Z hint:
+2026-11-20T16:09:58.7225589Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-20T16:09:58.7229493Z Initialized empty Git repository in /home/runner/work/DeepLearning_202630/DeepLearning_202630/.git/
+2026-11-20T16:09:58.7238253Z [command]/usr/bin/git remote add origin https://github.com/jassan-bit/DeepLearning_202630
+2026-11-20T16:09:58.7288684Z ##[endgroup]
+2026-11-20T16:09:58.7289521Z ##[group]Disabling automatic garbage collection
+2026-11-20T16:09:58.7291892Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-20T16:09:58.7314647Z ##[endgroup]
+2026-11-20T16:09:58.7315234Z ##[group]Setting up auth
+2026-11-20T16:09:58.7320066Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-20T16:09:58.7347763Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-20T16:09:59.1265284Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-20T16:09:59.1289961Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-20T16:09:59.1440581Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-20T16:09:59.1462764Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-20T16:09:59.1617162Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-20T16:09:59.1646156Z ##[endgroup]
+2026-11-20T16:09:59.1646794Z ##[group]Fetching the repository
+2026-11-20T16:09:59.1658432Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +4ef050d047b1f85d39f9b47fce86a784820880c4:refs/remotes/origin/main
+2026-11-20T16:09:59.8552867Z From https://github.com/jassan-bit/DeepLearning_202630
+2026-11-20T16:09:59.8553570Z  * [new ref]         4ef050d047b1f85d39f9b47fce86a784820880c4 -> origin/main
+2026-11-20T16:09:59.8556979Z ##[endgroup]
+2026-11-20T16:09:59.8557535Z ##[group]Determining the checkout info
+2026-11-20T16:09:59.8558379Z ##[endgroup]
+2026-11-20T16:09:59.8558844Z ##[group]Setting up sparse checkout
+2026-11-20T16:09:59.8564581Z [command]/usr/bin/git sparse-checkout set artifacts/e3_neural_exports_20261120 experiments/e3_completion_20261120/export_ci
+2026-11-20T16:09:59.8640412Z ##[endgroup]
+2026-11-20T16:09:59.8640985Z ##[group]Checking out the ref
+2026-11-20T16:09:59.8644108Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-20T16:10:02.3959370Z Updating files:   0% (1/203)
+2026-11-20T16:10:02.3961838Z Updating files:   1% (3/203)
+2026-11-20T16:10:02.3962290Z Updating files:   2% (5/203)
+2026-11-20T16:10:02.3962875Z Updating files:   3% (7/203)
+2026-11-20T16:10:02.3964471Z Updating files:   4% (9/203)
+2026-11-20T16:10:02.3965514Z Updating files:   5% (11/203)
+2026-11-20T16:10:02.3969363Z Updating files:   6% (13/203)
+2026-11-20T16:10:02.3982041Z Updating files:   7% (15/203)
+2026-11-20T16:10:02.3994282Z Updating files:   8% (17/203)
+2026-11-20T16:10:02.4006113Z Updating files:   9% (19/203)
+2026-11-20T16:10:02.4018088Z Updating files:  10% (21/203)
+2026-11-20T16:10:02.4030573Z Updating files:  11% (23/203)
+2026-11-20T16:10:02.4042632Z Updating files:  12% (25/203)
+2026-11-20T16:10:02.4054679Z Updating files:  13% (27/203)
+2026-11-20T16:10:02.4066991Z Updating files:  14% (29/203)
+2026-11-20T16:10:02.4079666Z Updating files:  15% (31/203)
+2026-11-20T16:10:02.4091475Z Updating files:  16% (33/203)
+2026-11-20T16:10:02.4103508Z Updating files:  17% (35/203)
+2026-11-20T16:10:02.4115497Z Updating files:  18% (37/203)
+2026-11-20T16:10:02.4127481Z Updating files:  19% (39/203)
+2026-11-20T16:10:02.4139755Z Updating files:  20% (41/203)
+2026-11-20T16:10:02.4151864Z Updating files:  21% (43/203)
+2026-11-20T16:10:02.4163994Z Updating files:  22% (45/203)
+2026-11-20T16:10:02.4176522Z Updating files:  23% (47/203)
+2026-11-20T16:10:02.4188117Z Updating files:  24% (49/203)
+2026-11-20T16:10:02.4200453Z Updating files:  25% (51/203)
+2026-11-20T16:10:02.4212453Z Updating files:  26% (53/203)
+2026-11-20T16:10:02.4224083Z Updating files:  27% (55/203)
+2026-11-20T16:10:02.4235742Z Updating files:  28% (57/203)
+2026-11-20T16:10:02.4247932Z Updating files:  29% (59/203)
+2026-11-20T16:10:02.4260058Z Updating files:  30% (61/203)
+2026-11-20T16:10:02.4271769Z Updating files:  31% (63/203)
+2026-11-20T16:10:02.4283524Z Updating files:  32% (65/203)
+2026-11-20T16:10:02.4301591Z Updating files:  33% (67/203)
+2026-11-20T16:10:02.4313776Z Updating files:  34% (70/203)
+2026-11-20T16:10:02.4325528Z Updating files:  35% (72/203)
+2026-11-20T16:10:02.4337671Z Updating files:  36% (74/203)
+2026-11-20T16:10:02.4350021Z Updating files:  37% (76/203)
+2026-11-20T16:10:02.4361838Z Updating files:  38% (78/203)
+2026-11-20T16:10:02.4373703Z Updating files:  39% (80/203)
+2026-11-20T16:10:02.4385702Z Updating files:  40% (82/203)
+2026-11-20T16:10:02.4397592Z Updating files:  41% (84/203)
+2026-11-20T16:10:02.4409727Z Updating files:  42% (86/203)
+2026-11-20T16:10:02.4421674Z Updating files:  43% (88/203)
+2026-11-20T16:10:02.4433902Z Updating files:  44% (90/203)
+2026-11-20T16:10:02.4445604Z Updating files:  45% (92/203)
+2026-11-20T16:10:02.4457769Z Updating files:  46% (94/203)
+2026-11-20T16:10:02.4469646Z Updating files:  47% (96/203)
+2026-11-20T16:10:02.4481662Z Updating files:  48% (98/203)
+2026-11-20T16:10:02.4493769Z Updating files:  49% (100/203)
+2026-11-20T16:10:02.4505727Z Updating files:  50% (102/203)
+2026-11-20T16:10:02.4517663Z Updating files:  51% (104/203)
+2026-11-20T16:10:02.4529674Z Updating files:  52% (106/203)
+2026-11-20T16:10:02.4541870Z Updating files:  53% (108/203)
+2026-11-20T16:10:02.4553975Z Updating files:  54% (110/203)
+2026-11-20T16:10:02.4565893Z Updating files:  55% (112/203)
+2026-11-20T16:10:02.4577703Z Updating files:  56% (114/203)
+2026-11-20T16:10:02.4590021Z Updating files:  57% (116/203)
+2026-11-20T16:10:02.4601973Z Updating files:  58% (118/203)
+2026-11-20T16:10:02.4614063Z Updating files:  59% (120/203)
+2026-11-20T16:10:02.4626313Z Updating files:  60% (122/203)
+2026-11-20T16:10:02.4638307Z Updating files:  61% (124/203)
+2026-11-20T16:10:02.4650379Z Updating files:  62% (126/203)
+2026-11-20T16:10:02.4662336Z Updating files:  63% (128/203)
+2026-11-20T16:10:02.4674460Z Updating files:  64% (130/203)
+2026-11-20T16:10:02.4686553Z Updating files:  65% (132/203)
+2026-11-20T16:10:02.4704469Z Updating files:  66% (134/203)
+2026-11-20T16:10:02.4716504Z Updating files:  67% (137/203)
+2026-11-20T16:10:02.4728680Z Updating files:  68% (139/203)
+2026-11-20T16:10:02.4740632Z Updating files:  69% (141/203)
+2026-11-20T16:10:02.4752802Z Updating files:  70% (143/203)
+2026-11-20T16:10:02.4764745Z Updating files:  71% (145/203)
+2026-11-20T16:10:02.4765303Z Updating files:  72% (147/203)
+2026-11-20T16:10:02.4768365Z Updating files:  73% (149/203)
+2026-11-20T16:10:02.4768771Z Updating files:  74% (151/203)
+2026-11-20T16:10:02.4770171Z Updating files:  75% (153/203)
+2026-11-20T16:10:02.4770704Z Updating files:  76% (155/203)
+2026-11-20T16:10:02.4771493Z Updating files:  77% (157/203)
+2026-11-20T16:10:02.4772463Z Updating files:  78% (159/203)
+2026-11-20T16:10:02.4774943Z Updating files:  79% (161/203)
+2026-11-20T16:10:02.4776606Z Updating files:  80% (163/203)
+2026-11-20T16:10:02.4777293Z Updating files:  81% (165/203)
+2026-11-20T16:10:02.4778003Z Updating files:  82% (167/203)
+2026-11-20T16:10:02.4778619Z Updating files:  83% (169/203)
+2026-11-20T16:10:02.4780315Z Updating files:  84% (171/203)
+2026-11-20T16:10:02.4781878Z Updating files:  85% (173/203)
+2026-11-20T16:10:02.4782266Z Updating files:  86% (175/203)
+2026-11-20T16:10:02.4782618Z Updating files:  87% (177/203)
+2026-11-20T16:10:02.4783043Z Updating files:  88% (179/203)
+2026-11-20T16:10:02.4783430Z Updating files:  89% (181/203)
+2026-11-20T16:10:02.4783846Z Updating files:  90% (183/203)
+2026-11-20T16:10:02.4800856Z Updating files:  91% (185/203)
+2026-11-20T16:10:02.4801217Z Updating files:  92% (187/203)
+2026-11-20T16:10:02.4801685Z Updating files:  93% (189/203)
+2026-11-20T16:10:02.4801973Z Updating files:  94% (191/203)
+2026-11-20T16:10:02.4802274Z Updating files:  95% (193/203)
+2026-11-20T16:10:02.4802658Z Updating files:  96% (195/203)
+2026-11-20T16:10:02.4802961Z Updating files:  97% (197/203)
+2026-11-20T16:10:02.4803263Z Updating files:  98% (199/203)
+2026-11-20T16:10:02.4803585Z Updating files:  99% (201/203)
+2026-11-20T16:10:02.4803911Z Updating files: 100% (203/203)
+2026-11-20T16:10:02.4804261Z Updating files: 100% (203/203), done.
+2026-11-20T16:10:02.4894794Z Switched to a new branch 'main'
+2026-11-20T16:10:02.4906480Z branch 'main' set up to track 'origin/main'.
+2026-11-20T16:10:02.4913337Z ##[endgroup]
+2026-11-20T16:10:02.4953044Z [command]/usr/bin/git log -1 --format=%H
+2026-11-20T16:10:02.4973500Z 4ef050d047b1f85d39f9b47fce86a784820880c4
+2026-11-20T16:10:02.4979969Z ##[group]Removing auth
+2026-11-20T16:10:02.4982821Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-20T16:10:02.5005891Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-20T16:10:02.5176030Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-20T16:10:02.5197958Z http.https://github.com/.extraheader
+2026-11-20T16:10:02.5202849Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-20T16:10:02.5224300Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-20T16:10:02.5383069Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-20T16:10:02.5405714Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-20T16:10:02.5560116Z ##[endgroup]
+2026-11-20T16:10:02.5754695Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-20T16:10:02.5755060Z with:
+2026-11-20T16:10:02.5755270Z   python-version: 3.12.14
+2026-11-20T16:10:02.5755560Z   check-latest: false
+2026-11-20T16:10:02.5757572Z   token: ***
+2026-11-20T16:10:02.5757847Z   update-environment: true
+2026-11-20T16:10:02.5758112Z   allow-prereleases: false
+2026-11-20T16:10:02.5758337Z   freethreaded: false
+2026-11-20T16:10:02.5758676Z env:
+2026-11-20T16:10:02.5758906Z   OMP_NUM_THREADS: 1
+2026-11-20T16:10:02.5759391Z   MKL_NUM_THREADS: 1
+2026-11-20T16:10:02.5759635Z   OPENBLAS_NUM_THREADS: 1
+2026-11-20T16:10:02.5759851Z ##[endgroup]
+2026-11-20T16:10:02.6780045Z ##[group]Installed versions
+2026-11-20T16:10:02.7142287Z Version 3.12.14 was not found in the local cache
+2026-11-20T16:10:02.7358339Z (node:2236) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-20T16:10:02.7359207Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-20T16:10:03.5053944Z Version 3.12.14 is available for downloading
+2026-11-20T16:10:03.5054975Z Download from "https://github.com/actions/python-versions/releases/download/3.12.14-31661455385/python-3.12.14-linux-24.04-x64.tar.gz"
+2026-11-20T16:10:04.3840972Z Extract downloaded archive
+2026-11-20T16:10:04.3953485Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/cb920d2a-7284-4950-9fa4-207e7500f911 -f /home/runner/work/_temp/13485fb0-050b-41b3-ba78-ecf5b7fca500
+2026-11-20T16:10:06.2049209Z Execute installation script
+2026-11-20T16:10:06.2128877Z Check if Python hostedtoolcache folder exist...
+2026-11-20T16:10:06.2129613Z Create Python 3.12.14 folder
+2026-11-20T16:10:06.2137121Z Copy Python binaries to hostedtoolcache folder
+2026-11-20T16:10:06.4184069Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-11-20T16:10:06.4215071Z Upgrading pip...
+2026-11-20T16:10:08.1613651Z Collecting pip
+2026-11-20T16:10:08.2016897Z Downloading pip-26.3-py3-none-any.whl.metadata (4.6 kB)
+2026-11-20T16:10:08.2125472Z Downloading pip-26.3-py3-none-any.whl (2.0 MB)
+2026-11-20T16:10:08.2583839Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 70.2 MB/s eta 0:00:00
+2026-11-20T16:10:08.2584203Z 
+2026-11-20T16:10:08.3148805Z Installing collected packages: pip
+2026-11-20T16:10:08.3149546Z   Attempting uninstall: pip
+2026-11-20T16:10:08.3158432Z Found existing installation: pip 25.0.1
+2026-11-20T16:10:08.3331408Z Uninstalling pip-25.0.1:
+2026-11-20T16:10:08.3361022Z Successfully uninstalled pip-25.0.1
+2026-11-20T16:10:08.9526886Z Successfully installed pip-26.3
+2026-11-20T16:10:09.0043265Z Create complete file
+2026-11-20T16:10:09.0070790Z Successfully set up CPython (3.12.14)
+2026-11-20T16:10:09.0071786Z ##[endgroup]
+2026-11-20T16:10:09.0200510Z ##[group]Run python artifacts/e3_neural_exports_20261120/assemble.py --output /tmp/e3-public-exports
+2026-11-20T16:10:09.0201170Z [36;1mpython artifacts/e3_neural_exports_20261120/assemble.py --output /tmp/e3-public-exports[0m
+2026-11-20T16:10:09.3211154Z shell: /usr/bin/bash -e {0}
+2026-11-20T16:10:09.3212052Z env:
+2026-11-20T16:10:09.3212575Z   OMP_NUM_THREADS: 1
+2026-11-20T16:10:09.3212938Z   MKL_NUM_THREADS: 1
+2026-11-20T16:10:09.3213261Z   OPENBLAS_NUM_THREADS: 1
+2026-11-20T16:10:09.3213671Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.3214255Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-20T16:10:09.3214851Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.3215367Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.3215897Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.3216493Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-20T16:10:09.3216977Z ##[endgroup]
+2026-11-20T16:10:09.5124635Z {"status": "nine_exact_accepted_artifacts_assembled", "models": 9, "output": "/tmp/e3-public-exports", "new_training_runs": 0}
+2026-11-20T16:10:09.5221342Z ##[group]Run python -m pip install -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt
+2026-11-20T16:10:09.5221991Z [36;1mpython -m pip install -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt[0m
+2026-11-20T16:10:09.5222432Z [36;1mpython -m pip check[0m
+2026-11-20T16:10:09.5222897Z [36;1mpython -m pip freeze > /tmp/e3-onnx-pip-freeze.txt[0m
+2026-11-20T16:10:09.5251511Z shell: /usr/bin/bash -e {0}
+2026-11-20T16:10:09.5251796Z env:
+2026-11-20T16:10:09.5252056Z   OMP_NUM_THREADS: 1
+2026-11-20T16:10:09.5252299Z   MKL_NUM_THREADS: 1
+2026-11-20T16:10:09.5252527Z   OPENBLAS_NUM_THREADS: 1
+2026-11-20T16:10:09.5252817Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.5253222Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-20T16:10:09.5253644Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.5254075Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.5254435Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:09.5254793Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-20T16:10:09.5255117Z ##[endgroup]
+2026-11-20T16:10:10.4709401Z Collecting numpy==2.3.5 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 1))
+2026-11-20T16:10:10.5239548Z   Downloading numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+2026-11-20T16:10:10.5931104Z Collecting onnxruntime==1.23.2 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 2))
+2026-11-20T16:10:10.6029523Z   Downloading onnxruntime-1.23.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+2026-11-20T16:10:10.6181433Z Collecting coloredlogs==15.0.1 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 3))
+2026-11-20T16:10:10.6262842Z   Downloading coloredlogs-15.0.1-py2.py3-none-any.whl.metadata (12 kB)
+2026-11-20T16:10:10.6407121Z Collecting flatbuffers==25.12.19 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 4))
+2026-11-20T16:10:10.6491270Z   Downloading flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
+2026-11-20T16:10:10.6639333Z Collecting packaging==26.3 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 5))
+2026-11-20T16:10:10.6720035Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-20T16:10:10.7699489Z Collecting protobuf==7.36.2 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 6))
+2026-11-20T16:10:10.7787264Z   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+2026-11-20T16:10:10.7939975Z Collecting sympy==1.14.0 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 7))
+2026-11-20T16:10:10.8021146Z   Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-11-20T16:10:10.8198211Z Collecting humanfriendly==10.0 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 8))
+2026-11-20T16:10:10.8287875Z   Downloading humanfriendly-10.0-py2.py3-none-any.whl.metadata (9.2 kB)
+2026-11-20T16:10:10.8447180Z Collecting mpmath==1.3.0 (from -r artifacts/e3_neural_exports_20261120/requirements-ort-parity.txt (line 9))
+2026-11-20T16:10:10.8532580Z   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-11-20T16:10:10.8687648Z Downloading numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+2026-11-20T16:10:11.2477971Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.6/16.6 MB 46.2 MB/s  0:00:00
+2026-11-20T16:10:11.2612328Z Downloading onnxruntime-1.23.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (17.4 MB)
+2026-11-20T16:10:11.4404447Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.4/17.4 MB 96.5 MB/s  0:00:00
+2026-11-20T16:10:11.4500251Z Downloading coloredlogs-15.0.1-py2.py3-none-any.whl (46 kB)
+2026-11-20T16:10:11.4601609Z Downloading flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
+2026-11-20T16:10:11.4701042Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-20T16:10:11.4799730Z Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+2026-11-20T16:10:11.4916594Z Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-20T16:10:11.5258487Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 186.2 MB/s  0:00:00
+2026-11-20T16:10:11.5345259Z Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-20T16:10:11.5381369Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 134.2 MB/s  0:00:00
+2026-11-20T16:10:11.5461547Z Downloading humanfriendly-10.0-py2.py3-none-any.whl (86 kB)
+2026-11-20T16:10:11.7169652Z Installing collected packages: mpmath, flatbuffers, sympy, protobuf, packaging, numpy, humanfriendly, coloredlogs, onnxruntime
+2026-11-20T16:10:17.9616339Z 
+2026-11-20T16:10:17.9631259Z Successfully installed coloredlogs-15.0.1 flatbuffers-25.12.19 humanfriendly-10.0 mpmath-1.3.0 numpy-2.3.5 onnxruntime-1.23.2 packaging-26.3 protobuf-7.36.2 sympy-1.14.0
+2026-11-20T16:10:18.1595339Z No broken requirements found.
+2026-11-20T16:10:18.3389883Z ##[group]Run python artifacts/e3_neural_exports_20261120/verify_saved_predictions.py --artifacts /tmp/e3-public-exports --manifest artifacts/e3_neural_exports_20261120/manifest.json --workdir /tmp/e3-private-parity --output /tmp/e3-public-exports/frozen_parity_receipt.json
+2026-11-20T16:10:18.3391417Z [36;1mpython artifacts/e3_neural_exports_20261120/verify_saved_predictions.py --artifacts /tmp/e3-public-exports --manifest artifacts/e3_neural_exports_20261120/manifest.json --workdir /tmp/e3-private-parity --output /tmp/e3-public-exports/frozen_parity_receipt.json[0m
+2026-11-20T16:10:18.3392555Z [36;1mpython -c 'from pathlib import Path; print("E3_ONNX_PARITY_REPORT=" + Path("/tmp/e3-public-exports/frozen_parity_receipt.json").read_text().replace(chr(10), ""))'[0m
+2026-11-20T16:10:18.3420138Z shell: /usr/bin/bash -e {0}
+2026-11-20T16:10:18.3420429Z env:
+2026-11-20T16:10:18.3420645Z   OMP_NUM_THREADS: 1
+2026-11-20T16:10:18.3420904Z   MKL_NUM_THREADS: 1
+2026-11-20T16:10:18.3421252Z   OPENBLAS_NUM_THREADS: 1
+2026-11-20T16:10:18.3421551Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:18.3421936Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-20T16:10:18.3422339Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:18.3422723Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:18.3423064Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:18.3423522Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-20T16:10:18.3423831Z ##[endgroup]
+2026-11-20T16:10:18.4315576Z [0;93m2026-11-20 16:10:18.431194986 [W:onnxruntime:Default, device_discovery.cc:164 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:89 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+2026-11-20T16:10:19.0854815Z {"model": "FCN-1D", "status": "661_ORT_only_frozen_cases_passed", "max_error": 1.78027041441986e-08, "max_calibration_error": 1.7796869998532028e-08}
+2026-11-20T16:10:19.2776222Z {"model": "ResNet-1D", "status": "661_ORT_only_frozen_cases_passed", "max_error": 1.7014923948954763e-08, "max_calibration_error": 1.6420333884270555e-08}
+2026-11-20T16:10:19.5298845Z {"model": "Inception-1D", "status": "661_ORT_only_frozen_cases_passed", "max_error": 2.745234706572064e-08, "max_calibration_error": 2.9864612342139774e-08}
+2026-11-20T16:10:19.5443855Z {"model": "LSTM-autoencoder con predictor", "status": "661_ORT_only_frozen_cases_passed", "max_error": 3.099255844185578e-07, "max_calibration_error": 6.080814194536766e-08}
+2026-11-20T16:10:19.8415794Z {"model": "TimesNet", "status": "661_ORT_only_frozen_cases_passed", "max_error": 3.038035698010866e-08, "max_calibration_error": 1.0626978318162283e-08}
+2026-11-20T16:10:19.8638736Z {"model": "TiDE", "status": "661_ORT_only_frozen_cases_passed", "max_error": 4.695914027422199e-08, "max_calibration_error": 4.2815794659700757e-08}
+2026-11-20T16:10:20.0140437Z {"model": "TimeMixer", "status": "661_ORT_only_frozen_cases_passed", "max_error": 2.8524917282390927e-08, "max_calibration_error": 1.7733948750459083e-08}
+2026-11-20T16:10:20.0809841Z {"model": "PatchTST", "status": "661_ORT_only_frozen_cases_passed", "max_error": 7.661576813949855e-09, "max_calibration_error": 4.628223724406633e-09}
+2026-11-20T16:10:20.2448365Z {"model": "iTransformer", "status": "661_ORT_only_frozen_cases_passed", "max_error": 1.967266323454897e-08, "max_calibration_error": 7.694853809692148e-09}
+2026-11-20T16:10:20.2916865Z E3_ONNX_PARITY_REPORT={  "status": "nine_accepted_ONNX_models_passed_ORT_only_real_frozen_parity",  "created_utc": "2026-11-20T16:10:20.244850+00:00",  "models": [    {      "model": "FCN-1D",      "seed": 271801,      "onnx_sha256": "80df90b1cb38fbde7f47c8d4ca43f04a5df0c6936a740eda1e5ec7a87c8df1d1",      "checkpoint_sha256": "8d64ff057a66fd9f82b209a16bb2927aad118a9e8fee46e9baf5fc97b9f1ecc0",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 1.78027041441986e-08,      "maximum_calibration_absolute_error_original_sigma7": 1.7796869998532028e-08,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.006570312208881386,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "ResNet-1D",      "seed": 271801,      "onnx_sha256": "01e2283793b019d90f77489bb8cbfb82845638772532c0f00302e98a708a050b",      "checkpoint_sha256": "f3332149da587f1c9af5ce4cb302298c2a5f8361a5986062e5cfbcc7ac8ca253",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 1.7014923948954763e-08,      "maximum_calibration_absolute_error_original_sigma7": 1.6420333884270555e-08,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.0072527258390185645,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "Inception-1D",      "seed": 271801,      "onnx_sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428",      "checkpoint_sha256": "47fcee9055df2ca911cd080d871c66b3e6764b166e2b592ad6abe57e83321d97",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 2.745234706572064e-08,      "maximum_calibration_absolute_error_original_sigma7": 2.9864612342139774e-08,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.007587061606981974,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "LSTM-autoencoder con predictor",      "seed": 271801,      "onnx_sha256": "0ed6c1348d5bc1ea3312aaf00d59f8651cb4949212eeb38c42a732c8f33480d3",      "checkpoint_sha256": "75210b30963879444901e3e9df6764108146d235f656b2b7aa8a390d2b932ebd",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 3.099255844185578e-07,      "maximum_calibration_absolute_error_original_sigma7": 6.080814194536766e-08,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.009205569452985844,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "TimesNet",      "seed": 271801,      "onnx_sha256": "ac110c3cc1c0d6830f03919dce1723e97a0f2ce94bea8aa03161dacd5c1382bf",      "checkpoint_sha256": "352da41eff4e7193b5c527a7c483458318f114f087779cedcd0e9a539090af0d",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 3.038035698010866e-08,      "maximum_calibration_absolute_error_original_sigma7": 1.0626978318162283e-08,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.008915908046701174,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "TiDE",      "seed": 271801,      "onnx_sha256": "8c93d7789414f9db51fd0ce25595bbcdb5948c5379e22b2bc00b5e7d518217e4",      "checkpoint_sha256": "59f1f529d0f0b86dc77a78284b5452a56e5fd6567e741a8ca8cef08a42aeb507",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 4.695914027422199e-08,      "maximum_calibration_absolute_error_original_sigma7": 4.2815794659700757e-08,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.011361150287153492,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "TimeMixer",      "seed": 271801,      "onnx_sha256": "1cbab4bdf3040a981936220d2899e848f2319a4671dff61f371f25f7d1d8f18c",      "checkpoint_sha256": "7725d0908a5506a2419ca894e32664c658d529d25f2b61da5db5fd5ae275a764",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 2.8524917282390927e-08,      "maximum_calibration_absolute_error_original_sigma7": 1.7733948750459083e-08,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.010437534506757353,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "PatchTST",      "seed": 271801,      "onnx_sha256": "f36ecb0397bd63cd86062e527e8769ae922ece64fe5660d0eaa57f3e65046861",      "checkpoint_sha256": "94e51bec39a881f7d1eb142ffb0ab32dc9ef5ccef0ae7606e3d38c5196a0d6d7",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 7.661576813949855e-09,      "maximum_calibration_absolute_error_original_sigma7": 4.628223724406633e-09,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.016008127390891344,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    },    {      "model": "iTransformer",      "seed": 271801,      "onnx_sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd",      "checkpoint_sha256": "67c6e1910d40fdcf3fd069d8cc33a2a1498e4646977ded50a98a238e5c98233f",      "evaluation_cases": 608,      "calibration_cases": 53,      "maximum_evaluation_absolute_error_original_sigma7": 1.967266323454897e-08,      "maximum_calibration_absolute_error_original_sigma7": 7.694853809692148e-09,      "tolerance_original_sigma7_fixed_before_evaluation": 1e-06,      "within_tolerance": true,      "output_scale_applied_once": 0.020953875259434797,      "calibration_q_unchanged": 0.006383923988913291,      "coverage_boundary_disagreements": 0,      "new_training_runs": 0,      "new_calibration_fits": 0    }  ],  "manifest_sha256": "d2cee98568edc5e14fbafc76590c8bb4ecd0a8192af39fc6f6f82148e6fef047",  "verifier_sha256": "d067ad9dede940c2a1c4617412f58d0a116e1b6f90c71e3b0b88e5bf762ff053",  "numpy": "2.3.5",  "onnxruntime": "1.23.2",  "python": "3.12.14",  "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",  "provider": "CPUExecutionProvider",  "threads_intra_inter": [    1,    1  ],  "historical_replay_inference_calls": 5949,  "public_inputs": {    "cohort.npz": {      "url": "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/af3f1223ad5899ed63016d2af2d09bae8470ab00/book_e2/_static/e2_scientific_closure_20261116/data_audit/current_cohort_arrays.npz",      "sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",      "bytes": 460090    },    "predictions.json": {      "url": "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/5e9023ea821bfa9fb0b92340d518413f6ab89161/runs/e2_extension_10_semillas_v1/combined_predictors.json",      "sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",      "bytes": 3393801    }  },  "Torch_imported": false,  "ONNX_reexported": false,  "new_training_runs": 0,  "new_calibration_fits": 0,  "new_forecast_dates": 0,  "scope": "Byte-preserved accepted artifacts replayed against historical saved predictions. Does not identify the cause of a different CI re-export binary, promote variants or accredit R1/R3.",  "AI_assistance_declared": true}
+2026-11-20T16:10:20.2967222Z ##[group]Run python experiments/e3_completion_20261120/export_ci/publish_exports.py --standard /tmp/e3-public-exports/standard --temporal /tmp/e3-public-exports/temporal --output /tmp/e3-export-release
+2026-11-20T16:10:20.2968574Z [36;1mpython experiments/e3_completion_20261120/export_ci/publish_exports.py --standard /tmp/e3-public-exports/standard --temporal /tmp/e3-public-exports/temporal --output /tmp/e3-export-release[0m
+2026-11-20T16:10:20.2996231Z shell: /usr/bin/bash -e {0}
+2026-11-20T16:10:20.2996551Z env:
+2026-11-20T16:10:20.2996753Z   OMP_NUM_THREADS: 1
+2026-11-20T16:10:20.2996978Z   MKL_NUM_THREADS: 1
+2026-11-20T16:10:20.2997218Z   OPENBLAS_NUM_THREADS: 1
+2026-11-20T16:10:20.2997511Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:20.2997901Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-20T16:10:20.2998269Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:20.2998782Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:20.2999329Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:20.2999739Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-20T16:10:20.3002384Z   GH_TOKEN: ***
+2026-11-20T16:10:20.3002684Z ##[endgroup]
+2026-11-20T16:10:25.2136047Z E3_ONNX_RELEASE_REPORT={"R3_accredited": false, "assets": {"e3-nine-onnx-20261120.zip": {"bytes": 12987835, "public_full_download_verified": true, "sha256": "0fb857c407250949bfc8c96fd7b9525bab624b650b5c94dd4d1d1d8c60f62c66", "url": "https://github.com/jassan-bit/DeepLearning_202630/releases/download/e3-nine-onnx-4ef050d047b1/e3-nine-onnx-20261120.zip"}, "exports_manifest.json": {"bytes": 11779, "public_full_download_verified": true, "sha256": "e8eb71d5356b20b2950544e52a7a63fcfc22cfa323cadda98e9365db120f90bf", "url": "https://github.com/jassan-bit/DeepLearning_202630/releases/download/e3-nine-onnx-4ef050d047b1/exports_manifest.json"}}, "models": {"standard/fcn_1d/model.onnx": {"bytes": 1092005, "sha256": "80df90b1cb38fbde7f47c8d4ca43f04a5df0c6936a740eda1e5ec7a87c8df1d1"}, "standard/inception_1d/model.onnx": {"bytes": 2070967, "sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428"}, "standard/lstm_autoencoder/model.onnx": {"bytes": 41397, "sha256": "0ed6c1348d5bc1ea3312aaf00d59f8651cb4949212eeb38c42a732c8f33480d3"}, "standard/resnet_1d/model.onnx": {"bytes": 2156012, "sha256": "01e2283793b019d90f77489bb8cbfb82845638772532c0f00302e98a708a050b"}, "temporal/itransformer/model.onnx": {"bytes": 3201493, "sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd"}, "temporal/patchtst/model.onnx": {"bytes": 107745, "sha256": "f36ecb0397bd63cd86062e527e8769ae922ece64fe5660d0eaa57f3e65046861"}, "temporal/tide/model.onnx": {"bytes": 664848, "sha256": "8c93d7789414f9db51fd0ce25595bbcdb5948c5379e22b2bc00b5e7d518217e4"}, "temporal/timemixer/model.onnx": {"bytes": 172380, "sha256": "1cbab4bdf3040a981936220d2899e848f2319a4671dff61f371f25f7d1d8f18c"}, "temporal/timesnet/model.onnx": {"bytes": 4805411, "sha256": "ac110c3cc1c0d6830f03919dce1723e97a0f2ce94bea8aa03161dacd5c1382bf"}}, "new_calibrations": 0, "new_model_fits": 0, "release_url": "https://github.com/jassan-bit/DeepLearning_202630/releases/tag/e3-nine-onnx-4ef050d047b1", "served_by_Render": false, "source_commit": "4ef050d047b1f85d39f9b47fce86a784820880c4", "status": "nine_frozen_ONNX_release_publicly_verified", "tag": "e3-nine-onnx-4ef050d047b1"}
+2026-11-20T16:10:25.2294037Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-20T16:10:25.2294391Z with:
+2026-11-20T16:10:25.2294611Z   name: e3-preserved-onnx-44770549685
+2026-11-20T16:10:25.2295047Z   path: /tmp/e3-public-exports/
+/tmp/e3-export-release/
+/tmp/e3-onnx-pip-freeze.txt
+
+2026-11-20T16:10:25.2295427Z   retention-days: 90
+2026-11-20T16:10:25.2295682Z   if-no-files-found: warn
+2026-11-20T16:10:25.2295990Z   compression-level: 6
+2026-11-20T16:10:25.2296200Z   overwrite: false
+2026-11-20T16:10:25.2296443Z   include-hidden-files: false
+2026-11-20T16:10:25.2296676Z env:
+2026-11-20T16:10:25.2296892Z   OMP_NUM_THREADS: 1
+2026-11-20T16:10:25.2297115Z   MKL_NUM_THREADS: 1
+2026-11-20T16:10:25.2297331Z   OPENBLAS_NUM_THREADS: 1
+2026-11-20T16:10:25.2297639Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:25.2298007Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-20T16:10:25.2298497Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:25.2299345Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:25.2299703Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-20T16:10:25.2300060Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-20T16:10:25.2300373Z ##[endgroup]
+2026-11-20T16:10:25.3525392Z (node:2327) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-20T16:10:25.3526098Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-20T16:10:25.3652071Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-20T16:10:25.3653040Z The least common ancestor is /tmp. This will be the root directory of the artifact
+2026-11-20T16:10:25.3653475Z With the provided path, there will be 71 files uploaded
+2026-11-20T16:10:25.3654043Z Artifact name is valid!
+2026-11-20T16:10:25.3654283Z Root directory input is valid!
+2026-11-20T16:10:26.1408078Z Beginning upload of artifact content to blob storage
+2026-11-20T16:10:26.4200195Z (node:2327) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-20T16:10:27.5486764Z Uploaded bytes 8388608
+2026-11-20T16:10:27.8325526Z Uploaded bytes 16777216
+2026-11-20T16:10:27.9468482Z Uploaded bytes 25165824
+2026-11-20T16:10:28.0779599Z Uploaded bytes 25959018
+2026-11-20T16:10:28.1681703Z Finished uploading artifact content to blob storage!
+2026-11-20T16:10:28.1683074Z SHA256 digest of uploaded artifact zip is 9b0cc9f5caa44f4671147a9e617e847eb431ac8bf72f23377e1c6dc3002b43e6
+2026-11-20T16:10:28.1683701Z Finalizing artifact upload
+2026-11-20T16:10:28.5713158Z Artifact e3-preserved-onnx-44770549685.zip successfully finalized. Artifact ID 14647706073
+2026-11-20T16:10:28.5713896Z Artifact e3-preserved-onnx-44770549685 has been successfully uploaded! Final size is 25959018 bytes. Artifact ID is 14647706073
+2026-11-20T16:10:28.5718005Z Artifact download URL: https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44770549685/artifacts/14647706073
+2026-11-20T16:10:28.5872310Z Post job cleanup.
+2026-11-20T16:10:28.6778873Z (node:2339) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-20T16:10:28.6779663Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-20T16:10:28.6890214Z Post job cleanup.
+2026-11-20T16:10:28.7528106Z [command]/usr/bin/git version
+2026-11-20T16:10:28.7555456Z git version 2.56.1
+2026-11-20T16:10:28.7578768Z Temporarily overriding HOME='/home/runner/work/_temp/4825cada-1b35-413b-b112-97a55ea1e40e' before making global git config changes
+2026-11-20T16:10:28.7580034Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-20T16:10:28.7582008Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/DeepLearning_202630/DeepLearning_202630
+2026-11-20T16:10:28.7610575Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-20T16:10:28.7633698Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-20T16:10:28.7819534Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-20T16:10:28.7883539Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-20T16:10:28.8139506Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-20T16:10:28.8164737Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-20T16:10:28.8460925Z Cleaning up orphan processes
+2026-11-20T16:10:28.8726509Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

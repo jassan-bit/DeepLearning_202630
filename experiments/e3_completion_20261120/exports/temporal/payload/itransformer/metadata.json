@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "model": "iTransformer",
+  "seed": 271801,
+  "representative_seed_rule": "smallest frozen seed ID; not chosen by outcome",
+  "format": "ONNX",
+  "opset": 17,
+  "model_sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd",
+  "input_shape": [
+    1,
+    7,
+    5
+  ],
+  "input_dtype": "float32",
+  "uses_observable_floor": false,
+  "output_name": "normalized_prediction",
+  "output_scale": 0.020953875259434797,
+  "output_unit": "original population sigma7 ddof0, daily not annualized",
+  "horizon_days": 1,
+  "preprocessing": {
+    "mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "fit_count": 655,
+    "fit_end": "2024-10-31",
+    "target_scale": 0.020953875259434797
+  },
+  "calibration_q": 0.006383923988913291,
+  "calibration_valid_after": "2024-12-30",
+  "interval_nominal_coverage": 0.9,
+  "calibrator_source": {
+    "file_sha256": "dbf28a79978ff9deb8d4dd23dd9fcd9c784686cdb3a4a27e5fb663be401dbeac",
+    "content_sha256": "74579097301eb9820170be25bf2a2c5b7387397f1f1884ba16952cbb0a3e1433",
+    "q": 0.006383923988913291,
+    "n": 53,
+    "date_start": "2024-11-08",
+    "date_end": "2024-12-30",
+    "checkpoint_sha256": "67c6e1910d40fdcf3fd069d8cc33a2a1498e4646977ded50a98a238e5c98233f"
+  },
+  "interval_limitations": "53 serially dependent historical dates, no general temporal/subgroup coverage guarantee; no refit",
+  "ood": {
+    "method": "observed standardized fit ranges only",
+    "minimum_standardized": [
+      [
+        -5.815190315246582,
+        -6.30404806137085,
+        -6.1665849685668945,
+        -6.436119079589844,
+        -1.9340888261795044
+      ],
+      [
+        -5.522439956665039,
+        -4.82453727722168,
+        -5.64715051651001,
+        -4.798757553100586,
+        -1.9340888261795044
+      ],
+      [
+        -4.106070041656494,
+        -4.372659683227539,
+        -4.238033771514893,
+        -4.413619518280029,
+        -1.9340888261795044
+      ],
+      [
+        -3.773941993713379,
+        -4.199136734008789,
+        -4.187868595123291,
+        -4.091274738311768,
+        -1.9340888261795044
+      ],
+      [
+        -3.495267391204834,
+        -3.54236102104187,
+        -3.652169704437256,
+        -3.5603647232055664,
+        -1.9340888261795044
+      ],
+      [
+        -3.036283254623413,
+        -2.1551120281219482,
+        -3.0230884552001953,
+        -2.38340163230896,
+        -1.9340888261795044
+      ],
+      [
+        -2.0189127922058105,
+        -0.2222953587770462,
+        -1.9134747982025146,
+        0.14736202359199524,
+        -1.9340888261795044
+      ]
+    ],
+    "maximum_standardized": [
+      [
+        4.302679061889648,
+        4.436797142028809,
+        4.448424339294434,
+        4.726393222808838,
+        3.1940417289733887
+      ],
+      [
+        4.127811431884766,
+        4.3880391120910645,
+        4.20363712310791,
+        4.188823223114014,
+        3.1940417289733887
+      ],
+      [
+        3.6630725860595703,
+        3.999451160430908,
+        3.481027126312256,
+        4.440602779388428,
+        3.1940417289733887
+      ],
+      [
+        3.8807389736175537,
+        3.9784624576568604,
+        3.12408709526062,
+        3.0700740814208984,
+        3.1940417289733887
+      ],
+      [
+        2.6958882808685303,
+        2.8271923065185547,
+        2.6552720069885254,
+        2.7748353481292725,
+        3.1940417289733887
+      ],
+      [
+        2.4406442642211914,
+        2.698812961578369,
+        2.1082446575164795,
+        2.1224265098571777,
+        3.1940417289733887
+      ],
+      [
+        1.8766244649887085,
+        1.8361636400222778,
+        0.5432756543159485,
+        0.14736202359199524,
+        3.1940417289733887
+      ]
+    ],
+    "not_reliability_guarantee": true
+  },
+  "scientific_source": {
+    "type": "existing_E2_frozen_final_checkpoint",
+    "checkpoint_sha256": "67c6e1910d40fdcf3fd069d8cc33a2a1498e4646977ded50a98a238e5c98233f",
+    "checkpoint_url": "https://github.com/jassan-bit/DeepLearning_202630/releases/download/e2-reduced-results-20261112-v1-p6/final-freeze-c0e9e2589dca9fa03b34--selected_model--67c6e1910d40fdcf3fd069d8cc33a2a1498e4646977ded50a98a238e5c98233f.pt",
+    "recipe_source_commit": "bbd2604a9b78bab7fc8289ad07aae0a6117e884e",
+    "recipe_source_verification": "Eight recipe script hashes and source manifest match immutable commit; author hashes checked by constructor",
+    "registered_trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+    "request_sha256": "5fff17ae7a478a5f150352394089f0a1901d135a94635fe2de34c27ffcd25b8f"
+  },
+  "data_source": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655"
+  },
+  "source_architecture": {
+    "model": "iTransformer",
+    "history_days": 7,
+    "input_channels": 5,
+    "forecast_horizon_days": 1,
+    "target": "sigma7 / training-only y_scale",
+    "structure": {
+      "d_model": 256,
+      "d_ff": 256,
+      "e_layers": 2,
+      "n_heads": 8,
+      "factor": 1,
+      "activation": "gelu",
+      "use_norm": true
+    },
+    "dropout": 0.3,
+    "author_repository": "thuml/iTransformer",
+    "author_commit": "c2426e68ca13f74aaec08045c5c724d8ad328124",
+    "author_source_files": {
+      "model/iTransformer.py": "6f34777a5a12c253a293f79e7e1fd5b6f79ac100b443951e051e269e7e2542db",
+      "layers/Embed.py": "2de7e5049a696d320a23a8bdb6e08e823cf7fa3f246a0a49555fcd729c5c8398",
+      "layers/Transformer_EncDec.py": "985c31f4ae187b08afaa9663dc960a40544b2ec33ab55389ceab3930edc1ce02",
+      "layers/SelfAttention_Family.py": "38ac67428d528b8e145e4944ca059b40629a8446c891142602d5aaadc38dfd9e",
+      "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef",
+      "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh": "81f8409cff60b754b45ed2e76133c7e3b6e585a50c8361f04fa3daf3b6997cc0",
+      "run.py": "650873cfd6fee1f0415d4e8fd69943ad736fd1bab6495b640aa27b1a769f59f9",
+      "LICENSE": "29d2a4c09fa577780522219dc248466977f77cd420354c5e9a0e86550be2b849"
+    },
+    "source_presets_inspected": [
+      "run.py",
+      "scripts/multivariate_forecasting/ETT/iTransformer_ETTh1.sh"
+    ],
+    "calendar_inputs": false,
+    "target_lags_added": false,
+    "same_window_moments": "five means and five population standard deviations of the same scaled D7",
+    "output_link": "Softplus",
+    "paper_replication_claimed": false,
+    "original_OHLCV_denormalization_applied": false,
+    "pretrained_weights": "none",
+    "backbone_family_replaced": false,
+    "configuration_choice_source": "official ETTh1_96_96 script d256/ff256/enc2 plus run.py heads8",
+    "D7_changes": [
+      "seq_len7 and five OHLCV variable tokens",
+      "preserve original normalization and full256-wide two-layer inverted encoder",
+      "replace per-covariate projector and its OHLCV denormalization with scalar task head"
+    ],
+    "readout_input_dim": 1290,
+    "readout": "Linear(1290,1) then Softplus",
+    "training_registry_version": "e2-training-registry-v1",
+    "training_recipe_id": "IT-D7-r1__hpo_v1",
+    "registered_trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+    "initialization_seed": 271801,
+    "weights_pretrained": false,
+    "role": "E2_candidate",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; inversion belongs to caller",
+    "nas": false,
+    "frozen_body_parameter_count": 795403,
+    "actual_parameter_count": 795403,
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0024351218185910935,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "IT-D7-r1__hpo_v1",
+      "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+      "warmup_fraction": 0,
+      "weight_decay": 0.0009190165913202242
+    },
+    "training_axes_applied": false,
+    "weights_reused": false,
+    "requested_existing_dropout": 0.3,
+    "iTransformer_existing_dropout_rate_bridge": false,
+    "source_roots_verified": true,
+    "market_data_read": false
+  },
+  "roundtrip": {
+    "model": "iTransformer",
+    "seed": 271801,
+    "status": "passed",
+    "evaluation_dates": 608,
+    "date_start": "2025-01-01",
+    "date_end": "2026-08-31",
+    "calibration_dates": 53,
+    "declared_absolute_tolerance_original_sigma7": 1e-06,
+    "maximum_absolute_error_vs_CPU_memory": 8.742638040598605e-09,
+    "maximum_absolute_error_vs_frozen_saved_predictions": 1.967266323454897e-08,
+    "maximum_calibration_absolute_error_vs_CPU_memory": 4.995793168038887e-09,
+    "maximum_calibration_absolute_error_vs_frozen_predictions": 7.694853809692148e-09,
+    "RMSE_CPU_memory": 0.005289595798812135,
+    "RMSE_ONNX": 0.005289595735852171,
+    "RMSE_frozen_saved_predictor": 0.005289595608246622,
+    "historical_608_coverage_percent_for_this_seed": 80.75657894736842,
+    "within_tolerance": true,
+    "stress_cases": [
+      {
+        "case": "zeros",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "case": "ones",
+        "max_absolute_error_original_sigma7": 1.2489482920097217e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "constant_negative",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "case": "alternating",
+        "max_absolute_error_original_sigma7": 4.99579316456944e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "symmetric",
+        "max_absolute_error_original_sigma7": 2.4978965840194434e-09,
+        "within_tolerance": true
+      }
+    ],
+    "stress_within_tolerance": true,
+    "reference_checkpoint_sha256": "67c6e1910d40fdcf3fd069d8cc33a2a1498e4646977ded50a98a238e5c98233f",
+    "checkpoint_unchanged": true,
+    "reference_state_tensors_unchanged": true,
+    "registered_parameters": 795403,
+    "gradient_enabled_parameters": 795403,
+    "onnx_bytes": 3201493,
+    "model_sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd",
+    "runtime_peak_RSS_process_MiB": 343.96875,
+    "RSS_scope": "process peak including Torch, checkpoint, ORT, arrays and export; not incremental ORT memory",
+    "provisional_concurrent_forward_median_ms": 0.28611550806090236,
+    "provisional_concurrent_forward_p95_ms": 0.46756493684370065,
+    "provisional_concurrent_end_to_end_median_ms": 0.33869400795083493,
+    "provisional_concurrent_end_to_end_p95_ms": 0.49195080791832874,
+    "timing_scope": "CPU one intra/inter-op thread, batch1,10warmups100calls; provisional contention, excludes explanations",
+    "calibration_q_reused_unchanged": 0.006383923988913291,
+    "new_training_runs": 0,
+    "new_calibration_fits": 0,
+    "GPU_used": false,
+    "live_registry_updated": false,
+    "elapsed_seconds": 2.7874103210051544,
+    "reference_eval_batch_policy": "each window independently; frozen TimesNet adapter already enforces this in eval",
+    "adapter": "unchanged model forward; standard ONNX export"
+  },
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5"
+  },
+  "AI_assistance_declared": true,
+  "serving_enabled": false
+}

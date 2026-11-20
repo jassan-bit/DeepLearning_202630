@@ -1,0 +1,76 @@
+{
+  "created_utc": "2026-11-20T14:24:43.015522+00:00",
+  "model": "Inception-1D",
+  "seed": 271801,
+  "checkpoint": {
+    "model": "Inception-1D",
+    "asset_id": 744283455,
+    "bytes": 2007109,
+    "name": "final-freeze-c0e9e2589dca9fa03b34--selected_model--47fcee9055df2ca911cd080d871c66b3e6764b166e2b592ad6abe57e83321d97.pt",
+    "path": "final-fit/8a6bc9d3fddf7474/271801/fit/selected_model.pt",
+    "release_tag": "e2-reduced-results-20261112-v1-p4",
+    "sha256": "47fcee9055df2ca911cd080d871c66b3e6764b166e2b592ad6abe57e83321d97",
+    "storage": "release_asset",
+    "url": "https://github.com/jassan-bit/DeepLearning_202630/releases/download/e2-reduced-results-20261112-v1-p4/final-freeze-c0e9e2589dca9fa03b34--selected_model--47fcee9055df2ca911cd080d871c66b3e6764b166e2b592ad6abe57e83321d97.pt"
+  },
+  "final_freeze_sha256": "c0e9e2589dca9fa03b341bb72f87d8b541d33b4721715622daeae4438dbd60b4",
+  "source_hashes": {
+    "scripts/e2_training_models.py": "46be0644e0ed9d966163b17f171092e81b6a82dd734efc7954d6104f5ee5360b",
+    "scripts/e2_recipe_models.py": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+    "scripts/e2_published_registry.py": "0704784aa0bb2887908d12ad12345094c8f6a707918aa695dbc11cda88092fec",
+    "scripts/e2_published_sae.py": "0436d73f9724bb065dc3642f18218cb35cda5e9abfa4de5090f8c5d69eb6c1aa",
+    "scripts/e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314",
+    "scripts/e2_reduced_fit.py": "64e83d0a2a39920ae470252b8eb81c8f78429817fed978bd22f64866fdfb8f5f",
+    "scripts/e2_staged_training.py": "b66ac8d2beb3748f4934e55e99514f53c52eada4a4dbd2e4b597d080c9f4722b",
+    "experiments/e2_published_architectures_20261112/architecture_policy.json": "a1c9440046af34c2b70bef9c05229dff2c6d863aa06ae191ed02c2de6d8bf0f2"
+  },
+  "frozen_inputs": {
+    "npz": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "predictions": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+    "protocol": "5195337af13f4193da16bf4499c8396586c621d4ab084a5b296a297f2141edeb",
+    "selection_receipt": "1dae038192478c3527ff6b058c7213cdb5707804e86b57cad2e0f2bfdccd432e",
+    "scaler": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+    "calibrator_file": "edd174f9021d37325e3155280295121ff414230bdae03d0b26f81522abad9f93",
+    "calibrator_content": "684dbd14ac798f9fe0d373e27be276e945cde87bd1b097255c161ee54992f27d"
+  },
+  "prediction_source_url": "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/5e9023ea821bfa9fb0b92340d518413f6ab89161/runs/e2_extension_10_semillas_v1/combined_predictors.json",
+  "selection_source_repository_path": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/Inception-1D.json",
+  "raw_OHLCV_published_in_this_payload": false,
+  "outputs": {
+    "calibrator.json": {
+      "sha256": "edd174f9021d37325e3155280295121ff414230bdae03d0b26f81522abad9f93",
+      "bytes": 1332
+    },
+    "metadata.json": {
+      "sha256": "1d61945f60adaf7ea4a74089c638a5799acbe14027afcef5394cf0be9226d548",
+      "bytes": 5799
+    },
+    "model.onnx": {
+      "sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428",
+      "bytes": 2070967
+    },
+    "roundtrip.json": {
+      "sha256": "b37130ddb529e0b4c3d89684b548af7db202cf2ce904cea44faa8065386cbd9f",
+      "bytes": 3654
+    },
+    "scaler.json": {
+      "sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+      "bytes": 8879
+    },
+    "selection_receipt.json": {
+      "sha256": "1dae038192478c3527ff6b058c7213cdb5707804e86b57cad2e0f2bfdccd432e",
+      "bytes": 3258
+    }
+  },
+  "scope": "One pre-existing representative checkpoint; export and real frozen parity only. Existing 796-job audit and 30-fit V3 pilot were not changed.",
+  "no_training_no_recalibration": true,
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu_count": 5
+  }
+}

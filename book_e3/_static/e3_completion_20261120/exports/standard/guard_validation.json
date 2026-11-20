@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "created_utc": "2026-11-20T14:30:01.874955+00:00",
+  "models": [
+    {
+      "model": "FCN-1D",
+      "seed": 271801,
+      "original_scaler_calibrator_and_selection_bytes_verified": true,
+      "ONNX_hash_verified": true,
+      "all_five_invalid_inputs_rejected_before_inference": {
+        "wrong_shape": true,
+        "nonfinite": true,
+        "zero_price": true,
+        "negative_volume": true,
+        "inconsistent_OHLC": true
+      },
+      "valid_original_window_inference_passed": true,
+      "valid_window_prediction_sigma7": 0.014843284586841511,
+      "roundtrip_reference": "fcn_1d/roundtrip.json",
+      "new_training_runs": 0
+    },
+    {
+      "model": "ResNet-1D",
+      "seed": 271801,
+      "original_scaler_calibrator_and_selection_bytes_verified": true,
+      "ONNX_hash_verified": true,
+      "all_five_invalid_inputs_rejected_before_inference": {
+        "wrong_shape": true,
+        "nonfinite": true,
+        "zero_price": true,
+        "negative_volume": true,
+        "inconsistent_OHLC": true
+      },
+      "valid_original_window_inference_passed": true,
+      "valid_window_prediction_sigma7": 0.015521850683099884,
+      "roundtrip_reference": "resnet_1d/roundtrip.json",
+      "new_training_runs": 0
+    },
+    {
+      "model": "Inception-1D",
+      "seed": 271801,
+      "original_scaler_calibrator_and_selection_bytes_verified": true,
+      "ONNX_hash_verified": true,
+      "all_five_invalid_inputs_rejected_before_inference": {
+        "wrong_shape": true,
+        "nonfinite": true,
+        "zero_price": true,
+        "negative_volume": true,
+        "inconsistent_OHLC": true
+      },
+      "valid_original_window_inference_passed": true,
+      "valid_window_prediction_sigma7": 0.014822127402783393,
+      "roundtrip_reference": "inception_1d/roundtrip.json",
+      "new_training_runs": 0
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "seed": 271801,
+      "original_scaler_calibrator_and_selection_bytes_verified": true,
+      "ONNX_hash_verified": true,
+      "all_five_invalid_inputs_rejected_before_inference": {
+        "wrong_shape": true,
+        "nonfinite": true,
+        "zero_price": true,
+        "negative_volume": true,
+        "inconsistent_OHLC": true
+      },
+      "valid_original_window_inference_passed": true,
+      "valid_window_prediction_sigma7": 0.01453945668281161,
+      "roundtrip_reference": "lstm_autoencoder/roundtrip.json",
+      "new_training_runs": 0
+    }
+  ],
+  "provider": "CPUExecutionProvider",
+  "threads_intra_inter": [
+    1,
+    1
+  ],
+  "new_fits": 0,
+  "scope": "Artifact integrity + external guards + one real-window inference each; full 608+53 parity is separately recorded in roundtrip.json."
+}

@@ -1,6 +1,6 @@
 # 5 Bloque B Selección de configuraciones y exportación
 
-Este bloque reúne la selección documentada de los **16 sistemas de E2** y la ingeniería de inferencia disponible. El perfil vigente habilita **cinco ONNX en CPU** de la semilla 271801: MLP16, LSTM32, GRU32, la CNN-LSTM aditiva de E3 y TSMixer. Conserva los otros **doce sistemas como resultados precalculados**: nueve redes pendientes de exportación verificada y tres clásicos cuyo contrato necesita más historia o estado que las siete barras admitidas. El funcionamiento público de esta versión se verifica por separado en la [sección 10](10_despliegue_render.md). Las configuraciones se eligen desde validación. Las métricas de prueba histórica se muestran con su alcance, sin utilizarlas para cambiar la receta o escoger una semilla favorable.
+Este bloque reúne la selección documentada de los **16 sistemas de E2** y la ingeniería de inferencia disponible. El perfil vigente habilita **cinco ONNX en CPU** de la semilla 271801: MLP16, LSTM32, GRU32, la CNN-LSTM aditiva de E3 y TSMixer. Conserva los otros **doce sistemas como resultados precalculados**: nueve redes que ya tienen exportación offline verificada y tres clásicos cuyo contrato necesita más historia o estado que las siete barras admitidas. El {ref}`cierre técnico <e3-completion-20261120>` aporta las nueve conversiones adicionales, sin modificar el registro habilitado, los pesos ni los calibradores vigentes. El funcionamiento público de esta versión se verifica por separado en la [sección 10](10_despliegue_render.md). Las configuraciones se eligen desde validación. Las métricas de prueba histórica se muestran con su alcance, sin utilizarlas para cambiar la receta o escoger una semilla favorable.
 
 ## 5.1 Criterio de selección
 
@@ -87,7 +87,7 @@ E3 adopta en `artifacts/e3_serving_calibration_v2/` el cuantil posterior existen
 
 ### Pendientes para cerrar B
 
-Faltan **nueve exportaciones neuronales verificadas** y los costes completos comparables del catálogo. La {download}`matriz de capacidades de los trece sistemas revisados <../_static/e3_cierre_integral_20261118/serving/export_capabilities/capability_matrix.csv>` registra TSMixer ya exportado, tres clásicos justificados como históricos bajo el contrato actual y nueve redes pendientes. La ausencia de pesos recuperados o de una prueba de conversión no demuestra que una red exceda recursos o sea imposible de exportar. Los checkpoints de entrenamiento deben vincularse al artefacto seleccionado y verificarse con su configuración y procedencia; conservar estados no cierra la política común de ajuste final. Las cinco exportaciones de una réplica no cambian la comparación científica de medias entre diez semillas.
+El cierre posterior verificó **las nueve exportaciones neuronales restantes**, con sus recibos y pruebas de paridad offline en las 608 ventanas de prueba y 53 de calibración. Junto con las cinco existentes, completan catorce representantes neuronales ONNX verificados; no equivalen a catorce modelos habilitados. El {ref}`cierre técnico <e3-completion-20261120>` conserva los archivos y sus límites. La {download}`matriz de capacidades del corte del 18 de noviembre <../_static/e3_cierre_integral_20261118/serving/export_capabilities/capability_matrix.csv>` mantiene su estado histórico: TSMixer exportado, tres clásicos justificados bajo el contrato de siete barras y nueve redes todavía pendientes en aquel corte. Los checkpoints deben vincularse al artefacto seleccionado y verificarse con su configuración y procedencia; conservar estados o completar conversiones no cierra la política común de ajuste final. Siguen pendientes los costes completos comparables y la integración/aceptación de los artefactos nuevos. Exportar una réplica no cambia la comparación científica de medias entre diez semillas.
 
 No se aplicó cuantización ni se atribuyó un límite de memoria a modelos no medidos. Los modelos que no quepan en el despliegue deberán conservar resultados precalculados y una justificación sustentada; la pérdida por compresión, si se aplica, se evaluará frente a δ. La guía permite TorchScript. El perfil CPU sin framework de entrenamiento de la [sección 10](10_despliegue_render.md) dispone de cinco ONNX para la aplicación local; los tres TorchScript conservan su alcance histórico. El servicio público y los pendientes señalados siguen sin completar ese cierre.
 
@@ -101,8 +101,8 @@ No se aplicó cuantización ni se atribuyó un límite de memoria a modelos no m
 | Mejor global y pertenencia a finalistas | TimeMixer lidera los 15 con score recuperado y queda fuera del MCS histórico. El líder descriptivo de prueba, autoencoder, sí pertenece; el MCS posterior con E3 es otro corte. | Resolver y explicar esa discordancia sin elegir mediante prueba un sustituto del ganador por validación. |
 | Tabla maestra: media, DE, IC95 %, parámetros y costes | La tabla histórica de E2 tiene 16 sistemas y seis semillas neuronales; la tabla posterior tiene diez semillas por red y E3. Los IC entre semillas son condicionales al calendario. | Integrar una tabla de despliegue vigente con el mismo alcance por campo, costes comparables y ausencias explícitas. |
 | Ajuste final común y checkpoint completo | E2: 655 ejemplos y épocas fijadas; E3: 532 y parada por validación. Hay pesos de inferencia y archivos científicos más completos, con ámbitos distintos. | Fijar la política común y vincular pesos, optimizador, configuración y procedencia; no reetiquetar el experimento ya evaluado. |
-| Exportación y metadatos | Tres TorchScript históricos y cinco ONNX CPU, con escaladores, esquema, hashes y rangos estimados sólo en ajuste. E3 adopta por separado su intervalo posterior individual. | Completar las nueve redes pendientes y la política final común; los tres clásicos conservan su justificación de contrato. |
-| Ida y vuelta con tolerancia y métrica | Los cinco ONNX y su preprocesamiento se comprobaron sobre las 608 ventanas con tolerancia absoluta 10⁻⁶; TSMixer también sobre 53 de calibración. Las tres paridades TorchScript históricas conservan su alcance. | Mantener la evidencia por formato/semilla y completar los artefactos restantes; no confundir una réplica exportada con media de diez semillas. |
+| Exportación y metadatos | Tres TorchScript históricos y catorce representantes neuronales ONNX verificados offline, incluidos los nueve del cierre posterior; el perfil vigente sigue habilitando cinco. Escaladores, esquema y hashes conservan su versión; E3 adopta por separado su intervalo posterior individual. | Completar la política final común, los costes comparables y, si procede, integrar y aceptar los nuevos artefactos en el producto. Los tres clásicos conservan su justificación de contrato. |
+| Ida y vuelta con tolerancia y métrica | Los cinco ONNX del perfil vigente conservan su comprobación en 608 ventanas y tolerancia absoluta 10⁻⁶; TSMixer también sobre 53 de calibración. Las nueve redes adicionales ya tienen paridad offline en ambas particiones. Las tres paridades TorchScript históricas conservan su alcance. | Mantener la evidencia por formato/semilla y verificar la integración del producto; no confundir una réplica exportada con la media de diez semillas. |
 | Compresión cuando haga falta | No se aplicó cuantización, poda o destilación ni se verificó equivalencia. | Medir primero recursos; si se comprime, contrastar la pérdida con δ y usar TOST cuando sea viable. |
 | Inferencia comparable y viabilidad de servicio | Cuatro ONNX comparten el perfil histórico de latencia; TSMixer tiene una medición separada y no se incorpora a esa frontera. Los tres perfiles TorchScript y el diagnóstico eager CPU conservan métodos distintos. FLOPs core no cubren todos los kernels. | Completar memoria y cómputo comparables de toda la familia y medir el servicio final aparte. |
 
@@ -112,7 +112,7 @@ La {download}`matriz descargable del bloque B <../_static/e3_revision_bc_2026111
 
 E2 añadió un diagnóstico eager CPU de los **78 predictores neuronales del corte histórico de seis semillas**, con dos hilos y un plan propio. No cubre automáticamente los 130 predictores neuronales de la ampliación a diez semillas. Es distinto de estas tres exportaciones TorchScript, medidas con un hilo. Sus latencias, memorias y diferencias respecto a CUDA no se mezclan como si fueran un único experimento. Esos dos controles históricos no verifican los TorchScript sobre las 608 entradas originales de prueba; la paridad y las métricas de los cuatro ONNX posteriores sí cubren esas 608 ventanas, con su alcance propio.
 
-La tabla maestra conserva parámetros, FLOPs core, costes disponibles y campos ausentes, sin rellenarlos con ceros ni sustituir CPU por GPU. Los FLOPs completos, los costes comparables del resto y sus exportaciones siguen pendientes.
+La tabla maestra conserva parámetros, FLOPs core, costes disponibles y campos ausentes, sin rellenarlos con ceros ni sustituir CPU por GPU. Los FLOPs completos y los costes comparables que faltan siguen pendientes. Las nueve exportaciones adicionales ya están verificadas offline; esa conversión no completa la contabilidad de recursos ni la aceptación del servicio.
 
 - {download}`Tabla maestra de selección recursos y despliegue <../_static/e3_bloques_ab_20261115/deployment_master.csv>`.
 - {download}`Informe de selección <../_static/e3_bloques_ab_20261115/selection_report.json>`.
@@ -120,3 +120,84 @@ La tabla maestra conserva parámetros, FLOPs core, costes disponibles y campos a
 - [Suplemento CPU actual de E2](https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html).
 
 Los scripts `e3_audit_e2_handoff.py`, `e3_select_e2_configurations.py` y `e3_build_handoff_book.py` conservan la reproducción de sus informes y del corte original de A/B. La [página anterior de evidencias](08_bloques_a_b.md) permanece como anexo; no se alteran sus resultados para reorganizar el libro.
+
+
+(e3-completion-20261120)=
+## 5.4 Cierre técnico de exportaciones y medición comparable
+
+El cierre del 20 de noviembre de 2026 recuperó los checkpoints históricos
+de la semilla representante **271801** y verificó las **nueve exportaciones
+ONNX restantes**: FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con
+predictor, TimesNet, TiDE, TimeMixer, PatchTST e iTransformer. Sus archivos
+suman **14.312.258 bytes**. Cada red se comprobó sobre **608 ventanas de
+prueba y 53 de calibración**, 661 por artefacto, sin reentrenar, escoger otra
+semilla o reajustar escaladores y cuantiles. El error absoluto máximo de
+los nueve recibos es **3,1492137758×10⁻⁷ σ₇**, inferior a la tolerancia
+**10⁻⁶**. La {download}`revisión independiente de procedencia y recibos <../_static/e3_completion_20261120/qa/nine_export_provenance_review.json>`
+contrasta hashes de checkpoints y ONNX y conserva el alcance de cada
+verificación; esa revisión no reejecutó los modelos.
+
+Se dispone así de **catorce representantes neuronales ONNX verificados
+offline**. El perfil de la aplicación sigue habilitando **cinco**, con los
+otros **doce sistemas precalculados**: nueve redes sin integración en ese
+perfil y tres clásicos cuyo estado o historia no se determina con siete
+barras. La V3 experimental es otro artefacto y no amplía automáticamente
+el registro del dashboard. Las conversiones no modifican las medias de
+diez semillas ni el alcance de los experimentos científicos anteriores.
+
+El autor aprobó explícitamente publicar el paquete revisado. El [archivo público de las nueve redes](https://github.com/jassan-bit/DeepLearning_202630/releases/download/e3-nine-onnx-4ef050d047b1/e3-nine-onnx-20261120.zip) tiene **12.987.835 bytes**, SHA256 `0fb857c407250949bfc8c96fd7b9525bab624b650b5c94dd4d1d1d8c60f62c66` y 66 miembros. Su manifiesto de publicación se añade a los binarios y recibos originales; por eso el ZIP tiene un hash distinto del transporte revisado de 12.980.054 bytes (`df995ef4e5185022de21cf49dbe13544111f1e5fb4503fd869c3f2df962cc332`). **Los nueve ONNX conservan exactamente sus hashes**, pesos, escaladores y calibradores. El {download}`recibo de descarga pública independiente <../_static/e3_completion_publication_20261120/public_download_integrity.json>` verificó ZIP y manifiesto sin credenciales. Los {download}`localizadores de origen <../_static/e3_completion_20261120/exports/public_source_unauthenticated_verification.json>` conservan la procedencia de los checkpoints públicos.
+
+La recreación previa de FCN-1D en otro runner produjo un SHA distinto y se detuvo antes de publicar. Se conserva el {download}`fallo anterior <../_static/e3_completion_20261120/exports/remote_attempt/failure_observation.json>`; no se rebajó la guarda ni se atribuyó su causa a metadatos o hardware sin demostrarlo. El procedimiento publicado después **ensambla los bytes ya aceptados y los comprueba sin reexportar**. La [ejecución remota aprobada](https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44770549685) pasó **5949 casos, nueve redes por 661 ventanas**, con error máximo **3,099255844×10⁻⁷ σ₇**, inferior al umbral fijado 10⁻⁶, y cero discrepancias de cobertura. El {download}`replay ORT completo <../_static/e3_completion_publication_20261120/E3_ONNX_PARITY_REPORT.json>` registra Python 3.12.14, NumPy 2.3.5 y ONNX Runtime 1.23.2 de CPU, sin Torch, entrenamiento o recalibración. Este resultado no transforma en aprobada la reexportación binaria idéntica que falló.
+
+El [perfil V3 experimental](https://github.com/jassan-bit/DeepLearning_202630/tree/4ef050d047b1f85d39f9b47fce86a784820880c4/artifacts/e3_experimental_v3_20261120) está archivado aparte: **15.368 bytes**, SHA256 `881dd637837265829aa96900d7a0c864dcdab113a57a91485feb20fd2a443abc`. La {download}`lectura pública de V3 <../_static/e3_completion_publication_20261120/V3_public_raw_integrity.json>` verificó HTTP 200 y todos sus bytes, sin ejecutar el modelo. No tiene calibrador ni se incorpora al registro del dashboard.
+
+La comprobación offline no acredita la aceptación pública de Render, su SHA efectivo, la capacidad con sesiones concurrentes o la habilitación de los nueve modelos. V3 experimental sigue sin calibrador ni promoción.
+
+### Medición CPU bajo el mismo procedimiento
+
+Se ejecutó una medición nueva para **quince perfiles**: los catorce
+representantes históricos y `atom_crps` experimental. Cada artefacto corrió
+en un proceso separado, fijado a una CPU lógica del **AMD EPYC 9V74**,
+con **ONNX Runtime 1.23.2**, un hilo, batch uno, diez calentamientos y cien
+llamadas medidas. Se utilizó la misma ventana OHLCV de siete barras y el
+escalador congelado propio de cada modelo; la ventana es un fixture de
+tiempo, no una prueba científica nueva ni una selección de modelo. El
+{download}`recibo completo <../_static/e3_completion_20261120/costs/measured/receipt.json>`
+identifica versiones, afinidad, hashes, carga de sesión, primera llamada,
+p95 y observaciones individuales. La tabla reproduce las medianas de
+`session.run` y el RSS máximo del proceso:
+
+| Artefacto | Mediana forward (ms) | RSS máximo del proceso (bytes) |
+|---|---:|---:|
+| CNN-LSTM aditiva E3 | 0,0234455 | 49.197.056 |
+| FCN-1D | 0,2047125 | 50.065.408 |
+| GRU32 | 0,0112420 | 48.406.528 |
+| Inception-1D | 0,4333315 | 53.075.968 |
+| LSTM-autoencoder con predictor | 0,0173460 | 48.791.552 |
+| LSTM32 | 0,0109110 | 48.427.008 |
+| MLP16 | 0,0053785 | 48.062.464 |
+| PatchTST | 0,0995195 | 50.032.640 |
+| ResNet-1D | 0,3134065 | 52.555.776 |
+| TSMixer | 0,0681220 | 49.803.264 |
+| TiDE | 0,0323635 | 49.664.000 |
+| TimeMixer | 0,2278025 | 51.212.288 |
+| TimesNet | 0,3686445 | 67.100.672 |
+| V3 `atom_crps` experimental | 0,0279120 | 49.463.296 |
+| iTransformer | 0,2206770 | 54.951.936 |
+
+El {download}`CSV de costes <../_static/e3_completion_20261120/costs/measured/costs.csv>`
+conserva los valores sin redondear y el RSS basal por separado. El RSS
+máximo incluye Python, NumPy, ONNX Runtime y la sesión: **no es memoria
+incremental del modelo**. Se mide el forward, sin incluir preprocesamiento,
+validación del CSV, explicaciones, Dash, navegador o transporte HTTP. Las
+cachés de archivos no se vaciaron, por lo que la carga observada tampoco
+es una estimación garantizada de arranque en frío. No se midieron FLOPs,
+energía, GPU de entrenamiento o concurrencia. Esas condiciones impiden
+trasladar las cifras directamente a la latencia pública de Render.
+
+Este cierre documenta ingeniería ejecutada con IA declarada. El
+{download}`control de manifiestos <../_static/e3_completion_20261120/qa/module_manifest_review.json>`
+separa los bytes auditados de los archivos no incluidos en cada paquete.
+No acredita R2/R3 ni cambia el {ref}`dictamen documental favorable y acotado de R1 para V3 <e3-r1-substantive-verdict-20261120>`, que permanece
+separado de la aditiva y de la evaluación institucional.
+

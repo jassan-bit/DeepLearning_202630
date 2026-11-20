@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "AI_assistance_declared": true,
+  "level": "B: one frozen V3 checkpoint, original preprocessing and 55 development predictions",
+  "scope_excludes": [
+    "training replay",
+    "all796 additive fits",
+    "human independent reproduction",
+    "calibration",
+    "new domain evaluation",
+    "serving acceptance"
+  ],
+  "profile": "e3-v3-atom-crps-experimental-20261120",
+  "onnx_sha256": "881dd637837265829aa96900d7a0c864dcdab113a57a91485feb20fd2a443abc",
+  "checkpoint_sha256": "67dc01ed9c3ce11a140acc7eddc72e9ad097b10aa9e8a536ef14bcdbc568c844",
+  "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+  "NPZ_members_opened": [
+    "training_raw",
+    "training_dates"
+  ],
+  "comparison": {
+    "rows": 55,
+    "first_date": "2024-09-07",
+    "last_date": "2024-10-31",
+    "units": "daily unannualized population sigma7, ddof0",
+    "absolute_tolerance": 1e-06,
+    "max_absolute_error": 7.828650949726068e-09,
+    "floor_violations": 0
+  },
+  "benchmark": {
+    "backend": "ONNX Runtime CPUExecutionProvider",
+    "batch": 1,
+    "intra_op_threads": 1,
+    "inter_op_threads": 1,
+    "warmup_calls_each": 10,
+    "timed_calls_each": 100,
+    "forward": {
+      "calls": 100,
+      "median_ms": 0.0298595,
+      "p95_ms": 0.062170649999999994,
+      "mean_ms": 0.034746900000000004
+    },
+    "end_to_end_raw_validation_preprocessing_forward": {
+      "calls": 100,
+      "median_ms": 0.09225900000000001,
+      "p95_ms": 0.16605944999999994,
+      "mean_ms": 0.10650447999999998
+    },
+    "process_peak_RSS_KiB": 49500,
+    "process_peak_RSS_scope": "standalone runtime including Python, NumPy, ORT, loaded compressed cohort; no Torch or exporter",
+    "shared_host_load": "uncontrolled; not a comparable isolated hardware cost study"
+  },
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "onnxruntime": "1.23.2",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+  },
+  "new_model_fits": 0,
+  "optimizer_steps": 0,
+  "new_calibrations": 0,
+  "torch_imported": false,
+  "human_reproduction_observed": false
+}

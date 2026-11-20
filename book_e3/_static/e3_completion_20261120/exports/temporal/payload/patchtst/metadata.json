@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "model": "PatchTST",
+  "seed": 271801,
+  "representative_seed_rule": "smallest frozen seed ID; not chosen by outcome",
+  "format": "ONNX",
+  "opset": 17,
+  "model_sha256": "f36ecb0397bd63cd86062e527e8769ae922ece64fe5660d0eaa57f3e65046861",
+  "input_shape": [
+    1,
+    7,
+    5
+  ],
+  "input_dtype": "float32",
+  "uses_observable_floor": false,
+  "output_name": "normalized_prediction",
+  "output_scale": 0.020953875259434797,
+  "output_unit": "original population sigma7 ddof0, daily not annualized",
+  "horizon_days": 1,
+  "preprocessing": {
+    "mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "fit_count": 655,
+    "fit_end": "2024-10-31",
+    "target_scale": 0.020953875259434797
+  },
+  "calibration_q": 0.016008127390891344,
+  "calibration_valid_after": "2024-12-30",
+  "interval_nominal_coverage": 0.9,
+  "calibrator_source": {
+    "file_sha256": "efcb8fde07373dc30a9f8658074ad2d5f224d98daf013fd168014c22fc35813e",
+    "content_sha256": "980bb671d8dbc47dd37b0bfb52983c8c44ed1033ba85e840ca904feaeda3e0a5",
+    "q": 0.016008127390891344,
+    "n": 53,
+    "date_start": "2024-11-08",
+    "date_end": "2024-12-30",
+    "checkpoint_sha256": "94e51bec39a881f7d1eb142ffb0ab32dc9ef5ccef0ae7606e3d38c5196a0d6d7"
+  },
+  "interval_limitations": "53 serially dependent historical dates, no general temporal/subgroup coverage guarantee; no refit",
+  "ood": {
+    "method": "observed standardized fit ranges only",
+    "minimum_standardized": [
+      [
+        -5.815190315246582,
+        -6.30404806137085,
+        -6.1665849685668945,
+        -6.436119079589844,
+        -1.9340888261795044
+      ],
+      [
+        -5.522439956665039,
+        -4.82453727722168,
+        -5.64715051651001,
+        -4.798757553100586,
+        -1.9340888261795044
+      ],
+      [
+        -4.106070041656494,
+        -4.372659683227539,
+        -4.238033771514893,
+        -4.413619518280029,
+        -1.9340888261795044
+      ],
+      [
+        -3.773941993713379,
+        -4.199136734008789,
+        -4.187868595123291,
+        -4.091274738311768,
+        -1.9340888261795044
+      ],
+      [
+        -3.495267391204834,
+        -3.54236102104187,
+        -3.652169704437256,
+        -3.5603647232055664,
+        -1.9340888261795044
+      ],
+      [
+        -3.036283254623413,
+        -2.1551120281219482,
+        -3.0230884552001953,
+        -2.38340163230896,
+        -1.9340888261795044
+      ],
+      [
+        -2.0189127922058105,
+        -0.2222953587770462,
+        -1.9134747982025146,
+        0.14736202359199524,
+        -1.9340888261795044
+      ]
+    ],
+    "maximum_standardized": [
+      [
+        4.302679061889648,
+        4.436797142028809,
+        4.448424339294434,
+        4.726393222808838,
+        3.1940417289733887
+      ],
+      [
+        4.127811431884766,
+        4.3880391120910645,
+        4.20363712310791,
+        4.188823223114014,
+        3.1940417289733887
+      ],
+      [
+        3.6630725860595703,
+        3.999451160430908,
+        3.481027126312256,
+        4.440602779388428,
+        3.1940417289733887
+      ],
+      [
+        3.8807389736175537,
+        3.9784624576568604,
+        3.12408709526062,
+        3.0700740814208984,
+        3.1940417289733887
+      ],
+      [
+        2.6958882808685303,
+        2.8271923065185547,
+        2.6552720069885254,
+        2.7748353481292725,
+        3.1940417289733887
+      ],
+      [
+        2.4406442642211914,
+        2.698812961578369,
+        2.1082446575164795,
+        2.1224265098571777,
+        3.1940417289733887
+      ],
+      [
+        1.8766244649887085,
+        1.8361636400222778,
+        0.5432756543159485,
+        0.14736202359199524,
+        3.1940417289733887
+      ]
+    ],
+    "not_reliability_guarantee": true
+  },
+  "scientific_source": {
+    "type": "existing_E2_frozen_final_checkpoint",
+    "checkpoint_sha256": "94e51bec39a881f7d1eb142ffb0ab32dc9ef5ccef0ae7606e3d38c5196a0d6d7",
+    "checkpoint_url": "https://github.com/jassan-bit/DeepLearning_202630/releases/download/e2-reduced-results-20261112-v1-p9/final-freeze-c0e9e2589dca9fa03b34--selected_model--94e51bec39a881f7d1eb142ffb0ab32dc9ef5ccef0ae7606e3d38c5196a0d6d7.pt",
+    "recipe_source_commit": "bbd2604a9b78bab7fc8289ad07aae0a6117e884e",
+    "recipe_source_verification": "Eight recipe script hashes and source manifest match immutable commit; author hashes checked by constructor",
+    "registered_trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+    "request_sha256": "3b87414d0ef6c22ba6b16923500fda34569ba2c10407c57e2dba3acf3df160ea"
+  },
+  "data_source": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655"
+  },
+  "source_architecture": {
+    "model": "PatchTST",
+    "recipe_id": "PT-D7-PUBLISHED-v1",
+    "input_shape": [
+      7,
+      5
+    ],
+    "horizon": 1,
+    "output": "positive sigma7 / training-only target scale",
+    "author_repository": "yuqinie98/PatchTST",
+    "source_commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+    "source_verification": {
+      "repository": "yuqinie98/PatchTST",
+      "commit": "204c21efe0b39603ad6e2ca640ef5896646ab1a9",
+      "verified_files": {
+        "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "layers/PatchTST_backbone.py": "df67173153787c2356bdfb6491159cd754332ef7382986efe879e1fbea8ebf26",
+        "layers/PatchTST_layers.py": "21c06c70a90c60ee2a269b5c600c702834dea22cdfd72915e6b0f8b4a28db3f6",
+        "layers/RevIN.py": "e64c0ccded9228b347134e7368420d3fb10f70c75145b5ff2d8bdd8c3af59df6",
+        "models/PatchTST.py": "49d8bb865e1226d6338842f4b33c4bc6992cefb048dc2a4a5a8c410ca708586b",
+        "scripts/PatchTST/etth1.sh": "556c87cd7dd795094ff6cb73465e84c90686017e1535e0ba23ed43683b9b0897"
+      },
+      "verification_scope": "declared file subset, not whole repository"
+    },
+    "source_files_verified_at_build": true,
+    "body": "original supervised TSTiEncoder and Flatten_Head",
+    "d_model": 16,
+    "d_ff": 128,
+    "encoder_layers": 3,
+    "n_heads": 4,
+    "residual_attention": true,
+    "normalization": "author BatchNorm, post-norm",
+    "patch_len": 3,
+    "stride": 2,
+    "patch_count": 4,
+    "left_padding": 0,
+    "right_padding": 2,
+    "padding": "author end replication of last observed value",
+    "revin_statistics_scope": "seven actual observed days before padding",
+    "source_flatten_head_preserved": true,
+    "head_dropout": 0.0,
+    "published_source_preset": {
+      "evidence": "scripts/PatchTST/etth1.sh at the verified author commit",
+      "seq_len": 336,
+      "patch_len": 16,
+      "stride": 8,
+      "dropout": 0.3,
+      "fc_dropout": 0.3,
+      "head_dropout": 0.0
+    },
+    "actual_dropout": {
+      "encoder": 0.3,
+      "fc": 0.3,
+      "head": 0.0
+    },
+    "scalar_readout": "Linear(5,1) then Softplus before OHLCV denormalization",
+    "same_window_moment_features": 0,
+    "dropout": 0.3,
+    "task_adaptations": [
+      "Observed context 7 instead of source ETTh1 336; fixed P3/S2 rather than P16/S8",
+      "P3/S2 D7 geometry follows the prior documentary adaptation proposal",
+      "Five OHLCV channel predictions combined into one scalar before source denormalization"
+    ],
+    "paper_replication_claimed": false,
+    "exact_published_long_context_preset": false,
+    "structural_architecture_search": false,
+    "weights_pretrained": false,
+    "target_lags_added": false,
+    "calendar_covariates_added": false,
+    "market_data_read": false,
+    "architecture_policy_id": "e2-published-bodies-d7-v1",
+    "training_recipe_id": "PT-D7-PUBLISHED-v1",
+    "registered_trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0.3,
+      "learning_rate": 0.0014458517173583036,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "PT-D7-PUBLISHED-v1",
+      "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+      "warmup_fraction": 0.1,
+      "weight_decay": 0.0
+    },
+    "initialization_seed": 271801,
+    "actual_parameter_count": 16388,
+    "nas": false,
+    "weights_reused": false,
+    "training_axes_applied": false,
+    "restored_published_body": true
+  },
+  "roundtrip": {
+    "model": "PatchTST",
+    "seed": 271801,
+    "status": "passed",
+    "evaluation_dates": 608,
+    "date_start": "2025-01-01",
+    "date_end": "2026-08-31",
+    "calibration_dates": 53,
+    "declared_absolute_tolerance_original_sigma7": 1e-06,
+    "maximum_absolute_error_vs_CPU_memory": 4.99579316456944e-09,
+    "maximum_absolute_error_vs_frozen_saved_predictions": 7.661576813949855e-09,
+    "maximum_calibration_absolute_error_vs_CPU_memory": 2.4978965840194434e-09,
+    "maximum_calibration_absolute_error_vs_frozen_predictions": 4.628223724406633e-09,
+    "RMSE_CPU_memory": 0.009835281197693495,
+    "RMSE_ONNX": 0.009835281203200315,
+    "RMSE_frozen_saved_predictor": 0.009835281191064247,
+    "historical_608_coverage_percent_for_this_seed": 95.06578947368422,
+    "within_tolerance": true,
+    "stress_cases": [
+      {
+        "case": "zeros",
+        "max_absolute_error_original_sigma7": 1.2489482920097217e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "ones",
+        "max_absolute_error_original_sigma7": 1.2489482920097217e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "constant_negative",
+        "max_absolute_error_original_sigma7": 1.2489482920097217e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "alternating",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "case": "symmetric",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      }
+    ],
+    "stress_within_tolerance": true,
+    "reference_checkpoint_sha256": "94e51bec39a881f7d1eb142ffb0ab32dc9ef5ccef0ae7606e3d38c5196a0d6d7",
+    "checkpoint_unchanged": true,
+    "reference_state_tensors_unchanged": true,
+    "registered_parameters": 16388,
+    "gradient_enabled_parameters": 16385,
+    "onnx_bytes": 107745,
+    "model_sha256": "f36ecb0397bd63cd86062e527e8769ae922ece64fe5660d0eaa57f3e65046861",
+    "runtime_peak_RSS_process_MiB": 276.41796875,
+    "RSS_scope": "process peak including Torch, checkpoint, ORT, arrays and export; not incremental ORT memory",
+    "provisional_concurrent_forward_median_ms": 0.11388599523343146,
+    "provisional_concurrent_forward_p95_ms": 0.28969175764359517,
+    "provisional_concurrent_end_to_end_median_ms": 0.13643500278703868,
+    "provisional_concurrent_end_to_end_p95_ms": 0.2788429337670095,
+    "timing_scope": "CPU one intra/inter-op thread, batch1,10warmups100calls; provisional contention, excludes explanations",
+    "calibration_q_reused_unchanged": 0.016008127390891344,
+    "new_training_runs": 0,
+    "new_calibration_fits": 0,
+    "GPU_used": false,
+    "live_registry_updated": false,
+    "elapsed_seconds": 1.0719836450007278,
+    "reference_eval_batch_policy": "each window independently; frozen TimesNet adapter already enforces this in eval",
+    "adapter": "P3/S2 fixed slices and explicit end replication exactly replace Unfold; remaining model unchanged"
+  },
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5"
+  },
+  "AI_assistance_declared": true,
+  "serving_enabled": false
+}

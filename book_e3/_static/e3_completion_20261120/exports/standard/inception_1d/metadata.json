@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "model": "Inception-1D",
+  "seed": 271801,
+  "representative_seed_rule": "Smallest prespecified final seed ID 271801; not selected by test performance",
+  "profile": "offline_cpu_export_20261120",
+  "format": "ONNX",
+  "opset": 17,
+  "model_sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428",
+  "model_bytes": 2070967,
+  "input_name": "windows",
+  "input_shape": [
+    1,
+    7,
+    5
+  ],
+  "input_dtype": "float32",
+  "output_name": "normalized_prediction",
+  "onnx_output_unit": "sigma7 / frozen target_scale",
+  "output_scale": 0.020953875259434797,
+  "served_output_unit": "original population sigma7, not annualized",
+  "uses_observable_floor": false,
+  "floor_input_dtype": null,
+  "raw_feature_order": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "horizon_days": 1,
+  "preprocessing": {
+    "price_transform": "log(price_t) - log(last_observed_close) for all four price channels",
+    "volume_transform": "log1p(volume_t)",
+    "standardize": "(relative_features - frozen mean) / frozen std, then float32",
+    "mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "fit_count": 655,
+    "fit_start": "2023-01-08",
+    "fit_end": "2024-10-31",
+    "target_scale": 0.020953875259434797,
+    "clipping": false,
+    "refitted": false
+  },
+  "calibration_q": 0.007587061606981974,
+  "interval_nominal_coverage": 0.9,
+  "interval_formula": "[max(0, prediction_original - q), prediction_original + q]",
+  "interval_limitations": "Historical BTCUSDT calibration, 53 serially dependent days; no exact exchangeability or future/subgroup coverage guarantee.",
+  "scientific_source": {
+    "type": "existing_E2_frozen_final_checkpoint",
+    "checkpoint_sha256": "47fcee9055df2ca911cd080d871c66b3e6764b166e2b592ad6abe57e83321d97",
+    "checkpoint_bytes": 2007109,
+    "registered_trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+    "request_sha256": "0c81f58364ec38abcc4671a8bd38e371fa5f012adf6c75ccdbdf4365f622293b",
+    "architecture": {
+      "dropout": 0.0,
+      "training_registry_version": "e2-training-registry-v1",
+      "model": "Inception-1D",
+      "training_recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+      "registered_trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+      "initialization_seed": 271801,
+      "weights_pretrained": false,
+      "role": "E2_candidate",
+      "input_shape": [
+        7,
+        5
+      ],
+      "output": "positive sigma7/a; inversion belongs to caller",
+      "nas": false,
+      "frozen_body_parameter_count": 490561,
+      "actual_parameter_count": 490561,
+      "training_hpo_record": {
+        "batch_size": 32,
+        "dropout": 0,
+        "learning_rate": 0.0007394620646713903,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+        "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+        "weight_decay": 1.818489584292255e-06
+      },
+      "training_axes_applied": false,
+      "weights_reused": false,
+      "requested_existing_dropout": 0.0,
+      "iTransformer_existing_dropout_rate_bridge": false,
+      "source_roots_verified": false,
+      "market_data_read": false
+    },
+    "source_hashes": {
+      "scripts/e2_training_models.py": "46be0644e0ed9d966163b17f171092e81b6a82dd734efc7954d6104f5ee5360b",
+      "scripts/e2_recipe_models.py": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+      "scripts/e2_published_registry.py": "0704784aa0bb2887908d12ad12345094c8f6a707918aa695dbc11cda88092fec",
+      "scripts/e2_published_sae.py": "0436d73f9724bb065dc3642f18218cb35cda5e9abfa4de5090f8c5d69eb6c1aa",
+      "scripts/e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314",
+      "scripts/e2_reduced_fit.py": "64e83d0a2a39920ae470252b8eb81c8f78429817fed978bd22f64866fdfb8f5f",
+      "scripts/e2_staged_training.py": "b66ac8d2beb3748f4934e55e99514f53c52eada4a4dbd2e4b597d080c9f4722b",
+      "experiments/e2_published_architectures_20261112/architecture_policy.json": "a1c9440046af34c2b70bef9c05229dff2c6d863aa06ae191ed02c2de6d8bf0f2"
+    },
+    "architecture_is_original_checkpoint_metadata": true
+  },
+  "data_source": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+    "prediction_count_in_source": 133
+  },
+  "calibrator_source": {
+    "file_sha256": "edd174f9021d37325e3155280295121ff414230bdae03d0b26f81522abad9f93",
+    "content_sha256": "684dbd14ac798f9fe0d373e27be276e945cde87bd1b097255c161ee54992f27d",
+    "q": 0.007587061606981974,
+    "rank": 49,
+    "n": 53,
+    "date_start": "2024-11-08",
+    "date_end": "2024-12-30",
+    "checkpoint_sha256": "47fcee9055df2ca911cd080d871c66b3e6764b166e2b592ad6abe57e83321d97"
+  },
+  "original_scaler_file_sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu_count": 5
+  },
+  "roundtrip_status": "passed_real_608_and_53",
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "live_registry_updated": false,
+  "AI_assistance": "OpenAI Codex assisted export reconstruction, validation and documentation; no claim of independent human reproduction."
+}

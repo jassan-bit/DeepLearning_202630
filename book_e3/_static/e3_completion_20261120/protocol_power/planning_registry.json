@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "kind": "prospective_conditional_sensitivity_registry_not_experimental_preregistration",
+  "recorded_at_utc": "2026-11-20T14:26:07.331950+00:00",
+  "base_commit": "bbd2604a9b78bab7fc8289ad07aae0a6117e884e",
+  "pilot_master": "20261120T031424176339Z",
+  "pilot_result_commit": "8eaa581bc34b615a8507c9e384a3e4be29084720",
+  "inputs": {
+    "frozen_inputs/analytical_controls.csv": "643d29132864c8f5da799b0c74b2edcedb3b6b07c5cb3da72e914bd23b375ca5",
+    "frozen_inputs/assessment_predictions.csv": "0399c7c80f46ac2fdfccaf218a2866fe110f7ec5051d8484e488299c679ad193",
+    "frozen_inputs/development_verdict.json": "a9fe319d55f70c609e94323492cf716489604616474e7cc1d684aca2452485cc",
+    "frozen_inputs/final_assessment_scores.csv": "b4c624ddc5089cf897bf33ce5baac644624ad9fa1d99016604d3312bcb5d69e7",
+    "frozen_inputs/pilot_receipt.json": "bd5da25dc2a54001af5f66f2860bc502ff070611f7d3a41ce747d15f4c74dd89",
+    "frozen_inputs/plan.json": "eb5fbbade2b1dd3ab098821b2ab0c270504c824b1b0e0a17ed52b3bebafc55bd"
+  },
+  "historical_math_source": {
+    "path": "frozen_sources/historical_planning_math.py",
+    "sha256": "fb13e55f51a1b4d16abb06418103e5618d5cf50a19e46d30ad6e9f9ccae53eb7",
+    "reuse_scope": "pure mathematical functions only; build() and additive input loaders are never called"
+  },
+  "fixed_scenarios": {
+    "candidate": "atom_crps",
+    "known_variance_controls": [
+      "additive_positive_head",
+      "atom_mse_only",
+      "fixed_probs",
+      "atom_plugin",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "pilot_final_seeds": [
+      20261118,
+      20261119,
+      20261120
+    ],
+    "pilot_dates": 55,
+    "BTC_inherited_RMSE_delta": 0.00025772842664981106,
+    "delta_status": "historical operational margin; author must justify its use for V3 before any freeze; not chosen from pilot gain or 2% heuristic",
+    "alternative_gain_delta_multipliers": [
+      1.25,
+      1.5,
+      2.0
+    ],
+    "separation_definition": "g1_minus_delta",
+    "seed_sd_scenarios": [
+      "observed_three_seed_sd",
+      "normal_theory_simultaneous_six_SD_upper95",
+      "twice_observed_three_seed_sd"
+    ],
+    "temporal_HAC_Bartlett_lags": [
+      7,
+      14,
+      28
+    ],
+    "temporal_SD_multipliers": [
+      1,
+      2
+    ],
+    "future_R_sensitivity": [
+      10,
+      20,
+      50,
+      100
+    ],
+    "future_T_sensitivity": [
+      55,
+      365,
+      730
+    ],
+    "main_rivals": 19,
+    "procedures_per_rival": 3,
+    "component_count": 57,
+    "conservative_alpha": 0.0008771929824561404,
+    "targets": {
+      "marginal_reference": 0.9,
+      "three_components_union_sufficient": 0.9666666666666667,
+      "all57_components_union_sufficient": 0.9982456140350877
+    },
+    "joint_example_dependence": [
+      "independent_product_hypothesis",
+      "perfect_positive_common_normal_hypothesis",
+      "arbitrary_dependence_union_lower_bound"
+    ],
+    "simulation_seed": null,
+    "simulation_used": false,
+    "random_sampling_used": false,
+    "planning_method": "analytic noncentral t / asymptotic normal / union bounds; no Monte Carlo"
+  },
+  "prohibitions": [
+    "no observed posthoc power",
+    "no positive alternative set to observed pilot gain",
+    "no additive SD transferred to V3",
+    "no final R chosen from this insufficient pilot",
+    "no claim known six variance controls cover nineteen rivals",
+    "no interpretation 365 assumed future dates as independent acquired observations",
+    "no model fit/prediction/calibration/HPO"
+  ],
+  "guide_minimum_pilot_seed_pairs": 5,
+  "actual_pilot_seed_pairs": 3,
+  "final_R_selected": null,
+  "scientific_go": false,
+  "AI_assistance_declared": true
+}
