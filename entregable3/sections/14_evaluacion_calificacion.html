@@ -423,7 +423,7 @@
 <p>La nota se expresa en la escala de <strong>0 a 5</strong> y se determina en dos pasos: primero se obtiene el puntaje ponderado de la rúbrica y después se aplica el tope que corresponda al estado <strong>evaluado</strong> de R1, R2 y R3. Una condición pendiente no se convierte en «no» para fijar ese tope, y una casilla sin evidencia no se marca cumplida para completar la rúbrica.</p>
 <p>La evidencia se consulta en las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">correcciones de E2</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">artefactos</span></a>, <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">candidato</span></a>, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">diseño riguroso</span></a>, <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">verificación estadística</span></a> y <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">diseño del dashboard</span></a>. Las actividades pendientes conservan su estado; esta ampliación no entrena modelos, ejecuta contrastes ni calcula calificaciones.</p>
 <p>La matriz incorpora el corte posterior del <strong>17 de noviembre de 2026</strong>: diez semillas por red de E2 y de la referencia E3 de 1210 parámetros, tres trayectorias clásicas deterministas y análisis de los 17 sistemas sobre 608 fechas. Actualizar una casilla con evidencia retrospectiva no la convierte en cumplimiento confirmatorio ni transfiere las propiedades del primer módulo de 1211 parámetros a la receta evaluada.</p>
-<p>La auditoría ampliada de <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8.17</span></a> añade un corte real en ejecución: 3/3 archivos admitidos, protocolo exploratorio previo y <strong>251 trabajos completos guardados</strong>. D01 cubre los 19 sistemas y D02 cuatro redes; el análisis final y la potencia completa siguen pendientes. Estos datos actualizan el inventario de evidencia, sin asignar nota, tope ni acreditación de R1/R3.</p>
+<p>La <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">auditoría ampliada cerrada en 8.18</span></a> aporta <strong>796 trabajos completos</strong> y evaluación de los 19 sistemas en D00–D03, con 76 paneles, análisis terminado y 16 figuras. El corte parcial de 251 trabajos permanece en 8.17 como antecedente. La potencia prospectiva completa, la justificación de generalización y los restantes requisitos de R3 siguen pendientes. Estos datos actualizan la evidencia sin asignar nota, tope ni acreditación de R1/R3.</p>
 <section id="tope-de-calificacion-segun-el-modelo-original">
 <h2>14.1 Tope de calificación según el modelo original<a class="headerlink" href="#tope-de-calificacion-segun-el-modelo-original" title="Link to this heading">#</a></h2>
 <p>La guía establece estos casos <strong>condicionales</strong>, sujetos a evidencia y evaluación académica:</p>
@@ -653,14 +653,14 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Cierre A, controles aplicables y anclas del benchmark confirmatorio; el freeze histórico no cierra A automáticamente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Familia completa, sin selección posterior de rivales.</p></td>
-<td><p>Comparación retrospectiva calculada; auditoría de 19 sistemas en curso.</p></td>
-<td><p>La familia histórica conserva <strong>16 rivales</strong> frente a E3 y 48 contrastes primarios sobre 608 fechas. La auditoría nueva añade dos controles: D01 completó sus 19 sistemas y D02 cuatro redes, según 8.17.</p></td>
-<td><p>Completar y analizar toda la familia en los cuatro conjuntos de la auditoría; cerrar equidad, potencia y requisitos confirmatorios. El m≈12 ilustrativo no reduce ninguna familia.</p></td>
+<td><p>Familia histórica y auditoría exploratoria de 19 sistemas calculadas.</p></td>
+<td><p>La familia histórica conserva <strong>16 rivales</strong> y 48 contrastes sobre 608 fechas. La auditoría nueva añade dos controles y completó sus 19 sistemas en D00–D03; <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a> enlaza los 76 paneles y análisis.</p></td>
+<td><p>Cerrar la justificación de equidad, potencia y requisitos confirmatorios. El m≈12 ilustrativo no reduce ninguna familia ni sus resultados adversos.</p></td>
 </tr>
 <tr class="row-even"><td><p>Mismo presupuesto, particiones, preprocesamiento y fuente de pesos preentrenados.</p></td>
-<td><p>Diferencia histórica documentada; procedimiento común nuevo en ejecución.</p></td>
-<td><p>E2 histórico: 655 ejemplos de ajuste y 53 de calibración; E3: 532 de ajuste y 116 de validación. La auditoría de 8.17 fija un procedimiento y presupuesto comunes, con contratos de información y recursos declarados.</p></td>
-<td><p>Completar la ejecución y revisar sus consumos y comparabilidad; no atribuir el resultado histórico exclusivamente a la arquitectura ni asumir que diez semillas o una misma forma de entrada demuestran equidad.</p></td>
+<td><p>Diferencia histórica documentada; procedimiento común exploratorio completado.</p></td>
+<td><p>E2 histórico: 655 ejemplos de ajuste y 53 de calibración; E3: 532 de ajuste y 116 de validación. La auditoría nueva ejecutó la familia bajo el procedimiento y presupuesto prefijados; contratos, desviaciones y recursos se conservan en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>.</p></td>
+<td><p>Revisar consumos y comparabilidad efectiva, incluida la medición completa de recursos; no atribuir resultados exclusivamente a la arquitectura ni asumir que diez semillas o una misma forma de entrada prueban equidad.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Capacidad controlada con parámetros/FLOPs y benchmark de tamaño comparable si el propio es mayor.</p></td>
 <td><p>Parcial de inventario.</p></td>
@@ -714,9 +714,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>No identifica ganador único, equivalencia ni ganancia práctica de RMSE. No sustituye la selección histórica de E2 o una comparación confirmatoria bajo protocolo común.</p></td>
 </tr>
 <tr class="row-even"><td><p>Prueba entre conjuntos: Friedman–Iman–Davenport y Holm, o bayesiana con ROPE.</p></td>
-<td><p>Pendiente.</p></td>
-<td><p>Alternativas documentadas, sin elegir por resultados.</p></td>
-<td><p>Conjuntos admisibles, unidad/dependencia y análisis con límites de potencia; no promediar RMSE de escalas diferentes.</p></td>
+<td><p>Comparación descriptiva entre conjuntos disponible; adecuación inferencial pendiente.</p></td>
+<td><p>La auditoría completa aporta métricas y rangos entre D00–D03 en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>, con dependencia entre conjuntos explícita.</p></td>
+<td><p>Justificar unidad independiente, método y límites de potencia y ejecutar la prueba admisible que corresponda; una tabla de rangos no es por sí sola Friedman–Iman–Davenport. No promediar RMSE de escalas diferentes.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Sensibilidad a prueba, métrica secundaria y subconjunto de semillas.</p></td>
 <td><p>Disponible con alcance posterior.</p></td>
@@ -741,19 +741,19 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Al menos tres conjuntos de naturaleza distinta, elegidos antes de conocer resultados y fuera del diseño.</p></td>
-<td><p>Parcial: <strong>3/3 archivos admitidos; evaluación completa de D01 y parcial de D02</strong>.</p></td>
-<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">Sección 8.17</span></a>: D01 WIKI/AAPL, D02 ETHUSDT Spot y D03 BTCUSD_PERP, con diversidad y dependencia declaradas. D01 guarda resultados de los 19 sistemas y D02 de cuatro redes.</p></td>
-<td><p>Completar D02/D03 y el análisis bajo el procedimiento prefijado, con potencia y alcance de generalización justificados. Los tres archivos no representan tres mercados independientes y la admisión no demuestra superioridad.</p></td>
+<td><p><strong>Tres archivos admitidos y evaluación completa de la familia</strong>, con independencia por justificar.</p></td>
+<td><p><a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>: D01 WIKI/AAPL, D02 ETHUSDT Spot y D03 BTCUSD_PERP, además de D00, completaron los 19 sistemas y el análisis.</p></td>
+<td><p>Justificar diversidad e independencia pertinentes, exposición previa y potencia. D02/D03 comparten exposición cripto y D03 se solapa con el subyacente BTC; tres archivos no representan automáticamente tres mercados independientes ni demuestran superioridad.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Evaluación bajo cambio de distribución: periodo, dominio o fuente.</p></td>
-<td><p>Pendiente E3.</p></td>
-<td><p>Estrategia propuesta y exposición previa de periodos históricos identificada.</p></td>
-<td><p>Evidencia mantenida fuera de las decisiones de diseño; otro tramo conocido no adquiere independencia al renombrarlo.</p></td>
+<td><p>Comparación exploratoria entre conjuntos disponible.</p></td>
+<td><p>D01–D03 y diagnósticos temporales/perturbaciones calculados en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>, con exposición y dependencia declaradas.</p></td>
+<td><p>Justificar qué cambio está aislado y qué datos se mantuvieron fuera del diseño; un tramo conocido no adquiere independencia al renombrarlo.</p></td>
 </tr>
 <tr class="row-even"><td><p>Mejor media en al menos dos de tres adicionales y ausencia de inferioridad significativa frente a cualquier rival en cualquiera.</p></td>
-<td><p>Pendiente.</p></td>
-<td><p>Criterio R3 conservado sin resultados del candidato.</p></td>
-<td><p>Métricas y contrastes por conjunto; falta de rechazo de inferioridad no equivale a equivalencia o no inferioridad demostradas.</p></td>
+<td><p>Resultados por conjunto disponibles; R3 no acreditada.</p></td>
+<td><p>Métricas y contrastes de la familia completa en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>; se conservan resultados favorables, adversos y no concluyentes.</p></td>
+<td><p>Evaluar el criterio completo con pruebas apropiadas y potencia, sin escoger rivales o conjuntos posteriores. Falta de rechazo de inferioridad no equivale a equivalencia o no inferioridad demostradas.</p></td>
 </tr>
 </tbody>
 </table>
@@ -782,14 +782,14 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Baseline trivial, riesgos comparables, contraste de brecha, residuos y consistencia del candidato; no heredar adecuación de otras redes.</p></td>
 </tr>
 <tr class="row-even"><td><p>Calibración antes/después de la recalibración, adaptada a la tarea.</p></td>
-<td><p>Diagnóstico posterior y adopción del intervalo individual disponibles; validación confirmatoria pendiente.</p></td>
-<td><p>Diez cuantiles calculados con 53 ventanas y 530 forwards CPU, sin cambiar los pronósticos puntuales; <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.11</span></a>. El servicio adopta por separado el q existente de la semilla 271801, ligado por hashes al mismo predictor; <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a>.</p></td>
-<td><p>Calibración probabilística y de regresión completa según la salida, validación temporal prefijada y aceptación pública del perfil. La adopción posterior no reforma la campaña original.</p></td>
+<td><p>Diagnóstico histórico, perfil individual de servicio y calibración exploratoria ampliada disponibles.</p></td>
+<td><p><a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8.11</span></a> conserva diez cuantiles y 530 forwards CPU; el servicio usa el q existente de 271801. <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a> añade calibradores y evaluación de intervalos en los cuatro conjuntos, separados de esos artefactos históricos.</p></td>
+<td><p>Completar la calibración probabilística/regresión que exija la salida y su validación temporal confirmatoria, junto con aceptación pública del perfil. Un punto y un intervalo no definen toda una distribución predictiva.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Incertidumbre: cobertura empírica frente a nominal y por subgrupo.</p></td>
-<td><p>Diagnóstico posterior y perfil local individual verificados; aceptación pública pendiente.</p></td>
-<td><p>Las medias de diez semillas del diagnóstico son 94,49 % global y 86,22 % en 2026Q1, con anchura 0,01096344 σ₇. El intervalo del predictor 271801 servido tiene q=0,005402463770651868, cobertura individual 94,08 % y 85,56 % en 2026Q1; sólo se aplica a objetivos posteriores al 30 de diciembre de 2024. <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Capítulo 9</span></a>.</p></td>
-<td><p>Subgrupos y evaluación prefijados, validez bajo cambio temporal y aceptación pública. Una media de diez semillas no se atribuye al intervalo individual y la cobertura histórica no es garantía futura.</p></td>
+<td><p>Diagnósticos históricos y ampliados calculados; aceptación pública del servicio pendiente.</p></td>
+<td><p>El diagnóstico histórico conserva 94,49 % global y 86,22 % en 2026Q1 entre diez semillas; el predictor servido 271801 tiene 94,08 % y 85,56 %. La auditoría nueva aporta cobertura/anchura y subgrupos temporales por conjunto en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>.</p></td>
+<td><p>Justificar subgrupos, dependencia y cambio temporal sin convertir cobertura histórica en garantía futura. Las cifras de la campaña nueva no se atribuyen a los pesos o calibrador históricos del servicio.</p></td>
 </tr>
 </tbody>
 </table>
@@ -813,14 +813,14 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Al menos tres componentes aislados del mecanismo que finalmente se presente, mismas pruebas estadísticas y controles de capacidad; las variantes históricas de otros núcleos no completan la ablación de la referencia aditiva.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Sensibilidad a hiperparámetros propios y estabilidad por semilla.</p></td>
-<td><p>Estabilidad de una receta disponible; sensibilidad pendiente.</p></td>
-<td><p>Diez semillas congeladas de la aditiva: RMSE media 0,0029394324 y DE muestral 0,0000471254, con intervalos condicionados al calendario; <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8</span></a>.</p></td>
-<td><p>La réplica de una receta no es HPO ni sensibilidad a sus hiperparámetros. Faltan estudios comparables y sus criterios, sin seleccionar sólo la región favorable.</p></td>
+<td><p>Réplicas históricas y sensibilidad exploratoria ampliada calculadas.</p></td>
+<td><p>Diez semillas históricas aditivas y nueva evaluación de las tres tasas de aprendizaje prefijadas con su semilla HPO; tablas y alcance en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>.</p></td>
+<td><p>La sensibilidad usa una semilla HPO y no equivale a diez semillas en cada configuración. Justificar criterios, cubrir los hiperparámetros pertinentes y conservar todos los ensayos, sin escoger la región favorable.</p></td>
 </tr>
 <tr class="row-even"><td><p>Robustez a ruido, perturbaciones y reducción de muestra.</p></td>
-<td><p>Pendiente E3.</p></td>
-<td><p>Estudios pendientes identificados en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">sección 8.8</span></a>.</p></td>
-<td><p>Al menos tres severidades, curvas de degradación y aprendizaje/escalabilidad con varias semillas; separar estrés artificial de escenarios plausibles.</p></td>
+<td><p>Estudios exploratorios ejecutados en D00–D03.</p></td>
+<td><p>Tres severidades de ruido causal D7, escenario limpio y curvas con fracciones 25 %, 50 % y 100 % y tres semillas para candidato/TSMixer; tablas y 16 figuras en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>.</p></td>
+<td><p>Separar estrés artificial de cambio plausible. En las curvas, tamaño y extensión temporal varían conjuntamente; los clásicos mantienen historia cruda limpia. Completar adecuación y alcance confirmatorio, no tratar estas curvas como un efecto aislado del tamaño.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Interpretabilidad con fidelidad, estabilidad, comparación con mejor benchmark y descarte de atajos.</p></td>
 <td><p>Sensibilidad local disponible; estudio completo pendiente.</p></td>
@@ -833,9 +833,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Escenarios prefijados, errores compartidos y causas discutidas sin inferencia causal injustificada. Un grupo definido por el objetivo realizado no estaba disponible al pronosticar.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Parámetros, FLOPs, latencia, memoria, entrenamiento y energía con Pareto.</p></td>
-<td><p>Parcial de ingeniería e inventario.</p></td>
-<td><p>Cinco ONNX verificados; cuatro conservan su perfil común de latencia y Pareto, mientras TSMixer tiene una medición separada. Los perfiles TorchScript históricos mantienen otro alcance. <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">Capítulo 9</span></a>.</p></td>
-<td><p>FLOPs completos, recursos comparables de los 17 sistemas, energía y perfil del servicio público. La paridad de cinco artefactos no establece una frontera de toda la familia.</p></td>
+<td><p>Inventario de ingeniería y filas de recursos ampliadas disponibles; medición completa pendiente.</p></td>
+<td><p>Cinco ONNX con perfiles de alcance separado y mediciones registradas por grupo de ajuste en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>. Los campos sin medida no se sustituyen por cero.</p></td>
+<td><p>FLOPs y energía completos, comparabilidad de hardware/fronteras de medición, Pareto de toda la familia y perfil público del servicio. La paridad de cinco artefactos no establece esa frontera.</p></td>
 </tr>
 </tbody>
 </table>
@@ -859,9 +859,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Depósito persistente con DOI, derechos del paquete final ratificados y reproducción humana del alcance que fije el protocolo; los entrenamientos históricos conservados no se repiten por rutina. La igualdad de agregados no acredita determinismo universal o entre plataformas.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Maestro por ejecución que genere informe y dashboard.</p></td>
-<td><p>Disponible para las métricas BTC actuales; maestro final parcial.</p></td>
-<td><p>El catálogo de 17 sistemas deriva de la tabla ampliada del libro y tiene una prueba de igualdad de valores; fuentes y hashes del bundle publicados.</p></td>
-<td><p>Completar campos de recursos, validación integral de calibración E3 y conjuntos adicionales; las curvas de la semilla representante no son la media de diez modelos.</p></td>
+<td><p>Maestro histórico consistente y análisis ampliado disponibles; integración final parcial.</p></td>
+<td><p>El catálogo de 17 sistemas deriva de su tabla histórica y tiene una prueba de igualdad de valores. La <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">auditoría de 8.18</span></a> añade métricas y diagnósticos de la familia de 19 sistemas en D00–D03.</p></td>
+<td><p>Completar recursos comparables y la integración explícita de la versión final con el servicio. No sustituir silenciosamente el catálogo, los pesos o el calibrador históricos; las curvas representantes no son medias de diez modelos.</p></td>
 </tr>
 <tr class="row-even"><td><p>Pruebas unitarias ejecutadas en CI.</p></td>
 <td><p>Evidencia local y CI identificada por corte y alcance.</p></td>
@@ -869,9 +869,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Conservar los recibos de la versión final sin sumar coberturas distintas como una campaña científica. Ni estos checks ni los casos históricos certifican reproducción humana, defensa académica o servicio Render.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Datos o instrucciones exactas de obtención y licencias verificadas.</p></td>
-<td><p>Parcial, con D01 admitido para su tarea RAW entre sesiones.</p></td>
-<td><p>Cohorte y once insumos históricos con SHA256 conservados. D01 añade procedencia WIKI/Bokeh de dominio público, bytes fijados, calendario contrastado y política explícita en <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">8.13</span></a>.</p></td>
-<td><p>Completar D02/D03 y la distribución/instrucciones del paquete final; no confundir datos admitidos con evaluación de modelos o con deserialización y reproducción de todos los pesos.</p></td>
+<td><p>Tres archivos adicionales admitidos y evaluados; derechos del paquete final parciales.</p></td>
+<td><p>Cohorte e insumos históricos conservados; D01 WIKI/AAPL y D02/D03 disponen de fuentes, calendarios, comprobaciones y hashes públicos, con políticas declaradas en <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">8.18</span></a>.</p></td>
+<td><p>Ratificar condiciones/derechos de distribución del paquete final y proporcionar sus instrucciones exactas. La evaluación completa no equivale a reproducción independiente de todos los pesos.</p></td>
 </tr>
 <tr class="row-even"><td><p>Reproducción independiente desde cero en contenedor, por persona ajena al código, con discrepancia máxima.</p></td>
 <td><p>Humana pendiente; reproducción automática de agregados completada.</p></td>
@@ -959,7 +959,7 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 </section>
 <section id="evidencia-posterior-que-modifica-la-interpretacion">
 <h2>Evidencia posterior que modifica la interpretación<a class="headerlink" href="#evidencia-posterior-que-modifica-la-interpretacion" title="Link to this heading">#</a></h2>
-<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">control común del capítulo 8</span></a> reduce la ventaja RMSE descriptiva de E3 a <strong>10,33 %</strong> frente al mejor rival proyectado, y el control sólo piso mejora su MAE en <strong>3,70 %</strong>. Esta evidencia limita la atribución al mecanismo y se conserva junto con la subcobertura temporal del calibrador posterior. La revisión de once antecedentes no acredita R1. La planificación de potencia y el preflight Colab no satisfacen R3. La auditoría posterior ya admite los tres archivos y ejecuta ajustes bajo un protocolo exploratorio y presupuesto prefijados: D01 completó los 19 sistemas y D02 cuatro redes. Faltan completar la familia y los conjuntos, generar el análisis final y cerrar la potencia de la batería. Sus 251 trabajos completos guardados no acreditan por sí solos superioridad ni un tope mayor.</p>
+<p>El <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">control común del capítulo 8</span></a> conserva la ventaja RMSE descriptiva histórica de <strong>10,33 %</strong> frente al mejor rival proyectado y el <strong>3,70 %</strong> de mejora MAE del control sólo piso frente a E3. Son cortes anteriores a la <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">auditoría exploratoria completa de 8.18</span></a>, que aporta 796 trabajos, los 19 sistemas en D00–D03, análisis y figuras terminados. La revisión de antecedentes y los cálculos no acreditan R1 o R3 automáticamente. Persisten la justificación de independencia, la potencia prospectiva de la batería y los requisitos científicos restantes; completar la ejecución no asigna un tope mayor.</p>
 <p>El <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">expediente de R1 de 6.11</span></a> conserva comparación formal, trazabilidad y un formulario externo vacío. La región admisible de la cabeza aditiva tiene un antecedente de guarda por muestra; la equivalencia escalar no identifica clases neuronales o entrenamiento. La ejecución posterior de <strong>6.12</strong> ya tiene respuestas verificadas de tres bases, con 180 ocurrencias de metadatos y un cribado de títulos separado del recibo original. Las consultas amplias y el examen limitado a primeras páginas no acreditan exhaustividad. La diferencia sustantiva y las lecturas requeridas siguen pendientes. Conforme a la indicación docente comunicada por el autor, 6.13 adopta la revisión por IA declarada como sustitución del revisor humano para ese componente y documenta sus dos consultas repetidas. No se marca R1 como acreditada por los metadatos, el cribado o los dictámenes asistidos; tampoco se asigna aquí una nota o un tope al proyecto.</p>
 <p>La indicación de <strong>6.13</strong> retira el carácter humano como condición de modalidad para esa revisión externa, con uso de IA mencionado. El componente se documenta como completado mediante dictamen y dos cadenas repetidas por IA. Esto no convierte el concepto crítico en una acreditación favorable de novedad ni completa el resto de 14.5.1; R1, la defensa de R2 y R3 conservan sus pendientes científicos y académicos.</p>
 </section>

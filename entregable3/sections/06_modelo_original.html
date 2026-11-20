@@ -425,6 +425,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-c-el-modelo-original">
 <h1>6 Bloque C El modelo original<a class="headerlink" href="#bloque-c-el-modelo-original" title="Link to this heading">#</a></h1>
 <p>La referencia evaluada es <strong>CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva</strong>, de <strong>1210 parámetros</strong>. Sus diez semillas congeladas obtuvieron una RMSE media individual de <strong>0,0029394324</strong> sobre las 608 fechas históricas comunes. La <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">comparación estadística posterior</span></a> ya está calculada frente a los 16 rivales de E2; sus resultados no acreditan por sí solos R1, R2 o R3.</p>
+<p>El <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">cierre de 8.18</span></a> añade una auditoría exploratoria común de 19 sistemas en D00–D03, con 796 trabajos completos, análisis y figuras. Sus resultados se distinguen de las diez réplicas históricas y no acreditan por sí solos R1/R2/R3.</p>
 <p>Los pilotos v1, v2 y por momentos se conservan como historia de desarrollo. La RMSE <strong>0,0031446147843954175</strong> corresponde a la validación de una semilla aditiva de v2, no a la media de prueba de las diez réplicas. La receta half-t5 con MSE y NLL y el posterior piloto por momentos no superaron sus heurísticas de continuación. La cabeza de momentos no es la arquitectura de la comparación actual ni se ha seleccionado como aporte original. La sección 6.5 conserva la formulación del primer mecanismo y 6.7 la propuesta por momentos; 6.8 identifica la referencia efectivamente evaluada.</p>
 <p>Las evidencias completas se encuentran en los anexos: <a class="reference internal" href="17_revision_post_piloto.html"><span class="std std-doc">revisión del piloto v1, B</span></a>, <a class="reference internal" href="18_ficha_cnn_lstm_atencion_v2.html"><span class="std std-doc">ficha v2, C</span></a>, <a class="reference internal" href="19_piloto_innovacion_v2.html"><span class="std std-doc">ejecución v2, D</span></a>, <a class="reference internal" href="20_cierre_v2.html"><span class="std std-doc">cierre v2, E</span></a>, <a class="reference internal" href="21_propuesta_momentos.html"><span class="std std-doc">formulación por momentos, F</span></a> y <a class="reference internal" href="22_dictamen_momentos.html"><span class="std std-doc">dictamen de admisibilidad, G</span></a>.</p>
 <section id="relacion-con-el-paper-guia-de-e2">
@@ -453,7 +454,7 @@
 </tr>
 <tr class="row-even"><td><p>R3 Superioridad estadísticamente verificada</p></td>
 <td><p>Pilotos de desarrollo y comparación posterior completa frente a 16 rivales: los 48 contrastes primarios rechazan tras Holm, con ámbitos temporal y de inicialización distintos.</p></td>
-<td><p>No se acredita R3: calendario conocido, ajuste de E2 con 655 ejemplos frente a 532 en E3, potencia no dimensionada y conjuntos adicionales pendientes; la pertinencia de las pruebas y sus supuestos debe justificarse para la afirmación F2a.</p></td>
+<td><p>No se acredita R3. El corte histórico conserva calendario conocido y tratamientos distintos; el <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">cierre de 8.18</span></a> añade comparación común en cuatro conjuntos y la menor RMSE media descriptiva del candidato en los cuatro. Esa auditoría no calcula la nueva batería de tres pruebas con Holm ni certifica potencia prospectiva o independencia entre mercados.</p></td>
 </tr>
 </tbody>
 </table>
@@ -554,7 +555,7 @@
 </tr>
 <tr class="row-odd"><td><p>Diseño y confirmación</p></td>
 <td><p>Resultados históricos, diez réplicas aditivas y análisis posterior completo de la familia conservados; no hay preregistro confirmatorio de estos resultados.</p></td>
-<td><p>Cerrar comparación justa, potencia y conjuntos adicionales para una confirmación futura.</p></td>
+<td><p>La comparación común exploratoria y los tres conjuntos adicionales ya tienen resultados en el <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">cierre de 8.18</span></a>; siguen pendientes potencia prospectiva, batería formal y diseño confirmatorio apropiado.</p></td>
 </tr>
 </tbody>
 </table>

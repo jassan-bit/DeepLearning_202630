@@ -1,5 +1,7 @@
 # 8 Bloque D Verificación estadística y evaluación ampliada
 
+**Estado vigente del 19 de noviembre de 2026:** la auditoría exploratoria de 19 sistemas en D00–D03 completó **796 trabajos, 76 paneles, 12 tablas de análisis y 16 figuras**. El [cierre de 8.18](#e3-final-extended-audit) contiene sus resultados y limitaciones. Las secciones anteriores conservan sus cortes históricos; los 48 contrastes retrospectivos descritos a continuación pertenecen a otra comparación y no se trasladan a la auditoría ampliada. Esta última no calculó nuevos valores *p*, ajuste de Holm o tres pruebas confirmatorias por rival.
+
 **Corte del 17 de noviembre de 2026: análisis retrospectivo ejecutado sobre predicciones congeladas.** La CNN-LSTM con atención de contenido y salida aditiva positiva tiene diez semillas; cada una de las trece redes rivales también tiene diez. Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista cada uno. La comparación incluye los diecisiete sistemas sobre las mismas 608 fechas, sin eliminar rivales, semillas ni observaciones.
 
 Los **48 contrastes principales** —dieciséis rivales por tres procedimientos— rechazaron sus nulas frente al margen heredado, con **Holm sobre los 48 p-valores** y máximo p ajustado **0,0019**. Las sensibilidades temporales conservaron esa decisión. Este resultado está condicionado al calendario y a los supuestos de cada método: **no acredita por sí solo R3**, un diseño confirmatorio previo o la originalidad del mecanismo. El MCS auxiliar conserva diez sistemas, incluido E3; no identifica un ganador único.
@@ -24,7 +26,7 @@ Se conservan su {download}`copia de borrador para revisión <../_static/e3_revis
 | Hipótesis principales y exploratorias | La ganancia de RMSE y el margen se especifican abajo. Las hipótesis del mecanismo y predicciones secundarias deben corresponder al aporte defendido; las de penalización/saturación no se trasladan a la salida aditiva. Conservar lo posterior como exploratorio. |
 | Métrica primaria, secundarias y margen heredado | Media de RMSE individuales, MAE secundaria y δ heredado. No cambiar de métrica, dirección o margen después de ver la prueba; las métricas descriptivas añadidas conservan su fecha posterior. |
 | Fuente del mecanismo y transferencia | [Procedencia y antecedentes](06_modelo_original.md), con componentes conocidos y revisión abierta. No inventar una fuente o adaptación para completar la casilla. |
-| Tres conjuntos adicionales | Estado actual de la auditoría exploratoria de 8.17: **3/3 archivos admitidos**, D01 con 19 sistemas completos y D02 con cuatro modelos completos; D03 espera ajustes. El análisis final sigue pendiente. Los inventarios de 8.12 y 8.13 conservan sus cortes históricos. |
+| Tres conjuntos adicionales | La auditoría exploratoria completada en [8.18](#e3-final-extended-audit) evalúa **D01–D03 y D00 con 19 sistemas en cada conjunto**. Conserva sus dependencias de mercado y temporales; no acredita tres dominios independientes ni el diseño confirmatorio de R3. Los inventarios anteriores conservan sus cortes históricos. |
 | Particiones, ejecuciones, semillas y determinismo | Calendario y diez inicializaciones registrados para la comparación histórica; 8.17 fija particiones, purgas y semillas de la auditoría exploratoria. Quedan pendientes la separación confirmatoria y el número final dimensionado por potencia. |
 | Familia, pruebas, ajustes y nivel | Los 16 rivales permanecen completos. El análisis posterior tiene Holm global48, α=0,05 y MCS auxiliar al 90 %; justificar las pruebas y familias definitivas antes de confirmar. |
 | Optimización, cómputo y potencia | Registrar número de configuraciones, épocas/parada y tiempo real por modelo, con capacidad y hardware. La comparación histórica no declara presupuesto equivalente. La auditoría exploratoria de 8.17 fija rejilla y presupuesto común; la potencia por contraste y conjunta sigue pendiente. |
@@ -70,11 +72,11 @@ El preprocesamiento, las variables disponibles, aumentos aplicables, particiones
 
 ## 8.3 Evaluación en conjuntos de datos adicionales
 
-**Pendiente.** Este análisis sólo usa una cronología BTC conocida. No se han evaluado tres conjuntos adicionales ni se ha demostrado consistencia entre dominios. Las semillas no son conjuntos de datos independientes; por eso no se ejecuta Friedman, Iman–Davenport o un diagrama de diferencia crítica usando las diez inicializaciones como si fueran diez mercados.
+**La auditoría ampliada ya evaluó los tres conjuntos adicionales.** El [cierre de 8.18](#e3-final-extended-audit) contiene resultados para D01–D03 y el BTC D00 bajo la política común. El análisis histórico del 17 de noviembre, conservado en 8.1–8.12, sólo usó una cronología BTC conocida. Las semillas no son conjuntos de datos independientes; no se ejecuta Friedman o Iman–Davenport usando diez inicializaciones como si fueran diez mercados. El análisis nuevo ofrece rangos descriptivos entre conjuntos, sin una nueva prueba formal entre dominios.
 
-La elección y evaluación de los conjuntos adicionales, sus márgenes por escala, licencias, auditorías y comparación completa siguen requiriendo un diseño previo. No se promedian RMSE de escalas distintas ni se denomina confirmación independiente a otro tramo ya expuesto.
+La selección, admisión y comparación exploratorias están ejecutadas; permanecen pendientes los márgenes y la batería confirmatoria con su potencia y adecuación temporal. No se promedian RMSE de escalas distintas ni se denomina confirmación independiente a otro tramo ya expuesto. La presencia de exposiciones cripto compartidas y solapamiento BTC limita la generalización.
 
-El inventario preparatorio inicial del 18 de noviembre, resumido en **8.12**, identificó tres candidatos con **cero conjuntos admitidos o evaluados en ese corte**. La revisión posterior de calendario y política de **8.13** admitió D01 WIKI/AAPL para una tarea RAW entre sesiones: aquel corte fue **1 de 3 archivos admitidos, 0 evaluados por modelos y 2 pendientes**. La actualización 3/3 y los resultados parciales de modelos están en 8.17. La admisión de un archivo no completa la evaluación entre dominios ni el protocolo común de modelos.
+El inventario preparatorio inicial del 18 de noviembre, resumido en **8.12**, identificó tres candidatos con **cero conjuntos admitidos o evaluados en ese corte**. La revisión posterior de calendario y política de **8.13** admitió D01 WIKI/AAPL para una tarea RAW entre sesiones: aquel corte fue **1 de 3 archivos admitidos, 0 evaluados por modelos y 2 pendientes**. La actualización 3/3 y los resultados parciales se conservan en 8.17; el cierre completo está en 8.18. Cada etapa mantiene su fecha y alcance.
 
 Cada conjunto debe mantener la **misma tarea y métrica primaria** y diferir del principal en al menos dos ejes pertinentes de la guía: tamaño, dominio, ruido, dimensionalidad o desbalance cuando sea aplicable. En esta regresión no se inventa un desbalance de clases; la distribución del objetivo puede describirse como contexto sin convertirla automáticamente en otro eje acreditado. Su ficha debe identificar fuente pública, licencia/condiciones, versión y hash, periodo/unidad independiente, ejes de diferencia, particiones, auditoría de fuga, presupuesto y margen con unidades. Los 17 sistemas se evalúan en cada conjunto; una limitación de memoria del dashboard no autoriza excluir un rival científico.
 
@@ -536,13 +538,13 @@ Los [cuadernos de CPU y GPU](https://github.com/jassan-bit/DeepLearning_202630/t
 
 ## 8.17 Auditoría ampliada ejecutable y estudios de robustez
 
-La nueva campaña ya produjo entrenamiento real, conservando los resultados históricos. **El corte auditado de la parte 46 contiene 251 trabajos completos sobre D01 y D02; el análisis ampliado final sigue pendiente.** Los tres archivos adicionales tienen admisión pública y el protocolo exploratorio se fijó con tag antes de los ajustes. El [cuaderno Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/e3_evaluacion_ampliada_robustez_colab.ipynb) reúne admisión, preespecificación, ajustes, evaluación, análisis, figuras y continuación desde GitHub. La prueba de Render tiene su propio flujo y no bloquea esta auditoría.
+Esta sección conserva el método y **el corte histórico de la parte 46, con 251 trabajos completos sobre D01 y D02**. En aquel corte faltaba el análisis final. La continuación posterior completó los cuatro conjuntos, el análisis y las figuras: véase [8.18](#e3-final-extended-audit). Los tres archivos adicionales tienen admisión pública y el protocolo exploratorio se fijó con tag antes de los ajustes. El [cuaderno Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/main/notebooks/e3_evaluacion_ampliada_robustez_colab.ipynb) reúne admisión, preespecificación, ajustes, evaluación, análisis, figuras y continuación desde GitHub. La prueba de Render tiene su propio flujo.
 
 ### Comparación y datos fijados antes de evaluar
 
 La familia contiene **19 sistemas**: los 17 históricos —incluido el candidato aditivo de 1210 parámetros— y dos controles analíticos, `floor_only` y `floor_plus_mean_excess`. Este último estima un exceso medio sólo en ajuste; tiene un parámetro estadístico, sin optimizador neuronal. Se conservan los pronósticos crudos y se aplica **la misma proyección `max(pronóstico, sqrt(A))` a todos** como comparación principal. Así el piso físico no se ofrece exclusivamente al candidato. V3 continúa en una investigación de desarrollo separada.
 
-| Conjunto | Contrato de la auditoría | Estado empírico actual |
+| Conjunto | Contrato de la auditoría | Estado en la parte 46, conservado como histórico |
 |---|---|---|
 | D00 BTC histórico | Cohorte NPZ fijada; 532 ajuste, 116 validación, 53 calibración y 608 prueba conocida. Historia diaria original para los clásicos. | Los resultados anteriores existen; los nuevos ajustes bajo política común aún no se han ejecutado. |
 | D01 WIKI/AAPL RAW | Siete observaciones entre sesiones; `Adj Close` excluido y saltos corporativos conservados. | 3270 filas admitidas y 19 sistemas completos: 199 registros de trabajo. |
@@ -557,13 +559,13 @@ La historia auxiliar BTC conserva el hueco del 24 de marzo de 2023 y sus objetiv
 
 D01–D03 diversifican instrumento, producto, tamaño y periodo, pero **no son tres mercados independientes**. Los dos criptoactivos comparten exposiciones y D03 comparte subyacente y parte de las fechas BTC. La auditoría no convierte sus rangos en evidencia de una población de dominios independientes.
 
-### Corte auditado de la ejecución real
+### Corte histórico auditado de la parte 46
 
 La [admisión persistida](https://github.com/jassan-bit/DeepLearning_202630/tree/fe061b59678741d5de06eebb46526748af017fd4/runs/e3_closure_cpu/20261119T031104515520Z) verifica D01, D02 y D03 con 3270, 1461 y 1583 filas, respectivamente. Se cotejaron los bytes de sus CSV contra sus hashes. El {download}`control de admisión <../_static/e3_audit_progress_20261119T050335948088Z/admission_persistence_check.json>` conserva los identificadores y la recuperación de agosto mediante 31 archivos diarios oficiales.
 
 La campaña `20261119T031104515520Z` mantiene la fuente `5a07d6157a9796ca54416dc5dea1e1527e731597` y el [tag anotado previo a los ajustes](https://github.com/jassan-bit/DeepLearning_202630/tree/e3-extended-audit-protocol-20261119T031104515520Z). El hash del protocolo es `5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a`. La ejecución usa NVIDIA A100-SXM4-80GB, Python 3.12.12 y Torch 2.8.0+cu126.
 
-El [último guardado verificado](https://github.com/jassan-bit/DeepLearning_202630/tree/c8a700ab2245b70f8932d4a93f7e0faa890cfc9e/runs/e3_extended_audit/20261119T050335948088Z) enlaza **46 partes** y contiene **251 registros `result.json` con estado `completed`**, cuyos SHA Git coinciden con los recibos:
+El [guardado de la parte 46](https://github.com/jassan-bit/DeepLearning_202630/tree/c8a700ab2245b70f8932d4a93f7e0faa890cfc9e/runs/e3_extended_audit/20261119T050335948088Z) enlaza **46 partes** y contiene **251 registros `result.json` con estado `completed`**, cuyos SHA Git coinciden con los recibos:
 
 | Tipo de trabajo completo | Cantidad | Alcance |
 |---|---:|---|
@@ -588,7 +590,7 @@ La rejilla prefijada usa tres tasas —0,0003; 0,001; 0,003— y una semilla HPO
 
 El límite de **120 segundos por ajuste** incluye las tres fases de SAE mediante un presupuesto compartido. Los 168 ajustes HPO, 560 finales y 48 adicionales para curvas suman 776 ajustes neuronales; se añaden cuatro ajustes ARIMA. Su techo nominal es **26 horas**, además de instalación, inferencia, estadísticas y persistencia. Se registran pasos, tiempos, parámetros y excesos en fronteras de lote/iteración; no se llama timeout duro a un límite que no puede interrumpir un kernel activo. El perfil de GPU y software se fija en el protocolo; la continuación con hardware distinto se detiene.
 
-### Estudios previstos y evidencia exigida a sus salidas
+### Estudios especificados y evidencia exigida a sus salidas
 
 | Estudio | Evidencia que generará la ejecución real |
 |---|---|
@@ -606,4 +608,167 @@ Los {download}`detalles del método y su recuperación, versión v1 <../_static/
 
 El controlador ya generó el protocolo con los hashes de los tres archivos admitidos y creó el **tag anotado real antes de los ajustes**; el corte auditado conserva su verificación. Ese registro es una preespecificación de auditoría exploratoria, no un preregistro retroactivo ni una certificación de R3. La batería temporal y entre conjuntos todavía no tiene potencia completa dimensionada; el plan anterior de 18 sistemas y 51 pruebas entre semillas no se reutiliza como dimensionamiento de esta familia.
 
-La documentación, las pruebas sintéticas y los trabajos parciales guardados no completan por sí solos el componente. Sigue pendiente producir e inspeccionar el análisis final de predicciones, calibración, perturbaciones, curvas, recursos y fallos reales. El resultado conservará `R1_accredited=false` y `R3_accredited=false` hasta la evaluación científica que corresponda.
+La documentación y las pruebas sintéticas no completan por sí solas el componente. El corte parcial anterior dejó pendiente producir e inspeccionar el análisis final; la continuación de **8.18** ya aporta sus tablas y figuras reales. Persisten las limitaciones de recursos, adecuación temporal, inferencia y potencia descritas allí. Los recibos finales conservan `R1_accredited=false` y `R3_accredited=false`.
+
+(e3-final-extended-audit)=
+## 8.18 Cierre de la auditoría ampliada: resultados y robustez
+
+**Corte final del 19 de noviembre de 2026, 18:43 en Colombia (23:43 UTC).** El autor ejecutó la campaña en Colab y la actualización del libro cotejó los recibos, tablas y figuras guardados. El [commit final `16a4504`](https://github.com/jassan-bit/DeepLearning_202630/tree/16a4504f6fb9208c7d6f89b65017194fa20470da/runs/e3_extended_audit/20261119T234320461006Z), parte 193 del master `20261119T031104515520Z`, declara **`stage_status=completed` y `analysis_complete=true`**. Este cierre sustituye el estado de ejecución parcial de 8.17 y conserva aquel corte como historial.
+
+### Ejecución, integridad y desviaciones declaradas
+
+| Evidencia final | Cantidad y alcance |
+|---|---|
+| Conjuntos evaluados | D00 BTC histórico y tres adicionales: D01 WIKI/AAPL RAW, D02 ETHUSDT Spot y D03 BTCUSD_PERP COIN-M. |
+| Familia completa | 19 sistemas por conjunto; diez semillas finales para cada una de las 14 redes y una trayectoria por control determinista. |
+| Trabajos completos | **796**: 168 ajustes HPO neuronales, 560 ajustes neuronales finales, 48 ajustes adicionales de curvas, cuatro ajustes ARIMA y 16 controles. Los 776 ajustes neuronales y cuatro ARIMA suman 780 ajustes numéricos. |
+| Paneles | **76** archivos, con **1 874 560 filas** que incluyen particiones, semillas y escenarios; no son réplicas independientes. |
+| Análisis | **12 tablas CSV originales**, verificadas por tamaño y SHA-256; 9999 remuestreos por combinación fijada de conjunto y longitud de bloque. |
+| Figuras | **16**, cada una exportada a PNG y SVG: 32 imágenes reales verificadas. |
+| Estado de evaluación | `completed`, lista de fallos vacía. No se confunde una parada por presupuesto registrada con un fallo borrado. |
+
+Se conserva la fuente `5a07d6157a9796ca54416dc5dea1e1527e731597`, el tag `e3-extended-audit-protocol-20261119T031104515520Z` y el protocolo SHA-256 `5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a`. Los ajustes mantuvieron la cohorte NVIDIA A100-SXM4-80GB, Python 3.12.12, Torch 2.8.0+cu126 y CUDA 12.6. El análisis y las figuras usaron su entorno CPU aislado; esa separación no se presenta como una nueva cohorte de entrenamiento.
+
+La ejecución efectiva tuvo una **enmienda de lectura de D00 posterior al congelamiento**, declarada y guardada antes de sus primeros ajustes: el lector anterior intentaba convertir a número el cierre vacío del 24 de marzo de 2023. La {download}`declaración de la enmienda <../_static/e3_audit_completed_20261119T234320461006Z/D00_parser_amendment.json>` registra 597 trabajos anteriores y cero D00 completos al declararla. Conserva el hueco de calendario, la aritmética original de σ₇ y los bytes de CSV/NPZ, sin imputar valores ni retirar filas de la cohorte. Mantener la fuente fijada no oculta este cambio del ejecutable efectivo.
+
+El último fallo ocurrió **después de terminar el análisis**: Matplotlib rechazó el backend heredado de Colab durante la importación. El {download}`recibo de recuperación de figuras <../_static/e3_audit_completed_20261119T234320461006Z/plot_backend_recovery.json>` documenta la selección de `MPLBACKEND=Agg` antes de iniciar ese proceso. Verificó y reutilizó los resultados y las tablas ya completas: cero ajustes, predicciones o remuestreos nuevos en ese cierre. La asistencia de IA está declarada en los recibos y en el informe.
+
+### Rendimiento en prueba limpia con tratamiento común
+
+La métrica es la **media de las RMSE individuales**, con diez inicializaciones por red; no la RMSE de un ensamble. Todos los sistemas reciben la misma proyección sobre el piso observable y se conservan sus predicciones crudas. El objetivo es σ₇ poblacional sin anualizar; D01 usa sesiones bursátiles y los otros conjuntos días de su calendario. Cada fila se interpreta en su conjunto, sin promediar errores entre escalas.
+
+| Conjunto | Fechas de prueba | RMSE E3 | RMSE mejor rival | Reducción relativa | Puesto E3 |
+|---|---|---|---|---|---|
+| D00 | 608 | 0,002924166 | 0,003027273 | 3,41 % | 1/19 |
+| D01 | 633 | 0,002631154 | 0,002857878 | 7,93 % | 1/19 |
+| D02 | 271 | 0,006515450 | 0,006654141 | 2,08 % | 1/19 |
+| D03 | 296 | 0,003301771 | 0,003420131 | 3,46 % | 1/19 |
+
+El candidato ocupa el primer puesto descriptivo en los cuatro conjuntos. El rival más cercano en todos es **`floor_plus_mean_excess`**, que estima su exceso medio únicamente con ajuste. Las reducciones relativas son `100 × (RMSE_rival − RMSE_E3) / RMSE_rival`. El {download}`resumen con precisión completa <../_static/e3_audit_completed_20261119T234320461006Z/clean_test_summary.csv>` registra también dispersión entre semillas, cobertura y anchura; las tablas originales conservan MAE y R².
+
+Estas cifras proceden de una **auditoría exploratoria con rejilla y presupuesto comunes**, distinta de la comparación histórica de 17 sistemas. La RMSE histórica de E3 de 8.1–8.12 y sus 48 contrastes no se sustituyen ni se trasladan a estas recetas, semillas y conjuntos.
+
+### Incertidumbre y alcance de los contrastes
+
+Los intervalos por bloques de 7, 14 y 28 observaciones están condicionados a las trayectorias ajustadas: no remuestrean semillas. Las figuras de RMSE muestran IC nominales del 95 %, mientras que las curvas muestran desviación estándar entre tres semillas. No representan el mismo tipo de incertidumbre.
+
+La tabla siguiente resume la ganancia `RMSE_rival − RMSE_E3` frente a `floor_plus_mean_excess`, para bloques de siete observaciones. Positivo favorece al candidato. Los intervalos simultáneos aplican la corrección de Bonferroni de la familia primaria de 72 comparaciones, **no un ajuste de valores p con Holm**.
+
+| Conjunto | Ganancia media | IC nominal 95 % | IC simultáneo, familia 72 |
+|---|---|---|---|
+| D00 | 0,000103107 | [-0,000013182; 0,000192388] | [-0,000102030; 0,000225230] |
+| D01 | 0,000226724 | [0,000135666; 0,000307491] | [0,000081400; 0,000357423] |
+| D02 | 0,000138691 | [0,000019600; 0,000271180] | [-0,000055627; 0,000348872] |
+| D03 | 0,000118360 | [0,000047501; 0,000186228] | [-0,000000835; 0,000232290] |
+
+El IC nominal de D00 incluye cero. Los intervalos simultáneos frente al rival más cercano incluyen cero en **D00, D02 y D03**, también para bloques 14 y 28; sólo D01 mantiene sus extremos positivos. Además, con 9999 remuestreos, cada cola simultánea tiene apenas **3,47 remuestreos esperados**: la resolución extrema es escasa y el archivo registra esa limitación. No se presenta este cálculo como certificación de superioridad frente a un margen práctico δ.
+
+`paired_effects.csv` contiene **864 filas**: 216 del escenario limpio y 648 de ruido. `noise_contrasts.csv` repite ese subconjunto de ruido y no aporta otras 648 pruebas independientes. Sus campos `p_value` están vacíos y `formal_R3_decision=false`: **esta etapa no produjo nuevos valores p, ajuste de Holm o tres pruebas confirmatorias por rival**. Los rangos entre conjuntos son descriptivos; no se ejecutó una nueva prueba Friedman/Iman–Davenport ni ROPE para certificar R3. Los tres tamaños de bloque son sensibilidad del mismo procedimiento, no tres pruebas diferentes.
+
+### Calibración, cambio temporal y perturbaciones
+
+El calibrador de cada trayectoria se estima sólo con la partición de calibración limpia, a nivel nominal **90 %**; se conserva al evaluar ruido. Las coberturas siguientes son medias entre las diez semillas del candidato sobre prueba limpia, no la cobertura de un único modelo servido en Render.
+
+| Conjunto | Cobertura E3, nominal 90 % | Anchura media, σ₇ |
+|---|---|---|
+| D00 | 94,51 % | 0,010960896 |
+| D01 | 91,50 % | 0,005514413 |
+| D02 | 91,88 % | 0,016063960 |
+| D03 | 89,29 % | 0,007521472 |
+
+D03 presenta cobertura agregada inferior al nominal. También hay grupos temporales desfavorables: **86,44 % en D00 durante 2026Q1**, **82,10 % en D01 durante 2012Q4** y **85,71 % en D03 durante 2024Q1**, este último con 21 fechas. La cobertura global no garantiza cobertura por trimestre, subgrupo o cambio de distribución. Las tablas conservan fechas, tamaños, anchura y score de intervalo; un punto y un único intervalo no definen una distribución para fabricar CRPS o PIT.
+
+Las tres severidades de ruido perturban coherentemente las entradas D7 OHLCV, mantienen el objetivo limpio y no recalibran sobre prueba. En la severidad máxima se observa:
+
+| Conjunto | RMSE con ruido máximo | Factor frente a limpio | Puesto E3 |
+|---|---|---|---|
+| D00 | 0,013568025 | 4,64 × | 17/19 |
+| D01 | 0,023710133 | 9,01 × | 18/19 |
+| D02 | 0,023783958 | 3,65 × | 17/19 |
+| D03 | 0,023082500 | 6,99 × | 18/19 |
+
+El deterioro descarta una afirmación general de robustez del candidato al ruido. Los clásicos conservan limpia su historia cruda y puede cambiar su proyección sobre el piso perturbado; el estudio **no equivale a corromper toda la historia de todos los modelos bajo un tratamiento idéntico**. Se publica el resultado adverso sin cambiar la métrica o retirar rivales.
+
+### HPO, tamaño de muestra y coste observado
+
+La sensibilidad HPO contiene **168 filas**, correspondientes a cuatro conjuntos, 14 redes y las tres tasas prefijadas. Se verificó la selección por mínimo de validación con la semilla HPO separada 20261117. Los errores de prueba de esas alternativas se reportan como análisis secundario; no se usaron para volver a seleccionar la receta.
+
+Las curvas comparan al candidato y al TSMixer preseleccionado, con fracciones 25/50/100 % y tres semillas. Hay **72 grupos de ajuste**: 24 reutilizan el ajuste final del 100 % y **48 contienen ajustes redimensionados reales**. Los prefijos anidados cambian conjuntamente el tamaño y la extensión del calendario; no aíslan un efecto causal exclusivo del número de muestras. Sus barras muestran desviación estándar entre tres semillas.
+
+`resources_supplied.csv` conserva **900 registros de fases y mediciones**, no 900 modelos independientes. La suma informada de tiempos de fase de ajuste es **9319,069 segundos**; no es el tiempo total de campaña, instalación, inferencia, estadísticas, persistencia o facturación. Las razones de parada incluyen límites de tiempo, reanudación, épocas y parada temprana. **FLOPs y energía siguen ausentes**, y la comparabilidad completa de las mediciones de hardware no se ha verificado independientemente. Esos campos permanecen desconocidos, sin sustituirlos por cero o estimarlos desde el número de parámetros.
+
+### Figuras de la familia completa y galería
+
+Las cuatro figuras de RMSE incluyen los 19 sistemas y sus IC temporales nominales; no omiten los dos controles analíticos. El solapamiento visual de barras no sustituye al intervalo emparejado de la diferencia descrito arriba.
+
+```{figure} ../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D00.png
+:name: fig-e3-final-rmse-d00
+:width: 100%
+
+D00: media de RMSE individuales e IC temporal nominal del 95 %, bloques de siete observaciones. Auditoría exploratoria; no acredita R3.
+```
+
+```{figure} ../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D01.png
+:name: fig-e3-final-rmse-d01
+:width: 100%
+
+D01: media de RMSE individuales e IC temporal nominal del 95 %, bloques de siete observaciones. Auditoría exploratoria; no acredita R3.
+```
+
+```{figure} ../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D02.png
+:name: fig-e3-final-rmse-d02
+:width: 100%
+
+D02: media de RMSE individuales e IC temporal nominal del 95 %, bloques de siete observaciones. Auditoría exploratoria; no acredita R3.
+```
+
+```{figure} ../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D03.png
+:name: fig-e3-final-rmse-d03
+:width: 100%
+
+D03: media de RMSE individuales e IC temporal nominal del 95 %, bloques de siete observaciones. Auditoría exploratoria; no acredita R3.
+```
+
+La galería completa permite consultar las cuatro clases de figura en cada conjunto y descargar sus originales. Los gráficos de ruido muestran los comparadores preseleccionados; las tablas descargables conservan la familia completa.
+
+| Conjunto | RMSE | Ruido | Cobertura | Tamaño de muestra |
+|---|---|---|---|---|
+| D00 | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D00.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D00.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D00.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D00.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D00.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D00.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D00.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D00.svg) |
+| D01 | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D01.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D01.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D01.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D01.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D01.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D01.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D01.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D01.svg) |
+| D02 | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D02.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D02.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D02.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D02.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D02.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D02.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D02.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D02.svg) |
+| D03 | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D03.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/rmse_D03.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D03.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/noise_D03.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D03.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/coverage_D03.svg) | [PNG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D03.png) · [SVG](../_static/e3_audit_completed_20261119T234320461006Z/figures/learning_D03.svg) |
+
+### Descargas y trazabilidad del cierre
+
+Se publican copias de los **12 CSV originales y las 32 imágenes, sin alterar sus bytes**, junto con sus recibos. El {download}`manifiesto del análisis <../_static/e3_audit_completed_20261119T234320461006Z/analysis/output_manifest.json>` fija tamaño y SHA-256 de cada tabla, y el {download}`manifiesto de figuras <../_static/e3_audit_completed_20261119T234320461006Z/figures/figures_manifest.json>` enlaza las imágenes con ese análisis. El {download}`control de las doce tablas <../_static/e3_audit_completed_20261119T234320461006Z/tables_verification.json>` y la {download}`lectura derivada declarada <../_static/e3_audit_completed_20261119T234320461006Z/readout.json>` distinguen comprobación y resumen de resultados de nuevos experimentos.
+
+| Producto | Descarga |
+|---|---|
+| Evaluación y protocolo | {download}`Recibo de evaluación <../_static/e3_audit_completed_20261119T234320461006Z/evaluation_receipt.json>` · {download}`Protocolo <../_static/e3_audit_completed_20261119T234320461006Z/protocol.json>` · {download}`Recibo del tag <../_static/e3_audit_completed_20261119T234320461006Z/freeze_receipt.json>` |
+| Identidad de resultados | {download}`Manifiesto de ejecución <../_static/e3_audit_completed_20261119T234320461006Z/run_manifest.json>` · {download}`Manifiesto de paneles <../_static/e3_audit_completed_20261119T234320461006Z/panel_manifest.json>` |
+| Cierre y análisis | {download}`Estado final <../_static/e3_audit_completed_20261119T234320461006Z/controller_status.json>` · {download}`Recibo del análisis <../_static/e3_audit_completed_20261119T234320461006Z/analysis/analysis_receipt.json>` · {download}`Recibo de parte 193 <../_static/e3_audit_completed_20261119T234320461006Z/stage_receipt.json>` |
+| Intervalos temporales | {download}`calendar_CIs.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/calendar_CIs.csv>` |
+| Calibradores | {download}`calibrators.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/calibrators.csv>` |
+| Rangos entre conjuntos | {download}`cross_dataset_ranks.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/cross_dataset_ranks.csv>` |
+| Sensibilidad HPO | {download}`hpo_sensitivity_metrics.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/hpo_sensitivity_metrics.csv>` |
+| Métricas de intervalos | {download}`interval_metrics.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/interval_metrics.csv>` |
+| Métricas por modelo | {download}`model_metrics.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/model_metrics.csv>` |
+| Efectos bajo ruido | {download}`noise_contrasts.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/noise_contrasts.csv>` |
+| Efectos emparejados | {download}`paired_effects.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/paired_effects.csv>` |
+| Métricas por semilla | {download}`per_seed_metrics.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/per_seed_metrics.csv>` |
+| Métricas trimestrales | {download}`quarter_metrics.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/quarter_metrics.csv>` |
+| Recursos observados | {download}`resources_supplied.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/resources_supplied.csv>` |
+| Curvas de tamaño | {download}`sample_size_metrics.csv <../_static/e3_audit_completed_20261119T234320461006Z/analysis/sample_size_metrics.csv>` |
+
+Los paneles completos, trabajos y checkpoints permanecen en la cadena inmutable de GitHub; esta actualización del libro no replica los 277 MB de paneles como descargas del sitio. El manifiesto permite identificar esos archivos. Se conservan la procedencia y las condiciones de los datos descritas en 8.14, incluidas las restricciones de Binance; publicar una figura no cambia sus derechos.
+
+### Qué queda abierto para R3 y para el entregable
+
+La evaluación de los tres archivos adicionales, el tratamiento común, la sensibilidad HPO, las curvas reales y las figuras **ya tienen evidencia ejecutada**. La menor RMSE descriptiva en los cuatro conjuntos mejora la evidencia disponible, sin cerrar las condiciones científicas siguientes:
+
+1. **Inferencia confirmatoria:** justificar y ejecutar las tres pruebas adecuadas por contraste, márgenes de relevancia y control familiar exigidos, con potencia por contraste y conjunta dimensionada prospectivamente. Este análisis de intervalos no los reemplaza.
+2. **Generalización:** evaluar la adecuación temporal y las dependencias. D02/D03 comparten exposición cripto y D03 comparte subyacente y fechas con BTC; no son tres dominios independientes. Los resultados ya observados conservan su alcance exploratorio.
+3. **Robustez, incertidumbre y coste:** explicar el deterioro con ruido y la infracobertura, y completar las mediciones comparables de recursos, FLOPs y energía. Las tablas no justifican declarar robustez universal.
+4. **Contribución y producto:** la novedad sustantiva de R1 y la defensa académica de R2 siguen sus requisitos propios. La reproducción integral independiente de esta campaña, el servicio Render, el catálogo exportado y el depósito DOI no se completan por guardar estas figuras. El replay Docker histórico conserva su ámbito anterior de 11 CSV y 143 trayectorias.
+
+El cierre operativo está verificado. Los recibos científicos mantienen **`R1_accredited=false` y `R3_accredited=false`**, y la actualización no asigna una calificación automática.

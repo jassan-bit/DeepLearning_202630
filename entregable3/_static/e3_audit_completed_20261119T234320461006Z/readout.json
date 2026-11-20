@@ -1,0 +1,814 @@
+{
+  "kind": "verified_E3_completed_audit_readout",
+  "AI_assistance_declared": true,
+  "status": "descriptive_results_extracted_from_bound_saved_tables",
+  "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+  "analysis_commit": "3571b3e119c5453e70d4b7bb7289b6da87787ee1",
+  "final_figures_commit": "16a4504f6fb9208c7d6f89b65017194fa20470da",
+  "candidate": "CNN-LSTM-atencion-aditiva E3",
+  "primary_condition": "test split, unperturbed scenario, common floor projection across all nineteen systems; mean of individual seed RMSE, not ensemble RMSE",
+  "datasets": [
+    {
+      "dataset": "D00",
+      "target_unit": "daily sigma7, unannualized; dimensionless log-return volatility",
+      "test_dates": 608,
+      "candidate_RMSE_mean_individual": 0.002924165904308274,
+      "candidate_RMSE_seed_sample_SD": 5.1094470709459314e-05,
+      "candidate_rank_among_19": 1,
+      "best_rival": "floor_plus_mean_excess",
+      "best_rival_RMSE": 0.0030272728118513033,
+      "relative_RMSE_reduction_vs_best_rival_percent": 3.405933787644835,
+      "candidate_MAE_mean_individual": 0.001925291006319454,
+      "candidate_R2_mean_individual": 0.9126889406177676,
+      "nearest_rival_effect_CIs": [
+        {
+          "block": 7,
+          "gain": 0.00010310690754302939,
+          "nominal_95_CI": [
+            -1.318186198280216e-05,
+            0.0001923875733135862
+          ],
+          "bonferroni_family_CI": [
+            -0.0001020302302088552,
+            0.00022523021099804319
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 14,
+          "gain": 0.00010310690754302939,
+          "nominal_95_CI": [
+            -8.226466555319144e-06,
+            0.00018919473800614134
+          ],
+          "bonferroni_family_CI": [
+            -8.717074729275003e-05,
+            0.0002207108609064381
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 28,
+          "gain": 0.00010310690754302939,
+          "nominal_95_CI": [
+            -2.1858124795324444e-06,
+            0.00018639429816329092
+          ],
+          "bonferroni_family_CI": [
+            -9.643681063432801e-05,
+            0.00021512816749468715
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        }
+      ],
+      "nominal_coverage": 0.9,
+      "candidate_empirical_coverage_mean_across_10_seeds": 0.9450657894736842,
+      "candidate_interval_mean_width": 0.0109608957863138,
+      "coverage_quarters": [
+        {
+          "quarter": "2025Q1",
+          "n": 90,
+          "mean_coverage_across_seeds": 0.9477777777777778,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2025Q2",
+          "n": 91,
+          "mean_coverage_across_seeds": 0.9340659340659341,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2025Q3",
+          "n": 92,
+          "mean_coverage_across_seeds": 0.9793478260869566,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2025Q4",
+          "n": 92,
+          "mean_coverage_across_seeds": 0.9619565217391304,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2026Q1",
+          "n": 90,
+          "mean_coverage_across_seeds": 0.8644444444444445,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2026Q2",
+          "n": 91,
+          "mean_coverage_across_seeds": 0.9736263736263736,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2026Q3",
+          "n": 62,
+          "mean_coverage_across_seeds": 0.9564516129032259,
+          "small_subgroup": false
+        }
+      ],
+      "candidate_noise_stress": [
+        {
+          "scenario": "unperturbed",
+          "candidate_RMSE_mean_individual": 0.002924165904308274,
+          "candidate_rank_among_19": 1,
+          "ratio_to_clean": 1.0
+        },
+        {
+          "scenario": "ohlcv_observation_noise_1",
+          "candidate_RMSE_mean_individual": 0.0038473375187183683,
+          "candidate_rank_among_19": 4,
+          "ratio_to_clean": 1.3157042536642514
+        },
+        {
+          "scenario": "ohlcv_observation_noise_2",
+          "candidate_RMSE_mean_individual": 0.0061756368255456,
+          "candidate_rank_among_19": 17,
+          "ratio_to_clean": 2.1119310694536253
+        },
+        {
+          "scenario": "ohlcv_observation_noise_3",
+          "candidate_RMSE_mean_individual": 0.013568024662532277,
+          "candidate_rank_among_19": 17,
+          "ratio_to_clean": 4.639964046684916
+        }
+      ],
+      "learning_curves": {
+        "CNN-LSTM-atencion-aditiva E3": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.003007454442687297,
+            "RMSE_sample_SD": 2.1403076376265357e-05
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.0029825297278617945,
+            "RMSE_sample_SD": 1.9504341429560038e-05
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.002909803805733597,
+            "RMSE_sample_SD": 3.5968654594346615e-05
+          }
+        ],
+        "TSMixer": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.003654065370580972,
+            "RMSE_sample_SD": 8.055009149587707e-05
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.0036059980500685756,
+            "RMSE_sample_SD": 7.196295508150858e-05
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.0033735804546163625,
+            "RMSE_sample_SD": 4.777798144202869e-05
+          }
+        ]
+      },
+      "candidate_HPO_trials": [
+        {
+          "learning_rate": 0.0003,
+          "validation_RMSE": 0.00320745031659267,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.002974989389546144
+        },
+        {
+          "learning_rate": 0.001,
+          "validation_RMSE": 0.0031103406768566537,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.0028738531433888177
+        },
+        {
+          "learning_rate": 0.003,
+          "validation_RMSE": 0.00308420530471488,
+          "selected_by_validation": true,
+          "test_RMSE_secondary_only": 0.002871493525729804
+        }
+      ]
+    },
+    {
+      "dataset": "D01",
+      "target_unit": "daily sigma7, unannualized; dimensionless log-return volatility",
+      "test_dates": 633,
+      "candidate_RMSE_mean_individual": 0.00263115411554318,
+      "candidate_RMSE_seed_sample_SD": 3.117736718596773e-05,
+      "candidate_rank_among_19": 1,
+      "best_rival": "floor_plus_mean_excess",
+      "best_rival_RMSE": 0.002857877641308741,
+      "relative_RMSE_reduction_vs_best_rival_percent": 7.933283163996294,
+      "candidate_MAE_mean_individual": 0.0018097029491812833,
+      "candidate_R2_mean_individual": 0.8777505917239383,
+      "nearest_rival_effect_CIs": [
+        {
+          "block": 7,
+          "gain": 0.00022672352576556072,
+          "nominal_95_CI": [
+            0.0001356660109707631,
+            0.00030749066250897606
+          ],
+          "bonferroni_family_CI": [
+            8.139954819297792e-05,
+            0.0003574229999502021
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 14,
+          "gain": 0.00022672352576556072,
+          "nominal_95_CI": [
+            0.00012920956823978707,
+            0.00031324576569914854
+          ],
+          "bonferroni_family_CI": [
+            7.103539044777313e-05,
+            0.00036536641692649403
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 28,
+          "gain": 0.00022672352576556072,
+          "nominal_95_CI": [
+            0.0001158001153262981,
+            0.00031960166272781607
+          ],
+          "bonferroni_family_CI": [
+            3.851072134269544e-05,
+            0.00037909844980790617
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        }
+      ],
+      "nominal_coverage": 0.9,
+      "candidate_empirical_coverage_mean_across_10_seeds": 0.9150078988941548,
+      "candidate_interval_mean_width": 0.005514412608553778,
+      "coverage_quarters": [
+        {
+          "quarter": "2010Q3",
+          "n": 26,
+          "mean_coverage_across_seeds": 1.0,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2010Q4",
+          "n": 64,
+          "mean_coverage_across_seeds": 0.928125,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2011Q1",
+          "n": 62,
+          "mean_coverage_across_seeds": 0.917741935483871,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2011Q2",
+          "n": 63,
+          "mean_coverage_across_seeds": 0.9682539682539683,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2011Q3",
+          "n": 64,
+          "mean_coverage_across_seeds": 0.8859375,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2011Q4",
+          "n": 63,
+          "mean_coverage_across_seeds": 0.919047619047619,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2012Q1",
+          "n": 62,
+          "mean_coverage_across_seeds": 0.9387096774193548,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2012Q2",
+          "n": 63,
+          "mean_coverage_across_seeds": 0.8841269841269841,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2012Q3",
+          "n": 63,
+          "mean_coverage_across_seeds": 0.9682539682539683,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2012Q4",
+          "n": 62,
+          "mean_coverage_across_seeds": 0.8209677419354838,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2013Q1",
+          "n": 41,
+          "mean_coverage_across_seeds": 0.8658536585365854,
+          "small_subgroup": false
+        }
+      ],
+      "candidate_noise_stress": [
+        {
+          "scenario": "unperturbed",
+          "candidate_RMSE_mean_individual": 0.00263115411554318,
+          "candidate_rank_among_19": 1,
+          "ratio_to_clean": 1.0
+        },
+        {
+          "scenario": "ohlcv_observation_noise_1",
+          "candidate_RMSE_mean_individual": 0.004889776251323766,
+          "candidate_rank_among_19": 7,
+          "ratio_to_clean": 1.8584149907594112
+        },
+        {
+          "scenario": "ohlcv_observation_noise_2",
+          "candidate_RMSE_mean_individual": 0.010112864661053305,
+          "candidate_rank_among_19": 16,
+          "ratio_to_clean": 3.8435090522873407
+        },
+        {
+          "scenario": "ohlcv_observation_noise_3",
+          "candidate_RMSE_mean_individual": 0.02371013332811516,
+          "candidate_rank_among_19": 18,
+          "ratio_to_clean": 9.011305414628058
+        }
+      ],
+      "learning_curves": {
+        "CNN-LSTM-atencion-aditiva E3": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.0030754664906122815,
+            "RMSE_sample_SD": 4.5995075504731254e-05
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.003052496020990209,
+            "RMSE_sample_SD": 0.00026999005721018386
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.002610034015823365,
+            "RMSE_sample_SD": 1.7737974084544785e-05
+          }
+        ],
+        "TSMixer": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.01875433009090899,
+            "RMSE_sample_SD": 0.0061376091055041085
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.015279997456431748,
+            "RMSE_sample_SD": 0.004689801070214741
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.006153627901413387,
+            "RMSE_sample_SD": 0.0007308942704584884
+          }
+        ]
+      },
+      "candidate_HPO_trials": [
+        {
+          "learning_rate": 0.0003,
+          "validation_RMSE": 0.0038902943387366133,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.0026702054883395387
+        },
+        {
+          "learning_rate": 0.001,
+          "validation_RMSE": 0.003847654060853238,
+          "selected_by_validation": true,
+          "test_RMSE_secondary_only": 0.002597595983718868
+        },
+        {
+          "learning_rate": 0.003,
+          "validation_RMSE": 0.0038489767681139445,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.0026684449132888806
+        }
+      ]
+    },
+    {
+      "dataset": "D02",
+      "target_unit": "daily sigma7, unannualized; dimensionless log-return volatility",
+      "test_dates": 271,
+      "candidate_RMSE_mean_individual": 0.0065154497724542095,
+      "candidate_RMSE_seed_sample_SD": 6.207364326507214e-05,
+      "candidate_rank_among_19": 1,
+      "best_rival": "floor_plus_mean_excess",
+      "best_rival_RMSE": 0.0066541405174938275,
+      "relative_RMSE_reduction_vs_best_rival_percent": 2.0842773709842484,
+      "candidate_MAE_mean_individual": 0.003922826086108875,
+      "candidate_R2_mean_individual": 0.9218429565932071,
+      "nearest_rival_effect_CIs": [
+        {
+          "block": 7,
+          "gain": 0.00013869074503961801,
+          "nominal_95_CI": [
+            1.9599746286417714e-05,
+            0.0002711799639614743
+          ],
+          "bonferroni_family_CI": [
+            -5.562703630272782e-05,
+            0.000348872093293202
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 14,
+          "gain": 0.00013869074503961801,
+          "nominal_95_CI": [
+            1.172914719420719e-05,
+            0.0002812337463473975
+          ],
+          "bonferroni_family_CI": [
+            -6.633211486427022e-05,
+            0.00036741740573083726
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 28,
+          "gain": 0.00013869074503961801,
+          "nominal_95_CI": [
+            1.6333438576701968e-05,
+            0.00026954802493875493
+          ],
+          "bonferroni_family_CI": [
+            -6.206289182780322e-05,
+            0.0003326928908567858
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        }
+      ],
+      "nominal_coverage": 0.9,
+      "candidate_empirical_coverage_mean_across_10_seeds": 0.9188191881918819,
+      "candidate_interval_mean_width": 0.016063959838719454,
+      "coverage_quarters": [
+        {
+          "quarter": "2021Q2",
+          "n": 87,
+          "mean_coverage_across_seeds": 0.9011494252873563,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2021Q3",
+          "n": 92,
+          "mean_coverage_across_seeds": 0.9282608695652174,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2021Q4",
+          "n": 92,
+          "mean_coverage_across_seeds": 0.9260869565217391,
+          "small_subgroup": false
+        }
+      ],
+      "candidate_noise_stress": [
+        {
+          "scenario": "unperturbed",
+          "candidate_RMSE_mean_individual": 0.0065154497724542095,
+          "candidate_rank_among_19": 1,
+          "ratio_to_clean": 1.0
+        },
+        {
+          "scenario": "ohlcv_observation_noise_1",
+          "candidate_RMSE_mean_individual": 0.008109980580165009,
+          "candidate_rank_among_19": 1,
+          "ratio_to_clean": 1.2447307343925973
+        },
+        {
+          "scenario": "ohlcv_observation_noise_2",
+          "candidate_RMSE_mean_individual": 0.011967722892834922,
+          "candidate_rank_among_19": 17,
+          "ratio_to_clean": 1.8368222165462225
+        },
+        {
+          "scenario": "ohlcv_observation_noise_3",
+          "candidate_RMSE_mean_individual": 0.0237839580059152,
+          "candidate_rank_among_19": 17,
+          "ratio_to_clean": 3.6503938847734174
+        }
+      ],
+      "learning_curves": {
+        "CNN-LSTM-atencion-aditiva E3": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.006630854628889064,
+            "RMSE_sample_SD": 5.0999380212652104e-05
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.006644867951378242,
+            "RMSE_sample_SD": 4.639198884297252e-05
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.006534002094965874,
+            "RMSE_sample_SD": 7.348472734047033e-05
+          }
+        ],
+        "TSMixer": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.0300787066997257,
+            "RMSE_sample_SD": 0.0063013451775505895
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.012329711103273872,
+            "RMSE_sample_SD": 0.0029131756752014686
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.009302644763754033,
+            "RMSE_sample_SD": 0.0024251550865778105
+          }
+        ]
+      },
+      "candidate_HPO_trials": [
+        {
+          "learning_rate": 0.0003,
+          "validation_RMSE": 0.005616495214024606,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.006456676677846484
+        },
+        {
+          "learning_rate": 0.001,
+          "validation_RMSE": 0.005592698118672956,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.006485402224864587
+        },
+        {
+          "learning_rate": 0.003,
+          "validation_RMSE": 0.005525870967383318,
+          "selected_by_validation": true,
+          "test_RMSE_secondary_only": 0.006464073825930258
+        }
+      ]
+    },
+    {
+      "dataset": "D03",
+      "target_unit": "daily sigma7, unannualized; dimensionless log-return volatility",
+      "test_dates": 296,
+      "candidate_RMSE_mean_individual": 0.0033017710718551605,
+      "candidate_RMSE_seed_sample_SD": 3.0351161571439782e-05,
+      "candidate_rank_among_19": 1,
+      "best_rival": "floor_plus_mean_excess",
+      "best_rival_RMSE": 0.0034201313075591143,
+      "relative_RMSE_reduction_vs_best_rival_percent": 3.460692735461826,
+      "candidate_MAE_mean_individual": 0.002286304615731447,
+      "candidate_R2_mean_individual": 0.8807366235883951,
+      "nearest_rival_effect_CIs": [
+        {
+          "block": 7,
+          "gain": 0.00011836023570395383,
+          "nominal_95_CI": [
+            4.7501450378238086e-05,
+            0.00018622773034862957
+          ],
+          "bonferroni_family_CI": [
+            -8.353389355016008e-07,
+            0.00023228964208414768
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 14,
+          "gain": 0.00011836023570395383,
+          "nominal_95_CI": [
+            4.9248454319138774e-05,
+            0.0001851978140318119
+          ],
+          "bonferroni_family_CI": [
+            -1.3312412381230479e-05,
+            0.00022992721972199483
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        },
+        {
+          "block": 28,
+          "gain": 0.00011836023570395383,
+          "nominal_95_CI": [
+            4.9328010748640164e-05,
+            0.00018207703741481555
+          ],
+          "bonferroni_family_CI": [
+            -2.5690024277943703e-06,
+            0.0002186245960390456
+          ],
+          "family_size": 72,
+          "expected_resamples_in_each_simultaneous_tail": 3.471875000000003
+        }
+      ],
+      "nominal_coverage": 0.9,
+      "candidate_empirical_coverage_mean_across_10_seeds": 0.8929054054054054,
+      "candidate_interval_mean_width": 0.007521471743736721,
+      "coverage_quarters": [
+        {
+          "quarter": "2024Q1",
+          "n": 21,
+          "mean_coverage_across_seeds": 0.8571428571428571,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2024Q2",
+          "n": 91,
+          "mean_coverage_across_seeds": 0.9076923076923077,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2024Q3",
+          "n": 92,
+          "mean_coverage_across_seeds": 0.8967391304347826,
+          "small_subgroup": false
+        },
+        {
+          "quarter": "2024Q4",
+          "n": 92,
+          "mean_coverage_across_seeds": 0.8826086956521739,
+          "small_subgroup": false
+        }
+      ],
+      "candidate_noise_stress": [
+        {
+          "scenario": "unperturbed",
+          "candidate_RMSE_mean_individual": 0.0033017710718551605,
+          "candidate_rank_among_19": 1,
+          "ratio_to_clean": 1.0
+        },
+        {
+          "scenario": "ohlcv_observation_noise_1",
+          "candidate_RMSE_mean_individual": 0.005285554494231678,
+          "candidate_rank_among_19": 16,
+          "ratio_to_clean": 1.6008240363139083
+        },
+        {
+          "scenario": "ohlcv_observation_noise_2",
+          "candidate_RMSE_mean_individual": 0.009870853723918643,
+          "candidate_rank_among_19": 17,
+          "ratio_to_clean": 2.989563331043579
+        },
+        {
+          "scenario": "ohlcv_observation_noise_3",
+          "candidate_RMSE_mean_individual": 0.023082499605421924,
+          "candidate_rank_among_19": 18,
+          "ratio_to_clean": 6.990944890813584
+        }
+      ],
+      "learning_curves": {
+        "CNN-LSTM-atencion-aditiva E3": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.0033205463748195484,
+            "RMSE_sample_SD": 3.6019661284285145e-05
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.003296575777197275,
+            "RMSE_sample_SD": 4.002757106327902e-05
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.003291126299442495,
+            "RMSE_sample_SD": 2.1819118541768994e-05
+          }
+        ],
+        "TSMixer": [
+          {
+            "train_fraction": 0.25,
+            "seeds": 3,
+            "RMSE_mean": 0.007540659102524125,
+            "RMSE_sample_SD": 0.0011020754161670226
+          },
+          {
+            "train_fraction": 0.5,
+            "seeds": 3,
+            "RMSE_mean": 0.006459740599281461,
+            "RMSE_sample_SD": 0.0010783780264427732
+          },
+          {
+            "train_fraction": 1.0,
+            "seeds": 3,
+            "RMSE_mean": 0.0038650125329656136,
+            "RMSE_sample_SD": 0.0001437840310041839
+          }
+        ]
+      },
+      "candidate_HPO_trials": [
+        {
+          "learning_rate": 0.0003,
+          "validation_RMSE": 0.0031469425192727158,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.003291280965785846
+        },
+        {
+          "learning_rate": 0.001,
+          "validation_RMSE": 0.0031326809679314846,
+          "selected_by_validation": false,
+          "test_RMSE_secondary_only": 0.003290352895012203
+        },
+        {
+          "learning_rate": 0.003,
+          "validation_RMSE": 0.003104867993541724,
+          "selected_by_validation": true,
+          "test_RMSE_secondary_only": 0.0032892842016325565
+        }
+      ]
+    }
+  ],
+  "statistical_scope": {
+    "B": 9999,
+    "blocks": [
+      7,
+      14,
+      28
+    ],
+    "confidence": 0.95,
+    "noise_effect_rows_secondary_subset": 648,
+    "new_formal_p_values_computed": 0,
+    "Holm_adjusted_p_values_computed": 0,
+    "three_confirmatory_tests_per_rival_computed": false,
+    "between_dataset_formal_test_computed": false,
+    "formal_R3_decision_in_all_effect_rows": false,
+    "conditional_on_fitted_seed_trajectories": true,
+    "seeds_resampled": false,
+    "primary_family_size": 72,
+    "primary_tail_expected_resamples": 3.471875000000003,
+    "primary_and_noise_tables_overlap": true,
+    "paired_effect_rows_total": 864,
+    "clean_primary_effect_rows": 216
+  },
+  "ranking_scope": "Candidate rank 1/19 in all four clean test contexts. Rank averages are descriptive; D02/D03 share crypto exposure and D03 overlaps BTC underlying/historical dates. This is not independent generalization certification.",
+  "noise_scope": "Input D7 corruption with clean targets and calibrator frozen; classical rawhistory stays clean, so no full-history corruption comparison is claimed. Candidate RMSE degrades substantially under noise; see ratios.",
+  "learning_scope": "72 fit groups, 24 base-reused and 48 actual resized-fit groups; candidate and prespecified TSMixer, 3 seeds, fractions 0.25/0.5/1. Prefix calendar span and sample size change jointly.",
+  "HPO_scope": "168 rows = 4 datasets × 14 neural models × 3 rates, fixed HPO seed 20261117. Validation argmin checked; no test-based reselection.",
+  "resources": {
+    "rows": 900,
+    "sum_reported_fit_phase_seconds": 9319.069319174969,
+    "reported_phase_seconds_are_not_total_campaign_walltime": true,
+    "stop_reasons": {
+      "early_stopping": 717,
+      "max_epochs": 149,
+      "fixed_analytical_or_temporal_control": 16,
+      "fixed_ARIMA_converged_with_iteration_boundary_budget": 4,
+      "wall_budget": 11,
+      "wall_budget_expired_on_resume": 3
+    },
+    "FLOPs": null,
+    "energy_joules": null,
+    "complete_hardware_comparability_independently_verified": false
+  },
+  "remaining_evidence": [
+    "Complete comparable resource/energy/FLOPs measurements",
+    "Classical raw full-history perturbation differs from D7 corruption and is not claimed here",
+    "Temporal test adequacy, prospective power and a full R3 decision remain separate"
+  ],
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "new_model_fits_by_extractor": 0,
+  "new_model_inference_by_extractor": 0,
+  "statistical_resamples_by_extractor": 0
+}
