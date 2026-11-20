@@ -68,3 +68,10 @@ Se utilizó un asistente de IA de OpenAI, en este entorno de ChatGPT/Codex, para
 El autor comunicó el 18 de noviembre de 2026 que el profesor permite sustituir al revisor humano por IA si se menciona su uso. Esa modalidad se aplica al componente de revisión externa de R1 en [6.13](06_modelo_original.md), con dictamen, dos cadenas repetidas y {download}`declaración específica de uso <../_static/e3_r1_ai_substitution_20261118/ai_use_declaration.md>`. El componente se documenta como completado por esa vía; no se inventa una revisión humana o una firma.
 
 La persona autora mantiene la responsabilidad de comprobar las fuentes, comprender y defender el trabajo y comunicar honestamente sus límites. El dictamen conserva su conclusión: la diferencia sustantiva todavía no está establecida y R1 global no queda acreditada por la modalidad de IA.
+
+
+## Trazabilidad del cierre con evidencia existente
+
+La consolidación del piloto, inventario, procedencia y adecuación se preparó con asistencia de IA declarada. Los verificadores y la revisión independiente por IA contrastaron hashes, versiones, aritmética y alcances; no observaron una defensa del estudiante ni emitieron una firma humana. Se aplica la indicación docente comunicada para sustituir al revisor externo de R1, conservando esa modalidad identificada. No se extiende ese permiso a declarar realizadas la sustentación o una reproducción humana independiente que no constan.
+
+Se conservan el fracaso de la heurística de V3 completa, las ablaciones que la superan, las métricas adversas y los cómputos antiguos desconocidos por interrupción. Los 200 diagnósticos retrospectivos de residuos se separan en sus dos familias y no se renombran como contrastes confirmatorios de superioridad. Ni el registro posterior de Nd ni el código del suplemento retrofechan un protocolo, recuperan calendarios ciegos o justifican cambiar una regla después de observar sus resultados.

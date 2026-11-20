@@ -160,7 +160,7 @@ def layout():
         ], className="content-card section-gap"),
         html.Section([
             html.P("COMPARACIÓN ESTADÍSTICA", className="eyebrow"), html.H2("Un resultado favorable con alcance definido"),
-            html.P("Los 48 contrastes posteriores rechazan sus nulas tras Holm. La diferencia de entrenamiento, el calendario conocido y los requisitos pendientes impiden dar por cerrada R3. La selección por validación y la comparación de prueba mantienen alcances distintos.", className="muted"),
+            html.P("Los 48 contrastes históricos de este catálogo rechazan sus nulas tras Holm. No se transfieren a la auditoría posterior de 19 sistemas ni al piloto V3. La diferencia de entrenamiento, el calendario conocido y los requisitos pendientes impiden dar por cerrada R3; selección por validación y comparación de prueba mantienen alcances distintos.", className="muted"),
             dbc.Accordion([
                 dbc.AccordionItem([
                     html.P("El MCS auxiliar al 90 % conserva diez sistemas, incluida E3. Usa MSE diario medio entre semillas: no declara un ganador único, equivalencia o una ganancia de RMSE mayor que el margen."),
@@ -186,12 +186,14 @@ def layout():
                          html.Ol([html.Li("Transformar la ventana con las estadísticas guardadas de ajuste."), html.Li("Codificar los siete días y agregar sus estados con atención."), html.Li("Sumar el exceso positivo al piso observable."), html.Li("Devolver σ₇ en unidades originales, con incertidumbre sólo cuando exista calibración verificada.")])], md=6),
                 dbc.Col([html.H3("Qué sustenta y qué falta"), html.P("La referencia evaluada tiene 1210 parámetros y diez semillas. Se distingue del primer mecanismo de penalización/saturación de 1211 y de la cabeza de momentos de 1236 parámetros."),
                          html.P("El primer piloto fue desfavorable al mecanismo modificado. En 18 fechas de volatilidad realizada alta, la aditiva tuvo más RMSE que M00 proyectado; es un diagnóstico posterior, no una regla disponible al pronosticar."),
-                         html.P("Faltan revisión de novedad, defensa del aporte, potencia, tres conjuntos adicionales, ablaciones y evaluación ampliada. La atención por sí sola no es una explicación causal.", className="muted")], md=6),
+                         html.P("La revisión bibliográfica se amplió y la auditoría exploratoria completó 796 trabajos en cuatro conjuntos. R1, la defensa del aporte, la potencia prospectiva y la validación confirmatoria siguen abiertas. La atención por sí sola no es una explicación causal.", className="muted")], md=6),
             ], className="g-4"),
             html.H3("Evolución durante el ajuste"),
             html.P(epoch_description, className="figure-insight"),
             dcc.Graph(id="model-training-curve", figure=epoch_curve, config={"displaylogo": False}),
-            html.P("La pérdida de ajuste es el MSE normalizado observado durante las actualizaciones; no es el riesgo del modelo final sobre todo el entrenamiento. La validación usa RMSE en unidades originales de σ₇, en otro eje: su separación vertical no es una prueba de sobreajuste. Las Tablas A/B y la curva frente al tamaño de muestra siguen pendientes.", className="figure-insight"),
+            html.P("La pérdida de ajuste es el MSE normalizado observado durante las actualizaciones; no es el riesgo del modelo final sobre todo el entrenamiento. La validación usa RMSE en unidades originales de σ₇, en otro eje: su separación vertical no es una prueba de sobreajuste ni resuelve por sí sola las Tablas A/B. La auditoría ampliada añade curvas de tamaño de muestra con otros ajustes; no son curvas de estos pesos servidos.", className="figure-insight"),
+            html.P("El piloto de desarrollo V3 terminó 30 ajustes con tres semillas finales por receta. La variante completa atom_crps tuvo una RMSE media 2,70 % mayor que el mejor control atom_mse_only y no superó la heurística prevista. Este resultado no acredita R1/R3 ni incorpora V3 al servicio.", className="muted"),
+            html.A("Consultar el veredicto del piloto V3 ↗", href="https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/development_verdict.json", target="_blank", rel="noopener noreferrer", className="text-link"),
             html.A("Ver formulación, curvas y estudios del modelo ↗", href="https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/06_modelo_original.html", target="_blank", rel="noopener noreferrer", className="text-link"),
         ], className="content-card section-gap"),
         dbc.Modal([dbc.ModalHeader(dbc.ModalTitle("Ficha del modelo E3"), close_button=True), dbc.ModalBody(dcc.Markdown(card, link_target="_blank"))], id="model-card-modal", size="xl", scrollable=True, is_open=False),

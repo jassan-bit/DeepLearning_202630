@@ -1,0 +1,52 @@
+{
+  "fields": {
+    "R1_accredited": false,
+    "R3_accredited": false,
+    "additional_datasets_used_for_mechanism_redesign": false,
+    "evidence_mode": "prespecified_exploratory_audit",
+    "family": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "kind": "e3_extended_audit_run_manifest",
+    "panel_sha256": "5f91f7622b5eb160dd5de14cb38edbc872f0fd9963c94afa24450250bec2aeb5",
+    "primary_common_projection": "max(raw_prediction,sqrt(A_from_observed_input))",
+    "prospective_power_certified": false,
+    "protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+    "protocol_tag": "e3-extended-audit-protocol-20261119T031104515520Z",
+    "sample_curve_fit_policy": "prefix fraction with own fit-only scaler; full-fit HPO choice fixed; same validation; fraction1 reuses base fit",
+    "seeds": [
+      20261118,
+      20261119,
+      20261120,
+      20261121,
+      20261122,
+      20261123,
+      20261124,
+      20261125,
+      20261126,
+      20261127
+    ],
+    "source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "test_targets_used_for_selection": false
+  },
+  "is_excerpt_not_full_run_manifest": true,
+  "original_sha256": "288eadf7430e97e1df76eb96efa9ecdf1f697dba834771f5544ee5be5f99acc1"
+}

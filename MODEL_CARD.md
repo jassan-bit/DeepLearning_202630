@@ -1,6 +1,6 @@
 # Ficha del modelo CNN-LSTM con atención de E3
 
-**Versión documental: 18 de noviembre de 2026, America/Bogota.** Responsable del
+**Versión documental: 19 de noviembre de 2026, America/Bogota.** Responsable del
 proyecto: Jassan Arteta. La preparación de código, cálculos y documentación usa
 asistencia de IA declarada; esta ficha no sustituye la revisión y defensa del
 autor ni acredita una evaluación académica.
@@ -12,8 +12,9 @@ temporal por contenido → salida aditiva positiva**, con **1210 parámetros**.
 «Aditiva» describe la cabeza de salida; la atención no es otro modelo entrenado
 por separado. No es el primer módulo con penalización de discordancia y
 saturación de 1211 parámetros ni la cabeza de momentos de 1236 parámetros.
-El candidato V3 de 1262 parámetros es un prototipo sin ajuste; no sustituye a
-este predictor ni hereda sus métricas, calibrador o exportación.
+El candidato V3 de 1262 parámetros completó un piloto de desarrollo de 30
+ajustes. Ese estudio se documenta por separado: no sustituye a este predictor
+ni hereda sus métricas, calibrador o exportación.
 
 Su uso previsto es explorar pronósticos académicos de volatilidad de
 Binance Spot BTCUSDT y sus limitaciones. La salida es la desviación estándar
@@ -125,7 +126,9 @@ train–validación comparable ni una curva de tamaño de muestra.
 El candidato se compara con recetas de E2 ajustadas con **655 ejemplos** y
 calibradas con **53 fechas**. Diez semillas y fechas comunes no igualan esos
 tratamientos ni sus presupuestos. Los pilotos y el esfuerzo de diseño se
-conservan en la bitácora; Nd global sigue pendiente de conciliación.
+conservan en la [bitácora de diseño](experiments/design_log.md), que separa
+propuestas, variantes, parametrizaciones y réplicas y declara los límites del
+inventario global. Repetir semillas no crea diseños nuevos.
 
 ## Evaluación histórica
 
@@ -153,12 +156,23 @@ acreditan automáticamente tres pruebas admisibles de la Tabla 4 o R3.
 
 ## Límites, sesgos y escenarios adversos
 
-El calendario ya era conocido y el análisis es retrospectivo. La potencia
-prospectiva y conjunta, comparación plenamente justa, tres conjuntos
-adicionales, adecuación completa, validación prospectiva de calibración y
-estudios de robustez siguen
-pendientes. La novedad R1, comprensión y defensa del autor para R2 y cierre R3
-no se certifican con este dashboard.
+El calendario de este catálogo ya era conocido y su análisis es retrospectivo.
+La [auditoría exploratoria posterior](https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/08_verificacion_estadistica.html#e3-final-extended-audit)
+completó 796 trabajos: 19 sistemas en D00–D03, con tres archivos adicionales,
+perturbaciones, calibración y curvas. Conserva sus propios pesos, datos y
+recibos; sus resultados no se atribuyen a los cinco artefactos de este servicio.
+La independencia de los dominios, la potencia prospectiva y conjunta, la
+adecuación completa y la validación confirmatoria conservan límites abiertos.
+La novedad R1, comprensión y defensa del autor para R2 y cierre R3 no se
+certifican con este dashboard.
+
+El [piloto posterior V3](https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/development_verdict.json)
+completó 30 ajustes de desarrollo y evaluó tres semillas finales por receta en
+55 ventanas de calendario previamente expuesto. La variante completa
+`atom_crps` tuvo 2,70 % más RMSE media que el mejor control `atom_mse_only` y
+no superó su heurística previa. No se promueve automáticamente el control
+ganador ni se presenta ese resultado como una confirmación de novedad o R3.
+V3 no integra el catálogo ni los artefactos servidos.
 
 En el piloto v2, la referencia aditiva tuvo RMSE **22,50 % mayor** que M00
 conservado y proyectado en **18 fechas de objetivo realizado alto**. Es un

@@ -1,0 +1,339 @@
+{
+  "scope": "bounded_validation_of_existing_own_project_text_records_and_derived_prediction_extracts",
+  "validated_inputs": [
+    {
+      "source": "experiments/e3_evidence_close_20261120/inventory/sources.zip",
+      "bytes": 71436,
+      "sha256": "18bdd154087cb45ba0e092296eece7188cec9361bcbe203088a85a262bb6e693",
+      "kind": "frozen_documentary_input_archive",
+      "validation": {
+        "format": "zip_text_only",
+        "expanded_bytes": 285211,
+        "members": [
+          {
+            "path": "legacy_inventory.csv",
+            "bytes": 17874,
+            "sha256": "78b43abfe4513123f73de17cc75c60c993fcb709247bd2786e7a65c3ed69c679",
+            "header": [
+              "record_id",
+              "recorded_on",
+              "historical_plan_date",
+              "execution_started_at_utc",
+              "execution_finished_at_utc",
+              "family",
+              "stage",
+              "kind",
+              "recipe",
+              "change",
+              "new_market_neural_recipe",
+              "new_market_neural_fits",
+              "parameters",
+              "seed_or_seeds",
+              "fit_n",
+              "validation_n",
+              "evaluation_n",
+              "data_use",
+              "metric_scope",
+              "RMSE",
+              "MAE",
+              "best_epoch",
+              "completed_epochs",
+              "status",
+              "decision",
+              "remaining_limit",
+              "source_commit",
+              "source_path",
+              "source_sha256"
+            ]
+          },
+          {
+            "path": "initial_design_log.md",
+            "bytes": 1953,
+            "sha256": "e2332f5c82b975af3f0f85c064d383f4e41d11b81118b1edfd9daab93f177a76"
+          },
+          {
+            "path": "v1_design_log.md",
+            "bytes": 4766,
+            "sha256": "1953e559d036ed7ba63980e35a47730c0703917d1957c111786c3b17a3c8ceaf"
+          },
+          {
+            "path": "v2_design_plan.json",
+            "bytes": 8984,
+            "sha256": "ef0bb7c763c336e498f32d7bd79a1d757faf37a8c0de5378a3386783ef4ca67a"
+          },
+          {
+            "path": "moment_pilot_plan.json",
+            "bytes": 8749,
+            "sha256": "e77ad5f317b2ed7d82c812df1b962de2f21756d008c5321479ec5ede9acede2a"
+          },
+          {
+            "path": "moment_design_spec.json",
+            "bytes": 4115,
+            "sha256": "c2fb419472d09417e17da77a8a8d1c0d3909485df880ddd82997d25cb9098294"
+          },
+          {
+            "path": "quadrature_verification.json",
+            "bytes": 6168,
+            "sha256": "e9f9753d8f9e13785dc6de30a4a176f171a8f76d7bf49ce332fdc58a8e46dee8"
+          },
+          {
+            "path": "original_software_verification.json",
+            "bytes": 2971,
+            "sha256": "bb90587e4a99ccd97b7c6b67d5e55a6177cd629a199a19fd90613f30df9bc821"
+          },
+          {
+            "path": "original_model_tests.py",
+            "bytes": 10174,
+            "sha256": "e0cbc10fe4eddaf125d49cea43b913ca2ffa9f2e5df5ae76762522f953a9d829"
+          },
+          {
+            "path": "audit_protocol.json",
+            "bytes": 5853,
+            "sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a"
+          },
+          {
+            "path": "audit_evaluation_receipt.json",
+            "bytes": 786,
+            "sha256": "67e27e5324b6feb3cb0a03fcbd05e196449b3100ee85efb68f0f8a085bcce110"
+          },
+          {
+            "path": "audit_resources.csv",
+            "bytes": 107353,
+            "sha256": "2125299c06727b0179fbbf2c75315ffd842eaa25fc7149b31678046c8c7190e7",
+            "header": [
+              "dataset",
+              "model",
+              "seed",
+              "kind",
+              "phase",
+              "parameters",
+              "seconds",
+              "optimizer_steps",
+              "peak_cuda_bytes",
+              "allocated_seconds",
+              "deadline_overrun_seconds",
+              "stop_reason",
+              "unclosed_crash_compute_unknown"
+            ]
+          },
+          {
+            "path": "audit_hpo_metrics.csv",
+            "bytes": 41170,
+            "sha256": "7407488ccf26fea01dfb62e6d8f9609810aa3163016c4c006edad574160076c1",
+            "header": [
+              "dataset",
+              "model",
+              "seed",
+              "hpo_trial",
+              "learning_rate",
+              "validation_RMSE",
+              "selected_by_validation",
+              "n",
+              "RMSE",
+              "MAE",
+              "sMAPE_percent",
+              "R2",
+              "R2_status",
+              "test_based_reselection_performed",
+              "new_fits_in_this_analysis",
+              "scope"
+            ]
+          },
+          {
+            "path": "v3_plan.json",
+            "bytes": 4173,
+            "sha256": "eb5fbbade2b1dd3ab098821b2ab0c270504c824b1b0e0a17ed52b3bebafc55bd"
+          },
+          {
+            "path": "v3_pilot_receipt.json",
+            "bytes": 40598,
+            "sha256": "bd5da25dc2a54001af5f66f2860bc502ff070611f7d3a41ce747d15f4c74dd89"
+          },
+          {
+            "path": "v3_HPO_scores.csv",
+            "bytes": 900,
+            "sha256": "705fdd300a5dcfdd608f0d8b153bbb12586acb316244839c1eccadff38d2cf66",
+            "header": [
+              "name",
+              "seed",
+              "learning_rate",
+              "selection_RMSE",
+              "parameters"
+            ]
+          },
+          {
+            "path": "v3_closed_selection.json",
+            "bytes": 370,
+            "sha256": "b0238f9cc8612ace8df5d8c0937b70468f7bfeb0f1f5cd2f2f89d58edf83f8b8"
+          },
+          {
+            "path": "v3_recipe_summary.csv",
+            "bytes": 548,
+            "sha256": "639c922bcc9638c8a3950d9f28095a569df980b5eced09bd9a78a899ffc8d7ed",
+            "header": [
+              "name",
+              "seeds",
+              "mean_RMSE",
+              "SD_RMSE",
+              "mean_MAE",
+              "mean_CRPS_U"
+            ]
+          },
+          {
+            "path": "admission_calendar_incident.json",
+            "bytes": 2149,
+            "sha256": "220cb153304c933e35fe001707072adb928e978f0e18c35ede2c0ce59bb12850"
+          },
+          {
+            "path": "admission_storage_incident.json",
+            "bytes": 1189,
+            "sha256": "10efd92651cbe9f7517fe2450b2c992ebbbc0110071d578c8a3b03b793c3f3aa"
+          },
+          {
+            "path": "plot_backend_recovery.json",
+            "bytes": 1812,
+            "sha256": "630f982335fa04dd1407ac99a1bf01735fcd3bc30c3f42d320dacd027911099c"
+          },
+          {
+            "path": "source_manifest.json",
+            "bytes": 12556,
+            "sha256": "48a8099fcd8a7bc4d24564141f0c5e8e8ea9d4f60b43e28a1f7a685468c7c0c1"
+          }
+        ],
+        "expanded_text_and_credentials_checked": true
+      }
+    },
+    {
+      "source": "experiments/e3_evidence_close_20261120/inventory/attempt_ledger.csv.gz",
+      "bytes": 18240,
+      "sha256": "1c98bb27191e06bfd47df107d5a5c6f4c48fae2e934932885da29eb9f0381e4b",
+      "kind": "frozen_documentary_input_archive",
+      "validation": {
+        "format": "gzip_csv",
+        "expanded_bytes": 152600,
+        "expanded_sha256": "ad3bb29ea4314204d467429be059fa01ad9b050deeb3099ea72f7fc73e13a870",
+        "header": [
+          "job_id",
+          "scope",
+          "source_record",
+          "dataset",
+          "model",
+          "design_id",
+          "seed",
+          "stage",
+          "job_type",
+          "resource_phase_rows",
+          "parameters",
+          "optimizer_steps",
+          "elapsed_seconds",
+          "unclosed_crash_compute_unknown",
+          "status"
+        ],
+        "expanded_text_and_credentials_checked": true
+      }
+    },
+    {
+      "source": "experiments/e3_evidence_close_20261120/adequacy/archive/extended_candidate_clean_test_D00.csv.gz",
+      "bytes": 186341,
+      "sha256": "27d0c30155541fdbc8960ca4b0c06b31df72344424384cf5eb44f16572e2a81a",
+      "kind": "frozen_documentary_input_archive",
+      "validation": {
+        "format": "gzip_csv",
+        "expanded_bytes": 529401,
+        "expanded_sha256": "9b2246cd865e4e61743029bfe6efa85e273a0543145ab5e5dde97f3aecacaad7",
+        "header": [
+          "dataset",
+          "seed",
+          "date",
+          "target_sigma7",
+          "prediction_sigma7",
+          "known_floor"
+        ],
+        "expanded_text_and_credentials_checked": true
+      }
+    },
+    {
+      "source": "experiments/e3_evidence_close_20261120/adequacy/archive/extended_candidate_clean_test_D01.csv.gz",
+      "bytes": 194202,
+      "sha256": "33f26f11281db8f74cc1c4af54dcfd260643520a8b347199320c3bb67c0e47b8",
+      "kind": "frozen_documentary_input_archive",
+      "validation": {
+        "format": "gzip_csv",
+        "expanded_bytes": 552565,
+        "expanded_sha256": "946f719f9bdedd3218a350d7c2a99d631f75b062f55cfc26a7a4ba0035dfc345",
+        "header": [
+          "dataset",
+          "seed",
+          "date",
+          "target_sigma7",
+          "prediction_sigma7",
+          "known_floor"
+        ],
+        "expanded_text_and_credentials_checked": true
+      }
+    },
+    {
+      "source": "experiments/e3_evidence_close_20261120/adequacy/archive/extended_candidate_clean_test_D02.csv.gz",
+      "bytes": 44491,
+      "sha256": "0eb847bd268f5d27dbd096365e2cd2b214aac3823b282fb95e9079bd9afea08c",
+      "kind": "frozen_documentary_input_archive",
+      "validation": {
+        "format": "gzip_csv",
+        "expanded_bytes": 232386,
+        "expanded_sha256": "87d7a30120a741c0cbc437c35483ef40a2f0a679218c5cc5a0e3b4a138cc3093",
+        "header": [
+          "dataset",
+          "seed",
+          "date",
+          "target_sigma7",
+          "prediction_sigma7",
+          "known_floor"
+        ],
+        "expanded_text_and_credentials_checked": true
+      }
+    },
+    {
+      "source": "experiments/e3_evidence_close_20261120/adequacy/archive/extended_candidate_clean_test_D03.csv.gz",
+      "bytes": 48860,
+      "sha256": "560f0c9d06463201970f814c3676963d7947dbffe7823d2fbe839ea064799c1e",
+      "kind": "frozen_documentary_input_archive",
+      "validation": {
+        "format": "gzip_csv",
+        "expanded_bytes": 256942,
+        "expanded_sha256": "c833c4878e91f091d6259097ddf77c2538126a1705851af02bef7fe9108be343",
+        "header": [
+          "dataset",
+          "seed",
+          "date",
+          "target_sigma7",
+          "prediction_sigma7",
+          "known_floor"
+        ],
+        "expanded_text_and_credentials_checked": true
+      }
+    },
+    {
+      "source": "experiments/e3_evidence_close_20261120/adequacy/archive/historical_e3_predictions.csv.gz",
+      "bytes": 184911,
+      "sha256": "7ed314b4b6d55d7c4e35dfe1c31b0f0726d2a41bcf46ca0f2a89c08bf26bb323",
+      "kind": "frozen_documentary_input_archive",
+      "validation": {
+        "format": "gzip_csv",
+        "expanded_bytes": 486813,
+        "expanded_sha256": "b82ba0a8a0371ea5643d9ff666a3ac5a1a4e91018b95a640bd88b1be50bb5133",
+        "header": [
+          "seed",
+          "date",
+          "target_sigma7",
+          "prediction_sigma7",
+          "known_floor"
+        ],
+        "expanded_text_and_credentials_checked": true
+      }
+    }
+  ],
+  "new_fits": 0,
+  "new_inferences": 0,
+  "full_796_training_reproduction": false,
+  "rights_status": "author_review_required_no_license_inferred"
+}

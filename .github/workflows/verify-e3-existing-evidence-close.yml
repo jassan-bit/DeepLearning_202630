@@ -1,0 +1,44 @@
+name: Verify E3 existing evidence closure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/e3_evidence_close_20261120/**'
+      - 'experiments/design_log.md'
+      - 'experiments/procedencia.md'
+      - 'book_e3/_static/e3_evidence_close_20261120/**'
+      - '.github/workflows/verify-e3-existing-evidence-close.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-prediction-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install diagnostic-only CPU dependencies
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 statsmodels==0.14.6 pandas==2.3.3 patsy==1.0.3
+      - name: Verify frozen evidence and unchanged model artifacts
+        run: python experiments/e3_evidence_close_20261120/verify_closure.py
+      - name: Verify V3 saved trajectories and the recorded adverse verdict
+        run: python experiments/e3_evidence_close_20261120/pilot/analyze_saved_pilot.py --verify-only
+      - name: Reconcile design identities and documentary attribution
+        run: |
+          python experiments/e3_evidence_close_20261120/inventory/verify_inventory.py
+          python experiments/e3_evidence_close_20261120/contribution/verify.py --upstream book_e3/_static/e3_r1_close_20261120
+      - name: Reproduce retrospective adequacy from stored predictions
+        run: |
+          python experiments/e3_evidence_close_20261120/adequacy/audit_existing_predictions.py --verify-only --source-dir book_e3/_static/e3_audit_completed_20261119T234320461006Z
+          python experiments/e3_evidence_close_20261120/adequacy/verify_diagnostic_reference.py
+      - name: Test archive and public-acceptance handoff with synthetic fixtures
+        run: python -m unittest discover -s experiments/e3_evidence_close_20261120/release -p 'test_*.py' -v

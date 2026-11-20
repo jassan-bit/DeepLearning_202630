@@ -29,7 +29,7 @@ def layout():
         ("03", "Benchmark", "Top 10 y baselines"),
         ("04", "Modelo E3", "CNN-LSTM con atención"),
         ("05", "Evaluación", "Errores y comparación posterior"),
-        ("06", "Confirmación", "Potencia y conjuntos adicionales pendientes"),
+        ("06", "Confirmación", "Potencia y validación confirmatoria pendientes"),
     ]
     return dbc.Container([
         html.Section([
@@ -99,17 +99,19 @@ def layout():
                 html.Ul([
                     html.Li("El calendario de prueba ya era conocido; repetirlo no lo convierte en una reserva ciega."),
                     html.Li("E2 y E3 conservan tratamientos de entrenamiento distintos."),
-                    html.Li("Faltan potencia previa, tres conjuntos adicionales y la adecuación completa de E3."),
+                    html.Li("La auditoría exploratoria posterior evaluó 19 sistemas en cuatro conjuntos. La potencia prospectiva, la adecuación completa y R3 siguen abiertas."),
                     html.Li("La inferencia, las explicaciones y la incertidumbre sólo se habilitan cuando están verificadas para el artefacto elegido."),
                 ], className="question-list"),
                 html.P("La revisión de fuentes/licencias, la novedad, la defensa académica y los usos permitidos conservan el estado que declara el informe.", className="muted"),
+                html.P("Este catálogo conserva sus 17 sistemas y sus artefactos históricos. La auditoría ampliada de 796 trabajos y el piloto V3 de 30 ajustes son estudios separados; no reemplazan los pesos ni los calibradores servidos.", className="muted"),
+                html.A("Consultar la auditoría ampliada y sus límites ↗", href="https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/08_verificacion_estadistica.html#e3-final-extended-audit", target="_blank", rel="noopener noreferrer", className="text-link"),
             ], className="content-card h-100"), md=5),
         ], className="g-4 section-gap"),
         dbc.Modal([
             dbc.ModalHeader(dbc.ModalTitle("Declaración de datos y privacidad"), close_button=True),
             dbc.ModalBody(dcc.Markdown(statement, link_target="_blank")),
         ], id="data-statement-modal", size="xl", scrollable=True, is_open=False),
-        html.P(f'Corte documental: {metadata.get("cut_date_local", "17 de noviembre de 2026")}. Las cifras enlazan a evidencia histórica guardada.', className="page-note"),
+        html.P(f'Corte del catálogo histórico: {metadata.get("cut_date_local", "17 de noviembre de 2026")}. Los estudios posteriores conservan sus propios datos, pesos y recibos en el informe.', className="page-note"),
     ], fluid=True, className="page-container")
 
 

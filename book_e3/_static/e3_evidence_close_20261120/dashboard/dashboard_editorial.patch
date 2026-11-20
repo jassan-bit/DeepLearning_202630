@@ -1,0 +1,173 @@
+--- a/DATA_STATEMENT.md
++++ b/DATA_STATEMENT.md
+@@ -1,6 +1,6 @@
+ # Declaración de datos del dashboard E3
+ 
+-**Fecha: 18 de noviembre de 2026, America/Bogota.** Esta declaración describe
++**Actualización documental: 19 de noviembre de 2026, America/Bogota.** Esta declaración describe
+ los datos derivados y pronósticos históricos del prototipo académico. No
+ otorga una licencia a los datos de un tercero ni certifica un cierre integral
+ de la auditoría.
+@@ -104,7 +104,13 @@
+ indicados. No representa automáticamente otros mercados, fuentes, regímenes
+ o frecuencias. La volatilidad realizada es un proxy retrospectivo; sus errores
+ de medición o límites económicos no se eliminan al reproducir su aritmética.
+-Las pruebas de tres conjuntos adicionales siguen pendientes.
++La [auditoría exploratoria posterior](https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/08_verificacion_estadistica.html#e3-final-extended-audit)
++ya evaluó 19 sistemas en D00 BTC, D01 WIKI/AAPL, D02 ETHUSDT Spot y D03
++BTCUSD_PERP, con 796 trabajos completos. Esa auditoría conserva sus propias
++cohortes, pesos y calibradores: no amplía automáticamente el dominio de estos
++artefactos históricos ni convierte cuatro archivos en cuatro mercados
++independientes. La potencia prospectiva y la validación confirmatoria de R3
++siguen abiertas.
+ 
+ La documentación disponible no acredita una **licencia de redistribución
+ final** para los datos de Binance. Sus condiciones y las de cada fuente deben
+@@ -143,5 +149,10 @@
+ 
+ Las comprobaciones locales no equivalen a aceptación de la URL pública en
+ Render ni a reproducción humana independiente de la entrega completa. El
+-candidato V3 de 1262 parámetros sigue siendo un prototipo sin ajuste y no
+-utiliza estas métricas o intervalos como evidencia propia.
++candidato V3 de 1262 parámetros completó un piloto de 30 ajustes con datos de
++desarrollo BTC previamente expuestos: 532 ventanas de ajuste, 54 de selección,
++siete purgadas y 55 de evaluación del piloto. No abrió los miembros de prueba
++ni calibración del archivo fuente y no usó D01–D03. La variante completa no
++superó su heurística frente a los controles. Su [recibo verificable](https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/pilot_receipt.json)
++conserva ese alcance; no utiliza las métricas o intervalos del servicio como
++evidencia propia ni incorpora V3 al catálogo.
+--- a/MODEL_CARD.md
++++ b/MODEL_CARD.md
+@@ -1,6 +1,6 @@
+ # Ficha del modelo CNN-LSTM con atención de E3
+ 
+-**Versión documental: 18 de noviembre de 2026, America/Bogota.** Responsable del
++**Versión documental: 19 de noviembre de 2026, America/Bogota.** Responsable del
+ proyecto: Jassan Arteta. La preparación de código, cálculos y documentación usa
+ asistencia de IA declarada; esta ficha no sustituye la revisión y defensa del
+ autor ni acredita una evaluación académica.
+@@ -12,8 +12,9 @@
+ «Aditiva» describe la cabeza de salida; la atención no es otro modelo entrenado
+ por separado. No es el primer módulo con penalización de discordancia y
+ saturación de 1211 parámetros ni la cabeza de momentos de 1236 parámetros.
+-El candidato V3 de 1262 parámetros es un prototipo sin ajuste; no sustituye a
+-este predictor ni hereda sus métricas, calibrador o exportación.
++El candidato V3 de 1262 parámetros completó un piloto de desarrollo de 30
++ajustes. Ese estudio se documenta por separado: no sustituye a este predictor
++ni hereda sus métricas, calibrador o exportación.
+ 
+ Su uso previsto es explorar pronósticos académicos de volatilidad de
+ Binance Spot BTCUSDT y sus limitaciones. La salida es la desviación estándar
+@@ -125,7 +126,9 @@
+ El candidato se compara con recetas de E2 ajustadas con **655 ejemplos** y
+ calibradas con **53 fechas**. Diez semillas y fechas comunes no igualan esos
+ tratamientos ni sus presupuestos. Los pilotos y el esfuerzo de diseño se
+-conservan en la bitácora; Nd global sigue pendiente de conciliación.
++conservan en la [bitácora de diseño](experiments/design_log.md), que separa
++propuestas, variantes, parametrizaciones y réplicas y declara los límites del
++inventario global. Repetir semillas no crea diseños nuevos.
+ 
+ ## Evaluación histórica
+ 
+@@ -153,12 +156,23 @@
+ 
+ ## Límites, sesgos y escenarios adversos
+ 
+-El calendario ya era conocido y el análisis es retrospectivo. La potencia
+-prospectiva y conjunta, comparación plenamente justa, tres conjuntos
+-adicionales, adecuación completa, validación prospectiva de calibración y
+-estudios de robustez siguen
+-pendientes. La novedad R1, comprensión y defensa del autor para R2 y cierre R3
+-no se certifican con este dashboard.
++El calendario de este catálogo ya era conocido y su análisis es retrospectivo.
++La [auditoría exploratoria posterior](https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/08_verificacion_estadistica.html#e3-final-extended-audit)
++completó 796 trabajos: 19 sistemas en D00–D03, con tres archivos adicionales,
++perturbaciones, calibración y curvas. Conserva sus propios pesos, datos y
++recibos; sus resultados no se atribuyen a los cinco artefactos de este servicio.
++La independencia de los dominios, la potencia prospectiva y conjunta, la
++adecuación completa y la validación confirmatoria conservan límites abiertos.
++La novedad R1, comprensión y defensa del autor para R2 y cierre R3 no se
++certifican con este dashboard.
++
++El [piloto posterior V3](https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/development_verdict.json)
++completó 30 ajustes de desarrollo y evaluó tres semillas finales por receta en
++55 ventanas de calendario previamente expuesto. La variante completa
++`atom_crps` tuvo 2,70 % más RMSE media que el mejor control `atom_mse_only` y
++no superó su heurística previa. No se promueve automáticamente el control
++ganador ni se presenta ese resultado como una confirmación de novedad o R3.
++V3 no integra el catálogo ni los artefactos servidos.
+ 
+ En el piloto v2, la referencia aditiva tuvo RMSE **22,50 % mayor** que M00
+ conservado y proyectado en **18 fechas de objetivo realizado alto**. Es un
+--- a/app.py
++++ b/app.py
+@@ -47,7 +47,7 @@
+     html.Footer(dbc.Container([
+         html.Div([
+             html.Strong("Jassan Arteta · Deep Learning 2026-30"),
+-            html.Span("Evidencia al 18 nov. 2026 · dashboard E3 v2", className="footer-version"),
++            html.Span("Perfil histórico al 18 nov. 2026 · dashboard E3 v2 · estudios posteriores en el informe", className="footer-version"),
+         ], className="footer-heading"),
+         html.P("Las cargas se procesan para responder y no se guardan en esta aplicación. "
+                "Los pronósticos describen volatilidad, no la dirección del precio.", className="footer-note"),
+--- a/pages/contexto.py
++++ b/pages/contexto.py
+@@ -29,7 +29,7 @@
+         ("03", "Benchmark", "Top 10 y baselines"),
+         ("04", "Modelo E3", "CNN-LSTM con atención"),
+         ("05", "Evaluación", "Errores y comparación posterior"),
+-        ("06", "Confirmación", "Potencia y conjuntos adicionales pendientes"),
++        ("06", "Confirmación", "Potencia y validación confirmatoria pendientes"),
+     ]
+     return dbc.Container([
+         html.Section([
+@@ -99,17 +99,19 @@
+                 html.Ul([
+                     html.Li("El calendario de prueba ya era conocido; repetirlo no lo convierte en una reserva ciega."),
+                     html.Li("E2 y E3 conservan tratamientos de entrenamiento distintos."),
+-                    html.Li("Faltan potencia previa, tres conjuntos adicionales y la adecuación completa de E3."),
++                    html.Li("La auditoría exploratoria posterior evaluó 19 sistemas en cuatro conjuntos. La potencia prospectiva, la adecuación completa y R3 siguen abiertas."),
+                     html.Li("La inferencia, las explicaciones y la incertidumbre sólo se habilitan cuando están verificadas para el artefacto elegido."),
+                 ], className="question-list"),
+                 html.P("La revisión de fuentes/licencias, la novedad, la defensa académica y los usos permitidos conservan el estado que declara el informe.", className="muted"),
++                html.P("Este catálogo conserva sus 17 sistemas y sus artefactos históricos. La auditoría ampliada de 796 trabajos y el piloto V3 de 30 ajustes son estudios separados; no reemplazan los pesos ni los calibradores servidos.", className="muted"),
++                html.A("Consultar la auditoría ampliada y sus límites ↗", href="https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/08_verificacion_estadistica.html#e3-final-extended-audit", target="_blank", rel="noopener noreferrer", className="text-link"),
+             ], className="content-card h-100"), md=5),
+         ], className="g-4 section-gap"),
+         dbc.Modal([
+             dbc.ModalHeader(dbc.ModalTitle("Declaración de datos y privacidad"), close_button=True),
+             dbc.ModalBody(dcc.Markdown(statement, link_target="_blank")),
+         ], id="data-statement-modal", size="xl", scrollable=True, is_open=False),
+-        html.P(f'Corte documental: {metadata.get("cut_date_local", "17 de noviembre de 2026")}. Las cifras enlazan a evidencia histórica guardada.', className="page-note"),
++        html.P(f'Corte del catálogo histórico: {metadata.get("cut_date_local", "17 de noviembre de 2026")}. Los estudios posteriores conservan sus propios datos, pesos y recibos en el informe.', className="page-note"),
+     ], fluid=True, className="page-container")
+ 
+ 
+--- a/pages/modelos.py
++++ b/pages/modelos.py
+@@ -160,7 +160,7 @@
+         ], className="content-card section-gap"),
+         html.Section([
+             html.P("COMPARACIÓN ESTADÍSTICA", className="eyebrow"), html.H2("Un resultado favorable con alcance definido"),
+-            html.P("Los 48 contrastes posteriores rechazan sus nulas tras Holm. La diferencia de entrenamiento, el calendario conocido y los requisitos pendientes impiden dar por cerrada R3. La selección por validación y la comparación de prueba mantienen alcances distintos.", className="muted"),
++            html.P("Los 48 contrastes históricos de este catálogo rechazan sus nulas tras Holm. No se transfieren a la auditoría posterior de 19 sistemas ni al piloto V3. La diferencia de entrenamiento, el calendario conocido y los requisitos pendientes impiden dar por cerrada R3; selección por validación y comparación de prueba mantienen alcances distintos.", className="muted"),
+             dbc.Accordion([
+                 dbc.AccordionItem([
+                     html.P("El MCS auxiliar al 90 % conserva diez sistemas, incluida E3. Usa MSE diario medio entre semillas: no declara un ganador único, equivalencia o una ganancia de RMSE mayor que el margen."),
+@@ -186,12 +186,14 @@
+                          html.Ol([html.Li("Transformar la ventana con las estadísticas guardadas de ajuste."), html.Li("Codificar los siete días y agregar sus estados con atención."), html.Li("Sumar el exceso positivo al piso observable."), html.Li("Devolver σ₇ en unidades originales, con incertidumbre sólo cuando exista calibración verificada.")])], md=6),
+                 dbc.Col([html.H3("Qué sustenta y qué falta"), html.P("La referencia evaluada tiene 1210 parámetros y diez semillas. Se distingue del primer mecanismo de penalización/saturación de 1211 y de la cabeza de momentos de 1236 parámetros."),
+                          html.P("El primer piloto fue desfavorable al mecanismo modificado. En 18 fechas de volatilidad realizada alta, la aditiva tuvo más RMSE que M00 proyectado; es un diagnóstico posterior, no una regla disponible al pronosticar."),
+-                         html.P("Faltan revisión de novedad, defensa del aporte, potencia, tres conjuntos adicionales, ablaciones y evaluación ampliada. La atención por sí sola no es una explicación causal.", className="muted")], md=6),
++                         html.P("La revisión bibliográfica se amplió y la auditoría exploratoria completó 796 trabajos en cuatro conjuntos. R1, la defensa del aporte, la potencia prospectiva y la validación confirmatoria siguen abiertas. La atención por sí sola no es una explicación causal.", className="muted")], md=6),
+             ], className="g-4"),
+             html.H3("Evolución durante el ajuste"),
+             html.P(epoch_description, className="figure-insight"),
+             dcc.Graph(id="model-training-curve", figure=epoch_curve, config={"displaylogo": False}),
+-            html.P("La pérdida de ajuste es el MSE normalizado observado durante las actualizaciones; no es el riesgo del modelo final sobre todo el entrenamiento. La validación usa RMSE en unidades originales de σ₇, en otro eje: su separación vertical no es una prueba de sobreajuste. Las Tablas A/B y la curva frente al tamaño de muestra siguen pendientes.", className="figure-insight"),
++            html.P("La pérdida de ajuste es el MSE normalizado observado durante las actualizaciones; no es el riesgo del modelo final sobre todo el entrenamiento. La validación usa RMSE en unidades originales de σ₇, en otro eje: su separación vertical no es una prueba de sobreajuste ni resuelve por sí sola las Tablas A/B. La auditoría ampliada añade curvas de tamaño de muestra con otros ajustes; no son curvas de estos pesos servidos.", className="figure-insight"),
++            html.P("El piloto de desarrollo V3 terminó 30 ajustes con tres semillas finales por receta. La variante completa atom_crps tuvo una RMSE media 2,70 % mayor que el mejor control atom_mse_only y no superó la heurística prevista. Este resultado no acredita R1/R3 ni incorpora V3 al servicio.", className="muted"),
++            html.A("Consultar el veredicto del piloto V3 ↗", href="https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/development_verdict.json", target="_blank", rel="noopener noreferrer", className="text-link"),
+             html.A("Ver formulación, curvas y estudios del modelo ↗", href="https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/06_modelo_original.html", target="_blank", rel="noopener noreferrer", className="text-link"),
+         ], className="content-card section-gap"),
+         dbc.Modal([dbc.ModalHeader(dbc.ModalTitle("Ficha del modelo E3"), close_button=True), dbc.ModalBody(dcc.Markdown(card, link_target="_blank"))], id="model-card-modal", size="xl", scrollable=True, is_open=False),

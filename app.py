@@ -47,7 +47,7 @@ app.layout = html.Div([
     html.Footer(dbc.Container([
         html.Div([
             html.Strong("Jassan Arteta · Deep Learning 2026-30"),
-            html.Span("Evidencia al 18 nov. 2026 · dashboard E3 v2", className="footer-version"),
+            html.Span("Perfil histórico al 18 nov. 2026 · dashboard E3 v2 · estudios posteriores en el informe", className="footer-version"),
         ], className="footer-heading"),
         html.P("Las cargas se procesan para responder y no se guardan en esta aplicación. "
                "Los pronósticos describen volatilidad, no la dirección del precio.", className="footer-note"),

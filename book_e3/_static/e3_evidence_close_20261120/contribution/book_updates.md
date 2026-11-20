@@ -1,0 +1,21 @@
+# Aplicación propuesta al libro
+
+Los reemplazos literales de `book_replacements.json` conservan las especificaciones históricas y enlazan el cierre posterior; cada patrón debe coincidir una sola vez. No modificar el paquete anterior ni sus manifiestos.
+
+Añadir al final del capítulo6:
+
+(e3-contribution-evidence-close-20261120)=
+## 6.17 Contribución delimitada y procedencia tras el piloto
+
+El {ref}`cierre de 8.19 <e3-v3-pilot-completed-20261120>` incorpora el piloto `20261120T031424176339Z`: 30 ajustes, tres semillas finales por receta y 55 fechas de evaluación en desarrollo BTC previamente expuesto. La V3 completa obtuvo RMSE media 0,00212991576846 frente a 0,00207383285786 de `atom_mse_only`: **2,70 % mayor error que el mejor control**. Su mejora de 1,27 % frente a la aditiva tampoco alcanza el umbral del 2 %. La receta completa no superó la regla registrada; se conservan todos los controles y no se cambia el umbral ni se promueve automáticamente la ablación ganadora.
+
+**Declaración de contribución admisible:** se implementó, fundamentó y evaluó una referencia con soporte explícito y una adaptación candidata que aprende una ley finita del único componente desconocido de la etiqueta solapada. Se aislaron pérdida, masas y agregación mediante un piloto común, con diferencias de capacidad declaradas, y se conservó el resultado adverso. No se reivindican como invenciones CNN/LSTM, atención, salidas distribucionales, CRPS, la identidad de varianza, Jensen o la descomposición de riesgo.
+
+La {download}`declaración precisa <../_static/e3_evidence_close_20261120/contribution/contribution_declaration.md>`, su {download}`versión estructurada <../_static/e3_evidence_close_20261120/contribution/contribution_declaration.json>` y la {download}`comparación de mecanismo, pérdida, entrenamiento y aplicación <../_static/e3_evidence_close_20261120/contribution/mechanism_loss_training_application.csv>` separan la diferencia programada, las propiedades conocidas y el resultado empírico. La {download}`matriz bibliográfica consolidada <../_static/e3_evidence_close_20261120/contribution/literature_crosswalk.csv>` reúne los diez registros de la aditiva y cinco antecedentes de V3 conservando sus accesos anteriores; no anuncia nuevas búsquedas, cuerpos leídos o prueba de exhaustividad.
+
+La [procedencia canónica](https://github.com/jassan-bit/DeepLearning_202630/blob/main/experiments/procedencia.md) distingue v1, momentos, referencia aditiva y V3, fija sus fuentes y reconoce la asistencia de IA en revisión, formulación, código, análisis y redacción. El inventario reconciliado de 7.14 separa diseños, parametrizaciones, propuestas y ejecuciones; semillas y dominios no se cuentan como nuevos mecanismos. Es una consolidación retrospectiva y no recupera prerregistro o cegamiento.
+
+La {download}`matriz de requisitos y evidencia <../_static/e3_evidence_close_20261120/contribution/r1_evidence_matrix.csv>` deja cerrada esta consolidación documental y mantiene abiertas las conclusiones que requieren otras evidencias. La modalidad externa de IA autorizada de 6.13 permanece completada, sin fingir una firma humana. La comprensión y defensa del estudiante para R2 siguen pendientes de observación. **La hipótesis empírica de la receta completa no superó su piloto; ello no prueba inexistencia de novedad. La prioridad de la composición exacta y R1 siguen sin acreditar, al igual que R3.**
+
+
+El capítulo7.14 corresponde al inventario global del agente responsable; no repetir un total sin sus universos. Los capítulos8.19–8.20 corresponden al piloto y adecuación. La verificación de esta contribución no ejecuta modelos ni valores p.

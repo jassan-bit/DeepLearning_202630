@@ -1,6 +1,6 @@
 # Declaración de datos del dashboard E3
 
-**Fecha: 18 de noviembre de 2026, America/Bogota.** Esta declaración describe
+**Actualización documental: 19 de noviembre de 2026, America/Bogota.** Esta declaración describe
 los datos derivados y pronósticos históricos del prototipo académico. No
 otorga una licencia a los datos de un tercero ni certifica un cierre integral
 de la auditoría.
@@ -104,7 +104,13 @@ La cobertura corresponde a un activo, una fuente, días UTC y los periodos
 indicados. No representa automáticamente otros mercados, fuentes, regímenes
 o frecuencias. La volatilidad realizada es un proxy retrospectivo; sus errores
 de medición o límites económicos no se eliminan al reproducir su aritmética.
-Las pruebas de tres conjuntos adicionales siguen pendientes.
+La [auditoría exploratoria posterior](https://jassan-bit.github.io/DeepLearning_202630/entregable3/sections/08_verificacion_estadistica.html#e3-final-extended-audit)
+ya evaluó 19 sistemas en D00 BTC, D01 WIKI/AAPL, D02 ETHUSDT Spot y D03
+BTCUSD_PERP, con 796 trabajos completos. Esa auditoría conserva sus propias
+cohortes, pesos y calibradores: no amplía automáticamente el dominio de estos
+artefactos históricos ni convierte cuatro archivos en cuatro mercados
+independientes. La potencia prospectiva y la validación confirmatoria de R3
+siguen abiertas.
 
 La documentación disponible no acredita una **licencia de redistribución
 final** para los datos de Binance. Sus condiciones y las de cada fuente deben
@@ -143,5 +149,10 @@ procedencia, derechos, interpretación y uso.
 
 Las comprobaciones locales no equivalen a aceptación de la URL pública en
 Render ni a reproducción humana independiente de la entrega completa. El
-candidato V3 de 1262 parámetros sigue siendo un prototipo sin ajuste y no
-utiliza estas métricas o intervalos como evidencia propia.
+candidato V3 de 1262 parámetros completó un piloto de 30 ajustes con datos de
+desarrollo BTC previamente expuestos: 532 ventanas de ajuste, 54 de selección,
+siete purgadas y 55 de evaluación del piloto. No abrió los miembros de prueba
+ni calibración del archivo fuente y no usó D01–D03. La variante completa no
+superó su heurística frente a los controles. Su [recibo verificable](https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/pilot_receipt.json)
+conserva ese alcance; no utiliza las métricas o intervalos del servicio como
+evidencia propia ni incorpora V3 al catálogo.

@@ -1,0 +1,22 @@
+# CPU en Colab. El publicador debe fijar SOURCE_COMMIT antes de entregar esta celda.
+import hashlib
+import re
+import urllib.request
+
+SOURCE_COMMIT = "__FINAL_SOURCE_COMMIT__"
+HELPER_SHA256 = "75996051e8cbfddb2c4c19880b91e9ca149a4e55bf11834c8d2e4f41c6977eff"
+if not re.fullmatch(r"[0-9a-f]{40}", SOURCE_COMMIT):
+    raise ValueError("Esta plantilla debe fijarse al commit publicado del cierre.")
+DEPLOYMENT_COMMIT = input("SHA efectivo de Render (40 caracteres, copiado del log): ").strip()
+url = (
+    "https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/"
+    + SOURCE_COMMIT
+    + "/experiments/e3_evidence_close_20261120/release/render_public_acceptance_colab.py"
+)
+with urllib.request.urlopen(url, timeout=60) as response:
+    code = response.read(131073)
+if len(code) > 131072 or hashlib.sha256(code).hexdigest() != HELPER_SHA256:
+    raise RuntimeError("El helper no corresponde a la versión revisada.")
+namespace = {"__name__": "e3_cpu_public_acceptance_handoff"}
+exec(compile(code, "e3_cpu_public_acceptance_handoff", "exec"), namespace)
+namespace["main"](DEPLOYMENT_COMMIT)

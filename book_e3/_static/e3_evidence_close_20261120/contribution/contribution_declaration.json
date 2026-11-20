@@ -1,0 +1,136 @@
+{
+  "kind": "existing_evidence_contribution_and_provenance_consolidation",
+  "AI_assistance_declared": true,
+  "review_modality": "AI, as allowed by the teacher according to the project author; no human reviewer or student defense fabricated",
+  "book_base_commit": "29f9a26f1fd05484c6581ea6538ad7cb5a4781cb",
+  "scientific_sources": {
+    "book_base_commit": "29f9a26f1fd05484c6581ea6538ad7cb5a4781cb",
+    "additive_scientific_source": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "additive_796_results_commit": "16a4504f6fb9208c7d6f89b65017194fa20470da",
+    "additive_796_master": "20261119T031104515520Z",
+    "pilot_code_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+    "pilot_results_commit": "8eaa581bc34b615a8507c9e384a3e4be29084720",
+    "pilot_master": "20261120T031424176339Z",
+    "old_R1_packet": "https://github.com/jassan-bit/DeepLearning_202630/blob/29f9a26f1fd05484c6581ea6538ad7cb5a4781cb/book_e3/_static/e3_r1_close_20261120/README.md",
+    "old_R1_manifest": "https://github.com/jassan-bit/DeepLearning_202630/blob/29f9a26f1fd05484c6581ea6538ad7cb5a4781cb/book_e3/_static/e3_r1_close_20261120/packet_manifest.json",
+    "old_primary_sources": "https://github.com/jassan-bit/DeepLearning_202630/blob/29f9a26f1fd05484c6581ea6538ad7cb5a4781cb/book_e3/_static/e3_r1_close_20261120/primary_review/sources.json",
+    "old_atomic_design": "https://github.com/jassan-bit/DeepLearning_202630/blob/29f9a26f1fd05484c6581ea6538ad7cb5a4781cb/book_e3/_static/e3_r1_close_20261120/adaptation_design/decision.md",
+    "old_analytical_receipt": "https://github.com/jassan-bit/DeepLearning_202630/blob/29f9a26f1fd05484c6581ea6538ad7cb5a4781cb/book_e3/_static/e3_r1_close_20261120/adaptation_design/analytic_verification.json",
+    "pilot_payload": "https://github.com/jassan-bit/DeepLearning_202630/tree/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload",
+    "pilot_plan": "https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/plan.json",
+    "pilot_receipt": "https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/pilot_receipt.json",
+    "pilot_verdict": "https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/development_verdict.json",
+    "pilot_scores": "https://github.com/jassan-bit/DeepLearning_202630/blob/8eaa581bc34b615a8507c9e384a3e4be29084720/runs/e3_v3_development_pilot/20261120T031424176339Z/payload/recipe_summary.csv",
+    "atomic_model": "https://github.com/jassan-bit/DeepLearning_202630/blob/8f65eac34aaf49293924ae8328c235cedbdd2866/src/e3_overlap_model_v3.py",
+    "additive_model": "https://github.com/jassan-bit/DeepLearning_202630/blob/8f65eac34aaf49293924ae8328c235cedbdd2866/src/e3_innovation_model.py",
+    "plugin_model": "https://github.com/jassan-bit/DeepLearning_202630/blob/8f65eac34aaf49293924ae8328c235cedbdd2866/experiments/e3_v3_development_pilot_20261120/plugin_control.py",
+    "pilot_engine": "https://github.com/jassan-bit/DeepLearning_202630/blob/8f65eac34aaf49293924ae8328c235cedbdd2866/experiments/e3_v3_development_pilot_20261120/pilot_engine.py",
+    "design_inventory": "experiments/design_log.md",
+    "source_access_policy": "No new literature search or full-text read claimed by this consolidation. Access scopes are reused with their source receipts."
+  },
+  "reference_claim": "Implemented and evaluated a causal CNN–LSTM content-attention point reference with observable rolling-volatility floor; known components are attributed. The bounded comparison does not establish a substantive novelty claim for the additive readout.",
+  "candidate_claim": "Implemented and tested a development adaptation that learns a three-atom conditional law for the only unobserved return-deviation magnitude, transforms each atom through the exact overlap identity, and trains the transformed mean jointly with CRPS_U. This is a concrete structure/training difference whose priority for the precise task is not established.",
+  "mechanism_changes_documented": [
+    "finite_atomic_law_instead_of_scalar_excess",
+    "sample_conditioned_transform_before_expectation",
+    "auxiliary_CRPS_U_training_signal"
+  ],
+  "known_components_not_claimed_inventions": [
+    "CNN",
+    "LSTM",
+    "learned-query softmax pooling",
+    "sample-specific support guards",
+    "conditional distribution/mixture neural output",
+    "finite categorical laws",
+    "CRPS",
+    "variance identity",
+    "Jensen/Taylor curvature bound",
+    "quadratic-risk projection identity"
+  ],
+  "mathematical_claims": {
+    "support": "A>=0 and valid nonnegative finite atomic law imply mu_G>=sqrt(A).",
+    "exact_mean": "The finite sum is exact under the model law G only, not the unknown market law.",
+    "jensen_bound": "For V=U^2 in bounded support and A>0, curvature bounds control the plug-in minus exact-law mean; no global bound promised for A=0 with zero support.",
+    "risk_comparison": "Under the true conditional law, exact-law mean minimizes squared risk; improvement over the second-moment plug-in equals their squared difference. No superiority over a flexible additive head follows.",
+    "population_joint_loss": "Correct specification, representability, finite moments and an attained global population optimum are assumptions; no guarantee for finite three-atom approximation or training."
+  },
+  "pilot": {
+    "master_run_id": "20261120T031424176339Z",
+    "results_commit": "8eaa581bc34b615a8507c9e384a3e4be29084720",
+    "source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+    "scope": "exposed_development_only",
+    "completed_fits": 30,
+    "HPO_fits": 15,
+    "final_fits": 15,
+    "final_seeds_per_recipe": 3,
+    "assessment_rows": 55,
+    "calibration_arrays_opened": 0,
+    "test_arrays_opened": 0,
+    "additional_datasets_used": 0,
+    "scores": [
+      {
+        "variant": "additive_positive_head",
+        "parameters": 1210,
+        "mean_RMSE": 0.002157280691248283,
+        "mean_CRPS_U": null
+      },
+      {
+        "variant": "atom_crps",
+        "parameters": 1262,
+        "mean_RMSE": 0.0021299157684633078,
+        "mean_CRPS_U": 0.008105320567980806
+      },
+      {
+        "variant": "atom_mse_only",
+        "parameters": 1262,
+        "mean_RMSE": 0.002073832857860484,
+        "mean_CRPS_U": 0.008078905065400011
+      },
+      {
+        "variant": "fixed_probs",
+        "parameters": 1236,
+        "mean_RMSE": 0.0020836487711144596,
+        "mean_CRPS_U": 0.007905176965674521
+      },
+      {
+        "variant": "atom_plugin",
+        "parameters": 1262,
+        "mean_RMSE": 0.002094285517681613,
+        "mean_CRPS_U": 0.007979927775018337
+      }
+    ],
+    "best_control": "atom_mse_only",
+    "full_relative_gain_vs_best_control": -0.02704311988801411,
+    "full_worse_than_best_percent": 2.704311988801411,
+    "full_relative_gain_vs_additive": 0.01268491527133686,
+    "continuation_threshold": 0.02,
+    "continuation_heuristic_passed": false,
+    "p_values_computed": false,
+    "automatic_promotion_of_best_ablation": false
+  },
+  "decision_after_observing_pilot": "Preserve all variants and the failed full-candidate verdict. Do not launch a full confirmatory campaign for the unchanged full recipe solely on this result. A future candidate or objective change needs a new version/design-log entry and prospective protocol; no post-result threshold change.",
+  "source_reading_scope": {
+    "primary_additive_works": 10,
+    "primary_additive_focal_bodies": 8,
+    "primary_additive_abstract_extract_only": 2,
+    "additional_V3_antecedents": 5,
+    "additional_V3_recorded_focal_reads": 3,
+    "additional_V3_abstract_metadata_only": 2,
+    "new_primary_reads_claimed": 0,
+    "old_abstract_queue": 50,
+    "old_complete_abstracts": 41,
+    "old_partial_abstracts": 3,
+    "old_listing_only": 1,
+    "old_unavailable_abstracts": 5
+  },
+  "R1_accredited": false,
+  "R2_student_defense_observed": false,
+  "R3_accredited": false,
+  "novelty_absence_proved": false,
+  "bad_pilot_refutes_novelty": false,
+  "new_model_fits_executed_by_this_consolidation": 0,
+  "new_model_inference": 0,
+  "new_hypothesis_tests": 0,
+  "old_796_jobs_relabelled_as_V3": false,
+  "old_packets_modified": false
+}
