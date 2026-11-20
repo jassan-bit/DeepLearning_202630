@@ -1,0 +1,65 @@
+name: Public Render historical14 acceptance, pinned source
+on:
+  create:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-profile14:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'create' && github.event.ref_type == 'branch' &&
+       startsWith(github.event.ref, 'e3-render-public-acceptance-'))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout the dedicated acceptance launcher
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            experiments/e3_public_render_acceptance_20261120
+      - name: Checkout accepted client and references at the deployed immutable source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: feb83dbc08197bde7076857bd8ff475de197efd2
+          path: frozen_reference
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            experiments/e3_product_followup_20261120
+            experiments/e3_cierre_integral_20261118/acceptance
+            experiments/e3_cierre_integral_20261118/serving/export_capabilities/tsmixer
+            experiments/e3_bloques_fg_20261117
+            e3_dashboard_v3
+            artifacts/e3_dashboard_v1
+            artifacts/e3_serving_extensions_v2
+            artifacts/e3_serving_calibration_v2
+            data/e3_dashboard_v1
+      - name: Prepare only the bounded CPU browser client
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Install fixed Playwright and Chromium without any model runtime
+        run: |
+          python -m pip install playwright==1.56.0 greenlet==3.5.6 pyee==13.0.1
+          python -m pip check
+          python -m playwright install --with-deps chromium
+      - name: Verify launcher guards without public requests
+        env:
+          E3_ACCEPTANCE_TEST_SOURCE_ROOT: frozen_reference
+          E3_ACCEPTANCE_TEST_FALLBACK_ROOT: frozen_reference
+        run: python -m unittest discover -s experiments/e3_public_render_acceptance_20261120 -p test_public_launcher_guards.py -v
+      - name: Verify public source/profile identity and run unchanged five and fourteen-model clients
+        run: |
+          python experiments/e3_public_render_acceptance_20261120/run_public_profile14.py \
+            --reference-root frozen_reference --output /tmp/e3-public-profile14 --warm-seconds 180
+      - name: Preserve public receipts and captures even if acceptance fails
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-public-profile14-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/e3-public-profile14/
+          retention-days: 90
+          if-no-files-found: warn
