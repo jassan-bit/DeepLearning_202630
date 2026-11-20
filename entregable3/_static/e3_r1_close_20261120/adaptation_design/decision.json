@@ -1,0 +1,98 @@
+{
+  "kind": "bounded_substantive_adaptation_design_assessment",
+  "AI_assistance_declared": true,
+  "decision": "Retain existing V3 as one structural/training adaptation candidate; do not invent V4 or accredit R1 by renaming known methods.",
+  "existing_evaluated_reference": {
+    "name": "CNN-LSTM-atencion-aditiva E3",
+    "parameters": 1210,
+    "completed_audit_jobs": 796,
+    "those_jobs_are_not_V3_results": true
+  },
+  "candidate": {
+    "name": "Existing V3 ordered atomic law of future deviation magnitude with exact overlap pushforward mean and CRPS_U",
+    "relative_source": "src/e3_overlap_model_v3.py",
+    "source_sha256": "30a0e4daa480e803932482c93928e4e250e338eb3daff3fc801e73ed2cec434b",
+    "parameters": 1262,
+    "K": 3,
+    "lambda_CRPS": 0.1,
+    "implemented_before_this_review": true,
+    "new_market_training_in_this_review": false,
+    "R1_accredited": false,
+    "R3_accredited": false
+  },
+  "adaptation_classification": {
+    "structure": "Replace scalar guarded readout by learned U atom locations and masses, then apply input-specific overlap transform before expectation.",
+    "training": "MSE of sigma plus normalized CRPS of U; future U only a training label.",
+    "known_elements": [
+      "conditional mixture/distribution neural outputs",
+      "categorical atoms and softmax",
+      "strictly proper CRPS",
+      "variance overlap identity",
+      "pushforward of a law and Jensen/Taylor bounds"
+    ],
+    "not_demonstrated": [
+      "priority for exact proposed composition",
+      "improved point-function expressivity versus flexible additive MSE head",
+      "market calibration",
+      "finite-sample RMSE superiority",
+      "universal consistency",
+      "blind confirmation on already exposed D00-D03"
+    ]
+  },
+  "mathematical_claims": {
+    "guard": "Support respects known sqrt(A).",
+    "expectation": "Exact only under model finite law.",
+    "Jensen_risk_comparator": "Second-moment plug-in under the correctly specified law only; NOT the additive neural reference.",
+    "curvature_bound": "Standard second-order Taylor/Jensen variance bound; A>0 and bounded U squared; not a novel theorem.",
+    "joint_risk": "Correct-law global population statement; restrictive three-atom representability and moment assumptions.",
+    "misspecification": "Auxiliary CRPS can reverse point-risk ordering among three-atom approximations; no point-risk faithfulness guarantee."
+  },
+  "execution_frontier": {
+    "new_protocol_tag_required_for_new_evaluated_version": true,
+    "minimum_confirmatory_neural_seeds": 10,
+    "more_seeds_if_prospective_power_requires": true,
+    "power_per_contrast_and_joint_required": true,
+    "pilot_margin_budget_selection_and_stopping_not_frozen_by_this_report": true,
+    "preserve_current_19_including_additive_and_floor_controls": "20 systems if V3 added; old 18-system planner not automatically valid.",
+    "D00_D01_D02_D03_now_exposed": "Use as development/exploratory if influencing new design; do not relabel blind evidence."
+  },
+  "primary_source_access": [
+    {
+      "id": "bishop1994",
+      "url": "https://www.microsoft.com/en-us/research/publication/mixture-density-networks/",
+      "access": "institutional abstract; PDF opened but extraction illegible; no full-body new reading claimed"
+    },
+    {
+      "id": "schittenkopf1998",
+      "url": "https://research.wu.ac.at/ws/portalfiles/portal/18954278/document.pdf",
+      "doi": "10.57938/a6057c38-dbad-42dc-bebc-bd2c71fe537f",
+      "access": "full primary PDF focal reading",
+      "locators": "Section2 printedpp2-3eq1-9; Section3 printedp5 ATX and squared-return volatility. This is1998, not the inaccessible1999OFAIreport."
+    },
+    {
+      "id": "feng2023",
+      "url": "https://aimspress.com/article/doi/10.3934/era.2023194",
+      "doi": "10.3934/era.2023194",
+      "access": "primary editorial abstract and metadata; no full-body reading claimed"
+    },
+    {
+      "id": "bellemare2017",
+      "url": "https://proceedings.mlr.press/v70/bellemare17a/bellemare17a.pdf",
+      "access": "full primary PDF focal reading",
+      "locators": "Sections4.1-4.2, PDFpp5-6: fixed categorical support, softmax, Bellmanprojection/KL. No C51 implementation or contraction guarantee inherited."
+    },
+    {
+      "id": "gneiting2007",
+      "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
+      "doi": "10.1198/016214506000001437",
+      "access": "existing prototype focal reading reused and attributed; not reported as a new complete read",
+      "locators": "Section4.2 printedp367eq21 and strict-propriety paragraph"
+    }
+  ],
+  "new_real_data_fits": 0,
+  "new_model_inference": 0,
+  "market_rows_read": 0,
+  "statistical_resamples": 0,
+  "R1_accredited": false,
+  "R3_accredited": false
+}

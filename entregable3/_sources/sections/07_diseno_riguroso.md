@@ -402,3 +402,118 @@ La reducción descriptiva de esa diferencia es **63,72 %**, pero **no es una fra
 El control determinista **sólo piso**, independiente de la familia original de 17 sistemas, obtuvo RMSE **0,0035275805** y MAE **0,0018227552**. Su MAE fue **3,70 % menor** que el MAE medio de E3, **0,0018928273**: es un resultado adverso a una afirmación de dominio general por métricas. E3 conserva mejor RMSE que ese control; ninguno de estos valores es una prueba de significancia o una explicación causal.
 
 Los pronósticos y contrastes históricos permanecen identificados por su tratamiento original: no se sustituyen sus 48 p-valores por esta proyección ni se incorpora retrospectivamente el control al protocolo previo. Faltan comparación justa, ablaciones de la receta defendida, adecuación, potencia y confirmación independiente. La {ref}`revisión ampliada de antecedentes <revision-focal-ampliada-20261118>` delimita además qué partes del mecanismo son conocidas. **Este control no es un nuevo preregistro ni acredita R1, R2 o R3.**
+
+(e3-r1-v3-design-protocol)=
+## 7.12 Diseño delimitado de la adaptación V3 y controles futuros
+
+Este apartado desarrolla la {ref}`decisión de 6.16 <e3-r1-adaptation-decision>`, con fecha posterior a los resultados ya conocidos. **Es diseño de investigación, no un protocolo confirmatorio congelado ni evidencia de rendimiento V3.** Conserva la referencia aditiva y el candidato V3 existente, sin cambiar sus fuentes.
+
+### Limitación, hipótesis y explicación que pueden refutarse
+
+La identidad `Y=√(A+cU²)`, con `c=6/49`, separa una parte observable de la ventana y una magnitud futura. La limitación matemática específica es que conocer sólo `E[U²|X]` no determina la media de Y. V3 intenta usar una ley condicional y una señal auxiliar para aprender esa media. **La aditiva entrenada directamente con MSE también puede representarla**: no se afirma una imposibilidad de su arquitectura ni una mejora universal de expresividad.
+
+**Hipótesis candidata de desarrollo:** bajo particiones, selección y presupuesto comunes, la ley aprendida de U y su transformación antes de promediar producen una mejora práctica al menos δ_dev frente a la aditiva y aportes identificables frente a las ablaciones. El valor de δ_dev, las semillas, los subgrupos y la regla conjunta de éxito deben justificarse y registrarse antes del piloto; no se completan retrospectivamente a partir de 8.18. El informe actual no congela esos campos.
+
+Predicciones secundarias y resultados que debilitarían esa explicación:
+
+1. Con una misma ley finita fijada, la diferencia entre el pronóstico exacto y el control de segundo momento debe coincidir con el gap de Jensen y respetar las cotas siguientes. Incumplirlo identifica un error de cálculo.
+2. Una mejora atribuida a la ley debe examinarse junto al CRPS_U fuera del ajuste y por subgrupos de gap **predicho al origen**, con cortes fijados mediante desarrollo. No se forman grupos con el retorno futuro para presentarlos como una regla operativa.
+3. Retirar CRPS, fijar masas y cambiar la agregación deben examinarse por separado. Si un componente no muestra un aporte bajo la regla y potencia fijadas, su utilidad no queda acreditada; la falta de rechazo tampoco prueba equivalencia.
+4. La cobertura y el error bajo ruido se reportan, incluidos los resultados adversos. El deterioro de la aditiva en 8.18 no prueba que V3 lo repare.
+
+### Propiedad delimitada: transformación de la ley y sustitución por segundo momento
+
+Sean `V=U²`, una ley finita fijada G con masas válidas y `A>0`. Para `f(v)=√(A+cv)`,
+
+```{math}
+:label: eq-e3-v3-jensen-curvature
+f''(v)=-\frac{c^2}{4(A+cv)^{3/2}}.
+```
+
+Si `V∈[v_min,v_max]`, Taylor alrededor de `E_G[V]`, junto a la esperanza nula del término lineal, da
+
+```{math}
+:label: eq-e3-v3-jensen-gap-bounds
+\frac{c^2\operatorname{Var}_G(V)}{8(A+cv_{\max})^{3/2}}
+\leq \sqrt{A+cE_G[V]}-E_G[\sqrt{A+cV}]
+\leq\frac{c^2\operatorname{Var}_G(V)}{8(A+cv_{\min})^{3/2}}.
+```
+
+Es una aplicación de la cota estándar de curvatura y Jensen, **no un teorema nuevo**. La concavidad explica el signo; si A=0 y el soporte incluye cero, no se promete la misma cota superior finita uniforme.
+
+Si además G es la verdadera ley condicional, su media transformada `μ_G` minimiza el riesgo cuadrático. Para el control `b=√(A+cE_G[U²])`,
+
+```{math}
+:label: eq-e3-v3-plugin-risk-gap
+E[(Y-b)^2\mid X]-E[(Y-\mu_G)^2\mid X]=(b-\mu_G)^2\geq0.
+```
+
+Esta identidad compara con **ese control de sustitución por segundo momento**, no con la red aditiva ni con cualquier predictor. Bajo mala especificación no hay una ventaja garantizada de la ley aproximada. La propiedad de soporte y el mínimo poblacional del riesgo MSE+CRPS, bajo representabilidad y momentos suficientes, conservan los supuestos restrictivos de 6.14; no son una garantía de optimización o calibración de mercado.
+
+### Verificación analítica y contraejemplos
+
+El {download}`código Python estándar <../_static/e3_r1_close_20261120/adaptation_design/analytic_checks.py>` comprueba **100 leyes finitas artificiales**, las cotas y la identidad de riesgo. Su {download}`recibo con todos los casos <../_static/e3_r1_close_20261120/adaptation_design/analytic_verification.json>` incluye además:
+
+| Comprobación | Resultado y significado |
+|---|---|
+| Dos leyes con el mismo segundo momento | Con A=0,04 y V uniforme en {0,2; 1,8} o en {0,8; 1,2}, ambas tienen E[V]=1. La sustitución por segundo momento da 0,4030495994 en ambos casos, pero las medias exactas son 0,3821252217 y 0,4018963707. El segundo momento no determina la media transformada. |
+| Cabeza aditiva que reproduce la media | La inversión del enlace softplus reconstruye el mismo punto del ejemplo cuando el exceso supera su incremento mínimo. No hay una imposibilidad general de representación de la aditiva. |
+| Pérdida auxiliar bajo aproximación | Entre dos leyes aproximadas de tres átomos, añadir CRPS con λ=0,1 cambia el orden del riesgo conjunto y empeora el riesgo puntual. No son óptimos globales ni un experimento de entrenamiento; es un contraejemplo a una garantía incondicional de mejora puntual. |
+
+Estas comprobaciones no importan PyTorch, cargan precios, optimizan modelos o generan pronósticos de mercado. Los números artificiales no se interpretan como rentabilidades plausibles o resultados del benchmark. La demostración y la verificación sostienen propiedades delimitadas, mientras la utilidad empírica del mecanismo permanece por contrastar.
+
+### Ablaciones, capacidad y objeto de la comparación
+
+| Variante o control | Qué permite investigar | Estado y límite |
+|---|---|---|
+| V3 `atom_crps` | Ley, transformación y entrenamiento propuestos. | Prototipo existente, 1262 parámetros; sin resultado de mercado aportado por este cierre. |
+| `atom_mse_only` | Efecto de retirar CRPS. | Implementado, mismo inicio y 1262 parámetros. La ablación comparable de mercado sigue pendiente. |
+| `fixed_probs` | Efecto de aprender masas frente a uniformes. | Implementado, 1236 parámetros; diferencia de capacidad declarada, sin parámetros inactivos para aparentar igualdad. |
+| Sustitución por segundo momento | `√(A+cΣpₖuₖ²)` frente a `Σpₖ√(A+cuₖ²)`. | Control analítico del expediente; la implementación posterior `atom_plugin`, con 1262 parámetros, y su política común se documentan en 7.13. Sin evaluación de mercado aportada aquí. |
+| Aditiva y familia actual | Referencia de 1210 parámetros y los 18 rivales restantes, incluidos ambos controles de piso. | Se conservan. Añadir V3 da 20 sistemas; una ventaja frente a un único control no completa R3. |
+
+La cabeza de V3 requiere O(K) para transformar y promediar átomos; el CRPS de la implementación por pares es O(K²), con K=3. Esto no reemplaza el perfilado de toda la red, memoria, FLOPs o energía. Las ablaciones deben conservar particiones, escalado, selección, semillas y presupuesto, y reportar el consumo efectivo.
+
+### Algoritmo propuesto y frontera temporal
+
+```text
+Entradas: versión y hashes del modelo; datos de desarrollo y particiones;
+          K=3, lambda=0.1, escalas de ajuste, variantes y semillas;
+          presupuesto común, delta_dev y criterios de éxito/fracaso fechados.
+Verificar las fuentes y que la confirmación no haya orientado el diseño.
+Para cada receta/semilla predefinida:
+  estimar escalas y transformaciones sólo con ajuste;
+  por lote, calcular A de la historia y U,Y como etiquetas de ajuste;
+  codificar X, producir átomos ordenados y masas;
+  transformar cada átomo, promediar y calcular MSE+CRPS_U;
+  actualizar sólo con ajuste y seleccionar/parar usando validación;
+  conservar estados, fallos, consumo y selección antes del scoring.
+Comparar todos los controles, incluidos resultados adversos;
+  conservar o descartar V3 por la regla previa, sin acreditar R1/R3.
+Sólo después, si procede, registrar la versión y un protocolo confirmatorio
+  nuevo con datos reservados, márgenes, familia y potencia suficientes.
+```
+
+El algoritmo describe la propuesta; no la ejecuta. Los cuatro conjuntos D00–D03 tienen resultados ya expuestos y no recuperan cegamiento si se usan para diseñar V3. Antes de confirmar deben quedar fijados los datos realmente reservados, la batería apropiada, el ajuste familiar, potencia por contraste y conjunta y al menos diez semillas o el número mayor que requiera el dimensionamiento. El plan histórico de 18 sistemas no se reutiliza como si ya cubriera la familia ampliada.
+
+(e3-v3-controlled-development-pilot)=
+## 7.13 Piloto controlado de desarrollo de V3
+
+El siguiente paso es un piloto acotado, con decisiones fijadas antes de sus ajustes. Su [código y controles](https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_v3_development_pilot_20261120) se publican por separado del controlador de los 796 trabajos. El [cuaderno Colab](https://github.com/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_v3_controlled_pilot_colab.ipynb) prepara un intérprete aislado, registra la GPU realmente asignada y guarda el plan en una rama nueva de GitHub antes del primer ajuste. Esta preparación no aporta resultados de entrenamiento de V3 ni acredita R1.
+
+| Decisión previa | Especificación |
+|---|---|
+| Datos | Sólo los tres miembros `training_raw`, `training_y_original` y `training_dates` del NPZ histórico, comprobado por SHA-256. No se materializan los miembros de calibración ni prueba; D01–D03 quedan fuera de este piloto. |
+| Ajuste y selección | Las 532 ventanas originales de ajuste conservan el escalado. De las 116 ventanas de validación, las primeras 54 seleccionan y paran; se purgan siete y las últimas 55 se puntúan después de completar todos los ajustes finales. Este calendario ya estuvo expuesto y sigue siendo desarrollo. |
+| Recetas neuronales | Aditiva (1210 parámetros), `atom_crps` (1262), `atom_mse_only` (1262), `fixed_probs` (1236) y `atom_plugin` (1262). Las tres últimas aíslan pérdida, masas y agregación, respectivamente. |
+| Controles analíticos | `floor_only` y `floor_plus_mean_excess`, con exceso estimado sólo en ajuste. |
+| HPO común | Tasas 0,0003; 0,001; 0,003, semilla 20261117: 15 ajustes. Selección por RMSE de σ₇ en las 54 ventanas y desempate por menor tasa. |
+| Réplicas finales | Semillas 20261118, 20261119 y 20261120 para las cinco recetas: 15 ajustes adicionales. Son tres réplicas de desarrollo, no las diez o más exigibles para confirmar. |
+| Presupuesto y fallos | Una oportunidad nominal de 120 segundos por fase de optimización, hasta 40 épocas, paciencia ocho, lote 32, AdamW sin decaimiento y recorte de gradiente a uno. La construcción y preparación de tensores se mide aparte. El plazo de la fase incluye guardado, esperas y desconexiones, y se conserva al reanudar; se reportan pasos, consumo y posibles excesos. Una receta incompleta bloquea la decisión de continuación. |
+| Regla de continuación | V3 debe reducir al menos 2 % la RMSE media de las tres semillas frente al mejor control neuronal y al mejor de todos los controles en las 55 ventanas. Es una heurística de desarrollo, sin pruebas de significancia ni margen confirmatorio. Se conservan todos los resultados, favorables o adversos. |
+
+El control `atom_plugin` conserva la ley atómica y su inicialización, la pérdida CRPS y el número de parámetros de `atom_crps`; reemplaza únicamente su lectura por `√(A+cΣpₖuₖ²)`. Su configuración y versión son distintas para impedir que una reanudación mezcle variantes. Las pruebas sintéticas contrastan igualdad de la ley, desigualdad de Jensen, gradientes, extremos numéricos y restauración del estado. Las diferencias observadas al entrenar ambos controles no serían una prueba de que la aditiva carece de capacidad para representar la media.
+
+El guardado utiliza objetos Git empaquetados y verifica cada publicación. Publica el plan antes del primer ajuste y, por receta, el inicio, el primer checkpoint validado y el cierre. Conserva modelo, optimizador, generadores aleatorios, selección, plazo e identidad del software; una reanudación exige el mismo perfil registrado y recupera únicamente lo guardado. Si se pierde el estado local antes del primer checkpoint remoto validado y vence el plazo, el ajuste queda incompleto: no se renueva su presupuesto. Los resultados nuevos se guardan en `runs/e3_v3_development_pilot/`, sin sobrescribir el master anterior. El recibo final distinguirá ajustes nuevos de cachés reutilizadas y declarará el uso de IA. **Hasta disponer de ese recibo, este apartado acredita preparación y pruebas de software, sin resultados de mercado nuevos.**
+
+Si la heurística falla, se reporta el resultado y se decide la siguiente modificación en la bitácora. Si se supera, todavía corresponde repetir la búsqueda de antecedentes de la composición precisa, conciliar el inventario global de diseños y preparar un protocolo confirmatorio con datos adecuados, familia, potencia y presupuesto. Ninguno de esos estados se marca completado por este piloto.

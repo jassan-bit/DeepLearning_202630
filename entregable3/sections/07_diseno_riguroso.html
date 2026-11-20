@@ -409,6 +409,15 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-sobre-las-trayectorias-congeladas">Resultado sobre las trayectorias congeladas</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-delimitado-de-la-adaptacion-v3-y-controles-futuros">7.12 Diseño delimitado de la adaptación V3 y controles futuros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitacion-hipotesis-y-explicacion-que-pueden-refutarse">Limitación, hipótesis y explicación que pueden refutarse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-delimitada-transformacion-de-la-ley-y-sustitucion-por-segundo-momento">Propiedad delimitada: transformación de la ley y sustitución por segundo momento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-analitica-y-contraejemplos">Verificación analítica y contraejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablaciones-capacidad-y-objeto-de-la-comparacion">Ablaciones, capacidad y objeto de la comparación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-propuesto-y-frontera-temporal">Algoritmo propuesto y frontera temporal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-controlado-de-desarrollo-de-v3">7.13 Piloto controlado de desarrollo de V3</a></li>
 </ul>
             </nav>
         </div>
@@ -455,7 +464,7 @@
 <p>No se ha cerrado una transferencia desde una aplicación de origen concreta. Citar antecedentes de atención y estabilidad no demuestra por sí solo esa transferencia ni su adaptación sustantiva. Si se defiende una transferencia, deberán identificarse la fuente exacta, la propiedad o estructura compartida que permite trasladarla y el cambio algorítmico requerido en BTC. Si se defiende una combinación propia, deberá demostrarse su diferencia frente a los trabajos cercanos. La revisión pendiente no se completa asignando una procedencia retrospectiva por conveniencia.</p>
 <p><strong>D3. Hipótesis del mecanismo, propuesta para desarrollo.</strong> Si la penalización y la saturación reducen la influencia de estados discordantes por el mecanismo previsto, el modelo completo deberá reducir la RMSE frente al mismo codificador con atención convencional de contenido en un conjunto de estrés <span class="math notranslate nohighlight">\(S\)</span> definido antes de evaluar, sin un deterioro limpio superior al margen heredado. Para BTCUSDT se conserva</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-design-practical-margin">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eq-e3-design-practical-margin" title="Link to this equation">#</a></span>\[
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-e3-design-practical-margin" title="Link to this equation">#</a></span>\[
 \delta=0{,}00025772842664981106
 \]</div>
 <p>en unidades originales de <span class="math notranslate nohighlight">\(\sigma_7\)</span>; no se recalcula con el resultado del candidato. La propuesta exige una ganancia de al menos <span class="math notranslate nohighlight">\(\delta\)</span> en <span class="math notranslate nohighlight">\(S\)</span>. Quedaría refutada si no se observa ese beneficio bajo el diseño fijado o si el deterioro limpio excede el margen. Mejorar sólo la robustez no satisface la comparación principal de R3 frente al Top 10 y todos los baselines fuertes.</p>
@@ -513,18 +522,18 @@
 <p>La propiedad del primer diseño es una cota Lipschitz de la <strong>cabeza sobre estados latentes</strong>. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación del Bloque C</span></a> y la <a class="reference download internal" download="" href="../_downloads/baebf3f0c6b03093bbfcfebf157eef77/theory.md"><code class="xref download docutils literal notranslate"><span class="pre">demostración</span> <span class="pre">íntegra</span> <span class="pre">con</span> <span class="pre">derivadas</span> <span class="pre">y</span> <span class="pre">pseudocódigo</span></code></a> conservan su desarrollo. La demostración siguiente es autocontenida; no extiende la garantía al preprocesamiento, a la CNN o a la LSTM. La propiedad de la propuesta posterior por momentos se integra en 7.6.</p>
 <p>Sean <span class="math notranslate nohighlight">\(H,H'\in\mathbb R^{n\times d}\)</span>, con <span class="math notranslate nohighlight">\(n=7\)</span> en el problema principal. Se usan norma euclídea, norma de Frobenius y norma espectral para vectores, estados y operadores, respectivamente. Sean <span class="math notranslate nohighlight">\(P\)</span> una matriz causal fija e independiente de <span class="math notranslate nohighlight">\(H\)</span>, <span class="math notranslate nohighlight">\(A=I-P\)</span> y parámetros de inferencia fijos tales que</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-assumptions">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eq-e3-v1-head-assumptions" title="Link to this equation">#</a></span>\[
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-e3-v1-head-assumptions" title="Link to this equation">#</a></span>\[
 B&gt;0,\quad\varepsilon&gt;0,\quad\|q\|_2\le Q,\quad\|w\|_2\le W,
 \quad0\le\lambda\le\Lambda,\quad\tau\ge\tau_{\min}&gt;0.
 \]</div>
 <p>El mecanismo es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-scores">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eq-e3-v1-head-scores" title="Link to this equation">#</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-e3-v1-head-scores" title="Link to this equation">#</a></span>\[
 r_j=(AH)_j,\quad d_j=\sqrt{\|r_j\|_2^2+\varepsilon^2},\quad
 s_j=q^\top h_j-\lambda d_j,\quad a=\operatorname{softmax}(s/\tau),
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-values">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eq-e3-v1-head-values" title="Link to this equation">#</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-e3-v1-head-values" title="Link to this equation">#</a></span>\[
 v_j=\frac{B h_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 c=\sum_{j=1}^n a_jv_j,\qquad
 f(H)=\operatorname{softplus}(w^\top c+b).
@@ -532,36 +541,36 @@ f(H)=\operatorname{softplus}(w^\top c+b).
 <p>En el código, las restricciones se cumplen mediante <span class="math notranslate nohighlight">\(q=Qu_q/\sqrt{1+\|u_q\|_2^2}\)</span>, <span class="math notranslate nohighlight">\(w=Wu_w/\sqrt{1+\|u_w\|_2^2}\)</span>, <span class="math notranslate nohighlight">\(\lambda=\Lambda\operatorname{sigmoid}(\theta_\lambda)\)</span> y <span class="math notranslate nohighlight">\(\tau=\tau_{\min}+\operatorname{softplus}(\theta_\tau)\)</span>. <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(P\)</span> son fijos. Las constantes se guardan en la configuración; no son supuestos de norma que se atribuyan a pesos sin controlar.</p>
 <p><strong>Lema 1: valores acotados y transformación 1-Lipschitz.</strong> Para <span class="math notranslate nohighlight">\(T_B(h)=Bh/u\)</span>, <span class="math notranslate nohighlight">\(u=\sqrt{B^2+\|h\|_2^2}\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-saturation-jacobian">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eq-e3-saturation-jacobian" title="Link to this equation">#</a></span>\[
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-e3-saturation-jacobian" title="Link to this equation">#</a></span>\[
 J_{T_B}(h)=\frac B u I-\frac B{u^3}hh^\top.
 \]</div>
 <p>Sus autovalores son <span class="math notranslate nohighlight">\(B/u\)</span> en direcciones ortogonales a <span class="math notranslate nohighlight">\(h\)</span> y <span class="math notranslate nohighlight">\(B^3/u^3\)</span> en la dirección de <span class="math notranslate nohighlight">\(h\)</span>; en <span class="math notranslate nohighlight">\(h=0\)</span> el jacobiano es <span class="math notranslate nohighlight">\(I\)</span>. Están en <span class="math notranslate nohighlight">\((0,1]\)</span>. Integrando sobre el segmento entre dos puntos, <span class="math notranslate nohighlight">\(\|T_B(h)-T_B(h')\|_2\le\|h-h'\|_2\)</span>. Además, <span class="math notranslate nohighlight">\(\|T_B(h)\|_2\le B\)</span>. Para la matriz <span class="math notranslate nohighlight">\(V\)</span> de filas <span class="math notranslate nohighlight">\(v_j^\top\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-saturation-matrix-bounds">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eq-e3-saturation-matrix-bounds" title="Link to this equation">#</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-e3-saturation-matrix-bounds" title="Link to this equation">#</a></span>\[
 \|V(H)-V(H')\|_F\le\|H-H'\|_F,
 \qquad\|V(H)\|_2\le\|V(H)\|_F\le B\sqrt n.
 \]</div>
 <p><strong>Lema 2: sensibilidad de los puntajes.</strong> La igualdad <span class="math notranslate nohighlight">\(d_j(H)=\|(r_j,\varepsilon)\|_2\)</span> y la desigualdad triangular inversa implican <span class="math notranslate nohighlight">\(|d_j(H)-d_j(H')|\le\|r_j-r'_j\|_2\)</span>. Sumando cuadrados por filas,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-discordance-sensitivity">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eq-e3-discordance-sensitivity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-e3-discordance-sensitivity" title="Link to this equation">#</a></span>\[
 \|d(H)-d(H')\|_2\le\|A(H-H')\|_F
 \le\|A\|_2\|H-H'\|_F.
 \]</div>
 <p>La parte de contenido cumple <span class="math notranslate nohighlight">\(\|(H-H')q\|_2\le Q\|H-H'\|_F\)</span>. Por tanto,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-score-sensitivity">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eq-e3-score-sensitivity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(19)<a class="headerlink" href="#equation-eq-e3-score-sensitivity" title="Link to this equation">#</a></span>\[
 \|s(H)-s(H')\|_2
 \le\bigl(Q+\Lambda\|A\|_2\bigr)\|H-H'\|_F.
 \]</div>
 <p><strong>Lema 3: softmax es <span class="math notranslate nohighlight">\(1/2\)</span>-Lipschitz en norma euclídea.</strong> Su jacobiano es <span class="math notranslate nohighlight">\(J=\operatorname{diag}(a)-aa^\top\)</span>. La suma absoluta de la fila <span class="math notranslate nohighlight">\(j\)</span> es <span class="math notranslate nohighlight">\(2a_j(1-a_j)\le1/2\)</span>. Como <span class="math notranslate nohighlight">\(J\)</span> es simétrico, <span class="math notranslate nohighlight">\(\|J\|_2\le\|J\|_\infty\le1/2\)</span>. Integrando el jacobiano y aplicando el Lema 2,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-attention-sensitivity">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eq-e3-attention-sensitivity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(20)<a class="headerlink" href="#equation-eq-e3-attention-sensitivity" title="Link to this equation">#</a></span>\[
 \|a(H)-a(H')\|_2
 \le\frac{Q+\Lambda\|A\|_2}{2\tau_{\min}}\|H-H'\|_F.
 \]</div>
 <p><strong>Teorema.</strong> Bajo los supuestos anteriores, para cualesquiera estados finitos <span class="math notranslate nohighlight">\(H,H'\)</span> y los mismos parámetros de inferencia,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-lipschitz-bound">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eq-e3-v1-head-lipschitz-bound" title="Link to this equation">#</a></span>\[
+<span class="eqno">(21)<a class="headerlink" href="#equation-eq-e3-v1-head-lipschitz-bound" title="Link to this equation">#</a></span>\[
 |f(H)-f(H')|\le C_{\rm head}\|H-H'\|_F,
 \qquad
 C_{\rm head}=W\left[1+\frac{B\sqrt n}{2\tau_{\min}}
@@ -569,13 +578,13 @@ C_{\rm head}=W\left[1+\frac{B\sqrt n}{2\tau_{\min}}
 \]</div>
 <p><strong>Demostración.</strong> Al escribir <span class="math notranslate nohighlight">\(c(H)=V(H)^\top a(H)\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-context-difference">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eq-e3-context-difference" title="Link to this equation">#</a></span>\[
+<span class="eqno">(22)<a class="headerlink" href="#equation-eq-e3-context-difference" title="Link to this equation">#</a></span>\[
 c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 +\bigl(V(H)-V(H')\bigr)^\top a(H').
 \]</div>
 <p>Como <span class="math notranslate nohighlight">\(a(H')\)</span> es una distribución, <span class="math notranslate nohighlight">\(\|a(H')\|_2\le1\)</span>. Los lemas dan</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-context-lipschitz-bound">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eq-e3-context-lipschitz-bound" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(23)<a class="headerlink" href="#equation-eq-e3-context-lipschitz-bound" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{aligned}
 \|c(H)-c(H')\|_2
 &amp;\le B\sqrt n\,\|a(H)-a(H')\|_2+\|V(H)-V(H')\|_F\\
@@ -587,7 +596,7 @@ c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 <p>La prueba usa aritmética real y puede ser conservadora. En unidades originales de <span class="math notranslate nohighlight">\(\sigma_7\)</span>, la constante se multiplica por la media de entrenamiento <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span>. Obtener una cota desde OHLCV crudo exigiría demostrar también las constantes del codificador y de sus transformaciones. Esas constantes no se han cuantificado aquí; tampoco se demuestra mejor RMSE, calibración o R3.</p>
 <p>Como <span class="math notranslate nohighlight">\(c\)</span> es combinación convexa de vectores de norma a lo sumo <span class="math notranslate nohighlight">\(B\)</span>, también se obtiene</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-v1-head-range">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eq-e3-v1-head-range" title="Link to this equation">#</a></span>\[
+<span class="eqno">(24)<a class="headerlink" href="#equation-eq-e3-v1-head-range" title="Link to this equation">#</a></span>\[
 \operatorname{softplus}(b-WB)\le f(H)\le\operatorname{softplus}(b+WB).
 \]</div>
 <p>Ese techo de salida puede perjudicar extremos genuinos y debe evaluarse. El promedio causal actual incluye el estado presente: en la primera posición la discordancia es <span class="math notranslate nohighlight">\(\varepsilon\)</span>, otra asimetría del diseño que debe examinarse. La atención normalizada usa toda la ventana observada y no es causal por prefijos de sus pesos; la predicción sólo es causal respecto al día objetivo si el pipeline respeta la disponibilidad temporal.</p>
@@ -629,14 +638,14 @@ c(H)-c(H')=V(H)^\top\bigl(a(H)-a(H')\bigr)
 <h3>Cota condicional de la referencia aditiva de 1210 parámetros<a class="headerlink" href="#cota-condicional-de-la-referencia-aditiva-de-1210-parametros" title="Link to this heading">#</a></h3>
 <p>La referencia actual conserva atención convencional por contenido y retira penalización y saturación. Por ello se demuestra por separado una propiedad conocida sobre <strong>estados acotados</strong>, sin trasladarle el teorema anterior. Sean <span class="math notranslate nohighlight">\(H,H'\in\mathbb R^{n\times d}\)</span> con filas de norma a lo sumo <span class="math notranslate nohighlight">\(R\)</span>, y parámetros de inferencia fijos con <span class="math notranslate nohighlight">\(\|q\|_2\le Q\)</span>, <span class="math notranslate nohighlight">\(\|w\|_2\le W\)</span> y <span class="math notranslate nohighlight">\(\tau\ge\tau_{\min}&gt;0\)</span>. Sean también <span class="math notranslate nohighlight">\(A\ge0\)</span> y <span class="math notranslate nohighlight">\(a_{\rm tr}&gt;0\)</span> fijos. La cabeza definida por las ecuaciones <a class="reference internal" href="06_modelo_original.html#equation-eq-e3-additive-content-attention">(8)</a> y <a class="reference internal" href="06_modelo_original.html#equation-eq-e3-additive-output">(9)</a> de <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">6.8</span></a> es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-additive-head-map">
-<span class="eqno">(24)<a class="headerlink" href="#equation-eq-e3-additive-head-map" title="Link to this equation">#</a></span>\[
+<span class="eqno">(25)<a class="headerlink" href="#equation-eq-e3-additive-head-map" title="Link to this equation">#</a></span>\[
 \alpha(H)=\operatorname{softmax}(Hq/\tau),\qquad
 c(H)=H^\top\alpha(H),\qquad
 f_A(H)=\sqrt A+a_{\rm tr}[10^{-4}+\operatorname{softplus}(w^\top c(H)+b)].
 \]</div>
 <p>El mismo límite del jacobiano de softmax da <span class="math notranslate nohighlight">\(\|\alpha(H)-\alpha(H')\|_2\le Q\|H-H'\|_F/(2\tau_{\min})\)</span>. Como <span class="math notranslate nohighlight">\(\|H\|_2\le\sqrt nR\)</span> y <span class="math notranslate nohighlight">\(\|\alpha(H')\|_2\le1\)</span>, descomponer la diferencia del contexto y componer la lectura y softplus demuestra</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-additive-lipschitz-bound">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eq-e3-additive-lipschitz-bound" title="Link to this equation">#</a></span>\[
+<span class="eqno">(26)<a class="headerlink" href="#equation-eq-e3-additive-lipschitz-bound" title="Link to this equation">#</a></span>\[
 |f_A(H)-f_A(H')|\le K_{\rm ad}\|H-H'\|_F,\qquad
 K_{\rm ad}=a_{\rm tr}W\left(1+\frac{\sqrt n RQ}{2\tau_{\min}}\right).
 \]</div>
@@ -757,7 +766,7 @@ K_{\rm ad}=a_{\rm tr}W\left(1+\frac{\sqrt n RQ}{2\tau_{\min}}\right).
 <p>La exigencia general de aislar al menos tres componentes debe justificarse sobre el modelo que finalmente se defienda, sin contar tres innovaciones por tres intervenciones ni trasladar las de otro núcleo. Los controles convencionales pueden responder preguntas de dependencia arquitectónica, pero no demuestran que esos bloques sean nuevos. Para la referencia aditiva sigue pendiente el plan de ablación correspondiente al aporte que se presente: los pilotos v1, v2 y por momentos comparan preguntas y recetas distintas.</p>
 <p>Para errores <span class="math notranslate nohighlight">\(E_{uv}\)</span> sobre unidades comparables, la interacción puede expresarse como</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-ablation-interaction">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eq-e3-ablation-interaction" title="Link to this equation">#</a></span>\[
+<span class="eqno">(27)<a class="headerlink" href="#equation-eq-e3-ablation-interaction" title="Link to this equation">#</a></span>\[
 I=E_{11}-E_{10}-E_{01}+E_{00}.
 \]</div>
 <p>Un <span class="math notranslate nohighlight">\(I&lt;0\)</span> indicaría una reducción de error conjunta mayor que la suma aditiva de sus reducciones, bajo esta codificación; no se ha estimado <span class="math notranslate nohighlight">\(I\)</span>. El análisis deberá reportar efectos principales e interacciones con IC, mediante un modelo o remuestreo compatible con la dependencia temporal y las repeticiones. Los contrastes contra el modelo completo usarán las pruebas adecuadas de la Sección 8 de la guía y Holm dentro de una familia de ablación separada de la comparación principal.</p>
@@ -799,14 +808,14 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 <p>La identidad conocida del objetivo es <span class="math notranslate nohighlight">\(Y=\sqrt{A+cV}\)</span>, con <span class="math notranslate nohighlight">\(c=6/49\)</span>, <span class="math notranslate nohighlight">\(A\)</span> observable al origen y <span class="math notranslate nohighlight">\(V=U^2\)</span> una etiqueta futura. Aquí <span class="math notranslate nohighlight">\(A\)</span> es un escalar de la varianza histórica, distinto del operador latente del apartado 7.3. La <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">formulación del capítulo 6</span></a> propone estimar los escalares <span class="math notranslate nohighlight">\(m\approx E[V\mid X]\)</span>, <span class="math notranslate nohighlight">\(q\approx E[V^2\mid X]\)</span> y una posición <span class="math notranslate nohighlight">\(\rho\)</span> de la media entre sus cotas <span class="math notranslate nohighlight">\(L,H\)</span>.</p>
 <p>Con escalas positivas obtenidas sólo de ajuste, <span class="math notranslate nohighlight">\(\widetilde V=V/s_u^2\)</span>, <span class="math notranslate nohighlight">\(\widetilde m=m/s_u^2\)</span>, <span class="math notranslate nohighlight">\(\widetilde q=q/s_u^4\)</span>, el criterio propuesto es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-moment-training-loss">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eq-e3-moment-training-loss" title="Link to this equation">#</a></span>\[
+<span class="eqno">(28)<a class="headerlink" href="#equation-eq-e3-moment-training-loss" title="Link to this equation">#</a></span>\[
 \mathcal L=((Y-\widehat\mu)/s_y)^2
 +\lambda_m[\log\widetilde m+\widetilde V/\widetilde m]
 +\lambda_q[\log\widetilde q+\widetilde V^2/\widetilde q].
 \]</div>
 <p>Con <span class="math notranslate nohighlight">\(m_0&gt;0\)</span>, <span class="math notranslate nohighlight">\(q_0=E[U^4\mid X]&lt;\infty\)</span> y una clase capaz de representar conjuntamente momentos y media verdaderos, el exceso de riesgo condicional es</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-moment-excess-risk">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eq-e3-moment-excess-risk" title="Link to this equation">#</a></span>\[
+<span class="eqno">(29)<a class="headerlink" href="#equation-eq-e3-moment-excess-risk" title="Link to this equation">#</a></span>\[
 \frac{(\widehat\mu-\mu_0)^2}{s_y^2}
 +\lambda_m[\log(m/m_0)+m_0/m-1]
 +\lambda_q[\log(q/q_0)+q_0/q-1]\ge0.
@@ -945,14 +954,14 @@ I=E_{11}-E_{10}-E_{01}+E_{00}.
 <h3>Identidad conocida y garantía de la proyección<a class="headerlink" href="#identidad-conocida-y-garantia-de-la-proyeccion" title="Link to this heading">#</a></h3>
 <p>Sean <span class="math notranslate nohighlight">\(r_i=\log(C_i/C_{i-1})\)</span> y <span class="math notranslate nohighlight">\(\bar r_6\)</span> la media de los seis retornos conocidos al origen. Para la desviación estándar <strong>poblacional, diaria y sin anualizar</strong> de siete retornos,</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-support-audit-identity">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eq-e3-support-audit-identity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(30)<a class="headerlink" href="#equation-eq-e3-support-audit-identity" title="Link to this equation">#</a></span>\[
 \bar r_6=\frac16\sum_{i=t-6}^{t-1}r_i,\qquad
 A_t=\frac17\sum_{i=t-6}^{t-1}(r_i-\bar r_6)^2,\qquad
 Y_t^2=A_t+\frac6{49}(r_t-\bar r_6)^2.
 \]</div>
 <p>Es la identidad de 6.7 expresada para este control, sin una nueva pretensión de originalidad. <span class="math notranslate nohighlight">\(A_t\)</span> sólo requiere los siete cierres históricos <span class="math notranslate nohighlight">\(C_{t-7},\ldots,C_{t-1}\)</span>; el retorno futuro no interviene en el piso <span class="math notranslate nohighlight">\(L_t=\sqrt{A_t}\)</span>. Como <span class="math notranslate nohighlight">\(Y_t\ge L_t\)</span>, proyectar cualquier pronóstico puntual <span class="math notranslate nohighlight">\(p\)</span> mediante</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-support-projection">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eq-e3-support-projection" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-eq-e3-support-projection" title="Link to this equation">#</a></span>\[
 \pi_t(p)=\max(p,L_t),\qquad
 |Y_t-\pi_t(p)|\le |Y_t-p|
 \]</div>
@@ -992,6 +1001,159 @@ Y_t^2=A_t+\frac6{49}(r_t-\bar r_6)^2.
 <p>El control determinista <strong>sólo piso</strong>, independiente de la familia original de 17 sistemas, obtuvo RMSE <strong>0,0035275805</strong> y MAE <strong>0,0018227552</strong>. Su MAE fue <strong>3,70 % menor</strong> que el MAE medio de E3, <strong>0,0018928273</strong>: es un resultado adverso a una afirmación de dominio general por métricas. E3 conserva mejor RMSE que ese control; ninguno de estos valores es una prueba de significancia o una explicación causal.</p>
 <p>Los pronósticos y contrastes históricos permanecen identificados por su tratamiento original: no se sustituyen sus 48 p-valores por esta proyección ni se incorpora retrospectivamente el control al protocolo previo. Faltan comparación justa, ablaciones de la receta defendida, adecuación, potencia y confirmación independiente. La <a class="reference internal" href="06_modelo_original.html#revision-focal-ampliada-20261118"><span class="std std-ref">revisión ampliada de antecedentes</span></a> delimita además qué partes del mecanismo son conocidas. <strong>Este control no es un nuevo preregistro ni acredita R1, R2 o R3.</strong></p>
 </section>
+</section>
+<section id="diseno-delimitado-de-la-adaptacion-v3-y-controles-futuros">
+<span id="e3-r1-v3-design-protocol"></span><h2>7.12 Diseño delimitado de la adaptación V3 y controles futuros<a class="headerlink" href="#diseno-delimitado-de-la-adaptacion-v3-y-controles-futuros" title="Link to this heading">#</a></h2>
+<p>Este apartado desarrolla la <a class="reference internal" href="06_modelo_original.html#e3-r1-adaptation-decision"><span class="std std-ref">decisión de 6.16</span></a>, con fecha posterior a los resultados ya conocidos. <strong>Es diseño de investigación, no un protocolo confirmatorio congelado ni evidencia de rendimiento V3.</strong> Conserva la referencia aditiva y el candidato V3 existente, sin cambiar sus fuentes.</p>
+<section id="limitacion-hipotesis-y-explicacion-que-pueden-refutarse">
+<h3>Limitación, hipótesis y explicación que pueden refutarse<a class="headerlink" href="#limitacion-hipotesis-y-explicacion-que-pueden-refutarse" title="Link to this heading">#</a></h3>
+<p>La identidad <code class="docutils literal notranslate"><span class="pre">Y=√(A+cU²)</span></code>, con <code class="docutils literal notranslate"><span class="pre">c=6/49</span></code>, separa una parte observable de la ventana y una magnitud futura. La limitación matemática específica es que conocer sólo <code class="docutils literal notranslate"><span class="pre">E[U²|X]</span></code> no determina la media de Y. V3 intenta usar una ley condicional y una señal auxiliar para aprender esa media. <strong>La aditiva entrenada directamente con MSE también puede representarla</strong>: no se afirma una imposibilidad de su arquitectura ni una mejora universal de expresividad.</p>
+<p><strong>Hipótesis candidata de desarrollo:</strong> bajo particiones, selección y presupuesto comunes, la ley aprendida de U y su transformación antes de promediar producen una mejora práctica al menos δ_dev frente a la aditiva y aportes identificables frente a las ablaciones. El valor de δ_dev, las semillas, los subgrupos y la regla conjunta de éxito deben justificarse y registrarse antes del piloto; no se completan retrospectivamente a partir de 8.18. El informe actual no congela esos campos.</p>
+<p>Predicciones secundarias y resultados que debilitarían esa explicación:</p>
+<ol class="arabic simple">
+<li><p>Con una misma ley finita fijada, la diferencia entre el pronóstico exacto y el control de segundo momento debe coincidir con el gap de Jensen y respetar las cotas siguientes. Incumplirlo identifica un error de cálculo.</p></li>
+<li><p>Una mejora atribuida a la ley debe examinarse junto al CRPS_U fuera del ajuste y por subgrupos de gap <strong>predicho al origen</strong>, con cortes fijados mediante desarrollo. No se forman grupos con el retorno futuro para presentarlos como una regla operativa.</p></li>
+<li><p>Retirar CRPS, fijar masas y cambiar la agregación deben examinarse por separado. Si un componente no muestra un aporte bajo la regla y potencia fijadas, su utilidad no queda acreditada; la falta de rechazo tampoco prueba equivalencia.</p></li>
+<li><p>La cobertura y el error bajo ruido se reportan, incluidos los resultados adversos. El deterioro de la aditiva en 8.18 no prueba que V3 lo repare.</p></li>
+</ol>
+</section>
+<section id="propiedad-delimitada-transformacion-de-la-ley-y-sustitucion-por-segundo-momento">
+<h3>Propiedad delimitada: transformación de la ley y sustitución por segundo momento<a class="headerlink" href="#propiedad-delimitada-transformacion-de-la-ley-y-sustitucion-por-segundo-momento" title="Link to this heading">#</a></h3>
+<p>Sean <code class="docutils literal notranslate"><span class="pre">V=U²</span></code>, una ley finita fijada G con masas válidas y <code class="docutils literal notranslate"><span class="pre">A&gt;0</span></code>. Para <code class="docutils literal notranslate"><span class="pre">f(v)=√(A+cv)</span></code>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-v3-jensen-curvature">
+<span class="eqno">(32)<a class="headerlink" href="#equation-eq-e3-v3-jensen-curvature" title="Link to this equation">#</a></span>\[f''(v)=-\frac{c^2}{4(A+cv)^{3/2}}.\]</div>
+<p>Si <code class="docutils literal notranslate"><span class="pre">V∈[v_min,v_max]</span></code>, Taylor alrededor de <code class="docutils literal notranslate"><span class="pre">E_G[V]</span></code>, junto a la esperanza nula del término lineal, da</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-v3-jensen-gap-bounds">
+<span class="eqno">(33)<a class="headerlink" href="#equation-eq-e3-v3-jensen-gap-bounds" title="Link to this equation">#</a></span>\[\frac{c^2\operatorname{Var}_G(V)}{8(A+cv_{\max})^{3/2}}
+\leq \sqrt{A+cE_G[V]}-E_G[\sqrt{A+cV}]
+\leq\frac{c^2\operatorname{Var}_G(V)}{8(A+cv_{\min})^{3/2}}.\]</div>
+<p>Es una aplicación de la cota estándar de curvatura y Jensen, <strong>no un teorema nuevo</strong>. La concavidad explica el signo; si A=0 y el soporte incluye cero, no se promete la misma cota superior finita uniforme.</p>
+<p>Si además G es la verdadera ley condicional, su media transformada <code class="docutils literal notranslate"><span class="pre">μ_G</span></code> minimiza el riesgo cuadrático. Para el control <code class="docutils literal notranslate"><span class="pre">b=√(A+cE_G[U²])</span></code>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-v3-plugin-risk-gap">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-e3-v3-plugin-risk-gap" title="Link to this equation">#</a></span>\[E[(Y-b)^2\mid X]-E[(Y-\mu_G)^2\mid X]=(b-\mu_G)^2\geq0.\]</div>
+<p>Esta identidad compara con <strong>ese control de sustitución por segundo momento</strong>, no con la red aditiva ni con cualquier predictor. Bajo mala especificación no hay una ventaja garantizada de la ley aproximada. La propiedad de soporte y el mínimo poblacional del riesgo MSE+CRPS, bajo representabilidad y momentos suficientes, conservan los supuestos restrictivos de 6.14; no son una garantía de optimización o calibración de mercado.</p>
+</section>
+<section id="verificacion-analitica-y-contraejemplos">
+<h3>Verificación analítica y contraejemplos<a class="headerlink" href="#verificacion-analitica-y-contraejemplos" title="Link to this heading">#</a></h3>
+<p>El <a class="reference download internal" download="" href="../_downloads/f7e6a8663ad8ee05611709c46ef13ade/analytic_checks.py"><code class="xref download docutils literal notranslate"><span class="pre">código</span> <span class="pre">Python</span> <span class="pre">estándar</span></code></a> comprueba <strong>100 leyes finitas artificiales</strong>, las cotas y la identidad de riesgo. Su <a class="reference download internal" download="" href="../_downloads/7d3982b2d87fdfae356674da839162f6/analytic_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">con</span> <span class="pre">todos</span> <span class="pre">los</span> <span class="pre">casos</span></code></a> incluye además:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Comprobación</p></th>
+<th class="head"><p>Resultado y significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dos leyes con el mismo segundo momento</p></td>
+<td><p>Con A=0,04 y V uniforme en {0,2; 1,8} o en {0,8; 1,2}, ambas tienen E[V]=1. La sustitución por segundo momento da 0,4030495994 en ambos casos, pero las medias exactas son 0,3821252217 y 0,4018963707. El segundo momento no determina la media transformada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cabeza aditiva que reproduce la media</p></td>
+<td><p>La inversión del enlace softplus reconstruye el mismo punto del ejemplo cuando el exceso supera su incremento mínimo. No hay una imposibilidad general de representación de la aditiva.</p></td>
+</tr>
+<tr class="row-even"><td><p>Pérdida auxiliar bajo aproximación</p></td>
+<td><p>Entre dos leyes aproximadas de tres átomos, añadir CRPS con λ=0,1 cambia el orden del riesgo conjunto y empeora el riesgo puntual. No son óptimos globales ni un experimento de entrenamiento; es un contraejemplo a una garantía incondicional de mejora puntual.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Estas comprobaciones no importan PyTorch, cargan precios, optimizan modelos o generan pronósticos de mercado. Los números artificiales no se interpretan como rentabilidades plausibles o resultados del benchmark. La demostración y la verificación sostienen propiedades delimitadas, mientras la utilidad empírica del mecanismo permanece por contrastar.</p>
+</section>
+<section id="ablaciones-capacidad-y-objeto-de-la-comparacion">
+<h3>Ablaciones, capacidad y objeto de la comparación<a class="headerlink" href="#ablaciones-capacidad-y-objeto-de-la-comparacion" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variante o control</p></th>
+<th class="head"><p>Qué permite investigar</p></th>
+<th class="head"><p>Estado y límite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>V3 <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code></p></td>
+<td><p>Ley, transformación y entrenamiento propuestos.</p></td>
+<td><p>Prototipo existente, 1262 parámetros; sin resultado de mercado aportado por este cierre.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code></p></td>
+<td><p>Efecto de retirar CRPS.</p></td>
+<td><p>Implementado, mismo inicio y 1262 parámetros. La ablación comparable de mercado sigue pendiente.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixed_probs</span></code></p></td>
+<td><p>Efecto de aprender masas frente a uniformes.</p></td>
+<td><p>Implementado, 1236 parámetros; diferencia de capacidad declarada, sin parámetros inactivos para aparentar igualdad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sustitución por segundo momento</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">√(A+cΣpₖuₖ²)</span></code> frente a <code class="docutils literal notranslate"><span class="pre">Σpₖ√(A+cuₖ²)</span></code>.</p></td>
+<td><p>Control analítico del expediente; la implementación posterior <code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code>, con 1262 parámetros, y su política común se documentan en 7.13. Sin evaluación de mercado aportada aquí.</p></td>
+</tr>
+<tr class="row-even"><td><p>Aditiva y familia actual</p></td>
+<td><p>Referencia de 1210 parámetros y los 18 rivales restantes, incluidos ambos controles de piso.</p></td>
+<td><p>Se conservan. Añadir V3 da 20 sistemas; una ventaja frente a un único control no completa R3.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La cabeza de V3 requiere O(K) para transformar y promediar átomos; el CRPS de la implementación por pares es O(K²), con K=3. Esto no reemplaza el perfilado de toda la red, memoria, FLOPs o energía. Las ablaciones deben conservar particiones, escalado, selección, semillas y presupuesto, y reportar el consumo efectivo.</p>
+</section>
+<section id="algoritmo-propuesto-y-frontera-temporal">
+<h3>Algoritmo propuesto y frontera temporal<a class="headerlink" href="#algoritmo-propuesto-y-frontera-temporal" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Entradas: versión y hashes del modelo; datos de desarrollo y particiones;
+          K=3, lambda=0.1, escalas de ajuste, variantes y semillas;
+          presupuesto común, delta_dev y criterios de éxito/fracaso fechados.
+Verificar las fuentes y que la confirmación no haya orientado el diseño.
+Para cada receta/semilla predefinida:
+  estimar escalas y transformaciones sólo con ajuste;
+  por lote, calcular A de la historia y U,Y como etiquetas de ajuste;
+  codificar X, producir átomos ordenados y masas;
+  transformar cada átomo, promediar y calcular MSE+CRPS_U;
+  actualizar sólo con ajuste y seleccionar/parar usando validación;
+  conservar estados, fallos, consumo y selección antes del scoring.
+Comparar todos los controles, incluidos resultados adversos;
+  conservar o descartar V3 por la regla previa, sin acreditar R1/R3.
+Sólo después, si procede, registrar la versión y un protocolo confirmatorio
+  nuevo con datos reservados, márgenes, familia y potencia suficientes.
+</pre></div>
+</div>
+<p>El algoritmo describe la propuesta; no la ejecuta. Los cuatro conjuntos D00–D03 tienen resultados ya expuestos y no recuperan cegamiento si se usan para diseñar V3. Antes de confirmar deben quedar fijados los datos realmente reservados, la batería apropiada, el ajuste familiar, potencia por contraste y conjunta y al menos diez semillas o el número mayor que requiera el dimensionamiento. El plan histórico de 18 sistemas no se reutiliza como si ya cubriera la familia ampliada.</p>
+</section>
+</section>
+<section id="piloto-controlado-de-desarrollo-de-v3">
+<span id="e3-v3-controlled-development-pilot"></span><h2>7.13 Piloto controlado de desarrollo de V3<a class="headerlink" href="#piloto-controlado-de-desarrollo-de-v3" title="Link to this heading">#</a></h2>
+<p>El siguiente paso es un piloto acotado, con decisiones fijadas antes de sus ajustes. Su <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/main/experiments/e3_v3_development_pilot_20261120">código y controles</a> se publican por separado del controlador de los 796 trabajos. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/blob/main/notebooks/entregable3_v3_controlled_pilot_colab.ipynb">cuaderno Colab</a> prepara un intérprete aislado, registra la GPU realmente asignada y guarda el plan en una rama nueva de GitHub antes del primer ajuste. Esta preparación no aporta resultados de entrenamiento de V3 ni acredita R1.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Decisión previa</p></th>
+<th class="head"><p>Especificación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Datos</p></td>
+<td><p>Sólo los tres miembros <code class="docutils literal notranslate"><span class="pre">training_raw</span></code>, <code class="docutils literal notranslate"><span class="pre">training_y_original</span></code> y <code class="docutils literal notranslate"><span class="pre">training_dates</span></code> del NPZ histórico, comprobado por SHA-256. No se materializan los miembros de calibración ni prueba; D01–D03 quedan fuera de este piloto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ajuste y selección</p></td>
+<td><p>Las 532 ventanas originales de ajuste conservan el escalado. De las 116 ventanas de validación, las primeras 54 seleccionan y paran; se purgan siete y las últimas 55 se puntúan después de completar todos los ajustes finales. Este calendario ya estuvo expuesto y sigue siendo desarrollo.</p></td>
+</tr>
+<tr class="row-even"><td><p>Recetas neuronales</p></td>
+<td><p>Aditiva (1210 parámetros), <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code> (1262), <code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code> (1262), <code class="docutils literal notranslate"><span class="pre">fixed_probs</span></code> (1236) y <code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code> (1262). Las tres últimas aíslan pérdida, masas y agregación, respectivamente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Controles analíticos</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">floor_only</span></code> y <code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code>, con exceso estimado sólo en ajuste.</p></td>
+</tr>
+<tr class="row-even"><td><p>HPO común</p></td>
+<td><p>Tasas 0,0003; 0,001; 0,003, semilla 20261117: 15 ajustes. Selección por RMSE de σ₇ en las 54 ventanas y desempate por menor tasa.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Réplicas finales</p></td>
+<td><p>Semillas 20261118, 20261119 y 20261120 para las cinco recetas: 15 ajustes adicionales. Son tres réplicas de desarrollo, no las diez o más exigibles para confirmar.</p></td>
+</tr>
+<tr class="row-even"><td><p>Presupuesto y fallos</p></td>
+<td><p>Una oportunidad nominal de 120 segundos por fase de optimización, hasta 40 épocas, paciencia ocho, lote 32, AdamW sin decaimiento y recorte de gradiente a uno. La construcción y preparación de tensores se mide aparte. El plazo de la fase incluye guardado, esperas y desconexiones, y se conserva al reanudar; se reportan pasos, consumo y posibles excesos. Una receta incompleta bloquea la decisión de continuación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Regla de continuación</p></td>
+<td><p>V3 debe reducir al menos 2 % la RMSE media de las tres semillas frente al mejor control neuronal y al mejor de todos los controles en las 55 ventanas. Es una heurística de desarrollo, sin pruebas de significancia ni margen confirmatorio. Se conservan todos los resultados, favorables o adversos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El control <code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code> conserva la ley atómica y su inicialización, la pérdida CRPS y el número de parámetros de <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code>; reemplaza únicamente su lectura por <code class="docutils literal notranslate"><span class="pre">√(A+cΣpₖuₖ²)</span></code>. Su configuración y versión son distintas para impedir que una reanudación mezcle variantes. Las pruebas sintéticas contrastan igualdad de la ley, desigualdad de Jensen, gradientes, extremos numéricos y restauración del estado. Las diferencias observadas al entrenar ambos controles no serían una prueba de que la aditiva carece de capacidad para representar la media.</p>
+<p>El guardado utiliza objetos Git empaquetados y verifica cada publicación. Publica el plan antes del primer ajuste y, por receta, el inicio, el primer checkpoint validado y el cierre. Conserva modelo, optimizador, generadores aleatorios, selección, plazo e identidad del software; una reanudación exige el mismo perfil registrado y recupera únicamente lo guardado. Si se pierde el estado local antes del primer checkpoint remoto validado y vence el plazo, el ajuste queda incompleto: no se renueva su presupuesto. Los resultados nuevos se guardan en <code class="docutils literal notranslate"><span class="pre">runs/e3_v3_development_pilot/</span></code>, sin sobrescribir el master anterior. El recibo final distinguirá ajustes nuevos de cachés reutilizadas y declarará el uso de IA. <strong>Hasta disponer de ese recibo, este apartado acredita preparación y pruebas de software, sin resultados de mercado nuevos.</strong></p>
+<p>Si la heurística falla, se reporta el resultado y se decide la siguiente modificación en la bitácora. Si se supera, todavía corresponde repetir la búsqueda de antecedentes de la composición precisa, conciliar el inventario global de diseños y preparar un protocolo confirmatorio con datos adecuados, familia, potencia y presupuesto. Ninguno de esos estados se marca completado por este piloto.</p>
 </section>
 </section>
 
@@ -1081,6 +1243,15 @@ Y_t^2=A_t+\frac6{49}(r_t-\bar r_6)^2.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-sobre-las-trayectorias-congeladas">Resultado sobre las trayectorias congeladas</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-delimitado-de-la-adaptacion-v3-y-controles-futuros">7.12 Diseño delimitado de la adaptación V3 y controles futuros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitacion-hipotesis-y-explicacion-que-pueden-refutarse">Limitación, hipótesis y explicación que pueden refutarse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-delimitada-transformacion-de-la-ley-y-sustitucion-por-segundo-momento">Propiedad delimitada: transformación de la ley y sustitución por segundo momento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-analitica-y-contraejemplos">Verificación analítica y contraejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablaciones-capacidad-y-objeto-de-la-comparacion">Ablaciones, capacidad y objeto de la comparación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-propuesto-y-frontera-temporal">Algoritmo propuesto y frontera temporal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-controlado-de-desarrollo-de-v3">7.13 Piloto controlado de desarrollo de V3</a></li>
 </ul>
   </nav></div>
 
