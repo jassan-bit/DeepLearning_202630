@@ -1,0 +1,210 @@
+{
+  "HTTP_5xx_after_ready": [],
+  "asset_fingerprints": [
+    {
+      "HTTP": 200,
+      "expected_sha256": "99bd3f7f60fcb3e1ae1a60cbcec8883a3f602868ad73ae11660e3b34db3ca402",
+      "matches": true,
+      "path": "/model-card",
+      "sha256": "99bd3f7f60fcb3e1ae1a60cbcec8883a3f602868ad73ae11660e3b34db3ca402"
+    },
+    {
+      "HTTP": 200,
+      "expected_sha256": "181eff31c2d328ab8ebd97077aadbee470e06b81bec43119460defe8940828ef",
+      "matches": true,
+      "path": "/data-statement",
+      "sha256": "181eff31c2d328ab8ebd97077aadbee470e06b81bec43119460defe8940828ef"
+    }
+  ],
+  "base_url": "https://deeplearning-e3-dashboard.onrender.com",
+  "blocked_cross_origin_requests": [],
+  "browser_errors": [],
+  "case": {
+    "csv_sha256": "cd37899695e79aedad031244b33f17824224a54ae8783d3f26c53c88ba9b6f03",
+    "id": "evaluation-0",
+    "selection": "fixed evaluation-0; not performance selected",
+    "target_date": "2025-01-01"
+  },
+  "client": {
+    "chromium": "141.0.7390.37",
+    "historical_helpers_reused_dynamically": true,
+    "historical_smoke_script_sha256": "4dbbc83603d28224cfef4d1f8159eab55fa8dbef7c23081b5feebccf5e039190",
+    "python": "3.12.14",
+    "smoke_script_sha256": "54ba00ebf49308fe525f7f4b27b4befa5f98912f2abdc61fc2d818eb314583ad"
+  },
+  "console_errors": [],
+  "deployment_identity": {
+    "cryptographic_attestation": false,
+    "identity_basis": "service-reported environment value; operator-match only",
+    "remote_commit_identity_verified": false,
+    "service_reported_commit_matches_operator": true,
+    "source_commit": "feb83dbc08197bde7076857bd8ff475de197efd2",
+    "source_commit_source": "RENDER_GIT_COMMIT"
+  },
+  "errors": [
+    {
+      "message": "[Errno 2] No such file or directory: '/home/runner/work/DeepLearning_202630/DeepLearning_202630/frozen_reference/assets/vendor/flatly-5.3.6.min.css'",
+      "type": "FileNotFoundError"
+    }
+  ],
+  "expected_live_models": [
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "CNN-LSTM-atencion-aditiva E3",
+    "TSMixer"
+  ],
+  "finished_at_utc": "2026-11-20T19:15:15.060147+00:00",
+  "identity_note": "Service-reported source_commit must match the operator declaration. No cryptographic attestation or proof of all remote source files is claimed.",
+  "limits": [
+    "One fixed window per live model; not a new scientific evaluation.",
+    "No remote peak RAM, concurrency, uptime or proven cold-start measurement.",
+    "Occlusion availability does not certify explanatory fidelity or seed stability.",
+    "Automated acceptance is not independent human reproduction or R1/R2/R3 certification."
+  ],
+  "models": [],
+  "new_calibrations": 0,
+  "new_fits": 0,
+  "operator_declared_deployment_commit": "feb83dbc08197bde7076857bd8ff475de197efd2",
+  "pages": [
+    {
+      "HTTP": 200,
+      "elapsed_ms_including_callbacks": 1034.093734999999,
+      "path": "/",
+      "screenshot": {
+        "bytes": 416946,
+        "name": "contexto.png",
+        "sha256": "06d84f1ab6912a5234b40773b2bde809cdc7dcf09264ff1c9639b65dfc45c171"
+      },
+      "title": "Entender la volatilidad.\nExplorar la evidencia."
+    },
+    {
+      "HTTP": 200,
+      "elapsed_ms_including_callbacks": 17260.664307000014,
+      "path": "/eda",
+      "screenshot": {
+        "bytes": 248372,
+        "name": "eda.png",
+        "sha256": "41eeda6e4ab6ea80bfb5f38408c7bed294522d503e812d5673b31b7348e6d974"
+      },
+      "title": "Una selección, todas las vistas"
+    },
+    {
+      "HTTP": 200,
+      "elapsed_ms_including_callbacks": 3026.230923000014,
+      "path": "/modelos",
+      "screenshot": {
+        "bytes": 941585,
+        "name": "modelos.png",
+        "sha256": "3f68ac825a63fe6a0c910ab9d9d22f9a46cf3f272b6dabb1955e0c543419c7bd"
+      },
+      "title": "Comparar antes de predecir"
+    }
+  ],
+  "public_deployment_smoke_passed": false,
+  "readiness": {
+    "attempts": [
+      {
+        "HTTP": 200,
+        "at_utc": "2026-11-20T19:14:50.124129+00:00"
+      }
+    ],
+    "budget_seconds": 180,
+    "health": {
+      "V3_enabled": false,
+      "catalogue_systems": 17,
+      "optional_profile": "e3-historical14-supplement-20261120-v1",
+      "original_UI_predictors": 5,
+      "profile_predictors": 14,
+      "profile_sha256": "33eb501dbe7b9bdf525ddfd5c1a4c919191cb1a021adaa8856b382fea1f4947e",
+      "service": "e3-dashboard",
+      "source_commit": "feb83dbc08197bde7076857bd8ff475de197efd2",
+      "source_commit_source": "RENDER_GIT_COMMIT",
+      "status": "ok"
+    },
+    "is_proven_cold_start_measurement": false,
+    "wait_ms": 245.6824170000118
+  },
+  "reference_files": {
+    "artifacts/e3_dashboard_v1/cnn_lstm_attention_e3/metadata.json": {
+      "bytes": 6411,
+      "sha256": "9de8be6acceebc94eaf4567cbc3d2d205c29d0cfe611a850dd0f47d330adcb61"
+    },
+    "artifacts/e3_dashboard_v1/cnn_lstm_attention_e3/model.onnx": {
+      "bytes": 13949,
+      "sha256": "6928a973a6639513bc94cde15996c0b06bb5615e3c0b1a77d16d47e9c7342f3b"
+    },
+    "artifacts/e3_dashboard_v1/gru32/metadata.json": {
+      "bytes": 6025,
+      "sha256": "5942b60725ae07b7dfede5cc0912bdedd5194be4c826d167cfd93f259a567a29"
+    },
+    "artifacts/e3_dashboard_v1/gru32/model.onnx": {
+      "bytes": 17245,
+      "sha256": "1409d0cf84aac43720b4c6978f9a1bb3b5f6c9832518acab0cba279ba8a88bd2"
+    },
+    "artifacts/e3_dashboard_v1/lstm32/metadata.json": {
+      "bytes": 6025,
+      "sha256": "511475aafde95c938c7905a63186fc19c8e894c18358ca2fc0de3192a3aaffb2"
+    },
+    "artifacts/e3_dashboard_v1/lstm32/model.onnx": {
+      "bytes": 23138,
+      "sha256": "ee942ca947998a3c5c76fa21eabe401ce60989558faf82608e8107a830227033"
+    },
+    "artifacts/e3_dashboard_v1/manifest.json": {
+      "bytes": 713,
+      "sha256": "cfa44a6f6006e917f8868811bdeee344ca8dda9cc55ea2a9f67229263b949fbc"
+    },
+    "artifacts/e3_dashboard_v1/mlp16/metadata.json": {
+      "bytes": 6019,
+      "sha256": "35a1acc15bfe76d38398eef11c028c854797d7dde897898f822a270eab73117b"
+    },
+    "artifacts/e3_dashboard_v1/mlp16/model.onnx": {
+      "bytes": 3319,
+      "sha256": "c74530282e04ac06e84932f6a65b3fd5a040829b71396d4324252972b84c5d50"
+    },
+    "artifacts/e3_serving_calibration_v2/e3_additive_271801.json": {
+      "bytes": 7083,
+      "sha256": "457ae6a75e3235e68066cdd479cff621c5725ab18cad55e09f7fd8032565ed03"
+    },
+    "artifacts/e3_serving_calibration_v2/manifest.json": {
+      "bytes": 252,
+      "sha256": "f98e9ff7580fee8ef6eb5c6e91c5ff13b45ba41eecf055c5210e0318821548a1"
+    },
+    "artifacts/e3_serving_extensions_v2/manifest.json": {
+      "bytes": 229,
+      "sha256": "893d05ca4412a089f416ea4abeefd096d122d7bf079678c8ed97bbb02eea9f19"
+    },
+    "artifacts/e3_serving_extensions_v2/tsmixer/metadata.json": {
+      "bytes": 7198,
+      "sha256": "886f713cb78cf1e454bd35e95dce835aeb993835b64981937eedd18ea0c71d43"
+    },
+    "artifacts/e3_serving_extensions_v2/tsmixer/model.onnx": {
+      "bytes": 165263,
+      "sha256": "10cedceea5da544268ecda882d9ee3d9f4abc153448a599a3a9947b7cf74d255"
+    },
+    "data/e3_dashboard_v1/examples.json": {
+      "bytes": 2480,
+      "sha256": "7b9c8e7fcf9c1c9aaa9685525b77aca69a62e35f9d8807f34ed2866da95aef9a"
+    },
+    "data/e3_dashboard_v1/predictions.json": {
+      "bytes": 251550,
+      "sha256": "f9e1681790e51626aaf67ac95097edad4bed8418bfb547993be2d3c197844979"
+    },
+    "experiments/e3_cierre_integral_20261118/serving/export_capabilities/tsmixer/cpu_examples.json": {
+      "bytes": 3381,
+      "sha256": "b7741f6c567f4dd99533b2f7a629c98c1bd81bb45981d4599a98dfc455310a12"
+    }
+  },
+  "remote_commit_identity_verified": false,
+  "render_public_smoke_passed": false,
+  "schema_version": 2,
+  "scope": "public_Render_browser_smoke",
+  "started_at_utc": "2026-11-20T19:14:50.105976+00:00",
+  "status": "failed",
+  "thresholds_declared_before_measurement": {
+    "absolute_forecast_and_interval_tolerance_original_sigma7": 0.000001,
+    "navigation_and_callbacks_seconds": 30,
+    "prediction_with_explanation_seconds": 30,
+    "readiness_seconds": 180
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "source_matrix_commit": "feb83dbc08197bde7076857bd8ff475de197efd2",
+  "source_matrix_path": "experiments/e3_followup_20261120/requirements_matrix.json",
+  "source_matrix_sha256": "1208a55b1d8bca1bbdeff8beca4f226caa070c2aff93012055909062385a30a1",
+  "unchanged_relative_evidence_base": "experiments/e3_followup_20261120 at source_matrix_commit; resolve unchanged rows against that original packet, not this overlay",
+  "changed_ids": [
+    "09",
+    "10"
+  ],
+  "unchanged_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17"
+  ],
+  "fields": [
+    "requisito",
+    "evidencia",
+    "version_modelo",
+    "comprobacion_ejecutada",
+    "estado",
+    "falta_concreta"
+  ],
+  "rows": [
+    {
+      "requisito": "01. Punto de partida y cambios posteriores",
+      "evidencia": "initial_audit.json",
+      "version_modelo": "7db8040619f602d7c52ae0c8bf54f7b6f5b5110e",
+      "comprobacion_ejecutada": "GET conectado de branches/main; coincidencia exacta con el punto solicitado",
+      "estado": "VERIFICADO",
+      "falta_concreta": "Sin cambios posteriores al iniciar el encargo"
+    },
+    {
+      "requisito": "02. Preservación de trabajos y fuentes",
+      "evidencia": "../e3_science_followup_20261120/execution_receipt.json; preservation.json",
+      "version_modelo": "aditiva master20261119T031104515520Z; V3 piloto20261120T031424176339Z",
+      "comprobacion_ejecutada": "Hashes y recibos congelados; recálculo descriptivo desde CSV guardados",
+      "estado": "VERIFICADO",
+      "falta_concreta": "No significa reproducción de los 796 entrenamientos ni de los 30 ajustes"
+    },
+    {
+      "requisito": "03. Decisión científica y resultados adversos",
+      "evidencia": "../e3_science_followup_20261120/decision.json",
+      "version_modelo": "V3 atom_crps original",
+      "comprobacion_ejecutada": "Piloto +2.7043119888% de RMSE frente a atom_mse_only; mejor control superado en 0/3 dominios",
+      "estado": "NO_GO_CONFIRMACION",
+      "falta_concreta": "No hay justificación suficiente para confirmar la receta actual; no se promueve la ablación"
+    },
+    {
+      "requisito": "04. Alcance de R1 y defensa R2",
+      "evidencia": "../e3_science_followup_20261120/SCIENTIFIC_DECISION.md; ../e3_r1_substantive_20261120",
+      "version_modelo": "V3, sin herencia a aditiva",
+      "comprobacion_ejecutada": "Dictamen técnico favorable acotado de R1 y declaración de IA conservados",
+      "estado": "DOCUMENTADO_NO_APROBACION_INSTITUCIONAL",
+      "falta_concreta": "Defensa observada del autor para R2; aceptación docente de R1"
+    },
+    {
+      "requisito": "05. Transferencia y confirmación",
+      "evidencia": "../e3_science_followup_20261120/execution_receipt.json",
+      "version_modelo": "15 pesos BTC V3; D01/D02/D03 expuestos",
+      "comprobacion_ejecutada": "51 trayectorias y 20400 filas cotejadas; calendarios anteriores al ajuste y solapamiento identificados",
+      "estado": "RETROSPECTIVO_NO_CONFIRMATORIO",
+      "falta_concreta": "No puede recuperarse cegamiento ni disponibilidad histórica mediante documentación posterior"
+    },
+    {
+      "requisito": "06. Potencia y familia temporal F2",
+      "evidencia": "../e3_science_followup_20261120/requirements_matrix.csv; ../e3_completion_20261120/protocol_power",
+      "version_modelo": "V3 vs19 rivales;57 componentes",
+      "comprobacion_ejecutada": "486 escenarios analíticos revisados;3 semillas piloto<5;16 varianzas de rivales faltantes",
+      "estado": "DESARROLLO_NO_POTENCIA_FINAL",
+      "falta_concreta": "Justificación científica, datos, métodos, márgenes, R y calendario finales; conjunta reportada y >=.90 por contraste"
+    },
+    {
+      "requisito": "07. Protocolo, registro y Colab",
+      "evidencia": "../e3_science_followup_20261120/REOPENING_CHECKLIST.md; ../e3_completion_20261120/protocol_power/preflight.py",
+      "version_modelo": "candidata V3 sin campaña nueva",
+      "comprobacion_ejecutada": "Preparación conserva puertas bloqueadas; ningún tag final ni entrenamiento nuevo",
+      "estado": "BLOQUEADO_POR_NO_GO",
+      "falta_concreta": "No crear preregistro retrospectivo ni ejecutar campaña hasta resolver todas las puertas"
+    },
+    {
+      "requisito": "08. Exportaciones históricas y perfil experimental",
+      "evidencia": "../e3_completion_publication_20261120/E3_ONNX_PARITY_REPORT.json; ../e3_product_followup_20261120",
+      "version_modelo": "14 ONNX históricos; V3 aparte",
+      "comprobacion_ejecutada": "Nueve ONNX públicos ya aceptados;5949 replays remotos anteriores; integración nueva sin cambiar pesos o cuantiles",
+      "estado": "EXPORTACIONES_PUBLICADAS",
+      "falta_concreta": "La exportación no demuestra utilidad predictiva; V3 carece de calibrador propio"
+    },
+    {
+      "requisito": "09. Perfil de producto ampliado",
+      "evidencia": "CI 44790501847; despliegue dep-dc09ibcipgvc73dm5ue0; aceptación pública Actions 44801411372/job 136514212866; accepted_attempt/combined_result.json",
+      "version_modelo": "Render feb83dbc08197bde7076857bd8ff475de197efd2; perfil14 y vistas originales de cinco; V3 deshabilitada",
+      "comprobacion_ejecutada": "CI de imagen exacta H aprobado; Manual Deploy real; cliente original5 y ampliado14 aprobaron sobre HTTPS público entre 2026-11-20T19:22:40.614210Z y 19:23:35.699359Z",
+      "estado": "PERFIL14_DESPLEGADO_Y_ACEPTADO_PUBLICAMENTE",
+      "falta_concreta": "Sin faltante de despliegue/aceptación en este ensayo; repetir ante otro código/artefactos. Capacidad remota y disponibilidad sostenida no medidas"
+    },
+    {
+      "requisito": "10. Aceptación pública y SHA efectivo",
+      "evidencia": "https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44801411372; job 136514212866; accepted_attempt/five_client.json; accepted_attempt/fourteen_client.json; seis capturas verificadas",
+      "version_modelo": "SHA del servicio feb83dbc08197bde7076857bd8ff475de197efd2 mediante RENDER_GIT_COMMIT; SHA del libro separado",
+      "comprobacion_ejecutada": "5 modelos/3 páginas scope public_Render_browser_smoke y14 API/14 navegador scope public_acceptance aprobados;14 OOD/14 guardas/10 inválidos;0 errores JS/consola; fallos previos conservados",
+      "estado": "ACEPTACION_PUBLICA5_Y14_APROBADA_PARA_H",
+      "falta_concreta": "Sin faltante de aceptación básica para H en este ensayo; no acredita RAM/energía/concurrencia/uptime, R3 o reproducción humana"
+    },
+    {
+      "requisito": "11. Costes y clásicos",
+      "evidencia": "../e3_product_followup_20261120/contract_review.json; ../e3_completion_20261120/costs/measured",
+      "version_modelo": "perfil14 histórico; Persistence/SeasonalNaive/ARIMA",
+      "comprobacion_ejecutada": "Historia y estimando examinados; coste del nuevo servicio en sus recibos; forwards previos separados",
+      "estado": "ALCANCE_DE_MEDICION_EXPLICITO",
+      "falta_concreta": "Recursos/coste/latencia del Render real no se infieren del contenedor local; clásicos necesitan historia/estado"
+    },
+    {
+      "requisito": "12. Reproducción A:tablas",
+      "evidencia": "../e3_reproduction_followup_20261120/existing_levels_audit.json",
+      "version_modelo": "11 CSV históricos",
+      "comprobacion_ejecutada": "Recibo público anterior descargado y verificado; no se repite la reconstrucción ya terminada",
+      "estado": "RECIBO_A_VERIFICADO",
+      "falta_concreta": "No reproduce entrenamiento ni todas las tablas de cualquier campaña"
+    },
+    {
+      "requisito": "13. Reproducción B:predicciones",
+      "evidencia": "../e3_reproduction_followup_20261120",
+      "version_modelo": "ONNX V3 público aceptado;55 fechas",
+      "comprobacion_ejecutada": "Descarga con hashes, contenedor nuevo sin red y comparación por campo; sin reexportar",
+      "estado": "REPRODUCCION_B_AUTOMATICA_APROBADA",
+      "falta_concreta": "No es una persona independiente, ni confirmación, ni entrenamiento C"
+    },
+    {
+      "requisito": "14. Reproducción C y acta independiente",
+      "evidencia": "../e3_reproduction_followup_20261120/REPRODUCTION_FORM_DRAFT.md",
+      "version_modelo": "796 trabajos/30 ajustes conservados",
+      "comprobacion_ejecutada": "Formulario sin firma y comandos preparados; ningún entrenamiento repetido",
+      "estado": "NO_EJECUTADO",
+      "falta_concreta": "Tercero real y alcance acordado; la excepción IA de R1 no cubre automáticamente este requisito"
+    },
+    {
+      "requisito": "15. Archivo y derechos",
+      "evidencia": "../e3_archive_followup_20261120/README.md; ../e3_archive_followup_20261120/rights_by_component.csv",
+      "version_modelo": "suplemento documental mínimo;193 deltas indexados",
+      "comprobacion_ejecutada": "Archivo candidato, manifiesto, cita, localizadores y verificador preparados; no se afirman4.27GB hidratados",
+      "estado": "CANDIDATO_NO_DEPOSITADO",
+      "falta_concreta": "Ratificación de derechos, licencia propia y alcance del depósito; no inventar permisos de terceros"
+    },
+    {
+      "requisito": "16. DOI público y bytes depositados",
+      "evidencia": "public_probe_execution.json; ../e3_archive_followup_20261120/verify_zenodo_deposit.py",
+      "version_modelo": "10.5281/zenodo.24356217",
+      "comprobacion_ejecutada": "2026-11-20T17:46Z:API,registro,resolvedor404; API indica identificador persistente no registrado",
+      "estado": "RESERVA_PREVIA_PUBLICACION_NO_VERIFICADA",
+      "falta_concreta": "Publicar sólo tras derechos/licencia/autorización; luego verificar resolución y hashes reales del depósito"
+    },
+    {
+      "requisito": "17. Dictamen R3",
+      "evidencia": "../e3_science_followup_20261120/decision.json",
+      "version_modelo": "V3 frente a familia pertinente",
+      "comprobacion_ejecutada": "NO-GO científico y ausencia de diseño confirmatorio suficiente conservados",
+      "estado": "NO_ACREDITADA",
+      "falta_concreta": "La finalización técnica o el cierre documental no prueban superioridad"
+    }
+  ],
+  "service_source_commit": "feb83dbc08197bde7076857bd8ff475de197efd2",
+  "accepted_workflow_run": 44801411372,
+  "accepted_job": 136514212866,
+  "accepted_runner_commit": "63b2220ead51e5f755c421a0253644390c0a94e6",
+  "new_model_fits": 0,
+  "GPU_used": false,
+  "R3_accredited": false,
+  "DOI_status_changed": false,
+  "human_reproduction_status_changed": false
+}
