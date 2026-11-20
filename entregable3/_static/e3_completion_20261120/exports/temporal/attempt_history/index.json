@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "attempts": [
+    {
+      "model": "TimesNet",
+      "adapter": "generic real DFT + ONNX TopK",
+      "outcome": "661 market dates and five complete input cases passed; internal tied spectra exposed non-equivalent tie behavior",
+      "accepted_for_public_runtime": false,
+      "replaced_by": "radix2 real FFT8 + exhaustive CPU TopK weak-order table",
+      "receipts": [
+        "TimesNet_generic_DFT_fft_edge_diagnostics.json",
+        "TimesNet_generic_DFT_roundtrip.json"
+      ],
+      "new_training_runs": 0
+    },
+    {
+      "model": "PatchTST",
+      "outcome": "Direct Unfold export unsupported; replaced by exact fixed P3/S2 slices and end replication",
+      "new_training_runs": 0
+    },
+    {
+      "model": "PatchTST",
+      "outcome": "Initial wrapper eval flag missing in an export attempt; detected mutable BatchNorm state and rejected process output; checkpoint bytes preserved; final wrapper explicitly eval and roundtrip rechecked",
+      "receipt": "PatchTST.json",
+      "new_training_runs": 0
+    },
+    {
+      "model": "iTransformer",
+      "outcome": "Missing optional original import dependency; restored pinned historical dependency without modifying model source or shared venv",
+      "receipt": "iTransformer.json",
+      "new_training_runs": 0
+    }
+  ],
+  "scope": "Export implementation attempts are not scientific model variants, independent seeds or new fits; do not increment model Nd from these operator fixes"
+}

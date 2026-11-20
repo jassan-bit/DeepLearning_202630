@@ -1,0 +1,69 @@
+{
+  "model": "iTransformer",
+  "seed": 271801,
+  "status": "passed",
+  "evaluation_dates": 608,
+  "date_start": "2025-01-01",
+  "date_end": "2026-08-31",
+  "calibration_dates": 53,
+  "declared_absolute_tolerance_original_sigma7": 1e-06,
+  "maximum_absolute_error_vs_CPU_memory": 8.742638040598605e-09,
+  "maximum_absolute_error_vs_frozen_saved_predictions": 1.967266323454897e-08,
+  "maximum_calibration_absolute_error_vs_CPU_memory": 4.995793168038887e-09,
+  "maximum_calibration_absolute_error_vs_frozen_predictions": 7.694853809692148e-09,
+  "RMSE_CPU_memory": 0.005289595798812135,
+  "RMSE_ONNX": 0.005289595735852171,
+  "RMSE_frozen_saved_predictor": 0.005289595608246622,
+  "historical_608_coverage_percent_for_this_seed": 80.75657894736842,
+  "within_tolerance": true,
+  "stress_cases": [
+    {
+      "case": "zeros",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "ones",
+      "max_absolute_error_original_sigma7": 1.2489482920097217e-09,
+      "within_tolerance": true
+    },
+    {
+      "case": "constant_negative",
+      "max_absolute_error_original_sigma7": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "case": "alternating",
+      "max_absolute_error_original_sigma7": 4.99579316456944e-09,
+      "within_tolerance": true
+    },
+    {
+      "case": "symmetric",
+      "max_absolute_error_original_sigma7": 2.4978965840194434e-09,
+      "within_tolerance": true
+    }
+  ],
+  "stress_within_tolerance": true,
+  "reference_checkpoint_sha256": "67c6e1910d40fdcf3fd069d8cc33a2a1498e4646977ded50a98a238e5c98233f",
+  "checkpoint_unchanged": true,
+  "reference_state_tensors_unchanged": true,
+  "registered_parameters": 795403,
+  "gradient_enabled_parameters": 795403,
+  "onnx_bytes": 3201493,
+  "model_sha256": "8a0f3829388ef20d489581ebbbeba64f9192abf05e674de09b4273b90553afcd",
+  "runtime_peak_RSS_process_MiB": 343.96875,
+  "RSS_scope": "process peak including Torch, checkpoint, ORT, arrays and export; not incremental ORT memory",
+  "provisional_concurrent_forward_median_ms": 0.28611550806090236,
+  "provisional_concurrent_forward_p95_ms": 0.46756493684370065,
+  "provisional_concurrent_end_to_end_median_ms": 0.33869400795083493,
+  "provisional_concurrent_end_to_end_p95_ms": 0.49195080791832874,
+  "timing_scope": "CPU one intra/inter-op thread, batch1,10warmups100calls; provisional contention, excludes explanations",
+  "calibration_q_reused_unchanged": 0.006383923988913291,
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "GPU_used": false,
+  "live_registry_updated": false,
+  "elapsed_seconds": 2.7874103210051544,
+  "reference_eval_batch_policy": "each window independently; frozen TimesNet adapter already enforces this in eval",
+  "adapter": "unchanged model forward; standard ONNX export"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "static_review_passed_execution_evidence_not_inferred",
+  "AI_assistance_declared": true,
+  "new_QA_model_fits": 0,
+  "new_QA_model_predictions": 0,
+  "files": {
+    "workflow": {
+      "path": "/workspace/e3_completion_delivery/artifact_release/reproduce_publish_onnx.yml",
+      "sha256": "c32a2afcb9c1e3a5cd885982bf9f89d3b55c6db0789349606c949d48543b810b"
+    },
+    "publisher": {
+      "path": "/workspace/e3_completion_delivery/artifact_release/publish_exports.py",
+      "sha256": "6ae6a6143213239cc735b468cbcbba25f05235d743c2235f48521f90bd66f1e9"
+    },
+    "combined_gate": {
+      "path": "/workspace/e3_completion_worktree/experiments/e3_completion_20261120/export_ci/ci_export_all.py",
+      "sha256": "78951b1a2c93b89c54bf969254649d0a95cf8f5ef635ae6617a52c27788265c0"
+    }
+  },
+  "checked": [
+    "CPU dependency profile and disabled CUDA; exact source/checkpoint/ONNX SHA gates",
+    "608evaluation+53calibration cases and zero fits/recalibration per model",
+    "Nine accepted identities and separate private/download versus public/export roots",
+    "Pinned action versions; read-only checkout credentials; release token only in publishing step",
+    "ZIP public folders excludes checkpoint/raw NPZ downloads and all author source trees",
+    "Prerelease/tag is engineering artifact release, not scientific protocol, service activation, DOI or R3",
+    "Public unauthenticated download must match full asset SHA and byte length; existing differing asset fails without overwrite"
+  ],
+  "execution_not_claimed": [
+    "CI dependency install on fresh runner",
+    "Nine graph recreation in GitHub Actions",
+    "GitHub release publication and public asset download"
+  ],
+  "historical_publish_book_workflow_not_modified_by_this_review": true
+}

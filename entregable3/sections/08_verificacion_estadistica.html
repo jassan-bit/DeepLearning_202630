@@ -462,6 +462,15 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-reproduccion-y-requisitos-abiertos">Recursos, reproducción y requisitos abiertos</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-v3-de-transferencia-con-pesos-y-escalas-fijos">8.21 Diagnóstico V3 de transferencia con pesos y escalas fijos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permite-y-que-impide-esta-comparacion">Qué permite y qué impide esta comparación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-cientifica-y-preparacion-de-potencia-para-v3">8.22 Decisión científica y preparación de potencia para V3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-ejecutado-y-limites">Cálculo ejecutado y límites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acciones-concretas-antes-de-una-confirmacion">Acciones concretas antes de una confirmación</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -2354,6 +2363,186 @@ familia confirmatoria pertinente, recursos completos y reproducción independien
 las Tablas A/B por retrospectiva.</strong></p>
 </section>
 </section>
+<section id="diagnostico-v3-de-transferencia-con-pesos-y-escalas-fijos">
+<span id="e3-v3-frozen-transfer-20261120"></span><h2>8.21 Diagnóstico V3 de transferencia con pesos y escalas fijos<a class="headerlink" href="#diagnostico-v3-de-transferencia-con-pesos-y-escalas-fijos" title="Link to this heading">#</a></h2>
+<p>Después del piloto se registró una <strong>decisión nueva y exploratoria</strong> en el
+<a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/6aca875bd94b0a1c3457b5b8586f14a4d0e16dbe">commit <code class="docutils literal notranslate"><span class="pre">6aca875bd94b0a1c3457b5b8586f14a4d0e16dbe</span></code></a>,
+antes de las primeras predicciones de este diagnóstico. La
+<a class="reference download internal" download="" href="../_downloads/881a744689bbba558e816c4790553aa0/decision_zero_shot.json"><code class="xref download docutils literal notranslate"><span class="pre">decisión</span> <span class="pre">fijada</span></code></a>
+y el <a class="reference download internal" download="" href="../_downloads/b9eb19e9375cf9388c69cc7b6139a281/before_first_forward.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">previo</span> <span class="pre">al</span> <span class="pre">primer</span> <span class="pre">forward</span></code></a>
+vinculan sus hashes y el código ejecutado. No es un prerregistro
+confirmatorio ni recupera el cegamiento de los calendarios.</p>
+<p>Se aplicaron las <strong>cinco recetas neuronales</strong> del piloto con sus <strong>tres
+semillas finales originales</strong> —20261118, 20261119 y 20261120— y los dos
+controles analíticos a las particiones <code class="docutils literal notranslate"><span class="pre">clean_test</span></code> originales D01–D03.
+Se conservaron los quince checkpoints y las escalas BTC, incluido el
+escalador de volumen y el exceso medio del control físico. A se calcula
+causalmente en cada entrada; no se ajusta con los nuevos dominios. No hubo
+HPO, entrenamiento, calibración, corrección de escalas, proyección o
+eliminación de filas. El diagnóstico completó <strong>51 trayectorias y 20.400
+filas finitas</strong>, con <strong>cero ajustes y cero fallos</strong>. Los dos controles
+deterministas siguen siendo trayectorias únicas, no réplicas entrenadas.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/95c283adf2be07ff1700269c7e4c88de/additional_clean_test_metadata.json"><code class="xref download docutils literal notranslate"><span class="pre">geometría</span> <span class="pre">y</span> <span class="pre">las</span> <span class="pre">fechas</span> <span class="pre">de</span> <span class="pre">prueba</span></code></a>
+conservan las purgas y los hashes de la admisión anterior: D01 contiene
+633 objetivos del 25 de agosto de 2010 al 1 de marzo de 2013; D02, 271
+del 5 de abril al 31 de diciembre de 2021; D03, 296 del 11 de marzo al
+31 de diciembre de 2024. Esos calendarios ya estuvieron expuestos durante
+la auditoría de la aditiva. Aquí se evalúan pesos BTC fijos: <strong>no se
+reutilizan los ajustes por dominio de los 796 trabajos como si fueran V3</strong>.</p>
+<p>La métrica primaria registrada es la media de las RMSE individuales por
+receta, en unidades originales de σ₇. Cada receta neuronal aporta tres
+trayectorias y cada control analítico una. No es la RMSE de un ensamble.
+La tabla presenta las siete recetas, sin retirar controles desfavorables:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Receta o control</p></th>
+<th class="head text-right"><p>D01 AAPL RAW</p></th>
+<th class="head text-right"><p>D02 ETHUSDT</p></th>
+<th class="head text-right"><p>D03 BTCUSD_PERP</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">additive_positive_head</span></code></p></td>
+<td class="text-right"><p>0,003632257</p></td>
+<td class="text-right"><p>0,006572682</p></td>
+<td class="text-right"><p>0,003682024</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">atom_crps</span></code></p></td>
+<td class="text-right"><p>0,003314508</p></td>
+<td class="text-right"><p>0,007161615</p></td>
+<td class="text-right"><p>0,003444276</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code></p></td>
+<td class="text-right"><p>0,003353165</p></td>
+<td class="text-right"><p>0,007198866</p></td>
+<td class="text-right"><p>0,003436307</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixed_probs</span></code></p></td>
+<td class="text-right"><p>0,002998234</p></td>
+<td class="text-right"><p>0,007262353</p></td>
+<td class="text-right"><p>0,003403212</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">atom_plugin</span></code></p></td>
+<td class="text-right"><p>0,003307610</p></td>
+<td class="text-right"><p>0,007151505</p></td>
+<td class="text-right"><p>0,003399681</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">floor_only</span></code></p></td>
+<td class="text-right"><p>0,002931884</p></td>
+<td class="text-right"><p>0,007795489</p></td>
+<td class="text-right"><p>0,004057838</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code></p></td>
+<td class="text-right"><p>0,002629224</p></td>
+<td class="text-right"><p>0,006956665</p></td>
+<td class="text-right"><p>0,003356707</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La candidata completa <strong>no obtiene la menor RMSE en ninguno de los tres
+dominios</strong>. El menor error descriptivo corresponde a
+<code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code> en D01/D03 y a la aditiva en D02. El
+<a class="reference download internal" download="" href="../_downloads/0161cd36c8fa217bf2b613eda9b00525/summary.csv"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">numérico</span></code></a>
+conserva también MAE y CRPS_U cuando la receta proporciona la distribución
+necesaria. El <a class="reference download internal" download="" href="../_downloads/3ad87c76c8de4981185b9117ecfcb4d5/diagnostic_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">del</span> <span class="pre">diagnóstico</span></code></a>
+contiene las trayectorias, hashes, presupuesto observado y ausencia de
+p-valores. No se ajustaron intervalos ni se heredó el calibrador de la
+aditiva.</p>
+<section id="que-permite-y-que-impide-esta-comparacion">
+<h3>Qué permite y qué impide esta comparación<a class="headerlink" href="#que-permite-y-que-impide-esta-comparacion" title="Link to this heading">#</a></h3>
+<p>Los pesos y la selección BTC proceden de <strong>2023–2024</strong> y se aplican a AAPL
+hasta 2013 y ETH hasta 2021. Por tanto, <strong>no es un backtest financiero
+cronológicamente disponible</strong>: describe transferencia retrospectiva con
+parámetros posteriores. D03 comparte el subyacente BTC y parte del
+calendario con el desarrollo, por lo que tampoco constituye un mercado
+independiente. El volumen conserva unidades distintas —acciones RAW por
+sesión, ETH o contratos por día UTC— bajo el mismo escalador BTC; no se
+corrige ese cambio después de observar resultados. Sesiones y días UTC
+son relojes homólogos, no duraciones idénticas. No se promedian RMSE de
+distintas escalas para construir un ganador global.</p>
+<p>El alcance es un diagnóstico acotado de inferencia, ejecutado con IA
+declarada. No prueba la batería de R3, adecuación completa o potencia,
+ni cambia la heurística del piloto original. Sus treinta ajustes y el
+<strong>2,70 % de deterioro de <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code> frente a <code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code></strong> siguen
+intactos; no se promociona automáticamente λ=0 ni otra receta ganadora.
+El <a class="reference internal" href="06_modelo_original.html#e3-r1-substantive-verdict-20261120"><span class="std std-ref">dictamen documental de R1 para V3</span></a> conserva su alcance propio.</p>
+</section>
+</section>
+<section id="decision-cientifica-y-preparacion-de-potencia-para-v3">
+<span id="e3-v3-prospective-preparation"></span><h2>8.22 Decisión científica y preparación de potencia para V3<a class="headerlink" href="#decision-cientifica-y-preparacion-de-potencia-para-v3" title="Link to this heading">#</a></h2>
+<p><strong>La confirmación sigue en NO-GO.</strong> La
+<a class="reference download internal" download="" href="../_downloads/c40129d08f3bbf6f80d2f7c6a5bb8abf/scientific_decision.json"><code class="xref download docutils literal notranslate"><span class="pre">decisión</span> <span class="pre">científica</span></code></a>
+conserva la regla del piloto y su resultado adverso. El diagnóstico de
+transferencia posterior aporta información limitada, pero no transforma
+los calendarios expuestos en confirmación ni autoriza otra campaña grande.
+El autor puede defender la contribución delimitada sin afirmar superioridad
+predictiva, o formular y fechar por qué merece estudiar una pregunta nueva.
+Cambiar una regla o candidata sería otra decisión posterior a los datos.</p>
+<p>Se preparó un <a class="reference download internal" download="" href="../_downloads/80ef82db3edc786b5461b50687c9de2a/protocol.DRAFT.json"><code class="xref download docutils literal notranslate"><span class="pre">protocolo</span> <span class="pre">DRAFT</span></code></a>
+y su <a class="reference download internal" download="" href="../_downloads/b2eb101ade078a921088c23caa785ef7/protocol.DRAFT.md"><code class="xref download docutils literal notranslate"><span class="pre">explicación</span> <span class="pre">metodológica</span></code></a>,
+sin tag final, fechas de congelamiento inventadas ni número de semillas
+declarado suficiente. La familia propuesta reúne <strong>20 sistemas, 19
+rivales y 57 componentes</strong>: Top 10 y referencias E2 completos, aditiva y
+dos controles físicos frente a <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code>. Las tres ablaciones forman
+otra familia. Se propone Holm global sobre los 57 p-valores y, para cada
+rival, el máximo de sus tres p ajustados; los diecinueve contrastes deben
+pasar. La batería temporal propuesta requiere todavía revisión de
+supuestos, dirección y alineación con la media individual de RMSE.</p>
+<section id="calculo-ejecutado-y-limites">
+<h3>Cálculo ejecutado y límites<a class="headerlink" href="#calculo-ejecutado-y-limites" title="Link to this heading">#</a></h3>
+<p>La guía §8.7.2 exige al menos cinco semillas piloto para estimar variabilidad
+por rival; V3 tiene <strong>tres</strong>. De los seis controles disponibles, tres son
+ablaciones: sólo aditiva y dos analíticos pertenecen a la familia principal.
+Faltan las varianzas de los <strong>dieciséis rivales E2</strong>. No se transfieren a
+V3 las varianzas o los resultados de los 796 trabajos de la aditiva.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/f4862132e6ffb751350cf2e07a5a7fe0/planning_registry.json"><code class="xref download docutils literal notranslate"><span class="pre">registro</span> <span class="pre">de</span> <span class="pre">escenarios</span></code></a>
+precede al cálculo CPU sobre pronósticos ya guardados. Se ejecutaron
+<strong>486 evaluaciones analíticas</strong>, 162 de sensibilidad a semillas y 324
+temporales, con <strong>cero simulaciones Monte Carlo</strong>, ajustes o inferencias
+de modelos en esa etapa. El
+<a class="reference download internal" download="" href="../_downloads/827be90cfa0d7fbd39bcfa9911400fce/planning_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">reproducible</span></code></a>
+y las <a class="reference download internal" download="" href="../_downloads/f5784d29b1182f3273a16471a219b883/variance_inputs.csv"><code class="xref download docutils literal notranslate"><span class="pre">entradas</span> <span class="pre">de</span> <span class="pre">varianza</span></code></a>
+identifican el origen de los datos y mantienen <strong>R final y calendario
+final sin determinar</strong>. No son cálculos de potencia observada posterior.</p>
+<p>Las alternativas hipotéticas son <code class="docutils literal notranslate"><span class="pre">g1=1,25δ</span></code>, <code class="docutils literal notranslate"><span class="pre">1,5δ</span></code> y <code class="docutils literal notranslate"><span class="pre">2δ</span></code>; la separación
+para <code class="docutils literal notranslate"><span class="pre">H0:</span> <span class="pre">Δ≤δ</span></code> es <strong>g1−δ</strong>, nunca la ganancia observada. El margen BTC
+heredado se usa sólo como referencia pendiente de justificación operativa
+para V3; no se elige desde los p-valores ni desde el umbral heurístico del
+2 %. Los demás dominios requieren márgenes en sus escalas. Se usa
+<code class="docutils literal notranslate"><span class="pre">.05/57</span></code> como nivel conservador de planificación, separado del ajuste Holm
+que aplicaría el análisis final.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/15e42d4f75d814f5725a06f6880d7946/seed_sensitivity.csv"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad</span> <span class="pre">por</span> <span class="pre">semillas</span></code></a>
+representa inicialización sobre un mismo calendario; la
+<a class="reference download internal" download="" href="../_downloads/d8efe9d1b09067a7243652e2c683a107/calendar_sensitivity.csv"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad</span> <span class="pre">temporal</span></code></a>
+usa influencias/HAC con rezagos 7/14/28. No se suman ambas varianzas sin
+identificar un modelo jerárquico ni se convierten 365 fechas hipotéticas
+en observaciones independientes adquiridas. Las 55 fechas de desarrollo
+no estabilizan por sí mismas la incertidumbre temporal de largo plazo.
+La <a class="reference download internal" download="" href="../_downloads/c06e5cc45e802db7a07c0caa2767c4e4/joint_sensitivity.json"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad</span> <span class="pre">de</span> <span class="pre">potencia</span> <span class="pre">conjunta</span></code></a>
+expone supuestos de dependencia y cotas; no demuestra la potencia de
+tres procedimientos F2 distintos. La guía exige marginal mínima de 0,90
+por contraste y <strong>reportar</strong> la conjunta; no impone conjunta 0,90.</p>
+</section>
+<section id="acciones-concretas-antes-de-una-confirmacion">
+<h3>Acciones concretas antes de una confirmación<a class="headerlink" href="#acciones-concretas-antes-de-una-confirmacion" title="Link to this heading">#</a></h3>
+<p>Se necesitan una nueva justificación científica del autor; admisión común
+de datos genuinamente no expuestos y objetivos aún desconocidos; márgenes
+operativos; batería F2 validada; potencia de la familia completa con
+R≥10 o más si el cálculo lo exige; presupuesto comparable autorizado;
+motor V3 revisado y tag anotado real antes de los resultados. El calendario
+de confirmación no se rellena con tramos ya conocidos; AAPL futuro exige
+admitir otra fuente porque WIKI termina en 2013.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/96a3a8365c2657639eb0022a95a1862c/requirements_matrix.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">pendientes</span></code></a>
+y el <a class="reference download internal" download="" href="../_downloads/701c3b52c77e37b7de8a812a0bda7fb0/preflight.py"><code class="xref download docutils literal notranslate"><span class="pre">preflight</span> <span class="pre">CPU</span> <span class="pre">reanudable</span></code></a>
+dejan esos requisitos preparados para revisión. Las ocho pruebas de
+fronteras matemáticas, bloqueo y reanudación pasaron; el preflight actual
+devuelve <strong><code class="docutils literal notranslate"><span class="pre">BLOCKED_PREPARATION_ONLY</span></code></strong> y no tiene una ruta que entrene.
+Preparar el documento no congela el protocolo ni acredita R3. Se conserva
+el uso de IA declarado y la separación entre dictamen documental de R1,
+defensa académica de R2 y validación predictiva de R3.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2493,6 +2682,15 @@ las Tablas A/B por retrospectiva.</strong></p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brecha-controles-triviales-y-cobertura">Brecha, controles triviales y cobertura</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnosticos-de-residuos-dos-ejecuciones-dos-familias">Diagnósticos de residuos: dos ejecuciones, dos familias</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-reproduccion-y-requisitos-abiertos">Recursos, reproducción y requisitos abiertos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-v3-de-transferencia-con-pesos-y-escalas-fijos">8.21 Diagnóstico V3 de transferencia con pesos y escalas fijos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-permite-y-que-impide-esta-comparacion">Qué permite y qué impide esta comparación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-cientifica-y-preparacion-de-potencia-para-v3">8.22 Decisión científica y preparación de potencia para V3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-ejecutado-y-limites">Cálculo ejecutado y límites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acciones-concretas-antes-de-una-confirmacion">Acciones concretas antes de una confirmación</a></li>
 </ul>
 </li>
 </ul>

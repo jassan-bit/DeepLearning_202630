@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "model": "LSTM-autoencoder con predictor",
+  "seed": 271801,
+  "representative_seed_rule": "Smallest prespecified final seed ID 271801; not selected by test performance",
+  "profile": "offline_cpu_export_20261120",
+  "format": "ONNX",
+  "opset": 17,
+  "model_sha256": "0ed6c1348d5bc1ea3312aaf00d59f8651cb4949212eeb38c42a732c8f33480d3",
+  "model_bytes": 41397,
+  "input_name": "windows",
+  "input_shape": [
+    1,
+    7,
+    5
+  ],
+  "input_dtype": "float32",
+  "output_name": "normalized_prediction",
+  "onnx_output_unit": "sigma7 / frozen target_scale",
+  "output_scale": 0.020953875259434797,
+  "served_output_unit": "original population sigma7, not annualized",
+  "uses_observable_floor": false,
+  "floor_input_dtype": null,
+  "raw_feature_order": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "horizon_days": 1,
+  "preprocessing": {
+    "price_transform": "log(price_t) - log(last_observed_close) for all four price channels",
+    "volume_transform": "log1p(volume_t)",
+    "standardize": "(relative_features - frozen mean) / frozen std, then float32",
+    "mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "fit_count": 655,
+    "fit_start": "2023-01-08",
+    "fit_end": "2024-10-31",
+    "target_scale": 0.020953875259434797,
+    "clipping": false,
+    "refitted": false
+  },
+  "calibration_q": 0.009205569452985844,
+  "interval_nominal_coverage": 0.9,
+  "interval_formula": "[max(0, prediction_original - q), prediction_original + q]",
+  "interval_limitations": "Historical BTCUSDT calibration, 53 serially dependent days; no exact exchangeability or future/subgroup coverage guarantee.",
+  "scientific_source": {
+    "type": "existing_E2_frozen_final_checkpoint",
+    "checkpoint_sha256": "75210b30963879444901e3e9df6764108146d235f656b2b7aa8a390d2b932ebd",
+    "checkpoint_bytes": 54341,
+    "registered_trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+    "request_sha256": "890da80a3ee8a71a3bf1d80d61b3e05a4216114ebe518127a42714e0d29428be",
+    "architecture": {
+      "recipe_id": "SAE-D7-PUBLISHED-v1",
+      "model": "LSTM-autoencoder con predictor",
+      "published_hidden_units": [
+        25,
+        26
+      ],
+      "input_shape": [
+        7,
+        5
+      ],
+      "auxiliary_decoder_output_channels": 5,
+      "additional_nas_dense_group": false,
+      "nas_required_for_this_fixed_body": false,
+      "dropout": 0.3,
+      "published_reference_dropout": 0.3,
+      "dropout_policy": "Existing supervised dropout modules only; no auxiliary dropout",
+      "initialization_seed": 271801,
+      "source": {
+        "paper_doi": "10.1038/s41598-019-55320-6",
+        "paper_url": "https://www.nature.com/articles/s41598-019-55320-6",
+        "author_hosted_text_url": "https://www.academia.edu/111461009/Unsupervised_Pre_training_of_a_Deep_LSTM_based_Stacked_Autoencoder_for_Multivariate_Time_Series_Forecasting_Problems",
+        "verified_at_date": "2026-11-12",
+        "verified_scope": "Architecture/learning sections pp7-8 and Table2 p11, author-hosted article text; pinned author implementation",
+        "pdf_downloaded_or_hashed": false,
+        "author_repository": "https://github.com/2M-kotb/LSTM-based-Stacked-Autoencoder",
+        "author_commit": "8668132ef6f8855dbab289c5a2b2478f871c4c4b",
+        "author_file": "2layer_evaluate.py",
+        "author_locators": "hidden_layers lines138; AE construction/targets lines211-224; encoder transfer/predictor lines232-260",
+        "independent_port": "scripts/e2_recipe_models.py",
+        "independent_port_sha256": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+        "author_weights_reused": false,
+        "backend_or_original_experiment_replication_claimed": false
+      },
+      "adaptations": [
+        "lag25 to D7",
+        "source eight variables to five OHLCV channels",
+        "training-only auxiliary reconstruction target X/s",
+        "scalar volatility output with Softplus and caller-owned target scaling"
+      ],
+      "pretraining_required": true,
+      "pretraining_executed": true,
+      "target_history_added": false,
+      "moment_features_added": false,
+      "market_training_claimed": false,
+      "training_recipe_id": "SAE-D7-PUBLISHED-v1",
+      "registered_trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+      "training_hpo_record": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0017219847334995647,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "SAE-D7-PUBLISHED-v1",
+        "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+        "weight_decay": 0.002593603165890561
+      },
+      "auxiliary_scale": 6.436119079589844,
+      "actual_parameter_count": 8739
+    },
+    "source_hashes": {
+      "scripts/e2_training_models.py": "46be0644e0ed9d966163b17f171092e81b6a82dd734efc7954d6104f5ee5360b",
+      "scripts/e2_recipe_models.py": "47380cc87e2d4b4221ee4fc97da3286990470b3304dd1d9ef990ace51c338b75",
+      "scripts/e2_published_registry.py": "0704784aa0bb2887908d12ad12345094c8f6a707918aa695dbc11cda88092fec",
+      "scripts/e2_published_sae.py": "0436d73f9724bb065dc3642f18218cb35cda5e9abfa4de5090f8c5d69eb6c1aa",
+      "scripts/e2_search_plan.py": "7169d56f67a07b3ab6d55bd1730dabdec5fe4a54e1f3385ba0db9e84cc3a2314",
+      "scripts/e2_reduced_fit.py": "64e83d0a2a39920ae470252b8eb81c8f78429817fed978bd22f64866fdfb8f5f",
+      "scripts/e2_staged_training.py": "b66ac8d2beb3748f4934e55e99514f53c52eada4a4dbd2e4b597d080c9f4722b",
+      "experiments/e2_published_architectures_20261112/architecture_policy.json": "a1c9440046af34c2b70bef9c05229dff2c6d863aa06ae191ed02c2de6d8bf0f2"
+    },
+    "architecture_is_original_checkpoint_metadata": true
+  },
+  "data_source": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655",
+    "prediction_count_in_source": 133
+  },
+  "calibrator_source": {
+    "file_sha256": "cbf6ca3acb1947b09ca7b049f61f8b1ae10aeca5304aa8f2a370faa28c6f4a2d",
+    "content_sha256": "0001c1b1afecd66392c464ece778e9ebf1fcfcd766b04dd4f4ba37fa986cd482",
+    "q": 0.009205569452985844,
+    "rank": 49,
+    "n": 53,
+    "date_start": "2024-11-08",
+    "date_end": "2024-12-30",
+    "checkpoint_sha256": "75210b30963879444901e3e9df6764108146d235f656b2b7aa8a390d2b932ebd"
+  },
+  "original_scaler_file_sha256": "f7ad11466dd20e67496366e3e25611fbfeb04326173504756747b31e7e034585",
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu_count": 5
+  },
+  "roundtrip_status": "passed_real_608_and_53",
+  "new_training_runs": 0,
+  "new_calibration_fits": 0,
+  "live_registry_updated": false,
+  "AI_assistance": "OpenAI Codex assisted export reconstruction, validation and documentation; no claim of independent human reproduction."
+}

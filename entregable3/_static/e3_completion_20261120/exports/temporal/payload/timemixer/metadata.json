@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "model": "TimeMixer",
+  "seed": 271801,
+  "representative_seed_rule": "smallest frozen seed ID; not chosen by outcome",
+  "format": "ONNX",
+  "opset": 17,
+  "model_sha256": "1cbab4bdf3040a981936220d2899e848f2319a4671dff61f371f25f7d1d8f18c",
+  "input_shape": [
+    1,
+    7,
+    5
+  ],
+  "input_dtype": "float32",
+  "uses_observable_floor": false,
+  "output_name": "normalized_prediction",
+  "output_scale": 0.020953875259434797,
+  "output_unit": "original population sigma7 ddof0, daily not annualized",
+  "horizon_days": 1,
+  "preprocessing": {
+    "mean": [
+      -0.008680199759876567,
+      0.010373374839932429,
+      -0.026602690963586913,
+      -0.006538300073049506,
+      10.61716046384661
+    ],
+    "std": [
+      0.051321884129097495,
+      0.046201556720675205,
+      0.048624701431150594,
+      0.044368961557455955,
+      0.8893945255931609
+    ],
+    "fit_count": 655,
+    "fit_end": "2024-10-31",
+    "target_scale": 0.020953875259434797
+  },
+  "calibration_q": 0.010437534506757353,
+  "calibration_valid_after": "2024-12-30",
+  "interval_nominal_coverage": 0.9,
+  "calibrator_source": {
+    "file_sha256": "3c021dc647461279e5c21f38c502385e0389c8a0c5ae62d10cb0b173845c3294",
+    "content_sha256": "c3fcb6d1f6d32e414d9de75974b8348a81f26a19a0376b46a49ca1cf8d3ffa49",
+    "q": 0.010437534506757353,
+    "n": 53,
+    "date_start": "2024-11-08",
+    "date_end": "2024-12-30",
+    "checkpoint_sha256": "7725d0908a5506a2419ca894e32664c658d529d25f2b61da5db5fd5ae275a764"
+  },
+  "interval_limitations": "53 serially dependent historical dates, no general temporal/subgroup coverage guarantee; no refit",
+  "ood": {
+    "method": "observed standardized fit ranges only",
+    "minimum_standardized": [
+      [
+        -5.815190315246582,
+        -6.30404806137085,
+        -6.1665849685668945,
+        -6.436119079589844,
+        -1.9340888261795044
+      ],
+      [
+        -5.522439956665039,
+        -4.82453727722168,
+        -5.64715051651001,
+        -4.798757553100586,
+        -1.9340888261795044
+      ],
+      [
+        -4.106070041656494,
+        -4.372659683227539,
+        -4.238033771514893,
+        -4.413619518280029,
+        -1.9340888261795044
+      ],
+      [
+        -3.773941993713379,
+        -4.199136734008789,
+        -4.187868595123291,
+        -4.091274738311768,
+        -1.9340888261795044
+      ],
+      [
+        -3.495267391204834,
+        -3.54236102104187,
+        -3.652169704437256,
+        -3.5603647232055664,
+        -1.9340888261795044
+      ],
+      [
+        -3.036283254623413,
+        -2.1551120281219482,
+        -3.0230884552001953,
+        -2.38340163230896,
+        -1.9340888261795044
+      ],
+      [
+        -2.0189127922058105,
+        -0.2222953587770462,
+        -1.9134747982025146,
+        0.14736202359199524,
+        -1.9340888261795044
+      ]
+    ],
+    "maximum_standardized": [
+      [
+        4.302679061889648,
+        4.436797142028809,
+        4.448424339294434,
+        4.726393222808838,
+        3.1940417289733887
+      ],
+      [
+        4.127811431884766,
+        4.3880391120910645,
+        4.20363712310791,
+        4.188823223114014,
+        3.1940417289733887
+      ],
+      [
+        3.6630725860595703,
+        3.999451160430908,
+        3.481027126312256,
+        4.440602779388428,
+        3.1940417289733887
+      ],
+      [
+        3.8807389736175537,
+        3.9784624576568604,
+        3.12408709526062,
+        3.0700740814208984,
+        3.1940417289733887
+      ],
+      [
+        2.6958882808685303,
+        2.8271923065185547,
+        2.6552720069885254,
+        2.7748353481292725,
+        3.1940417289733887
+      ],
+      [
+        2.4406442642211914,
+        2.698812961578369,
+        2.1082446575164795,
+        2.1224265098571777,
+        3.1940417289733887
+      ],
+      [
+        1.8766244649887085,
+        1.8361636400222778,
+        0.5432756543159485,
+        0.14736202359199524,
+        3.1940417289733887
+      ]
+    ],
+    "not_reliability_guarantee": true
+  },
+  "scientific_source": {
+    "type": "existing_E2_frozen_final_checkpoint",
+    "checkpoint_sha256": "7725d0908a5506a2419ca894e32664c658d529d25f2b61da5db5fd5ae275a764",
+    "checkpoint_url": "https://github.com/jassan-bit/DeepLearning_202630/releases/download/e2-reduced-results-20261112-v1-p7/final-freeze-c0e9e2589dca9fa03b34--selected_model--7725d0908a5506a2419ca894e32664c658d529d25f2b61da5db5fd5ae275a764.pt",
+    "recipe_source_commit": "bbd2604a9b78bab7fc8289ad07aae0a6117e884e",
+    "recipe_source_verification": "Eight recipe script hashes and source manifest match immutable commit; author hashes checked by constructor",
+    "registered_trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+    "request_sha256": "cf3be265e0a209b462fe15d43edb16863e8771b25a08759215431eb33f1f4dc0"
+  },
+  "data_source": {
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "predictions_sha256": "df5206e531ad9c4e5718fb8f17d86390bb1267bcd1d724c2333cacd6c9903655"
+  },
+  "source_architecture": {
+    "factory_version": "e2-published-periodic-v1",
+    "model": "TimeMixer",
+    "recipe_id": "TM-D7-PUBLISHED-v1",
+    "input_shape": [
+      7,
+      5
+    ],
+    "output": "positive sigma7/a; caller restores target units",
+    "body_output_shape": [
+      1,
+      5
+    ],
+    "source_forecast_complete": true,
+    "task_head": "Linear(5,1)+Softplus outside the complete forecasting body",
+    "same_window_moments": 0,
+    "future_covariates": false,
+    "architecture_search": false,
+    "paper_replication_claimed": false,
+    "historical_recipe_replaced": false,
+    "source_verification": {
+      "repository": "kwuking/TimeMixer",
+      "commit": "e24610583b36fdd8c76cc17a8df4e65759a5f460",
+      "verified_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "layers/AutoCorrelation.py",
+          "sha256": "35fc23e552419a53ebf12de5eb39a276aeb379f3f49ad5cf85ad0527a8c18feb"
+        },
+        {
+          "path": "layers/Autoformer_EncDec.py",
+          "sha256": "48745b4bb647355e9845792a855df9c59fd7df7fcc664c765351fec390c4073e"
+        },
+        {
+          "path": "layers/Conv_Blocks.py",
+          "sha256": "25c80a3f21bfcd403e9b3672cb1d3639b19e24d156e791060754b9ad32b90f3f"
+        },
+        {
+          "path": "layers/DWT_Decomposition.py",
+          "sha256": "365356b4017ff144e92e655c24631bd422ec066741f5130fb6dd9e6f1a186e91"
+        },
+        {
+          "path": "layers/Embed.py",
+          "sha256": "ab492ea2f68459bbcf3cbffdd1beb75b24d0d70248d017a313a3b470316aaa2b"
+        },
+        {
+          "path": "layers/FourierCorrelation.py",
+          "sha256": "457afe4aa2a8ececf50bc359840edb3c9ed455cb02748b69fd01488215e186ca"
+        },
+        {
+          "path": "layers/SelfAttention_Family.py",
+          "sha256": "34026dd7d5644a2e1dab912f2bb661c91d458015796133e681f40b98fbc10cfd"
+        },
+        {
+          "path": "layers/StandardNorm.py",
+          "sha256": "cc1c0bc65b7b094bbe83f988fb05b86272a59638c030c3781aa52ce8880379df"
+        },
+        {
+          "path": "layers/Transformer_EncDec.py",
+          "sha256": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4"
+        },
+        {
+          "path": "layers/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "models/TimeMixer.py",
+          "sha256": "817d62f4aac54c8566e560f6d3785856e31c8ee51460279ee3d0a4823f11d4be"
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "2b7b6434c94f0e74d68ce788eb0ec25a7eb8581991f167f379558a10f21171b9"
+        },
+        {
+          "path": "scripts/long_term_forecast/ETT_script/TimeMixer_ETTh1_unify.sh",
+          "sha256": "13086d899b992b67cdd4409d26f686c1ac7e15e9ad4fd03dd53a2e0728554fc4"
+        },
+        {
+          "path": "utils/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "utils/data_analysis.py",
+          "sha256": "4176dc3ebb06988635085a397021d3b264056fc4251878b60abeee5b8aa94d69"
+        },
+        {
+          "path": "utils/losses.py",
+          "sha256": "d7f924f9abdf9dbbf097b60329a25ad727b163111014954ebf5856370a1aa116"
+        },
+        {
+          "path": "utils/m4_summary.py",
+          "sha256": "bfc7ba06736c3919b4542b0e68a15280642d80989a7f837132121136e8a4e8a7"
+        },
+        {
+          "path": "utils/masking.py",
+          "sha256": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+        },
+        {
+          "path": "utils/metrics.py",
+          "sha256": "09e243e50baa6373286d3fe9954ab99075fa254e310b99769318b666ab92806a"
+        },
+        {
+          "path": "utils/timefeatures.py",
+          "sha256": "2414683a009c1bc0ffe8306aeca00800f95f76dc485db8121c1fc36ae87a7971"
+        },
+        {
+          "path": "utils/tools.py",
+          "sha256": "5a16efe58607a5ac2da5694c9297cbffb7c314a16e746de028760ea822ff9376"
+        }
+      ],
+      "verification_scope": "Every declared file for this author tree, not the whole repository"
+    },
+    "frozen_unused_source_parameters": [
+      "pdm_blocks.0.layer_norm.weight",
+      "pdm_blocks.0.layer_norm.bias",
+      "pdm_blocks.1.layer_norm.weight",
+      "pdm_blocks.1.layer_norm.bias",
+      "pdm_blocks.2.layer_norm.weight",
+      "pdm_blocks.2.layer_norm.bias",
+      "pdm_blocks.3.layer_norm.weight",
+      "pdm_blocks.3.layer_norm.bias",
+      "enc_embedding.temporal_embedding.embed.weight"
+    ],
+    "frozen_parameter_reason": "Official branches not called with x_mark=None; TimeMixer PDM.layer_norm is registered but never called upstream",
+    "fixed_body": {
+      "layers": 4,
+      "d_model": 32,
+      "d_ff": 32
+    },
+    "scale_lengths": [
+      7,
+      3
+    ],
+    "down_sampling_layers": 1,
+    "moving_average": 25,
+    "preset_source": "TimeMixer v1 Table7 M4 short-term; pinned M4 Monthly script: four PDM, d_model32, d_ff32, M1, avg2",
+    "preset_source_url": "https://github.com/kwuking/TimeMixer/blob/e24610583b36fdd8c76cc17a8df4e65759a5f460/scripts/short_term_forecast/M4/TimeMixer.sh",
+    "architecture_policy_id": "e2-published-bodies-d7-v1",
+    "training_recipe_id": "TM-D7-PUBLISHED-v1",
+    "registered_trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+    "training_hpo_record": {
+      "batch_size": 16,
+      "dropout": 0.1,
+      "learning_rate": 0.0006677459949385749,
+      "optimization_seeds": [
+        271201,
+        271202
+      ],
+      "recipe_id": "TM-D7-PUBLISHED-v1",
+      "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+      "weight_decay": 2.0903286086513016e-05
+    },
+    "initialization_seed": 271801,
+    "actual_parameter_count": 9447,
+    "nas": false,
+    "weights_reused": false,
+    "weights_pretrained": false,
+    "training_axes_applied": false,
+    "restored_published_body": true
+  },
+  "roundtrip": {
+    "model": "TimeMixer",
+    "seed": 271801,
+    "status": "passed",
+    "evaluation_dates": 608,
+    "date_start": "2025-01-01",
+    "date_end": "2026-08-31",
+    "calibration_dates": 53,
+    "declared_absolute_tolerance_original_sigma7": 1e-06,
+    "maximum_absolute_error_vs_CPU_memory": 1.248948291662777e-08,
+    "maximum_absolute_error_vs_frozen_saved_predictions": 2.8524917282390927e-08,
+    "maximum_calibration_absolute_error_vs_CPU_memory": 7.493689748588883e-09,
+    "maximum_calibration_absolute_error_vs_frozen_predictions": 1.7733948750459083e-08,
+    "RMSE_CPU_memory": 0.005656941517273668,
+    "RMSE_ONNX": 0.005656941327209381,
+    "RMSE_frozen_saved_predictor": 0.005656940888459831,
+    "historical_608_coverage_percent_for_this_seed": 94.90131578947368,
+    "within_tolerance": true,
+    "stress_cases": [
+      {
+        "case": "zeros",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "case": "ones",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "case": "constant_negative",
+        "max_absolute_error_original_sigma7": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "case": "alternating",
+        "max_absolute_error_original_sigma7": 9.991586336077773e-09,
+        "within_tolerance": true
+      },
+      {
+        "case": "symmetric",
+        "max_absolute_error_original_sigma7": 4.995793161099993e-09,
+        "within_tolerance": true
+      }
+    ],
+    "stress_within_tolerance": true,
+    "reference_checkpoint_sha256": "7725d0908a5506a2419ca894e32664c658d529d25f2b61da5db5fd5ae275a764",
+    "checkpoint_unchanged": true,
+    "reference_state_tensors_unchanged": true,
+    "registered_parameters": 9447,
+    "gradient_enabled_parameters": 9095,
+    "onnx_bytes": 172380,
+    "model_sha256": "1cbab4bdf3040a981936220d2899e848f2319a4671dff61f371f25f7d1d8f18c",
+    "runtime_peak_RSS_process_MiB": 284.95703125,
+    "RSS_scope": "process peak including Torch, checkpoint, ORT, arrays and export; not incremental ORT memory",
+    "provisional_concurrent_forward_median_ms": 0.2775820030365139,
+    "provisional_concurrent_forward_p95_ms": 0.48816849594004447,
+    "provisional_concurrent_end_to_end_median_ms": 0.3355750086484477,
+    "provisional_concurrent_end_to_end_p95_ms": 0.6247292491025291,
+    "timing_scope": "CPU one intra/inter-op thread, batch1,10warmups100calls; provisional contention, excludes explanations",
+    "calibration_q_reused_unchanged": 0.010437534506757353,
+    "new_training_runs": 0,
+    "new_calibration_fits": 0,
+    "GPU_used": false,
+    "live_registry_updated": false,
+    "elapsed_seconds": 2.0840826429775916,
+    "reference_eval_batch_policy": "each window independently; frozen TimesNet adapter already enforces this in eval",
+    "adapter": "unchanged model forward; standard ONNX export"
+  },
+  "libraries": {
+    "python": "3.12.14",
+    "torch_export_only": "2.8.0+cpu",
+    "onnx_export_only": "1.19.1",
+    "onnxruntime": "1.23.2",
+    "numpy": "2.3.5"
+  },
+  "AI_assistance_declared": true,
+  "serving_enabled": false
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "kind": "new_prespecified_exploratory_zero_shot_transfer_decision",
+  "recorded_at_utc": "2026-11-20T14:23:03.200287+00:00",
+  "review_date_local": "2026-11-20",
+  "timezone": "America/Bogota",
+  "AI_assistance_declared": true,
+  "base_commit": "bbd2604a9b78bab7fc8289ad07aae0a6117e884e",
+  "registration_status": "prepared_for_root_immutable_commit_before_new_predictions",
+  "registration_commit": null,
+  "scientific_question": "How do the five fixed BTC pilot recipes and both fixed analytical controls transfer without adaptation to the existing D01/D02/D03 clean-test panels?",
+  "decision": {
+    "diagnostic_inference_only_authorized": true,
+    "confirmation_training_go": false,
+    "new_model_training_allowed": false,
+    "new_HPO_allowed": false,
+    "new_scaler_fitting_allowed": false,
+    "new_calibrator_fitting_allowed": false,
+    "R3_claim_allowed": false,
+    "unexposed_test_claim_allowed": false,
+    "automatic_variant_promotion_allowed": false
+  },
+  "frozen_pilot": {
+    "master_run_id": "20261120T031424176339Z",
+    "source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+    "result_commit": "8eaa581bc34b615a8507c9e384a3e4be29084720",
+    "plan_sha256": "eb5fbbade2b1dd3ab098821b2ab0c270504c824b1b0e0a17ed52b3bebafc55bd",
+    "verdict_sha256": "a9fe319d55f70c609e94323492cf716489604616474e7cc1d684aca2452485cc",
+    "admission_sha256": "d613a643924beb89c001cfb6c3198b20e6ce6980420e52bdbb52efdaf940b2ed",
+    "closed_selection_sha256": "b0238f9cc8612ace8df5d8c0937b70468f7bfeb0f1f5cd2f2f89d58edf83f8b8",
+    "receipt_sha256": "bd5da25dc2a54001af5f66f2860bc502ff070611f7d3a41ce747d15f4c74dd89",
+    "completed_fit_count_preserved": 30,
+    "neural_recipes": [
+      "additive_positive_head",
+      "atom_crps",
+      "atom_mse_only",
+      "fixed_probs",
+      "atom_plugin"
+    ],
+    "final_seeds": [
+      20261118,
+      20261119,
+      20261120
+    ],
+    "selected_learning_rates": {
+      "additive_positive_head": 0.003,
+      "atom_crps": 0.003,
+      "atom_mse_only": 0.003,
+      "fixed_probs": 0.003,
+      "atom_plugin": 0.003
+    },
+    "checkpoint_bindings": [
+      {
+        "pilot_job_receipt_path": "jobs/final/additive_positive_head/seed20261118_lr0.0030000/job.json",
+        "checkpoint_sha256": "78c0101f981c75fb69e445c13a1b56262fd7079b3239a26fa8c484556833e6da"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/additive_positive_head/seed20261119_lr0.0030000/job.json",
+        "checkpoint_sha256": "15f8b9b4f8955b44224029076178200020e7d6bfadeb5f80615161c7d28d7d8f"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/additive_positive_head/seed20261120_lr0.0030000/job.json",
+        "checkpoint_sha256": "43f87a09e4b443bf9a8c41c8bd59c49c20f56135ebe31a11dcdbb8da50683844"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_crps/seed20261118_lr0.0030000/job.json",
+        "checkpoint_sha256": "67dc01ed9c3ce11a140acc7eddc72e9ad097b10aa9e8a536ef14bcdbc568c844"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_crps/seed20261119_lr0.0030000/job.json",
+        "checkpoint_sha256": "e6aa0c4fc2a07666d56806fafe280fbb1656cf1537863e9cbbb32c43bc7f3571"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_crps/seed20261120_lr0.0030000/job.json",
+        "checkpoint_sha256": "68bf69435ea56ff1856eb7fbdf1eb72b100dab6251ad66d9516f21f843e5b62c"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_mse_only/seed20261118_lr0.0030000/job.json",
+        "checkpoint_sha256": "b94c4efd86670c6d331f5cf7e3412dd65154b623ad1c9cc99e892019bbcfa6e5"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_mse_only/seed20261119_lr0.0030000/job.json",
+        "checkpoint_sha256": "0282383885ba4516d6594efafa451d9976815c75e4ba7648a813c5cef3a1c86a"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_mse_only/seed20261120_lr0.0030000/job.json",
+        "checkpoint_sha256": "384b7ad608c5f149bc1e6ebaee1f5f2333f321c3c39a6dbeb1d915f7babbdec7"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_plugin/seed20261118_lr0.0030000/job.json",
+        "checkpoint_sha256": "2f138c45b8026000cee659e6798b3de2695618553c2be3eee6dc893b7849c89b"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_plugin/seed20261119_lr0.0030000/job.json",
+        "checkpoint_sha256": "5fca8e254f0c0250cba23c6b51f169ed51775092f6e23c975e0ee126ae70cdff"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/atom_plugin/seed20261120_lr0.0030000/job.json",
+        "checkpoint_sha256": "28db116995584be2c987b2ac169a43e3d56a2b6a368170b3c65ecbdc5af3fdfc"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/fixed_probs/seed20261118_lr0.0030000/job.json",
+        "checkpoint_sha256": "e9add659e76e9cc349ca986e4ab5c2c028852a33169971b118c2aef0afc30804"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/fixed_probs/seed20261119_lr0.0030000/job.json",
+        "checkpoint_sha256": "2d9974e968ab2fbf3b0bb4d42cc21307ca0829e04b534ff738e75a3922e2e1f4"
+      },
+      {
+        "pilot_job_receipt_path": "jobs/final/fixed_probs/seed20261120_lr0.0030000/job.json",
+        "checkpoint_sha256": "8b76f5a41a15fb422fda70cfe8ea2af44cadbf9c4dc993700421ec3b07fc6715"
+      }
+    ],
+    "source_BTC_scaler": {
+      "mean": [
+        -0.009638580307768617,
+        0.009211109072891664,
+        -0.027089996337168198,
+        -0.007230273638321474,
+        10.738699164107167
+      ],
+      "std": [
+        0.050850699598029445,
+        0.045761172595733236,
+        0.04802971297984483,
+        0.04385863178926344,
+        0.9151390461554632
+      ],
+      "ddof": 0,
+      "target_scale": 0.02063308428641038,
+      "y_scale": 0.02063308428641038,
+      "u_scale": 0.019540729290595266,
+      "d_fit": 0.002030102424887359,
+      "fit_target_q75": 0.026577276251655846,
+      "relative_window_anchor": "last_known_close",
+      "target_centered": false
+    },
+    "source_BTC_d_fit": 0.002030102424887359
+  },
+  "target_panels": {
+    "audit_source_commit": "5a07d6157a9796ca54416dc5dea1e1527e731597",
+    "admission_receipt_sha256": "bcad9a4ca0cc13ca75e7368fa02121b714ea17607a951ab5e1c57250dfad3e93",
+    "audit_protocol_sha256": "5d3e5c0f7440efaa4993e193526d0d53628b7bb053d87a2324975d673379136a",
+    "audit_result_commit": "16a4504f6fb9208c7d6f89b65017194fa20470da",
+    "selection_rule": "Use exactly the originally defined test-window positions of the admitted chronological split, including its three seven-window purges. No target fitting/validation/calibration rows are used to adjust any model or transform.",
+    "split_ratios": [
+      0.55,
+      0.15,
+      0.1
+    ],
+    "purge_windows": 7,
+    "datasets": {
+      "D01": {
+        "raw_rows": 3270,
+        "window_start": 2630,
+        "window_stop_exclusive": 3263,
+        "expected_test_rows": 633,
+        "normalized_CSV_sha256": "722632d5a134a2b2c83d2e62cd929e6d56f2bfd27bc1777b8fd8beb0987ee3a1",
+        "clock": "trading_session",
+        "volume_units": "AAPL shares, raw"
+      },
+      "D02": {
+        "raw_rows": 1461,
+        "window_start": 1183,
+        "window_stop_exclusive": 1454,
+        "expected_test_rows": 271,
+        "normalized_CSV_sha256": "0b02d3f47d020dde37e5a18f5371e9608ecce0907e7296760a7281524bc6b510",
+        "clock": "UTC_daily",
+        "volume_units": "ETH"
+      },
+      "D03": {
+        "raw_rows": 1583,
+        "window_start": 1280,
+        "window_stop_exclusive": 1576,
+        "expected_test_rows": 296,
+        "normalized_CSV_sha256": "523beddb7d5252b7855ee562ee99e8bcd95ec932c0937ac21709d17d82f7eead",
+        "clock": "UTC_daily",
+        "volume_units": "contracts"
+      }
+    },
+    "window_geometry_source": "experiments/e3_evaluacion_ampliada_20261119/evaluation/data.py and experiments/e3_cierre_integral_20261118/campaign/data.py at the audit source commit",
+    "calendar_exposure": "All three domains and their outcomes were already exposed through the additive audit; these are exploratory transfer panels, not new independent confirmation.",
+    "dataset_specific_fits_from_796_audit_reused_as_V3": false
+  },
+  "preprocessing": {
+    "prices": "log(price)-log(last_known_close), original five-feature ordering",
+    "volume": "log1p(native_volume); retain original native units, do not silently convert, rescale, cap or winsorize on target",
+    "standardization": "Use only frozen BTC mean/std in source_BTC_scaler, for every recipe; no target-specific standardizer",
+    "A": "Compute from the six known returns of each target input window, population sigma7 identity c=6/49; this is a deterministic input calculation, not fitting",
+    "U": "Derived from target Y and A solely for retrospective scoring after prediction; never supplied to forward",
+    "target_scales": "Use unchanged BTC y_scale and u_scale for model reconstruction; report point metrics in target raw sigma7 units",
+    "domain_warnings": "Disclose volume-unit and time-clock shifts; no OOD-based row deletion or post-outcome clipping"
+  },
+  "analytical_controls": {
+    "floor_only": "sqrt(target A)",
+    "floor_plus_mean_excess": "sqrt(target A)+the unchanged BTC fit532 d_fit",
+    "number_of_trajectories_per_dataset": 2,
+    "deterministic_controls_are_not_three_seed_fits": true
+  },
+  "assessment": {
+    "primary": "Mean of individual-seed RMSE per neural recipe and per dataset, not RMSE of an ensemble",
+    "secondary": [
+      "MAE per individual seed and recipe mean",
+      "Raw-unit CRPS_U only where atom/probability outputs exist; null for additive and analytical controls"
+    ],
+    "neural_seed_trajectories_per_dataset": 15,
+    "all_trajectories_per_dataset": 17,
+    "expected_prediction_rows": 20400,
+    "expected_dataset_test_rows_sum": 1200,
+    "new_significance_tests": 0,
+    "new_bootstrap_or_permutation_resamples": 0,
+    "interval_calibrators_transferred": false,
+    "cross_dataset_grand_metric": "Not a primary result; do not pool different clocks or claim independent series",
+    "failure_policy": "Retain every failed dataset/recipe/seed and exact reason. Do not drop individual rows, substitute a model/seed or refit to repair a result.",
+    "all_predictions_before_reporting": "Complete or explicitly fail the fixed 51 trajectories before reporting the full table; no early selection"
+  },
+  "execution_budget": {
+    "device": "CPU only",
+    "cpu_threads": 1,
+    "new_optimizer_steps": 0,
+    "aggregate_inference_wall_limit_seconds": 900,
+    "per_model_seed_dataset_wall_limit_seconds": 60,
+    "data_download_time_recorded_separately": true,
+    "RSS_recorded_as_process_peak_not_incremental_model_memory": true
+  },
+  "interpretation": {
+    "original_2_percent_heuristic": "Still failed on the original BTC pilot; this diagnostic neither replaces its denominator nor changes the threshold.",
+    "winner_selection": "No automatic promotion, including atom_mse_only.",
+    "R1": "No transfer of additive novelty or institutional approval; the bounded V3 documentary verdict remains separate.",
+    "R3": "Not accredited by this diagnostic, even if descriptive transfer looks favorable.",
+    "not_a_preregistration_of_old_results": "This registers only a new diagnostic decision before its new predictions; never relabels earlier disclosed outcomes."
+  }
+}

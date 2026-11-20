@@ -399,6 +399,10 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-del-bloque-frente-a-la-guia">5.3 Revisión del bloque frente a la guía</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suplemento-cpu-y-reproducibilidad">Suplemento CPU y reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-tecnico-de-exportaciones-y-medicion-comparable">5.4 Cierre técnico de exportaciones y medición comparable</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medicion-cpu-bajo-el-mismo-procedimiento">Medición CPU bajo el mismo procedimiento</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -412,7 +416,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-b-seleccion-de-configuraciones-y-exportacion">
 <h1>5 Bloque B Selección de configuraciones y exportación<a class="headerlink" href="#bloque-b-seleccion-de-configuraciones-y-exportacion" title="Link to this heading">#</a></h1>
-<p>Este bloque reúne la selección documentada de los <strong>16 sistemas de E2</strong> y la ingeniería de inferencia disponible. El perfil vigente habilita <strong>cinco ONNX en CPU</strong> de la semilla 271801: MLP16, LSTM32, GRU32, la CNN-LSTM aditiva de E3 y TSMixer. Conserva los otros <strong>doce sistemas como resultados precalculados</strong>: nueve redes pendientes de exportación verificada y tres clásicos cuyo contrato necesita más historia o estado que las siete barras admitidas. El funcionamiento público de esta versión se verifica por separado en la <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">sección 10</span></a>. Las configuraciones se eligen desde validación. Las métricas de prueba histórica se muestran con su alcance, sin utilizarlas para cambiar la receta o escoger una semilla favorable.</p>
+<p>Este bloque reúne la selección documentada de los <strong>16 sistemas de E2</strong> y la ingeniería de inferencia disponible. El perfil vigente habilita <strong>cinco ONNX en CPU</strong> de la semilla 271801: MLP16, LSTM32, GRU32, la CNN-LSTM aditiva de E3 y TSMixer. Conserva los otros <strong>doce sistemas como resultados precalculados</strong>: nueve redes que ya tienen exportación offline verificada y tres clásicos cuyo contrato necesita más historia o estado que las siete barras admitidas. El <a class="reference internal" href="#e3-completion-20261120"><span class="std std-ref">cierre técnico</span></a> aporta las nueve conversiones adicionales, sin modificar el registro habilitado, los pesos ni los calibradores vigentes. El funcionamiento público de esta versión se verifica por separado en la <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">sección 10</span></a>. Las configuraciones se eligen desde validación. Las métricas de prueba histórica se muestran con su alcance, sin utilizarlas para cambiar la receta o escoger una semilla favorable.</p>
 <section id="criterio-de-seleccion">
 <h2>5.1 Criterio de selección<a class="headerlink" href="#criterio-de-seleccion" title="Link to this heading">#</a></h2>
 <p>Se recuperaron trece recibos de selección originales y se verificaron sus seis configuraciones, tres folds temporales, parámetros y enlace al ajuste final. E2 eligió por RMSE agrupada en validación; la media aritmética de las tres RMSE elige la misma configuración en <strong>13/13 redes</strong>. No se usó la métrica de prueba ni la mejor semilla para elegir recetas. Los recibos conservan la arquitectura y el punto de HPO elegidos en E2; el sesgo de selección del ganador no está cuantificado. La revisión de esos recibos verifica la decisión registrada, sin certificar una nueva búsqueda de arquitectura ni igualdad de HPO con E3.</p>
@@ -623,7 +627,7 @@
 </section>
 <section id="pendientes-para-cerrar-b">
 <h3>Pendientes para cerrar B<a class="headerlink" href="#pendientes-para-cerrar-b" title="Link to this heading">#</a></h3>
-<p>Faltan <strong>nueve exportaciones neuronales verificadas</strong> y los costes completos comparables del catálogo. La <a class="reference download internal" download="" href="../_downloads/8df0854b178d09bd2a8d060ed9c751a9/capability_matrix.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">capacidades</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">trece</span> <span class="pre">sistemas</span> <span class="pre">revisados</span></code></a> registra TSMixer ya exportado, tres clásicos justificados como históricos bajo el contrato actual y nueve redes pendientes. La ausencia de pesos recuperados o de una prueba de conversión no demuestra que una red exceda recursos o sea imposible de exportar. Los checkpoints de entrenamiento deben vincularse al artefacto seleccionado y verificarse con su configuración y procedencia; conservar estados no cierra la política común de ajuste final. Las cinco exportaciones de una réplica no cambian la comparación científica de medias entre diez semillas.</p>
+<p>El cierre posterior verificó <strong>las nueve exportaciones neuronales restantes</strong>, con sus recibos y pruebas de paridad offline en las 608 ventanas de prueba y 53 de calibración. Junto con las cinco existentes, completan catorce representantes neuronales ONNX verificados; no equivalen a catorce modelos habilitados. El <a class="reference internal" href="#e3-completion-20261120"><span class="std std-ref">cierre técnico</span></a> conserva los archivos y sus límites. La <a class="reference download internal" download="" href="../_downloads/8df0854b178d09bd2a8d060ed9c751a9/capability_matrix.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">capacidades</span> <span class="pre">del</span> <span class="pre">corte</span> <span class="pre">del</span> <span class="pre">18</span> <span class="pre">de</span> <span class="pre">noviembre</span></code></a> mantiene su estado histórico: TSMixer exportado, tres clásicos justificados bajo el contrato de siete barras y nueve redes todavía pendientes en aquel corte. Los checkpoints deben vincularse al artefacto seleccionado y verificarse con su configuración y procedencia; conservar estados o completar conversiones no cierra la política común de ajuste final. Siguen pendientes los costes completos comparables y la integración/aceptación de los artefactos nuevos. Exportar una réplica no cambia la comparación científica de medias entre diez semillas.</p>
 <p>No se aplicó cuantización ni se atribuyó un límite de memoria a modelos no medidos. Los modelos que no quepan en el despliegue deberán conservar resultados precalculados y una justificación sustentada; la pérdida por compresión, si se aplica, se evaluará frente a δ. La guía permite TorchScript. El perfil CPU sin framework de entrenamiento de la <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">sección 10</span></a> dispone de cinco ONNX para la aplicación local; los tres TorchScript conservan su alcance histórico. El servicio público y los pendientes señalados siguen sin completar ese cierre.</p>
 </section>
 </section>
@@ -654,12 +658,12 @@
 <td><p>Fijar la política común y vincular pesos, optimizador, configuración y procedencia; no reetiquetar el experimento ya evaluado.</p></td>
 </tr>
 <tr class="row-even"><td><p>Exportación y metadatos</p></td>
-<td><p>Tres TorchScript históricos y cinco ONNX CPU, con escaladores, esquema, hashes y rangos estimados sólo en ajuste. E3 adopta por separado su intervalo posterior individual.</p></td>
-<td><p>Completar las nueve redes pendientes y la política final común; los tres clásicos conservan su justificación de contrato.</p></td>
+<td><p>Tres TorchScript históricos y catorce representantes neuronales ONNX verificados offline, incluidos los nueve del cierre posterior; el perfil vigente sigue habilitando cinco. Escaladores, esquema y hashes conservan su versión; E3 adopta por separado su intervalo posterior individual.</p></td>
+<td><p>Completar la política final común, los costes comparables y, si procede, integrar y aceptar los nuevos artefactos en el producto. Los tres clásicos conservan su justificación de contrato.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Ida y vuelta con tolerancia y métrica</p></td>
-<td><p>Los cinco ONNX y su preprocesamiento se comprobaron sobre las 608 ventanas con tolerancia absoluta 10⁻⁶; TSMixer también sobre 53 de calibración. Las tres paridades TorchScript históricas conservan su alcance.</p></td>
-<td><p>Mantener la evidencia por formato/semilla y completar los artefactos restantes; no confundir una réplica exportada con media de diez semillas.</p></td>
+<td><p>Los cinco ONNX del perfil vigente conservan su comprobación en 608 ventanas y tolerancia absoluta 10⁻⁶; TSMixer también sobre 53 de calibración. Las nueve redes adicionales ya tienen paridad offline en ambas particiones. Las tres paridades TorchScript históricas conservan su alcance.</p></td>
+<td><p>Mantener la evidencia por formato/semilla y verificar la integración del producto; no confundir una réplica exportada con la media de diez semillas.</p></td>
 </tr>
 <tr class="row-even"><td><p>Compresión cuando haga falta</p></td>
 <td><p>No se aplicó cuantización, poda o destilación ni se verificó equivalencia.</p></td>
@@ -677,7 +681,7 @@
 <section id="suplemento-cpu-y-reproducibilidad">
 <h2>Suplemento CPU y reproducibilidad<a class="headerlink" href="#suplemento-cpu-y-reproducibilidad" title="Link to this heading">#</a></h2>
 <p>E2 añadió un diagnóstico eager CPU de los <strong>78 predictores neuronales del corte histórico de seis semillas</strong>, con dos hilos y un plan propio. No cubre automáticamente los 130 predictores neuronales de la ampliación a diez semillas. Es distinto de estas tres exportaciones TorchScript, medidas con un hilo. Sus latencias, memorias y diferencias respecto a CUDA no se mezclan como si fueran un único experimento. Esos dos controles históricos no verifican los TorchScript sobre las 608 entradas originales de prueba; la paridad y las métricas de los cuatro ONNX posteriores sí cubren esas 608 ventanas, con su alcance propio.</p>
-<p>La tabla maestra conserva parámetros, FLOPs core, costes disponibles y campos ausentes, sin rellenarlos con ceros ni sustituir CPU por GPU. Los FLOPs completos, los costes comparables del resto y sus exportaciones siguen pendientes.</p>
+<p>La tabla maestra conserva parámetros, FLOPs core, costes disponibles y campos ausentes, sin rellenarlos con ceros ni sustituir CPU por GPU. Los FLOPs completos y los costes comparables que faltan siguen pendientes. Las nueve exportaciones adicionales ya están verificadas offline; esa conversión no completa la contabilidad de recursos ni la aceptación del servicio.</p>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../_downloads/e0bcdb9109d86f49d785496407a4b50b/deployment_master.csv"><code class="xref download docutils literal notranslate"><span class="pre">Tabla</span> <span class="pre">maestra</span> <span class="pre">de</span> <span class="pre">selección</span> <span class="pre">recursos</span> <span class="pre">y</span> <span class="pre">despliegue</span></code></a>.</p></li>
 <li><p><a class="reference download internal" download="" href="../_downloads/5c058c03ee8d807095515794f595a8b2/selection_report.json"><code class="xref download docutils literal notranslate"><span class="pre">Informe</span> <span class="pre">de</span> <span class="pre">selección</span></code></a>.</p></li>
@@ -685,6 +689,130 @@
 <li><p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregable2/sections/64_correcciones_metodologicas.html">Suplemento CPU actual de E2</a>.</p></li>
 </ul>
 <p>Los scripts <code class="docutils literal notranslate"><span class="pre">e3_audit_e2_handoff.py</span></code>, <code class="docutils literal notranslate"><span class="pre">e3_select_e2_configurations.py</span></code> y <code class="docutils literal notranslate"><span class="pre">e3_build_handoff_book.py</span></code> conservan la reproducción de sus informes y del corte original de A/B. La <a class="reference internal" href="08_bloques_a_b.html"><span class="std std-doc">página anterior de evidencias</span></a> permanece como anexo; no se alteran sus resultados para reorganizar el libro.</p>
+</section>
+<section id="cierre-tecnico-de-exportaciones-y-medicion-comparable">
+<span id="e3-completion-20261120"></span><h2>5.4 Cierre técnico de exportaciones y medición comparable<a class="headerlink" href="#cierre-tecnico-de-exportaciones-y-medicion-comparable" title="Link to this heading">#</a></h2>
+<p>El cierre del 20 de noviembre de 2026 recuperó los checkpoints históricos
+de la semilla representante <strong>271801</strong> y verificó las <strong>nueve exportaciones
+ONNX restantes</strong>: FCN-1D, ResNet-1D, Inception-1D, LSTM-autoencoder con
+predictor, TimesNet, TiDE, TimeMixer, PatchTST e iTransformer. Sus archivos
+suman <strong>14.312.258 bytes</strong>. Cada red se comprobó sobre <strong>608 ventanas de
+prueba y 53 de calibración</strong>, 661 por artefacto, sin reentrenar, escoger otra
+semilla o reajustar escaladores y cuantiles. El error absoluto máximo de
+los nueve recibos es <strong>3,1492137758×10⁻⁷ σ₇</strong>, inferior a la tolerancia
+<strong>10⁻⁶</strong>. La <a class="reference download internal" download="" href="../_downloads/b72555d1392e8b964c4f11b2b5a086cd/nine_export_provenance_review.json"><code class="xref download docutils literal notranslate"><span class="pre">revisión</span> <span class="pre">independiente</span> <span class="pre">de</span> <span class="pre">procedencia</span> <span class="pre">y</span> <span class="pre">recibos</span></code></a>
+contrasta hashes de checkpoints y ONNX y conserva el alcance de cada
+verificación; esa revisión no reejecutó los modelos.</p>
+<p>Se dispone así de <strong>catorce representantes neuronales ONNX verificados
+offline</strong>. El perfil de la aplicación sigue habilitando <strong>cinco</strong>, con los
+otros <strong>doce sistemas precalculados</strong>: nueve redes sin integración en ese
+perfil y tres clásicos cuyo estado o historia no se determina con siete
+barras. La V3 experimental es otro artefacto y no amplía automáticamente
+el registro del dashboard. Las conversiones no modifican las medias de
+diez semillas ni el alcance de los experimentos científicos anteriores.</p>
+<p>El autor aprobó explícitamente publicar el paquete revisado. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/releases/download/e3-nine-onnx-4ef050d047b1/e3-nine-onnx-20261120.zip">archivo público de las nueve redes</a> tiene <strong>12.987.835 bytes</strong>, SHA256 <code class="docutils literal notranslate"><span class="pre">0fb857c407250949bfc8c96fd7b9525bab624b650b5c94dd4d1d1d8c60f62c66</span></code> y 66 miembros. Su manifiesto de publicación se añade a los binarios y recibos originales; por eso el ZIP tiene un hash distinto del transporte revisado de 12.980.054 bytes (<code class="docutils literal notranslate"><span class="pre">df995ef4e5185022de21cf49dbe13544111f1e5fb4503fd869c3f2df962cc332</span></code>). <strong>Los nueve ONNX conservan exactamente sus hashes</strong>, pesos, escaladores y calibradores. El <a class="reference download internal" download="" href="../_downloads/ec9417b2a58b6a79aeec83b83c1058a8/public_download_integrity.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">de</span> <span class="pre">descarga</span> <span class="pre">pública</span> <span class="pre">independiente</span></code></a> verificó ZIP y manifiesto sin credenciales. Los <a class="reference download internal" download="" href="../_downloads/ca01ecbd760d95f3265b3024ce381014/public_source_unauthenticated_verification.json"><code class="xref download docutils literal notranslate"><span class="pre">localizadores</span> <span class="pre">de</span> <span class="pre">origen</span></code></a> conservan la procedencia de los checkpoints públicos.</p>
+<p>La recreación previa de FCN-1D en otro runner produjo un SHA distinto y se detuvo antes de publicar. Se conserva el <a class="reference download internal" download="" href="../_downloads/23943991c41566a8a31b950692207af1/failure_observation.json"><code class="xref download docutils literal notranslate"><span class="pre">fallo</span> <span class="pre">anterior</span></code></a>; no se rebajó la guarda ni se atribuyó su causa a metadatos o hardware sin demostrarlo. El procedimiento publicado después <strong>ensambla los bytes ya aceptados y los comprueba sin reexportar</strong>. La <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44770549685">ejecución remota aprobada</a> pasó <strong>5949 casos, nueve redes por 661 ventanas</strong>, con error máximo <strong>3,099255844×10⁻⁷ σ₇</strong>, inferior al umbral fijado 10⁻⁶, y cero discrepancias de cobertura. El <a class="reference download internal" download="" href="../_downloads/542789e203b5cf58c649d43de30d3e00/E3_ONNX_PARITY_REPORT.json"><code class="xref download docutils literal notranslate"><span class="pre">replay</span> <span class="pre">ORT</span> <span class="pre">completo</span></code></a> registra Python 3.12.14, NumPy 2.3.5 y ONNX Runtime 1.23.2 de CPU, sin Torch, entrenamiento o recalibración. Este resultado no transforma en aprobada la reexportación binaria idéntica que falló.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/4ef050d047b1f85d39f9b47fce86a784820880c4/artifacts/e3_experimental_v3_20261120">perfil V3 experimental</a> está archivado aparte: <strong>15.368 bytes</strong>, SHA256 <code class="docutils literal notranslate"><span class="pre">881dd637837265829aa96900d7a0c864dcdab113a57a91485feb20fd2a443abc</span></code>. La <a class="reference download internal" download="" href="../_downloads/2dd244ba9f37da372c94e384076295e9/V3_public_raw_integrity.json"><code class="xref download docutils literal notranslate"><span class="pre">lectura</span> <span class="pre">pública</span> <span class="pre">de</span> <span class="pre">V3</span></code></a> verificó HTTP 200 y todos sus bytes, sin ejecutar el modelo. No tiene calibrador ni se incorpora al registro del dashboard.</p>
+<p>La comprobación offline no acredita la aceptación pública de Render, su SHA efectivo, la capacidad con sesiones concurrentes o la habilitación de los nueve modelos. V3 experimental sigue sin calibrador ni promoción.</p>
+<section id="medicion-cpu-bajo-el-mismo-procedimiento">
+<h3>Medición CPU bajo el mismo procedimiento<a class="headerlink" href="#medicion-cpu-bajo-el-mismo-procedimiento" title="Link to this heading">#</a></h3>
+<p>Se ejecutó una medición nueva para <strong>quince perfiles</strong>: los catorce
+representantes históricos y <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code> experimental. Cada artefacto corrió
+en un proceso separado, fijado a una CPU lógica del <strong>AMD EPYC 9V74</strong>,
+con <strong>ONNX Runtime 1.23.2</strong>, un hilo, batch uno, diez calentamientos y cien
+llamadas medidas. Se utilizó la misma ventana OHLCV de siete barras y el
+escalador congelado propio de cada modelo; la ventana es un fixture de
+tiempo, no una prueba científica nueva ni una selección de modelo. El
+<a class="reference download internal" download="" href="../_downloads/ee1836757f697dd9b769daec9bebbcfd/receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">completo</span></code></a>
+identifica versiones, afinidad, hashes, carga de sesión, primera llamada,
+p95 y observaciones individuales. La tabla reproduce las medianas de
+<code class="docutils literal notranslate"><span class="pre">session.run</span></code> y el RSS máximo del proceso:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Artefacto</p></th>
+<th class="head text-right"><p>Mediana forward (ms)</p></th>
+<th class="head text-right"><p>RSS máximo del proceso (bytes)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CNN-LSTM aditiva E3</p></td>
+<td class="text-right"><p>0,0234455</p></td>
+<td class="text-right"><p>49.197.056</p></td>
+</tr>
+<tr class="row-odd"><td><p>FCN-1D</p></td>
+<td class="text-right"><p>0,2047125</p></td>
+<td class="text-right"><p>50.065.408</p></td>
+</tr>
+<tr class="row-even"><td><p>GRU32</p></td>
+<td class="text-right"><p>0,0112420</p></td>
+<td class="text-right"><p>48.406.528</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inception-1D</p></td>
+<td class="text-right"><p>0,4333315</p></td>
+<td class="text-right"><p>53.075.968</p></td>
+</tr>
+<tr class="row-even"><td><p>LSTM-autoencoder con predictor</p></td>
+<td class="text-right"><p>0,0173460</p></td>
+<td class="text-right"><p>48.791.552</p></td>
+</tr>
+<tr class="row-odd"><td><p>LSTM32</p></td>
+<td class="text-right"><p>0,0109110</p></td>
+<td class="text-right"><p>48.427.008</p></td>
+</tr>
+<tr class="row-even"><td><p>MLP16</p></td>
+<td class="text-right"><p>0,0053785</p></td>
+<td class="text-right"><p>48.062.464</p></td>
+</tr>
+<tr class="row-odd"><td><p>PatchTST</p></td>
+<td class="text-right"><p>0,0995195</p></td>
+<td class="text-right"><p>50.032.640</p></td>
+</tr>
+<tr class="row-even"><td><p>ResNet-1D</p></td>
+<td class="text-right"><p>0,3134065</p></td>
+<td class="text-right"><p>52.555.776</p></td>
+</tr>
+<tr class="row-odd"><td><p>TSMixer</p></td>
+<td class="text-right"><p>0,0681220</p></td>
+<td class="text-right"><p>49.803.264</p></td>
+</tr>
+<tr class="row-even"><td><p>TiDE</p></td>
+<td class="text-right"><p>0,0323635</p></td>
+<td class="text-right"><p>49.664.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeMixer</p></td>
+<td class="text-right"><p>0,2278025</p></td>
+<td class="text-right"><p>51.212.288</p></td>
+</tr>
+<tr class="row-even"><td><p>TimesNet</p></td>
+<td class="text-right"><p>0,3686445</p></td>
+<td class="text-right"><p>67.100.672</p></td>
+</tr>
+<tr class="row-odd"><td><p>V3 <code class="docutils literal notranslate"><span class="pre">atom_crps</span></code> experimental</p></td>
+<td class="text-right"><p>0,0279120</p></td>
+<td class="text-right"><p>49.463.296</p></td>
+</tr>
+<tr class="row-even"><td><p>iTransformer</p></td>
+<td class="text-right"><p>0,2206770</p></td>
+<td class="text-right"><p>54.951.936</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/abe313bcfe325fbef64988004bb9d730/costs.csv"><code class="xref download docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">de</span> <span class="pre">costes</span></code></a>
+conserva los valores sin redondear y el RSS basal por separado. El RSS
+máximo incluye Python, NumPy, ONNX Runtime y la sesión: <strong>no es memoria
+incremental del modelo</strong>. Se mide el forward, sin incluir preprocesamiento,
+validación del CSV, explicaciones, Dash, navegador o transporte HTTP. Las
+cachés de archivos no se vaciaron, por lo que la carga observada tampoco
+es una estimación garantizada de arranque en frío. No se midieron FLOPs,
+energía, GPU de entrenamiento o concurrencia. Esas condiciones impiden
+trasladar las cifras directamente a la latencia pública de Render.</p>
+<p>Este cierre documenta ingeniería ejecutada con IA declarada. El
+<a class="reference download internal" download="" href="../_downloads/c1de3d31d78641094fe3ade7426eeb30/module_manifest_review.json"><code class="xref download docutils literal notranslate"><span class="pre">control</span> <span class="pre">de</span> <span class="pre">manifiestos</span></code></a>
+separa los bytes auditados de los archivos no incluidos en cada paquete.
+No acredita R2/R3 ni cambia el <a class="reference internal" href="06_modelo_original.html#e3-r1-substantive-verdict-20261120"><span class="std std-ref">dictamen documental favorable y acotado de R1 para V3</span></a>, que permanece
+separado de la aditiva y de la evaluación institucional.</p>
+</section>
 </section>
 </section>
 
@@ -766,6 +894,10 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-del-bloque-frente-a-la-guia">5.3 Revisión del bloque frente a la guía</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suplemento-cpu-y-reproducibilidad">Suplemento CPU y reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cierre-tecnico-de-exportaciones-y-medicion-comparable">5.4 Cierre técnico de exportaciones y medición comparable</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medicion-cpu-bajo-el-mismo-procedimiento">Medición CPU bajo el mismo procedimiento</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

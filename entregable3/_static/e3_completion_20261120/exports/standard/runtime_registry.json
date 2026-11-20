@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "model": "FCN-1D",
+      "id": "fcn_1d",
+      "profile": "offline_cpu_export_20261120",
+      "model_path": "fcn_1d/model.onnx",
+      "metadata_path": "fcn_1d/metadata.json",
+      "model_relative_path": "fcn_1d/model.onnx",
+      "metadata_relative_path": "fcn_1d/metadata.json",
+      "model_sha256": "80df90b1cb38fbde7f47c8d4ca43f04a5df0c6936a740eda1e5ec7a87c8df1d1",
+      "metadata_sha256": "ca2017f8c02c58bed8c615bcd5fc19ad9b935755bb8dc849f5928745640e1e50",
+      "input_name": "windows",
+      "input_shape": [
+        1,
+        7,
+        5
+      ],
+      "input_dtype": "float32",
+      "output_name": "normalized_prediction",
+      "output_scale": 0.020953875259434797,
+      "uses_observable_floor": false,
+      "scaler": {
+        "price_transform": "log(price_t) - log(last_observed_close) for all four price channels",
+        "volume_transform": "log1p(volume_t)",
+        "standardize": "(relative_features - frozen mean) / frozen std, then float32",
+        "mean": [
+          -0.008680199759876567,
+          0.010373374839932429,
+          -0.026602690963586913,
+          -0.006538300073049506,
+          10.61716046384661
+        ],
+        "std": [
+          0.051321884129097495,
+          0.046201556720675205,
+          0.048624701431150594,
+          0.044368961557455955,
+          0.8893945255931609
+        ],
+        "fit_count": 655,
+        "fit_start": "2023-01-08",
+        "fit_end": "2024-10-31",
+        "target_scale": 0.020953875259434797,
+        "clipping": false,
+        "refitted": false
+      },
+      "calibration_q": 0.006570312208881386,
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "intra_op_threads": 1,
+      "inter_op_threads": 1
+    },
+    {
+      "model": "ResNet-1D",
+      "id": "resnet_1d",
+      "profile": "offline_cpu_export_20261120",
+      "model_path": "resnet_1d/model.onnx",
+      "metadata_path": "resnet_1d/metadata.json",
+      "model_relative_path": "resnet_1d/model.onnx",
+      "metadata_relative_path": "resnet_1d/metadata.json",
+      "model_sha256": "01e2283793b019d90f77489bb8cbfb82845638772532c0f00302e98a708a050b",
+      "metadata_sha256": "c9654ca983fbe162cbc922a55f14fbf2297e40ae93657b8ea92eb3f03855ca56",
+      "input_name": "windows",
+      "input_shape": [
+        1,
+        7,
+        5
+      ],
+      "input_dtype": "float32",
+      "output_name": "normalized_prediction",
+      "output_scale": 0.020953875259434797,
+      "uses_observable_floor": false,
+      "scaler": {
+        "price_transform": "log(price_t) - log(last_observed_close) for all four price channels",
+        "volume_transform": "log1p(volume_t)",
+        "standardize": "(relative_features - frozen mean) / frozen std, then float32",
+        "mean": [
+          -0.008680199759876567,
+          0.010373374839932429,
+          -0.026602690963586913,
+          -0.006538300073049506,
+          10.61716046384661
+        ],
+        "std": [
+          0.051321884129097495,
+          0.046201556720675205,
+          0.048624701431150594,
+          0.044368961557455955,
+          0.8893945255931609
+        ],
+        "fit_count": 655,
+        "fit_start": "2023-01-08",
+        "fit_end": "2024-10-31",
+        "target_scale": 0.020953875259434797,
+        "clipping": false,
+        "refitted": false
+      },
+      "calibration_q": 0.0072527258390185645,
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "intra_op_threads": 1,
+      "inter_op_threads": 1
+    },
+    {
+      "model": "Inception-1D",
+      "id": "inception_1d",
+      "profile": "offline_cpu_export_20261120",
+      "model_path": "inception_1d/model.onnx",
+      "metadata_path": "inception_1d/metadata.json",
+      "model_relative_path": "inception_1d/model.onnx",
+      "metadata_relative_path": "inception_1d/metadata.json",
+      "model_sha256": "c8ca0dcdc942fe0ef59c2d79d8ffae688bc37c28e72de789f9dd4f438b5b3428",
+      "metadata_sha256": "1d61945f60adaf7ea4a74089c638a5799acbe14027afcef5394cf0be9226d548",
+      "input_name": "windows",
+      "input_shape": [
+        1,
+        7,
+        5
+      ],
+      "input_dtype": "float32",
+      "output_name": "normalized_prediction",
+      "output_scale": 0.020953875259434797,
+      "uses_observable_floor": false,
+      "scaler": {
+        "price_transform": "log(price_t) - log(last_observed_close) for all four price channels",
+        "volume_transform": "log1p(volume_t)",
+        "standardize": "(relative_features - frozen mean) / frozen std, then float32",
+        "mean": [
+          -0.008680199759876567,
+          0.010373374839932429,
+          -0.026602690963586913,
+          -0.006538300073049506,
+          10.61716046384661
+        ],
+        "std": [
+          0.051321884129097495,
+          0.046201556720675205,
+          0.048624701431150594,
+          0.044368961557455955,
+          0.8893945255931609
+        ],
+        "fit_count": 655,
+        "fit_start": "2023-01-08",
+        "fit_end": "2024-10-31",
+        "target_scale": 0.020953875259434797,
+        "clipping": false,
+        "refitted": false
+      },
+      "calibration_q": 0.007587061606981974,
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "intra_op_threads": 1,
+      "inter_op_threads": 1
+    },
+    {
+      "model": "LSTM-autoencoder con predictor",
+      "id": "lstm_autoencoder",
+      "profile": "offline_cpu_export_20261120",
+      "model_path": "lstm_autoencoder/model.onnx",
+      "metadata_path": "lstm_autoencoder/metadata.json",
+      "model_relative_path": "lstm_autoencoder/model.onnx",
+      "metadata_relative_path": "lstm_autoencoder/metadata.json",
+      "model_sha256": "0ed6c1348d5bc1ea3312aaf00d59f8651cb4949212eeb38c42a732c8f33480d3",
+      "metadata_sha256": "3c2d8d1622250a32bd40433c9577c100f9de114ae38c7f310a1b25a6bb015046",
+      "input_name": "windows",
+      "input_shape": [
+        1,
+        7,
+        5
+      ],
+      "input_dtype": "float32",
+      "output_name": "normalized_prediction",
+      "output_scale": 0.020953875259434797,
+      "uses_observable_floor": false,
+      "scaler": {
+        "price_transform": "log(price_t) - log(last_observed_close) for all four price channels",
+        "volume_transform": "log1p(volume_t)",
+        "standardize": "(relative_features - frozen mean) / frozen std, then float32",
+        "mean": [
+          -0.008680199759876567,
+          0.010373374839932429,
+          -0.026602690963586913,
+          -0.006538300073049506,
+          10.61716046384661
+        ],
+        "std": [
+          0.051321884129097495,
+          0.046201556720675205,
+          0.048624701431150594,
+          0.044368961557455955,
+          0.8893945255931609
+        ],
+        "fit_count": 655,
+        "fit_start": "2023-01-08",
+        "fit_end": "2024-10-31",
+        "target_scale": 0.020953875259434797,
+        "clipping": false,
+        "refitted": false
+      },
+      "calibration_q": 0.009205569452985844,
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "intra_op_threads": 1,
+      "inter_op_threads": 1
+    }
+  ]
+}

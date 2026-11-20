@@ -1,0 +1,402 @@
+{
+  "scope": "Internal latent-block diagnostic, not new model development or training; unscaled latent errors are not output sigma7 errors. Full model market and standardized-input contract results are reported separately.",
+  "cases": [
+    {
+      "case": "zero_latent",
+      "rfft_nonDC_amplitudes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        2,
+        3,
+        0
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        2,
+        3,
+        0
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 0.19988882541656494,
+      "maximum_latent_error_ORT_vs_adapter": 0.19988882541656494
+    },
+    {
+      "case": "constant_latent",
+      "rfft_nonDC_amplitudes": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        5.960464477539063e-08,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        2,
+        3,
+        0
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        3
+      ],
+      "maximum_latent_error_adapter_vs_original": 1.1920928955078125e-07,
+      "maximum_latent_error_ORT_vs_original": 0.5412928462028503,
+      "maximum_latent_error_ORT_vs_adapter": 0.5412927269935608
+    },
+    {
+      "case": "alternating_latent",
+      "rfft_nonDC_amplitudes": [
+        0.0,
+        0.0,
+        0.0,
+        8.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        0.0,
+        0.0,
+        5.960464477539063e-08,
+        8.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        3,
+        2,
+        0
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        3,
+        2,
+        0
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 7.152557373046875e-07,
+      "maximum_latent_error_ORT_vs_adapter": 7.152557373046875e-07
+    },
+    {
+      "case": "symmetric_latent",
+      "rfft_nonDC_amplitudes": [
+        6.308643817901611,
+        0.0,
+        0.4483415484428406,
+        0.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        6.308644771575928,
+        0.0,
+        0.4483414888381958,
+        0.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        3
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        3
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 0.012028694152832031,
+      "maximum_latent_error_ORT_vs_adapter": 0.012028694152832031
+    },
+    {
+      "case": "equal_cosine_frequencies_1_2",
+      "rfft_nonDC_amplitudes": [
+        4.0,
+        4.0,
+        1.1920928955078125e-07,
+        0.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        4.0,
+        4.0,
+        4.2146840684154085e-08,
+        5.960464477539063e-08
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        1,
+        0,
+        2
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        1,
+        0,
+        3
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 4.76837158203125e-07,
+      "maximum_latent_error_ORT_vs_adapter": 4.76837158203125e-07
+    },
+    {
+      "case": "equal_cosine_frequencies_1_3",
+      "rfft_nonDC_amplitudes": [
+        4.0,
+        1.245564384157172e-15,
+        4.0,
+        1.022085434815084e-15
+      ],
+      "DFT_nonDC_amplitudes": [
+        4.0,
+        1.2753113342317958e-15,
+        4.0,
+        1.4776168951122497e-15
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        1
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        3
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.028438568115234375,
+      "maximum_latent_error_ORT_vs_original": 0.028438806533813477,
+      "maximum_latent_error_ORT_vs_adapter": 2.980232238769531e-07
+    },
+    {
+      "case": "equal_cosine_frequencies_1_4",
+      "rfft_nonDC_amplitudes": [
+        4.0,
+        0.0,
+        0.0,
+        8.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        3.999999761581421,
+        5.960464477539063e-08,
+        6.322027701344268e-08,
+        8.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        3,
+        0,
+        2
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        3,
+        0,
+        2
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 0.0009293556213378906,
+      "maximum_latent_error_ORT_vs_adapter": 0.0009293556213378906
+    },
+    {
+      "case": "equal_cosine_frequencies_2_3",
+      "rfft_nonDC_amplitudes": [
+        1.1920928955078125e-07,
+        4.0,
+        4.0,
+        0.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        4.2146840684154085e-08,
+        4.0,
+        4.0,
+        0.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        1,
+        2,
+        0
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        1,
+        2,
+        0
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 4.76837158203125e-07,
+      "maximum_latent_error_ORT_vs_adapter": 4.76837158203125e-07
+    },
+    {
+      "case": "equal_cosine_frequencies_2_4",
+      "rfft_nonDC_amplitudes": [
+        0.0,
+        4.0,
+        0.0,
+        8.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        0.0,
+        4.0,
+        0.0,
+        8.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        3,
+        1,
+        2
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        3,
+        1,
+        2
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 0.0008578300476074219,
+      "maximum_latent_error_ORT_vs_adapter": 0.0008578300476074219
+    },
+    {
+      "case": "equal_cosine_frequencies_3_4",
+      "rfft_nonDC_amplitudes": [
+        0.0,
+        0.0,
+        4.0,
+        8.0
+      ],
+      "DFT_nonDC_amplitudes": [
+        1.1920928955078125e-07,
+        0.0,
+        4.0,
+        8.0
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        3,
+        2,
+        0
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        3,
+        2,
+        0
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 5.364418029785156e-07,
+      "maximum_latent_error_ORT_vs_adapter": 5.364418029785156e-07
+    },
+    {
+      "case": "seeded_random_latent_0",
+      "rfft_nonDC_amplitudes": [
+        2.7433857917785645,
+        2.2982561588287354,
+        2.583902359008789,
+        2.190936326980591
+      ],
+      "DFT_nonDC_amplitudes": [
+        2.7433857917785645,
+        2.2982561588287354,
+        2.583902359008789,
+        2.1909360885620117
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        1
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        1
+      ],
+      "maximum_latent_error_adapter_vs_original": 0.0,
+      "maximum_latent_error_ORT_vs_original": 2.384185791015625e-07,
+      "maximum_latent_error_ORT_vs_adapter": 2.384185791015625e-07
+    },
+    {
+      "case": "seeded_random_latent_1",
+      "rfft_nonDC_amplitudes": [
+        2.874764919281006,
+        2.5437140464782715,
+        2.5880093574523926,
+        1.999330759048462
+      ],
+      "DFT_nonDC_amplitudes": [
+        2.8747646808624268,
+        2.5437138080596924,
+        2.5880091190338135,
+        1.999330759048462
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        1
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        0,
+        2,
+        1
+      ],
+      "maximum_latent_error_adapter_vs_original": 4.76837158203125e-07,
+      "maximum_latent_error_ORT_vs_original": 2.384185791015625e-07,
+      "maximum_latent_error_ORT_vs_adapter": 4.76837158203125e-07
+    },
+    {
+      "case": "seeded_random_latent_2",
+      "rfft_nonDC_amplitudes": [
+        2.6558678150177,
+        2.379049062728882,
+        2.1993300914764404,
+        2.1898279190063477
+      ],
+      "DFT_nonDC_amplitudes": [
+        2.655867576599121,
+        2.379049301147461,
+        2.1993303298950195,
+        2.1898279190063477
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        0,
+        1,
+        2
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        0,
+        1,
+        2
+      ],
+      "maximum_latent_error_adapter_vs_original": 2.682209014892578e-07,
+      "maximum_latent_error_ORT_vs_original": 3.5762786865234375e-07,
+      "maximum_latent_error_ORT_vs_adapter": 2.384185791015625e-07
+    },
+    {
+      "case": "seeded_random_latent_3",
+      "rfft_nonDC_amplitudes": [
+        2.5337071418762207,
+        2.577603816986084,
+        2.5753605365753174,
+        2.219982147216797
+      ],
+      "DFT_nonDC_amplitudes": [
+        2.5337071418762207,
+        2.577603816986084,
+        2.5753607749938965,
+        2.219982147216797
+      ],
+      "original_topk_indices_nonDC_zero_based": [
+        1,
+        2,
+        0
+      ],
+      "DFT_CPU_topk_indices_nonDC_zero_based": [
+        1,
+        2,
+        0
+      ],
+      "maximum_latent_error_adapter_vs_original": 2.384185791015625e-07,
+      "maximum_latent_error_ORT_vs_original": 2.980232238769531e-07,
+      "maximum_latent_error_ORT_vs_adapter": 2.384185791015625e-07
+    }
+  ],
+  "mathematical_equivalence": "rFFT of a real length8 sequence is represented by cos/sin DFT; all nonDC frequencies remain eligible; floor periods8,4,2,2 evaluate the same shared convolution and input-dependent softmax aggregation.",
+  "floating_point_limit": "Real DFT and rFFT reductions have different rounding. Torch and ONNX TopK do not share a guaranteed stable tie order. Exact/near spectral ties can change selected branches; real-cohort and five full-input stress results do not establish equivalence for every possible input.",
+  "new_training_runs": 0,
+  "model_checkpoint_sha256": "352da41eff4e7193b5c527a7c483458318f114f087779cedcd0e9a539090af0d",
+  "adapter_onnx_sha256": "2287aa090ffa1bc88c0b04975fe9ce2a2f07d9045db89293bab47379739ba885"
+}

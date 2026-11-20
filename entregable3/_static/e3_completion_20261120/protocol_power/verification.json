@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-11-20T14:35:44.809117+00:00",
+  "python": "3.12.14",
+  "executed_checks": {
+    "unit_tests_passed": 8,
+    "unit_test_command": "python -m unittest discover -s protocol_power -p test_*.py",
+    "independent_CPU_replay_outputs_byte_equal": {
+      "variance_inputs.csv": true,
+      "seed_sensitivity.csv": true,
+      "calendar_sensitivity.csv": true,
+      "joint_sensitivity.json": true
+    },
+    "pilot_plan_canonical_hash_equals_saved_receipt": "12e38bdd1ca13af0fb5b545098cd18977a5f35610db36caa9d8f67c4b31c792c",
+    "preflight_current_DRAFT_blocked": true,
+    "preflight_current_blocker_count": 8,
+    "preparation_only_model_fits": 0,
+    "preparation_only_model_predictions": 0,
+    "analytic_scenarios": 486,
+    "Monte_Carlo_draws": 0,
+    "missing_main_rival_variances": 16,
+    "no_model_imports_in_entrypoints_AST": {
+      "planning.py": [
+        "__future__",
+        "argparse",
+        "csv",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "math",
+        "numpy",
+        "pathlib",
+        "scipy"
+      ],
+      "preflight.py": [
+        "__future__",
+        "argparse",
+        "datetime",
+        "hashlib",
+        "json",
+        "math",
+        "pathlib",
+        "re"
+      ],
+      "colab_cpu_preparation.py": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "urllib.request"
+      ]
+    }
+  },
+  "not_executed": [
+    "GPU",
+    "training",
+    "model inference",
+    "new calibration",
+    "confirmatory tests",
+    "new campaign",
+    "GitHub publication by this agent",
+    "final book link check; root must copy to destination first"
+  ],
+  "source_decision_files_preserved": {
+    "decision_zero_shot.json": "6bda16b7e322e03a1494420f4bedae58a38cad0aed790a8c6493d5d15637df29",
+    "decision_zero_shot.md": "fbbde4d7f342dd48676d0854ed83674e228ca850ad5ad06aafe8af006dce91f8"
+  },
+  "final_R": null,
+  "confirmation_go": false,
+  "institutional_approval_claimed": false,
+  "AI_assistance_declared": true
+}
