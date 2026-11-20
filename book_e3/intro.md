@@ -33,6 +33,22 @@ En prueba limpia, la CNN-LSTM aditiva obtiene la **menor RMSE media individual d
 
 La {ref}`comparación bibliográfica de cierre <e3-r1-comparison-close>` examina diez trabajos cercanos, con lectura focal de ocho cuerpos y acceso limitado de los otros dos, además de 50 decisiones de cribado con sus límites. El dictamen no establece novedad sustantiva de la aditiva. La {ref}`decisión de adaptación <e3-r1-adaptation-decision>` conserva **V3**, ya implementada, como candidata de estructura y entrenamiento —ley del retorno faltante, transformación de σ₇ y CRPS—, con antecedentes y 100 comprobaciones analíticas declarados. V3 no hereda los 796 trabajos ni tiene un resultado de mercado aportado por este cierre.
 
+
+## Piloto V3: preparación verificada y siguiente paso
+
+El [cuaderno Colab del piloto controlado](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/1e02551d80a624661f81981b2323087bcbb84e8f/notebooks/entregable3_v3_controlled_pilot_colab.ipynb) ya está publicado con código fijado por commit y comprobación SHA-256. Las [43 pruebas de software aprobadas en GitHub Actions](https://github.com/jassan-bit/DeepLearning_202630/actions/runs/44664541455) verifican el control de agregación, el flujo sintético, los checkpoints y el guardado. Esa aprobación corresponde a software y datos artificiales; no constituye entrenamiento ni evaluación de V3 con datos de mercado.
+
+| Elemento | Estado y alcance |
+|---|---|
+| Comparación bibliográfica y diferencia propuesta | Documentadas en {ref}`6.15 <e3-r1-comparison-close>` y {ref}`6.16 <e3-r1-adaptation-decision>`, con límites de acceso, antecedentes y dictamen. |
+| Recetas y controles | Cinco recetas neuronales: aditiva, V3 completa, sin CRPS, masas fijas y sustitución por segundo momento; además, dos controles analíticos de piso. |
+| Ajustes previstos | 15 de HPO y 15 finales: **30 ajustes neuronales de desarrollo**, con tres semillas finales por receta. |
+| Datos del piloto | Sólo desarrollo BTC: 532 ventanas de ajuste; las 116 de validación se dividen en 54 de selección, siete purgadas y 55 de evaluación posterior. El calendario ya estuvo expuesto. |
+| Resultados de mercado de V3 | **Pendientes de incorporar mediante un recibo verificable.** La preparación y las pruebas no se presentan como una ejecución real completada. |
+| Decisión posterior | Aplicar la heurística de desarrollo del 2 % frente a los controles completos y conservar resultados favorables y adversos. R1 y R3 siguen pendientes de acreditación. |
+
+Para ejecutarlo, se activa una GPU en Colab y se usa la celda del cuaderno. El token `GITHUB_TOKEN` debe permitir escritura de contenido en este repositorio; el lanzador lo consulta en los secretos o lo solicita con entrada oculta. **Debe conservarse el identificador de ejecución impreso:** tras un reinicio se introduce en `RESUME_RUN_ID` para recuperar el estado publicado, con el mismo perfil GPU/software y el plazo original. La {ref}`sección 7.13 <e3-v3-controlled-development-pilot>` detalla presupuesto y límites de recuperación. El plan se guarda antes del primer ajuste y los resultados van a una rama propia de GitHub. Se conservan los 796 trabajos de la referencia aditiva y la declaración de asistencia de IA.
+
 ## Comparación histórica y producto interactivo
 
 E2 conserva su benchmark de 16 sistemas y ahora reúne diez semillas para cada una de sus trece redes, más una trayectoria por comparador determinista: **133 predictores sobre las mismas 608 fechas**. La extensión conserva las seis semillas neuronales históricas y añade cuatro sin repetir la selección de recetas. E3 cuenta con diez semillas del candidato **CNN causal → LSTM unidireccional → atención temporal, con cabeza positiva aditiva y 1210 parámetros**. Su RMSE media individual es **0,00293943** en ese calendario conocido; la [tabla de métricas](_static/e3_estadistica_posterior_20261117/metrics.csv) conserva los valores completos.
