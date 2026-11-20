@@ -1,0 +1,33 @@
+{
+  "failed_run": 44837596000,
+  "failed_job": 136637789297,
+  "status": "preserved_prior_failed_consolidation",
+  "prior_engine_sha256": "da330d1f767db798e944592297d3feff615e9afbeb96155d7913cf29b68c8462",
+  "reported_error": "ValueError: Non-source C addon member",
+  "failure_excerpt": [
+    "Traceback (most recent call last):",
+    "  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 375, in <module>",
+    "    run(parser.parse_args())",
+    "  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 317, in run",
+    "    addon = add_C(args.C_addon_root, args.C_addon_manifest, args.C_addon_manifest_sha256, payload)",
+    "            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 224, in add_C",
+    "    require(PurePosixPath(name).suffix.lower() in ADDON_EXTENSIONS and wanted['bytes'] <= 2_000_000, 'Non-source C addon member')",
+    "  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 62, in require",
+    "    if not ok: raise ValueError(message)",
+    "               ^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "ValueError: Non-source C addon member",
+    "##[error]Process completed with exit code 1.",
+    "with:",
+    "  name: e3-consolidated-review-44837596000",
+    "  path: /tmp/e3-consolidated/",
+    "  retention-days: 30",
+    "  if-no-files-found: warn",
+    "  compression-level: 6",
+    "  overwrite: false",
+    "  include-hidden-files: false",
+    "env:",
+    "  pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64"
+  ],
+  "diagnosis": "Three frozen C validation receipts have stdout/stderr suffixes absent from the source extension allowlist; no data or model-byte mismatch was observed."
+}

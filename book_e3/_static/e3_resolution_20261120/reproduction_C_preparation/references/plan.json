@@ -1,0 +1,111 @@
+{
+  "version": "e3-v3-controlled-development-pilot-1",
+  "master_run_id": "20261120T031424176339Z",
+  "created_utc": "2026-11-20T03:17:39.264370+00:00",
+  "scope": "development_only_not_confirmation",
+  "identity": {
+    "source_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+    "source_files": {
+      "src/original_model.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+      "src/e3_development.py": "33dd121f0dd36ef1933c5f4338045fa5a17e85ad6986dfd2c1a43c2662158ebe",
+      "src/e3_innovation_model.py": "7f362d38ca83ed302dc9c822b4e4e19a0d446e4c01477f42b0e9a8da823ae7b1",
+      "src/e3_overlap_model_v3.py": "30a0e4daa480e803932482c93928e4e250e338eb3daff3fc801e73ed2cec434b",
+      "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json": "c3ce43d3cb81767ee3fc0daa0ccfe8432a3326643e28e51273a49cc1fe01c2fe",
+      "experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json.sha256": "624b0c1dde0cebf59390a921e6e4830ea51dff81658293b329e152f74a7b86ae",
+      "experiments/e3_evaluacion_ampliada_20261119/evaluation/phase.py": "4e5e389a375a1fd288e25668df69f8dc4cf40867d06e809e95fcc1d8f04e7a50"
+    },
+    "engine_sha256": "6c54d1f35e305e10c5fc6882b4e410bb1fb31b53349efe3c340810a173dc3363",
+    "plugin_sha256": "3c118a7a3005784c0d7c099a799435e8571319e96a5c43610f8b3daf533be4f4"
+  },
+  "hardware_profile_sha256": "f061c7278fbba88a5bcb427ad0d9deb096919a755b252ab2580c1ec4feda4b98",
+  "cohort": {
+    "python": "3.12.12",
+    "torch": "2.8.0+cu126",
+    "numpy": "2.3.5",
+    "cuda_runtime": "12.6",
+    "cudnn": 91002,
+    "device": "cuda:0",
+    "cpu_threads": 2,
+    "deterministic_algorithms": true,
+    "allow_tf32": false,
+    "GPU": {
+      "name": "NVIDIA A100-SXM4-80GB",
+      "total_memory_bytes": 85094825984,
+      "capability": [
+        8,
+        0
+      ]
+    }
+  },
+  "launcher_lock_sha256": "d7b1d4914d4ca741da6a00dc12ebed36e8581028ce7c90d83f5cc64d0de86305",
+  "launcher_identity_sha256": "f6ae87b730b51228901f64f0d6daa18e659f3807b6ddbc4d2b0062ac24066aa6",
+  "admission_sha256": "8684fcf0293144898339d2bc56a407d499999e9625173098bde2bf533bba5f6c",
+  "neural_variants": [
+    "additive_positive_head",
+    "atom_crps",
+    "atom_mse_only",
+    "fixed_probs",
+    "atom_plugin"
+  ],
+  "expected_parameters": {
+    "additive_positive_head": 1210,
+    "atom_crps": 1262,
+    "atom_mse_only": 1262,
+    "fixed_probs": 1236,
+    "atom_plugin": 1262
+  },
+  "analytical_controls": [
+    "floor_only",
+    "floor_plus_mean_excess"
+  ],
+  "fit_rows": 532,
+  "selection_rows": 54,
+  "purged_rows": 7,
+  "assessment_rows": 55,
+  "hpo_learning_rates": [
+    0.0003,
+    0.001,
+    0.003
+  ],
+  "hpo_seed": 20261117,
+  "final_seeds": [
+    20261118,
+    20261119,
+    20261120
+  ],
+  "config": {
+    "weight_decay": 0.0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip": 1.0,
+    "lambda_crps": 0.1
+  },
+  "budget_seconds_per_fit": 120.0,
+  "required_hpo_fits": 15,
+  "required_final_fits": 15,
+  "total_required_fits": 30,
+  "nominal_fit_budget_seconds": 3600.0,
+  "optimizer": "AdamW",
+  "budget_scope": "bounded_optimizer_phase_from_immutable_marker; model_construction_and_tensor_setup_reported_separately",
+  "durability_wait_consumes_immutable_fit_opportunity": true,
+  "slow_before_fit_publication_policy": "expired phase fails without a validated trained checkpoint; deadline never reset",
+  "selection_metric": "selection_RMSE_raw_sigma7_common_to_all_variants",
+  "selection_tie_break": "lowest_learning_rate",
+  "final_fit_early_stopping": "same selection54; assessment55 never used by optimizer",
+  "assessment_policy": "after_all_HPO_and_final_fits_complete; no_retuning",
+  "heuristic": {
+    "minimum_relative_RMSE_gain": 0.02,
+    "against": "best_neural_control_and_best_all_controls",
+    "meaning": "development continuation only; not delta, significance, R1 or R3"
+  },
+  "forbidden": [
+    "calibration53",
+    "test608",
+    "D01",
+    "D02",
+    "D03"
+  ],
+  "prior_796_jobs_reused_as_new_fits": false,
+  "AI_assistance": "Model control, engine and review prepared with AI assistance; author must understand and defend them."
+}

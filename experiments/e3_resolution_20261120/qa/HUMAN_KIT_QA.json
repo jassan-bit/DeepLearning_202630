@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "status": "independent_human_handoff_preparation_QA_passed",
+  "reviewed_at_utc": "2026-11-20T23:05:47.352529+00:00",
+  "AI_review_declared": true,
+  "human_execution_or_signature_claimed": false,
+  "kit_manifest_SHA256": "e481d777d5627c832e7cc473e8c0d7c1165c39f633370b21ae38a2cb3d91e853",
+  "source_commit": "8d03a73d529eb3f9b2e89992b4488cfeb88a99e6",
+  "source_hashes_independently_checked": 27,
+  "profiles_independently_compared": 12,
+  "A_reference_rows": 431,
+  "B_reference_rows": 55,
+  "reference_identity_comparisons": [
+    {
+      "profile": "A.metrics.csv",
+      "rows": 17,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.primary_contrasts.csv",
+      "rows": 48,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.effects.csv",
+      "rows": 16,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.verdicts.csv",
+      "rows": 16,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.mae_secondary.csv",
+      "rows": 16,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.seed_subgroups.csv",
+      "rows": 28,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.sensitivities.csv",
+      "rows": 96,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.metrics_extended.csv",
+      "rows": 17,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.metrics_extended_table.csv",
+      "rows": 17,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.metrics_uncertainty.csv",
+      "rows": 17,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "A.metrics_per_predictor.csv",
+      "rows": 143,
+      "bytes_identical": true,
+      "level": "A"
+    },
+    {
+      "profile": "B.accepted55",
+      "rows": 55,
+      "bytes_identical": true,
+      "level": "B"
+    }
+  ],
+  "independent_mutations_rejected": [
+    {
+      "case": "missing_date",
+      "correctly_rejected": true,
+      "reason": "Predeclared row count differs"
+    },
+    {
+      "case": "duplicate_date",
+      "correctly_rejected": true,
+      "reason": "Empty or duplicate CSV row key"
+    },
+    {
+      "case": "reordered_dates",
+      "correctly_rejected": true,
+      "reason": "Identifier/calendar order differs"
+    },
+    {
+      "case": "nonfinite_output",
+      "correctly_rejected": true,
+      "reason": "Nonfinite CSV numeric cell"
+    },
+    {
+      "case": "nonfinite_A",
+      "correctly_rejected": true,
+      "reason": "Nonfinite CSV numeric cell"
+    },
+    {
+      "case": "missing_not_zero",
+      "correctly_rejected": true,
+      "reason": "Missing/text/numeric CSV cell type changed: accepted_ORT_sigma7"
+    },
+    {
+      "case": "inconsistent_error_field",
+      "correctly_rejected": true,
+      "reason": "Derived discrepancy field disagrees with prediction"
+    },
+    {
+      "case": "changed_frozen_prediction_with_consistent_derived_error",
+      "correctly_rejected": true,
+      "reason": "numeric_tolerance_failure"
+    }
+  ],
+  "new_model_fits": 0,
+  "new_model_inferences": 0,
+  "A_statistical_reanalysis_executed": false,
+  "B_forward_replay_executed": false,
+  "C_training_executed": false,
+  "R3_accredited": false,
+  "scope_checks": {
+    "A_B_receipts_reused_not_upgraded_to_human_execution": true,
+    "prepare_case_only_generates_commands_and_blank_form": true,
+    "CLI_only_A_B_options": true,
+    "C_is_historical_reproduction_not_confirmation": true,
+    "C_driver_null_is_explicit_limitation": true,
+    "C_specific_tolerances_not_invented_from_AB": true,
+    "original_masters_not_modified_by_preparation": true,
+    "comparison_schema_support_order_nonfinite_and_exact_fixed_predictions_guarded": true,
+    "predeclared_numeric_tolerances_not_scientific_equivalence": true
+  },
+  "limitations": [
+    "External person still must acquire fixed inputs and execute own agreed scope; no human activity is certified here.",
+    "C plan currently has no historical reproduction training driver; the prepared B replay does not fill it.",
+    "The27h nominal fit-opportunity sum is not an end-to-end budget and does not prove coverage of all phase or retry work."
+  ],
+  "blockers_to_publish_preparation_with_explicit_limits": [],
+  "source_edits_by_reviewer": false
+}

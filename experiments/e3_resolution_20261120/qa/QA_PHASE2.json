@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "status": "independent_phase2_prelaunch_QA_passed_no_blockers",
+  "reviewed_at_utc": "2026-11-20T23:31:52.723547+00:00",
+  "AI_review_declared": true,
+  "human_review_or_signature_claimed": false,
+  "reviewed_sources": [
+    {
+      "path": "consolidation_workflow.yml",
+      "bytes": 4857,
+      "sha256": "fb1d75fe55a7310fe2dff317e5dfa8ec7de98a6a2c7c2b6ed044b3fab3b84bce"
+    },
+    {
+      "path": "consolidation/consolidate_archive.py",
+      "bytes": 26009,
+      "sha256": "da330d1f767db798e944592297d3feff615e9afbeb96155d7913cf29b68c8462"
+    },
+    {
+      "path": "consolidation/MANIFEST.json",
+      "bytes": 1020,
+      "sha256": "8506e3a176e0f003fae1a34fb6319f68fea74ace010f408766330ac8be990f18"
+    },
+    {
+      "path": "consolidation/test_consolidate_archive.py",
+      "bytes": 8458,
+      "sha256": "a505b955a5688a9aed6c5985f4a69af310cd147a1872df6568d65f7164c18c62"
+    },
+    {
+      "path": "publication/publish_review_release.py",
+      "bytes": 7642,
+      "sha256": "90c44a70aa9b296fc4f5fd329e955fdb82c2cddd94e65145f488bcc1e6a3cb5c"
+    },
+    {
+      "path": "publication/test_publish_review_release.py",
+      "bytes": 3422,
+      "sha256": "1cc0906889121367c35d941e199c792532a750c63b5e362bf768a9d161dab6a4"
+    },
+    {
+      "path": "reproduction_C_preparation/historical_C_driver.py",
+      "bytes": 17065,
+      "sha256": "f2c50f24ef17e64ee858806ed159362ead66a3996a68191b0aa65fec149b8365"
+    },
+    {
+      "path": "reproduction_C_preparation/MANIFEST.json",
+      "bytes": 4827,
+      "sha256": "e8ab147d6c6e74d581b8b61504dc64ce6ecbbe79f3c2a2e9a1c344537028d5a7"
+    }
+  ],
+  "final_workflow_sha256": "fb1d75fe55a7310fe2dff317e5dfa8ec7de98a6a2c7c2b6ed044b3fab3b84bce",
+  "staged_workflow_matches_reviewed": true,
+  "DRAFT_workflow_not_the_reviewed_or_staged_file": true,
+  "software_tests_independently_run": {
+    "consolidation": {
+      "tests": 12,
+      "passed": 12
+    },
+    "C_preparation": {
+      "tests": 10,
+      "passed": 10
+    },
+    "publication": {
+      "tests": 4,
+      "passed": 4
+    },
+    "all_are_software_fixtures_not_scientific_runs": true
+  },
+  "payload_manifests_verified": {
+    "consolidation": {
+      "sha256": "8506e3a176e0f003fae1a34fb6319f68fea74ace010f408766330ac8be990f18",
+      "payloads": 5
+    },
+    "C_addon": {
+      "sha256": "e8ab147d6c6e74d581b8b61504dc64ce6ecbbe79f3c2a2e9a1c344537028d5a7",
+      "payloads": 23
+    }
+  },
+  "scope_checks": {
+    "base_archive_pinned_bytes_SHA256_and18564_inner_member_hashes": true,
+    "prior_hydration_receipt_identity_bound_to_executed_launcher_and_engine": true,
+    "nine_export_ZIP_and_all_model_metadata_hashes_pinned": true,
+    "all15_ONNX_graph_SHA256_set_checked_without_runtime_execution": true,
+    "no_full4GB_hydration_repeated": true,
+    "C_addon_fixed_manifest_reference_CSV935rows_and_noNPZ": true,
+    "C_default_dry_run_no_numpy_torch_GPU": true,
+    "C_template_execute_blocked_before_runtime": true,
+    "C_actual_fits_only_after_external_declaration_tolerances_input_and_cohort_guards": true,
+    "C_partial_two_job_historical_reproduction_not_confirmation": true,
+    "C_not_executed_by_workflow": true,
+    "original_master_paths_preserved_new_C_run_id_required": true,
+    "new_root_manifest_and_previous_manifests_preserved_under_provenance": true,
+    "new_archive_all_member_hashes_and15_unique_graphs_checked_before_release": true,
+    "only_final_four_public_files_retained_after_workdir_cleanup": true,
+    "release_job_after_successful_consolidation_only": true,
+    "tag_and_repository_fixed_existing_tag_must_equal_launcher": true,
+    "only_prerelease_REVIEW_and_four_exact_local_assets": true,
+    "existing_assets_hash_verified_without_clobber": true,
+    "public_unauthenticated_GET_digests_and_origin_caps": true,
+    "publication_GET_propagation_retries_do_not_repeat_writes": true,
+    "no_Zenodo_writes_global_license_or_R3_claim": true
+  },
+  "important_limitations": [
+    "This is prelaunch review; real consolidated byte counts and successful release downloads require executed receipts.",
+    "C execution driver is prepared, not validated by actual training; its110 potential outputs do not exist until a real external run.",
+    "C preserves fixed original fit opportunities but does not recreate old network/interrupt latency; no claim of full796/30 or bitwise-identical historical training is allowed.",
+    "The capsule remains a scoped review archive with explicit exclusions, not an integral scientific master or a new Zenodo deposit.",
+    "If publication fails after release creation, a partial prerelease may remain; helper does not clobber existing assets and final verified status must come from the executed receipt."
+  ],
+  "blockers": [],
+  "source_edits_by_reviewer": false,
+  "new_model_fits": 0,
+  "new_model_inferences": 0,
+  "GPU_used": false,
+  "R3_accredited": false,
+  "external_publication_by_this_auditor": false
+}

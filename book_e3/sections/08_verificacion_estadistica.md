@@ -1079,7 +1079,7 @@ defensa académica de R2 y validación predictiva de R3.
 (e3-followup-scientific-decision)=
 ## 8.23 Cierre de la decisión sobre V3, posterior a la publicación
 
-La nueva auditoría documental **cierra la decisión de continuar con NO-GO para la confirmación de la receta actual**. No cierra R3 favorablemente. Cotejó 65 entradas por hash y recalculó desde los resultados guardados el piloto adverso, las 51 trayectorias de transferencia, sus 20.400 filas y 21 medias descriptivas. No ejecutó ajustes, inferencias, remuestreos ni nuevas pruebas de significación; consumió aproximadamente 0,12 s CPU y cero GPU.
+La auditoría documental de ese corte **cierra la decisión de continuar con NO-GO para la confirmación de la receta actual**. No cierra R3 favorablemente. Cotejó 65 entradas por hash y recalculó desde los resultados guardados el piloto adverso, las 51 trayectorias de transferencia, sus 20.400 filas y 21 medias descriptivas. No ejecutó ajustes, inferencias, remuestreos ni nuevas pruebas de significación; consumió aproximadamente 0,12 s CPU y cero GPU. La revisión posterior de {ref}`8.24 <e3-resolution-science-20261120>` audita los escenarios de planificación y prepara sus contratos sin cambiar ese dictamen.
 
 `atom_crps` conserva **2,7043119888 % más RMSE que `atom_mse_only`**, sin superar la heurística original del 2 %. En la transferencia posterior tampoco fue mejor que el control observado en ninguno de los tres paneles: el exceso descriptivo de error frente al mejor control fue 26,06 % en D01, 8,96 % en D02 y 2,61 % en D03. Esos resultados no prueban inferioridad universal o equivalencia. La pregunta de transferencia ya fue contestada con calendarios expuestos; repetirla no proporcionaría confirmación independiente. No se promueve la ablación ni se cambia el umbral, la pérdida o el rival para declarar éxito.
 
@@ -1088,3 +1088,60 @@ Se revisó la guía original: el Cuadro 4 denomina la ruta **F2. Temporal**; «F
 Una pregunta futura sobre calidad distributiva en regímenes definidos antes de ver datos nuevos podría motivar otra investigación, pero no autoriza ahora una campaña. Requeriría justificación científica, datos admisibles no expuestos, batería temporal validada, márgenes operativos, potencia y presupuesto suficientes, y registro real previo. Si cambia el algoritmo, será otra versión y deberá revisarse qué parte de R1 conserva. La preparación Colab anterior mantiene sus guardas y no habilita entrenamiento. **R3 permanece no acreditada**; el dictamen de R1 de V3 sigue siendo técnico, acotado y distinto de R2.
 
 Evidencia nueva: {download}`decisión razonada <../_static/e3_science_followup_20261120/SCIENTIFIC_DECISION.md>`, {download}`decisión estructurada <../_static/e3_science_followup_20261120/decision.json>`, {download}`recibo de los recálculos <../_static/e3_science_followup_20261120/execution_receipt.json>`, {download}`matriz científica <../_static/e3_science_followup_20261120/requirements_matrix.csv>` y {download}`condiciones concretas de reapertura <../_static/e3_science_followup_20261120/REOPENING_CHECKLIST.md>`. La asistencia de IA está declarada y no se simula una aprobación institucional.
+
+
+(e3-resolution-science-20261120)=
+## 8.24 Auditoría de potencia y diseño futuro bloqueado
+
+**Estado científico: NO-GO para confirmar la receta actual y R3 no acreditada.** La revisión parte del commit `8d03a73d529eb3f9b2e89992b4488cfeb88a99e6`; conserva los **796 trabajos de la aditiva, 30 ajustes V3 y 51 trayectorias/20.400 predicciones retrospectivas**. `atom_crps` mantiene **2,7043119888 % más RMSE que `atom_mse_only`**, sin superar su heurística ni al mejor control en ninguno de los tres dominios de transferencia expuestos. Se cierra una auditoría y preparación verificables, no una justificación nueva para abrir confirmación. No se cambia la regla ni se promueve una ablación.
+
+La {download}`auditoría ejecutada de los escenarios <../_static/e3_resolution_20261120/science/audit_486.json>` concilia **486 registros guardados: 162 de sensibilidad entre semillas y 324 de calendario**. Se verificaron **71 archivos de entrada por hash**, según el {download}`recibo de ejecución <../_static/e3_resolution_20261120/science/execution_receipt.json>` y la {download}`procedencia de insumos <../_static/e3_resolution_20261120/science/input_provenance.json>`. No se repitieron los escenarios ni se generaron nuevas trayectorias, p-valores científicos, remuestreos de mercado o datos de confirmación. Los rangos condicionales de 10–1032 pares y 4,73–38.800,24 fechas mezclan supuestos ilustrativos: **no recomiendan un R o calendario final**.
+
+### Familia completa, variabilidad ausente y estimando
+
+La {download}`tabla nominal de la familia <../_static/e3_resolution_20261120/science/main_family_variance_inputs.csv>` conserva **19 rivales y 57 componentes** frente a V3: los dieciséis sistemas E2, la aditiva y dos controles físicos. Sólo **tres rivales principales** tienen referencias de varianza del piloto: aditiva y los dos controles. Las otras tres referencias de los seis controles son ablaciones; no cubren a los **dieciséis rivales E2 faltantes**. Además, las referencias disponibles proceden del desarrollo BTC expuesto. La {download}`plantilla futura de varianza <../_static/e3_resolution_20261120/science/future_variance_template.csv>` deja **76 celdas —cuatro paneles por diecinueve rivales—** pendientes, sin sustituir ausencias por cero.
+
+La propuesta de estimando poblacional futuro distingue inicialización y proceso temporal:
+
+$$
+\theta_{j,p}=\mathbb{E}_{S}\!\left[
+\sqrt{\mathbb{E}_{P_p}(e_{j,S,t}^{2})}
+-\sqrt{\mathbb{E}_{P_p}(e_{\mathrm{V3},S,t}^{2})}
+\right],\qquad H_{0,j,p}:\theta_{j,p}\leq\delta_{j,p}.
+$$ (eq-e3-resolution-population-target)
+
+Aquí $j$ identifica al rival, $p$ al panel, $S$ la inicialización y $P_p$ el proceso temporal por especificar; los errores conservan la unidad de σ₇ poblacional sin anualizar. Es una **propuesta pendiente de revisión**, no una población recuperada de las 55 fechas conocidas. El estimador es la media de diferencias de **RMSE individuales**, no RMSE de un ensamble ni raíz de MSE agrupado entre semillas. Las celdas semilla×fecha no son observaciones independientes. Remuestrear sólo fechas no cubre por sí solo la inicialización; comparar sólo semillas condiciona al calendario. La covarianza temporal, entre semillas, su interacción y la dependencia entre rivales requieren identificación.
+
+El margen práctico $\delta_{j,p}$ y la alternativa de planificación $\Delta_{\mathrm{alt},j,p}>\delta_{j,p}$ son decisiones diferentes. La separación contra el nulo es $\Delta_{\mathrm{alt},j,p}-\delta_{j,p}$; simular exactamente en $\delta$ es estudiar la frontera nula, no una alternativa con potencia 0,90. El margen BTC heredado sigue sin justificación operativa para V3; el 2 % del piloto y la ganancia observada no lo fijan. **Márgenes por panel, MDE, R y T finales permanecen abiertos.**
+
+### Tres procedimientos: propuestas DRAFT, sin batería validada
+
+La {download}`revisión de métodos <../_static/e3_resolution_20261120/science/METHODS_REVIEW.md>` prepara opciones para el mismo nulo unilateral:
+
+| Propuesta futura | Validación que falta |
+|---|---|
+| P1: bootstrap pareado por bloques del funcional RMSE | Recalcular el funcional completo, justificar la variación cruzada semilla/fecha, los bloques, la studentización y la calibración nula. |
+| P2: expansión delta del RMSE con HAC | Derivar componentes entre semillas, calendario e interacción, con momentos, denominadores y dependencia válidos. DM sobre MSE no prueba automáticamente la diferencia de RMSE; una corrección HLN requiere revisión específica. |
+| P3: subsampling pareado del mismo funcional | Justificar unidades, tamaños, tasas y distribución límite para semillas y calendario, además de su distinción respecto a P1. **Subsampling no figura con ese nombre en el Cuadro 4**: su admisibilidad o equivalencia debe justificarse antes de congelar el protocolo. |
+
+P3 es una alternativa metodológica posterior del borrador futuro; no reemplaza retrospectivamente las reglas del piloto ni se declara aprobada. GW puede conservarse como diagnóstico condicional auxiliar, pero un rechazo omnibus no establece automáticamente dirección favorable y margen unilateral de RMSE. El horizonte de un día no elimina el solapamiento de ocho cierres de σ₇. Ninguna de estas tres pruebas está implementada y validada por el lector de potencia entregado.
+
+La familia principal propuesta ajusta conjuntamente **57 p-valores mediante Holm a 0,05**. Cada rival requiere la intersección de los tres procedimientos ajustados y la dirección práctica prefijada. Antes de dimensionar potencia faltan validaciones de tamaño/FWER bajo frontera, nulos interiores y parcialmente nulos, dependencia temporal, shocks comunes, heterogeneidad entre semillas y colas. El diseño de multiplicidad entre los cuatro paneles y de la decisión final entre dominios también debe aprobarse antes de congelar.
+
+### Preparación ejecutable y puertas que siguen cerradas
+
+El {download}`contrato CPU <../_static/e3_resolution_20261120/science/power_contract.py>` deja implementada la agregación **futura** de p-valores de simulación: un panel y presupuesto por archivo, familia completa por réplica, Holm, intersección por rival y conjunta en la misma réplica. No multiplica potencias marginales ni aplica pruebas nuevas al mercado. Reporta límites binomiales exactos Clopper–Pearson para la precisión Monte Carlo condicional; esto no valida el generador ni P1/P2/P3. Las **doce pruebas de software** pasaron. La {download}`QA independiente declarada con IA <../_static/e3_resolution_20261120/qa/SCIENCE_QA.json>` contrastó además dieciséis valores de referencia exactos con SciPy: discrepancia máxima **1,38×10⁻¹⁴**, dentro de tolerancia 10⁻⁹. Los fixtures no son evidencia de potencia científica.
+
+Desde la carpeta científica extraída, Python estándar permite inspeccionar el bloqueo:
+
+```bash
+python power_contract.py preflight \
+  --config prospective_design.DRAFT.json \
+  --output /tmp/e3-v3-preflight.json --prepare-only
+```
+
+El {download}`recibo del preflight ejecutado <../_static/e3_resolution_20261120/science/preflight_receipt.json>` informa **`BLOCKED_PREPARATION_ONLY`**, ocho puertas pendientes y `confirmation_enabled=false`. Sin `--prepare-only` sale con código 2; con la opción sólo prepara el reporte. **El programa no puede entrenar** y ningún booleano de un JSON sustituye la validez científica. El {download}`diseño futuro DRAFT <../_static/e3_resolution_20261120/science/prospective_design.DRAFT.json>` y el {download}`piloto separado de planificación <../_static/e3_resolution_20261120/science/PLANNING_PILOT.md>` conservan un mínimo de **cinco semillas piloto por receta estocástica y diez finales**, ampliables por dimensionamiento. La guía exige **≥0,90 por contraste y reportar la potencia conjunta**, sin imponer ≥0,90 a la conjunta. Como referencia aritmética, cuatro paneles×quince redes×cinco semillas serían 300 ajustes antes de HPO nuevo; 120 s por ajuste sumarían diez horas nominales, no consumo medido ni presupuesto final. Esos ajustes no se lanzaron.
+
+La {download}`auditoría de elegibilidad <../_static/e3_resolution_20261120/science/data_eligibility.json>` conserva D00–D03 como **admitidos para sus usos exploratorios**, con exposición ya conocida; ninguno se certifica como confirmación no expuesta. F00–F03 sólo describen clases de dominio por evaluar —BTC futuro, renta variable, materias primas y tipos—: fuente, instrumento, licencia, fechas y hashes siguen nulos. No son cuatro conjuntos nuevos seleccionados o admitidos. Para tres adicionales se requieren ejes de diferencia documentados, disponibilidad histórica, dependencia económica/calendario, soporte de ocho cierres, particiones absolutas, purga y custodia/exposición. Cambiar ticker o fuente no recupera independencia.
+
+La {download}`decisión científica de este corte <../_static/e3_resolution_20261120/science/scientific_decision.json>` mantiene **NO-GO**: faltan justificación renovada de la candidata, datos no expuestos, tratamiento/capacidad/presupuesto, márgenes, covarianzas, batería válida y potencia final. **No se generaron Colab confirmatorio ni tag de protocolo**. La preparación es posterior a resultados, con asistencia de IA declarada; no constituye preregistro, aprobación institucional, reproducción humana o acreditación de R3.
