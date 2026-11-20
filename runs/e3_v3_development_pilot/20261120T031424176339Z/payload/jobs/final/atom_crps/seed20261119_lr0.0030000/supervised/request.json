@@ -1,0 +1,70 @@
+{
+  "identity": {
+    "pilot_plan_sha256": "12e38bdd1ca13af0fb5b545098cd18977a5f35610db36caa9d8f67c4b31c792c",
+    "name": "atom_crps",
+    "seed": 20261119,
+    "stage": "final",
+    "configuration": {
+      "version": "e3-overlap-atomic-v3-development",
+      "variant": "atom_crps",
+      "seed": 20261119,
+      "backbone": "M00_encoder_and_content_attention_no_penalty_or_saturation",
+      "trainable_parameters": 1262,
+      "atoms": 3,
+      "learned_probabilities": true,
+      "lambda_crps": 0.1,
+      "u_scale": 0.019540729290595266,
+      "y_scale": 0.02063308428641038,
+      "minimum_normalized_increment": 0.0001,
+      "encoder_attention_precision": "float32",
+      "atomic_head_precision": "float64",
+      "exact_mean_under_finite_atomic_law": true,
+      "exact_true_conditional_law_claimed": false,
+      "calibration_claimed": false,
+      "R1_R3_verified": false,
+      "scope": "new development candidate, not a frozen confirmatory protocol"
+    },
+    "data_admission_sha256": "8684fcf0293144898339d2bc56a407d499999e9625173098bde2bf533bba5f6c",
+    "cohort": {
+      "python": "3.12.12",
+      "torch": "2.8.0+cu126",
+      "numpy": "2.3.5",
+      "cuda_runtime": "12.6",
+      "cudnn": 91002,
+      "device": "cuda:0",
+      "cpu_threads": 2,
+      "deterministic_algorithms": true,
+      "allow_tf32": false,
+      "GPU": {
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_memory_bytes": 85094825984,
+        "capability": [
+          8,
+          0
+        ]
+      }
+    }
+  },
+  "config": {
+    "weight_decay": 0.0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip": 1.0,
+    "lambda_crps": 0.1,
+    "learning_rate": 0.003
+  },
+  "budget_seconds": 120.0,
+  "train_shape": [
+    532,
+    7,
+    5
+  ],
+  "validation_shape": [
+    54,
+    7,
+    5
+  ],
+  "torch": "2.8.0+cu126",
+  "device": "cuda:0"
+}
