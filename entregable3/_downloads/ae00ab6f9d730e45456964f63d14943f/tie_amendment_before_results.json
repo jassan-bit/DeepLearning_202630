@@ -1,0 +1,38 @@
+{
+  "kind": "mathematical_nondifferentiability_amendment_before_any_fixed_grid_execution",
+  "created_at_utc": "2026-11-21T00:46:35.353435+00:00",
+  "original_plan_SHA256": "afb7362ec81b09e86a1e0fd29f3a222d4c2d9bcf7b7e464a918520824989c4d5",
+  "original_code_manifest_SHA256": "a8f8bcf96ab6eb39ca1417539630ac4df1e2472c3a5e8ae26d4b5cdd2b327ea1",
+  "original_plan_and_grid_unchanged": true,
+  "reason": "Independent mathematical review identified that abs-score atom/target ties can choose different floating-point subgradients under algebraically equivalent transform/normalization; directional attribution at these points is not unique. This was identified before the144-case diagnostic executed.",
+  "fixed_tie_rule": {
+    "coordinates": [
+      "atoms/sU versus U/sU",
+      "sigma_atoms/sY versus Y/sY",
+      "sigma_atoms/(sqrt(c)*sU) versus Y/(sqrt(c)*sU)"
+    ],
+    "absolute_gap_threshold": "64*float64_epsilon*max(1,abs(atom_coordinate),abs(target_coordinate))",
+    "threshold_multiplier": 64,
+    "applies_before_results": true
+  },
+  "preservation": {
+    "all144_rows": true,
+    "all_scores": true,
+    "all_raw_five_parameter_gradients": true,
+    "all_original_cosines_slopes": true,
+    "scenario_grid": true,
+    "candidate_loss": true,
+    "original_V3_control_loss": true
+  },
+  "interpretation": "Flag any near-tie in either coordinate. Keep these rows and their raw results, but exclude them only from comparing coordinate directional geometry/alignment counts. Report tie-sensitive, differentiable and zero-gradient denominators separately. These nondifferentiable directions support neither favorable nor adverse selection.",
+  "identity_checks": {
+    "A0_score_equality": "all144 grid subsets atA0",
+    "A0_gradient_equality": "differentiable cases only",
+    "sigma_normalization_only_gradient_collinearity": "differentiable cases only"
+  },
+  "software_fixture_correction": "A separate first software guard used default float32 ones in a13-decimal cosine check although the declared diagnostic is float64; preserve failure log, make test fixture explicitly float64. No tolerance, objective, grid or outcome rule is loosened.",
+  "diagnostic_grid_executed": false,
+  "market_fits": 0,
+  "market_predictions": 0,
+  "AI_assistance_declared": true
+}

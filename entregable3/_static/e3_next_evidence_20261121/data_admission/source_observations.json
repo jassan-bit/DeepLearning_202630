@@ -1,0 +1,166 @@
+{
+  "kind": "metadata_documentation_observations_not_market_data",
+  "sources": [
+    {
+      "source_id": "AV_DOC",
+      "URL": "https://www.alphavantage.co/documentation/#daily",
+      "access_kind": "primary_documentation_search_excerpt",
+      "claims_verified": [
+        "TIME_SERIES_DAILY describes raw daily open/high/low/close/volume",
+        "SYMBOL_SEARCH documents global stock/ETF/mutual fund support"
+      ],
+      "not_verified": [
+        "SPY/USO/TLT symbol-specific responses",
+        "plan/account entitlement",
+        "bar publication latency"
+      ],
+      "tool_observations": [
+        "turn173search1",
+        "turn174search0",
+        "turn175search0"
+      ],
+      "market_dataset_endpoint_requested": false
+    },
+    {
+      "source_id": "AV_TERMS",
+      "URL": "https://www.alphavantage.co/terms_of_service/",
+      "access_kind": "primary_legal_PDF_text_opened",
+      "claims_verified": [
+        "Personal non-commercial software use subject to EULA and exceptions",
+        "Commercial definition includes certain non-private/organizational uses",
+        "Non-sublicensable and non-transferable access license",
+        "EULA effective at Get Free API Key action"
+      ],
+      "not_verified": [
+        "Blanket academic/institutional authorization",
+        "Redistribution of raw data to public repository or external person",
+        "Publisher agreement for this project"
+      ],
+      "section_references": [
+        "2(a)",
+        "3",
+        "5"
+      ],
+      "market_dataset_endpoint_requested": false
+    },
+    {
+      "source_id": "BINANCE_DOC",
+      "URL": "https://github.com/binance/binance-public-data/blob/master/README.md",
+      "access_kind": "primary_repository_documentation_opened",
+      "claims_verified": [
+        "Daily/monthly archive publication",
+        "1d klines schema includes OHLCV",
+        "Spot timestamps from2025 documented as microseconds"
+      ],
+      "not_verified": [
+        "Future BTCUSDT files",
+        "Contemporaneous availability of every bar"
+      ],
+      "market_dataset_endpoint_requested": false,
+      "documentation_examples_ignored_not_used_as_market_observations": true
+    },
+    {
+      "source_id": "BINANCE_TERMS",
+      "URL": "https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md",
+      "access_kind": "primary_repository_file_via_connected_GitHub",
+      "tree_sha": "d571690eb66760763b0bd6e27e8cd35603c7e244",
+      "git_blob_sha1": "d47bf55acfd83456d6fe57b31f400b42bda83c19",
+      "version": "1.0",
+      "updated_date": "2026-08-26",
+      "claims_verified": [
+        "CC BY-NC-SA4.0 plus Vision Dataset Terms",
+        "Academic/nonmonetized educational uses listed",
+        "Separate written agreement required for commercial use",
+        "Derived data/model terms and attribution obligations require retention"
+      ],
+      "section_references": [
+        "3",
+        "4",
+        "5",
+        "7"
+      ],
+      "not_verified": [
+        "Owner-specific purpose review",
+        "Future terms version at acquisition"
+      ],
+      "market_dataset_endpoint_requested": false,
+      "source_bytes_digest": {
+        "bytes": 9807,
+        "sha256": "99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0",
+        "git_blob_sha1": "d47bf55acfd83456d6fe57b31f400b42bda83c19"
+      }
+    },
+    {
+      "source_id": "SPY_ISSUER",
+      "URL": "https://www.ssga.com/us/en/institutional/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "access_kind": "primary_issuer_metadata_search_excerpt",
+      "claims_verified": [
+        "SPY tracks broad US equity S&P500 exposure",
+        "TickerSPY and NYSEArca listing"
+      ],
+      "market_dataset_endpoint_requested": false
+    },
+    {
+      "source_id": "USO_ISSUER",
+      "URL": "https://www.uscfinvestments.com/disclosures",
+      "access_kind": "primary_issuer_metadata_search_excerpt",
+      "claims_verified": [
+        "USO shares listedNYSEArca",
+        "Oil futures benchmark exposure through fund shares, not direct spot oil"
+      ],
+      "market_dataset_endpoint_requested": false
+    },
+    {
+      "source_id": "TLT_ISSUER",
+      "URL": "https://www.ishares.com/us/literature/summary-prospectus/sp-ishares-20-plus-year-treasury-bond-etf-2-28.pdf",
+      "access_kind": "primary_issuer_summary_prospectus_search_excerpt",
+      "claims_verified": [
+        "TickerTLT listedNasdaq",
+        "US Treasury bonds with maturities greater than20years"
+      ],
+      "market_dataset_endpoint_requested": false
+    },
+    {
+      "source_id": "NYSE_CAL",
+      "URL": "https://www.nyse.com/trade/hours-calendars",
+      "access_kind": "primary_calendar_document_opened",
+      "claims_verified": [
+        "Holiday schedule2026,2027,2028",
+        "NYSEArca core09:30–16:00America/New_York",
+        "Early closes and noNewYearholiday2028"
+      ],
+      "market_dataset_endpoint_requested": false
+    },
+    {
+      "source_id": "NASDAQ_CAL",
+      "URL": "https://www.nasdaqtrader.com/Trader.aspx?id=Calendar",
+      "access_kind": "primary_calendar_document_opened",
+      "claims_verified": [
+        "Visible officialUS equity/options calendar2026"
+      ],
+      "not_verified": [
+        "Official2027/2028Nasdaqcalendar; no matching2027 in observedpage"
+      ],
+      "market_dataset_endpoint_requested": false
+    },
+    {
+      "source_id": "BINANCE_LICENSE_404",
+      "URL": "https://api.github.com/repos/binance/binance-public-data/contents/LICENSE?ref=master",
+      "access_kind": "connected_GitHub_read",
+      "http": 404,
+      "claim": "This exact LICENSE path absent; does not prove datasets are unlicensed. Dataset-specific TERMS_AND_CONDITIONS.md was separately found.",
+      "market_dataset_endpoint_requested": false
+    }
+  ],
+  "market_dataset_or_quote_downloads": 0,
+  "raw_legal_or_documentation_bodies_redistributed": false,
+  "source_extraction_hash_scope": "Only Binance exact file bytes bound to Git tree; other web sources are citations and semantic observations, not falsely claimed origin-byte hashes.",
+  "recorded_at_utc": "2026-11-21T00:44:17.606769+00:00",
+  "authenticated_market_provider_API_requests": 0,
+  "connected_GitHub_documentary_reads": 3,
+  "executed_web_documentation_search_queries": 18,
+  "executed_web_document_opens": 4,
+  "executed_web_document_finds": 2,
+  "unauthenticated_instrument_metadata_endpoint_attempts": 1,
+  "market_dataset_or_quote_endpoint_requests": 0
+}

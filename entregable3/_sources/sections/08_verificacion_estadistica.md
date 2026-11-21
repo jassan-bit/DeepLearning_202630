@@ -1,6 +1,6 @@
 # 8 Bloque D Verificación estadística y evaluación ampliada
 
-**Estado vigente del 19 de noviembre de 2026:** la auditoría exploratoria de 19 sistemas en D00–D03 completó **796 trabajos, 76 paneles, 12 tablas de análisis y 16 figuras**. El [cierre de 8.18](#e3-final-extended-audit) contiene sus resultados y limitaciones. Las secciones anteriores conservan sus cortes históricos; los 48 contrastes retrospectivos descritos a continuación pertenecen a otra comparación y no se trasladan a la auditoría ampliada. Esta última no calculó nuevos valores *p*, ajuste de Holm o tres pruebas confirmatorias por rival.
+**Corte de la auditoría exploratoria del 19 de noviembre de 2026:** la auditoría exploratoria de 19 sistemas en D00–D03 completó **796 trabajos, 76 paneles, 12 tablas de análisis y 16 figuras**. El [cierre de 8.18](#e3-final-extended-audit) contiene sus resultados y limitaciones. Las secciones anteriores conservan sus cortes históricos; los 48 contrastes retrospectivos descritos a continuación pertenecen a otra comparación y no se trasladan a la auditoría ampliada. Esta última no calculó nuevos valores *p*, ajuste de Holm o tres pruebas confirmatorias por rival.
 
 **Corte del 17 de noviembre de 2026: análisis retrospectivo ejecutado sobre predicciones congeladas.** La CNN-LSTM con atención de contenido y salida aditiva positiva tiene diez semillas; cada una de las trece redes rivales también tiene diez. Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista cada uno. La comparación incluye los diecisiete sistemas sobre las mismas 608 fechas, sin eliminar rivales, semillas ni observaciones.
 
@@ -84,7 +84,7 @@ La consolidación podrá usar Friedman con corrección de Iman–Davenport y com
 
 ## 8.4 Definición operativa de superioridad R3
 
-La guía exige **seis condiciones simultáneas**; ninguna se sustituye por otra:
+La guía exige **seis condiciones simultáneas**; ninguna se sustituye por otra. La evidencia de la tabla corresponde al corte retrospectivo BTC del 17 de noviembre; la evaluación adicional posterior está en 8.18 y la nueva implementación controlada y sus límites en {ref}`8.25 <e3-next-statistics-data-20261121>`:
 
 | Condición de la sección 8.4 | Evidencia de este corte | Cierre necesario |
 |---|---|---|
@@ -769,7 +769,7 @@ La evaluación de los tres archivos adicionales, el tratamiento común, la sensi
 1. **Inferencia confirmatoria:** justificar y ejecutar las tres pruebas adecuadas por contraste, márgenes de relevancia y control familiar exigidos, con potencia por contraste y conjunta dimensionada prospectivamente. Este análisis de intervalos no los reemplaza.
 2. **Generalización:** evaluar la adecuación temporal y las dependencias. D02/D03 comparten exposición cripto y D03 comparte subyacente y fechas con BTC; no son tres dominios independientes. Los resultados ya observados conservan su alcance exploratorio.
 3. **Robustez, incertidumbre y coste:** explicar el deterioro con ruido y la infracobertura, y completar las mediciones comparables de recursos, FLOPs y energía. Las tablas no justifican declarar robustez universal.
-4. **Contribución y producto:** la novedad sustantiva de R1 y la defensa académica de R2 siguen sus requisitos propios. La reproducción integral independiente de esta campaña, el servicio Render, el catálogo exportado y el depósito DOI no se completan por guardar estas figuras. El replay Docker histórico conserva su ámbito anterior de 11 CSV y 143 trayectorias.
+4. **Contribución y producto:** la novedad sustantiva de R1 y la defensa académica de R2 siguen sus requisitos propios. La reproducción humana del libro y su tabla principal —con el alcance de la guía aclarado en {ref}`11.12 <e3-next-human-book-20261121>`—, el servicio Render, el catálogo exportado y el depósito DOI no se completan por guardar estas figuras; tampoco se impone por ello repetir todos los entrenamientos. El replay Docker histórico conserva su ámbito anterior de 11 CSV y 143 trayectorias.
 
 El cierre operativo está verificado. Los recibos científicos mantienen **`R1_accredited=false` y `R3_accredited=false`**, y la actualización no asigna una calificación automática.
 
@@ -1093,6 +1093,8 @@ Evidencia nueva: {download}`decisión razonada <../_static/e3_science_followup_2
 (e3-resolution-science-20261120)=
 ## 8.24 Auditoría de potencia y diseño futuro bloqueado
 
+Este corte conservó las tres propuestas como DRAFT. La implementación y validación controlada posteriores de dos extensiones direccionales y un MCS global se registran en {ref}`8.25 <e3-next-statistics-data-20261121>`, con sus resultados adversos y sin dar por completadas tres pruebas por contraste.
+
 **Estado científico: NO-GO para confirmar la receta actual y R3 no acreditada.** La revisión parte del commit `8d03a73d529eb3f9b2e89992b4488cfeb88a99e6`; conserva los **796 trabajos de la aditiva, 30 ajustes V3 y 51 trayectorias/20.400 predicciones retrospectivas**. `atom_crps` mantiene **2,7043119888 % más RMSE que `atom_mse_only`**, sin superar su heurística ni al mejor control en ninguno de los tres dominios de transferencia expuestos. Se cierra una auditoría y preparación verificables, no una justificación nueva para abrir confirmación. No se cambia la regla ni se promueve una ablación.
 
 La {download}`auditoría ejecutada de los escenarios <../_static/e3_resolution_20261120/science/audit_486.json>` concilia **486 registros guardados: 162 de sensibilidad entre semillas y 324 de calendario**. Se verificaron **71 archivos de entrada por hash**, según el {download}`recibo de ejecución <../_static/e3_resolution_20261120/science/execution_receipt.json>` y la {download}`procedencia de insumos <../_static/e3_resolution_20261120/science/input_provenance.json>`. No se repitieron los escenarios ni se generaron nuevas trayectorias, p-valores científicos, remuestreos de mercado o datos de confirmación. Los rangos condicionales de 10–1032 pares y 4,73–38.800,24 fechas mezclan supuestos ilustrativos: **no recomiendan un R o calendario final**.
@@ -1145,3 +1147,81 @@ El {download}`recibo del preflight ejecutado <../_static/e3_resolution_20261120/
 La {download}`auditoría de elegibilidad <../_static/e3_resolution_20261120/science/data_eligibility.json>` conserva D00–D03 como **admitidos para sus usos exploratorios**, con exposición ya conocida; ninguno se certifica como confirmación no expuesta. F00–F03 sólo describen clases de dominio por evaluar —BTC futuro, renta variable, materias primas y tipos—: fuente, instrumento, licencia, fechas y hashes siguen nulos. No son cuatro conjuntos nuevos seleccionados o admitidos. Para tres adicionales se requieren ejes de diferencia documentados, disponibilidad histórica, dependencia económica/calendario, soporte de ocho cierres, particiones absolutas, purga y custodia/exposición. Cambiar ticker o fuente no recupera independencia.
 
 La {download}`decisión científica de este corte <../_static/e3_resolution_20261120/science/scientific_decision.json>` mantiene **NO-GO**: faltan justificación renovada de la candidata, datos no expuestos, tratamiento/capacidad/presupuesto, márgenes, covarianzas, batería válida y potencia final. **No se generaron Colab confirmatorio ni tag de protocolo**. La preparación es posterior a resultados, con asistencia de IA declarada; no constituye preregistro, aprobación institucional, reproducción humana o acreditación de R3.
+
+
+(e3-next-statistics-data-20261121)=
+## 8.25 Batería implementada, calibración controlada y admisión todavía bloqueada
+
+La preparación de 8.24 avanzó a código y **validación estadística controlada realmente ejecutada**. Se mantienen el NO-GO de V3 y los resultados de mercado anteriores. Este nuevo trabajo distingue las guardas de software, las simulaciones con verdad conocida y una confirmación que sigue sin estar habilitada; no atribuye la calibración del diseño V3 automáticamente a la revisión V4.
+
+### Lectura literal de la guía y alcance de las extensiones
+
+La guía **§8.4, pp. 23–24**, pide tres pruebas distintas del Cuadro 4 que rechacen igualdad de desempeño para cada contraste, métricas favorables, diferencia superior al margen práctico δ y tamaño de efecto no despreciable. El límite inferior del IC95 debe ser mayor que cero e idealmente mayor que δ. **No exige literalmente que los tres p-valores correspondan al mismo nulo unilateral `theta≤delta` ni que cubran idénticas fuentes de incertidumbre.** Ese nulo más fuerte y la intersección homogénea son una elección propuesta del DRAFT anterior, que debe justificarse y cuya potencia debe planificarse; no se presentan como cita literal de la guía.
+
+El Cuadro 4 incluye bootstrap estacionario, DM-HLN y MCS. MCS puede contribuir bajo una traducción explícita de su decisión global a la familia y al criterio de superioridad de la guía. **En esta implementación concreta** no hay esa traducción contrastiva justificada y la calibración presenta un resultado adverso; no se lo cuenta como tercer procedimiento aprobado. Tampoco subsampling se considera automáticamente una opción nombrada por el cuadro. La {download}`nota metodológica de las implementaciones <../_static/e3_next_evidence_20261121/statistics/METHODS_IMPLEMENTED.md>` separa esas condiciones.
+
+El {download}`módulo estadístico ejecutable <../_static/e3_next_evidence_20261121/statistics/temporal_battery.py>` recibe errores cuadrados pareados `semilla×fecha×sistema` y estima la media de diferencias de RMSE individuales. Implementa estas **extensiones propuestas**, sin atribuirles la validez de un método clásico sólo por usar su nombre:
+
+| Componente implementado | Alcance y límite |
+|---|---|
+| P1: bootstrap estacionario cruzado del funcional RMSE | Remuestrea semillas completas y un calendario de bloques común a todos los sistemas, recalculando cada raíz antes de promediar. Usa raíces centradas e IC básicos; no afirma una studentización anidada ausente. La interacción puede sobrecontarse en muestra finita. |
+| P2: expansión delta cruzada, HAC y factor HLN | Separa estimaciones entre semillas/calendario y reporta interacción. La suma de componentes se conserva como aproximación superior bajo el modelo aditivo propuesto; no demuestra una identificación exacta para cualquier funcional. La referencia t, HAC y factor de horizonte necesitan revisión específica del diseño. |
+| MCS global del funcional | Implementa eliminación por rango máximo con raíces bootstrap centradas y p de exclusión monótono. Su nulo es igualdad global de riesgos; aquí no produce por sí solo un p práctico pareado ni completa las tres pruebas requeridas. |
+
+Las guardas computacionales de al menos diez semillas y 32 fechas no certifican suficiencia, asintótica o potencia. La unidad fija y la tolerancia numérica pueden clasificar escalas extremadamente pequeñas como no soportadas; no se reajustan después del resultado para generar rechazos.
+
+### Simulación fijada antes de observar sus resultados
+
+El [registro público `550b6d26cbd1b82f40a347c24b180320776e5ca3`](https://github.com/jassan-bit/DeepLearning_202630/commit/550b6d26cbd1b82f40a347c24b180320776e5ca3), el {download}`plan controlado <../_static/e3_next_evidence_20261121/statistics/CONTROLLED_VALIDATION_PLAN.json>` y la {download}`identidad de implementación congelada <../_static/e3_next_evidence_20261121/statistics/IMPLEMENTATION_FREEZE.json>` preceden a los resultados. Se completaron **1.024 réplicas en once casos**, con **2.047 réplicas bootstrap por réplica de DGP: 2.096.128 sorteos controlados en total**. El {download}`recibo ejecutado <../_static/e3_next_evidence_20261121/statistics/controlled_validation_run/execution_receipt.json>` registra aproximadamente **40,86 s de pared en CPU**, desde las 19:50:22 hasta las 19:51:03 de Bogotá del 20 de noviembre —UTC del día 21—. Estos sí son nuevos remuestreos de DGP controlados, distintos de las diecinueve guardas de software y de cualquier remuestreo de mercado.
+
+Se conservaron todos los casos previstos: igualdad global, frontera práctica, nulo interior, nulos parciales, alternativa, colas pesadas, variación sólo entre semillas, sólo de calendario, dependencia fuerte y escalados separados de R/T. Los shocks compartidos, heterogeneidad de semillas y dependencia temporal no se trataron como observaciones IID. El caso de colas t5 tiene segundo momento unitario conocido; su distribución estacionaria completa se aproxima con burn-in y no se declara exacta.
+
+**Resultado adverso principal.** Bajo igualdad de riesgos del caso `EPA_equal`, el MCS extendido rechazó inicialmente **27 de 128 réplicas: 21,09 %**, frente al nominal del **10 %**, con intervalo binomial exacto individual **[14,38 %; 29,19 %]**. Retuvo todos los sistemas verdaderamente mejores en 101/128 réplicas, **78,91 %**. P1/P2 también mostraron señales puntuales de tamaño o cobertura insuficientes en algunos escenarios. Son límites Monte Carlo **individuales, no simultáneos sobre escenarios/rivales**; se conservan sus denominadores y no se seleccionan sólo casos favorables. La conclusión concierne a estas extensiones/configuración y no refuta la teoría clásica de MCS o DM.
+
+El {download}`resumen de todos los casos <../_static/e3_next_evidence_20261121/statistics/validation_compact.csv>`, los {download}`resultados por rival <../_static/e3_next_evidence_20261121/statistics/per_rival_validation.csv>` y la {download}`decisión posterior <../_static/e3_next_evidence_20261121/statistics/VALIDATION_DECISION.json>` mantienen **`method_configuration_approved_for_confirmation=false`**. No se retocaron métodos después de ver este resultado. La {download}`QA posterior declarada con IA <../_static/e3_next_evidence_20261121/qa/STATISTICAL_POSTRUN_QA.json>` conserva límites y archivos congelados; no se presenta como aprobación institucional.
+
+### Familias y potencia que todavía no quedan acreditadas
+
+La validación controlada fue fijada para **veinte sistemas y diecinueve rivales**. Su diagnóstico Holm38 ajusta los dos procedimientos direccionales por rival; también informa una reserva conservadora Holm57 con diecinueve casillas `p=1`. **Esas casillas no son una tercera prueba**, y ni esa reserva ni MCS completan la decisión de tres procedimientos del protocolo futuro. Holm38 identifica el alcance controlado previamente declarado; no reduce después del resultado la familia confirmatoria antigua para declarar éxito.
+
+Los conteos **19 rivales/57 componentes/76 celdas** de 8.24 pertenecen al diseño histórico V3. El {download}`registro futuro V4 condicional <../_static/e3_next_evidence_20261121/planning/V4_FAMILY_AND_POWER.DRAFT.json>` conserva esa historia y propone **21 rivales/63 casillas/84 celdas panel-rival**, añadiendo V3 original y su control MSE-only; no los retira por sus rankings de desarrollo. La {download}`plantilla V4 de varianzas pareadas <../_static/e3_next_evidence_20261121/planning/V4_future_paired_variance_template.csv>` mantiene las **84 celdas sin estimaciones prospectivas**: las tres referencias antiguas de V3 no son diferencias pareadas frente a V4. La validación de veinte sistemas no se transfiere a los veintidós propuestos. Un mínimo ilustrativo de cuatro paneles×diecisiete recetas estocásticas×cinco semillas sería **340 ajustes**, no presupuesto final o trabajo ejecutado. El piloto V4 acotado de cuatro recetas y cinco semillas no llena esa familia ni los cuatro paneles; métodos, multiplicidad, R/T y decisión de continuar deben fijarse antes de cualquier confirmación.
+
+Faltan revisión del tercer procedimiento pertinente y de la traducción global, calibración adecuada de la regla completa, varianzas y covarianzas reales admitidas, márgenes/alternativas operativos, MDE y R/T finales. **No hay potencia ≥0,90 acreditada por contraste de la familia completa.** La guía exige reportar la conjunta, sin imponerle universalmente 0,90. Los 486 escenarios anteriores siguen siendo antecedentes condicionales; estas 1.024 réplicas no son su validación retrospectiva ni potencia de mercado.
+
+### Piloto real V4 de desarrollo completado y receta abandonada
+
+El {download}`resultado del nuevo piloto CPU <../_static/e3_next_evidence_20261121/development/cpu_pilot_results/pilot_result.json>` completa **veinte ajustes reales** de cuatro recetas con cinco semillas y evalúa dos controles analíticos una sola vez. Son **22 trayectorias sobre 55 fechas expuestas y 1.210 filas nuevas de evaluación de desarrollo**, no 1.210 observaciones independientes. El [anclaje público previo de plan y fuentes](https://github.com/jassan-bit/DeepLearning_202630/commit/5ee55723e7d1ce63dbe4a94dca8941cb85a45fee) precedió al primer ajuste; los veinte checkpoints se validaron antes de producir las evaluaciones. No hubo HPO, confirmación o uso de pesos GPU antiguos para comparar recetas nuevas CPU.
+
+| Receta/control CPU | RMSE media individual | DE muestral entre semillas | Trayectorias |
+|---|---:|---:|---:|
+| V4 `sigma_crps_v4` | 0,002087524306 | 0,000017087831 | 5 |
+| `u_crps_control` | 0,002071168327 | 0,000022601117 | 5 |
+| `mse_only_control` | **0,002057824526** | 0,000026740769 | 5 |
+| `additive_positive_head` | 0,002190798772 | 0,000024041513 | 5 |
+| `floor_only` | 0,002790340619 | No aplica | 1 |
+| `floor_plus_mean_excess` | 0,002114230941 | No aplica | 1 |
+
+La {download}`tabla completa con MAE y parámetros <../_static/e3_next_evidence_20261121/development/cpu_pilot_results/recipe_summary.csv>` y las {download}`métricas por trayectoria <../_static/e3_next_evidence_20261121/development/cpu_pilot_results/per_trajectory_metrics.csv>` conservan todas las recetas. V4 tuvo **1,443261 % más RMSE que el mejor control**, MSE-only, frente a la mejora mínima previa del 2 % tanto sobre el mejor control neuronal como sobre el mejor de todos los cinco. **Falló ambas puertas: `ABANDON_CURRENT_V4_RECIPE`.** No se promociona MSE-only, no se cambia el criterio después del resultado ni se abre otra versión para buscar significancia. La geometría sintética de 144 casos no se convierte en una mejora predictiva por seguir siendo matemáticamente distinta.
+
+Son resultados nuevos, separados del piloto original GPU de treinta ajustes y su **2,7043119888 % adverso**. El U-CRPS de esta tabla es un control CPU recién ajustado, no una sustitución de aquellas tres semillas. Las cinco semillas de cuatro recetas sobre un panel expuesto no completan las 84 celdas prospectivas V4, ni la familia completa, potencia, calibración, nuevas admisiones o R1/R3. El registro futuro V4 se conserva como DRAFT condicionado; el abandono de esta receta no habilita su confirmación. Los 796 trabajos, treinta ajustes y 20.400 predicciones anteriores permanecen intactos.
+
+La etapa consumió **90,096 s de extremo a extremo y 54,926 s de pared de las fases**, frente a un máximo nominal permitido de 2.400 s de fase. Se conservan recursos, curvas e identidades de checkpoints; no se confunde ese presupuesto con horas GPU, FLOPs o energía medidos. Los veinte ajustes se cuentan como **nuevos ajustes de desarrollo**, no como cero ni como una reproducción humana de los masters. La {ref}`reproducción automática de 11.12 <e3-next-human-book-20261121>` conserva la edición f5c anterior y no afirma haber reproducido estos veinte ajustes.
+
+### Cuatro propuestas de datos concretas, cero admisiones nuevas
+
+El {download}`registro de admisión DRAFT <../_static/e3_next_evidence_20261121/data_admission/concrete_panels.DRAFT.json>` sustituye clases genéricas por instrumentos y proveedores concretos, sin adquirir precios ni observar desempeño nuevo:
+
+| Panel propuesto | Instrumento y fuente | Reloj y límite material |
+|---|---|---|
+| F00 principal | BTCUSDT Spot, [Binance Vision 1d](https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1d/) | Barras diarias UTC, volumen BTC; mismo subyacente que D00. La ventana futura aún no está materializada. |
+| F01 adicional | SPY, serie diaria de [Alpha Vantage](https://www.alphavantage.co/documentation/#daily), identidad de State Street | Participaciones de renta variable estadounidense; sesiones NYSE Arca. |
+| F02 adicional | USO, serie diaria Alpha Vantage, identidad de USCF | Fondo expuesto a futuros de petróleo; no es petróleo spot ni un futuro empalmado por el investigador. |
+| F03 adicional | TLT, serie diaria Alpha Vantage, identidad de iShares | Fondo de deuda del Tesoro de largo vencimiento; calendario Nasdaq, sin heredar el conteo NYSE. |
+
+La {download}`comprobación ejecutable de metadatos <../_static/e3_next_evidence_20261121/data_admission/validation_receipt.json>` conserva **52 puertas bloqueadas y cero datasets admitidos**. Los tres fondos comparten proveedor, moneda, infraestructura, gran parte del calendario y factores macroeconómicos: dominios distintos no implican independencia. El dominio y un tamaño programado distinto son ejes propuestos, todavía sujetos a justificar la misma tarea, completitud y política T. Ticker, proveedor o reloj no se suman como ejes independientes para rellenar casillas.
+
+La fórmula conserva siete retornos RAW, ocho cierres, `ddof=0` y una observación futura; **una sesión de bolsa no equivale a 24 horas**. Una próxima sesión puede quedar entre uno y cuatro días de calendario después. El guard histórico de días UTC sigue intacto; no se rellenan fines de semana ni se autoriza por declaración una equivalencia no revisada. Las ventanas propuestas de planificación —objetivos 2026-12-14 a 2027-02-26— y eventual confirmación —2027-03-15 a 2028-03-14— son **DRAFT**, sin R/T suficientes ni congelamiento real. Éste deberá preceder también al soporte RAW confirmatorio, no sólo al primer objetivo.
+
+El {download}`informe concreto de disponibilidad, diversidad y derechos <../_static/e3_next_evidence_20261121/data_admission/README.md>` conserva fuentes primarias, condiciones de Binance y restricciones de acceso/redistribución de Alpha Vantage. No se verificó la respuesta de precios de SPY/USO/TLT, derechos para el uso concreto, disponibilidad al origen o el calendario Nasdaq futuro. Versión, tamaño y hashes de archivos futuros siguen pendientes. El intento de metadatos Binance bloqueado en el proxy no se interpreta como respuesta de su servidor. D00–D03 mantienen su admisión exploratoria previa y exposición; no se renombran como confirmación nueva.
+
+El {download}`validador sin acceso al mercado <../_static/e3_next_evidence_20261121/data_admission/admission_validator.py>` devuelve bloqueo con la declaración real aún vacía. Inspeccionar documentación no admite datasets ni habilita modelos. **La confirmación continúa cerrada** por ciencia, métodos, datos y potencia; no se genera tag o Colab confirmatorio para eludir esas puertas. La preparación y los resultados adversos se declaran con asistencia de IA, sin atribuir una ejecución humana independiente.

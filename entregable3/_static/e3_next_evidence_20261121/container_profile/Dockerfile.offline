@@ -1,0 +1,9 @@
+FROM python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONHASHSEED=0 MPLBACKEND=Agg XDG_CACHE_HOME=/tmp/e3-cache XDG_CONFIG_HOME=/tmp/e3-config IPYTHONDIR=/tmp/ipython JUPYTER_CONFIG_DIR=/tmp/jupyter MPLCONFIGDIR=/tmp/matplotlib
+COPY requirements-book.lock.txt /opt/e3/requirements-book.lock.txt
+COPY WHEELHOUSE_MANIFEST.json /opt/e3/WHEELHOUSE_MANIFEST.json
+COPY check_wheels.py /opt/e3/check_wheels.py
+COPY wheelhouse/ /opt/e3/wheels/
+RUN python /opt/e3/check_wheels.py && python -m pip install --no-index --find-links=/opt/e3/wheels --no-deps --report /opt/e3/pip-install-report.json -r /opt/e3/requirements-book.lock.txt && python -m pip check
+WORKDIR /case
+ENTRYPOINT ["python", "/case/kit/run_book_case.py", "--case", "/case"]

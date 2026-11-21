@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "status": "independent_prior_controlled_validation_plan_QA_no_execution_blocker_for_declared_scope",
+  "prepared_at_utc": "2026-11-21T00:42:28.959657+00:00",
+  "AI_review_declared": true,
+  "plan": {
+    "path": "/workspace/e3_next_evidence_20261121/statistics/CONTROLLED_VALIDATION_PLAN.json",
+    "sha256": "20d2f73adff064d47d19b2394e708e5a84515eed410ee81b258c2a8226c710f5",
+    "recorded_at_utc": "2026-11-21T00:41:02.428262+00:00"
+  },
+  "DGP_truth_review": {
+    "theta": "base_rival-base_candidate",
+    "conditions": [
+      "A and Z independent",
+      "each Z component has mean0 and variance1",
+      "variance weights sum1 unless seed_only Z=1",
+      "lognormal exponent subtracts half total seed logvariance",
+      "matched seed IDs and shared factors preserved"
+    ],
+    "truth_not_estimated_from_generated_sample": true,
+    "student_t_stationarity_caveat": "Initialization of variance1 plus128burn points retains exact second-moment truth but does not make the full non-Gaussian AR distribution exactly stationary. Describe finite-burn approximation."
+  },
+  "methods_scope": {
+    "directional_methods_implemented_planned": 2,
+    "P1": "full mean individual-seed RMSE crossed stationary bootstrap; proposed adaptation needing calibration/admissibility",
+    "P2": "crossed delta/HAC/HLN extension; linearization variance claim not finite-sample guarantee",
+    "P3": "global MCS extension, not a third directional practical-margin contrast",
+    "Holm38": "controlled two-method software/statistical diagnostic family",
+    "reserved_Holm57": "nineteen p=1 placeholders not an implemented third procedure or completed battery",
+    "three_tests_per_contrast_gate": false,
+    "final_admissibility_gate": false
+  },
+  "controlled_validation_scope": {
+    "planned_replicates": 1024,
+    "cases": 11,
+    "bootstrap_replicates_per_case": 2047,
+    "resource_stop_seconds": 600,
+    "truth_family_nulls": [
+      "equal",
+      "practical boundary",
+      "interior",
+      "partially null"
+    ],
+    "variation": [
+      "shared calendar and rivals",
+      "seed amplitudes",
+      "AR autocorrelation",
+      "heavy tails",
+      "seed only",
+      "calendar only",
+      "R/T scaling"
+    ],
+    "CP_intervals_individual_not_simultaneous": true,
+    "zero_rejections_with_limited_MC_not_proof_of_size_control": true,
+    "all_partial_or_failed_scenarios_must_remain_visible": true
+  },
+  "before_execution_conditions": [
+    "parent immutable plan anchor",
+    "implementation SHA recorded before MC",
+    "all predeclared tests/output retained on resource stop"
+  ],
+  "market_R_T_or_power_closed": false,
+  "confirmation_enabled": false,
+  "old_V3_NO_GO_preserved": true,
+  "R3_accredited": false,
+  "controlled_or_model_runs_executed_by_reviewer": 0,
+  "result_review_pending": true
+}

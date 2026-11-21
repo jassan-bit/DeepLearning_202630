@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "kind": "concrete_unadmitted_prospective_panel_proposals",
+  "source_commit": "f5c960eefedb5fc49b313dd795b1ec84e784bd78",
+  "prepared_at_utc": "2026-11-21T00:46:14.159399+00:00",
+  "status": "DRAFT_NOT_PREREGISTERED_NOT_ADMITTED",
+  "current_V3_decision": "NO_GO_CONFIRMATION_CURRENT_RECIPE",
+  "original_fixed_calendar_guard_unchanged": true,
+  "acquisition_or_model_execution_enabled": false,
+  "R3_accredited": false,
+  "panels": [
+    {
+      "id": "F00",
+      "instrument": "BTCUSDT",
+      "domain": "Bitcoin spot / USDT",
+      "provider": "Binance Vision",
+      "venue": "Binance Spot",
+      "source_URL": "https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1d/",
+      "source_response_version": null,
+      "source_response_bytes": null,
+      "source_response_sha256": null,
+      "provider_symbol_metadata_verified": false,
+      "public_repository_and_external_reproducer_access_reviewed": false,
+      "clock": "UTC_calendar_daily",
+      "clock_timezone": "UTC",
+      "input_schema": [
+        "date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "volume_units": "BTC",
+      "raw_price_policy": "RAW_as_traded_unadjusted",
+      "missing_session_policy": "no_forward_fill_no_synthetic_weekend_bars",
+      "corporate_action_or_roll_policy": "Native spot bars, no futures roll.",
+      "target": {
+        "returns_count": 7,
+        "required_close_support": 8,
+        "ddof": 0,
+        "annualized": false,
+        "unit": "population standard deviation of seven raw log close returns per native observation",
+        "primary_metric": "mean individual-seed RMSE within panel; do not average incomparable panel scales",
+        "forecast_steps": 1,
+        "calendar_duration_equal_across_panels": false
+      },
+      "draft_windows": {
+        "planning_raw_start": "2026-12-01",
+        "planning_first_target": "2026-12-14",
+        "planning_last_target": "2027-02-26",
+        "confirmation_raw_start": "2027-03-01",
+        "confirmation_first_target": "2027-03-15",
+        "confirmation_last_target": "2028-03-14",
+        "actual_planning_freeze_utc": null,
+        "actual_confirmation_freeze_utc": null,
+        "binding_protocol": false,
+        "final_R": null,
+        "final_T": null,
+        "rule": "DRAFT dates only. Move before access if scientific readiness or dimensioning requires it; never relabel elapsed/exposed windows as future."
+      },
+      "licensing": {
+        "terms_URL": "https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md",
+        "summary": "CC BY-NC-SA4.0 plus dataset terms v1.0 dated2026-08-26; academic/nonmonetized educational uses listed; owner-specific purpose and future acquisition terms still need review.",
+        "specific_use_reviewed_by_owner": false,
+        "owner_review_record": null,
+        "raw_redistribution_authorized": false,
+        "global_repository_license_inferred": false
+      },
+      "guide_difference_axes": [],
+      "origin_availability_contract_verified": false,
+      "availability_requirement": "Record publication/retrieval/ready timestamps for all past inputs before prediction origin. A later bulk archive or date label alone does not establish contemporaneous availability.",
+      "task_equivalence_review": {
+        "accepted": false,
+        "choice": null,
+        "reviewer": null,
+        "rationale": null,
+        "problem": "A next US session can be separated by1–4 scheduled calendar days; this differs from the original fixed24h UTC guard. No guard change or forward fill is authorized by this proposal."
+      },
+      "future_venue_calendar": {
+        "URL": null,
+        "pinned_and_reviewed": false,
+        "future_Nasdaq_schedule_observed": null,
+        "expected_scheduled_confirmation_endpoints": 366
+      },
+      "future_file_metadata": null,
+      "confirmation_endpoint_count_verified": null,
+      "seven_endpoint_boundary_purge_checked": false,
+      "power_dimensioning_accepts_R_and_T": false,
+      "prior_panel_relabelled": false,
+      "admitted_unexposed": false
+    },
+    {
+      "id": "F01",
+      "instrument": "SPY",
+      "domain": "US large-cap equity portfolio ETF",
+      "provider": "Alpha Vantage",
+      "venue": "NYSE Arca",
+      "source_URL": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&outputsize=full&apikey={API_KEY}",
+      "source_response_version": null,
+      "source_response_bytes": null,
+      "source_response_sha256": null,
+      "provider_symbol_metadata_verified": false,
+      "public_repository_and_external_reproducer_access_reviewed": false,
+      "clock": "US_regular_equity_sessions",
+      "clock_timezone": "America/New_York",
+      "input_schema": [
+        "date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "volume_units": "shares",
+      "raw_price_policy": "RAW_as_traded_unadjusted",
+      "missing_session_policy": "no_forward_fill_no_synthetic_weekend_bars",
+      "corporate_action_or_roll_policy": "Retain raw exchange-traded share prices including dividends/splits under a predeclared rule; USO internal futures rolls are fund economics, not a researcher-spliced futures series. Do not use adjusted close or omit adverse event dates after outcomes.",
+      "target": {
+        "returns_count": 7,
+        "required_close_support": 8,
+        "ddof": 0,
+        "annualized": false,
+        "unit": "population standard deviation of seven raw log close returns per native observation",
+        "primary_metric": "mean individual-seed RMSE within panel; do not average incomparable panel scales",
+        "forecast_steps": 1,
+        "calendar_duration_equal_across_panels": false
+      },
+      "draft_windows": {
+        "planning_raw_start": "2026-12-01",
+        "planning_first_target": "2026-12-14",
+        "planning_last_target": "2027-02-26",
+        "confirmation_raw_start": "2027-03-01",
+        "confirmation_first_target": "2027-03-15",
+        "confirmation_last_target": "2028-03-14",
+        "actual_planning_freeze_utc": null,
+        "actual_confirmation_freeze_utc": null,
+        "binding_protocol": false,
+        "final_R": null,
+        "final_T": null,
+        "rule": "DRAFT dates only. Move before access if scientific readiness or dimensioning requires it; never relabel elapsed/exposed windows as future."
+      },
+      "licensing": {
+        "terms_URL": "https://www.alphavantage.co/terms_of_service/",
+        "summary": "Personal non-commercial, private individual access subject to EULA and exceptions; academic institution/public redistribution/external reproducer access are not automatically cleared.",
+        "specific_use_reviewed_by_owner": false,
+        "owner_review_record": null,
+        "raw_redistribution_authorized": false,
+        "global_repository_license_inferred": false
+      },
+      "guide_difference_axes": [
+        {
+          "axis": "domain",
+          "established": true,
+          "evidence": "Issuer metadata verifies US large-cap equity portfolio ETF rather than BTC crypto exposure; source_observations.json."
+        },
+        {
+          "axis": "size",
+          "established": false,
+          "evidence": "Same DRAFT wall-calendar target span gives366 calendar dates versus253 scheduled NYSE sessions; actual complete sizes, native-task equivalence and Nasdaq venue schedule remain unverified."
+        }
+      ],
+      "origin_availability_contract_verified": false,
+      "availability_requirement": "Record publication/retrieval/ready timestamps for all past inputs before prediction origin. A later bulk archive or date label alone does not establish contemporaneous availability.",
+      "task_equivalence_review": {
+        "accepted": false,
+        "choice": null,
+        "reviewer": null,
+        "rationale": null,
+        "problem": "A next US session can be separated by1–4 scheduled calendar days; this differs from the original fixed24h UTC guard. No guard change or forward fill is authorized by this proposal."
+      },
+      "future_venue_calendar": {
+        "URL": "https://www.nyse.com/trade/hours-calendars",
+        "pinned_and_reviewed": false,
+        "future_Nasdaq_schedule_observed": null,
+        "expected_scheduled_confirmation_endpoints": 253
+      },
+      "future_file_metadata": null,
+      "confirmation_endpoint_count_verified": null,
+      "seven_endpoint_boundary_purge_checked": false,
+      "power_dimensioning_accepts_R_and_T": false,
+      "prior_panel_relabelled": false,
+      "admitted_unexposed": false
+    },
+    {
+      "id": "F02",
+      "instrument": "USO",
+      "domain": "Oil futures exposure through exchange-traded fund shares",
+      "provider": "Alpha Vantage",
+      "venue": "NYSE Arca",
+      "source_URL": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=USO&outputsize=full&apikey={API_KEY}",
+      "source_response_version": null,
+      "source_response_bytes": null,
+      "source_response_sha256": null,
+      "provider_symbol_metadata_verified": false,
+      "public_repository_and_external_reproducer_access_reviewed": false,
+      "clock": "US_regular_equity_sessions",
+      "clock_timezone": "America/New_York",
+      "input_schema": [
+        "date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "volume_units": "shares",
+      "raw_price_policy": "RAW_as_traded_unadjusted",
+      "missing_session_policy": "no_forward_fill_no_synthetic_weekend_bars",
+      "corporate_action_or_roll_policy": "Retain raw exchange-traded share prices including dividends/splits under a predeclared rule; USO internal futures rolls are fund economics, not a researcher-spliced futures series. Do not use adjusted close or omit adverse event dates after outcomes.",
+      "target": {
+        "returns_count": 7,
+        "required_close_support": 8,
+        "ddof": 0,
+        "annualized": false,
+        "unit": "population standard deviation of seven raw log close returns per native observation",
+        "primary_metric": "mean individual-seed RMSE within panel; do not average incomparable panel scales",
+        "forecast_steps": 1,
+        "calendar_duration_equal_across_panels": false
+      },
+      "draft_windows": {
+        "planning_raw_start": "2026-12-01",
+        "planning_first_target": "2026-12-14",
+        "planning_last_target": "2027-02-26",
+        "confirmation_raw_start": "2027-03-01",
+        "confirmation_first_target": "2027-03-15",
+        "confirmation_last_target": "2028-03-14",
+        "actual_planning_freeze_utc": null,
+        "actual_confirmation_freeze_utc": null,
+        "binding_protocol": false,
+        "final_R": null,
+        "final_T": null,
+        "rule": "DRAFT dates only. Move before access if scientific readiness or dimensioning requires it; never relabel elapsed/exposed windows as future."
+      },
+      "licensing": {
+        "terms_URL": "https://www.alphavantage.co/terms_of_service/",
+        "summary": "Personal non-commercial, private individual access subject to EULA and exceptions; academic institution/public redistribution/external reproducer access are not automatically cleared.",
+        "specific_use_reviewed_by_owner": false,
+        "owner_review_record": null,
+        "raw_redistribution_authorized": false,
+        "global_repository_license_inferred": false
+      },
+      "guide_difference_axes": [
+        {
+          "axis": "domain",
+          "established": true,
+          "evidence": "Issuer metadata verifies Oil futures exposure through exchange-traded fund shares rather than BTC crypto exposure; source_observations.json."
+        },
+        {
+          "axis": "size",
+          "established": false,
+          "evidence": "Same DRAFT wall-calendar target span gives366 calendar dates versus253 scheduled NYSE sessions; actual complete sizes, native-task equivalence and Nasdaq venue schedule remain unverified."
+        }
+      ],
+      "origin_availability_contract_verified": false,
+      "availability_requirement": "Record publication/retrieval/ready timestamps for all past inputs before prediction origin. A later bulk archive or date label alone does not establish contemporaneous availability.",
+      "task_equivalence_review": {
+        "accepted": false,
+        "choice": null,
+        "reviewer": null,
+        "rationale": null,
+        "problem": "A next US session can be separated by1–4 scheduled calendar days; this differs from the original fixed24h UTC guard. No guard change or forward fill is authorized by this proposal."
+      },
+      "future_venue_calendar": {
+        "URL": "https://www.nyse.com/trade/hours-calendars",
+        "pinned_and_reviewed": false,
+        "future_Nasdaq_schedule_observed": null,
+        "expected_scheduled_confirmation_endpoints": 253
+      },
+      "future_file_metadata": null,
+      "confirmation_endpoint_count_verified": null,
+      "seven_endpoint_boundary_purge_checked": false,
+      "power_dimensioning_accepts_R_and_T": false,
+      "prior_panel_relabelled": false,
+      "admitted_unexposed": false
+    },
+    {
+      "id": "F03",
+      "instrument": "TLT",
+      "domain": "Long-duration US Treasury bond ETF",
+      "provider": "Alpha Vantage",
+      "venue": "Nasdaq",
+      "source_URL": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TLT&outputsize=full&apikey={API_KEY}",
+      "source_response_version": null,
+      "source_response_bytes": null,
+      "source_response_sha256": null,
+      "provider_symbol_metadata_verified": false,
+      "public_repository_and_external_reproducer_access_reviewed": false,
+      "clock": "US_regular_equity_sessions",
+      "clock_timezone": "America/New_York",
+      "input_schema": [
+        "date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "volume_units": "shares",
+      "raw_price_policy": "RAW_as_traded_unadjusted",
+      "missing_session_policy": "no_forward_fill_no_synthetic_weekend_bars",
+      "corporate_action_or_roll_policy": "Retain raw exchange-traded share prices including dividends/splits under a predeclared rule; USO internal futures rolls are fund economics, not a researcher-spliced futures series. Do not use adjusted close or omit adverse event dates after outcomes.",
+      "target": {
+        "returns_count": 7,
+        "required_close_support": 8,
+        "ddof": 0,
+        "annualized": false,
+        "unit": "population standard deviation of seven raw log close returns per native observation",
+        "primary_metric": "mean individual-seed RMSE within panel; do not average incomparable panel scales",
+        "forecast_steps": 1,
+        "calendar_duration_equal_across_panels": false
+      },
+      "draft_windows": {
+        "planning_raw_start": "2026-12-01",
+        "planning_first_target": "2026-12-14",
+        "planning_last_target": "2027-02-26",
+        "confirmation_raw_start": "2027-03-01",
+        "confirmation_first_target": "2027-03-15",
+        "confirmation_last_target": "2028-03-14",
+        "actual_planning_freeze_utc": null,
+        "actual_confirmation_freeze_utc": null,
+        "binding_protocol": false,
+        "final_R": null,
+        "final_T": null,
+        "rule": "DRAFT dates only. Move before access if scientific readiness or dimensioning requires it; never relabel elapsed/exposed windows as future."
+      },
+      "licensing": {
+        "terms_URL": "https://www.alphavantage.co/terms_of_service/",
+        "summary": "Personal non-commercial, private individual access subject to EULA and exceptions; academic institution/public redistribution/external reproducer access are not automatically cleared.",
+        "specific_use_reviewed_by_owner": false,
+        "owner_review_record": null,
+        "raw_redistribution_authorized": false,
+        "global_repository_license_inferred": false
+      },
+      "guide_difference_axes": [
+        {
+          "axis": "domain",
+          "established": true,
+          "evidence": "Issuer metadata verifies Long-duration US Treasury bond ETF rather than BTC crypto exposure; source_observations.json."
+        },
+        {
+          "axis": "size",
+          "established": false,
+          "evidence": "Same DRAFT wall-calendar target span gives366 calendar dates versus253 scheduled NYSE sessions; actual complete sizes, native-task equivalence and Nasdaq venue schedule remain unverified."
+        }
+      ],
+      "origin_availability_contract_verified": false,
+      "availability_requirement": "Record publication/retrieval/ready timestamps for all past inputs before prediction origin. A later bulk archive or date label alone does not establish contemporaneous availability.",
+      "task_equivalence_review": {
+        "accepted": false,
+        "choice": null,
+        "reviewer": null,
+        "rationale": null,
+        "problem": "A next US session can be separated by1–4 scheduled calendar days; this differs from the original fixed24h UTC guard. No guard change or forward fill is authorized by this proposal."
+      },
+      "future_venue_calendar": {
+        "URL": "https://www.nasdaqtrader.com/Trader.aspx?id=Calendar",
+        "pinned_and_reviewed": false,
+        "future_Nasdaq_schedule_observed": false,
+        "expected_scheduled_confirmation_endpoints": null
+      },
+      "future_file_metadata": null,
+      "confirmation_endpoint_count_verified": null,
+      "seven_endpoint_boundary_purge_checked": false,
+      "power_dimensioning_accepts_R_and_T": false,
+      "prior_panel_relabelled": false,
+      "admitted_unexposed": false
+    }
+  ],
+  "dependence_review": {
+    "pairwise_economic_independence_certified": false,
+    "shared_factors": [
+      "USD and monetary-policy/global-risk conditions",
+      "USO/SPY/TLT share US session clock and provider infrastructure",
+      "ETF flows, rates and risk exposures can remain dependent",
+      "Providers can share upstream vendor and calendar errors"
+    ],
+    "ticker_or_provider_changes_not_treated_as_independence": true
+  },
+  "scientific_next_action": "Resolve V3/no-GO through development, source/rights and task-equivalence review before admitting and freezing any confirmation."
+}

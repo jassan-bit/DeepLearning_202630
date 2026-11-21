@@ -420,6 +420,12 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-controlado-de-desarrollo-de-v3">7.13 Piloto controlado de desarrollo de V3</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conciliacion-documental-de-disenos-selecciones-e-intentos">7.14 Conciliación documental de diseños, selecciones e intentos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-revisada-y-equivalencias-de-la-adaptacion-v3">7.15 Propiedad revisada y equivalencias de la adaptación V3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-v4-coordenada-del-score-normalizacion-y-empates">7.16 Diseño V4: coordenada del score, normalización y empates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-justifica-la-transformacion-y-que-no-demuestra">Qué justifica la transformación y qué no demuestra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-fijo-con-todos-los-casos-conservados">Diagnóstico fijo con todos los casos conservados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-separado-del-piloto-real-cpu-y-ejecucion-completada">Plan separado del piloto real CPU y ejecución completada</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -454,6 +460,14 @@
 <tr class="row-even"><td><p>Cabeza de momentos, 1236 parámetros</p></td>
 <td><p>Relacionar momentos de una innovación con la media de la transformación objetivo.</p></td>
 <td><p>Teoría condicional y tres recetas de desarrollo completadas; no superó la heurística de continuación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>V3, 1262 parámetros</p></td>
+<td><p>Aprender una ley atómica de U y promediar la transformación exacta de σ₇, con auxiliar CRPS_U.</p></td>
+<td><p>Piloto de treinta ajustes adverso y NO-GO; dictamen R1 favorable acotado, sin confirmación.</p></td>
+</tr>
+<tr class="row-even"><td><p>V4 de desarrollo, 1262 parámetros</p></td>
+<td><p>Conservar la lectura V3 y puntuar los átomos transformados en la coordenada de σ₇, con su normalización.</p></td>
+<td><p>Diagnóstico geométrico y piloto CPU de veinte ajustes; V4 tuvo 1,443261 % más RMSE que el mejor control y la receta se abandonó. No hereda R1 ni acredita R3.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1248,6 +1262,61 @@ reclama que un predictor aditivo suficientemente flexible no pueda producir
 esa misma media. Esta delimitación permite defender la adaptación sin
 atribuirle nuevas reglas de scoring o promesas de superioridad.</p>
 </section>
+<section id="diseno-v4-coordenada-del-score-normalizacion-y-empates">
+<span id="e3-next-v4-design-20261121"></span><h2>7.16 Diseño V4: coordenada del score, normalización y empates<a class="headerlink" href="#diseno-v4-coordenada-del-score-normalizacion-y-empates" title="Link to this heading">#</a></h2>
+<p>La revisión de desarrollo V4 conserva <span class="math notranslate nohighlight">\(T_A(u)=\sqrt{A+cu^2}\)</span>, <span class="math notranslate nohighlight">\(c=6/49\)</span>, las tres masas/posiciones aprendidas y la media <span class="math notranslate nohighlight">\(\mu=\sum_kp_kT_A(a_k)\)</span>. A sigue dependiendo sólo de la historia conocida. La arquitectura y sus <strong>1262 parámetros</strong> no cambian; las etiquetas Y/U sólo se utilizan en la pérdida de entrenamiento. La <a class="reference download internal" download="" href="../_downloads/15c445b7dc13b3b0400bde4242e6c7e8/outcome_crps_v4.py"><code class="xref download docutils literal notranslate"><span class="pre">implementación</span> <span class="pre">local</span></code></a> hereda el forward de V3 y verifica sus fuentes fijadas.</p>
+<p>Para <span class="math notranslate nohighlight">\(z_k=T_A(a_k)\)</span>, la pérdida nueva es</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-v4-outcome-score">
+<span class="eqno">(38)<a class="headerlink" href="#equation-eq-e3-v4-outcome-score" title="Link to this equation">#</a></span>\[
+\mathcal L_{\mathrm{V4}}=
+\frac{(\mu-Y)^2}{s_Y^2}
++0.1\,\frac{\operatorname{CRPS}(\sum_kp_k\delta_{z_k},Y)}{s_Y},
+\qquad
+\operatorname{CRPS}=\sum_kp_k|z_k-Y|
+-\frac12\sum_{k,\ell}p_kp_\ell|z_k-z_\ell|.
+\]</div>
+<p><span class="math notranslate nohighlight">\(s_U\)</span> y <span class="math notranslate nohighlight">\(s_Y\)</span> son escalas de entrenamiento fijadas, no parámetros aprendidos o coeficientes elegidos por el resultado. El diagnóstico sintético utiliza sus medias exactas bajo cada ley finita, como definió el plan; no estima una escala con objetivos de prueba. V3 utilizaba <code class="docutils literal notranslate"><span class="pre">CRPS_U/sU</span></code>, de modo que <strong>coordenada y escala se modifican a la vez</strong>. No se atribuye toda diferencia a una sola de ellas.</p>
+<section id="que-justifica-la-transformacion-y-que-no-demuestra">
+<h3>Qué justifica la transformación y qué no demuestra<a class="headerlink" href="#que-justifica-la-transformacion-y-que-no-demuestra" title="Link to this heading">#</a></h3>
+<p>La ecuación <a class="reference internal" href="#equation-eq-e3-r1-weighted-crps">(37)</a> expresa CRPS_U como un CRPS en Y ponderado por el jacobiano inverso <span class="math notranslate nohighlight">\(dU/dY=Y/(cU)\)</span>. Para A&gt;0, el peso tiene una singularidad integrable junto al piso <span class="math notranslate nohighlight">\(\sqrt A\)</span>. En las leyes del diagnóstico con <strong>A fijo igual a cero</strong>, el mapa es lineal y sus medias satisfacen <code class="docutils literal notranslate"><span class="pre">sY=sqrt(c)*sU</span></code>, por lo que <code class="docutils literal notranslate"><span class="pre">CRPS_U/sU</span> <span class="pre">=</span> <span class="pre">CRPS_sigma/sY</span></code>. No se extiende esa identidad a escalas globales de un entrenamiento con A variable por observar un único caso A=0. Ambas reglas siguen siendo propias para leyes no restringidas y la transformación es inyectiva. <strong>No se deriva de ello un óptimo poblacional incorrecto de V3.</strong> La cuestión nueva es el comportamiento de optimización y la interacción con MSE en una ley de tres átomos posiblemente mal especificada.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/fe203cae0603cc5b2d10cf100a110c93/METHOD_AND_PRIOR_PLAN.md"><code class="xref download docutils literal notranslate"><span class="pre">plan</span> <span class="pre">previo</span> <span class="pre">y</span> <span class="pre">sus</span> <span class="pre">argumentos</span></code></a> fijó cuatro controles de pérdida, todos con la misma MSE:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Receta</p></th>
+<th class="head"><p>Auxiliar y función del control</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>U-CRPS original</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.1*CRPS_U/sU</span></code>, referencia de la pérdida V3.</p></td>
+</tr>
+<tr class="row-odd"><td><p>V4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.1*CRPS_sigma/sY</span></code>, coordenada de la etiqueta y su escala.</p></td>
+</tr>
+<tr class="row-even"><td><p>σ₇ con escala emparejada en A=0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.1*CRPS_sigma/(sqrt(c)*sU)</span></code>, control que separa el cambio de norma por normalización.</p></td>
+</tr>
+<tr class="row-odd"><td><p>MSE-only</p></td>
+<td><p>Sin auxiliar; comparador de diagnóstico, sin promoción automática.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Una escala positiva sólo cambia la norma de un gradiente auxiliar, no su dirección. El control emparejado no crea un modelo puntual más expresivo ni más parámetros. Si una revisión de mecanismo o regla posterior alterase estas condiciones, sería otra versión registrada y evaluada primero en desarrollo; no una modificación del piloto V3 terminado.</p>
+</section>
+<section id="diagnostico-fijo-con-todos-los-casos-conservados">
+<h3>Diagnóstico fijo con todos los casos conservados<a class="headerlink" href="#diagnostico-fijo-con-todos-los-casos-conservados" title="Link to this heading">#</a></h3>
+<p>La cuadrícula previa combinó seis valores de A —incluidos cero, casi piso y 100—, dos leyes verdaderas finitas, cuatro tríos de átomos y tres vectores de probabilidades: <strong>144 casos</strong>. Se calcularon expectativas y gradientes de cinco parámetros de cabeza sin ajustar encoder u optimizador. La <a class="reference download internal" download="" href="../_downloads/c98c864f16f90923bece2def92f093cf/TIE_HANDLING.md"><code class="xref download docutils literal notranslate"><span class="pre">regla</span> <span class="pre">previa</span> <span class="pre">de</span> <span class="pre">empates</span></code></a> reconoce que los valores absolutos no tienen un gradiente único en ciertas coincidencias. La regla fijada antes de los resultados marcó 72 casos sensibles durante el diagnóstico, que permanecen en el CSV; el subgradiente automático no se presenta como una dirección diferenciable única.</p>
+<p>Los 72 restantes tienen doce casos diferenciables por A. En A=0, los errores máximos fueron <strong>2,78×10⁻¹⁶ en scores normalizados</strong> y <strong>1,39×10⁻¹⁶ en gradientes</strong>. En A&gt;0, 50 de 60 direcciones U/σ₇ no fueron colineales. La alineación auxiliar con MSE mejoró en 49 casos, empeoró en <strong>11</strong> y quedó igual en 12. Las comparaciones por A y las pendientes puntuales se conservan completas en <a class="reference internal" href="06_modelo_original.html#e3-next-v4-development-20261121"><span class="std std-ref">6.19</span></a>. Esto sostiene sólo una diferencia geométrica acotada; no demuestra mejor optimización durante entrenamiento, generalización, superioridad de mercado o R1 de V4.</p>
+<p>Las <a class="reference download internal" download="" href="../_downloads/f0c2f15a3adea469702b3bf731585507/software_validation.json"><code class="xref download docutils literal notranslate"><span class="pre">catorce</span> <span class="pre">pruebas</span> <span class="pre">de</span> <span class="pre">software</span> <span class="pre">finales</span></code></a> verificaron fuente, inicialización y forward idénticos, soporte, escalas fijas, gradientes y manejo de empates. El fallo previo de una fixture float32 y el código anterior permanecen conservados; pasar esas guardas no equivale a entrenar el modelo. El paso posterior al piloto real exigió otro plan de desarrollo previo, presupuesto y controles comunes, registros de fallos y criterio de avance/abandono, documentados a continuación. <strong>La receta V3 mantiene NO-GO y la regla original; V4 no hereda su dictamen R1 ni la auditoría de la aditiva.</strong></p>
+</section>
+<section id="plan-separado-del-piloto-real-cpu-y-ejecucion-completada">
+<h3>Plan separado del piloto real CPU y ejecución completada<a class="headerlink" href="#plan-separado-del-piloto-real-cpu-y-ejecucion-completada" title="Link to this heading">#</a></h3>
+<p>El <a class="reference download internal" download="" href="../_downloads/383e8612ecd67ed70f91d2b88bf2eeb4/cpu_pilot_plan.json"><code class="xref download docutils literal notranslate"><span class="pre">plan</span> <span class="pre">del</span> <span class="pre">nuevo</span> <span class="pre">piloto</span> <span class="pre">CPU</span></code></a> fijó <strong>cuatro recetas×cinco semillas: veinte ajustes nuevos de desarrollo</strong>, sin HPO. Las recetas entrenables son V4, U-CRPS original, MSE-only y aditiva. Las tres primeras conservan 1262 parámetros e inicialización común; la aditiva tiene 1210 y comparte encoder/atención, sin declarar capacidad total idéntica. Los controles <code class="docutils literal notranslate"><span class="pre">floor_only</span></code> y <code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code> se evalúan una sola vez, sin fingir cinco semillas deterministas. El control de escala emparejada del diagnóstico sintético no se convierte en una quinta receta entrenada ni se afirma una ablación factorial completa.</p>
+<p>La partición expuesta conserva <strong>532 filas de ajuste, 54 de parada/selección, siete purgadas y 55 de evaluación de desarrollo</strong>. Las semillas nuevas se fijan en <code class="docutils literal notranslate"><span class="pre">20261121–20261125</span></code>; tasa común <code class="docutils literal notranslate"><span class="pre">0.003</span></code>, batch 32, máximo 40 épocas y paciencia ocho. La cohorte efectivamente usada fue CPU, Python 3.12.14/Torch 2.8.0+cpu/NumPy 2.3.5, dos hilos de cómputo y algoritmos deterministas. Se entrenaron y validaron los veinte checkpoints antes de abrir la evaluación de 55 fechas. No se reutilizan pesos GPU antiguos para llamar justa a una comparación nueva ni se presenta este alcance como reproducción de aquella sesión.</p>
+<p>Cada ajuste dispone de 120 s nominales de fase y 150 s de proceso, con límite global de 3300 s; no son consumo medido o coste energético/FLOPs. La regla nueva de desarrollo exige <strong>al menos 2 % de mejora RMSE media frente al mejor control neuronal y frente al mejor de los cinco controles</strong>, conservando ambos dictámenes y todos los resultados. Fallar implica abandonar la receta V4 actual, sin promover automáticamente un control ni cambiar la regla V3 anterior. El plan y la fuente se <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/5ee55723e7d1ce63dbe4a94dca8941cb85a45fee">anclaron públicamente antes del primer ajuste</a>. El <a class="reference download internal" download="" href="../_downloads/667972822c2a050f42a4722ccd119e18/prepared_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">de</span> <span class="pre">preparación</span> <span class="pre">conservado</span></code></a> mantiene su instante previo y sus ceros, separado del <a class="reference download internal" download="" href="../_downloads/ddf26a704be6c34b8ca4a3dc917d4179/pilot_result.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">ejecutado</span> <span class="pre">posterior</span></code></a>: <strong>20 ajustes, 22 trayectorias y 1.210 predicciones de desarrollo</strong>. V4 fue <strong>1,443261 % peor</strong> que MSE-only y falló ambas puertas del 2 %; se registra <strong>abandono de la receta V4 actual</strong>, sin promover un control o modificar el piloto V3. Sus 90,096 s totales/54,926 s de fases no se sustituyen por los 2.400 s nominales. No se evaluó la familia completa ni datos nuevos de confirmación.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1347,6 +1416,12 @@ atribuirle nuevas reglas de scoring o promesas de superioridad.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-controlado-de-desarrollo-de-v3">7.13 Piloto controlado de desarrollo de V3</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conciliacion-documental-de-disenos-selecciones-e-intentos">7.14 Conciliación documental de diseños, selecciones e intentos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedad-revisada-y-equivalencias-de-la-adaptacion-v3">7.15 Propiedad revisada y equivalencias de la adaptación V3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-v4-coordenada-del-score-normalizacion-y-empates">7.16 Diseño V4: coordenada del score, normalización y empates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-justifica-la-transformacion-y-que-no-demuestra">Qué justifica la transformación y qué no demuestra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-fijo-con-todos-los-casos-conservados">Diagnóstico fijo con todos los casos conservados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-separado-del-piloto-real-cpu-y-ejecucion-completada">Plan separado del piloto real CPU y ejecución completada</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

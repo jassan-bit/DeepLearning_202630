@@ -1,6 +1,6 @@
 # 6 Bloque C El modelo original
 
-**Estado actual de R1:** {ref}`6.18 <e3-r1-substantive-verdict-20261120>` aporta el dictamen técnico por IA favorable y acotado para la adaptación V3. La referencia aditiva sigue sin acreditar diferencia sustantiva; los resultados de ambos objetos se mantienen separados.
+**Estado actual de R1:** {ref}`6.18 <e3-r1-substantive-verdict-20261120>` aporta el dictamen técnico por IA favorable y acotado para la adaptación V3. La referencia aditiva sigue sin acreditar diferencia sustantiva; los resultados de ambos objetos se mantienen separados. La revisión nueva {ref}`V4 de 6.19 <e3-next-v4-development-20261121>` conserva la lectura de V3 y cambia su auxiliar; su novedad requiere revisión propia y no hereda ese dictamen.
 
 La referencia evaluada es **CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva**, de **1210 parámetros**. Sus diez semillas congeladas obtuvieron una RMSE media individual de **0,0029394324** sobre las 608 fechas históricas comunes. La [comparación estadística posterior](08_verificacion_estadistica.md) ya está calculada frente a los 16 rivales de E2; sus resultados no acreditan por sí solos R1, R2 o R3.
 
@@ -579,3 +579,36 @@ un registro histórico ni volver a contar semillas como diseños.
 
 
 La evidencia posterior a la revisión documental se conserva separada en el {ref}`diagnóstico de transferencia de8.21 <e3-v3-frozen-transfer-20261120>` y en el {ref}`perfil ONNX experimental y reproducciónB <e3-completion-reproduction>`. Ninguno cambia los30ajustes originales, el2,70%adverso o la regla fallida del piloto. La adaptación algorítmica defendida sigue siendo V3 completa; no se promociona automáticamente `atom_mse_only` ni se transfieren a ella los resultados de la aditiva. R3 queda no acreditada y la decisión confirmatoria actual esNO-GO.
+
+
+(e3-next-v4-development-20261121)=
+## 6.19 Revisión V4 de desarrollo: puntuar la distribución de σ₇
+
+Se implementó **V4, `e3-overlap-sigma-crps-v4-development`**, como una revisión nueva de pérdida, separada de la candidata V3 y de la referencia aditiva. Conserva el encoder, la ley de tres átomos, la lectura `sum(p_k*T_A(a_k))`, **1262 parámetros** y los tensores iniciales de V3 al mismo seed. Cambia el auxiliar de `0.1*CRPS_U/sU` a **`0.1*CRPS_sigma/sY`**, manteniendo la MSE puntual común. Cambian tanto la coordenada puntuada como su normalización; la formulación y los controles están en {ref}`7.16 <e3-next-v4-design-20261121>`.
+
+**Hipótesis de desarrollo delimitada.** La equivalencia de CRPS_U con un score ponderado en σ₇, documentada en 7.15, permite preguntar si la geometría auxiliar difiere en una familia finita mal especificada. No demuestra que CRPS_U sea impropio, que tenga un óptimo poblacional incorrecto o que otro score mejore el pronóstico. Puntuar la distribución de la etiqueta con CRPS es conocido y puede acercar V4 a una regresión de mezcla ordinaria con soporte restringido. **R1 de V4 requiere revisión propia y no hereda el dictamen favorable y acotado de V3.** Tampoco una mejora eventual de desarrollo bastaría para resolver esa objeción bibliográfica.
+
+El {download}`plan del diagnóstico previo <../_static/e3_next_evidence_20261121/development/plan_before_results.json>` y la {download}`enmienda matemática de empates <../_static/e3_next_evidence_20261121/development/tie_amendment_before_results.json>` se anclaron en el commit público [`f7def09fc4283cc2d5429c58a372d7cf636bc1b5`](https://github.com/jassan-bit/DeepLearning_202630/commit/f7def09fc4283cc2d5429c58a372d7cf636bc1b5) antes de ejecutar la cuadrícula. El plan local se fijó el **20 de noviembre a las 19:39:20 de Bogotá** y la enmienda a las 19:46:35; la ejecución CPU ocurrió a las **19:51:19** —los recibos UTC corresponden al 21 de noviembre—. Es registro de desarrollo, no protocolo confirmatorio ni preregistro retroactivo de los resultados anteriores.
+
+El {download}`recibo del diagnóstico ejecutado <../_static/e3_next_evidence_20261121/development/synthetic_results/diagnostic_receipt.json>` conserva **144 casos sintéticos fijos**, evaluados por expectativas exactas de dos leyes finitas, sin sorteos Monte Carlo, optimizador, entrenamiento o mercado. **72 casos sensibles a empates se conservaron con sus valores y gradientes**, aunque no se usaron para atribuir diferencias angulares. Entre los otros 72 diferenciables:
+
+| Comparación geométrica fijada | Resultado |
+|---|---:|
+| Mejor alineación auxiliar σ₇ con el gradiente de MSE que el auxiliar U | 49 de 72 |
+| Peor alineación | **11 de 72** |
+| Igual alineación dentro de la tolerancia | 12 de 72, todos con A=0 |
+| Dirección U/σ₇ no colineal con A>0 | 50 de 60 casos diferenciables con A>0 |
+
+Los **once casos adversos** se conservan junto a los favorables. Las celdas de esta cuadrícula no son una muestra aleatoria de tareas; 49/11 no es una prueba estadística de utilidad ni acredita RMSE, calibración, potencia o dominancia universal. El {download}`CSV completo de 144 filas <../_static/e3_next_evidence_20261121/development/synthetic_results/all_scenarios.csv>` y el {download}`dictamen posterior del diagnóstico <../_static/e3_next_evidence_20261121/development/RESULTS_AND_DECISION.md>` permiten revisar riesgos, gradientes y límites. Las catorce guardas finales de software pasaron; se conserva el primer fallo de precisión float32 y su corrección a float64 sin relajar tolerancias.
+
+### Piloto real CPU completado: resultado adverso y abandono de V4
+
+El [plan/fuentes fijados públicamente antes del primer ajuste](https://github.com/jassan-bit/DeepLearning_202630/commit/5ee55723e7d1ce63dbe4a94dca8941cb85a45fee) dieron lugar a **20 de 20 ajustes nuevos de desarrollo**, cuatro recetas por cinco semillas CPU, sin HPO. El {download}`recibo real del piloto <../_static/e3_next_evidence_20261121/development/cpu_pilot_results/pilot_result.json>` terminó el **20 de noviembre a las 20:21:21 de Bogotá** —`2026-11-21T01:21:21Z`—. Tras validar los veinte checkpoints entrenados, se evaluaron las 55 fechas conocidas: **22 trayectorias y 1.210 predicciones nuevas de desarrollo**, 1.100 neuronales y 110 de dos controles analíticos evaluados una sola vez. No son 1.210 observaciones independientes ni predicciones confirmatorias.
+
+V4 obtuvo RMSE media **0,002087524306**, frente a **0,002057824526** de `mse_only_control`: **1,443261 % más error**. Falló la regla nueva, fijada antes de entrenar, de mejorar al menos 2 % frente al mejor control neuronal y frente al mejor de todos los cinco controles. El dictamen real es **`ABANDON_CURRENT_V4_RECIPE`**, sin promover automáticamente MSE-only, cambiar la métrica o lanzar otra versión. La {download}`tabla completa de las seis recetas/controles <../_static/e3_next_evidence_20261121/development/cpu_pilot_results/recipe_summary.csv>` conserva todos los resultados; {ref}`8.25 <e3-next-statistics-data-20261121>` presenta sus alcances estadísticos.
+
+El control `u_crps_control`, RMSE media **0,002071168327**, es un **ajuste nuevo CPU** de la arquitectura/pérdida V3 dentro de esta comparación. No reemplaza el piloto GPU original ni se combina con sus tres semillas o su 2,70 % adverso para construir otra media. El entrenamiento nuevo consumió **90,096 s de extremo a extremo** y **54,926 s de pared de las fases**, frente a 2.400 s nominales permitidos; no se confunde presupuesto con consumo, energía o GPU. Se conservan historias, recursos y hashes de checkpoints; el paquete público no incluye los NPZ o PT privados.
+
+La diferencia geométrica existe en el diagnóstico, pero **no justificó continuar esta receta V4 tras su piloto real**. Su R1 sigue sin heredar el dictamen de V3; no hay calibración predictiva o R3 acreditadas. Estos veinte ajustes son otra cohorte: no repiten, sustituyen o amplían retrospectivamente los masters de 796/30 ni las 20.400 predicciones antiguas.
+
+V3 original conserva sus **30 ajustes, 2,7043119888 % de deterioro y NO-GO**; la aditiva conserva sus 796 trabajos y la transferencia sus 51 trayectorias/20.400 predicciones. **R3 permanece no acreditada.** La asistencia de IA en implementación, diagnóstico y documentación se declara; no se añaden aprobación docente, firma humana o independencia de mercados por esta revisión.

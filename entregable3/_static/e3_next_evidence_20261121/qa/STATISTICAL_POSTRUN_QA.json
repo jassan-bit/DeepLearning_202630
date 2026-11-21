@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "status": "independent_result_integrity_QA_passed_controlled_calibration_has_adverse_results_NOT_approved",
+  "reviewed_at_utc": "2026-11-21T00:54:16.958152+00:00",
+  "AI_review_declared": true,
+  "saved_results_recounted_without_DGP_bootstrap_or_model_rerun": true,
+  "all8_frozen_input_hashes_unchanged": true,
+  "raw_results": {
+    "bytes": 3157683,
+    "sha256": "a687d180084b906631a625db371c137754e3f5f66180fabd3e758ab3328b1b7b",
+    "gzip_lines": 1024,
+    "case_count": 11,
+    "no_errors_or_duplicate_or_missing_replica_ids": true
+  },
+  "all_case_counts_truths_per_rival_rejection_CIcoverage_family_and_MCS_event_counts_match_summary": true,
+  "Holm_families_independently_recomputed": 2048,
+  "CP_tail_inversions_independently_checked_with_standard_library": {
+    "MCS27of128": [
+      0.14384835162319937,
+      0.29186373657855336
+    ],
+    "calendar_worst_P1": [
+      0.0775573318001232,
+      0.26863424426625715
+    ],
+    "tolerance": 1e-12
+  },
+  "controlled_adverse_findings": {
+    "MCS_under_global_EPA_true": {
+      "events": 27,
+      "replicates": 128,
+      "rate": 0.2109375,
+      "nominal": 0.1,
+      "individual_CP95": [
+        0.14384835162319937,
+        0.29186373657855336
+      ],
+      "all20_true_best_retained": 101,
+      "finding": "Observed global-null rejection inflation in this fixed DGP; lowerCP bound exceeds0.10. This implemented MCS extension must not be described as calibrated or accepted."
+    },
+    "P1_calendar_only_worst_rival": {
+      "rival": "rival_08",
+      "CI95": [
+        0.07755733180012321,
+        0.26863424426625704
+      ],
+      "events": 10,
+      "exploratory_inflation_signal": true,
+      "exploratory_tolerance_screen_passed": false,
+      "nominal": 0.05,
+      "rate": 0.15625,
+      "replicates": 64,
+      "simultaneous_validation_claimed": false,
+      "finding": "Individual unadjusted-size warning; multiple rival/scenario intervals are not simultaneous. Do not present individual flags as a new globally calibrated test."
+    },
+    "calendar_only_Holm38_FWER": {
+      "CI95": [
+        0.017290027381055274,
+        0.15236347342269677
+      ],
+      "events": 4,
+      "exploratory_inflation_signal": false,
+      "exploratory_tolerance_screen_passed": false,
+      "nominal": 0.05,
+      "rate": 0.0625,
+      "replicates": 64,
+      "simultaneous_validation_claimed": false
+    },
+    "scaling_R24_Holm38_FWER": {
+      "CI95": [
+        0.02585384016796813,
+        0.17297832900420762
+      ],
+      "events": 5,
+      "exploratory_inflation_signal": false,
+      "exploratory_tolerance_screen_passed": false,
+      "nominal": 0.05,
+      "rate": 0.078125,
+      "replicates": 64,
+      "simultaneous_validation_claimed": false
+    },
+    "caveat": "Nominal+0.05 exploratory tolerance screens are not tests establishing exact nominal size. Zero or few false rejections at64/128MC remain imprecise. Preserve all adverse outcomes without tuning/rerunning."
+  },
+  "completed_software_not_method_acceptance": {
+    "planned_replicates": 1024,
+    "completed": 1024,
+    "seconds": 40.8634198459913,
+    "software_guards": 19,
+    "three_directional_tests_per_contrast": false,
+    "complete_three_method_power_computed": false,
+    "final_admissibility": false
+  },
+  "scope_limits": {
+    "controlled_family_systems": 20,
+    "rivals": 19,
+    "directional_components": 38,
+    "reserved57_slots_not_third_test": true,
+    "future_V4_M22_21rivals_63slots_84cells_not_validated_by_this_run": true,
+    "market_variance_cells_filled": false,
+    "market_R_T_or_0_90_power_certified": false,
+    "joint_power_not_product_of_marginals": true,
+    "no_market_or_human_execution": true
+  },
+  "source_and_result_receipts": [
+    {
+      "path": "statistics/IMPLEMENTATION_FREEZE.json",
+      "bytes": 1649,
+      "sha256": "48b80ac6723e5e29931b9dd1be142220a98694e6c86e626abbaa856d212cf1a2"
+    },
+    {
+      "path": "statistics/controlled_validation_run/execution_receipt.json",
+      "bytes": 1344,
+      "sha256": "3ee5e36b0653497c00a23adbfa9eaadf6e9556a56ee4d37730125910710fe619"
+    },
+    {
+      "path": "statistics/controlled_validation_run/validation_summary.json",
+      "bytes": 833531,
+      "sha256": "7c430f38852ab2a682a8f64c52c0a7b06fec7160b3315b17b8aecd26699bc3d1"
+    }
+  ],
+  "confirmation_enabled": false,
+  "old_V3_NO_GO_preserved": true,
+  "R3_accredited": false,
+  "reviewer_simulation_executions": 0,
+  "blockers_to_claim_battery_validated": [
+    "MCS global-null overrejection observed",
+    "individual P1/P2 size and coverage warnings plus limited MC precision",
+    "no third directional margin test",
+    "functional crossed admissibility and final V4 family unvalidated",
+    "no actual admitted planning inputs or final dimensioning"
+  ]
+}

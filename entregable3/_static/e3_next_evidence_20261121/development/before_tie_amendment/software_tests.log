@@ -1,0 +1,25 @@
+test_A0_normalized_scores_and_full_head_gradients_are_equal (test_outcome_crps_v4.Contracts.test_A0_normalized_scores_and_full_head_gradients_are_equal) ... ok
+test_MSE_control_is_preserved_point_objective_not_promoted (test_outcome_crps_v4.Contracts.test_MSE_control_is_preserved_point_objective_not_promoted) ... ok
+test_configuration_distinguishes_new_version_and_unaccredited_status (test_outcome_crps_v4.Contracts.test_configuration_distinguishes_new_version_and_unaccredited_status) ... ok
+test_expected_scores_minimized_by_true_representable_law_in_fixed_comparison (test_outcome_crps_v4.Contracts.test_expected_scores_minimized_by_true_representable_law_in_fixed_comparison) ... ok
+test_gradcheck_of_sigma_objective_away_from_atom_ties (test_outcome_crps_v4.Contracts.test_gradcheck_of_sigma_objective_away_from_atom_ties) ... ok
+test_identical_parameters_initial_values_and_original_forward (test_outcome_crps_v4.Contracts.test_identical_parameters_initial_values_and_original_forward) ... ok
+test_invalid_targets_scales_laws_and_overflow_are_refused (test_outcome_crps_v4.Contracts.test_invalid_targets_scales_laws_and_overflow_are_refused) ... ok
+test_nonlinear_coordinate_can_change_direction_not_just_norm (test_outcome_crps_v4.Contracts.test_nonlinear_coordinate_can_change_direction_not_just_norm) ... ok
+test_positive_normalization_changes_norm_without_changing_direction (test_outcome_crps_v4.Contracts.test_positive_normalization_changes_norm_without_changing_direction) ... ok
+test_source_pin_refuses_changed_source_before_construction (test_outcome_crps_v4.Contracts.test_source_pin_refuses_changed_source_before_construction) ... ok
+test_training_labels_do_not_enter_or_change_forward (test_outcome_crps_v4.Contracts.test_training_labels_do_not_enter_or_change_forward) ... ok
+test_zero_gradient_direction_is_undefined_not_a_favorable_observation (test_outcome_crps_v4.Contracts.test_zero_gradient_direction_is_undefined_not_a_favorable_observation) ... FAIL
+
+======================================================================
+FAIL: test_zero_gradient_direction_is_undefined_not_a_favorable_observation (test_outcome_crps_v4.Contracts.test_zero_gradient_direction_is_undefined_not_a_favorable_observation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/e3_next_evidence_20261121/development/test_outcome_crps_v4.py", line 130, in test_zero_gradient_direction_is_undefined_not_a_favorable_observation
+    self.assertAlmostEqual(cosine(torch.ones(5), -torch.ones(5)), -1, places=13)
+AssertionError: -0.9999999706355888 != -1 within 13 places (2.936441123591038e-08 difference)
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.515s
+
+FAILED (failures=1)

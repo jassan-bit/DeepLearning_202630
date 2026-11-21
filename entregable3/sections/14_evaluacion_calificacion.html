@@ -407,6 +407,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-posterior-que-modifica-la-interpretacion">Evidencia posterior que modifica la interpretación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-dictamen-especifico-de-r1-de-v3">14.6 Alcance del dictamen específico de R1 de V3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-posterior-de-la-evidencia-sin-nota-automatica">14.7 Alcance posterior de la evidencia, sin nota automática</a></li>
 </ul>
             </nav>
         </div>
@@ -422,7 +423,7 @@
 <h1>14 Evaluación y calificación<a class="headerlink" href="#evaluacion-y-calificacion" title="Link to this heading">#</a></h1>
 <p><strong>Estado: matriz documental de requisitos y evidencia, sin nota ni tope asignados al avance actual.</strong> Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas de evaluación pertenecen a esa guía; describirlas no acredita su cumplimiento ni constituye una evaluación del docente.</p>
 <p>La nota se expresa en la escala de <strong>0 a 5</strong> y se determina en dos pasos: primero se obtiene el puntaje ponderado de la rúbrica y después se aplica el tope que corresponda al estado <strong>evaluado</strong> de R1, R2 y R3. Una condición pendiente no se convierte en «no» para fijar ese tope, y una casilla sin evidencia no se marca cumplida para completar la rúbrica.</p>
-<p>La evidencia se consulta en las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">correcciones de E2</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">artefactos</span></a>, <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">candidato</span></a>, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">diseño riguroso</span></a>, <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">verificación estadística</span></a> y <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">diseño del dashboard</span></a>. Las actividades pendientes conservan su estado; esta ampliación no entrena modelos, ejecuta contrastes ni calcula calificaciones.</p>
+<p>La evidencia se consulta en las <a class="reference internal" href="04_correcciones_e2.html"><span class="std std-doc">correcciones de E2</span></a>, <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">artefactos</span></a>, <a class="reference internal" href="06_modelo_original.html"><span class="std std-doc">candidato</span></a>, <a class="reference internal" href="07_diseno_riguroso.html"><span class="std std-doc">diseño riguroso</span></a>, <a class="reference internal" href="08_verificacion_estadistica.html"><span class="std std-doc">verificación estadística</span></a> y <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">diseño del dashboard</span></a>. Las actividades pendientes conservan su estado. Este capítulo organiza la evidencia y no asigna una calificación; los nuevos experimentos y validaciones controladas se documentan con sus propios recibos en 8.25.</p>
 <p>La matriz incorpora el corte posterior del <strong>17 de noviembre de 2026</strong>: diez semillas por red de E2 y de la referencia E3 de 1210 parámetros, tres trayectorias clásicas deterministas y análisis de los 17 sistemas sobre 608 fechas. Actualizar una casilla con evidencia retrospectiva no la convierte en cumplimiento confirmatorio ni transfiere las propiedades del primer módulo de 1211 parámetros a la receta evaluada.</p>
 <p>La <a class="reference internal" href="08_verificacion_estadistica.html#e3-final-extended-audit"><span class="std std-ref">auditoría ampliada cerrada en 8.18</span></a> aporta <strong>796 trabajos completos</strong> y evaluación de los 19 sistemas en D00–D03, con 76 paneles, análisis terminado y 16 figuras. El corte parcial de 251 trabajos permanece en 8.17 como antecedente. La potencia prospectiva completa, la justificación de generalización y los restantes requisitos de R3 siguen pendientes. Estos datos actualizan la evidencia sin asignar nota, tope ni acreditación de R1/R3.</p>
 <section id="tope-de-calificacion-segun-el-modelo-original">
@@ -548,12 +549,12 @@
 <h2>14.3 Cálculo de la nota final<a class="headerlink" href="#calculo-de-la-nota-final" title="Link to this heading">#</a></h2>
 <p>Si el evaluador determina un cumplimiento por componente <span class="math notranslate nohighlight">\(q_i\)</span> entre 0 y 100 y aplica los pesos <span class="math notranslate nohighlight">\(w_i\)</span> de la tabla, el puntaje ponderado queda en la escala de 0 a 100:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-final-grade">
-<span class="eqno">(49)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
+<span class="eqno">(50)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
 P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 \qquad
 \mathrm{Nota\ final}=\min\left(\mathrm{Tope},\;5{,}0\times\frac{P_{\mathrm{ponderado}}}{100}\right).
 \]</div>
-<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(49)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a <span class="math notranslate nohighlight">\(q_i\)</span>, no se estima el puntaje y no se calcula una nota o tope del proyecto.</p>
+<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(50)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a <span class="math notranslate nohighlight">\(q_i\)</span>, no se estima el puntaje y no se calcula una nota o tope del proyecto.</p>
 </section>
 <section id="niveles-de-desempeno-por-componente">
 <h2>14.4 Niveles de desempeño por componente<a class="headerlink" href="#niveles-de-desempeno-por-componente" title="Link to this heading">#</a></h2>
@@ -876,9 +877,9 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Ratificar condiciones/derechos de distribución del paquete final y proporcionar sus instrucciones exactas. La evaluación completa no equivale a reproducción independiente de todos los pesos.</p></td>
 </tr>
 <tr class="row-even"><td><p>Reproducción independiente desde cero en contenedor, por persona ajena al código, con discrepancia máxima.</p></td>
-<td><p>Humana pendiente; reproducción automática de agregados completada.</p></td>
-<td><p><a class="reference internal" href="11_informe_tecnico.html"><span class="std std-doc">Contenedor científico y recibo</span></a>: 431 filas, 3963 pares numéricos, 101 grupos campo/unidad con error máximo cero. No reentrena 143 predictores.</p></td>
-<td><p>Persona externa, ejecución desde cero, alcance, discrepancias y concepto firmado. El recibo automático no se atribuye a una persona ni se convierte en acta humana.</p></td>
+<td><p>Humana pendiente; ruta automática completa del libro y tablas principales comprobada.</p></td>
+<td><p>La <a class="reference internal" href="11_informe_tecnico.html#e3-next-human-book-20261121"><span class="std std-ref">sección 11.12</span></a> reconstruyó el corte <code class="docutils literal notranslate"><span class="pre">f5c960e</span></code>: 39 páginas, 76 filas principales aditivas y siete V3 visibles, con comparaciones por campo/unidad. Los recibos A/B anteriores permanecen separados.</p></td>
+<td><p>Persona ajena al código, ejecución propia desde cero, alcance declarado, discrepancias y concepto auténtico. La guía admite precálculos costosos versionados con su generador; no impone C universalmente. La automatización no se atribuye a un tercero.</p></td>
 </tr>
 </tbody>
 </table>
@@ -902,14 +903,14 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 <td><p>Cerrar los controles pendientes; recalcular dependencias y ranking antes/después si una corrección modifica resultados. No se recibieron observaciones del docente.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Mejores configuraciones exportadas, ida y vuelta y <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code>.</p></td>
-<td><p>Catorce representantes neuronales ONNX verificados offline; el perfil servido conserva cinco habilitados y doce sistemas precalculados.</p></td>
+<td><p>Catorce representantes neuronales ONNX verificados; las vistas originales conservan cinco y <code class="docutils literal notranslate"><span class="pre">/perfil-14</span></code> sirve las catorce, con aceptación pública para H.</p></td>
 <td><p>MLP16, LSTM32, GRU32, E3 y TSMixer conservan sus recibos de la semilla 271801. El cierre posterior verifica las nueve redes restantes en 608 ventanas de prueba y 53 de calibración por red, sin entrenamiento ni cambio de calibradores. Los tres clásicos requieren más historia/estado que siete barras. <a class="reference internal" href="05_configuraciones_exportacion.html"><span class="std std-doc">Capítulo 5</span></a> y <a class="reference internal" href="05_configuraciones_exportacion.html#e3-completion-20261120"><span class="std std-ref">cierre técnico</span></a>.</p></td>
-<td><p>La paridad de las nueve exportaciones ya está ejecutada. Siguen pendientes la política final común, los costes completos comparables y la integración/aceptación del producto; no se presume capacidad pública ni cumplimiento de R3. Los tres clásicos conservan su justificación de contrato.</p></td>
+<td><p>La paridad y la aceptación pública del perfil14 ya están ejecutadas en 10.10. Permanecen los costes completos comparables, la capacidad y disponibilidad sostenidas no medidas y los requisitos científicos de R3. Los tres clásicos conservan su justificación de contrato.</p></td>
 </tr>
 <tr class="row-even"><td><p>Dash Plotly en Render, prueba de humo, contingencia y funcionamiento en sustentación.</p></td>
-<td><p>Perfil local comprobado; Render Live informado por el operador, sin recibo público aprobado.</p></td>
-<td><p>Tres páginas, 17 sistemas, cinco ONNX en vivo y doce precálculos. La actualización pasó 29 pruebas, seis recorridos de navegador y cinco inferencias dentro del contenedor; <a class="reference internal" href="09_dashboard_predictivo.html"><span class="std std-doc">capítulo 9</span></a>. V2 pasó también su recorrido local de cinco modelos. <a class="reference external" href="https://deeplearning-e3-dashboard.onrender.com">URL de Render</a>.</p></td>
-<td><p>Con autoDeploy desactivado, Manual Deploy del último commit, esperar Live y ejecutar el cliente CPU V2 con SHA efectivo de 40 caracteres; comprobar páginas, cinco predicciones/intervalos/explicaciones, huellas y recibo público. La concordancia del SHA autodeclarado no es una atestación completa. Completar contingencia y funcionamiento durante la sustentación; <a class="reference internal" href="10_despliegue_render.html"><span class="std std-doc">capítulo 10</span></a>.</p></td>
+<td><p>Aceptación pública aprobada para H <code class="docutils literal notranslate"><span class="pre">feb83dbc08197bde7076857bd8ff475de197efd2</span></code>; clientes de cinco y catorce modelos.</p></td>
+<td><p>Las vistas originales de tres páginas y cinco modelos y el perfil ampliado de catorce conservan sus recibos públicos de HTTPS, predicciones, intervalos, explicaciones y guardas. El Manual Deploy de H y la aceptación con SHA efectivo están comprobados; <a class="reference internal" href="10_despliegue_render.html#e3-render-public-acceptance-20261120"><span class="std std-ref">10.10</span></a> conserva la evidencia y el alcance, separado del SHA del libro. <a class="reference external" href="https://deeplearning-e3-dashboard.onrender.com">URL de Render</a>.</p></td>
+<td><p>Repetir aceptación ante cambios del código o los artefactos; no hay un despliegue pendiente de H para este ensayo. La concordancia del SHA autodeclarado no es una atestación completa ni mide capacidad o disponibilidad sostenidas. Completar contingencia y funcionamiento durante la sustentación.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Jupyter Book sin errores, ficha de modelo y declaración de datos.</p></td>
 <td><p>Publicación técnica de base comprobada; cierre científico pendiente.</p></td>
@@ -983,6 +984,12 @@ superioridad R3. La actualización no asigna una nota ni un tope.</p>
 <span id="e3-r1-evaluation-scope-20261120"></span><h2>14.6 Alcance del dictamen específico de R1 de V3<a class="headerlink" href="#alcance-del-dictamen-especifico-de-r1-de-v3" title="Link to this heading">#</a></h2>
 <p>La revisión técnica de 6.18 da por sustentada documentalmente la adaptación de lectura y pérdida de V3 bajo el criterio de la guía y la cobertura declarada. La aditiva no hereda esa conclusión; V3 no hereda los 796 trabajos. La utilidad del piloto sigue siendo desfavorable y no se cambia la regla ni la propuesta por una ablación que ganó después.</p>
 <p>El concepto IA no acredita R2 o R3 ni completa las 45 condiciones. No es una nota del docente, no hace oficial un tope y no convierte la modalidad de tercero por IA en una defensa del estudiante. La cobertura histórica efectiva y las búsquedas nuevas se distinguen de los intentos API sin respuesta. Las declaraciones anteriores de R1 pendiente conservan su corte; la matriz actual está en 6.18.</p>
+</section>
+<section id="alcance-posterior-de-la-evidencia-sin-nota-automatica">
+<h2>14.7 Alcance posterior de la evidencia, sin nota automática<a class="headerlink" href="#alcance-posterior-de-la-evidencia-sin-nota-automatica" title="Link to this heading">#</a></h2>
+<p>Los 20 nuevos ajustes CPU de V4 y sus 1.210 salidas son desarrollo expuesto y terminaron con abandono por la regla fijada. No heredan R1 de V3 ni validación de la aditiva. La validación controlada de los procedimientos detectó inflación de rechazo y no aprueba la batería; completar el código no acredita R3.</p>
+<p>La guía pide pruebas de igualdad con dirección y margen práctico, efectos/intervalos y las demás condiciones simultáneas; no exige literalmente tres p-valores unilaterales del nulo más fuerte <code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">&lt;=</span> <span class="pre">delta</span></code>. La propuesta anterior de ese nulo conserva su identidad. MCS aparece entre los procedimientos admitidos, pero la extensión ensayada requiere una traducción contrastiva justificada y falló su calibración. La <a class="reference internal" href="08_verificacion_estadistica.html#e3-next-statistics-data-20261121"><span class="std std-ref">sección 8.25</span></a> conserva las distinciones y los datos de validación.</p>
+<p>La nueva ruta de contenedor cierra una preparación técnica de reproducción del corte fijado; falta la persona real y su concepto. Las reglas condicionales R1/R2/R3 y los once pesos permanecen sin cambios, y este cierre no concede un tope o una nota por sí solo.</p>
 </section>
 </section>
 
@@ -1070,6 +1077,7 @@ superioridad R3. La actualización no asigna una nota ni un tope.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-posterior-que-modifica-la-interpretacion">Evidencia posterior que modifica la interpretación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-dictamen-especifico-de-r1-de-v3">14.6 Alcance del dictamen específico de R1 de V3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-posterior-de-la-evidencia-sin-nota-automatica">14.7 Alcance posterior de la evidencia, sin nota automática</a></li>
 </ul>
   </nav></div>
 

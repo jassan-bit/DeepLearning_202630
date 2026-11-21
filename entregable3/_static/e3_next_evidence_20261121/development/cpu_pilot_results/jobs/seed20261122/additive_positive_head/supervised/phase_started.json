@@ -1,0 +1,84 @@
+{
+  "kind": "e3_extended_optimizer_phase_started",
+  "request_sha256": "5687d69ae7fe0865a69f56f0eafcaced78d9b040d072b2b233636afa505d0b3a",
+  "source_identity": {
+    "new_CPU_plan_sha256": "2e6b71b53683d376ff24990b39bc591458816a3001cd62c432fdc1c7c8d8d819",
+    "job": {
+      "index": 7,
+      "name": "additive_positive_head",
+      "seed": 20261122,
+      "job_id": "seed20261122/additive_positive_head",
+      "parameters": 1210
+    },
+    "source_manifest_sha256": "87ff742443a9e7d353663390ec54ec1c44b902c3d9fcded4ccf3c3af797df205",
+    "admission_sha256": "701f281b30ff52b140e7d62a42d6232b5fc3b1a36b955c9ffd640e1b0a5a522f",
+    "cohort": {
+      "python": "3.12.14",
+      "torch": "2.8.0+cpu",
+      "numpy": "2.3.5",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "device": "cpu",
+      "cpu_threads": 2,
+      "interop_threads": 1,
+      "deterministic_algorithms": true,
+      "allow_tf32": false,
+      "environment_thread_limits": {
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "energy_FLOPs_or_CPU_capacity_measured": false
+    },
+    "model_configuration": {
+      "version": "e3-innovation-model-v2",
+      "variant": "additive_positive_head",
+      "seed": 20261122,
+      "backbone": "unchanged_M00_CNN_LSTM_content_attention",
+      "base": {
+        "config": {
+          "history_days": 7,
+          "input_features": 5,
+          "cnn_channels": 8,
+          "hidden_size": 12,
+          "kernel_size": 3,
+          "reference_lookback": 3,
+          "radius": 1.0,
+          "epsilon": 0.0001,
+          "query_bound": 1.0,
+          "readout_bound": 4.0,
+          "penalty_bound": 1.0,
+          "initial_penalty": 0.25,
+          "temperature_min": 0.25,
+          "initial_temperature": 1.0,
+          "ablation": "full"
+        },
+        "initialization_seed": 20261122,
+        "status": "development_candidate_not_preregistered",
+        "output": "sigma7/training_target_scale",
+        "novelty_verified": false,
+        "statistical_superiority_verified": false
+      },
+      "penalty": false,
+      "radial_saturation": false,
+      "trainable_parameters": 1210,
+      "readout_precision": "float64",
+      "encoder_attention_precision": "float32",
+      "u_scale": 0.019540729290595266,
+      "y_scale": 0.02063308428641038,
+      "minimum_normalized_scale": 0.0001,
+      "nu": 5.0,
+      "lambda_nll": 0.0,
+      "quadrature_sha256": "c3ce43d3cb81767ee3fc0daa0ccfe8432a3326643e28e51273a49cc1fe01c2fe",
+      "prediction_units": "sigma7_original",
+      "base_forward_not_called": true,
+      "single_softplus_on_linear_score": true,
+      "exact_mean_claimed": false,
+      "calibration_claimed": false,
+      "R1_R3_verified": false
+    }
+  },
+  "budget_seconds": 120.0,
+  "started_unix": 1795224024.2015269,
+  "deadline_unix": 1795224144.2015269,
+  "counter_scope": "attempted phase; no optimizer step claimed by marker alone"
+}

@@ -67,3 +67,14 @@ La {ref}`sección 11.11 <e3-resolution-archive-20261120>` añade una ejecución 
 La cápsula 0.3.1-REVIEW quedó publicada en GitHub con cuatro assets comprobados por HTTP público y SHA256: **72.823.602 bytes y 18.659 miembros** del tar, incluidos catorce ONNX históricos y V3 experimental. No es una nueva versión de Zenodo; el titular tiene campos y enlaces exactos preparados para corregir metadatos mediante Edit y evaluar New version después de revisar derechos. La {download}`matriz vigente de diecisiete requisitos <../_static/e3_resolution_20261120/requirements_matrix_current.csv>` conserva los estados de Render y DOI ya verificados.
 
 El paquete del tercero mantiene instrucciones ejecutables, tolerancias previas y comparación automática, con formularios sin firma. Añade un controlador C fijado para dos ajustes históricos futuros y 110 comparaciones, cuya inspección y pruebas de software no son entrenamiento ejecutado ni reproducción de los 796/30 trabajos. La reproducción humana debe proceder de su propia ejecución; la excepción IA de R1 no la convierte en una tarea ya cumplida. Los 796 trabajos y los 30 ajustes históricos quedan preservados.
+
+
+## 12.7 Avance ejecutado y límites del cierre
+
+La {ref}`extensión de desarrollo V4 <e3-next-v4-development-20261121>` completó 20 ajustes nuevos y 1.210 predicciones en CPU, bajo un plan público anterior al primer ajuste. La receta quedó **1,443261 % peor** que MSE-only y se abandonó conforme a su regla previa. No se alteran los 796 trabajos de la aditiva, los treinta ajustes V3, su resultado adverso ni las reglas anteriores.
+
+La {ref}`implementación y validación controlada <e3-next-statistics-data-20261121>` aporta código numérico y resultados completos, incluidos los adversos. El exceso de rechazo del MCS propuesto impide declarar aprobada esa batería. Las propuestas de datos siguen sin admisión y la familia condicional V4 de 21 rivales no autoriza una campaña de planificación para la receta abandonada.
+
+La {ref}`reproducción automática integral del libro fijado <e3-next-human-book-20261121>` recompiló el corte `f5c960e` y regeneró tablas principales sin reentrenar, preservando todos los CSV/manifiestos históricos. El requisito humano de la guía exige la ejecución desde cero del libro en contenedor por una persona ajena al código y su discrepancia observada; admite resultados costosos precalculados con generadores documentados. No exige repetir universalmente los 796/30 ajustes o un nivel C completo. El kit permite esa ejecución real y mantiene vacíos la identidad y el concepto del tercero.
+
+La {download}`tabla de pendientes, trabajo y evidencia <../_static/e3_next_evidence_20261121/NEXT_ACTIONS.md>` y la {download}`matriz vigente <../_static/e3_next_evidence_20261121/requirements_matrix_current.csv>` identifican qué se ejecutó y qué depende aún del criterio científico o de una persona externa. No se registra protocolo ni Colab de confirmación para las recetas detenidas.
