@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "kind": "PANEL_ADMISSION_TEMPLATE_NOT_ADMISSION",
+  "AI_assistance_declared": true,
+  "status": "ZERO_ADMITTED_PANELS",
+  "new_downloads_in_this_component": 0,
+  "new_predictions": 0,
+  "potential_panels": [
+    {
+      "id": "F00",
+      "role": "principal",
+      "instrument_proposal": "BTCUSDT spot",
+      "domain": "crypto 24/7",
+      "source_proposal": "Binance public spot kline archives",
+      "source_URL_template": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1d/BTCUSDT-1d-YYYY-MM-DD.zip",
+      "license_evidence_URL": "https://github.com/binance/binance-public-data/blob/d571690eb66760763b0bd6e27e8cd35603c7e244/TERMS_AND_CONDITIONS.md",
+      "rights_status": "historic Binance Vision record declares CC-BY-NC-SA-4.0; verify exact new archive coverage and attribution/share-alike/noncommercial conditions; do not retrofit E1 D00 terms",
+      "proposed_development_first": "2017-08-17",
+      "diversity_requirement": "principal reference; new test exposure and raw-source clocks audited",
+      "units": "OHLC USDT, volume BTC; UTC 1d; archive timestamp unit determined from actual schema, including provider microsecond change",
+      "selected_for_final_campaign": false,
+      "status": "CONCRETE_SOURCE_PROPOSAL_NOT_ADMITTED",
+      "is_reserved_test": false,
+      "exposure_status": "UNKNOWN",
+      "provider_version": null,
+      "download_timestamp_utc": null,
+      "license_text_sha256": null,
+      "raw_files_manifest_sha256": null,
+      "canonical_data_sha256": null,
+      "actual_first_endpoint": null,
+      "actual_last_endpoint": null,
+      "final_test_first": null,
+      "final_test_last": null,
+      "final_test_T": null,
+      "end_date_policy": "development ends at a recorded acquisition cutoff; test window comes only from a demonstrated unopened seal or dates after the complete protocol lock, fixed by power before outcomes",
+      "exposure_ledger_sha256": null,
+      "admission_receipt_sha256": null
+    },
+    {
+      "id": "F01",
+      "role": "additional_1",
+      "instrument_proposal": "AAPL.US",
+      "domain": "US single-stock equity",
+      "source_proposal": "Stooq official daily OHLCV export, conditional on rights admission",
+      "source_URL_template": "https://stooq.com/q/d/l/?s=aapl.us&i=d",
+      "license_evidence_URL": "https://stooq.com/",
+      "rights_status": "UNVERIFIED; obtain official data terms including academic processing, local retention and public redistribution, hash exact terms; do not infer rights from CSV accessibility or a code license",
+      "proposed_development_first": "2005-01-03",
+      "diversity_requirement": "different financial domain plus at least 1.5x principal development endpoint count; if size condition fails, requires prospectively justified second guide axis using development metadata only",
+      "units": "USD OHLC and shares; exchange sessions; adjusted/raw and corporate-action policy unresolved until provider metadata",
+      "selected_for_final_campaign": false,
+      "status": "CONCRETE_SOURCE_PROPOSAL_NOT_ADMITTED",
+      "is_reserved_test": false,
+      "exposure_status": "UNKNOWN",
+      "provider_version": null,
+      "download_timestamp_utc": null,
+      "license_text_sha256": null,
+      "raw_files_manifest_sha256": null,
+      "canonical_data_sha256": null,
+      "actual_first_endpoint": null,
+      "actual_last_endpoint": null,
+      "final_test_first": null,
+      "final_test_last": null,
+      "final_test_T": null,
+      "end_date_policy": "development ends at a recorded acquisition cutoff; test window comes only from a demonstrated unopened seal or dates after the complete protocol lock, fixed by power before outcomes",
+      "exposure_ledger_sha256": null,
+      "admission_receipt_sha256": null
+    },
+    {
+      "id": "F02",
+      "role": "additional_2",
+      "instrument_proposal": "GLD.US",
+      "domain": "physically backed gold ETF, not a futures contract",
+      "source_proposal": "Stooq official daily OHLCV export, conditional on rights admission",
+      "source_URL_template": "https://stooq.com/q/d/l/?s=gld.us&i=d",
+      "license_evidence_URL": "https://stooq.com/",
+      "rights_status": "UNVERIFIED; same official-terms admission steps as F01; no futures-roll series is asserted",
+      "proposed_development_first": "2005-01-03",
+      "diversity_requirement": "commodity exposure versus crypto plus at least 1.5x principal development endpoint count; quantify size/noise in development, never choose by test improvement",
+      "units": "USD OHLC and ETF shares; exchange sessions; distributions/splits policy verified before admission",
+      "selected_for_final_campaign": false,
+      "status": "CONCRETE_SOURCE_PROPOSAL_NOT_ADMITTED",
+      "is_reserved_test": false,
+      "exposure_status": "UNKNOWN",
+      "provider_version": null,
+      "download_timestamp_utc": null,
+      "license_text_sha256": null,
+      "raw_files_manifest_sha256": null,
+      "canonical_data_sha256": null,
+      "actual_first_endpoint": null,
+      "actual_last_endpoint": null,
+      "final_test_first": null,
+      "final_test_last": null,
+      "final_test_T": null,
+      "end_date_policy": "development ends at a recorded acquisition cutoff; test window comes only from a demonstrated unopened seal or dates after the complete protocol lock, fixed by power before outcomes",
+      "exposure_ledger_sha256": null,
+      "admission_receipt_sha256": null
+    },
+    {
+      "id": "F03",
+      "role": "additional_3",
+      "instrument_proposal": "TLT.US",
+      "domain": "long US Treasury bond ETF / rates exposure",
+      "source_proposal": "Stooq official daily OHLCV export, conditional on rights admission",
+      "source_URL_template": "https://stooq.com/q/d/l/?s=tlt.us&i=d",
+      "license_evidence_URL": "https://stooq.com/",
+      "rights_status": "UNVERIFIED; obtain and hash official rights; interest-rate exposure does not turn this into a yield series",
+      "proposed_development_first": "2005-01-03",
+      "diversity_requirement": "rates/bond domain versus crypto plus at least 1.5x principal development endpoint count; common equity-market clocks and shocks reported",
+      "units": "USD OHLC and ETF shares; exchange sessions; ex-dividend/corporate-action policy predeclared",
+      "selected_for_final_campaign": false,
+      "status": "CONCRETE_SOURCE_PROPOSAL_NOT_ADMITTED",
+      "is_reserved_test": false,
+      "exposure_status": "UNKNOWN",
+      "provider_version": null,
+      "download_timestamp_utc": null,
+      "license_text_sha256": null,
+      "raw_files_manifest_sha256": null,
+      "canonical_data_sha256": null,
+      "actual_first_endpoint": null,
+      "actual_last_endpoint": null,
+      "final_test_first": null,
+      "final_test_last": null,
+      "final_test_T": null,
+      "end_date_policy": "development ends at a recorded acquisition cutoff; test window comes only from a demonstrated unopened seal or dates after the complete protocol lock, fixed by power before outcomes",
+      "exposure_ledger_sha256": null,
+      "admission_receipt_sha256": null
+    }
+  ],
+  "same_task_and_schema": {
+    "raw_window_shape": [
+      7,
+      5
+    ],
+    "columns": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "raw_input": "bars t-7 through t-1 only",
+    "target": "std population, ddof=0, of log-close returns ending at t over 7 returns; needs close t-7 through t",
+    "full_target_support": "eight closes; assert disjoint allowed raw support across partition boundaries",
+    "horizon": "one next available bar/session; calendar differs by market, no forward filling as traded bars",
+    "target_units": "unannualized raw volatility; metrics not pooled across panel scales",
+    "quality_checks": [
+      "strict sorted unique market timestamps, official trading-calendar handling",
+      "finite positive coherent OHLC, finite volume>=0",
+      "duplicates and missing-session rules frozen; no outcome-based row drops",
+      "corporate actions/adjustment regime and volume units coherent",
+      "all fit-only preprocessing statistics, target scales and epsilon reference recorded",
+      "first and last feature/target close timestamps for every sample, support-overlap purge receipts",
+      "no test statistics enter normalization, hyperparameter selection, regime thresholds or power"
+    ]
+  },
+  "admission_sequence": [
+    {
+      "step": 1,
+      "action": "Inspect official source metadata and rights only. Save URLs, access timestamps, exact license text, upstream attribution, redistribution conditions and hash. If rights cannot be established, this source remains unadmitted; choose a new source/version before any final performance is examined."
+    },
+    {
+      "step": 2,
+      "action": "Write exposure inventory joining all prior source/file/date/symbol hashes, notebooks, dashboard queries and experiment receipts. The old 55 development dates and D00-D03 final endpoints are exposed. A blank access log is not proof of no exposure."
+    },
+    {
+      "step": 3,
+      "action": "Custodian or auditable controller downloads canonical raw archives under the admitted terms; verify provider checksums where supplied and local hashes; retain all failed attempts. Public exports include data only if rights permit, otherwise source reconstruction manifest plus permissible aggregates."
+    },
+    {
+      "step": 4,
+      "action": "On development-only metadata, confirm same task and >=2 guide diversity axes per additional panel (domain plus >=1.5x endpoint count is the concrete proposal). If not met, revise before a new public protocol version. Quantify common-shock dependence without final-loss inspection."
+    },
+    {
+      "step": 5,
+      "action": "Freeze source/version/instrument, clocks, adjustment policy, causal sample builder, train/selection/planning/calibration and test raw-support boundaries, T, embargo and exclusions. Rights and exposure decisions precede final reserve assignment."
+    },
+    {
+      "step": 6,
+      "action": "Bind inaccessible final data manifest/checksum or future acquisition rule and audit seal. A disclosed old reserved_confirmation label is superseded by later exposure; never inherit it."
+    },
+    {
+      "step": 7,
+      "action": "All systems use identical endpoint IDs; record each fit/predict/evaluate access. Unlock once only after all final checkpoints/hyperparameters/epochs and expected job IDs are committed."
+    }
+  ],
+  "historical_panels": {
+    "D00": "BTCUSDT 2023-01-01..2026-08-31; already exposed, E1/E2 provenance must remain its own",
+    "D01": "AAPL WIKI/Bokeh 2000-03-01..2013-03-01, old public-domain declaration, later exposed",
+    "D02": "ETHUSDT 2018..2021, declared CC-BY-NC-SA-4.0, later exposed",
+    "D03": "BTCUSD_PERP 2020-09..2024, declared CC-BY-NC-SA-4.0, later exposed; same BTC underlying",
+    "authority": {
+      "path": "/workspace/e3_completion_worktree/experiments/e3_completion_20261120/reproduction/reference/additional_domain_admission_metadata.json",
+      "sha256": "d607371a933a35d66a414ca3fcfcec8f8faa966540a60528c1298e21f2ef97eb"
+    }
+  },
+  "panel_dependency": "Different instruments and domains are not independent panels automatically. All three ETF/stock assets can share macro shocks with BTC; cross-panel statistics must report that limitation. Do not multiply independent powers.",
+  "rejection_conditions": [
+    "unknown/restrictive rights incompatible with the intended processing/export",
+    "unverifiable exposure or known final-test inspection",
+    "causal support or corporate-action inconsistency",
+    "missing OHLCV/volume not reconciled before selection",
+    "fewer than two declared diversity axes",
+    "insufficient sample length at planned power; do not extend test in response to outcomes"
+  ],
+  "required_final_receipt_fields": [
+    "instrument",
+    "provider",
+    "exact_source_URLs",
+    "rights_text_sha256",
+    "allowed_processing_and_exports",
+    "raw_manifest_sha256",
+    "canonical_arrays_sha256",
+    "source_clock_and_units",
+    "actual_date_ranges",
+    "sample_endpoint_ids_sha256",
+    "exposure_ledger_sha256",
+    "rights_decision",
+    "exposure_decision",
+    "split_support_audit_sha256",
+    "admission_status",
+    "test_unopened_evidence_sha256",
+    "admission_timestamp_utc"
+  ]
+}

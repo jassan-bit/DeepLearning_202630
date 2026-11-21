@@ -499,6 +499,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-fijada-antes-de-los-resultados">Validación fijada antes de los resultados</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-del-piloto-v5-e-input-only-senal-de-desarrollo-no-confirmacion">8.28 Auditoría del piloto V5 e input-only: señal de desarrollo, no confirmación</a></li>
 </ul>
             </nav>
         </div>
@@ -512,6 +513,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bloque-d-verificacion-estadistica-y-evaluacion-ampliada">
 <h1>8 Bloque D Verificación estadística y evaluación ampliada<a class="headerlink" href="#bloque-d-verificacion-estadistica-y-evaluacion-ampliada" title="Link to this heading">#</a></h1>
+<p><strong>Corte actual, 21 de noviembre de 2026:</strong> <a class="reference internal" href="#e3-input-only-audit-20261121"><span class="std std-ref">8.28</span></a> recalcula el piloto V5 desde predicciones guardadas: input-only mejora <strong>2,7595 %</strong> frente a global y gana <strong>4/5</strong> semillas sobre <strong>55 fechas ya expuestas</strong>. Fue seleccionada después de examinar desarrollo; pasa del rango 6 al 1 entre selección y assessment y presenta SD entre semillas <strong>7,27×</strong> la de global. Se continúa su preparación con identidad propia; V5 completo conserva abandono. El protocolo sigue <strong>DRAFT</strong>, sin métodos aprobados, potencia, tamaño final o prueba sellada; <strong>R3 no acreditada</strong>.</p>
 <p><strong>Corte de la auditoría exploratoria del 19 de noviembre de 2026:</strong> la auditoría exploratoria de 19 sistemas en D00–D03 completó <strong>796 trabajos, 76 paneles, 12 tablas de análisis y 16 figuras</strong>. El <a class="reference internal" href="#e3-final-extended-audit">cierre de 8.18</a> contiene sus resultados y limitaciones. Las secciones anteriores conservan sus cortes históricos; los 48 contrastes retrospectivos descritos a continuación pertenecen a otra comparación y no se trasladan a la auditoría ampliada. Esta última no calculó nuevos valores <em>p</em>, ajuste de Holm o tres pruebas confirmatorias por rival.</p>
 <p><strong>Corte del 17 de noviembre de 2026: análisis retrospectivo ejecutado sobre predicciones congeladas.</strong> La CNN-LSTM con atención de contenido y salida aditiva positiva tiene diez semillas; cada una de las trece redes rivales también tiene diez. Persistence, SeasonalNaive y ARIMA conservan una trayectoria determinista cada uno. La comparación incluye los diecisiete sistemas sobre las mismas 608 fechas, sin eliminar rivales, semillas ni observaciones.</p>
 <p>Los <strong>48 contrastes principales</strong> —dieciséis rivales por tres procedimientos— rechazaron sus nulas frente al margen heredado, con <strong>Holm sobre los 48 p-valores</strong> y máximo p ajustado <strong>0,0019</strong>. Las sensibilidades temporales conservaron esa decisión. Este resultado está condicionado al calendario y a los supuestos de cada método: <strong>no acredita por sí solo R3</strong>, un diseño confirmatorio previo o la originalidad del mecanismo. El MCS auxiliar conserva diez sistemas, incluido E3; no identifica un ganador único.</p>
@@ -3036,6 +3038,58 @@ La asistencia de IA se declara; no sustituye a la persona autora o externa.</p>
 <p>La puerta confirmatoria permanece cerrada por la <a class="reference internal" href="07_diseno_riguroso.html#e3-r3-route-design-20261121"><span class="std std-ref">ruta de diseño</span></a>. Las muestras sintéticas no admiten paneles, rehabilitan candidatas abandonadas o fijan R/T de mercado. Las cotas Monte Carlo y las reglas de igualdad, dirección, margen y adecuación conservan su alcance separado. La asistencia de IA está declarada; no sustituye los actos científicos o académicos pendientes.</p>
 </section>
 </section>
+<section id="auditoria-del-piloto-v5-e-input-only-senal-de-desarrollo-no-confirmacion">
+<span id="e3-input-only-audit-20261121"></span><h2>8.28 Auditoría del piloto V5 e input-only: señal de desarrollo, no confirmación<a class="headerlink" href="#auditoria-del-piloto-v5-e-input-only-senal-de-desarrollo-no-confirmacion" title="Link to this heading">#</a></h2>
+<p>Se verificó el <a class="reference download internal" download="" href="../_downloads/e33feef2700b2236df41d5036ac3deec/public_results.zip"><code class="xref download docutils literal notranslate"><span class="pre">ZIP</span> <span class="pre">público</span> <span class="pre">original</span></code></a> contra SHA-256 <code class="docutils literal notranslate"><span class="pre">beabedeb63ff10324b310ba8b86105505c3be783216e38770a092a7be438a17c</span></code>, sus siete hashes internos y las identidades/recibos disponibles. Fuentes inmutables: <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/c4ca86f1431afeaa958ff0b544b453ab17a4d7b8">código <code class="docutils literal notranslate"><span class="pre">c4ca86f1</span></code></a> y <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/05c1a637f13356dd1df6b8c5aa8f4676dda61c12">resultados <code class="docutils literal notranslate"><span class="pre">05c1a637</span></code></a>, <code class="docutils literal notranslate"><span class="pre">runs/e3_seoi_v5/run-01</span></code>. El <a class="reference download internal" download="" href="../_downloads/d793bedcc6dda42bc0774213298622ab/audit_saved_results.py"><code class="xref download docutils literal notranslate"><span class="pre">script</span> <span class="pre">de</span> <span class="pre">auditoría</span> <span class="pre">sin</span> <span class="pre">dependencias</span> <span class="pre">de</span> <span class="pre">modelos</span></code></a> recalcula RMSE y MAE desde 1.760 predicciones: 1.650 neurales y 110 de controles analíticos. No hubo entrenamientos, forwards, predicciones nuevas ni remuestreos en esta tarea.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Receta o control</p></th>
+<th class="head text-right"><p>RMSE medio individual</p></th>
+<th class="head text-right"><p>MAE medio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input_only_mse</span></code></p></td>
+<td class="text-right"><p>0,0020515608242855487</p></td>
+<td class="text-right"><p>0,0015484962302801841</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">global_mse</span></code></p></td>
+<td class="text-right"><p>0,0021097806965662083</p></td>
+<td class="text-right"><p>0,0016536738452131044</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code></p></td>
+<td class="text-right"><p>0,0021142309406569867</p></td>
+<td class="text-right"><p>0,0018134828077995932</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">global_crps</span></code></p></td>
+<td class="text-right"><p>0,002136141247569356</p></td>
+<td class="text-right"><p>0,0015644943808417393</p></td>
+</tr>
+<tr class="row-even"><td><p>V5 completo <code class="docutils literal notranslate"><span class="pre">seoi_mse</span></code></p></td>
+<td class="text-right"><p>0,0021609604200311396</p></td>
+<td class="text-right"><p>0,001702061588126237</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">additive_mse</span></code> del piloto</p></td>
+<td class="text-right"><p>0,0021713942553732656</p></td>
+<td class="text-right"><p>0,0018378139638598589</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">output_only_mse</span></code></p></td>
+<td class="text-right"><p>0,002242368698424727</p></td>
+<td class="text-right"><p>0,0017718685032641983</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">floor_only</span></code></p></td>
+<td class="text-right"><p>0,002790340619362471</p></td>
+<td class="text-right"><p>0,0018317657439326028</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se conserva la media de RMSE por semilla; no se sustituye por RMSE combinado ni por un ensamble. Input-only mejora <strong>2,759522 %</strong> frente a global y gana <strong>4/5</strong> pares de semillas; frente a V5 completo gana los cinco. V5 completo tiene <strong>5,332506 % más RMSE</strong> que el mejor control y conserva <strong><code class="docutils literal notranslate"><span class="pre">ABANDON_CURRENT_SEOI_RECIPE</span></code></strong>. Su regla fijada para <code class="docutils literal notranslate"><span class="pre">seoi_mse</span></code> no autoriza promover automáticamente la ablación.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/2237e08e41dc761ab2980e05737f89d0/EMPIRICAL_AUDIT.md"><code class="xref download docutils literal notranslate"><span class="pre">auditoría</span> <span class="pre">íntegra</span></code></a> incluye <a class="reference download internal" download="" href="../_downloads/ca49fa5ce458010de10cb7a0e2a9c62a/metrics_recomputed.csv"><code class="xref download docutils literal notranslate"><span class="pre">métricas</span> <span class="pre">por</span> <span class="pre">semilla</span></code></a>, <a class="reference download internal" download="" href="../_downloads/c38451392e505d49a077cd7504030bcd/all_pairwise_summary.csv"><code class="xref download docutils literal notranslate"><span class="pre">las</span> <span class="pre">56</span> <span class="pre">comparaciones</span> <span class="pre">dirigidas</span></code></a> y <a class="reference download internal" download="" href="../_downloads/8f13c7c85b975cd988c62dc424e06180/all_pairwise_seed_differences.csv"><code class="xref download docutils literal notranslate"><span class="pre">las</span> <span class="pre">diferencias</span> <span class="pre">emparejadas</span></code></a>. La SD de RMSE entre semillas es <strong>0,0000724269</strong> para input-only frente a <strong>0,00000995977</strong> para global, unas <strong>7,27 veces</strong> mayor. Input-only ocupa el <strong>último rango de selección</strong> (RMSE medio 0,00430490508, 54 fechas julio–agosto) y el primero de assessment (55 fechas septiembre–octubre). El cambio de dificultad entre periodos impide interpretar la reducción de error como estabilidad demostrada.</p>
+<p>La sensibilidad descriptiva frente a global conserva ganancias <strong>4,45694 % / 1,15452 %</strong> en primeras 27/últimas 28 fechas; en cuartiles del objetivo realizado obtiene <strong>−0,591 % / 1,275 % / 6,896 % / 3,210 %</strong>. Son particiones retrospectivas pequeñas, no regímenes causales ni réplicas independientes. Las mismas 55 fechas y etiquetas se comparten entre semillas: <strong>275 filas semilla-fecha no son 275 observaciones independientes</strong>. La selección posterior a resultados y la exposición previa persisten; no se añaden p-valores, intervalos o potencia confirmatorios.</p>
+<p>Los recibos documentan 30 ajustes, <strong>965 épocas y 16.405 pasos</strong>, cero fallos/interrupciones registrados, <strong>76,02349 s activos y 10,00463 s de IO de checkpoint</strong>; estos tiempos no incluyen todo el coste de VM, instalación o respaldo. La recuperación declara sesión anterior cerrada y cierre final <code class="docutils literal notranslate"><span class="pre">assessment_finished</span></code>. Se verificó consistencia del inventario, pero el ZIP no contiene pesos o arrays originales para verificar materialmente sus bytes ni distribuciones atómicas para acreditar calibración. El <a class="reference download internal" download="" href="../_downloads/61a4a351ac0f8428288374af269f9dbe/AUDIT_SUMMARY.json"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">verificable</span></code></a> separa esas limitaciones de las comprobaciones ejecutadas.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/cc2ff0894e4caafd6218aeb1fe925929/CONFIRMATION_PROTOCOL_DRAFT.json"><code class="xref download docutils literal notranslate"><span class="pre">protocolo</span> <span class="pre">confirmatorio</span> <span class="pre">DRAFT</span></code></a> es una propuesta nueva con <strong>20 rivales</strong> y estimando condicionado al calendario. La ruta de tres procedimientos sobre semillas requiere justificar supuestos y correspondencia con F2; <strong>no hay tres métodos aprobados ni una puerta F2 satisfecha</strong>. Siguen pendientes cuatro admisiones, reserva verificable, margen práctico, covarianza de toda la familia, calibración de métodos, potencia ≥0,90 por contraste y conjunta reportada, R/T/B y presupuesto finales. Ni esta auditoría ni el notebook de preparación ejecutan o programan una confirmación. Los 796 trabajos aditivos, el 2,7043 % adverso de V3 y el abandono V4 permanecen sin cambios; no son resultados de input-only.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3214,6 +3268,7 @@ La asistencia de IA se declara; no sustituye a la persona autora o externa.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-fijada-antes-de-los-resultados">Validación fijada antes de los resultados</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-del-piloto-v5-e-input-only-senal-de-desarrollo-no-confirmacion">8.28 Auditoría del piloto V5 e input-only: señal de desarrollo, no confirmación</a></li>
 </ul>
   </nav></div>
 

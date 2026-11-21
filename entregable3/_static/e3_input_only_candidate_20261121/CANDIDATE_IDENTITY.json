@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "candidate_id": "input-only-overlap-mse-1",
+  "runtime_entrypoint": "runtime.candidate.InputOnlyOverlapModel",
+  "historical_recipe": "input_only_mse",
+  "source_commit": "c4ca86f1431afeaa958ff0b544b453ab17a4d7b8",
+  "selection_evidence_commit": "05c1a637f13356dd1df6b8c5aa8f4676dda61c12",
+  "created_at_utc": "2026-11-21T22:25:48.932025+00:00",
+  "timezone": "America/Bogota",
+  "kind": "prospective_algorithm_identity_after_exposed_development_selection",
+  "architecture": {
+    "encoder": "own frozen M00 CNN-LSTM-content-attention",
+    "trainable_parameters": 1262,
+    "atoms": 3,
+    "free_probability_logits": 2,
+    "input_shape": [
+      "B",
+      7,
+      5
+    ],
+    "encoder_dtype": "float32",
+    "head_dtype": "float64",
+    "local_input_normalization": true,
+    "local_output_scale_restitution": false,
+    "output": "sum p_k sqrt(A + (6/49) u_k^2)",
+    "atomic_units": "mean_fit_U * ordered_softplus_increments",
+    "loss": "mean ((prediction-Y)/mean_fit_Y)^2",
+    "CRPS_weight": 0.0
+  },
+  "preprocessing": {
+    "coordinate": "log OHLC relative to final known close, divided by max(RMS six known returns, 1e-6*r_fit)",
+    "volume": "log1p volume",
+    "standardization": "channel mean and population SD from fit only",
+    "statistics_refit_on_selection_or_test": false,
+    "known_history_only": true
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.003,
+    "weight_decay": 0.0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip_norm": 1.0,
+    "checkpoint_selection": "earliest epoch minimizing selection RMSE",
+    "HPO": false,
+    "final_R": null,
+    "minimum_final_R": 10,
+    "fit_budget_seconds": 120,
+    "fit_budget_scope": "nominal active compute; hardware and full family comparability require protocol admission; no hard wall claim",
+    "final_seed_selection": {
+      "bank_path": "confirmation/FINAL_SEED_BANK.json",
+      "bank_sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+      "rule": "first R archived independent random IDs, R frozen after power planning and before test release",
+      "bank_capacity": 4096,
+      "larger_R": "prepare a new prospective bank/protocol before any test release; do not recycle IDs"
+    }
+  },
+  "development_selection": {
+    "post_hoc": true,
+    "rows": 55,
+    "seeds": [
+      20261127,
+      20261128,
+      20261129,
+      20261130,
+      20261131
+    ],
+    "independent_confirmation": false,
+    "automatic_promotion": false,
+    "V5_full_rule_unchanged": "ABANDON_CURRENT_SEOI_RECIPE"
+  },
+  "R1_review": "docs/R1_VERDICT.json",
+  "teacher_acceptance_claimed": false,
+  "R2_defense_observed": false,
+  "R3_accredited": false,
+  "confirmation_protocol_frozen": false,
+  "runtime_source_sha256": {
+    "runtime/__init__.py": "1859336e9427f6a05e74ca99dfcf62153e2909eb4b8c845914f5ba9edaecde67",
+    "runtime/candidate.py": "ce2bad9cd87ff76f4164be576d64773dc3cb7e121b44efa3bd79238b78c31c2e",
+    "runtime/vendor/__init__.py": "fc929d8a2afbaa2b9143ad7ad90b3e6fea08118771ea84c7de099e2fbb22bc2b",
+    "runtime/vendor/seoi_v5/__init__.py": "e0e6a13b16669eb48419eca1246762baf51fc9e91a77deb29d8c898c024aae5d",
+    "runtime/vendor/seoi_v5/data.py": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432",
+    "runtime/vendor/seoi_v5/frozen_original.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "runtime/vendor/seoi_v5/model.py": "215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855"
+  },
+  "requirements_sha256": "4f1394a71057f31d1c83ce4a38b8b602be703b439605fa44dddf45031564fbe2",
+  "new_optimizer_steps_in_this_delivery": 0,
+  "AI_assistance_declared": true
+}

@@ -1,0 +1,520 @@
+{
+  "schema_version": 1,
+  "kind": "INPUT_ONLY_CANDIDATE_CONFIRMATION_PROTOCOL_DRAFT",
+  "created_date_utc": "2026-11-21",
+  "AI_assistance_declared": true,
+  "candidate_recipe": "input_only_mse",
+  "candidate_identity_reference": {
+    "path": "CANDIDATE_IDENTITY.json",
+    "sha256": "d07a106d1bfc8721edbf994b9e4227659d07d6d26a0d32d661c91a747e1592c2",
+    "bound_in_this_draft": true
+  },
+  "contingent_on_candidate_decision": "CONTINUAR",
+  "status": "PREPARATION_DRAFT_WITH_SUBSTANTIVE_OPEN_GATES",
+  "is_frozen_protocol": false,
+  "is_preregistration": false,
+  "confirmation_execution_enabled": false,
+  "R3_accredited": false,
+  "execution_in_this_component": {
+    "new_training_fits": 0,
+    "new_model_predictions": 0,
+    "new_market_downloads": 0,
+    "new_statistical_resamples": 0,
+    "new_MC_replicates": 0,
+    "software_checks": "JSON parsing, references and arithmetic only"
+  },
+  "historical_states_preserved": {
+    "additive_historical_jobs": 796,
+    "V3": "NO_GO; atom_crps 2.7043119888% worse than atom_mse_only",
+    "V4": "ABANDON_CURRENT_V4_RECIPE",
+    "V5": "ABANDON_CURRENT_SEOI_RECIPE; no promotion under its pilot rule",
+    "input_only_selection": "post-hoc development signal on previously exposed 55 dates, 5 seeds; not independent confirmation"
+  },
+  "planning_route_chosen": {
+    "id": "CONDITIONAL_CALENDAR_PAIRED_SEED_ROUTE_B",
+    "selection_status": "CONCRETE_PROSPECTIVE_PLANNING_PROPOSAL_SELECTED_NOT_METHOD_ADMISSION",
+    "calendar_Z": "a specified admitted and sealed test calendar/panel, held fixed for seed-axis inference",
+    "primary_metric": "arithmetic mean over seeds of individual RMSE on all fixed panel endpoints",
+    "RMSE_s_m": "sqrt(mean_t((prediction_s_m_t-y_t)^2))",
+    "D_s_j": "RMSE_s_j-RMSE_s_candidate",
+    "W_s_j": "(1-0.02)*RMSE_s_j-RMSE_s_candidate",
+    "primary_theta_j": "E_seed[D_s_j | Z]",
+    "relative_mean_gain": "1-E_seed[RMSE_candidate|Z]/E_seed[RMSE_j|Z]",
+    "practical_theta_j": "E_seed[W_s_j | Z] > 0 iff relative_mean_gain > .02, provided rival risk > 0",
+    "sampling": "Independent training seeds; pairing across all models within each seed. Dates and seed-date rows are not independent replicates. Deterministic rivals repeated by reference without fake model fits.",
+    "explicit_scope_limit": "A conditional mean over randomly initialized training procedures on fixed test calendars, not the historical long-run process target Psi. No assertion of temporal-process generalization from seed-only p-values.",
+    "historical_Psi_preserved": "Psi_m=E_seed[sqrt(E_time[squared_error_m|seed])]; prior crossed P1/P2/MCS remained unvalidated and are not adopted as approved methods",
+    "no_silent_alternative": "Changing to sqrt(E_seed,time squared error), an ensemble RMSE, or a temporal MSE objective requires a new prospective version, not outcome-driven substitution"
+  },
+  "family": {
+    "mandatory_Top10": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer"
+    ],
+    "mandatory_strong_baselines": [
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA"
+    ],
+    "guide_required_rival_count": 16,
+    "declared_project_extensions": [
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess",
+      "global_mse"
+    ],
+    "primary_rivals": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess",
+      "global_mse"
+    ],
+    "primary_rival_count": 20,
+    "total_systems": 21,
+    "no_performance_exclusions": true,
+    "historical_V4_21_roster_inherited": false,
+    "attribution_controls_separate": [
+      "global_crps",
+      "V3 atom_mse_only with its original cohort/version/scales; not automatically part of the new confirmatory family",
+      "V5 full seoi_mse with adverse state preserved"
+    ],
+    "controls_not_counted_as_literature_victories": true,
+    "config_authority": {
+      "path": "/workspace/e3_completion_worktree/book_e3/_static/e3_bloques_ab_20261115/deployment_master.csv",
+      "sha256": "d850dd6487a898fa4f7793a1f4f72acb7be1e9a0950051b8e69eea2be5370ee7"
+    },
+    "support_projection_proposal": "Use the historical common max(raw,sqrt(A)) for every point predictor, store both raw and projected outputs. Freeze this policy in each system identity; do not change a frozen recipe silently.",
+    "projection_policy_status": "PROPOSED_PENDING_BENCHMARK_IDENTITY_AUDIT",
+    "inputs_and_fairness": "Same raw 7x5 OHLCV and available history, dates, labels, search opportunities, external processing and information set. Candidate intrinsic local normalization is the mechanism under investigation, recorded separately from external preprocessing. Cross-over normalization sensitivity cannot replace any rival.",
+    "hyperparameter_policy": "Candidate hyperparameters are identity-frozen (AdamW lr.003,batch32,max40epochs,patience8,clip1,weight_decay0,HPO false). Each benchmark must bind its original validation-selected recipe. No new candidate HPO or epoch policy may be inserted under this identity. Assess equal opportunities and full-family fitting rules before final protocol; no approved new-panel fair-budget claim.",
+    "optimization_budget": "unresolved actual numbers; freeze after fair-budget feasibility audit; compare configurations, epochs, total wall/GPU time and SAE combined phases"
+  },
+  "panels": {
+    "potential_panel_ids": [
+      "F00",
+      "F01",
+      "F02",
+      "F03"
+    ],
+    "admission_template": "DATA_ADMISSION_TEMPLATE.json",
+    "admitted_count": 0,
+    "heldout_status": "UNKNOWN_NOT_ASSERTED",
+    "old_D00_D03": "exposed development only; archived reserved_confirmation labels do not certify current reserve",
+    "task": "one-next-bar forecast of unannualized rolling 7-return volatility, ddof=0, same raw OHLCV dimensions",
+    "split_policy": "Chronological train/development-selection/development-planning/calibration if used/test; embargo by raw close support, not calendar-day arithmetic. All boundary samples whose eight-close target/input support intersects adjacent partitions are removed by rule, never by loss.",
+    "sealed_test_choice": "Use a custodian-sealed never-examined window if verifiable, otherwise collect dates after the complete protocol/exposure lock. Calendar need not be future as a universal rule. T fixed from power before test release; no optional stopping based on performance."
+  },
+  "margin": {
+    "relative_RMSE_improvement_proposal": 0.02,
+    "status": "NEW_PROSPECTIVE_INTERNAL_CHOICE_NOT_INHERITED_V5_RULE_NOT_UNIVERSAL_GUIDE",
+    "minimum_practical_gain_is_not_planning_alternative": true,
+    "planning_alternative_gain_by_panel_and_rival": null,
+    "E1_alignment_and_cost_benefit": "must establish before final protocol; 2% currently unproved as operational benefit",
+    "MAE_secondary": "absolute units; no candidate selection by final MAE"
+  },
+  "methods": [
+    {
+      "id": "C1",
+      "name": "paired_seed_t",
+      "unit": "independent paired training seed; calendar held fixed",
+      "equality_estimand": "E_seed[D_s | Z]",
+      "practical_estimand": "E_seed[W_s | Z]",
+      "statistic": "mean(V)/(sd(V,ddof=1)/sqrt(R)), V=D or W",
+      "p_rule": "two-sided Student t(R-1), require positive mean; direction failure yields decision p=1",
+      "assumptions": [
+        "iid sampled seed units, models paired within seed",
+        "finite nonzero variance; exact Student law only with normal seed differences, otherwise justified asymptotics and tail calibration"
+      ],
+      "current_status": "PROPOSED_NOT_ADMITTED",
+      "F2_Table4_status": "not explicitly listed for F2; paired t is listed elsewhere with Nadeau-Bengio for resampled partitions, which are absent here",
+      "p_export_policy": "Always retain p_raw_two_sided, signed statistic and mean/shift direction. Also export p_positive_direction_decision (raw p when favorable, otherwise1); never overwrite the raw p with the direction-gated decision value."
+    },
+    {
+      "id": "C2",
+      "name": "paired_seed_bootstrap_t",
+      "unit": "paired seed vector; all models and their complete common date vector travel together",
+      "equality_estimand": "E_seed[D_s | Z]",
+      "practical_estimand": "E_seed[W_s | Z]",
+      "statistic": "observed t and centered bootstrap-t; recompute studentizer for every draw",
+      "p_rule": "(1+count(abs(t_star)>=abs(t_obs)))/(B+1), positive mean required; exact discrete rank/CI inversion fixture",
+      "assumptions": [
+        "iid seed vectors independent of fixed evaluation calendar",
+        "nondegenerate variance and sufficiently high finite moments",
+        "bootstrap extreme-tail approximation validated at the actual family threshold"
+      ],
+      "current_status": "PROPOSED_NOT_ADMITTED",
+      "F2_Table4_status": "seed bootstrap is not the stationary temporal bootstrap listed for F2",
+      "p_export_policy": "Always retain p_raw_two_sided, signed statistic and mean/shift direction. Also export p_positive_direction_decision (raw p when favorable, otherwise1); never overwrite the raw p with the direction-gated decision value."
+    },
+    {
+      "id": "C3",
+      "name": "paired_seed_Wilcoxon_signed_rank",
+      "unit": "paired seed differences, not dates",
+      "equality_estimand": "symmetric location/shift of D_s | Z; not an arbitrary-distribution mean",
+      "practical_estimand": "symmetric location/shift of W_s | Z; not an arbitrary-distribution mean",
+      "statistic": "exact signed-rank statistic; zero differences excluded only from signed-rank effective n, retained in all mean/metric records",
+      "p_rule": "exact two-sided p with prespecified deterministic handling of tied absolute ranks and zeros; direction must be positive; no unlabelled normal approximation",
+      "assumptions": [
+        "independent continuous symmetric seed differences about a common location",
+        "finite mean only when linking a symmetric location to a mean",
+        "symmetry of D does not imply symmetry of W; each needs its own planning evidence"
+      ],
+      "current_status": "PROPOSED_NOT_ADMITTED",
+      "F2_Table4_status": "Wilcoxon appears in F1/F5, not as a listed F2 seed procedure; this is a proposed seed-axis adaptation",
+      "p_export_policy": "Always retain p_raw_two_sided, signed statistic and mean/shift direction. Also export p_positive_direction_decision (raw p when favorable, otherwise1); never overwrite the raw p with the direction-gated decision value."
+    }
+  ],
+  "multiplicity": {
+    "alpha": 0.05,
+    "primary_family": "C1,C2,C3 x 20 rivals x {EPA D,practical-margin W}; single Holm family",
+    "primary_p_slots": 120,
+    "primary_decision": "For every rival require all six Holm-adjusted p<.05 and favorable mean/shift directions; report the largest adjusted p. Missing/unsupported test retains its slot with decision p=1 and no success.",
+    "additional_families": "Each additional panel keeps its own complete120-slot positive-direction family. A separate declared180-slot negative-direction D family across all3 additional panels protects the adverse-inferiority screen. Raw bilateral p remain visible, even when a positive-direction decision is1. Ablations/subgroups/robustness have named separate families; full-rule validation includes the new inferiority screen.",
+    "MCS": "separate temporal MSE global diagnostic at declared alpha=.05 proposal; candidate singleton is not a candidate-specific signed pairwise p or an effect-margin test",
+    "all_counts_reported": true,
+    "why_120": "Conservative explicit project design, not a universal guide count; primary equality and practical claims are both protected. No truncation by favorable ranks.",
+    "p_record_contract": {
+      "p_raw_two_sided": "unmodified bilateral p, including significant negative effects",
+      "p_signed_statistic": "signed statistic, mean(D/W), and signed-rank direction/estimand recorded",
+      "p_positive_direction_decision": "raw bilateral p if favorable direction, otherwise1; this conservative decision gate is not relabelled as the raw p",
+      "p_Holm_primary": "Holm across120 positive-direction decision slots per panel; unmodified bilateral p also exported",
+      "p_negative_direction_decision": "for D only, raw bilateral p if negative direction, otherwise1; reuse same raw statistic/resamples",
+      "p_Holm_additional_inferiority": "Holm across180 slots=3 additional panels x20 rivals x3 methods on D. A significant negative direction from any prespecified valid procedure fails the no-significant-inferiority condition; unsupported procedures cannot certify absence of inferiority."
+    },
+    "additional_inferiority_family": {
+      "name": "ADDITIONAL_PANEL_INFERIORITY_D",
+      "panels": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "rivals": 20,
+      "methods": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "slots": 180,
+      "alpha": 0.05,
+      "control": "single Holm across all180 negative-direction D decisions",
+      "data_reuse": "same raw bilateral D p and fitted predictions, no new fits or invented extra independent observations",
+      "failure_rule": "any supported method/panel/rival has adjusted negative-direction p<.05 -> consistency fails; all mean gain and other adequacy requirements still apply",
+      "absence_of_rejection": "does not prove equivalence or noninferiority; report power/CI and supported scope"
+    }
+  },
+  "effects_and_intervals": {
+    "raw_effect": "mean(D_s), paired seed SD and d_z=mean(D_s)/sd(D_s), with assumptions/uncertainty",
+    "relative_effect": "1-mean(RMSE_candidate)/mean(RMSE_rival), ratio-of-means, not mean of per-seed ratios",
+    "CI": "Paired-seed bootstrap-t difference intervals and paired ratio intervals; publish marginal 95% plus simultaneous intervals at a prespecified family coverage. Discrete ties and p/CI inversion checked.",
+    "effect_threshold": "paired d_z>=.2 when meaningful and justified for these paired seed units; not Cliff delta from unpaired date rows",
+    "effect_threshold_status": "guide permits Cohen when applicable; preserve definition and do not switch effect size after outcome",
+    "degenerate_scale": "if sd(D)=0, no invented infinite effect; record deterministic/degenerate status and use the prespecified supported policy"
+  },
+  "decision_rule": {
+    "no_automatic_R3": true,
+    "R3_claim_requires": [
+      "all 20 main-panel mean RMSE favorable and >2% proposed practical margin",
+      "all three method families for EPA and practical alternatives favorable after Holm in the supported scope",
+      "non-negligible applicable effect and favorable 95% CI",
+      "mean gain against every rival in >=2 of the 3 additional panels; no significant inferiority to any rival in any additional panel",
+      "adequacy, calibration/residuals as applicable, validation-test consistency and robust conclusion",
+      "actual F2 correspondence justified; no automatic credit from seed-only methods",
+      "same-identity R1/R2 evidence; author understanding/defense remains an authentic academic act, not a fabricated software receipt"
+    ],
+    "adverse_outcome": "report no R3 superiority; retain all p/CI/failures; no candidate/control substitution",
+    "insufficient_power": "not equivalence; retain as underpowered/inconclusive",
+    "pipeline_failure": "stop opening new final endpoints; preserve incomplete receipt and checkpoints; resume only identical source/data/seed/job identity",
+    "additional_inferiority": "Any valid prespecified significant negative D result after the separate180-slot Holm screen fails additional-panel consistency. No negative bilateral p is hidden by the primary positive-direction p=1 policy. No-rejection is not equivalence."
+  },
+  "power_plan": "POWER_PLAN.json",
+  "statistical_design": "STATISTICAL_DESIGN.md",
+  "guide_evidence": "GUIDE_TO_EVIDENCE.md",
+  "final_design": {
+    "R": null,
+    "T_by_panel": null,
+    "B": null,
+    "final_seed_ids": null,
+    "minimum_R_by_guide": 10,
+    "minimum_R_for_exact_Wilcoxon_first_Holm_threshold_no_ties": 13,
+    "arithmetic_only_not_power": "2^(1-R)<.05/120 first holds at R=13 without ties/zeros. This conservative first-rank resolution bound is not a mathematical lower bound for every possible ordering of the full Holm vector and is not a sufficient final seed count or power certificate.",
+    "power_per_contrast": null,
+    "joint_power": null,
+    "training_jobs": null,
+    "budget_wall_seconds": null,
+    "budget_money": null,
+    "budget_status": "UNMEASURED_NOT_AUTHORIZED_FOR_EXECUTION",
+    "final_seed_selection": {
+      "bank_path": "confirmation/FINAL_SEED_BANK.json",
+      "bank_sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+      "rule": "first R archived independent random IDs, R frozen after power planning and before test release",
+      "bank_capacity": 4096,
+      "larger_R": "prepare a new prospective bank/protocol before any test release; do not recycle IDs"
+    }
+  },
+  "readiness_gates": [
+    {
+      "id": "candidate_identity",
+      "requirement": "CONTINUAR technical decision and content-bound candidate identity, source/model/preprocessor/dependency hashes; no mutation of V5",
+      "required_evidence": "candidate manifest",
+      "status": "ADMITTED",
+      "pass": true,
+      "evidence_path": "confirmation/evidence/candidate_identity.json",
+      "evidence_sha256": "f1d7733d6bc66ff3659d1b82deb84e871dc0337b2293a8fa4368696e26c21f8f"
+    },
+    {
+      "id": "full_comparator_recipes",
+      "requirement": "All 20 rival recipes and target projection policy hash-bound; 16 guide-required plus 4 declared project extensions",
+      "required_evidence": "comparator recipe manifest",
+      "status": "NOT_COMPLETE",
+      "pass": false
+    },
+    {
+      "id": "four_panels_admitted",
+      "requirement": "All four panels have rights/provenance/exposure decisions, bytes and causal partitions; historical exposed windows excluded from final reserve",
+      "required_evidence": "admission receipts x4",
+      "status": "NOT_ADMITTED",
+      "pass": false
+    },
+    {
+      "id": "conditional_method_derivation",
+      "requirement": "All three C procedures have stated, defensible assumptions and exact finite-calendar scope; mean versus signed-rank location distinguished",
+      "required_evidence": "statistical derivation",
+      "status": "PROPOSED_NOT_VALIDATED",
+      "pass": false
+    },
+    {
+      "id": "F2_guide_correspondence",
+      "requirement": "Explain whether conditional seed-axis route plus separately justified temporal evidence satisfies the actual F2 requirements; no automatic credit",
+      "required_evidence": "guide-to-method rationale",
+      "status": "UNRESOLVED_NOT_AUTOPASS",
+      "pass": false
+    },
+    {
+      "id": "fresh_method_validation",
+      "requirement": "Source-bound deterministic tests and fresh full/partial-null validation satisfy the preregistered calibration/coverage rules in their supported scope",
+      "required_evidence": "method validation receipt",
+      "status": "NOT_EXECUTED",
+      "pass": false
+    },
+    {
+      "id": "planning_inputs_complete",
+      "requirement": "At least 5 paired development seeds against all 20 rivals on all 4 panels, failures and covariance included",
+      "required_evidence": "planning covariance receipt",
+      "status": "MISSING_FULL_FAMILY_INPUTS",
+      "pass": false
+    },
+    {
+      "id": "margin_justification",
+      "requirement": "New 2% prospective relative margin reconciled with E1 metric/margin and operational cost; no post-test choice",
+      "required_evidence": "margin rationale",
+      "status": "PROVISIONAL_COST_BENEFIT_UNPROVEN",
+      "pass": false
+    },
+    {
+      "id": "power_and_final_design",
+      "requirement": "R>=10 and exact-test/tail resolution feasible; >=.90 per full contrast decision with precision; joint power reported; T,R,B,costs fixed",
+      "required_evidence": "power receipt",
+      "status": "NOT_DIMENSIONED",
+      "pass": false
+    },
+    {
+      "id": "budget_and_recovery",
+      "requirement": "Actual job counts, wall/time/storage ceilings and deterministic recovery/export readback test; no silent fit reruns or failed seed drops",
+      "required_evidence": "budget and software receipts",
+      "status": "ROOT_RUNTIME_PENDING",
+      "pass": false
+    },
+    {
+      "id": "public_preexecution_record",
+      "requirement": "Complete protocol, identity and admission/power receipts hash-bound in a dated public Git commit/tag before final evaluation starts",
+      "required_evidence": "public source anchor",
+      "status": "NOT_FINAL",
+      "pass": false
+    },
+    {
+      "id": "one_time_evaluation_seal",
+      "requirement": "Expected checkpoints and selected epochs committed before labels open; one evaluation receipt per protocol/panel, idempotent export and readback",
+      "required_evidence": "evaluation seal",
+      "status": "NOT_PREPARED",
+      "pass": false
+    },
+    {
+      "id": "adequacy_and_robustness_plan",
+      "requirement": "E1/E2-consistent gap/calibration/residual/consistency thresholds, exact noise/missingness/learning-curve protocol and complete multiple-testing counts fixed before final test",
+      "required_evidence": "adequacy and robustness registration with E1/E2 source bindings",
+      "status": "THRESHOLDS_NOT_FINAL",
+      "pass": false
+    }
+  ],
+  "not_gates_for_method_research": [
+    "instructor prior approval",
+    "having all four real panels",
+    "final power before the development pilot that supplies its inputs"
+  ],
+  "provenance": {
+    "guide": {
+      "path": "/workspace/work/e3_inicio/guia_e3.txt",
+      "sha256": "4c7555c4e3ae39e0f940d3cf802fd421e3576faf7ea4d3231bf5223242f81004"
+    },
+    "bank": {
+      "path": "/workspace/e3_completion_worktree/experiments/e3_evidence_close_20261120/inventory/benchmark_bank.csv",
+      "sha256": "d2da992945054653ff46e16793f6ef51795b0f18d796195840203e634b650fa6"
+    },
+    "recipes": {
+      "path": "/workspace/e3_completion_worktree/book_e3/_static/e3_bloques_ab_20261115/deployment_master.csv",
+      "sha256": "d850dd6487a898fa4f7793a1f4f72acb7be1e9a0950051b8e69eea2be5370ee7"
+    },
+    "preflight": {
+      "path": "/workspace/e3_completion_worktree/experiments/e3_candidate_battery_preflight_20261121/GATE_REPORT.json",
+      "sha256": "949c2e169fe4223be9ba7c5354a3faf7c0fa57ca5ef79bb30e2ffec0f8077374"
+    },
+    "methods": {
+      "path": "/workspace/e3_r3_route_20261121/methods_admissibility/METHOD_ADMISSIBILITY.json",
+      "sha256": "7ef099b3adb61e17e503691f3edb93568979666ffa94a13a6c9db82337433a61"
+    },
+    "previous_results": {
+      "path": "/workspace/e3_r3_route_20261121/statistical_revision/RESULTS_DECISION.json",
+      "sha256": "c6ab7e6eb678e884eed7cedb53c88dd920388cd0bcdd6eaedbb2625666f9310f"
+    },
+    "handoff": {
+      "path": "/workspace/e3_seoi_v5_pilot_20261121/docs/CONFIRMATION_HANDOFF.md",
+      "sha256": "b9201f9e238eb1d5c432ef11d4e07de1a96b15043fd14a6c204fe953d447e27c"
+    },
+    "historical_admission": {
+      "path": "/workspace/e3_completion_worktree/experiments/e3_completion_20261120/reproduction/reference/additional_domain_admission_metadata.json",
+      "sha256": "d607371a933a35d66a414ca3fcfcec8f8faa966540a60528c1298e21f2ef97eb"
+    }
+  },
+  "method_admission_contract": {
+    "gate_evidence": [
+      "evidence_path",
+      "evidence_sha256"
+    ],
+    "method_status_required": "ADMITTED_VALIDATED",
+    "method_evidence": [
+      "evidence_path",
+      "evidence_sha256"
+    ],
+    "panel_receipt": "admission_receipt_path plus content hash binding rights/exposure/causal splits/seal",
+    "power_receipt": [
+      "completed_power_receipt_path",
+      "completed_power_receipt_sha256"
+    ],
+    "booleans_alone_are_evidence": false,
+    "scope": "software contract for later evidence, not an assertion these receipts exist"
+  },
+  "temporal_complementary_evidence": {
+    "status": "PROPOSED_NOT_VALIDATED",
+    "methods": [
+      "DM-HLN on mean-over-fixed-seeds temporal squared error differences",
+      "stationary bootstrap for the same temporal MSE target",
+      "MCS optimal-set coverage at proposed alpha.05 for the same temporal MSE target"
+    ],
+    "target": "E_time[mean_seed(error_j^2-error_c^2) | fitted models]",
+    "not_same_as_primary_Theta": true,
+    "counts_as_three_primary_seed_tests": false,
+    "scope_and_F2_correspondence": "must be explicitly justified; no p fabricated from MCS exclusion, no constant-instrument GW as an additional independent test"
+  },
+  "adequacy_status": {
+    "passed": false,
+    "requirements": [
+      "trivial-baseline superiority",
+      "E1/E2-consistent gap margins fixed prospectively",
+      "Mincer-Zarnowitz and temporal residual diagnosis with correct covariance",
+      "atomic probability scores/calibration diagnostics with no MSE guarantee",
+      "separate frozen calibration split if intervals are offered",
+      "selection-test consistency and robustness"
+    ],
+    "thresholds": "not supplied by historical V5 gain; reconcile source E1/E2 and prospective use before final protocol"
+  },
+  "candidate_id": "input-only-overlap-mse-1",
+  "candidate_training_identity": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.003,
+    "weight_decay": 0.0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip_norm": 1.0,
+    "checkpoint_selection": "earliest epoch minimizing selection RMSE",
+    "HPO": false,
+    "final_R": null,
+    "minimum_final_R": 10,
+    "fit_budget_seconds": 120,
+    "fit_budget_scope": "nominal active compute; hardware and full family comparability require protocol admission; no hard wall claim",
+    "final_seed_selection": {
+      "bank_path": "confirmation/FINAL_SEED_BANK.json",
+      "bank_sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+      "rule": "first R archived independent random IDs, R frozen after power planning and before test release",
+      "bank_capacity": 4096,
+      "larger_R": "prepare a new prospective bank/protocol before any test release; do not recycle IDs"
+    },
+    "full_family_fair_budget_admitted": false
+  },
+  "documentary_software_validation": {
+    "kind": "FINAL_DOCUMENTARY_COHERENCE_SWEEP_NOT_METHOD_VALIDATION",
+    "date_utc": "2026-11-21",
+    "passed": true,
+    "checks_passed": [
+      "five owned artifacts present; root-added seed bank preserved",
+      "three JSON parse",
+      "family20, primary Holm120, additional inferiority Holm180 arithmetic",
+      "raw bilateral p retained independently of directional decision values",
+      "current identity and final random seed bank hashes match bytes",
+      "no residual consecutive seed rule in five owned files",
+      "all8 historical source hashes match",
+      "routeB remains DRAFT and all3 methods NOT_ADMITTED",
+      "finalR/T/B/power remain unspecified",
+      "candidate_identity gate admitted by actual root evidence receipt hash; other substantive gates remain blocked"
+    ],
+    "root_change_transparently_recorded": "Root replaced the earlier consecutive-ID rule before final manifest with an archived random4096-ID bank. This receipt supersedes the earlier documentary receipt; it does not claim that bank or this policy existed during historical development. No identity/bank bytes edited by this sweep.",
+    "candidate_identity_sha256": "d07a106d1bfc8721edbf994b9e4227659d07d6d26a0d32d661c91a747e1592c2",
+    "seed_bank_sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+    "executed_new_training_fits": 0,
+    "executed_new_predictions": 0,
+    "executed_new_resamples": 0,
+    "executed_new_MC_replicates": 0,
+    "R3_accredited": false,
+    "hashes_except_self": {
+      "GUIDE_TO_EVIDENCE.md": "ff6f7367173964a319a82fcb7d6e17ead659fa7edd00c57e9ea3ad4410aa3736",
+      "STATISTICAL_DESIGN.md": "2b14f91a68e6726cbb145da0cebe06fa4bdbcac0bfb3d9f4fd6547525dd09a51",
+      "DATA_ADMISSION_TEMPLATE.json": "8d6af841c16009ddcfc9106f554fe3712a047e5677034d188383522eb2a34865",
+      "POWER_PLAN.json": "32c923b1bc62719fba41d6a0630e2fc80e14a26b40ac9671e87c994d03801f75"
+    },
+    "candidate_identity_evidence_sha256": "f1d7733d6bc66ff3659d1b82deb84e871dc0337b2293a8fa4368696e26c21f8f",
+    "gate_pass_count": 1
+  },
+  "final_seed_bank": {
+    "path": "FINAL_SEED_BANK.json",
+    "sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+    "selection_rule": "first R entries; determine R before final execution; no outcome-based replacement",
+    "effective_independence_is_assumption": true
+  }
+}

@@ -1,6 +1,6 @@
 # 6 Bloque C El modelo original
 
-**Estado actual de R1:** {ref}`6.18 <e3-r1-substantive-verdict-20261120>` aporta el dictamen técnico por IA favorable y acotado para la adaptación V3. La referencia aditiva sigue sin acreditar diferencia sustantiva; los resultados de ambos objetos se mantienen separados. La revisión nueva {ref}`V4 de 6.19 <e3-next-v4-development-20261121>` conserva la lectura de V3 y cambia su auxiliar; su novedad requiere revisión propia y no hereda ese dictamen.
+**Corte previo de R1 (V3/V4):** {ref}`6.18 <e3-r1-substantive-verdict-20261120>` aporta el dictamen técnico por IA favorable y acotado para la adaptación V3. La referencia aditiva sigue sin acreditar diferencia sustantiva; los resultados de ambos objetos se mantienen separados. La revisión {ref}`V4 de 6.19 <e3-next-v4-development-20261121>` conserva la lectura de V3 y cambia su auxiliar; su novedad requiere revisión propia y no hereda ese dictamen. El dictamen específico posterior de input-only figura en {ref}`6.20 <e3-input-only-mechanism-20261121>`.
 
 La referencia evaluada es **CNN causal → LSTM unidireccional → atención temporal por contenido, con salida aditiva positiva**, de **1210 parámetros**. Sus diez semillas congeladas obtuvieron una RMSE media individual de **0,0029394324** sobre las 608 fechas históricas comunes. La [comparación estadística posterior](08_verificacion_estadistica.md) ya está calculada frente a los 16 rivales de E2; sus resultados no acreditan por sí solos R1, R2 o R3.
 
@@ -612,3 +612,21 @@ El control `u_crps_control`, RMSE media **0,002071168327**, es un **ajuste nuevo
 La diferencia geométrica existe en el diagnóstico, pero **no justificó continuar esta receta V4 tras su piloto real**. Su R1 sigue sin heredar el dictamen de V3; no hay calibración predictiva o R3 acreditadas. Estos veinte ajustes son otra cohorte: no repiten, sustituyen o amplían retrospectivamente los masters de 796/30 ni las 20.400 predicciones antiguas.
 
 V3 original conserva sus **30 ajustes, 2,7043119888 % de deterioro y NO-GO**; la aditiva conserva sus 796 trabajos y la transferencia sus 51 trayectorias/20.400 predicciones. **R3 permanece no acreditada.** La asistencia de IA en implementación, diagnóstico y documentación se declara; no se añaden aprobación docente, firma humana o independencia de mercados por esta revisión.
+
+(e3-input-only-mechanism-20261121)=
+## 6.20 Dictamen propio de input-only: lectura estructurada con escala global
+
+La decisión es **CONTINUAR la preparación de `input-only-overlap-mse-1`**, identidad propia de la variante `input_only_mse` ya presente en el factorial V5. El {download}`dictamen técnico específico <../_static/e3_input_only_candidate_20261121/docs/R1_VERDICT.json>` es favorable y acotado para la adaptación del **algoritmo completo** frente a los antecedentes externos examinados; no es aceptación del docente ni acreditación institucional de R1/R2/R3. La {download}`revisión algebraica y bibliográfica <../_static/e3_input_only_candidate_20261121/docs/R1_THEORY_LITERATURE.md>` y la {download}`matriz requisito–antecedente–diferencia–evidencia <../_static/e3_input_only_candidate_20261121/docs/R1_REQUIREMENTS_MATRIX.csv>` explican cada requisito y sus límites.
+
+Con seis retornos conocidos, $A=\frac17\sum_{i=1}^6(r_i-\bar r_6)^2$, $U=|r_7-\bar r_6|$ y $c=6/49$, la identidad de la etiqueta es $Y=\sqrt{A+cU^2}$. La entrada divide los log-precios OHLC relativos al último cierre conocido por $s_t=\max(\operatorname{RMS}(r_1,\ldots,r_6),10^{-6}r_{\rm fit})$; volumen usa $\log(1+V)$ y la estandarización de canales se estima sólo en ajuste. La ley latente de tres átomos positivos ordenados tiene escala **global** $s_U=\operatorname{mean}_{\rm fit}U$. La lectura conserva
+
+\[
+\widehat Y=\sum_{k=1}^3p_k\sqrt{A+cu_k^2},\qquad
+L=\operatorname{mean}\bigl[(\widehat Y-Y)/\operatorname{mean}_{\rm fit}Y\bigr]^2.
+\]
+
+La suma es una esperanza exacta **bajo la ley finita implementada**, respeta el piso $\sqrt A$ y usa únicamente historia conocida al emitir al final de la ventana. No es una esperanza exacta bajo el mercado. La invariancia de la representación a transformaciones log-afines positivas requiere volumen fijo, estado de ajuste congelado y piso de escala inactivo antes y después. Al omitir restitución local de escala en los átomos, input-only **pierde la equivariancia de salida de V5 completo**. MSE sola no identifica ni garantiza calibración de la ley latente; se presenta como predictor puntual estructurado.
+
+DAIN ya aprende normalización de entrada y RevIN normaliza y restaura estadísticas por instancia. Aquí no se reivindican como novedad suficiente la normalización causal, retirar CRPS o reunir componentes conocidos. Frente al control interno `global_mse`, sólo cambia el preprocesamiento; `atom_mse_only` de V3 es un antecedente interno explícito. La diferencia sustantiva defendida frente a regresión directa, mezclas y normalizadores externos es parametrizar la magnitud aún desconocida de una etiqueta parcialmente observada y aplicar su transformación dependiente de $A$ **antes** de promediar. La búsqueda y la revisión crítica por IA delimitan esa pretensión; no prueban prioridad mundial ni sustituyen la defensa del autor.
+
+Los 30 ajustes V5 de seis recetas y cinco semillas son una cohorte distinta de los 796 trabajos aditivos, de V3 y de V4. V5 completo obtuvo RMSE medio **0,0021609604200311396**, **5,3325 % peor** que input-only, y conserva **`ABANDON_CURRENT_SEOI_RECIPE`**. Su regla no se reaplica a la ablación para promoverla automáticamente. La nueva nominación es posterior a los resultados, no una arquitectura matemática nueva ni una confirmación independiente; {ref}`8.28 <e3-input-only-audit-20261121>` conserva la señal y sus límites.

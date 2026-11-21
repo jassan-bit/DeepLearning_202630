@@ -1,0 +1,128 @@
+Actúa como investigador de aprendizaje profundo, auditor estadístico e ingeniero experimental del Entregable 3:
+
+https://github.com/jassan-bit/DeepLearning_202630
+
+OBJETIVO
+
+Cierra el expediente de input_only_mse con una decisión fundamentada de CONTINUAR o DESCARTAR como candidata para una futura confirmación R3.
+
+Realiza el análisis y prepara los archivos concretos. No te limites a enumerar pendientes ni prometas acreditar R3 antes de obtener resultados.
+
+En esta tarea no ejecutes nuevos entrenamientos. Primero entrega la decisión de candidata y, si procede, el protocolo y código de confirmación revisables.
+
+EVIDENCIA QUE DEBES CONSERVAR
+
+- Los 796 trabajos históricos corresponden a la arquitectura aditiva.
+- V3 conserva su resultado adverso: atom_crps fue 2,7043 % peor que atom_mse_only.
+- V4 conserva su decisión de abandono.
+- El piloto V5 completó 30 ajustes: seis recetas y cinco semillas, sobre 55 fechas de desarrollo previamente expuestas.
+- V5 completo obtuvo RMSE medio 0,0021609604200311396.
+- input_only_mse obtuvo RMSE medio 0,0020515608242855483.
+- global_mse obtuvo RMSE medio 0,0021097806965662083.
+- input_only_mse mejoró aproximadamente 2,7595 % frente a global_mse y ganó en cuatro de cinco semillas.
+- V5 completo conserva ABANDON_CURRENT_SEOI_RECIPE. Su regla no puede reinterpretarse para declarar ganador confirmatorio a una ablación.
+
+Fuentes inmutables:
+- Código del piloto:
+  c4ca86f1431afeaa958ff0b544b453ab17a4d7b8
+- Resultados:
+  05c1a637f13356dd1df6b8c5aa8f4676dda61c12
+- Carpeta de resultados:
+  runs/e3_seoi_v5/run-01
+
+Verifica estos datos contra los archivos originales; informa cualquier discrepancia.
+
+1. RESUELVE LA JUSTIFICACIÓN PROPIA DE LA VARIANTE
+
+Consulta la guía original, el código efectivo y las fuentes primarias más próximas.
+
+Explica exactamente:
+- Qué normaliza input_only_mse y con qué información temporal.
+- Qué lectura estructurada conserva.
+- Qué diferencias presenta frente a global_mse, atom_mse_only y V5 completo.
+- Qué parte corresponde a técnicas conocidas y qué adaptación específica podría defenderse para este problema.
+
+Contrasta especialmente DAIN y RevIN, además de los antecedentes que resulten pertinentes. Incluye referencias verificables y una matriz requisito–antecedente–diferencia–evidencia.
+
+Deriva las ecuaciones desde el código. Comprueba:
+- Causalidad y ausencia de fuga.
+- Soporte inferior de la predicción y esperanza bajo la ley atómica implementada.
+- Invariancia de la representación bajo las condiciones realmente aplicables.
+- Pérdida de la equivariancia de salida del V5 completo.
+- Que MSE sola no identifica ni garantiza calibración de la distribución atómica.
+
+No presentes normalización, retirada de CRPS o combinación de componentes conocidos como novedad suficiente sin argumentar su adaptación sustantiva.
+
+Emite un dictamen técnico explícito: CONTINUAR o DESCARTAR, con requisitos justificados individualmente. Distingue tu dictamen de la aceptación del docente. Si la contribución resulta insuficiente, explica el impedimento concreto y conserva ese resultado; no inventes otra arquitectura para completar el expediente.
+
+2. AUDITA LA SEÑAL EXPERIMENTAL EXISTENTE
+
+Recalcula desde predicciones guardadas:
+- RMSE y MAE por semilla.
+- Diferencias emparejadas frente a los controles.
+- Variabilidad, fallos y estabilidad entre selección y evaluación.
+- Sensibilidad descriptiva a fechas o regímenes, cuando los datos lo permitan.
+
+Respeta la dependencia temporal y distingue fechas de semillas. No trates 275 observaciones como unidades independientes.
+
+Identifica que la variante se seleccionó después de examinar resultados de desarrollo. No conviertas este análisis en preregistro ni confirmación independiente.
+
+No repitas predicciones ni ajustes si los archivos existentes bastan.
+
+3. SI EL DICTAMEN ES CONTINUAR, CONGELA LA CANDIDATA
+
+Asigna identidad y versión propias sin modificar versiones anteriores.
+
+Congela mediante manifiestos y hashes:
+- Arquitectura, código, dependencias y preprocesamiento.
+- Selección y semillas.
+- Datos de desarrollo utilizados y su historial de exposición.
+- Métrica primaria, mejora mínima relevante y reglas de decisión.
+- Familia completa de comparadores exigida por la guía.
+- Presupuesto y recuperación ante interrupciones.
+
+Separa el manifiesto de identidad de la candidata del protocolo confirmatorio. No declares cerrado un protocolo que conserve decisiones sustantivas sin resolver.
+
+4. PREPARA UNA CONFIRMACIÓN VÁLIDA PARA R3
+
+Traduce cada requisito de la guía a evidencia verificable.
+
+Define:
+- Prueba reservada y tres conjuntos adicionales adecuados, con procedencia, licencias, fechas e historial de exposición.
+- Comparadores completos, sin excluir rivales por sus resultados.
+- Procedimientos estadísticos pertinentes y justificación de sus supuestos.
+- Corrección por multiplicidad, efectos, intervalos y margen práctico.
+- Potencia ≥0,90 por contraste y potencia conjunta reportada.
+- Al menos diez semillas finales, o más si el dimensionamiento lo exige.
+- Adecuación, calibración cuando corresponda, consistencia y robustez.
+- Criterios de éxito, fracaso y parada fijados antes de ejecutar.
+
+Distingue el estimando evaluado por cada procedimiento. No acumules pruebas incompatibles para cumplir una cantidad.
+
+Si faltan datos o parámetros de planificación, identifica cuáles y prepara cómo obtenerlos. No inventes un tamaño suficiente ni declares una prueba como reservada si ya fue examinada.
+
+5. ENTREGA IMPLEMENTACIÓN Y EVIDENCIAS
+
+Si procede continuar, prepara un notebook Colab y una celda de inicio con:
+- Fuentes fijadas y verificación de integridad.
+- Instalación reproducible.
+- Presupuesto acotado.
+- Checkpoints, reanudación y respaldo verificado en GitHub.
+- Exportación de predicciones, métricas, costes, fallos y recibos.
+- Evaluación reservada protegida frente a consultas repetidas.
+
+Ejecuta únicamente las verificaciones de software necesarias en esta tarea. Distingue claramente pruebas ejecutadas de entrenamientos pendientes.
+
+Guarda los archivos y cambios en GitHub, conserva los experimentos anteriores y actualiza los capítulos pertinentes con el alcance real de la evidencia. Si modificas el libro, constrúyelo y comprueba la publicación.
+
+ENTREGA FINAL
+
+1. Decisión CONTINUAR o DESCARTAR y fundamento.
+2. Qué requisitos de contribución quedan justificados y cuáles no.
+3. Resultados recalculados y enlaces a sus evidencias.
+4. Identidad congelada y protocolo, si corresponde.
+5. Notebook, celda de inicio y coste estimado.
+6. Commits y verificaciones realizadas.
+7. Siguiente acción concreta del autor.
+
+No promociones automáticamente input_only_mse, no cambies reglas después de los resultados y no marques R3 como acreditada sin ejecutar y satisfacer su confirmación.
