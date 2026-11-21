@@ -20,7 +20,7 @@ el piso numérico no actúa; no prueba mejora predictiva ni calibración.
 
 ## Cómo ejecutar en Colab
 
-Abre `pilot_colab.ipynb`, que tiene fuentes fijadas a un commit y verificadas
+Abre [el notebook en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/e3-seoi-v5-pilot-20261121/experiments/e3_seoi_v5_pilot_20261121/pilot_colab.ipynb), que tiene fuentes fijadas a un commit y verificadas
 por SHA256. Usa un runtime Python CPU; no hace falta una GPU.
 
 1. Monta tu Drive para conservar un **caso nuevo V5**.
@@ -94,6 +94,10 @@ Las1760 filas previstas son1650 predicciones neuronales y110 analíticas.
 La exportación usa una lista permitida y excluye NPZ, pesos, Adam y RNG.
 
 Las comprobaciones realizadas al preparar este paquete se guardan en `qa/`.
+Se verificaron36pruebas y una instalación CPU limpia descargando las fuentes
+públicas fijadas, seguida de preparación real y repetición idempotente con el
+mismo caso. No se ejecutó entrenamiento. El montaje y las escrituras en el
+Drive de Colab no se presentaron como pruebas ejecutadas en esta máquina.
 No se mezclan con entrenamientos, evaluaciones o una reproducción humana.
 Los796trabajos de la aditiva,30 ajustes GPU de V3 y20 CPU de V4 permanecen
 intactos; los resultados adversos anteriores y sus decisiones no cambian.
