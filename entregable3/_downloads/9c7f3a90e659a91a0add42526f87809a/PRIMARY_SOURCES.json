@@ -1,0 +1,103 @@
+{
+  "kind": "primary_literature_scope_audit",
+  "AI_assistance_declared": true,
+  "date_utc": "2026-11-21",
+  "full_paper_read_claimed": false,
+  "sources": [
+    {
+      "id": "HLN2011",
+      "bibliography": "Hansen, P. R., Lunde, A., and Nason, J. M. (2011). The Model Confidence Set. Econometrica 79(2), 453–497.",
+      "doi": "10.3982/ECTA5771",
+      "url": "https://doi.org/10.3982/ECTA5771",
+      "inspected_copy": "https://www.kevinsheppard.com/files/teaching/mfe/advanced-econometrics/Hansen_Lunde_Nason.pdf",
+      "inspected_scope": "Selected full-text passages: pp458–460 definitions and Theorem1; pp462–463 MCS p-values and mixing assumptions; pp464–465 local test discussion; p476 parameter uncertainty.",
+      "supports": "Coverage of all best models conditional on assumptions; exclusion p-values are membership thresholds, not a candidate-specific pair equality test.",
+      "does_not_establish": "Coverage of the supplied nested seed/time RMSE extension, finite R12 validity, or singleton power. The singleton candidate argument in README is an explicitly marked deduction."
+    },
+    {
+      "id": "OE2012",
+      "bibliography": "Owen, A. B., and Eckles, D. (2012). Bootstrapping data arrays of arbitrary order. Annals of Applied Statistics 6(3), 895–927.",
+      "doi": "10.1214/12-AOAS547",
+      "url": "https://doi.org/10.1214/12-AOAS547",
+      "inspected_copy": "https://arxiv.org/pdf/1106.2125",
+      "inspected_scope": "Electronic reprint: abstract and introduction; selected variance passages, and discussion p22 of PDF (printed electronic p22), including smooth functions of means. Reprint expressly differs in pagination from journal.",
+      "supports": "Product reweighting for crossed random effects and careful variance approximation; smooth transformations need a Taylor argument.",
+      "does_not_establish": "Validity for serially dependent temporal columns, nested mean-of-roots, arbitrary degeneracy or small seed count."
+    },
+    {
+      "id": "M2021",
+      "bibliography": "Menzel, K. (2021). Bootstrap With Cluster-Dependence in Two or More Dimensions. Econometrica 89(5), 2143–2188.",
+      "doi": "10.3982/ECTA15383",
+      "url": "https://doi.org/10.3982/ECTA15383",
+      "inspected_copy": "https://bpb-us-e1.wpmucdn.com/wp.nyu.edu/dist/9/2027/files/2021/09/ECTA15383.pdf?bid=2027",
+      "inspected_scope": "Abstract, introduction pp2143–2145, especially footnote1 p2143 and differentiable-function discussion p2145.",
+      "supports": "Multiway cluster inference may be non-Gaussian; sampling dimensions are independent. Weak serial dependence across time is explicitly outside this paper's treatment.",
+      "does_not_establish": "A theorem for the current dependent-calendar estimator. Its nonuniformity result should not be misquoted as impossibility of every restricted regular model."
+    },
+    {
+      "id": "GW2006",
+      "bibliography": "Giacomini, R., and White, H. (2006). Tests of Conditional Predictive Ability. Econometrica 74(6), 1545–1578.",
+      "doi": "10.1111/j.1468-0262.2006.00718.x",
+      "url": "https://doi.org/10.1111/j.1468-0262.2006.00718.x",
+      "inspected_copy": "https://economia.uc3m.es/jgonzalo/teaching/PhdTimeSeries/GiacominiWhite.pdf",
+      "inspected_scope": "Published 2006 paper: pp1546–1550 distinction of conditional/unconditional targets and estimation design; Theorem1 pp1553–1554; §3.4 p1557 unconditional form and HAC growth.",
+      "supports": "Conditional null is stronger than equality on average; constant-information special case coincides with DM. Bounded rolling estimation windows or a fixed-estimation scheme have explicit roles.",
+      "does_not_establish": "A distinct third primary test merely by adding an instrument, nor random-training-seed nonlinear-risk validity. A separate eScholarship result was an April2003 working-paper version and was not silently substituted for 2006."
+    },
+    {
+      "id": "CW2007",
+      "bibliography": "Clark, T. E., and West, K. D. (2007). Approximately normal tests for equal predictive accuracy in nested models. Journal of Econometrics 138(1), 291–311.",
+      "doi": "10.1016/j.jeconom.2006.05.023",
+      "url": "https://doi.org/10.1016/j.jeconom.2006.05.023",
+      "inspected_copy": "https://users.ssc.wisc.edu/~kdwest/publications/2000/Approximately%20Normal%20Tests%20for%20Equal%20Predictive%20Accuracy%20in%20Nested%20Models.pdf",
+      "inspected_scope": "Abstract and introduction pp291–292 only.",
+      "supports": "Actual nesting and adjustment of mean squared prediction errors for estimation noise are the stated setting.",
+      "does_not_establish": "Admissibility for arbitrary neural-architecture comparisons or mean individual RMSE. No full theorem review claimed."
+    },
+    {
+      "id": "DM1995",
+      "bibliography": "Diebold, F. X., and Mariano, R. S. (1995). Comparing Predictive Accuracy. Journal of Business and Economic Statistics 13(3), 253–263.",
+      "doi": "10.1080/07350015.1995.10524599",
+      "url": "https://doi.org/10.1080/07350015.1995.10524599",
+      "inspected_copy": "https://users.ssc.wisc.edu/~behansen/718/DieboldMariano1995.pdf",
+      "inspected_scope": "Bibliographic front matter and indexed abstract; body PDF is an image scan without usable text extraction in web tool.",
+      "supports": "Original identity of the method only. The explicit mean-loss/HAC formula is cross-checked in primary GW2006 §3.4, not attributed to an unread DM theorem.",
+      "does_not_establish": "Crossed-RMSE or seed degrees-of-freedom extension."
+    },
+    {
+      "id": "HLN1997",
+      "bibliography": "Harvey, D., Leybourne, S., and Newbold, P. (1997). Testing the equality of prediction mean squared errors. International Journal of Forecasting 13(2), 281–291.",
+      "doi": "10.1016/S0169-2070(96)00719-4",
+      "url": "https://doi.org/10.1016/S0169-2070(96)00719-4",
+      "inspected_copy": "https://www.sciencedirect.com/science/article/abs/pii/S0169207096007194",
+      "inspected_scope": "Publisher metadata/abstract search result only; full paper inaccessible through attempted sources.",
+      "supports": "Bibliographic identification and MSPE focus only.",
+      "does_not_establish": "No claim of having inspected the small-sample derivation, its validity for t(R−1), or mixed seed/time degrees of freedom."
+    },
+    {
+      "id": "PR1994",
+      "bibliography": "Politis, D. N., and Romano, J. P. (1994). The Stationary Bootstrap. Journal of the American Statistical Association 89(428), 1303–1313.",
+      "doi": "10.1080/01621459.1994.10476870",
+      "url": "https://doi.org/10.1080/01621459.1994.10476870",
+      "inspected_copy": "https://users.ssc.wisc.edu/~behansen/718/Politis%20Romano.pdf",
+      "inspected_scope": "Publisher metadata and indexed primary-paper passages; PDF scan has no usable body text in web extraction.",
+      "supports": "Source of stationary temporal resampling; generic parameter extensions require conditions.",
+      "does_not_establish": "No inspected theorem for independently sampled training seeds crossed with a serial calendar; no exact finite-sample guarantee claimed."
+    },
+    {
+      "id": "F1937",
+      "bibliography": "Friedman, M. (1937). The Use of Ranks to Avoid the Assumption of Normality Implicit in the Analysis of Variance. Journal of the American Statistical Association 32(200), 675–701.",
+      "doi": "10.1080/01621459.1937.10503522",
+      "url": "https://doi.org/10.1080/01621459.1937.10503522",
+      "inspected_copy": "https://sci2s.ugr.es/keel/pdf/algorithm/articulo/1937-JSTOR-Friedman.pdf",
+      "inspected_scope": "Original scan bibliographic page; no usable body text extraction.",
+      "supports": "Identity as rank-based original method only.",
+      "does_not_establish": "No claim of an inspected theorem supporting use on correlated daily origins or primary mean-RMSE equality. Rank/mean mismatch in README is an elementary logical argument."
+    }
+  ],
+  "new_random_draws": 0,
+  "new_MC_replicates": 0,
+  "new_model_fits": 0,
+  "R3_accredited": false,
+  "execution_counts_scope": "this documentary component only; no statement about root statistical revision execution counts"
+}

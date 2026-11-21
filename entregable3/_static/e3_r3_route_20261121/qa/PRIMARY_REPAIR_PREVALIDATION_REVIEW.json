@@ -1,0 +1,98 @@
+{
+  "kind": "independent_prevalidation_primary_repair_review",
+  "reviewer": "stats_methods_independent_review",
+  "recorded_at_utc": "2026-11-21T12:15:05.220458+00:00",
+  "status": "PASS_for_one_publicly_anchored_bounded_development_validation_only",
+  "source_manifest_SHA256": "ff316a8ad68b7621a99aa5274576b749a656bf859e52f2ab2dd707a6d20e7f01",
+  "plan_SHA256": "5379b30a632f20494599389ad9af5aa8e30fd826a306d148dd21ccddb9bdde8f",
+  "runtime_files": [
+    {
+      "bytes": 1911,
+      "path": "LEGACY_REFERENCE.json",
+      "sha256": "f2764f044be325e93ce2dde05012d29fe02b4926396107c9ad3e93dac85e3971"
+    },
+    {
+      "bytes": 12958,
+      "path": "VALIDATION_PLAN.json",
+      "sha256": "5379b30a632f20494599389ad9af5aa8e30fd826a306d148dd21ccddb9bdde8f"
+    },
+    {
+      "bytes": 10610,
+      "path": "crossed_rmse_v2_frozen.py",
+      "sha256": "849f3152676f58736141476bb6fe52d90675e4c821f67030476d13e24bd06b2a"
+    },
+    {
+      "bytes": 4306,
+      "path": "deterministic_diagnosis.py",
+      "sha256": "99b79319dea7394af3450c3bd2901d71c93af3ee191740b88294b190fe9c238d"
+    },
+    {
+      "bytes": 3094,
+      "path": "dgp_revision.py",
+      "sha256": "f4190e839e6a3da0b2e7a4f7aedf688e28689b4daca906912f1004a471154abf"
+    },
+    {
+      "bytes": 7958,
+      "path": "revised_primary.py",
+      "sha256": "7054152acd995cfe62fc720587ebc74b8ea4df849ce00a7fd339b79c5503a03c"
+    },
+    {
+      "bytes": 19638,
+      "path": "run_validation.py",
+      "sha256": "4333b303f5bc9da75078d141111a07efd07f35980fbae57b65e567c0e71332d9"
+    },
+    {
+      "bytes": 10181,
+      "path": "test_deterministic.py",
+      "sha256": "b293a5d97cb97f42137ee42da24e43d3bd9f75581cc9ec3da966ef4ebd7070bf"
+    }
+  ],
+  "old_v2_control_byte_identical": true,
+  "statistical_contract_reviewed": {
+    "target": "E_seed sqrt(E_time squared_error)",
+    "P1": "New bilateral absolute crossed bootstrap-t; recompute each resample SE; plus-one empirical tail; strict p<alpha",
+    "P1_CI": "Closed symmetric absolute-pivot CI with strict-test rank floor((1-alpha)*(B+1))+1=951 at B999 and alpha.05",
+    "P2_and_MCS": "Frozen proposed controls, no classical DM-HLN or universal MCS validity asserted",
+    "family": "38 slots, two methods times19 rivals, Holm, no post-result removal",
+    "cases": "Six256-replicate global/partial/seed/dependence nulls and one128-replicate alternative; 1664 total",
+    "population_truth": "Population analytic risks fixed; true partial nulls include9rivals at0; heterogeneous-model temporal null retains truth0",
+    "MC_precision": "Individual central95CP; tolerance screens not exact level or simultaneous certification",
+    "coverage": "Pointwise and simultaneous diagnostics distinct; missing intervals count noncoverage",
+    "MCS": "Global EPA and all-optima coverage/false-singleton diagnostics, no per-rival MCS p-values",
+    "budget": "B999,600seconds,2threads; stop before next replicate, one current replicate may finish later; no reruns or favorable extension",
+    "boundaries": "Old14/128 and all prior adverse results preserved; R3/third procedure/market admissibility remain unaccredited"
+  },
+  "resolved_pre_freeze_findings": [
+    "Discrete strict p/closed-CI mismatch corrected and explicit boundary/tie guard passes.",
+    "Unsupported nonnull contrast also makes complete component-family screen inconclusive.",
+    "Final source/plan integrity controls completion; changed source yields error and no approval.",
+    "Failed attempts retain unknown exact draw count separately from completed-replicate draws and an upper bound.",
+    "First Holm38 rank with B999 requires zero bootstrap exceedances beyond the plus-one; no mixed-family universal zero-power claim."
+  ],
+  "verification": {
+    "independently_executed_deterministic_unit_tests": 23,
+    "deterministic_unit_test_status": "PASS",
+    "unit_test_elapsed_seconds": 0.08,
+    "independent_metadata_preflight_fixtures": 10,
+    "preflight_fixture_status": "PASS; synthetic local anchor is not public evidence",
+    "same_indices_control_fixture": "PASS exact P2/oldP1/MCS controls on fixed arithmetic data",
+    "reviewer_new_RNG_draws": 0,
+    "reviewer_new_MC_replicates": 0,
+    "reviewer_new_model_fits": 0,
+    "reviewer_new_market_predictions": 0
+  },
+  "required_before_execution": [
+    "Parent must publish exact source manifest and plan, verify actual immutable public commit, and issue PUBLIC_ANCHOR with matching hashes and observed-before-validation time.",
+    "Run exactly once with frozen seeds/settings/budget; retain partial/errors and all cases; no retuning to obtain approval."
+  ],
+  "blocking_findings": [],
+  "scientific_limits": [
+    "Only a development experiment is ready; this review does not pre-approve its unknown results.",
+    "Fixed bandwidth/block, S12,T128 and square-root finite-calendar bias have no general finite-sample theorem.",
+    "The bounded cases omit some regimes such as calendar-only/heavy-tail stress and candidate-suboptimal ties; no universal strong-control claim follows.",
+    "Passing component FWER tolerance screens would not by itself certify coverage, complete three-method power, a viable candidate or market R3."
+  ],
+  "new_validation_executed_by_reviewer": false,
+  "confirmatory_gate_open": false,
+  "R3_accredited": false
+}

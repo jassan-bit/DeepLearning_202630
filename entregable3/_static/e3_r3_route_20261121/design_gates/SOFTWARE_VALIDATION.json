@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "kind": "EXECUTED_SOFTWARE_VALIDATION_NOT_SCIENTIFIC_VALIDATION",
+  "recorded_at_utc": "2026-11-21T12:21:17.163779+00:00",
+  "AI_assistance_declared": true,
+  "unittest": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s . -p test_controller.py -v",
+    "exit_code": 0,
+    "tests_run": 29,
+    "reported_seconds": 3.774,
+    "log": "software_tests.log",
+    "sha256": "879b1071d15553684fe2a1da6441b656e9cad3b0a04ad0ab759a16fc8e3f0b5c"
+  },
+  "preflight_executions": [
+    {
+      "phase": "confirmation",
+      "exit_code": 2,
+      "output": "CURRENT_PREFLIGHT.json",
+      "blocker_count": 9,
+      "executed": "controller.py --contract protocol.DRAFT.json --repo-root <pinned_checkout> --evidence-root <package> --phase confirmation --output <new_output>"
+    },
+    {
+      "phase": "planning",
+      "exit_code": 2,
+      "output": "CURRENT_PLANNING_PREFLIGHT.json",
+      "blocker_count": 7,
+      "executed": "controller.py --contract protocol.DRAFT.json --repo-root <pinned_checkout> --evidence-root <package> --phase planning --output <new_output>"
+    }
+  ],
+  "level_binding_regression": {
+    "mixed_levels_fixture": "Holm.05 and declared intrinsic global.10; full decision rule.05",
+    "positive_consistent_fixture_passed": true,
+    "global_level_cannot_relax_full_rule_to_10": true,
+    "missing_group_scope_calibration_blocks": true,
+    "universal_MCS_10_level_assumed": false
+  },
+  "positive_fixture_scope": "Temporary synthetic metadata; no real approvals, registration, datasets or campaign; demonstrates usable conditional stages without accrediting science.",
+  "actual_current_confirmation_ready": false,
+  "actual_current_planning_ready": false,
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "new_model_forward_passes": 0,
+  "new_MC_replicates": 0,
+  "new_market_data_downloads": 0,
+  "new_statistical_resamples": 0,
+  "R3_accredited": false
+}

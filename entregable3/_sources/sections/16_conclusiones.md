@@ -124,3 +124,13 @@ Los modelos y artefactos anteriores no se entrenaron o predijeron otra vez.
 El NO-GO de V3, el abandono de V4 y las admisiones futuras pendientes continúan.
 La potencia y el protocolo de una eventual confirmación necesitan evidencia
 prospectiva; R3 no se acredita mediante documentación o diagnósticos posteriores.
+
+
+(e3-r3-route-conclusions-20261121)=
+## 16.8 Dictamen de la nueva ruta por etapas
+
+La reparación primaria completó los siete casos previstos —1.664 réplicas y1.662.336 sorteos cruzados— sin cambiar fuentes o criterios tras observarlos. El caso sólo semillas registró6/256 falsos rechazos familiares frente a31/256 del control; AR fuerte quedó inconcluso porque su límite superior CP95 fue0,08044903>0,08. Persisten señales puntuales de infracobertura y falta la acreditación de la batería completa: los resultados favorables de un caso no sustituyen las restantes condiciones.
+
+La matriz de 34 requisitos y el controlador separan lo comprobado de los juicios y actos externos: no hay candidata, familia prospectiva, datos futuros admitidos, R/T finales, potencia de regla completa ni protocolo real habilitado. Se mantienen el NO-GO V3 y el abandono V4. La alternativa concreta es defender el benchmark y sus límites o someter primero una propuesta propia a revisión, sin otro entrenamiento por defecto.
+
+El dictamen de esta ruta es **R3 no acreditada; confirmación bloqueada**, no superioridad ni imposibilidad de cualquier propuesta futura. El material ejecutable permite inspeccionar las puertas y las evidencias exigidas sin simular permisos, independencia o defensa humana. No se transfieren los resultados entre versiones, no se inicia V5 y la sustentación4,5 continúa como dato del autor.

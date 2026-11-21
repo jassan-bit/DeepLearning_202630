@@ -1,0 +1,80 @@
+{
+  "kind": "independent_mathematical_review_gates_before_new_method_source",
+  "reviewer": "stats_methods_independent_review",
+  "AI_assistance_declared": true,
+  "request_file": "/workspace/attachments/1d49bc9a-d62a-493a-b2e5-de19868b7ceb/Texto pegado.txt",
+  "baseline_source_commit": "2fbab63f7c4f19edcd7e9927c0c99d7ddae5d9f5",
+  "prior_results_preserved": {
+    "new_v2_validation_replicates": 640,
+    "new_v2_bootstrap_draws": 639360,
+    "Holm38_seed_only_FWER": "14/128, including P1 in 14 and P2 in 1",
+    "Holm38_strong_dependence_FWER": "9/128, inconclusive",
+    "selectively_dropping_P1_authorized_as_validated_primary_family": false,
+    "V3_NO_GO_and_V4_abandonment_unchanged": true
+  },
+  "required_before_new_validation": [
+    {
+      "id": "estimand",
+      "requirement": "Keep E_seed[sqrt(E_time squared error)] distinct from mean MSE, pooled RMSE, ensemble RMSE and a finite-calendar seed-conditional target.",
+      "rationale": "Model-specific finite-calendar square-root bias can differ even at equal population RMSE. Seed averaging does not remove it.",
+      "deterministic_evidence": "FINITE_CALENDAR_RMSE_BIAS_AUDIT.json"
+    },
+    {
+      "id": "true_partial_nulls",
+      "requirement": "Declare some rivals with population theta=0 and others with theta nonzero, using the actual equality null of P1/P2.",
+      "rationale": "The previous DGP named partial has bases 1+delta and 1+delta+.20: for delta>0 all equality nulls are false. Truth labels must be based on the null actually tested."
+    },
+    {
+      "id": "strong_family_control",
+      "requirement": "Evaluate false rejections only on the known true-null subset, retaining all prespecified method/rival slots through Holm.",
+      "rationale": "Holm gives strong control under arbitrary dependence only when marginal true-null p-values are valid. It does not repair invalid tails, bias or an invalid studentizer. A global-EPA gate gives no protection under alternatives for which EPA is false."
+    },
+    {
+      "id": "joint_decision",
+      "requirement": "Report individual method rejection, per-rival intersection across required methods, and the complete scientific decision separately.",
+      "rationale": "An intersection of p-value rejections is not the full rule with direction, practical relevance, uncertainty and adequacy. An MCS global p or exclusion p cannot be copied as a third pairwise procedure."
+    },
+    {
+      "id": "right_tail_resolution",
+      "requirement": "Choose and freeze B with explicit orderwise Holm tail resolution and numerical tie policy; report actual Monte Carlo p-value construction.",
+      "rationale": "The plus-one empirical minimum is 1/(B+1). B999 permits a first-rank rejection for 38 all-empirical slots, but not 57. In a mixed analytic/empirical family, earlier analytic rejections can change attainable later ranks, so this is not a universal zero-power statement."
+    },
+    {
+      "id": "crossed_asymptotics",
+      "requirement": "State seed exchangeability, cross-model pairing, temporal stationarity/mixing, moments, rates and the S/T regimes needed by the proposed method.",
+      "rationale": "The full square-root functional, S12, many rivals and shared calendars require justification beyond calling a method bootstrap-t or DM-HLN. Fixed bandwidth HAC and block length may understate temporal uncertainty. R-1 reference degrees of freedom are not automatically justified when temporal uncertainty dominates."
+    },
+    {
+      "id": "degeneracy",
+      "requirement": "Specify deterministic equal and unequal zero-variance behavior, near-zero MSE, bootstrap zero-scale roots and unsupported input handling.",
+      "rationale": "No selective removal of draws or rivals; unsupported values reserve family slots, cannot become zero-width certainty or a successful calibration result."
+    },
+    {
+      "id": "coverage_and_margin",
+      "requirement": "Keep pointwise coverage, simultaneous coverage, equality testing and practical-margin assertions distinct.",
+      "rationale": "A pointwise CI95 does not become a simultaneous interval through a separate Holm correction to equality p-values. The guide's equality tests plus discussion of practical delta do not automatically require changing all nulls to a positive-margin null."
+    },
+    {
+      "id": "scenarios",
+      "requirement": "Include global and true partial equality nulls, temporal and between-rival dependence, seed-only variability, heterogeneous temporal marginals or an explicit narrow claim, nonzero alternatives, coverage and degenerate guards.",
+      "rationale": "The earlier identical-marginal global null cannot reveal model-specific finite-calendar bias. Multiple best models also matter for MCS set coverage, beyond initial global rejection."
+    },
+    {
+      "id": "acceptance_precision",
+      "requirement": "Freeze seeds, code, DGP truths, methods, scenarios, sample counts, budget stops, all endpoint definitions, uncertainty intervals and acceptance thresholds publicly before new random validation.",
+      "rationale": "Non-detection of inflation with a wide interval is inconclusive. A bounded tolerance screen is not exact nominal calibration. Any selected method is development based on prior failures, never a retrospective preregistration."
+    },
+    {
+      "id": "third_procedure",
+      "requirement": "Document a distinct procedure's actual null, units, population and applicability; otherwise retain the third-procedure gap.",
+      "rationale": "Clark-West needs nesting, GW needs appropriate conditional predictive-ability design, Friedman needs justified independent blocks, and sign-flips/ranks need symmetry or distributional assumptions. Their availability in a guide does not establish validity for the same mean-individual-RMSE question."
+    }
+  ],
+  "new_proposal_status": "awaiting_source_and_plan_for_independent_review",
+  "new_random_validation_authorized_by_this_review": false,
+  "new_MC_replicates": 0,
+  "new_random_draws": 0,
+  "new_forecasting_model_fits": 0,
+  "new_market_predictions": 0,
+  "R3_accredited": false
+}

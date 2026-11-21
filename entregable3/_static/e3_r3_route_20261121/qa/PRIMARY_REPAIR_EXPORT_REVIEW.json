@@ -1,0 +1,65 @@
+{
+  "kind": "independent_closed_export_tables_review",
+  "reviewer": "stats_methods_independent_review",
+  "recorded_at_utc": "2026-11-21T12:26:59.912005+00:00",
+  "status": "PASS_tables_and_scope_not_family_approval",
+  "exporter_SHA256": "73f973fc5b0ac384d56415ab3acab092e8c64a869b5add68b0e5c4b3265a7de4",
+  "export_manifest_SHA256": "1e0a6c0256b69116a3b4f0ed1666dfd4cd7255ca135855dd7b48a658a5ddf456",
+  "export_payloads": [
+    {
+      "bytes": 5104,
+      "path": "RESULTS_INTERPRETATION.json",
+      "sha256": "6581237fd98df5589ce05bf2f94b5a9997ddf3ce754f57d7e43acc157ad5effe"
+    },
+    {
+      "bytes": 7088,
+      "path": "exports/family_and_MCS.csv",
+      "sha256": "e2a46988bfb38bd39b4d68231ecd46c54dfc4bbd4c7bfd28a4e82be3897c4bc7"
+    },
+    {
+      "bytes": 466,
+      "path": "exports/paired_mechanism_comparisons.csv",
+      "sha256": "6ca134cef726012586dfa881b2be53c08cd52c649920ec16055a87d1137669ea"
+    },
+    {
+      "bytes": 76889,
+      "path": "exports/pointwise_coverage_and_pairwise.csv",
+      "sha256": "c5b256b4af32ec46eb61de1acdbef78af343f6a078fe0c174cbbdf1139216359"
+    },
+    {
+      "bytes": 968,
+      "path": "exports/two_method_subset_power.csv",
+      "sha256": "5ef5aaf94206baa90421aaafdac7bbcad8310bba2309dad88001cfa74ea86f81"
+    }
+  ],
+  "raw_validation_log_SHA256": "cc9230bfb23d6b934175eea05380a79b773ca4b0d07096955b3ef0452ef0928c",
+  "rows_verified": {
+    "family_and_MCS": 7,
+    "pointwise_coverage_and_pairwise": 266,
+    "paired_mechanism_comparisons": 6,
+    "two_method_subset_power": 2
+  },
+  "independent_exact_McNemar_and_Holm6_match": true,
+  "all266_pointwise_rows_and_raw_adjusted_coverage_counts_match": true,
+  "undercoverage_signals": {
+    "cells": 9,
+    "P1": 8,
+    "P2": 1,
+    "scope": "Individual descriptive MC screens, no new multiple-testing-corrected claim"
+  },
+  "alternative_endpoints": {
+    "two_method_all_rival_equality_intersection": "20/128",
+    "two_method_practical_subset": "16/128",
+    "MCS_unique_candidate": "35/128",
+    "complete_three_method_scientific_decision_power": false
+  },
+  "interpretation": "Five component-FWER tolerance screens passed, strong-AR screen remains inconclusive; family not approved. Pointwise coverage and MCS optimal-set diagnostics do not open confirmation.",
+  "confirmed_valid_for_market": false,
+  "R3_accredited": false,
+  "confirmation_allowed": false,
+  "reviewer_new_MC_replicates": 0,
+  "reviewer_new_random_draws": 0,
+  "reviewer_new_model_fits": 0,
+  "reviewer_new_market_predictions": 0,
+  "blocking_findings": []
+}
