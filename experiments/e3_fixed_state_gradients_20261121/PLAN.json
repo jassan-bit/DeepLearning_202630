@@ -369,8 +369,15 @@
     }
   },
   "code_and_plan_public_anchor_before_gradients_required": true,
-  "code_sha256": "3efa3cc197f14a60eb15d07014e36da004a8121f7eacde30d58c188d29f4f19e",
+  "code_sha256": "9b811854e3882e0135af987ae6b48a33491b381feb034bed7a61543d65d507b7",
   "created_at_UTC": "2026-11-21T14:27:35.545362+00:00",
+  "cumulative_max_including_preserved_v1_attempt": {
+    "autograd_calls": 312,
+    "forward_calls": 156,
+    "internal_point_evaluations": 4682,
+    "new_training_jobs": 0,
+    "optimizer_steps": 0
+  },
   "deduplicate_equal_snapshots": false,
   "hypotheses_and_decision_scope": "Local fixed-state MSE/CRPS gradient geometry and hypothetical Adam displacement; descriptive development evidence only. No significance or causal/predictive-superiority decision.",
   "is_retroactive_pilot_preregistration": false,
@@ -382,7 +389,7 @@
   "max_wall_seconds": 300,
   "new_out_of_sample_forecasts_authorized": false,
   "new_training_authorized": false,
-  "plan_id": "e3-fixed-state-gradients-frozen-1-20261121",
+  "plan_id": "e3-fixed-state-gradients-frozen-2-20261121",
   "preflight_autograd_calls": 0,
   "preflight_model_forwards": 0,
   "preflight_sha256": "b01f3868e2e4d00d3b067a0e6737a742a5111641438abdc7d572ce57a0b343b6",
@@ -420,6 +427,18 @@
     "best",
     "latest"
   ],
-  "status": "FROZEN_BEFORE_GRADIENT_MEASUREMENT",
-  "test_code_sha256": "0ec906213631985f4ccf5c0415cab0bf6c014d7300231e7f995c97bc7150bfe7"
+  "status": "FROZEN_BEFORE_V2_GRADIENT_MEASUREMENT",
+  "test_code_sha256": "8560b7a178bcd4f752706cfd2f4f74a7d1351498b8aa5a17cb27ed5614b5c715",
+  "version1_technical_abort": {
+    "autograd_calls": 12,
+    "complete_v2_results_will_not_be_pooled_with_v1_partial_rows": true,
+    "failed_case_preserved": true,
+    "forward_calls": 6,
+    "internal_point_evaluations": 182,
+    "optimizer_steps": 0,
+    "public_anchor": "a40f49844559b996b24a7b2a1ed2d150ff17adc0",
+    "reason": "Out-of-place multiplication promoted an FP32 scalar to FP64 before Adam lerp. Mechanical clipping fix, no scientific criterion change.",
+    "receipt_sha256": "860e910844cf277a2dfd140b7bcc5102ba10f92522fd241f09e2374958934002",
+    "same_recipe_inputs_batches_losses_and_interpretation": true
+  }
 }

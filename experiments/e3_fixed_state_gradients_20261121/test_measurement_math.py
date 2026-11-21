@@ -54,5 +54,12 @@ class MathGuards(unittest.TestCase):
         p=torch.tensor([1.,0.,0.],dtype=torch.float64)
         entropy=-torch.special.xlogy(p,p).sum()
         self.assertTrue(bool(torch.isfinite(entropy)));self.assertEqual(float(entropy),0.)
+    def test_mixed_scalar_shared_and_double_head_clip_preserves_dtype(self):
+        p=[torch.tensor(0.,dtype=torch.float32),torch.zeros(2,dtype=torch.float64)]
+        g=[torch.tensor(3.,dtype=torch.float32),torch.tensor([4.,0.],dtype=torch.float64)]
+        d,r=m.adam_direction(g,p,self.group(2),self.states(p),torch)
+        self.assertEqual(d[0].dtype,torch.float32);self.assertEqual(d[1].dtype,torch.float64)
+        self.assertTrue(all(bool(torch.isfinite(x).all()) for x in d))
+        self.assertAlmostEqual(r['clip_coefficient'],1/(5+1e-6))
 
 if __name__=='__main__':unittest.main()

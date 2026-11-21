@@ -1,8 +1,10 @@
 # Medición CPU de pérdidas y gradientes en estados fijos
 
-Fecha:21 de noviembre de2026, America/Bogota. Asistencia de IA declarada. **Este corte es el plan/código previo a la medición de gradientes**, no sus resultados ni una confirmación R3.
+Fecha:21 de noviembre de2026, America/Bogota. Asistencia de IA declarada. **Este corte es el plan/código previo a la medición V2 de gradientes**, no sus resultados ni una confirmación R3.
 
 El usuario pidió continuar tras el [diagnóstico de errores guardados](https://github.com/jassan-bit/DeepLearning_202630/tree/754237f8d73fd622f0b806a412954c5207b63b0f/experiments/e3_failure_diagnosis_20261121). Se ejecutará su medición delimitada en los quince checkpoints CPU atómicos existentes: V4 sigma-CRPS, U-CRPS y MSE-only, cinco semillas cada uno. No se entrena, reanuda o modifica ninguna red.
+
+**Desviación técnica V1 preservada.** La ejecución del código anclado en `a40f498` se detuvo tras6forwards,182evaluaciones internas y12autograd por promoción de dtype de un escalar al calcular Adam hipotético. No hubo pasos de optimizador o cambios de archivos de pesos. V2 corrige sólo el producto de clipping para conservar el dtype nativo y añade un test mixto. Se conserva V1 y se vuelve a anclar V2 antes de una ejecución completa sobre los mismos estados/lotes. Los acumulados máximos son156forwards,4682evaluaciones internas y312autograd; las filas parciales V1 no se mezclan con V2.
 
 ## Diseño fijado
 
@@ -30,7 +32,7 @@ Un guard de acceso observa que sólo se deserializan `training_raw`, `training_y
 
 Los archivos privados de pesos y NPZ se leen y verifican, **no se redistribuyen**. Los hashes se comprueban antes y después. La salida de ejecución debe ser un directorio nuevo; los fallos conservan su recibo parcial y no disparan cambio de receta, lote, tolerancia o entrenamiento.
 
-Las [nueve pruebas de software](SOFTWARE_VALIDATION.json) verifican propiedades matemáticas y guardas sobre tensores sintéticos, no modelos de mercado. No son calibración estadística ni evidencia R3.
+Las [diez pruebas de software](SOFTWARE_VALIDATION.json) verifican propiedades matemáticas y guardas sobre tensores sintéticos, no modelos de mercado. No son calibración estadística ni evidencia R3.
 
 ## Archivos
 

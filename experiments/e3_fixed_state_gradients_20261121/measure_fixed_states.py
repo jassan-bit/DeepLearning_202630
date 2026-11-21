@@ -19,7 +19,7 @@ import resource
 import signal
 import time
 
-VERSION='e3-fixed-state-gradients-1'
+VERSION='e3-fixed-state-gradients-2-scalar-clip-fix'
 RECIPES=('sigma_crps_v4','u_crps_control','mse_only_control')
 SEEDS=tuple(range(20261121,20261126))
 BATCHES=(('fit_first32','train',0,32),('fit_middle32','train',250,282),
@@ -100,7 +100,10 @@ def adam_direction(grads,params,groups,states,torch,max_norm=1.):
                 require(s[key].shape==params[idx].shape and s[key].dtype==params[idx].dtype,'Moment/parameter alignment differs')
                 require(bool(torch.isfinite(s[key]).all()),'Nonfinite stored moment')
             require(bool((s['exp_avg_sq']>=0).all()),'Negative second moment')
-            clipped=g.detach()*coefficient_tensor
+            # Match in-place gradient clipping, including an FP32 scalar when
+            # the global coefficient is promoted by FP64 head parameters.
+            clipped=g.detach().clone().mul_(coefficient_tensor)
+            require(clipped.dtype==g.dtype,'Clipping changed native gradient dtype')
             m=s['exp_avg'].detach().clone().lerp_(clipped,1-b1)
             v=s['exp_avg_sq'].detach().clone().mul_(b2).addcmul_(clipped,clipped,value=1-b2)
             denominator=v.sqrt().div_(math.sqrt(1-b2**(t+1))).add_(eps)

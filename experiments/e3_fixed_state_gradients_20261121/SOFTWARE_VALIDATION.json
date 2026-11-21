@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "tests": 9,
+  "tests": 10,
   "model_forward_calls": 0,
   "model_autograd_calls": 0,
   "scientific_validation_claimed": false,
-  "test_code_sha256": "0ec906213631985f4ccf5c0415cab0bf6c014d7300231e7f995c97bc7150bfe7",
-  "measurement_code_sha256": "3efa3cc197f14a60eb15d07014e36da004a8121f7eacde30d58c188d29f4f19e",
-  "log_sha256": "5f0635b83af38a6c5d516fcb60dc3fa63c9c6ca4854e51a6a29ca33c92ccef16",
+  "test_code_sha256": "8560b7a178bcd4f752706cfd2f4f74a7d1351498b8aa5a17cb27ed5614b5c715",
+  "measurement_code_sha256": "9b811854e3882e0135af987ae6b48a33491b381feb034bed7a61543d65d507b7",
+  "log_sha256": "40e6a3053d86436d6aa245501343227a2e81436f4f14da71a21257468605aff6",
   "initial_fixture_correction": "First clipping test accidentally mixed double parameters with float gradients; fixture corrected and dtype-mismatch rejection tested. No model measurement had started.",
   "checks": [
     "Closed-form Adam first step",
@@ -17,6 +17,8 @@
     "unsupportedoptmode",
     "dtypeguard",
     "overflowguard",
-    "zero-massentropy"
-  ]
+    "zero-massentropy",
+    "Mixed FP32 scalar and FP64 head clipping preserves each native dtype"
+  ],
+  "technical_abort_and_fix_declared": true
 }
