@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "tests": 9,
+  "model_forward_calls": 0,
+  "model_autograd_calls": 0,
+  "scientific_validation_claimed": false,
+  "test_code_sha256": "0ec906213631985f4ccf5c0415cab0bf6c014d7300231e7f995c97bc7150bfe7",
+  "measurement_code_sha256": "3efa3cc197f14a60eb15d07014e36da004a8121f7eacde30d58c188d29f4f19e",
+  "log_sha256": "5f0635b83af38a6c5d516fcb60dc3fa63c9c6ca4854e51a6a29ca33c92ccef16",
+  "initial_fixture_correction": "First clipping test accidentally mixed double parameters with float gradients; fixture corrected and dtype-mismatch rejection tested. No model measurement had started.",
+  "checks": [
+    "Closed-form Adam first step",
+    "One global clipping coefficient",
+    "None vszero withmomentum",
+    "lambda0primarymask",
+    "momentimmutability",
+    "unsupportedoptmode",
+    "dtypeguard",
+    "overflowguard",
+    "zero-massentropy"
+  ]
+}
