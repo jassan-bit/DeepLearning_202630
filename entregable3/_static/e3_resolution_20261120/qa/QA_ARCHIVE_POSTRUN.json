@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "status": "independent_postrun_archive_evidence_QA_passed_scoped_candidate_only",
+  "AI_review_declared": true,
+  "human_review_or_signature_claimed": false,
+  "run_id": 44833679006,
+  "launcher_commit": "84ee7beb8dde08216ccaffac8f087bb7c67f15c8",
+  "branch": "e3-render-public-acceptance-integral-archive-8d03a73d-v1",
+  "workflow_run_conclusion": "success",
+  "remote_jobs": [
+    {
+      "id": 136624627638,
+      "name": "public-documentary-DOI",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 136624628093,
+      "name": "archive-integrity-and-permitted-sources",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "engine_sha256": "39b23bea859e9c4c53efa5ca51f97c467c1e62846931bbb943260d2e635dd349",
+  "executed_receipt_matches_local": true,
+  "receipt_authority": "Executed pinned engine JSON read independently from successful GitHub job log; local receipt JSON compared exactly",
+  "hydration_observed": {
+    "main_master_paths": 8582,
+    "main_master_logical_bytes": 4268147881,
+    "V3_pilot_paths": 259,
+    "V3_pilot_logical_bytes": 2359027,
+    "stage_metadata_paths": 386,
+    "stage_metadata_logical_bytes": 4750100,
+    "total_logical_paths": 9227,
+    "total_logical_bytes": 4275257008,
+    "unique_SHA_objects_verified": 9217,
+    "repeated_logical_path_count_beyond_unique": 10,
+    "logical_paths_are_not_unique_objects": true,
+    "full_snapshot_ephemeral_only": true,
+    "raw_full_snapshot_in_uploaded_artifact": false,
+    "training_reproduction": false
+  },
+  "capsule_observed": {
+    "file": "e3-source-evidence-8d03a73-v0.3.0-REVIEW.tar.gz",
+    "bytes": 58823392,
+    "sha256": "d7a97766af592629efafcc64c386c9aeae39b4ab107b909217d9629b9d8a6d35",
+    "members": 18564,
+    "deterministic_header_policy": "sorted paths, zero mtime/uid/gid, stable gzip header"
+  },
+  "extraction_observed": {
+    "members_verified": 18564,
+    "extracted_bytes_hashed": 281641001,
+    "all_extracted_hashes_verified": true,
+    "temporary_extraction_removed_after_verification": true,
+    "models_executed": 0
+  },
+  "source_scope_observed": {
+    "source_files_observed": 13199,
+    "source_files_included": 11092,
+    "source_uncompressed_bytes_hashed": 1500482055,
+    "source_bytes_included": 207651075,
+    "source_files_excluded": 2107,
+    "historical_files_in_capsule": 7450,
+    "historical_bytes_in_capsule": 52796922,
+    "approved_ONNX_unique_hashes_included": 6
+  },
+  "public_artifact": {
+    "id": 14676474833,
+    "node_id": "MDg6QXJ0aWZhY3QxNDY3NjQ3NDgzMw==",
+    "name": "e3-source-evidence-review-44833679006",
+    "size_in_bytes": 59572334,
+    "url": "https://api.github.com/repos/jassan-bit/DeepLearning_202630/actions/artifacts/14676474833",
+    "archive_download_url": "https://api.github.com/repos/jassan-bit/DeepLearning_202630/actions/artifacts/14676474833/zip",
+    "expired": false,
+    "digest": "sha256:d1d133793f110486633edde986594597e6e52b8eb1a67b4fdf2217832cb54a22",
+    "created_at": "2026-11-20T23:06:32Z",
+    "updated_at": "2026-11-20T23:06:32Z",
+    "expires_at": "2026-12-20T23:06:29Z",
+    "workflow_run": {
+      "id": 44833679006,
+      "repository_id": 1441322202,
+      "head_repository_id": 1441322202,
+      "head_branch": "e3-render-public-acceptance-integral-archive-8d03a73d-v1",
+      "head_sha": "84ee7beb8dde08216ccaffac8f087bb7c67f15c8"
+    }
+  },
+  "DOI_recheck": {
+    "status": "public_DOI_and_exact_final_archive_verified",
+    "verified_at_utc": "2026-11-20T23:02:08Z",
+    "metadata_changes_needed": {
+      "title": {
+        "observed": "DeepLearning_202630 — Entregable 3: código y auditoría reproducible.",
+        "expected": "DeepLearning_202630 — Entregable 3: suplemento documental y herramientas de verificación"
+      },
+      "publication_date": {
+        "observed": "2026-11-19",
+        "expected": "2026-11-20"
+      },
+      "version": {
+        "observed": null,
+        "expected": "0.2.0"
+      }
+    },
+    "zip_sha256": "aa59b73311624f2a92b4497f98bfe182e3c2c320c0e0b092fefee5686bce8349",
+    "zip_bytes": 916861
+  },
+  "validation_scope": {
+    "job_success_and_receipt_provenance_independently_read": true,
+    "pinned_engine_source_prelaunch_reviewed": true,
+    "artifact_binary_downloaded_by_this_auditor": false,
+    "full_4GB_snapshot_locally_rehashed_by_this_auditor": false,
+    "extraction_hashes_come_from_executed_engine": true,
+    "scope_and_count_consistency_checked": true
+  },
+  "claims_allowed": [
+    "All8841 indexed historical master/pilot logical payload paths and386 stage metadata paths were materialized and checked in the successful ephemeral runner",
+    "The materialized logical inventory has9227 paths and9217 distinct SHA256 objects",
+    "The original review capsule was built at58823392 bytes and all18564 extracted members were checked by the executed engine",
+    "The uploaded candidate has explicit source/evidence exclusions and exactly6 approved unique ONNX in the initial run",
+    "The already published documentary DOI and exact916861-byte ZIP were reverified on2026-11-20T23:02:08Z"
+  ],
+  "claims_not_allowed": [
+    "The entire4.27GB scientific master was archived in the public capsule or deposited in Zenodo",
+    "All15 approved ONNX were included in this initial candidate; nine require separately verified addition",
+    "The newly built candidate has a published DOI or completed rights review",
+    "The registry metadata corrections are already saved",
+    "Human reproduction C, new training, confirmation or R3 were performed"
+  ],
+  "important_remaining_limits": [
+    "The source/evidence selection retains original terms; category filtering is not independent legal clearance.",
+    "A controlled ephemeral hydration is distinct from a persistent integral scientific deposit.",
+    "Nine authorized ONNX from a separate release and any reproduction C driver must have a separate verified consolidation receipt before upgrading archive claims.",
+    "No model code, forward execution or training was invoked by this reviewed run."
+  ],
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "GPU_used": false,
+  "R3_accredited": false,
+  "Zenodo_writes": 0,
+  "source_edits_by_reviewer": false,
+  "blockers_to_publish_executed_scoped_result_with_these_limits": []
+}

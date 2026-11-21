@@ -1,0 +1,18 @@
+{
+  "status": "failed_guarded_consolidation_no_release_created",
+  "run_id": 44837596000,
+  "job_id": 136637789297,
+  "launcher_commit": "7a4ad1b83b0465ff5ce0ff653c7d6213cbfd83fc",
+  "branch": "e3-render-public-acceptance-archive-consolidate-8d03a73d-v1",
+  "base_artifact_verified_sha256": "d1d133793f110486633edde986594597e6e52b8eb1a67b4fdf2217832cb54a22",
+  "consolidation_tests_passed": 12,
+  "C_preparation_tests_passed": 10,
+  "failure": "ValueError: Non-source C addon member",
+  "failure_stage": "add_C real pinned manifest compatibility",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 375, in <module>\n    run(parser.parse_args())\n  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 317, in run\n    addon = add_C(args.C_addon_root, args.C_addon_manifest, args.C_addon_manifest_sha256, payload)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 224, in add_C\n    require(PurePosixPath(name).suffix.lower() in ADDON_EXTENSIONS and wanted['bytes'] <= 2_000_000, 'Non-source C addon member')\n  File \"/home/runner/work/DeepLearning_202630/DeepLearning_202630/experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py\", line 62, in require\n    if not ok: raise ValueError(message)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Non-source C addon member\n##[error]Process completed with exit code 1.\n##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\nwith:\n  name: e3-consolidated-review-44837596000\n  path: /tmp/e3-consolidated/\n  retention-days: 30\n  if-no-files-found: warn",
+  "release_job": "skipped",
+  "new_model_fits": 0,
+  "new_predictions": 0,
+  "Zenodo_writes": 0,
+  "main_changed": false
+}

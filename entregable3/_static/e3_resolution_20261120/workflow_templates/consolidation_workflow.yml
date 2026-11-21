@@ -1,0 +1,98 @@
+name: Consolidate exact approved E3 artifacts and publish a scoped review archive
+on:
+  create:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  consolidate-and-check:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'create' && github.event.ref_type == 'branch' &&
+       github.event.ref == 'e3-render-public-acceptance-archive-consolidate-8d03a73d-v1')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - name: Checkout only the frozen consolidation and C preparation tools
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            experiments/e3_integral_resolution_20261120/consolidation
+            experiments/e3_integral_resolution_20261120/reproduction_C_preparation
+      - name: Prepare the same Python archive runtime
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Download only the earlier scoped archive and public reports
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: e3-source-evidence-review-44833679006
+          run-id: 44833679006
+          github-token: ${{ github.token }}
+          path: /tmp/e3-base-review
+      - name: Verify consolidation integrity guards without executing models
+        run: python -m unittest discover -s experiments/e3_integral_resolution_20261120/consolidation -p test_consolidate_archive.py -v
+      - name: Verify C preparation guards without training or inference
+        run: python -m unittest discover -s experiments/e3_integral_resolution_20261120/reproduction_C_preparation -p test_historical_C_driver.py -v
+      - name: Consolidate exact nine-model exports and the pinned C preparation kit
+        run: |
+          python experiments/e3_integral_resolution_20261120/consolidation/consolidate_archive.py \
+            --base-archive /tmp/e3-base-review/e3-source-evidence-8d03a73-v0.3.0-REVIEW.tar.gz \
+            --output /tmp/e3-consolidated \
+            --C-addon-root experiments/e3_integral_resolution_20261120/reproduction_C_preparation \
+            --C-addon-manifest experiments/e3_integral_resolution_20261120/reproduction_C_preparation/MANIFEST.json \
+            --C-addon-manifest-sha256 e8ab147d6c6e74d581b8b61504dc64ce6ecbbe79f3c2a2e9a1c344537028d5a7 \
+            --launcher-commit "$GITHUB_SHA"
+      - name: Retain only the new scoped review archive and receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-consolidated-review-${{ github.run_id }}
+          path: /tmp/e3-consolidated/
+          retention-days: 30
+          if-no-files-found: warn
+  publish-review-release:
+    needs: consolidate-and-check
+    if: >-
+      github.event_name == 'create' && github.event.ref_type == 'branch' &&
+      github.event.ref == 'e3-render-public-acceptance-archive-consolidate-8d03a73d-v1'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: write
+      actions: read
+    concurrency:
+      group: e3-source-evidence-8d03a73-v031-review-publication
+      cancel-in-progress: false
+    steps:
+      - name: Checkout only the controlled release helper
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            experiments/e3_integral_resolution_20261120/publication
+      - name: Download the verified current-run review archive
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: e3-consolidated-review-${{ github.run_id }}
+          path: /tmp/e3-consolidated
+      - name: Test publication guards with fixtures and no external writes
+        run: python3 -m unittest discover -s experiments/e3_integral_resolution_20261120/publication -p test_publish_review_release.py -v
+      - name: Publish exact assets as a review prerelease and verify public downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 experiments/e3_integral_resolution_20261120/publication/publish_review_release.py \
+            --directory /tmp/e3-consolidated --report /tmp/e3-review-release-receipt.json
+      - name: Preserve the executed public release receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-review-release-receipt-${{ github.run_id }}
+          path: /tmp/e3-review-release-receipt.json
+          retention-days: 30
+          if-no-files-found: warn

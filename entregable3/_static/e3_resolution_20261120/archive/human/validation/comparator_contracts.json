@@ -1,0 +1,125 @@
+{
+  "status": "passed",
+  "scope": "pure_CSV_comparison_contracts_not_new_replay",
+  "existing_profiles_compared": 12,
+  "corruption_cases": 8,
+  "results": [
+    {
+      "case": "fixed_reference_A.metrics.csv",
+      "status": "passed",
+      "rows": 17,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.primary_contrasts.csv",
+      "status": "passed",
+      "rows": 48,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.effects.csv",
+      "status": "passed",
+      "rows": 16,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.verdicts.csv",
+      "status": "passed",
+      "rows": 16,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.mae_secondary.csv",
+      "status": "passed",
+      "rows": 16,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.seed_subgroups.csv",
+      "status": "passed",
+      "rows": 28,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.sensitivities.csv",
+      "status": "passed",
+      "rows": 96,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.metrics_extended.csv",
+      "status": "passed",
+      "rows": 17,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.metrics_extended_table.csv",
+      "status": "passed",
+      "rows": 17,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.metrics_uncertainty.csv",
+      "status": "passed",
+      "rows": 17,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_A.metrics_per_predictor.csv",
+      "status": "passed",
+      "rows": 143,
+      "comparison_only": true
+    },
+    {
+      "case": "fixed_reference_B.accepted55",
+      "status": "passed",
+      "rows": 55,
+      "comparison_only": true
+    },
+    {
+      "case": "missing_date",
+      "status": "correctly_rejected",
+      "error": "Predeclared row count differs"
+    },
+    {
+      "case": "duplicate_date",
+      "status": "correctly_rejected",
+      "error": "Empty or duplicate CSV row key"
+    },
+    {
+      "case": "reordered_dates",
+      "status": "correctly_rejected",
+      "error": "Identifier/calendar order differs"
+    },
+    {
+      "case": "nonfinite_output",
+      "status": "correctly_rejected",
+      "error": "Nonfinite CSV numeric cell"
+    },
+    {
+      "case": "nonfinite_known_A",
+      "status": "correctly_rejected",
+      "error": "Nonfinite CSV numeric cell"
+    },
+    {
+      "case": "missing_not_zero",
+      "status": "correctly_rejected",
+      "error": "Missing/text/numeric CSV cell type changed: accepted_ORT_sigma7"
+    },
+    {
+      "case": "changed_frozen_prediction",
+      "status": "correctly_rejected",
+      "error": "Derived discrepancy field disagrees with prediction"
+    },
+    {
+      "case": "inconsistent_error_field",
+      "status": "correctly_rejected",
+      "error": "Derived discrepancy field disagrees with prediction"
+    }
+  ],
+  "new_model_fits": 0,
+  "new_model_inferences": 0,
+  "new_scientific_resamples": 0,
+  "human_independent_reproduction_claimed": false,
+  "AI_assistance_declared": true
+}

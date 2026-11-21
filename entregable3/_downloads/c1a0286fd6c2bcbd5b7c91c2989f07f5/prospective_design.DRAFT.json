@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "kind": "FUTURE_PREPARATION_DRAFT_NOT_FROZEN_NOT_PREREGISTERED",
+  "base_commit": "8d03a73d529eb3f9b2e89992b4488cfeb88a99e6",
+  "candidate": "atom_crps",
+  "science": {
+    "decision": "NO_GO_CONFIRMATION_CURRENT_RECIPE",
+    "original_pilot_rule_preserved": true,
+    "original_threshold": 0.02,
+    "atom_crps_error_increase_vs_atom_mse_only": 0.02704311988801411,
+    "automatic_ablation_promotion": false,
+    "renewed_rationale_sufficient": false,
+    "new_mechanism_proposed": false
+  },
+  "estimand": {
+    "estimator": "mean of individual seed RMSE differences on common target endpoints; not pooled or ensemble RMSE",
+    "future_population_target_proposal": "E_seed[sqrt(E_P error_rival^2)-sqrt(E_P error_V3^2)] for a predeclared temporal process P",
+    "null": "theta_j <= delta_j",
+    "alternative": "theta_j > delta_j",
+    "known55_calendar_reinterpretation_allowed": false,
+    "units": "raw unannualized population sigma7, ddof0",
+    "target_process_and_seed_sampling_reviewed": false
+  },
+  "family": {
+    "rivals": [
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "CNN-LSTM-atencion-aditiva E3",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "rival_count": 19,
+    "all_system_count": 20,
+    "procedures": [
+      "P1_FUNCTIONAL_BLOCK_BOOTSTRAP",
+      "P2_RMSE_DELTA_HAC",
+      "P3_FUNCTIONAL_SUBSAMPLING"
+    ],
+    "components": 57,
+    "Holm_family": "all57 primary p-values together at alpha0.05; require all3 adjustedp<0.05 perrival",
+    "separate_ablations": [
+      "atom_mse_only",
+      "fixed_probs",
+      "atom_plugin"
+    ],
+    "additional_domain_family_design": "predeclare main57 and additional171 adjusted families, or a stronger single228 family; evaluate error control for the final cross-domain decision before freeze",
+    "auxiliary_requirements": [
+      "MCS or critical-difference diagram",
+      "cross-dataset test with dependence justification",
+      "secondary metrics/subgroup/robustness families"
+    ]
+  },
+  "margins": {
+    "by_panel": {
+      "F00": null,
+      "F01": null,
+      "F02": null,
+      "F03": null
+    },
+    "old_BTC_reference": 0.00025772842664981106,
+    "old_reference_approved_for_V3": false,
+    "planning_alternative_gain_by_panel": null,
+    "rule": "Operationally justify delta before outcomes; specify Delta_alt > delta separately. Delta_alt=delta is a null boundary, not a90%-power alternative."
+  },
+  "data": {
+    "future_panels": [
+      {
+        "id": "F00",
+        "purpose": "possible future panel metadata only; not a selected or admitted dataset",
+        "domain_to_assess": "BTC spot future endpoints",
+        "difference_axes_to_document": "main task; temporal shift only, not an additional independent market",
+        "instrument": null,
+        "source_URL": null,
+        "license": null,
+        "version": null,
+        "bytes_sha256": null,
+        "first_endpoint": null,
+        "last_endpoint": null,
+        "admitted_unexposed": false,
+        "unopened_access_log_sha256": null,
+        "endpoint_rule": "future targets after a real protocol/data lock or a custodian-sealed never-opened panel; specify raw eight-close supports and seven-target boundary purge",
+        "exclusion_rule": "Do not relabel anyD00–D03 slice as unexposed or select domains by observed advantage",
+        "dependence_review": "Need economic/common-factor and calendar/underlying dependence assessment; different ticker/source is insufficient"
+      },
+      {
+        "id": "F01",
+        "purpose": "possible future panel metadata only; not a selected or admitted dataset",
+        "domain_to_assess": "equity with a current OHLCV source",
+        "difference_axes_to_document": "instrument class, session clock, corporate-action policy and volume units differ",
+        "instrument": null,
+        "source_URL": null,
+        "license": null,
+        "version": null,
+        "bytes_sha256": null,
+        "first_endpoint": null,
+        "last_endpoint": null,
+        "admitted_unexposed": false,
+        "unopened_access_log_sha256": null,
+        "endpoint_rule": "future targets after a real protocol/data lock or a custodian-sealed never-opened panel; specify raw eight-close supports and seven-target boundary purge",
+        "exclusion_rule": "Do not relabel anyD00–D03 slice as unexposed or select domains by observed advantage",
+        "dependence_review": "Need economic/common-factor and calendar/underlying dependence assessment; different ticker/source is insufficient"
+      },
+      {
+        "id": "F02",
+        "purpose": "possible future panel metadata only; not a selected or admitted dataset",
+        "domain_to_assess": "commodity futures with a frozen contract/roll rule",
+        "difference_axes_to_document": "commodity exposure, contract volume, term structure and session definition differ",
+        "instrument": null,
+        "source_URL": null,
+        "license": null,
+        "version": null,
+        "bytes_sha256": null,
+        "first_endpoint": null,
+        "last_endpoint": null,
+        "admitted_unexposed": false,
+        "unopened_access_log_sha256": null,
+        "endpoint_rule": "future targets after a real protocol/data lock or a custodian-sealed never-opened panel; specify raw eight-close supports and seven-target boundary purge",
+        "exclusion_rule": "Do not relabel anyD00–D03 slice as unexposed or select domains by observed advantage",
+        "dependence_review": "Need economic/common-factor and calendar/underlying dependence assessment; different ticker/source is insufficient"
+      },
+      {
+        "id": "F03",
+        "purpose": "possible future panel metadata only; not a selected or admitted dataset",
+        "domain_to_assess": "rates instrument or rates ETF with traded volume",
+        "difference_axes_to_document": "economic exposure, volatility/noise scale and instrument construction differ",
+        "instrument": null,
+        "source_URL": null,
+        "license": null,
+        "version": null,
+        "bytes_sha256": null,
+        "first_endpoint": null,
+        "last_endpoint": null,
+        "admitted_unexposed": false,
+        "unopened_access_log_sha256": null,
+        "endpoint_rule": "future targets after a real protocol/data lock or a custodian-sealed never-opened panel; specify raw eight-close supports and seven-target boundary purge",
+        "exclusion_rule": "Do not relabel anyD00–D03 slice as unexposed or select domains by observed advantage",
+        "dependence_review": "Need economic/common-factor and calendar/underlying dependence assessment; different ticker/source is insufficient"
+      }
+    ],
+    "old_D00_D03_eligible": false,
+    "minimum_additional_domains": 3,
+    "minimum_difference_axes_per_additional_domain": 2
+  },
+  "treatment": {
+    "window": 7,
+    "target_close_support": 8,
+    "forecast_horizon": 1,
+    "boundary_purge_targets_template": 7,
+    "same_dates_preprocessing_fit_selection_calibration_all_models": true,
+    "fit_only_scalers": true,
+    "HPO_template_configurations": 3,
+    "per_fit_seconds_template": 120,
+    "budget_templates_are_not_final": true,
+    "final_absolute_endpoints": null,
+    "neural_systems_including_candidate": 15,
+    "deterministic_controls": "one trajectory per recipe; no fake independent seeds or HPO runs",
+    "capacity": "report parameters and a defined FLOPs method; if needed matched-capacity benchmark fixed before outcomes",
+    "fairness_review_complete": false,
+    "fixed_GPU_software_cohort_required": true
+  },
+  "sampling": {
+    "planning_seed_pairs": 3,
+    "minimum_planning_pairs_per_stochastic_rival": 5,
+    "complete_variances_for_four_panels_and19_rivals": false,
+    "final_R": null,
+    "minimum_final_R": 10,
+    "final_T": null,
+    "power_per_contrast_minimum": 0.9,
+    "joint_report_required": true,
+    "joint90_required": false,
+    "seed_x_date_rows_are_independent": false,
+    "minimum_replicates_for_future_MC_precision_not_power_guarantee": 10000
+  },
+  "battery": {
+    "proposed_methods": [
+      "P1_FUNCTIONAL_BLOCK_BOOTSTRAP",
+      "P2_RMSE_DELTA_HAC",
+      "P3_FUNCTIONAL_SUBSAMPLING"
+    ],
+    "reviewed_and_validated": false,
+    "old_GW_proposal_status": "not automatically a primary superiority test; omnibus conditional rejection does not establish the same one-sided RMSE margin",
+    "HLN_status": "optional finite-sample proposal requiring functional-specific validation; h1 differs from sigma7 overlap",
+    "implementation_and_method_receipts": null,
+    "source_revision_is_future_draft_not_pilot_rule_change": true
+  },
+  "planning_simulation_contract": {
+    "status": "PREPARED_NOT_EXECUTED",
+    "input_stage_required": "planning_simulation",
+    "fit_DGP_only_on_admitted_planning_data_excluded_from_confirmation": true,
+    "replicate_preserves": "same temporal path and crossed seed dependence for all rivals and all3 procedures",
+    "null_validation": "boundary and below-margin nulls, partial-null configurations, shared shocks, heavy tails, weak/nonstationary alternatives; validate size/FWER before power",
+    "one_dataset_per_summary_file": true,
+    "pvalue_CSV_fields": [
+      "stage",
+      "dataset_id",
+      "replicate",
+      "R",
+      "T",
+      "rival",
+      "procedure",
+      "p_raw"
+    ],
+    "marginal_decision": "intersection of all3 Holm-adjusted procedures perrival, not anysinglemethod",
+    "joint_decision": "same-replicate intersection across19 rivals; do not multiply marginal powers",
+    "Monte_Carlo_uncertainty": "one-sided simultaneous Clopper-Pearson exact-binomial bounds over19 rival intersections; joint bound separate; independent simulation replicates required; Monte Carlo precision is conditional on an unvalidated DGP"
+  },
+  "pilot": {
+    "kind": "future separate planning-only pilot; no training launched here",
+    "data_partition_excluded_from_confirmation": true,
+    "seed_pairs_minimum": 5,
+    "fit_count_template": "4panels×15neurals×5seedfits=300 before any fresh HPO; count classic fits separately",
+    "approx_GPU_budget_reference_hours": 10,
+    "budget_reference_formula": "300×120s/3600, excludes setup, HPO, classics, failed attempts and analysis",
+    "available_days_and_GPU_reported_by_author": true,
+    "availability_reconfirmation_required": false,
+    "why_not_run": "current scientific NO-GO, no admitted prospective planning/confirmation panels or validated battery; not lack of user willingness",
+    "incremental_old_pilot_extension": "adding2seeds to the old exposed pilot could improve conditional initialization SD but cannot fill16rivals or make55dates independent; not scheduled"
+  },
+  "freeze": {
+    "annotated_tag_verified": false,
+    "tag": null,
+    "commit": null,
+    "date": null,
+    "outcome_access_order_proof": null
+  },
+  "evidence_bindings": {},
+  "confirmation_Colab_generated": false,
+  "new_protocol_tag_created": false,
+  "R3_accredited": false,
+  "AI_assistance_declared": true
+}
