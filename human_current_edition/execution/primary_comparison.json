@@ -1,0 +1,50 @@
+{
+  "CRPS_U_in_comparison": false,
+  "exact_fields": 5,
+  "failures": [],
+  "floating_fields": 4,
+  "max_absolute_discrepancy": 4.336808689942018e-19,
+  "per_field": {
+    "SD_individual_RMSE": {
+      "max_absolute": 1.6940658945086007e-19,
+      "max_relative": 4.146747749396338e-15,
+      "maximum_at_recipe": "fixed_probs"
+    },
+    "mean_bias_prediction_minus_target": {
+      "max_absolute": 5.421010862427522e-20,
+      "max_relative": 1.5397486774985404e-16,
+      "maximum_at_recipe": "atom_plugin"
+    },
+    "mean_individual_MAE": {
+      "max_absolute": 4.336808689942018e-19,
+      "max_relative": 2.724664731640437e-16,
+      "maximum_at_recipe": "atom_crps"
+    },
+    "mean_individual_RMSE": {
+      "max_absolute": 4.336808689942018e-19,
+      "max_relative": 2.0912045411490798e-16,
+      "maximum_at_recipe": "atom_mse_only"
+    }
+  },
+  "rows": 7,
+  "status": "pass",
+  "tolerances": {
+    "SD_individual_RMSE": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    },
+    "mean_bias_prediction_minus_target": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    },
+    "mean_individual_MAE": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    },
+    "mean_individual_RMSE": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    }
+  },
+  "units": "daily unannualized volatility; bias prediction minus target"
+}

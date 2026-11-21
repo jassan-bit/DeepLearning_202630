@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "recorded_at_utc": "2026-11-21T02:29:17.187471+00:00",
+  "issue": "CI original historical verifier required whole design log to equal historical snapshot after a legitimate append",
+  "fix": "Verify exact pinned historical prefix6025bytes and isolate its historical view while verifying all actual protected files and static mirrors",
+  "allowlisted_append_path": "experiments/design_log.md",
+  "historical_prefix_bytes": 6025,
+  "append_bytes": 3750,
+  "unit_tests_passed": 14,
+  "actual_verification": {
+    "status": "verified_historical_E3_closure_with_append_only_design_log",
+    "frozen_manifest_sha256": "fc7baad48d29ee832473275c6283400669aee40d0820b5ebbcb89e121a288d82",
+    "frozen_verifier_sha256": "a8ad5a1d06e1aef43faa809301ae9acf55b7af1ad392e48965b8d71ec945e1ac",
+    "historical_component_scope_only": {
+      "status": "verified_existing_evidence_closure_integrity",
+      "closure_payloads": 134,
+      "published_mirrors": 134,
+      "edited_root_files": 7,
+      "protected_files_verified": 578,
+      "protected_files_absent": 0,
+      "protected_manifest_files_fully_verified": true,
+      "optional_downloads_verified": 1,
+      "mode": "source_and_downloads",
+      "new_forecasting_model_fits": 0,
+      "new_forecasting_model_predictions": 0,
+      "new_statistical_resamples": 0,
+      "new_confirmatory_superiority_tests": 0,
+      "retrospective_diagnostic_evaluations": 200,
+      "stored_diagnostic_trajectories": 50,
+      "diagnostic_families": {
+        "historical_608_dates": 40,
+        "extended_four_datasets": 160
+      },
+      "R1_accredited": false,
+      "R3_accredited": false,
+      "automatic_promotion_of_best_ablation": false,
+      "continuation_heuristic_passed": false,
+      "AI_assistance_declared": true,
+      "Render_public_acceptance_verified": false,
+      "DOI_publication_verified": false
+    },
+    "scope_note": "Historical zero-work counters apply only to the original frozen closure; later V4 development has20newfits/1210predictions in its separate packet.",
+    "current_design_log": {
+      "path": "experiments/design_log.md",
+      "bytes": 9775,
+      "sha256": "37c4774d56b6d48fd601e316cdc9c5c43974ff29192df0df187f8d90f8aaf72d",
+      "historical_prefix_bytes": 6025,
+      "historical_prefix_sha256": "99c0d894cacadc93104a112a98c73ac2f68fc6c74a33dfde1517b22f446cc972",
+      "appended_bytes": 3750,
+      "appended_sha256": "0e4cd3c6dbcb8ef8521c588210de0c1280c5eced51876b2f91db33e5f09f7e15"
+    },
+    "source_payloads_and_mirrors_reconstructed": false,
+    "missing_protected_allowed": false,
+    "new_experiments_executed_by_this_verifier": false,
+    "AI_assistance_declared": true
+  },
+  "files": [
+    {
+      "path": "scripts/verify_historical_e3_closure.py",
+      "local_path": "/workspace/e3_completion_worktree/scripts/verify_historical_e3_closure.py",
+      "bytes": 7143,
+      "sha256": "0f4e5b5296fff20c3f3aabe54816e0c11a4875cfb1957c04a2742d476b7fdaa4",
+      "sha": "7425d2284140a13778bdc16a39b2ae1d1d21805b",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "tests/test_verify_historical_e3_closure.py",
+      "local_path": "/workspace/e3_completion_worktree/tests/test_verify_historical_e3_closure.py",
+      "bytes": 6166,
+      "sha256": "9322a03f4ac2ab27e7c0fee17bedc796be5daafacaa4eb0b66fb04cbec54ab0e",
+      "sha": "c4d85a25530ae21383c6b4e3b4d9d1c202b588b4",
+      "encoding": "utf-8"
+    },
+    {
+      "path": ".github/workflows/verify-e3-existing-evidence-close.yml",
+      "local_path": "/workspace/e3_completion_worktree/.github/workflows/verify-e3-existing-evidence-close.yml",
+      "bytes": 5078,
+      "sha256": "6967ccc742eae4d500ea8768ac6978438ea3ec0d5dea0749367b37c908646f30",
+      "sha": "37e7779fcb733d4fdbfef55b846e3ba141f99ca3",
+      "encoding": "utf-8"
+    }
+  ],
+  "original_frozen_manifest_or_verifier_modified": false,
+  "new_packet_modified": false,
+  "book_text_or_payloads_modified_by_fix": false,
+  "new_experiments_executed": false,
+  "AI_assistance_declared": true,
+  "full_snapshot_input_scope": "All original frozen closure, mirror, edited/protected paths from pinned source-checkout f5c960eefedb5fc49b313dd795b1ec84e784bd78 plus exact currently appended design_log; oldsource and worktree log remain byte-unchanged."
+}

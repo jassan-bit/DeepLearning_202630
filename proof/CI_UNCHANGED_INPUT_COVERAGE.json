@@ -1,0 +1,56 @@
+{
+  "kind": "read_only_exact_Git_diff_and_workflow_path_coverage",
+  "initial_source_commit": "3a11806db8327ffaece79e5018b4af31bc25529f",
+  "final_source_commit": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+  "changed_paths": [
+    ".github/workflows/verify-e3-existing-evidence-close.yml",
+    "scripts/verify_historical_e3_closure.py",
+    "tests/test_verify_historical_e3_closure.py"
+  ],
+  "changed_paths_count": 3,
+  "only_published_CI_fix_paths_changed": true,
+  "remote_Merkle_receipt": "FINAL_SOURCE_PUBLICATION_MERKLE_QA.json",
+  "checks": [
+    {
+      "run_id": 44855611762,
+      "head_sha": "3a11806db8327ffaece79e5018b4af31bc25529f",
+      "scope": "inherited_unchanged_inputs",
+      "workflow_path": ".github/workflows/verify-e3-handoff.yml",
+      "workflow_blob_before": "9706b5006bf06118a0df806ad7ee90e6ad050bf0",
+      "workflow_blob_after": "9706b5006bf06118a0df806ad7ee90e6ad050bf0",
+      "declared_push_paths": [
+        "scripts/e3_*.py",
+        "tests/test_e3_*.py",
+        "experiments/e3_bloques_ab_20261115/**",
+        "artifacts/e3_handoff/**",
+        "book_e3/**",
+        ".github/workflows/verify-e3-handoff.yml"
+      ],
+      "changed_paths_intersecting_declared_scope": [],
+      "scoped_inputs_unchanged": true
+    },
+    {
+      "run_id": 44855611833,
+      "head_sha": "3a11806db8327ffaece79e5018b4af31bc25529f",
+      "scope": "inherited_unchanged_inputs",
+      "workflow_path": ".github/workflows/verify-e3-design-theory.yml",
+      "workflow_blob_before": "a393e5b0513d16b0753a84986ef4a936ef808ab5",
+      "workflow_blob_after": "a393e5b0513d16b0753a84986ef4a936ef808ab5",
+      "declared_push_paths": [
+        "experiments/e3_diseno_riguroso_20261117/**",
+        "experiments/design_log.md",
+        "book_e3/_static/e3_diseno_riguroso_20261117/**",
+        "src/original_model.py",
+        "src/e3_development.py",
+        "src/e3_innovation_model.py",
+        "requirements-nas-cpu.lock.txt",
+        ".github/workflows/verify-e3-design-theory.yml"
+      ],
+      "changed_paths_intersecting_declared_scope": [],
+      "scoped_inputs_unchanged": true
+    }
+  ],
+  "all_inherited_workflow_scopes_unchanged": true,
+  "existing_successes_reused_without_rerunning": true,
+  "recorded_at_utc": "2026-11-21T02:33:18.900624+00:00"
+}

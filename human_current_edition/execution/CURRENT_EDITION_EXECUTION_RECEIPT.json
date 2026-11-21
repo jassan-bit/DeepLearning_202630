@@ -1,0 +1,880 @@
+{
+  "status": "final_edition_book_additive19x4_V3_and_V4_saved_results_passed",
+  "mode": "software-validation",
+  "source_commit": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+  "started_utc": "2026-11-21T02:40:27.372887+00:00",
+  "elapsed_seconds": 14.952863202022854,
+  "primary_table": "additive19x4-clean-plus-development-V3",
+  "scope": "Entire pinned E3 book build; additive532aggregate rows including76clean-main rows,456ranks and4dataset summary reaggregated from4060fixed cached per-seed metrics and2320interval summaries; V3 seven-recipe table recomputed from935saved points. No per-seed recomputation from1874560audit points, resampling, fits, forward pass, confirmatory result or human claim.",
+  "request_sha256_before_execution": "c97533c0e19bb09a8161c7904f57552c9d88a4b38a7a462c2cbcf3023cc68e8d",
+  "profile_changed_during_execution": false,
+  "comparison": {
+    "status": "pass",
+    "rows": 7,
+    "floating_fields": 4,
+    "exact_fields": 5,
+    "units": "daily unannualized volatility; bias prediction minus target",
+    "per_field": {
+      "mean_individual_RMSE": {
+        "max_absolute": 4.336808689942018e-19,
+        "max_relative": 2.0912045411490798e-16,
+        "maximum_at_recipe": "atom_mse_only"
+      },
+      "SD_individual_RMSE": {
+        "max_absolute": 1.6940658945086007e-19,
+        "max_relative": 4.146747749396338e-15,
+        "maximum_at_recipe": "fixed_probs"
+      },
+      "mean_individual_MAE": {
+        "max_absolute": 4.336808689942018e-19,
+        "max_relative": 2.724664731640437e-16,
+        "maximum_at_recipe": "atom_crps"
+      },
+      "mean_bias_prediction_minus_target": {
+        "max_absolute": 5.421010862427522e-20,
+        "max_relative": 1.5397486774985404e-16,
+        "maximum_at_recipe": "atom_plugin"
+      }
+    },
+    "max_absolute_discrepancy": 4.336808689942018e-19,
+    "tolerances": {
+      "mean_individual_RMSE": {
+        "absolute": 1e-15,
+        "relative": 1e-12
+      },
+      "SD_individual_RMSE": {
+        "absolute": 1e-15,
+        "relative": 1e-12
+      },
+      "mean_individual_MAE": {
+        "absolute": 1e-15,
+        "relative": 1e-12
+      },
+      "mean_bias_prediction_minus_target": {
+        "absolute": 1e-15,
+        "relative": 1e-12
+      }
+    },
+    "failures": [],
+    "CRPS_U_in_comparison": false
+  },
+  "audit_regeneration": {
+    "status": "full_additive_audit_reaggregated_from_fixed_cached_seed_metrics",
+    "input_metric_rows": 4060,
+    "main_clean_metric_rows": 580,
+    "aggregate_rows": 532,
+    "main_clean_rows": 76,
+    "rank_rows": 456,
+    "summary_rows": 4,
+    "datasets": 4,
+    "systems": 19,
+    "neural_seeds_each": 10,
+    "deterministic_systems": 5,
+    "comparisons": {
+      "model_metrics_532": {
+        "status": "pass",
+        "rows": 532,
+        "per_field": {
+          "RMSE_mean_individual": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 3.469446951953614e-18,
+            "max_relative": 3.3184426857320834e-16,
+            "maximum_at_key": [
+              "D01",
+              "test",
+              "ohlcv_observation_noise_3",
+              "FCN-1D"
+            ]
+          },
+          "RMSE_seed_sample_SD": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 4.336808689942018e-19,
+            "max_relative": 2.2129804340907616e-16,
+            "maximum_at_key": [
+              "D01",
+              "test",
+              "unperturbed",
+              "PatchTST"
+            ]
+          },
+          "MAE_mean_individual": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 6.938893903907228e-18,
+            "max_relative": 4.053681271763515e-16,
+            "maximum_at_key": [
+              "D02",
+              "test",
+              "ohlcv_observation_noise_3",
+              "TSMixer"
+            ]
+          },
+          "raw_RMSE_mean_individual_secondary": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 3.469446951953614e-18,
+            "max_relative": 4.0176244420952745e-16,
+            "maximum_at_key": [
+              "D01",
+              "fit",
+              "unperturbed",
+              "PatchTST"
+            ]
+          },
+          "raw_MAE_mean_individual_secondary": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 3.469446951953614e-18,
+            "max_relative": 3.115226492569355e-16,
+            "maximum_at_key": [
+              "D01",
+              "test",
+              "ohlcv_observation_noise_3",
+              "CNN-LSTM-atencion-aditiva E3"
+            ]
+          },
+          "sMAPE_percent_mean_individual": {
+            "unit": "percent",
+            "max_absolute": 1.4210854715202004e-14,
+            "max_relative": 2.6526014409196417e-16,
+            "maximum_at_key": [
+              "D01",
+              "test",
+              "ohlcv_observation_noise_3",
+              "ResNet-1D"
+            ]
+          },
+          "R2_mean_individual": {
+            "unit": "dimensionless R2",
+            "max_absolute": 1.7763568394002505e-15,
+            "max_relative": 2.821947579174067e-16,
+            "maximum_at_key": [
+              "D01",
+              "test",
+              "ohlcv_observation_noise_3",
+              "iTransformer"
+            ]
+          }
+        },
+        "failures": [],
+        "max_absolute_discrepancy": 1.4210854715202004e-14,
+        "global_max_interpretation": "Mechanical maximum across mixed-unit fields; substantive assessment uses the per-field discrepancy, unit and row key.",
+        "tolerances": {
+          "RMSE_mean_individual": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "RMSE_seed_sample_SD": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "MAE_mean_individual": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "raw_RMSE_mean_individual_secondary": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "raw_MAE_mean_individual_secondary": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "sMAPE_percent_mean_individual": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "R2_mean_individual": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          }
+        }
+      },
+      "ranks_456": {
+        "status": "pass",
+        "rows": 456,
+        "per_field": {
+          "rank_RMSE": {
+            "unit": "dimensionless descriptive average rank",
+            "max_absolute": 0.0,
+            "max_relative": 0.0,
+            "maximum_at_key": null
+          },
+          "RMSE_mean_individual": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 3.469446951953614e-18,
+            "max_relative": 3.001792675251321e-16,
+            "maximum_at_key": [
+              "within_dataset",
+              "D01",
+              "ohlcv_observation_noise_3",
+              "FCN-1D"
+            ]
+          }
+        },
+        "failures": [],
+        "max_absolute_discrepancy": 3.469446951953614e-18,
+        "global_max_interpretation": "Mechanical maximum across mixed-unit fields; substantive assessment uses the per-field discrepancy, unit and row key.",
+        "tolerances": {
+          "rank_RMSE": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "RMSE_mean_individual": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          }
+        }
+      },
+      "clean_summary_4": {
+        "status": "pass",
+        "rows": 4,
+        "per_field": {
+          "candidate_RMSE_mean_individual": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 4.336808689942018e-19,
+            "max_relative": 1.3134795222205707e-16,
+            "maximum_at_key": [
+              "D03"
+            ]
+          },
+          "candidate_RMSE_seed_sample_SD": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 1.3552527156068805e-20,
+            "max_relative": 2.1832981670168213e-16,
+            "maximum_at_key": [
+              "D02"
+            ]
+          },
+          "best_rival_RMSE": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 0.0,
+            "max_relative": 0.0,
+            "maximum_at_key": null
+          },
+          "relative_RMSE_reduction_vs_best_rival_percent": {
+            "unit": "percent",
+            "max_absolute": 1.2878587085651816e-14,
+            "max_relative": 3.721389926844569e-15,
+            "maximum_at_key": [
+              "D03"
+            ]
+          },
+          "nominal_coverage": {
+            "unit": "fraction in0..1",
+            "max_absolute": 0.0,
+            "max_relative": 0.0,
+            "maximum_at_key": null
+          },
+          "candidate_empirical_coverage_mean_across_10_seeds": {
+            "unit": "fraction in0..1",
+            "max_absolute": 0.0,
+            "max_relative": 0.0,
+            "maximum_at_key": null
+          },
+          "candidate_interval_mean_width": {
+            "unit": "unannualized sigma7 in its own dataset; no cross-dataset pooling",
+            "max_absolute": 0.0,
+            "max_relative": 0.0,
+            "maximum_at_key": null
+          }
+        },
+        "failures": [],
+        "max_absolute_discrepancy": 1.2878587085651816e-14,
+        "global_max_interpretation": "Mechanical maximum across mixed-unit fields; substantive assessment uses the per-field discrepancy, unit and row key.",
+        "tolerances": {
+          "candidate_RMSE_mean_individual": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "candidate_RMSE_seed_sample_SD": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "best_rival_RMSE": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "relative_RMSE_reduction_vs_best_rival_percent": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "nominal_coverage": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "candidate_empirical_coverage_mean_across_10_seeds": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          },
+          "candidate_interval_mean_width": {
+            "absolute": 1e-12,
+            "relative": 1e-12
+          }
+        }
+      }
+    },
+    "published_summary": {
+      "status": "pass",
+      "datasets": 4,
+      "display_RMSE_decimals": 9,
+      "display_gain_decimals": 2,
+      "book_section": "8.18"
+    },
+    "installed_generated_paths": [
+      "book_e3/_static/human_reproduction_19x4/model_metrics_regenerated.csv",
+      "book_e3/_static/human_reproduction_19x4/cross_dataset_ranks_regenerated.csv",
+      "book_e3/_static/human_reproduction_19x4/clean_test_summary_regenerated.csv",
+      "book_e3/_static/human_reproduction_19x4/principal_additive_19x4.csv"
+    ],
+    "original_audit_payloads_modified": false,
+    "main76_csv_sha256": "af22c2df13df7a1a6a713835cdcbf04a220271fc8eeba7c7479c96b3e2d89ed8",
+    "all_input_hashes": {
+      "analysis/per_seed_metrics.csv": "a81d0827c77f56ec68bcd0aec3649e6e8e1de41199af7e2a4837a8f99ce5c94b",
+      "analysis/interval_metrics.csv": "23876ca6a22d8e8eec2be3445d867463026513fd10264315b01a8eb48e39dcb8",
+      "analysis/analysis_receipt.json": "0048bdf3e8376ed5cefa57e57b31eabbc2e5785bd5acf7235a544fa5f7265efc",
+      "analysis/model_metrics.csv": "4b311d972ae0f6051e29868ea9b497ef70ee961ebcedbd05a297fb4c5d488b9a",
+      "analysis/cross_dataset_ranks.csv": "c698878be35a9fe82edcab98c0a8cdf3bdec5b5f5cb5115f3222e04ac91f021c",
+      "clean_test_summary.csv": "ec3707d3520ecd8bfeea933cd02498ce81ac2861a3047f595ab10347c84aeba8"
+    },
+    "scope": "Reaggregation from saved per-seed metrics and interval summaries; no recomputation of per-seed metrics from1874560points, no bootstrap, fits, forecasts, CRPS or confirmatory decisions.",
+    "new_model_fits": 0,
+    "new_model_predictions": 0,
+    "human_execution_claimed": false
+  },
+  "served_regenerated_audit_tables": [
+    {
+      "path": "book_e3/_static/human_reproduction_19x4/model_metrics_regenerated.csv",
+      "sha256": "fb1d4a48f1abd8b7eac0716b5f506b1804981bbaf36fd00af689a477ddd7b52e"
+    },
+    {
+      "path": "book_e3/_static/human_reproduction_19x4/cross_dataset_ranks_regenerated.csv",
+      "sha256": "6d0a96fd85f2460fce007cbf2933f1c0d259ca68dc27c7d4f73ffaa3f9472b3b"
+    },
+    {
+      "path": "book_e3/_static/human_reproduction_19x4/clean_test_summary_regenerated.csv",
+      "sha256": "9189cbec99cf1628e4632f779270b86e48e084aa3a1174ad2cbd9b58bf274b69"
+    },
+    {
+      "path": "book_e3/_static/human_reproduction_19x4/principal_additive_19x4.csv",
+      "sha256": "af22c2df13df7a1a6a713835cdcbf04a220271fc8eeba7c7479c96b3e2d89ed8"
+    }
+  ],
+  "base_v1_manifest_sha256": "a35a5f56d6288ad5640f347b59415f00968277dceb96096fda0dc83db75b0206",
+  "addon_manifest_sha256": "9bd6886236a921fd75c56e8a903d2e2cf668c5b7d92360bf7818f4b0837b5e2c",
+  "links": {
+    "html_pages": 39,
+    "local_links_and_assets_checked": 5317
+  },
+  "book_html_relative": "output/book/_build/html",
+  "regenerated_download_sha256": "a1532ee1c38960c3b3d195016c9067934053e35e9f41ae2d04e707109b2c4755",
+  "isolated_source_changes": [
+    {
+      "path": "book_e3/sections/08_verificacion_estadistica.md",
+      "original_sha256": "d8856e34dfb10d32794279403ed489da734f517ddc4d3b8ebe73e007b7ad2f6f",
+      "actual_sha256": "9941b0b87df280c07dee9bb33553b70006175179535a92dbf3c31546345489cc"
+    }
+  ],
+  "original_CSVs_and_manifests_byte_unchanged": true,
+  "generated_appendix_HTML_verification": {
+    "status": "pass",
+    "tables": 2,
+    "rendered_additive_rows": 76,
+    "rendered_V3_rows": 7,
+    "headers_excluded": true
+  },
+  "python": "3.12.14 (main, Sep 19 2026, 01:04:57) [GCC 14.2.0]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "installed_packages": [
+    {
+      "name": "accessible-pygments",
+      "version": "0.0.5"
+    },
+    {
+      "name": "alabaster",
+      "version": "0.7.16"
+    },
+    {
+      "name": "asttokens",
+      "version": "3.0.2"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0"
+    },
+    {
+      "name": "babel",
+      "version": "2.18.0"
+    },
+    {
+      "name": "beautifulsoup4",
+      "version": "4.15.0"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2"
+    },
+    {
+      "name": "click",
+      "version": "8.5.0"
+    },
+    {
+      "name": "comm",
+      "version": "0.2.3"
+    },
+    {
+      "name": "debugpy",
+      "version": "1.8.22"
+    },
+    {
+      "name": "docutils",
+      "version": "0.21.2"
+    },
+    {
+      "name": "executing",
+      "version": "2.3.0"
+    },
+    {
+      "name": "fastjsonschema",
+      "version": "2.22.3"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "imagesize",
+      "version": "2.0.1"
+    },
+    {
+      "name": "importlib_metadata",
+      "version": "10.1.0"
+    },
+    {
+      "name": "ipykernel",
+      "version": "7.4.0"
+    },
+    {
+      "name": "ipython",
+      "version": "9.18.1"
+    },
+    {
+      "name": "ipython_pygments_lexers",
+      "version": "1.1.1"
+    },
+    {
+      "name": "jedi",
+      "version": "0.20.1"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.6"
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.26.0"
+    },
+    {
+      "name": "jsonschema-specifications",
+      "version": "2025.9.1"
+    },
+    {
+      "name": "jupyter-book",
+      "version": "1.0.4.post1"
+    },
+    {
+      "name": "jupyter-cache",
+      "version": "1.0.1"
+    },
+    {
+      "name": "jupyter_client",
+      "version": "8.10.0"
+    },
+    {
+      "name": "jupyter_core",
+      "version": "5.9.1"
+    },
+    {
+      "name": "latexcodec",
+      "version": "3.0.1"
+    },
+    {
+      "name": "linkify-it-py",
+      "version": "2.2.0"
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "3.0.0"
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.4"
+    },
+    {
+      "name": "matplotlib-inline",
+      "version": "0.2.2"
+    },
+    {
+      "name": "mdit-py-plugins",
+      "version": "0.6.1"
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2"
+    },
+    {
+      "name": "myst-nb",
+      "version": "1.4.0"
+    },
+    {
+      "name": "myst-parser",
+      "version": "3.0.1"
+    },
+    {
+      "name": "nbclient",
+      "version": "0.11.0"
+    },
+    {
+      "name": "nbformat",
+      "version": "5.11.1"
+    },
+    {
+      "name": "nest-asyncio2",
+      "version": "1.7.4"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "parso",
+      "version": "0.8.7"
+    },
+    {
+      "name": "pexpect",
+      "version": "4.9.0"
+    },
+    {
+      "name": "pip",
+      "version": "25.0.1"
+    },
+    {
+      "name": "platformdirs",
+      "version": "4.14.3"
+    },
+    {
+      "name": "prompt_toolkit",
+      "version": "3.0.53"
+    },
+    {
+      "name": "psutil",
+      "version": "7.2.2"
+    },
+    {
+      "name": "ptyprocess",
+      "version": "0.7.0"
+    },
+    {
+      "name": "pure_eval",
+      "version": "0.2.4"
+    },
+    {
+      "name": "pybtex",
+      "version": "0.26.1"
+    },
+    {
+      "name": "pybtex-docutils",
+      "version": "1.0.3"
+    },
+    {
+      "name": "pydata-sphinx-theme",
+      "version": "0.17.1"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "4.0.0"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3"
+    },
+    {
+      "name": "pyzmq",
+      "version": "27.2.0"
+    },
+    {
+      "name": "referencing",
+      "version": "0.37.0"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2"
+    },
+    {
+      "name": "rpds-py",
+      "version": "2026.9.1"
+    },
+    {
+      "name": "setuptools",
+      "version": "84.2.1"
+    },
+    {
+      "name": "snowballstemmer",
+      "version": "3.1.1"
+    },
+    {
+      "name": "soupsieve",
+      "version": "3.0.4"
+    },
+    {
+      "name": "Sphinx",
+      "version": "7.4.7"
+    },
+    {
+      "name": "sphinx-book-theme",
+      "version": "1.3.0"
+    },
+    {
+      "name": "sphinx-comments",
+      "version": "0.0.3"
+    },
+    {
+      "name": "sphinx-copybutton",
+      "version": "0.5.2"
+    },
+    {
+      "name": "sphinx_design",
+      "version": "0.7.0"
+    },
+    {
+      "name": "sphinx_external_toc",
+      "version": "1.1.0"
+    },
+    {
+      "name": "sphinx-jupyterbook-latex",
+      "version": "1.0.0"
+    },
+    {
+      "name": "sphinx-multitoc-numbering",
+      "version": "0.1.3"
+    },
+    {
+      "name": "sphinx-thebe",
+      "version": "0.3.1"
+    },
+    {
+      "name": "sphinx-togglebutton",
+      "version": "0.4.5"
+    },
+    {
+      "name": "sphinxcontrib-applehelp",
+      "version": "2.0.0"
+    },
+    {
+      "name": "sphinxcontrib-bibtex",
+      "version": "2.7.0"
+    },
+    {
+      "name": "sphinxcontrib-devhelp",
+      "version": "2.0.0"
+    },
+    {
+      "name": "sphinxcontrib-htmlhelp",
+      "version": "2.1.0"
+    },
+    {
+      "name": "sphinxcontrib-jsmath",
+      "version": "2.0.0"
+    },
+    {
+      "name": "sphinxcontrib-qthelp",
+      "version": "2.0.0"
+    },
+    {
+      "name": "sphinxcontrib-serializinghtml",
+      "version": "2.0.0"
+    },
+    {
+      "name": "SQLAlchemy",
+      "version": "2.1.6"
+    },
+    {
+      "name": "stack-data",
+      "version": "0.6.3"
+    },
+    {
+      "name": "tabulate",
+      "version": "0.10.0"
+    },
+    {
+      "name": "tornado",
+      "version": "6.6"
+    },
+    {
+      "name": "traitlets",
+      "version": "5.16.1"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0"
+    },
+    {
+      "name": "wcwidth",
+      "version": "0.9.4"
+    },
+    {
+      "name": "wheel",
+      "version": "0.48.0"
+    },
+    {
+      "name": "zipp",
+      "version": "4.1.2"
+    }
+  ],
+  "pip_install_report_sha256": "93c4ed3858d0951ecec65f9429b83b24a36433d649f7349dc8f5cfbabaff50da",
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "human_execution_claimed": false,
+  "external_operator_request_present": false,
+  "human_attestation_still_required": true,
+  "R2_or_R3_accredited_by_automation": false,
+  "optional_C_executed": false,
+  "historical_A_B_receipts_reused_not_rerun": true,
+  "final_edition_wrapper_version": "1.2",
+  "previous_f5_receipt_relabelled": false,
+  "original_frozen_sources_byte_unchanged": true,
+  "runtime_context_override_declared": {
+    "source_commit": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+    "profile_and_manifest_directory": "/case/current"
+  },
+  "additional_V4_saved_result_comparison": {
+    "status": "pass",
+    "source_commit": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+    "saved_predictions": 1210,
+    "trajectories": 22,
+    "recipes": 6,
+    "comparisons": [
+      {
+        "name": "sigma_crps_v4",
+        "field": "mean_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 4.336808689942018e-19
+      },
+      {
+        "name": "sigma_crps_v4",
+        "field": "mean_MAE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 2.168404344971009e-19
+      },
+      {
+        "name": "sigma_crps_v4",
+        "field": "sample_SD_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 8.809142651444724e-20
+      },
+      {
+        "name": "u_crps_control",
+        "field": "mean_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "u_crps_control",
+        "field": "mean_MAE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "u_crps_control",
+        "field": "sample_SD_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "mse_only_control",
+        "field": "mean_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 4.336808689942018e-19
+      },
+      {
+        "name": "mse_only_control",
+        "field": "mean_MAE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "mse_only_control",
+        "field": "sample_SD_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 3.3881317890172014e-21
+      },
+      {
+        "name": "additive_positive_head",
+        "field": "mean_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "additive_positive_head",
+        "field": "mean_MAE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 2.168404344971009e-19
+      },
+      {
+        "name": "additive_positive_head",
+        "field": "sample_SD_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 1.8973538018496328e-19
+      },
+      {
+        "name": "floor_only",
+        "field": "mean_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "floor_only",
+        "field": "mean_MAE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "floor_plus_mean_excess",
+        "field": "mean_RMSE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 0.0
+      },
+      {
+        "name": "floor_plus_mean_excess",
+        "field": "mean_MAE",
+        "unit": "unannualized sigma7",
+        "absolute_discrepancy": 2.168404344971009e-19
+      }
+    ],
+    "max_absolute_discrepancy_sigma7": 4.336808689942018e-19,
+    "tolerances_declared_before_execution": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    },
+    "input_SHA256": "3de0b8cad079c4b03f3d0cd7f7d35848b0acc9807a91e88c563bd34cf2a4c2c0",
+    "derived_csv_SHA256": "f20822c9054e1225892841a1381e4394a8f42bb31297b06801ca98ce9f77e86e",
+    "original_V4_decision": "ABANDON_CURRENT_V4_RECIPE",
+    "new_model_fits": 0,
+    "new_model_predictions": 0,
+    "new_statistical_resamples": 0,
+    "human_execution_claimed": false
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "mode": "software-validation",
+  "human_execution_claimed": false,
+  "source_commit": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+  "principal_table": "additive19x4-clean-plus-development-V3",
+  "tolerances": {
+    "mean_individual_RMSE": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    },
+    "SD_individual_RMSE": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    },
+    "mean_individual_MAE": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    },
+    "mean_bias_prediction_minus_target": {
+      "absolute": 1e-15,
+      "relative": 1e-12
+    }
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_bytes": 2147483648,
+    "timeout_seconds": 1800,
+    "network_during_execution": false
+  },
+  "fresh_training_requested": false,
+  "profile_purpose": "Full E3 book plus19x4 additive table reconstructed from saved per-seed metrics and V3 pilot table from saved predictions; automated software validation, no external-person claim.",
+  "audit_tolerances": {
+    "MAE_mean_individual": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "R2_mean_individual": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "RMSE_mean_individual": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "RMSE_seed_sample_SD": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "best_rival_RMSE": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "candidate_RMSE_mean_individual": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "candidate_RMSE_seed_sample_SD": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "candidate_empirical_coverage_mean_across_10_seeds": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "candidate_interval_mean_width": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "nominal_coverage": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "rank_RMSE": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "raw_MAE_mean_individual_secondary": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "raw_RMSE_mean_individual_secondary": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "relative_RMSE_reduction_vs_best_rival_percent": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    },
+    "sMAPE_percent_mean_individual": {
+      "absolute": 1e-12,
+      "relative": 1e-12
+    }
+  },
+  "V4_development_scope_accepted": true,
+  "V4_tolerance": {
+    "absolute": 1e-15,
+    "relative": 1e-12
+  },
+  "source_scope_note": "Current final d6 E3 book,19x4 additive+oldV3 principal tables plus6 V4 development recipes from saved predictions; no new predictions/training"
+}

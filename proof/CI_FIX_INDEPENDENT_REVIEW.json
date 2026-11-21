@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "independent_CI_fix_review_passed_no_historical_integrity_weakening",
+  "reviewed_at_utc": "2026-11-21T02:33:50.068001+00:00",
+  "AI_review_declared": true,
+  "reviewed_fix_files": [
+    {
+      "path": "scripts/verify_historical_e3_closure.py",
+      "bytes": 7143,
+      "sha256": "0f4e5b5296fff20c3f3aabe54816e0c11a4875cfb1957c04a2742d476b7fdaa4",
+      "sha": "7425d2284140a13778bdc16a39b2ae1d1d21805b",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "tests/test_verify_historical_e3_closure.py",
+      "bytes": 6166,
+      "sha256": "9322a03f4ac2ab27e7c0fee17bedc796be5daafacaa4eb0b66fb04cbec54ab0e",
+      "sha": "c4d85a25530ae21383c6b4e3b4d9d1c202b588b4",
+      "encoding": "utf-8"
+    },
+    {
+      "path": ".github/workflows/verify-e3-existing-evidence-close.yml",
+      "bytes": 5078,
+      "sha256": "6967ccc742eae4d500ea8768ac6978438ea3ec0d5dea0749367b37c908646f30",
+      "sha": "37e7779fcb733d4fdbfef55b846e3ba141f99ca3",
+      "encoding": "utf-8"
+    }
+  ],
+  "prior_failed_run": 44855611792,
+  "prior_failed_job": 136696979830,
+  "failure_reason": "The frozen historical verifier expected the entire canonical design log to remain byte-identical after a legitimate append; this fix preserves the historical prefix and scopes that historical comparison explicitly.",
+  "frozen_historical_integrity": {
+    "manifest_SHA256": "fc7baad48d29ee832473275c6283400669aee40d0820b5ebbcb89e121a288d82",
+    "verifier_SHA256": "a8ad5a1d06e1aef43faa809301ae9acf55b7af1ad392e48965b8d71ec945e1ac",
+    "actual_original_files_unchanged": true,
+    "historical_log_prefix_bytes": 6025,
+    "historical_log_prefix_SHA256": "99c0d894cacadc93104a112a98c73ac2f68fc6c74a33dfde1517b22f446cc972",
+    "current_log_bytes": 9775,
+    "current_log_SHA256": "37c4774d56b6d48fd601e316cdc9c5c43974ff29192df0df187f8d90f8aaf72d",
+    "actual_append_bytes": 3750,
+    "actual_append_SHA256": "0e4cd3c6dbcb8ef8521c588210de0c1280c5eced51876b2f91db33e5f09f7e15",
+    "prefix_not_reconstructed_from_new_data": true,
+    "other6edited_root_files_require_exact_historical_SHA": true,
+    "actual_protected_paths_checked_before_fallback": 578,
+    "source_only_and_allow_missing_protected_modes_not_exposed_or_used": true,
+    "actual_source_and_static_payloads_both_required": true
+  },
+  "independent_software_guards": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -B -m unittest discover -s tests -p test_verify_historical_e3_closure.py -v",
+    "tests": 14,
+    "exit": 0,
+    "seconds_reported_by_unittest": 0.027,
+    "scope": "Filesystem mutation/path/prefix/old-source/mirror/protected guards only; no model/data simulation."
+  },
+  "independent_actual_snapshot_verification": {
+    "scope": "Temporary view links actual pinned f5c960e historical source/mirrors/protected files and copies exact current appended design log; does not substitute missing protected payloads or modify original source.",
+    "actual_input_paths": 857,
+    "result": {
+      "status": "verified_historical_E3_closure_with_append_only_design_log",
+      "frozen_manifest_sha256": "fc7baad48d29ee832473275c6283400669aee40d0820b5ebbcb89e121a288d82",
+      "frozen_verifier_sha256": "a8ad5a1d06e1aef43faa809301ae9acf55b7af1ad392e48965b8d71ec945e1ac",
+      "historical_component_scope_only": {
+        "status": "verified_existing_evidence_closure_integrity",
+        "closure_payloads": 134,
+        "published_mirrors": 134,
+        "edited_root_files": 7,
+        "protected_files_verified": 578,
+        "protected_files_absent": 0,
+        "protected_manifest_files_fully_verified": true,
+        "optional_downloads_verified": 1,
+        "mode": "source_and_downloads",
+        "new_forecasting_model_fits": 0,
+        "new_forecasting_model_predictions": 0,
+        "new_statistical_resamples": 0,
+        "new_confirmatory_superiority_tests": 0,
+        "retrospective_diagnostic_evaluations": 200,
+        "stored_diagnostic_trajectories": 50,
+        "diagnostic_families": {
+          "historical_608_dates": 40,
+          "extended_four_datasets": 160
+        },
+        "R1_accredited": false,
+        "R3_accredited": false,
+        "automatic_promotion_of_best_ablation": false,
+        "continuation_heuristic_passed": false,
+        "AI_assistance_declared": true,
+        "Render_public_acceptance_verified": false,
+        "DOI_publication_verified": false
+      },
+      "scope_note": "Historical zero-work counters apply only to the original frozen closure; later V4 development has20newfits/1210predictions in its separate packet.",
+      "current_design_log": {
+        "path": "experiments/design_log.md",
+        "bytes": 9775,
+        "sha256": "37c4774d56b6d48fd601e316cdc9c5c43974ff29192df0df187f8d90f8aaf72d",
+        "historical_prefix_bytes": 6025,
+        "historical_prefix_sha256": "99c0d894cacadc93104a112a98c73ac2f68fc6c74a33dfde1517b22f446cc972",
+        "appended_bytes": 3750,
+        "appended_sha256": "0e4cd3c6dbcb8ef8521c588210de0c1280c5eced51876b2f91db33e5f09f7e15"
+      },
+      "source_payloads_and_mirrors_reconstructed": false,
+      "missing_protected_allowed": false,
+      "new_experiments_executed_by_this_verifier": false,
+      "AI_assistance_declared": true
+    },
+    "actual_source_log_and_current_log_unchanged_after_review": true
+  },
+  "zero_counter_scope_check": "Frozen zero-work counters remain nested under historical_component_scope_only. The wrapper explicitly states laterV4 has20newfits/1210predictions in its separate packet; no globalnew0claim is made. Newpacket verifier enforces its actual20/1210/ABANDON semantics separately.",
+  "workflow_review": {
+    "contents_permission": "read",
+    "credentials_persisted": false,
+    "old_source_bound_ZIP_replay_steps_preserved": true,
+    "wrapper_and14guards_invoked": true,
+    "new_canonical_packet_verification_invoked": true,
+    "no_fits_or_new_scientific_simulations_introduced": true,
+    "nonblocking_future_coverage_note": "The newly added packet check currently triggers canonical packet changes; a static-newpacket-only change does not trigger this workflow and its new mirror is not separately checked here. This is additional possible coverage, not weakening of any historical check; no frozen three-path fix was changed for it."
+  },
+  "guard_weakening_findings": [],
+  "scientific_or_book_payloads_or_old_manifests_changed_by_fix": false,
+  "source_edits_by_this_reviewer": 0,
+  "GitHub_requests_by_this_reviewer": 0,
+  "model_fits_inference_or_statistical_simulations_by_this_reviewer": 0,
+  "R3_accredited": false,
+  "human_reproduction_claimed": false,
+  "blockers_to_publish_the_declared_three_path_CI_correction": []
+}
