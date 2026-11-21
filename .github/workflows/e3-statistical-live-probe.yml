@@ -1,0 +1,36 @@
+name: Read-only E3 statistical publication HTTPS probe
+on:
+  push:
+    branches: [e3-statistical-live-probe-2fbab63]
+permissions:
+  contents: read
+jobs:
+  independent-https-readback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout: scripts/e3_statistical_live_probe
+          sparse-checkout-cone-mode: true
+      - name: Check pinned expectation and probe software with fixtures
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -m unittest discover -s scripts/e3_statistical_live_probe -p 'test_probe_publication.py' -v
+      - name: Verify public manifest and all four entrypoints without publishing
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python scripts/e3_statistical_live_probe/probe_publication.py \
+            --expected scripts/e3_statistical_live_probe/expected_publication.json \
+            --report live-probe.json --attempts 3 --request-timeout 10 --interval 5
+      - name: Preserve read-only observations even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: e3-statistical-publication-live-probe-${{ github.run_id }}
+          path: live-probe.json
+          if-no-files-found: error
+          retention-days: 90
