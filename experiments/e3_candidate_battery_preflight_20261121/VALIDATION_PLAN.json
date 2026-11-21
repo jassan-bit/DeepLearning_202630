@@ -1,0 +1,174 @@
+{
+  "AI_assistance_declared": true,
+  "DGP_code_sha256": null,
+  "MC_endpoints": {
+    "alternative_endpoints": [
+      "coverage_and_width",
+      "detect_zero_and_practical_margin_if_valid_inversion_exists",
+      "support_failure_rate"
+    ],
+    "alternative_power_label": "Synthetic partial power only, with precision; not>=.90 market-power certification and no minimum power pass threshold selected after outcomes.",
+    "ceiling_note": "Nominal endpoint error plus.03 exploratory tolerance. These thresholds do not establish exact nominal coverage or market validity and do not change the historical .08/.13 decisions.",
+    "development_screen_ceilings_proposed": {
+      "bias_bound_family": 0.04,
+      "expanded_interval_family": 0.08,
+      "root_family": 0.07
+    },
+    "inconclusive": "Otherwise, including incomplete budget stop, unsupported scope or excessive interval uncertainty. No same-plan top-up of replicates.",
+    "intervals": "Two-sided exact Clopper-Pearson, per-endpoint error=.05/18, for at-least95% simultaneous Monte Carlo confidence over the18declared null-case endpoints. Also report individual95% intervals, clearly separate.",
+    "nominal_coverage_evidence": "Separately flag a lower CP bound above the nominal alpha; a tolerance screen pass is never a proof of exact level.",
+    "null_case_endpoint_count": 18,
+    "null_case_endpoints": [
+      "any_root_interval_misses_its_finite_design_tau",
+      "any_bias_bound_fails_its_declared_joint_bound_event",
+      "any_expanded_interval_misses_population_theta"
+    ],
+    "pass": "Every corresponding simultaneous upper CP bound is <= its declared ceiling, support failures are absent within the claimed regular scope, all cases completed and all source hashes unchanged. Only passes limited screen.",
+    "reject": "Any corresponding simultaneous lower CP bound exceeds the ceiling, or derivation/code integrity is violated. Keep findings and stop approval."
+  },
+  "R3_accredited": false,
+  "before_any_random_execution": [
+    "Complete root approximation and computable simultaneous bias-bound construction; account for near-zero risk and interaction.",
+    "Fix code, DGP generator and analytic mean-of-individual-RMSE truths, variance bounds, pairing and all identities by hash.",
+    "Supply separate population_Psi, finite_design_tau and structural-bias-bound oracles, with certified deterministic numerical error; preserve an inconclusive classification if numerical uncertainty crosses a decision boundary.",
+    "Choose one repair before results; no post-result selection among bias bound, jackknife and a changed estimand.",
+    "Resolve p/interval inversion and multiplicity for the chosen limited scope; if not derived, study intervals only and do not claim p validity.",
+    "Review the proposal counts, error allocation, exact CP tails and hard resource ceiling, then freeze a final new version publicly.",
+    "Measure implementation feasibility on a separately declared deterministic timing fixture without inspecting Monte Carlo outcomes; if infeasible, revise and freeze before sampling, or do not run."
+  ],
+  "execution_authorized": false,
+  "execution_now": {
+    "new_fits": 0,
+    "new_market_predictions": 0,
+    "new_replicates": 0,
+    "new_resamples": 0
+  },
+  "market_design": {
+    "candidate_id": null,
+    "family": null,
+    "final_R": null,
+    "final_T": null,
+    "final_budget": null,
+    "joint_power_must_be_reported": true,
+    "minimum_power_per_contrast": 0.9,
+    "universal_joint_power_minimum": null
+  },
+  "new_method_code_sha256": null,
+  "not_prerequisites_for_this_synthetic_research": [
+    "market_candidate_accepted",
+    "R1_R2_instructor_decision",
+    "four_real_market_panels",
+    "market_pilot",
+    "final_market_R_T",
+    "final_confirmatory_protocol"
+  ],
+  "plan_id": "bias_aware_rmse_intervals_stage1_DRAFT_20261121",
+  "primary_metric_unchanged": true,
+  "public_preregistration_claimed": false,
+  "purpose": "Limited methodological validation of centered-root and Jensen-bias-aware intervals, if their missing derivation and code become defensible. Not validation of full R3 or a market campaign.",
+  "regularity_and_edge_cases": {
+    "edge_cases_are_not_extra_IID_market_observations": true,
+    "invalid_studentizer_or_covariance": "Retain case/model slot, p1 if a p interface is used, interval absent, support failure recorded, no victory.",
+    "structural_zero_mu": "Analytic q=0 a.s. case checked separately; an observed zero does not establish this.",
+    "support_case_near_zero_positive_mu": "Derive bound integrability; if insufficient, mark outside supported scope, never impose an epsilon to assert population positivity."
+  },
+  "required_distinct_truth_oracles": {
+    "availability_now": false,
+    "bias_bound_event": "Freeze the conservative sufficient event Bhat_m >= B_m_structural simultaneously for every model, where B_m_structural=E_seed[Var(qbar_T|seed)/(2mu(seed)^1.5)]. Do not silently switch later to a weaker empirical event.",
+    "finite_design_tau": "E_seed,time(thetahat_j) for the exact R/T and generator, computed independently of the validation draws. Required to score centered-root coverage; population_Psi alone is insufficient.",
+    "oracle_precision": "Closed-form calculation or deterministic integration with certified error accounted for in all endpoint classifications. No plug-in Monte Carlo truth from current or prior validation outputs. Numerical ambiguous cases remain inconclusive.",
+    "population_Psi": "E_seed sqrt(E_time q|seed), derived for every model; not sqrt(E_seed E_time q).",
+    "required_before_execution": true
+  },
+  "research_revision": "Keep observed mean individual RMSE; investigate [L_root-B_candidate,U_root+B_rival]. No numerical bias bound has been estimated.",
+  "resources": {
+    "GPU": false,
+    "authorized_spend_now": 0,
+    "budget_is_a_ceiling_not_a_runtime_prediction": true,
+    "estimated_cost": null,
+    "estimated_elapsed_seconds": null,
+    "market_network_access": false,
+    "proposed_CPU_threads_ceiling": 2,
+    "proposed_RAM_bytes_ceiling": 2147483648,
+    "proposed_wall_seconds_ceiling": 3600,
+    "stop_rule": "If final feasibility does not fit, do not start. If an eventual run reaches the frozen cap, preserve an incomplete/inconclusive receipt, no selective omission or top-up.",
+    "training": false
+  },
+  "root_and_bias_error_allocation_proposed": {
+    "bias_bound_family_eta": 0.01,
+    "resulting_interval_family_error_upper_bound": 0.05,
+    "root_family_alpha": 0.04,
+    "scope": "Only if the two simultaneous probability guarantees are actually derived; .04/.01 are internal proposed choices, not guide requirements."
+  },
+  "schema_version": 1,
+  "separate_later_whole_battery_stage": {
+    "MCS_level_is_not_universal_guide_rule": true,
+    "needed": [
+      "Complete prospective methodology-family choice and size.",
+      "Defensible centered joint process/covariance for P1/P2 and every MCS subset.",
+      "Guide correspondence of P3 or another genuinely distinct third procedure.",
+      "True partial nulls and optimal ties, coverage of all optima, false candidate-singleton probability, full equality family and interval coverage, plus full-rule power."
+    ],
+    "nominal_MCS_level_proposal": 0.05,
+    "reason": "Not enough method/code/family inputs; do not invent final counts or claim a3model screen validates a20model MCS.",
+    "replications_B_R_T_budget": null,
+    "status": "NOT_READY_NOT_AUTHORIZED"
+  },
+  "source_commit": "5f29ab51e1bb3e79d972377b6d682d1785bdc298",
+  "source_controls": "Existing studies and artifacts are read-only historical references; no historical Monte Carlo study is rerun by this package.",
+  "status": "DESIGN_DRAFT_BLOCKED_METHOD_CODE_AND_FEASIBILITY",
+  "synthetic_scope_proposed": {
+    "bootstrap_B_proposed": 8191,
+    "calendar_T": 128,
+    "cases": [
+      {
+        "definition": "All population risks equal, only seed amplitudes vary; q constant in time. Isolates seed inference; exact temporal bias is zero.",
+        "id": "equal_seed_only",
+        "role": "null"
+      },
+      {
+        "definition": "Equal population risks with stationary Gaussian AR dependence phi=.35 and common calendar effects.",
+        "id": "equal_AR_moderate",
+        "role": "null"
+      },
+      {
+        "definition": "Equal population risks with stationary Gaussian AR dependence phi=.85. Preserve as required stress; do not drop after a failure.",
+        "id": "equal_AR_strong",
+        "role": "null"
+      },
+      {
+        "definition": "Equal population risk amplitudes but model AR coefficients [.85,0,.35]. Compute each mean-of-roots truth analytically before freezing code.",
+        "id": "equal_heterogeneous_temporal_dependence",
+        "role": "null"
+      },
+      {
+        "definition": "Models0 and1 have population risk1; model2 risk.85. Candidate0 is not a unique optimum. Correct centering must retain true equality0-vs1.",
+        "id": "candidate_rival_tie_with_better_third",
+        "role": "partial_null"
+      },
+      {
+        "definition": "Models0 and1 have population risk1; model2 risk1.23. Do not confuse rejection of initial global EPA with a false true-null pair rejection.",
+        "id": "candidate_optimal_tie_and_inferior_third",
+        "role": "partial_null"
+      },
+      {
+        "definition": "Population risks [1,1.23,1.23], common phi=.35; delta=.03 is a synthetic planning parameter only, not a market margin.",
+        "id": "candidate_better_than_both",
+        "role": "alternative"
+      }
+    ],
+    "cases_and_truths_require_final_hashed_generator_before_execution": true,
+    "fresh_seed_proposal": 202611210842,
+    "models": 3,
+    "new_replications_alternative_proposed": 512,
+    "new_replications_per_null_case_proposed": 1024,
+    "not_a_repeat_of_old_1664_replicates": "New inference object and fresh draws would require their own implementation/anchor. None executed here.",
+    "raw_resample_slots_proposed_if_each_replicate_uses_one_B": 54519296,
+    "reuse_previous_random_arrays": false,
+    "rivals": 2,
+    "scope_note": "Development dimensions for a limited method investigation only, not final R/T or proof for19rivals.",
+    "seeds_R": 12,
+    "total_proposed_replicates": 6656
+  },
+  "written_before_any_execution_of_this_plan": true
+}
