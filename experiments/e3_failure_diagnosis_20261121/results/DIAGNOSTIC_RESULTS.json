@@ -1,0 +1,121 @@
+{
+  "AI_assistance_declared": true,
+  "R3_accredited": false,
+  "cohorts": {
+    "V3_GPU": {
+      "balanced_MSE_decomposition_candidate_minus_control": {
+        "date_main_component": 2.6747446338926054e-07,
+        "global_bias_squared": 6.678213149504786e-08,
+        "seed_date_interaction": -9.533143784427356e-08,
+        "seed_main_component": -3.4143942454370624e-09
+      },
+      "candidate": "atom_crps",
+      "candidate_mean_individual_MAE": 0.0015916852593203118,
+      "candidate_mean_individual_RMSE": 0.0021299157684633078,
+      "control": "atom_mse_only",
+      "control_mean_individual_MAE": 0.0016442745998827718,
+      "control_mean_individual_RMSE": 0.0020738328578604843,
+      "dates_with_positive_mean_squared_error_difference": 25,
+      "mean_MSE_difference": 2.3551076279459778e-07,
+      "mean_bias_candidate": -0.0002644839018597256,
+      "mean_bias_control": -5.6299225997318005e-05,
+      "mean_centered_error_variance_difference": 1.7214302554498734e-07,
+      "mean_squared_bias_difference": 6.33677372496108e-08,
+      "n_dates": 55,
+      "n_seeds": 3,
+      "relative_RMSE_change_percent": 2.704311988801389,
+      "seeds_with_higher_RMSE": 3,
+      "share_note": "May exceed1 because beneficial dates offset adverse ones. Not a share of RMSE or an independent sample.",
+      "top5_absolute_contribution_dates": [
+        "2024-10-11",
+        "2024-09-09",
+        "2024-09-30",
+        "2024-10-14",
+        "2024-09-26"
+      ],
+      "top5_adverse_dates": [
+        "2024-10-11",
+        "2024-09-30",
+        "2024-10-14",
+        "2024-09-26",
+        "2024-10-09"
+      ],
+      "top5_adverse_share_of_net_signed_excess_MSE": 1.7971804235837767,
+      "top5_beneficial_dates": [
+        "2024-09-09",
+        "2024-10-21",
+        "2024-09-13",
+        "2024-09-22",
+        "2024-09-28"
+      ]
+    },
+    "V4_CPU": {
+      "balanced_MSE_decomposition_candidate_minus_control": {
+        "date_main_component": 2.0982253809530762e-08,
+        "global_bias_squared": 4.679774826800725e-09,
+        "seed_date_interaction": 8.013760323605465e-08,
+        "seed_main_component": 1.6977859031476793e-08
+      },
+      "candidate": "sigma_crps_v4",
+      "candidate_mean_individual_MAE": 0.001621356164400261,
+      "candidate_mean_individual_RMSE": 0.0020875243063835248,
+      "control": "mse_only_control",
+      "control_mean_individual_MAE": 0.001608359944792178,
+      "control_mean_individual_RMSE": 0.0020578245258112133,
+      "dates_with_positive_mean_squared_error_difference": 37,
+      "mean_MSE_difference": 1.22777490903862e-07,
+      "mean_bias_candidate": -0.00019601088032370568,
+      "mean_bias_control": -0.0001836858469737757,
+      "mean_centered_error_variance_difference": 1.0111985704558421e-07,
+      "mean_squared_bias_difference": 2.165763385827752e-08,
+      "n_dates": 55,
+      "n_seeds": 5,
+      "relative_RMSE_change_percent": 1.4432610846934812,
+      "seeds_with_higher_RMSE": 5,
+      "share_note": "May exceed1 because beneficial dates offset adverse ones. Not a share of RMSE or an independent sample.",
+      "top5_absolute_contribution_dates": [
+        "2024-09-09",
+        "2024-10-11",
+        "2024-10-04",
+        "2024-10-03",
+        "2024-10-02"
+      ],
+      "top5_adverse_dates": [
+        "2024-09-09",
+        "2024-10-11",
+        "2024-10-04",
+        "2024-09-21",
+        "2024-10-08"
+      ],
+      "top5_adverse_share_of_net_signed_excess_MSE": 0.964229226152119,
+      "top5_beneficial_dates": [
+        "2024-10-03",
+        "2024-10-02",
+        "2024-09-07",
+        "2024-10-14",
+        "2024-09-30"
+      ]
+    }
+  },
+  "cohorts_pooled": false,
+  "kind": "retrospective_development_diagnostics_not_causal_or_confirmatory",
+  "new_MC_replicates": 0,
+  "new_fits": 0,
+  "new_market_predictions": 0,
+  "new_model_forwards": 0,
+  "new_statistical_resamples": 0,
+  "p_values": 0,
+  "source_commit": "5f29ab51e1bb3e79d972377b6d682d1785bdc298",
+  "source_metric_max_discrepancy": 8.673617379884035e-19,
+  "training_curve_summary": {
+    "max_elapsed_wall_seconds": 3.536557912826538,
+    "min_elapsed_wall_seconds": 1.190943956375122,
+    "resume_segments": 0,
+    "stop_reason_counts": {
+      "early_stopping": 4,
+      "max_epochs": 16
+    },
+    "trajectories": 20,
+    "wall_budget_stops": 0
+  }
+}

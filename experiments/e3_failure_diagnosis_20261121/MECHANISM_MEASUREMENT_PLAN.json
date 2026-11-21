@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "status": "PREPARED_NOT_EXECUTED",
+  "scope": "New fixed-state loss and gradient measurements on existing development artifacts; no optimizer steps or refits. Not confirmation, R1 or R3.",
+  "execution_authorized_by_this_file": false,
+  "AI_assistance_declared": true,
+  "scientific_source_commit": "5f29ab51e1bb3e79d972377b6d682d1785bdc298",
+  "available_inputs_audited": {
+    "checkpoints_available_hash_verified": 20,
+    "PT_deserialized": false,
+    "NPZ_hash_verified": true,
+    "arrays_deserialized": false,
+    "payloads_redistributed": false,
+    "evidence": "results/STATE_AVAILABILITY.json"
+  },
+  "proposed_checkpoint_subset": {
+    "recipes": [
+      "sigma_crps_v4",
+      "u_crps_control",
+      "mse_only_control"
+    ],
+    "seeds": [
+      20261121,
+      20261122,
+      20261123,
+      20261124,
+      20261125
+    ],
+    "n_checkpoint_files": 15
+  },
+  "snapshot_rules": {
+    "pure_gradients": "Use best state for gradients at assessed predictor; do not assign it latest Adam moments.",
+    "optimizer_aware": "Use latest model with its own optimizer, exact parameter order/groups and stored hyperparameters. State differs from assessed best if epochs differ.",
+    "unavailable_state": "No best_optimizer or best_rng exists in saved schema. Do not invent them.",
+    "identical_best_latest": "Deduplicate only if exact tensor identity is verified before any measurements; otherwise label separate snapshots.",
+    "PT_actual_schema_inspection_pending": true,
+    "do_not_call_phase_or_optimizer_step": true
+  },
+  "data_access": {
+    "allowed": [
+      "training_raw",
+      "training_y_original",
+      "training_dates"
+    ],
+    "membership": "Reconstruct the frozen532fit rows and54selection rows using the verified driver and admission dates. Assessment55 is not used for gradient selection; calibration53 and evaluation608 arrays must never be deserialized.",
+    "fixed_batches": {
+      "fit_first32": [
+        0,
+        31
+      ],
+      "fit_middle32": [
+        250,
+        281
+      ],
+      "fit_last32": [
+        500,
+        531
+      ],
+      "selection_first27": [
+        0,
+        26
+      ],
+      "selection_last27": [
+        27,
+        53
+      ]
+    },
+    "arrays_are_exposed_development_not_independent_confirmation": true,
+    "read_only_input_files": true
+  },
+  "maximum_new_computation_proposal": {
+    "batch_forward_calls": 150,
+    "internal_scalar_point_evaluations": 4500,
+    "autograd_evaluations": "At most two loss-component gradient evaluations per forward for each labeled state; preserve zero/unused gradient positions.",
+    "optimizer_steps": 0,
+    "training_jobs": 0,
+    "new_out_of_sample_market_forecasts": 0,
+    "MC_replicates": 0,
+    "p_values": 0,
+    "counts_are_proposed_caps_not_executed": true
+  },
+  "metrics_to_record": [
+    "MSE_sigma_scaled and CRPS term separately, with exact training-only scales and actual lambda",
+    "gradient norms and dot/cosine by shared encoder and atomic head at the same state and batch",
+    "zero/unused/nonfinite gradients and numerical support; no epsilon presented as measured conflict",
+    "proposed full gradient, clipping coefficient and optimizer displacement using a detached copy of matched latest state only",
+    "g_MSE dot hypothetical displacement; label local first-order geometry, not finite-step or held-out improvement",
+    "atom locations, probabilities, transformed-support margin and output-law mean as aggregate diagnostics; no checkpoint payload publication"
+  ],
+  "interpretation_before_results": {
+    "sign_conflict": "Negative cosine is local geometry only. If every supported measured state has nonnegative cosine, sign conflict was not observed in this scope; do not claim universal absence.",
+    "SGD_geometry": "gM dot (gM+lambda*gA) concerns an ordinary gradient direction. Do not transfer its sign to Adam without its coherent moments/preconditioner.",
+    "Adam_geometry": "For displacement d=theta_proposed-theta_current, gM dot d>0 predicts an infinitesimal first-order increase; it does not establish a finite-step or generalization loss.",
+    "no_adaptive_tuning": "Do not choose lambda, seed, epoch, subset or a new stop rule from assessment outcomes. This study selects no model and has no predictive superiority endpoint.",
+    "novelty": "Projection/gating already has prior art. A positive diagnosis motivates a separately reviewed adaptation, not R1 accreditation."
+  },
+  "resource_ceiling_proposal": {
+    "CPU_threads": 2,
+    "GPU": false,
+    "RAM_bytes": 2147483648,
+    "wall_seconds": 300,
+    "estimated_elapsed_seconds": null,
+    "actual_spend_now": 0
+  },
+  "before_execution": [
+    "Review exact code/schema, named-parameter alignment, training/selection membership and forbidden-array guard.",
+    "Bind method code, input hashes and fixed batches and record a real prior anchor for this measurement. It cannot preregister the already exposed pilots.",
+    "Verify safe checkpoint loading of the authenticated local payload without changing source states.",
+    "Use model.eval with autograd enabled and unchanged weights; no training loop, optimizer.step, checkpoint overwrite or forecast publication.",
+    "Define a separate output directory with completed/incomplete receipt and exact computation counters. Stop unsupported cases without silently changing the plan."
+  ],
+  "execution_this_task": {
+    "PT_loaded": 0,
+    "arrays_loaded": 0,
+    "model_forward_calls": 0,
+    "autograd_calls": 0,
+    "training_jobs": 0,
+    "new_market_predictions": 0
+  },
+  "current_candidate_id": null,
+  "R3_accredited": false,
+  "gradient_notation": {
+    "g_M": "gradient of normalized point MSE",
+    "g_A": "gradient of normalized auxiliary loss WITHOUT lambda",
+    "g_total": "g_M+lambda_actual*g_A; weight applied exactly once",
+    "MSE_only_lambda_actual": 0,
+    "MSE_only_effective_auxiliary_gradient": "zero; do not report an actual auxiliary conflict cosine",
+    "counterfactual_auxiliary_on_MSE_only": "If computed under this diagnostic, keep unweighted geometry as explicitly counterfactual, never as the recipe actual loss/gradient; no counterfactual optimizer step."
+  }
+}
