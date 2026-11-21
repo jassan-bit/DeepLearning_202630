@@ -12,6 +12,7 @@ on:
       - 'scripts/verify_historical_e3_closure.py'
       - 'tests/test_verify_historical_e3_closure.py'
       - 'experiments/e3_next_evidence_20261121/**'
+      - 'experiments/e3_statistics_remediation_20261121/**'
   workflow_dispatch:
 
 permissions:
@@ -37,6 +38,18 @@ jobs:
           python -m unittest discover -s tests -p test_verify_historical_e3_closure.py -v
           python scripts/verify_historical_e3_closure.py
           python experiments/e3_next_evidence_20261121/bundle_tools/verify_packet.py --packet experiments/e3_next_evidence_20261121
+      - name: Verify statistical-remediation software and frozen evidence without rerunning analyses
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+        run: |
+          # Synthetic software fixtures only; never run the 640-replicate validation or market analyses in CI.
+          python -m unittest discover -s experiments/e3_statistics_remediation_20261121/calibration -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_statistics_remediation_20261121/retrospective -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_statistics_remediation_20261121/guide_power -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_statistics_remediation_20261121/bundle_tools -p 'test_*.py' -v
+          python experiments/e3_statistics_remediation_20261121/bundle_tools/verify_package.py --packet experiments/e3_statistics_remediation_20261121
       - name: Check source-bound ZIP and replay its extracted small analyses
         run: |
           python - <<'PY'

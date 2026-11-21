@@ -1,0 +1,28 @@
+{
+  "kind": "independent_AI_retrospective_plan_content_review_before_execution",
+  "recorded_at_utc": "2026-11-21T03:09:23.867073+00:00",
+  "status": "PASS_WITH_EXPLICIT_REFERENCE_LIMITATIONS",
+  "plan_sha256": "864f321f69783810ee306a29fe47588a6aadb7bb4dd7dc0e2cb2c1791796a80e",
+  "input_manifest_sha256": "c4958bd7d322036f33c353c09cbbd7e3dae4f9afeaf531ea0c0dfeaa3ac789b7",
+  "new_model_fits": 0,
+  "new_simulations": 0,
+  "new_market_statistics_executed_by_reviewer": false,
+  "reviewed_guards": [
+    "88 fixed diagnostic slots for 22 frozen cohort trajectories",
+    "invalid statistic reserved at p=1 is not a null pass",
+    "44 pointwise HAC intervals are explicitly not joint or primary RMSE intervals",
+    "five paired seeds are not used for unconditional R10 inference",
+    "no invented training predictions, PIT or V4 intervals",
+    "known exposure prevents a prospective claim",
+    "all months and methods are reported without outcome selection"
+  ],
+  "mathematical_clarifications": [
+    "For an optimal one-step conditional-mean forecast, errors are martingale differences even when volatility targets overlap. Overlapping targets are not an automatic explanation for rejected whiteness.",
+    "Classical Ljung-Box p-values are not heteroskedasticity robust and T55 is a limited asymptotic case; ARCH alone does not invalidate a point conditional mean.",
+    "Holm controls FWER only if individual null p-values are valid; applying it does not repair miscalibrated marginals."
+  ],
+  "implementation_review_pending": true,
+  "public_anchor_verification_pending": true,
+  "R3_accredited": false,
+  "human_execution_claimed": false
+}

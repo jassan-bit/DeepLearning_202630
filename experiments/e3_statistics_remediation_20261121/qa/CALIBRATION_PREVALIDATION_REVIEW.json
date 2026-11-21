@@ -1,0 +1,50 @@
+{
+  "kind": "independent_AI_prevalidation_source_and_design_review",
+  "status": "PASS_IMPLEMENTATION_AND_PLAN_REVIEW_NOT_STATISTICAL_CALIBRATION",
+  "recorded_at_utc": "2026-11-21T03:20:12.985182+00:00",
+  "source_manifest_sha256": "1c420a7302cf7803f47bc86a6f06b104cc05cb9e373a1f446fd664718635ac04",
+  "plan_sha256": "6780f94705c698a5a64632085b3789218130a16a37de9c8ff9d5a4e2f588d2b6",
+  "frozen_payloads_rehashed": [
+    "LEGACY_REFERENCE.json",
+    "VALIDATION_PLAN.json",
+    "crossed_rmse_v2.py",
+    "dgp_reference.py",
+    "legacy_mcs.py",
+    "run_validation.py",
+    "test_crossed_rmse_v2.py",
+    "test_validation_driver.py"
+  ],
+  "existing_software_guards_reviewed": 30,
+  "software_guards_rerun_by_reviewer": false,
+  "legacy_MCS_function_body_verbatim_verified": true,
+  "legacy_DGP_three_function_bodies_verbatim_verified": true,
+  "fixed_issues": {
+    "unsupported_nonzero_zero_variance_intervals": "None plus nondegenerate false; p1 reserved conservatively",
+    "unsupported_MCS_replicates": "reported separately; null calibration screen forced inconclusive",
+    "unsupported_paired_variant_comparisons": "reserved p1 plus inconclusive status",
+    "P2_HLN": "h1 factor retained only in proposed crossed P2; no claim of classical theorem",
+    "anchor_zero_SHA": "rejected"
+  },
+  "design": {
+    "fresh_master_seed": 2026112191,
+    "old_master_seed": 2026112107,
+    "planned_replicates": 640,
+    "bootstrap_B": 999,
+    "planned_bootstrap_draws": 639360,
+    "max_wall_seconds": 300,
+    "replicate_streams_disjoint": true,
+    "three_MCS_variants_are_not_three_primary_tests": true,
+    "method_tuning_after_validation_prohibited": true,
+    "dependence_stress_holds_HAC8_block12_fixed": true,
+    "acceptance_contract": "individual central95% CP, upper bound nominal+.03 development tolerance and lower-bound inflation signal; not simultaneous or exact-level certification",
+    "small_null_case_n128_precision": "can remain inconclusive even for an approximately nominal procedure; no automatic adequacy or calibration pass"
+  },
+  "statistical_validation_already_executed_by_reviewer": false,
+  "new_controlled_DGP_replicates_by_reviewer": 0,
+  "new_model_fits_by_reviewer": 0,
+  "methodological_admissibility_certified": false,
+  "market_calibration_certified": false,
+  "R3_accredited": false,
+  "blocking_findings": [],
+  "public_anchor_still_required_before_execution": true
+}

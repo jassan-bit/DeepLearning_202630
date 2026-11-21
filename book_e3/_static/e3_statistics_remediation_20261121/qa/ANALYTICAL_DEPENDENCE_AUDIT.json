@@ -1,0 +1,69 @@
+{
+  "kind": "deterministic_mathematical_reaudit_not_new_validation",
+  "AI_assistance_declared": true,
+  "new_controlled_DGP_replicates": 0,
+  "new_model_fits": 0,
+  "derivation": {
+    "process": "Stationary unit Gaussian AR(1) Z_t; q_t=Z_t^2",
+    "Cov(q_0,q_k)": "2*phi^(2*k)",
+    "Var(q_0)": 2,
+    "true_LRV_over_marginal_variance": "(1+phi^2)/(1-phi^2)",
+    "Bartlett_kernel": "1+2*sum(k=1..L, (1-k/(L+1))*phi^(2*k))",
+    "stationary_bootstrap_population_kernel": "(1+(1-1/block)*phi^2)/(1-(1-1/block)*phi^2)"
+  },
+  "temporal_component_scope": "Population kernel weights before finite-T demeaning and before seed/interaction terms; not total estimator coverage.",
+  "historical_settings": {
+    "HAC_lag": 8,
+    "stationary_mean_block": 12,
+    "EPA_R": 12,
+    "EPA_T": 128,
+    "EPA_M": 20
+  },
+  "cases": [
+    {
+      "phi": 0.35,
+      "squared_process_autocorrelation_factor": 0.12249999999999998,
+      "infinite_population_LRV_factor": 1.2792022792022792,
+      "Bartlett_lag_8_population_kernel_factor": 1.2438490310265398,
+      "Bartlett_to_full_LRV_factor_ratio": 0.972363050980658,
+      "stationary_mean_12_population_kernel_factor": 1.2529922553391224,
+      "stationary_to_full_LRV_factor_ratio": 0.9795106494967304
+    },
+    {
+      "phi": 0.65,
+      "squared_process_autocorrelation_factor": 0.42250000000000004,
+      "infinite_population_LRV_factor": 2.4632034632034636,
+      "Bartlett_lag_8_population_kernel_factor": 2.1818036030198424,
+      "Bartlett_to_full_LRV_factor_ratio": 0.8857585804878445,
+      "stationary_mean_12_population_kernel_factor": 2.264195851751105,
+      "stationary_to_full_LRV_factor_ratio": 0.9192078062469335
+    },
+    {
+      "phi": 0.85,
+      "squared_process_autocorrelation_factor": 0.7224999999999999,
+      "infinite_population_LRV_factor": 6.2072072072072055,
+      "Bartlett_lag_8_population_kernel_factor": 4.234090396225455,
+      "Bartlett_to_full_LRV_factor_ratio": 0.6821248678969893,
+      "stationary_mean_12_population_kernel_factor": 4.922270203578037,
+      "stationary_to_full_LRV_factor_ratio": 0.7929927323616288
+    }
+  ],
+  "seed_only_empirical_bootstrap_identity": {
+    "statement": "Conditional variance of the empirical bootstrap mean is ((S-1)/S) times sample_covariance(ddof=1)/S.",
+    "S": 12,
+    "variance_factor": 0.9166666666666666,
+    "source": "Multinomial seed weights, not a new simulation"
+  },
+  "EPA_null": {
+    "all_model_marginals_exchangeable": true,
+    "finite_T_Jensen_bias_common_across_models": true,
+    "equality_null_still_true_at_finite_T": true,
+    "bias_does_not_explain_away_original_27_of_128_rejections": true
+  },
+  "limits": [
+    "The kernel ratio is one identifiable dependence mechanism, not a proven complete causal attribution of MCS inflation.",
+    "Standard MCS also uses a common estimated pair scale for observed and centered bootstrap statistics; this feature alone is not an implementation bug.",
+    "A bootstrap-t crossed functional modification is a new proposed procedure and needs a fresh fixed validation.",
+    "Corrected studentization alone does not establish validity for every dependence regime or high-dimensional finite seed design."
+  ]
+}

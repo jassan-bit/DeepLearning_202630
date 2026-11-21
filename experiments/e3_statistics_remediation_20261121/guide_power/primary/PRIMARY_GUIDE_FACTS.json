@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "kind": "primary_guide_requirement_and_method_scope_crosscheck",
+  "source_PDF": "Entregable3DeepLearningProject.pdf",
+  "source_PDF_sha256": "d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364",
+  "source_extracted_text_sha256": "f2125284ec476a18489beba084f5b238f0acc0be9e7cc6a2c2ef5dd4992f1dcc",
+  "page_number_convention": "1-basedPDFpagescoincidewithprintedpagenumbers;original60pagePDF",
+  "AI_assistance_declared": true,
+  "recorded_at_utc": "2026-11-21T03:05:44.113016+00:00",
+  "facts": [
+    {
+      "id": "R3_MEAN",
+      "section": "8.4.1",
+      "pages": [
+        23
+      ],
+      "guide_requirement": "The mean primary metric across executions must favor the original against every Top10 and strong baseline.",
+      "interpretation": "A favorable descriptive mean is necessary but not sufficient."
+    },
+    {
+      "id": "R3_THREE",
+      "section": "8.4.2; Table4",
+      "pages": [
+        23,
+        24,
+        26
+      ],
+      "guide_requirement": "At least three distinct Table4 tests reject equal performance for each contrast; Holm p<0.05. MCS uses its declared protocol level, typically0.10. The difference must exceed practical delta.",
+      "interpretation": "The literal null is equal performance. Requiring three nulls theta<=delta is an additional project choice, not a universal wording of the guide."
+    },
+    {
+      "id": "R3_GLOBAL",
+      "section": "Table4 caption",
+      "pages": [
+        26
+      ],
+      "guide_requirement": "At least one of the three procedures must be global or control multiple comparisons.",
+      "interpretation": "Global relevance does not by itself assign a candidate-vs-rival directional p-value to every rival."
+    },
+    {
+      "id": "R3_EFFECT",
+      "section": "8.4.3",
+      "pages": [
+        24
+      ],
+      "guide_requirement": "Absolute Cliff delta>=0.147 or Cohen d>=0.2 when applicable; lower95% difference confidence bound>0, ideally>practical delta.",
+      "interpretation": "Cliff delta is an effect-size symbol distinct from the project practical-margin delta."
+    },
+    {
+      "id": "R3_GENERALIZATION",
+      "section": "8.4.4",
+      "pages": [
+        24
+      ],
+      "guide_requirement": "Better mean in at least2of3additional datasets and no significantly worse result against any family member in any additional dataset.",
+      "interpretation": "The additional datasets must independently satisfy the selection/design requirements; retrospective calendars cannot restore prospectivity."
+    },
+    {
+      "id": "R3_ADEQUACY",
+      "section": "8.4.5; Table4",
+      "pages": [
+        24,
+        26
+      ],
+      "guide_requirement": "Beat trivial baseline; train-validation gap below margin; acceptable calibration/residuals and validation-test consistency.",
+      "interpretation": "Required comparisons and tolerances need their own units, partitions and justification."
+    },
+    {
+      "id": "R3_ROBUSTNESS",
+      "section": "8.4.6;8.7.3",
+      "pages": [
+        24,
+        28
+      ],
+      "guide_requirement": "Main conclusion robust to alternative parametric/nonparametric testing, relevant variance correction, secondary metric and reasonable seed subset.",
+      "interpretation": "Applicability of Nadeau-Bengio depends on resampling repeated partitions; it is not automatically appropriate for a crossed seed/calendar functional."
+    },
+    {
+      "id": "FAMILY",
+      "section": "8.5;8.7.1",
+      "pages": [
+        24,
+        27
+      ],
+      "guide_requirement": "Original vs allTop10andstrongbaselines; Holm across entire declared family; no outcome-based exclusions. Secondary additional-dataset,ablation,subgroup andhorizon families are separately declared.",
+      "interpretation": "Do not reduce multiplicity post-result or assume one universal252-component family if the protocol declares justified separate families."
+    },
+    {
+      "id": "POWER",
+      "section": "8.5;8.7.2",
+      "pages": [
+        24,
+        25,
+        27
+      ],
+      "guide_requirement": "Power>=0.90 per contrast; report joint power; pilot>=5seeds; final>=10or more if power requires.",
+      "interpretation": "The guide does not impose joint power>=0.90. Increasing seeds alone does not repair a missing temporal information component."
+    },
+    {
+      "id": "PREFLIGHT",
+      "section": "8.6",
+      "pages": [
+        25
+      ],
+      "guide_requirement": "Strict pairing, sealed final test and preselected hyperparameters; check normality,stationarity,independence,nesting; correct independence unit; rawandadjustedp andcomparisoncounts.",
+      "interpretation": "Numerically equal seed labels do not establish independent paired units or remove date dependence."
+    },
+    {
+      "id": "HIERARCHY",
+      "section": "8.7.3",
+      "pages": [
+        28
+      ],
+      "guide_requirement": "Declare seed/fold/series/block/case/dataset unit; aggregate correlated observations at independent unit; mixed-effects example includes unit and seed effects.",
+      "interpretation": "Date-only inference on a fixed cohort cannot be relabeled as unconditional random-seed inference."
+    },
+    {
+      "id": "CHECKLIST15",
+      "section": "14.5.3",
+      "pages": [
+        44,
+        45
+      ],
+      "guide_requirement": "Tenormoreseeds with mean/SD/bootstrapCI95,MDE,powerjoint; threeappropriatefamilytests andHolm/power;effectCI/practicalmargin;globalCDorMCSincludingoriginal;between-datasettest;sensitivity.",
+      "interpretation": "This checklist defines the15%hypothesis/adequacycomponent; it contains methodological requirements that cannot be replaced by code existence."
+    }
+  ],
+  "method_admissibility": [
+    {
+      "method": "ModelConfidenceSet",
+      "guide_pages": [
+        26
+      ],
+      "named_by_guide": true,
+      "statistical_role": "Globalequalpredictiveability/modelset",
+      "requires": "Declaredlossfunctional,appropriatejointbootstrap,stationary/weaklydependentlosssamplingandvalidseeduncertaintyifclaimed.",
+      "primary_mean_individual_RMSE_status": "Nonlinear crossed-seed extension needs explicit derivation and validation; conventional temporal MCS on mean squared losses changes the estimand.",
+      "cannot_claim": "An excluded rival automatically has a directional practical-margin p-value against the candidate."
+    },
+    {
+      "method": "DieboldMariano_HLN",
+      "guide_pages": [
+        26
+      ],
+      "named_by_guide": true,
+      "statistical_role": "Temporalmeanlossdifferencewithhorizoncorrection",
+      "requires": "Pairedlosssequence,declaredhorizon,appropriateLRV/HACandlossstationarity/moments.",
+      "primary_mean_individual_RMSE_status": "A random-seed nonlinear functional requires additional uncertainty treatment/derivation. Per-date mean MSE tests are not identical to mean individual RMSE tests.",
+      "cannot_claim": "Forecast horizon1 removes sigma7overlap or allserialdependence."
+    },
+    {
+      "method": "GiacominiWhite",
+      "guide_pages": [
+        25,
+        26
+      ],
+      "named_by_guide": true,
+      "statistical_role": "Conditionalpredictiveability",
+      "requires": "Declaredconditionalhypothesis/instrumentsandappropriateestimation/samplingframeworkwithdependencerobustcovariance.",
+      "primary_mean_individual_RMSE_status": "Does not automatically test the same unconditional cross-seed functional. Any extension needs explicit justification.",
+      "cannot_claim": "Namingthetestcreatesathirdprimarycontrastwithoutcheckingitsestimandandsampling."
+    },
+    {
+      "method": "ClarkWest",
+      "guide_pages": [
+        25,
+        26
+      ],
+      "named_by_guide": true,
+      "statistical_role": "Adjustedlosscomparisonforappropriatenestedforecastmodels",
+      "requires": "Actualnestedmodelrestrictionandthecorrespondingadjustedloss/theory.",
+      "primary_mean_individual_RMSE_status": "Cannot be a generic third test for heterogeneous neural models merely because parameter counts differ.",
+      "cannot_claim": "Differentmodelcapacityprovesanestingrelationship."
+    },
+    {
+      "method": "Friedman_over_series_or_origins",
+      "guide_pages": [
+        26,
+        28
+      ],
+      "named_by_guide": true,
+      "statistical_role": "Rankcomparisonoverdeclaredseries/originunits",
+      "requires": "Defensibleindependentorappropriatelytreatedblocksandposthocfamilycontrol.",
+      "primary_mean_individual_RMSE_status": "One correlated daily calendar is not automatically a collection of independent datasets/origins.",
+      "cannot_claim": "Aglobalrankprejectsallcandidate-vs-rivalpractical-margincontrasts."
+    },
+    {
+      "method": "StationaryBootstrap",
+      "guide_pages": [
+        25,
+        26
+      ],
+      "named_by_guide": true,
+      "statistical_role": "Weaklydependenttemporalresampling",
+      "requires": "Declaredfunctional,blockrule,units,jointindicesacrossrivals,andseeduncertaintyifrandomseedtarget.",
+      "primary_mean_individual_RMSE_status": "Can recompute the full functional; finiteS/highdimension and degeneracy remain empirical/theoretical issues.",
+      "cannot_claim": "ResamplingS*TcellsIIDaccountsforbothcrossedsourcesofuncertainty."
+    },
+    {
+      "method": "Friedman_ImanDavenport_and_WilcoxonHolm_or_BayesianRanks",
+      "guide_pages": [
+        26,
+        28,
+        45
+      ],
+      "named_by_guide": true,
+      "statistical_role": "Between-datasetcomparison",
+      "requires": "Appropriatedatasetunitsandexplicitdependence/selectionlimitations; reporteachdatasetdifferenceCIeffect.",
+      "primary_mean_individual_RMSE_status": "Separatecross-datasetrequirement, not a substitute for within-panel seed/date inference.",
+      "cannot_claim": "Four convenient correlated historical panels establish broad independent confirmation."
+    }
+  ],
+  "estimand_counterexample": {
+    "purpose": "DeterministiccounterexampletoRMSE/MSEmeanranktransfer;notMCormarketresult",
+    "modelA_seed_MSE": [
+      0.01,
+      8.41
+    ],
+    "modelB_seed_MSE": [
+      3.0,
+      3.0
+    ],
+    "A_mean_individual_RMSE": 1.5,
+    "B_mean_individual_RMSE": 1.7320508075688772,
+    "A_mean_MSE": 4.21,
+    "B_mean_MSE": 3.0,
+    "ranking_reversed": true
+  },
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "new_Monte_Carlo_replicates": 0,
+  "new_statistical_resamples": 0,
+  "R3_accredited": false,
+  "direct_PDF_extraction_verified": true,
+  "direct_PDF_pages_23_28_sha256": "77e5f98b4a70f525d1dcf20c43c4d2900cd6592bd96c209bde295f6cd4d87d9c",
+  "direct_PDF_pages_44_45_sha256": "0762d44598ee3ffcd39a106fb2d373af88ab94a915028f344670495a85af57f3"
+}

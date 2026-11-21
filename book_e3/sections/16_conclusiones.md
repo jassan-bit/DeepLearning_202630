@@ -105,3 +105,22 @@ La batería propuesta fue implementada y sometida a 1.024 réplicas controladas.
 La reproducción automática del libro y de sus tablas principales pasó en un contenedor sin red, con 83 filas principales regeneradas visibles y discrepancias por campo/unidad, manteniendo intactos los CSV y manifiestos históricos. La guía permite los precálculos costosos versionados; la intervención pendiente es la persona externa que ejecute y emita su propio concepto para el alcance fijado. El contenedor comprobó `f5c960e`, no esta edición posterior con sus nuevos estudios. Los materiales preparados permiten proceder sin reentrenar universalmente las campañas anteriores.
 
 Las comprobaciones públicas previas de Render, DOI y cápsula mantienen sus fuentes y alcances. Las nuevas ejecuciones, los datos excluidos, los checkpoints locales no publicados y los pendientes se distinguen en la {download}`matriz actual <../_static/e3_next_evidence_20261121/requirements_matrix_current.csv>`.
+
+
+(e3-statistical-remediation-conclusions-20261121)=
+## 16.7 Resultado de la remediación estadística
+
+El desarrollo bootstrap-t se fijó en un commit público antes de una validación nueva de **640 réplicas y 639.360 remuestreos**. Pasó el cribado exploratorio global de tres casos nulos, conservando el nominal, tolerancia, controles y límites Monte Carlo. No se sustituyó el fallo anterior ni se presentó la disminución de rechazos como acreditación de la batería: P1/P2 con Holm38 todavía rechazó falsamente en 14/128 casos de variación sólo entre semillas, con nominal del 5 % e inflación detectada.
+
+La adecuación retrospectiva de las 1.210 predicciones V4 guardadas calculó 88 p sobre 22 trayectorias y conservó trece rechazos de restricciones lineales MZ. No hay certificado de adecuación por ausencia de rechazos en otros diagnósticos; faltan calibración finita, predicciones de ajuste/parada y un calibrador de intervalos V4 para otras preguntas. La auditoría de potencia reconcilia las 71 fuentes y 486 sensibilidades previas, pero conserva dieciséis rivales sin referencias V3 compatibles y las celdas futuras vacías. No se imputan ceros ni se declara un R/T final.
+
+El avance metodológico consiste también en delimitar preguntas que no son
+intercambiables: igualdad global, ventaja media, relevancia práctica y capacidad
+predictiva condicional. Una prueba con otro estimando o unidad no completa por
+su nombre la batería primaria. Se conservan la calibración anterior desfavorable,
+los supuestos de los análisis nuevos y su carácter retrospectivo cuando procede.
+
+Los modelos y artefactos anteriores no se entrenaron o predijeron otra vez.
+El NO-GO de V3, el abandono de V4 y las admisiones futuras pendientes continúan.
+La potencia y el protocolo de una eventual confirmación necesitan evidencia
+prospectiva; R3 no se acredita mediante documentación o diagnósticos posteriores.

@@ -25,6 +25,19 @@ El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guí
 
 ## Estado del proyecto
 
+**Remediación estadística posterior, con resultados y alcances separados.** La
+{ref}`sección 8.26 <e3-statistical-remediation-20261121>` vuelve a la guía original,
+separa la media de RMSE individuales de los análisis condicionados a una cohorte
+y conserva el fallo de calibración de la extensión anterior. Se ejecutaron **640 réplicas nuevas y 639.360 remuestreos** con plan y código públicos anteriores. El nuevo MCS bootstrap-t pasó tres cribados exploratorios individuales, pero la familia primaria P1/P2 conservó inflación: **14/128 rechazos falsos bajo variación sólo entre semillas, frente al 5 % nominal**. La mejora del complemento global no completa las tres pruebas pertinentes ni acredita potencia final. Los diagnósticos retrospectivos añadieron **88 p con Holm88 y trece rechazos de Mincer–Zarnowitz**; no se declara adecuación por ausencia de otros rechazos.
+El trabajo se limita a desarrollo estadístico controlado y diagnósticos de
+predicciones guardadas; mantiene los 796 trabajos, 30 ajustes V3, 20 ajustes V4,
+las 51 trayectorias/20.400 filas retrospectivas y 1.210 predicciones V4 sin volver
+a entrenar o predecir. V3 conserva NO-GO y V4 su abandono; R3 no queda acreditada.
+La {download}`decisión metodológica y sus límites <_static/e3_statistics_remediation_20261121/calibration/RESULTS_DECISION.md>`, el {download}`resumen retrospectivo <_static/e3_statistics_remediation_20261121/retrospective/results/analysis_summary.json>` y la {download}`auditoría de potencia <_static/e3_statistics_remediation_20261121/guide_power/EXECUTED_POWER_INPUT_AUDIT.json>` separan lo ejecutado de los requisitos que permanecen abiertos. No hay potencia final, admisión nueva o protocolo confirmatorio.
+
+El {download}`suplemento ejecutado y su mapa de evidencia <_static/e3_statistics_remediation_20261121/README.md>` y las {download}`acciones pendientes con responsables <_static/e3_statistics_remediation_20261121/NEXT_ACTIONS.md>` separan ejecución, límites y actuación prospectiva. Los cortes fechados que siguen conservan su historia.
+
+
 
 **Avance experimental del 20 de noviembre de 2026, con recibos técnicos UTC del 21.** La {ref}`revisión V4 <e3-next-v4-development-20261121>` quedó registrada por fuentes y plan antes de ejecutar **20 ajustes neuronales nuevos en CPU**, con cinco semillas por receta, tres controles neuronales y dos analíticos. Sus **1.210 predicciones de desarrollo** pertenecen a calendarios ya expuestos y se cuentan aparte de los 796 trabajos, los 30 ajustes V3 y las 20.400 filas retrospectivas. V4 obtuvo **1,443261 % más RMSE que el mejor control** y falló la regla previa del 2 %: **se abandona esta receta**, sin promover un control o iniciar otra versión automáticamente. El resultado original de V3 de +2,70 % y su NO-GO permanecen intactos.
 

@@ -1225,3 +1225,151 @@ La fórmula conserva siete retornos RAW, ocho cierres, `ddof=0` y una observaci�
 El {download}`informe concreto de disponibilidad, diversidad y derechos <../_static/e3_next_evidence_20261121/data_admission/README.md>` conserva fuentes primarias, condiciones de Binance y restricciones de acceso/redistribución de Alpha Vantage. No se verificó la respuesta de precios de SPY/USO/TLT, derechos para el uso concreto, disponibilidad al origen o el calendario Nasdaq futuro. Versión, tamaño y hashes de archivos futuros siguen pendientes. El intento de metadatos Binance bloqueado en el proxy no se interpreta como respuesta de su servidor. D00–D03 mantienen su admisión exploratoria previa y exposición; no se renombran como confirmación nueva.
 
 El {download}`validador sin acceso al mercado <../_static/e3_next_evidence_20261121/data_admission/admission_validator.py>` devuelve bloqueo con la declaración real aún vacía. Inspeccionar documentación no admite datasets ni habilita modelos. **La confirmación continúa cerrada** por ciencia, métodos, datos y potencia; no se genera tag o Colab confirmatorio para eludir esas puertas. La preparación y los resultados adversos se declaran con asistencia de IA, sin atribuir una ejecución humana independiente.
+
+
+(e3-statistical-remediation-20261121)=
+## 8.26 Remediación estadística: estimando, calibración y adecuación retrospectiva
+
+Este corte desarrolla el componente de pruebas de hipótesis y adecuación a partir de
+las fuentes de `d6cf7f1`. Conserva completos 8.24–8.25, las 1.024 réplicas previas,
+su rechazo MCS de 27/128 bajo igualdad y los resultados de desarrollo desfavorables.
+No vuelve a entrenar ni a predecir. El NO-GO de V3 y el abandono de V4 continúan;
+una mejora de la herramienta de inferencia no modifica esas decisiones.
+
+### Qué exige la guía y qué procedimiento responde a cada pregunta
+
+La {download}`auditoría de la guía original <../_static/e3_statistics_remediation_20261121/guide_power/primary/PRIMARY_GUIDE_FACTS.json>` vuelve al PDF: §8.4, pp. 23–24; Cuadro 4, p. 26; §8.7,
+pp. 27–28; y checklist 14.5.3, pp. 44–45. Para R3 se requieren al menos tres
+procedimientos distintos de la tabla que rechacen igualdad de rendimiento para
+cada contraste, dirección favorable, margen práctico y efectos/intervalos. Al
+menos uno debe ser global o controlar multiplicidad. La guía no impone literalmente
+tres nulos unilaterales idénticos `theta <= delta`, ni permite contar variantes de MCS como tres procedimientos o convertir
+exclusiones automáticamente en p-valores prácticos pareados.
+
+La pregunta primaria sigue siendo la **media de RMSE individuales por semilla**,
+con incertidumbre de inicialización y calendario. No se sustituye por la raíz de
+la MSE promediada, el RMSE de un ensemble o una pérdida temporal condicionada a
+una cohorte fija. Esa distinción puede cambiar incluso un ranking: dos semillas
+con MSE `0,01` y `8,41` tienen RMSE media `1,5`, menor que `sqrt(3)=1,73205` de un
+rival con MSE `3` en ambas; su MSE media `4,21`, en cambio, es mayor que `3`.
+Es un contraejemplo determinista del estimando, no un resultado de mercado.
+
+| Procedimiento nombrado en la guía | Pregunta y condición de uso | Límite para el primario actual |
+|---|---|---|
+| Bootstrap estacionario | Muestreo temporal débilmente dependiente del funcional declarado, con calendario común a rivales. | Para inferencia aleatoria entre semillas hay que incorporar esa variabilidad y justificar el diseño cruzado. |
+| DM-HLN | Diferencia media de pérdidas temporales pareadas, horizonte declarado y LRV apropiada. | Horizonte de un día no elimina el solapamiento de σ₇; la media de RMSE por semilla necesita derivación adicional. |
+| MCS | Igualdad global de capacidad predictiva y conjunto de confianza, con bootstrap conjunto válido. | La exclusión de un rival no identifica por sí sola su contraste direccional práctico frente a la candidata. |
+| Giacomini–White | Capacidad predictiva condicional con instrumentos y marco de estimación/muestreo justificados. | El nulo condicional y la cohorte fija no equivalen automáticamente al primario aleatorio de RMSE. |
+| Clark–West | Modelos realmente anidados y ajuste de pérdida de esa teoría. | Tener distinto número de parámetros no acredita anidamiento entre redes heterogéneas. |
+| Friedman por series/orígenes y prueba entre conjuntos | Unidades defendibles y post hoc/multiplicidad especificados. | Un calendario diario correlacionado no se convierte en conjuntos u orígenes independientes. |
+
+MCS no queda excluido universalmente del tercer procedimiento. Si se justifican
+la cobertura simultánea del conjunto de mejores y su correspondencia con la
+familia, un conjunto que conserve únicamente la candidata puede respaldar una
+decisión global frente a los rivales, junto con dirección, efectos y margen
+práctico. Las exclusiones de la extensión funcional aquí estudiada no reciben
+esa interpretación automáticamente ni se convierten en p-valores pareados.
+
+Las guardas de diez semillas y 32 fechas siguen siendo límites de soporte
+computacional, no evidencia de potencia o de suficiencia asintótica. Las cinco
+semillas del piloto V4 no se usan para eludirlas. Los métodos que cambien el
+estimando o condicionen la cohorte se identifican por separado.
+
+### Diagnóstico conservado y versión metodológica nueva
+
+La revisión de los registros guardados no identificó un error algebraico evidente de signo, centrado o regla de eliminación. La dispersión bootstrap fija también se usa en el MCS estándar y no se etiqueta como bug por sí sola. Bajo EPA los veinte modelos sintéticos son intercambiables: el sesgo finito de la raíz es común y **no explica por sí solo** el rechazo 27/128. Pocas semillas, la dimensión del máximo —190 pares con doce semillas—, dependencia temporal y la extensión no lineal/cruzada son mecanismos plausibles, no una causa única identificada.
+
+El {download}`módulo v2 del MCS funcional <../_static/e3_statistics_remediation_20261121/calibration/crossed_rmse_v2.py>` mantiene el riesgo $\widehat R_m=S^{-1}\sum_s\sqrt{\bar q_{sm}}$ y usa una covarianza completa de riesgos: covarianza entre RMSE de semillas dividida por S más HAC de la influencia temporal media dividida por T. Para el par j/k, $\widehat\sigma_{jk}^2=\widehat\Sigma_{jj}+\widehat\Sigma_{kk}-2\widehat\Sigma_{jk}$. En cada réplica se recalculan riesgos y covarianza, de modo que el pivote propuesto es
+
+$$
+Z^*_{b,jk}=\frac{(\widehat R^*_{b,j}-\widehat R^*_{b,k})-(\widehat R_j-\widehat R_k)}{\widehat\sigma^*_{b,jk}}.
+$$ (eq-e3-crossed-mcs-bootstrap-t-20261121)
+
+La suma de componentes puede contar dos veces interacción no negativa **dentro de la linealización cruzada aditiva**; con ancho de banda finito, raíz no lineal o dependencia arbitraria no es una cota garantizada. Se conservan bloque medio **12** y HAC **8**, incluso en el estrés con $\phi=0,85$. La guarda numérica nueva es relativa a la escala; muestras degeneradas se declaran no soportadas, sin intervalos de certeza fabricados. El factor HLN de horizonte uno y la referencia t con S−1 se conservan para P2 como extensión propuesta, sin atribuirle un teorema clásico de DM para este diseño.
+
+La comparación incluye tres variantes sobre **los mismos sorteos bootstrap**: v1 congelado con su dispersión original; covarianza nueva con studentizador fijo; y covarianza nueva con re-studentización bootstrap-t. La segunda frente a la tercera aísla la re-studentización dentro de la nueva covarianza; v1 frente a v2 contiene dos intervenciones y no identifica una causa única. Son variantes de un complemento global, **no tres procedimientos primarios distintos**. Los dos contrastes por rival reportan ahora igualdad bilateral $\theta=0$; dirección, IC y margen práctico se examinan por separado, sin reetiquetar el nulo práctico más fuerte de la versión previa.
+
+El [commit público `7d304faa0dd583c6109a688ff179ec7e937f6561`](https://github.com/jassan-bit/DeepLearning_202630/commit/7d304faa0dd583c6109a688ff179ec7e937f6561), el {download}`plan nuevo <../_static/e3_statistics_remediation_20261121/calibration/VALIDATION_PLAN.json>` y el {download}`manifiesto de ocho fuentes de ejecución/pruebas <../_static/e3_statistics_remediation_20261121/calibration/CODE_MANIFEST.json>` preceden al Monte Carlo nuevo. Se fijaron cuatro casos, **640 réplicas** y **999 remuestreos por réplica** —639.360 previstos—, con semilla distinta de la validación anterior, dos hilos y máximo de 300 s. Las **30 guardas de software** se distinguen de esa validación estadística.
+
+El criterio previo de desarrollo exige en cada caso EPA un **límite superior del IC95 binomial individual ≤0,13**, para nominal 0,10 y tolerancia exploratoria de 0,03. No certifica nivel exacto 0,10 ni una garantía simultánea. El plan también conserva FWER del subconjunto Holm38, IC puntuales de P1/P2, seis diagnósticos pareados de mecanismo con Holm6 y un escenario alternativo; no es una batería completa de tres métodos o potencia final de mercado. Un caso de estrés desfavorable restringe el alcance, sin retocar bloque o lag después de observarlo.
+
+### Validación controlada ejecutada y decisión de calibración
+
+Se completaron **640/640 réplicas y 639.360 remuestreos cruzados**, con cero errores y las ocho fuentes congeladas intactas. El {download}`recibo de ejecución <../_static/e3_statistics_remediation_20261121/calibration/validation_fresh/execution_receipt.json>` registra **187,684 s de pared**, del 20 de noviembre a las **22:21:52–22:24:59 de Bogotá** —UTC del 21—, dentro del límite previo de 300 s. El control v1 reutilizó los riesgos de los mismos sorteos y no añadió remuestreos; no son tres experimentos independientes.
+
+| Caso nulo EPA nuevo | MCS v1 sobre sorteos nuevos | Covarianza nueva, escala fija | Propuesta bootstrap-t | IC95 % individual de la propuesta |
+|---|---:|---:|---:|---:|
+| Ordinario, φ=0,35 | 62/256 —24,22 %— | 56/256 —21,88 %— | **21/256 —8,20 %—** | **5,15–12,27 %** |
+| Dependencia fuerte, φ=0,85 | 36/128 —28,13 %— | 33/128 —25,78 %— | **4/128 —3,13 %—** | **0,86–7,81 %** |
+| Variación sólo entre semillas | 90/128 —70,31 %— | 92/128 —71,88 %— | **2/128 —1,56 %—** | **0,19–5,53 %** |
+
+La propuesta pasó los **tres cribados exploratorios individuales** previamente fijados: sus límites superiores no superan 0,13. El control de escala fija nueva no consiguió ese resultado. Esto respalda investigar la re-studentización dentro de la nueva covarianza y delimita una mejora de tamaño observada en estos DGP; **no certifica nivel exacto 0,10, validez universal o una batería confirmatoria completa**. Se conservaron las seis comparaciones pareadas predeclaradas de mecanismos con Holm6, sin escoger variantes después por sus resultados de mercado. Los límites binomiales son individuales y los casos no son una garantía simultánea.
+
+```{figure} ../_static/e3_statistics_remediation_20261121/editorial/figures/rendered/mcs_fresh_global_rates.png
+:name: fig-e3-mcs-fresh-global-20261121
+:width: 100%
+
+Tasas globales de los cuatro casos declarados y tres variantes sobre los mismos sorteos, con IC95 % Monte Carlo individuales. Las líneas nominal/cribado sólo aparecen en los nulos EPA; el rechazo del caso alternativo no es tamaño ni potencia de tres procedimientos. Figura posterior a resultados, sin recalcular pruebas o remuestreos. Se conservan el {download}`SVG <../_static/e3_statistics_remediation_20261121/editorial/figures/rendered/mcs_fresh_global_rates.svg>`, el {download}`programa <../_static/e3_statistics_remediation_20261121/editorial/figures/plot_validation_rates.py>` y el {download}`recibo de datos/figura <../_static/e3_statistics_remediation_20261121/editorial/figures/rendered/FIGURE_RECEIPT.json>`.
+```
+
+**Resultado adverso que mantiene bloqueada la batería.** La familia de **38 contrastes**, P1/P2 frente a diecinueve rivales, no quedó calibrada en todos los casos. Bajo variación sólo entre semillas rechazó alguna nula verdadera en **14/128 réplicas, 10,94 %**, con IC95 % **[6,11 %; 17,67 %]**, frente al nominal del **5 %**: el límite inferior supera el nominal. Con dependencia fuerte registró **9/128, 7,03 %**, IC95 % **[3,27 %; 12,93 %]**; su cribado de límite superior ≤0,08 fue **inconcluso**, no aprobado. El caso ordinario registró 4/256, 1,56 %, IC95 % [0,43 %; 3,95 %]. Holm no corrige la falta de validez marginal de los p que recibe; estas aproximaciones finitas no se certifican por pasar guardas de software.
+
+En la alternativa sintética prefijada, el MCS nuevo rechazó igualdad global en **112/128 —87,50 %—**, pero sólo conservó un conjunto exclusivamente candidato en **39/128 —30,47 %—**, IC95 % [22,65 %; 39,22 %]. Retuvo al verdadero mejor en 128/128. La intersección conjunta del **subconjunto de dos métodos frente a diecinueve rivales** ocurrió en **18/128 —14,06 %—**, IC95 % [8,55 %; 21,31 %]. Esa intersección cuenta sólo p ajustados y no incorpora la regla completa de margen, efecto y adecuación. Los ámbitos son distintos: ni el rechazo global ni esa intersección son potencia de una batería completa de tres procedimientos o dimensionamiento de mercado.
+
+El {download}`resumen íntegro de cuatro casos <../_static/e3_statistics_remediation_20261121/calibration/validation_fresh/validation_summary.json>` y la {download}`decisión posterior conservada <../_static/e3_statistics_remediation_20261121/calibration/RESULTS_DECISION.md>` mantienen la conclusión: mejora exploratoria del complemento global en los casos ensayados; **familia primaria incompleta/no calibrada y confirmación cerrada**. No se cambiaron bandas, bloques, hipótesis, escenarios o semillas después del resultado, ni se abrió otra validación para buscar una aprobación.
+
+La comprobación de software responde a errores de código y manejo de entradas;
+la simulación controlada examina tamaño, cobertura y comportamiento bajo los DGP
+especificados. Ninguna de las dos certifica universalmente el método. Las tasas
+Monte Carlo conservan denominador, precisión e interpretación individual o
+simultánea declarada. Que un intervalo contenga el nominal no prueba calibración.
+
+### Adecuación retrospectiva sobre V4 guardada
+
+El [anclaje público `e8485812241e492f683f0e6ea77459ca3423f30c`](https://github.com/jassan-bit/DeepLearning_202630/commit/e8485812241e492f683f0e6ea77459ca3423f30c) precede al nuevo cálculo, pero sucede después de conocer el calendario y el resultado del piloto. Fija la {download}`familia retrospectiva <../_static/e3_statistics_remediation_20261121/retrospective/analysis_plan.json>`, las fuentes y **46 entradas verificadas**; no recupera independencia o prospectividad confirmatoria. El {download}`recibo realmente ejecutado <../_static/e3_statistics_remediation_20261121/retrospective/results/execution_receipt.json>` registra el cálculo a las **22:15:20 de Bogotá del 20 de noviembre** —`2026-11-21T03:15:20Z`—, con los archivos anteriores intactos.
+
+Se calcularon **88 p asintóticos**, cuatro diagnósticos por cada una de las 22 trayectorias, y se aplicó Holm a las **88 posiciones predefinidas**, sin posiciones no soportadas en esta ejecución:
+
+| Diagnóstico auxiliar | Contrastes calculados | Rechazos después de Holm88 |
+|---|---:|---:|
+| Ljung–Box a 7 rezagos | 22 | 0 |
+| Ljung–Box a 14 rezagos | 22 | 0 |
+| ARCH-LM a 7 rezagos | 22 | 0 |
+| Mincer–Zarnowitz conjunto, HAC Bartlett/HC1 a 14 | 22 | **13** |
+
+El {download}`resumen con alcances y decisión <../_static/e3_statistics_remediation_20261121/retrospective/results/analysis_summary.json>` y los {download}`88 diagnósticos con p brutos y ajustados <../_static/e3_statistics_remediation_20261121/retrospective/results/diagnostics_Holm88.csv>` conservan esos resultados. Los trece rechazos de MZ corresponden a cinco de cinco trayectorias aditivas, ambos controles analíticos y dos de cinco de cada una de MSE-only, V4 sigma y U-CRPS. MZ contrasta intercepto cero y pendiente uno en una regresión auxiliar de objetivo sobre pronóstico, con transformación coherente de unidades y covarianza; **no reentrena el predictor**. La ejecución realizó 44 regresiones OLS auxiliares para ARCH/MZ y cero ajustes o forwards de modelos de pronóstico.
+
+Los rechazos son evidencia retrospectiva contra esas restricciones lineales **bajo los supuestos del procedimiento**, no una declaración universal de inutilidad predictiva. La falta de rechazos de Ljung–Box/ARCH después de Holm no acredita adecuación. Son diagnósticos clásicos asintóticos con sólo **55 fechas**; Ljung–Box no es robusto por sí mismo a heterocedasticidad y no se validó aquí su tamaño finito. El solapamiento de σ₇ motiva examinar dependencia, pero no obliga a que un error óptimo de predicción a un paso sea serialmente correlacionado: bajo la esperanza condicional apropiada sería una diferencia de martingala. No se explica automáticamente un rechazo por compartir retornos.
+
+Los {download}`44 IC de sesgo residual medio <../_static/e3_statistics_remediation_20261121/retrospective/results/conditional_mean_error_CIs.csv>` son puntuales, asintóticos y condicionados a cada trayectoria, con HAC a 7/14; no son IC de RMSE de la población de semillas ni simultáneos. Los {download}`estimandos separados por receta <../_static/e3_statistics_remediation_20261121/retrospective/results/recipe_estimands.csv>` muestran media de RMSE individuales, DE entre semillas y RMSE del pronóstico promedio con sus nombres distintos. La {download}`sensibilidad mensual <../_static/e3_statistics_remediation_20261121/retrospective/results/monthly_sensitivity.csv>` informa septiembre 7–30 —24 fechas— y octubre 1–31 —31—, sin tratarlos como repeticiones independientes.
+
+La {download}`diferencia pareada descriptiva entre semillas <../_static/e3_statistics_remediation_20261121/retrospective/results/paired_seed_effects_descriptive.csv>` conserva V4 menos MSE-only: media **2,969978×10⁻⁵ σ₇**, DE **2,340272×10⁻⁵** y Cohen dz **1,269** en las cinco semillas, con las cinco diferencias positivas. Ese dz describe cinco repeticiones sobre un único calendario expuesto; no es un p de superioridad, un IC poblacional, potencia o requisito confirmatorio acreditado. La revisión **no revierte el abandono de V4**.
+
+El análisis conserva las 55 fechas y las 22 trayectorias del desarrollo expuesto:
+cuatro recetas neuronales con cinco semillas y dos controles analíticos. Esas
+trayectorias corresponden a 1.210 filas guardadas, no a 1.210 unidades independientes.
+Las referencias descriptivas entre cinco semillas no son potencia prospectiva.
+El {download}`inventario de curvas <../_static/e3_statistics_remediation_20261121/retrospective/results/learning_curve_inventory.csv>` no divide el objetivo compuesto de entrenamiento CRPS por la MSE de parada: no son la misma pérdida. La razón RMSE de evaluación/parada compara calendarios distintos y una época elegida con parada; no demuestra ausencia de sobreajuste. Sin predicciones guardadas de ajuste/parada ni calibrador V4 no se inventa una brecha completa
+de predicción, PIT o cobertura de intervalos. La calibración lineal MZ es otro objeto. Los meses se describen con sus fechas y
+conteos efectivamente presentes; no se presume un mes calendario completo.
+
+### Potencia y requisito confirmatorio todavía pendiente
+
+La {download}`auditoría ejecutada de insumos <../_static/e3_statistics_remediation_20261121/guide_power/EXECUTED_POWER_INPUT_AUDIT.json>` cotejó **71 fuentes distintas y los 486 escenarios guardados**, con sus 162 filas de semillas y 324 de calendario. Las tres referencias de varianza V3 disponibles usan **tres pares de semillas**, por debajo de las cinco del piloto de planificación; faltan dieciséis de los diecinueve rivales. Las **76 celdas futuras V3 y 84 V4 siguen sin insumos compatibles**. Las cinco referencias D00 y 25 entradas de covarianza de V4 pertenecen al desarrollo expuesto de una receta abandonada; no se convierten en información de cuatro paneles futuros.
+
+La {download}`matriz de requisitos y brechas del corte d6 <../_static/e3_statistics_remediation_20261121/guide_power/REQUIREMENT_EVIDENCE_GAP_MATRIX.csv>` conserva doce requisitos y separa lo ejecutable de lo prospectivo. No incorpora retroactivamente los resultados nuevos de calibración. El {download}`contrato estructural <../_static/e3_statistics_remediation_20261121/guide_power/POWER_INPUT_CONTRACT.template.json>` dio **dieciocho puertas bloqueadas** y dejó `final_R` y `final_T` nulos, sin imputar ceros o admitir paneles por declaración. El {download}`programa de compatibilidad de insumos <../_static/e3_statistics_remediation_20261121/guide_power/power_inputs_audit.py>` no puede entrenar, simular o acreditar potencia; la referencia normal que incluye varianza de semilla y un suelo temporal LRV/T es un diagnóstico condicional, no la regla completa de tres métodos. Pasaron **21 guardas de software**, separadas de la validación estadística.
+
+Las instrucciones y comandos de esa auditoría están en el {download}`README de guía y potencia <../_static/e3_statistics_remediation_20261121/guide_power/README.md>`.
+
+La potencia mínima de la guía es **0,90 por contraste**, con la conjunta reportada
+y su precisión Monte Carlo; no se le atribuye un umbral conjunto universal de
+0,90. Margen práctico, alternativa relevante y MDE tienen papeles diferentes.
+Aumentar semillas no repara por sí solo falta de información temporal. Las 486
+sensibilidades anteriores son antecedentes de planificación, no una certificación
+final; tampoco se rellenan las 84 celdas futuras de V4 con referencias de otro
+modelo. La receta fue abandonada y no se ejecutan sus 340 ajustes ilustrativos.
+
+La confirmación permanece condicionada a una candidata viable, paneles admitidos,
+métodos pertinentes/calibrados, dimensionamiento y protocolo reales anteriores a
+sus resultados. Este corte no registra una campaña confirmatoria ni acredita R3.
+La asistencia de IA se declara; no sustituye a la persona autora o externa.

@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "kind": "NEW_CONTROLLED_DGP_VALIDATION_PLAN_NOT_MARKET_PREREGISTRATION",
+  "recorded_at_utc": "2026-11-21T03:12:47.089449+00:00",
+  "source_commit_before_work": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+  "AI_assistance_declared": true,
+  "primary_estimand": "E_seed[sqrt(E_time squared_error_model)]",
+  "metric_not_changed_to_cohort_MSE_or_ensemble_RMSE": true,
+  "new_method": "MCS crossed-functional bootstrap-t proposed extension v2",
+  "mechanism_and_limits": {
+    "change_1": "recompute full seed+time HAC covariance studentizer for each bootstrap draw",
+    "change_2": "observed pair studentizer from plug-in crossed covariance rather than bootstrap dispersion",
+    "control_1": "old functional_mcs copied verbatim and pinned; same observed risks and same already-drawn bootstrap risks, no additional draws",
+    "control_2": "new plug-in observed covariance with fixed bootstrap studentizer; same bootstrap roots, isolates re-studentization within the new covariance construction",
+    "not_claimed": "Standard MCS does not require bootstrap-t; no unique old failure cause established; temporal lag bias remains."
+  },
+  "settings": {
+    "B": 999,
+    "mean_block": 12.0,
+    "hac_lag": 8,
+    "alpha": 0.05,
+    "mcs_alpha": 0.1,
+    "batch": 16
+  },
+  "validation_seed": 2026112191,
+  "old_validation_seed_not_reused": 2026112107,
+  "rng_streams": "SeedSequence([2026112191,case_index,replicate,0_for_DGP_or1_for_bootstrap])",
+  "software_fixture_and_runtime_microbenchmark_streams_are_not_validation": true,
+  "cases": [
+    {
+      "R": 12,
+      "T": 128,
+      "M": 20,
+      "delta": 0.0,
+      "phi": 0.35,
+      "seed_sigma": 0.15,
+      "weights": [
+        0.4,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "innovations": "gaussian",
+      "nu": null,
+      "theta": "equal",
+      "id": "EPA_fresh_nominal",
+      "replicates": 256
+    },
+    {
+      "R": 12,
+      "T": 128,
+      "M": 20,
+      "delta": 0.0,
+      "phi": 0.85,
+      "seed_sigma": 0.15,
+      "weights": [
+        0.4,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "innovations": "gaussian",
+      "nu": null,
+      "theta": "equal",
+      "id": "EPA_fresh_strong_dependence",
+      "replicates": 128
+    },
+    {
+      "R": 12,
+      "T": 128,
+      "M": 20,
+      "delta": 0.0,
+      "phi": 0.35,
+      "seed_sigma": 0.15,
+      "weights": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "innovations": "gaussian",
+      "nu": null,
+      "theta": "equal",
+      "id": "EPA_fresh_seed_only",
+      "replicates": 128
+    },
+    {
+      "R": 12,
+      "T": 128,
+      "M": 20,
+      "delta": 0.03,
+      "phi": 0.35,
+      "seed_sigma": 0.15,
+      "weights": [
+        0.4,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "innovations": "gaussian",
+      "nu": null,
+      "theta": "alternative",
+      "id": "fresh_alternative",
+      "replicates": 128
+    }
+  ],
+  "planned_replicates": 640,
+  "planned_crossed_bootstrap_draws": 639360,
+  "max_wall_seconds": 300,
+  "threads": 2,
+  "budget_stop_policy": "Stop before next replicate after budget; retain partial records, no rerun/new seeds to obtain success",
+  "statistical_contract": {
+    "P1_P2_null": "equal population mean-individual RMSE, theta=0; two-sided",
+    "direction_and_practical_margin": "report theta positive, CIs and lowerCI>0 / lowerCI>case.delta separately",
+    "pairwise_family": "2 proposed methods x19rivals=38; Holm separately within each synthetic case",
+    "MCS_family": "global20-model EPA, alpha.10; no third per-rival p from exclusions",
+    "variants_are_not_distinct_primary_procedures": true,
+    "third_primary_method_accredited": false,
+    "formal_or_market_admissibility_certified": false,
+    "MC_precision": "individual central95%ClopperPearson intervals; correlated rivals are not extra MC replicates",
+    "primary_exploratory_tolerance_screen": "For each of3declared all-equal cases: upper95CP(globalEPArejection)<=.13 (.10 nominal+.03 tolerance). Lower95CP>.10 signals inflation. Otherwise inconclusive. This is a bounded development screen, not a certification of exactlevel.10 or simultaneous calibration.",
+    "FWER_exploratory_screen": "Known true-null subset for the2-method Holm38 family: upper95CP<=.08(.05+.03); lower95CP>.05 detects inflation; otherwise inconclusive. Not a3-method family.",
+    "coverage": "P1andP2 pointwise95%CIs against analyticlongrunRMSEdifference; report rates andCPintervals perrival; simultaneouscoverage notclaimed",
+    "paired_variant_diagnostic_family": "6two-sided exactMcNemar comparisons: newbootstrap-tvsoldfrozen andnewbootstrap-tvsnewfixed across3nullcases; Holm6; differences are mechanism diagnostics, not market superiority",
+    "alternative": "report individual andjoint rejection for2-method subset, MCSglobalpower/unique-candidate-set andalltruebestcoverage; not full3-waypower andnot finalmarketpower",
+    "strong_dependence_case": "mandatory stresswithunchangedblock12/lag8; a failure restricts scope, never triggers bandwidth retuning",
+    "finite_calendar_bias": "longruntruth fixedbyDGP; finitecalendarrootbiascommoncancelsEPA butmayaffectnonzeroalternatives; do not change truth afterresults",
+    "P2_reference": "Crossed seed+time delta-HAC covariance, h1HLNfactor sqrt((T-1)/T) retained fromv1 with t(R-1)reference. Still a proposed extension, not proof of classical DM-HLN validity.",
+    "unsupported_results": "Unsupported studentizers are reported separately; any unsupported null replicate makes its calibration screen inconclusive. Missing CIs count as noncoverage in unconditional rates. Paired variant tests involving any unsupported pair reserve p=1 in Holm6 and are inconclusive."
+  },
+  "degenerate_case_checks": "deterministic equal/unequalzero-variance andinsufficientR/T tested assoftwareguards, not counted as independent MonteCarlo evidence",
+  "execution_requires_immutable_public_plan_source_manifest_before_validation": true,
+  "confirmation_allowed": false,
+  "R3_accredited": false,
+  "new_market_fits": 0,
+  "new_market_predictions": 0,
+  "do_not_execute_abandoned_V4_planning_campaign": true
+}

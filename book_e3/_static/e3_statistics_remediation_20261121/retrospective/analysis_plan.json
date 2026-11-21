@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "kind": "fixed_retrospective_adequacy_analysis_plan_not_preregistration",
+  "created_at_utc": "2026-11-21T03:07:13.409297+00:00",
+  "AI_assistance_declared": true,
+  "source_commit": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+  "all_market_calendars_and_pilot_outcomes_already_exposed": true,
+  "exposure_statement": "Original GPU V3 adverse result and CPU V4 1.443261% adverse result were known before this plan. An anchor preceding these diagnostics cannot recover independence or make this a preregistration.",
+  "input_manifest_sha256": "c4958bd7d322036f33c353c09cbbd7e3dae4f9afeaf531ea0c0dfeaa3ac789b7",
+  "scope": {
+    "dataset": "D00_CPU_development_only",
+    "assessment_start": "2024-09-07",
+    "assessment_end": "2024-10-31",
+    "daily_dates": 55,
+    "expected_trajectories": 22,
+    "expected_recipes": 6,
+    "neural_recipes": [
+      "sigma_crps_v4",
+      "u_crps_control",
+      "mse_only_control",
+      "additive_positive_head"
+    ],
+    "analytical_controls": [
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "neural_seeds": [
+      20261121,
+      20261122,
+      20261123,
+      20261124,
+      20261125
+    ],
+    "expected_predictions": 1210,
+    "inferential_unit": "one frozen trajectory calendar for auxiliary diagnostics, never S*T iid observations",
+    "condition_on_saved_weights_and_seed_cohort": true,
+    "primary_cross_seed_population_RMSE_inference": "not_run: five neural seeds below original R10 guard, two analytic trajectories not copied to invent seeds"
+  },
+  "diagnostic_family": {
+    "name": "V4_FIXED_RETROSPECTIVE_ADEQUACY_HOLM88",
+    "alpha": 0.05,
+    "slots": 88,
+    "trajectory_count": 22,
+    "four_diagnostics_per_trajectory": [
+      {
+        "id": "Ljung_Box_7",
+        "null": "Residual autocorrelations1..7 are zero under the classical whiteness reference; this p is not heteroskedasticity robust",
+        "lag": 7,
+        "asymptotic_df": 7
+      },
+      {
+        "id": "Ljung_Box_14",
+        "null": "Residual autocorrelations1..14 are zero under the classical whiteness reference; this p is not heteroskedasticity robust",
+        "lag": 14,
+        "asymptotic_df": 14
+      },
+      {
+        "id": "ARCH_LM_7",
+        "null": "All seven coefficients on lagged squared residuals in the auxiliary variance regression are zero; classical asymptotic LM assumptions apply",
+        "lag": 7,
+        "asymptotic_df": 7
+      },
+      {
+        "id": "Mincer_Zarnowitz_HAC_14",
+        "null": "In target=alpha+beta*prediction+error, alpha=0 and beta=1 jointly; Bartlett-HAC lag14/HC1, stationary weak-dependence moments and asymptotic rank assumptions apply",
+        "lag": 14,
+        "asymptotic_df": 2
+      }
+    ],
+    "multiplicity": "Holm over all88fixed slots; undefined/degenerate statistics get diagnostic status not_computed and reserved p=1 solely for correction, never a valid null pass",
+    "no_claim_of_marginal_calibration_or_global_FWER_without_assumptions": true,
+    "no_comparison_or_superiority_pvalues": true
+  },
+  "estimation_only_intervals": {
+    "quantity": "mean residual(target minus prediction) for each frozen trajectory, conditional on its weights",
+    "lags": [
+      7,
+      14
+    ],
+    "count": 44,
+    "interval": "pointwise asymptotic normal95% with Bartlett HAC and centered residual scores, covariance denominatorT and HC1 n/(n-1)",
+    "not_simultaneous": true,
+    "not_mean_individual_RMSE_or_primary_superiority_CI": true,
+    "unconditional_seed_uncertainty_not_included": true,
+    "finite_T55_calibration_not_certified": true
+  },
+  "descriptive_outputs": {
+    "per_trajectory": [
+      "RMSE",
+      "MAE",
+      "mean_residual",
+      "sample_SD_residual",
+      "skewness",
+      "Pearson_kurtosis",
+      "Jarque_Bera_shape_statistic_without_p",
+      "ACF_lags1_to14"
+    ],
+    "calendar_sensitivity": "all available calendar-month slices: Sept7..30n24 andOct1..31n31; both reported without favorable selection",
+    "metricsensitivity": [
+      "mean_individual_RMSE",
+      "mean_individual_MAE",
+      "RMSE_of_cohort_mean_prediction_as_different_secondary_estimand"
+    ],
+    "paired_effects": "candidate-minus-each-of3neural-controls across5actuallypaired seeds: mean/SD/range and Cohen_dz descriptive only; no ttest/power or confidence certificate; analyticcontrols evaluated once separately",
+    "learning_curves": "20jobs, selected epoch, training objective first/bestselected/last and same-job validation MSE; selection_RMSE divided by assessmentRMSE is descriptive different-calendar quantity. Composite CRPS train loss is not divided by validation MSE. No train/calibration predictions are manufactured.",
+    "calibration": "linear-calibration diagnostic only; V4 has no saved predictive distribution/calibrator/intervals usable for empirical coverage or PIT"
+  },
+  "prohibited_claims": [
+    "confirmation",
+    "R3",
+    "new_model_fits",
+    "new_model_forward_passes",
+    "prospective_power_certificate",
+    "IID_seed_times_date",
+    "adequacy_pass_from_non_rejection",
+    "interval_coverage_calibration_without_V4_intervals",
+    "transfer796or30or20400intoV4"
+  ],
+  "runtime_budget_seconds": 120,
+  "new_market_fits": 0,
+  "new_market_predictions": 0,
+  "new_statistical_bootstrap_draws": 0,
+  "new_auxiliary_OLS_regressions_expected": 44,
+  "stop_policy": "single new output directory, no overwrite; source/input/anchor mismatch stops before analyses; stop and retain partial evidence on unexpected errors; no changing family after outcomes"
+}

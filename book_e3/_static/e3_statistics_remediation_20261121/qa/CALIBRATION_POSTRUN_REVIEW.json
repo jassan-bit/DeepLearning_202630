@@ -1,0 +1,225 @@
+{
+  "kind": "independent_AI_read_only_QA_of_fresh_controlled_validation",
+  "status": "PASS_IMPLEMENTATION_AND_RECOUNT_NOT_FULL_BATTERY_CALIBRATION",
+  "recorded_at_utc": "2026-11-21T03:27:35.967585+00:00",
+  "source_manifest_sha256": "1c420a7302cf7803f47bc86a6f06b104cc05cb9e373a1f446fd664718635ac04",
+  "plan_sha256": "6780f94705c698a5a64632085b3789218130a16a37de9c8ff9d5a4e2f588d2b6",
+  "raw_log_sha256": "558c582c708c130262de1ac8caa9cfd8609ca30e9a88170be0eb8daad5c79daa",
+  "anchor_commit": "7d304faa0dd583c6109a688ff179ec7e937f6561",
+  "anchor_observed_at_utc": "2026-11-21T03:21:37.374788+00:00",
+  "execution_started_at_utc": "2026-11-21T03:21:52.081628+00:00",
+  "source_files_unchanged": true,
+  "completed_replicates_recounted": 640,
+  "fresh_q_hashes_disjoint_from_old_1024": true,
+  "crossed_bootstrap_draws_recounted": 639360,
+  "unsupported_MCS_and_pairwise_replicates": 0,
+  "max_Holm38_difference": 0.0,
+  "max_CP95_difference_against_independent_binomial_inversion": 3.0531133177191805e-16,
+  "Holm6_exact_McNemar_comparisons_recomputed": 6,
+  "cases": [
+    {
+      "case": "EPA_fresh_nominal",
+      "replicates": 256,
+      "global_null_true": true,
+      "Holm38_any_rejection_by_method": {
+        "P1": 4,
+        "P2": 0,
+        "union": 4,
+        "some_rival_both_methods": 0
+      },
+      "MCS_variants": {
+        "MCS_bootstrap_t": {
+          "rejections": 21,
+          "rate": 0.08203125,
+          "independent_CP95": [
+            0.051495077829813496,
+            0.12266053070019517
+          ],
+          "declared_screen": "exploratory_tolerance_screen_passed"
+        },
+        "MCS_fixed_studentizer_development_control": {
+          "rejections": 56,
+          "rate": 0.21875,
+          "independent_CP95": [
+            0.16967800430447105,
+            0.27446140946005493
+          ],
+          "declared_screen": "inflation_detected"
+        },
+        "MCS_legacy_frozen_control_same_draws": {
+          "rejections": 62,
+          "rate": 0.2421875,
+          "independent_CP95": [
+            0.19101521374412617,
+            0.2994360764620264
+          ],
+          "declared_screen": "inflation_detected"
+        }
+      },
+      "Holm38_family_error": {
+        "events": 4,
+        "replicates": 256,
+        "rate": 0.015625,
+        "independent_CP95": [
+          0.004273272485754653,
+          0.03952075653337489
+        ],
+        "declared_screen": "exploratory_tolerance_screen_passed"
+      }
+    },
+    {
+      "case": "EPA_fresh_strong_dependence",
+      "replicates": 128,
+      "global_null_true": true,
+      "Holm38_any_rejection_by_method": {
+        "P1": 9,
+        "P2": 1,
+        "union": 9,
+        "some_rival_both_methods": 1
+      },
+      "MCS_variants": {
+        "MCS_bootstrap_t": {
+          "rejections": 4,
+          "rate": 0.03125,
+          "independent_CP95": [
+            0.008578935537261245,
+            0.07807952543847035
+          ],
+          "declared_screen": "exploratory_tolerance_screen_passed"
+        },
+        "MCS_fixed_studentizer_development_control": {
+          "rejections": 33,
+          "rate": 0.2578125,
+          "independent_CP95": [
+            0.18458273536401343,
+            0.3425864177716734
+          ],
+          "declared_screen": "inflation_detected"
+        },
+        "MCS_legacy_frozen_control_same_draws": {
+          "rejections": 36,
+          "rate": 0.28125,
+          "independent_CP95": [
+            0.20538706513159416,
+            0.3675231938648048
+          ],
+          "declared_screen": "inflation_detected"
+        }
+      },
+      "Holm38_family_error": {
+        "events": 9,
+        "replicates": 128,
+        "rate": 0.0703125,
+        "independent_CP95": [
+          0.032653627319219225,
+          0.1292793879545287
+        ],
+        "declared_screen": "inconclusive"
+      }
+    },
+    {
+      "case": "EPA_fresh_seed_only",
+      "replicates": 128,
+      "global_null_true": true,
+      "Holm38_any_rejection_by_method": {
+        "P1": 14,
+        "P2": 1,
+        "union": 14,
+        "some_rival_both_methods": 1
+      },
+      "MCS_variants": {
+        "MCS_bootstrap_t": {
+          "rejections": 2,
+          "rate": 0.015625,
+          "independent_CP95": [
+            0.0018978931217393247,
+            0.055302590022448805
+          ],
+          "declared_screen": "exploratory_tolerance_screen_passed"
+        },
+        "MCS_fixed_studentizer_development_control": {
+          "rejections": 92,
+          "rate": 0.71875,
+          "independent_CP95": [
+            0.6324768061351953,
+            0.7946129348684059
+          ],
+          "declared_screen": "inflation_detected"
+        },
+        "MCS_legacy_frozen_control_same_draws": {
+          "rejections": 90,
+          "rate": 0.703125,
+          "independent_CP95": [
+            0.6159940200893324,
+            0.7805982043627187
+          ],
+          "declared_screen": "inflation_detected"
+        }
+      },
+      "Holm38_family_error": {
+        "events": 14,
+        "replicates": 128,
+        "rate": 0.109375,
+        "independent_CP95": [
+          0.061101367889995706,
+          0.17670058813469608
+        ],
+        "declared_screen": "inflation_detected"
+      }
+    },
+    {
+      "case": "fresh_alternative",
+      "replicates": 128,
+      "global_null_true": false,
+      "Holm38_any_rejection_by_method": {
+        "P1": 120,
+        "P2": 83,
+        "union": 120,
+        "some_rival_both_methods": 83
+      },
+      "MCS_variants": {
+        "MCS_bootstrap_t": {
+          "rejections": 112,
+          "rate": 0.875,
+          "independent_CP95": [
+            0.8049562181387004,
+            0.9268339218286346
+          ],
+          "declared_screen": null
+        },
+        "MCS_fixed_studentizer_development_control": {
+          "rejections": 123,
+          "rate": 0.9609375,
+          "independent_CP95": [
+            0.9111955735440689,
+            0.987196823054256
+          ],
+          "declared_screen": null
+        },
+        "MCS_legacy_frozen_control_same_draws": {
+          "rejections": 125,
+          "rate": 0.9765625,
+          "independent_CP95": [
+            0.9330336979545444,
+            0.9951402964642762
+          ],
+          "declared_screen": null
+        }
+      },
+      "alternative_two_method_all_rivals_rejection": 18,
+      "alternative_unique_candidate_set": 39,
+      "alternative_true_best_retained": 128,
+      "alternative_rates_are_not_complete_practical_decision_power": true
+    }
+  ],
+  "bounded_MCS_null_tolerance_screens_passed": 3,
+  "full_two_method_family_calibration_approved": false,
+  "seed_only_FWER_inflation_detected": true,
+  "strong_dependence_FWER_inconclusive": true,
+  "complete_three_method_power_computed": false,
+  "market_admissibility_or_calibration_certified": false,
+  "R3_accredited": false,
+  "reviewer_new_controlled_DGP_replicates": 0,
+  "reviewer_new_model_fits": 0,
+  "reviewer_new_bootstrap_draws": 0
+}

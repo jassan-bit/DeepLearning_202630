@@ -1,0 +1,31 @@
+{
+  "kind": "deterministic_Holm_resolution_audit",
+  "AI_assistance_declared": true,
+  "new_simulations": 0,
+  "minimum_bootstrap_raw_p": "1/(B+1)",
+  "sufficient_first_rank_resolution_condition": "m/(B+1) < alpha",
+  "condition_is_not_necessary_for_a_mixed_family": true,
+  "strict_alpha_05_first_rank_B_minimum": {
+    "m38": 760,
+    "m57": 1140,
+    "m63": 1260
+  },
+  "mixed_family_counterexample": {
+    "B": 511,
+    "analytical_p_values": 19,
+    "analytical_p_value": 1e-12,
+    "bootstrap_p_values": 19,
+    "bootstrap_p_value": 0.001953125,
+    "maximum_Holm_adjusted_p": 0.037109375,
+    "all_38_rejected_at_strict_alpha_05": true
+  },
+  "all_discrete_family_counterexample": {
+    "B": 511,
+    "p_values": 38,
+    "raw_p": 0.001953125,
+    "minimum_Holm_adjusted_p": 0.07421875,
+    "any_rejected_at_strict_alpha_05": false
+  },
+  "interpretation": "Budget choice must examine achievable p-values by method and Holm rank; insufficient first-rank resolution alone does not establish zero FWER or zero joint power in a mixed family.",
+  "calibration_or_power_certificate": false
+}
