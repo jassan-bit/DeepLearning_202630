@@ -486,6 +486,14 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuatro-propuestas-de-datos-concretas-cero-admisiones-nuevas">Cuatro propuestas de datos concretas, cero admisiones nuevas</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remediacion-estadistica-estimando-calibracion-y-adecuacion-retrospectiva">8.26 Remediación estadística: estimando, calibración y adecuación retrospectiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-exige-la-guia-y-que-procedimiento-responde-a-cada-pregunta">Qué exige la guía y qué procedimiento responde a cada pregunta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-conservado-y-version-metodologica-nueva">Diagnóstico conservado y versión metodológica nueva</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-controlada-ejecutada-y-decision-de-calibracion">Validación controlada ejecutada y decisión de calibración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adecuacion-retrospectiva-sobre-v4-guardada">Adecuación retrospectiva sobre V4 guardada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-requisito-confirmatorio-todavia-pendiente">Potencia y requisito confirmatorio todavía pendiente</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -2751,6 +2759,200 @@ defensa académica de R2 y validación predictiva de R3.</p>
 <p>El <a class="reference download internal" download="" href="../_downloads/3856fec748f75fd72f9c64fbac2c266b/admission_validator.py"><code class="xref download docutils literal notranslate"><span class="pre">validador</span> <span class="pre">sin</span> <span class="pre">acceso</span> <span class="pre">al</span> <span class="pre">mercado</span></code></a> devuelve bloqueo con la declaración real aún vacía. Inspeccionar documentación no admite datasets ni habilita modelos. <strong>La confirmación continúa cerrada</strong> por ciencia, métodos, datos y potencia; no se genera tag o Colab confirmatorio para eludir esas puertas. La preparación y los resultados adversos se declaran con asistencia de IA, sin atribuir una ejecución humana independiente.</p>
 </section>
 </section>
+<section id="remediacion-estadistica-estimando-calibracion-y-adecuacion-retrospectiva">
+<span id="e3-statistical-remediation-20261121"></span><h2>8.26 Remediación estadística: estimando, calibración y adecuación retrospectiva<a class="headerlink" href="#remediacion-estadistica-estimando-calibracion-y-adecuacion-retrospectiva" title="Link to this heading">#</a></h2>
+<p>Este corte desarrolla el componente de pruebas de hipótesis y adecuación a partir de
+las fuentes de <code class="docutils literal notranslate"><span class="pre">d6cf7f1</span></code>. Conserva completos 8.24–8.25, las 1.024 réplicas previas,
+su rechazo MCS de 27/128 bajo igualdad y los resultados de desarrollo desfavorables.
+No vuelve a entrenar ni a predecir. El NO-GO de V3 y el abandono de V4 continúan;
+una mejora de la herramienta de inferencia no modifica esas decisiones.</p>
+<section id="que-exige-la-guia-y-que-procedimiento-responde-a-cada-pregunta">
+<h3>Qué exige la guía y qué procedimiento responde a cada pregunta<a class="headerlink" href="#que-exige-la-guia-y-que-procedimiento-responde-a-cada-pregunta" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/2a25a81128366e95e8528dac406193e0/PRIMARY_GUIDE_FACTS.json"><code class="xref download docutils literal notranslate"><span class="pre">auditoría</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">guía</span> <span class="pre">original</span></code></a> vuelve al PDF: §8.4, pp. 23–24; Cuadro 4, p. 26; §8.7,
+pp. 27–28; y checklist 14.5.3, pp. 44–45. Para R3 se requieren al menos tres
+procedimientos distintos de la tabla que rechacen igualdad de rendimiento para
+cada contraste, dirección favorable, margen práctico y efectos/intervalos. Al
+menos uno debe ser global o controlar multiplicidad. La guía no impone literalmente
+tres nulos unilaterales idénticos <code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">&lt;=</span> <span class="pre">delta</span></code>, ni permite contar variantes de MCS como tres procedimientos o convertir
+exclusiones automáticamente en p-valores prácticos pareados.</p>
+<p>La pregunta primaria sigue siendo la <strong>media de RMSE individuales por semilla</strong>,
+con incertidumbre de inicialización y calendario. No se sustituye por la raíz de
+la MSE promediada, el RMSE de un ensemble o una pérdida temporal condicionada a
+una cohorte fija. Esa distinción puede cambiar incluso un ranking: dos semillas
+con MSE <code class="docutils literal notranslate"><span class="pre">0,01</span></code> y <code class="docutils literal notranslate"><span class="pre">8,41</span></code> tienen RMSE media <code class="docutils literal notranslate"><span class="pre">1,5</span></code>, menor que <code class="docutils literal notranslate"><span class="pre">sqrt(3)=1,73205</span></code> de un
+rival con MSE <code class="docutils literal notranslate"><span class="pre">3</span></code> en ambas; su MSE media <code class="docutils literal notranslate"><span class="pre">4,21</span></code>, en cambio, es mayor que <code class="docutils literal notranslate"><span class="pre">3</span></code>.
+Es un contraejemplo determinista del estimando, no un resultado de mercado.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Procedimiento nombrado en la guía</p></th>
+<th class="head"><p>Pregunta y condición de uso</p></th>
+<th class="head"><p>Límite para el primario actual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bootstrap estacionario</p></td>
+<td><p>Muestreo temporal débilmente dependiente del funcional declarado, con calendario común a rivales.</p></td>
+<td><p>Para inferencia aleatoria entre semillas hay que incorporar esa variabilidad y justificar el diseño cruzado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DM-HLN</p></td>
+<td><p>Diferencia media de pérdidas temporales pareadas, horizonte declarado y LRV apropiada.</p></td>
+<td><p>Horizonte de un día no elimina el solapamiento de σ₇; la media de RMSE por semilla necesita derivación adicional.</p></td>
+</tr>
+<tr class="row-even"><td><p>MCS</p></td>
+<td><p>Igualdad global de capacidad predictiva y conjunto de confianza, con bootstrap conjunto válido.</p></td>
+<td><p>La exclusión de un rival no identifica por sí sola su contraste direccional práctico frente a la candidata.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Giacomini–White</p></td>
+<td><p>Capacidad predictiva condicional con instrumentos y marco de estimación/muestreo justificados.</p></td>
+<td><p>El nulo condicional y la cohorte fija no equivalen automáticamente al primario aleatorio de RMSE.</p></td>
+</tr>
+<tr class="row-even"><td><p>Clark–West</p></td>
+<td><p>Modelos realmente anidados y ajuste de pérdida de esa teoría.</p></td>
+<td><p>Tener distinto número de parámetros no acredita anidamiento entre redes heterogéneas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Friedman por series/orígenes y prueba entre conjuntos</p></td>
+<td><p>Unidades defendibles y post hoc/multiplicidad especificados.</p></td>
+<td><p>Un calendario diario correlacionado no se convierte en conjuntos u orígenes independientes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>MCS no queda excluido universalmente del tercer procedimiento. Si se justifican
+la cobertura simultánea del conjunto de mejores y su correspondencia con la
+familia, un conjunto que conserve únicamente la candidata puede respaldar una
+decisión global frente a los rivales, junto con dirección, efectos y margen
+práctico. Las exclusiones de la extensión funcional aquí estudiada no reciben
+esa interpretación automáticamente ni se convierten en p-valores pareados.</p>
+<p>Las guardas de diez semillas y 32 fechas siguen siendo límites de soporte
+computacional, no evidencia de potencia o de suficiencia asintótica. Las cinco
+semillas del piloto V4 no se usan para eludirlas. Los métodos que cambien el
+estimando o condicionen la cohorte se identifican por separado.</p>
+</section>
+<section id="diagnostico-conservado-y-version-metodologica-nueva">
+<h3>Diagnóstico conservado y versión metodológica nueva<a class="headerlink" href="#diagnostico-conservado-y-version-metodologica-nueva" title="Link to this heading">#</a></h3>
+<p>La revisión de los registros guardados no identificó un error algebraico evidente de signo, centrado o regla de eliminación. La dispersión bootstrap fija también se usa en el MCS estándar y no se etiqueta como bug por sí sola. Bajo EPA los veinte modelos sintéticos son intercambiables: el sesgo finito de la raíz es común y <strong>no explica por sí solo</strong> el rechazo 27/128. Pocas semillas, la dimensión del máximo —190 pares con doce semillas—, dependencia temporal y la extensión no lineal/cruzada son mecanismos plausibles, no una causa única identificada.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/e6ab6aa95cf8e919b857a6eacf172e06/crossed_rmse_v2.py"><code class="xref download docutils literal notranslate"><span class="pre">módulo</span> <span class="pre">v2</span> <span class="pre">del</span> <span class="pre">MCS</span> <span class="pre">funcional</span></code></a> mantiene el riesgo <span class="math notranslate nohighlight">\(\widehat R_m=S^{-1}\sum_s\sqrt{\bar q_{sm}}\)</span> y usa una covarianza completa de riesgos: covarianza entre RMSE de semillas dividida por S más HAC de la influencia temporal media dividida por T. Para el par j/k, <span class="math notranslate nohighlight">\(\widehat\sigma_{jk}^2=\widehat\Sigma_{jj}+\widehat\Sigma_{kk}-2\widehat\Sigma_{jk}\)</span>. En cada réplica se recalculan riesgos y covarianza, de modo que el pivote propuesto es</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-crossed-mcs-bootstrap-t-20261121">
+<span class="eqno">(49)<a class="headerlink" href="#equation-eq-e3-crossed-mcs-bootstrap-t-20261121" title="Link to this equation">#</a></span>\[
+Z^*_{b,jk}=\frac{(\widehat R^*_{b,j}-\widehat R^*_{b,k})-(\widehat R_j-\widehat R_k)}{\widehat\sigma^*_{b,jk}}.
+\]</div>
+<p>La suma de componentes puede contar dos veces interacción no negativa <strong>dentro de la linealización cruzada aditiva</strong>; con ancho de banda finito, raíz no lineal o dependencia arbitraria no es una cota garantizada. Se conservan bloque medio <strong>12</strong> y HAC <strong>8</strong>, incluso en el estrés con <span class="math notranslate nohighlight">\(\phi=0,85\)</span>. La guarda numérica nueva es relativa a la escala; muestras degeneradas se declaran no soportadas, sin intervalos de certeza fabricados. El factor HLN de horizonte uno y la referencia t con S−1 se conservan para P2 como extensión propuesta, sin atribuirle un teorema clásico de DM para este diseño.</p>
+<p>La comparación incluye tres variantes sobre <strong>los mismos sorteos bootstrap</strong>: v1 congelado con su dispersión original; covarianza nueva con studentizador fijo; y covarianza nueva con re-studentización bootstrap-t. La segunda frente a la tercera aísla la re-studentización dentro de la nueva covarianza; v1 frente a v2 contiene dos intervenciones y no identifica una causa única. Son variantes de un complemento global, <strong>no tres procedimientos primarios distintos</strong>. Los dos contrastes por rival reportan ahora igualdad bilateral <span class="math notranslate nohighlight">\(\theta=0\)</span>; dirección, IC y margen práctico se examinan por separado, sin reetiquetar el nulo práctico más fuerte de la versión previa.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/7d304faa0dd583c6109a688ff179ec7e937f6561">commit público <code class="docutils literal notranslate"><span class="pre">7d304faa0dd583c6109a688ff179ec7e937f6561</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/c37f3b08c6ba814927073bc10b454901/VALIDATION_PLAN.json"><code class="xref download docutils literal notranslate"><span class="pre">plan</span> <span class="pre">nuevo</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/b849a0a404013acc1cd5a8e5fdc7e40e/CODE_MANIFEST.json"><code class="xref download docutils literal notranslate"><span class="pre">manifiesto</span> <span class="pre">de</span> <span class="pre">ocho</span> <span class="pre">fuentes</span> <span class="pre">de</span> <span class="pre">ejecución/pruebas</span></code></a> preceden al Monte Carlo nuevo. Se fijaron cuatro casos, <strong>640 réplicas</strong> y <strong>999 remuestreos por réplica</strong> —639.360 previstos—, con semilla distinta de la validación anterior, dos hilos y máximo de 300 s. Las <strong>30 guardas de software</strong> se distinguen de esa validación estadística.</p>
+<p>El criterio previo de desarrollo exige en cada caso EPA un <strong>límite superior del IC95 binomial individual ≤0,13</strong>, para nominal 0,10 y tolerancia exploratoria de 0,03. No certifica nivel exacto 0,10 ni una garantía simultánea. El plan también conserva FWER del subconjunto Holm38, IC puntuales de P1/P2, seis diagnósticos pareados de mecanismo con Holm6 y un escenario alternativo; no es una batería completa de tres métodos o potencia final de mercado. Un caso de estrés desfavorable restringe el alcance, sin retocar bloque o lag después de observarlo.</p>
+</section>
+<section id="validacion-controlada-ejecutada-y-decision-de-calibracion">
+<h3>Validación controlada ejecutada y decisión de calibración<a class="headerlink" href="#validacion-controlada-ejecutada-y-decision-de-calibracion" title="Link to this heading">#</a></h3>
+<p>Se completaron <strong>640/640 réplicas y 639.360 remuestreos cruzados</strong>, con cero errores y las ocho fuentes congeladas intactas. El <a class="reference download internal" download="" href="../_downloads/d9438f7a19e0f3d57cfde5127d3c02eb/execution_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">de</span> <span class="pre">ejecución</span></code></a> registra <strong>187,684 s de pared</strong>, del 20 de noviembre a las <strong>22:21:52–22:24:59 de Bogotá</strong> —UTC del 21—, dentro del límite previo de 300 s. El control v1 reutilizó los riesgos de los mismos sorteos y no añadió remuestreos; no son tres experimentos independientes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Caso nulo EPA nuevo</p></th>
+<th class="head text-right"><p>MCS v1 sobre sorteos nuevos</p></th>
+<th class="head text-right"><p>Covarianza nueva, escala fija</p></th>
+<th class="head text-right"><p>Propuesta bootstrap-t</p></th>
+<th class="head text-right"><p>IC95 % individual de la propuesta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ordinario, φ=0,35</p></td>
+<td class="text-right"><p>62/256 —24,22 %—</p></td>
+<td class="text-right"><p>56/256 —21,88 %—</p></td>
+<td class="text-right"><p><strong>21/256 —8,20 %—</strong></p></td>
+<td class="text-right"><p><strong>5,15–12,27 %</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dependencia fuerte, φ=0,85</p></td>
+<td class="text-right"><p>36/128 —28,13 %—</p></td>
+<td class="text-right"><p>33/128 —25,78 %—</p></td>
+<td class="text-right"><p><strong>4/128 —3,13 %—</strong></p></td>
+<td class="text-right"><p><strong>0,86–7,81 %</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Variación sólo entre semillas</p></td>
+<td class="text-right"><p>90/128 —70,31 %—</p></td>
+<td class="text-right"><p>92/128 —71,88 %—</p></td>
+<td class="text-right"><p><strong>2/128 —1,56 %—</strong></p></td>
+<td class="text-right"><p><strong>0,19–5,53 %</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La propuesta pasó los <strong>tres cribados exploratorios individuales</strong> previamente fijados: sus límites superiores no superan 0,13. El control de escala fija nueva no consiguió ese resultado. Esto respalda investigar la re-studentización dentro de la nueva covarianza y delimita una mejora de tamaño observada en estos DGP; <strong>no certifica nivel exacto 0,10, validez universal o una batería confirmatoria completa</strong>. Se conservaron las seis comparaciones pareadas predeclaradas de mecanismos con Holm6, sin escoger variantes después por sus resultados de mercado. Los límites binomiales son individuales y los casos no son una garantía simultánea.</p>
+<figure class="align-default" id="fig-e3-mcs-fresh-global-20261121">
+<a class="reference internal image-reference" href="../_images/mcs_fresh_global_rates.png"><img alt="../_images/mcs_fresh_global_rates.png" src="../_images/mcs_fresh_global_rates.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Figura 9 </span><span class="caption-text">Tasas globales de los cuatro casos declarados y tres variantes sobre los mismos sorteos, con IC95 % Monte Carlo individuales. Las líneas nominal/cribado sólo aparecen en los nulos EPA; el rechazo del caso alternativo no es tamaño ni potencia de tres procedimientos. Figura posterior a resultados, sin recalcular pruebas o remuestreos. Se conservan el <a class="reference download internal" download="" href="../_downloads/a18640eefab2626d07e8e7ace417622f/mcs_fresh_global_rates.svg"><code class="xref download docutils literal notranslate"><span class="pre">SVG</span></code></a>, el <a class="reference download internal" download="" href="../_downloads/65977d58ae8483e70571ff5ef00d6ff3/plot_validation_rates.py"><code class="xref download docutils literal notranslate"><span class="pre">programa</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/bc874baf9898d118a2b95b6e95ce987f/FIGURE_RECEIPT.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">de</span> <span class="pre">datos/figura</span></code></a>.</span><a class="headerlink" href="#fig-e3-mcs-fresh-global-20261121" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Resultado adverso que mantiene bloqueada la batería.</strong> La familia de <strong>38 contrastes</strong>, P1/P2 frente a diecinueve rivales, no quedó calibrada en todos los casos. Bajo variación sólo entre semillas rechazó alguna nula verdadera en <strong>14/128 réplicas, 10,94 %</strong>, con IC95 % <strong>[6,11 %; 17,67 %]</strong>, frente al nominal del <strong>5 %</strong>: el límite inferior supera el nominal. Con dependencia fuerte registró <strong>9/128, 7,03 %</strong>, IC95 % <strong>[3,27 %; 12,93 %]</strong>; su cribado de límite superior ≤0,08 fue <strong>inconcluso</strong>, no aprobado. El caso ordinario registró 4/256, 1,56 %, IC95 % [0,43 %; 3,95 %]. Holm no corrige la falta de validez marginal de los p que recibe; estas aproximaciones finitas no se certifican por pasar guardas de software.</p>
+<p>En la alternativa sintética prefijada, el MCS nuevo rechazó igualdad global en <strong>112/128 —87,50 %—</strong>, pero sólo conservó un conjunto exclusivamente candidato en <strong>39/128 —30,47 %—</strong>, IC95 % [22,65 %; 39,22 %]. Retuvo al verdadero mejor en 128/128. La intersección conjunta del <strong>subconjunto de dos métodos frente a diecinueve rivales</strong> ocurrió en <strong>18/128 —14,06 %—</strong>, IC95 % [8,55 %; 21,31 %]. Esa intersección cuenta sólo p ajustados y no incorpora la regla completa de margen, efecto y adecuación. Los ámbitos son distintos: ni el rechazo global ni esa intersección son potencia de una batería completa de tres procedimientos o dimensionamiento de mercado.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/981e9a20b319549c8b34aa837bc1709f/validation_summary.json"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">íntegro</span> <span class="pre">de</span> <span class="pre">cuatro</span> <span class="pre">casos</span></code></a> y la <a class="reference download internal" download="" href="../_downloads/3cae4091ec80c29eeb14681200f57a54/RESULTS_DECISION.md"><code class="xref download docutils literal notranslate"><span class="pre">decisión</span> <span class="pre">posterior</span> <span class="pre">conservada</span></code></a> mantienen la conclusión: mejora exploratoria del complemento global en los casos ensayados; <strong>familia primaria incompleta/no calibrada y confirmación cerrada</strong>. No se cambiaron bandas, bloques, hipótesis, escenarios o semillas después del resultado, ni se abrió otra validación para buscar una aprobación.</p>
+<p>La comprobación de software responde a errores de código y manejo de entradas;
+la simulación controlada examina tamaño, cobertura y comportamiento bajo los DGP
+especificados. Ninguna de las dos certifica universalmente el método. Las tasas
+Monte Carlo conservan denominador, precisión e interpretación individual o
+simultánea declarada. Que un intervalo contenga el nominal no prueba calibración.</p>
+</section>
+<section id="adecuacion-retrospectiva-sobre-v4-guardada">
+<h3>Adecuación retrospectiva sobre V4 guardada<a class="headerlink" href="#adecuacion-retrospectiva-sobre-v4-guardada" title="Link to this heading">#</a></h3>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/commit/e8485812241e492f683f0e6ea77459ca3423f30c">anclaje público <code class="docutils literal notranslate"><span class="pre">e8485812241e492f683f0e6ea77459ca3423f30c</span></code></a> precede al nuevo cálculo, pero sucede después de conocer el calendario y el resultado del piloto. Fija la <a class="reference download internal" download="" href="../_downloads/ce989669e589aad16bbbfae3cb8e9eae/analysis_plan.json"><code class="xref download docutils literal notranslate"><span class="pre">familia</span> <span class="pre">retrospectiva</span></code></a>, las fuentes y <strong>46 entradas verificadas</strong>; no recupera independencia o prospectividad confirmatoria. El <a class="reference download internal" download="" href="../_downloads/8227bfbcd56bda5040376895eef582e0/execution_receipt.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">realmente</span> <span class="pre">ejecutado</span></code></a> registra el cálculo a las <strong>22:15:20 de Bogotá del 20 de noviembre</strong> —<code class="docutils literal notranslate"><span class="pre">2026-11-21T03:15:20Z</span></code>—, con los archivos anteriores intactos.</p>
+<p>Se calcularon <strong>88 p asintóticos</strong>, cuatro diagnósticos por cada una de las 22 trayectorias, y se aplicó Holm a las <strong>88 posiciones predefinidas</strong>, sin posiciones no soportadas en esta ejecución:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Diagnóstico auxiliar</p></th>
+<th class="head text-right"><p>Contrastes calculados</p></th>
+<th class="head text-right"><p>Rechazos después de Holm88</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ljung–Box a 7 rezagos</p></td>
+<td class="text-right"><p>22</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ljung–Box a 14 rezagos</p></td>
+<td class="text-right"><p>22</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>ARCH-LM a 7 rezagos</p></td>
+<td class="text-right"><p>22</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mincer–Zarnowitz conjunto, HAC Bartlett/HC1 a 14</p></td>
+<td class="text-right"><p>22</p></td>
+<td class="text-right"><p><strong>13</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El <a class="reference download internal" download="" href="../_downloads/73008b0ad1387bde81f2b3b859221ab8/analysis_summary.json"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">con</span> <span class="pre">alcances</span> <span class="pre">y</span> <span class="pre">decisión</span></code></a> y los <a class="reference download internal" download="" href="../_downloads/e19ffcd6c0168f5230a57a2eb9a75b95/diagnostics_Holm88.csv"><code class="xref download docutils literal notranslate"><span class="pre">88</span> <span class="pre">diagnósticos</span> <span class="pre">con</span> <span class="pre">p</span> <span class="pre">brutos</span> <span class="pre">y</span> <span class="pre">ajustados</span></code></a> conservan esos resultados. Los trece rechazos de MZ corresponden a cinco de cinco trayectorias aditivas, ambos controles analíticos y dos de cinco de cada una de MSE-only, V4 sigma y U-CRPS. MZ contrasta intercepto cero y pendiente uno en una regresión auxiliar de objetivo sobre pronóstico, con transformación coherente de unidades y covarianza; <strong>no reentrena el predictor</strong>. La ejecución realizó 44 regresiones OLS auxiliares para ARCH/MZ y cero ajustes o forwards de modelos de pronóstico.</p>
+<p>Los rechazos son evidencia retrospectiva contra esas restricciones lineales <strong>bajo los supuestos del procedimiento</strong>, no una declaración universal de inutilidad predictiva. La falta de rechazos de Ljung–Box/ARCH después de Holm no acredita adecuación. Son diagnósticos clásicos asintóticos con sólo <strong>55 fechas</strong>; Ljung–Box no es robusto por sí mismo a heterocedasticidad y no se validó aquí su tamaño finito. El solapamiento de σ₇ motiva examinar dependencia, pero no obliga a que un error óptimo de predicción a un paso sea serialmente correlacionado: bajo la esperanza condicional apropiada sería una diferencia de martingala. No se explica automáticamente un rechazo por compartir retornos.</p>
+<p>Los <a class="reference download internal" download="" href="../_downloads/d5ef393948a0266b8c45d8abbfb2dd57/conditional_mean_error_CIs.csv"><code class="xref download docutils literal notranslate"><span class="pre">44</span> <span class="pre">IC</span> <span class="pre">de</span> <span class="pre">sesgo</span> <span class="pre">residual</span> <span class="pre">medio</span></code></a> son puntuales, asintóticos y condicionados a cada trayectoria, con HAC a 7/14; no son IC de RMSE de la población de semillas ni simultáneos. Los <a class="reference download internal" download="" href="../_downloads/ad1fd444795441f8b09bb4064a870eed/recipe_estimands.csv"><code class="xref download docutils literal notranslate"><span class="pre">estimandos</span> <span class="pre">separados</span> <span class="pre">por</span> <span class="pre">receta</span></code></a> muestran media de RMSE individuales, DE entre semillas y RMSE del pronóstico promedio con sus nombres distintos. La <a class="reference download internal" download="" href="../_downloads/d771a2438be2c35b6a4f1766406855e0/monthly_sensitivity.csv"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad</span> <span class="pre">mensual</span></code></a> informa septiembre 7–30 —24 fechas— y octubre 1–31 —31—, sin tratarlos como repeticiones independientes.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/56a7d133cef70b60c27cd6da2cdf9d74/paired_seed_effects_descriptive.csv"><code class="xref download docutils literal notranslate"><span class="pre">diferencia</span> <span class="pre">pareada</span> <span class="pre">descriptiva</span> <span class="pre">entre</span> <span class="pre">semillas</span></code></a> conserva V4 menos MSE-only: media <strong>2,969978×10⁻⁵ σ₇</strong>, DE <strong>2,340272×10⁻⁵</strong> y Cohen dz <strong>1,269</strong> en las cinco semillas, con las cinco diferencias positivas. Ese dz describe cinco repeticiones sobre un único calendario expuesto; no es un p de superioridad, un IC poblacional, potencia o requisito confirmatorio acreditado. La revisión <strong>no revierte el abandono de V4</strong>.</p>
+<p>El análisis conserva las 55 fechas y las 22 trayectorias del desarrollo expuesto:
+cuatro recetas neuronales con cinco semillas y dos controles analíticos. Esas
+trayectorias corresponden a 1.210 filas guardadas, no a 1.210 unidades independientes.
+Las referencias descriptivas entre cinco semillas no son potencia prospectiva.
+El <a class="reference download internal" download="" href="../_downloads/09c95b1082539e15246efa920d63ebb4/learning_curve_inventory.csv"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">de</span> <span class="pre">curvas</span></code></a> no divide el objetivo compuesto de entrenamiento CRPS por la MSE de parada: no son la misma pérdida. La razón RMSE de evaluación/parada compara calendarios distintos y una época elegida con parada; no demuestra ausencia de sobreajuste. Sin predicciones guardadas de ajuste/parada ni calibrador V4 no se inventa una brecha completa
+de predicción, PIT o cobertura de intervalos. La calibración lineal MZ es otro objeto. Los meses se describen con sus fechas y
+conteos efectivamente presentes; no se presume un mes calendario completo.</p>
+</section>
+<section id="potencia-y-requisito-confirmatorio-todavia-pendiente">
+<h3>Potencia y requisito confirmatorio todavía pendiente<a class="headerlink" href="#potencia-y-requisito-confirmatorio-todavia-pendiente" title="Link to this heading">#</a></h3>
+<p>La <a class="reference download internal" download="" href="../_downloads/db53f08f9d1b563d126e057552e45fb6/EXECUTED_POWER_INPUT_AUDIT.json"><code class="xref download docutils literal notranslate"><span class="pre">auditoría</span> <span class="pre">ejecutada</span> <span class="pre">de</span> <span class="pre">insumos</span></code></a> cotejó <strong>71 fuentes distintas y los 486 escenarios guardados</strong>, con sus 162 filas de semillas y 324 de calendario. Las tres referencias de varianza V3 disponibles usan <strong>tres pares de semillas</strong>, por debajo de las cinco del piloto de planificación; faltan dieciséis de los diecinueve rivales. Las <strong>76 celdas futuras V3 y 84 V4 siguen sin insumos compatibles</strong>. Las cinco referencias D00 y 25 entradas de covarianza de V4 pertenecen al desarrollo expuesto de una receta abandonada; no se convierten en información de cuatro paneles futuros.</p>
+<p>La <a class="reference download internal" download="" href="../_downloads/1c8beb7ee7999b4cdad65cf8e06e506f/REQUIREMENT_EVIDENCE_GAP_MATRIX.csv"><code class="xref download docutils literal notranslate"><span class="pre">matriz</span> <span class="pre">de</span> <span class="pre">requisitos</span> <span class="pre">y</span> <span class="pre">brechas</span> <span class="pre">del</span> <span class="pre">corte</span> <span class="pre">d6</span></code></a> conserva doce requisitos y separa lo ejecutable de lo prospectivo. No incorpora retroactivamente los resultados nuevos de calibración. El <a class="reference download internal" download="" href="../_downloads/94461d703cf03279b53577cdef418e02/POWER_INPUT_CONTRACT.template.json"><code class="xref download docutils literal notranslate"><span class="pre">contrato</span> <span class="pre">estructural</span></code></a> dio <strong>dieciocho puertas bloqueadas</strong> y dejó <code class="docutils literal notranslate"><span class="pre">final_R</span></code> y <code class="docutils literal notranslate"><span class="pre">final_T</span></code> nulos, sin imputar ceros o admitir paneles por declaración. El <a class="reference download internal" download="" href="../_downloads/39f4e520a3ebce63482e840b189dd811/power_inputs_audit.py"><code class="xref download docutils literal notranslate"><span class="pre">programa</span> <span class="pre">de</span> <span class="pre">compatibilidad</span> <span class="pre">de</span> <span class="pre">insumos</span></code></a> no puede entrenar, simular o acreditar potencia; la referencia normal que incluye varianza de semilla y un suelo temporal LRV/T es un diagnóstico condicional, no la regla completa de tres métodos. Pasaron <strong>21 guardas de software</strong>, separadas de la validación estadística.</p>
+<p>Las instrucciones y comandos de esa auditoría están en el <a class="reference download internal" download="" href="../_downloads/b8dfd9667ea879cd93515615afdee5df/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README</span> <span class="pre">de</span> <span class="pre">guía</span> <span class="pre">y</span> <span class="pre">potencia</span></code></a>.</p>
+<p>La potencia mínima de la guía es <strong>0,90 por contraste</strong>, con la conjunta reportada
+y su precisión Monte Carlo; no se le atribuye un umbral conjunto universal de
+0,90. Margen práctico, alternativa relevante y MDE tienen papeles diferentes.
+Aumentar semillas no repara por sí solo falta de información temporal. Las 486
+sensibilidades anteriores son antecedentes de planificación, no una certificación
+final; tampoco se rellenan las 84 celdas futuras de V4 con referencias de otro
+modelo. La receta fue abandonada y no se ejecutan sus 340 ajustes ilustrativos.</p>
+<p>La confirmación permanece condicionada a una candidata viable, paneles admitidos,
+métodos pertinentes/calibrados, dimensionamiento y protocolo reales anteriores a
+sus resultados. Este corte no registra una campaña confirmatoria ni acredita R3.
+La asistencia de IA se declara; no sustituye a la persona autora o externa.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2914,6 +3116,14 @@ defensa académica de R2 y validación predictiva de R3.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-y-potencia-que-todavia-no-quedan-acreditadas">Familias y potencia que todavía no quedan acreditadas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#piloto-real-v4-de-desarrollo-completado-y-receta-abandonada">Piloto real V4 de desarrollo completado y receta abandonada</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuatro-propuestas-de-datos-concretas-cero-admisiones-nuevas">Cuatro propuestas de datos concretas, cero admisiones nuevas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remediacion-estadistica-estimando-calibracion-y-adecuacion-retrospectiva">8.26 Remediación estadística: estimando, calibración y adecuación retrospectiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-exige-la-guia-y-que-procedimiento-responde-a-cada-pregunta">Qué exige la guía y qué procedimiento responde a cada pregunta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-conservado-y-version-metodologica-nueva">Diagnóstico conservado y versión metodológica nueva</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-controlada-ejecutada-y-decision-de-calibracion">Validación controlada ejecutada y decisión de calibración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adecuacion-retrospectiva-sobre-v4-guardada">Adecuación retrospectiva sobre V4 guardada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-y-requisito-confirmatorio-todavia-pendiente">Potencia y requisito confirmatorio todavía pendiente</a></li>
 </ul>
 </li>
 </ul>

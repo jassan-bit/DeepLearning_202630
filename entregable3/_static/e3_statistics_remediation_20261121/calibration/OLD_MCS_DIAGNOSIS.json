@@ -1,0 +1,97 @@
+{
+  "kind": "read_only_development_diagnosis_of_preserved_old_results",
+  "old_source_SHA256": "74b19ca4edea3795b1349df6d2c5bc603d399ca2177c360b620706b6b51d07ab",
+  "old_plan_SHA256": "20d2f73adff064d47d19b2394e708e5a84515eed410ee81b258c2a8226c710f5",
+  "old_results_SHA256": "a687d180084b906631a625db371c137754e3f5f66180fabd3e758ab3328b1b7b",
+  "existing_records_read": 1024,
+  "EPA_records": 128,
+  "EPA_shape": [
+    12,
+    128,
+    20
+  ],
+  "EPA_pairs": 190,
+  "EPA_global_rejections": 27,
+  "EPA_elimination_counts": {
+    "rival_05": 2,
+    "rival_04": 5,
+    "rival_07": 6,
+    "rival_13": 2,
+    "rival_06": 1,
+    "rival_09": 4,
+    "rival_02": 2,
+    "rival_19": 4,
+    "rival_01": 2,
+    "rival_12": 2,
+    "rival_08": 4,
+    "rival_16": 2,
+    "rival_03": 2,
+    "rival_10": 2,
+    "rival_15": 1,
+    "rival_18": 1,
+    "rival_14": 1,
+    "rival_11": 1
+  },
+  "EPA_eliminations_total": 44,
+  "EPA_global_rejection_summary": {
+    "CI95": [
+      0.1438483516231994,
+      0.2918637365785533
+    ],
+    "events": 27,
+    "exploratory_inflation_signal": true,
+    "exploratory_tolerance_screen_passed": false,
+    "nominal": 0.1,
+    "rate": 0.2109375,
+    "replicates": 128,
+    "simultaneous_validation_claimed": false
+  },
+  "EPA_Holm38_P1P2_FWER": {
+    "CI95": [
+      0.008578935537261197,
+      0.07807952543847038
+    ],
+    "events": 4,
+    "exploratory_inflation_signal": false,
+    "exploratory_tolerance_screen_passed": true,
+    "nominal": 0.05,
+    "rate": 0.03125,
+    "replicates": 128,
+    "simultaneous_validation_claimed": false
+  },
+  "analytic_bandwidth_examples": [
+    {
+      "Gaussian_AR_phi": 0.35,
+      "squared_process_rho": 0.12249999999999998,
+      "long_run_variance_factor": 1.2792022792022792,
+      "population_Bartlett_lag8_kernel_factor": 1.2438490310265398,
+      "Bartlett_ratio": 0.972363050980658,
+      "infinite_stationary_mean12_kernel_factor": 1.2529922553391224,
+      "stationary_ratio": 0.9795106494967304,
+      "scope": "Analytic Gaussian AR-squared marginal component example, not exact variance of the full crossed-RMSE procedure"
+    },
+    {
+      "Gaussian_AR_phi": 0.85,
+      "squared_process_rho": 0.7224999999999999,
+      "long_run_variance_factor": 6.2072072072072055,
+      "population_Bartlett_lag8_kernel_factor": 4.234090396225455,
+      "Bartlett_ratio": 0.6821248678969893,
+      "infinite_stationary_mean12_kernel_factor": 4.922270203578037,
+      "stationary_ratio": 0.7929927323616288,
+      "scope": "Analytic Gaussian AR-squared marginal component example, not exact variance of the full crossed-RMSE procedure"
+    }
+  ],
+  "no_obvious_sign_centering_or_worst_model_elimination_error": true,
+  "finite_calendar_Jensen_effect_common_under_exchangeable_EPA_models_does_not_explain_EPA_inflation": true,
+  "fixed_bootstrap_scales_are_also_used_by_standard_MCS_not_an_implementation_bug_by_themselves": true,
+  "plausible_unisolated_mechanisms": [
+    "finite seed sample R12 with max statistic over190 dependent pairs",
+    "nonlinear functional and empirical crossed resampling finite-sample tails",
+    "finite temporal bandwidth; strongest at declared phi.85 stress"
+  ],
+  "single_cause_established": false,
+  "new_validation_results_observed": false,
+  "new_market_fits": 0,
+  "new_market_predictions": 0,
+  "AI_assistance_declared": true
+}

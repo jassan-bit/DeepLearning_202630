@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "kind": "independent_AI_reasoned_component_assessment_not_official_grade",
+  "recorded_at_utc": "2026-11-21T03:29:05.194642+00:00",
+  "reviewer_role": "AI methodological reviewer within this task; not an external human or institutional evaluator",
+  "AI_assistance_declared": true,
+  "component": "Pruebas de hipótesis y adecuación",
+  "component_weight_percent": 15,
+  "previous_orientative_component_grade": 2.5,
+  "proposed_orientative_component_grade": 3.0,
+  "proposed_level": "En desarrollo, con avance metodológico ejecutado",
+  "official_grade": false,
+  "numeric_grade_is_evaluator_judgment_not_a_guide_formula": true,
+  "input_source_commit": "d6cf7f1af6800ec1ac85a26347bdde52380e362f",
+  "evidence_read": [
+    {
+      "path": "guide_power/primary/PRIMARY_GUIDE_FACTS.json",
+      "bytes": 10611,
+      "sha256": "14981f83848b00a5c64b8a912b5dec4eee25dc8fef391841bdc96734e19a9124"
+    },
+    {
+      "path": "guide_power/REQUIREMENT_EVIDENCE_GAP_MATRIX.json",
+      "bytes": 11498,
+      "sha256": "5dc1ef9247e0c7ae251f22e4910b6817f8282e6ea9a62a583bafa55af1f92659"
+    },
+    {
+      "path": "guide_power/EXECUTED_POWER_INPUT_AUDIT.json",
+      "bytes": 3928,
+      "sha256": "8eb273e771a214ab32a3e45ac41270be87d41c1ef19e30ac01cdd6a248f5aaee"
+    },
+    {
+      "path": "calibration/RESULTS_DECISION.json",
+      "bytes": 4761,
+      "sha256": "64ba65c477febc1b839b9abf80024605b19f184116959c63a27a8486f8b81aa4"
+    },
+    {
+      "path": "calibration/validation_fresh/validation_summary.json",
+      "bytes": 293234,
+      "sha256": "761148a52503358992d4cc29fbe2e1b72ea01ea6a22fa9db23977d1447012535"
+    },
+    {
+      "path": "retrospective/results/analysis_summary.json",
+      "bytes": 1755,
+      "sha256": "5d024ee93fb56513b0c032bcc22cde952cce7a41eba56525ea30ddae9e5f8f74"
+    },
+    {
+      "path": "retrospective/VERIFICATION_RECEIPT.json",
+      "bytes": 404,
+      "sha256": "95144c85ca8d869fd0cfa86d3ec97ab5634cf7e4afa80a7551274293f8098057"
+    },
+    {
+      "path": "retrospective/README.md",
+      "bytes": 7040,
+      "sha256": "71ac13eee5e6cae0b3b1b05d28eca76c0850a60f653dbd3df620036c78dd4a6a"
+    }
+  ],
+  "basis_for_improvement": [
+    {
+      "dimension": "Controlled methodological diagnosis and correction",
+      "evidence": "Versioned bootstrap-t MCS follows frozen sources/plan with640freshcontrolledreplicates. Null rejection rates21/256=.08203125,4/128=.03125,2/128=.015625 pass only the predeclared upper-tolerance screens; the paired legacy controls62/256,36/128,90/128 identify a real mechanism/size improvement on the same draws.",
+      "credit_scope": "Credit for actual bounded statistical validation and identification of failure, not universal nominal-size or primary-battery certification."
+    },
+    {
+      "dimension": "Hypotheses, estimand and multiplicity",
+      "evidence": "Primary mean-of-individual-RMSE, random-seed/time uncertainty, global MCS mapping, raw/Holm families and separately declared retrospective diagnostic family are made explicit; equality null and practical-margin requirements are distinguished.",
+      "credit_scope": "No transplantation of fixed-cohortMSE validation or repeated bootstrap variants as three distinct primary procedures."
+    },
+    {
+      "dimension": "Adequacy from existing outputs",
+      "evidence": "22savedtrajectories/1210points:88diagnosticpvalues withHolm88,44pointwiseasymptoticmean-errorintervals,44auxiliaryOLSregressions and declared descriptive effect/period checks.13Mincer-Zarnowitz rejections interpreted conditionally; non-rejections are not certificates.",
+      "credit_scope": "Actual retrospective adequacy evidence, not independent confirmation or complete overfit/probabilistic calibration."
+    },
+    {
+      "dimension": "Power input adequacy",
+      "evidence": "71oldsourcebindings/486savedscenarios rechecked; version/estimand compatibility and temporal information floor executable; future inputs remain explicitly missing.",
+      "credit_scope": "Credit for preventing an unsupported design, not for attaining target power or selecting finalR/T."
+    }
+  ],
+  "limits_preventing_satisfactory_or_outstanding": [
+    {
+      "requirement": "Valid primary family inference",
+      "status": "NOT_APPROVED",
+      "evidence": "P1/P2 two-methodHolm38 FWER in fresh seed-only null14/128=.109375; individualCP95[.061101367889995706,.17670058813469608] excludes nominal.05. Strong-dependence9/128=.0703125 hasCP95[.03265362731921919,.1292793879545287], inconclusive."
+    },
+    {
+      "requirement": "Three pertinent procedures and full decision rule",
+      "status": "NOT_ACCREDITED",
+      "evidence": "New globalMCS is one complement. No justified/calibrated three-method primary battery; global exclusion is not automatically a candidate-vs-rival practical-margin p."
+    },
+    {
+      "requirement": "Prospective power>=.90percontrast and joint report for the actual full rule",
+      "status": "NOT_ESTABLISHED",
+      "evidence": "Alternative globalMCS rejection112/128=.875 does not equal unique-candidate result39/128=.3046875 or two-methodjointHolm38 result18/128=.140625. Complete-three-waypower not computed; individualMC intervals are not simultaneous scientific guarantees."
+    },
+    {
+      "requirement": "Compatible real future inputs and calendar",
+      "status": "MISSING",
+      "evidence": "V3 has16/19developmentvariances missing and only3pairs for3available;76futureV3 and84V4 cells unfilled; V4 five-pair exposedD00 references cannot fill them.0/4futurepanels admitted and V4 abandoned."
+    },
+    {
+      "requirement": "Complete candidate adequacy",
+      "status": "PARTIAL_RETROSPECTIVE",
+      "evidence": "Only5neuraldevelopmentseeds/55exposedassessmentdates. No stored train/stop predictions for a complete gap/overfit contrast and no V4 predictive intervals/calibrator/distribution for coverage/PIT.13MZ signals do not by themselves establish complete inadequacy, while0LB/ARCH rejections do not establish adequacy."
+    }
+  ],
+  "interpretation_of_negative_findings": "The adverse result is not penalized for being disclosed. Deductions concern unmet methodological validity, power, prospective scope and adequacy requirements. Correctly identifying and stopping invalid inference earns partial methodological credit.",
+  "R3_accredited": false,
+  "confirmation_allowed": false,
+  "sustentacion_user_supplied": 4.5,
+  "sustentacion_observed_by_reviewer": false,
+  "no_total_project_grade_assigned": true,
+  "arithmetic_only_if_other_component_scores_fixed": {
+    "uncapped_weighted_grade_change_from2_5to3_0": 0.075,
+    "this_is_not_a_promised_project_grade_increase": true
+  },
+  "new_experiments_by_this_review": {
+    "model_fits": 0,
+    "model_predictions": 0,
+    "MC_replicates": 0,
+    "statistical_resamples": 0
+  }
+}

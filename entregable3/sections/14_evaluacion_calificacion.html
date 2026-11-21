@@ -408,6 +408,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-posterior-que-modifica-la-interpretacion">Evidencia posterior que modifica la interpretación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-dictamen-especifico-de-r1-de-v3">14.6 Alcance del dictamen específico de R1 de V3</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-posterior-de-la-evidencia-sin-nota-automatica">14.7 Alcance posterior de la evidencia, sin nota automática</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-nueva-del-componente-de-hipotesis-y-adecuacion">14.8 Evidencia nueva del componente de hipótesis y adecuación</a></li>
 </ul>
             </nav>
         </div>
@@ -549,12 +550,12 @@
 <h2>14.3 Cálculo de la nota final<a class="headerlink" href="#calculo-de-la-nota-final" title="Link to this heading">#</a></h2>
 <p>Si el evaluador determina un cumplimiento por componente <span class="math notranslate nohighlight">\(q_i\)</span> entre 0 y 100 y aplica los pesos <span class="math notranslate nohighlight">\(w_i\)</span> de la tabla, el puntaje ponderado queda en la escala de 0 a 100:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-final-grade">
-<span class="eqno">(50)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
+<span class="eqno">(51)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
 P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 \qquad
 \mathrm{Nota\ final}=\min\left(\mathrm{Tope},\;5{,}0\times\frac{P_{\mathrm{ponderado}}}{100}\right).
 \]</div>
-<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(50)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a <span class="math notranslate nohighlight">\(q_i\)</span>, no se estima el puntaje y no se calcula una nota o tope del proyecto.</p>
+<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(51)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a <span class="math notranslate nohighlight">\(q_i\)</span>, no se estima el puntaje y no se calcula una nota o tope del proyecto.</p>
 </section>
 <section id="niveles-de-desempeno-por-componente">
 <h2>14.4 Niveles de desempeño por componente<a class="headerlink" href="#niveles-de-desempeno-por-componente" title="Link to this heading">#</a></h2>
@@ -991,6 +992,25 @@ superioridad R3. La actualización no asigna una nota ni un tope.</p>
 <p>La guía pide pruebas de igualdad con dirección y margen práctico, efectos/intervalos y las demás condiciones simultáneas; no exige literalmente tres p-valores unilaterales del nulo más fuerte <code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">&lt;=</span> <span class="pre">delta</span></code>. La propuesta anterior de ese nulo conserva su identidad. MCS aparece entre los procedimientos admitidos, pero la extensión ensayada requiere una traducción contrastiva justificada y falló su calibración. La <a class="reference internal" href="08_verificacion_estadistica.html#e3-next-statistics-data-20261121"><span class="std std-ref">sección 8.25</span></a> conserva las distinciones y los datos de validación.</p>
 <p>La nueva ruta de contenedor cierra una preparación técnica de reproducción del corte fijado; falta la persona real y su concepto. Las reglas condicionales R1/R2/R3 y los once pesos permanecen sin cambios, y este cierre no concede un tope o una nota por sí solo.</p>
 </section>
+<section id="evidencia-nueva-del-componente-de-hipotesis-y-adecuacion">
+<span id="e3-statistical-component-evaluation-20261121"></span><h2>14.8 Evidencia nueva del componente de hipótesis y adecuación<a class="headerlink" href="#evidencia-nueva-del-componente-de-hipotesis-y-adecuacion" title="Link to this heading">#</a></h2>
+<p>La <a class="reference internal" href="08_verificacion_estadistica.html#e3-statistical-remediation-20261121"><span class="std std-ref">remediación de 8.26</span></a> se valora por
+lo que ejecutó y verificó, distinguiendo cuatro niveles: software, validación
+estadística controlada, diagnóstico retrospectivo y confirmación. El código de
+un método no acredita su tamaño o cobertura; una simulación favorable no elimina
+sus supuestos ni demuestra potencia para los datos de mercado.</p>
+<p>La nueva versión MCS pasó el cribado global individual en tres DGP nulos, con una tolerancia exploratoria explícita; la familia primaria P1/P2 mostró inflación en el caso de variación sólo entre semillas y no se certifica. La adecuación retrospectiva V4 aporta 88 diagnósticos con Holm88 y trece rechazos MZ, conservando el tamaño limitado de 55 fechas y sus supuestos. La auditoría de potencia verifica entradas y brechas, no dimensiona una campaña válida ni reanima los 340 ajustes de la receta abandonada. Las tres pruebas pertinentes, control válido de toda la familia y potencia ≥0,90 por contraste siguen sin acreditarse.</p>
+<p>La valoración orientativa solicitada del componente del <strong>15 %</strong> se conserva
+separada de la rúbrica oficial y no completa automáticamente sus condiciones.
+Los once pesos, los campos vacíos de calificación y los topes condicionales de
+14.1 permanecen intactos. No se atribuye una subida por terminar programas o
+por seleccionar un resultado favorable.</p>
+<p>La <strong>sustentación de 4,5</strong> es un valor indicado por el autor para el cálculo
+orientativo, no una defensa observada ni una acreditación automática de R2.
+La aceptación académica y la reproducción humana siguen requiriendo sus actos
+auténticos. Las recetas V3/V4, sus resultados adversos y sus decisiones no se
+reescriben al mejorar la herramienta estadística.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1078,6 +1098,7 @@ superioridad R3. La actualización no asigna una nota ni un tope.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-posterior-que-modifica-la-interpretacion">Evidencia posterior que modifica la interpretación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-dictamen-especifico-de-r1-de-v3">14.6 Alcance del dictamen específico de R1 de V3</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-posterior-de-la-evidencia-sin-nota-automatica">14.7 Alcance posterior de la evidencia, sin nota automática</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-nueva-del-componente-de-hipotesis-y-adecuacion">14.8 Evidencia nueva del componente de hipótesis y adecuación</a></li>
 </ul>
   </nav></div>
 

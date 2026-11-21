@@ -242,3 +242,27 @@ Los 20 nuevos ajustes CPU de V4 y sus 1.210 salidas son desarrollo expuesto y te
 La guía pide pruebas de igualdad con dirección y margen práctico, efectos/intervalos y las demás condiciones simultáneas; no exige literalmente tres p-valores unilaterales del nulo más fuerte `theta <= delta`. La propuesta anterior de ese nulo conserva su identidad. MCS aparece entre los procedimientos admitidos, pero la extensión ensayada requiere una traducción contrastiva justificada y falló su calibración. La {ref}`sección 8.25 <e3-next-statistics-data-20261121>` conserva las distinciones y los datos de validación.
 
 La nueva ruta de contenedor cierra una preparación técnica de reproducción del corte fijado; falta la persona real y su concepto. Las reglas condicionales R1/R2/R3 y los once pesos permanecen sin cambios, y este cierre no concede un tope o una nota por sí solo.
+
+
+(e3-statistical-component-evaluation-20261121)=
+## 14.8 Evidencia nueva del componente de hipótesis y adecuación
+
+La {ref}`remediación de 8.26 <e3-statistical-remediation-20261121>` se valora por
+lo que ejecutó y verificó, distinguiendo cuatro niveles: software, validación
+estadística controlada, diagnóstico retrospectivo y confirmación. El código de
+un método no acredita su tamaño o cobertura; una simulación favorable no elimina
+sus supuestos ni demuestra potencia para los datos de mercado.
+
+La nueva versión MCS pasó el cribado global individual en tres DGP nulos, con una tolerancia exploratoria explícita; la familia primaria P1/P2 mostró inflación en el caso de variación sólo entre semillas y no se certifica. La adecuación retrospectiva V4 aporta 88 diagnósticos con Holm88 y trece rechazos MZ, conservando el tamaño limitado de 55 fechas y sus supuestos. La auditoría de potencia verifica entradas y brechas, no dimensiona una campaña válida ni reanima los 340 ajustes de la receta abandonada. Las tres pruebas pertinentes, control válido de toda la familia y potencia ≥0,90 por contraste siguen sin acreditarse.
+
+La valoración orientativa solicitada del componente del **15 %** se conserva
+separada de la rúbrica oficial y no completa automáticamente sus condiciones.
+Los once pesos, los campos vacíos de calificación y los topes condicionales de
+14.1 permanecen intactos. No se atribuye una subida por terminar programas o
+por seleccionar un resultado favorable.
+
+La **sustentación de 4,5** es un valor indicado por el autor para el cálculo
+orientativo, no una defensa observada ni una acreditación automática de R2.
+La aceptación académica y la reproducción humana siguen requiriendo sus actos
+auténticos. Las recetas V3/V4, sus resultados adversos y sus decisiones no se
+reescriben al mejorar la herramienta estadística.

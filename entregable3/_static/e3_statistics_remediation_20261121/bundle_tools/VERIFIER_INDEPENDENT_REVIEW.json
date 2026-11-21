@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "kind": "independent_read_only_review_of_package_integrity_and_claim_guards",
+  "recorded_at_utc": "2026-11-21T03:29:42.028249+00:00",
+  "AI_assistance_declared": true,
+  "sources": {
+    "verify_package.py": {
+      "bytes": 18670,
+      "sha256": "8b20cd6addce59c3e87102bfd30a8367376e2a59a178c0ffd20989b05fd0b5f7"
+    },
+    "test_verify_package.py": {
+      "bytes": 15061,
+      "sha256": "f3465cce1bacfd33cd5a2c2a7749a94a765a4b90ac2b1cf68719cf3e88402273"
+    },
+    "README.md": {
+      "bytes": 1342,
+      "sha256": "87b367a5b19c24bb6d15d1a478f2657ad67c768be4fae9152c96ad6b1d44fb06"
+    }
+  },
+  "independently_executed_metadata_fixture_guards": 35,
+  "guard_result": "all passed",
+  "statistical_implementation_imported": false,
+  "model_fits_executed": 0,
+  "forecast_forward_passes_executed": 0,
+  "Monte_Carlo_validation_replicates_executed": 0,
+  "new_statistical_resampling_executed": false,
+  "scope": [
+    "exact packet/component members, bytes and SHA256",
+    "relative canonical paths and rejection of linked ancestors before payload hashing",
+    "public-plan and source-manifest hash binding",
+    "completed versus partial/error replication accounting, raw gzip unique identities and case counts",
+    "no unsupported primary-method, market-calibration, power, R3 or human-defense claims",
+    "forecasting counters reconciled across initial state, plan, receipt, summary, raw results, retrospective receipt/summary and power audit",
+    "CLI output path inside immutable packet rejected without any write"
+  ],
+  "findings_corrected_before_source_freeze": [
+    {
+      "finding": "validation summary forecasting counters were not checked",
+      "resolution": "explicit zero-counter guard and rehashed contradiction regression"
+    },
+    {
+      "finding": "retrospective receipt could contradict summary with forecasting or R3 flags",
+      "resolution": "receipt zero counters/false flags/input-unchanged guard and regressions"
+    },
+    {
+      "finding": "power audit forecasting counter could contradict packet",
+      "resolution": "all documented operation counters checked with regression"
+    },
+    {
+      "finding": "resource_stop could coexist with a logged execution error",
+      "resolution": "status/error-list consistency and resource-stop count constraints with regression"
+    },
+    {
+      "finding": "parent-directory symlink discovered after referenced payload hashing",
+      "resolution": "actual_members walks and rejects links before payload hashes; regression proves outside hash not called"
+    },
+    {
+      "finding": "plan/initial policy flags not all reconciled",
+      "resolution": "explicit known policy checks plus two rehashed flag regressions"
+    }
+  ],
+  "nonblocking_scope_limits": [
+    "PASS certifies integrity and bounded claim consistency, not exact nominal calibration or scientific accreditation.",
+    "An honest partial resource-stopped validation remains partial and can pass integrity verification.",
+    "This reviewer did not independently recompute experimental test statistics or rerun controlled validation."
+  ],
+  "remaining_blocking_findings": [],
+  "source_files_edited_by_reviewer": false,
+  "GitHub_writes_by_reviewer": false,
+  "human_execution_claimed": false
+}
