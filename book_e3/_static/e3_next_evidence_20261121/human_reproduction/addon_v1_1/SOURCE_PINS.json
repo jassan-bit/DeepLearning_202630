@@ -1,0 +1,49 @@
+{
+  "source_commit": "f5c960eefedb5fc49b313dd795b1ec84e784bd78",
+  "base_v1_manifest_sha256": "a35a5f56d6288ad5640f347b59415f00968277dceb96096fda0dc83db75b0206",
+  "AI_assistance_declared": true,
+  "inputs_and_references": [
+    {
+      "path": "book_e3/_static/e3_audit_completed_20261119T234320461006Z/analysis/per_seed_metrics.csv",
+      "bytes": 742985,
+      "sha256": "a81d0827c77f56ec68bcd0aec3649e6e8e1de41199af7e2a4837a8f99ce5c94b",
+      "role": "cached_lower_level_input"
+    },
+    {
+      "path": "book_e3/_static/e3_audit_completed_20261119T234320461006Z/analysis/interval_metrics.csv",
+      "bytes": 292189,
+      "sha256": "23876ca6a22d8e8eec2be3445d867463026513fd10264315b01a8eb48e39dcb8",
+      "role": "cached_lower_level_input"
+    },
+    {
+      "path": "book_e3/_static/e3_audit_completed_20261119T234320461006Z/analysis/analysis_receipt.json",
+      "bytes": 6276,
+      "sha256": "0048bdf3e8376ed5cefa57e57b31eabbc2e5785bd5acf7235a544fa5f7265efc",
+      "role": "cached_lower_level_input"
+    },
+    {
+      "path": "book_e3/_static/e3_audit_completed_20261119T234320461006Z/analysis/model_metrics.csv",
+      "bytes": 103043,
+      "sha256": "4b311d972ae0f6051e29868ea9b497ef70ee961ebcedbd05a297fb4c5d488b9a",
+      "role": "reference_only_not_copied_as_regeneration"
+    },
+    {
+      "path": "book_e3/_static/e3_audit_completed_20261119T234320461006Z/analysis/cross_dataset_ranks.csv",
+      "bytes": 38552,
+      "sha256": "c698878be35a9fe82edcab98c0a8cdf3bdec5b5f5cb5115f3222e04ac91f021c",
+      "role": "reference_only_not_copied_as_regeneration"
+    },
+    {
+      "path": "book_e3/_static/e3_audit_completed_20261119T234320461006Z/clean_test_summary.csv",
+      "bytes": 915,
+      "sha256": "ec3707d3520ecd8bfeea933cd02498ce81ac2861a3047f595ab10347c84aeba8",
+      "role": "reference_only_not_copied_as_regeneration"
+    }
+  ],
+  "arithmetic_source": "Original robustness/analyze.py aggregation equations, reimplemented with Python statistics.mean/stdev and average ranks; no original analyzer/bootstrap worker execution.",
+  "original_analyzer_code": {
+    "path": "experiments/e3_evaluacion_ampliada_20261119/robustness/analyze.py",
+    "bytes": 44989,
+    "sha256": "9b2d38a89480756901aad7fd97d09a728653842014f9059a01b0e355f67482bb"
+  }
+}

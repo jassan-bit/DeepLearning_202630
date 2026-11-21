@@ -1,0 +1,16 @@
+{
+  "kind": "software_fixes_before_any_controlled_MC_result",
+  "controlled_MC_started": false,
+  "items": [
+    {
+      "failure": "First software invocation used book-only venv without NumPy",
+      "fix": "Selected existing science replay environment NumPy2.3.5/SciPy1.17.0; no dependency install or runtime alteration"
+    },
+    {
+      "failure": "Identical-model bootstrap p was .9765625 because cancellation at machine roundoff was treated as nonzero variance",
+      "fix": "Applied fixed64eps numerical scale guard before Monte Carlo; added stricter minimum settings guard from independent review"
+    }
+  ],
+  "final_software_tests_passed": 19,
+  "AI_assistance_declared": true
+}

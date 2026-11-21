@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "kind": "guide_scope_clarification_after_full_read_before_editorial_integration",
+  "recorded_at_utc": "2026-11-21T01:00:25.119272+00:00",
+  "AI_review_declared": true,
+  "guide_section": "8.4 p23 and Table4 p26",
+  "literal_scope": "Table4 expressly includes Model Confidence Set as an admissible global temporal procedure. Section8.4 requires at least3distinct tests rejecting equal performance, Holm control as applicable, declared MCS level, and practical difference exceedingdelta. The guide does not literally demand3identical one-sided p-values forH0 theta<=delta.",
+  "chosen_project_design": "The new proposed RMSE-margin design usesH0 theta<=delta and complete per-rival intersection. Its current MCS implementation provides only global EPA/model exclusion and no validated contrast-level mapping for this chosen design.",
+  "why_current_battery_still_not_accepted": [
+    "The functional crossed MCS extension overrejects under its own EPA true-null controlled scenario.",
+    "Only2directional extensions are implemented and neither has been accepted as generally calibrated.",
+    "A valid third procedure/decision mapping and methodological review remain pending for the chosen future design."
+  ],
+  "do_not_claim": [
+    "MCS is categorically forbidden by the guide",
+    "An unvalidated global rejection automatically supplies a pairwise practical-margin result",
+    "The controlled M20 run validates futureV4 M22 family",
+    "OldV3 paired variances are pairedV4 variance estimates"
+  ],
+  "future_V4_family": {
+    "conditional_unfrozen_rivals": 21,
+    "conditional_three_component_slots": 63,
+    "conditional_four_panel_cells": 84,
+    "actual_V4_paired_variance_cells_available": 0,
+    "reason": "No V4 model has been trained or evaluated. Legacy3available/16missing describes the oldV3-versus19family only; all84newV4pairedcells remain pending."
+  },
+  "guide_secondary_families": "Section8.7.1 explicitly permits separate declared families for additional datasets/ablations/subgroups/horizons. Global228or252multiplicity is a possible conservative choice, not a literal mandatory count. State the actual family and match power/decisions to it.",
+  "old_V3_NO_GO_unchanged": true,
+  "R3_accredited": false
+}

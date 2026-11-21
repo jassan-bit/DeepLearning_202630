@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "status": "independent_pre_fit_QA_passed_for_parent_authorized_bounded_CPU_development_only",
+  "reviewed_at_utc": "2026-11-21T01:16:21.584716+00:00",
+  "AI_review_declared": true,
+  "scope": "Static source, JSON, hashes and dates only. No NPZ/array or checkpoint deserialization, model imports, optimization, assessment rows or predictions executed by reviewer.",
+  "frozen_source_manifest": {
+    "sha256": "87ff742443a9e7d353663390ec54ec1c44b902c3d9fcded4ccf3c3af797df205",
+    "payloads_verified": 20,
+    "all_exact_bytes_and_SHA256": true
+  },
+  "plan": {
+    "canonical_sha256": "2e6b71b53683d376ff24990b39bc591458816a3001cd62c432fdc1c7c8d8d819",
+    "file_sha256": "ee4c07c3613ba8f71a3adf1992e6f9439c54db6602958f2a931300ceb7148297",
+    "case_id": "v4-cpu-dev-ce2070e9d8a34938aeca0cdd64d13fb4",
+    "created_at_utc": "2026-11-21T01:12:26.385393+00:00"
+  },
+  "data_admission": {
+    "NPZ_bytes": 460090,
+    "NPZ_SHA256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "CPU_admission_file_SHA256": "185eb346a93ed28bd325589418c68a4403621c572b63ef1ce569fba723027d0e",
+    "case_admission_canonical_SHA256": "701f281b30ff52b140e7d62a42d6232b5fc3b1a36b955c9ffd640e1b0a5a522f",
+    "case_admission_derived_from_saved_training_only_receipt_matches": true,
+    "deserialized_member_contract": [
+      "training_raw",
+      "training_y_original",
+      "training_dates"
+    ],
+    "reviewer_opened_NPZ": false,
+    "forbidden_calibration53_and_evaluation608_arrays_not_loader_inputs": true,
+    "scope": "Existing exposed development, never unexposed confirmation or full-family planning"
+  },
+  "split_checks": {
+    "fit_rows": 532,
+    "selection_rows": 54,
+    "purged_selection_assessment_rows": 7,
+    "assessment_rows": 55,
+    "fit_last_date": "2024-06-30",
+    "selection_first_date": "2024-07-08",
+    "selection_last_date": "2024-08-30",
+    "assessment_first_date": "2024-09-07",
+    "assessment_last_date": "2024-10-31",
+    "each_boundary_endpoint_gap_calendar_days": 8,
+    "source_loader_geometry_and_saved_date_order_inspected": true,
+    "all_scales_and_mean_excess_derived_from_fit532_only": true
+  },
+  "treatment_and_decision": {
+    "four_neural_recipes": [
+      "sigma_crps_v4",
+      "u_crps_control",
+      "mse_only_control",
+      "additive_positive_head"
+    ],
+    "fresh_paired_seeds": [
+      20261121,
+      20261122,
+      20261123,
+      20261124,
+      20261125
+    ],
+    "optimizer_jobs": 20,
+    "neural_parameters": [
+      1262,
+      1262,
+      1262,
+      1210
+    ],
+    "whole_capacity_matched_claim": false,
+    "atomic_architecture_initial_values_match_by_seed": true,
+    "same_LR_0_003_batch32_max40_patience8_clip1_and_selection_MSE": true,
+    "no_new_HPO": true,
+    "old_GPU_weights_not_used_as_new_CPU_controls": true,
+    "analytical_controls_once": [
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "analytical_fitted_scalar_dfit_not_optimizer_steps": true,
+    "new_assessment_predictions_expected": 1210,
+    "new_trajectories_expected": 22,
+    "all20_jobs_validated_before_assessment": true,
+    "rule": "V4 mean of5individual-seed RMSEs improves at least2percent versus best neural control AND best ofall5controls; exposed development continuation only",
+    "failure": "Abandon currentV4 recipe; no automatic control promotion",
+    "rule_chosen_before_fits_and_fixed_in_source_plan": true
+  },
+  "inventory_identity": {
+    "new_designs": 1,
+    "old_aliases": "u_crps_control=atom_crps; mse_only_control=atom_mse_only; additive_positive_head preserves original architecture/loss",
+    "paired_seeds_not_designs": true,
+    "new20fits_and1210predictions_must_be_counted_separately_from_old796_old30_old20400": true
+  },
+  "guard_scope": {
+    "completed_skip": "Plan/job identity, positive optimizer steps and exact new checkpoint SHA required. Final reuse also rehashes all3CSV and20jobs.",
+    "partial_resume": "Historical phase implementation preserves optimizer/RNG/checkpoint identity and original120s phase opportunity.",
+    "budgets": "120s optimizer phase,150s external worker subprocess,3300s end-to-end immutable deadline including restart downtime",
+    "hard_timeout_entrypoint": "Use outer --execute; direct internal --worker is not itself the external150s timeout wrapper.",
+    "read_only_input_copy_and_fresh_owned_case": "No writes to original campaigns/source NPZ; private fresh output only.",
+    "actual_public_anchor_verification": "Offline anchor receipt is not a network authentication. Parent must verify real GitHub commit contains exact plan/admission/source hashes before first fit.",
+    "NPZ_and_private_cases_forbidden_from_new_publication": true
+  },
+  "observed_agent_guard_tests": 16,
+  "child_guard_review": "CPU_PILOT_GUARDS_CHILD.json when delivered; no blocker reported by child static review",
+  "conditions_before_first_fit": [
+    "Parent verifies actual immutable public plan/source/admission anchor",
+    "No competing Docker build workload per parent resource plan",
+    "Invoke outer --execute with frozen private case, cohort and anchor",
+    "Preserve all failures/resources and enforce fixed stop rule"
+  ],
+  "blockers_to_this_declared_parent_authorized_development_run": [],
+  "scientific_conditions_not_closed": [
+    "NewV4R1 differentiation",
+    "Independent validation/confirmation",
+    "Final full21rival family planning and84paired variance cells",
+    "Calibrated complete statistical battery",
+    "Power0.90 and finalR/T",
+    "External human reproduction"
+  ],
+  "old_V3_NO_GO_preserved": true,
+  "R1_inherited": false,
+  "R3_accredited": false,
+  "new_fits_executed_by_reviewer": 0,
+  "new_predictions_executed_by_reviewer": 0,
+  "source_edits_by_reviewer": 0
+}

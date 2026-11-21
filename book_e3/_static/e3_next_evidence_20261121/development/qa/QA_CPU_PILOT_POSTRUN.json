@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "status": "independent_actual_CPU_pilot_QA_passed_prior_rule_requires_ABANDON_CURRENT_V4_RECIPE",
+  "reviewed_at_utc": "2026-11-21T01:29:09.811824+00:00",
+  "AI_review_declared": true,
+  "reviewer_actions": "Read/hash exported metadata/source and saved point CSV; recompute metrics and paired descriptive references. No model import, training, array/checkpoint deserialization, inference or assessment rerun.",
+  "plan_and_source": {
+    "prefit_public_commit": "5ee55723e7d1ce63dbe4a94dca8941cb85a45fee",
+    "remote_commit_time_UTC": "2026-11-21T01:19:28Z",
+    "pinned_remote_plan_and_source_manifest_independently_fetched_and_exact_text_match_local": true,
+    "plan_file_sha256": "ee4c07c3613ba8f71a3adf1992e6f9439c54db6602958f2a931300ceb7148297",
+    "plan_canonical_sha256": "2e6b71b53683d376ff24990b39bc591458816a3001cd62c432fdc1c7c8d8d819",
+    "source_manifest_sha256": "87ff742443a9e7d353663390ec54ec1c44b902c3d9fcded4ccf3c3af797df205",
+    "all20_frozen_source_payloads_unchanged": true,
+    "public_commit_precedes_execution_marker_and_first_phase": true,
+    "parent_Merkle_publication_paths": 30,
+    "unexpected_publication_changes": 0
+  },
+  "inventory": {
+    "new_CPU_optimizer_jobs": 20,
+    "new_point_rows": 1210,
+    "neural_rows": 1100,
+    "analytic_rows": 110,
+    "trajectories": 22,
+    "recipes": 6,
+    "paired_seeds_each_neural": 5,
+    "analytic_trajectories_each": 1,
+    "dates": 55,
+    "all_targets_dates_and_order_identical": true,
+    "new_designs": 1,
+    "control_aliases_and_seeds_not_new_designs": true,
+    "new_HPO_fits": 0
+  },
+  "numerical_checks": {
+    "trajectory_RMSE_MAE_rows_recomputed": 22,
+    "recipe_mean_RMSE_sample_SD_and_mean_MAE_rows_recomputed": 6,
+    "maximum_abs_trajectory_discrepancy": 4.336808689942018e-19,
+    "maximum_abs_recipe_discrepancy": 4.336808689942018e-19,
+    "training_dfit_constant_verified": 0.002030102424887359,
+    "minimum_prediction_minus_floor": 0.0,
+    "V4_mean_individual_RMSE": 0.002087524306383525,
+    "best_neural_control": "mse_only_control",
+    "best_all_control": "mse_only_control",
+    "best_control_mean_individual_RMSE": 0.0020578245258112133,
+    "relative_gain_against_best_neural": -0.014432610846935036,
+    "relative_gain_against_best_all": -0.014432610846935036,
+    "relative_RMSE_increase_percent": 1.4432610846935037,
+    "prior_minimum_gain": 0.02,
+    "prior_rule_recomputed_decision": "ABANDON_CURRENT_V4_RECIPE",
+    "control_automatically_promoted": false
+  },
+  "resources": {
+    "actual_phase_wall_seconds": 54.92622184753418,
+    "end_to_end_seconds": 90.0961844921112,
+    "nominal_optimizer_budget_seconds": 2400,
+    "end_to_end_limit_seconds": 3300,
+    "phase_overruns": 0,
+    "optimizer_steps_total": 12427,
+    "epochs_min_max": [
+      10,
+      40
+    ],
+    "CPU_cohort_not_GPU_reproduction": true,
+    "energy_FLOPs_or_process_latency_not_inferred_from_phase_wall": true
+  },
+  "paired_development_references": {
+    "rivals": [
+      "u_crps_control",
+      "mse_only_control",
+      "additive_positive_head",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "rows": 5,
+    "covariance_rows": 25,
+    "seeds": 5,
+    "calendar_dates": 55,
+    "scope": "Conditional seed variability on exposed D00development calendar:3neural and2deterministic controls. Not full21rival planning or process/future-panel variance.",
+    "future_F00_F03_cells_filled": 0,
+    "future84_cells_remain_pending": true,
+    "outputs": [
+      {
+        "path": "qa/CPU_PILOT_D00_PAIRED_REFERENCES.csv",
+        "bytes": 1020,
+        "sha256": "55b99a0ece050332db7c9f4b8db147d2919a7c286da898058bd62379596442ca"
+      },
+      {
+        "path": "qa/CPU_PILOT_D00_PAIRED_COVARIANCE.csv",
+        "bytes": 3206,
+        "sha256": "509226d0ebf44ca904b22492fd414afbbc5af2b523fc06f2a7e55c5ee3e76709"
+      }
+    ]
+  },
+  "export_and_checkpoints": {
+    "export_payloads_verified": 151,
+    "NPZ_or_PT_payloads_exported": 0,
+    "checkpoint_scope": "20checkpoint hashes cross-referenced across completed-job/phase ledgers. Parent execution/export verified actual private checkpoint hashes; reviewer did not deserialize or independently rehash private checkpoint payloads.",
+    "child_guard_report": "CPU_PILOT_POSTRUN_GUARDS_CHILD.json",
+    "raw_input_or_checkpoint_publication_license_not_inferred": true
+  },
+  "scope_limits": [
+    "CPUu_crps_control is a new common-cohort control, not a replacement for originalGPUV3 result.",
+    "Old796additivejobs,30V3fits,20400retrospective rows retain identities; no4.27GB rehydration/master rehash here.",
+    "OriginalV3NO-GO unchanged; V4fails its own new prior rule and current recipe is abandoned.",
+    "No nextV5, automatic control promotion, new confirmation, final power, R1inheritance, R3orhuman claim."
+  ],
+  "reviewed_results": [
+    {
+      "path": "development/cpu_pilot_results/EXPORT_MANIFEST.json",
+      "bytes": 29180,
+      "sha256": "d3c5474c52c0e3c80d4d0481d6fc2999506dd4da2d2bbd5f51509995974de0b1"
+    },
+    {
+      "path": "development/cpu_pilot_results/pilot_result.json",
+      "bytes": 36005,
+      "sha256": "68514cf1fb3c1cf5369aabd58b35831965b8651012f320096045bf4afa328ba0"
+    },
+    {
+      "path": "development/cpu_pilot_results/assessment_predictions.csv",
+      "bytes": 95487,
+      "sha256": "3de0b8cad079c4b03f3d0cd7f7d35848b0acc9807a91e88c563bd34cf2a4c2c0"
+    },
+    {
+      "path": "development/cpu_pilot_results/per_trajectory_metrics.csv",
+      "bytes": 2044,
+      "sha256": "3613128097035462d4de40a73a726a48cf1ca637b158360454f78771efd226a6"
+    },
+    {
+      "path": "development/cpu_pilot_results/recipe_summary.csv",
+      "bytes": 674,
+      "sha256": "f933b7b3e99e89170f38f29eea045219e9d9d3b591b2632a1baddf3605e06987"
+    },
+    {
+      "path": "development/cpu_pilot_results/LOCAL_CHECKPOINT_HASHES_ONLY.json",
+      "bytes": 13298,
+      "sha256": "2a0ea058f844e26e10723cc87bef242d205c17ec04ec5e44b61dac2a7b20d4f5"
+    }
+  ],
+  "original_V3_NO_GO_preserved": true,
+  "V4_decision": "ABANDON_CURRENT_V4_RECIPE",
+  "confirmation_enabled": false,
+  "R1_inherited": false,
+  "R3_accredited": false,
+  "human_reproduction_claimed": false,
+  "new_fits_or_predictions_executed_by_reviewer": 0,
+  "blockers_to_publish_scoped_adverse_development_result": []
+}

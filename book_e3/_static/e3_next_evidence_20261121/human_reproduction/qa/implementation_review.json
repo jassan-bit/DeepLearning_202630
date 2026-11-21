@@ -1,0 +1,138 @@
+{
+  "status": "independent_AI_static_QA_passed_no_current_blockers",
+  "reviewed_at_utc": "2026-11-21T00:53:08.893158+00:00",
+  "agent": "/root/integral_archive_resolution/human_reproduction_kit",
+  "review_mode": "Read-only code/document review against the original guide; no book build, model execution or training duplicated",
+  "guide_review": "qa/guide_requirements_review.json",
+  "source_edition": "f5c960eefedb5fc49b313dd795b1ec84e784bd78",
+  "files_reviewed": {
+    "reproduce_primary.py": {
+      "bytes": 9043,
+      "sha256": "450a5023c95575c0607d90d8dcf79aa8c5a5b1fdf9f3a145a3a09b3f05788d1a"
+    },
+    "prepare_external.py": {
+      "bytes": 7729,
+      "sha256": "9ee116a05d0a6a1334986c80422599864c82ed5dd62182fd7e8a39b59d641d80"
+    },
+    "run_book_case.py": {
+      "bytes": 10788,
+      "sha256": "6d20ca339aadf4ff8d176242ddc21b9a7621a363d3fbfaf6e6becf464996dff5"
+    },
+    "Dockerfile": {
+      "bytes": 493,
+      "sha256": "a0f85578ec48ab6b9740fb4dcd1c73be36238a0263b7bdd2a47cd7f2c9c8b9bc"
+    },
+    "README.md": {
+      "bytes": 6112,
+      "sha256": "91aef70411a4197fcd73a368b2fcadbbeb698ccf9c6d5860898692124141f869"
+    },
+    "GUIDE_SCOPE.md": {
+      "bytes": 3592,
+      "sha256": "b3e372acf557a51f8ca5b720ea28f46ece28a8803be76c610a976894e245f6ae"
+    },
+    "HUMAN_REQUEST.template.json": {
+      "bytes": 1034,
+      "sha256": "b729e6285e26cc23a890cf587438b5f9d3cb025d0a01fa9bff61886ec54d328f"
+    },
+    "SOFTWARE_PROFILE.json": {
+      "bytes": 896,
+      "sha256": "5056721d590e34b2bcf06a04c8a04e9ecfd9b2c18678b12b15460a951d91fdde"
+    },
+    "HUMAN_REPORT.template.md": {
+      "bytes": 2294,
+      "sha256": "80b430d399cf05f638dc399e57529be6807e62e0603e44a6448e4b2b7d952ef9"
+    },
+    "requirements-book.lock.txt": {
+      "bytes": 1801,
+      "sha256": "343203e122e1eafe2867915071a442937287ce68546d1d543feffd09adf7c3b4"
+    },
+    "SOURCE_PINS.json": {
+      "bytes": 3843,
+      "sha256": "29498b43e04aa4ffb8c4f8c72f2d3fbd06bad826f9d7f6ca53fa6d66a1b171fc"
+    },
+    "check_book_links.py": {
+      "bytes": 3053,
+      "sha256": "b26e656fada21b534a80e583b7298ab25f8036f0dbf8c4726991e68087f6c315"
+    }
+  },
+  "checks": [
+    {
+      "id": "guide_scope",
+      "result": "pass",
+      "evidence": "GUIDE_SCOPE quotes PDF38/40/46/52 and allows costly versioned precalculations without requiring universal fresh training or two fits."
+    },
+    {
+      "id": "principal_table_agreed",
+      "result": "pass_with_declared_external_scope_condition",
+      "evidence": "Exactly V3 development table8.19, seven recipes,17 trajectories,935 points and55 dates; operator must accept scope/explain adequacy; broader19x4 not claimed regenerated."
+    },
+    {
+      "id": "real_arithmetic",
+      "result": "pass_static_review",
+      "evidence": "Regenerator recomputes individual-seed RMSE, ddof1 SD, MAE, bias and ranks from the fixed935-point CSV; analytic SD blank preserved; adverse2.7043%/NO-GO retained."
+    },
+    {
+      "id": "precise_inputs",
+      "result": "pass_static_review",
+      "evidence": "Full Git tree inventory verifies working blob bytes, expected commit and regular paths; source metadata and prediction hash pinned; KIT manifest describes integrity rather than independent authenticity."
+    },
+    {
+      "id": "source_preservation",
+      "result": "pass_static_review",
+      "evidence": "Preparation copies only tracked files to a new isolated case, rejects existing cases, symlink case ancestors and source/case containment; original checkout is not mounted by runtime commands."
+    },
+    {
+      "id": "clean_book",
+      "result": "pass_static_review_pending_actual_container_run",
+      "evidence": "Runner rejects an existing _build and nonempty output; explicit notebook-off config avoids model code; strict book build outputs to fresh output/book and checks links."
+    },
+    {
+      "id": "table_integration",
+      "result": "pass_static_review",
+      "evidence": "Generated point-derived metrics replace the corresponding CSV only in the isolated source copy; preserved CRPS_U is excluded from numerical reconstruction; built HTML static CSV must match exact new bytes."
+    },
+    {
+      "id": "Sphinx_hooks",
+      "result": "pass_static_integration_review_pending_actual_build",
+      "evidence": "Pinned hooks derive source roots from app.srcdir/app.confdir; installed JupyterBook sets confdir=sourcedir. Complete checkout preserves archive assembly parts and frozen inputs. Post-build tracked-byte changes are restricted to the metrics CSV."
+    },
+    {
+      "id": "units_and_tolerance",
+      "result": "pass_static_review",
+      "evidence": "Four floating fields all have daily unannualized volatility units; compare enforces per-field prior tolerances and exact support/kind/counts/ranking/blanks; maximum disagreement and location reported."
+    },
+    {
+      "id": "human_vs_automation",
+      "result": "pass_static_review",
+      "evidence": "Human mode requires self-supplied identity, external relation, explicit accepted scope and prior UTC/tolerances. Every automatic receipt keeps human_execution_claimed=false; signed report remains pending external action."
+    },
+    {
+      "id": "runtime_provenance",
+      "result": "pass_static_review_pending_image_execution",
+      "evidence": "Python base pinned by digest, book packages pinned by version; pip install report preserved for actual wheel URLs/hashes. The version lock is not falsely described as wheel-hash locked."
+    }
+  ],
+  "symlink_advisory_resolved": {
+    "previous_issue": "A lexical case.absolute() containment test could admit a symlink ancestor into the original checkout.",
+    "observed_fix": "Explicit reject of case and every ancestor symlink before containment and mkdir.",
+    "status": "fixed_in_reviewed_prepare_external"
+  },
+  "blocking_findings": [],
+  "executed_validation_owned_by_parent": {
+    "stdlib_guards": "15 PASS reported by parent; no repeat needed in this read-only review",
+    "full_source_inventory": "13431 blobs /1501980852 bytes verified by parent",
+    "saved_point_regeneration": "935→7 rows, maximum4.336808689942018e-19; read saved validation receipt",
+    "container_book_execution": "pending parent execution after freeze; not asserted by reviewer"
+  },
+  "not_closed_by_this_QA": [
+    "Actual person external to code and own attestation",
+    "Agreement that this seven-row development table is the principal-table scope required for the delivery",
+    "Other required tables, generalization, R2/R3, integral scientific archive or new training"
+  ],
+  "new_model_fits": 0,
+  "new_model_inferences": 0,
+  "book_builds_by_reviewer": 0,
+  "source_edits_by_reviewer": 0,
+  "human_signature_or_human_execution_claimed": false,
+  "AI_assistance_declared": true
+}

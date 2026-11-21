@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "status": "independent_child_actual_CPU_pilot_export_guard_QA_passed",
+  "reviewed_at_utc": "2026-11-21T01:26:15.794568+00:00",
+  "AI_review_declared": true,
+  "scope": "Read exported JSON/text metadata, hash allowed exported files/source code, inspect saved curves and resource records. No scientific imports, NPZ/PT reads, deserialization, model run, training or assessment replay.",
+  "case_id": "v4-cpu-dev-ce2070e9d8a34938aeca0cdd64d13fb4",
+  "public_prior_anchor_commit": "5ee55723e7d1ce63dbe4a94dca8941cb85a45fee",
+  "plan_sha256": "2e6b71b53683d376ff24990b39bc591458816a3001cd62c432fdc1c7c8d8d819",
+  "source_manifest_sha256": "87ff742443a9e7d353663390ec54ec1c44b902c3d9fcded4ccf3c3af797df205",
+  "canonical_and_raw_plan_hashes_match_prefit": true,
+  "export": {
+    "manifest_sha256": "d3c5474c52c0e3c80d4d0481d6fc2999506dd4da2d2bbd5f51509995974de0b1",
+    "listed_payloads": 151,
+    "total_files_including_manifest": 152,
+    "payload_bytes": 644689,
+    "all_payload_hashes_sizes_match": true,
+    "no_unlisted_files_except_manifest_itself": true,
+    "NPZ_NPY_PT_PTH_pickle_inputs_private_paths_present": false,
+    "checkpoint_metadata_only": true,
+    "checkpoint_payloads_independently_opened_or_rehashed_by_reviewer": false
+  },
+  "completed_job_guards": {
+    "jobs": 20,
+    "four_neural_recipes_times_five_seeds": true,
+    "job_id_index_seed_recipe_parameter_identity_matches_plan": true,
+    "source_cohort_config_and_admission_hash_in_all_requests_match_plan": true,
+    "request_hash_recomputed_and_matches_phase_marker_and_receipt": true,
+    "job_and_report_phase_resource_objects_match_exported_phase_receipt": true,
+    "checkpoint_SHA_consistent_across_job_resource_phase_receipt_and_metadata_ledger": true,
+    "all_completed_with_positive_steps": true,
+    "optimizer_steps_total": 12427,
+    "optimizer_steps_equal17batches_per_completed_epoch": true,
+    "epochs_range": [
+      10,
+      40
+    ],
+    "all_best_epochs_within_completed_epochs": true,
+    "curve_count_order_and_min_validation_score_consistent": true,
+    "stop_reasons": {
+      "max_epochs": 16,
+      "early_stopping": 4
+    },
+    "all_job_receipts_assessment_predictions_generated0": true,
+    "all_source20_payloads_still_frozen": true
+  },
+  "resources": {
+    "phase_budget_seconds_each": 120,
+    "declared_outer_hard_process_seconds_each": 150,
+    "immutable_total_budget_seconds": 3300,
+    "sum_reported_phase_wall_seconds": 54.92622184753418,
+    "max_reported_phase_wall_seconds": 3.536557912826538,
+    "reported_end_to_end_seconds": 90.0961844921112,
+    "reported_overruns": 0,
+    "resume_segments": 0,
+    "last_fit_finalized_at_UTC": "2026-11-21T01:21:19.205931+00:00",
+    "assessment_completion_at_UTC": "2026-11-21T01:21:21.059560+00:00",
+    "all_phase_finalizations_before_global_deadline": true,
+    "per_process_durations_directly_measured_in_export": false,
+    "per_process_limit_evidence": "Frozen outer controller enforces150seconds; no timeout failure is reported, and the whole sequential run measured90.096seconds. Do not relabel phase-only times as full process latency.",
+    "nominal2400_not_measured_CPU_energy_or_FLOPs": true
+  },
+  "new_output_inventory": {
+    "logical_optimizer_fits": 20,
+    "assessment_predictions": 1210,
+    "neural_assessment_predictions": 1100,
+    "analytic_assessment_predictions": 110,
+    "assessment_trajectories": 22,
+    "all_three_reported_output_CSV_hashes_match": true,
+    "all20_before_assessment_policy_source_enforced": true,
+    "metric_and_continuation_arithmetic_recomputed_by_parent_not_this_child": true
+  },
+  "alias_and_design_inventory": {
+    "new_designs": 1,
+    "u_crps_control_alias": "original atom_crps",
+    "mse_only_control_alias": "original atom_mse_only",
+    "additive_positive_head_alias": "original additive control",
+    "five_seeds_not_five_new_designs": true,
+    "control_not_automatically_promoted": true
+  },
+  "reported_scientific_decision": "ABANDON_CURRENT_V4_RECIPE",
+  "original_V3_NO_GO_preserved": true,
+  "R1_inherited": false,
+  "R3_accredited": false,
+  "new_HPO_or_confirmation": false,
+  "human_reproduction_claimed": false,
+  "reviewer_source_edits": 0,
+  "blockers_to_publish_safe_export_with_declared_development_scope": [],
+  "limits": [
+    "Remote actual public anchor verification belongs parent; this child checks its saved receipt and prefit hashes.",
+    "Checkpoint digests are cross-ledger consistent and source-enforced before assessment; payload verification was not independently repeated here.",
+    "Private checkpoint/NPZ payloads remain outside this safe metadata/result export.",
+    "The adverse continuation decision cannot be turned into R3, promotion of the winning control, or permission to tune another recipe automatically."
+  ],
+  "receipts": [
+    {
+      "path": "EXPORT_MANIFEST.json",
+      "bytes": 29180,
+      "sha256": "d3c5474c52c0e3c80d4d0481d6fc2999506dd4da2d2bbd5f51509995974de0b1"
+    },
+    {
+      "path": "pilot_result.json",
+      "bytes": 36005,
+      "sha256": "68514cf1fb3c1cf5369aabd58b35831965b8651012f320096045bf4afa328ba0"
+    },
+    {
+      "path": "LOCAL_CHECKPOINT_HASHES_ONLY.json",
+      "bytes": 13298,
+      "sha256": "2a0ea058f844e26e10723cc87bef242d205c17ec04ec5e44b61dac2a7b20d4f5"
+    },
+    {
+      "path": "execution_anchor.json",
+      "bytes": 1196,
+      "sha256": "9ec155fb25fab9ef1a53c50f9d3ece3038c8aabcf3c451fb00f0913aa4bf2be8"
+    },
+    {
+      "path": "execution_started.json",
+      "bytes": 165,
+      "sha256": "c39e36a2f581cdf77be2220f5502d865192bd15c7ea23a1489f90e439d824f12"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "kind": "e3_extended_optimizer_phase_started",
+  "request_sha256": "e95523bef0fc0cafcd88aef690d8fb0fe40cc11df459825299b996ea67762636",
+  "source_identity": {
+    "new_CPU_plan_sha256": "2e6b71b53683d376ff24990b39bc591458816a3001cd62c432fdc1c7c8d8d819",
+    "job": {
+      "index": 5,
+      "name": "u_crps_control",
+      "seed": 20261122,
+      "job_id": "seed20261122/u_crps_control",
+      "parameters": 1262
+    },
+    "source_manifest_sha256": "87ff742443a9e7d353663390ec54ec1c44b902c3d9fcded4ccf3c3af797df205",
+    "admission_sha256": "701f281b30ff52b140e7d62a42d6232b5fc3b1a36b955c9ffd640e1b0a5a522f",
+    "cohort": {
+      "python": "3.12.14",
+      "torch": "2.8.0+cpu",
+      "numpy": "2.3.5",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "device": "cpu",
+      "cpu_threads": 2,
+      "interop_threads": 1,
+      "deterministic_algorithms": true,
+      "allow_tf32": false,
+      "environment_thread_limits": {
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "energy_FLOPs_or_CPU_capacity_measured": false
+    },
+    "model_configuration": {
+      "version": "e3-overlap-sigma-crps-v4-development",
+      "variant": "u_crps_control",
+      "seed": 20261122,
+      "backbone": "M00_encoder_and_content_attention_no_penalty_or_saturation",
+      "trainable_parameters": 1262,
+      "atoms": 3,
+      "learned_probabilities": true,
+      "lambda_crps": 0.1,
+      "u_scale": 0.019540729290595266,
+      "y_scale": 0.02063308428641038,
+      "minimum_normalized_increment": 0.0001,
+      "encoder_attention_precision": "float32",
+      "atomic_head_precision": "float64",
+      "exact_mean_under_finite_atomic_law": true,
+      "exact_true_conditional_law_claimed": false,
+      "calibration_claimed": false,
+      "R1_R3_verified": false,
+      "scope": "new development revision; not confirmation or automatic model promotion",
+      "frozen_base_variant": "atom_crps",
+      "frozen_base_source_sha256": "30a0e4daa480e803932482c93928e4e250e338eb3daff3fc801e73ed2cec434b",
+      "auxiliary_coefficient": 0.1,
+      "scoring_coordinate_and_normalization_both_changed": false,
+      "R1_inherited": false,
+      "R3_accredited": false,
+      "market_utility_verified": false,
+      "original_V3_NO_GO_preserved": true
+    }
+  },
+  "budget_seconds": 120.0,
+  "started_unix": 1795224015.2886696,
+  "deadline_unix": 1795224135.2886696,
+  "counter_scope": "attempted phase; no optimizer step claimed by marker alone"
+}

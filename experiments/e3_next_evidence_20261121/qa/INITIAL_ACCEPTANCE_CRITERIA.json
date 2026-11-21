@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "independent_acceptance_criteria_before_engine_review",
+  "prepared_at_utc": "2026-11-21T00:38:00.902754+00:00",
+  "AI_reviewer_declared": true,
+  "baseline_commit": "f5c960eefedb5fc49b313dd795b1ec84e784bd78",
+  "inputs": [
+    {
+      "path": "/workspace/attachments/da015f36-db20-464d-9c42-e3ca1e122d4f/Texto pegado.txt",
+      "bytes": 8179,
+      "sha256": "276c1f494cee02117a831e9b6e3644c68d063c77a78d3c383fa1258ee65b1a4f"
+    },
+    {
+      "path": "/workspace/attachments/4ed61a80-efc9-42ce-aaba-2cf8c1535198/Entregable3DeepLearningProject.pdf",
+      "bytes": 922729,
+      "sha256": "d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364"
+    }
+  ],
+  "original_guide": {
+    "Table4_page26_F2_named_difference_procedures": [
+      "Model Confidence Set",
+      "Diebold-Mariano with horizon HLN correction",
+      "Giacomini-White or Clark-West according to nesting",
+      "Friedman over series or forecast origins",
+      "stationary bootstrap"
+    ],
+    "not_named_as_F2_difference_procedure": [
+      "subsampling",
+      "Ljung-Box",
+      "ARCH-LM",
+      "BDS",
+      "Jarque-Bera",
+      "Mincer-Zarnowitz"
+    ],
+    "minimum_distinct_procedures_per_contrast": 3,
+    "at_least_one_global_or_multiple_comparison_control": true,
+    "decision_max_adjusted_p_all_required_procedures_rejects": true,
+    "guide_secondary_families_may_be_separate": true,
+    "additional_dataset_ablations_subgroups_horizons_each_declared_family": "Section8.7.1 p27; their outcomes cannot justify a more permissive primary family",
+    "pilot_min_paired_seeds": 5,
+    "final_min_seeds": 10,
+    "more_seeds_when_power_requires": true,
+    "required_power_per_contrast": 0.9,
+    "joint_power_must_be_reported": true,
+    "joint_power_automatic_0_90_requirement": false
+  },
+  "scientific_estimand_checks": [
+    "Fix target and sign before simulation: E_seed[sqrt(E_time(error_rival^2))-sqrt(E_time(error_candidate^2))]; distinguish fixed-calendar conditional targets from process targets.",
+    "H0 theta<=delta versus H1 theta>delta; delta practical margin differs from planning alternative Delta_alt>delta.",
+    "Do not replace the mean of individual-seed RMSEs with pooled MSE, RMSE of averaged predictions, an ensemble metric, a rank estimand or conditional GW omnibus significance.",
+    "All claimed primary tests must address the declared target and include justified seed, calendar and interaction uncertainty. Dates bootstrap alone and t over seeds alone do not generally establish both.",
+    "Horizon1 does not remove seven-return target overlap or other autocorrelation. Nesting must be justified before Clark-West. HLN implementation/assumptions must match forecast horizon.",
+    "A named Table4 method still needs an explicit mathematically valid adaptation. Any adaptation outside the named family remains pending admissibility, not approved by naming."
+  ],
+  "controlled_validation_checks": [
+    "Preserve timestamped plan, source hash, fixed scenarios/seeds/budgets and pass/fail criteria before execution; retain all failed and adverse cases.",
+    "Population/DGP truth must be known or independently established; finite sample truth is not a substitute for a population RMSE target.",
+    "Calibrate boundary null theta=delta, interior nulls and partial-null families with dependence across rivals; record per-test typeI, intersection decision and FWER of true-null rejections.",
+    "Exercise temporal autocorrelation/common shocks, seed random effects, crossed seed-time variation, heterogeneous scales and heavy tails within stated assumptions.",
+    "Report interval coverage of the declared unconditional target, with MonteCarlo precision. Toy fixture success alone is software validation.",
+    "Cover insufficient R/T, zero/near-zero variance, non-finite inputs, perfect ties, constant series, negative errors versus nonnegative losses, invalid margins, missing rivals/panels and deterministic rivals.",
+    "Use the declared full family in every replicate, with identical candidate/common calendar and paired seeds; do not assume joint power equals product of marginals.",
+    "Multiplicity across panels/procedures/metrics/secondary decisions must be declared before results; if families are separate, do not advertise a global 0.05 bound without further control.",
+    "Increasing T must not erase persistent seed variance; increasing R must not erase persistent shared calendar uncertainty.",
+    "Passing controlled scenarios is conditional calibration for those DGPs and resources, not proof for market processes, sufficient finalR/T, confirmation or R3."
+  ],
+  "preserve_history": {
+    "addivite_jobs": 796,
+    "V3_development_fits": 30,
+    "retrospective_trajectories": 51,
+    "retrospective_prediction_rows": 20400,
+    "atom_crps_RMSE_worse_than_atom_mse_only_pct": 2.7043119888,
+    "old_recipe_NO_GO_unchanged": true,
+    "new_recipe_R1_inheritance_automatic": false
+  },
+  "readiness_no_automatic_credit": [
+    "implemented_method",
+    "software_tests_passed",
+    "controlled_simulation_passed",
+    "new_development_pilot_completed",
+    "data_source_identified",
+    "register_or_plan_written",
+    "GPU_available"
+  ],
+  "reviewer_scope": {
+    "allowed": "read sources/plans/results; write only this QA folder; no model, market or simulation execution by reviewer",
+    "no_external_writes": true,
+    "no_book_edits": true,
+    "not_human_external_reproduction": true
+  }
+}

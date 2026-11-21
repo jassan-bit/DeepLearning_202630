@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "kind": "PROSPECTIVE_CONTROLLED_DGP_ENGINE_VALIDATION_NOT_MARKET_PROTOCOL",
+  "recorded_at_utc": "2026-11-21T00:41:02.428262+00:00",
+  "base_commit": "f5c960eefedb5fc49b313dd795b1ec84e784bd78",
+  "AI_assistance_declared": true,
+  "scientific_NO_GO_unchanged": true,
+  "R3_accredited": false,
+  "new_market_fits": 0,
+  "new_market_predictions": 0,
+  "primary_target": "E_seed[sqrt(E_time squared_error_rival)-sqrt(E_time squared_error_candidate)]",
+  "null": "theta <= delta",
+  "sign": "positive favors candidate",
+  "implemented_directional_methods_planned": [
+    "P1_CROSSED_STATIONARY_BOOTSTRAP_RMSE",
+    "P2_CROSSED_DELTA_HAC_HLN_PROPOSED_EXTENSION"
+  ],
+  "global_complement_planned": "P3_FUNCTIONAL_MCS_GLOBAL_PROPOSED_EXTENSION",
+  "third_directional_method_present": false,
+  "three_tests_per_contrast_gate": false,
+  "methodological_admissibility_final": false,
+  "DGP": {
+    "errors": "e[m,s,t] = A[m,s]*Z[m,s,t]",
+    "A": "base[m]*exp(sigma_seed*(sqrt(.5)*U_common_seed + sqrt(.5)*U_model_seed)-sigma_seed^2/2)",
+    "Z": "sum sqrt(weight[k])*unit_variance_AR_process[k] for global_time,model_time,seed_time,idiosyncratic_time; Z=1 for seed_only",
+    "AR": "phi stationary AR1; Gaussian or standardized t5 innovations; unit variance initialization, 128 burn points",
+    "analytic_population_truth": "E_time Z^2=1 and E_seed A=base, so theta_j=base_j-base_candidate exactly; never estimate truth from a generated sample",
+    "base_candidate": 1.0,
+    "rival_bases": {
+      "equal": "1.0",
+      "boundary": "1+delta",
+      "interior": "1+delta-.05",
+      "partial": "first9 rivals 1+delta, other10 1+delta+.20",
+      "alternative": "1+delta+.20"
+    },
+    "seed_pairing": "same seed identifiers for all20 systems; seed effects correlated through common component; temporal factors shared as specified",
+    "scope": "controlled synthetic error process with known truth, not a fitted market DGP or a new predictor"
+  },
+  "algorithms": {
+    "bootstrap_replicates": 2047,
+    "stationary_mean_block": 12,
+    "HAC_Bartlett_lag": 8,
+    "bootstrap_statistic": "full mean of individual seed RMSEs, crossed resampling of whole matched seed rows and common stationary temporal indices",
+    "bootstrap_CI": "basic 95% two-sided and one-sided95% lower endpoint from centered full-functional roots",
+    "P2_variance": "between-seed variance/S plus HAC temporal influence-of-seed-average/T; explicitly conservative double count of nonnegative interaction in additive crossed-effects linearization; report interaction estimator and corrected diagnostic separately",
+    "P2_HLN": "h1 factor sqrt((T-1)/T) only multiplies the t statistic, and corresponding inversion uses conservative widened SE; this is not proof classical DM-HLN validity for crossed RMSE",
+    "P2_reference_df": "S-1 conservative reference, needs empirical/methodological review",
+    "MCS": "T_R range statistic and elimination with monotone model-exclusion p-values, full-functional crossed bootstrap; global EPA not a pairwise practical-margin test",
+    "MCS_confidence": 0.9,
+    "minimum_R": 10,
+    "minimum_T": 32,
+    "near_zero_MSE": "non-differentiable or unsupported inference rejected; exact equal zero-variance contrasts conservatively nonreject",
+    "formal_scope": "extensions remain proposed until assumptions and admissibility accepted; simulations do not establish universal validity"
+  },
+  "families": {
+    "executed_software_validation_family": "2 directional methods x19 rivals =38 rawp; Holm38 is a separate controlled-validation diagnostic, not the old proposed57 primary family",
+    "reserved_57_slot_diagnostic": "also Holm with19 unimplemented p=1 slots, explicitly labeled reservation-only; no actual third method or complete three-way power inferred",
+    "MCS_family": "global20system equal-predictive-ability model set atalpha0.10",
+    "never_report": "MCS exclusion as directional p(theta_j<=delta) or third component"
+  },
+  "Monte_Carlo": {
+    "master_seed": 2026112107,
+    "streams": "SeedSequence([master_seed,scenario_index,replicate,0_for_DGP_or1_for_bootstrap])",
+    "cases": [
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.0,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "equal",
+        "mc_replicates": 128,
+        "id": "EPA_equal"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "boundary",
+        "mc_replicates": 128,
+        "id": "practical_boundary"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "interior",
+        "mc_replicates": 64,
+        "id": "interior_null"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "partial",
+        "mc_replicates": 128,
+        "id": "partial_null"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "alternative",
+        "mc_replicates": 64,
+        "id": "alternative"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.65,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "student_t",
+        "nu": 5,
+        "theta": "boundary",
+        "mc_replicates": 128,
+        "id": "heavy_tail_boundary"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "boundary",
+        "mc_replicates": 64,
+        "id": "seed_only"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.0,
+        "weights": [
+          0.5,
+          0.5,
+          0,
+          0
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "boundary",
+        "mc_replicates": 64,
+        "id": "calendar_only"
+      },
+      {
+        "R": 12,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.85,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "boundary",
+        "mc_replicates": 128,
+        "id": "strong_dependence_stress"
+      },
+      {
+        "R": 24,
+        "T": 128,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "boundary",
+        "mc_replicates": 64,
+        "id": "scaling_R24"
+      },
+      {
+        "R": 12,
+        "T": 256,
+        "M": 20,
+        "delta": 0.03,
+        "phi": 0.35,
+        "seed_sigma": 0.15,
+        "weights": [
+          0.4,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "innovations": "gaussian",
+        "nu": null,
+        "theta": "boundary",
+        "mc_replicates": 64,
+        "id": "scaling_T256"
+      }
+    ],
+    "total_replicates_planned": 1024,
+    "replicates_independent_within_scenario": true,
+    "max_wall_seconds": 600,
+    "BLAS_threads": 2,
+    "checkpoint": "JSONL after every replicate; resource stop preserves partial outcome without new seeds/retries for favorable result",
+    "binomial_precision": "individual central95% Clopper-Pearson for per-rival size/coverage and Bernoulli family events; do not pool correlated rivals as extra MC replicates",
+    "screens": "inflation detected if lower95%CP>nominal; exploratory tolerance screening upper95%CP<=nominal+.05; otherwise inconclusive. No final calibration approval from bounded MC. Coverage deficit detected if upper95%CP<.95.",
+    "final_market_power_certified": false,
+    "R_T_scaling": "report empirical SD and mean estimated components at12x128,24x128,12x256; no fitted variance or finalR/T supplied"
+  },
+  "execution_requires_parent_immutable_plan_anchor": true,
+  "execution_started": false,
+  "source_implementation_hash_to_be_recorded_before_validation": true,
+  "market_confirmation_Colab_generated": false
+}

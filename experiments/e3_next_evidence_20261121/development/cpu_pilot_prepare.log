@@ -1,0 +1,258 @@
+{
+  "version": "e3-v4-new-CPU-development-pilot-1",
+  "case_id": "v4-cpu-dev-ce2070e9d8a34938aeca0cdd64d13fb4",
+  "created_at_utc": "2026-11-21T01:12:26.385393+00:00",
+  "base_commit": "f5c960eefedb5fc49b313dd795b1ec84e784bd78",
+  "scope": "new_exposed_CPU_development_not_confirmation_or_reproduction",
+  "source_manifest_sha256": "87ff742443a9e7d353663390ec54ec1c44b902c3d9fcded4ccf3c3af797df205",
+  "admission_sha256": "701f281b30ff52b140e7d62a42d6232b5fc3b1a36b955c9ffd640e1b0a5a522f",
+  "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+  "npz_bytes": 460090,
+  "cohort": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "device": "cpu",
+    "cpu_threads": 2,
+    "interop_threads": 1,
+    "deterministic_algorithms": true,
+    "allow_tf32": false,
+    "environment_thread_limits": {
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "energy_FLOPs_or_CPU_capacity_measured": false
+  },
+  "config": {
+    "learning_rate": 0.003,
+    "weight_decay": 0.0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip": 1.0
+  },
+  "recipes": [
+    "sigma_crps_v4",
+    "u_crps_control",
+    "mse_only_control",
+    "additive_positive_head"
+  ],
+  "analytical_controls": [
+    "floor_only",
+    "floor_plus_mean_excess"
+  ],
+  "analytical_parameters": {
+    "floor_only": 0,
+    "floor_plus_mean_excess": 1
+  },
+  "analytical_optimizer_trainable_parameters": {
+    "floor_only": 0,
+    "floor_plus_mean_excess": 0
+  },
+  "analytical_parameter_meaning": "floor-only has no fitted parameter; mean-excess uses one training-derived scalar d_fit, no optimizer",
+  "seeds": [
+    20261121,
+    20261122,
+    20261123,
+    20261124,
+    20261125
+  ],
+  "jobs": [
+    {
+      "index": 0,
+      "name": "sigma_crps_v4",
+      "seed": 20261121,
+      "job_id": "seed20261121/sigma_crps_v4",
+      "parameters": 1262
+    },
+    {
+      "index": 1,
+      "name": "u_crps_control",
+      "seed": 20261121,
+      "job_id": "seed20261121/u_crps_control",
+      "parameters": 1262
+    },
+    {
+      "index": 2,
+      "name": "mse_only_control",
+      "seed": 20261121,
+      "job_id": "seed20261121/mse_only_control",
+      "parameters": 1262
+    },
+    {
+      "index": 3,
+      "name": "additive_positive_head",
+      "seed": 20261121,
+      "job_id": "seed20261121/additive_positive_head",
+      "parameters": 1210
+    },
+    {
+      "index": 4,
+      "name": "sigma_crps_v4",
+      "seed": 20261122,
+      "job_id": "seed20261122/sigma_crps_v4",
+      "parameters": 1262
+    },
+    {
+      "index": 5,
+      "name": "u_crps_control",
+      "seed": 20261122,
+      "job_id": "seed20261122/u_crps_control",
+      "parameters": 1262
+    },
+    {
+      "index": 6,
+      "name": "mse_only_control",
+      "seed": 20261122,
+      "job_id": "seed20261122/mse_only_control",
+      "parameters": 1262
+    },
+    {
+      "index": 7,
+      "name": "additive_positive_head",
+      "seed": 20261122,
+      "job_id": "seed20261122/additive_positive_head",
+      "parameters": 1210
+    },
+    {
+      "index": 8,
+      "name": "sigma_crps_v4",
+      "seed": 20261123,
+      "job_id": "seed20261123/sigma_crps_v4",
+      "parameters": 1262
+    },
+    {
+      "index": 9,
+      "name": "u_crps_control",
+      "seed": 20261123,
+      "job_id": "seed20261123/u_crps_control",
+      "parameters": 1262
+    },
+    {
+      "index": 10,
+      "name": "mse_only_control",
+      "seed": 20261123,
+      "job_id": "seed20261123/mse_only_control",
+      "parameters": 1262
+    },
+    {
+      "index": 11,
+      "name": "additive_positive_head",
+      "seed": 20261123,
+      "job_id": "seed20261123/additive_positive_head",
+      "parameters": 1210
+    },
+    {
+      "index": 12,
+      "name": "sigma_crps_v4",
+      "seed": 20261124,
+      "job_id": "seed20261124/sigma_crps_v4",
+      "parameters": 1262
+    },
+    {
+      "index": 13,
+      "name": "u_crps_control",
+      "seed": 20261124,
+      "job_id": "seed20261124/u_crps_control",
+      "parameters": 1262
+    },
+    {
+      "index": 14,
+      "name": "mse_only_control",
+      "seed": 20261124,
+      "job_id": "seed20261124/mse_only_control",
+      "parameters": 1262
+    },
+    {
+      "index": 15,
+      "name": "additive_positive_head",
+      "seed": 20261124,
+      "job_id": "seed20261124/additive_positive_head",
+      "parameters": 1210
+    },
+    {
+      "index": 16,
+      "name": "sigma_crps_v4",
+      "seed": 20261125,
+      "job_id": "seed20261125/sigma_crps_v4",
+      "parameters": 1262
+    },
+    {
+      "index": 17,
+      "name": "u_crps_control",
+      "seed": 20261125,
+      "job_id": "seed20261125/u_crps_control",
+      "parameters": 1262
+    },
+    {
+      "index": 18,
+      "name": "mse_only_control",
+      "seed": 20261125,
+      "job_id": "seed20261125/mse_only_control",
+      "parameters": 1262
+    },
+    {
+      "index": 19,
+      "name": "additive_positive_head",
+      "seed": 20261125,
+      "job_id": "seed20261125/additive_positive_head",
+      "parameters": 1210
+    }
+  ],
+  "parameters": {
+    "sigma_crps_v4": 1262,
+    "u_crps_control": 1262,
+    "mse_only_control": 1262,
+    "additive_positive_head": 1210
+  },
+  "capacity_matched": false,
+  "atomic_controls_identical_architecture_and_initial_values": true,
+  "additive_control_shares_encoder_attention_not_full_readout": true,
+  "fit_rows": 532,
+  "stop_rows": 54,
+  "purged_rows": 7,
+  "assessment_rows": 55,
+  "assessment_predictions_expected": 1210,
+  "neural_assessment_predictions_expected": 1100,
+  "analytical_assessment_predictions_expected": 110,
+  "assessment_trajectories_expected": 22,
+  "analytical_controls_evaluated_once_not_repeated_per_seed": true,
+  "analytical_d_fit_source": "training532 mean(target-sqrt(A)); no assessment fitting",
+  "bounded_controls_omitted": "fixed_probs and atom_plugin are not rerun; this is not full-family planning",
+  "HPO_fits": 0,
+  "learning_rate_rationale": "fixed shared0.003 transferred from prior common development choice; not optimized forV4",
+  "control_identity_aliases": {
+    "u_crps_control": "original atom_crps loss and architecture",
+    "mse_only_control": "original atom_mse_only loss and architecture",
+    "additive_positive_head": "original additive control architecture and loss"
+  },
+  "new_designs_in_this_pilot": 1,
+  "paired_seeds_are_not_new_designs": true,
+  "budget": {
+    "phase_seconds_per_fit": 120.0,
+    "process_seconds_per_fit": 150.0,
+    "total_optimizer_nominal_seconds": 2400.0,
+    "end_to_end_max_seconds": 3300.0,
+    "max_epochs_per_fit": 40,
+    "deadline_includes_restart_downtime": true
+  },
+  "assessment_policy": "all20 trained checkpoint jobs validated before any55-date assessment forward",
+  "continuation_rule": {
+    "minimum_relative_mean_RMSE_gain_against_best_neural_control": 0.02,
+    "minimum_relative_mean_RMSE_gain_against_best_all_five_controls": 0.02,
+    "scope": "new development continuation only; not confirmatory delta or significance",
+    "failure": "abandon current V4 recipe; never promote a control automatically"
+  },
+  "complete_family_planning_pilot": false,
+  "statistical_significance_or_power_claimed": false,
+  "old_GPU_weights_used_for_fair_new_comparison": false,
+  "original_V3_NO_GO_preserved": true,
+  "R1_inherited": false,
+  "R3_accredited": false,
+  "new_real_data_fits": 0,
+  "new_assessment_predictions": 0,
+  "old796_old30_and_old20400_mutated": false,
+  "AI_assistance_declared": true
+}

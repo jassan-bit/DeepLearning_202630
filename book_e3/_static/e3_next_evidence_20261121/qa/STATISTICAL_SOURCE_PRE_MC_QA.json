@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "independent_pre_MC_source_review_no_blocker_for_declared_two_method_controlled_validation",
+  "reviewed_at_utc": "2026-11-21T00:48:24.376411+00:00",
+  "AI_review_declared": true,
+  "review_scope": "Static mathematical/source review; no independent model, DGP, MonteCarlo or fixture execution in this pass",
+  "code_and_logs_reviewed": [
+    {
+      "path": "temporal_battery.py",
+      "bytes": 12857,
+      "sha256": "74b19ca4edea3795b1349df6d2c5bc603d399ca2177c360b620706b6b51d07ab"
+    },
+    {
+      "path": "validate_controlled.py",
+      "bytes": 14200,
+      "sha256": "3706368c44b47812d3191ad1e8971b3359dc3bde90a6a47e0dd31104a6c98f99"
+    },
+    {
+      "path": "test_temporal_battery.py",
+      "bytes": 6231,
+      "sha256": "92abece3ae2234a143677ca9109b987b72178a91ce765912c9c67bef1bcd993a"
+    },
+    {
+      "path": "software_tests.log",
+      "bytes": 2481,
+      "sha256": "c201a3e6e5f71aba21d61b38a48cf2d03d2f36e50410aaf4eac344ac42b70227"
+    }
+  ],
+  "shape_review": {
+    "input": "q[S,T,M]",
+    "seed_MSE": "mu[S,M]",
+    "per_seed_difference": "seed_d[S,M-1]",
+    "linearized_influence": "psi[S,T,M-1]",
+    "temporal_average": "temporal[T,M-1]",
+    "bootstrap": "same date weights and seed counts across all M; sqrt of resampled mean squared error per seed before seed averaging"
+  },
+  "P1_direction": "For H0 theta<=delta, centered roots=theta_star-theta_hat and right-tail count roots>=theta_hat-delta is the basic-bootstrap boundary reference. Lower CI inversion agrees in direction; MonteCarlo discreteness and approximation remain.",
+  "P2_review": {
+    "functional_derivative": "(q-mu)/(2sqrt(mu)) per model and seed, paired difference",
+    "seed_component": "sample variance of individual-seed RMSE differences divided by S",
+    "time_component": "Bartlett HAC of seed-average influence divided by T",
+    "interaction": "reported separately; subtraction retained as diagnostic only",
+    "conservative_label_condition": "Only for the stated nondegenerate additive crossed-effects linearization with appropriate sampling/stationary dependence; not an exact finite-sample guarantee",
+    "HLN": "h=1 factor sqrt((T-1)/T); widening SE by inverse factor is algebraically equivalent to multiplying statistic",
+    "reference_df": "S-1 proposed conservative reference, distinct from a classical DM-HLN reference with temporal T-1; admissibility/calibration remain open"
+  },
+  "MCS_review": {
+    "global_test": "max absolute pairwise standardized RMSE functional difference",
+    "elimination": "argmax over rows of maximal positive standardized loss difference",
+    "step_p_values": "monotone maximum along eliminations",
+    "zero_variance_nonzero_difference": "conservatively marked unsupported, models retained",
+    "not_third_directional_margin_p": true
+  },
+  "numeric_support_limit": "64eps*max(1,maxmu) and corresponding metric floors are not generally invariant to a change of physical units. A very small positive rescaling can move an otherwise supported grid into unsupported near-zero inference. Document this limit, do not tune after results.",
+  "settings_guard": "Configured inference minimum cannot relax R10/T32; integer B and HAC lag checked.",
+  "observed_agent_software_log": "13 tests PASS; no scientific calibration inferred.",
+  "implementation_freeze_and_immutable_parent_anchor_required_before_MC": true,
+  "current_V3_NO_GO_unchanged": true,
+  "complete_three_method_gate": false,
+  "final_power_or_R_T_closed": false,
+  "R3_accredited": false,
+  "blockers_for_declared_controlled_run": []
+}

@@ -1,0 +1,142 @@
+{
+  "status": "guide_requirements_verified_read_only",
+  "reviewed_at_utc": "2026-11-21T00:43:12.140346+00:00",
+  "guide": {
+    "file": "Entregable3DeepLearningProject.pdf",
+    "bytes": 922729,
+    "sha256": "d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364",
+    "pages_reviewed": [
+      38,
+      40,
+      46,
+      52
+    ]
+  },
+  "decisive_clauses": [
+    {
+      "page": 38,
+      "quote": "Para entrenamientos costosos se aceptan resultados precalculados y versionados, siempre que el código que los genera esté incluido y documentado."
+    },
+    {
+      "page": 38,
+      "quote": "Reproducción independiente: una persona ajena al código ejecuta el libro desde cero en el contenedor y regenera la tabla principal de resultados; se reporta la discrepancia máxima observada."
+    }
+  ],
+  "universal_fresh_training_requirement_in_reviewed_clauses": false,
+  "universal_two_new_fits_requirement_in_reviewed_clauses": false,
+  "A_B_C_taxonomy": "Helpful project decomposition, not a universal guide demand to rerun C. The accepted scope must still meet clean-container book execution and principal-table regeneration by an external person.",
+  "requirements": [
+    {
+      "id": "H01",
+      "requirement": "Declare the immutable source/archive and exact principal result table to reproduce, with row keys, units and version.",
+      "guide_pages": [
+        38,
+        40,
+        46
+      ],
+      "pass_evidence": "Source pin and generated table are explicitly connected to the result actually rendered by this book edition."
+    },
+    {
+      "id": "H02",
+      "requirement": "A person genuinely external to the code executes the procedure; identify relationship and actual execution.",
+      "guide_pages": [
+        38,
+        46
+      ],
+      "pass_evidence": "Operator-provided identity/relationship, date, commands, logs and own attestation. AI/CI-only receipts remain automatic."
+    },
+    {
+      "id": "H03",
+      "requirement": "Start from the delivered source, not cached HTML or preexisting generated output, and reconstruct the book inside the declared container.",
+      "guide_pages": [
+        38,
+        46,
+        52
+      ],
+      "pass_evidence": "Fresh input/output directories, fixed image/digest or reproducible Docker build, clean book build with exit status."
+    },
+    {
+      "id": "H04",
+      "requirement": "Regenerate the principal result table rather than copying a frozen CSV to output and declaring it regenerated.",
+      "guide_pages": [
+        38
+      ],
+      "pass_evidence": "Executed generator consumes admitted/versioned lower-level inputs, emits the table, and the rebuilt book consumes that output."
+    },
+    {
+      "id": "H05",
+      "requirement": "Precomputed expensive-training results may be used if versioned and their generating code is included and documented.",
+      "guide_pages": [
+        38
+      ],
+      "pass_evidence": "Hashes and provenance for precomputed predictions/checkpoints plus generating source and an explicit statement that training was not repeated."
+    },
+    {
+      "id": "H06",
+      "requirement": "Provide fixed software/hardware, seeds, determinism settings, hyperparameter ranges, number of runs, dispersion and computation/energy scope.",
+      "guide_pages": [
+        38,
+        46
+      ],
+      "pass_evidence": "Environment and experiment metadata; unavailable energy or exact historical hardware is explicitly scoped rather than invented."
+    },
+    {
+      "id": "H07",
+      "requirement": "Provide the data or exact acquisition instructions and verified license scope.",
+      "guide_pages": [
+        46
+      ],
+      "pass_evidence": "Per-input URL/source, byte size/hash, redistribution basis or exclusion; locator-only payloads are not counted as archived bytes."
+    },
+    {
+      "id": "H08",
+      "requirement": "Compare regenerated results to published references and report maximum observed discrepancy.",
+      "guide_pages": [
+        38,
+        46,
+        52
+      ],
+      "pass_evidence": "All declared rows/identifiers are aligned, finite values and absences checked, per-field/unit maximum and location/tolerance reported."
+    },
+    {
+      "id": "H09",
+      "requirement": "Keep report generation and dashboard linked to the experiment master.",
+      "guide_pages": [
+        40,
+        46,
+        52
+      ],
+      "pass_evidence": "Table/master provenance and consistency test; do not silently replace a current main table by a smaller historical table."
+    },
+    {
+      "id": "H10",
+      "requirement": "The book builds without errors and retains working citations/cross-references and documented tables/figures.",
+      "guide_pages": [
+        38
+      ],
+      "pass_evidence": "Strict book build and link/resource verification from the clean generated output."
+    },
+    {
+      "id": "H11",
+      "requirement": "Attach the actual independent reproduction report and deployment smoke proof to the book.",
+      "guide_pages": [
+        40,
+        52
+      ],
+      "pass_evidence": "Executed external report and actual smoke receipt, distinguished from templates and software validation."
+    },
+    {
+      "id": "H12",
+      "requirement": "Keep signed authorship/contributions/AI declaration distinct from independent reproduction.",
+      "guide_pages": [
+        40
+      ],
+      "pass_evidence": "Actual author-provided statement/signature; neither this checklist nor an AI agent manufactures one."
+    }
+  ],
+  "new_model_fits": 0,
+  "new_model_inferences": 0,
+  "human_execution_observed": false,
+  "AI_assistance_declared": true,
+  "implementation_review_status": "waiting_for_parent_implementation"
+}

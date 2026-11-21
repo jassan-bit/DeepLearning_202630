@@ -1,0 +1,47 @@
+{"case": "EPA_equal", "completed_MC": 128, "planned_MC": 128, "total_completed": 128, "elapsed_seconds": 4.351}
+{"case": "practical_boundary", "completed_MC": 128, "planned_MC": 128, "total_completed": 256, "elapsed_seconds": 8.789}
+{"case": "interior_null", "completed_MC": 64, "planned_MC": 64, "total_completed": 320, "elapsed_seconds": 11.141}
+{"case": "partial_null", "completed_MC": 128, "planned_MC": 128, "total_completed": 448, "elapsed_seconds": 17.058}
+{"case": "alternative", "completed_MC": 64, "planned_MC": 64, "total_completed": 512, "elapsed_seconds": 19.854}
+{"case": "heavy_tail_boundary", "completed_MC": 128, "planned_MC": 128, "total_completed": 640, "elapsed_seconds": 24.973}
+{"case": "seed_only", "completed_MC": 64, "planned_MC": 64, "total_completed": 704, "elapsed_seconds": 27.319}
+{"case": "calendar_only", "completed_MC": 64, "planned_MC": 64, "total_completed": 768, "elapsed_seconds": 29.85}
+{"case": "strong_dependence_stress", "completed_MC": 128, "planned_MC": 128, "total_completed": 896, "elapsed_seconds": 34.132}
+{"case": "scaling_R24", "completed_MC": 64, "planned_MC": 64, "total_completed": 960, "elapsed_seconds": 36.928}
+{"case": "scaling_T256", "completed_MC": 64, "planned_MC": 64, "total_completed": 1024, "elapsed_seconds": 40.863}
+CONTROLLED_VALIDATION_RECEIPT_BEGIN
+{
+  "status": "complete_controlled_validation",
+  "started_at_utc": "2026-11-21T00:50:22.284278+00:00",
+  "plan_SHA256": "20d2f73adff064d47d19b2394e708e5a84515eed410ee81b258c2a8226c710f5",
+  "plan_anchor_commit": "550b6d26cbd1b82f40a347c24b180320776e5ca3",
+  "implementation_freeze_SHA256": "48b80ac6723e5e29931b9dd1be142220a98694e6c86e626abbaa856d212cf1a2",
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "OPENBLAS_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2"
+  },
+  "new_market_fits": 0,
+  "new_market_predictions": 0,
+  "synthetic_controlled_DGP": true,
+  "three_tests_per_contrast_gate": false,
+  "R3_accredited": false,
+  "final_market_power_certified": false,
+  "human_execution_claimed": false,
+  "completed_replicates": 1024,
+  "errors": [],
+  "elapsed_seconds": 40.8634198459913,
+  "finished_at_utc": "2026-11-21T00:51:03.147680+00:00",
+  "planned_replicates": 1024,
+  "raw_results": {
+    "file": "per_replicate.jsonl.gz",
+    "bytes": 3157683,
+    "sha256": "a687d180084b906631a625db371c137754e3f5f66180fabd3e758ab3328b1b7b"
+  },
+  "all_cases_complete": true,
+  "final_calibration_approval": false,
+  "limitation": "Two proposed directional extensions plus globalMCS; finite controlled scenarios and individualMC intervals do not accredit a complete or universally calibrated R3 battery"
+}
+CONTROLLED_VALIDATION_RECEIPT_END

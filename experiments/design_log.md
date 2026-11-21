@@ -84,3 +84,63 @@ Cada entrada posterior conservará fecha real, identidad, cambio respecto de su
 ancestro, fuentes, datos usados, métrica, ausencias, decisión, fallos y consumo.
 Una corrección añadirá trazabilidad y mantendrá la versión anterior; las fechas
 desconocidas no se rellenarán a partir de semillas o nombres de carpeta.
+
+
+## Entrada posterior: desarrollo V4 y validación controlada, 20 de noviembre de 2026 (UTC21)
+
+Esta entrada se añade después del ledger anterior; no modifica sus fechas,
+alias, fuentes, conteos o decisiones. Introduce **una propuesta de pérdida de
+desarrollo nueva**, V4 sigma-CRPS. V3, MSE-only y la aditiva son controles de
+identidades existentes; sus semillas nuevas no se cuentan como diseños nuevos.
+
+El plan del diagnóstico sintético y su enmienda matemática anterior a resultados
+quedaron anclados en `f7def09fc4283cc2d5429c58a372d7cf636bc1b5`. Se conservaron
+144 casos y sus gradientes, incluidos 72 sensibles a empates. Entre los 72
+casos diferenciables, 49 alineaciones fueron mejores, once peores y doce
+iguales. Es geometría de objetivos, no utilidad predictiva ni novedad R1.
+
+El nuevo piloto de desarrollo CPU quedó registrado por **fuentes completas,
+plan, controles y regla antes del primer ajuste**, commit
+`5ee55723e7d1ce63dbe4a94dca8941cb85a45fee`. El caso
+`v4-cpu-dev-ce2070e9d8a34938aeca0cdd64d13fb4` completó **20 ajustes neuronales**:
+V4, V3 original, MSE-only y aditiva, cinco semillas pareadas nuevas por receta.
+Dos controles analíticos se evaluaron una vez cada uno; no tienen cinco semillas.
+Se produjeron **22 trayectorias y 1.210 predicciones de desarrollo**, en las
+mismas 55 fechas ya expuestas. El plan no es una confirmación o reproducción
+de la cohorte GPU anterior. La tasa común transferida de 0,003 no se presenta
+como optimización nueva de V4. Se conserva la capacidad de 1210 frente a 1262
+como diferencia explícita, y no se atribuye exclusivamente a la coordenada
+el cambio conjunto de score y normalización.
+
+V4 obtuvo RMSE medio0,002087524306383525; el mejor control fue MSE-only con
+0,0020578245258112138: **1,443261 % peor**. Falló la regla previa del 2 % frente
+al mejor de los cinco controles. Se aplica `ABANDON_CURRENT_V4_RECIPE`, sin
+promover un control ni iniciar una V5 automáticamente. Los 20 nuevos ajustes
+se cuentan aparte de los 796 trabajos, 30 ajustes V3 y 20.400 filas de
+transferencia anteriores. La regla y el 2,70 % adverso del piloto GPU V3 no cambian.
+
+Los 20 recibos conservan 12.427 pasos de optimizador, épocas 10–40 y cero
+sobrepasos de plazo; 54,926 s suman pared de fases y 90,096 s el procedimiento,
+frente a 2400 s de oportunidades nominales. No se estiman energía o FLOPs.
+Los checkpoints nuevos y el NPZ se conservan localmente; la exportación pública
+contiene resultados, curvas, solicitudes, recibos y hashes de checkpoint,
+no sus bytes ni una licencia de redistribución inferida.
+
+La validación estadística es otra unidad: 1.024 réplicas Monte Carlo controladas,
+once casos y 2.096.128 remuestras bootstrap; no son diseños de mercado ni
+entrenamientos. Su plan fue público antes de ejecutar, commit
+`550b6d26cbd1b82f40a347c24b180320776e5ca3`. El MCS propuesto rechazó 27/128
+veces bajo igualdad frente al nominal 10 %, por lo que no se aprueba esa
+configuración para confirmar. No se ajustaron ni repitieron sus parámetros
+para convertir el resultado en favorable.
+
+La familia condicional V4 de 21 rivales, 63 componentes propuestos y 84 celdas se registra como
+borrador previo. Tras el abandono de esta receta no autoriza 340 ajustes de
+planificación. Las referencias pareadas nuevas de cinco controles corresponden
+al desarrollo expuesto D00 y no completan las 84 celdas futuras sin admisión.
+Las cuatro propuestas de datos conservan cero admisiones y faltantes concretos.
+
+Fuentes y resultados detallados:
+`experiments/e3_next_evidence_20261121/`. R1 de V4 no se hereda; la defensa R2,
+la reproducción humana y R3 conservan sus requisitos. La reconstrucción
+completa del libro en Docker fue automática y se identifica como tal.

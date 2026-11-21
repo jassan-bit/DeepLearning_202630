@@ -9,6 +9,8 @@ Este capítulo aplica la sección 7 de la guía: identificar una limitación, fo
 | Primer módulo, 1211 parámetros | Penalizar discordancia y saturar los valores de atención para limitar su sensibilidad. | D1–D5 y cota latente históricas; el piloto global fue desfavorable frente a M00. |
 | Referencia aditiva, 1210 parámetros | Sumar un exceso positivo al piso observable del objetivo, conservando atención por contenido. | Diez réplicas y análisis posterior completos. Su buen rendimiento no demuestra que el cambio de salida sea una contribución nueva ni que explique por sí solo la ganancia. |
 | Cabeza de momentos, 1236 parámetros | Relacionar momentos de una innovación con la media de la transformación objetivo. | Teoría condicional y tres recetas de desarrollo completadas; no superó la heurística de continuación. |
+| V3, 1262 parámetros | Aprender una ley atómica de U y promediar la transformación exacta de σ₇, con auxiliar CRPS_U. | Piloto de treinta ajustes adverso y NO-GO; dictamen R1 favorable acotado, sin confirmación. |
+| V4 de desarrollo, 1262 parámetros | Conservar la lectura V3 y puntuar los átomos transformados en la coordenada de σ₇, con su normalización. | Diagnóstico geométrico y piloto CPU de veinte ajustes; V4 tuvo 1,443261 % más RMSE que el mejor control y la receta se abandonó. No hereda R1 ni acredita R3. |
 
 ## 7.1 Del hueco de investigación a la hipótesis contrastable
 
@@ -600,3 +602,54 @@ La diferencia defendida es la elección de ley, lectura y objetivo. No se
 reclama que un predictor aditivo suficientemente flexible no pueda producir
 esa misma media. Esta delimitación permite defender la adaptación sin
 atribuirle nuevas reglas de scoring o promesas de superioridad.
+
+
+(e3-next-v4-design-20261121)=
+## 7.16 Diseño V4: coordenada del score, normalización y empates
+
+La revisión de desarrollo V4 conserva $T_A(u)=\sqrt{A+cu^2}$, $c=6/49$, las tres masas/posiciones aprendidas y la media $\mu=\sum_kp_kT_A(a_k)$. A sigue dependiendo sólo de la historia conocida. La arquitectura y sus **1262 parámetros** no cambian; las etiquetas Y/U sólo se utilizan en la pérdida de entrenamiento. La {download}`implementación local <../_static/e3_next_evidence_20261121/development/outcome_crps_v4.py>` hereda el forward de V3 y verifica sus fuentes fijadas.
+
+Para $z_k=T_A(a_k)$, la pérdida nueva es
+
+$$
+\mathcal L_{\mathrm{V4}}=
+\frac{(\mu-Y)^2}{s_Y^2}
++0.1\,\frac{\operatorname{CRPS}(\sum_kp_k\delta_{z_k},Y)}{s_Y},
+\qquad
+\operatorname{CRPS}=\sum_kp_k|z_k-Y|
+-\frac12\sum_{k,\ell}p_kp_\ell|z_k-z_\ell|.
+$$ (eq-e3-v4-outcome-score)
+
+$s_U$ y $s_Y$ son escalas de entrenamiento fijadas, no parámetros aprendidos o coeficientes elegidos por el resultado. El diagnóstico sintético utiliza sus medias exactas bajo cada ley finita, como definió el plan; no estima una escala con objetivos de prueba. V3 utilizaba `CRPS_U/sU`, de modo que **coordenada y escala se modifican a la vez**. No se atribuye toda diferencia a una sola de ellas.
+
+### Qué justifica la transformación y qué no demuestra
+
+La ecuación {eq}`eq-e3-r1-weighted-crps` expresa CRPS_U como un CRPS en Y ponderado por el jacobiano inverso $dU/dY=Y/(cU)$. Para A>0, el peso tiene una singularidad integrable junto al piso $\sqrt A$. En las leyes del diagnóstico con **A fijo igual a cero**, el mapa es lineal y sus medias satisfacen `sY=sqrt(c)*sU`, por lo que `CRPS_U/sU = CRPS_sigma/sY`. No se extiende esa identidad a escalas globales de un entrenamiento con A variable por observar un único caso A=0. Ambas reglas siguen siendo propias para leyes no restringidas y la transformación es inyectiva. **No se deriva de ello un óptimo poblacional incorrecto de V3.** La cuestión nueva es el comportamiento de optimización y la interacción con MSE en una ley de tres átomos posiblemente mal especificada.
+
+El {download}`plan previo y sus argumentos <../_static/e3_next_evidence_20261121/development/METHOD_AND_PRIOR_PLAN.md>` fijó cuatro controles de pérdida, todos con la misma MSE:
+
+| Receta | Auxiliar y función del control |
+|---|---|
+| U-CRPS original | `0.1*CRPS_U/sU`, referencia de la pérdida V3. |
+| V4 | `0.1*CRPS_sigma/sY`, coordenada de la etiqueta y su escala. |
+| σ₇ con escala emparejada en A=0 | `0.1*CRPS_sigma/(sqrt(c)*sU)`, control que separa el cambio de norma por normalización. |
+| MSE-only | Sin auxiliar; comparador de diagnóstico, sin promoción automática. |
+
+Una escala positiva sólo cambia la norma de un gradiente auxiliar, no su dirección. El control emparejado no crea un modelo puntual más expresivo ni más parámetros. Si una revisión de mecanismo o regla posterior alterase estas condiciones, sería otra versión registrada y evaluada primero en desarrollo; no una modificación del piloto V3 terminado.
+
+### Diagnóstico fijo con todos los casos conservados
+
+La cuadrícula previa combinó seis valores de A —incluidos cero, casi piso y 100—, dos leyes verdaderas finitas, cuatro tríos de átomos y tres vectores de probabilidades: **144 casos**. Se calcularon expectativas y gradientes de cinco parámetros de cabeza sin ajustar encoder u optimizador. La {download}`regla previa de empates <../_static/e3_next_evidence_20261121/development/TIE_HANDLING.md>` reconoce que los valores absolutos no tienen un gradiente único en ciertas coincidencias. La regla fijada antes de los resultados marcó 72 casos sensibles durante el diagnóstico, que permanecen en el CSV; el subgradiente automático no se presenta como una dirección diferenciable única.
+
+Los 72 restantes tienen doce casos diferenciables por A. En A=0, los errores máximos fueron **2,78×10⁻¹⁶ en scores normalizados** y **1,39×10⁻¹⁶ en gradientes**. En A>0, 50 de 60 direcciones U/σ₇ no fueron colineales. La alineación auxiliar con MSE mejoró en 49 casos, empeoró en **11** y quedó igual en 12. Las comparaciones por A y las pendientes puntuales se conservan completas en {ref}`6.19 <e3-next-v4-development-20261121>`. Esto sostiene sólo una diferencia geométrica acotada; no demuestra mejor optimización durante entrenamiento, generalización, superioridad de mercado o R1 de V4.
+
+Las {download}`catorce pruebas de software finales <../_static/e3_next_evidence_20261121/development/software_validation.json>` verificaron fuente, inicialización y forward idénticos, soporte, escalas fijas, gradientes y manejo de empates. El fallo previo de una fixture float32 y el código anterior permanecen conservados; pasar esas guardas no equivale a entrenar el modelo. El paso posterior al piloto real exigió otro plan de desarrollo previo, presupuesto y controles comunes, registros de fallos y criterio de avance/abandono, documentados a continuación. **La receta V3 mantiene NO-GO y la regla original; V4 no hereda su dictamen R1 ni la auditoría de la aditiva.**
+
+
+### Plan separado del piloto real CPU y ejecución completada
+
+El {download}`plan del nuevo piloto CPU <../_static/e3_next_evidence_20261121/development/cpu_pilot_public/cpu_pilot_plan.json>` fijó **cuatro recetas×cinco semillas: veinte ajustes nuevos de desarrollo**, sin HPO. Las recetas entrenables son V4, U-CRPS original, MSE-only y aditiva. Las tres primeras conservan 1262 parámetros e inicialización común; la aditiva tiene 1210 y comparte encoder/atención, sin declarar capacidad total idéntica. Los controles `floor_only` y `floor_plus_mean_excess` se evalúan una sola vez, sin fingir cinco semillas deterministas. El control de escala emparejada del diagnóstico sintético no se convierte en una quinta receta entrenada ni se afirma una ablación factorial completa.
+
+La partición expuesta conserva **532 filas de ajuste, 54 de parada/selección, siete purgadas y 55 de evaluación de desarrollo**. Las semillas nuevas se fijan en `20261121–20261125`; tasa común `0.003`, batch 32, máximo 40 épocas y paciencia ocho. La cohorte efectivamente usada fue CPU, Python 3.12.14/Torch 2.8.0+cpu/NumPy 2.3.5, dos hilos de cómputo y algoritmos deterministas. Se entrenaron y validaron los veinte checkpoints antes de abrir la evaluación de 55 fechas. No se reutilizan pesos GPU antiguos para llamar justa a una comparación nueva ni se presenta este alcance como reproducción de aquella sesión.
+
+Cada ajuste dispone de 120 s nominales de fase y 150 s de proceso, con límite global de 3300 s; no son consumo medido o coste energético/FLOPs. La regla nueva de desarrollo exige **al menos 2 % de mejora RMSE media frente al mejor control neuronal y frente al mejor de los cinco controles**, conservando ambos dictámenes y todos los resultados. Fallar implica abandonar la receta V4 actual, sin promover automáticamente un control ni cambiar la regla V3 anterior. El plan y la fuente se [anclaron públicamente antes del primer ajuste](https://github.com/jassan-bit/DeepLearning_202630/commit/5ee55723e7d1ce63dbe4a94dca8941cb85a45fee). El {download}`recibo de preparación conservado <../_static/e3_next_evidence_20261121/development/cpu_pilot_public/prepared_receipt.json>` mantiene su instante previo y sus ceros, separado del {download}`recibo ejecutado posterior <../_static/e3_next_evidence_20261121/development/cpu_pilot_results/pilot_result.json>`: **20 ajustes, 22 trayectorias y 1.210 predicciones de desarrollo**. V4 fue **1,443261 % peor** que MSE-only y falló ambas puertas del 2 %; se registra **abandono de la receta V4 actual**, sin promover un control o modificar el piloto V3. Sus 90,096 s totales/54,926 s de fases no se sustituyen por los 2.400 s nominales. No se evaluó la familia completa ni datos nuevos de confirmación.

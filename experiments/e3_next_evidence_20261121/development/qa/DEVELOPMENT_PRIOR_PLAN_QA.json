@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "independent_prior_plan_review_no_blocker_for_declared_CPU_diagnostic_only",
+  "prepared_at_utc": "2026-11-21T00:40:12.367504+00:00",
+  "AI_review_declared": true,
+  "plan": {
+    "path": "/workspace/e3_next_evidence_20261121/development/plan_before_results.json",
+    "sha256": "afb7362ec81b09e86a1e0fd29f3a222d4c2d9bcf7b7e464a918520824989c4d5",
+    "created_at_utc": "2026-11-21T00:39:20.459169+00:00"
+  },
+  "mathematical_review": {
+    "CRPS_coordinate_change_weight": "For Y=sqrt(A+cU^2), c=6/49, U>=0 and fixed A: CRPS_U = integral (F_Y(y)-1{Y<=y})^2 * y/(cU(y)) dy over y>=sqrt(A).",
+    "floor_singularity": "For A>0 the Jacobian behaves as (y-sqrt(A))^(-1/2) and is locally integrable; this is not a nonintegrable objective claim.",
+    "A0_invariance": "At A=0 the transform is linear and sY=sqrt(c)*sU, so normalized coordinate CRPS coincide.",
+    "proper_scoring_scope": "For a fixed known A and positive scales, both coordinate scores are proper for their unrestricted conditional law. Correct specification does not require an inherent conflict between point MSE and either score. Finite-atom misspecification and optimization geometry may differ.",
+    "proof_of_predictive_improvement": false
+  },
+  "controls_reviewed": [
+    "same architecture/readout and point-MSE term",
+    "same lambda=0.1",
+    "two factors explicitly identified: coordinate and normalization",
+    "matched denominator control at A0",
+    "MSE-only is a diagnostic control not a promoted recipe",
+    "all fixed-grid cases and adverse slopes retained"
+  ],
+  "nonblocking_precision_request": "Report angular/collinearity changes separately from a mere scalar change in the auxiliary gradient norm. Norm change alone is not evidence of nonlinear directional geometry.",
+  "allowed_claim_after_success": "Implemented minimal V4 diagnostic and controlled exact-expectation/autograd observations on the frozen finite laws; no market utility, novel R1, training, confirmation or R3 claim.",
+  "result_review_pending": true,
+  "market_runs_or_simulations_executed_by_reviewer": 0,
+  "source_edits_by_reviewer": 0
+}

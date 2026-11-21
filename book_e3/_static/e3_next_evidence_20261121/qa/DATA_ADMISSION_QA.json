@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "status": "independent_concrete_data_preparation_QA_passed_actual_admission_still_blocked",
+  "reviewed_at_utc": "2026-11-21T00:56:18.959996+00:00",
+  "AI_review_declared": true,
+  "manifest_sha256": "361171c29467867d066904459badd7bb824d79920bef78bd1f886d48e9699bfd",
+  "manifest_payloads_checked": 15,
+  "all_payload_hashes_and_bytes_match": true,
+  "registry_sha256": "eae2967a0e360e53f0aaaa09fa6fae94d904bf9fa9152cf79af74f42ac21aa4c",
+  "declaration_sha256": "964bd604ebd8cb82496e50322972245b264d3fdc87c46eab0d491ac7292054ff",
+  "actual_validator": {
+    "status": "BLOCKED_UNADMITTED_FUTURE_PROPOSALS",
+    "exit": 2,
+    "blocked_metadata_checks": 52,
+    "proposals": 4,
+    "datasets_admitted": 0,
+    "confirmation_enabled": false
+  },
+  "agent_software_guards_observed": 13,
+  "review_scope": "Read metadata, validator/calendar source, original guide text and saved observations/receipts; no market source acquisition, validator execution, simulation or network rerun by this reviewer.",
+  "concrete_proposals": [
+    {
+      "id": "F00",
+      "instrument": "BTCUSDT",
+      "source_URL": "https://data.binance.vision/?prefix=data/spot/monthly/klines/BTCUSDT/1d/",
+      "future_file_metadata_absent": true,
+      "scheduled_endpoint_count": 366,
+      "admitted": false
+    },
+    {
+      "id": "F01",
+      "instrument": "SPY",
+      "source_URL": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&outputsize=full&apikey={API_KEY}",
+      "future_file_metadata_absent": true,
+      "scheduled_endpoint_count": 253,
+      "admitted": false
+    },
+    {
+      "id": "F02",
+      "instrument": "USO",
+      "source_URL": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=USO&outputsize=full&apikey={API_KEY}",
+      "future_file_metadata_absent": true,
+      "scheduled_endpoint_count": 253,
+      "admitted": false
+    },
+    {
+      "id": "F03",
+      "instrument": "TLT",
+      "source_URL": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TLT&outputsize=full&apikey={API_KEY}",
+      "future_file_metadata_absent": true,
+      "scheduled_endpoint_count": null,
+      "admitted": false
+    }
+  ],
+  "scientific_checks": {
+    "guide_two_axes_vs_primary": [
+      "size",
+      "domain",
+      "noise",
+      "imbalance",
+      "dimensionality"
+    ],
+    "domain_evidence_only_currently_established_for_additional_panels": true,
+    "source_clock_ticker_not_invented_as_second_axis": true,
+    "size366_vs253_scheduled_only_not_actual_file_size": true,
+    "TLT_Nasdaq_future_count_null_not_NYSE_substitution": true,
+    "same_task_native_next_observation_vs24hour_equivalence_pending": true,
+    "sigma7_population_ddof0_eight_closes_h1_formula_retained": true,
+    "raw_price_vs_corporate_action_policy_explicit_not_silently_adjusted": true,
+    "shared_USD_provider_market_calendar_and_macro_dependence_not_independent_panel_claim": true,
+    "prior_D00_D03_not_relabelled_unexposed": true,
+    "future_windows_are_DRAFT_not_prereg_or_sufficient_T": true,
+    "freeze_before_all_raw_confirmation_support_is_extra_proposed_conservative_policy_not_literal_guide_quote": true,
+    "eight_close_support_and_purge_not_verified_from_real_arrays": true
+  },
+  "source_rights_and_access_review": {
+    "AlphaVantage_capability_docs_not_symbol_specific_data_availability": true,
+    "AlphaVantage_private_access_terms_not_blanket_institutional_or_redistribution_permission": true,
+    "Binance_specific_dataset_terms_locator_hash_preserved": "9807bytes SHA99c4921dbe023cd68c1a447775707d621453cc78aec6ac0bfe2e6c06a5114ee0; Gitblobd47bf55acfd83456d6fe57b31f400b42bda83c19",
+    "license_review_is_pending_not_automatic_MIT_from_existing_DOI": true,
+    "one_exchangeInfo_metadata_attempt_blocked_at_CONNECT_proxy_not_origin404_or_symbol_absence": true,
+    "validator_network_requests0_does_not_mean_whole_documentation_research_had_no_requests": true,
+    "no_API_key_account_acceptance_or_authentication_claim": true
+  },
+  "concrete_remaining_evidence": [
+    "Actual author/custodian exposure declaration and access log",
+    "Task/horizon equivalence review for native equity sessions versus UTC calendar days",
+    "A second established listed guide axis per additional panel",
+    "Source-specific permitted public/external reproducible access and actual symbol response",
+    "Contemporaneous publication/availability at each forecast origin",
+    "Future actual source files/version/size/hash and completeness/venue calendars",
+    "Verified raw-support/split/purge geometry",
+    "Calibrated complete statistical family and sufficient R/T before freeze"
+  ],
+  "blockers_to_describe_this_as_prepared_metadata_only": [],
+  "human_identity_verified": false,
+  "independent_confirmation_data_admitted": false,
+  "market_fits": 0,
+  "market_predictions": 0,
+  "reviewer_simulation_or_model_runs": 0,
+  "old_V3_NO_GO_preserved": true,
+  "R3_accredited": false
+}
