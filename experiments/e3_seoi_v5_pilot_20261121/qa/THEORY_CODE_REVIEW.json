@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "kind": "Independent AI read-only theory/model/data/protocol review; not teacher accreditation",
+  "reviewer": "candidate_theory_design",
+  "recorded_at_utc": "2026-11-21T17:14:42.539991+00:00",
+  "source_hashes": {
+    "seoi_v5/model.py": "215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855",
+    "seoi_v5/data.py": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432",
+    "seoi_v5/frozen_original.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "protocol.json": "492b0c9b69d85d9f6afaf56a87592dba3730db3dfed962376fec0ba8f93c40d0",
+    "tests/test_model_data.py": "0353b210e89c4c4ae8cfbf579745b1a901bcac4143bbb04c5c85585778af1a0d",
+    "docs/THEORY.md": "dc70b8a3e9e8edf6a54f6cfedc96e99d8aca28a8be5941e15122710093dfcceb",
+    "docs/LITERATURE_AND_CONTRIBUTION.md": "3a484e3cdf9057c0fb487baa421bc41480479ba9996862f519c3f387d9801876"
+  },
+  "review_scope": [
+    "exact overlap-label decomposition",
+    "local-window equivariance with fixed references and nonbinding floor",
+    "flat-window joint-coscaling limitation",
+    "factorial input/output isolation",
+    "fit-only statistics and common atomic physical scale",
+    "global feature algebraic cancellation",
+    "historical global/CRPS/additive functional equivalence on generated fixture",
+    "frozen_original source equality",
+    "causality of forecast at end of fully observed window, not prefix-wise normalization"
+  ],
+  "source_checks": {
+    "frozen_original_matches_old_exact_SHA256": true,
+    "frozen_original_SHA256": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "fit_reference_is_pooled_six_known_return_RMS": true,
+    "common_u_scale_is_mean_fit_U": true,
+    "local_output_factor_is_s_t_over_fit_reference": true,
+    "local_scale_not_encoder_feature": true,
+    "input_only_and_output_only_remove_one_transform": true,
+    "volume_identical_across_recipes": true,
+    "same_primary_MSE_normalizer": true,
+    "calibration_evaluation_members_not_deserialized": true,
+    "full_observed_window_causality_correctly_scoped": true
+  },
+  "synthetic_equivalence_probe": {
+    "fixture_only": true,
+    "rows": 12,
+    "seed": 17,
+    "new_global_input_vs_actual_old_relative_log_input_max_abs_difference": 0.0,
+    "new_global_input_bitwise_equal_in_fixture": true,
+    "global_mse_max_abs_prediction_difference": 1.734723475976807e-18,
+    "global_crps_max_abs_prediction_difference": 1.734723475976807e-18,
+    "maximum_atomic_support_difference": 6.938893903907228e-18,
+    "probabilities_max_abs_difference": 0.0,
+    "additive_max_abs_prediction_difference": 0.0,
+    "assertion_tolerance": {
+      "rtol": 1e-13,
+      "atol": 1e-15
+    },
+    "old_sources": [
+      "src/e3_innovation_model.py:133-144",
+      "src/e3_overlap_model_v3.py",
+      "src/e3_innovation_model.py:255-313"
+    ],
+    "old_quadrature_static_file": "experiments/e3_next_evidence_20261121/development/pilot_sources/experiments/e3_ficha_cnn_lstm_atencion_v2_20261116/verification/quadrature_k128.json",
+    "initial_probe_issue": "Historical default quadrature file absent in local mirror; repeated using existing verified frozen quadrature. No training or optimization occurred in either probe."
+  },
+  "documentation_findings_resolved": [
+    {
+      "issue": "MAE reference prose must use the control selected by RMSE, not minimum-MAE control",
+      "resolution": "Current LITERATURE_AND_CONTRIBUTION.md states same best-RMSE neural control as protocol."
+    },
+    {
+      "issue": "Purge counts must separate fit-selection and selection-assessment gaps",
+      "resolution": "Current data admission records total_excluded_rows and gap distinctions; historical purged_rows retained with its scope."
+    }
+  ],
+  "open_code_findings": [],
+  "local_equivariance_claim_scope": "nonbinding floor before and after; fixed model and fit references; V unchanged; transform all seven available OHLC rows consistently",
+  "global_reference_coscaling_is_unique_to_candidate": false,
+  "historical_cohort_or_results_transferred": false,
+  "new_real_data_fits": 0,
+  "new_optimizer_steps": 0,
+  "new_market_predictions": 0,
+  "novelty_or_predictive_superiority_certified": false,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "theory_file": "docs/THEORY.md"
+}

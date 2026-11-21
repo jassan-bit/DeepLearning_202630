@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "version": "e3-seoi-v5-development-1",
+  "created_date_America_Bogota": "2026-11-21",
+  "scope": "prospective_new_pilot_on_previously_exposed_development_only",
+  "candidate": "seoi_mse",
+  "recipes": [
+    "seoi_mse",
+    "input_only_mse",
+    "output_only_mse",
+    "global_mse",
+    "global_crps",
+    "additive_mse"
+  ],
+  "seeds": [
+    20261127,
+    20261128,
+    20261129,
+    20261130,
+    20261131
+  ],
+  "seed_values_are_integer_identifiers_not_calendar_dates": true,
+  "total_planned_model_fits": 30,
+  "HPO_fits": 0,
+  "training": {
+    "learning_rate": 0.003,
+    "weight_decay": 0,
+    "batch_size": 32,
+    "max_epochs": 40,
+    "patience": 8,
+    "gradient_clip": 1
+  },
+  "optimizer": "AdamW",
+  "selection_metric": "selection54_raw_sigma7_RMSE",
+  "selection_tie_break": "earliest_epoch",
+  "budget": {
+    "active_seconds_per_fit": 120,
+    "epoch_reservation_seconds": 5,
+    "nominal_active_seconds_all_fits": 3600,
+    "deadline_kind": "cooperative_batch_boundary_may_overrun_one_operation",
+    "checkpoint_IO_and_setup": "recorded separately, not claimed as measured V5 fit cost"
+  },
+  "continuation": {
+    "minimum_relative_mean_RMSE_gain": 0.02,
+    "minimum_seed_wins": 4,
+    "maximum_MAE_ratio": 1.05,
+    "candidate_fixed": "seoi_mse",
+    "require_all_planned_jobs_complete": true,
+    "best_control": "lowest mean individual-seed RMSE among all five neural controls and the two analytical controls",
+    "seed_wins_reference": "neural control with lowest mean individual-seed RMSE; compare same seed, deterministic recipe order breaks exact ties",
+    "maximum_MAE_ratio_reference": "neural control with lowest mean individual-seed RMSE",
+    "meaning": "engineering development continuation only; not significance, practical delta of R3, or accreditation",
+    "failures": "incomplete_or_failed_pilot_no_continuation; no automatic replacement by winning ablation"
+  },
+  "data": {
+    "npz_commit": "8f65eac34aaf49293924ae8328c235cedbdd2866",
+    "npz_path": "book_e2/_static/e2_scientific_closure_20261116/data_audit/current_cohort_arrays.npz",
+    "npz_sha256": "186d473fdfdf5cd4413eb1200dfcc8fea65ba9f6e7519b722eb9b1ae9f56a683",
+    "npz_bytes": 460090,
+    "allowed_members": [
+      "training_raw",
+      "training_y_original",
+      "training_dates"
+    ],
+    "fit_end": "2024-06-30",
+    "selection_start": "2024-07-08",
+    "selection_end": "2024-08-30",
+    "purge_start": "2024-08-31",
+    "purge_end": "2024-09-06",
+    "assessment_start": "2024-09-07",
+    "assessment_end": "2024-10-31",
+    "fit_rows": 532,
+    "selection_rows": 54,
+    "purged_rows": 7,
+    "assessment_rows": 55,
+    "assessment_previously_exposed": true,
+    "assessment_metrics_only_after_all_fits": true,
+    "calibration_and_final_test_members": "never deserialized",
+    "D01_D02_D03_used": false,
+    "purged_rows_scope": "seven selection-assessment dates; additionally seven fit-selection dates; fourteen total excluded",
+    "fit_selection_purge_rows": 7,
+    "total_excluded_rows": 14
+  },
+  "mechanism": {
+    "epsilon": 1e-06,
+    "reference_rms": "sqrt(mean of squared six known close-log returns across fitting windows)",
+    "window_scale": "max(RMS(six known returns),epsilon*reference_rms)",
+    "common_atom_scale": "mean_fit(U); equivalently gamma=mean_fit(U)/reference_rms and d_out in physical return units",
+    "encoder_input_price": "log(OHLC/last_known_close) divided by local window scale or fixed fitting reference; channel mean/SD estimated on fit only",
+    "encoder_input_volume": "log1p(volume), fit mean/SD; same volume feature in every recipe",
+    "local_input_recipes": [
+      "seoi_mse",
+      "input_only_mse"
+    ],
+    "local_output_recipes": [
+      "seoi_mse",
+      "output_only_mse"
+    ],
+    "output": "sum softmax_mass_k * hypot(sqrt(A),sqrt(6/49)*physical_atom_k)",
+    "gamma_common_to_all_atomic_recipes": true,
+    "auxiliary_CRPS_only": "global_crps,lambda=0.1, normalized by mean_fit(U)",
+    "mixed_precision": "FP32 encoder and attention; FP64 readout",
+    "encoder_parameters": 1197,
+    "atomic_model_parameters": 1262,
+    "additive_parameters": 1210,
+    "initialization": "same M00 backbone and same atomic head seed; input features and reconstruction factors intentionally differ"
+  },
+  "reporting": {
+    "primary": "mean of per-seed RMSE, not sqrt of pooled seed MSE",
+    "secondary": [
+      "MAE",
+      "paired seed differences",
+      "dispersion",
+      "selection-to-assessment gaps",
+      "floor binding counts",
+      "time",
+      "failures"
+    ],
+    "neural_assessment_predictions_expected": 1650,
+    "analytical_assessment_predictions_expected": 110,
+    "assessment_predictions_expected": 1760,
+    "analytical_controls": [
+      "floor_only",
+      "floor_plus_fit_mean_excess"
+    ],
+    "analytical_controls_evaluated_once": true,
+    "p_values_computed_in_pilot": false,
+    "automatic_model_promotion": false
+  },
+  "prior_evidence": {
+    "additive_jobs": 796,
+    "V3_fits": 30,
+    "V3_RMSE_worse_percent": 2.7043119888,
+    "V3_decision": "NO_GO",
+    "V4_fits": 20,
+    "V4_decision": "ABANDON_CURRENT_V4_RECIPE",
+    "source_main": "9fb198adb4342172452f4ce4708357d50569c65e",
+    "fixed_state_gradients": "0061f54fd880f7ec3d0ca49419eba9f49d256678"
+  },
+  "future_confirmation": {
+    "requires_same_frozen_candidate": true,
+    "main_panel_and_additional_panels": 4,
+    "adequate_data_and_unexposed_test": true,
+    "full_Top10_and_strong_baselines": true,
+    "minimum_distinct_appropriate_procedures_per_contrast": 3,
+    "family_control": "Holm at0.05; declared global procedure level as appropriate",
+    "prospective_power_per_contrast": 0.9,
+    "joint_power": "reported, no universal >=0.90 requirement",
+    "minimum_final_seeds": 10,
+    "effect_and_CI": true,
+    "additional_consistency": "better mean in >=2/3, no significantly worse contrast in any",
+    "adequacy_and_robustness": true,
+    "not_authorized_by_pilot": true
+  },
+  "execution_status": "prepared_no_training_executed",
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "R1_accredited": false,
+  "R3_accredited": false,
+  "AI_assistance": "Declared: literature review, equations, implementation, software verification and experimental design; author must understand and defend the work."
+}

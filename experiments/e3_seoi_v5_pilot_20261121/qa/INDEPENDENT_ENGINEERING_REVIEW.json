@@ -1,0 +1,98 @@
+{
+  "kind": "independent_AI_engineering_review_not_human_reproduction",
+  "reviewed_at_UTC": "2026-11-21T17:17:10.381738+00:00",
+  "status": "PASS",
+  "scope": [
+    "runner/bootstrap integration",
+    "epoch-boundary restart and conservative accounting",
+    "fixed six recipes by five seeds",
+    "all-fits barrier before assessment",
+    "mean individual-seed RMSE and fixed continuation",
+    "CPU isolation and no base-Torch mutation",
+    "source manifest contract",
+    "derived-only exports"
+  ],
+  "reviewed_files": [
+    {
+      "path": "seoi_v5/runner.py",
+      "sha256": "3d0ccfce2ecd5305504605cd1f1824deae1853b5faa9fa15ef9371b4ab7a6535"
+    },
+    {
+      "path": "bootstrap_colab.py",
+      "sha256": "d687e6c0075af80230972ed930b67ec60edd4e68428a45a8d3a7ff16ae7d95c4"
+    },
+    {
+      "path": "protocol.json",
+      "sha256": "bcc672fc962228493d030a7a6997c06bb7db8795e63619cd3e232c770d979e18"
+    },
+    {
+      "path": "tests/test_runner.py",
+      "sha256": "8ec3e9a368577cd6b3f33d1da5e3ef9bfbdfc4e84e0f928e37286b79e348e048"
+    },
+    {
+      "path": "tests/test_bootstrap.py",
+      "sha256": "5b60f4f8e1d63df773c15302e9b95b968ec92a01b84679c2e71d9073ff8dda38"
+    }
+  ],
+  "software_tests": {
+    "command": "/workspace/e3_fixed_state_runtime/bin/python -m unittest discover -s tests -v",
+    "tests": 36,
+    "passed": 36,
+    "failed": 0,
+    "elapsed_seconds": 0.8,
+    "fixtures": "generated/synthetic only; no optimizer.step or market model forward"
+  },
+  "findings": [
+    {
+      "id": "RECOVERY_CURVE_RECONSTRUCTION",
+      "severity": "material_report_recovery_gap",
+      "status": "fixed_and_verified",
+      "description": "A durable epoch/completed snapshot can exist after a crash before curve.json update. Recovery can produce the final receipt without reconstructing curve.json from state.curve, leaving an incomplete exported learning curve.",
+      "required_change": "Regenerate curve.json from the checked durable snapshot on recovery and before final/recovered receipt. Add synthetic recovery test with absent/stale curve.json; no training is required.",
+      "resolution": "Durable-state recovery regenerates curve.json before recovering a final receipt, and finalization regenerates it before the completed snapshot. Synthetic completed-state fixture checks exact recovered curve without optimizer steps."
+    },
+    {
+      "id": "EXPLICIT_PAIRED_AND_GAP_TABLES",
+      "severity": "nonblocking_deliverable_completeness",
+      "status": "implemented_and_reviewed",
+      "description": "Protocol reporting names paired seed differences and selection-to-assessment gaps; these are reconstructible from metrics.csv and job.json but not yet separate tables.",
+      "suggestion": "Export paired_differences.csv and selection_assessment_gaps.csv using stored metrics only.",
+      "resolution": "assess now emits 35paired_differences rows and30selection_assessment_gaps rows from cached metrics; both are file-hashed and allowlisted for public export. Analytical controls are explicitly marked as not repeated fits; no extra model forwards."
+    }
+  ],
+  "confirmed": [
+    "No automatic control promotion",
+    "At least all30 validated fit receipts required before assessment model load",
+    "Checkpoint data/Adam/RNG identity and no free interrupted-epoch budget reset",
+    "Old completed jobs skipped with digest checks",
+    "Private arrays/weights/optimizer/RNG omitted from metadata export",
+    "Host-local lock explicitly not a distributed Drive lock",
+    "No R1/R3 accreditation inferred by code"
+  ],
+  "not_executed": [
+    "market training",
+    "market predictions",
+    "full clean Colab dependency installation",
+    "DriveFUSE end-to-end test",
+    "confirmatory statistical campaign"
+  ],
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "optimizer_steps_executed_by_review": 0,
+  "R3_accredited_by_review": false,
+  "followup_reviewed_at_UTC": "2026-11-21T17:18:22.042682+00:00",
+  "remaining_material_findings": 0,
+  "scope_limit": "PASS applies to the reviewed source and synthetic tests; it is not a clean Colab/DriveFUSE execution, training run, human reproduction or superiority result.",
+  "source_manifest": {
+    "sha256": "7f32590bb954fb110a8755525c3ba74ef50fb4ef15e116f0274bad7a957a3dc8",
+    "files_verified": 11,
+    "covers_all_runtime_package_and_tests": true,
+    "self_excluded": true
+  },
+  "final_bootstrap_followup": {
+    "version_check_c_string": "compiled and executed successfully against current pinned CPU test environment",
+    "PYTHONPATH_PYTHONHOME": "removed only in child environment; parent os.environ unchanged",
+    "full_clean_install_executed_by_review": false,
+    "new_optimizer_steps": 0
+  }
+}
