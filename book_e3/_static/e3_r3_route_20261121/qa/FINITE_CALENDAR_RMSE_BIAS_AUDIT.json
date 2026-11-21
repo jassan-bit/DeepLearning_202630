@@ -1,0 +1,55 @@
+{
+  "kind": "deterministic_gaussian_quadrature_not_new_MC_validation",
+  "AI_assistance_declared": true,
+  "question": "Equal population RMSE under heterogeneous temporal dependence",
+  "population": "Stationary ergodic unit-variance Gaussian AR(1), abs(phi)<1",
+  "estimand": "sqrt(E_time Z_t^2)=1, or its mean over independent seeds",
+  "estimator": "sqrt(mean over T dates of Z_t^2), then mean over seeds",
+  "derivation": [
+    "C has eigenvalues lambda_i>0 and trace T; sample MSE has law sum_i lambda_i ChiSquare1_i/T.",
+    "E sqrt(X) = integral_0^infinity (1-E exp(-u^2 X))/u^2 du / sqrt(pi).",
+    "Gaussian Laplace transform is product_i (1+2*u^2*lambda_i/T)^(-1/2).",
+    "The expectation is symmetric concave in lambda; it is maximal at equal eigenvalues (IID).",
+    "Nonidentity covariance gives a strict Jensen gap relative to IID despite equal population RMSE."
+  ],
+  "cases": [
+    {
+      "T": 128,
+      "phi": 0.0,
+      "long_run_population_RMSE": 1.0,
+      "finite_calendar_expected_sample_RMSE": 0.9980488009354713,
+      "quadrature_error_estimate": 6.626151360746206e-14
+    },
+    {
+      "T": 128,
+      "phi": 0.35,
+      "long_run_population_RMSE": 1.0,
+      "finite_calendar_expected_sample_RMSE": 0.9975189387674036,
+      "quadrature_error_estimate": 7.675928017434325e-14
+    },
+    {
+      "T": 128,
+      "phi": 0.85,
+      "long_run_population_RMSE": 1.0,
+      "finite_calendar_expected_sample_RMSE": 0.9887236979985866,
+      "quadrature_error_estimate": 1.1790964584029196e-14
+    }
+  ],
+  "iid_gamma_reference": 0.9980488009354633,
+  "maximum_iid_quadrature_reference_error": 7.993605777301127e-15,
+  "iid_minus_phi_085_bias_difference": 0.00932510293688471,
+  "scope": [
+    "This is a deterministic estimator-bias example, not a test size or coverage calculation.",
+    "It does not negate the previous shared-marginal EPA null or excuse its adverse results.",
+    "Independent seed averaging preserves these expectations; increasing seeds alone does not remove finite-T bias.",
+    "Temporal block resampling, studentization, or Holm do not by themselves prove removal of this bias.",
+    "A future controlled plan should test true population equality with heterogeneous dependence or explicitly restrict its claims."
+  ],
+  "new_MC_replicates": 0,
+  "new_random_draws": 0,
+  "new_model_fits": 0,
+  "new_market_predictions": 0,
+  "new_bootstrap_draws": 0,
+  "R3_accredited": false,
+  "source_SHA256": "7974fd2c1d32a5bd23628a8896aaa54b20d54140632cbb901adedcfaa17b3cea"
+}

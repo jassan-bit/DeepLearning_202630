@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "kind": "current_three_method_admissibility_verdict",
+  "AI_assistance_declared": true,
+  "baseline_commit": "2fbab63f7c4f19edcd7e9927c0c99d7ddae5d9f5",
+  "estimand": "rho_m=E_seed[sqrt(E_time[squared_error_m(seed,time)])]",
+  "contrast": "theta_j=rho_j-rho_candidate",
+  "equality_null": "theta_j=0",
+  "favorable_direction": "theta_j>0",
+  "practical_margin": "delta_j>0, separately declared",
+  "planning_alternative": "theta_plan_j, separately declared and not estimated post-result",
+  "population": "declared random training seeds crossed with common stationary/weakly dependent temporal process, with pairing across models",
+  "distinct_pairwise_candidate_families": 2,
+  "distinct_global_candidate_families": 1,
+  "confirmed_admissible_and_calibrated_primary_procedures": 0,
+  "three_pairwise_procedures_justified": false,
+  "three_procedure_global_route_conceptually_available": true,
+  "global_route_condition": "P1 and P2 valid for rho plus MCS with coverage of all rho-optima; require candidate singleton; document guide interpretation explicitly",
+  "global_route_currently_admissible_for_confirmation": false,
+  "procedures": [
+    {
+      "id": "P1",
+      "family": "crossed_stationary_functional_bootstrap",
+      "role": "pairwise_equality",
+      "status": "proposed_repair_not_validated",
+      "counts_as_distinct_candidate_family": true,
+      "counts_as_accredited_primary": false
+    },
+    {
+      "id": "P2",
+      "family": "crossed_delta_HAC_Wald",
+      "role": "pairwise_equality",
+      "status": "additional_derivation_and_calibration_required",
+      "counts_as_distinct_candidate_family": true,
+      "counts_as_accredited_primary": false,
+      "classical_DM_HLN_theorem_claimed": false
+    },
+    {
+      "id": "P3",
+      "family": "MCS",
+      "role": "global_optimal_set_coverage_and_candidate_singleton",
+      "status": "conditional_third_route_blocked",
+      "counts_as_distinct_candidate_family": true,
+      "counts_as_accredited_primary": false,
+      "pairwise_p_values_provided": false,
+      "singleton_is_margin_test": false
+    }
+  ],
+  "rejected_shortcuts": [
+    "copy_MCS_exclusion_p_to_candidate_rival",
+    "count_bootstrap_variants_as_three",
+    "condition_on_seed_cohort_without_target_change",
+    "mean_MSE_as_mean_individual_RMSE",
+    "ensemble_RMSE_substitution",
+    "GW_nonconstant_instruments_as_test_of_same_mean_null",
+    "Clark_West_without_actual_nesting",
+    "Friedman_daily_correlated_units_as_independent",
+    "HLN_or_Holm_as_cure_for_invalid_p_values"
+  ],
+  "multiplicity": {
+    "prior_frozen_choice": "Holm38 over two methods times 19 rivals",
+    "prior_adverse_result": "14/128 false family rejections in seed-only; preserved",
+    "guide_requires_universal_Holm57": false,
+    "new_family_must_be_frozen_before_random_validation": true,
+    "MCS_alpha_0_10_is_FWER_0_05": false,
+    "guide_requires_MCS_alpha_0_10": false,
+    "prior_exploratory_MCS_alpha": 0.1,
+    "prospective_MCS_alpha": null,
+    "prospective_MCS_alpha_must_be_frozen_and_justified_with_main_rule": true,
+    "prior_alpha_0_10_screens_establish_R3_control_at_0_05": false
+  },
+  "confirmatory_gate_open": false,
+  "R3_accredited": false,
+  "new_random_draws": 0,
+  "new_statistical_resamples": 0,
+  "new_MC_replicates": 0,
+  "new_model_fits": 0,
+  "new_market_predictions": 0,
+  "prior_synthetic_study_dimensions": {
+    "rivals": 19,
+    "models": 20,
+    "scope": "existing synthetic study only; not a prospective roster"
+  },
+  "prospective_family": {
+    "global_set": "candidate plus complete declared eligible required rival family",
+    "rival_count": null,
+    "total_model_count": null,
+    "roster_frozen": false,
+    "abandoned_candidate_inclusion_authorized": false
+  },
+  "execution_counts_scope": "this documentary component only; does not assert zero new statistical revision runs in the root task"
+}

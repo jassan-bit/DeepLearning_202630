@@ -13,6 +13,7 @@ on:
       - 'tests/test_verify_historical_e3_closure.py'
       - 'experiments/e3_next_evidence_20261121/**'
       - 'experiments/e3_statistics_remediation_20261121/**'
+      - 'experiments/e3_r3_route_20261121/**'
   workflow_dispatch:
 
 permissions:
@@ -50,6 +51,17 @@ jobs:
           python -m unittest discover -s experiments/e3_statistics_remediation_20261121/guide_power -p 'test_*.py' -v
           python -m unittest discover -s experiments/e3_statistics_remediation_20261121/bundle_tools -p 'test_*.py' -v
           python experiments/e3_statistics_remediation_20261121/bundle_tools/verify_package.py --packet experiments/e3_statistics_remediation_20261121
+      - name: Verify R3-route software and saved controlled results without new scientific execution
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+        run: |
+          # Deterministic software guards and read-only hashes; never execute new DGP replicas or model fitting.
+          python -m unittest discover -s experiments/e3_r3_route_20261121/statistical_revision -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_r3_route_20261121/design_gates -p 'test_*.py' -v
+          python -m unittest discover -s experiments/e3_r3_route_20261121/bundle_tools -p 'test_*.py' -v
+          python experiments/e3_r3_route_20261121/bundle_tools/verify_package.py --packet experiments/e3_r3_route_20261121
       - name: Check source-bound ZIP and replay its extracted small analyses
         run: |
           python - <<'PY'

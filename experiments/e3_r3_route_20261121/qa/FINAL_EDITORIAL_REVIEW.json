@@ -1,0 +1,140 @@
+{
+  "kind": "independent_final_book_and_root_document_review",
+  "reviewer": "stats_methods_independent_review",
+  "recorded_at_utc": "2026-11-21T12:32:50.530458+00:00",
+  "status": "PASS_source_semantics_and_preservation_ready_for_build",
+  "base_source_commit": "2fbab63f7c4f19edcd7e9927c0c99d7ddae5d9f5",
+  "actual_book_sources": [
+    {
+      "path": "book_e3/intro.md",
+      "before_SHA256": "cd260388c8c1f60799b0b0bcb010a793c4b7cdf785cbe00a0981a058efab3101",
+      "after_SHA256": "307287360f07ac8a1c71294d3b15fe2c1d4c74b049b9973e3e6f821ba1941743",
+      "operation": "insert",
+      "previous_bytes_preserved": true
+    },
+    {
+      "path": "book_e3/sections/07_diseno_riguroso.md",
+      "before_SHA256": "a1d9dc6ac5f8721efc31d43be9af7fa46ce94a0ba904aada3cb1cd780d94d55a",
+      "after_SHA256": "929e809712d8064ffcef2254767733c3b81003f2f6b9010e479cd4c142e484aa",
+      "operation": "append",
+      "previous_bytes_preserved": true
+    },
+    {
+      "path": "book_e3/sections/08_verificacion_estadistica.md",
+      "before_SHA256": "ff74ea381d8c721c845fed671c2c957a6a84334cf66a360c077209f75a1b59f4",
+      "after_SHA256": "deb134e2902f68aee0f40bb803745f8a0a237c028ba8c2c7b30914f0fc16b582",
+      "operation": "append",
+      "previous_bytes_preserved": true
+    },
+    {
+      "path": "book_e3/sections/14_evaluacion_calificacion.md",
+      "before_SHA256": "09c4e7e28fc0037c9846c53126326acacd0c0dff36a787835dcd3a51112a15b1",
+      "after_SHA256": "011017776e692005af80d8e1c6ea66427916c3a5922d35d96764c96051ba81d0",
+      "operation": "append",
+      "previous_bytes_preserved": true
+    },
+    {
+      "path": "book_e3/sections/16_conclusiones.md",
+      "before_SHA256": "86a44433c817201a740bd289328346a7a8cc172eb4b6f4ab74fed8d2b9c9a8f5",
+      "after_SHA256": "3684633a8cc16a621d29265aaa8aa9062b0b459a6d1933f763bd28a3f977bcf6",
+      "operation": "append",
+      "previous_bytes_preserved": true
+    }
+  ],
+  "root_documents": [
+    {
+      "path": "README.md",
+      "bytes": 8131,
+      "SHA256": "5043973b17f34a50202ecbfcf7c696dea72b5f9605e02a8c593e41f1ee4ee809"
+    },
+    {
+      "path": "NEXT_ACTIONS.md",
+      "bytes": 2934,
+      "SHA256": "3a2c1ae870f9c83dc5b583419dfefdd8272e0461c9b020b5b8f5093a2a2c2401"
+    },
+    {
+      "path": "CLOSURE_STATE.json",
+      "bytes": 2267,
+      "SHA256": "9d7de1530dcef12baea6c2d49c93edf6423cc446479b0e61f4570562804fe4ec"
+    }
+  ],
+  "new_source_lines_observed": 91,
+  "new_unique_labels": [
+    "e3-r3-route-design-20261121",
+    "e3-r3-route-statistics-20261121",
+    "e3-r3-route-verdict-20261121",
+    "e3-r3-route-conclusions-20261121"
+  ],
+  "canonical_download_targets_verified": 17,
+  "root_local_links_verified": [
+    {
+      "source": "README.md",
+      "target": "guide_candidate/README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "guide_candidate/CANDIDATE_VIABILITY_AND_NEXT_DECISION.json"
+    },
+    {
+      "source": "README.md",
+      "target": "statistical_revision/README.txt"
+    },
+    {
+      "source": "README.md",
+      "target": "design_gates/README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "statistical_revision/exports/family_and_MCS.csv"
+    },
+    {
+      "source": "README.md",
+      "target": "statistical_revision/exports/pointwise_coverage_and_pairwise.csv"
+    },
+    {
+      "source": "README.md",
+      "target": "statistical_revision/exports/two_method_subset_power.csv"
+    },
+    {
+      "source": "README.md",
+      "target": "statistical_revision/RESULTS_DECISION.json"
+    },
+    {
+      "source": "README.md",
+      "target": "methods_admissibility/README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "qa/FINITE_CALENDAR_RMSE_BIAS_AUDIT.json"
+    },
+    {
+      "source": "README.md",
+      "target": "NEXT_ACTIONS.md"
+    },
+    {
+      "source": "README.md",
+      "target": "CLOSURE_STATE.json"
+    }
+  ],
+  "checks": [
+    "Four chapter edits preserve the complete earlier byte prefix; introductory insertion reverses exactly to baseline.",
+    "Current1664/1662336,6/9/12/7/6/2 and31/13/7/10/8/3 counts match the independently audited closed records.",
+    "Strong-AR upper CP95 .080449028 exceeds fixed .08; no rounding, changed threshold or favorable extension approves it.",
+    "Nine pointwise undercoverage signals remain descriptive,8P1+1P2; no simultaneous coverage or family-corrected undercoverage claim.",
+    "MCS moderate EPA26/256 and partial all-optima retention226/256 do not accredit global strong coverage; partial global EPA is not a true global-null error.",
+    "Alternative20/128 two-method equality,16/128 practical subset and35/128 singleton remain distinct from complete three-method power.",
+    "New P1 is a repaired proposed family; P2/MCS controls and previous failures are preserved.",
+    "Singleton proof remains conditional on correct all-optima coverage; no fabricated pairwise p-values or practical-margin theorem.",
+    "Future candidate/family/R/T/cost/budget unset,0/4 panels admitted,29 technical guards and9/7 blocked real gates.",
+    "R3 remains pending/not accredited; oral4.5 is author provided, no observed defense or automatic official grade.",
+    "Future publication proof is labelled as a later receipt; build, rendered link checks and actual served publication are not claimed by this source review."
+  ],
+  "current_build_or_publication_verified_by_this_review": false,
+  "root_package_verifier_fixture_count_reported_to_parent": 41,
+  "new_MC_replicates": 0,
+  "new_random_draws": 0,
+  "new_model_fits": 0,
+  "new_market_predictions": 0,
+  "R3_accredited": false,
+  "blocking_findings": []
+}

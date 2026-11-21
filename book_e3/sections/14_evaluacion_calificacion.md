@@ -266,3 +266,13 @@ orientativo, no una defensa observada ni una acreditación automática de R2.
 La aceptación académica y la reproducción humana siguen requiriendo sus actos
 auténticos. Las recetas V3/V4, sus resultados adversos y sus decisiones no se
 reescriben al mejorar la herramienta estadística.
+
+
+(e3-r3-route-verdict-20261121)=
+## 14.9 Dictamen de la ruta R3, sin nota automática
+
+La ruta nueva documenta condiciones y bloqueos; **no acredita R3** ni afirma haber refutado toda propuesta futura. La guía condiciona la evaluación de R3 a R1/R2 satisfechas. Aquí no hay candidata admitida, batería confirmatoria plenamente validada, datos futuros admitidos, dimensionamiento final o protocolo real anterior a resultados. Una reparación estadística no revierte la regla fallida de V3 o el abandono de V4.
+
+El método global MCS requiere su propio nivel congelado y una correspondencia defendida con la guía; 0,10 fue una elección de desarrollo, no un valor universal obligatorio. Dos pruebas pareadas más una regla global singleton no se presentan automáticamente como cumplimiento literal de tres procedimientos por contraste con Holm. Se conservan las diferencias entre cobertura del conjunto óptimo, dirección, margen, multiplicidad y potencia de toda la decisión.
+
+Los campos oficiales de nota y tope permanecen sin rellenar. La **sustentación 4,5** sigue siendo un dato indicado por el autor, sin afirmar una defensa observada o acreditar R2 por esa cifra. Los resultados nuevos y sus limitaciones se documentan en {ref}`8.27 <e3-r3-route-statistics-20261121>`; este corte no asigna una nueva nota global ni convierte una condición pendiente en incumplimiento demostrado.

@@ -25,6 +25,13 @@ El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guí
 
 ## Estado del proyecto
 
+**Ruta R3 del 21 de noviembre de 2026.** La {ref}`revisión de 8.27 <e3-r3-route-statistics-20261121>` vuelve a la guía y construye puertas ejecutables sin habilitar una campaña. No hay candidata admitida: V3 conserva NO-GO y V4 su abandono; MSE-only no se promueve y no se inicia V5.
+
+Se completó una reparación P1 bootstrap-t con plan y código públicos previos: **1.664 réplicas nuevas y 1.662.336 remuestreos**. Mejoró el caso sólo semillas frente al control, pero la familia sigue **inconclusa/no aprobada**: el límite superior CP95 de AR fuerte fue0,08044903, mayor que el techo0,08 fijado. No se redondea para abrir la puerta. Las señales de infracobertura y los límites de la ruta global MCS permanecen visibles.
+
+La {ref}`ruta de diseño <e3-r3-route-design-20261121>` deja nueve puertas confirmatorias y siete de planificación bloqueadas, familia/R/T/costes sin fijar y 0/4 propuestas futuras admitidas. Los 796 trabajos, 30 ajustes V3, 20.400 predicciones retrospectivas y 20 ajustes/1.210 salidas V4 permanecen intactos. **R3 no queda acreditada.** Las comprobaciones de construcción/publicación se incorporan al [acta posterior](https://github.com/jassan-bit/DeepLearning_202630/tree/e3-r3-route-proof-2fbab63/proof); este texto no sustituye esos recibos ni constituye preregistro.
+
+
 **Remediación estadística posterior, con resultados y alcances separados.** La
 {ref}`sección 8.26 <e3-statistical-remediation-20261121>` vuelve a la guía original,
 separa la media de RMSE individuales de los análisis condicionados a una cohorte

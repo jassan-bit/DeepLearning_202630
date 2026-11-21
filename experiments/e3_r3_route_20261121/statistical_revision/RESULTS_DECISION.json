@@ -1,0 +1,518 @@
+{
+  "AI_assistance_declared": true,
+  "MCS_control_limits": {
+    "ARmoderate_global_rejection": {
+      "CI95": [
+        0.06742315434307913,
+        0.14526539633915808
+      ],
+      "events": 26,
+      "exact_nominal_level_certified": false,
+      "exploratory_tolerance": 0.03,
+      "market_calibration_certified": false,
+      "nominal": 0.1,
+      "rate": 0.1015625,
+      "replicates": 256,
+      "screen": "inconclusive",
+      "simultaneous_interval": false
+    },
+    "global_screen_not_full_partial_null_set_coverage_certificate": true,
+    "no_exclusion_p_as_third_pairwise_method": true,
+    "partial_all_true_best_retained": {
+      "CI95": [
+        0.8369492830050163,
+        0.9195210898364439
+      ],
+      "events": 226,
+      "rate": 0.8828125,
+      "replicates": 256,
+      "simultaneous_interval": false
+    },
+    "partial_any_true_best_excluded": {
+      "CI95": [
+        0.08047891016355617,
+        0.16305071699498377
+      ],
+      "events": 30,
+      "rate": 0.1171875,
+      "replicates": 256,
+      "simultaneous_interval": false
+    }
+  },
+  "R3_accredited": false,
+  "V3_NO_GO_unchanged": true,
+  "V4_abandonment_unchanged": true,
+  "actual_crossed_bootstrap_draws": 1662336,
+  "actual_elapsed_seconds": 479.82272950499964,
+  "alternative_diagnostics": {
+    "MCS_unique_candidate": {
+      "CI95": [
+        0.19842248436641383,
+        0.35923999634072357
+      ],
+      "events": 35,
+      "rate": 0.2734375,
+      "replicates": 128,
+      "simultaneous_interval": false
+    },
+    "joint_two_method_equality_rejection": {
+      "CI95": [
+        0.09813166701086552,
+        0.23094973567011148
+      ],
+      "events": 20,
+      "rate": 0.15625,
+      "replicates": 128,
+      "simultaneous_interval": false
+    },
+    "joint_two_method_practical_subset_decision": {
+      "CI95": [
+        0.07316607817136553,
+        0.19504378186129948
+      ],
+      "events": 16,
+      "rate": 0.125,
+      "replicates": 128,
+      "simultaneous_interval": false
+    },
+    "not_complete_three_method_power": true
+  },
+  "complete": true,
+  "complete_three_method_power_computed": false,
+  "completed_replicates": 1664,
+  "confirmation_allowed": false,
+  "errors": [],
+  "kind": "POST_RESULT_COMPONENT_DECISION_NOT_PREREGISTRATION",
+  "new_market_fits": 0,
+  "new_market_forwards": 0,
+  "new_market_predictions": 0,
+  "paired_diagnostic_limit": "Seedonly improves on same data/draws, but fiveotherHolm6comparisons notsignificant. No uniform superiority or uniquecausal mechanism demonstrated.",
+  "paired_seed_only_diagnostic": {
+    "Holm6_p": 3.5762786865234375e-07,
+    "causal_explanation_or_superiority_certified": false,
+    "exact_McNemar_two_sided_p": 5.960464477539063e-08,
+    "new_only_FWER": 0,
+    "old_only_FWER": 25,
+    "unsupported": false
+  },
+  "plan_SHA256": "5379b30a632f20494599389ad9af5aa8e30fd826a306d148dd21ccddb9bdde8f",
+  "pointwise_coverage": {
+    "all_rivals_not_independent_MC_units": true,
+    "by_method": {
+      "P1": 8,
+      "P2": 1
+    },
+    "detail_file": "exports/pointwise_coverage_and_pairwise.csv",
+    "individual_descriptive_undercoverage_screens": 9,
+    "multiplicity_adjusted_global_coverage_test": false,
+    "simultaneous95pct_coverage_claimed": false
+  },
+  "previous_primary_FWER_failure_preserved": "Oldv2 seed-only Holm38 union14/128 withP1any14/P2any1; not replaced by the newcampaign or reinterpreted asintersection.",
+  "primary_component_FWER_screens": [
+    {
+      "P1_any_component": {
+        "CI95": [
+          0.0,
+          0.014306362729039375
+        ],
+        "events": 0,
+        "rate": 0.0,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "P2_any_component": {
+        "CI95": [
+          0.008648616196162343,
+          0.05031290342281495
+        ],
+        "events": 6,
+        "rate": 0.0234375,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "case": "null_seed_only",
+      "intersection_two_method_event": {
+        "CI95": [
+          0.0,
+          0.014306362729039375
+        ],
+        "events": 0,
+        "rate": 0.0,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "known_true_null_rivals": 19,
+      "new_family_FWER": {
+        "CI95": [
+          0.008648616196162343,
+          0.05031290342281495
+        ],
+        "events": 6,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.0234375,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      },
+      "old_basic_control_FWER": {
+        "CI95": [
+          0.08377961467746284,
+          0.1674617832091539
+        ],
+        "events": 31,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.12109375,
+        "replicates": 256,
+        "screen": "inflation_detected",
+        "simultaneous_interval": false
+      }
+    },
+    {
+      "P1_any_component": {
+        "CI95": [
+          0.016199410860957122,
+          0.06568621418387195
+        ],
+        "events": 9,
+        "rate": 0.03515625,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "P2_any_component": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "case": "null_AR_moderate",
+      "intersection_two_method_event": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "known_true_null_rivals": 19,
+      "new_family_FWER": {
+        "CI95": [
+          0.016199410860957122,
+          0.06568621418387195
+        ],
+        "events": 9,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.03515625,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      },
+      "old_basic_control_FWER": {
+        "CI95": [
+          0.027312525005386005,
+          0.08527212595645979
+        ],
+        "events": 13,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.05078125,
+        "replicates": 256,
+        "screen": "inconclusive",
+        "simultaneous_interval": false
+      }
+    },
+    {
+      "P1_any_component": {
+        "CI95": [
+          0.02445234396943696,
+          0.08044902822855146
+        ],
+        "events": 12,
+        "rate": 0.046875,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "P2_any_component": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "case": "null_AR_strong",
+      "intersection_two_method_event": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "known_true_null_rivals": 19,
+      "new_family_FWER": {
+        "CI95": [
+          0.02445234396943696,
+          0.08044902822855146
+        ],
+        "events": 12,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.046875,
+        "replicates": 256,
+        "screen": "inconclusive",
+        "simultaneous_interval": false
+      },
+      "old_basic_control_FWER": {
+        "CI95": [
+          0.011062786808498114,
+          0.05552459054714268
+        ],
+        "events": 7,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.02734375,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      }
+    },
+    {
+      "P1_any_component": {
+        "CI95": [
+          0.011062786808498114,
+          0.05552459054714268
+        ],
+        "events": 7,
+        "rate": 0.02734375,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "P2_any_component": {
+        "CI95": [
+          0.0,
+          0.014306362729039375
+        ],
+        "events": 0,
+        "rate": 0.0,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "case": "partial_equality",
+      "intersection_two_method_event": {
+        "CI95": [
+          0.0,
+          0.014306362729039375
+        ],
+        "events": 0,
+        "rate": 0.0,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "known_true_null_rivals": 9,
+      "new_family_FWER": {
+        "CI95": [
+          0.011062786808498114,
+          0.05552459054714268
+        ],
+        "events": 7,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.02734375,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      },
+      "old_basic_control_FWER": {
+        "CI95": [
+          0.018888275719460015,
+          0.07066228590012934
+        ],
+        "events": 10,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.0390625,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      }
+    },
+    {
+      "P1_any_component": {
+        "CI95": [
+          0.008648616196162343,
+          0.05031290342281495
+        ],
+        "events": 6,
+        "rate": 0.0234375,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "P2_any_component": {
+        "CI95": [
+          9.889279722355363e-05,
+          0.021570890352533498
+        ],
+        "events": 1,
+        "rate": 0.00390625,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "case": "null_heterogeneous_seed_scales",
+      "intersection_two_method_event": {
+        "CI95": [
+          9.889279722355363e-05,
+          0.021570890352533498
+        ],
+        "events": 1,
+        "rate": 0.00390625,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "known_true_null_rivals": 19,
+      "new_family_FWER": {
+        "CI95": [
+          0.008648616196162343,
+          0.05031290342281495
+        ],
+        "events": 6,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.0234375,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      },
+      "old_basic_control_FWER": {
+        "CI95": [
+          0.013586185897148498,
+          0.06064405087196582
+        ],
+        "events": 8,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.03125,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      }
+    },
+    {
+      "P1_any_component": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "P2_any_component": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "case": "null_heterogeneous_model_temporal_dependence",
+      "intersection_two_method_event": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "simultaneous_interval": false
+      },
+      "known_true_null_rivals": 19,
+      "new_family_FWER": {
+        "CI95": [
+          0.0009475342881075704,
+          0.027934914204054754
+        ],
+        "events": 2,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.0078125,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      },
+      "old_basic_control_FWER": {
+        "CI95": [
+          0.0024232387538726603,
+          0.033863282636291465
+        ],
+        "events": 3,
+        "exact_nominal_level_certified": false,
+        "exploratory_tolerance": 0.03,
+        "market_calibration_certified": false,
+        "nominal": 0.05,
+        "rate": 0.01171875,
+        "replicates": 256,
+        "screen": "exploratory_tolerance_screen_passed",
+        "simultaneous_interval": false
+      }
+    }
+  ],
+  "primary_market_admissibility_certified": false,
+  "public_anchor_commit": "374fc00f50da4454522c04a7973d0ef590d5e192",
+  "raw_log_SHA256": "cc9230bfb23d6b934175eea05380a79b773ca4b0d07096955b3ef0452ef0928c",
+  "reason_primary_family_not_approved": "ARstrong upperindividual95%CP=.08044902822855146 exceeds predeclared developmenttolerance.08; no extension/rerun/threshold change. Five othercases pass boundedtolerance screens, none certifies exactlevel.05.",
+  "recorded_at_utc": "2026-11-21T12:26:53.731787+00:00",
+  "runtime_files_unchanged_after_results": true,
+  "scientific_limits": [
+    "Primary estimand remains E_seed sqrt(E_time error²), not conditional finitecalendar RMSE or pooledMSE.",
+    "Rootfunctional finitecalendar bias can differ across temporalmodelmarginals; heteromodelphi truth stayed0.",
+    "Frozen HAC8/block12,R12T128 crossed covariance and t(R−1) reference remain proposed approximations without general finite-sample theorem.",
+    "Holmstrongcontrol needs valid truenullmarginalp; boundedMC is not a universal theorem.",
+    "Pointwise CIs plus equalityHolm do not give simultaneousmargininference.",
+    "MCSglobal/controlset is separate from a thirdperrivalprocedure."
+  ],
+  "source_manifest_SHA256": "ff316a8ad68b7621a99aa5274576b749a656bf859e52f2ab2dd707a6d20e7f01",
+  "status": "new_development_family_inconclusive_not_approved",
+  "third_primary_method_accredited": false,
+  "unsupported_replicates_by_method": {
+    "P1": 0,
+    "P2": 0
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source_main_commit": "2fbab63f7c4f19edcd7e9927c0c99d7ddae5d9f5",
+  "imports": {
+    "module": {
+      "path": "experiments/e3_statistics_remediation_20261121/guide_power/power_inputs_audit.py",
+      "bytes": 20306,
+      "sha256": "9b60390858dde3080831418e03dcc2c8fc4461e2a99e8a63ffd6b6ba380a4e0f"
+    },
+    "template": {
+      "path": "experiments/e3_statistics_remediation_20261121/guide_power/POWER_INPUT_CONTRACT.template.json",
+      "bytes": 1874,
+      "sha256": "8ce5fed80e2dbbe97cd227aa1f3522a5df453e330cb96c36c6ee77de438a369b"
+    }
+  },
+  "context_bindings": {
+    "already_executed_71_sources_486_scenarios_audit": {
+      "path": "experiments/e3_statistics_remediation_20261121/guide_power/EXECUTED_POWER_INPUT_AUDIT.json",
+      "bytes": 3928,
+      "sha256": "8eb273e771a214ab32a3e45ac41270be87d41c1ef19e30ac01cdd6a248f5aaee"
+    },
+    "four_proposals_zero_admitted": {
+      "path": "experiments/e3_next_evidence_20261121/data_admission/validation_receipt.json",
+      "bytes": 8519,
+      "sha256": "15ec7c979436570a91cb1306058036fcf5a7b32bb08380966e8953615255fb5f"
+    },
+    "V4_abandonment": {
+      "path": "experiments/e3_next_evidence_20261121/planning/POST_PILOT_DISPOSITION.json",
+      "bytes": 1320,
+      "sha256": "b3f3f1f37cddddb2d93efc76882eb0042259b6236242d89263a30071d59b6daa"
+    },
+    "method_remediation_result": {
+      "path": "experiments/e3_statistics_remediation_20261121/calibration/RESULTS_DECISION.json",
+      "bytes": 4927,
+      "sha256": "e3e234052399432f9de870ce499affcb7e27ec853e9cfe8fb163b94d890c6754"
+    },
+    "primary_guide_facts": {
+      "path": "experiments/e3_statistics_remediation_20261121/guide_power/primary/PRIMARY_GUIDE_FACTS.json",
+      "bytes": 10611,
+      "sha256": "14981f83848b00a5c64b8a912b5dec4eee25dc8fef391841bdc96734e19a9124"
+    }
+  },
+  "reuse": "Import only pinned safe_file/digest/bound_json and inherit target strings; no rerun of previous audit, no copy of its evidence.",
+  "supplement_context_bindings": [
+    {
+      "path": "qa/FINITE_CALENDAR_RMSE_BIAS_AUDIT.json",
+      "bytes": 2516,
+      "sha256": "d94c99b17a09e8522ae631ccd9fb44079dac4784f77a9a3b5149112d5f3a8fc0",
+      "scope": "deterministic illustrative estimator-bias threat, not new calibration or permission"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "R3_accredited": false,
+  "cases": {
+    "EPA_fresh_nominal": {
+      "P2_rejected_component_time_shares": [],
+      "any_P1_Holm38": 4,
+      "any_P2_Holm38": 0,
+      "any_component_Holm38": 4,
+      "median_across_rivals_sqrt_mean_plugin_variance_over_empirical_SD": 1.016539366168835,
+      "old_replicates": 256,
+      "some_rival_both_methods_Holm38": 0,
+      "time_variance_share_median": 0.49094756403658113
+    },
+    "EPA_fresh_seed_only": {
+      "P2_rejected_component_time_shares": [
+        4.887464213385742e-61
+      ],
+      "any_P1_Holm38": 14,
+      "any_P2_Holm38": 1,
+      "any_component_Holm38": 14,
+      "median_across_rivals_sqrt_mean_plugin_variance_over_empirical_SD": 1.0222774562227621,
+      "old_replicates": 128,
+      "some_rival_both_methods_Holm38": 1,
+      "time_variance_share_median": 1.3064329517296982e-60
+    },
+    "EPA_fresh_strong_dependence": {
+      "P2_rejected_component_time_shares": [
+        0.8421664456204486
+      ],
+      "any_P1_Holm38": 9,
+      "any_P2_Holm38": 1,
+      "any_component_Holm38": 9,
+      "median_across_rivals_sqrt_mean_plugin_variance_over_empirical_SD": 0.885785137703023,
+      "old_replicates": 128,
+      "some_rival_both_methods_Holm38": 1,
+      "time_variance_share_median": 0.6283256348191467
+    },
+    "fresh_alternative": {
+      "P2_rejected_component_time_shares": null,
+      "any_P1_Holm38": 120,
+      "any_P2_Holm38": 83,
+      "any_component_Holm38": 120,
+      "median_across_rivals_sqrt_mean_plugin_variance_over_empirical_SD": 1.0002312991298599,
+      "old_replicates": 128,
+      "some_rival_both_methods_Holm38": 83,
+      "time_variance_share_median": 0.4810464423534051
+    }
+  },
+  "causal_limit": "Old records support a P1 extreme-tail problem in seed-only despite roughly correct average SE. Strong dependence additionally has averageSE/empSD<1. Bootstrap-t does not prove either general validity or P2 repair; finite-calendar heterogeneity remains.",
+  "kind": "DETERMINISTIC_REANALYSIS_OF_PREVIOUS_RESULTS_NOT_NEW_VALIDATION",
+  "minimal_seed_only_identity": {
+    "R": 12,
+    "T": 32,
+    "crossed_SE": 0.011152699944380463,
+    "exact_conditional_basic_bootstrap_mean_variance_over_sample_mean_SE2": 0.9166666666666666,
+    "explanation": "For iid seed resampling, Var_star(meanDstar)=(R−1)/R times sD²/R. This identifies finite-R scale contraction, not the full cause of old FWER.",
+    "paired_mean": 0.057222222222222306,
+    "paired_mean_SE": 0.011152699944380408,
+    "theta_from_functional": 0.057222222222222285,
+    "time_variance": 2.4233480184491157e-66
+  },
+  "new_MC_replicates": 0,
+  "new_market_fits": 0,
+  "new_market_predictions": 0,
+  "new_random_draws": 0,
+  "normal_vs_t_illustration_not_actual_bootstrap_calibration": {
+    "interpretation": "Normal paired seed means give exact t11 after estimating scale, illustrating why unstudentized/fixed-scale extreme tails are fragile atR12. Actual DGP uses lognormal paired differences; no exactt theorem claimed.",
+    "normal_critical_for_first_Holm38_rank": 3.2125135373384035,
+    "t11_critical_for_first_Holm38_rank": 4.272208624965561,
+    "t11_two_sided_tail_at_normal_critical": 0.008268470597744828
+  },
+  "old_log_SHA256": "558c582c708c130262de1ac8caa9cfd8609ca30e9a88170be0eb8daad5c79daa"
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "kind": "PARAMETRIC_MATERIAL_COST_NOT_AUTHORIZED_CAMPAIGN",
+  "AI_assistance_declared": true,
+  "current_candidate": null,
+  "current_rival_count_J": null,
+  "proposed_current_cell_count": null,
+  "panel_count_if_admitted_P": 4,
+  "actual_admitted_panels": 0,
+  "formulas": {
+    "panel_rival_variance_cells": "P*J",
+    "procedure_components": "P*J*3, with declared multiplicity groups",
+    "full_cross_panel_rival_covariance_entries_per_component": "(P*J)^2; three identified seed/calendar/interaction components when model is justified",
+    "planning_fit_jobs": "P*(N_stochastic*S_pilot + N_deterministic), S_pilot>=5; candidate included in N_stochastic",
+    "confirmation_fit_jobs": "P*(N_stochastic*R + N_deterministic), R>=10 only if full-rule power at declared T supports it",
+    "additional_HPO_and_failures": "Separate actual jobs/attempt caps; fixed-recipe execution manifest requires HPO finished.",
+    "serial_fit_cap_seconds": "sum of explicit per-job operational caps; not a measured elapsed-time estimate",
+    "total_material_cost": "preparation + HPO + planning + final fits + prediction + storage + calibration/power + reporting + failed attempts; each from measured/authorized inputs"
+  },
+  "historical_only": {
+    "V3_panel_rival_cells_unfilled": 76,
+    "V4_panel_rival_cells_unfilled": 84,
+    "V4_nominal_planning_fits": 340,
+    "V4_nominal_340_authorized": false
+  },
+  "missing_material_inputs": [
+    "candidate/family/system kinds",
+    "admitted date counts by panel",
+    "pilot/final seed lists and selected R/T",
+    "hardware/software cohort",
+    "per-fit operational caps and measured schedule if elapsed time is claimed",
+    "attempt and wall-clock budgets with authentic authorization",
+    "HPO/preparation/prediction/storage/analysis costs and quotas"
+  ],
+  "measured_per_fit_seconds": null,
+  "elapsed_seconds_estimate": null,
+  "currency_cost_estimate": null,
+  "execution_authorized": false,
+  "R3_accredited": false
+}

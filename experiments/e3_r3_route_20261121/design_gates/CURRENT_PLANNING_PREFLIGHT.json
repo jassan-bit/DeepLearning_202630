@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "conditional_technical_preflight_not_R3_accreditation",
+  "controller_source_sha256": "33d9fe7e9a4c9db8423907bdfda5f265ee74a040c55b7dc253c4b636066073a8",
+  "phase": "planning",
+  "design_sha256": "698a4de0246f4e1d9bcced9e61f0057b78e159b23b0948b29e097c4fecb34f97",
+  "protocol_status": "DRAFT_NOT_PREREGISTERED",
+  "checks": {
+    "candidate_own_R1_R2_and_continuation": false,
+    "exact_family_three_methods_and_mapping": false,
+    "four_admitted_disjoint_panels": false,
+    "estimand_margin_and_seed_sampling": false,
+    "strong_calibration_for_exact_rule": false,
+    "real_registration_before_outcome_access": false,
+    "authorized_resources_and_persistent_runner": false
+  },
+  "blockers": [
+    "candidate_own_R1_R2_and_continuation",
+    "exact_family_three_methods_and_mapping",
+    "four_admitted_disjoint_panels",
+    "estimand_margin_and_seed_sampling",
+    "strong_calibration_for_exact_rule",
+    "real_registration_before_outcome_access",
+    "authorized_resources_and_persistent_runner"
+  ],
+  "errors": {
+    "candidate_own_R1_R2_and_continuation": "candidate unset",
+    "exact_family_three_methods_and_mapping": "unique explicit rivals required",
+    "four_admitted_disjoint_panels": "main plus three additional panels required",
+    "estimand_margin_and_seed_sampling": "distinct integer seeds required; bool/float labels are invalid",
+    "strong_calibration_for_exact_rule": "Evidence binding required",
+    "real_registration_before_outcome_access": "Evidence binding required",
+    "authorized_resources_and_persistent_runner": "resource ceilings/cohort missing"
+  },
+  "technical_preflight_ready": false,
+  "execution_permit_conditionally_ready": false,
+  "permit_condition": "External reviewers and authorizer must authenticate bound receipts; use only the reviewed runner within exact ceilings.",
+  "scientific_accreditation": "NOT_ASSESSED_BY_SOFTWARE",
+  "R3_accredited": false,
+  "receipt_authenticity_verified_by_program": false,
+  "power_certified_by_this_program": false,
+  "material_cost": {
+    "current_panel_rival_cells": null,
+    "current_procedure_components": null,
+    "planning_fit_jobs": null,
+    "confirmation_fit_jobs": null,
+    "serial_fit_cap_seconds": null,
+    "estimated_elapsed_seconds": null,
+    "reason": "candidate/family/resources unset; no measured runtime extrapolation"
+  },
+  "saved_power_summary": {},
+  "execution_manifest": [],
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "new_MC_replicates": 0,
+  "new_model_forward_passes": 0,
+  "new_market_data_downloads": 0,
+  "new_market_p_values": 0,
+  "new_statistical_resamples": 0,
+  "limitations": [
+    "Hash consistency cannot establish authenticity, scientific adequacy, or actual independence.",
+    "Population RMSE and finite-calendar expected sample RMSE can differ; extra seeds do not remove finite-T bias.",
+    "No R/T is selected here; saved full-rule decisions are read only."
+  ]
+}

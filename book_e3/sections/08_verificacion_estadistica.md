@@ -1373,3 +1373,47 @@ La confirmación permanece condicionada a una candidata viable, paneles admitido
 métodos pertinentes/calibrados, dimensionamiento y protocolo reales anteriores a
 sus resultados. Este corte no registra una campaña confirmatoria ni acredita R3.
 La asistencia de IA se declara; no sustituye a la persona autora o externa.
+
+
+(e3-r3-route-statistics-20261121)=
+## 8.27 Reparación primaria y examen de una ruta global R3
+
+Este corte del **21 de noviembre de 2026, hora de Bogotá**, conserva las validaciones anteriores y desarrolla una versión nueva después del fallo Holm38 de 14/128 frente al 5 %. No repite entrenamiento, forwards o predicciones de mercado. Los 796 trabajos aditivos, 30 ajustes V3, 20.400 filas retrospectivas y 20 ajustes/1.210 predicciones V4 mantienen sus identidades y decisiones.
+
+### Qué cambia y qué pregunta sigue pendiente
+
+El {download}`análisis de admisibilidad <../_static/e3_r3_route_20261121/methods_admissibility/README.md>` identifica P1 bootstrap del funcional y P2 delta-HAC como dos familias pareadas propuestas. Studentizar P1 revisa uno de esos procedimientos; no crea una tercera familia ni acredita su validez. P2 y el MCS v2 se conservan como controles idénticos. GW con instrumentos no constantes prueba un nulo condicional diferente; Clark–West exige anidamiento real; rangos o cohortes fijas no sustituyen sin justificación la igualdad de media RMSE poblacional.
+
+Las {download}`fuentes primarias y los límites de consulta <../_static/e3_r3_route_20261121/methods_admissibility/PRIMARY_SOURCES.json>` se identifican por apartado; no se declara lectura integral o prueba de cobertura por citar esos trabajos.
+
+Una ruta global concreta usa un MCS que cubra **todos** los óptimos y retenga sólo a la candidata. Bajo el nulo «existe un rival al menos tan bueno», ese singleton omitiría algún óptimo; su falsa decisión queda acotada por el error de cobertura **si esa cobertura es válida para el mismo funcional y muestreo**. Es una deducción condicional propia, no una prueba de cobertura de la extensión actual ni un p por rival. Tampoco prueba δ. La {download}`ruta del tercer procedimiento <../_static/e3_r3_route_20261121/methods_admissibility/THIRD_PROCEDURE_PLAN.json>` requiere justificación de la correspondencia con tres procedimientos de la guía, nulos parciales/empates y control de la regla completa. El nivel prospectivo MCS sigue sin fijar; un cribado a 0,10 no demuestra control a 0,05.
+
+La {download}`derivación estadística <../_static/e3_r3_route_20261121/statistical_revision/STATISTICAL_DERIVATION.json>` conserva ambos ejes de incertidumbre y los límites de la covarianza semilla+HAC. La raíz puede tener sesgo de calendario finito distinto entre modelos con el mismo riesgo poblacional si difiere su dependencia temporal; aumentar semillas no elimina ese término. El diagnóstico gaussiano determinista estima una diferencia aproximada **0,0093251** entre IID y AR(1) φ=0,85, con riesgo1 y T=128; no es una nueva validación aleatoria ni prueba universal de fallo.
+
+P1 nuevo usa la cola absoluta bilateral de raíces centradas divididas por su SE cruzado recalculado. Con B=999, la corrección +1, los empates y el orden951 dan un IC cerrado coherente con rechazo estricto p<0,05, sin cuantiles interpolados. El bloque12 y HAC8 permanecen fijados; no se prueba consistencia general o exactitud finita por llamarlo bootstrap-t. La guarda de degeneración conserva las posiciones de la familia y reporta falta de soporte, sin borrar sorteos o fabricar intervalos de certeza.
+
+### Validación fijada antes de los resultados
+
+El [anclaje público `374fc00f50da4454522c04a7973d0ef590d5e192`](https://github.com/jassan-bit/DeepLearning_202630/commit/374fc00f50da4454522c04a7973d0ef590d5e192) precede a la validación nueva. El {download}`plan <../_static/e3_r3_route_20261121/statistical_revision/VALIDATION_PLAN.json>` fija **siete casos, 1.664 réplicas y 999 remuestreos por réplica** —1.662.336 previstos—, semilla nueva, dos hilos y máximo600s. El registro corresponde a desarrollo estadístico, no a preregistro de mercado.
+
+El {download}`recibo cerrado <../_static/e3_r3_route_20261121/statistical_revision/validation_new/execution_receipt.json>` completó **1.664/1.664 réplicas y 1.662.336 remuestreos** en **479,823 s**, de **07:16:37 a 07:24:37 de Bogotá** —12:16:37–12:24:37 UTC—, con cero errores y las ocho fuentes intactas. Las 23 guardas deterministas anteriores no son réplicas de calibración.
+
+| Caso de validación nuevo | n | FWER del control P1 básico/P2 | FWER del nuevo P1/P2 con Holm38 | Dictamen del cribado nuevo |
+|---|---:|---:|---:|---|
+| Sólo semillas | 256 | 31/256 | **6/256** | Pasa tolerancia exploratoria |
+| AR moderado | 256 | 13/256 | **9/256** | Pasa tolerancia exploratoria |
+| AR fuerte | 256 | 7/256 | **12/256** | **Inconcluso** |
+| Igualdad parcial: nueve rivales nulos | 256 | 10/256 | **7/256** | Pasa tolerancia exploratoria |
+| Escalas de semilla heterogéneas | 256 | 8/256 | **6/256** | Pasa tolerancia exploratoria |
+| Dependencia temporal heterogénea entre modelos | 256 | 3/256 | **2/256** | Pasa tolerancia exploratoria |
+| Alternativa frente a los diecinueve rivales | 128 | No aplica como FWER nulo | No aplica como FWER nulo | Potencia parcial, no regla completa |
+
+Son eventos de unión sobre nulas verdaderas dentro de la misma familia38, incluidos los nulos parciales; las comparaciones de control usan los mismos sorteos nuevos. El cribado individual prefijado exige límite superior CP95≤0,08 para nominal0,05 y tolerancia0,03. **AR fuerte da 12/256=4,6875 %, IC95[2,44523 %; 8,044903 %]: 0,08044903>0,08. No se redondea para aprobarlo.** El caso sólo semillas mejora respecto del control31/256, pero ese resultado no compensa un caso inconcluso ni demuestra nivel exacto. En AR fuerte el nuevo conteo12/256 es mayor que7/256 del control; no se afirma una mejora uniforme. No se retocan bandas, escenarios, semillas o criterios después.
+
+La {download}`interpretación posterior y recuento <../_static/e3_r3_route_20261121/statistical_revision/RESULTS_INTERPRETATION.json>` mantiene **`new_development_family_inconclusive_not_approved`**. Hay nueve señales descriptivas puntuales de infracobertura —ocho P1 y una P2—; no son una nueva prueba conjunta corregida. Los IC puntuales no se declaran simultáneos y el control de FWER de p no acredita por sí solo cobertura.
+
+El MCS congelado quedó también inconcluso en el nulo AR moderado:26/256 rechazos EPA, IC95[6,74 %;14,53 %], frente al nominal0,10 y techo exploratorio0,13. En estos ensayos ese0,10 es una elección de desarrollo, no un nivel prospectivo ya aprobado. Excluyó algún óptimo verdadero en **30/256** casos de igualdad parcial: cobertura observada de todos los mejores **226/256=88,28 %**, IC95[83,69 %;91,95 %], sin certificar una garantía nominal del90 %. El rechazo EPA inicial256/256 de ese caso es esperable porque contiene alternativas; **no es un error bajo igualdad global verdadera**. Ninguna exclusión se copia como tercer p por rival.
+
+En la alternativa, los dos métodos rechazaron conjuntamente sus p ajustados frente a todos los rivales en **20/128=15,625 %**, IC95[9,81 %;23,09 %]; al añadir dirección e IC por encima de δ quedó el **subconjunto práctico16/128=12,5 %**. El singleton MCS ocurrió en **35/128=27,34 %**. Son endpoints distintos; ninguno incluye tres métodos más toda la adecuación ni dimensiona potencia de mercado. El {download}`resumen íntegro de siete casos <../_static/e3_r3_route_20261121/statistical_revision/validation_new/validation_summary.json>`, la {download}`tabla familiar/MCS <../_static/e3_r3_route_20261121/statistical_revision/exports/family_and_MCS.csv>` y la {download}`potencia parcial separada <../_static/e3_r3_route_20261121/statistical_revision/exports/two_method_subset_power.csv>` conservan todos los resultados.
+
+La puerta confirmatoria permanece cerrada por la {ref}`ruta de diseño <e3-r3-route-design-20261121>`. Las muestras sintéticas no admiten paneles, rehabilitan candidatas abandonadas o fijan R/T de mercado. Las cotas Monte Carlo y las reglas de igualdad, dirección, margen y adecuación conservan su alcance separado. La asistencia de IA está declarada; no sustituye los actos científicos o académicos pendientes.
