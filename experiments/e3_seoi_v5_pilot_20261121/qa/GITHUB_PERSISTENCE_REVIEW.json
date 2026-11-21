@@ -1,0 +1,106 @@
+{
+  "kind": "independent_AI_GitHub_persistence_code_review_not_human_reproduction",
+  "status": "PASS",
+  "reviewed_at_UTC": "2026-11-21T17:52:01.440269+00:00",
+  "reviewed_files": [
+    {
+      "path": "seoi_v5/github_store.py",
+      "sha256": "a798436a46a671756cf5027c4090b4a52f6ff3d3a840454d2c7fc4c3b81efa21"
+    },
+    {
+      "path": "seoi_v5/github_controller.py",
+      "sha256": "19843e2d5decdf8e0b21f0753a77bf92e6f308bfe414c85092ef59b7f38d838b"
+    },
+    {
+      "path": "seoi_v5/runner.py",
+      "sha256": "5406b1b98fac8b87da198b4d8bff1de79322b06bf286dd7b70a25ea45fe8c4f9"
+    },
+    {
+      "path": "bootstrap_colab.py",
+      "sha256": "3a6bce99e149e3a1e6cfbb07b8e23fb6482d9bb876597d4f8d5df198cde07941"
+    },
+    {
+      "path": "protocol.json",
+      "sha256": "58e05fcf7533bf78d23ba2b43de167ca1925067a998c5f51153063961a79f191"
+    },
+    {
+      "path": "requirements-cpu.lock.txt",
+      "sha256": "4f1394a71057f31d1c83ce4a38b8b602be703b439605fa44dddf45031564fbe2"
+    },
+    {
+      "path": "tests/test_github_store.py",
+      "sha256": "94e9677d6ab09e270c7f15ce5c2a4583b9f9bc2c52f1c7c04cc63abf40b2115a"
+    },
+    {
+      "path": "tests/test_github_controller.py",
+      "sha256": "95dfa4d272bc0cc18a3a361ed227d58e250b9952fb63d90204ee7a154017e75b"
+    }
+  ],
+  "tests": {
+    "count": 77,
+    "passed": 77,
+    "failed": 0,
+    "elapsed_seconds": 4.067,
+    "fixtures": "synthetic/fakeREST only",
+    "AdamW_step_globally_patched_to_fail": true
+  },
+  "test_environment": {
+    "cryptography": "50.0.0",
+    "cffi": "2.1.1",
+    "pycparser": "3.0",
+    "clean_requested_crypto46_environment_tested": false
+  },
+  "confirmed": [
+    "AES-GCM authenticated envelope plus context/manifest validation before any torch.load",
+    "Only latest pointer-referenced PT included in compact encrypted archive",
+    "Public export excludes plaintext PT/NPZ/optimizer/RNG and arbitrary files",
+    "Credentials passed via stdin, omitted from subprocess arguments and logs",
+    "No token or backup secret persisted in owned files",
+    "Source commit and manifest checked before controller starts",
+    "Forced backup before training and after each completed job",
+    "DurabilityError propagates before any subsequent fit",
+    "Stale VM writes rejected without force update",
+    "Remote restore redownloads and hashes raw NPZ separately",
+    "Open-session remote restore persists unknown-compute/lower-bound flags"
+  ],
+  "findings": [
+    {
+      "id": "PENDING_DIRECTORY_ATOMICITY",
+      "severity": "material_resilience",
+      "status": "fixed_and_verified",
+      "description": "Partial staging creation or sequential cleanup can leave .github_pending missing required files and permanently block retry.",
+      "required_change": "Build payloads in temporary sibling and atomically rename into .github_pending; after verifiedreceipt atomically rename pending out before cleanup; preserve incomplete leftovers.",
+      "resolution": "Complete payload staged in a temporary sibling and atomically renamed into pending. After durable verifiedreceipt, pending is atomically retired before cleanup. Regression tests simulate staging crash and cleanup failure; retries succeed."
+    },
+    {
+      "id": "PASSWORD_KDF",
+      "severity": "security_contract",
+      "status": "fixed_and_verified",
+      "description": "HKDF is not password-hardening for a user-entered32character passphrase. Length alone does not ensure sufficient entropy.",
+      "required_change": "Use password-hardening KDF with randomsalt, or explicitly require and generate cryptographically random key material.",
+      "resolution": "AES-256-GCM key uses Scrypt(n32768,r8,p1,length32), random16byte salt, fixed authenticated KDF header. Variable attacker-controlled work factors are rejected before derivation."
+    },
+    {
+      "id": "REMOTE_KEY_CONTINUITY",
+      "severity": "material_recovery_reliability",
+      "status": "fixed_and_verified",
+      "description": "A new mistyped secret on an existinglocal case can encrypt and publish latestbackup under a differentkey without first authenticating currentremote ciphertext.",
+      "required_change": "Before first overwrite of existingremote state per storeinstance authenticate currentcipher with providedsecret; wrongkey causes no ref write.",
+      "resolution": "Existing remote ciphertext is authenticated before pending creation; existing pending ciphertext is also authenticated before any ref write. Wrong remote/pending keys cause zero writes; corrected key retry succeeds."
+    }
+  ],
+  "compute_accounting_scope": "Numerical development gate may remain a hypothesis signal; actual totalcost is a lower bound after open-session remote rollback and confirmatory launch remains disabled. No actual120s physical-work cap is inferred.",
+  "not_executed": [
+    "real training",
+    "market forward predictions",
+    "real-token GitHub mutations",
+    "full clean requested crypto46 environment test"
+  ],
+  "new_real_data_fits": 0,
+  "new_market_predictions": 0,
+  "optimizer_steps_executed_by_review": 0,
+  "R3_accredited_by_review": false,
+  "followup_reviewed_at_UTC": "2026-11-21T18:03:02.984235+00:00",
+  "remaining_material_findings": 0,
+  "scope_limit": "PASS is source review plus synthetic crypto/fakeREST tests only. It does not claim an actual-token GitHub backup, clean crypto46 environment, training, real market predictions, or R3 accreditation."
+}

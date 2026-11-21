@@ -38,8 +38,34 @@ NPZ_BYTES = 460090
 ROOT_EXPORT = ("plan.json", "prepared.json", "cohort.json", "source_identity.json", "admission.json",
                "protocol.json", "PUBLIC_SOURCE_ANCHOR.json", "failures.json", "fit_status.json", "pilot_result.json", "metrics.csv",
                "predictions.csv", "recipe_summary.csv", "resources.csv", "checkpoint_inventory.json",
-               "paired_differences.csv", "selection_assessment_gaps.csv")
+               "paired_differences.csv", "selection_assessment_gaps.csv", "github_session.json",
+               "remote_restore.json", "recovery_history.json")
 JOB_EXPORT = ("job.json", "curve.json", "attempts.json")
+
+
+class DurabilityError(RuntimeError):
+    """A failed remote save stops further training; it is never a model failure."""
+
+
+def checkpoint_barrier(callback, case_root, event):
+    if callback is None:
+        return
+    try:
+        callback(case_root, event)
+    except DurabilityError:
+        raise
+    except Exception:
+        raise DurabilityError("Remote checkpoint save failed; local evidence retained and further fits stopped") from None
+
+
+def remote_compute_uncertain(case_root):
+    """Remote rollback can lose several locally durable epochs, unlike local replay."""
+    def flagged(value):
+        if isinstance(value, dict):
+            return value.get("unobserved_remote_compute_possible") is True or any(flagged(v) for v in value.values())
+        return isinstance(value, list) and any(flagged(v) for v in value)
+    return any(flagged(read_json(Path(case_root) / name)) for name in ("remote_restore.json", "recovery_history.json")
+               if (Path(case_root) / name).is_file())
 
 
 def require(condition, message):
@@ -423,7 +449,7 @@ def _selection_score(model, split, recipe, y_scale):
         return float(((prediction - target) / y_scale).square().mean())
 
 
-def fit_job(case_root, plan, data, model_module, job):
+def fit_job(case_root, plan, data, model_module, job, on_checkpoint=None):
     """Training implementation. Called only by the explicit run command."""
     import numpy as np
     import torch
@@ -445,7 +471,7 @@ def fit_job(case_root, plan, data, model_module, job):
                     "Completed state has no trained validated checkpoint")
             model.load_state_dict(state["current"])
             _, pointer = load_snapshot(directory, request_hash)
-            record = _job_record(plan, job, state, pointer, model, scales)
+            record = _job_record(plan, job, state, pointer, model, scales, case_root=case_root)
             write_json(directory / "job.json", record, immutable=True)
             return record
     else:
@@ -518,24 +544,29 @@ def fit_job(case_root, plan, data, model_module, job):
         state["checkpoint_io_seconds"] += time.perf_counter() - io_started
         (directory / "epoch_pending.json").unlink()
         write_json(directory / "curve.json", state["curve"])
+        checkpoint_barrier(on_checkpoint, case_root, {"kind": "epoch_checkpoint", "job": job,
+                                                    "epoch": state["epoch"]})
     require(state["best"] is not None and state["steps_committed"] > 0, "No validated trained checkpoint exists")
     require(state["active_seconds_charged"] <= BUDGET["active_seconds_per_fit"], "Active fit budget overrun; fit not accepted")
     write_json(directory / "curve.json", state["curve"])
     state["completed"] = True
     state["stop_reason"] = "early_stopping" if state["stale"] >= TRAINING["patience"] else "max_epochs"
     pointer = save_snapshot(directory, state)
-    record = _job_record(plan, job, state, pointer, model, scales)
+    record = _job_record(plan, job, state, pointer, model, scales, case_root=case_root)
     write_json(directory / "job.json", record, immutable=True)
     return record
 
 
-def _job_record(plan, job, state, pointer, model, scales):
+def _job_record(plan, job, state, pointer, model, scales, *, case_root=None):
+    remote_uncertain = bool(case_root is not None and remote_compute_uncertain(case_root))
     return {"status": "completed_validated_fit", "job": job, "request_sha256": state["request_sha256"],
             "plan_sha256": digest(plan), "checkpoint_sha256": pointer["sha256"],
             "checkpoint_file": pointer["file"], "epochs": state["epoch"], "best_epoch": state["best_epoch"],
             "selection_RMSE": math.sqrt(state["best_score"]) * scales["y_scale"],
             "optimizer_steps_committed": state["steps_committed"],
-            "actual_optimizer_steps_may_include_uncommitted_crash_work": state["interrupted_epochs"] > 0,
+            "actual_optimizer_steps_may_include_uncommitted_crash_work": state["interrupted_epochs"] > 0 or remote_uncertain,
+            "unobserved_remote_compute_possible": remote_uncertain,
+            "active_seconds_scope": "recorded local measurements; a lower bound on total cost after an open-session remote restore",
             "active_seconds_charged": state["active_seconds_charged"],
             "checkpoint_io_seconds": state["checkpoint_io_seconds"],
             "checkpoint_IO_record_is_partial_if_an_unclosed_write_was_interrupted": True,
@@ -567,22 +598,28 @@ def case_lock(case_root):
             fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
 
 
-def run(source_root, case_root):
+def run(source_root, case_root, on_checkpoint=None):
     plan, data, model_module = load_case(source_root, case_root)
     for job in plan["jobs"]:
         if complete_job(case_root, plan, job) is not None:
             continue
         try:
-            fit_job(case_root, plan, data, model_module, job)
+            fit_job(case_root, plan, data, model_module, job, on_checkpoint=on_checkpoint)
+        except DurabilityError:
+            raise
         except Exception as error:
             record_failure(case_root, job, error)
             print(json.dumps({"event": "fit_attempt_failed", "job": job, "error": str(error)}), flush=True)
+            checkpoint_barrier(on_checkpoint, case_root, {"kind": "fit_failed", "job": job})
         else:
             print(json.dumps({"event": "fit_completed", "job": job}), flush=True)
+            checkpoint_barrier(on_checkpoint, case_root, {"kind": "job_completed", "job": job})
     completed = [complete_job(case_root, plan, job) for job in plan["jobs"]]
     result = {"status": "all_fits_completed" if all(completed) else "incomplete_fits_evidence_retained",
               "planned_neural_fits": 30, "completed_neural_fits": sum(r is not None for r in completed),
-              "assessment_started_by_run": False, "R3_accredited": False}
+              "assessment_started_by_run": False, "R3_accredited": False,
+              "unobserved_remote_compute_possible": remote_compute_uncertain(case_root),
+              "budget_comparability_verified": not remote_compute_uncertain(case_root)}
     write_json(Path(case_root) / "fit_status.json", result)
     return result
 
@@ -730,6 +767,9 @@ def assess(source_root, case_root):
               "actual_forward_count_if_an_unclosed_assessment_crash_occurred": "not inferred from unique cached/published rows",
               "decision": continuation(summary, by_seed, complete_fits=True), "files": files,
               "old796_old30_and_V4_mutated": False, "R3_accredited": False,
+              "unobserved_remote_compute_possible": remote_compute_uncertain(case_root),
+              "budget_comparability_verified": not remote_compute_uncertain(case_root),
+              "compute_reporting_scope": "recorded committed steps/cost only; unknown replay cost is not reconstructed after remote rollback",
               "scope": "exposed development; no inferential significance or independent confirmation"}
     write_json(final_path, result, immutable=True)
     return result

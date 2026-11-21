@@ -157,5 +157,18 @@
   "new_market_predictions": 0,
   "R1_accredited": false,
   "R3_accredited": false,
-  "AI_assistance": "Declared: literature review, equations, implementation, software verification and experimental design; author must understand and defend the work."
+  "AI_assistance": "Declared: literature review, equations, implementation, software verification and experimental design; author must understand and defend the work.",
+  "persistence_revision": "github_encrypted_checkpoints_1",
+  "persistence": {
+    "backend": "GitHub new run branch; local CPU case; no Drive mount",
+    "public": "derived results, receipts and status; raw data excluded",
+    "private_payload": "AES-256-GCM encrypted compact latest checkpoint per job; separate backup key entered privately in Colab",
+    "forced_save": "prepared case before training; after each completed job; final state",
+    "intermediate_save": "durable epoch boundaries when sixty seconds since previous remote save",
+    "transport": "paced Git object writes; nonforce compare-head updates; verified readback; stop new fits on save failure",
+    "remote_restore": "weights/Adam/RNG restored only after ciphertext authentication; input NPZ downloaded by original hash",
+    "accounting": "open-session remote restore may discard multiple unuploaded epochs; total cost/steps remain lower bounds and budget comparability is not claimed; numerical development thresholds do not change",
+    "actual_credentials_not_written": true,
+    "key_derivation": "Scrypt n=32768,r=8,p=1,length32,random16-byte salt; separate private backup secret"
+  }
 }

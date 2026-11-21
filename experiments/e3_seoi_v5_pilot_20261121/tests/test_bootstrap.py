@@ -98,6 +98,20 @@ class BootstrapTests(unittest.TestCase):
             self.assertEqual(kwargs["env"]["CUDA_VISIBLE_DEVICES"], "")
             self.assertEqual(kwargs["cwd"], settings["source_root"])
 
+    def test_github_preparation_leaves_destination_fresh_for_restore(self):
+        with tempfile.TemporaryDirectory() as folder:
+            cache, source = self.fake_runtime(folder)
+            case = Path(folder) / "persistent" / "case"
+            with patch.object(bootstrap, "acquire_source", return_value=source), \
+                 patch.object(bootstrap, "download", return_value=b"fixture NPZ"), \
+                 patch("subprocess.run"), \
+                 patch.object(bootstrap, "command", side_effect=AssertionError("No prepare before GitHub restore")):
+                result = bootstrap.setup(source_commit="1" * 40, manifest_sha256="2" * 64,
+                                         case_root=case, cache_root=cache,
+                                         install_runtime=False, prepare_case=False)
+            self.assertFalse(case.exists())
+            self.assertTrue(Path(result["data_file"]).is_file())
+
 
 if __name__ == "__main__":
     unittest.main()

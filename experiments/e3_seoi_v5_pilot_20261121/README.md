@@ -18,26 +18,37 @@ y [la formulación y demostración](docs/THEORY.md). La propiedad distintiva
 es equivariancia local de amplitud con referencias de ajuste fijas cuando
 el piso numérico no actúa; no prueba mejora predictiva ni calibración.
 
-## Cómo ejecutar en Colab
+## Cómo ejecutar en Colab: GitHub, sin montar Drive
 
-Abre [el notebook en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/e3-seoi-v5-pilot-20261121/experiments/e3_seoi_v5_pilot_20261121/pilot_colab.ipynb), que tiene fuentes fijadas a un commit y verificadas
-por SHA256. Usa un runtime Python CPU; no hace falta una GPU.
+Abre [el notebook actualizado](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/e3-seoi-v5-pilot-20261121/experiments/e3_seoi_v5_pilot_20261121/pilot_colab.ipynb).
+Usa un runtime CPU. Esta revisión elimina `drive.mount` y el error de
+propagación de credenciales de Google Drive.
 
-1. Monta tu Drive para conservar un **caso nuevo V5**.
-2. Ejecuta la celda de preparación. Instala un entorno CPU separado del
-   Torch del notebook, verifica fuentes/datos y corre pruebas sintéticas.
-   La preparación no entrena.
-3. Ejecuta la celda `run` para los 30 ajustes previstos. Si se interrumpe,
-   repite preparación con la misma carpeta y después `run`. Los trabajos
-   terminados se verifican y se omiten.
-4. Cuando termine `run`, ejecuta `assess` y la exportación. El programa
-   exige los 30trabajos completos antes de calcular las métricas de
-   evaluación de desarrollo. Guarda el ZIP derivado para revisar el resultado.
+1. Ejecuta la preparación: descarga fuentes verificadas, instala el entorno
+   CPU aislado y corre las pruebas sintéticas. No entrena.
+2. Introduce de forma privada el token GitHub y la clave de respaldo. El token
+   necesita `Contents: Read and write` sobre `DeepLearning_202630`. Puedes
+   guardarlos en secretos Colab: `GITHUB_TOKEN` y `E3_V5_BACKUP_KEY`.
+   Conserva la clave de al menos32 caracteres: es necesaria para descifrar los
+   checkpoints al recuperar el caso. No la publiques ni la pegues en el chat.
+3. La preparación registra o restaura el caso en una rama de ejecución nueva,
+   `e3-seoi-v5-run-01`, y verifica el primer guardado antes de permitir ajustes.
+4. Ejecuta el apartado 3 para entrenar. Cada trabajo terminado se guarda en
+   GitHub antes del siguiente; también hay respaldos de época si transcurre
+   un minuto desde el último. Un fallo de persistencia detiene nuevos ajustes.
+5. Ejecuta el apartado 4 para evaluar y guardar las tablas; el último apartado
+   muestra el estado y el enlace de resultados en GitHub.
 
-No abras dos runtimes que escriban el mismo caso de Drive. El bloqueo de
-procesos es local a una VM y no es un bloqueo distribuido entre máquinas.
-Cada caso fija software, datos, código y configuración; cambiar cualquiera
-de ellos requiere otra identidad, sin sobrescribir el caso anterior.
+Para reanudar, usa la misma rama, versión y clave. La recuperación verifica
+cifrado, hashes, fuente y plan antes de cargar checkpoints; descarga de nuevo
+el NPZ público por su hash. No sobrescribe otra ejecución o progreso remoto
+más reciente. No abras dos runtimes sobre la misma rama.
+
+Los resultados y recibos son públicos. Pesos, Adam y RNG se guardan como
+un respaldo AES-256-GCM cifrado; los datos brutos se excluyen. El código
+transmite las credenciales al proceso por stdin y las excluye de argumentos,
+variables de entorno del proceso y archivos del caso. Más detalle en
+[GITHUB_STORAGE.md](docs/GITHUB_STORAGE.md).
 
 ## Experimento fijado
 
@@ -66,7 +77,7 @@ no reemplaza automáticamente a la candidata.
 
 Cada ajuste usa AdamW, LR 0,003, batch 32, hasta40 épocas y paciencia 8.
 El presupuesto nominal es120 s activos por ajuste,3600 s para los 30,
-además de instalación, preparación, escritura de checkpoints y evaluación.
+además de instalación, preparación, guardados en GitHub y evaluación.
 Los controles atómicos tienen1262 parámetros y la aditiva1210; no se afirma
 igual capacidad. No se ajustan por separado los hiperparámetros de V5.
 
@@ -81,7 +92,7 @@ no promete un límite duro de tiempo. Se conservan los intentos fallidos.
 
 La referencia histórica V4 consumió54,93 s de fase para20 ajustes en esta
 máquina. Eso **no es una medición de V5 o de Colab**. El máximo nominal del
-piloto es una hora activa CPU; el tiempo real y las escrituras a Drive se
+piloto es una hora activa CPU; el tiempo real y las escrituras a GitHub se
 medirán al ejecutarlo. La primera instalación descarga aproximadamente
 200–350MB. No se cobran recursos GPU por decisión del programa.
 
@@ -96,8 +107,9 @@ La exportación usa una lista permitida y excluye NPZ, pesos, Adam y RNG.
 Las comprobaciones realizadas al preparar este paquete se guardan en `qa/`.
 Se verificaron36pruebas y una instalación CPU limpia descargando las fuentes
 públicas fijadas, seguida de preparación real y repetición idempotente con el
-mismo caso. No se ejecutó entrenamiento. El montaje y las escrituras en el
-Drive de Colab no se presentaron como pruebas ejecutadas en esta máquina.
+mismo caso. No se ejecutó entrenamiento. Esa comprobación histórica corresponde a la revisión original. La revisión
+GitHub añade pruebas de persistencia con transporte simulado; no se inventa
+una autenticación o guardado con credenciales del usuario.
 No se mezclan con entrenamientos, evaluaciones o una reproducción humana.
 Los796trabajos de la aditiva,30 ajustes GPU de V3 y20 CPU de V4 permanecen
 intactos; los resultados adversos anteriores y sus decisiones no cambian.

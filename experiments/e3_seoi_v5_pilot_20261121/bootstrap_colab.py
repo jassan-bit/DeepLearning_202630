@@ -1,7 +1,7 @@
-"""Token-free, hash-bound CPU setup. setup() prepares, never trains.
+"""Hash-bound CPU setup. setup() downloads without a token and never trains.
 
-Call command(settings, 'run') explicitly in a separate cell to start the pilot.
-No GitHub token, Render access, model publication or base-Torch mutation.
+The GitHub bridge takes private credentials through stdin only.
+Training requires an explicit run action. No Render or base-Torch mutation.
 """
 from __future__ import annotations
 from datetime import datetime, timezone
@@ -126,7 +126,7 @@ def cpu_environment():
 
 
 def setup(*, source_commit, manifest_sha256, case_root,
-          cache_root="/content/e3-seoi-v5-cache", install_runtime=True):
+          cache_root="/content/e3-seoi-v5-cache", install_runtime=True, prepare_case=True):
     """Download/check code/data, isolate CPU packages, prepare a case. Zero fits."""
     require((3, 11) <= sys.version_info[:2] <= (3, 13), "Use a Python3.11–3.13 Colab runtime")
     case = Path(case_root).expanduser().absolute()
@@ -165,6 +165,16 @@ def setup(*, source_commit, manifest_sha256, case_root,
                    cwd=source, env=cpu_environment(), check=True)
     case.parent.mkdir(parents=True, exist_ok=True)
     require(not case.is_symlink(), "Case symlink refused")
+    if not prepare_case:
+        data_file = cache / "data/current_cohort_arrays.npz"
+        if data_file.exists():
+            require(not data_file.is_symlink() and sha(data_file.read_bytes()) == NPZ_SHA256,
+                    "Cached pinned input changed; do not overwrite")
+        else:
+            emit("Verificando los datos antes de restaurar o preparar el caso de GitHub")
+            atomic_bytes(data_file, download(NPZ_URL, NPZ_SHA256, max_bytes=460090))
+        return {"python": str(python), "source_root": str(source), "case_root": str(case),
+                "data_file": str(data_file)}
     if case.exists():
         require((case / "prepared.json").is_file(), "Existing case lacks its prepared receipt; preserve it and use a fresh case name")
         settings = {"python": str(python), "source_root": str(source), "case_root": str(case)}
@@ -188,3 +198,23 @@ def command(settings, subcommand, *extra):
     return subprocess.run([settings["python"], "-m", "seoi_v5.runner", subcommand,
                            "--case-root", settings["case_root"], *extra],
                           cwd=settings["source_root"], env=cpu_environment(), check=True)
+
+
+def github_command(settings, action, *, source_commit, token, backup_secret,
+                   repository="jassan-bit/DeepLearning_202630", branch="e3-seoi-v5-run-01",
+                   prefix="runs/e3_seoi_v5/run-01", output=None):
+    """Pass secrets through stdin only; never source files, arguments or output."""
+    require(action in ("setup", "run", "assess", "status", "export"), "Unknown GitHub pilot action")
+    args = [settings["python"], "-m", "seoi_v5.github_controller", "--source-root", settings["source_root"],
+            "--case-root", settings["case_root"], "--source-commit", source_commit,
+            "--repository", repository, "--branch", branch, "--prefix", prefix]
+    if settings.get("data_file"):
+        args.extend(["--data-file", settings["data_file"]])
+    if output is not None:
+        args.extend(["--output", str(output)])
+    args.append(action)
+    child_env = cpu_environment()
+    for key in ("GITHUB_TOKEN", "GH_TOKEN", "E3_V5_BACKUP_KEY"):
+        child_env.pop(key, None)
+    return subprocess.run(args, input=json.dumps({"token": token, "backup_secret": backup_secret}),
+                          text=True, cwd=settings["source_root"], env=child_env, check=True)
