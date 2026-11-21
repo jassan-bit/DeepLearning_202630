@@ -104,12 +104,12 @@ inventario de checkpoints, fallos y `pilot_result.json` con la decisión.
 Las1760 filas previstas son1650 predicciones neuronales y110 analíticas.
 La exportación usa una lista permitida y excluye NPZ, pesos, Adam y RNG.
 
-Las comprobaciones realizadas al preparar este paquete se guardan en `qa/`.
-Se verificaron36pruebas y una instalación CPU limpia descargando las fuentes
-públicas fijadas, seguida de preparación real y repetición idempotente con el
-mismo caso. No se ejecutó entrenamiento. Esa comprobación histórica corresponde a la revisión original. La revisión
-GitHub añade pruebas de persistencia con transporte simulado; no se inventa
-una autenticación o guardado con credenciales del usuario.
+Las comprobaciones se guardan en `qa/`. La revisión GitHub aprobó **78 pruebas**
+con cifrado real y transporte GitHub simulado. También se verificó la descarga
+pública de fuentes y datos y una instalación CPU limpia con
+`cryptography 46.0.3`; la preparación dejó el destino listo para restaurar,
+sin montar Drive y sin entrenar. El primer guardado con el token del autor
+se verifica al ejecutar el apartado 2 del notebook, antes de permitir ajustes.
 No se mezclan con entrenamientos, evaluaciones o una reproducción humana.
 Los796trabajos de la aditiva,30 ajustes GPU de V3 y20 CPU de V4 permanecen
 intactos; los resultados adversos anteriores y sus decisiones no cambian.
