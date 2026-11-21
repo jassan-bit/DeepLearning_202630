@@ -2,6 +2,8 @@
 
 **Jassan Arteta · Deep Learning 2026-30**
 
+**Corte actual, 21 de noviembre de 2026:** se decide **CONTINUAR la preparación** de la candidata propia `input-only-overlap-mse-1`, tras una revisión técnica de R1 favorable y acotada, sin aceptación docente ni R3 acreditada. La identidad queda congelada; el protocolo confirmatorio permanece **DRAFT**. La señal procede de desarrollo ya expuesto y selección posterior a resultados. V5 completo conserva **`ABANDON_CURRENT_SEOI_RECIPE`**. Véanse {ref}`el mecanismo y su dictamen <e3-input-only-mechanism-20261121>`, {ref}`la auditoría recalculada <e3-input-only-audit-20261121>` y {ref}`el cierre y la entrega al autor <e3-input-only-conclusions-20261121>`. El {download}`notebook de preparación <_static/e3_input_only_candidate_20261121/preparation_colab.ipynb>` verifica y prepara archivos; no entrena ni abre una prueba reservada. [Abrir preparación en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/8a704fe3ca3fb67c06256fbde5d0b8d830594329/experiments/e3_input_only_candidate_20261121/preparation_colab.ipynb).
+
 El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guía**, con el desarrollo disponible hasta ahora. La navegación principal reúne los bloques A–G, diseño, evaluación, entrega, sustentación, integridad y conclusiones. Las ampliaciones se integran en esos capítulos; los anexos A–G reúnen plantillas y detalle técnico de apoyo, junto con referencias y trazabilidad. El último anexo conserva reproducibilidad, autoría y bibliografía.
 
 | Sección | Contenido |

@@ -1,0 +1,257 @@
+{
+  "kind": "specific_input_only_mse_independent_AI_R1_review",
+  "review_date_utc": "2026-11-21",
+  "review_completed_at_utc": "2026-11-21 22:20:33 UTC",
+  "reviewer": "Separately assigned AI technical reviewer /root/input_only_dossier/r1_adversarial",
+  "AI_assistance_declared": true,
+  "human_signature_or_institutional_acceptance_claimed": false,
+  "review_scope": "Code, guide interpretation, inherited V3 dossier and two newly repeated exact lexical searches. No new fit, forecasting inference or statistical resampling.",
+  "reviewed_inputs": [
+    {
+      "path": "/workspace/e3_seoi_v5_pilot_20261121/seoi_v5/model.py",
+      "sha256": "215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855"
+    },
+    {
+      "path": "/workspace/e3_seoi_v5_pilot_20261121/seoi_v5/data.py",
+      "sha256": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432"
+    },
+    {
+      "path": "/workspace/work/e3_inicio/guia_e3.txt",
+      "sha256": "4c7555c4e3ae39e0f940d3cf802fd421e3576faf7ea4d3231bf5223242f81004"
+    },
+    {
+      "path": "/workspace/e3_r1_substantive_delivery/independent_review/technical_verdict.json",
+      "sha256": "fc1c467f1a01687118017d07a045f29ec74cdc76d008bc21fcde0385000f5d1e"
+    }
+  ],
+  "decision": "CONTINUAR",
+  "decision_meaning": "Continue as a separately identified candidate for planning future independent confirmation. This is an explicit bounded R1 technical recommendation for the complete model, not automatic promotion of the V5 ablation, teacher acceptance, R2 human-defense accreditation or R3 accreditation.",
+  "R1_technical_support": {
+    "substantive_adaptation_supported": true,
+    "not_based_on_normalization_alone": true,
+    "not_based_on_removing_CRPS": true,
+    "not_based_on_best_pilot_rank": true,
+    "reason": "The complete candidate retains the task-specific nonlinear readout over a learned ordered finite magnitude parameterization: T_A(u)=sqrt(A+(6/49)u^2) is applied to each atom before weighting. A is computed from six known returns. Relative to the examined generic normalization, neural conditional-density, distributional-RL and direct-volatility forecasting antecedents this changes the propagation/readout of a different response variable and retains known overlap geometry. Under guide section 6, a difference in mechanism OR loss OR training can substantiate R1; removing the auxiliary loss does not erase the structural difference. The new local normalization is an attributed inductive restriction, not a standalone novelty claim.",
+    "guide_scope": [
+      "Section 6, printed pp.7-8",
+      "Section 6.1, printed p.8",
+      "Section 6.2, printed pp.9-11",
+      "Section 6.3, printed p.12",
+      "Section 14.5.1, printed pp.43-44",
+      "Section 15, printed p.48"
+    ],
+    "strongest_objection": "Relative to global_mse or the internal atom_mse_only control, input_only_mse changes only the feature normalization. Section 6.1 expressly excludes only-preprocessing transfer as a sufficient contribution.",
+    "response_to_objection": "That objection defeats a claim that the incremental input normalization itself is a substantive new mechanism. It does not require discarding the complete candidate, because R1 compares the complete model against prior scientific work for the same phenomenon and task, and does not require reinvention of the project's own central readout at every variant. The inherited structural adaptation must be attributed to V3 and assessed again for the actual MSE-only candidate; the old V3 favorable verdict is not itself the new verdict.",
+    "remaining_claim_boundary": "The inspected sources and searches did not establish an exact same-task antecedent for this complete chain. This is a bounded, revisable literature judgment and no proof of world-wide absence. The two searches below supplement the main dossier's primary comparisons; they do not independently satisfy the whole three-base review requirement."
+  },
+  "mechanism_limits": [
+    "Input-only is not reversible normalization at the output; no local scale factor multiplies its atoms.",
+    "At fixed weights and fit references, and with inactive scale floor before and after l'=b+k*l, k>0, the local price representation is invariant. Volume is held fixed. A becomes k^2*A, while the atoms and masses remain fixed.",
+    "Thus output equivariance of full V5 is lost. For k>1 and positive atoms, sum p*sqrt(k^2*A+c*u^2) < k*sum p*sqrt(A+c*u^2). For A=0 output is unchanged, not multiplied by k. This is a structural limitation of input-only, not empirical evidence of failure.",
+    "Support mu>=sqrt(A) and exact expectation under the implemented finite law remain valid in real arithmetic. The floating maximum guard is a numerical protection.",
+    "MSE identifies only the transformed mean functional. It does not identify a true conditional U distribution, unique masses/atoms or calibrated uncertainty. The finite law should be called a latent surrogate parameterization unless separately validated.",
+    "The floor breaks representation invariance when it becomes active under fixed physical fit reference. A transformation of all fit references would be a different claim."
+  ],
+  "attribution_and_AI": [
+    "DAIN and RevIN are established normalization antecedents, including financial/cryptocurrency uses found in these searches; no novelty of normalization in finance is claimed.",
+    "The overlapping-volatility identity and finite-law architecture are inherited from the project's own V3 and attributed. No source code from the discovered papers was copied or executed in this review.",
+    "New search responses were reviewed as indexed results/extracts. They are not represented as fresh complete primary-paper readings or native Scopus/IEEE/arXiv database queries.",
+    "Guide Section 15 requires disclosure and student responsibility to understand and defend every line. This separately assigned AI concept uses the already documented authorized AI review modality; it supplies no student signature or live-defense evidence."
+  ],
+  "search_findings": [
+    {
+      "query_index": 0,
+      "finding": "DAIN primary and derivative records explicitly concern adaptive input normalization, financial time series and limit-order books. This rules out claiming input normalization or adapting it to finance as new. The inspected indexed material does not establish the exact observed-overlap finite-law readout."
+    },
+    {
+      "query_index": 1,
+      "finding": "Results include ChanFormer, CryptoL, Bitcoin Time-LLM and HRformer among other financial RevIN uses. They defeat any assertion that RevIN has not been applied to Bitcoin/finance. Their visible extracts do not establish this candidate's exact sigma7 overlap chain. CryptoL was flagged to the main reviewer as a close 2026 antecedent requiring its own primary comparison."
+    }
+  ],
+  "search_receipts": [
+    {
+      "query": "\"Deep Adaptive Input Normalization\" \"volatility\"",
+      "tool": "mcp__codex_apps__search_service_web_run",
+      "query_mode": "one exact lexical query in a separate tool request",
+      "date_utc": "2026-11-21",
+      "visible_response_entries": 18,
+      "native_database_total_hits_reported": false,
+      "entries": [
+        {
+          "title": "Deep Adaptive Input Normalization for Time Series Forecasting",
+          "url": "https://openreview.net/pdf/29fdb1363c9f934a952b06b99a144f11bdc909f9.pdf",
+          "response_reference": "turn222search12"
+        },
+        {
+          "title": "Deep Adaptive Input Normalization for Time Series Forecasting",
+          "url": "https://ideas.repec.org/p/arx/papers/1902.07892.html",
+          "response_reference": "turn222search0"
+        },
+        {
+          "title": "Deep Adaptive Input Normalization for Time Series Forecasting",
+          "url": "https://www.alphaxiv.org/abs/1902.07892",
+          "response_reference": "turn222search1"
+        },
+        {
+          "title": "Real-time change-point detection and impact quantification for smart-grid PMU cybersecurity",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0378779626006371",
+          "response_reference": "turn222search2"
+        },
+        {
+          "title": "If scales are not similar for different values, then higher values will have a high contribution to output. So, to bring all values to a common scale we need to normalize data. Proper normalization of input data before training has advantages:",
+          "url": "https://ceur-ws.org/Vol-3269/PAPER_08.pdf",
+          "response_reference": "turn222search13"
+        },
+        {
+          "title": "Deep Adaptive Input Normalization for Price Forecasting using Limit Order Book Data",
+          "url": "https://www.researchgate.net/publication/331273826_Deep_Adaptive_Input_Normalization_for_Price_Forecasting_using_Limit_Order_Book_Data",
+          "response_reference": "turn222search3"
+        },
+        {
+          "title": "Rankless | Juho Kanniainen",
+          "url": "https://www.rankless.org/authors/juho-kanniainen",
+          "response_reference": "turn222search4"
+        },
+        {
+          "title": "Lob-based deep learning models for stock price trend prediction: a benchmark study",
+          "url": "https://doi.org/10.1007/s10462-024-10715-4?urlappend=%3Futm_source%3Dresearchgate.net%26utm_medium%3Darticle",
+          "response_reference": "turn222search5"
+        },
+        {
+          "title": "A comprehensive survey of deep learning for time series forecasting: architectural diversity and open challenges",
+          "url": "https://doi.org/10.1007/s10462-025-11223-9?urlappend=%3Futm_source%3Dresearchgate.net%26utm_medium%3Darticle",
+          "response_reference": "turn222search6"
+        },
+        {
+          "title": "Deep Adaptive Input Normalization for Time Series Forecasting | alphaXiv",
+          "url": "https://www.alphaxiv.org/gu/abs/1902.07892",
+          "response_reference": "turn222search7"
+        },
+        {
+          "title": "nep-for 2019-02-25 papers",
+          "url": "https://nep.repec.org/nep-for/2019-02-25",
+          "response_reference": "turn222search8"
+        },
+        {
+          "title": "Alexandros Iosifidis - Finance",
+          "url": "https://sites.google.com/view/iosifidis/research/finance",
+          "response_reference": "turn222search9"
+        },
+        {
+          "title": "Deep Adaptive Input Normalization for Time Series Forecasting | alphaXiv",
+          "url": "https://www.alphaxiv.org/vi/abs/1902.07892",
+          "response_reference": "turn222search10"
+        },
+        {
+          "title": "Real-time change-point detection and impact quantification for smart-grid PMU cybersecurity",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0378779626006371",
+          "response_reference": "turn222search11"
+        },
+        {
+          "title": "JURIKOM (Jurnal Riset Komputer), Vol. 13 No. 3, Juni 2026",
+          "url": "https://ejurnal.stmik-budidarma.ac.id/index.php/jurikom/article/download/9798/4498",
+          "response_reference": "turn222search14"
+        },
+        {
+          "title": "Received: 28 October 2022",
+          "url": "https://pure.au.dk/portal/files/405165336/Journal_of_Forecasting_-_2023_-_Magris_-_Bayesian_bilinear_neural_network_for_predicting_the_mid_price_dynamics_in.pdf",
+          "response_reference": "turn222search15"
+        },
+        {
+          "title": "TUNI_magris_aineistoja1.pdf",
+          "url": "https://trepo.tuni.fi/bitstream/handle/10024/116373/978-952-03-1196-4.pdf?isAllowed=y&sequence=2",
+          "response_reference": "turn222search16"
+        },
+        {
+          "title": "Bayesian bilinear neural network for predicting the mid‐price dynamics in limit‐order book markets",
+          "url": "https://arts.units.it/retrieve/972a3b14-1d33-4f3c-8b05-64e999098421/Magris%20-%20Bayesian%20bilinear%20neural%20network%20for%20predicting%20the%20mid%E2%80%90price%20dynamics%20in.pdf",
+          "response_reference": "turn222search17"
+        }
+      ]
+    },
+    {
+      "query": "\"Reversible Instance Normalization\" \"volatility\" \"Bitcoin\"",
+      "tool": "mcp__codex_apps__search_service_web_run",
+      "query_mode": "one exact lexical query in a separate tool request",
+      "date_utc": "2026-11-21",
+      "visible_response_entries": 14,
+      "native_database_total_hits_reported": false,
+      "entries": [
+        {
+          "title": "ChanFormer: An encoder-only channel-wise transformer for multi-asset financial time series forecasting",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0045790626003988",
+          "response_reference": "turn223search0"
+        },
+        {
+          "title": "A multi-stock market trend prediction model based on exponential decomposition and dual-stream networks",
+          "url": "https://link.springer.com/article/10.1007/s44443-026-00551-7",
+          "response_reference": "turn223search1"
+        },
+        {
+          "title": "Time series prediction for cryptocurrency markets with transformer and parallel convolutional neural networks",
+          "url": "https://www.sciencedirect.com/science/article/pii/S156849462500540X",
+          "response_reference": "turn223search2"
+        },
+        {
+          "title": "RISS 검색 - 학위논문",
+          "url": "https://riss.kr/search/Search.do?colName=bib_t&isDetailSearch=Y&queryText=znCreator%2C%EA%B0%95%EA%B2%BD%EB%AC%B8&searchGubun=true",
+          "response_reference": "turn223search3"
+        },
+        {
+          "title": "CryptoL: Towards Scale Dominance and Physics Constraints Mitigation in Financial Multivariate Time Series Forecasting",
+          "url": "https://www.alphaxiv.org/abs/2609.11206",
+          "response_reference": "turn223search4"
+        },
+        {
+          "title": "A two-stage learning architecture for reliable financial time series forecasting",
+          "url": "https://t.co/BDMHE8dEpA",
+          "response_reference": "turn223search5"
+        },
+        {
+          "title": "tensorlink-dev/SN50-Hybrid-Hub · Hugging Face",
+          "url": "https://huggingface.co/tensorlink-dev/SN50-Hybrid-Hub",
+          "response_reference": "turn223search6"
+        },
+        {
+          "title": "HRformer: A Hybrid Relational Transformer for Stock Time Series Forecasting",
+          "url": "https://doi.org/10.3390/electronics14224459?urlappend=%3Futm_source%3Dresearchgate.net%26utm_medium%3Darticle",
+          "response_reference": "turn223search7"
+        },
+        {
+          "title": "Enhancing large language models for bitcoin time series forecasting",
+          "url": "https://dspace.stir.ac.uk/retrieve/e510fcf8-f4c7-49cb-95b2-7a27dd1ec71f/Chaffard-et-al.pdf",
+          "response_reference": "turn223search12"
+        },
+        {
+          "title": "TFEformer: Temporal Feature Enhanced Transformer for Multivariate Time Series Forecasting",
+          "url": "https://www.researchgate.net/publication/384964760_TFEformer_Temporal_Feature_Enhanced_Transformer_for_Multivariate_Time_Series_Forecasting",
+          "response_reference": "turn223search8"
+        },
+        {
+          "title": "A multi-stock market trend prediction model based on exponential decomposition and dual-stream networks",
+          "url": "https://www.researchgate.net/publication/410736983_A_multi-stock_market_trend_prediction_model_based_on_exponential_decomposition_and_dual-stream_networks",
+          "response_reference": "turn223search9"
+        },
+        {
+          "title": "DecoKAN: Utenganishaji Unaoweza Kufasirika kwa Utabiri wa Mienendo ya Soko la Cryptocurrency",
+          "url": "https://www.verianla.com.tr/sw/decokan-utenganishaji-unaoweza-kufasirika-kwa-utabiri-wa-mienendo-ya-soko-la-cryptocurrency",
+          "response_reference": "turn223search10"
+        },
+        {
+          "title": "Daily Papers - Hugging Face",
+          "url": "https://huggingface.co/papers?q=APE+RMSE",
+          "response_reference": "turn223search11"
+        },
+        {
+          "title": "[20] Guanhao Feng, Stefano Giglio, and Dacheng Xiu. Taming the factor zoo: A test of new factors. *The Journal of Finance*, 75(3):1327–1370, 2020.",
+          "url": "https://openreview.net/pdf/72d36a13499c3a444ae294f75de20a8e061bc9ef.pdf",
+          "response_reference": "turn223search13"
+        }
+      ]
+    }
+  ],
+  "new_model_fits": 0,
+  "new_forecasting_predictions": 0,
+  "new_statistical_resamples": 0,
+  "repository_or_book_edits": 0
+}

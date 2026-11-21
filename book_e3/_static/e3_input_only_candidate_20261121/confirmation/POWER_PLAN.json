@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "kind": "PROSPECTIVE_POWER_AND_METHOD_VALIDATION_PLAN",
+  "AI_assistance_declared": true,
+  "status": "DRAFT_NOT_EXECUTED_NOT_DIMENSIONED",
+  "chosen_planning_route": "CONDITIONAL_CALENDAR_PAIRED_SEED_ROUTE_B",
+  "new_market_fits": 0,
+  "new_model_predictions": 0,
+  "new_MC_replicates": 0,
+  "new_statistical_resamples": 0,
+  "final_R": null,
+  "final_T_by_panel": null,
+  "final_B": null,
+  "power_per_contrast": null,
+  "joint_power": null,
+  "required_minimum_power_per_contrast": 0.9,
+  "required_joint_power_report": true,
+  "universal_joint_power_minimum": null,
+  "minimum_seed_count_by_guide": 10,
+  "discreteness_only_lower_bound_no_ties": 13,
+  "source_pilot_limit": "V5 supplies 5 seeds, only its own six recipes and 55 exposed dates; it cannot supply 20-rival covariance or 4-panel market power. Selection was post-hoc.",
+  "planning_pilot": {
+    "stage": "permitted future development planning, not run in this task",
+    "minimum_seeds": 5,
+    "systems_per_panel": 21,
+    "panels": 4,
+    "minimum_development_fit_units_if_all_systems_fitted_once": 420,
+    "count_caveat": "420 is21x4x5 opportunity slots, not420 required neural fits. There are16 neural systems including candidate, so a5-seed reference is320 neural fits, plus4 ARIMA fits under a deterministic shared-fit policy and16 analytic trajectories. Tuning/SAE subphases and failures are counted separately. Actual policy must be frozen.",
+    "required_inputs": [
+      "all seed-paired RMSE and MAE for candidate and all 20 rivals",
+      "full joint vector of D_s and W_s across rivals and panels with common seed IDs",
+      "per-endpoint errors to audit fixed-calendar robustness and date/regime influence",
+      "seed-distribution symmetry/normality/tail diagnostics treated as evidence, not proof",
+      "selection/validation/planning separation and complete failure/cost/attempt logs",
+      "T sensitivity on development blocks chosen before losses; no reuse as final reserve"
+    ],
+    "no_circular_gate": "The planning pilot does not need final power before producing its variance/covariance inputs. Its own data/budget/source registration precedes it.",
+    "seed_selection": "new random independent seed IDs sampled and source-bound before fits; no removal by bad performance; deterministic algorithms stored once by reference"
+  },
+  "analytic_screen": {
+    "formula": "R_approx=((z_(1-alpha_prime/2)+z_.90)*sigma_V/theta_alt_V)^2 for V=D or W",
+    "alpha_prime": "0.05/120 conservative first-Holm screen",
+    "note": "Only an initial normal approximation. theta_alt_W must be strictly >0; gain exactly2% is the practical-null boundary and cannot be a90%-power alternative. For W use variance of .98*RMSE_rival-RMSE_candidate, not variance of D copied blindly.",
+    "planning_alternative_gain_by_panel_and_rival": null,
+    "sigma_and_covariance": null,
+    "R_screen": null
+  },
+  "exact_p_resolution": {
+    "Wilcoxon_min_two_sided_no_ties": "2^(1-R)",
+    "first_Holm_threshold": 0.0004166666666666667,
+    "minimum_effective_nonzero_R_for_first_threshold": 13,
+    "bootstrap_min_p": "1/(B+1)",
+    "B_integer_necessary_minimum_for_strict_first_threshold": 2400,
+    "tail_precision_rule_proposal": "Choose B so expected tail exceedances at alpha/120 are at least100 (B>=240000) or derive an exact Monte Carlo confidence decision rule with its own error allocation. A minimal attainable p is not sufficient tail calibration.",
+    "B_final": null,
+    "common_resampling": "same paired-seed resampling indices across all model vectors; reproducible stream and no dropping failed or zero-SE draws",
+    "interpretation": "13 is the conservative effective nonzero seed count to cross the first/Bonferroni120 threshold with an exact bilateral Wilcoxon without ties. Some full Holm orderings may allow fewer; this does not establish power or authorize R=10."
+  },
+  "method_validation": {
+    "status": "NOT_EXECUTED; final executable method hashes and feasibility timing required before any new random validation",
+    "not_inherited": "Prior crossed RMSE validation failures remain; this different conditional method needs its own pre-execution anchor. Prior tolerances .08/.13 are not approval criteria.",
+    "deterministic_guards": [
+      "D/W algebra and relative ratio-of-means equivalence",
+      "analytic paired t fixtures and negative-direction handling",
+      "enumerated signed-rank exact p with zeros and equal absolute ranks; no silent scipy method auto-switch",
+      "bootstrap plus-one p, >= ties, exact order statistic and closed-CI inversion on boundary fixtures",
+      "zero SE, deterministic rival, all-zero D/W, invalid covariance and unsupported assumptions retain slots and return no success",
+      "Holm 120 correctness under arbitrary rival dependence; no missing-slot shrinkage",
+      "complete model/seed/date IDs and one-time export/idempotent evaluator checks",
+      "negative signed D fixture retains small bilateral raw p while positive-direction decision p=1; separate180-slot Holm inferiority family detects the adverse additional-panel result"
+    ],
+    "DGP_cases": [
+      {
+        "id": "symmetric_complete_null",
+        "purpose": "all EPA mean/shift nulls, bounded symmetric paired differences and common positive base risks; verify exact null truths analytically"
+      },
+      {
+        "id": "practical_boundary",
+        "purpose": "W shift/mean exactly0, EPA may be favorable. Validate margin-null false superiority separately."
+      },
+      {
+        "id": "partial_nulls",
+        "purpose": "mixtures of true EPA nulls, true practical nulls and alternatives, with different true-null components per rival; require strong family control"
+      },
+      {
+        "id": "dependent_rival_vector",
+        "purpose": "common seed factor, rival correlations 0,.5,.9 and heterogeneous scales; pairing and Holm tested"
+      },
+      {
+        "id": "symmetric_heavy_tail",
+        "purpose": "symmetric t-like finite-variance/high-moment distributions within supported assumptions, plus explicit outside-moment stress as unsupported rather than pass"
+      },
+      {
+        "id": "asymmetry_and_rare_outlier",
+        "purpose": "mean0 but nonzero signed-rank location, skewed mixtures and rare extremes. Demonstrate no mean inference from Wilcoxon when symmetry fails; no R3 success in unsupported scope"
+      },
+      {
+        "id": "deterministic_and_nearzero",
+        "purpose": "deterministic controls, vanishing variance and positive risks near0; invalid studentizers are failures, never certain victories"
+      },
+      {
+        "id": "positive_alternatives",
+        "purpose": "whole-decision power under gain>2%, realistic covariance, and weakest-rival bottleneck; not market certification from synthetic effect choices"
+      }
+    ],
+    "truth_oracles": "Derive mean, relative gain and signed-rank/symmetric shift separately before draws. Generate nonnegative RMSE arrays; do not call arbitrary Gaussian losses feasible without a positive-risk construction. Full family matches20 rivals/120 slots.",
+    "R_grid_for_method_research_proposal": [
+      10,
+      13,
+      20,
+      30,
+      50,
+      80,
+      120,
+      200
+    ],
+    "T_role": "Conditional seed tests treat T fixed. T is varied only in development planning to assess calendar and effect stability; it is not an iid multiplier for seed power.",
+    "null_MC_replicates_per_case_proposal": 10000,
+    "alternative_MC_replicates_per_design_proposal": 5000,
+    "counts_status": "PROPOSED_CEILINGS_SUBJECT_TO_DETERMINISTIC_FEASIBILITY_AND_PUBLIC_FINAL_ANCHOR; not executed or sufficient by assertion",
+    "endpoints": [
+      "any false component rejection in 120 slots",
+      "any false rival declared successful under all6 components and effect/CI conditions",
+      "all-rival R3 statistical-core false success under full/partial nulls",
+      "marginal and simultaneous CI coverage for D and relative gain",
+      "all three-method success and worst-procedure p distribution",
+      "unsupported/degenerate/failure rate, no discarded draws",
+      "per-rival full-core power and all-rival joint power",
+      "full four-panel decision power reported separately from one-panel core",
+      "additional inferiority screen:180 negative-direction D slots; retain raw bilateral p and count false/missed adverse flags separately from positive-direction primary success"
+    ],
+    "MC_uncertainty": "Exact binomial Clopper-Pearson intervals for event rates; simultaneous intervals across prespecified case/endpoints with explicit Bonferroni allocation. MC standard errors and completed counts included.",
+    "nominal_alpha": 0.05,
+    "calibration_rule": "No finite MC sample proves exact nominal level. Before final random validation fix an admissible finite-design tolerance and its scientific justification, then require simultaneous upper bounds within that tolerance and report discrepancy from .05. Do not inherit old exploratory .08/.13 or widen after outcomes. Without this decision/derivation, validation is not ready.",
+    "unresolved_final_validation_inputs": [
+      "final code/DGP/truth-oracle hashes",
+      "supported moment and symmetry scope and planning diagnostics thresholds",
+      "finite-design calibration tolerance and MC endpoint count/error allocation",
+      "feasible B/R grid and exact time/storage ceiling",
+      "pre-execution public anchor"
+    ],
+    "failure_policy": "Any source change, support failure within the claimed regular scope, missing case or resource stop is incomplete/fail. No same-protocol top-up after seeing rates; revised method gets a new version/anchor."
+  },
+  "market_design_search": {
+    "R_candidates": "start at max(10, exact-test effective n lower bound, analytic screen); increase until full-contrast criterion passes or resource ceiling makes it infeasible; no final upper bound invented",
+    "T_candidates": "predeclared development-only calendar lengths with adequate raw supports; no final T chosen on reserved-test gains",
+    "criterion": "For every rival, estimate probability that all6 Holm tests, direction, practical/effect/CI requirements pass jointly; require the simultaneous lower MC confidence bound >=.90 at the agreed planning alternative. Report per-panel power and extra-panel consistency power separately.",
+    "uncertainty": "Use a conservative, predeclared set of nuisance variances/correlations/tails from development rather than a single optimistic plug-in; report pilot uncertainty and range. Five pairs are a minimum input, not guaranteed stable covariance.",
+    "joint": "Measure all-rival conjunction using joint samples; do not multiply marginal probabilities under an unverified independence assumption. Report full four-panel/adequacy-conditional joint power distinctly; failure to model adequacy prevents claiming full-R3 power.",
+    "output_required": [
+      "chosenR",
+      "chosenT_by_panel",
+      "chosenB",
+      "seed_ids",
+      "planning_alternative_vector",
+      "covariance_and_uncertainty",
+      "effect_size_and_MDE",
+      "power_per_contrast_withCI",
+      "joint_power_withCI",
+      "full_rule_scope_and_unmodeled_conditions",
+      "fit_count",
+      "time_storage_money_budget",
+      "public_input_hashes"
+    ],
+    "if_infeasible": "Increase R/T within declared resources before final protocol, revise development design prospectively, or retain infeasible/inconclusive result. Never shrink the rival family or pretend 10 seeds suffice.",
+    "inferiority_screen": "Include the declared180-slot additional-panel negative-direction D family in full four-panel decision power/error accounting; do not infer noninferiority from no rejection."
+  },
+  "reference_budget_not_final": {
+    "R_reference": 10,
+    "panels": 4,
+    "neural_systems": 16,
+    "neural_fit_slots": 640,
+    "ARIMA_fit_reference": 4,
+    "analytic_trajectories_reference": 16,
+    "nominal_neural_fit_seconds_reference": 120,
+    "nominal_neural_seconds": 76800,
+    "nominal_neural_hours": 21.333333333333332,
+    "scope": "A root-requested arithmetic illustration only, not final R, achieved fit time, enough power, or cost estimate. R=10 is insufficient for the worst exact Wilcoxon/Holm120 threshold under the proposed full family. Excludes tuning, failed attempts/recovery, SAE phases beyond the allowed system budget, ARIMA, inference/export/storage and Colab interruptions.",
+    "money": null,
+    "second_reference": {
+      "R_reference": 13,
+      "neural_fit_slots": 832,
+      "nominal_neural_seconds": 99840,
+      "nominal_neural_hours": 27.733333333333334,
+      "scope": "Same nominal120-second arithmetic; excludes all additional overheads and has no measured success, final budget or adequate-power claim."
+    }
+  },
+  "final_seed_bank": {
+    "path": "FINAL_SEED_BANK.json",
+    "sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+    "selection_rule": "first R entries; determine R before final execution; no outcome-based replacement",
+    "effective_independence_is_assumption": true
+  },
+  "final_seed_selection": {
+    "bank_path": "confirmation/FINAL_SEED_BANK.json",
+    "bank_sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+    "rule": "first R archived independent random IDs, R frozen after power planning and before test release",
+    "bank_capacity": 4096,
+    "larger_R": "prepare a new prospective bank/protocol before any test release; do not recycle IDs"
+  }
+}
