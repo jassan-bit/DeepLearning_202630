@@ -108,7 +108,7 @@ Se conservaron los dieciséis rivales fijados en el borrador:
 | Clásicos deterministas | Persistence, SeasonalNaive, ARIMA |
 
 ```{csv-table} Comparación ampliada sobre las mismas 608 fechas
-:file: ../_static/e3_revision_bloque_d_20261117/metrics_extended_table.csv
+:file: ../_static/e3_table_intervals_20261121/metrics_extended_table.csv
 :header-rows: 1
 ```
 
@@ -121,7 +121,9 @@ $$ (eq-e3-smape-rsquared)
 
 con contribución cero cuando ambos valores de un término sMAPE son cero. La media de R² no es el R² de un ensamble. E3 obtiene sMAPE **11,0977 %** y R² medio **0,911779** en este calendario. La [tabla abreviada del corte estadístico](../_static/e3_estadistica_posterior_20261117/ranking_table.csv) conserva sus bytes; el suplemento amplía métricas descriptivas y no cambia sus p-valores.
 
-La cobertura y anchura de E2 se reconstruyen exclusivamente con los cuantiles residuales **ya congelados** de cada predictor, mediante $[\max(0,\widehat y-q),\widehat y+q]$; no se ajustó un nuevo calibrador con prueba. Son medias de las coberturas y anchuras individuales, no de un intervalo de ensamble. **La campaña original E3 no produjo un cuantil ni intervalo calibrado**, por lo que sus dos campos permanecen ausentes en esta tabla histórica y en el servicio. El suplemento separado **8.11** sí calcula diez cuantiles posteriores; no reescribe estos campos o el protocolo anterior. La DE entre semillas no rellena esas casillas y el nominal 90 % no constituye garantía individual bajo dependencia o cambio temporal.
+La cobertura y anchura de E2 se reconstruyen exclusivamente con los cuantiles residuales **ya congelados** de cada predictor, mediante $[\max(0,\widehat y-q),\widehat y+q]$; no se ajustó un nuevo calibrador con prueba. Son medias de las coberturas y anchuras individuales, no de un intervalo de ensamble. **La fila E3 incorpora los intervalos del suplemento retrospectivo de 8.11:** cobertura media **94,490 %** y anchura media **0,010963444 σ₇**, sobre las mismas 608 fechas y las diez semillas 271801–271810. Cada predictor usa su propio cuantil de rango 49, calculado sobre 53 ventanas separadas de calibración; se reutilizan las 6080 predicciones puntuales guardadas, sin entrenar, volver a predecir o recalibrar en esta actualización. Estos intervalos se calcularon después de la campaña original y sobre una evaluación ya conocida: su incorporación es descriptiva y no convierte el análisis en confirmación prospectiva. La DE entre semillas caracteriza la dispersión de los ajustes; el nominal 90 % no constituye una garantía individual bajo dependencia o cambio temporal.
+
+La {download}`tabla histórica del 17 de noviembre <../_static/e3_revision_bloque_d_20261117/metrics_extended_table.csv>` conserva sus bytes y sus dos campos ausentes de aquel corte. El {download}`CSV actualizado de esta tabla <../_static/e3_table_intervals_20261121/metrics_extended_table.csv>` completa exclusivamente esas dos celdas a partir de las {download}`métricas posteriores por semilla <../_static/e3_remediacion_20261118/calibration/results/per_seed_intervals.csv>`; su {download}`recibo de procedencia <../_static/e3_table_intervals_20261121/provenance.json>` registra valores, agregación y hashes. Son medias de diez predictores; el intervalo del representante servido 271801 conserva sus métricas individuales y su versión, como se explica en 8.11 y en el capítulo 9.
 
 ```{figure} ../_static/e3_estadistica_posterior_20261117/ranking_rmse.svg
 :alt: Los diecisiete sistemas ordenados por RMSE medio; las redes incluyen su desviación estándar entre diez semillas.
