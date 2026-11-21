@@ -9,6 +9,9 @@ on:
       - 'experiments/procedencia.md'
       - 'book_e3/_static/e3_evidence_close_20261120/**'
       - '.github/workflows/verify-e3-existing-evidence-close.yml'
+      - 'scripts/verify_historical_e3_closure.py'
+      - 'tests/test_verify_historical_e3_closure.py'
+      - 'experiments/e3_next_evidence_20261121/**'
   workflow_dispatch:
 
 permissions:
@@ -31,7 +34,9 @@ jobs:
       - name: Verify frozen evidence and unchanged model artifacts
         run: |
           python experiments/e3_evidence_close_20261120/release/assemble_archive.py
-          python experiments/e3_evidence_close_20261120/verify_closure.py
+          python -m unittest discover -s tests -p test_verify_historical_e3_closure.py -v
+          python scripts/verify_historical_e3_closure.py
+          python experiments/e3_next_evidence_20261121/bundle_tools/verify_packet.py --packet experiments/e3_next_evidence_20261121
       - name: Check source-bound ZIP and replay its extracted small analyses
         run: |
           python - <<'PY'
