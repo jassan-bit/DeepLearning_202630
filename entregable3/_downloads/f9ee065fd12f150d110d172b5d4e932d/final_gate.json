@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "version": "e3-final-scientific-preflight-1",
+  "scope": "Additional scientific preflight for the unchanged candidate, methods, power rule and seed bank; no automatic adoption of a different endpoint or stricter joint rule",
+  "data_admission_allowed": true,
+  "development_planning_allowed_with_explicit_activation": true,
+  "dimensioning_study_allowed_with_valid_real_inputs": true,
+  "final_confirmation_enabled": false,
+  "unresolved_final_gate_codes": [
+    "PRIMARY_ENDPOINT_ALIGNMENT_NOT_ESTABLISHED",
+    "JOINT_DECISION_VALIDATION_NOT_ESTABLISHED"
+  ],
+  "gates": [
+    {
+      "code": "PRIMARY_ENDPOINT_ALIGNMENT_NOT_ESTABLISHED",
+      "status": "UNRESOLVED",
+      "reason": "Inherited mean individual-seed RMSE and prospective aggregate MSE/pooled RMSE are different functionals. The old favorable-direction check does not turn the MSE p-value into inference for the inherited primary metric.",
+      "resolution_requires": "An explicit, justified decision preserving the guide's inherited primary endpoint, plus inferential validation for that exact functional; or a genuinely accepted prospective endpoint amendment with its actual scope documented. No acceptance is fabricated by this file."
+    },
+    {
+      "code": "JOINT_DECISION_VALIDATION_NOT_ESTABLISHED",
+      "status": "UNRESOLVED",
+      "reason": "The existing composite validation has pointwise one-panel FWER CP95 upper bounds below .05, not below the nominal .025. A current two-of-three additional-panel positive rule has a conservative 2q logical bound, and these marginal bounds alone do not certify .05 jointly.",
+      "resolution_requires": "Prespecified validation or a justified composition result matching the exact decision and assumptions. No new alpha, all-three guard, dataset or rejection rule is activated here."
+    }
+  ],
+  "post_evaluation_requirements": [
+    "MCS or critical-difference evidence containing the current candidate, with pertinent between-dataset assumptions; do not transfer the additive MCS or use a failed MCS implementation.",
+    "Adequacy, effects and intervals, consistency, robustness and guide requirements from real reserved data."
+  ],
+  "final_R": null,
+  "final_T": null,
+  "final_B": null,
+  "R3_accredited": false,
+  "new_market_fits": 0,
+  "new_calibration_simulations": 0,
+  "test_opened": false,
+  "AI_assistance_declared": true
+}

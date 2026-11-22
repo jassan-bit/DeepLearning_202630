@@ -1,0 +1,280 @@
+[
+  {
+    "version": "e3-supplementary-mcs-tmax-v1",
+    "status": "completed",
+    "stop_reason": "Equal predictive ability not rejected for the remaining set",
+    "initial_models": [
+      "additive_mse",
+      "floor_only",
+      "floor_plus_mean_excess",
+      "global_crps",
+      "global_mse",
+      "input_only_mse",
+      "output_only_mse",
+      "seoi_mse"
+    ],
+    "original_model": "input_only_mse",
+    "candidate_in_initial_set": true,
+    "candidate_included": true,
+    "included_models": [
+      "additive_mse",
+      "floor_plus_mean_excess",
+      "global_crps",
+      "global_mse",
+      "input_only_mse",
+      "output_only_mse",
+      "seoi_mse"
+    ],
+    "excluded_pvalues": {
+      "floor_only": 0.0005
+    },
+    "steps": [
+      {
+        "step": 1,
+        "active_models": [
+          "additive_mse",
+          "floor_only",
+          "floor_plus_mean_excess",
+          "global_crps",
+          "global_mse",
+          "input_only_mse",
+          "output_only_mse",
+          "seoi_mse"
+        ],
+        "relative_mean_loss": {
+          "additive_mse": -2.7206519336345676e-07,
+          "floor_only": 2.7987530975633203e-06,
+          "floor_plus_mean_excess": -5.172752040694916e-07,
+          "global_crps": -4.2357692105667517e-07,
+          "global_mse": -5.359937293234925e-07,
+          "input_only_mse": -7.741493300349699e-07,
+          "output_only_mse": 4.1014819087668895e-08,
+          "seoi_mse": -3.167075388029038e-07
+        },
+        "bootstrap_standard_error": {
+          "additive_mse": 2.4533070295356417e-07,
+          "floor_only": 5.349742535244585e-07,
+          "floor_plus_mean_excess": 3.2396602152667707e-07,
+          "global_crps": 3.6246571002661636e-07,
+          "global_mse": 2.4102872756695004e-07,
+          "input_only_mse": 1.5799084701620118e-07,
+          "output_only_mse": 2.446356957239021e-07,
+          "seoi_mse": 1.8396602643636438e-07
+        },
+        "status": "estimated",
+        "Tmax": 5.231565966258906,
+        "p": 0.0005,
+        "p_stepwise": 0.0005,
+        "eliminated_model": "floor_only"
+      },
+      {
+        "step": 2,
+        "active_models": [
+          "additive_mse",
+          "floor_plus_mean_excess",
+          "global_crps",
+          "global_mse",
+          "input_only_mse",
+          "output_only_mse",
+          "seoi_mse"
+        ],
+        "relative_mean_loss": {
+          "additive_mse": 1.2775667771701762e-07,
+          "floor_plus_mean_excess": -1.1745333298901727e-07,
+          "global_crps": -2.375504997620077e-08,
+          "global_mse": -1.361718582430181e-07,
+          "input_only_mse": -3.7432745895449547e-07,
+          "output_only_mse": 4.4083669016814327e-07,
+          "seoi_mse": 8.311433227757058e-08
+        },
+        "bootstrap_standard_error": {
+          "additive_mse": 2.0721788445821968e-07,
+          "floor_plus_mean_excess": 2.917652269246102e-07,
+          "global_crps": 3.6025772413297864e-07,
+          "global_mse": 2.337997060875466e-07,
+          "input_only_mse": 1.675238313404327e-07,
+          "output_only_mse": 2.609491177723395e-07,
+          "seoi_mse": 1.5398197804910772e-07
+        },
+        "status": "estimated",
+        "Tmax": 1.6893588065422913,
+        "p": 0.2005,
+        "p_stepwise": 0.2005,
+        "eliminated_model": null
+      }
+    ],
+    "alpha": 0.1,
+    "level": 0.9,
+    "block_days": 7,
+    "repetitions": 1999,
+    "seed": 2026112203,
+    "rng": "numpy.Generator(PCG64)",
+    "calendar_dates": 55,
+    "mean_loss": {
+      "additive_mse": 4.715182481137362e-06,
+      "floor_only": 7.78600077206414e-06,
+      "floor_plus_mean_excess": 4.469972470431327e-06,
+      "global_crps": 4.5636707534441436e-06,
+      "global_mse": 4.4512539451773265e-06,
+      "input_only_mse": 4.213098344465849e-06,
+      "output_only_mse": 5.028262493588488e-06,
+      "seoi_mse": 4.670540135697915e-06
+    },
+    "loss": "per-date arithmetic mean of individual-seed squared errors",
+    "uncertainty_scope": "calendar conditional on supplied frozen fitted trajectories; no seed resampling",
+    "separate_auxiliary_family": true,
+    "primary_Holm_family_member": false,
+    "does_not_test_RMSE_margin": true,
+    "membership_does_not_prove_equivalence": true,
+    "R3_verified": false,
+    "assumptions": [
+      "Circular-block bootstrap approximation requires suitable weak dependence and temporal stability",
+      "Fixed fitted trajectories; architecture selection and training-population uncertainty are not resampled",
+      "Known historical test; this calculation does not restore a blinded confirmatory design"
+    ],
+    "reference": "Hansen, Lunde and Nason (2011), The Model Confidence Set, Econometrica 79(2):453-497",
+    "scope": "Retrospective exploratory secondary diagnostic, after development and candidate nomination; no preregistration or confirmation claim",
+    "primary_endpoint_warning": "This secondary loss is not the primary mean of individual-seed RMSEs. No equivalence or practical RMSE-margin inference is claimed.",
+    "implementation_sha256": "bb14d47277a06e4c59ac1145633dd1f5d6c23f065cac5885b5433324aeca6af4",
+    "analysis_plan_sha256": "453ac39d41a2c721cefbd917f3a5f8e01d52c89f9530d24f239127945fc0ce0e"
+  },
+  {
+    "version": "e3-supplementary-mcs-tmax-v1",
+    "status": "completed",
+    "stop_reason": "Equal predictive ability not rejected for the remaining set",
+    "initial_models": [
+      "additive_mse",
+      "floor_only",
+      "floor_plus_mean_excess",
+      "global_crps",
+      "global_mse",
+      "input_only_mse",
+      "output_only_mse",
+      "seoi_mse"
+    ],
+    "original_model": "input_only_mse",
+    "candidate_in_initial_set": true,
+    "candidate_included": true,
+    "included_models": [
+      "additive_mse",
+      "floor_plus_mean_excess",
+      "global_crps",
+      "global_mse",
+      "input_only_mse",
+      "output_only_mse",
+      "seoi_mse"
+    ],
+    "excluded_pvalues": {
+      "floor_only": 0.0005
+    },
+    "steps": [
+      {
+        "step": 1,
+        "active_models": [
+          "additive_mse",
+          "floor_only",
+          "floor_plus_mean_excess",
+          "global_crps",
+          "global_mse",
+          "input_only_mse",
+          "output_only_mse",
+          "seoi_mse"
+        ],
+        "relative_mean_loss": {
+          "additive_mse": -2.7206519336345676e-07,
+          "floor_only": 2.7987530975633203e-06,
+          "floor_plus_mean_excess": -5.172752040694916e-07,
+          "global_crps": -4.2357692105667517e-07,
+          "global_mse": -5.359937293234925e-07,
+          "input_only_mse": -7.741493300349699e-07,
+          "output_only_mse": 4.1014819087668895e-08,
+          "seoi_mse": -3.167075388029038e-07
+        },
+        "bootstrap_standard_error": {
+          "additive_mse": 1.7847455677018365e-07,
+          "floor_only": 4.2385003777345755e-07,
+          "floor_plus_mean_excess": 2.392066514285843e-07,
+          "global_crps": 3.001901678023918e-07,
+          "global_mse": 2.113499067212761e-07,
+          "input_only_mse": 1.5372604347944527e-07,
+          "output_only_mse": 2.249264235964913e-07,
+          "seoi_mse": 1.8406097071133085e-07
+        },
+        "status": "estimated",
+        "Tmax": 6.603168215497997,
+        "p": 0.0005,
+        "p_stepwise": 0.0005,
+        "eliminated_model": "floor_only"
+      },
+      {
+        "step": 2,
+        "active_models": [
+          "additive_mse",
+          "floor_plus_mean_excess",
+          "global_crps",
+          "global_mse",
+          "input_only_mse",
+          "output_only_mse",
+          "seoi_mse"
+        ],
+        "relative_mean_loss": {
+          "additive_mse": 1.2775667771701762e-07,
+          "floor_plus_mean_excess": -1.1745333298901727e-07,
+          "global_crps": -2.375504997620077e-08,
+          "global_mse": -1.361718582430181e-07,
+          "input_only_mse": -3.7432745895449547e-07,
+          "output_only_mse": 4.4083669016814327e-07,
+          "seoi_mse": 8.311433227757058e-08
+        },
+        "bootstrap_standard_error": {
+          "additive_mse": 1.4895829294454203e-07,
+          "floor_plus_mean_excess": 2.1936478509461228e-07,
+          "global_crps": 2.8769075625384375e-07,
+          "global_mse": 2.0592942732814025e-07,
+          "input_only_mse": 1.6991502460846403e-07,
+          "output_only_mse": 2.3449560682935107e-07,
+          "seoi_mse": 1.641710489056207e-07
+        },
+        "status": "estimated",
+        "Tmax": 1.8799358168315379,
+        "p": 0.153,
+        "p_stepwise": 0.153,
+        "eliminated_model": null
+      }
+    ],
+    "alpha": 0.1,
+    "level": 0.9,
+    "block_days": 14,
+    "repetitions": 1999,
+    "seed": 2026112203,
+    "rng": "numpy.Generator(PCG64)",
+    "calendar_dates": 55,
+    "mean_loss": {
+      "additive_mse": 4.715182481137362e-06,
+      "floor_only": 7.78600077206414e-06,
+      "floor_plus_mean_excess": 4.469972470431327e-06,
+      "global_crps": 4.5636707534441436e-06,
+      "global_mse": 4.4512539451773265e-06,
+      "input_only_mse": 4.213098344465849e-06,
+      "output_only_mse": 5.028262493588488e-06,
+      "seoi_mse": 4.670540135697915e-06
+    },
+    "loss": "per-date arithmetic mean of individual-seed squared errors",
+    "uncertainty_scope": "calendar conditional on supplied frozen fitted trajectories; no seed resampling",
+    "separate_auxiliary_family": true,
+    "primary_Holm_family_member": false,
+    "does_not_test_RMSE_margin": true,
+    "membership_does_not_prove_equivalence": true,
+    "R3_verified": false,
+    "assumptions": [
+      "Circular-block bootstrap approximation requires suitable weak dependence and temporal stability",
+      "Fixed fitted trajectories; architecture selection and training-population uncertainty are not resampled",
+      "Known historical test; this calculation does not restore a blinded confirmatory design"
+    ],
+    "reference": "Hansen, Lunde and Nason (2011), The Model Confidence Set, Econometrica 79(2):453-497",
+    "scope": "Retrospective exploratory secondary diagnostic, after development and candidate nomination; no preregistration or confirmation claim",
+    "primary_endpoint_warning": "This secondary loss is not the primary mean of individual-seed RMSEs. No equivalence or practical RMSE-margin inference is claimed.",
+    "implementation_sha256": "bb14d47277a06e4c59ac1145633dd1f5d6c23f065cac5885b5433324aeca6af4",
+    "analysis_plan_sha256": "453ac39d41a2c721cefbd917f3a5f8e01d52c89f9530d24f239127945fc0ce0e"
+  }
+]

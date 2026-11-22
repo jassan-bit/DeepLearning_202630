@@ -1,6 +1,6 @@
 # 14 Evaluación y calificación
 
-**Estado: reglas de la guía, matriz documental y evaluación orientativa versionada en 14.10; sin calificación oficial asignada.** Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas pertenecen a esa guía. La valoración solicitada distingue el puntaje ponderado, los topes condicionales y el valor de sustentación aportado por el autor; no constituye una evaluación del docente.
+**Estado: reglas de la guía, matriz documental y evaluaciones orientativas versionadas en 14.10 y 14.11; sin calificación oficial asignada.** Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas pertenecen a esa guía. La valoración solicitada distingue el puntaje ponderado, los topes condicionales y el valor de sustentación aportado por el autor; no constituye una evaluación del docente.
 
 La nota se expresa en la escala de **0 a 5** y se determina en dos pasos: primero se obtiene el puntaje ponderado de la rúbrica y después se aplica el tope que corresponda al estado **evaluado** de R1, R2 y R3. Una condición pendiente no se convierte en «no» para fijar ese tope, y una casilla sin evidencia no se marca cumplida para completar la rúbrica.
 
@@ -279,7 +279,7 @@ Los campos oficiales de nota y tope permanecen sin rellenar. La **sustentación 
 
 
 (e3-evaluation-current-20261121)=
-## 14.10 Evaluación orientativa vigente, con sustentación 4,5
+## 14.10 Evaluación orientativa anterior, con sustentación 4,5
 
 **Valoración documental por IA del 21 de noviembre de 2026, hora de Bogotá, solicitada por el autor.** Se revisa la evidencia del corte `28a58e22bee25a9ab813afeac272279b91d5663a`, incorporando la aclaración de selección de datos. Es una evaluación orientativa en escala de 0 a 5; no sustituye la decisión académica ni afirma haber observado una sustentación. El **4,5 de sustentación es el valor proporcionado por el autor** y se usa exclusivamente para ese componente.
 
@@ -318,3 +318,46 @@ Se reconocen el motor experimental completo, **282 pruebas y 40 subpruebas** del
 Los descuentos principales corresponden a **confirmación propia de la candidata**, **dimensionamiento y batería de mercado suficientes** y **reproducción humana independiente del libro y su tabla principal**. La guía admite precálculos costosos versionados con generadores documentados; no se añade una obligación universal de reentrenar toda la historia. Render H y el DOI del suplemento tienen evidencias públicas previas; no se vuelven a presentar como pendientes de despliegue o publicación.
 
 La {ref}`revisión de conjuntos adicionales <e3-data-selection-review-20261121>` mantiene Bitcoin como principal y pausa la adquisición asistida de IBM/MSFT/XOM hasta justificarla o registrar una sustitución antes de nuevos resultados. La guía exige misma tarea y dos ejes por adicional, no acciones, Nasdaq ni una razón de tamaño 1,5×. Tampoco se da por válida una sustitución por criptomonedas sólo por cambiar ticker o periodo. Esta revisión metodológica no es un resultado experimental adverso ni una penalización por detener una descarga.
+
+
+(e3-adequacy-component-reassessment-20261122)=
+## 14.11 Revaloración de hipótesis y adecuación con análisis nuevos
+
+**Evaluación orientativa por IA del 21 de noviembre de 2026, hora de Bogotá.** El componente del 15 % pasa de **2,8 a 3,0/5**. La revisión independiente compara la evidencia ejecutada en {ref}`8.30 <e3-hypothesis-adequacy-20261122>` con el registro anterior de 14.10, que se conserva sin reescribir. La sustentación permanece en **4,5 por indicación del autor**, sin afirmar una defensa observada ni acreditar automáticamente R2. La {download}`revaloración estructurada <../_static/e3_hypothesis_adequacy_20261122/guide_audit/COMPONENT_REASSESSMENT.json>` identifica el SHA del registro anterior, cada aporte, los archivos nuevos y las razones del cambio.
+
+### Evidencia que justifica el incremento
+
+El crédito corresponde a los **128 diagnósticos nuevos de residuos**, con sus 128 posiciones conservadas y ajuste Holm; los **64 intervalos puntuales de sesgo HAC**; y los **intervalos temporales pareados del funcional primario**, calculando la raíz por semilla antes de promediar. La revisión independiente comprobó el ZIP original, la aritmética y Holm sin repetir el remuestreo. Estas operaciones aportan análisis propios de la candidata actual que antes no estaban ejecutados.
+
+Se mantienen los hallazgos adversos: dos de cinco trayectorias input-only rechazan MZ y los dos IC RMSE frente a global incluyen cero. No se descuenta por informar esos resultados, ni se acredita adecuación por los no rechazos de los otros diagnósticos. Los intervalos son exploratorios, puntuales y condicionados a las cinco trayectorias guardadas sobre 55 fechas; no incluyen toda la incertidumbre poblacional de inicializaciones ni demuestran cobertura finita.
+
+**No se asignan puntos por escribir la matriz, preparar fuentes, completar software, reutilizar simulaciones antiguas o ser retenida en el MCS secundario.** El MCS mejora el reporte: siete recetas permanecen, sin ganador único. Su pérdida MSE y su familia de ocho recetas no se convierten en una inferencia de la primaria media-RMSE o de los 21 sistemas.
+
+### Cálculo conservando los pesos y las otras notas
+
+| Componente | Peso | Nota /5 | Aporte /5 |
+|---|---:|---:|---:|
+| Correcciones del Entregable 2 | 7 % | 4,4 | 0,308 |
+| Mejores configuraciones y artefactos | 7 % | 4,5 | 0,315 |
+| Dashboard: Contexto y EDA | 8 % | 4,6 | 0,368 |
+| Dashboard: Modelos | 9 % | 4,4 | 0,396 |
+| Dashboard: diseño, UX y despliegue | 5 % | 4,6 | 0,23 |
+| Modelo original: revisión y diseño | 8 % | 4,2 | 0,336 |
+| Modelo original: implementación y demostración | 10 % | 4,1 | 0,41 |
+| Evaluación ampliada y robustez | 10 % | 3,5 | 0,35 |
+| Pruebas de hipótesis y adecuación | 15 % | 3,0 | 0,45 |
+| Informe en Jupyter Book | 14 % | 4,6 | 0,644 |
+| Sustentación | 7 % | 4,5 | 0,315 |
+| **Total** | **100 %** | | **4,122** |
+
+El componente aporta $0{,}15	imes3{,}0=0{,}450$, frente a $0{,}15	imes2{,}8=0{,}420$ antes. La diferencia global es **+0,030**: $4{,}092+0{,}030=4{,}122$, que se muestra como **4,12/5 antes del tope**. Las otras diez notas y los once pesos no cambian. No se redondea cada aporte antes de sumar.
+
+Con R1 y R2 aceptadas y R3 no acreditada, $min(4{,}122;4{,}0)=4{,}00$: **la valoración orientativa bajo ese supuesto sigue en 4,00/5**. Si se determina que R1 o R2 no se cumplen, corresponde el tope 3,0; una condición pendiente no se transforma automáticamente en ese incumplimiento. La nota oficial permanece sin asignar.
+
+### Razones por las que el componente continúa en desarrollo
+
+La nueva {download}`matriz de requisitos y acciones <../_static/e3_hypothesis_adequacy_20261122/guide_audit/results/requirements_matrix.csv>` contrasta 16 filas solapadas con 25 citas de la guía; no son 16 componentes ni nuevos pesos. La auditoría verifica 22 artefactos y conserva su versión anterior.
+
+Persisten dos brechas de inferencia que la versión operativa bloquea antes de confirmar: **MSE agregado y media de RMSE individuales no son el mismo funcional**, y las cotas marginales de la calibración disponible no certifican por sí solas la regla conjunta principal más dos de tres adicionales. La cota conservadora $2q=0{,}09572$ no es una estimación de inflación observada ni prueba de que ese error ocurra; muestra que esas cotas no bastan para deducir control al 5 %. No se cambia la primaria, alfa o regla tras los resultados para salvar esa brecha.
+
+Además faltan predicciones/recibos reales completos de planificación para los cuatro paneles y los 21 sistemas, dimensionamiento suficiente, Tablas A/B completas y calibración probabilística/cobertura propias de la candidata. Las nuevas fuentes son propuestas de desarrollo, no reserva auténtica ni datos confirmados. **R/T/B finales, potencia alcanzada y MDE permanecen nulos.** La implementación y la preparación de una nueva ejecución no acreditan R3.

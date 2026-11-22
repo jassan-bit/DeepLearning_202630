@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "kind": "DATA_SOFTWARE_QA_NOT_SCIENTIFIC_ADMISSION",
+  "command": "/workspace/e3_fixed_state_runtime/bin/python -m unittest discover -s tests -p test_data.py -v",
+  "exit_code": 0,
+  "tests": 18,
+  "status": "PASS",
+  "genuine_market_downloads": 0,
+  "genuine_final_market_labels_constructed": 0,
+  "genuine_author_or_custodian_declarations_created": 0,
+  "panels_admitted": 0,
+  "fixture_partition_counts": {
+    "fit": 21,
+    "selection": 19,
+    "planning": 19,
+    "calibration": 19
+  },
+  "fixture_admission_sha256": "2a35baed44fe2ee4d315047a6be5f0b96549420ea57034ce84b3772a71939e64",
+  "source_primary_evidence": "qa/data/primary/RECEIPT.json",
+  "limitations": [
+    "Provider endpoint availability/auth not live-tested",
+    "Short XNYS schedule verified with pinned dependencies; actual proposed panel calendars/date ranges not acquired or validated",
+    "Historical WIKI reserve requires authentic external custodian evidence; no future WIKI test is possible",
+    "Licensing/application, exposure, actual date ranges, final T and power remain pending"
+  ],
+  "executed_utc": "2026-11-21T23:49:42.522527+00:00",
+  "engine_data_sha256": "600ce60b745f67726a80232a01381d7c1e83ab4a0677c87b77877d43af406cce",
+  "tests_data_sha256": "f1e04b0f602412f06d19397363672bde00410bb4cb2fe278e90d30acb21b9774",
+  "calendar_qa": "CALENDAR_QA_v3_ROOT_RUNTIME.json PASS using current root numpy2.3.5/pandas2.2.3/exchange-calendars4.11.2/Torch2.8.0+cpu, without cohort modifications",
+  "development_only_api": {
+    "tested": true,
+    "requires_final_protocol_or_power_or_reserve_date": false,
+    "all_data_exposed_designation": true,
+    "test_loader_still_sealed": true,
+    "final_preparation_rejects_development_receipt": true
+  }
+}

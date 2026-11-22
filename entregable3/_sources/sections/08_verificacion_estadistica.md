@@ -1451,6 +1451,8 @@ El {download}`protocolo confirmatorio DRAFT <../_static/e3_input_only_candidate_
 (e3-temporal-engine-statistics-20261121)=
 ## 8.29 Motor temporal: estimando, calibración y evaluación separada
 
+**Corte del motor A conservado.** La {ref}`revisión posterior de 8.30 <e3-hypothesis-adequacy-20261122>` añade resultados propios de la candidata, dos límites científicos para confirmar y una nueva propuesta de datos cripto que sustituye a las acciones sólo para desarrollo nuevo. Conserva íntegros este motor y su validación condicional; no convierte su admisión por panel en validación de la métrica primaria heredada o de la decisión conjunta.
+
 La guía original y su Tabla 4/F2 motivan tres procedimientos distintos: **DM-HLN/HAC**, **bootstrap estacionario studentizado** y **Giacomini–White condicional**. No se cuenta Clark–West sin anidamiento ni se transforma un MCS global en p direccionales por rival. La ruta anterior de t/bootstrap/Wilcoxon sobre semillas queda conservada como propuesta anterior, sin renombrarla como batería temporal admitida.
 
 (e3-data-selection-review-20261121)=
@@ -1497,3 +1499,64 @@ Antes de test se verifican todos los checkpoints seleccionados y se congelan cal
 La evaluación registra una consulta por identidad y escenario; publica el marcador durable antes del acceso. Una cache completa se reutiliza. Un marcador pendiente sin resultado detiene la recuperación automática para no repetir una consulta de estado incierto. Los escenarios prefijados de ruido de medición y faltantes preservan los cierres/etiquetas y se guardan dentro del mismo sello, sin retocar la candidata.
 
 El análisis consume exclusivamente CSV guardados y conserva resultados adversos. Comprueba superioridad frente a los veinte rivales, margen/efectos/intervalos, consistencia en al menos dos de tres adicionales y ausencia de inferioridad significativa, adecuación y robustez. Conserva GW en la multiplicidad, pero el veto de inferioridad media usa DM/bootstrap direccionales. La potencia conjunta se reporta; no se le inventa un mínimo universal del 90 %. No se convierten pruebas de software, simulaciones o un JSON favorable en aceptación académica de R3.
+
+(e3-hypothesis-adequacy-20261122)=
+## 8.30 Hipótesis y adecuación de input-only: resultados nuevos y límites para confirmar
+
+La {download}`matriz auditada contra la guía <../_static/e3_hypothesis_adequacy_20261122/guide_audit/results/requirements_matrix.csv>` vincula requisito, evidencia ejecutada, limitación y comando siguiente. Comprueba **25 citas y 16 requisitos solapados**, sin convertirlos en pesos nuevos. Los {download}`recibos y ámbitos de la auditoría <../_static/e3_hypothesis_adequacy_20261122/guide_audit/results/execution_receipt.json>` conservan la guía por hash; su PDF completo no se redistribuye. Los cálculos son posteriores al piloto y a la nominación: sus planes anteriores al cálculo no son preregistros de resultados ya conocidos.
+
+### Adecuación retrospectiva propia de la candidata
+
+El {download}`análisis ejecutable y sus supuestos <../_static/e3_hypothesis_adequacy_20261122/retrospective/README.md>` comprobó el ZIP original, fechas, unidades, identidades y métricas. Usa **1.760 puntos, 32 trayectorias y ocho recetas**, con cinco semillas por receta neuronal y una trayectoria por control analítico, sobre las mismas **55 fechas expuestas del 7 de septiembre al 31 de octubre de 2024**. Los errores son predicción menos objetivo, en unidades de σ₇. Semillas×fechas no son observaciones independientes. Los 796 trabajos aditivos y los pilotos adversos V3/V4/V5 conservan sus alcances.
+
+| Diagnóstico calculado | Posiciones | Rechazos con Holm128 |
+|---|---:|---:|
+| Ljung–Box, rezagos 1–7 | 32 | 0 |
+| Ljung–Box, rezagos 1–14 | 32 | 0 |
+| ARCH-LM, rezago 7 | 32 | 0 |
+| Mincer–Zarnowitz conjunto, intercepto 0/pendiente 1, HAC14 | 32 | **27** |
+
+La {download}`familia íntegra de 128 diagnósticos <../_static/e3_hypothesis_adequacy_20261122/retrospective/results/diagnostics_Holm128.csv>` conserva **dos rechazos MZ de las cinco semillas input-only**. Son señales exploratorias de desviación de calibración lineal de puntos. Los no rechazos Ljung–Box/ARCH no certifican adecuación, independencia u homocedasticidad: hay sólo 55 fechas y referencias clásicas/asintóticas, cuya calibración finita no se comprobó aquí. Los {download}`64 intervalos de sesgo HAC7/HAC14 <../_static/e3_hypothesis_adequacy_20261122/retrospective/results/bias_HAC_pointwise.csv>` son puntuales, no simultáneos ni inferencia sobre una población de semillas.
+
+El bootstrap circular vuelve a calcular la **media de RMSE individuales**, con índices de fechas comunes a recetas y semillas; mantiene fijas las cinco trayectorias entrenadas. Fijó 3.999 sorteos para cada bloque y conserva todas las comparaciones frente a los siete controles del piloto:
+
+| Input-only menos `global_mse` | ΔRMSE media individual | IC95 % puntual exploratorio |
+|---|---:|---|
+| Bloque 7 | −0,00005821987 | [−0,00013727537; **+0,00002937367**] |
+| Bloque 14 | −0,00005821987 | [−0,00011955731; **+0,00001910637**] |
+
+Ambos intervalos incluyen cero; la ganancia puntual previa de **2,759522 %** permanece, sin superioridad confirmada ni igualdad demostrada. Son dos sensibilidades del mismo procedimiento, con supuestos de estabilidad/dependencia débil y menos de cuatro longitudes de bloque en el caso de 14 días. La {download}`tabla completa de RMSE/MAE <../_static/e3_hypothesis_adequacy_20261122/retrospective/results/temporal_RMSE_MAE_intervals.csv>` conserva los resultados y sus límites. El {download}`recibo efectivo <../_static/e3_hypothesis_adequacy_20261122/retrospective/results/execution_receipt.json>` registra **7.998 sorteos temporales**, 128 regresiones OLS auxiliares y **cero entrenamientos de pronóstico, forwards, descargas o aperturas finales**. Esas regresiones no se contabilizan como diseños neuronales nuevos.
+
+La {download}`matriz de adecuación posible <../_static/e3_hypothesis_adequacy_20261122/retrospective/adequacy_capability_matrix.csv>` conserva lo no reconstruible: faltan predicciones puntuales de ajuste/selección con el checkpoint seleccionado para cerrar Tablas A/B, y cuantiles o ley predictiva de esta candidata para cobertura, anchura o PIT. Las curvas de pérdida de batches no sustituyen ese riesgo. MZ no es calibración de una distribución, y no se heredan los intervalos de la aditiva.
+
+### MCS secundario ejecutado, sin ganador único
+
+El {download}`complemento Tmax y su procedencia <../_static/e3_hypothesis_adequacy_20261122/mcs/README.md>` usa la implementación estándar conservada, **ocho recetas**, MSE diario medio de las semillas fijas, nivel MCS **90 %** y **1.999 sorteos** por bloque. No reutiliza la extensión cuya calibración falló. Con bloques 7 y 14 retiene **siete recetas, incluida input-only**, y excluye sólo `floor_only`, p secuencial **0,0005**. Los p EPA remanentes son **0,2005 y 0,1530**; la {download}`tabla de pertenencia <../_static/e3_hypothesis_adequacy_20261122/mcs/results/membership.csv>` conserva las ausencias de p individuales de los supervivientes. Sus **3.998 sorteos** son un cálculo separado. La inclusión no prueba equivalencia, adecuación ni superioridad; este MCS secundario no contrasta la primaria media-RMSE ni los 21 sistemas y no cuenta como tercer procedimiento primario.
+
+### Métodos conservados y dos límites científicos explícitos
+
+El {download}`auditor de métodos y entradas <../_static/e3_hypothesis_adequacy_20261122/methods_power/README.md>` verificó **288 archivos del motor A y sus ledgers**, sin modificar candidata, estadísticas, planificador, entrenador o banco, ni añadir simulaciones de calibración. Reutiliza únicamente su validación condicional por panel/DGP. Mantiene DM-HLN/HAC, bootstrap estacionario-t y GW condicional, fechas como unidad temporal, Holm120 por panel y pantalla adicional Holm180; un rechazo GW de momentos no implica por sí solo ventaja direccional media.
+
+| Límite para la confirmación | Comprobación ejecutada y consecuencia |
+|---|---|
+| Primaria heredada frente al estimando contrastado | `mean_s(sqrt(MSE_s))` y `sqrt(mean_s(MSE_s))` pueden ordenar modelos de modo opuesto. El {download}`contraejemplo exacto <../_static/e3_hypothesis_adequacy_20261122/methods_power/endpoint_counterexample.json>` demuestra que los p del MSE no se convierten en inferencia sobre media-RMSE por exigir además dirección observada favorable. |
+| Composición principal más dos de tres adicionales | La {download}`comprobación lógica <../_static/e3_hypothesis_adequacy_20261122/methods_power/joint_composition_diagnostic.json>` da una cota conservadora 2q. El peor CP95 marginal archivado, q=0,0478608731, sólo da **0,0957217463**, no una certificación conjunta al 5 %. Esto **no demuestra inflación real**; las cotas son puntuales y conservadoras. |
+
+Las {download}`dos guardas finales <../_static/e3_hypothesis_adequacy_20261122/methods_power/final_gate.json>` exigen resolver ambas correspondencias antes de confirmar. No se altera alfa, margen, métrica o regla 2/3 para obtener aprobación, ni se presenta la validación antigua como un ensayo conjunto de cuatro mercados.
+
+### Datos cripto propuestos y entradas exactas para dimensionar
+
+La {download}`propuesta versionada de datos <../_static/e3_hypothesis_adequacy_20261122/data/data_panels_v2.json>` mantiene Bitcoin principal y sustituye las acciones sólo en el **nuevo desarrollo**. Su justificación revisable usa dos ejes respecto de spot: **dominio económico del contrato perpetuo** —financiación, margen, liquidación y base— y **tamaño de una ventana diaria fijada por calendario**. El ticker no cuenta como otro eje y volatilidad no se renombra como ruido.
+
+| Panel propuesto | Mercado y periodo de desarrollo | Barras/fechas de planificación previstas por calendario |
+|---|---|---:|
+| F00 principal | BTCUSDT spot, 2017-08-17–2023-12-31 | 2.328 / 452 |
+| F01 adicional | BTCUSDT USD-M perpetuo, 2020–2022 | 1.096 / 205 |
+| F02 adicional | BTCUSD_PERP COIN-M, 2021–2022 | 730 / 133 |
+| F03 adicional | ETHUSDT USD-M perpetuo, 2021–2023 | 1.095 / 205 |
+
+Son conteos de metadatos, **cero admisiones reales y cero descargas en esta tarea**. Comparten venue, calendario y factores cripto; no se convierten en tres mercados independientes. Conservan σ₇ de siete retornos diarios de cierre, ventanas 7×5 y volumen base; COIN-M usa el campo de índice **7** del archivo, excluyendo el número de contratos. Los {download}`cambios de ingestión y su procedencia <../_static/e3_hypothesis_adequacy_20261122/data/DATA_EXTENSION_PROVENANCE.json>` mantienen la construcción causal y separan esta versión del motor A. La adquisición prevista usa 187 archivos acotados y sus checksums: **374 solicitudes HTTP nominales**, aún no medidas. La documentación de Binance y sus términos de datos, con hashes fijados, requieren aplicación y aceptación reales; el MIT del README no licencia sus datos. No se necesita Nasdaq para este adaptador.
+
+El {download}`contrato de planificación <../_static/e3_hypothesis_adequacy_20261122/methods_power/planning_input_contract.json>` exige cuatro paneles, **21 sistemas**, cinco semillas neuronales preasignadas y al menos **80 fechas comunes por panel**, con **≥27.200 filas físicas** y recibos reales. Son **340 trabajos: 320 ajustes neuronales, cuatro ARIMA y 16 trayectorias analíticas**; los controles deterministas aparecen una vez. El techo nominal neuronal es **10 h 40 min** —320×120 s—, excluyendo otros costes, IO e interrupciones; no es consumo observado ni un corte duro de reloj. No se activó esa planificación. Sin sus CSV/recibos, el {download}`auditor vigente <../_static/e3_hypothesis_adequacy_20261122/methods_power/current_input_audit_v2.json>` conserva **`NOT_DIMENSIONED`**, con **R/T/B finales, potencia alcanzada y MDE nulos**. La celda R10/T768/B8191 validada no queda elegida automáticamente como diseño final. El {ref}`cuaderno de 11.14 <e3-hypothesis-colab-20261122>` proporciona la siguiente ejecución separada.
+
+La implementación, análisis y revisión declaran asistencia de IA. La propiedad de las fuentes, las licencias de terceros y el concepto humano conservan sus alcances propios; no hay una concesión global nueva ni una acreditación R3 por software. `input-only-overlap-mse-1` conserva su identidad, los resultados adversos y la contabilidad de diseños anterior.

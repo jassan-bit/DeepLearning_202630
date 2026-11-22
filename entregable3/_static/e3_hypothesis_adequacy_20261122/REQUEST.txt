@@ -1,0 +1,68 @@
+Actúa como auditor estadístico e investigador del Entregable 3:
+https://github.com/jassan-bit/DeepLearning_202630
+
+Objetivo: mejorar con evidencia verificable el componente «Hipótesis y adecuación», actualmente valorado en 2,8/5 y con peso del 15 %. No te limites a redactar pendientes ni aumentes la nota por añadir documentación.
+
+Consulta la guía original, el capítulo 8, la evaluación de 14.10 y el código vigente antes de actuar.
+
+Contexto obligatorio:
+- El problema principal es pronosticar la volatilidad de Bitcoin.
+- La candidata actual es input-only-overlap-mse-1. Conserva su identidad y su justificación propia.
+- Los 796 trabajos anteriores corresponden a la aditiva; no acreditan la candidata actual.
+- Conserva los pilotos, resultados adversos y decisiones de V3, V4 y V5 completo.
+- La batería temporal tiene validación condicional dentro de los escenarios documentados; eso no demuestra potencia ni superioridad de mercado.
+- F00–F03 todavía carecen de admisiones reales verificadas.
+- IBM/MSFT/XOM son propuestas técnicas cuya adquisición quedó en pausa. La guía no exige acciones ni Nasdaq.
+- Los calendarios examinados son desarrollo, no confirmación independiente.
+
+Realiza estas tareas:
+
+1. Audita específicamente el componente del 15 %.
+Extrae los requisitos de la guía y construye una matriz:
+requisito → evidencia ejecutada → limitación → análisis que falta → archivo o comando para resolverlo.
+
+Distingue lo ya completado de lo que realmente requiere ejecución nueva. Reutiliza los análisis válidos existentes.
+
+2. Completa los análisis posibles con predicciones guardadas.
+Comprueba alineación de fechas, unidades, semillas, particiones y versiones. Ejecuta los análisis pertinentes de ajuste/sobreajuste, sesgo, residuos, dependencia temporal, heterocedasticidad y cobertura de intervalos, según los datos disponibles.
+
+Reporta efectos, intervalos, tamaños muestrales, supuestos, multiplicidad y resultados adversos. Identifica los análisis posteriores como retrospectivos o exploratorios. No interpretes ausencia de rechazo como prueba de adecuación.
+
+3. Revisa la batería estadística existente.
+Comprueba que los tres procedimientos sean distintos, pertinentes para series temporales y compatibles con el estimando, las unidades de análisis y la familia completa de rivales.
+
+Verifica Holm, dirección de superioridad, márgenes, dependencia entre fechas y tratamiento de semillas. No cuentes tres tamaños de bloque como tres pruebas.
+
+Reutiliza la validación metodológica ya ejecutada. Realiza simulaciones adicionales sólo si identificas una brecha concreta, fijando antes código, escenarios, semillas y criterios de aceptación.
+
+4. Resuelve las entradas necesarias para dimensionar.
+Determina qué puede estimarse legítimamente con el desarrollo disponible y qué necesita nuevas predicciones de planificación.
+
+Antes de descargar o entrenar, justifica los tres conjuntos adicionales: misma tarea y diferencias en al menos dos ejes de la guía por conjunto. Prioriza alternativas coherentes con Bitcoin y criptomonedas, sin asumir que cambiar ticker o periodo basta. No impongas Nasdaq ni selecciones fuentes por su desempeño.
+
+Si faltan datos, entrega la adquisición y admisión ejecutables de los conjuntos justificados, con fuentes, licencias, calendarios, hashes y exposición documentados.
+
+5. Implementa un dimensionamiento real.
+Con entradas válidas, estima las fechas y semillas necesarias para potencia ≥0,90 por contraste; reporta también potencia conjunta, margen práctico y MDE.
+
+Evalúa la familia completa, dependencia temporal y variabilidad entre semillas. Respeta el mínimo de diez semillas finales, aumentando cuando sea necesario. No sustituyas planificación prospectiva por potencia observada después del resultado.
+
+6. Entrega una ejecución concreta en Colab.
+Prepara un notebook con fuentes fijadas, instalación reproducible, verificaciones, presupuesto explícito, progreso, checkpoints y recuperación con respaldo verificable en GitHub.
+
+Separa adquisición, planificación, dimensionamiento y confirmación. Deja entrenamiento y apertura de prueba final desactivados hasta su activación explícita. No inicies una campaña grande durante esta tarea.
+
+7. Actualiza el libro y la evaluación.
+Publica los resultados realmente ejecutados y sus recibos. Conserva la evaluación anterior y crea una versión nueva que explique qué evidencia justifica cada cambio de nota. Mantén los pesos y la sustentación indicada de 4,5, sin tratarla como acreditación automática de R2.
+
+Construye el libro, verifica enlaces, guarda los cambios en GitHub y comprueba la publicación.
+
+Entrega:
+- Análisis ejecutados, resultados y limitaciones.
+- Código, comandos, hashes y recibos.
+- Dimensionamiento calculado o entradas exactas todavía necesarias.
+- Notebook Colab y primera celda que debo ejecutar.
+- Comparación justificada del componente frente al 2,8 anterior.
+- Una siguiente acción concreta y ejecutable.
+
+No fabriques datos, reservas, preregistros, firmas o resultados. No cambies reglas después de observar resultados ni marques R3 como acreditada mediante pruebas de software.

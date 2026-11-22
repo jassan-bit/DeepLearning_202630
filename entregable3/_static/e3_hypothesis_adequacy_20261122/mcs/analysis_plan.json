@@ -1,0 +1,68 @@
+{
+  "version": "input-only-fixed-cohort-secondary-MCS-1",
+  "recorded_utc": "2026-11-22T03:00:11.867470+00:00",
+  "scope": "Retrospective exploratory secondary diagnostic, after development and candidate nomination; no preregistration or confirmation claim",
+  "candidate": "input_only_mse",
+  "source_zip_sha256": "beabedeb63ff10324b310ba8b86105505c3be783216e38770a092a7be438a17c",
+  "source_recipes": [
+    "seoi_mse",
+    "input_only_mse",
+    "output_only_mse",
+    "global_mse",
+    "global_crps",
+    "additive_mse",
+    "floor_only",
+    "floor_plus_mean_excess"
+  ],
+  "calendar_dates": 55,
+  "calendar_start": "2024-09-07",
+  "calendar_end": "2024-10-31",
+  "neural_seeds": [
+    20261127,
+    20261128,
+    20261129,
+    20261130,
+    20261131
+  ],
+  "replicates": 1999,
+  "block_lengths": [
+    7,
+    14
+  ],
+  "alpha": 0.1,
+  "confidence": 0.9,
+  "rng_seed": 2026112203,
+  "rng": "numpy.Generator(PCG64)",
+  "method": "Hansen-Lunde-Nason sequential Tmax MCS with common circular-block resampling, unchanged project implementation",
+  "loss": "At each date, mean squared error over the fixed fitted seeds of each recipe; deterministic controls once",
+  "primary_endpoint_warning": "This secondary loss is not the primary mean of individual-seed RMSEs. No equivalence or practical RMSE-margin inference is claimed.",
+  "uncertainty_scope": "Calendar-only conditional on this fixed fitted cohort. No seed-population or selected-design uncertainty.",
+  "decision_scope": "Both block-length sensitivity runs reported. No choice by favorable result; membership does not demonstrate equivalence, adequacy or R3.",
+  "pvalue_reporting": "Excluded models have actual sequential-max adjusted finite-bootstrap p. Surviving models have no calculated individual membership p: report null and the explicit survival bound, never fill p=1.",
+  "source_reference": {
+    "repository": "jassan-bit/DeepLearning_202630",
+    "commit": "fdf697aa870571b4e333a32198aa97fec69c9bad",
+    "path": "experiments/e3_estadistica_posterior_20261117/mcs.py",
+    "git_blob_sha": "da5999673bf57ee424eebfdb8d7d161ec4b894be",
+    "sha256": "bb14d47277a06e4c59ac1145633dd1f5d6c23f065cac5885b5433324aeca6af4",
+    "url": "https://github.com/jassan-bit/DeepLearning_202630/blob/fdf697aa870571b4e333a32198aa97fec69c9bad/experiments/e3_estadistica_posterior_20261117/mcs.py",
+    "license_scope": "Existing project source preserved byte for byte; no new global license or third-party data permission granted."
+  },
+  "academic_reference": {
+    "authors": "Hansen, Lunde and Nason",
+    "year": 2011,
+    "title": "The Model Confidence Set",
+    "journal": "Econometrica",
+    "volume": "79(2)",
+    "pages": "453–497",
+    "doi": "10.3982/ECTA5771"
+  },
+  "limits": [
+    "Only 55 exposed daily dates; block14 has fewer than four nominal block lengths in the observed calendar",
+    "Weak dependence and temporal stability needed by the block bootstrap remain unverified; neither calibration nor coverage is certified by these data",
+    "Not a third distinct procedure for the primary pairwise family; outside Holm128 residual diagnostics and outside confirmation",
+    "Five fitted seeds remain fixed; neither seeds nor model recipes are new independent datasets",
+    "No training/selection prediction CSVs or interval distributions are reconstructed"
+  ],
+  "AI_assistance_declared": true
+}

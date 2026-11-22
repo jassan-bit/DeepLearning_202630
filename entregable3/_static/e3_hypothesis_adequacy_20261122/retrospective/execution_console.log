@@ -1,0 +1,81 @@
+{
+  "diagnostics": [
+    {
+      "test": "LB7",
+      "positions": 32,
+      "supported": 32,
+      "rejects_Holm128": 0
+    },
+    {
+      "test": "LB14",
+      "positions": 32,
+      "supported": 32,
+      "rejects_Holm128": 0
+    },
+    {
+      "test": "ARCH7",
+      "positions": 32,
+      "supported": 32,
+      "rejects_Holm128": 0
+    },
+    {
+      "test": "MZ_HAC14",
+      "positions": 32,
+      "supported": 32,
+      "rejects_Holm128": 27
+    }
+  ],
+  "candidate": {
+    "LB7": 0,
+    "LB14": 0,
+    "ARCH7": 0,
+    "MZ_HAC14": 2
+  },
+  "candidate_global_intervals": [
+    {
+      "candidate": "input_only_mse",
+      "control": "global_mse",
+      "block_length": 7,
+      "bootstrap_replicates": 3999,
+      "dates": 55,
+      "fixed_candidate_seeds": 5,
+      "fixed_control_trajectories": 5,
+      "delta_mean_individual_RMSE": -5.821987228066001e-05,
+      "CI95_pointwise_low": -0.00013727536780667175,
+      "CI95_pointwise_high": 2.937366637729736e-05,
+      "relative_mean_RMSE_gain": 0.02759522464842734,
+      "relative_CI95_low": -0.015286359359500545,
+      "relative_CI95_high": 0.0690320821567205,
+      "delta_mean_individual_MAE": -0.00010517761493292026,
+      "MAE_CI95_low": -0.00022702354740225265,
+      "MAE_CI95_high": 3.232638926379023e-06,
+      "zero_in_RMSE_interval": true,
+      "initialization_scope": "conditional on stored seeds; no seed-population inference",
+      "temporal_scope": "pointwise exploratory circular-block interval; coverage unvalidated; not confirmation",
+      "p_value": null
+    },
+    {
+      "candidate": "input_only_mse",
+      "control": "global_mse",
+      "block_length": 14,
+      "bootstrap_replicates": 3999,
+      "dates": 55,
+      "fixed_candidate_seeds": 5,
+      "fixed_control_trajectories": 5,
+      "delta_mean_individual_RMSE": -5.821987228066001e-05,
+      "CI95_pointwise_low": -0.00011955730570656036,
+      "CI95_pointwise_high": 1.9106373050022486e-05,
+      "relative_mean_RMSE_gain": 0.02759522464842734,
+      "relative_CI95_low": -0.009984790570540792,
+      "relative_CI95_high": 0.056498794554129275,
+      "delta_mean_individual_MAE": -0.00010517761493292026,
+      "MAE_CI95_low": -0.00023079868660220927,
+      "MAE_CI95_high": -4.799106051452025e-06,
+      "zero_in_RMSE_interval": true,
+      "initialization_scope": "conditional on stored seeds; no seed-population inference",
+      "temporal_scope": "pointwise exploratory circular-block interval; coverage unvalidated; not confirmation",
+      "p_value": null
+    }
+  ],
+  "cpu_seconds": 0.17709398700000012
+}

@@ -1,0 +1,1514 @@
+{
+  "admitted": true,
+  "all_scenarios_complete": true,
+  "all_three_methods": true,
+  "complete_and_partial_nulls": true,
+  "conditional_scope_admitted": true,
+  "confidence_scope": "Pointwise component CP95 bounds, not simultaneous95% for all conditions, not anytime-valid, not an unselected fresh five-scenario study, not joint four-panel MC.",
+  "coverage_validated": true,
+  "cpu_budget_seconds": 2000,
+  "cpu_seconds": 1485.760360041,
+  "criteria": {
+    "diagnostic_ci95": "Retain CI95 coverage and exact CP95; separately flag definite undercoverage if CP95 upper <0.95. Operational99% interval is a new, named, stricter interval, never evidence that nominal95% has calibrated.",
+    "failure_rule": "FWER CP95 lower>0.05 or operational CI99 coverage CP95 upper<0.95 is failure; any confidence-bound criterion not established is inconclusive. Retain all results. No tolerance widening.",
+    "fwer_demonstrated_in_a_scenario_only_if": "CP95 upper <=0.05, unchanged from V1/V2",
+    "operational_ci99_coverage_demonstrated_in_a_scenario_only_if": "CP95 lower >=0.95 for CI99 MSE difference AND CI99 relative aggregate RMSE gain",
+    "overall_claim": "Conditional one-panel-family composite evidence at exact unchanged V4 settings if mapped sources establish all original pointwise CP95 criteria. Four scenarios already observed in V4; only full-null is new. No anytime/global95 guarantee, pooling, joint four-panel MC, or market/R3 accreditation.",
+    "power_target_demonstrated_only_if": "CP95 lower >=0.90 for EVERY rival complete gate under the prespecified strong alternative; jointpower reported; no power claim for 3% alternative"
+  },
+  "evidence": {
+    "freeze": {
+      "path": "freeze.json",
+      "sha256": "a87039a81c6a7808e00373504d06aeb1b307d0fd333abd7d9c2510b64bdca5cd"
+    },
+    "plan": {
+      "path": "plan.json",
+      "sha256": "742ab138371328241b25cf9972eb5585d5843ec5948808d9eba5d1595f599ed8"
+    },
+    "prior_replicates": {
+      "path": "../v4/replicates.jsonl.gz",
+      "sha256": "f1b4efc5dd0db58932dea980605e38d62bcf8e3092c678988824cb2e462ae656",
+      "uncompressed_sha256": "30010e6b946e88f15589ddfd8ca1aaead1ab4af76257cd28029c4d1dcf62a514"
+    },
+    "prior_report": {
+      "path": "../v4/report.json",
+      "sha256": "abcb7687bd4311bdc8b7ee1d32478edf102c7f63e8e1a40bb58b99f5e86975c7"
+    },
+    "replicates": {
+      "path": "replicates.jsonl.gz",
+      "sha256": "eaf97e50127653c2180d2ce73a64da991666ac95634f1b89a271a33dad55e26c",
+      "uncompressed_sha256": "974f4c11808e5f1dfd5afc6895f611cfb22471766cf74ee1829fc0f16061a3d6"
+    },
+    "runner": {
+      "path": "run_validation.py",
+      "sha256": "dd237e67b056ad6d1f8b2a19cce7d58959f2210b765eed6d2078c78f7a0b335d"
+    },
+    "scenario_source_map": {
+      "path": "SCENARIO_SOURCE_MAP.json",
+      "sha256": "d3e2ef7591672b809418a211963474e5c7af9de6f2a8309af6bf07816b46874b"
+    }
+  },
+  "extreme_tail_validated": true,
+  "failed_scenarios": [],
+  "failure_detected": false,
+  "family_rivals": 20,
+  "final_panels_application": 4,
+  "finished_at_utc": "2026-11-22T00:56:13.247235+00:00",
+  "focal_fwer_cp99_diagnostic": [
+    0.016499482873582536,
+    0.034616776710845676
+  ],
+  "four_panel_application_note": "Monte Carlo studies one complete temporal120 family, not four joint panels. Application to four admitted real panels is conditional on each panel meeting the stationary/FCLT/predictable-instrument assumptions. Global Holm180 over additional-panel EPA p-values is a mathematical strong-FWER adjustment when those marginal p-values are super-uniform; it requires no panel independence, but these five finite simulations do not establish super-uniformity for all markets or prove joint four-panel validity. Full80contrast power and joint conditional empirical-DGP power are separate genuine-data computations. No copies of one-panel ledger count as four-panel simulations.",
+  "general_validation_established": false,
+  "new_stochastic_replicates": 2048,
+  "no_pooling": true,
+  "original_V4_null_excluded_from_new_null_counts": 512,
+  "original_V4_total_preserved": 2560,
+  "panels_per_replicate": 1,
+  "plan_sha256": "742ab138371328241b25cf9972eb5585d5843ec5948808d9eba5d1595f599ed8",
+  "prior_replicates_uncompressed_sha256": "30010e6b946e88f15589ddfd8ca1aaead1ab4af76257cd28029c4d1dcf62a514",
+  "prior_study_cpu_seconds": 1930.502168259,
+  "protocol_closure_permitted": true,
+  "protocol_version": "temporal-fixed-seeds-mse-v4",
+  "r3_accredited": false,
+  "raw_results_sha256": "974f4c11808e5f1dfd5afc6895f611cfb22471766cf74ee1829fc0f16061a3d6",
+  "replicates_per_scenario": {
+    "complete_null_ar05": 2048,
+    "complete_null_overlap5": 512,
+    "partial_null_ar05": 512,
+    "practical_boundary_ar05": 512,
+    "strong_alternative_ar05": 512
+  },
+  "replicates_uncompressed_bytes": 26104889,
+  "replicates_uncompressed_sha256": "974f4c11808e5f1dfd5afc6895f611cfb22471766cf74ee1829fc0f16061a3d6",
+  "report_type": "provenance_composite",
+  "resource_profile": {
+    "allowed_cores_before": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "max_worker_threads": 4,
+    "used_cores": [
+      0,
+      1
+    ]
+  },
+  "reused_stochastic_replicates": 2048,
+  "scenarios": [
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 1918,
+        "cp95": [
+          0.9250804033598115,
+          0.9466962105358462
+        ],
+        "estimate": 0.9365234375,
+        "n": 2048
+      },
+      "coverage_ci95_mse": {
+        "count": 1918,
+        "cp95": [
+          0.9250804033598115,
+          0.9466962105358462
+        ],
+        "estimate": 0.9365234375,
+        "n": 2048
+      },
+      "coverage_ci99_gain": {
+        "count": 2019,
+        "cp95": [
+          0.9797265363306674,
+          0.9904967586753646
+        ],
+        "estimate": 0.98583984375,
+        "n": 2048
+      },
+      "coverage_ci99_mse": {
+        "count": 2019,
+        "cp95": [
+          0.9797265363306674,
+          0.9904967586753646
+        ],
+        "estimate": 0.98583984375,
+        "n": 2048
+      },
+      "diagnostic_ci95_undercoverage_detected": true,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 30,
+        "cp95": [
+          0.009904485656465482,
+          0.02084597799887607
+        ],
+        "estimate": 0.0146484375,
+        "n": 2048
+      },
+      "fwer": {
+        "count": 50,
+        "cp95": [
+          0.018173624071937892,
+          0.032061392695628826
+        ],
+        "estimate": 0.0244140625,
+        "n": 2048
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 25,
+          "cp95": [
+            0.00791489916694973,
+            0.017967561591460884
+          ],
+          "estimate": 0.01220703125,
+          "n": 2048
+        },
+        "gw_conditional": {
+          "count": 16,
+          "cp95": [
+            0.004471920744096854,
+            0.012656082838996642
+          ],
+          "estimate": 0.0078125,
+          "n": 2048
+        },
+        "stationary_bootstrap": {
+          "count": 39,
+          "cp95": [
+            0.013575582390602248,
+            0.025941186470082533
+          ],
+          "estimate": 0.01904296875,
+          "n": 2048
+        }
+      },
+      "fwer_demonstrated": true,
+      "id": "complete_null_ar05",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.001799589464537677
+        ],
+        "estimate": 0.0,
+        "n": 2048
+      },
+      "n": 2048,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.001799589464537677
+          ],
+          "estimate": 0.0,
+          "n": 2048
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 484,
+        "cp95": [
+          0.9219285183624817,
+          0.9633566225795298
+        ],
+        "estimate": 0.9453125,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 484,
+        "cp95": [
+          0.9219285183624817,
+          0.9633566225795298
+        ],
+        "estimate": 0.9453125,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": false,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 3,
+        "cp95": [
+          0.0012099778257548665,
+          0.01702737511683891
+        ],
+        "estimate": 0.005859375,
+        "n": 512
+      },
+      "fwer": {
+        "count": 7,
+        "cp95": [
+          0.00551399998131654,
+          0.027965446339922782
+        ],
+        "estimate": 0.013671875,
+        "n": 512
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 5,
+          "cp95": [
+            0.0031782607998062633,
+            0.02264162068722705
+          ],
+          "estimate": 0.009765625,
+          "n": 512
+        },
+        "gw_conditional": {
+          "count": 3,
+          "cp95": [
+            0.0012099778257548665,
+            0.01702737511683891
+          ],
+          "estimate": 0.005859375,
+          "n": 512
+        },
+        "stationary_bootstrap": {
+          "count": 6,
+          "cp95": [
+            0.004312383422342904,
+            0.025331281179926293
+          ],
+          "estimate": 0.01171875,
+          "n": 512
+        }
+      },
+      "fwer_demonstrated": true,
+      "id": "partial_null_ar05",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.007178950026259453
+        ],
+        "estimate": 0.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 475,
+        "cp95": [
+          0.9017647149108752,
+          0.9486110333449406
+        ],
+        "estimate": 0.927734375,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 475,
+        "cp95": [
+          0.9017647149108752,
+          0.9486110333449406
+        ],
+        "estimate": 0.927734375,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": true,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 4,
+        "cp95": [
+          0.002132626840593874,
+          0.019881459971452173
+        ],
+        "estimate": 0.0078125,
+        "n": 512
+      },
+      "fwer": {
+        "count": 6,
+        "cp95": [
+          0.004312383422342904,
+          0.025331281179926293
+        ],
+        "estimate": 0.01171875,
+        "n": 512
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 4,
+          "cp95": [
+            0.002132626840593874,
+            0.019881459971452173
+          ],
+          "estimate": 0.0078125,
+          "n": 512
+        },
+        "gw_conditional": {
+          "count": 1,
+          "cp95": [
+            4.944762114539528e-05,
+            0.010833656944754487
+          ],
+          "estimate": 0.001953125,
+          "n": 512
+        },
+        "stationary_bootstrap": {
+          "count": 4,
+          "cp95": [
+            0.002132626840593874,
+            0.019881459971452173
+          ],
+          "estimate": 0.0078125,
+          "n": 512
+        }
+      },
+      "fwer_demonstrated": true,
+      "id": "complete_null_overlap5",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.007178950026259453
+        ],
+        "estimate": 0.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 478,
+        "cp95": [
+          0.9084373099877381,
+          0.9535768647607814
+        ],
+        "estimate": 0.93359375,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 478,
+        "cp95": [
+          0.9084373099877381,
+          0.9535768647607814
+        ],
+        "estimate": 0.93359375,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": false,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 10,
+        "cp95": [
+          0.009404755122447006,
+          0.035624636181676994
+        ],
+        "estimate": 0.01953125,
+        "n": 512
+      },
+      "fwer": {
+        "count": 15,
+        "cp95": [
+          0.01648801460911842,
+          0.04786087313588523
+        ],
+        "estimate": 0.029296875,
+        "n": 512
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 5,
+          "cp95": [
+            0.0031782607998062633,
+            0.02264162068722705
+          ],
+          "estimate": 0.009765625,
+          "n": 512
+        },
+        "gw_conditional": {
+          "count": 7,
+          "cp95": [
+            0.00551399998131654,
+            0.027965446339922782
+          ],
+          "estimate": 0.013671875,
+          "n": 512
+        },
+        "stationary_bootstrap": {
+          "count": 10,
+          "cp95": [
+            0.009404755122447006,
+            0.035624636181676994
+          ],
+          "estimate": 0.01953125,
+          "n": 512
+        }
+      },
+      "fwer_demonstrated": true,
+      "id": "practical_boundary_ar05",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.007178950026259453
+        ],
+        "estimate": 0.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 1,
+          "cp95": [
+            4.944762114539528e-05,
+            0.010833656944754487
+          ],
+          "estimate": 0.001953125,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 1,
+          "cp95": [
+            4.944762114539528e-05,
+            0.010833656944754487
+          ],
+          "estimate": 0.001953125,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 477,
+        "cp95": [
+          0.9062082072139883,
+          0.9519266746272725
+        ],
+        "estimate": 0.931640625,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 480,
+        "cp95": [
+          0.9129112275405071,
+          0.9568609173441477
+        ],
+        "estimate": 0.9375,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": false,
+      "failure_detected": false,
+      "false_favorable_fwer": null,
+      "fwer": null,
+      "fwer_by_method": null,
+      "fwer_demonstrated": false,
+      "id": "strong_alternative_ar05",
+      "joint_power": {
+        "count": 512,
+        "cp95": [
+          0.9928210499737405,
+          1.0
+        ],
+        "estimate": 1.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": true
+    }
+  ],
+  "scope": "Independent focal precision replication using unchanged frozen V4 method; a provenance composite carries four previously observed V4 scenarios with established bounds. Post-V4 selection is explicit, original inconclusive null retained, no pooling.",
+  "selection_timing": "Dossier source-map fixed after observing V4 and before generating the focal independent draws; not a preregistration of reused V4 results.",
+  "source_hashes": {
+    "engine/statistics.py": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+    "qa/statistical_validation/runner_v1.py": "3a8cf9058a95d46cc583a883fe7e04d569a32d9b1f7a10b6bd421c98bc31c5e1",
+    "qa/statistical_validation/v3/bootstrap_kernel.cpp": "76d5ed35b1ac107fcec453e4dd9be19fb73505949daf0bddcae6fde51f836886",
+    "qa/statistical_validation/v4/replicates.jsonl.gz": "f1b4efc5dd0db58932dea980605e38d62bcf8e3092c678988824cb2e462ae656",
+    "qa/statistical_validation/v4/report.json": "abcb7687bd4311bdc8b7ee1d32478edf102c7f63e8e1a40bb58b99f5e86975c7",
+    "qa/statistical_validation/v4/run_validation.py": "9123ca2aed4db776892de6538b66409ba54a234fa0896ce95f9abdbea71b08cf",
+    "qa/statistical_validation/v4_precision/SCENARIO_SOURCE_MAP.json": "d3e2ef7591672b809418a211963474e5c7af9de6f2a8309af6bf07816b46874b",
+    "qa/statistical_validation/v4_precision/plan.json": "742ab138371328241b25cf9972eb5585d5843ec5948808d9eba5d1595f599ed8",
+    "qa/statistical_validation/v4_precision/run_validation.py": "dd237e67b056ad6d1f8b2a19cce7d58959f2210b765eed6d2078c78f7a0b335d",
+    "tests/test_statistics.py": "f45225f6a92931c8d057e789f0dd8b098cfdf19bbe5d76adb4c1000cac031b8d"
+  },
+  "started_at_utc": "2026-11-22T00:42:34.014958+00:00",
+  "statistics_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+  "statistics_source_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+  "status": "PASSED_PREDECLARED_VALIDATION",
+  "synthetic_validation_executed": true,
+  "validated_settings": [
+    {
+      "B": 8191,
+      "R": 10,
+      "T": 768,
+      "alpha": 0.025,
+      "block_length": 32,
+      "hac_lags": 48,
+      "horizon": 1,
+      "margin": 0.02,
+      "reference_reps": 49999,
+      "reference_seed": 2026112103
+    }
+  ],
+  "validation_scope": "single_panel_temporal_family",
+  "version": "e3-temporal-v4-independent-precision-replication-1",
+  "wall_seconds": 819.2323081520008
+}

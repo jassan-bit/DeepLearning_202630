@@ -1,0 +1,76 @@
+...................................................... [ 16%]
+........................................................ [ 33%]
+............................................................ [ 52%]
+...............................................................FF....... [ 74%]
+.............................................................. [ 93%]
+......................                                                   [100%]
+=================================== FAILURES ===================================
+___ test_real_worker_recovery_replays_exact_metadata_and_skips_completed_job ___
+
+runtime = <test_controller.ControllerTests testMethod=runTest>
+
+    def test_real_worker_recovery_replays_exact_metadata_and_skips_completed_job(runtime):
+>       h=runtime;payload,url,raw_dir,evidence=generated_dataset(h)
+                                               ^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery_workflow.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_recovery_workflow.py:64: in generated_dataset
+    data.prepare_development(raw_dir/'raw_manifest.json',split,path,rights=rights,exposure=exposure)
+engine/data.py:907: in prepare_development
+    validate_binance_manifest(record,manifest_path)
+engine/data.py:297: in validate_binance_manifest
+    canonical = [_canonical_binance_manifest_item(provider,symbol,row) for row in files]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+engine/data.py:239: in _canonical_binance_manifest_item
+    require(isinstance(name,str) and re.fullmatch(re.escape(symbol)+r"-1d-\d{4}-\d{2}(?:-\d{2})?\.zip",name),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = None, message = 'Binance manifest instrument/filename differs'
+
+    def require(condition, message):
+        if not condition:
+>           raise AdmissionError(message)
+E           engine.data.AdmissionError: Binance manifest instrument/filename differs
+
+engine/data.py:43: AdmissionError
+_ test_final_restore_recovers_planning_dependency_and_original_external_evidence _
+
+runtime = <test_controller.ControllerTests testMethod=runTest>
+
+    def test_final_restore_recovers_planning_dependency_and_original_external_evidence(runtime):
+>       h=runtime;payload,url,raw_dir,evidence=generated_dataset(h)
+                                               ^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery_workflow.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_recovery_workflow.py:64: in generated_dataset
+    data.prepare_development(raw_dir/'raw_manifest.json',split,path,rights=rights,exposure=exposure)
+engine/data.py:907: in prepare_development
+    validate_binance_manifest(record,manifest_path)
+engine/data.py:297: in validate_binance_manifest
+    canonical = [_canonical_binance_manifest_item(provider,symbol,row) for row in files]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+engine/data.py:239: in _canonical_binance_manifest_item
+    require(isinstance(name,str) and re.fullmatch(re.escape(symbol)+r"-1d-\d{4}-\d{2}(?:-\d{2})?\.zip",name),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = None, message = 'Binance manifest instrument/filename differs'
+
+    def require(condition, message):
+        if not condition:
+>           raise AdmissionError(message)
+E           engine.data.AdmissionError: Binance manifest instrument/filename differs
+
+engine/data.py:43: AdmissionError
+=============================== warnings summary ===============================
+tests/test_models.py::ModelContracts::test_neural_7
+tests/test_training.py::test_real_family_one_epoch_optimizer_selected_prediction[TiDE]
+  /workspace/e3_engine_clean_cache/venv-cpu-652abf93aba295c3-py312/lib/python3.12/site-packages/torch/nn/init.py:582: UserWarning: Initializing zero-element tensors is a no-op
+    warnings.warn("Initializing zero-element tensors is a no-op")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_recovery_workflow.py::test_real_worker_recovery_replays_exact_metadata_and_skips_completed_job
+FAILED tests/test_recovery_workflow.py::test_final_restore_recovers_planning_dependency_and_original_external_evidence
+2 failed, 324 passed, 2 warnings, 56 subtests passed in 95.03s (0:01:35)

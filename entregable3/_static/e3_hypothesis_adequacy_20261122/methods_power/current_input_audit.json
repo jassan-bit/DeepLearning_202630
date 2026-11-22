@@ -1,0 +1,2561 @@
+{
+  "CPU_seconds": 4.103401938,
+  "MDE_achieved": null,
+  "R3_accredited": false,
+  "achieved_power": null,
+  "archived_validation_scope": {
+    "calibration_upper_threshold": 0.05,
+    "composite_no_pooling": true,
+    "confidence_scope": "Pointwise component CP95 bounds, not simultaneous95% for all conditions, not anytime-valid, not an unselected fresh five-scenario study, not joint four-panel MC.",
+    "earlier_full_null_preserved_excluded": 512,
+    "joint_error_control_certified_by_these_diagnostics": false,
+    "new_calibration_replicates_this_audit": 0,
+    "note": "A 2q union diagnostic above .05 does not prove inflation of the actual joint rule; it means these marginal bounds alone do not certify the desired joint bound. Pointwise CP95 bounds are not pooled or presented as a simultaneous95% statement.",
+    "operational_nominal_alpha": 0.025,
+    "scenarios": [
+      {
+        "count": 50,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "complete_null_ar05",
+        "observed_FWER": 0.0244140625,
+        "pointwise_CP95_upper": 0.032061392695628826,
+        "trials": 2048,
+        "two_panel_union_upper_from_this_component": 0.06412278539125765
+      },
+      {
+        "count": 7,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "partial_null_ar05",
+        "observed_FWER": 0.013671875,
+        "pointwise_CP95_upper": 0.027965446339922782,
+        "trials": 512,
+        "two_panel_union_upper_from_this_component": 0.055930892679845565
+      },
+      {
+        "count": 6,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "complete_null_overlap5",
+        "observed_FWER": 0.01171875,
+        "pointwise_CP95_upper": 0.025331281179926293,
+        "trials": 512,
+        "two_panel_union_upper_from_this_component": 0.050662562359852586
+      },
+      {
+        "count": 15,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "practical_boundary_ar05",
+        "observed_FWER": 0.029296875,
+        "pointwise_CP95_upper": 0.04786087313588523,
+        "trials": 512,
+        "two_panel_union_upper_from_this_component": 0.09572174627177046
+      }
+    ],
+    "scope": "Independent focal precision replication using unchanged frozen V4 method; a provenance composite carries four previously observed V4 scenarios with established bounds. Post-V4 selection is explicit, original inconclusive null retained, no pooling.",
+    "status": "PASSED_PREDECLARED_VALIDATION",
+    "worst_pointwise_upper": 0.04786087313588523,
+    "worst_two_panel_union_diagnostic": 0.09572174627177046
+  },
+  "cells": [
+    {
+      "archived_calibration_verified": true,
+      "cell": {
+        "B": 8191,
+        "R": 10,
+        "T": 768
+      },
+      "reason": "full declared temporal validation evidence bundle verified"
+    }
+  ],
+  "confirmation_external_gates": [
+    {
+      "code": "PRIMARY_ENDPOINT_ALIGNMENT_NOT_ESTABLISHED",
+      "reason": "MSE/pooled-RMSE inference is not a test of inherited mean individual-seed RMSE. Preserve the explicit prospective amendment and resolve guide alignment before claiming R3."
+    },
+    {
+      "code": "JOINT_DECISION_VALIDATION_NOT_ESTABLISHED",
+      "reason": "Conditional one-panel error bounds do not alone certify the current two-of-three joint positive decision at .05. Do not silently tighten rules or alpha based on observed calibration outcomes."
+    },
+    {
+      "code": "CANDIDATE_MCS_OR_CRITICAL_DIFFERENCE_EVIDENCE",
+      "reason": "Guide requires the own model in MCS or critical-difference evidence. Historical additive MCS and failed later MCS cannot be transferred. Between-panel assumptions also need justification."
+    },
+    {
+      "code": "REAL_POWER_AND_FINAL_DATA_EVIDENCE",
+      "reason": "A method-calibration ledger, seed minimum, T768 or B8191 do not establish market power or an independent reserve."
+    }
+  ],
+  "created_at_utc": "2026-11-22T02:58:04.624142+00:00",
+  "design_sha256": "9a683a53d942f1153fe19ae3fff34a02cb8339edb9ca9d53d3c5fd84e269fee9",
+  "deterministic_composition_check": {
+    "Holm180_role": "Additional adverse EPA screen can remove positive decisions; it cannot enlarge the positive decision event or establish missing marginal super-uniformity.",
+    "alternative_all_three_guard_checks": 240,
+    "alternative_bound": "q for an intersection-union requirement of all panels/all rivals",
+    "alternative_is_implemented": false,
+    "caveat": "Bounds require valid marginal family error assumptions for the actual DGP; finite pointwise simulation intervals do not establish that assumption for arbitrary markets or simultaneous confidence over scenarios.",
+    "current_rule_bound": "max(q_main, max(q_i+q_j for two fixed null additional panels)); <=2q for uniform q",
+    "current_rule_null_witnesses": [
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          true,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          1,
+          2
+        ],
+        "population_truth": [
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          1,
+          2
+        ],
+        "population_truth": [
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          1,
+          3
+        ],
+        "population_truth": [
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          2,
+          3
+        ],
+        "population_truth": [
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    ],
+    "current_two_of_three_checks": 192,
+    "kind": "EXHAUSTIVE_DETERMINISTIC_BOOLEAN_PROOF",
+    "nominal_alpha_per_panel": 0.025,
+    "nominal_bound_if_valid_marginal_size": 0.05
+  },
+  "endpoint_non_equivalence": {
+    "historical_candidate_better": false,
+    "historical_mean_seed_RMSE_candidate": 1.1,
+    "historical_mean_seed_RMSE_rival": 1.05,
+    "kind": "DETERMINISTIC_COUNTEREXAMPLE_NOT_MARKET",
+    "prospective_candidate_better": true,
+    "prospective_pooled_RMSE_candidate": 1.1,
+    "prospective_pooled_RMSE_rival": 1.4159802258506295,
+    "seed_MSE_candidate": [
+      1.21,
+      1.21
+    ],
+    "seed_MSE_rival": [
+      0.01,
+      4.0
+    ],
+    "source_policy": "The original protocol explicitly declares a prospective endpoint amendment, not academic acceptance or a rewrite of the historical pilot.",
+    "statement": "sqrt is monotone in aggregate MSE, but average sqrt(seed MSE) is another functional. A favorable observed direction is not a hypothesis test for that other functional."
+  },
+  "family": {
+    "Holm_positive_slots_per_panel": 120,
+    "additional_EPA_Holm_slots": 180,
+    "alpha": 0.025,
+    "direction_required": true,
+    "fixed_seed_temporal_inference_is_not_unconditional_training_seed_inference": true,
+    "historical_mean_seed_RMSE_direction_also_required": true,
+    "methods": 3,
+    "nulls_per_method": 2,
+    "rivals": 20,
+    "temporal_units": "chronological dates after averaging losses over the fixed trained-seed panel; never R*T iid observations"
+  },
+  "final_B": null,
+  "final_R": null,
+  "final_T": null,
+  "final_status": "NOT_DIMENSIONED",
+  "kind": "READ_ONLY_INPUT_METHODS_AND_SCOPE_AUDIT",
+  "method_definitions": [
+    {
+      "id": "dm_hln_hac",
+      "inference": "HLN-adjusted HAC statistic against frozen Gaussian fixed-b scalar reference; not an exact finite-sample law",
+      "object": "scalar mean temporal squared-loss differential"
+    },
+    {
+      "id": "stationary_bootstrap",
+      "inference": "stationary-block studentized bootstrap with replicate HAC; common blocks preserve all fixed seed/rival pairing",
+      "object": "paired temporal loss-mean differential"
+    },
+    {
+      "id": "gw_conditional",
+      "inference": "HAC Wald statistic with predictable nonconstant instruments and frozen fixed-b Gaussian vector reference; rejection itself is not directional superiority",
+      "object": "vector conditional loss moments"
+    }
+  ],
+  "methods": [
+    "dm_hln_hac",
+    "stationary_bootstrap",
+    "gw_conditional"
+  ],
+  "missing_inputs": [
+    {
+      "code": "REAL_COMPLETE_PLANNING_PREDICTIONS",
+      "minimum_CSV_rows": 27200,
+      "reason": "supply matching nonempty predictions and receipts paths",
+      "required_jobs": 340
+    },
+    {
+      "code": "FOUR_VERIFIED_REAL_DEVELOPMENT_ADMISSIONS",
+      "details": {
+        "development_verified": [],
+        "errors": [],
+        "missing": [
+          "F00",
+          "F01",
+          "F02",
+          "F03"
+        ],
+        "provided": false,
+        "test_opened": false
+      }
+    }
+  ],
+  "new_calibration_simulations": 0,
+  "new_market_acquisitions": 0,
+  "new_model_fits": 0,
+  "new_model_predictions": 0,
+  "panel_admissions": {
+    "development_verified": [],
+    "errors": [],
+    "missing": [
+      "F00",
+      "F01",
+      "F02",
+      "F03"
+    ],
+    "provided": false,
+    "test_opened": false
+  },
+  "planning_contract": {
+    "CSV_fields": [
+      "panel",
+      "system",
+      "seed",
+      "date",
+      "y",
+      "prediction",
+      "known_floor_A",
+      "rfit"
+    ],
+    "candidate": "input_only_mse",
+    "candidate_identity": "input-only-overlap-mse-1",
+    "expected_successful_jobs": 340,
+    "final_B": null,
+    "final_R": null,
+    "final_T": null,
+    "final_grid_available_under_existing_calibration": {
+      "B": [
+        8191
+      ],
+      "R": [
+        10
+      ],
+      "T": [
+        768
+      ]
+    },
+    "final_grid_is_not_dimensioned": true,
+    "hypotheses": {
+      "alternatives_relative_pooled_RMSE_gain": [
+        0.03,
+        0.05
+      ],
+      "epa": "E_t[mean_fixed_seed loss_rival-loss_candidate]=0",
+      "margin_relative_pooled_RMSE": 0.02,
+      "practical": "E_t[(1-margin)^2 mean_fixed_seed loss_rival - mean_fixed_seed loss_candidate]=0"
+    },
+    "invariants": [
+      "All21systems on each of4panels; neural methods have5same preallocated planning seeds.",
+      "Deterministic trajectories are stored once and are not five independent seed replicates.",
+      "All methods/seeds share dates,y,known_floor_A and fit-only rfit within a panel.",
+      "At least80chronological dates per panel; labels/predictions respect sqrt(known_floor_A).",
+      "GW instruments: constant and sqrt(known_floor_A)/rfit with nonconstant full rank.",
+      "Actual hash-bound checkpoints/fit receipts; failed attempts retained; no inference from old pilot identities.",
+      "Coincident-calendar blocks share actual dates; disjoint groups are not made simultaneous by row numbers.",
+      "Fixtures, exposed historical test or incomplete candidate-only pilots do not dimension final protocol."
+    ],
+    "joint_power_must_be_reported": true,
+    "joint_power_target_090_is_not_universal_guide_requirement": true,
+    "kind": "REAL_PLANNING_INPUT_CONTRACT_NOT_ACHIEVED_POWER",
+    "minimum_dates_per_panel": 80,
+    "minimum_final_seeds": 10,
+    "minimum_physical_CSV_rows": 27200,
+    "nominal_planning_budget": {
+      "R": 5,
+      "T": 80,
+      "analytic_trajectories": 16,
+      "arima_fits": 4,
+      "caveat": "nominal ceilings and storage assumptions are not measured consumption; SAE phases share each system-seed total budget",
+      "deterministic_independent_seed_replicates": 0,
+      "estimated_storage_bytes": 21480058880,
+      "limit_failures": [],
+      "measured_planning_active_seconds": null,
+      "measured_planning_timed_attempts": 0,
+      "measured_time_is_total_for_observed_attempts_only": true,
+      "neural_fits": 320,
+      "neural_systems": 16,
+      "nominal_compute_money": null,
+      "nominal_neural_active_hours": 10.666666666666666,
+      "nominal_neural_active_seconds": 38400.0,
+      "panels": 4,
+      "planning_active_seconds_charged_total": null,
+      "planning_cost_uncertain_attempts": 0,
+      "planning_observed_interruption_partial_seconds": 0,
+      "planning_receipt_attempts": 0,
+      "prediction_rows": 27200,
+      "storage_assumption_bytes_per_neural_fit": 67108864,
+      "unpriced_or_excluded": [
+        "ARIMA active time",
+        "data acquisition and licensing",
+        "inference/export",
+        "power Monte Carlo CPU time",
+        "GitHub transfers/storage",
+        "Colab waiting and interruptions",
+        "unobserved retries/recovery",
+        "additional HPO outside frozen system budget"
+      ],
+      "within_declared_known_limits": true
+    },
+    "ordered_systems": [
+      "input_only_mse",
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "additive_positive_head",
+      "floor_only",
+      "floor_plus_mean_excess",
+      "global_mse"
+    ],
+    "panels": [
+      "F00",
+      "F01",
+      "F02",
+      "F03"
+    ],
+    "per_contrast_power_target": 0.9,
+    "planning_jobs": [
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "GRU32"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F00",
+        "seed": "deterministic",
+        "system": "Persistence"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F00",
+        "seed": "deterministic",
+        "system": "SeasonalNaive"
+      },
+      {
+        "kind": "arima",
+        "panel": "F00",
+        "seed": "deterministic",
+        "system": "ARIMA"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F00",
+        "seed": "deterministic",
+        "system": "floor_only"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F00",
+        "seed": "deterministic",
+        "system": "floor_plus_mean_excess"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "58758488022347605",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7336468608189829214",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "199850734447643452",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "9122380921944831181",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F00",
+        "seed": "7370873353992286555",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "GRU32"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F01",
+        "seed": "deterministic",
+        "system": "Persistence"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F01",
+        "seed": "deterministic",
+        "system": "SeasonalNaive"
+      },
+      {
+        "kind": "arima",
+        "panel": "F01",
+        "seed": "deterministic",
+        "system": "ARIMA"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F01",
+        "seed": "deterministic",
+        "system": "floor_only"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F01",
+        "seed": "deterministic",
+        "system": "floor_plus_mean_excess"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "58758488022347605",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7336468608189829214",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "199850734447643452",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "9122380921944831181",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F01",
+        "seed": "7370873353992286555",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "GRU32"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F02",
+        "seed": "deterministic",
+        "system": "Persistence"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F02",
+        "seed": "deterministic",
+        "system": "SeasonalNaive"
+      },
+      {
+        "kind": "arima",
+        "panel": "F02",
+        "seed": "deterministic",
+        "system": "ARIMA"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F02",
+        "seed": "deterministic",
+        "system": "floor_only"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F02",
+        "seed": "deterministic",
+        "system": "floor_plus_mean_excess"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "58758488022347605",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7336468608189829214",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "199850734447643452",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "9122380921944831181",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F02",
+        "seed": "7370873353992286555",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "input_only_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "FCN-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "ResNet-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "Inception-1D"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "LSTM-autoencoder con predictor"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "TimesNet"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "TSMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "TiDE"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "TimeMixer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "PatchTST"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "iTransformer"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "MLP16"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "LSTM32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "GRU32"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "GRU32"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F03",
+        "seed": "deterministic",
+        "system": "Persistence"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F03",
+        "seed": "deterministic",
+        "system": "SeasonalNaive"
+      },
+      {
+        "kind": "arima",
+        "panel": "F03",
+        "seed": "deterministic",
+        "system": "ARIMA"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "additive_positive_head"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F03",
+        "seed": "deterministic",
+        "system": "floor_only"
+      },
+      {
+        "kind": "analytic",
+        "panel": "F03",
+        "seed": "deterministic",
+        "system": "floor_plus_mean_excess"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "58758488022347605",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7336468608189829214",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "199850734447643452",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "9122380921944831181",
+        "system": "global_mse"
+      },
+      {
+        "kind": "neural",
+        "panel": "F03",
+        "seed": "7370873353992286555",
+        "system": "global_mse"
+      }
+    ],
+    "planning_seed_ids": [
+      58758488022347605,
+      7336468608189829214,
+      199850734447643452,
+      9122380921944831181,
+      7370873353992286555
+    ],
+    "receipt_kind": "development_planning_predictions",
+    "receipt_partition": "planning",
+    "receipt_required_fields": [
+      "final_test_opened=false",
+      "synthetic=false",
+      "is_fixture=false",
+      "predictions_sha256",
+      "seed_bank_sha256",
+      "protocol_sha256",
+      "methods_sha256",
+      "protocol_file:{path,sha256}",
+      "methods_file:{path,sha256}",
+      "source_manifest_file:{path,sha256}",
+      "planning_data_file:{path,sha256}",
+      "planning_partition_purged=true",
+      "instruments_available_at_origin=true",
+      "fit_receipts"
+    ],
+    "resampling_resolution": {
+      "B_for_requested_expected_tail_exceedances_diagnostic_only": 720000,
+      "additional_adverse_slots": 180,
+      "expected_tail_exceedances": 100,
+      "interpretation": "resolution is necessary arithmetic; expected exceedances are a precision diagnostic, not a universal B gate or a power certificate",
+      "mc_p_rule": "absolute_tail_plus_one",
+      "minimum_B_for_two_sided_resolution": 7199,
+      "p_resolution_numerator": 1,
+      "positive_slots_per_panel": 120,
+      "smallest_family_threshold": 0.0001388888888888889
+    },
+    "schema_version": 1,
+    "successful_job_fields": [
+      "panel",
+      "system",
+      "seed",
+      "phase=planning",
+      "success=true",
+      "active_seconds",
+      "checkpoint:{path,sha256}"
+    ]
+  },
+  "planning_input_evidence": null,
+  "planning_inputs_valid": false,
+  "power_sha256": "975ef3b0027f15e4b7cfaa60035a16a8e3ed7a2d54a56482e24090a1ad1bc49a",
+  "report_sha256": "869263c9d99c2a127f30f8b4ec8171d74298d688066f53a67f01d6f4c87e3e01",
+  "reserved_test_opened": false,
+  "source_code_unchanged": true,
+  "source_commit": "c54a2fd3123a1ea8f98c2e56c2acfbe491c8672c",
+  "source_files_verified": 288,
+  "source_manifest_sha256": "cd96def4f0a792d0d26d82f94048b0dbc9bf10b35cc7d3a561cf0e0db6d5b12b",
+  "source_root": "/workspace/e3_engine_published_source_cache/source-c54a2fd3123a1ea8f98c2e56c2acfbe491c8672c",
+  "statistics_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+  "version": "e3-planning-input-and-estimand-audit-1"
+}
