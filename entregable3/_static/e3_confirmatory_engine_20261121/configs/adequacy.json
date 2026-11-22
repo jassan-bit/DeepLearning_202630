@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "version": "e3-point-forecast-adequacy-robustness-v1",
+  "candidate": "input_only_mse",
+  "primary_estimand_version": "temporal-fixed-seeds-mse-v4",
+  "threshold_admission": {
+    "status": "DEFINED_PROSPECTIVELY_NOT_EMPIRICALLY_SATISFIED",
+    "frozen_before_new_data": true,
+    "rationale": "Prospective conservative adoption: selection-minus-fit RMSE must be at most min(inherited E1/E2 delta_g, 10% of fit RMSE). This tightens the inherited absolute criterion for small-scale panels. A zero fit RMSE is degenerate. Coverage, width, bias, slope and consistency tolerances are explicit scientific design choices fixed before new data, not original-guide numerical mandates; no institutional ratification is inferred. The final protocol must bind the exact configuration hash before test opening."
+  },
+  "sources": [
+    {
+      "path": "book_e3/_static/e3_statistics_remediation_20261121/guide_power/primary/PRIMARY_GUIDE_FACTS.json",
+      "sha256": "14981f83848b00a5c64b8a912b5dec4eee25dc8fef391841bdc96734e19a9124",
+      "facts": "E3 guide original PDF SHA d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364; sections8.4.3-8.4.6,8.7.3; pp24,28. Effect d>=0.2, beat trivial baseline, gap below margin, calibration/residuals and test-selection consistency; no numeric coverage/width tolerance supplied."
+    },
+    {
+      "path": "book_e3/sections/02_estandar_profundidad.md",
+      "sha256": "9f520e5dafbc58969a9aa9ef4bec6646da14f729bd76188f69982491d2e4009d",
+      "facts": "Section2.2 preserves the inherited E1/E2 absolute sigma7 RMSE delta=0.00025772842664981106 and draft delta_g with the same numeric value, explicitly requiring justification of the candidate gap. This is not a universal guide tolerance and is not the new relative 2% margin."
+    }
+  ],
+  "gap": {
+    "units": "original sigma7 RMSE",
+    "selection_minus_fit_upper": 0.00025772842664981106,
+    "maximum_fraction_of_fit_rmse": 0.1
+  },
+  "consistency": {
+    "maximum_absolute_test_minus_selection_over_selection_rmse": 0.2
+  },
+  "calibration": {
+    "level": 0.9,
+    "quantile": "ceil((n+1)*level)-th ordered absolute calibration residual; unavailable when rank>n",
+    "floor": "sqrt(known_floor_A) at the forecast origin",
+    "coverage_shortfall_tolerance": 0.05,
+    "maximum_mean_width_over_fit_rms": 1.0,
+    "coverage_ci": "marginal chronological stationary-bootstrap interval, no iid/binomial or exchangeable guarantee"
+  },
+  "residuals": {
+    "maximum_absolute_bias_over_fit_rms": 0.05,
+    "maximum_absolute_mz_intercept_over_fit_rms": 0.05,
+    "maximum_mz_slope_deviation": 0.25,
+    "diagnostic_alpha": 0.05,
+    "bds_enabled": false,
+    "bds_maximum_n": 2000,
+    "bds_reason": "Raw overlapping-label residuals need not be iid. BDS can be explicitly preregistered as an iid diagnostic; it is not a calibration certificate."
+  },
+  "robustness": {
+    "temporal_alternatives": [
+      {
+        "id": "longer_hac_and_blocks",
+        "hac_lags": 64,
+        "block_length": 80
+      }
+    ],
+    "seed_subsets": [
+      "first_half",
+      "even_positions"
+    ],
+    "temporal_blocks": [
+      "first_half",
+      "second_half"
+    ],
+    "secondary_metric": "MAE",
+    "require_full_statistical_conclusion": true,
+    "required_saved_stress_scenarios": [
+      "input_noise",
+      "missingness"
+    ],
+    "stress_contract": "Requires predeclared scenario identity and already saved post-seal predictions for every method; assessment never perturbs inputs or calls a model.",
+    "nadeau_bengio": "not_applicable: no repeated random train/test partitions; use dependence-aware temporal covariance and block resampling"
+  }
+}

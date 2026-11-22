@@ -1,0 +1,80 @@
+{
+  "acceptance_fixed": {
+    "failure_rule": "If CP95 lower for FWER exceeds 0.05, or upper for coverage/power lies below its target, report failure. Otherwise unmet confidence-bound requirements are inconclusive. Never widen criteria after results.",
+    "fwer_demonstrated_in_a_scenario_only_if": "CP95 upper <= 0.05",
+    "nominal_coverage_demonstrated_in_a_scenario_only_if": "CP95 lower >= 0.95",
+    "overall_claim": "No general validation outside the listed DGPs, fixed T and fixed tuning; finite MC may remain inconclusive. No protocol closure from an inconclusive audit.",
+    "power_target_demonstrated_only_if": "CP95 lower >= 0.90 for every contrast"
+  },
+  "alpha": 0.05,
+  "block_length": 64,
+  "bootstrap_reps": 4999,
+  "budget_rule": "Stop between complete replicates if elapsed CPU reaches 300 seconds; retain all results and label unfinished scenarios incomplete; never reduce uncertainty or silently drop failed replicates.",
+  "coverage": "95% marginal basic stationary-bootstrap CI of MSE loss difference and percentile CI of relative aggregate RMSE gain, for prespecified rival 0; 95% exact Clopper-Pearson intervals across replicates",
+  "cpu_budget_seconds": 240,
+  "data_generator": "Stationary bounded AR innovations after burn-in 300; common and idiosyncratic cross-rival differences; moving average for overlap scenario; exogenous lagged AR instrument independent of loss differences; losses positive, square roots used as predictions against y=0; fixed seed offsets cancel in differences. Strong alternative is deliberately large and does not establish power at 3% gain.",
+  "degeneracies": [
+    "identical predictions",
+    "constant unequal losses",
+    "constant instruments rejected",
+    "missing instrument prevents third test",
+    "inferiority retains small raw p-values"
+  ],
+  "family": "120 two-sided p-values: 20 rivals x 3 methods x EPA/practical; Holm across all 120",
+  "frozen_before_execution": true,
+  "fwer_event": "Any adjusted p<0.05 among the exact null contrasts and the three methods, either direction. Practical tests at a nonzero mean are not counted as equality-null violations. Also report false positive directional superiority.",
+  "hac_lags": 48,
+  "margin": 0.02,
+  "n_dates": 1536,
+  "n_fixed_seeds": 10,
+  "n_rivals": 20,
+  "power": "Per-rival complete statistical gate and joint all-20 gate; report worst per-rival power with CP95 interval; target 0.90; only large simulated alternative covered",
+  "protocol_version": "temporal-fixed-seeds-mse-v2",
+  "purpose": "Revised large-T scope audit after retained failed v1; code fixes relative-scale degeneracy handling. No claim at T192; same acceptance criteria, no market calibration.",
+  "replicates_per_stochastic_scenario": 80,
+  "revision_reason": "V1 failed FWER and coverage. Larger T with increasing HAC bandwidth and stationary-bootstrap blocks addresses finite-sample/short-bandwidth bias; unit-scale implementation correction tested separately. This is a new prospective synthetic plan, not a tolerance change.",
+  "scenarios": [
+    {
+      "boundary_null": "epa",
+      "id": "complete_null_ar05",
+      "null_rivals": 20,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": "epa",
+      "id": "partial_null_ar05",
+      "null_rivals": 10,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.75
+    },
+    {
+      "boundary_null": "epa",
+      "id": "complete_null_overlap5",
+      "null_rivals": 20,
+      "overlap": 5,
+      "phi": 0.4,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": "practical",
+      "id": "practical_boundary_ar05",
+      "null_rivals": 20,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": null,
+      "id": "strong_alternative_ar05",
+      "null_rivals": 0,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.75
+    }
+  ],
+  "seed": 2026112102,
+  "version": "synthetic-temporal-validation-v2"
+}

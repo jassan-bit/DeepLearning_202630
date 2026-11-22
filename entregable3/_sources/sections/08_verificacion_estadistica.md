@@ -1447,3 +1447,44 @@ La sensibilidad descriptiva frente a global conserva ganancias **4,45694 % / 1,1
 Los recibos documentan 30 ajustes, **965 épocas y 16.405 pasos**, cero fallos/interrupciones registrados, **76,02349 s activos y 10,00463 s de IO de checkpoint**; estos tiempos no incluyen todo el coste de VM, instalación o respaldo. La recuperación declara sesión anterior cerrada y cierre final `assessment_finished`. Se verificó consistencia del inventario, pero el ZIP no contiene pesos o arrays originales para verificar materialmente sus bytes ni distribuciones atómicas para acreditar calibración. El {download}`resumen verificable <../_static/e3_input_only_candidate_20261121/analysis/AUDIT_SUMMARY.json>` separa esas limitaciones de las comprobaciones ejecutadas.
 
 El {download}`protocolo confirmatorio DRAFT <../_static/e3_input_only_candidate_20261121/confirmation/CONFIRMATION_PROTOCOL_DRAFT.json>` es una propuesta nueva con **20 rivales** y estimando condicionado al calendario. La ruta de tres procedimientos sobre semillas requiere justificar supuestos y correspondencia con F2; **no hay tres métodos aprobados ni una puerta F2 satisfecha**. Siguen pendientes cuatro admisiones, reserva verificable, margen práctico, covarianza de toda la familia, calibración de métodos, potencia ≥0,90 por contraste y conjunta reportada, R/T/B y presupuesto finales. Ni esta auditoría ni el notebook de preparación ejecutan o programan una confirmación. Los 796 trabajos aditivos, el 2,7043 % adverso de V3 y el abandono V4 permanecen sin cambios; no son resultados de input-only.
+
+(e3-temporal-engine-statistics-20261121)=
+## 8.29 Motor temporal: estimando, calibración y evaluación separada
+
+La guía original y su Tabla 4/F2 motivan tres procedimientos distintos: **DM-HLN/HAC**, **bootstrap estacionario studentizado** y **Giacomini–White condicional**. No se cuenta Clark–West sin anidamiento ni se transforma un MCS global en p direccionales por rival. La ruta anterior de t/bootstrap/Wilcoxon sobre semillas queda conservada como propuesta anterior, sin renombrarla como batería temporal admitida.
+
+### Estimando y supuestos
+
+La enmienda prospectiva usa la media de errores cuadrados sobre fechas y el conjunto fijo de modelos entrenados. Reporta su raíz como RMSE agregado, conserva además la media de RMSE individuales y exige que ésta sea favorable. Ninguna equivale al RMSE de promediar predicciones como ensamble. Las semillas no multiplican artificialmente las fechas independientes; la inferencia temporal condiciona los modelos y semillas fijados.
+
+DM y bootstrap estudian la media del diferencial de pérdida. GW contrasta momentos condicionales con instrumentos disponibles en el origen, por lo que su rechazo es no direccional y no prueba por sí solo inferioridad de la media. Se informan estadísticos, p crudos/ajustados, direcciones, contadores Monte Carlo y supuestos. La familia principal contiene 120 casillas: 20 rivales × tres procedimientos × igualdad/margen. La regla operacional se fija en el protocolo vigente; no cambia después de resultados de mercado.
+
+Las referencias fixed-b de DM y GW retienen la dependencia entre covarianza HAC y estadístico en el tamaño finito. El bootstrap-t recalcula HAC por réplica. Se conservan intervalos del 95 % y guardas conservadoras del 99 %, denominadas con su nivel real. Su cobertura no se describe como 95 % por conveniencia. Las pruebas incluyen equivalencia de la suma móvil HAC/Bartlett, escalas extremas, singularidades y equivalencia del núcleo nativo con NumPy.
+
+### Validación sintética y alcance
+
+**Dictamen vigente: `PASSED_PREDECLARED_VALIDATION`.** El {download}`resumen de entrega <../_static/e3_confirmatory_engine_20261121/DELIVERY_STATUS.json>`, la {download}`batería y sus hipótesis <../_static/e3_confirmatory_engine_20261121/docs/TEMPORAL_BATTERY.md>` y el {download}`informe vigente <../_static/e3_confirmatory_engine_20261121/qa/statistical_validation/v4_precision/report.json>` permiten comprobar plan, código, semillas, presupuesto, réplicas y cotas exactas. El estudio no se presenta como validación universal ni acredita potencia de una campaña de mercado. Las versiones fallidas y las inconclusas permanecen archivadas; no se ensancharon tolerancias para aprobarlas.
+
+La **batería temporal, versión estadística 4**, usa α operacional 0,025, R=10, T=768, B=8191, HAC48 y bloques32. El expediente compuesto conserva cuatro escenarios de 512 réplicas y añade **2048 réplicas independientes** del nulo AR(0,5). El criterio de aceptación conservó FWER CP95 superior≤0,05 y cobertura de los intervalos **99 %** con CP95 inferior≥0,95.
+
+| Escenario | Réplicas | FWER / CP95 superior | Cobertura CI99 MSE / CP95 inferior | Cobertura CI99 ganancia / CP95 inferior |
+|---|---:|---:|---:|---:|
+| complete_null_ar05 | 2048 | 50/2048 / 0.032061 | 2019/2048 / 0.979727 | 2019/2048 / 0.979727 |
+| partial_null_ar05 | 512 | 7/512 / 0.027965 | 507/512 / 0.977358 | 507/512 / 0.977358 |
+| complete_null_overlap5 | 512 | 6/512 / 0.025331 | 503/512 / 0.966894 | 503/512 / 0.966894 |
+| practical_boundary_ar05 | 512 | 15/512 / 0.047861 | 507/512 / 0.977358 | 507/512 / 0.977358 |
+| strong_alternative_ar05 | 512 | — | 503/512 / 0.966894 | 503/512 / 0.966894 |
+
+La auditoría inicial de esta versión conservó **16/512 rechazos** en ese nulo, con CP95 superior **0,05025287955875999**: su dictamen original sigue **inconcluso**. La elección del escenario a replicar se hizo **después** de conocerlo. El mapa del expediente se publicó antes de las réplicas nuevas en `ace1095452ca6e35af083f92822dad374049b5f6`: fija los cuatro componentes previos y el único componente nuevo, sin agrupar los 512 antiguos con los 2048 nuevos ni permitir elegir otro mapa tras ver el resultado. No es un estudio nuevo de cinco escenarios independientes, un preregistro de los resultados anteriores o una garantía de confianza simultánea ni bajo revisiones opcionales.
+
+El código y el plan iniciales se publicaron antes de simular en `70f0838cdf8809a469ea1ca837e5011faff551e2`. Las versiones **estadísticas** 1/2 fallaron; la 3 quedó inconclusa y sus 960 réplicas completas se recuperaron sin repetirlas. Estas versiones del validador son distintas de las arquitecturas y pilotos V3/V4/V5. Se conservan las coberturas diagnósticas del 95 % y sus fallos, sin presentarlas como calibradas. La admisión obtenida es condicional a los DGP y tamaños ensayados por panel; no es una simulación conjunta de cuatro mercados. Las cotas CP son puntuales para los diagnósticos declarados. La multiplicidad adicional se justifica por Holm y sus supuestos; la potencia conjunta requiere el estudio separado con planificación real.
+
+El planificador de potencia ejecuta la regla efectiva con covarianzas de desarrollo guardadas; no sustituye esos insumos por el piloto de 55 fechas. La alternativa de planificación del 3 % excede el margen práctico del 2 %, con sensibilidad del 5 %; no promete potencia ante mejoras arbitrariamente cercanas al margen. Los límites de Monte Carlo, tiempo, memoria y presupuesto forman parte de la decisión, no se ocultan como resultados suficientes.
+
+### Test único y comprobación de las seis condiciones
+
+Antes de test se verifican todos los checkpoints seleccionados y se congelan calibradores con predicciones de calibración. Los intervalos absolutos al 90 % usan el estadístico de orden finito y el soporte √A; no se atribuye garantía intercambiable a una serie dependiente ni calibración distributiva a átomos aprendidos con MSE. El protocolo vincula los umbrales prospectivos de adecuación con su justificación y hash.
+
+La evaluación registra una consulta por identidad y escenario; publica el marcador durable antes del acceso. Una cache completa se reutiliza. Un marcador pendiente sin resultado detiene la recuperación automática para no repetir una consulta de estado incierto. Los escenarios prefijados de ruido de medición y faltantes preservan los cierres/etiquetas y se guardan dentro del mismo sello, sin retocar la candidata.
+
+El análisis consume exclusivamente CSV guardados y conserva resultados adversos. Comprueba superioridad frente a los veinte rivales, margen/efectos/intervalos, consistencia en al menos dos de tres adicionales y ausencia de inferioridad significativa, adecuación y robustez. Conserva GW en la multiplicidad, pero el veto de inferioridad media usa DM/bootstrap direccionales. La potencia conjunta se reporta; no se le inventa un mínimo universal del 90 %. No se convierten pruebas de software, simulaciones o un JSON favorable en aceptación académica de R3.

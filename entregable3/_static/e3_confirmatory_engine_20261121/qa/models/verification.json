@@ -1,0 +1,100 @@
+{
+  "version": "e3-confirmatory-model-fixtures-v1",
+  "executed_at_utc": "2026-11-21T23:40:42.510893+00:00",
+  "command": [
+    "/workspace/e3_fixed_state_runtime/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_models.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "tests": 25,
+  "failures": 0,
+  "wall_seconds_observed": 4.063732615002664,
+  "scope": "fixed synthetic software contracts, not confirmatory market evidence",
+  "market_training_executed": false,
+  "market_files_opened": [],
+  "final_test_opened": false,
+  "actual_synthetic_statsmodels_ARIMA_fits": 1,
+  "synthetic_neural_optimizer_steps": 19,
+  "family_size": 21,
+  "neural_methods": [
+    "input_only_mse",
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "additive_positive_head",
+    "global_mse"
+  ],
+  "single_trajectory_methods": [
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA",
+    "floor_only",
+    "floor_plus_mean_excess"
+  ],
+  "checks": [
+    "all21 factory/forward or trajectory and serialized-state recovery",
+    "16 real neural backward passes and optimizer steps",
+    "frozen candidate exact tensors, weights, MSE",
+    "SAE AE1/AE2/supervised actual losses and exact pretrained encoder transfer",
+    "ARIMA selected (2,0,1) converges and frozen-parameter causal replay equals direct statsmodels",
+    "unknown method and unavailable target-history fail closed",
+    "fit-only scale immutability",
+    "causal per-window inference including TimesNet",
+    "source-byte and selected-hyperparameter integrity"
+  ],
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "packages": {
+      "torch": "2.8.0+cpu",
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3",
+      "statsmodels": "0.14.5",
+      "patsy": "1.0.3",
+      "einops": "0.8.1",
+      "reformer-pytorch": "1.4.4",
+      "axial-positional-embedding": "0.3.12",
+      "colt5-attention": "0.11.2",
+      "hyper-connections": "0.4.11",
+      "local-attention": "1.11.2",
+      "product-key-memory": "0.3.0",
+      "torch-einops-utils": "0.2.8"
+    }
+  },
+  "source_sha256": {
+    "engine/models.py": "b5a68fc1c12e42296510550b9ab02969fb0b7dfc08be3f1266bc5bcfe74b2446",
+    "engine/recipes.json": "b28e102c585794dc7df79ac8755898d4ffb65a823a0ad57cd91f863c57c0ba7a",
+    "tests/test_models.py": "9d88d473b195e14430b559630d0e061c78d11505d4edff55c8d5b05405226c25",
+    "vendor/SOURCE_MANIFEST.json": "166ae5f7e2d24057f2d7eb55222721518638588d2887443446e0c0c7ebb136ee",
+    "docs/MODEL_PROVENANCE.md": "e86832a1164cec7d99cf783f8788fc2f159683ab09f2f7aebc600311df0947fe"
+  },
+  "source_verification": {
+    "version": "e3-confirmatory-model-sources-v1",
+    "files_verified": 104,
+    "manifest_sha256": "166ae5f7e2d24057f2d7eb55222721518638588d2887443446e0c0c7ebb136ee",
+    "recipes_sha256": "b28e102c585794dc7df79ac8755898d4ffb65a823a0ad57cd91f863c57c0ba7a"
+  },
+  "limitations": [
+    "CPU Python3.12 FP32/FP64 fixtures only; GPU/mixed precision parity not tested",
+    "No market fit or held-out performance measured",
+    "ARIMA fixture checks one declared stationary ARMA synthetic process, not all market convergence cases",
+    "TiDE original zero-covariate branch warning preserved; not all retained parameters have nonzero task gradients"
+  ]
+}

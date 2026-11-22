@@ -437,6 +437,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen-propio-de-input-only-lectura-estructurada-con-escala-global">6.20 Dictamen propio de input-only: lectura estructurada con escala global</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementaciones-de-la-familia-sin-cambiar-la-candidata">6.21 Implementaciones de la familia sin cambiar la candidata</a></li>
 </ul>
             </nav>
         </div>
@@ -1277,6 +1278,12 @@ L=\operatorname{mean}\bigl[(\widehat Y-Y)/\operatorname{mean}_{\rm fit}Y\bigr]^2
 <p>DAIN ya aprende normalización de entrada y RevIN normaliza y restaura estadísticas por instancia. Aquí no se reivindican como novedad suficiente la normalización causal, retirar CRPS o reunir componentes conocidos. Frente al control interno <code class="docutils literal notranslate"><span class="pre">global_mse</span></code>, sólo cambia el preprocesamiento; <code class="docutils literal notranslate"><span class="pre">atom_mse_only</span></code> de V3 es un antecedente interno explícito. La diferencia sustantiva defendida frente a regresión directa, mezclas y normalizadores externos es parametrizar la magnitud aún desconocida de una etiqueta parcialmente observada y aplicar su transformación dependiente de <span class="math notranslate nohighlight">\(A\)</span> <strong>antes</strong> de promediar. La búsqueda y la revisión crítica por IA delimitan esa pretensión; no prueban prioridad mundial ni sustituyen la defensa del autor.</p>
 <p>Los 30 ajustes V5 de seis recetas y cinco semillas son una cohorte distinta de los 796 trabajos aditivos, de V3 y de V4. V5 completo obtuvo RMSE medio <strong>0,0021609604200311396</strong>, <strong>5,3325 % peor</strong> que input-only, y conserva <strong><code class="docutils literal notranslate"><span class="pre">ABANDON_CURRENT_SEOI_RECIPE</span></code></strong>. Su regla no se reaplica a la ablación para promoverla automáticamente. La nueva nominación es posterior a los resultados, no una arquitectura matemática nueva ni una confirmación independiente; <a class="reference internal" href="08_verificacion_estadistica.html#e3-input-only-audit-20261121"><span class="std std-ref">8.28</span></a> conserva la señal y sus límites.</p>
 </section>
+<section id="implementaciones-de-la-familia-sin-cambiar-la-candidata">
+<span id="e3-temporal-engine-model-20261121"></span><h2>6.21 Implementaciones de la familia sin cambiar la candidata<a class="headerlink" href="#implementaciones-de-la-familia-sin-cambiar-la-candidata" title="Link to this heading">#</a></h2>
+<p>El motor posterior conserva exactamente la arquitectura, normalización de entrada y MSE de <code class="docutils literal notranslate"><span class="pre">input-only-overlap-mse-1</span></code>. La igualdad con la celda <code class="docutils literal notranslate"><span class="pre">input_only_mse</span></code> original se prueba sobre preprocesamiento, parámetros, estado, salidas y pérdida. Sus 1262 parámetros no constituyen un diseño nuevo por empaquetarlos con un controlador. La identidad y el banco de semillas conservan sus SHA256 anteriores.</p>
+<p>Se implementan 21 sistemas: candidata, diez redes principales, seis baselines de la guía y aditiva, <code class="docutils literal notranslate"><span class="pre">floor_only</span></code>, <code class="docutils literal notranslate"><span class="pre">floor_plus_mean_excess</span></code> y <code class="docutils literal notranslate"><span class="pre">global_mse</span></code>. Hay 16 sistemas neuronales y cinco deterministas. ARIMA(2,0,1) usa la receta histórica verificada y un filtro causal sin reajustar parámetros con test. El autoencoder conserva sus tres fases dentro del presupuesto total. Las estadísticas del preprocesamiento se ajustan sólo en <code class="docutils literal notranslate"><span class="pre">fit</span></code>; se guardan las predicciones crudas y la proyección al soporte común conocido.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/a2c039a9a5bdd818d3009d03bcdbcb2d/MODEL_PROVENANCE.md"><code class="xref download docutils literal notranslate"><span class="pre">inventario</span> <span class="pre">de</span> <span class="pre">implementaciones</span> <span class="pre">y</span> <span class="pre">licencias</span></code></a> atribuye las fuentes históricas y las primarias, y verifica 104 archivos de proveedor. Las pruebas ejecutan las redes reales sobre fixtures, no adaptadores vacíos. Se declara asistencia de IA en código, auditoría y redacción. No se reabre R1 sin una contradicción ni se transfieren a esta versión los 796 trabajos aditivos, los pilotos V3/V4 o el abandono de V5 completo.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1393,6 +1400,7 @@ L=\operatorname{mean}\bigl[(\widehat Y-Y)/\operatorname{mean}_{\rm fit}Y\bigr]^2
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictamen-propio-de-input-only-lectura-estructurada-con-escala-global">6.20 Dictamen propio de input-only: lectura estructurada con escala global</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementaciones-de-la-familia-sin-cambiar-la-candidata">6.21 Implementaciones de la familia sin cambiar la candidata</a></li>
 </ul>
   </nav></div>
 

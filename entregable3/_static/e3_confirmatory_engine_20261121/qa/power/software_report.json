@@ -1,0 +1,22 @@
+{
+  "kind": "software_checks_and_bounded_synthetic_fixture_only",
+  "tests_run": 28,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "market_training_runs": 0,
+  "final_test_accesses": 0,
+  "market_power_estimated": false,
+  "full_family_calibration_approved": false,
+  "source_sha256": {
+    "engine/power.py": "975ef3b0027f15e4b7cfaa60035a16a8e3ed7a2d54a56482e24090a1ad1bc49a",
+    "engine/statistics.py": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+    "tests/test_power.py": "8976cb331ab91b612e03810d9140b20f0d2c686b80ec4f3f2f5a480bd6edd135",
+    "configs/power_design.json": "3d9d004a2ba3dbaf2903cd07ac4c467ca931188a968d0e882c3cf2cd5b443d3a",
+    "configs/FINAL_SEED_BANK.json": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee"
+  },
+  "test_output": "qa/power/POWER_TEST_OUTPUT.txt",
+  "operational_rule": "finite-B-count-plus-one-actual-Holm-v1",
+  "tail_uncertainty_role": "diagnostic_only",
+  "conclusion": "28 software tests passed on the V4 statistical API. Exact finite-B count+1/Holm rule is simulated for power; CP upper-tail re-Holm sensitivity is separate, with actual count ledgers and uncertainty, and cannot create an impossible mandatory B8191 gate. Simultaneous outer-MC CP lower bounds over 80 contrasts and all alternatives remain required at .90. Source and planning receipt method hashes, frozen validation ledgers, disjoint-calendar coupling and bounds, directional GW separation, and measured versus charged costs verified. No market planning power or final dimensioning approved."
+}
