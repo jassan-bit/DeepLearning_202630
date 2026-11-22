@@ -21,13 +21,13 @@ def fixture(tmp_path):
     for panel in controller.PANELS:
         provenance={'provider':'fixture_provider','instrument':panel,'calendar':'24/7','bar_index_origin':'2020-01-01','bar_index_convention':'zero_based_complete_observed_calendar_sessions_v1'}
         plan['data_panels'].append({'id':panel,'provenance':provenance,'development':{'fit':{'support':[0,10]}}})
-        target={'count':10,'start':'2030-01-01','end':'2030-01-10',
+        target={'reserve_mode':'documented_historical_reserve','count':10,'start':'2030-01-01','end':'2030-01-10',
                 'source_identity_sha256':controller.source_identity_sha256(provenance),
                 'exposure_evidence_sha256':inventory_sha}
         protocol['final']['test_panels'][panel]=target
         admissions[panel]={'provenance':provenance,'partition_paths':{'test':'unused.npz'},'partition_counts':{'test':10},
                            'partition_date_ranges':{'test':['2030-01-01','2030-01-10']},'partition_support_bounds':{'test':[11,30]},
-                           'exposure':{'form':{'exposure_inventory_sha256':inventory_sha}},
+                           'exposure':{'form':{'reserve_mode':'documented_historical_reserve','exposure_inventory_sha256':inventory_sha}},
                            'final_authorization':{'authorize_test_preparation':True,'protocol_sha256':proto_sha,
                                 'selected_checkpoints_sha256':selected_sha,'sources_methods_size_frozen':True,'development_bar_index_origin':'2020-01-01',
                                 'reserve_inventory':{'path':str(inventory),'sha256':inventory_sha}}}
@@ -60,6 +60,7 @@ def test_final_metadata_verifies_independent_prior_source_and_exposure_files(tmp
     ('source','released_source_identity_differs'),
     ('origin','released_test_bar_index_origin_differs'),
     ('inventory','reserve_inventory_evidence_differs'),
+    ('mode','released_reserve_mode_differs'),
     ('file','evidence_file_hash_differs'),
 ])
 def test_released_source_or_reserve_inventory_cannot_differ_from_fixed_spec(tmp_path,change,diagnostic):
@@ -69,6 +70,8 @@ def test_released_source_or_reserve_inventory_cannot_differ_from_fixed_spec(tmp_
         c.write_json(tmp_path/'protocol.json',protocol)
     elif change=='origin':
         admissions['F00']['provenance']={**admissions['F00']['provenance'],'bar_index_origin':'2029-01-01'}
+    elif change=='mode':
+        admissions['F00']['exposure']['form']['reserve_mode']='post_protocol'
     elif change=='inventory':
         admissions['F00']['exposure']['form']['exposure_inventory_sha256']='0'*64
     else:inventory.write_text('Changed exposure record after protocol closure\n')

@@ -86,3 +86,22 @@ def test_assessment_persists_result_and_explicit_durability_receipt(tmp_path):
     assert receipt["assessment_file"]=="metrics/assessment.json"
     assert receipt["requires_sync_before_remote_durability_claim"] is True
     assert receipt["new_model_forwards"]==0
+
+
+@pytest.mark.parametrize('reserve_mode',['documented_historical_reserve','external_custodian','post_protocol'])
+def test_authentic_owner_or_custodian_modes_reach_the_same_strong_gate(tmp_path,reserve_mode):
+    from engine import common as c
+    root=Path(cli.__file__).resolve().parents[1]
+    base=tmp_path/'base.json';c.write_json(base,c.read_json(root/'configs/protocol.json'))
+    power=tmp_path/'power.json';design=c.read_json(root/'configs/power_design.json')
+    c.write_json(power,{'status':'DIMENSIONED_CONDITIONAL_EMPIRICAL_DGP','final_R':10,'final_T':768,'final_B':8191,
+                       'design_sha256':c.digest(design),'methods_sha256':c.sha(root/'engine/statistics.py')})
+    method=tmp_path/'unit_method.json';c.write_json(method,{'software_fixture_only':True})
+    test_spec=tmp_path/'test_spec.json'
+    c.write_json(test_spec,{panel:{'start':'2030-01-01','end':'2032-02-06','count':768,'reserve_mode':reserve_mode,
+                                  'source_identity_sha256':'a'*64,'exposure_evidence_sha256':'b'*64}
+                            for panel in controller.PANELS})
+    with patch.object(controller,'_admit_final',side_effect=controller.ControllerError('strong_gate_reached')) as gate:
+        with pytest.raises(controller.ControllerError,match='strong_gate_reached'):
+            cli.freeze_protocol(base,power,method,test_spec,tmp_path/'closed.json')
+    assert gate.call_count==1 and not (tmp_path/'closed.json').exists()

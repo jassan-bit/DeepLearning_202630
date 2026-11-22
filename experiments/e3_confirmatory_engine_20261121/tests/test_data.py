@@ -210,6 +210,42 @@ class DataTests(unittest.TestCase):
             self.assertFalse(receipt["cryptographic_signature_verified"])
             self.assertIn("not_identity_verification", receipt["kind"])
 
+    def test_owner_documented_historical_reserve_needs_real_history_and_bound_exports(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            # These are generated software exports, never an actual statement
+            # on behalf of the project owner or a real historical holdout.
+            evidence = root/"fixture-history.json"
+            evidence.write_text(json.dumps({"fixture_only": True, "actor": "SOFTWARE OWNER",
+                "seal": "synthetic archive seal", "access_log": ["synthetic access event"],
+                "exposure_inventory": {"F01": {"exposed": "development", "claimed_reserved": "software only"}}}))
+            digest = data.sha256_bytes(evidence.read_bytes())
+            form = {"actor_name": "SOFTWARE OWNER", "actor_contact": "fixture@example.invalid", "actor_role": "author",
+                "statement_utc": "2026-11-22T00:00:00+00:00", "reserve_mode": "documented_historical_reserve",
+                "evidence_origin": "generated software fixture, not an authentic project reserve",
+                "acknowledge_prior_D00_D03_exposed": True, "protocol_sha256": "a"*64,
+                "exposure_inventory_sha256": digest, "custodian_seal_sha256": digest,
+                "custodian_access_log_sha256": digest,
+                "actual_history_accessed_per_panel": {"F01": {"scope": "synthetic history", "events": ["fixture only"]}},
+                "who_could_access_prices_labels_predictions": {"author": "SOFTWARE OWNER"},
+                "historical_seal_evidence_path": str(evidence),
+                "historical_access_log_evidence_path": str(evidence), "exposure_inventory_path": str(evidence)}
+            source = root/"owner.json"
+            for field in ("actual_history_accessed_per_panel", "who_could_access_prices_labels_predictions",
+                          "historical_seal_evidence_path", "historical_access_log_evidence_path", "exposure_inventory_path"):
+                incomplete = dict(form); incomplete.pop(field); source.write_text(json.dumps(incomplete))
+                with self.subTest(missing=field), self.assertRaises(data.AdmissionError):
+                    data.record_owner_evidence(source, evidence, root/"blocked.json")
+                self.assertFalse((root/"blocked.json").exists())
+            source.write_text(json.dumps(form))
+            receipt = data.record_owner_evidence(source, evidence, root/"historical.json")
+            self.assertEqual(receipt["form"]["reserve_mode"], "documented_historical_reserve")
+            self.assertEqual(receipt["form"]["actor_role"], "author")
+            self.assertFalse(receipt["cryptographic_signature_verified"])
+            evidence.write_text("TAMPERED SOFTWARE ACCESS HISTORY")
+            with self.assertRaisesRegex(data.AdmissionError, "bytes/hash mismatch"):
+                data.record_owner_evidence(source, evidence, root/"tampered.json")
+
     def test_bounded_wiki_collector_pagination_and_no_secret_in_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp, "fixture-evidence.txt")
@@ -353,6 +389,24 @@ class DataTests(unittest.TestCase):
             final = data.load_partition(root/"final", "test", allow_test=True)
             self.assertEqual(final["support_start"][0], 42)
             self.assertEqual(final["support_end"][0], 56)
+            # The same byte-bound preparation can use genuine documented
+            # owner custody; an external person is not a schema requirement.
+            documented_exposure = dict(exposure, form={**exposure["form"],
+                "reserve_mode": "documented_historical_reserve",
+                "actual_history_accessed_per_panel": {"F01": {"scope": "software fixture only"}},
+                "who_could_access_prices_labels_predictions": {"author": "SOFTWARE FIXTURE"},
+                "custodian_seal_sha256": common["evidence_sha256"],
+                "custodian_access_log_sha256": common["evidence_sha256"],
+                "exposure_inventory_sha256": common["evidence_sha256"],
+                "historical_seal_evidence_path": str(evidence),
+                "historical_access_log_evidence_path": str(evidence), "exposure_inventory_path": str(evidence)})
+            owner_manifest = dict(manifest); owner_manifest.pop("manifest_sha256")
+            owner_manifest["custodian_seal_sha256"] = common["evidence_sha256"]
+            owner_manifest["manifest_sha256"] = data.identity(owner_manifest)
+            (root/"owner-manifest.json").write_text(json.dumps(owner_manifest))
+            owner_result = data.prepare_final_partition(root/"owner-manifest.json", split, root/"owner-final", rights=rights,
+                exposure=documented_exposure, authorization=auth, enable_final_preparation=True)
+            self.assertEqual(owner_result["partition_counts"], {"test": 24})
             # Valid evidence cannot authorize a different numeric clock. Both
             # failures occur before reserved labels/windows are constructed.
             for origin, diagnostic in ((None, "origin required"), (str(bars["dates"][1]), "origin differs")):

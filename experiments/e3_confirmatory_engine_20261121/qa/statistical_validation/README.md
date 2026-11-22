@@ -1,5 +1,7 @@
 # Evidencia estadística sintética
 
+**Expediente vigente: `v4_precision/report.json`, PASSED_PREDECLARED_VALIDATION con alcance condicional por panel.** Son2048 réplicas nuevas del nulo AR(0,5) y cuatro escenarios de512 réplicas V4 previas, mapeados antes de los nuevos datos. El nulo V4 original512 queda archivado e inconcluso; no se suma con el nuevo. El código estadístico sigue siendo V4 sin cambios. No se afirma Monte Carlo conjunto de cuatro paneles, confianza global95/anytime ni R3.
+
 La especificación vigente es **V4**, en `v4/plan.json`, `v4/freeze.json` y
 `v4/report.json`. Conserva las referencias fixed-b escalar/vectorial y el
 bootstrap-t/HAC de V3. Endurece el alpha operacional a 0,025 con nuevas 512×5

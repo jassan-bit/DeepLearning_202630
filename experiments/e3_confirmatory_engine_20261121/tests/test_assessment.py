@@ -271,7 +271,7 @@ class AssessmentTests(unittest.TestCase):
         development-power study and cannot admit a final campaign.
         """
         from scipy.stats import beta
-        from engine.controller import default_stress_plans
+        from engine.controller import default_stress_plans, source_identity_sha256
         design = read_json(ROOT/"configs/power_design.json")
         cell = {"R": 10, "T": 768, "B": 8191}
         trials = design["mc_validation_reps"]
@@ -297,9 +297,17 @@ class AssessmentTests(unittest.TestCase):
             "hac_lags": design["hac_lags"], "horizon": design["horizon"], "margin": design["margin_relative_rmse"],
             **{k: design[k] for k in ("reference_reps", "reference_seed", "alpha")}}
         protocol["final"].update(cell, closed=True,
-            test_panels={p: {"count": cell["T"], "start": "2032-01-01", "end": "2035-01-01"} for p in self.protocol["panel_ids"]})
+            test_panels={p: {"count": cell["T"], "start": "2032-01-01", "end": "2035-01-01",
+                "reserve_mode": "documented_historical_reserve"} for p in self.protocol["panel_ids"]})
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)
+            reserve = directory/"reserve_inventory_fixture.json"
+            write_json(reserve, {"software_fixture": True, "reserve_mode": "documented_historical_reserve",
+                "not_an_authentic_owner_declaration": True, "market_test_accesses": 0})
+            for panel, target in protocol["final"]["test_panels"].items():
+                target.update(source_identity_sha256=source_identity_sha256({"provider": "software_fixture",
+                    "instrument": panel, "calendar": "24/7"}), exposure_evidence_sha256=sha(reserve),
+                    reserve_inventory={"path": str(reserve), "sha256": sha(reserve)})
             fixture = directory/"planning_fixture.json"
             write_json(fixture, {"software_fixture": True, "market_predictions": 0})
             payload["planning_evidence"] = {"verified_files": [{"path": str(fixture), "sha256": sha(fixture)}]}

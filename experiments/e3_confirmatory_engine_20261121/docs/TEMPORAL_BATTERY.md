@@ -1,6 +1,15 @@
 # Batería temporal V4 y estudios conservados
 
-La implementación vigente es `temporal-fixed-seeds-mse-v4`. El plan, código, runner y pruebas se publicaron en el commit `70f0838cdf8809a469ea1ca837e5011faff551e2` antes de observar la primera réplica V4. Su decisión operacional usa **α=0,025**, más exigente que el 0,05 de la guía. El dictamen ejecutado es **INCONCLUSIVE_BOUNDED_VALIDATION**: el nulo AR(0,5) dio16/512 falsos rechazos y CP95 superior0,05025287955875999, ligeramente mayor que0,05. No se redondea para aprobar. Las otras cotas fijadas pasan. El informe completo está en `qa/statistical_validation/v4/report.json`; no hay admisión final.
+**Dictamen actual del expediente compuesto: `PASSED_PREDECLARED_VALIDATION`,
+admisión condicionada a un panel temporal con veinte rivales y a los ajustes
+R10/T768/B8191/HAC48/bloque32/referencia49999/α0,025.** La réplica independiente
+terminó con50/2048 falsos rechazos, CP95 [0,0181736241;0,0320613927] y CP99
+[0,0164994829;0,0346167767]. Conserva las cuatro fuentes V4 mapeadas y el nulo
+V4 original inconcluso, sin acumularlos. No es una confirmación de mercado,
+un Monte Carlo conjunto de cuatro paneles o una acreditación de R3. El
+informe vigente es `qa/statistical_validation/v4_precision/report.json`.
+
+La implementación vigente es `temporal-fixed-seeds-mse-v4`. El plan, código, runner y pruebas se publicaron en el commit `70f0838cdf8809a469ea1ca837e5011faff551e2` antes de observar la primera réplica V4. Su decisión operacional usa **α=0,025**, más exigente que el 0,05 de la guía. El dictamen del estudio V4 original es **INCONCLUSIVE_BOUNDED_VALIDATION**: el nulo AR(0,5) dio16/512 falsos rechazos y CP95 superior0,05025287955875999, ligeramente mayor que0,05. No se redondea para aprobar. Las otras cotas fijadas pasan. El informe completo está en `qa/statistical_validation/v4/report.json`; ese estudio original aislado no admite el cierre.
 
 ## Estimando, semillas y tiempo
 
@@ -85,7 +94,65 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest -q tests/test_statisti
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python qa/statistical_validation/v4/run_validation.py --output-dir /tmp/temporal-v4-reproduction
 ```
 
-Para V3 se usa una **copia temporal**, restaurando v3/statistics_frozen.py y tests_frozen.py a engine/statistics.py y tests/test_statistics.py. El runner V3 verifica los hashes originales. No se sobrescribe el código vigente ni se borran adversos. Las fuentes/documentos V1/V2 también permanecen archivados.
+Para V3 se usa una **copia temporal**, extrayendo primero el JSONL desde su gzip si se necesita reconstruir el informe y restaurando v3/statistics_frozen.py y tests_frozen.py a engine/statistics.py y tests/test_statistics.py. El runner V3 verifica los hashes originales. No se sobrescribe el código vigente ni se borran adversos. Las fuentes/documentos V1/V2 también permanecen archivados.
+
+## Réplica independiente de precisión, posterior al estudio V4
+
+El expediente `qa/statistical_validation/v4_precision/` mantiene exactamente
+el método estadístico V4, su α=0,025 y su código. No corresponde al piloto
+arquitectónico V4 ni crea otra variante neuronal. El plan y mapa de fuentes
+se publicaron y leyeron en GitHub, commit
+`ace1095452ca6e35af083f92822dad374049b5f6`, antes de la primera observación
+nueva. Su selección es explícitamente **posterior** al V4 estadístico:
+
+- El nulo AR(0,5), cuya cota superior quedó en0,05025287955875999, recibe
+  **2048 réplicas nuevas independientes**, sin sumar sus512 anteriores.
+- Los otros cuatro escenarios conservan sus512 réplicas V4 cada uno, donde
+  las cotas fijadas ya se establecieron. Son2048 réplicas reutilizadas,
+  no2048 nuevas ni un estudio completo nuevo de cinco escenarios.
+- El gzip V4 completo conserva también sus512 nulos inconclusos; el mapa
+  previo los excluye únicamente del contador de la réplica independiente,
+  sin ocultarlos, sobrescribirlos o tratarlos como una aprobación.
+
+La aceptación sigue usando los criterios CP95 originales. Se añade CP99
+de FWER como **diagnóstico**, sin cambiar el criterio según su resultado.
+El mapa especifica antes de los nuevos datos qué componente alimenta cada
+escenario; no permite cambiar de fuente, extender N, acumular resultados o
+recurrir al nulo anterior después de ver la nueva respuesta. La selección
+motivada por precisión se declara, sin llamarla preregistro del estudio V4,
+garantía anytime o confianza conjunta global del95 % para todos los
+diagnósticos. La referencia de cuatro paneles sigue siendo una aplicación
+condicionada, no Monte Carlo conjunto.
+
+El informe compuesto está en `v4_precision/report.json`; su estado y hashes
+se toman del resultado ejecutado. El presupuesto nuevo se fijó en2000CPU s,
+cuatro workers sobre dos núcleos y semillas nuevas que no se solapan con los
+rangos de bootstrap del V4 anterior. El consumo y número ejecutados deben
+leerse en ese informe, no sustituirse por estos techos.
+
+### Resultado ejecutado del expediente de precisión
+
+| Escenario | Fuente y N | FWER; CP95 superior | Cobertura CI99 MSE/ganancia; CP95 inferior | Potencia fuerte |
+|---|---|---|---|---|
+| Nulo AR(0,5) | Réplica independiente2048 | 50/2048;0,03206139 | 2019/2048 ambas;0,97972654 | No corresponde |
+| Nulo parcial | V4 previo512 | 7/512;0,02796545 | 507/512 ambas;0,97735838 | No corresponde |
+| Solapamiento5 | V4 previo512 | 6/512;0,02533128 | 503/512 ambas;0,96689438 | No corresponde |
+| Frontera práctica | V4 previo512 | 15/512;0,04786087 | 507/512 ambas;0,97735838 | No corresponde |
+| Alternativa fuerte | V4 previo512 | No hay nulos verdaderos | 503/512 ambas;0,96689438 | Cada rival y conjunta512/512; CP95 inferior0,99282105 |
+
+La réplica nueva consumió **1485,760360CPU s y819,232308s de reloj**, dentro
+de su presupuesto previo2000CPU s. El estudio V4 previo consumió1930,502168CPU s.
+No se inventa un total histórico completo porque el consumo V3 quedó
+indeterminado tras el cambio de entorno. Se generaron2048 réplicas nuevas,
+se reutilizan2048 ya observadas y se conservan las512 del nulo V4 excluido:
+no son4096 réplicas completamente nuevas. Los fallos V1/V2 y el V3 inconcluso
+permanecen visibles.
+
+La guarda mecánica verifica los dos gzip, sus SHA originales, el mapa de
+procedencia previo, los conteos y las fuentes. El código matemático sigue
+siendo V4 sin cambios. La admisión sólo cubre la configuración explícita y
+los DGP comprobados; la planificación de datos reales, potencia de ochenta
+contrastes, reserva y evaluación completa aún deben aportar su evidencia.
 
 ## Fuentes primarias
 

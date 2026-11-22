@@ -71,7 +71,7 @@ def freeze_protocol(base_path,power_path,method_path,test_spec_path,output):
         require(isinstance(spec,dict) and spec.get("count")==T,"Final test count must equal dimensioned T: "+pid)
         require(isinstance(spec.get("start"),str) and isinstance(spec.get("end"),str) and spec["start"]<=spec["end"],
                 "Frozen test dates required: "+pid)
-        require(spec.get("reserve_mode") in ("external_custodian","post_protocol"),"Authentic reserve mode required")
+        require(spec.get("reserve_mode") in ("documented_historical_reserve","external_custodian","post_protocol"),"Authentic reserve mode required")
         require(spec.get("source_identity_sha256") and spec.get("exposure_evidence_sha256"),
                 "Test sources and exposure evidence must be bound before closure")
     from .controller import _admit_final,default_stress_plans
@@ -133,6 +133,10 @@ def parser():
         s.add_argument("--repository",default="jassan-bit/DeepLearning_202630")
         s.add_argument("--branch",default="e3-r3-engine-planning-run-01")
         s.add_argument("--prefix",default="runs/e3_r3_engine/planning-run-01")
+        if command=="restore":
+            s.add_argument("--workspace-root",type=Path,required=True)
+            s.add_argument("--planning-branch")
+            s.add_argument("--planning-prefix")
         if command=="prepare":
             s.add_argument("--stage",choices=("planning","final"),required=True)
             s.add_argument("--protocol",type=Path,default=ROOT/"configs/protocol.json")
@@ -140,6 +144,11 @@ def parser():
         if command in ("run","evaluate"):
             s.add_argument("--activate",action="store_true")
         if command=="export":s.add_argument("--output",type=Path,required=True)
+    s=sub.add_parser("archive-evidence")
+    s.add_argument("--case",type=Path,required=True)
+    s.add_argument("--source-commit",required=True)
+    s.add_argument("--evidence",type=Path,required=True)
+    s.add_argument("--workspace-root",type=Path,required=True)
     s=sub.add_parser("dimension")
     s.add_argument("--design",type=Path,default=ROOT/"configs/power_design.json")
     s.add_argument("--predictions",type=Path,nargs="+",required=True)
@@ -178,6 +187,8 @@ def main(argv=None):
             if args.command=="prepare":
                 result=controller.prepare_case(args.source_root,args.case,panel_map(args.panels),args.stage,
                                                args.source_commit,args.protocol,args.power_receipt)
+            elif args.command=="archive-evidence":
+                result=controller.archive_evidence(args.source_root,args.case,args.evidence,args.workspace_root)
             elif args.command=="status":
                 result=controller.status_case(args.source_root,args.case)
             elif args.command=="export":
@@ -189,7 +200,11 @@ def main(argv=None):
                 from .storage import GithubStore
                 store=GithubStore(creds["token"],creds["backup_secret"],args.repository,args.branch,
                                   source_commit=args.source_commit,prefix=args.prefix)
-                if args.command=="restore":result=store.restore(args.case)
+                if args.command=="restore":
+                    require(bool(args.planning_branch)==bool(args.planning_prefix),"Planning restore needs both branch and prefix")
+                    planning=GithubStore(creds["token"],creds["backup_secret"],args.repository,args.planning_branch,
+                                         source_commit=args.source_commit,prefix=args.planning_prefix) if args.planning_branch else None
+                    result=controller.restore_case(args.source_root,args.case,store,args.workspace_root,planning_store=planning)
                 elif args.command=="sync":
                     result=controller.sync_case(args.source_root,args.case,store,panel_dirs=panel_map(args.panels) if args.panels else None)
                 elif args.command=="run":

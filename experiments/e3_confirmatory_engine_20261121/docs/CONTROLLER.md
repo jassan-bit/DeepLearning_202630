@@ -58,6 +58,15 @@ V1/V2 fallidos no satisfacen ese contrato. Una validación acotada que no cubra 
 
 ## Sello y evaluación única
 
+
+### Ampliación focal con procedencia compuesta
+
+Se admite además un reporte `report_type:"provenance_composite"` cuando existe un mapa explícito fijado antes de nuevas observaciones. El mapa enlaza un escenario focal de una muestra independiente con cuatro escenarios completos ya ejecutados; declara que la selección del foco es posterior al informe anterior. No se presenta como un estudio nuevo de cinco escenarios ni como un preregistro de los resultados anteriores.
+
+`evidence` conserva los archivos normales `plan`, `freeze`, `runner` y `replicates` del foco, y añade `prior_report`, `prior_replicates` y `scenario_source_map`. El hash del mapa debe figurar en el congelamiento. `plan.replicates_per_scenario` fija los N distintos y cada caso tiene una sola fuente. El ledger anterior completo se conserva: sus filas del nulo antes inconcluso se verifican por SHA e inventario de réplicas, se declaran excluidas y **nunca se suman** a la nueva muestra. El informe anterior conserva su estado inconcluso y su congelamiento original. La semilla DGP del foco debe ser distinta.
+
+El controlador vuelve a verificar ambos archivos comprimidos y sus hashes íntegros; recalcula colas, Holm, cobertura y cotas por escenario con el N que corresponde. Un mapa cambiado, pooling, filas duplicadas o componentes incompletos impiden la admisión. Las cotas CP95 siguen siendo puntuales por diagnóstico, no simultáneas al 95 % para todo el expediente o válidas ante muestreo opcional. El resultado tiene el alcance condicionado de sus DGPs, sin equivaler a potencia de mercado, confirmación de cuatro paneles o acreditación académica de R3.
+
 ```python
 controller.seal_training(source_root, final_case, development_panels, store)
 # El custodio prepara ahora test en nuevos directorios con autorización real.
@@ -97,3 +106,17 @@ El log está en `qa/storage/CONTROLLER_UNITTEST.log`. Incluye una cadena real co
 El controlador emite JSON con `flush=True` al verificar cada respaldo y al iniciar, completar o reutilizar un trabajo. Sólo contiene identificadores, sistema, panel, semilla, estado y commit remoto; no imprime arrays o credenciales. El notebook transmite esas líneas para que una campaña larga tenga progreso observable.
 
 La CLI `assess` escribe `metrics/assessment.json` y `analysis_receipt.json` con hashes; no atribuye durabilidad remota a una escritura local. Después se ejecuta `sync` sin `--panels` para verificar el respaldo de análisis/recibos. `sync_case` y `export_case` pueden funcionar sin directorios de datos y no consultan modelos. Las pruebas de integración crean un análisis de software explícitamente ficticio, lo respaldan mediante Git REST simulado y comprueban sus bytes después de restaurar. Esas pruebas no son un informe estadístico real ni una declaración auténtica del autor.
+
+La reserva histórica puede documentarla el propio autor o un custodio mediante `documented_historical_reserve`: se necesitan evidencia auténtica previa de sello, acceso e inventario y una historia declarada verificable, no una persona externa por definición. `external_custodian` permanece compatible y `post_protocol` conserva su requisito de soporte futuro. El modo liberado debe coincidir con el fijado en el protocolo. Ningún formulario o checkbox convierte por sí solo un calendario examinado en reserva.
+
+## Recuperación completa con las rutas originales
+
+El plan fija `original_case_root`, `original_protocol_path`, las dependencias de planificación de un caso final y `data_panels[*].recovery_metadata`. Cada bundle de datos se archiva en `receipts/dataset_metadata/F00.json` (y F01–F03) con SHA256. Contiene los manifiestos, configuración y evidencias originales; no incluye observaciones raw, arrays NPZ o pesos. El namespace distingue metadatos del componente `datasets`, que el almacenamiento sigue prohibiendo para cargas raw.
+
+Después del dimensionamiento, `archive-evidence --case ... --source-commit ... --evidence POWER_RECEIPT --workspace-root WORK` conserva los bytes exactos en `receipts/power/<sha>.json` y registra su ubicación original. Se ejecuta `sync` antes de atribuirle durabilidad remota. Todos los intentos archivados permanecen; no se reemplaza un resultado adverso por el último favorable.
+
+`restore --case ORIGINAL_CASE --source-commit ... --workspace-root WORK` usa la clave privada por stdin. Un caso final añade `--planning-branch` y `--planning-prefix` para recuperar primero los checkpoints y recibos de planificación que autentican su potencia. El helper verifica cada archivo en un destino temporal y lo instala en la **ruta absoluta original**; no reescribe plan, protocolo, recibos o sus hashes. Un directorio previo sólo se mueve a `WORK/retained/...` si puede obtenerse su bloqueo; un caso en uso no se reemplaza. No se escriben archivos ausentes fuera del WORK autorizado.
+
+Se reinstalan `POWER_RECEIPT` y `FINAL_PROTOCOL` desde sus copias selladas con los bytes originales. Los bundles restauran los comprobantes de derechos/exposición sin pedir otra declaración. La recolección posterior es una acción explícita separada: `data.reacquire_development` obtiene los mismos URL/bytes y comprueba sus SHA256, reconstruye NPZ idénticos y conserva los metadatos históricos. Su fecha real nueva se registra en `reacquisition_events.jsonl`, sin fingir que es la adquisición antigua. Después se puede reanudar y omitir el trabajo ya verificado. La evaluación final permanece protegida por sus demás puertas.
+
+Las pruebas end-to-end usan el controlador y trabajador reales, almacenamiento AES-GCM real y Git/HTTP simulados con observaciones generadas. Pierden el estado local, recuperan metadatos y archivos en sus rutas originales, verifican que los NPZ/admisiones conservan hashes y reanudan otro trabajo sin repetir el completo. Otra prueba recupera ambas campañas y los archivos externos de evidencia; el ejemplo final de software conserva un protocolo no admitido, por lo que no puede empezar una confirmación. El sello se comprueba idempotente tras restaurar: no añade un instante nuevo o repite forwards de calibración.

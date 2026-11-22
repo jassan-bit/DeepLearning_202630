@@ -30,11 +30,12 @@
   "test_last_target_session": null,
   "fixed_test_count": null,
   "authorize_test_preparation": false,
-  "required_external_artifact": "Actual author/custodian evidence export (e.g. email/declaration with provenance, signed document or custody system export). This form is not signed by this tool; SHA binding is not identity authentication.",
+  "required_external_artifact": "Actual author/custodian evidence export with provenance. External here means supplied by the real actor, not a mandatory external institution or a different person. This tool does not sign the form; SHA binding is not identity authentication.",
   "historical_WIKI_limitation": "WIKI ended in2018. If genuine historical reserve cannot be proved, these panels require replacement with a future-capable source BEFORE final protocol lock. Do not relabel WIKI as prospective.",
   "reserve_mode_choices": [
     "development_only",
     "external_custodian",
+    "documented_historical_reserve",
     "post_protocol"
   ],
   "development_only_instruction": "Real actor designates all supplied dataset observations as exposed development. No final protocol, sample size, reserve date, custodian seal or inventory of supposedly unexposed rows is required. This declaration cannot authorize final preparation.",
@@ -60,5 +61,9 @@
     "source_license_evidence_sha256",
     "authorize_test_preparation=false"
   ],
-  "final_modes_required_fields": "Fixed protocol_sha256 and exposure_inventory_sha256, plus authentic external custody seal/access log or complete post-protocol support. Development designation is never final reserve evidence."
+  "final_modes_required_fields": "Fixed protocol_sha256 and exposure_inventory_sha256, plus authentic historical seal/access evidence (owner or custodian) or complete post-protocol support. documented_historical_reserve additionally binds actual exposure/access history and seal/access/inventory file paths to their hashes. Development designation never establishes a final reserve.",
+  "historical_seal_evidence_path": null,
+  "historical_access_log_evidence_path": null,
+  "exposure_inventory_path": null,
+  "documented_historical_reserve_instruction": "A real author or custodian supplies actual per-panel exposure/access history, who could access prices/labels/predictions, and hash-bound seal, access-log and exposure-inventory files. Existing custodian_* SHA fields name custody artifacts; they do not require an external person. One genuine export can serve several bindings if it actually contains that evidence. This is not an automatic reserve by checkbox and is not identity authentication or an institutional approval."
 }

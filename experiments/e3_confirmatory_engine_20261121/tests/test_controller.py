@@ -277,6 +277,22 @@ class ControllerTests(unittest.TestCase):
         seal=c.read_json(self.case/"training_seal.json")
         self.assertEqual(seal["calibrators_sha256"],c.sha(self.case/"metrics/calibrators.json"))
         self.assertEqual(set(seal["prediction_files"]),{"fit","selection","calibration"})
+        # Re-sealing a restored archive at its original location must reuse
+        # the exact selected/calibrator bytes, with no new timestamp or forward.
+        original_seal=(self.case/"training_seal.json").read_bytes()
+        from test_storage import FakeGit,TOKEN,SECRET
+        from engine.storage import GithubStore
+        git=FakeGit();remote=GithubStore(TOKEN,SECRET,"owner/repo","sealed-fixture",source_commit=SOURCE,prefix="runs/sealed",sleep=lambda _:None)
+        remote._request=git.request
+        (self.case/".github_backup_receipt.json").unlink()
+        controller._backup(self.case,plan,remote,admissions,"sealed_unit_fixture")
+        shutil.rmtree(self.case);remote.restore(self.case)
+        with self.worker_context(),mock.patch.object(controller,"_load_case",return_value=(self.case,plan,self.panels,admissions)),\
+             mock.patch.object(controller,"_admit_final"),mock.patch.object(data,"load_partition",side_effect=AssertionError("no new partition access")),\
+             mock.patch.object(training,"predict_job",side_effect=AssertionError("no repeated calibration forward")):
+            again=controller.seal_training(self.source,self.case,self.panels,remote)
+        self.assertEqual(again["status"],"TRAINING_AND_CALIBRATION_SEALED")
+        self.assertEqual((self.case/"training_seal.json").read_bytes(),original_seal)
 
     def test_corrupt_selection_seal_blocks_any_test_payload_or_forward(self):
         self.final_fixture()

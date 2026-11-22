@@ -20,6 +20,7 @@ ACTIVATION_FLAGS = {
     "RECORD_OWNER_EVIDENCE", "ACQUIRE_MARKET_DEVELOPMENT", "PREPARE_MARKET_DEVELOPMENT",
     "RUN_PLANNING_TRAINING", "EXPORT_PLANNING_PREDICTIONS", "RUN_DIMENSIONING",
     "FREEZE_FINAL_PROTOCOL", "RUN_FINAL_TRAINING", "SEAL_FINAL_TRAINING",
+    "ARCHIVE_POWER_EVIDENCE", "REACQUIRE_DEVELOPMENT_FROM_GITHUB",
     "REGISTER_FINAL_EXPOSURE", "PREPARE_RESERVED_TEST", "OPEN_RESERVED_EVALUATION",
     "ASSESS_SAVED_RESULTS", "SYNC_SAVED_RESULTS", "EXPORT_SAVED_RESULTS",
     "VERIFY_REMOTE_GITHUB", "RESTORE_FROM_GITHUB",
@@ -234,3 +235,148 @@ def test_final_draft_refuses_changed_independent_bindings_before_writing(tmp_pat
          patch.object(sys,"stdin",io.StringIO(json.dumps(payload))),pytest.raises(AssertionError):
         exec(compile(program,"adverse_final_metadata_draft_fixture","exec"),{})
     assert not list((tmp_path/"inputs").rglob("*-DRAFT.json"))
+
+
+def _activated_cell(source, **values):
+    tree=ast.parse(source)
+    for node in tree.body:
+        if isinstance(node,ast.Assign):
+            for target in node.targets:
+                if isinstance(target,ast.Name) and target.id in values:
+                    node.value=ast.Constant(values[target.id])
+    return compile(ast.fix_missing_locations(tree),"activated_notebook_software_fixture","exec")
+
+
+def _restart_namespace(tmp_path):
+    namespace={"WORK":tmp_path/"original-e3-work", "PRIVATE":tmp_path/"original-e3-work/private",
+               "SOURCE_COMMIT":"a"*40,"Path":Path,"json":json,"hashlib":hashlib,
+               "SOURCE":ROOT,"SETTINGS":{},"bootstrap":SimpleNamespace(),"subprocess":__import__("subprocess")}
+    exec(code_cells(generated())[1],namespace)
+    return namespace
+
+
+@pytest.mark.parametrize("stage",["planning","final"])
+def test_mock_vm_restart_recovers_original_paths_dependencies_and_exact_metadata(tmp_path,stage):
+    # This tests notebook routing and activation, with a mocked verified restore
+    # boundary. Controller/storage tests independently execute the Git restore.
+    namespace=_restart_namespace(tmp_path)
+    calls=[];installed=[];downloaded=[]
+    planning=namespace["PLANNING_CASE"];final=namespace["FINAL_CASE"]
+    private=namespace["PRIVATE"]
+    checkpoint=planning/"jobs"/"old-selected.pt"
+    checkpoint_bytes=b"SOFTWARE FIXTURE selected checkpoint; no model fitting"
+    power_bytes=json.dumps({"software_fixture":True,"planning_checkpoint":str(checkpoint),
+                            "checkpoint_sha256":hashlib.sha256(checkpoint_bytes).hexdigest()}).encode()
+    protocol_bytes=json.dumps({"software_fixture":True,"power_receipt":{"path":str(namespace["POWER_RECEIPT"]),
+                              "sha256":hashlib.sha256(power_bytes).hexdigest()}}).encode()
+
+    def install_case(case,phase):
+        case.mkdir(parents=True,exist_ok=True)
+        rows=[]
+        for i,pid in enumerate(namespace["PANELS"]):
+            directory=private/"panels"/pid/"development-v1"
+            raw=private/"raw"/pid/"development-v1"
+            bundle={"software_fixture":True,"original_panel_dir":str(directory),"original_raw_dir":str(raw),
+                    "provider":"binance_vision" if i==0 else "nasdaq_wiki","instrument":"fixture"}
+            relative="receipts/datasets/"+pid+".json"
+            target=case/relative;target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_text(json.dumps(bundle))
+            rows.append({"id":pid,"panel_dir":str(directory),"provenance":{"provider":bundle["provider"]},
+                         "recovery_metadata":{"path":relative,"sha256":hashlib.sha256(target.read_bytes()).hexdigest()}})
+        (case/"plan.json").write_text(json.dumps({"source_commit":"a"*40,"stage":phase,"data_panels":rows}))
+        installed.append(phase)
+
+    def fake_cli(args,*,remote=False,**kwargs):
+        from engine.cli import parser
+        parser().parse_args(args)  # Actual CLI schema, not an invented adapter.
+        calls.append((args,remote))
+        case=Path(args[args.index("--case")+1])
+        if args[0]=="restore":
+            assert remote and Path(args[args.index("--workspace-root")+1])==namespace["WORK"]
+            assert case==(final if stage=="final" else planning)
+            if stage=="final":
+                assert args[args.index("--planning-branch")+1]==namespace["PLANNING_BRANCH"]
+                assert args[args.index("--planning-prefix")+1]==namespace["PLANNING_PREFIX"]
+            install_case(planning,"planning")
+            checkpoint.parent.mkdir(parents=True,exist_ok=True);checkpoint.write_bytes(checkpoint_bytes)
+            namespace["POWER_RECEIPT"].parent.mkdir(parents=True,exist_ok=True)
+            namespace["POWER_RECEIPT"].write_bytes(power_bytes)
+            if stage=="final":
+                install_case(final,"final")
+                namespace["FINAL_PROTOCOL"].write_bytes(protocol_bytes)
+        elif args[0]=="status":
+            assert installed and (case/"plan.json").is_file()
+        else:
+            raise AssertionError("Recovery must not fit, predict, close or evaluate")
+        return SimpleNamespace(returncode=0,stdout="{}")
+
+    def fake_data(args,*,provider=None):
+        assert args[0]=="reacquire-development" and "--enable-market-acquisition" in args
+        bundle_path=Path(args[args.index("--bundle")+1]);bundle=json.loads(bundle_path.read_text())
+        assert args[args.index("--expected-bundle-sha256")+1]==hashlib.sha256(bundle_path.read_bytes()).hexdigest()
+        assert args[args.index("--output")+1]==bundle["original_panel_dir"]
+        assert args[args.index("--raw-output")+1]==bundle["original_raw_dir"]
+        assert provider==bundle["provider"]
+        directory=Path(bundle["original_panel_dir"]);directory.mkdir(parents=True,exist_ok=True)
+        parts={name:name+".npz" for name in ("fit","selection","planning","calibration")}
+        (directory/"admission.json").write_text(json.dumps({"software_fixture":True,"partition_paths":parts}))
+        for path in parts.values():(directory/path).write_bytes(b"SOFTWARE FIXTURE; not loaded")
+        downloaded.append(directory.name)
+        return SimpleNamespace(returncode=0,stdout="{}")
+
+    namespace.update(run_cli=fake_cli,run_data=fake_data)
+    source=next(s for s in code_cells(generated()) if "RESTORE_FROM_GITHUB =" in s)
+    exec(_activated_cell(source,RESTORE_FROM_GITHUB=True,REACQUIRE_DEVELOPMENT_FROM_GITHUB=True,TARGET_STAGE=stage),namespace)
+    assert installed==(["planning","final"] if stage=="final" else ["planning"])
+    assert namespace["PLANNING_CASE"]==planning and namespace["FINAL_CASE"]==final
+    assert not (namespace["WORK"]/"restored").exists()
+    assert namespace["POWER_RECEIPT"].read_bytes()==power_bytes
+    assert hashlib.sha256(checkpoint.read_bytes()).hexdigest()==json.loads(power_bytes)["checkpoint_sha256"]
+    if stage=="final":assert namespace["FINAL_PROTOCOL"].read_bytes()==protocol_bytes
+    assert len(downloaded)==4 and namespace["missing"]==[]
+    assert [args[0] for args,_ in calls]==["restore","status"]
+    assert not any("--activate" in args for args,_ in calls)
+
+
+def test_power_evidence_is_archived_and_synced_before_freeze(tmp_path):
+    namespace=_restart_namespace(tmp_path)
+    source_root=tmp_path/"source";(source_root/"configs").mkdir(parents=True)
+    method=source_root/"method.json";method.write_text('{"software_fixture":true}')
+    (source_root/"configs/protocol.json").write_text(json.dumps({"method_validation":{"path":"method.json","sha256":hashlib.sha256(method.read_bytes()).hexdigest()}}))
+    namespace["SOURCE"]=source_root
+    namespace["PLANNING_CASE"].mkdir(parents=True)
+    (namespace["PLANNING_CASE"]/"plan.json").write_text('{"software_fixture":true}')
+    namespace["PRIVATE"].mkdir(parents=True)
+    namespace["POWER_RECEIPT"].write_text(json.dumps({"status":"DIMENSIONED_CONDITIONAL_EMPIRICAL_DGP","final_R":10,"final_T":768,"final_B":8191}))
+    mapping={pid:str(tmp_path/pid) for pid in namespace["PANELS"]}
+    namespace["DEVELOPMENT_MAP"].write_text(json.dumps(mapping))
+    ids={pid:hashlib.sha256(pid.encode()).hexdigest() for pid in mapping}
+    targets={}
+    for pid in mapping:
+        folder=namespace["PRIVATE"]/"inputs"/pid;folder.mkdir(parents=True)
+        inventory=folder/"reserve-inventory.json";inventory.write_text("authentic-evidence SOFTWARE FIXTURE "+pid)
+        targets[pid]={"start":"2030-01-01","end":"2032-12-31","count":768,"reserve_mode":"documented_historical_reserve",
+                      "source_identity_sha256":ids[pid],"exposure_evidence_sha256":hashlib.sha256(inventory.read_bytes()).hexdigest()}
+    (namespace["PRIVATE"]/"authentic-test-spec.json").write_text(json.dumps(targets))
+    sequence=[]
+
+    def fake_cli(args,*,remote=False,**kwargs):
+        from engine.cli import parser
+        parser().parse_args(args)
+        sequence.append(args[0])
+        if args[0]=="archive-evidence":
+            assert args[args.index("--case")+1]==str(namespace["PLANNING_CASE"])
+            assert args[args.index("--evidence")+1]==str(namespace["POWER_RECEIPT"])
+            assert not remote
+        elif args[0]=="sync":assert remote
+        elif args[0]=="freeze-protocol":
+            assert sequence==["archive-evidence","sync","freeze-protocol"]
+            namespace["FINAL_PROTOCOL"].write_text(json.dumps({"final":{"R":10,"T":768,"B":8191}}))
+        else:raise AssertionError("Unexpected stage")
+        return SimpleNamespace(returncode=0,stdout="{}")
+
+    namespace.update(missing=[],run_cli=fake_cli,
+                     run_private_program=lambda *a:SimpleNamespace(stdout=json.dumps(ids)))
+    source=next(s for s in code_cells(generated()) if "FREEZE_FINAL_PROTOCOL =" in s)
+    exec(_activated_cell(source,FREEZE_FINAL_PROTOCOL=True),namespace)
+    assert sequence==["archive-evidence","sync","freeze-protocol"]

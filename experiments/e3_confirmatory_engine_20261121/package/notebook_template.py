@@ -52,7 +52,9 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
     Adquisición, entrenamiento, preparación y apertura de test permanecen
     desactivados. Activar sólo la etapa autorizada, en orden. Guardar fuera de
     Colab la clave independiente de cifrado y los documentos auténticos: GitHub
-    conserva checkpoints cifrados y derivados permitidos, no los arrays raw.
+    conserva el estado completo cifrado. El índice público contiene sólo
+    metadatos y recibos acotados; los CSV completos quedan cifrados o en la
+    exportación local. El respaldo no contiene los arrays raw.
     """)
     md("""
     ## 1. Instalación aislada y fuentes fijadas
@@ -371,9 +373,11 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
     calendarios reservados auténticos y reglas de adecuación/estrés fijadas.
     El freeze verifica esos contratos; un informe fallido o inconcluso no los
     satisface. El test-spec F00–F03 fija fechas, conteo T, `reserve_mode`,
-    `source_identity_sha256` y `exposure_evidence_sha256`. Para historia se
-    necesita custodia auténtica; para recolección futura, todo el soporte debe
-    ser posterior al cierre completo. No completar estos datos por conjetura.
+    `source_identity_sha256` y `exposure_evidence_sha256`. La modalidad
+    `documented_historical_reserve` admite evidencia auténtica del propio autor
+    o de un custodio sobre reserva histórica y accesos; no exige una persona
+    externa o institución. Para recolección futura, todo el soporte debe ser
+    posterior al cierre completo. No completar estos datos por conjetura.
 
     Se conservan margen, familias y recetas. La CLI enlaza adecuación y escenarios
     de estrés antes de producir el hash final. Un cambio posterior de fuente,
@@ -381,6 +385,7 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
     """)
     code(r'''
     FREEZE_FINAL_PROTOCOL = False
+    ARCHIVE_POWER_EVIDENCE = False
     BASE_PROTOCOL = PRIVATE / "protocol-prospective-base.json"
     TEST_SPEC = PRIVATE / "authentic-test-spec.json"
     method_binding = read_json(SOURCE / "configs/protocol.json")["method_validation"]
@@ -407,6 +412,11 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
     TEST_SPEC_DRAFT = PRIVATE / ("authentic-test-spec-DRAFT-" + draft_key + ".json")
     create_json(TEST_SPEC_DRAFT, draft_spec)
     print("Plantilla versionada de reserva (completar sólo con evidencia auténtica):", str(TEST_SPEC_DRAFT))
+    if ARCHIVE_POWER_EVIDENCE or FREEZE_FINAL_PROTOCOL:
+        assert POWER_RECEIPT.is_file() and (PLANNING_CASE / "plan.json").is_file()
+        run_cli(["archive-evidence", "--case", str(PLANNING_CASE), "--source-commit", SOURCE_COMMIT,
+                 "--evidence", str(POWER_RECEIPT), "--workspace-root", str(WORK)])
+        run_cli(["sync", *remote_args(PLANNING_CASE)], remote=True)
     if FREEZE_FINAL_PROTOCOL:
         assert METHOD_REPORT.is_file() and sha(METHOD_REPORT) == method_binding["sha256"]
         assert POWER_RECEIPT.is_file() and TEST_SPEC.is_file()
@@ -504,9 +514,11 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
     md("""
     ## 7. Preparación autorizada, evaluación única, assessment y exportación
 
-    Sólo después del sello: el custodio entrega manifest raw `reserved_final`,
+    Sólo después del sello: el autor o custodio entrega manifest raw `reserved_final`,
     exposición, derechos y autorización reales. No existe un colector genérico
-    que pueda inventar custodia; WIKI no se convierte en reserva futura.
+    que pueda inventar reserva. Una reserva histórica documentada por el autor
+    es admisible si demuestra historial y accesos reales; WIKI no se convierte
+    en reserva futura.
     `prepare-final` verifica bytes/autorización antes de construir etiquetas en
     directorios nuevos. Conserva el origen de índices global de barras: empezar
     de cero no demuestra purga frente a desarrollo.
@@ -571,21 +583,28 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
     hashes; un listado local no la sustituye. Las credenciales viajan por stdin
     JSON privado al hijo, nunca por argumentos, shell, celdas guardadas o GitHub.
     Usar Colab Secrets `E3_R3_GITHUB_TOKEN` y `E3_R3_BACKUP_SECRET`, o entrada
-    oculta. Restaurar a un directorio nuevo: después reacquirir los mismos datos
-    privados y verificar hashes; el backup no los contiene. La rama debe ser
+    oculta. En una VM nueva se recuperan las **rutas originales**: final depende
+    de las pruebas y checkpoints de planificación, cuyos paths están sellados.
+    El restaurador conserva un destino previo sin borrarlo y verifica las
+    dependencias antes de instalar el respaldo. La rama debe ser
     exactamente la de esa campaña. Los errores de permisos, cuotas y red
     conservan su clasificación y detienen nuevos ajustes.
+
+    `public_results.zip` es un índice público acotado de metadatos, hashes y
+    recibos. Los CSV y métricas completos se conservan cifrados en los
+    fragmentos AES-GCM y en el ZIP local de exportación; no se confunden con
+    ese índice público. La publicación del índice respeta los derechos del panel.
     """)
     code(r'''
     VERIFY_REMOTE_GITHUB = False
     RESTORE_FROM_GITHUB = False
+    REACQUIRE_DEVELOPMENT_FROM_GITHUB = False
     TARGET_STAGE = "planning"  # Cambiar a "final" para esa campaña, sin mezclar ramas.
     assert TARGET_STAGE in ("planning", "final")
     target_final = TARGET_STAGE == "final"
     target_case = FINAL_CASE if target_final else PLANNING_CASE
-    RESTORE_DESTINATION = WORK / "restored" / (TARGET_STAGE + "-" + RUN_LABEL)
 
-    if (target_case / "plan.json").exists():
+    if not RESTORE_FROM_GITHUB and (target_case / "plan.json").exists():
         run_cli(["status", *remote_args(target_case, final=target_final)])
     else:
         print("El caso local aún no está preparado.")
@@ -619,14 +638,38 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
             auth.clear()
             payload.clear()
     if RESTORE_FROM_GITHUB:
-        assert not RESTORE_DESTINATION.exists(), "Restaurar siempre a un destino nuevo"
-        run_cli(["restore", *remote_args(RESTORE_DESTINATION, final=target_final)], remote=True)
-        run_cli(["status", *remote_args(RESTORE_DESTINATION, final=target_final)])
+        restore_args = ["restore", *remote_args(target_case, final=target_final), "--workspace-root", str(WORK)]
         if target_final:
-            FINAL_CASE = RESTORE_DESTINATION
-        else:
-            PLANNING_CASE = RESTORE_DESTINATION
-        print("Caso restaurado seleccionado. Reacquirir datos privados con hashes idénticos, actualizar su mapa y repetir etapa3 antes de run.")
+            restore_args += ["--planning-branch", PLANNING_BRANCH, "--planning-prefix", PLANNING_PREFIX]
+        run_cli(restore_args, remote=True)
+        run_cli(["status", *remote_args(target_case, final=target_final)])
+        print("Rutas originales recuperadas. En final se verifica/restaura planificación primero y se recuperan el protocolo y la potencia externos exactos.")
+    if RESTORE_FROM_GITHUB or REACQUIRE_DEVELOPMENT_FROM_GITHUB:
+        assert (target_case / "plan.json").is_file(), "Primero restaurar el caso verificado de GitHub"
+        restored_plan = read_json(target_case / "plan.json")
+        assert restored_plan["source_commit"] == SOURCE_COMMIT
+        recovered_map = {row["id"]: row["panel_dir"] for row in restored_plan["data_panels"]}
+        create_json(DEVELOPMENT_MAP, recovered_map)
+        assert read_json(DEVELOPMENT_MAP) == recovered_map, "Conservar el mapa previo y recuperar el contexto original; no cambiar identidades selladas"
+        if REACQUIRE_DEVELOPMENT_FROM_GITHUB:
+            for row in restored_plan["data_panels"]:
+                binding = row["recovery_metadata"]
+                bundle_path = target_case / binding["path"]
+                assert sha(bundle_path) == binding["sha256"]
+                bundle = read_json(bundle_path)
+                assert bundle["original_panel_dir"] == row["panel_dir"]
+                run_data(["reacquire-development", "--bundle", str(bundle_path),
+                          "--output", row["panel_dir"],
+                          "--raw-output", bundle["original_raw_dir"],
+                          "--workspace-root", str(WORK), "--expected-bundle-sha256", binding["sha256"],
+                          "--enable-market-acquisition"], provider=bundle["provider"])
+        missing = [panel for panel, directory in recovered_map.items()
+                   if not (Path(directory) / "admission.json").is_file()
+                   or any(not (Path(directory) / name).is_file()
+                          for name in read_json(Path(directory) / "admission.json")["partition_paths"].values())]
+        print(json.dumps({"status": "original_context_restored", "development_partitions_missing": missing,
+                          "planning_case": str(PLANNING_CASE), "final_case": str(FINAL_CASE),
+                          "new_market_fits": 0, "test_opened": False}))
     ''')
     md("""
     La entrega contiene implementación y fixtures de software ejecutados. La

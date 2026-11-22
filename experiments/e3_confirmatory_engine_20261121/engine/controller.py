@@ -12,6 +12,8 @@ import io
 import gzip
 import hashlib
 import math
+import os
+import shutil
 from pathlib import Path
 import re
 import time
@@ -231,6 +233,8 @@ def _method_admission(source_root, spec, settings):
         _require(excluded.get("prior_replicates")==[focal] and not excluded.get("replicates"),
                  "composite_validation_exclusion_map_invalid")
         parent=c.read_json(files["prior_report"])
+        _require(source_map.get("prior_report_sha256")==c.sha(files["prior_report"])
+                 and plan.get("focal_scenario")==focal,"composite_prior_report_or_focal_identity_differs")
         _require(parent.get("status")=="INCONCLUSIVE_BOUNDED_VALIDATION" and parent.get("admitted") is False
                  and parent.get("statistics_source_sha256")==statistics_sha,
                  "composite_original_inconclusive_verdict_must_be_preserved")
@@ -238,7 +242,16 @@ def _method_admission(source_root, spec, settings):
         _require(c.sha(parent_ledger)==c.sha(files["prior_replicates"]),"composite_prior_archive_not_bound_to_original_report")
         parent_plan_path=_spec_file(parent.get("evidence",{}).get("plan"),files["prior_report"].parent)
         parent_plan=c.read_json(parent_plan_path)
+        parent_freeze_path=_spec_file(parent.get("evidence",{}).get("freeze"),files["prior_report"].parent)
+        parent_runner_path=_spec_file(parent.get("evidence",{}).get("runner"),files["prior_report"].parent)
+        parent_freeze=c.read_json(parent_freeze_path)
+        _require(parent_freeze.get("plan_sha256")==c.sha(parent_plan_path)
+                 and parent_freeze.get("runner_sha256")==c.sha(parent_runner_path)
+                 and parent_freeze.get("statistics_sha256")==statistics_sha,
+                 "composite_original_frozen_bundle_identity_differs")
         parent_n=parent_plan.get("replicates_per_stochastic_scenario")
+        _require(type(plan.get("seed")) is int and type(parent_plan.get("seed")) is int and plan["seed"]!=parent_plan["seed"],
+                 "composite_focal_DGP_seed_not_independent_from_prior")
         _require(type(parent_n) is int and parent_n>0 and all(declared[key]==parent_n for key in groups if key!=focal),
                  "composite_reused_scenario_size_differs_from_original")
         _require({row.get("id") for row in parent_plan.get("scenarios",[])}==set(groups)
@@ -387,6 +400,8 @@ def _admit_final(source_root, protocol, protocol_sha, power_receipt):
                  and isinstance(target.get("end"), str) and target["start"] <= target["end"], "fixed_test_calendar_invalid")
         dt.date.fromisoformat(target["start"])
         dt.date.fromisoformat(target["end"])
+        _require(target.get("reserve_mode") in ("documented_historical_reserve","external_custodian","post_protocol"),
+                 "fixed_authentic_reserve_mode_required")
     validated_settings={"R":R,"T":T,"B":B,"block_length":settings["block_length"],"hac_lags":settings["hac_lags"],
                         "horizon":settings.get("horizon",1),"margin":settings.get("margin",.02)}
     validated_settings.update({k:settings[k] for k in ("reference_reps","reference_seed","alpha") if k in settings})
@@ -491,9 +506,30 @@ def prepare_case(source_root, case_root, panel_dirs, stage, source_commit, proto
     for panel, admission in admissions.items():
         for part in DEVELOPMENT:
             data.load_partition(paths[panel], part)  # integrity/causality only, no exploratory summaries
+        metadata=paths[panel]/"recovery_metadata.json"
+        _require(software_fixture or metadata.is_file(),"genuine_development_requires_metadata_only_recovery_bundle")
+        recovery={"path":f"receipts/dataset_metadata/{panel}.json","sha256":c.sha(metadata)} if metadata.exists() else None
+        if recovery is not None:
+            replay=c.read_json(metadata)
+            _require(replay.get("kind")=="development_metadata_replay_v1" and c.safe(replay.get("original_panel_dir","."))==paths[panel]
+                     and replay.get("original_admission",{}).get("sha256")==c.sha(paths[panel]/"admission.json"),
+                     "development_recovery_metadata_does_not_match_admission")
         panels.append({"id":panel,"panel_dir":str(paths[panel]),"data_sha256":admission["admission_sha256"],
                        "development":_partition_metadata(admission),"provenance":admission["provenance"],
-                       "rights":admission["rights"],"exposure":admission["exposure"]})
+                       "rights":admission["rights"],"exposure":admission["exposure"],"recovery_metadata":recovery})
+    dependencies=[]
+    if final is not None:
+        power_result=c.read_json(final["power"]["path"])
+        for item in power_result.get("planning_evidence",{}).get("receipts",[]):
+            receipt_path=_spec_file(item,Path(final["power"]["path"]).parent)
+            planning_root=receipt_path.parent.parent
+            prior=c.read_json(planning_root/"plan.json");receipt=c.read_json(receipt_path)
+            _require(prior.get("stage")=="planning" and prior.get("source_commit")==source_commit
+                     and receipt.get("case_id")==prior.get("case_id") and receipt.get("plan_sha256")==c.digest(prior),
+                     "power_planning_dependency_case_identity_invalid")
+            dep={"case_root":str(planning_root),"case_id":prior["case_id"],"plan_sha256":c.digest(prior),"source_commit":source_commit}
+            if dep not in dependencies:dependencies.append(dep)
+        _require(bool(dependencies),"final_recovery_requires_real_planning_case_dependency")
     case = c.safe(case_root)
     with c.case_lock(case):
         _require(not (case/"plan.json").exists(), "case_already_prepared_use_resume")
@@ -508,10 +544,16 @@ def prepare_case(source_root, case_root, panel_dirs, stage, source_commit, proto
                                              "source_manifest_sha256":sources["manifest_sha256"],"data_admission_sha256":panel["data_sha256"],
                                              "candidate_identity_sha256":c.sha(identity_path),"software_fixture":software_fixture}})
         plan = {"version":VERSION,"case_id":case_id,"stage":stage,"source_commit":source_commit,
+                "original_case_root":str(case),"original_protocol_path":str(protocol_path),"dependency_cases":dependencies,
                 "source_manifest_sha256":sources["manifest_sha256"],"candidate_identity_sha256":c.sha(identity_path),
                 "protocol_sha256":protocol_sha,"data_panels":panels,"seeds":seeds,"seed_bank_sha256":c.sha(bank_path),
                 "family":list(models.METHODS),"jobs":jobs,"final_admission":final,"software_fixture":software_fixture,
                 "created_at_utc":c.now(),"test_opened":False,"R3_accredited":False}
+        for panel in panels:
+            if panel["recovery_metadata"] is not None:
+                payload=(Path(panel["panel_dir"])/"recovery_metadata.json").read_bytes()
+                _require(hashlib.sha256(payload).hexdigest()==panel["recovery_metadata"]["sha256"],"recovery_metadata_changed_while_preparing")
+                c.atomic(case/panel["recovery_metadata"]["path"],payload,immutable=True)
         c.atomic(case/"protocol.json", protocol_path.read_bytes(), immutable=True)
         c.write_json(case/"source_identity.json", {**sources,"source_commit":source_commit}, immutable=True)
         c.write_json(case/"plan.json", plan, immutable=True)
@@ -863,6 +905,9 @@ def _final_panels(case,plan,panel_dirs):
                  "released_source_identity_differs_from_frozen_protocol")
         reserve_inventory=_spec_file(auth.get("reserve_inventory"),case)
         exposure_form=admission.get("exposure",{}).get("form",{})
+        _require(exposure_form.get("reserve_mode")==target.get("reserve_mode")
+                 and target.get("reserve_mode") in ("documented_historical_reserve","external_custodian","post_protocol"),
+                 "released_reserve_mode_differs_from_fixed_protocol")
         _require(c.sha(reserve_inventory)==target.get("exposure_evidence_sha256")==exposure_form.get("exposure_inventory_sha256"),
                  "reserve_inventory_evidence_differs_from_frozen_protocol")
         _require(admission["partition_counts"].get("test")==target["count"]
@@ -1005,6 +1050,128 @@ def evaluate_once(source_root, case_root, panel_dirs, store, *, activate=False):
         c.write_json(case/"status.json",{"status":"FINAL_EVALUATED_ANALYSIS_PENDING","eval_id":eval_id,"test_opened":True,"R3_accredited":False})
         backup=_backup(case,plan,store,admissions,"final_evaluation_completed_saved")
         return {"status":"FINAL_EVALUATED_ANALYSIS_PENDING","evaluation_receipt":str(receipt_path),"prediction_files":{**_saved_predictions(case,seal),"test":{"path":str(path),"sha256":c.sha(path)}},"calibrators":str(case/"metrics/calibrators.json"),"stress_prediction_files":stress_files,"backup":backup,"R3_accredited":False}
+
+
+def _work_path(path, workspace_root):
+    path=c.safe(path);workspace=c.safe(workspace_root)
+    _require(path.is_relative_to(workspace) and path!=workspace,"recovery_write_outside_authorized_workspace")
+    return path
+
+
+def _preserve_existing(path,workspace_root):
+    path=_work_path(path,workspace_root)
+    if not path.exists():return None
+    retained=c.safe(workspace_root)/"retained"/(path.name+"-"+uuid.uuid4().hex)
+    retained.parent.mkdir(parents=True,exist_ok=True)
+    if path.is_dir():
+        with c.case_lock(path):os.rename(path,retained)
+    else:os.rename(path,retained)
+    return str(retained)
+
+
+def _install_recovery_file(target,payload,expected_sha,workspace_root):
+    """Install original bytes at the original path, never rebase an identity."""
+    target=c.safe(target)
+    _require(hashlib.sha256(payload).hexdigest()==expected_sha,"recovery_evidence_payload_hash_differs")
+    if target.exists() and target.is_file() and c.sha(target)==expected_sha:return {"path":str(target),"reused":True}
+    target=_work_path(target,workspace_root)
+    preserved=_preserve_existing(target,workspace_root)
+    c.atomic(target,payload,immutable=True)
+    return {"path":str(target),"sha256":expected_sha,"preserved_previous":preserved}
+
+
+def archive_evidence(source_root,case_root,evidence_path,workspace_root):
+    """Archive every power result as original bytes, before remote sync."""
+    case,plan,_,_=_load_case(source_root,case_root)
+    _require(plan["stage"]=="planning","power_evidence_archive_requires_planning_case")
+    source=_work_path(evidence_path,workspace_root)
+    obj=c.read_json(source)
+    _require(obj.get("status") in ("NOT_DIMENSIONED","DIMENSIONED_CONDITIONAL_EMPIRICAL_DGP")
+             and all(key in obj for key in ("final_R","final_T","final_B")),"power_result_evidence_required")
+    raw=source.read_bytes();digest=hashlib.sha256(raw).hexdigest();relative="receipts/power/"+digest+".json"
+    entry={"original_path":str(source),"archive_path":relative,"sha256":digest,"kind":"power_result"}
+    with c.case_lock(case):
+        c.atomic(case/relative,raw,immutable=True)
+        registry_path=case/"receipts/recovery_evidence.json"
+        registry=c.read_json(registry_path) if registry_path.exists() else {"version":"original-evidence-locations-1","artifacts":[]}
+        _require(registry.get("version")=="original-evidence-locations-1" and isinstance(registry.get("artifacts"),list),"invalid_recovery_evidence_registry")
+        if entry not in registry["artifacts"]:registry["artifacts"].append(entry)
+        c.write_json(registry_path,registry)
+    return {"status":"ORIGINAL_POWER_EVIDENCE_ARCHIVED","archive":relative,"sha256":digest,
+            "registry":"receipts/recovery_evidence.json","requires_sync_before_remote_durability_claim":True,"new_forwards":0}
+
+
+def restore_case(source_root,case_root,store,workspace_root,*,planning_store=None,expected_dependency=None):
+    """Restore authenticated state and its dependencies at ORIGINAL paths.
+
+    This stage performs no market request, label construction or model query.
+    Metadata-only dataset replay is separate from explicit network reacquisition.
+    Existing unlocked directories are retained, not overwritten or discarded.
+    """
+    workspace=c.safe(workspace_root);target=_work_path(case_root,workspace)
+    _,source_identity=_sources(source_root,store.source_commit)
+    temporary_parent=workspace/(".restore-stage-"+uuid.uuid4().hex)
+    temporary_parent.mkdir(parents=True,exist_ok=False);temporary=temporary_parent/"case"
+    preserved=None
+    try:
+        remote=store.restore(temporary)
+        _require(isinstance(remote,dict) and remote.get("remote_verified") is True,"no_authenticated_case_available_for_restore")
+        plan=c.read_json(temporary/"plan.json")
+        _validate_jobs(plan)
+        _require(plan.get("source_manifest_sha256")==source_identity["manifest_sha256"]
+                 and c.sha(temporary/"protocol.json")==plan["protocol_sha256"],"restored_source_or_protocol_identity_differs")
+        _require(plan.get("original_case_root")==str(target) and plan.get("source_commit")==store.source_commit,
+                 "restore_original_case_path_required_no_identity_rebase")
+        if expected_dependency is not None:
+            _require(plan.get("case_id")==expected_dependency.get("case_id") and c.digest(plan)==expected_dependency.get("plan_sha256")
+                     and plan.get("stage")=="planning","restored_planning_dependency_identity_differs")
+        dependencies=[]
+        for dep in plan.get("dependency_cases",[]):
+            _require(plan["stage"]=="final" and planning_store is not None,"planning_store_required_for_final_restore_dependency")
+            dep_target=_work_path(dep["case_root"],workspace)
+            _require(dep_target!=target and dep.get("source_commit")==store.source_commit,"invalid_or_cyclic_restore_dependency")
+            dependencies.append(restore_case(source_root,dep_target,planning_store,workspace,expected_dependency=dep))
+        preserved=_preserve_existing(target,workspace)
+        target.parent.mkdir(parents=True,exist_ok=True)
+        os.rename(temporary,target)
+        # Protocol and power evidence paths are part of the immutable protocol;
+        # restoring the exact files avoids mutating their JSON or hash identity.
+        installed=[]
+        protocol_raw=(target/"protocol.json").read_bytes()
+        _require(hashlib.sha256(protocol_raw).hexdigest()==plan["protocol_sha256"],"restored_protocol_bytes_differ")
+        installed.append(_install_recovery_file(plan["original_protocol_path"],protocol_raw,plan["protocol_sha256"],workspace))
+        protocol=c.read_json(target/"protocol.json")
+        if plan["stage"]=="final":
+            power_spec=protocol["final"]["power_receipt"]
+            installed.append(_install_recovery_file(power_spec["path"],(target/"receipts/power.json").read_bytes(),power_spec["sha256"],workspace))
+        registry_path=target/"receipts/recovery_evidence.json"
+        if registry_path.exists():
+            registry=c.read_json(registry_path)
+            _require(registry.get("version")=="original-evidence-locations-1","invalid_recovery_evidence_registry")
+            # Restore only the most recently archived version at each original
+            # location; all earlier versions remain preserved in their archive.
+            latest={item["original_path"]:item for item in registry["artifacts"]}
+            for original,item in latest.items():
+                relative=Path(item["archive_path"])
+                _require(not relative.is_absolute() and ".." not in relative.parts and relative.parts[:2]==("receipts","power"),"unsafe_recovery_evidence_archive_path")
+                installed.append(_install_recovery_file(original,(target/relative).read_bytes(),item["sha256"],workspace))
+        metadata=[]
+        for panel in plan["data_panels"]:
+            binding=panel.get("recovery_metadata")
+            if binding is None:
+                _require(plan.get("software_fixture") is True,"real_restored_panel_missing_replay_metadata")
+                continue
+            bundle=_spec_file(binding,target)
+            metadata.append(data.restore_development_metadata(bundle,workspace,expected_bundle_sha256=binding["sha256"]))
+        result={"status":"CASE_AND_ORIGINAL_EVIDENCE_RESTORED","case_root":str(target),"case_id":plan["case_id"],
+                "plan_sha256":c.digest(plan),"remote":remote,"preserved_existing_case":preserved,
+                "dependencies":dependencies,"installed_original_evidence":installed,"dataset_metadata":metadata,
+                "raw_market_arrays_restored":False,"market_acquisition_executed":False,"new_forwards":0,
+                "next":"Explicitly reacquire original data bytes from their pinned metadata, verify admission/NPZ hashes, then resume."}
+        c.write_json(target/"receipts/recovery_installation.json",result)
+        return result
+    finally:
+        shutil.rmtree(temporary_parent,ignore_errors=True)
 
 
 def sync_case(source_root,case_root,store,*,panel_dirs=None,stage="saved_analysis_and_exports_synced"):

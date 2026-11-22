@@ -101,3 +101,98 @@ def test_failure_bounds_cannot_be_overruled_by_passed_report_boolean(archive):
         row['false_reject_any_null']=True;row['method_false_reject']={name:True for name in statistics.METHODS}
     with pytest.raises(controller.ControllerError,match='FWER_not_demonstrated'):
         controller._method_admission(ROOT,save(),settings)
+
+
+def composite_archive(archive):
+    """Small fake provenance ledgers; no new statistical simulation."""
+    settings,old_rows,old_report,save,folder=archive
+    old_plan=c.read_json(folder/'plan.json');old_plan['seed']=101;c.write_json(folder/'plan.json',old_plan)
+    old_freeze=c.read_json(folder/'freeze.json');old_freeze['plan_sha256']=c.sha(folder/'plan.json');c.write_json(folder/'freeze.json',old_freeze)
+    # The preserved old full-null rows intentionally do not satisfy the FWER
+    # upper bound; the new independent ledger must replace them, never pool.
+    template=deepcopy(old_rows[0])
+    for row in old_rows[:10]:
+        v=row['test_vectors'];v['mc_tail_count']=[0]*120
+        v['raw_p']=[1/(n+1) for n in v['mc_reps']];v['adjusted_p']=statistics.holm(v['raw_p'])
+        row['false_reject_any_null']=True;row['method_false_reject']={name:True for name in statistics.METHODS}
+    old_report.update(status='INCONCLUSIVE_BOUNDED_VALIDATION',admitted=False,protocol_closure_permitted=False,validated_settings=[])
+    save()
+    current=folder/'focal';current.mkdir()
+    new_rows=[{**deepcopy(template),'replicate':i} for i in range(120)]
+    plan={**old_plan,'seed':202,'focal_scenario':'complete','replicates_per_stochastic_scenario':120,
+          'replicates_per_scenario':{s['id']:120 if s['id']=='complete' else 100 for s in old_plan['scenarios']}}
+    c.write_json(current/'plan.json',plan)
+    c.atomic(current/'runner.py',b'# fixed independent provenance-composite unit fixture\n')
+    mapping={'frozen_before_focal_execution':True,'no_pooling':True,'statistics_source_sha256':c.sha(ROOT/'engine/statistics.py'),
+             'focal_scenario':'complete','prior_report_sha256':c.sha(folder/'report.json'),
+             'scenario_sources':{s['id']:{'component':'replicates' if s['id']=='complete' else 'prior_replicates',
+                                       'replicates':plan['replicates_per_scenario'][s['id']]} for s in plan['scenarios']},
+             'preserved_but_excluded':{'prior_replicates':['complete']}}
+    c.write_json(current/'map.json',mapping)
+    freeze={'plan_sha256':c.sha(current/'plan.json'),'runner_sha256':c.sha(current/'runner.py'),
+            'statistics_sha256':c.sha(ROOT/'engine/statistics.py'),'scenario_source_map_sha256':c.sha(current/'map.json')}
+    c.write_json(current/'freeze.json',freeze)
+    report={**old_report,'status':'PASSED_PREDECLARED_VALIDATION','admitted':True,'protocol_closure_permitted':True,
+            'validated_settings':[settings],'report_type':'provenance_composite'}
+    def save_composite():
+        raw=b''.join((json.dumps(row,sort_keys=True,separators=(',',':'))+'\n').encode() for row in new_rows)
+        c.atomic(current/'replicates.jsonl.gz',gzip.compress(raw,mtime=0))
+        report['replicates_uncompressed_sha256']=hashlib.sha256(raw).hexdigest()
+        report['evidence']={key:{'path':str(path),'sha256':c.sha(path)} for key,path in [
+            ('plan',current/'plan.json'),('freeze',current/'freeze.json'),('runner',current/'runner.py'),
+            ('replicates',current/'replicates.jsonl.gz'),('prior_replicates',folder/'replicates.jsonl.gz'),
+            ('prior_report',folder/'report.json'),('scenario_source_map',current/'map.json')]}
+        report['evidence']['prior_replicates']['uncompressed_sha256']=old_report['replicates_uncompressed_sha256']
+        c.write_json(current/'report.json',report)
+        return {'path':str(current/'report.json'),'sha256':c.sha(current/'report.json')}
+    return settings,new_rows,mapping,freeze,report,save_composite,current
+
+
+def test_composite_counts_each_scenario_from_its_frozen_source_without_pooling(archive):
+    settings,_,_,_,_,save,folder=composite_archive(archive)
+    result=controller._method_admission(ROOT,save(),settings)
+    assert result['report_type']=='provenance_composite'
+    assert result['replicates_per_scenario']['complete']==120
+    assert result['verified_ledgers']['replicates']['selected_rows']==120
+    assert result['verified_ledgers']['prior_replicates']['selected_rows']==400
+    assert result['verified_ledgers']['prior_replicates']['preserved_excluded_rows']==100
+    assert c.read_json(folder.parent/'report.json')['status']=='INCONCLUSIVE_BOUNDED_VALIDATION'
+
+
+@pytest.mark.parametrize('change,diagnostic',[
+    ('changed_map','source_map_not_frozen'),
+    ('pool','exclusion_map_invalid'),
+    ('missing_new','replicates_incomplete'),
+    ('missing_old_excluded','original_inconclusive_rows_not_preserved'),
+    ('changed_parent','prior_report_or_focal_identity'),
+])
+def test_composite_rejects_changed_map_pooling_or_incomplete_component(archive,change,diagnostic):
+    settings,rows,mapping,freeze,report,save,folder=composite_archive(archive)
+    if change=='changed_map':
+        mapping['scenario_sources']['complete']['replicates']=220;c.write_json(folder/'map.json',mapping)
+    elif change=='pool':
+        mapping['preserved_but_excluded']={};c.write_json(folder/'map.json',mapping)
+        freeze['scenario_source_map_sha256']=c.sha(folder/'map.json');c.write_json(folder/'freeze.json',freeze)
+    elif change=='missing_new':rows.pop()
+    elif change=='missing_old_excluded':
+        prior_path=folder.parent/'replicates.jsonl.gz'
+        old=gzip.decompress(prior_path.read_bytes()).splitlines(keepends=True);raw=b''.join(old[1:])
+        c.atomic(prior_path,gzip.compress(raw,mtime=0))
+        old_report=c.read_json(folder.parent/'report.json')
+        old_report['evidence']['replicates']['sha256']=c.sha(prior_path)
+        old_report['replicates_uncompressed_sha256']=hashlib.sha256(raw).hexdigest()
+        c.write_json(folder.parent/'report.json',old_report)
+        mapping['prior_report_sha256']=c.sha(folder.parent/'report.json');c.write_json(folder/'map.json',mapping)
+        freeze['scenario_source_map_sha256']=c.sha(folder/'map.json');c.write_json(folder/'freeze.json',freeze)
+        # The closure's original old_report object supplies this field.
+        report['evidence']={}
+        original_save=save
+        def save():
+            spec=original_save()
+            obj=c.read_json(folder/'report.json');obj['evidence']['prior_replicates']['uncompressed_sha256']=hashlib.sha256(raw).hexdigest()
+            c.write_json(folder/'report.json',obj)
+            return {'path':str(folder/'report.json'),'sha256':c.sha(folder/'report.json')}
+    elif change=='changed_parent':
+        obj=c.read_json(folder.parent/'report.json');obj['admitted']=True;c.write_json(folder.parent/'report.json',obj)
+    with pytest.raises(controller.ControllerError,match=diagnostic):
+        controller._method_admission(ROOT,save(),settings)

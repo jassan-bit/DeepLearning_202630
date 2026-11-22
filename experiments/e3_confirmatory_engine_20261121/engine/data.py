@@ -7,6 +7,7 @@ not an authorization to evaluate. Authentic reserve evidence is still required.
 from __future__ import annotations
 
 import argparse
+import base64
 import csv
 import datetime as dt
 import hashlib
@@ -14,6 +15,7 @@ import io
 import json
 import os
 from pathlib import Path
+import tempfile
 import urllib.parse
 import urllib.request
 import zipfile
@@ -24,6 +26,7 @@ PARTITIONS = ("fit", "selection", "planning", "calibration", "test")
 TASK = "sigma7_next_bar_raw_shared_history_exclude_split_support_v1"
 UTC = dt.timezone.utc
 BAR_INDEX_CONVENTION = "zero_based_complete_observed_calendar_sessions_v1"
+HISTORICAL_RESERVE_MODES = ("external_custodian", "documented_historical_reserve")
 
 
 class AdmissionError(ValueError):
@@ -403,11 +406,38 @@ def load_partition(panel_dir, part, *, allow_test=False):
     return data
 
 
+def _verify_historical_reserve(form):
+    """Bind real historical access evidence, without requiring another person.
+
+    Existing external-custodian exports retain their original schema. The
+    owner-or-custodian mode additionally names the actual exports and access
+    history; hashes/field presence do not establish the truth of that history.
+    """
+    require(bool(form.get("custodian_seal_sha256")) and bool(form.get("custodian_access_log_sha256")),
+            "Historical reserve requires actual seal and access log")
+    if form["reserve_mode"] == "documented_historical_reserve":
+        require(isinstance(form.get("actual_history_accessed_per_panel"), dict) and
+                bool(form["actual_history_accessed_per_panel"]),
+                "Documented historical reserve requires actual panel exposure history")
+        require(bool(form.get("who_could_access_prices_labels_predictions")),
+                "Documented historical reserve requires accountable access history")
+        for path_key, hash_key in (
+                ("historical_seal_evidence_path", "custodian_seal_sha256"),
+                ("historical_access_log_evidence_path", "custodian_access_log_sha256"),
+                ("exposure_inventory_path", "exposure_inventory_sha256")):
+            require(isinstance(form.get(path_key), str) and bool(form[path_key]),
+                    "Documented historical reserve requires evidence file: "+path_key)
+            path = Path(form[path_key])
+            require(path.is_file() and sha256_bytes(path.read_bytes()) == form.get(hash_key),
+                    "Historical reserve evidence bytes/hash mismatch: "+path_key)
+
+
 def record_owner_evidence(form_path, evidence_path, output_path):
     """Bind externally supplied evidence; a hash is NOT a signature verification.
 
     The tool explicitly records who supplied the declaration and how the human
-    custodian can be contacted. It never impersonates or certifies that actor.
+    author or custodian can be contacted. It never impersonates or certifies
+    that actor, and does not require an external institution or approver.
     """
     form = json.loads(Path(form_path).read_text())
     for field in ("actor_name", "actor_contact", "actor_role", "statement_utc", "reserve_mode", "evidence_origin"):
@@ -415,7 +445,7 @@ def record_owner_evidence(form_path, evidence_path, output_path):
     statement = dt.datetime.fromisoformat(form["statement_utc"])
     require(statement.tzinfo is not None, "Actor statement must include timezone")
     require(form.get("acknowledge_prior_D00_D03_exposed") is True, "Prior exposure must be acknowledged")
-    require(form["reserve_mode"] in ("development_only", "external_custodian", "post_protocol"), "Unsupported reserve mode")
+    require(form["reserve_mode"] in ("development_only", *HISTORICAL_RESERVE_MODES, "post_protocol"), "Unsupported reserve mode")
     if form["reserve_mode"] == "development_only":
         require(form.get("all_data_declared_exposed_development") is True,
                 "Development mode must explicitly designate all supplied data as exposed development")
@@ -438,9 +468,8 @@ def record_owner_evidence(form_path, evidence_path, output_path):
         require(lock.tzinfo is not None, "Timezone-aware protocol lock required")
         require(iso_date(form["first_raw_support_session"]) > lock.astimezone(UTC).date(),
                 "Every final support bar must follow the complete protocol lock")
-    elif form["reserve_mode"] == "external_custodian":
-        require(bool(form.get("custodian_seal_sha256")) and bool(form.get("custodian_access_log_sha256")),
-                "External reserve requires actual seal and access log")
+    elif form["reserve_mode"] in HISTORICAL_RESERVE_MODES:
+        _verify_historical_reserve(form)
     evidence = Path(evidence_path).read_bytes()
     require(len(evidence) > 0, "Empty authentic evidence")
     receipt = {"kind": "owner_supplied_evidence_not_identity_verification", "status": "audited",
@@ -502,7 +531,8 @@ def _collect_development(config, output_dir, *, rights_receipt, exposure_receipt
     Binance uses bounded per-day archives and provider checksum companions.
     Alpha Vantage cannot date-bound its full response: direct development
     acquisition is permitted only when ALL reserved support is still future.
-    Historical sealed reserves require the external custodian's filtered files.
+    Historical sealed reserves require the real author's or custodian's
+    appropriately filtered files and documented exposure history.
     """
     require(enable_market_acquisition, "Market acquisition requires explicit author activation")
     verify_evidence(rights_receipt, "approved")
@@ -586,7 +616,8 @@ def _collect_development(config, output_dir, *, rights_receipt, exposure_receipt
     return manifest
 
 
-def prepare_development(manifest_path, split_config, panel_dir, *, rights, exposure):
+def prepare_development(manifest_path, split_config, panel_dir, *, rights, exposure,
+                        record_recovery=True):
     """Parse local acquired development files, validate clock, then label ONLY dev."""
     manifest_path = Path(manifest_path)
     record = json.loads(manifest_path.read_text())
@@ -616,18 +647,259 @@ def prepare_development(manifest_path, split_config, panel_dir, *, rights, expos
     quality = validate_bars(bars, sessions)
     arrays, windows_audit = build_windows(bars, target_end=split_config["raw_end"])
     parts, support = split_by_support(arrays, split_config["raw_bounds"], embargo_bars=split_config.get("embargo_bars", 0))
-    return write_panel(panel_dir, parts, provenance={"provider": record["provider"], "instrument": record["instrument"],
+    admission = write_panel(panel_dir, parts, provenance={"provider": record["provider"], "instrument": record["instrument"],
         "provider_version": declared, "raw_manifest_sha256": declared, "calendar": split_config["calendar"],
         "bar_index_origin": str(bars["dates"][0]), "bar_index_convention": BAR_INDEX_CONVENTION,
         "split_config_sha256": identity(split_config)}, rights=rights, exposure=exposure,
         support_audit={"quality": quality, "windows": windows_audit, "partitions": support})
+    if record_recovery:
+        _write_recovery_metadata(manifest_path, split_config, panel_dir, admission)
+    return admission
+
+
+def _encoded_metadata(path, expected=None):
+    path = Path(os.path.abspath(path))
+    require(not any(p.is_symlink() for p in (path, *path.parents)), "Recovery metadata path cannot traverse symlinks")
+    require(path.suffix.lower() not in (".npz", ".npy", ".pt", ".pth", ".pkl", ".pickle"),
+            "Recovery metadata cannot contain arrays or model weights")
+    raw = path.read_bytes()
+    require(len(raw) <= 16*1024*1024, "Individual metadata export exceeds 16 MiB")
+    checksum = sha256_bytes(raw)
+    require(expected is None or checksum == expected, "Original metadata evidence bytes/hash mismatch")
+    return {"path": str(path), "sha256": checksum, "content_base64": base64.b64encode(raw).decode()}
+
+
+def _decoded_metadata(item):
+    require(isinstance(item, dict) and isinstance(item.get("content_base64"), str), "Encoded recovery metadata required")
+    require(len(item["content_base64"]) <= 24*1024*1024, "Encoded metadata exceeds bound")
+    try:
+        raw = base64.b64decode(item["content_base64"], validate=True)
+    except (ValueError, TypeError):
+        raise AdmissionError("Invalid encoded recovery metadata") from None
+    require(len(raw) <= 16*1024*1024 and sha256_bytes(raw) == item.get("sha256"), "Recovery metadata bytes/hash mismatch")
+    return raw
+
+
+def _write_recovery_metadata(manifest_path, split_config, panel_dir, admission):
+    """Snapshot metadata/evidence only, after the original admission is fixed.
+
+    No raw OHLCV arrays, upstream payloads, weights or credentials are included.
+    Replaying original event metadata never claims a reacquisition happened at
+    the old timestamp. The later replay event is recorded separately.
+    """
+    root = Path(panel_dir)
+    manifest_path = Path(manifest_path)
+    manifest = json.loads(manifest_path.read_text())
+    artifacts = {}
+    def visit(value):
+        if isinstance(value, dict):
+            for key, path in value.items():
+                if isinstance(path, str) and key.endswith("_path"):
+                    hash_key = key[:-5]+"_sha256"
+                    if key == "historical_seal_evidence_path": hash_key = "custodian_seal_sha256"
+                    if key == "historical_access_log_evidence_path": hash_key = "custodian_access_log_sha256"
+                    if key == "exposure_inventory_path": hash_key = "exposure_inventory_sha256"
+                    expected = value.get(hash_key)
+                    if expected:
+                        item = _encoded_metadata(path, expected)
+                        previous = artifacts.get(item["path"])
+                        require(previous is None or previous == item, "Conflicting original evidence bindings")
+                        artifacts[item["path"]] = item
+                visit(path)
+        elif isinstance(value, list):
+            for item in value: visit(item)
+    visit(admission["rights"]); visit(admission["exposure"])
+    visit(manifest.get("rights", {})); visit(manifest.get("exposure", {}))
+    sources, companions = [], []
+    for row in manifest["files"]:
+        _recovery_download_url(row["url"], manifest["provider"], private=False)
+        raw_path = _safe_path(manifest_path.parent, row["path"])
+        require(sha256_bytes(raw_path.read_bytes()) == row["sha256"], "Original source changed before recovery snapshot")
+        sources.append({"path": row["path"], "sha256": row["sha256"], "bytes": raw_path.stat().st_size})
+        if row.get("provider_checksum_sha256"):
+            checksum_path = _safe_path(manifest_path.parent, row["path"]+".CHECKSUM")
+            item = _encoded_metadata(checksum_path, row["provider_checksum_sha256"])
+            item["relative_path"] = row["path"]+".CHECKSUM"
+            companions.append(item)
+    attempt_log = manifest_path.parent/"acquisition_attempts.jsonl"
+    if attempt_log.is_file():
+        item = _encoded_metadata(attempt_log); item["relative_path"] = attempt_log.name
+        companions.append(item)
+    result = {"schema_version": 1, "kind": "development_metadata_replay_v1", "created_utc": utc_now(),
+              "contains_raw_arrays": False, "contains_model_weights": False, "contains_credentials": False,
+              "raw_manifest": _encoded_metadata(manifest_path), "split_config": split_config,
+              "original_admission": _encoded_metadata(root/"admission.json"),
+              "original_panel_dir": str(root.absolute()), "original_raw_dir": str(manifest_path.parent.absolute()),
+              "provider": manifest["provider"], "instrument": manifest["instrument"], "sources": sources,
+              "evidence": list(artifacts.values()), "raw_metadata_companions": companions,
+              "scope": "Replay the original byte identities; later acquisition events have separate timestamps/receipts."}
+    result["metadata_sha256"] = identity(result)
+    raw = (json.dumps(result, indent=2)+"\n").encode()
+    require(len(raw) <= 64*1024*1024, "Recovery metadata bundle exceeds 64 MiB")
+    target = root/"recovery_metadata.json"
+    require(not target.exists(), "Recovery metadata is immutable")
+    target.write_bytes(raw)
+    return result
+
+
+def _recovery_download_url(url, provider, *, private=True):
+    parsed = urllib.parse.urlsplit(url)
+    hosts = {"binance_vision": "data.binance.vision", "nasdaq_wiki": "data.nasdaq.com",
+             "alphavantage": "www.alphavantage.co"}
+    require(parsed.scheme == "https" and parsed.hostname == hosts.get(provider) and
+            parsed.username is None and parsed.password is None and not parsed.fragment,
+            "Recovery source URL outside the frozen provider")
+    params = urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)
+    key_name = {"nasdaq_wiki": "api_key", "alphavantage": "apikey"}.get(provider)
+    if key_name:
+        require(sum(k == key_name for k, _ in params) == 1 and
+                all(v == "REDACTED" for k, v in params if k == key_name),
+                "Original recovery URL must redact its API key")
+        if private:
+            environment = "NASDAQ_DATA_LINK_API_KEY" if provider == "nasdaq_wiki" else "ALPHAVANTAGE_API_KEY"
+            key = os.environ.get(environment)
+            require(bool(key), "Set private "+environment+" for reacquisition")
+            params = [(k, key if k == key_name else v) for k, v in params]
+    return urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, parsed.path,
+                                   urllib.parse.urlencode(params), ""))
+
+
+def _restore_metadata_file(target, raw, workspace_root, *, allow_existing_outside=False):
+    root = Path(os.path.abspath(workspace_root))
+    target = Path(os.path.abspath(target))
+    require(not any(p.is_symlink() for p in (root, *root.parents, target, *target.parents)),
+            "Recovery path cannot traverse symlinks")
+    inside = target == root or root in target.parents
+    require(inside or allow_existing_outside and target.is_file(),
+            "Recovery writes must stay inside the supplied workspace")
+    if target.exists():
+        require(target.is_file() and target.read_bytes() == raw, "Recovery refuses to overwrite different existing bytes")
+        return
+    require(inside, "Missing source-cache evidence outside workspace must be reacquired by the pinned source installer")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(dir=target.parent, delete=False) as stream:
+        temporary = Path(stream.name); stream.write(raw); stream.flush(); os.fsync(stream.fileno())
+    try:
+        os.replace(temporary, target)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _read_recovery_bundle(bundle_path, expected_bundle_sha256=None):
+    bundle_raw = Path(bundle_path).read_bytes()
+    require(expected_bundle_sha256 is None or sha256_bytes(bundle_raw) == expected_bundle_sha256,
+            "Recovery bundle differs from the frozen campaign")
+    require(len(bundle_raw) <= 64*1024*1024, "Recovery bundle exceeds byte limit")
+    bundle = json.loads(bundle_raw)
+    claimed = bundle.pop("metadata_sha256", None)
+    require(claimed == identity(bundle) and bundle.get("kind") == "development_metadata_replay_v1" and
+            bundle.get("contains_raw_arrays") is False and bundle.get("contains_model_weights") is False and
+            bundle.get("contains_credentials") is False,
+            "Invalid development recovery metadata")
+    manifest_raw = _decoded_metadata(bundle["raw_manifest"])
+    original_raw = _decoded_metadata(bundle["original_admission"])
+    manifest, original = json.loads(manifest_raw), json.loads(original_raw)
+    require(manifest.get("scope") == "development_only" and "test" not in original["partition_paths"],
+            "Recovery cannot acquire or prepare a final test")
+    require(manifest["manifest_sha256"] == identity({k:v for k,v in manifest.items() if k != "manifest_sha256"}),
+            "Original acquisition manifest identity differs")
+    require(original["admission_sha256"] == identity({k:v for k,v in original.items() if k != "admission_sha256"}),
+            "Original admission identity differs")
+    return bundle_raw, bundle, manifest_raw, original_raw, manifest, original
+
+
+def restore_development_metadata(bundle_path, workspace_root, *, expected_bundle_sha256=None):
+    """Restore saved actor/license bytes without acquiring observations."""
+    _, bundle, _, _, _, original = _read_recovery_bundle(bundle_path, expected_bundle_sha256)
+    root = Path(os.path.abspath(workspace_root))
+    require(not any(p.is_symlink() for p in (root, *root.parents)), "Recovery workspace cannot traverse symlinks")
+    for artifact in bundle["evidence"]:
+        _restore_metadata_file(artifact["path"], _decoded_metadata(artifact), root, allow_existing_outside=True)
+    verify_evidence(original["rights"], "approved"); verify_evidence(original["exposure"], "audited")
+    return {"status": "DEVELOPMENT_AUTHORIZATION_METADATA_RESTORED", "provider": bundle["provider"],
+            "original_panel_dir": bundle["original_panel_dir"], "original_raw_dir": bundle["original_raw_dir"],
+            "new_market_downloads": 0, "new_market_fits": 0, "reserved_test_opened": False}
+
+
+def reacquire_development(bundle_path, panel_dir, raw_dir, workspace_root, *,
+                          enable_market_acquisition=False, expected_bundle_sha256=None):
+    """Rehydrate a saved development identity, not a newly dated campaign.
+
+    The original manifest, partitions, admission and authorization bytes stay
+    fixed. Private credentials are supplied again only to the upstream client.
+    No new declaration or final-data access is performed.
+    """
+    require(enable_market_acquisition, "Development reacquisition requires explicit author activation")
+    bundle_raw, bundle, manifest_raw, original_raw, manifest, original = _read_recovery_bundle(bundle_path, expected_bundle_sha256)
+    root = Path(os.path.abspath(workspace_root)); panel_dir = Path(os.path.abspath(panel_dir)); raw_dir = Path(os.path.abspath(raw_dir))
+    for directory in (root, panel_dir, raw_dir):
+        require(directory == root or root in directory.parents, "Recovery directories must stay inside the supplied workspace")
+        require(not any(p.is_symlink() for p in (directory, *directory.parents)), "Recovery directories cannot traverse symlinks")
+    restore_development_metadata(bundle_path, root, expected_bundle_sha256=expected_bundle_sha256)
+    if (panel_dir/"admission.json").exists():
+        require((panel_dir/"admission.json").read_bytes() == original_raw, "Existing restored admission differs")
+        for part in original["partition_paths"]: load_partition(panel_dir, part)
+        return {"status": "DEVELOPMENT_ALREADY_RESTORED", "admission_sha256": original["admission_sha256"], "new_market_fits": 0}
+    # Restore exact historical authorization/license exports. A source-cache
+    # artifact outside WORK is read-only and must already match the pinned copy.
+    expected_sources = {row["path"]: row for row in bundle["sources"]}
+    require(set(expected_sources) == {row["path"] for row in manifest["files"]}, "Recovery source inventory differs")
+    require(all(expected_sources[row["path"]]["sha256"] == row["sha256"] for row in manifest["files"]),
+            "Recovery source hash inventory differs")
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    actual_event = {"started_utc": utc_now(), "status": "started", "original_acquired_utc": manifest["acquired_utc"],
+                    "original_manifest_replayed": True, "new_acquisition_manifest_created": False,
+                    "bundle_sha256": sha256_bytes(bundle_raw), "original_manifest_sha256": manifest["manifest_sha256"],
+                    "network_downloads": 0, "raw_files_reused": 0}
+    event_path = raw_dir/"reacquisition_events.jsonl"
+    def record_event():
+        with event_path.open("a") as stream: stream.write(json.dumps(actual_event, sort_keys=True)+"\n")
+    record_event()
+    try:
+        for row in manifest["files"]:
+            target = _safe_path(raw_dir, row["path"])
+            if target.is_file():
+                payload = target.read_bytes(); actual_event["raw_files_reused"] += 1
+            else:
+                payload = _network_get(_recovery_download_url(row["url"], manifest["provider"]))
+                actual_event["network_downloads"] += 1
+            require(len(payload) == expected_sources[row["path"]]["bytes"] and sha256_bytes(payload) == row["sha256"],
+                    "Reacquired raw bytes differ from the original saved source")
+            _restore_metadata_file(target, payload, root)
+        for item in bundle["raw_metadata_companions"]:
+            _restore_metadata_file(_safe_path(raw_dir, item["relative_path"]), _decoded_metadata(item), root)
+        manifest_target = raw_dir/"raw_manifest.json"
+        _restore_metadata_file(manifest_target, manifest_raw, root)
+        panel_dir.parent.mkdir(parents=True, exist_ok=True)
+        staging = Path(tempfile.mkdtemp(prefix="."+panel_dir.name+"-recovery-", dir=panel_dir.parent))
+        rebuilt = prepare_development(manifest_target, bundle["split_config"], staging,
+                                     rights=original["rights"], exposure=original["exposure"], record_recovery=False)
+        comparable = lambda value: {k:v for k,v in value.items() if k not in ("created_utc", "admission_sha256")}
+        require(comparable(rebuilt) == comparable(original), "Rebuilt partitions or provenance differ from the original admission")
+        # All partition hashes matched. Reinstall the preserved event record;
+        # the new real reacquisition timestamp stays in its separate log.
+        (staging/"admission.json").write_bytes(original_raw)
+        _restore_metadata_file(staging/"recovery_metadata.json", bundle_raw, root)
+        if panel_dir.exists():
+            require(panel_dir.is_dir() and not any(panel_dir.iterdir()), "Nonempty incomplete panel retained; restore to a new directory")
+        os.replace(staging, panel_dir)
+        actual_event.update(status="complete", finished_utc=utc_now(), source_bytes_identical=True,
+                            admission_sha256=original["admission_sha256"], new_owner_declaration=False)
+        record_event()
+    except Exception as error:
+        actual_event.update(status="failed", finished_utc=utc_now(), error_type=type(error).__name__,
+                            diagnostic="Reacquisition stopped; original identities and existing bytes retained.")
+        record_event()
+        raise
+    return {"status": "DEVELOPMENT_RESTORED_ORIGINAL_IDENTITY", "admission_sha256": original["admission_sha256"],
+            "reacquisition_receipt": str(event_path), "new_market_fits": 0, "reserved_test_opened": False}
 
 
 def prepare_final_partition(manifest_path, split_config, panel_dir, *, rights, exposure,
                             authorization, enable_final_preparation=False):
     """Explicit final-only local preparation, after the outer final gate.
 
-    Does not acquire data or evaluate models. A custodian supplies an immutable
+    Does not acquire data or evaluate models. The author or custodian supplies an immutable
     `scope=reserved_final` raw manifest. All current raw bytes and authorization
     bytes are verified BEFORE labels are constructed. Output is a new immutable
     panel directory; development directories cannot be silently overwritten.
@@ -648,13 +920,13 @@ def prepare_final_partition(manifest_path, split_config, panel_dir, *, rights, e
     manifest_path = Path(manifest_path)
     record = json.loads(manifest_path.read_text())
     claimed = record.pop("manifest_sha256")
-    require(claimed == identity(record) and record.get("scope") == "reserved_final", "Require custodian's reserved-final manifest")
+    require(claimed == identity(record) and record.get("scope") == "reserved_final", "Require author/custodian reserved-final manifest")
     require(record.get("protocol_sha256") == protocol_hash, "Reserved raw manifest not bound to fixed protocol")
     reserve_form = exposure.get("form", {})
     require(reserve_form.get("protocol_sha256") == protocol_hash, "Exposure declaration not bound to final protocol")
-    require(reserve_form.get("reserve_mode") in ("external_custodian", "post_protocol"), "Authentic reserve mode missing")
-    if reserve_form["reserve_mode"] == "external_custodian":
-        require(reserve_form.get("custodian_seal_sha256") and reserve_form.get("custodian_access_log_sha256"), "Historical reserve seal/access log missing")
+    require(reserve_form.get("reserve_mode") in (*HISTORICAL_RESERVE_MODES, "post_protocol"), "Authentic reserve mode missing")
+    if reserve_form["reserve_mode"] in HISTORICAL_RESERVE_MODES:
+        _verify_historical_reserve(reserve_form)
         require(record.get("custodian_seal_sha256") == reserve_form["custodian_seal_sha256"], "Custodian seal binding mismatch")
     else:
         require(record["provider"] != "nasdaq_wiki", "Discontinued WIKI cannot supply a post-protocol future reserve")
@@ -712,6 +984,15 @@ def main(argv=None):
     prepare = sub.add_parser("prepare-development")
     for flag in ("manifest", "split-config", "rights", "exposure", "output"):
         prepare.add_argument("--"+flag, required=True)
+    recovery = sub.add_parser("reacquire-development")
+    for flag in ("bundle", "output", "raw-output", "workspace-root"):
+        recovery.add_argument("--"+flag, required=True)
+    recovery.add_argument("--expected-bundle-sha256")
+    recovery.add_argument("--enable-market-acquisition", action="store_true")
+    recovery_metadata = sub.add_parser("restore-development-metadata")
+    for flag in ("bundle", "workspace-root"):
+        recovery_metadata.add_argument("--"+flag, required=True)
+    recovery_metadata.add_argument("--expected-bundle-sha256")
     final = sub.add_parser("prepare-final")
     for flag in ("manifest", "split-config", "rights", "exposure", "authorization", "output"):
         final.add_argument("--"+flag, required=True)
@@ -726,6 +1007,12 @@ def main(argv=None):
     elif args.command == "prepare-development":
         result = prepare_development(args.manifest, json.loads(Path(args.split_config).read_text()), args.output,
             rights=json.loads(Path(args.rights).read_text()), exposure=json.loads(Path(args.exposure).read_text()))
+    elif args.command == "restore-development-metadata":
+        result = restore_development_metadata(args.bundle, args.workspace_root,
+            expected_bundle_sha256=args.expected_bundle_sha256)
+    elif args.command == "reacquire-development":
+        result = reacquire_development(args.bundle, args.output, args.raw_output, args.workspace_root,
+            expected_bundle_sha256=args.expected_bundle_sha256, enable_market_acquisition=args.enable_market_acquisition)
     else:
         result = prepare_final_partition(args.manifest, json.loads(Path(args.split_config).read_text()), args.output,
             rights=json.loads(Path(args.rights).read_text()), exposure=json.loads(Path(args.exposure).read_text()),
