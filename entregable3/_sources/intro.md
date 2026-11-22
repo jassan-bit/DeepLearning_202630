@@ -211,3 +211,11 @@ Después del resultado, el autor comunicó que el profesor permite redondear al 
 La corrección V2 de intervalos quedó implementada y archivada, con 18 pruebas propias y 34 independientes; se detuvo antes de ejecutar otro Monte Carlo. El {download}`informe completo V1 <_static/e3_primary_joint_repair_20261122/results/VALIDATION_REPORT_V1.json>` y la {ref}`tabla y figura de 8.31 <e3-primary-joint-repair-20261122>` conservan resultados, diagnósticos adversos y alcance sintético.
 
 Los 796 trabajos siguen perteneciendo a la aditiva. Los resultados adversos y decisiones de V3, V4 y V5 completo permanecen intactos. La {ref}`sección 14.12 <e3-primary-joint-rubric-scope-20261122>` distingue la evidencia nueva de una nota o acreditación automática de R3.
+
+
+(e3-current-evaluation-intro-20261122-v2)=
+## Evaluación actualizada: 4,20/5 antes del tope
+
+La {ref}`valoración actual de 14.13 <e3-current-evaluation-20261122-v2>` mantiene sustentación **4,5**, según la indicación del autor, y eleva **Hipótesis y adecuación de 3,0 a 3,5/5** por la reparación de la primaria y la validación conjunta ejecutadas. Los once pesos y las otras diez notas no cambian: **4,122 + 0,075 = 4,197**, mostrado como **4,20/5 antes del tope**. El redondeo docente comunicado se aplica a los 18 límites de cobertura, conservando resultados exactos e históricos.
+
+**Con R1/R2 aceptadas y R3 no acreditada, el tope condicional mantiene 4,00/5.** Es una valoración orientativa solicitada, sin nota oficial ni acreditaciones automáticas. El {download}`registro de evaluación <_static/e3_evaluation_20261122/assessment.json>` permite comprobar cada aporte y sus límites.

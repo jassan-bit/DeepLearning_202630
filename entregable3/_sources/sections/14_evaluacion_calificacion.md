@@ -1,6 +1,6 @@
 # 14 Evaluación y calificación
 
-**Estado: reglas de la guía, matriz documental y evaluaciones orientativas versionadas en 14.10 y 14.11; sin calificación oficial asignada.** Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas pertenecen a esa guía. La valoración solicitada distingue el puntaje ponderado, los topes condicionales y el valor de sustentación aportado por el autor; no constituye una evaluación del docente.
+**Estado: reglas de la guía, matriz documental y valoración orientativa vigente en 14.13; cortes anteriores conservados en 14.10–14.12, sin calificación oficial asignada.** Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas pertenecen a esa guía. La valoración solicitada distingue el puntaje ponderado, los topes condicionales y el valor de sustentación aportado por el autor; no constituye una evaluación del docente.
 
 La nota se expresa en la escala de **0 a 5** y se determina en dos pasos: primero se obtiene el puntaje ponderado de la rúbrica y después se aplica el tope que corresponda al estado **evaluado** de R1, R2 y R3. Una condición pendiente no se convierte en «no» para fijar ese tope, y una casilla sin evidencia no se marca cumplida para completar la rúbrica.
 
@@ -379,3 +379,38 @@ La valoración numérica de **14.11** conserva su corte: **4,122 antes del tope*
 Con R1/R2 aceptadas y R3 evaluada como no satisfecha, permanece la regla condicional de tope4,0. Si una condición está pendiente, no se convierte automáticamente en un incumplimiento demostrado. Para evaluar R3 siguen siendo necesarios la aceptación correspondiente de R1/R2, un dimensionamiento válido con entradas reales, una reserva adecuada y la evaluación completa de la candidata; la recuperación opcional de pesos sólo aportaría adecuación retrospectiva.
 
 El alcance de lo que se acredita es verificable: fuente original preservada, cálculo reparado, protocolo y resultados sintéticos auténticos, y material concreto para la defensa. La modalidad de IA declarada para la revisión no inventa un acto humano o una firma, y no transforma el expediente de otro modelo en aprobación de la candidata actual.
+
+
+(e3-current-evaluation-20261122-v2)=
+## 14.13 Evaluación actualizada con sustentación 4,5 y redondeo comunicado
+
+**Valoración orientativa por IA del 22 de noviembre de 2026, hora de Bogotá:** **4,197/5 antes del tope, mostrado como 4,20/5**. Se revisaron las once filas de la guía sobre la fuente publicada `34c8e1c0d84a80dec8d8c318e85ef88515633c2b`. La sustentación permanece en **4,5 indicada por el autor**, sin afirmar una defensa observada. Esta revisión se solicita después del corte de 14.12, que se conserva como antecedente; no es una nota oficial.
+
+| Componente | Peso | Nota /5 | Aporte ponderado |
+|---|---:|---:|---:|
+| Correcciones del Entregable 2 | 7 % | 4,4 | 0,308 |
+| Mejores configuraciones y artefactos | 7 % | 4,5 | 0,315 |
+| Dashboard: Contexto y EDA | 8 % | 4,6 | 0,368 |
+| Dashboard: Modelos | 9 % | 4,4 | 0,396 |
+| Dashboard: diseño, UX y despliegue | 5 % | 4,6 | 0,23 |
+| Modelo original: revisión y diseño | 8 % | 4,2 | 0,336 |
+| Modelo original: implementación y demostración | 10 % | 4,1 | 0,41 |
+| Evaluación ampliada y robustez | 10 % | 3,5 | 0,35 |
+| Pruebas de hipótesis y adecuación | 15 % | 3,5 | 0,525 |
+| Informe en Jupyter Book | 14 % | 4,6 | 0,644 |
+| Sustentación | 7 % | 4,5 | 0,315 |
+| **Total** | **100 %** | | **4,197 → 4,20/5** |
+
+La mejora se concentra en **Hipótesis y adecuación: 3,0 → 3,5/5**. La media de RMSE por semilla ya tiene inferencia propia y la decisión de cuatro paneles se evaluó con 4.608 réplicas prefijadas y 107 límites simultáneos. Los ocho controles nulos cumplen el límite de error; su mayor cota es 0,03692582. El control favorable registra 512/512 y una cota inferior 0,98513395. Se verificaron los cálculos y tres reproducciones exactas. Es evidencia metodológica ejecutada; no se concede el incremento por cantidad de archivos o pruebas de software.
+
+Se aplica el redondeo académico que el autor comunicó: **94,836605 % → 95 %** al porcentaje entero, de forma uniforme para los 18 límites de cobertura. Los otros 89 límites permanecen exactos. No se vuelve a descontar por los dos límites aceptados bajo ese criterio; el protocolo y el resultado científico original `accepted=false` se conservan. Esta interpretación posterior no se presenta como calibración nueva ni firma docente.
+
+Las otras diez notas permanecen idénticas. La simulación no añade robustez de mercado ni confirmación de la candidata, y la preparación del expediente o del recuperador no sustituye una defensa o una ejecución auténticas. No se concede crédito experimental por V2 —cero Monte Carlo— o por recuperación —cero inferencias reales—. Tampoco se penalizan otra vez los resultados adversos declarados o la modalidad de IA autorizada para revisar R1.
+
+El componente estadístico aporta ahora `0,15 × 3,5 = 0,525`, frente a 0,450 antes: la mejora global es **+0,075 puntos**. La suma se realiza sin redondear cada aporte: **4,122 + 0,075 = 4,197 → 4,20**. Se mantienen los once pesos y las otras diez notas.
+
+**Con R1 y R2 aceptadas y R3 no acreditada, la valoración bajo ese supuesto es 4,00/5:** `min(4,197;4,0)=4,00`. Si R1 o R2 se evalúan como incumplidas, la guía fija tope 3,0; una condición pendiente no se transforma en ese incumplimiento. La cifra4,20 antes del tope tampoco acredita R3.
+
+Los descuentos principales siguen siendo la falta de dimensionamiento y potencia de mercado suficientes, una reserva adecuada con confirmación de la candidata frente a toda la familia y la adecuación/robustez real de esa candidata. Las Tablas A/B propias, la calibración y la reproducción humana conservan sus ámbitos pendientes. Los 796 trabajos aditivos y los pilotos de otras arquitecturas no completan esos requisitos por transferencia documental.
+
+La {download}`evaluación estructurada <../_static/e3_evaluation_20261122/assessment.json>`, la {download}`rúbrica calculada <../_static/e3_evaluation_20261122/rubric.csv>` y la {download}`verificación aritmética <../_static/e3_evaluation_20261122/ARITHMETIC_VERIFICATION.json>` fijan fuente, evaluación anterior, notas, reglas condicionales y evidencia. La {ref}`validación de 8.31 <e3-primary-joint-repair-20261122>` y el {ref}`cuaderno de 11.15 <e3-primary-joint-colab-20261122>` permiten revisar resultados y redondeo por separado.
