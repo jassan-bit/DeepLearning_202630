@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "version": "development-grouped-calendar-empirical-power-v4",
+  "candidate": "input_only_mse",
+  "candidate_identity": "input-only-overlap-mse-1",
+  "primary_rival": "global_mse",
+  "panels": [
+    "F00",
+    "F01",
+    "F02",
+    "F03"
+  ],
+  "systems": [
+    {
+      "id": "input_only_mse",
+      "kind": "neural"
+    },
+    {
+      "id": "FCN-1D",
+      "kind": "neural"
+    },
+    {
+      "id": "ResNet-1D",
+      "kind": "neural"
+    },
+    {
+      "id": "Inception-1D",
+      "kind": "neural"
+    },
+    {
+      "id": "LSTM-autoencoder con predictor",
+      "kind": "neural"
+    },
+    {
+      "id": "TimesNet",
+      "kind": "neural"
+    },
+    {
+      "id": "TSMixer",
+      "kind": "neural"
+    },
+    {
+      "id": "TiDE",
+      "kind": "neural"
+    },
+    {
+      "id": "TimeMixer",
+      "kind": "neural"
+    },
+    {
+      "id": "PatchTST",
+      "kind": "neural"
+    },
+    {
+      "id": "iTransformer",
+      "kind": "neural"
+    },
+    {
+      "id": "MLP16",
+      "kind": "neural"
+    },
+    {
+      "id": "LSTM32",
+      "kind": "neural"
+    },
+    {
+      "id": "GRU32",
+      "kind": "neural"
+    },
+    {
+      "id": "Persistence",
+      "kind": "analytic"
+    },
+    {
+      "id": "SeasonalNaive",
+      "kind": "analytic"
+    },
+    {
+      "id": "ARIMA",
+      "kind": "arima"
+    },
+    {
+      "id": "additive_positive_head",
+      "kind": "neural"
+    },
+    {
+      "id": "floor_only",
+      "kind": "analytic"
+    },
+    {
+      "id": "floor_plus_mean_excess",
+      "kind": "analytic"
+    },
+    {
+      "id": "global_mse",
+      "kind": "neural"
+    }
+  ],
+  "seed_bank": {
+    "path": "configs/FINAL_SEED_BANK.json",
+    "sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+    "rule": "planning uses preallocated last five entries; final uses first R entries with R<=4091; never redraw after outcomes",
+    "planning_indices": [
+      4091,
+      4092,
+      4093,
+      4094,
+      4095
+    ]
+  },
+  "minimum_planning_seeds": 5,
+  "primary_estimand": "E_time[mean_frozen_seed squared_error]; finite R trained-model panel",
+  "margin_relative_rmse": 0.02,
+  "alternatives_relative_rmse_gain": [
+    0.03,
+    0.05
+  ],
+  "alternative_justification": "3% minimum design alternative exceeds retained 2% practical RMSE margin by 1 percentage point; 5% sensitivity. No guarantee for effects arbitrarily close to 2%.",
+  "target_per_contrast_power": 0.9,
+  "mc_confidence_error": 0.025,
+  "bootstrap_tail_guard_family_error": 0.01,
+  "expected_tail_exceedances": 100,
+  "inner_block_length": 32,
+  "outer_block_length": 32,
+  "hac_lags": 48,
+  "horizon": 1,
+  "temporal_settings_status": "EXACT_R10_T768_B8191_ALPHA025_CONDITIONALLY_ADMITTED; other sizes/tuning require their own evidence",
+  "grid": {
+    "R": [
+      10
+    ],
+    "T": [
+      768
+    ],
+    "B": [
+      8191
+    ]
+  },
+  "mc_selection_reps": 128,
+  "mc_validation_reps": 256,
+  "mc_seed": 20261121041,
+  "temporal_validation_report": {
+    "path": "qa/statistical_validation/v4_precision/report.json",
+    "sha256": "869263c9d99c2a127f30f8b4ec8171d74298d688066f53a67f01d6f4c87e3e01"
+  },
+  "budget": {
+    "nominal_total_neural_seconds_per_system_seed": 120,
+    "checkpoint_bytes_per_neural_fit": 67108864,
+    "checkpoint_storage_assumption": "64MiB per selected+latest bundled model/optimizer/RNG state per fit, planning assumption only; replace with receipt measurements prospectively",
+    "prediction_csv_bytes_per_row": 192,
+    "compute_price_per_hour": null,
+    "limits": {
+      "max_neural_fits": 1280,
+      "max_nominal_neural_hours": 43,
+      "max_storage_bytes": 137438953472,
+      "max_selection_analyzer_calls": 8192,
+      "max_bootstrap_index_cells_per_call": 8388608,
+      "max_power_mc_wall_seconds": 3600,
+      "max_total_analyzer_calls": 4096
+    },
+    "power_mc_budget_basis": "Reviewable ceiling fixed before any real planning-power run: 1024 selection plus 2048 validation analyzer calls for this single-cell grid; 3600s wall budget includes both stages. This is an authorization ceiling informed by the synthetic implementation benchmark, not measured market runtime or achieved power."
+  },
+  "status": "NOT_DIMENSIONED",
+  "final_R": null,
+  "final_T": null,
+  "final_B": null,
+  "r3_accredited": false,
+  "panel_instrument_proposals": {
+    "F00": "BTCUSDT",
+    "F01": "IBM",
+    "F02": "MSFT",
+    "F03": "XOM"
+  },
+  "minimum_within_panel_planning_dates": 80,
+  "calendar_coupling": "shared actual-date blocks within coincident groups; independent calendar draws across disjoint groups as a conditional empirical-DGP assumption, never inferred shared shocks by relative origin index",
+  "reference_reps": 49999,
+  "reference_seed": 2026112103,
+  "mc_p_rule": "absolute_tail_plus_one",
+  "other_development_settings_policy": "Any other R/T/B, HAC/block, reference or operational alpha requires its own explicit matching admission; no extrapolation of the single-panel V4 family calibration to joint cross-panel error control.",
+  "alpha": 0.025,
+  "power_decision_rule": "finite-B-count-plus-one-actual-Holm-v1",
+  "tail_mc_uncertainty_role": "diagnostic_only",
+  "power_rule_correction": "Prospective pre-market correction: estimate exactly the finite-B count+1/Holm rule used by final assessment. CP upper-tail uncertainty and stricter re-Holm sensitivity are recorded, never substituted into the operational rule. Outer MC includes inner bootstrap randomization; simultaneous CP power lower bounds remain the >=.90 gate."
+}

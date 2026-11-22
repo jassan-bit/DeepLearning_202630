@@ -1,0 +1,430 @@
+{
+  "version": "e3-confirmatory-family-recipes-v1",
+  "authority": {
+    "path": "book_e3/_static/e3_bloques_ab_20261115/deployment_master.csv",
+    "sha256": "d850dd6487a898fa4f7793a1f4f72acb7be1e9a0950051b8e69eea2be5370ee7"
+  },
+  "method_order": [
+    "input_only_mse",
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA",
+    "additive_positive_head",
+    "floor_only",
+    "floor_plus_mean_excess",
+    "global_mse"
+  ],
+  "models": {
+    "FCN-1D": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0,
+        "learning_rate": 0.0005695394539643588,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "fcn1d_wang_d7_v1_proposed__hpo_v1",
+        "trial_id": "fcn1d_wang_d7_v1_proposed__hpo_v1:hpo-007",
+        "weight_decay": 0.0010040757709281222
+      },
+      "configuration_id": "C02",
+      "historical_fixed_phase_epochs": {
+        "supervised": 32
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/FCN-1D.json",
+      "selection_source_sha256": "f55def53eac4cfd80abc1938d93718c144ba0f0007cff4933894ad363ed9cbdc",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "ResNet-1D": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0,
+        "learning_rate": 0.0007579440150228985,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "resnet1d_wang_d7_v1_proposed__hpo_v1",
+        "trial_id": "resnet1d_wang_d7_v1_proposed__hpo_v1:hpo-010",
+        "weight_decay": 0.0
+      },
+      "configuration_id": "C05",
+      "historical_fixed_phase_epochs": {
+        "supervised": 28
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/ResNet-1D.json",
+      "selection_source_sha256": "ff3d6e6fec05aa89f2678148c61e275ba4fd39f3d6f50ed31868af6885a7feec",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "Inception-1D": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 32,
+        "dropout": 0,
+        "learning_rate": 0.0007394620646713903,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "inception1d_single_d7_v1_proposed__hpo_v1",
+        "trial_id": "inception1d_single_d7_v1_proposed__hpo_v1:hpo-010",
+        "weight_decay": 1.818489584292255e-06
+      },
+      "configuration_id": "C05",
+      "historical_fixed_phase_epochs": {
+        "supervised": 50
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/Inception-1D.json",
+      "selection_source_sha256": "1dae038192478c3527ff6b058c7213cdb5707804e86b57cad2e0f2bfdccd432e",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "LSTM-autoencoder con predictor": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0017219847334995647,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "SAE-D7-PUBLISHED-v1",
+        "trial_id": "SAE-D7-PUBLISHED-v1:hpo-015",
+        "weight_decay": 0.002593603165890561
+      },
+      "configuration_id": "C06",
+      "historical_fixed_phase_epochs": {
+        "ae1": 172,
+        "ae2": 177,
+        "supervised": 78
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/LSTM-autoencoder-con-predictor.json",
+      "selection_source_sha256": "41766c69a3540e9ad2f32d1c197ba2c431d8a6a3f279d5e98b8ed3258fad9d47",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "TimesNet": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0.1,
+        "learning_rate": 0.0028381684707835583,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TN-D7-PUBLISHED-v1",
+        "trial_id": "TN-D7-PUBLISHED-v1:hpo-010",
+        "weight_decay": 1.1922133659036039e-05
+      },
+      "configuration_id": "C05",
+      "historical_fixed_phase_epochs": {
+        "supervised": 35
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/TimesNet.json",
+      "selection_source_sha256": "b3f5058e6f4126c4f6e1e5f7ba20e38d23076bfee4a2fab3e31329a6b74ebffd",
+      "eligible_configurations": 5,
+      "candidate_configurations": 6
+    },
+    "TSMixer": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 32,
+        "dropout": 0.3,
+        "learning_rate": 0.0011417384292299172,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TSM-D7-r1__hpo_v1",
+        "trial_id": "TSM-D7-r1__hpo_v1:hpo-008",
+        "weight_decay": 7.976479621456176e-06
+      },
+      "configuration_id": "C03",
+      "historical_fixed_phase_epochs": {
+        "supervised": 42
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/TSMixer.json",
+      "selection_source_sha256": "ab4f3e51f4a9dcd5bf68ae843f74a0bf979b7f44fc09fdd2e72e6ad07f1e0a5d",
+      "eligible_configurations": 5,
+      "candidate_configurations": 6
+    },
+    "TiDE": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0.0,
+        "learning_rate": 0.00013961276714916928,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TIDE-D7-PUBLISHED-R0-v2",
+        "trial_id": "TIDE-D7-PUBLISHED-R0-v2:hpo-005",
+        "weight_decay": 2.7796158898151984e-05
+      },
+      "configuration_id": "C01",
+      "historical_fixed_phase_epochs": {
+        "supervised": 41
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/TiDE.json",
+      "selection_source_sha256": "8eed580d3a223d43e5d10bd614aa899e05662bc9b150f963ff1919ea48856159",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "TimeMixer": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0.1,
+        "learning_rate": 0.0006677459949385749,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "TM-D7-PUBLISHED-v1",
+        "trial_id": "TM-D7-PUBLISHED-v1:hpo-005",
+        "weight_decay": 2.0903286086513016e-05
+      },
+      "configuration_id": "C01",
+      "historical_fixed_phase_epochs": {
+        "supervised": 66
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/TimeMixer.json",
+      "selection_source_sha256": "5cd19cd3a47920750be4253da486ad13564cacfc997634cd0633f1b6c1f5ec14",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "PatchTST": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0014458517173583036,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "PT-D7-PUBLISHED-v1",
+        "trial_id": "PT-D7-PUBLISHED-v1:hpo-007",
+        "warmup_fraction": 0.1,
+        "weight_decay": 0.0
+      },
+      "configuration_id": "C02",
+      "historical_fixed_phase_epochs": {
+        "supervised": 47
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/PatchTST.json",
+      "selection_source_sha256": "3102feb55fd9139e8abf944d8e36ffa40badd981896751b7f5dc0e7f93256d7d",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "iTransformer": {
+      "role": "E2_candidate",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "learning_rate": 0.0024351218185910935,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "IT-D7-r1__hpo_v1",
+        "trial_id": "IT-D7-r1__hpo_v1:hpo-007",
+        "warmup_fraction": 0,
+        "weight_decay": 0.0009190165913202242
+      },
+      "configuration_id": "C02",
+      "historical_fixed_phase_epochs": {
+        "supervised": 45
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/iTransformer.json",
+      "selection_source_sha256": "549fc87015ef22bc00f0e2f660b4a55a43ef03144a63662f2a28bbabd06abbfa",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "MLP16": {
+      "role": "E1_reference",
+      "trial": {
+        "batch_size": 32,
+        "dropout": 0,
+        "learning_rate": 0.0015009848657423612,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "MLP16-E1-ref-E2-HPO-v1",
+        "trial_id": "MLP16-E1-ref-E2-HPO-v1:hpo-010",
+        "weight_decay": 0.00074420992767983
+      },
+      "configuration_id": "C05",
+      "historical_fixed_phase_epochs": {
+        "supervised": 57
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/MLP16.json",
+      "selection_source_sha256": "0d2b2a358f4a814147e944b64dea14d5c427ea68e2639cf95122969560f6967d",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "LSTM32": {
+      "role": "E1_reference",
+      "trial": {
+        "batch_size": 64,
+        "dropout": 0.3,
+        "learning_rate": 0.002356406147809842,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "LSTM32-E1-ref-E2-HPO-v1",
+        "trial_id": "LSTM32-E1-ref-E2-HPO-v1:hpo-005",
+        "weight_decay": 0.0
+      },
+      "configuration_id": "C01",
+      "historical_fixed_phase_epochs": {
+        "supervised": 62
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/LSTM32.json",
+      "selection_source_sha256": "1baad16a7c8799f50adf345589422a0177653a1c2bedb52924576ac06ddaae8c",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "GRU32": {
+      "role": "E1_reference",
+      "trial": {
+        "batch_size": 16,
+        "dropout": 0.1,
+        "learning_rate": 0.00045773135527551936,
+        "optimization_seeds": [
+          271201,
+          271202
+        ],
+        "recipe_id": "GRU32-E1-ref-E2-HPO-v1",
+        "trial_id": "GRU32-E1-ref-E2-HPO-v1:hpo-008",
+        "weight_decay": 0.006658367249304354
+      },
+      "configuration_id": "C03",
+      "historical_fixed_phase_epochs": {
+        "supervised": 143
+      },
+      "selection_source": "experiments/e3_bloques_ab_20261115/inputs/selection_receipts/GRU32.json",
+      "selection_source_sha256": "1d1e16cb89a02b8cd6a779328e1aa5d4a45db8aa6b6d65f1de733dcc6cfb5d0b",
+      "eligible_configurations": 6,
+      "candidate_configurations": 6
+    },
+    "Persistence": {
+      "role": "classical_comparator",
+      "trial": {
+        "lag": 1
+      },
+      "configuration_id": "fixed-lag1",
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "experiments/e2_benchmark_final_20261113/selection_Persistence.json",
+      "selection_source_sha256": "d50ca5963a0fa6f89723046a6db313e4d37aee81896152f2479c79911d34448c",
+      "eligible_configurations": 1,
+      "candidate_configurations": 1
+    },
+    "SeasonalNaive": {
+      "role": "classical_comparator",
+      "trial": {
+        "period": 7
+      },
+      "configuration_id": "{\"period\":7}",
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "experiments/e2_benchmark_final_20261113/selection_SeasonalNaive.json",
+      "selection_source_sha256": "c00bb4230cec1336477502bfa78c1e4a7df09a5607fc6374a59500cb2ecfd445",
+      "eligible_configurations": 3,
+      "candidate_configurations": 3
+    },
+    "ARIMA": {
+      "role": "classical_comparator",
+      "trial": {
+        "order": [
+          2,
+          0,
+          1
+        ]
+      },
+      "configuration_id": "{\"order\":[2,0,1]}",
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "experiments/e2_benchmark_final_20261113/selection_ARIMA.json",
+      "selection_source_sha256": "70478650b91ed96931b50f2d5fbefc79f0598e4f9541b0f7cbf3c41b780d8ca5",
+      "eligible_configurations": 15,
+      "candidate_configurations": 18
+    },
+    "input_only_mse": {
+      "role": "candidate",
+      "trial": {
+        "recipe_id": "input_only_mse",
+        "learning_rate": 0.003,
+        "weight_decay": 0.0,
+        "batch_size": 32,
+        "dropout": 0.0
+      },
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "frozen_candidate_runtime",
+      "candidate_identity": "input-only-overlap-mse-1"
+    },
+    "global_mse": {
+      "role": "mechanism_control",
+      "trial": {
+        "recipe_id": "global_mse",
+        "learning_rate": 0.003,
+        "weight_decay": 0.0,
+        "batch_size": 32,
+        "dropout": 0.0
+      },
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "frozen_candidate_runtime",
+      "candidate_identity": null
+    },
+    "additive_positive_head": {
+      "role": "mechanism_control",
+      "trial": {
+        "recipe_id": "additive_positive_head",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "batch_size": 32,
+        "dropout": 0.0
+      },
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "e3_extended_fitting_factory",
+      "candidate_identity": null
+    },
+    "floor_only": {
+      "role": "analytic_control",
+      "trial": {
+        "recipe_id": "floor_only"
+      },
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "historical_fit_mean_excess_control"
+    },
+    "floor_plus_mean_excess": {
+      "role": "analytic_control",
+      "trial": {
+        "recipe_id": "floor_plus_mean_excess"
+      },
+      "historical_fixed_phase_epochs": {},
+      "selection_source": "historical_fit_mean_excess_control"
+    }
+  }
+}

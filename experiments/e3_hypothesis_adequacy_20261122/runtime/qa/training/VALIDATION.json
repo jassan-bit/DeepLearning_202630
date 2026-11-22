@@ -1,0 +1,83 @@
+{
+  "version": "e3-training-fixture-validation-v1",
+  "generated_at_utc": "2026-11-21T23:41:07.961929+00:00",
+  "status": "passed_software_fixtures_only",
+  "command": "python -m pytest -q tests/test_training.py",
+  "python_used": "/workspace/e3_fixed_state_runtime/bin/python",
+  "tests_passed": 35,
+  "test_elapsed_seconds_reported_by_pytest": 6.02,
+  "market_training_executed": false,
+  "reserved_test_opened": false,
+  "r3_accredited": false,
+  "scope": {
+    "actual_neural_methods_one_epoch_each": [
+      "input_only_mse",
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "additive_positive_head",
+      "global_mse"
+    ],
+    "actual_deterministic_methods": [
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "floor_only",
+      "floor_plus_mean_excess"
+    ],
+    "sae_actual_phases": [
+      "ae1",
+      "ae2",
+      "supervised"
+    ],
+    "actual_family_neural_optimizer_steps_in_one_epoch_tests": 18,
+    "arima_fixture_fit_labels": 100,
+    "fixture_neural_fit_rows": 4,
+    "fixture_neural_selection_rows": 3,
+    "software_cases": [
+      "epoch boundary resume identical selected state",
+      "initial remote failure blocks optimizer",
+      "epoch remote failure stops later steps",
+      "partial epoch rollback with reservation and unknown compute",
+      "atomic pointer publication failure restores old snapshot",
+      "crash after durable commit avoids double reservation debit",
+      "best selected state differs from latest state",
+      "done checkpoint hash verification",
+      "source data protocol configuration immutable identity",
+      "symlink rejection",
+      "batched prediction and caller RNG preservation",
+      "nominal budget stopping with validated best only",
+      "no fresh nominal budget after incomplete crash",
+      "interrupted non-resumable ARIMA does not fit again"
+    ]
+  },
+  "limitations": [
+    "No market result, admitted panel or final test was produced",
+    "CPU software fixture coverage is not performance or statistical validation",
+    "120 seconds is a nominal active budget, not a hard wall deadline",
+    "Setup, checkpoint IO, remote backup and downtime are separately excluded from nominal active budget",
+    "Unobserved lost partial computation remains unknown; reservation is a charge, not a fabricated measurement"
+  ],
+  "runtime": {
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.5",
+    "pytest": "9.2.0",
+    "statsmodels": "0.14.5"
+  },
+  "sha256": {
+    "engine/training.py": "6e92d328df4d6ef842014db14a796b79f977c080e411dd0726b880f177067402",
+    "tests/test_training.py": "cdcbb30fa0e41201c786348188d242dd5ed6d70f43bbdd5446aa9bf396994ffd",
+    "docs/TRAINING_AND_RECOVERY.md": "d7a1d1df476f77b1dcfe2017999c237477c9aaf753567ed37df793e12b911a72",
+    "qa/training/pytest.log": "602915aa9a7b3c1f16a47f7c5b11527d023d7d35cf428a199ce59213aee360b3"
+  }
+}

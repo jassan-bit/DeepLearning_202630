@@ -1,0 +1,28 @@
+{
+  "change": "critical software cohort checked for fit/resume/verification/prediction",
+  "trainer_version": "e3-confirmatory-training-2",
+  "created_at_utc": "2026-11-22T00:11:19.951664+00:00",
+  "critical_runtime_fields": [
+    "python_implementation",
+    "python_major_minor",
+    "torch",
+    "numpy",
+    "scipy",
+    "statsmodels",
+    "device",
+    "threads"
+  ],
+  "informational_observation_fields": [
+    "python_full_version",
+    "python_full_build",
+    "platform",
+    "machine",
+    "processor"
+  ],
+  "source_sha256": "db87c41dd0fc30231950cba686881c402a6da5ab23fcaf5865b5446425444638",
+  "test_file_sha256": "6c30573067c246df039187706fa1442f638aab96c0fab16bb1707b97ff054db9",
+  "test_log_sha256": "1a48002968d38f35b784fd912bfce9714db3e945057f3386b09147efef63c635",
+  "test_command": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES= /workspace/e3_engine_clean_cache/venv-cpu-652abf93aba295c3-py312/bin/python -m pytest -q tests/test_training.py",
+  "market_fits": 0,
+  "reserved_test_opened": false
+}

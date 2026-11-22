@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "task": "sigma7_next_bar_raw_shared_history_exclude_split_support_v1",
+  "status": "software_fixture",
+  "reserved_status": "test_not_acquired",
+  "provenance": {
+    "kind": "SOFTWARE_FIXTURES_ONLY",
+    "generator": "tests/test_data.py synthetic_bars",
+    "market_downloads": 0
+  },
+  "rights": {
+    "status": "fixture_not_real_rights"
+  },
+  "exposure": {
+    "status": "fixture_not_real_reserve"
+  },
+  "support_audit": {
+    "windows": {
+      "split_support_excluded_dates": [],
+      "task": "sigma7_next_bar_raw_shared_history_exclude_split_support_v1"
+    },
+    "partitions": {
+      "fit": {
+        "raw_bounds": [
+          0,
+          34
+        ],
+        "effective_raw_bounds": [
+          0,
+          34
+        ],
+        "n": 21,
+        "embargo_bars": 0
+      },
+      "selection": {
+        "raw_bounds": [
+          35,
+          69
+        ],
+        "effective_raw_bounds": [
+          37,
+          69
+        ],
+        "n": 19,
+        "embargo_bars": 2
+      },
+      "planning": {
+        "raw_bounds": [
+          70,
+          104
+        ],
+        "effective_raw_bounds": [
+          72,
+          104
+        ],
+        "n": 19,
+        "embargo_bars": 2
+      },
+      "calibration": {
+        "raw_bounds": [
+          105,
+          139
+        ],
+        "effective_raw_bounds": [
+          107,
+          139
+        ],
+        "n": 19,
+        "embargo_bars": 2
+      }
+    }
+  },
+  "final_authorization": null,
+  "partition_paths": {
+    "fit": "fit.npz",
+    "selection": "selection.npz",
+    "planning": "planning.npz",
+    "calibration": "calibration.npz"
+  },
+  "partition_sha256": {
+    "fit": "0da385f0f3921db2ee368d5c05cf55a70245e03f2559aef8b7a983a5cfdf5047",
+    "selection": "3d64fd514a33cedd20eac11c0fada8711dfbdb25afd5c8cec1cabca310d971f4",
+    "planning": "af088a4451866bf591bccb3050b067073dad8c6674e410fcffc097498ebf0d3d",
+    "calibration": "92055c7f1e0e7da294b280ff2c6abca708d96fc7388865cf85b79097b77a4cf0"
+  },
+  "partition_counts": {
+    "fit": 21,
+    "selection": 19,
+    "planning": 19,
+    "calibration": 19
+  },
+  "partition_date_ranges": {
+    "fit": [
+      "2020-01-15",
+      "2020-02-04"
+    ],
+    "selection": [
+      "2020-02-21",
+      "2020-03-10"
+    ],
+    "planning": [
+      "2020-03-27",
+      "2020-04-14"
+    ],
+    "calibration": [
+      "2020-05-01",
+      "2020-05-19"
+    ]
+  },
+  "partition_support_bounds": {
+    "fit": [
+      0,
+      34
+    ],
+    "selection": [
+      37,
+      69
+    ],
+    "planning": [
+      72,
+      104
+    ],
+    "calibration": [
+      107,
+      139
+    ]
+  },
+  "created_utc": "2026-11-21T23:41:44.476167+00:00",
+  "admission_sha256": "2a35baed44fe2ee4d315047a6be5f0b96549420ea57034ce84b3772a71939e64"
+}
