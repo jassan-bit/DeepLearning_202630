@@ -1,0 +1,10 @@
+id,formulation,candidate_file,symbol,first_line,last_line,sha256,scope
+C01,A=Σ(r−m6)²/7; RMS and relative logprices,runtime/vendor/seoi_v5/data.py,known_geometry,40,48,fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432,Population geometry; no future return is an input
+C02,"s=max(RMS,epsilon*r_fit); volume log1p",runtime/vendor/seoi_v5/data.py,raw_features,51,61,fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432,"Origin causal, not prefix causal normalization"
+C03,Frozen fit channel mean/SD and reference_RMS,runtime/vendor/seoi_v5/data.py,fit_preprocessor,64,74,fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432,Explicitly supplied fit rows; source/date admission separate
+C04,Use frozen coordinate statistics; FP32 X,runtime/vendor/seoi_v5/data.py,transform,77,84,fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432,Input-only uses local coordinates
+C05,U scales from label identity and frozen means,runtime/candidate.py,fit_inputs,36,56,ce2bad9cd87ff76f4164be576d64773dc3cb7e121b44efa3bd79238b78c31c2e,Labels used only for supplied fit scales; no forward U input
+C06,Own candidate wrapper and identity,runtime/candidate.py,InputOnlyOverlapModel,21,33,ce2bad9cd87ff76f4164be576d64773dc3cb7e121b44efa3bd79238b78c31c2e,Selects historical input_only_mse; no new architecture or training
+C07,"Causal convolution5→8,k3; tanh; LSTM8→12",runtime/vendor/seoi_v5/frozen_original.py,CausalEncoder,110,127,dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f,Inherited own encoder; old additive-head properties not inherited
+C08,"Attention; ordered atoms; simplex; mu=sum p*hypot(sqrtA,sqrtc*u)",runtime/vendor/seoi_v5/model.py,forward_components,81,109,215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855,"Input-only factor=1, no output local-scale restitution"
+C09,MSE in global fit Y units; lambda_CRPS=0,runtime/vendor/seoi_v5/model.py,loss_components,114,124,215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855,MSE does not identify latent distribution

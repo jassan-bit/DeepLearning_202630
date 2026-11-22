@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-22T15:29:29.292564+00:00",
+  "scope": "Independent code reading plus rerun of existing author software tests; not new calibration",
+  "status": "NO_ADDITIONAL_BLOCKER_FOUND",
+  "files_sha256": {
+    "joint_validation/cli.py": "bd8db70a775dee9ea9ccd7a3db22630b781cc42f047e234ac18cd3bb6e6997a7",
+    "joint_validation/validation.py": "0cfc27d428737b223e7cc45419c37d564144455005788dee8cef660c3c3cb9ad",
+    "joint_validation/logic.py": "14555b15a9afdcc5955cd4568a61796f6844b46e3011f5fac4dbf48dc6b62f5a",
+    "joint_validation/dgps.py": "941550b3855225aef8ae0d38b7128d28278f98d6668901e1cce3d8c3d11e1793",
+    "joint_validation/protocol.json": "55dc350ce1e5252f95231113112b02eababaa6976be1ae288ba09407441b4bd9",
+    "joint_validation/test_joint_validation.py": "cfc2936e59d98942b5df38164e20f9a0cdba40ccd77f5e1d8d9b18b24ff85028"
+  },
+  "existing_author_tests_rerun": 22,
+  "existing_author_test_failures": 0,
+  "additional_independent_test_count": 0,
+  "observations": [
+    "Compact80-position masks are decoded before count summation",
+    "Ledger hash chain and round-robin prefix identity are checked before resume",
+    "A local run lock prevents concurrent ledger writers",
+    "The numerical cohort and source/protocol byte identities are enforced on append",
+    "Completed chunks charge parent process CPU plus waited-worker/descendant CPU, including compiler startup",
+    "The CPU budget is a soft check between fixed batches; last-batch and end-charged overhead may overshoot",
+    "Unclosed sessions preserve cost uncertainty and report measured work as a lower bound",
+    "Null-scenario catastrophic acceptance is reported as failure without comparing a missing alternative-power statistic; positive_ok is restricted to alternative scenarios"
+  ],
+  "cost_limit": "Charged run region, not a hard end-to-end wall-clock or total-invocation cap; freeze/status/final summary have unpriced small overhead",
+  "scientific_limit": "The joint statistical false-superiority assertion does not certify all R3 adequacy/robustness/novelty or reserve requirements",
+  "new_calibration_simulations": 0,
+  "market_fits": 0,
+  "reserved_test_opened": false,
+  "AI_assistance_declared": true,
+  "last_reviewed_change": "Kind guard and explicit min_power_lower availability guard in positive_ok; no statistical criterion or primary procedure changed"
+}

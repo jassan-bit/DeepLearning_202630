@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-22T16:06:54.039144+00:00",
+  "scope": "Independent deterministic functional, native arithmetic, API and decision-contract checks; not an outer Monte Carlo validation",
+  "status": "PASS",
+  "tests_run": 34,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "wall_seconds": 1.5099990520102438,
+  "parent_cpu_seconds": 0.65290824,
+  "child_cpu_seconds": 1.2619310000000001,
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "reviewed_production_files": {
+    "methods/primary_rmse.py": "910b65b753b717492bcaf59cb4edd4d59b39f6ca9c4437a8efc67d27042ae590",
+    "methods/primary_bootstrap.cpp": "50a8179ee653b2683127e9bec2460c2d025669b883d42ea41ab8fc9064446802"
+  },
+  "review_check_files": {
+    "independent_review/test_exact_compression.py": "6f4c0c68bab69ae25748809efb629307dc2c9dd6c81730a0fe3c5a5eb4c7c56a",
+    "independent_review/test_fixed_b_inversion_v2.py": "a70cc1666dbeed1d8ee594d9d8bd6389466e7971ddc758bfaa901c300c796941",
+    "independent_review/test_functional_derivatives.py": "4fb45e87e81bbf4ea4d435f92885b6c226007318ccb155a897942a7d03eded0f",
+    "independent_review/test_index_cache.py": "fea2ab00ba2739259098f3ce34a4770e39706d56af22339d4a1aebf499e3be84",
+    "independent_review/test_native_kernel.py": "29533d286e4a50892cdefcb865fd95a8effcb940b119700053319b8b63e507a6",
+    "independent_review/test_production_api.py": "3d66e667f987ad3cc60cc57f7bdb00b335bd24c48eb031adaed8e4ddf16bb939"
+  },
+  "review_runner_sha256": "2eaeaec86fb46249b49b694d0767894a4fb81fb0ab49e9db3c57084f90bcc75f",
+  "test_output_sha256": "709b64a1254dfc26e4a0ae8f4f83d5dd70021a8e88fab5b49a7b2b2a2019148b",
+  "initial_blocking_finding": "GMM nuisance temporal derivative omitted division by T; reported before calibration and corrected by methods author; original finding is preserved",
+  "current_mathematical_judgement": "The reviewed smooth-functional and nuisance derivatives match independently calculated pathwise derivatives; bootstrap reestimates roots and HAC; exact duplicate compression preserves outputs and all 120 Holm slots; the decision enforces the full ordered family and preserves the per-rival two-of-three policy",
+  "limits": [
+    "Weak dependence, joint temporal FCLT, fixed finite seed cohort and strictly positive seed risks remain assumptions",
+    "GW conditional-functional vector null is stronger than scalar mean-RMSE equality; it is not a scalar directional p-value",
+    "No finite-sample or universal market error control is established by these deterministic checks",
+    "No grading decision, academic R1/R2 acceptance or R3 accreditation is made"
+  ],
+  "new_calibration_simulations": 0,
+  "market_fits": 0,
+  "market_forwards": 0,
+  "reserved_test_opened": false,
+  "AI_assistance_declared": true
+}

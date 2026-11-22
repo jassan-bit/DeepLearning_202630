@@ -1,0 +1,30 @@
+{
+  "review_scope": "Independent deterministic mathematical and software checks; no statistical calibration or market experiment",
+  "reviewed_at_utc": "2026-11-22T15:09:16.491368+00:00",
+  "initial_production_sha256": "224c59a4bf118fcca9894bf455c18096f739a54cfd139267b3ee0fcee437e878",
+  "finding": {
+    "code": "GMM_NUISANCE_TEMPORAL_MEAN_DIVISOR_MISSING",
+    "status": "reported_to_author_pending_fix",
+    "expected": "D_j = -mean_t[z_t*(loss_js,t-mu_js)]/(4*R*mu_js**1.5)",
+    "observed": "sum_t was used instead of mean_t; derivative inflated by T",
+    "fixture_T": 23,
+    "max_abs_GMM_influence_discrepancy": 0.09492313,
+    "regression_test": "independent_review/test_production_api.py::ProductionAPIChecks.test_gmm_with_estimated_risk_nuisance_matches_independent_function"
+  },
+  "deterministic_mathematical_checks_passed": 6,
+  "direct_native_kernel_checks_passed": 3,
+  "initial_production_api_checks_passed": 3,
+  "initial_production_api_checks_failed": 1,
+  "new_calibration_simulations": 0,
+  "market_fits": 0,
+  "market_forwards": 0,
+  "reserved_test_opened": false,
+  "resolution": {
+    "status": "resolved_before_calibration",
+    "reviewed_at_utc": "2026-11-22T15:12:01.428729+00:00",
+    "corrected_production_sha256": "224c59a4bf118fcca9894bf455c18096f739a54cfd139267b3ee0fcee437e878",
+    "final_independent_tests_passed": 18,
+    "final_independent_tests_failed": 0,
+    "receipt": "independent_review/REVIEW_RECEIPT.json"
+  }
+}

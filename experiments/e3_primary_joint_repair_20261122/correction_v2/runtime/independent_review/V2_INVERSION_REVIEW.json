@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-22T16:07:39.340391+00:00",
+  "status": "PASS_BEFORE_V2_CALIBRATION",
+  "protocol_version": "temporal-fixed-seeds-mean-rmse-v2",
+  "production_sha256": {
+    "methods/primary_rmse.py": "910b65b753b717492bcaf59cb4edd4d59b39f6ca9c4437a8efc67d27042ae590",
+    "methods/primary_bootstrap.cpp": "50a8179ee653b2683127e9bec2460c2d025669b883d42ea41ab8fc9064446802"
+  },
+  "independent_tests_run": 34,
+  "test_receipt_sha256": "969a7037f526f4cbf5dfe8f823bf91ca217b59eed7b49d8b8249c13898d253a8",
+  "correction": "Operational CIs invert the smooth-functional scalar delta/HAC fixed-b Monte Carlo +1 test; old exact-root bootstrap-t intervals remain diagnostics only",
+  "mathematical_checks": [
+    "For strict rejection p=(tail_count+1)/(M+1)<alpha, the closed nonrejection cutoff is sorted_reference[M-ceil(alpha*(M+1))+1], with ties retained",
+    "Confidence95/99 is converted to exact rational tails .05/.01; with49999 reference draws indices are47500/49500",
+    "If minimumMCp prevents strict rejection, no finite CI is asserted",
+    "Inversion radius is critical*SE/HLN",
+    "Log mean-RMSE ratio CI maps to gain [1-exp(log_upper),1-exp(log_lower)] without a factor1/2",
+    "Both direct raw-unit HAC intervals and gain transformation match independently computed reference formulas"
+  ],
+  "regression_checks": [
+    "All scalar/bootstrap/GMM statistics, raw p-values, Holm-adjusted p-values and method statuses match frozen V1 exactly for the deterministic fixture",
+    "All four old bootstrap confidence intervals are retained unchanged as unused diagnostics",
+    "Full family,120Holm slots, alpha.025, margin.02 and per-rival two-of-three topology remain enforced",
+    "A V1 bootstrap interval cannot be passed as the V2 operational interval by changing the protocol tag alone"
+  ],
+  "limits": [
+    "Exact inversion describes the finite reference-count rejection rule, not exact finite-sample market coverage",
+    "Fixed-b reference validity remains a conditional FCLT approximation, with finite-DGP calibration executed separately",
+    "NominalCI99 and an empiricalsimultaneouscoverage floor95% are distinct assertions"
+  ],
+  "new_calibration_replicates": 0,
+  "market_fits": 0,
+  "market_forwards": 0,
+  "reserved_market_test_opened": false,
+  "R3_accredited": false,
+  "AI_assistance_declared": true
+}

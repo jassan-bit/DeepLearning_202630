@@ -1560,3 +1560,77 @@ Son conteos de metadatos, **cero admisiones reales y cero descargas en esta tare
 El {download}`contrato de planificación <../_static/e3_hypothesis_adequacy_20261122/methods_power/planning_input_contract.json>` exige cuatro paneles, **21 sistemas**, cinco semillas neuronales preasignadas y al menos **80 fechas comunes por panel**, con **≥27.200 filas físicas** y recibos reales. Son **340 trabajos: 320 ajustes neuronales, cuatro ARIMA y 16 trayectorias analíticas**; los controles deterministas aparecen una vez. El techo nominal neuronal es **10 h 40 min** —320×120 s—, excluyendo otros costes, IO e interrupciones; no es consumo observado ni un corte duro de reloj. No se activó esa planificación. Sin sus CSV/recibos, el {download}`auditor vigente <../_static/e3_hypothesis_adequacy_20261122/methods_power/current_input_audit_v2.json>` conserva **`NOT_DIMENSIONED`**, con **R/T/B finales, potencia alcanzada y MDE nulos**. La celda R10/T768/B8191 validada no queda elegida automáticamente como diseño final. El {ref}`cuaderno de 11.14 <e3-hypothesis-colab-20261122>` proporciona la siguiente ejecución separada.
 
 La implementación, análisis y revisión declaran asistencia de IA. La propiedad de las fuentes, las licencias de terceros y el concepto humano conservan sus alcances propios; no hay una concesión global nueva ni una acreditación R3 por software. `input-only-overlap-mse-1` conserva su identidad, los resultados adversos y la contabilidad de diseños anterior.
+
+
+(e3-primary-joint-repair-20261122)=
+## 8.31 Reparación de la primaria y validación conjunta en CPU
+
+Esta versión conserva `input-only-overlap-mse-1`, los resultados adversos y la fuente S2. Corrige el objeto de la inferencia mediante un paquete separado: {download}`derivación y supuestos <../_static/e3_primary_joint_repair_20261122/methods/DERIVATION.md>` y {download}`implementación de los tres procedimientos <../_static/e3_primary_joint_repair_20261122/methods/primary_rmse.py>`. Los p del MSE agregado de 8.30 no se renombran ni se reutiliza su calibración como si correspondiera a esta versión.
+
+Para un panel de modelos ya entrenados y semillas fijadas, se conserva la primaria heredada:
+
+$$
+\theta_j=\frac1R\sum_{s=1}^R\sqrt{\mu_{js}},
+\qquad \mu_{js}=\mathbb E_t[(\widehat y_{jst}-y_t)^2].
+$$ (eq-e3-mean-seed-rmse-primary-20261122)
+
+Su estimador sustituye cada esperanza temporal por la media sobre las mismas fechas cronológicas. La unidad de remuestreo es la fecha, compartida entre sistemas y semillas. La influencia temporal usa $(\ell_{jst}-\mu_{js})/(2\sqrt{\mu_{js}})$ antes de promediar semillas. La diferencia favorable es $\theta_r-\theta_c$; el margen práctico se contrasta mediante $(1-0{,}02)\theta_r-\theta_c$. Las ganancias e intervalos usan el cociente de esas medias de raíces, sin el factor adicional de raíz del cociente de MSE.
+
+| Procedimiento de la versión nueva | Objeto y alcance |
+|---|---|
+| Delta/HAC con corrección HLN y referencia fixed-b | Contraste escalar del funcional suave. Exige riesgos positivos y un FCLT conjunto de pérdidas; es una extensión explícita, no un DM de pérdida ordinaria rebautizado. |
+| Bootstrap estacionario-t del funcional | Recalcula medias de pérdida, raíces por semilla e influencia/HAC en **cada** remuestreo temporal pareado. No aplica únicamente una raíz al resultado agregado. |
+| GMM condicional del funcional, adaptación tipo GW | Incluye instrumentos predecibles y la variación de estimar los riesgos auxiliares. Su nulo vectorial es más fuerte que la igualdad marginal de la primaria; rechazarlo no basta para afirmar superioridad direccional. |
+
+Las diferencias finitas y la perturbación de la distribución detectaron un error inicial real: el ajuste auxiliar de GMM usaba una suma temporal en lugar de su media. Se corrigió el factor $1/T$ **antes de cualquier réplica formal** y se conservaron el fallo y su corrección. Las **27 pruebas independientes** verifican derivadas, remuestreo, casos degenerados, familia completa y caché exacta. Son verificaciones del cálculo; no sustituyen el estudio de error y cobertura.
+
+Se conservan alfa por panel **0,025**, margen **2 %**, umbral descriptivo del efecto **0,2**, Holm120 por panel y pantalla adversa Holm180. Cambiar al funcional correcto requiere expresar diferencias, ganancias, intervalos y efecto en sus unidades propias: es una reparación estadística prospectiva explícita. El efecto descriptivo divide la diferencia de media-RMSE por la desviación de su influencia temporal; no se presenta como un Cohen d poblacional entre semillas. La {download}`política de etapas <../_static/e3_primary_joint_repair_20261122/STAGE_POLICY.json>` no habilita entrenamientos finales por editar una bandera.
+
+### Decisión conjunta y protocolo anterior a las simulaciones
+
+La decisión mantiene todos los rivales en el panel principal y, **para cada rival**, al menos dos de los tres adicionales; no exige que sean los mismos dos paneles para todos. La {download}`prueba del testigo y sus límites <../_static/e3_primary_joint_repair_20261122/joint_validation/README.md>` muestra que una afirmación falsa principal implica un falso positivo de un testigo fijado por la verdad poblacional. Si falla la condición adicional, dos paneles nulos fijados por esa verdad dan una cota por unión $q_i+q_j$. Con p pertinentes válidos a 0,025, la cota es 0,05 sin independencia. La prueba no deduce esa validez marginal de los CP antiguos ni certifica todas las condiciones científicas de R3.
+
+El [commit público anterior a la ejecución](https://github.com/jassan-bit/DeepLearning_202630/tree/db5a75bb66a0b28b1d05dacc41b66daf161f9120/experiments/e3_primary_joint_repair_20261122) fija el {download}`protocolo completo <../_static/e3_primary_joint_repair_20261122/joint_validation/protocol.json>`: **nueve escenarios × 512 réplicas**, cuatro paneles, 21 rótulos y 120 posiciones de Holm por panel; R10/T768/B8191, bloque32, HAC48 y referencia49999. Incluye nulos completos, fronteras prácticas principal/adicional, dependencia entre paneles, cancelación condicional, cambio de varianza adverso, inversión de orden de métricas y un control favorable de mejora25 %. La semilla interna del algoritmo se fija antes de los datos; la validación es condicional a esa aleatorización interna reproducible.
+
+La aceleración agrupa únicamente trayectorias exactamente iguales y clases conjuntas de semillas de igual multiplicidad; después expande todos los resultados antes de Holm. **No elimina contrastes.** Estos DGP tienen pocos mecanismos estocásticos distintos y dependencia perfecta de algunas semillas; dos escenarios contienen grupos de riesgos heterogéneos. Los 21 rótulos no equivalen a 21 modelos entrenados ni los diez índices a diez ajustes independientes. Son restricciones expresas de la validación sintética, no evidencia de diversidad real.
+
+Los criterios se fijaron antes de ejecutar: error de aceptación conjunta falsa ≤0,05; límite inferior de cobertura ≥0,95 para dos intervalos nominales99 % del testigo prefijado; control favorable con potencia por contraste ≥0,90 y conjunta ≥0,80. **Este último umbral es un control sintético del programa, no un mínimo universal de potencia conjunta de la guía.** Los 107 límites Monte Carlo tienen confianza simultánea95 % mediante Bonferroni: ocho errores, dieciocho coberturas, ochenta potencias y una conjunta. Los IC95 se conservan como diagnóstico; un piso0,95 para el IC99 no certifica cobertura0,99. El estrés de cambio de varianza, fuera del teorema estacionario, conserva los mismos criterios numéricos fijados y no se excluye después de conocer el resultado.
+
+### Resultados V1 ejecutados y regla académica comunicada después
+
+La ejecución V1 completó **4.608/4.608 réplicas**, con 512 por escenario. El [commit previo a las simulaciones `db5a75bb66a0b28b1d05dacc41b66daf161f9120`](https://github.com/jassan-bit/DeepLearning_202630/tree/db5a75bb66a0b28b1d05dacc41b66daf161f9120/experiments/e3_primary_joint_repair_20261122) y el {download}`protocolo histórico exacto <../_static/e3_primary_joint_repair_20261122/versions/mean_rmse_v1/joint_validation/protocol.json>` fijan las reglas originales. Se verificaron todas las filas, su orden y la cadena SHA256. El coste observado del tramo contabilizado fue **4.410,37298 s CPU**: 4.375,99475 en réplicas y 34,37823 de preparación, procesos y contabilidad. Quedaron 989,62702 s del presupuesto de 5.400 s, sin incertidumbre de recuperación. Estas cifras no son tiempo de pared ni incluyen instalación o verificaciones exteriores al tramo.
+
+| Escenario sintético | Falsas aceptaciones conjuntas | Cota superior simultánea del error | CI99 diferencia: cubiertos | CI99 ganancia: cubiertos | Menor cota inferior simultánea de cobertura (%) | Criterio original exacto |
+|---|---:|---:|---:|---:|---:|---|
+| EPA completo, independiente | 0/512 | 0,01486605 | 504/512 | 504/512 | 95,70141640 | Cumple |
+| EPA completo, AR y paneles compartidos | 0/512 | 0,01486605 | 507/512 | 507/512 | 96,62294898 | Cumple |
+| Frontera práctica en el principal | 4/512 | 0,03050290 | 501/512 | 501/512 | **94,83660538** | **No cumple** |
+| Dos fronteras prácticas adicionales | 4/512 | 0,03050290 | 505/512 | 505/512 | 96,00077916 | Cumple |
+| Dos fronteras, dependencia negativa | 6/512 | 0,03692582 | 505/512 | 506/512 | 96,00077916 | Cumple |
+| Cancelación condicional | 0/512 | 0,01486605 | 508/512 | 508/512 | 96,94970974 | Cumple |
+| Cambio de varianza adverso | 0/512 | 0,01486605 | 509/512 | 509/512 | 97,29131606 | Cumple |
+| Inversión de orden entre funcionales | 0/512 | 0,01486605 | 504/512 | 505/512 | 95,70141640 | Cumple |
+| Control favorable, mejora 25 % | — | — | 505/512 | 504/512 | 95,70141640 | Cumple |
+
+Las cotas son unilaterales Clopper–Pearson, con la corrección prefijada sobre 107 afirmaciones y confianza Monte Carlo simultánea 95 %. La tabla conserva los nueve escenarios, incluido el cambio de varianza fuera del supuesto estacionario. El redondeo de presentación de las cifras de esta tabla no se usa para recalcular el resultado original.
+
+```{figure} ../_static/e3_primary_joint_repair_20261122/results/validation_v1_overview.png
+:name: e3-primary-joint-v1-overview-20261122
+:alt: Resultados de nueve escenarios V1: cotas de error y cobertura, con la frontera principal bajo el piso exacto de cobertura.
+
+Validación sintética V1 completa. Se muestran las cotas exactas y los umbrales originales; la interpretación académica posterior por redondeo se registra por separado.
+```
+
+**Control de error y no vacuidad.** Los ocho escenarios nulos cumplieron el techo 0,05: el mayor error observado fue 6/512=0,01171875, con cota superior simultánea **0,03692582**. La decisión evaluada fue la completa de cuatro paneles y 20 rivales, con las tres pruebas, ambos nulos, Holm120, pantalla adversa 180, dirección, efecto e intervalos. El control favorable prefijado pasó **512/512** veces; tanto la cota inferior de potencia conjunta como la menor de los 80 contrastes fue **0,98513395**. Son resultados de esos DGP y su cohorte fija, no potencia del problema de Bitcoin, MDE ni superioridad de mercado.
+
+**Cobertura exacta y resultado científico.** En la frontera práctica principal, ambos CI99 cubrieron 501/512=0,978515625 casos. Sus dos cotas inferiores simultáneas fueron **0,9483660537506777**, inferiores al piso 0,95: pasaron 16 de los 18 límites de cobertura y los otros 89 límites prefijados. Por ello, el {download}`informe original <../_static/e3_primary_joint_repair_20261122/results/VALIDATION_REPORT_V1.json>` conserva **`accepted=false`**. El fallo consiste en no alcanzar la certificación simultánea exigida; no demuestra por sí solo que la cobertura poblacional esté por debajo de 95 %. Tampoco certifica cobertura nominal 99 %.
+
+**Interpretación académica posterior.** Tras cerrar V1, el autor comunicó: «el profe dijo que se podia redondear el 94,85 a 95%». La {download}`decisión fechada <../_static/e3_primary_joint_repair_20261122/results/ACADEMIC_ROUNDING_DECISION.json>` registra esa indicación como reportada por el autor, recibida después de los resultados. Se aplica `ROUND_HALF_UP` al porcentaje entero más próximo en **todos los 18 límites de cobertura**: 94,8366053751 % se expresa como 95 %, y **18/18 cumplen el criterio académico comunicado**. Los otros 89 límites se comparan exactamente, sin redondeo. No se modifican los intervalos, las cotas originales, el protocolo o `accepted=false`, ni se fecha esta interpretación como preregistrada. El criterio metodológico bajo esa regla académica no equivale a una defensa realizada, aceptación de R1/R2, nota oficial o acreditación de R3.
+
+**Diagnósticos adversos preservados.** Los IC95 eran diagnósticos separados de la regla de aceptación. En la frontera principal cubrieron 473/512 para diferencia y 472/512 para ganancia; los extremos superiores de sus intervalos CP95 puntuales fueron 0,94527630 y 0,94360220, inferiores al nominal 0,95. También se observó infracobertura nominal en el acoplamiento negativo y la inversión de orden. La interpretación académica no elimina estas señales ni convierte los intervalos en universalmente calibrados. La {download}`lectura completa de resultados <../_static/e3_primary_joint_repair_20261122/joint_validation/RESULTS_INTERPRETATION.md>` conserva el diagnóstico científico y su momento histórico previo a la indicación de redondeo.
+
+**V2 preparada, sin otro Monte Carlo.** Se implementó una corrección de intervalos mediante inversión de la referencia escalar fixed-b, con los ajustes de frontera y la transformación del logcociente a ganancia. La {download}`fuente V2 archivada <../_static/e3_primary_joint_repair_20261122/correction_v2/runtime/methods/primary_rmse.py>` y su {download}`recibo de revisión <../_static/e3_primary_joint_repair_20261122/correction_v2/SOFTWARE_REVIEW_RECEIPT.json>` registran 18 pruebas propias y 34 independientes. Tras la instrucción del autor se conservó preparada y archivada: **cero réplicas formales V2 y ninguna campaña adicional**. El {download}`estado de preparación <../_static/e3_primary_joint_repair_20261122/correction_v2/runtime/PREPARATION_STATUS.json>` distingue esa implementación de una validación ejecutada. No se atribuyen a V2 las 4.608 réplicas ni las cotas obtenidas por V1.
+
+Descargas para comprobar cifras y alcance: {download}`resumen de nueve escenarios CSV <../_static/e3_primary_joint_repair_20261122/results/VALIDATION_SUMMARY_V1.csv>`, {download}`informe V1 JSON <../_static/e3_primary_joint_repair_20261122/results/VALIDATION_REPORT_V1.json>`, {download}`redondeo de los 18 límites CSV <../_static/e3_primary_joint_repair_20261122/results/ACADEMIC_ROUNDING_DECISION.csv>`, {download}`decisión académica JSON <../_static/e3_primary_joint_repair_20261122/results/ACADEMIC_ROUNDING_DECISION.json>` y {download}`respaldo verificado de V1 ZIP <../_static/e3_primary_joint_repair_20261122/results/validation_v1_checkpoint.zip>`.
+
+La evaluación sintética no estima potencia de Bitcoin, no aporta nuevos ajustes de mercado ni abre prueba reservada. R/T/B finales y la potencia de una confirmación real continúan requiriendo entradas auténticas y dimensionamiento compatible con esta primaria. El dimensionador antiguo de MSE y su controlador fijado a S2 no se autorizan automáticamente para la versión nueva. El {ref}`cuaderno y la recuperación opcional de 11.15 <e3-primary-joint-colab-20261122>` distinguen consulta, verificación y ejecución.

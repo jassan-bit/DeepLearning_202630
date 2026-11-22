@@ -1,0 +1,92 @@
+[
+  {
+    "id": "C01",
+    "formulation": "A=Σ(r−m6)²/7; RMS and relative logprices",
+    "candidate_file": "runtime/vendor/seoi_v5/data.py",
+    "symbol": "known_geometry",
+    "first_line": 40,
+    "last_line": 48,
+    "sha256": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432",
+    "scope": "Population geometry; no future return is an input"
+  },
+  {
+    "id": "C02",
+    "formulation": "s=max(RMS,epsilon*r_fit); volume log1p",
+    "candidate_file": "runtime/vendor/seoi_v5/data.py",
+    "symbol": "raw_features",
+    "first_line": 51,
+    "last_line": 61,
+    "sha256": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432",
+    "scope": "Origin causal, not prefix causal normalization"
+  },
+  {
+    "id": "C03",
+    "formulation": "Frozen fit channel mean/SD and reference_RMS",
+    "candidate_file": "runtime/vendor/seoi_v5/data.py",
+    "symbol": "fit_preprocessor",
+    "first_line": 64,
+    "last_line": 74,
+    "sha256": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432",
+    "scope": "Explicitly supplied fit rows; source/date admission separate"
+  },
+  {
+    "id": "C04",
+    "formulation": "Use frozen coordinate statistics; FP32 X",
+    "candidate_file": "runtime/vendor/seoi_v5/data.py",
+    "symbol": "transform",
+    "first_line": 77,
+    "last_line": 84,
+    "sha256": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432",
+    "scope": "Input-only uses local coordinates"
+  },
+  {
+    "id": "C05",
+    "formulation": "U scales from label identity and frozen means",
+    "candidate_file": "runtime/candidate.py",
+    "symbol": "fit_inputs",
+    "first_line": 36,
+    "last_line": 56,
+    "sha256": "ce2bad9cd87ff76f4164be576d64773dc3cb7e121b44efa3bd79238b78c31c2e",
+    "scope": "Labels used only for supplied fit scales; no forward U input"
+  },
+  {
+    "id": "C06",
+    "formulation": "Own candidate wrapper and identity",
+    "candidate_file": "runtime/candidate.py",
+    "symbol": "InputOnlyOverlapModel",
+    "first_line": 21,
+    "last_line": 33,
+    "sha256": "ce2bad9cd87ff76f4164be576d64773dc3cb7e121b44efa3bd79238b78c31c2e",
+    "scope": "Selects historical input_only_mse; no new architecture or training"
+  },
+  {
+    "id": "C07",
+    "formulation": "Causal convolution5→8,k3; tanh; LSTM8→12",
+    "candidate_file": "runtime/vendor/seoi_v5/frozen_original.py",
+    "symbol": "CausalEncoder",
+    "first_line": 110,
+    "last_line": 127,
+    "sha256": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "scope": "Inherited own encoder; old additive-head properties not inherited"
+  },
+  {
+    "id": "C08",
+    "formulation": "Attention; ordered atoms; simplex; mu=sum p*hypot(sqrtA,sqrtc*u)",
+    "candidate_file": "runtime/vendor/seoi_v5/model.py",
+    "symbol": "forward_components",
+    "first_line": 81,
+    "last_line": 109,
+    "sha256": "215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855",
+    "scope": "Input-only factor=1, no output local-scale restitution"
+  },
+  {
+    "id": "C09",
+    "formulation": "MSE in global fit Y units; lambda_CRPS=0",
+    "candidate_file": "runtime/vendor/seoi_v5/model.py",
+    "symbol": "loss_components",
+    "first_line": 114,
+    "last_line": 124,
+    "sha256": "215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855",
+    "scope": "MSE does not identify latent distribution"
+  }
+]

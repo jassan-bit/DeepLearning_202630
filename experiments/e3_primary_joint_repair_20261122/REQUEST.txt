@@ -1,0 +1,94 @@
+Actúa como investigador de aprendizaje profundo, estadístico de series temporales e ingeniero experimental del Entregable 3.
+
+Repositorio:
+https://github.com/jassan-bit/DeepLearning_202630
+
+Informe:
+https://jassan-bit.github.io/DeepLearning_202630/entregable3/intro.html
+
+OBJETIVO
+
+Mejorar la evidencia evaluable del proyecto y resolver los requisitos que impiden acreditar R3. Implementa y verifica las correcciones necesarias; no te limites a redactar planes, crear formularios o enumerar pendientes.
+
+Consulta primero la guía original y la evidencia vigente. Distingue calificación oficial, valoración orientativa y topes condicionales. La evaluación orientativa actual es 4,122 antes del tope; bajo R1/R2 aceptadas y R3 no acreditada, el tope es 4,0. No cambies notas ni prometas una subida sin evidencia nueva.
+
+Trabaja con CPU y prioriza reutilizar resultados auténticos antes de entrenar.
+
+CONTEXTO QUE DEBES PRESERVAR
+
+- La candidata actual es input-only-overlap-mse-1, con justificación propia.
+- Los 796 trabajos pertenecen a la arquitectura aditiva.
+- V3 conserva sus 30 ajustes de desarrollo y su resultado adverso: atom_crps fue 2,7043 % peor en RMSE que atom_mse_only.
+- V4 y el V5 completo conservan sus decisiones de abandono.
+- Los calendarios examinados siguen siendo desarrollo expuesto.
+- Un piloto favorable, una prueba de software o una simulación no acreditan superioridad de mercado.
+- Mantén resultados adversos, fuentes, versiones y fechas auténticas.
+
+FASE 1. CERRAR EL EXPEDIENTE EVALUABLE DE R1/R2
+
+Revisa la candidata actual frente a los antecedentes más próximos. Entrega:
+
+1. Limitación concreta que aborda y adaptación sustantiva introducida.
+2. Ecuaciones, supuestos, hipótesis falsable y propiedad formal pertinente.
+3. Correspondencia entre formulación y código, procedencia, licencias y asistencia de IA.
+4. Material de defensa: explicar el mecanismo, demostrar la propiedad y realizar una modificación razonada del código.
+
+Distingue el dictamen técnico de la aceptación académica. No inventes una defensa, firma o aprobación docente. Continúa el trabajo técnico que no dependa de ese acto.
+
+Si existen checkpoints originales recuperables, verifica sus hashes y reutiliza exclusivamente el estado seleccionado para completar predicciones y análisis faltantes sin reentrenar. Solicita cualquier clave sólo mediante un mecanismo privado de Colab; nunca la publiques.
+
+FASE 2. CORREGIR Y VALIDAR LA BATERÍA EN CPU, SIN ENTRENAR
+
+Resuelve estos dos bloqueos:
+
+A. PRIMARY_ENDPOINT_ALIGNMENT_NOT_ESTABLISHED
+
+La primaria heredada es la media del RMSE por semilla:
+
+theta = promedio_s [raíz(promedio_t(error_s,t²))].
+
+Implementa inferencia para ese funcional exacto. No lo sustituyas por raíz del MSE agregado ni por RMSE del ensamble. Respeta el pareado temporal y distingue incertidumbre temporal de variabilidad entre semillas. No trates semillas×fechas como observaciones independientes.
+
+Justifica la pertinencia de los tres procedimientos exigidos para el contraste. Cambiar nombres, bloques o añadir una condición de dirección no convierte una prueba de MSE en una prueba de media-RMSE.
+
+B. JOINT_DECISION_VALIDATION_NOT_ESTABLISHED
+
+Verifica el control del error de la decisión completa: panel principal, regla adicional de dos de tres conjuntos y familia completa de rivales.
+
+No deduzcas control global al 5 % desde cotas marginales insuficientes. Conserva las reglas vigentes; cualquier enmienda deberá tener versión, justificación y alcance prospectivo explícitos.
+
+Antes de ejecutar simulaciones, fija escenarios, niveles, réplicas, criterios de aceptación y presupuesto CPU. Incluye nulos completos, parciales y fronteras relevantes, dependencia temporal y entre paneles, heterogeneidad y situaciones adversas.
+
+Ejecuta la validación y conserva todos los resultados. Reporta error tipo I, cobertura e incertidumbre Monte Carlo donde corresponda. Una calibración favorable en escenarios concretos no demuestra validez universal.
+
+Entrega código, pruebas necesarias, resultados y una decisión fundamentada de batería habilitada o bloqueada. Ante un fallo, identifica y prueba una corrección concreta; no repitas simulaciones hasta obtener un resultado favorable.
+
+FASE 3. DIMENSIONAR Y CONFIRMAR, SÓLO TRAS VALIDAR LA BATERÍA
+
+Mantén pausados los 340 trabajos mientras persistan los bloqueos anteriores.
+
+Una vez resueltos:
+
+- Verifica la admisión y pertinencia de los cuatro paneles para el problema.
+- Completa las entradas reales necesarias de planificación con presupuesto comparable.
+- Dimensiona para potencia ≥0,90 por contraste, informa la potencia conjunta y usa al menos diez semillas finales, o más si se requieren.
+- Congela candidata, fuentes, particiones, rivales, selección, métricas, márgenes y reglas antes de abrir la reserva.
+- Ejecuta la confirmación con recuperación, checkpoints y respaldo verificado.
+- Evalúa superioridad frente a toda la familia, efectos e intervalos, consistencia adicional, adecuación y robustez conforme a la guía.
+
+No confundas potencia sintética con potencia estimada para el diseño real. No reutilices desarrollo expuesto como confirmación independiente ni modifiques reglas tras observar resultados.
+
+ENTREGA Y GUARDADO
+
+Guarda los cambios verificables en GitHub mediante commits identificables, conservando las versiones anteriores y excluyendo secretos.
+
+Actualiza el informe sólo con evidencia comprobada. Entrega:
+
+- Requisito de la rúbrica atendido por cada cambio.
+- Código y verificaciones realmente ejecutadas.
+- Resultados, limitaciones y decisiones.
+- Notebook Colab CPU reanudable.
+- Coste medido y presupuesto restante.
+- Evidencia que justifica una eventual revaloración, sin asignarte una nota oficial.
+
+Empieza por completar las fases 1 y 2. El siguiente entrenamiento debe responder a un requisito evaluable concreto y utilizar una batería válida.
