@@ -6,64 +6,94 @@ on:
 permissions:
   contents: read
 jobs:
-  inspect-public-header:
+  verify-real-parser-repair:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
-      - name: Verify checksums and locate the first rejected 2022 header without publishing prices
+      - name: Install only the pinned numeric parser dependency
+        run: python -m pip install --disable-pip-version-check numpy==2.3.5
+      - name: Verify exact S2 failure and repaired parsing against checksum-verified real archives
         shell: bash
         run: |
           python - <<'PY'
-          import calendar, csv, hashlib, io, json, re, urllib.request, zipfile
+          import csv, hashlib, importlib.util, io, json, pathlib, tempfile, urllib.request, zipfile
           from datetime import datetime, timezone
-          reports=[]
-          for month in range(1,13):
-              name="BTCUSD_PERP-1d-2022-"+str(month).zfill(2)+".zip"
-              url="https://data.binance.vision/data/futures/cm/monthly/klines/BTCUSD_PERP/1d/"+name
-              def get(suffix,limit):
-                  req=urllib.request.Request(url+suffix,headers={"User-Agent":"E3-schema-diagnostic/1.0"})
-                  with urllib.request.urlopen(req,timeout=60) as response:
-                      assert response.status==200
-                      value=response.read(limit+1)
-                  assert len(value)<=limit
-                  return value
-              checksum=get(".CHECKSUM",4096)
-              pair=checksum.decode().strip().split()
-              assert len(pair)==2 and pair[1].lstrip("*")==name
-              assert re.fullmatch("[0-9a-fA-F]{64}",pair[0])
-              raw=get("",1024*1024)
-              digest=hashlib.sha256(raw).hexdigest()
-              assert digest==pair[0].lower()
-              with zipfile.ZipFile(io.BytesIO(raw)) as z:
-                  files=[p for p in z.namelist() if p.endswith(".csv")]
-                  assert len(files)==1 and z.getinfo(files[0]).file_size<=2*1024*1024
-                  rows=list(csv.reader(io.StringIO(z.read(files[0]).decode("utf-8-sig"))))
-              first=rows[0]
-              has_header=first[0].strip().lower().replace(" ","_")=="open_time"
-              header=[p.strip().lower().replace(" ","_") for p in first] if has_header else None
-              bars=rows[1:] if has_header else rows
-              assert bars and all(len(p)==12 for p in bars)
-              days=[datetime.fromtimestamp(int(p[0])/1000,timezone.utc).date().isoformat() for p in bars]
-              prefix="2022-"+str(month).zfill(2)+"-"
-              assert days==[prefix+str(d).zfill(2) for d in range(1,calendar.monthrange(2022,month)[1]+1)]
-              entry={"source_url":url,"archive_name":name,"archive_sha256":digest,
-              "checksum_sha256":hashlib.sha256(checksum).hexdigest(),"archive_bytes":len(raw),"header":header,
-              "bar_count":len(bars),"first_date":days[0],"last_date":days[-1],
-              "S2_rejects_column7_name":bool(header and header[7] not in ("base_volume","base_asset_volume"))}
-              reports.append(entry)
-              if entry["S2_rejects_column7_name"]:
-                  break
-          report={"kind":"real_public_CM_archive_header_diagnostic_not_training","archives":reports,
-          "first_S2_rejected_archive":next((p["archive_name"] for p in reports if p["S2_rejects_column7_name"]),None),
-          "raw_prices_or_volumes_published":False,"real_model_fits":0,"test_opened":False}
-          assert report["first_S2_rejected_archive"], "No rejected header found in2022; preserve report and inspect original Colab ledger"
-          open("cm-header-diagnostic.json","w").write(json.dumps(report,indent=2)+"\n")
+          import numpy as np
+          def get(url,limit):
+              with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"E3-header-repair-verification/1.0"}),timeout=60) as response:
+                  assert response.status==200
+                  raw=response.read(limit+1)
+              assert len(raw)<=limit
+              return raw
+          source_url="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/db74afd0763596f71bcbafb4b9150a44a2e83339/experiments/e3_hypothesis_adequacy_20261122/runtime/engine/data.py"
+          addon_url="https://raw.githubusercontent.com/jassan-bit/DeepLearning_202630/e90acbe327f94221a7c1b81ad4f9d2276ead50df/experiments/e3_cm_header_repair_20261122/parser/cm_header_parser.py"
+          source=get(source_url,1024*1024)
+          addon=get(addon_url,1024*1024)
+          source_sha="1e64a500a62b3ec803471f87a2a81161a81d0e73d2c4cce7fd17d73b2b044e60"
+          addon_sha="6aa58bb0883a25c25b562a21a91d52cbfda1db25babd25432dc56eee224c8f99"
+          assert hashlib.sha256(source).hexdigest()==source_sha
+          assert hashlib.sha256(addon).hexdigest()==addon_sha
+          def load(path,name):
+              spec=importlib.util.spec_from_file_location(name,path)
+              module=importlib.util.module_from_spec(spec)
+              spec.loader.exec_module(module)
+              return module
+          with tempfile.TemporaryDirectory() as folder:
+              root=pathlib.Path(folder)
+              (root/"s2_data.py").write_bytes(source)
+              (root/"cm_header_parser.py").write_bytes(addon)
+              data=load(root/"s2_data.py","s2_original_data")
+              repair=load(root/"cm_header_parser.py","exact_cm_header_repair")
+              original=data.parse_binance_zip
+              corrected=repair.bind_parser(data)
+              stamp=datetime.now(timezone.utc).isoformat()
+              reports=[]
+              for month,expected in (("01","0a2e6d208ebcb0be4a443562031ed59d779284d2c30ccad9988f4d5deb738651"),("07","2b2c4aa1bb3a312c17c61fb4b7748f137e19eeed9a3c8834a2a6556d1bbaa017")):
+                  name="BTCUSD_PERP-1d-2022-"+month+".zip"
+                  url="https://data.binance.vision/data/futures/cm/monthly/klines/BTCUSD_PERP/1d/"+name
+                  checksum=get(url+".CHECKSUM",4096)
+                  pair=checksum.decode().strip().split()
+                  assert pair[1].lstrip("*")==name and pair[0].lower()==expected
+                  raw=get(url,1024*1024)
+                  assert hashlib.sha256(raw).hexdigest()==expected
+                  before=hashlib.sha256(raw).hexdigest()
+                  with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+                      rows=list(csv.reader(io.StringIO(archive.read([n for n in archive.namelist() if n.endswith(".csv")][0]).decode("utf-8-sig"))))
+                  header=rows[0] if rows[0][0]=="open_time" else None
+                  price_rows=rows[1:] if header else rows
+                  old_error=None
+                  try:
+                      old_result=original(raw,acquired_utc=stamp,market_type="cm")
+                  except data.AdmissionError as error:
+                      old_error=str(error)
+                  result=corrected(raw,acquired_utc=stamp,market_type="cm")
+                  assert len(result["dates"])==31
+                  assert np.array_equal(result["ohlcv"][:,4],np.asarray([float(r[7]) for r in price_rows]))
+                  assert np.array_equal(result["ohlcv"][:,:4],np.asarray([[float(v) for v in r[1:5]] for r in price_rows]))
+                  assert hashlib.sha256(raw).hexdigest()==before
+                  if month=="01":
+                      assert old_error is None
+                      for key in ("dates","ohlcv","split"):
+                          assert np.array_equal(result[key],old_result[key])
+                      assert result["metadata"]==old_result["metadata"]
+                  else:
+                      assert old_error=="Wrong market-volume header"
+                      assert tuple(header)==repair.LEGACY_CM_HEADER
+                  reports.append({"archive_name":name,"archive_sha256":before,"header":header,"old_parser_error":old_error,
+                      "corrected_rows":31,"source_OHLC_and_column7_exact":True,"raw_bytes_unchanged":True})
+              assert hashlib.sha256((root/"s2_data.py").read_bytes()).hexdigest()==source_sha
+              events=corrected.__cm_header_repair_events__
+              assert len(events)==1
+          report={"kind":"real_archive_parser_regression_verification","source_S2_sha256":source_sha,"parser_overlay_sha256":addon_sha,
+          "parser_commit":"e90acbe327f94221a7c1b81ad4f9d2276ead50df","cases":reports,"normalized_header_events":events,"source_file_unchanged":True,
+          "new_real_market_model_fits":0,"new_real_forecasts":0,"test_opened":False,"raw_market_values_published":False}
+          open("cm-header-parser-verification.json","w").write(json.dumps(report,indent=2)+"\n")
           print(json.dumps(report,indent=2))
           
           PY
-      - name: Preserve schema-only receipt
+      - name: Preserve parser verification receipt without prices
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: cm-header-diagnostic
-          path: cm-header-diagnostic.json
+          name: cm-header-parser-verification
+          path: cm-header-parser-verification.json
           retention-days: 90
