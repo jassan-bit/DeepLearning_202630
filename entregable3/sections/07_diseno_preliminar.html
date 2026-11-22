@@ -423,13 +423,13 @@
 <h2>Formulación candidata<a class="headerlink" href="#formulacion-candidata" title="Link to this heading">#</a></h2>
 <p>Para siete estados latentes <span class="math notranslate nohighlight">\(H\in\mathbb{R}^{7\times d}\)</span>, una matriz de promedio causal fija <span class="math notranslate nohighlight">\(P\)</span>, independiente de <span class="math notranslate nohighlight">\(H\)</span>, y el estado <span class="math notranslate nohighlight">\(h_j\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-preliminary-discordance-attention">
-<span class="eqno">(52)<a class="headerlink" href="#equation-eq-e3-preliminary-discordance-attention" title="Link to this equation">#</a></span>\[
+<span class="eqno">(53)<a class="headerlink" href="#equation-eq-e3-preliminary-discordance-attention" title="Link to this equation">#</a></span>\[
 d_j(H)=\sqrt{\|h_j-(PH)_j\|_2^2+\varepsilon^2},\qquad
 s_j=q^\top h_j-\lambda d_j(H),\qquad
 a=\operatorname{softmax}(s/\tau).
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eq-e3-preliminary-bounded-readout">
-<span class="eqno">(53)<a class="headerlink" href="#equation-eq-e3-preliminary-bounded-readout" title="Link to this equation">#</a></span>\[
+<span class="eqno">(54)<a class="headerlink" href="#equation-eq-e3-preliminary-bounded-readout" title="Link to this equation">#</a></span>\[
 v_j=\frac{B h_j}{\sqrt{B^2+\|h_j\|_2^2}},\qquad
 c=\sum_{j=1}^{7}a_jv_j,\qquad
 f(H)=\operatorname{softplus}(w^\top c+b).
@@ -440,7 +440,7 @@ f(H)=\operatorname{softplus}(w^\top c+b).
 <h2>Propiedad que se investigará<a class="headerlink" href="#propiedad-que-se-investigara" title="Link to this heading">#</a></h2>
 <p>Para pesos de inferencia fijos, <span class="math notranslate nohighlight">\(\|q\|_2\le Q\)</span>, <span class="math notranslate nohighlight">\(0\le\lambda\le\Lambda\)</span>, <span class="math notranslate nohighlight">\(\tau\ge\tau_{\min}&gt;0\)</span> y <span class="math notranslate nohighlight">\(\|w\|_2\le W\)</span>, se propone demostrar la siguiente cota del módulo:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-preliminary-lipschitz-bound">
-<span class="eqno">(54)<a class="headerlink" href="#equation-eq-e3-preliminary-lipschitz-bound" title="Link to this equation">#</a></span>\[
+<span class="eqno">(55)<a class="headerlink" href="#equation-eq-e3-preliminary-lipschitz-bound" title="Link to this equation">#</a></span>\[
 |f(H)-f(H')|\le
 W\left[1+\frac{B\sqrt7}{2\tau_{\min}}
 \left(Q+\Lambda\|I-P\|_2\right)\right]\|H-H'\|_F.

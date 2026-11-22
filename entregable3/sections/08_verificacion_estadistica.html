@@ -514,6 +514,11 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-cripto-propuestos-y-entradas-exactas-para-dimensionar">Datos cripto propuestos y entradas exactas para dimensionar</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reparacion-de-la-primaria-y-validacion-conjunta-en-cpu">8.31 Reparación de la primaria y validación conjunta en CPU</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-conjunta-y-protocolo-anterior-a-las-simulaciones">Decisión conjunta y protocolo anterior a las simulaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-v1-ejecutados-y-regla-academica-comunicada-despues">Resultados V1 ejecutados y regla académica comunicada después</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -3295,6 +3300,150 @@ La asistencia de IA se declara; no sustituye a la persona autora o externa.</p>
 <p>La implementación, análisis y revisión declaran asistencia de IA. La propiedad de las fuentes, las licencias de terceros y el concepto humano conservan sus alcances propios; no hay una concesión global nueva ni una acreditación R3 por software. <code class="docutils literal notranslate"><span class="pre">input-only-overlap-mse-1</span></code> conserva su identidad, los resultados adversos y la contabilidad de diseños anterior.</p>
 </section>
 </section>
+<section id="reparacion-de-la-primaria-y-validacion-conjunta-en-cpu">
+<span id="e3-primary-joint-repair-20261122"></span><h2>8.31 Reparación de la primaria y validación conjunta en CPU<a class="headerlink" href="#reparacion-de-la-primaria-y-validacion-conjunta-en-cpu" title="Link to this heading">#</a></h2>
+<p>Esta versión conserva <code class="docutils literal notranslate"><span class="pre">input-only-overlap-mse-1</span></code>, los resultados adversos y la fuente S2. Corrige el objeto de la inferencia mediante un paquete separado: <a class="reference download internal" download="" href="../_downloads/08579bbee66ad6fe150f6628468dbe34/DERIVATION.md"><code class="xref download docutils literal notranslate"><span class="pre">derivación</span> <span class="pre">y</span> <span class="pre">supuestos</span></code></a> y <a class="reference download internal" download="" href="../_downloads/fb431453f852ca4fc7be3f5913d64181/primary_rmse.py"><code class="xref download docutils literal notranslate"><span class="pre">implementación</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">tres</span> <span class="pre">procedimientos</span></code></a>. Los p del MSE agregado de 8.30 no se renombran ni se reutiliza su calibración como si correspondiera a esta versión.</p>
+<p>Para un panel de modelos ya entrenados y semillas fijadas, se conserva la primaria heredada:</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3-mean-seed-rmse-primary-20261122">
+<span class="eqno">(50)<a class="headerlink" href="#equation-eq-e3-mean-seed-rmse-primary-20261122" title="Link to this equation">#</a></span>\[
+\theta_j=\frac1R\sum_{s=1}^R\sqrt{\mu_{js}},
+\qquad \mu_{js}=\mathbb E_t[(\widehat y_{jst}-y_t)^2].
+\]</div>
+<p>Su estimador sustituye cada esperanza temporal por la media sobre las mismas fechas cronológicas. La unidad de remuestreo es la fecha, compartida entre sistemas y semillas. La influencia temporal usa <span class="math notranslate nohighlight">\((\ell_{jst}-\mu_{js})/(2\sqrt{\mu_{js}})\)</span> antes de promediar semillas. La diferencia favorable es <span class="math notranslate nohighlight">\(\theta_r-\theta_c\)</span>; el margen práctico se contrasta mediante <span class="math notranslate nohighlight">\((1-0{,}02)\theta_r-\theta_c\)</span>. Las ganancias e intervalos usan el cociente de esas medias de raíces, sin el factor adicional de raíz del cociente de MSE.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Procedimiento de la versión nueva</p></th>
+<th class="head"><p>Objeto y alcance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Delta/HAC con corrección HLN y referencia fixed-b</p></td>
+<td><p>Contraste escalar del funcional suave. Exige riesgos positivos y un FCLT conjunto de pérdidas; es una extensión explícita, no un DM de pérdida ordinaria rebautizado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bootstrap estacionario-t del funcional</p></td>
+<td><p>Recalcula medias de pérdida, raíces por semilla e influencia/HAC en <strong>cada</strong> remuestreo temporal pareado. No aplica únicamente una raíz al resultado agregado.</p></td>
+</tr>
+<tr class="row-even"><td><p>GMM condicional del funcional, adaptación tipo GW</p></td>
+<td><p>Incluye instrumentos predecibles y la variación de estimar los riesgos auxiliares. Su nulo vectorial es más fuerte que la igualdad marginal de la primaria; rechazarlo no basta para afirmar superioridad direccional.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las diferencias finitas y la perturbación de la distribución detectaron un error inicial real: el ajuste auxiliar de GMM usaba una suma temporal en lugar de su media. Se corrigió el factor <span class="math notranslate nohighlight">\(1/T\)</span> <strong>antes de cualquier réplica formal</strong> y se conservaron el fallo y su corrección. Las <strong>27 pruebas independientes</strong> verifican derivadas, remuestreo, casos degenerados, familia completa y caché exacta. Son verificaciones del cálculo; no sustituyen el estudio de error y cobertura.</p>
+<p>Se conservan alfa por panel <strong>0,025</strong>, margen <strong>2 %</strong>, umbral descriptivo del efecto <strong>0,2</strong>, Holm120 por panel y pantalla adversa Holm180. Cambiar al funcional correcto requiere expresar diferencias, ganancias, intervalos y efecto en sus unidades propias: es una reparación estadística prospectiva explícita. El efecto descriptivo divide la diferencia de media-RMSE por la desviación de su influencia temporal; no se presenta como un Cohen d poblacional entre semillas. La <a class="reference download internal" download="" href="../_downloads/eb48a1e8f5447ce14161dfbbcc2fc497/STAGE_POLICY.json"><code class="xref download docutils literal notranslate"><span class="pre">política</span> <span class="pre">de</span> <span class="pre">etapas</span></code></a> no habilita entrenamientos finales por editar una bandera.</p>
+<section id="decision-conjunta-y-protocolo-anterior-a-las-simulaciones">
+<h3>Decisión conjunta y protocolo anterior a las simulaciones<a class="headerlink" href="#decision-conjunta-y-protocolo-anterior-a-las-simulaciones" title="Link to this heading">#</a></h3>
+<p>La decisión mantiene todos los rivales en el panel principal y, <strong>para cada rival</strong>, al menos dos de los tres adicionales; no exige que sean los mismos dos paneles para todos. La <a class="reference download internal" download="" href="../_downloads/c01b406bb7f65a1b472b878833362875/README.md"><code class="xref download docutils literal notranslate"><span class="pre">prueba</span> <span class="pre">del</span> <span class="pre">testigo</span> <span class="pre">y</span> <span class="pre">sus</span> <span class="pre">límites</span></code></a> muestra que una afirmación falsa principal implica un falso positivo de un testigo fijado por la verdad poblacional. Si falla la condición adicional, dos paneles nulos fijados por esa verdad dan una cota por unión <span class="math notranslate nohighlight">\(q_i+q_j\)</span>. Con p pertinentes válidos a 0,025, la cota es 0,05 sin independencia. La prueba no deduce esa validez marginal de los CP antiguos ni certifica todas las condiciones científicas de R3.</p>
+<p>El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/db5a75bb66a0b28b1d05dacc41b66daf161f9120/experiments/e3_primary_joint_repair_20261122">commit público anterior a la ejecución</a> fija el <a class="reference download internal" download="" href="../_downloads/c6d5dd7d0301df9cdfe0c2ff577ab277/protocol.json"><code class="xref download docutils literal notranslate"><span class="pre">protocolo</span> <span class="pre">completo</span></code></a>: <strong>nueve escenarios × 512 réplicas</strong>, cuatro paneles, 21 rótulos y 120 posiciones de Holm por panel; R10/T768/B8191, bloque32, HAC48 y referencia49999. Incluye nulos completos, fronteras prácticas principal/adicional, dependencia entre paneles, cancelación condicional, cambio de varianza adverso, inversión de orden de métricas y un control favorable de mejora25 %. La semilla interna del algoritmo se fija antes de los datos; la validación es condicional a esa aleatorización interna reproducible.</p>
+<p>La aceleración agrupa únicamente trayectorias exactamente iguales y clases conjuntas de semillas de igual multiplicidad; después expande todos los resultados antes de Holm. <strong>No elimina contrastes.</strong> Estos DGP tienen pocos mecanismos estocásticos distintos y dependencia perfecta de algunas semillas; dos escenarios contienen grupos de riesgos heterogéneos. Los 21 rótulos no equivalen a 21 modelos entrenados ni los diez índices a diez ajustes independientes. Son restricciones expresas de la validación sintética, no evidencia de diversidad real.</p>
+<p>Los criterios se fijaron antes de ejecutar: error de aceptación conjunta falsa ≤0,05; límite inferior de cobertura ≥0,95 para dos intervalos nominales99 % del testigo prefijado; control favorable con potencia por contraste ≥0,90 y conjunta ≥0,80. <strong>Este último umbral es un control sintético del programa, no un mínimo universal de potencia conjunta de la guía.</strong> Los 107 límites Monte Carlo tienen confianza simultánea95 % mediante Bonferroni: ocho errores, dieciocho coberturas, ochenta potencias y una conjunta. Los IC95 se conservan como diagnóstico; un piso0,95 para el IC99 no certifica cobertura0,99. El estrés de cambio de varianza, fuera del teorema estacionario, conserva los mismos criterios numéricos fijados y no se excluye después de conocer el resultado.</p>
+</section>
+<section id="resultados-v1-ejecutados-y-regla-academica-comunicada-despues">
+<h3>Resultados V1 ejecutados y regla académica comunicada después<a class="headerlink" href="#resultados-v1-ejecutados-y-regla-academica-comunicada-despues" title="Link to this heading">#</a></h3>
+<p>La ejecución V1 completó <strong>4.608/4.608 réplicas</strong>, con 512 por escenario. El <a class="reference external" href="https://github.com/jassan-bit/DeepLearning_202630/tree/db5a75bb66a0b28b1d05dacc41b66daf161f9120/experiments/e3_primary_joint_repair_20261122">commit previo a las simulaciones <code class="docutils literal notranslate"><span class="pre">db5a75bb66a0b28b1d05dacc41b66daf161f9120</span></code></a> y el <a class="reference download internal" download="" href="../_downloads/61e5be4ca18a2ce0568604e76ebfef43/protocol.json"><code class="xref download docutils literal notranslate"><span class="pre">protocolo</span> <span class="pre">histórico</span> <span class="pre">exacto</span></code></a> fijan las reglas originales. Se verificaron todas las filas, su orden y la cadena SHA256. El coste observado del tramo contabilizado fue <strong>4.410,37298 s CPU</strong>: 4.375,99475 en réplicas y 34,37823 de preparación, procesos y contabilidad. Quedaron 989,62702 s del presupuesto de 5.400 s, sin incertidumbre de recuperación. Estas cifras no son tiempo de pared ni incluyen instalación o verificaciones exteriores al tramo.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Escenario sintético</p></th>
+<th class="head text-right"><p>Falsas aceptaciones conjuntas</p></th>
+<th class="head text-right"><p>Cota superior simultánea del error</p></th>
+<th class="head text-right"><p>CI99 diferencia: cubiertos</p></th>
+<th class="head text-right"><p>CI99 ganancia: cubiertos</p></th>
+<th class="head text-right"><p>Menor cota inferior simultánea de cobertura (%)</p></th>
+<th class="head"><p>Criterio original exacto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>EPA completo, independiente</p></td>
+<td class="text-right"><p>0/512</p></td>
+<td class="text-right"><p>0,01486605</p></td>
+<td class="text-right"><p>504/512</p></td>
+<td class="text-right"><p>504/512</p></td>
+<td class="text-right"><p>95,70141640</p></td>
+<td><p>Cumple</p></td>
+</tr>
+<tr class="row-odd"><td><p>EPA completo, AR y paneles compartidos</p></td>
+<td class="text-right"><p>0/512</p></td>
+<td class="text-right"><p>0,01486605</p></td>
+<td class="text-right"><p>507/512</p></td>
+<td class="text-right"><p>507/512</p></td>
+<td class="text-right"><p>96,62294898</p></td>
+<td><p>Cumple</p></td>
+</tr>
+<tr class="row-even"><td><p>Frontera práctica en el principal</p></td>
+<td class="text-right"><p>4/512</p></td>
+<td class="text-right"><p>0,03050290</p></td>
+<td class="text-right"><p>501/512</p></td>
+<td class="text-right"><p>501/512</p></td>
+<td class="text-right"><p><strong>94,83660538</strong></p></td>
+<td><p><strong>No cumple</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Dos fronteras prácticas adicionales</p></td>
+<td class="text-right"><p>4/512</p></td>
+<td class="text-right"><p>0,03050290</p></td>
+<td class="text-right"><p>505/512</p></td>
+<td class="text-right"><p>505/512</p></td>
+<td class="text-right"><p>96,00077916</p></td>
+<td><p>Cumple</p></td>
+</tr>
+<tr class="row-even"><td><p>Dos fronteras, dependencia negativa</p></td>
+<td class="text-right"><p>6/512</p></td>
+<td class="text-right"><p>0,03692582</p></td>
+<td class="text-right"><p>505/512</p></td>
+<td class="text-right"><p>506/512</p></td>
+<td class="text-right"><p>96,00077916</p></td>
+<td><p>Cumple</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cancelación condicional</p></td>
+<td class="text-right"><p>0/512</p></td>
+<td class="text-right"><p>0,01486605</p></td>
+<td class="text-right"><p>508/512</p></td>
+<td class="text-right"><p>508/512</p></td>
+<td class="text-right"><p>96,94970974</p></td>
+<td><p>Cumple</p></td>
+</tr>
+<tr class="row-even"><td><p>Cambio de varianza adverso</p></td>
+<td class="text-right"><p>0/512</p></td>
+<td class="text-right"><p>0,01486605</p></td>
+<td class="text-right"><p>509/512</p></td>
+<td class="text-right"><p>509/512</p></td>
+<td class="text-right"><p>97,29131606</p></td>
+<td><p>Cumple</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inversión de orden entre funcionales</p></td>
+<td class="text-right"><p>0/512</p></td>
+<td class="text-right"><p>0,01486605</p></td>
+<td class="text-right"><p>504/512</p></td>
+<td class="text-right"><p>505/512</p></td>
+<td class="text-right"><p>95,70141640</p></td>
+<td><p>Cumple</p></td>
+</tr>
+<tr class="row-even"><td><p>Control favorable, mejora 25 %</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>505/512</p></td>
+<td class="text-right"><p>504/512</p></td>
+<td class="text-right"><p>95,70141640</p></td>
+<td><p>Cumple</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las cotas son unilaterales Clopper–Pearson, con la corrección prefijada sobre 107 afirmaciones y confianza Monte Carlo simultánea 95 %. La tabla conserva los nueve escenarios, incluido el cambio de varianza fuera del supuesto estacionario. El redondeo de presentación de las cifras de esta tabla no se usa para recalcular el resultado original.</p>
+<figure class="align-default" id="e3-primary-joint-v1-overview-20261122">
+<img alt="Resultados de nueve escenarios V1: cotas de error y cobertura, con la frontera principal bajo el piso exacto de cobertura." src="../_images/validation_v1_overview.png" />
+<figcaption>
+<p><span class="caption-number">Figura 10 </span><span class="caption-text">Validación sintética V1 completa. Se muestran las cotas exactas y los umbrales originales; la interpretación académica posterior por redondeo se registra por separado.</span><a class="headerlink" href="#e3-primary-joint-v1-overview-20261122" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Control de error y no vacuidad.</strong> Los ocho escenarios nulos cumplieron el techo 0,05: el mayor error observado fue 6/512=0,01171875, con cota superior simultánea <strong>0,03692582</strong>. La decisión evaluada fue la completa de cuatro paneles y 20 rivales, con las tres pruebas, ambos nulos, Holm120, pantalla adversa 180, dirección, efecto e intervalos. El control favorable prefijado pasó <strong>512/512</strong> veces; tanto la cota inferior de potencia conjunta como la menor de los 80 contrastes fue <strong>0,98513395</strong>. Son resultados de esos DGP y su cohorte fija, no potencia del problema de Bitcoin, MDE ni superioridad de mercado.</p>
+<p><strong>Cobertura exacta y resultado científico.</strong> En la frontera práctica principal, ambos CI99 cubrieron 501/512=0,978515625 casos. Sus dos cotas inferiores simultáneas fueron <strong>0,9483660537506777</strong>, inferiores al piso 0,95: pasaron 16 de los 18 límites de cobertura y los otros 89 límites prefijados. Por ello, el <a class="reference download internal" download="" href="../_downloads/a2732ea5d8603311390f259b9421c1bf/VALIDATION_REPORT_V1.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">original</span></code></a> conserva <strong><code class="docutils literal notranslate"><span class="pre">accepted=false</span></code></strong>. El fallo consiste en no alcanzar la certificación simultánea exigida; no demuestra por sí solo que la cobertura poblacional esté por debajo de 95 %. Tampoco certifica cobertura nominal 99 %.</p>
+<p><strong>Interpretación académica posterior.</strong> Tras cerrar V1, el autor comunicó: «el profe dijo que se podia redondear el 94,85 a 95%». La <a class="reference download internal" download="" href="../_downloads/057ca77ca620fc06d0af87be6820877f/ACADEMIC_ROUNDING_DECISION.json"><code class="xref download docutils literal notranslate"><span class="pre">decisión</span> <span class="pre">fechada</span></code></a> registra esa indicación como reportada por el autor, recibida después de los resultados. Se aplica <code class="docutils literal notranslate"><span class="pre">ROUND_HALF_UP</span></code> al porcentaje entero más próximo en <strong>todos los 18 límites de cobertura</strong>: 94,8366053751 % se expresa como 95 %, y <strong>18/18 cumplen el criterio académico comunicado</strong>. Los otros 89 límites se comparan exactamente, sin redondeo. No se modifican los intervalos, las cotas originales, el protocolo o <code class="docutils literal notranslate"><span class="pre">accepted=false</span></code>, ni se fecha esta interpretación como preregistrada. El criterio metodológico bajo esa regla académica no equivale a una defensa realizada, aceptación de R1/R2, nota oficial o acreditación de R3.</p>
+<p><strong>Diagnósticos adversos preservados.</strong> Los IC95 eran diagnósticos separados de la regla de aceptación. En la frontera principal cubrieron 473/512 para diferencia y 472/512 para ganancia; los extremos superiores de sus intervalos CP95 puntuales fueron 0,94527630 y 0,94360220, inferiores al nominal 0,95. También se observó infracobertura nominal en el acoplamiento negativo y la inversión de orden. La interpretación académica no elimina estas señales ni convierte los intervalos en universalmente calibrados. La <a class="reference download internal" download="" href="../_downloads/b17060b45ef5ee19a6a0da730e26fb56/RESULTS_INTERPRETATION.md"><code class="xref download docutils literal notranslate"><span class="pre">lectura</span> <span class="pre">completa</span> <span class="pre">de</span> <span class="pre">resultados</span></code></a> conserva el diagnóstico científico y su momento histórico previo a la indicación de redondeo.</p>
+<p><strong>V2 preparada, sin otro Monte Carlo.</strong> Se implementó una corrección de intervalos mediante inversión de la referencia escalar fixed-b, con los ajustes de frontera y la transformación del logcociente a ganancia. La <a class="reference download internal" download="" href="../_downloads/be64b88608ba9a1225f76067ebf0f99d/primary_rmse.py"><code class="xref download docutils literal notranslate"><span class="pre">fuente</span> <span class="pre">V2</span> <span class="pre">archivada</span></code></a> y su <a class="reference download internal" download="" href="../_downloads/2d3487222312453538fc01edf28a7600/SOFTWARE_REVIEW_RECEIPT.json"><code class="xref download docutils literal notranslate"><span class="pre">recibo</span> <span class="pre">de</span> <span class="pre">revisión</span></code></a> registran 18 pruebas propias y 34 independientes. Tras la instrucción del autor se conservó preparada y archivada: <strong>cero réplicas formales V2 y ninguna campaña adicional</strong>. El <a class="reference download internal" download="" href="../_downloads/9c273bf23a654d140e209eaa31c4634b/PREPARATION_STATUS.json"><code class="xref download docutils literal notranslate"><span class="pre">estado</span> <span class="pre">de</span> <span class="pre">preparación</span></code></a> distingue esa implementación de una validación ejecutada. No se atribuyen a V2 las 4.608 réplicas ni las cotas obtenidas por V1.</p>
+<p>Descargas para comprobar cifras y alcance: <a class="reference download internal" download="" href="../_downloads/4f3ff2112f71fc4d571edd37b8866120/VALIDATION_SUMMARY_V1.csv"><code class="xref download docutils literal notranslate"><span class="pre">resumen</span> <span class="pre">de</span> <span class="pre">nueve</span> <span class="pre">escenarios</span> <span class="pre">CSV</span></code></a>, <a class="reference download internal" download="" href="../_downloads/a2732ea5d8603311390f259b9421c1bf/VALIDATION_REPORT_V1.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">V1</span> <span class="pre">JSON</span></code></a>, <a class="reference download internal" download="" href="../_downloads/d030b7bf9fc11bb25ff745626bf5b6d6/ACADEMIC_ROUNDING_DECISION.csv"><code class="xref download docutils literal notranslate"><span class="pre">redondeo</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">18</span> <span class="pre">límites</span> <span class="pre">CSV</span></code></a>, <a class="reference download internal" download="" href="../_downloads/057ca77ca620fc06d0af87be6820877f/ACADEMIC_ROUNDING_DECISION.json"><code class="xref download docutils literal notranslate"><span class="pre">decisión</span> <span class="pre">académica</span> <span class="pre">JSON</span></code></a> y <a class="reference download internal" download="" href="../_downloads/07b3f82704b913315bd047662b00f127/validation_v1_checkpoint.zip"><code class="xref download docutils literal notranslate"><span class="pre">respaldo</span> <span class="pre">verificado</span> <span class="pre">de</span> <span class="pre">V1</span> <span class="pre">ZIP</span></code></a>.</p>
+<p>La evaluación sintética no estima potencia de Bitcoin, no aporta nuevos ajustes de mercado ni abre prueba reservada. R/T/B finales y la potencia de una confirmación real continúan requiriendo entradas auténticas y dimensionamiento compatible con esta primaria. El dimensionador antiguo de MSE y su controlador fijado a S2 no se autorizan automáticamente para la versión nueva. El <a class="reference internal" href="11_informe_tecnico.html#e3-primary-joint-colab-20261122"><span class="std std-ref">cuaderno y la recuperación opcional de 11.15</span></a> distinguen consulta, verificación y ejecución.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3486,6 +3635,11 @@ La asistencia de IA se declara; no sustituye a la persona autora o externa.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mcs-secundario-ejecutado-sin-ganador-unico">MCS secundario ejecutado, sin ganador único</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-conservados-y-dos-limites-cientificos-explicitos">Métodos conservados y dos límites científicos explícitos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-cripto-propuestos-y-entradas-exactas-para-dimensionar">Datos cripto propuestos y entradas exactas para dimensionar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reparacion-de-la-primaria-y-validacion-conjunta-en-cpu">8.31 Reparación de la primaria y validación conjunta en CPU</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-conjunta-y-protocolo-anterior-a-las-simulaciones">Decisión conjunta y protocolo anterior a las simulaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-v1-ejecutados-y-regla-academica-comunicada-despues">Resultados V1 ejecutados y regla académica comunicada después</a></li>
 </ul>
 </li>
 </ul>

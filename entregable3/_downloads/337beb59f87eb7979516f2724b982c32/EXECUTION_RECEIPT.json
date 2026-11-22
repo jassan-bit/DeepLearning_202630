@@ -1,0 +1,89 @@
+{
+  "candidate_id": "input-only-overlap-mse-1",
+  "candidate_root": "/workspace/e3_input_only_candidate_20261121",
+  "candidate_identity_sha256": "d07a106d1bfc8721edbf994b9e4227659d07d6d26a0d32d661c91a747e1592c2",
+  "candidate_sources_verified": {
+    "runtime/__init__.py": "1859336e9427f6a05e74ca99dfcf62153e2909eb4b8c845914f5ba9edaecde67",
+    "runtime/candidate.py": "ce2bad9cd87ff76f4164be576d64773dc3cb7e121b44efa3bd79238b78c31c2e",
+    "runtime/vendor/__init__.py": "fc929d8a2afbaa2b9143ad7ad90b3e6fea08118771ea84c7de099e2fbb22bc2b",
+    "runtime/vendor/seoi_v5/__init__.py": "e0e6a13b16669eb48419eca1246762baf51fc9e91a77deb29d8c898c024aae5d",
+    "runtime/vendor/seoi_v5/data.py": "fede2ea2eb9c302411c56a5c0e78f95d47a877b8dd334425e5a9db69142ca432",
+    "runtime/vendor/seoi_v5/frozen_original.py": "dce48ff772cd284c63a672c599febc66dfc6eb14f286f523703fe6b01d086c2f",
+    "runtime/vendor/seoi_v5/model.py": "215f64bf23004225a1cc6bf5f89b3d4ecb2f095819b9e60a69bca4d7366df855"
+  },
+  "candidate_sources_unchanged": true,
+  "model_state_sha256_before_and_after": "834506e1e1cc78916293508ec043ece6c50866c1c13f1fe2d4194aaa88ec334b",
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "D01",
+      "name": "Frozen identity, capacity, ordered atoms and simplex",
+      "pass": true
+    },
+    {
+      "id": "D02",
+      "name": "Prefix causality of encoder on fixed transformed inputs",
+      "pass": true,
+      "scope": "Not prefix causality of within-window raw normalization"
+    },
+    {
+      "id": "D03",
+      "name": "Equivalent refactor, exact finite-law expectation and support",
+      "pass": true,
+      "max_absolute_difference": 1.734723475976807e-18
+    },
+    {
+      "id": "D04",
+      "name": "Concrete overflow counterexample and verified stable correction",
+      "pass": true,
+      "naive_overflows": true,
+      "stable_result": 6.998542122237651e+199,
+      "scope": "Extreme synthetic FP64 fixture; not an observed market failure"
+    },
+    {
+      "id": "D05",
+      "name": "Input invariance under stated assumptions; output equivariance counterexample",
+      "pass": true,
+      "local_output_scale_argument_ignored": true,
+      "max_equivariance_gap": 0.0020955212342109713
+    },
+    {
+      "id": "D06",
+      "name": "MSE does not identify the latent atomic distribution",
+      "pass": true,
+      "equal_transformed_means": [
+        0.3499271061118826,
+        0.3499271061118826
+      ],
+      "different_U_variances": [
+        0.16666666666666666,
+        0.5416666666666666
+      ]
+    }
+  ],
+  "new_checks": 6,
+  "training_optimizer_steps": 0,
+  "new_forecasting_fits": 0,
+  "market_arrays_loaded": 0,
+  "market_predictions_computed": 0,
+  "generated_windows": 12,
+  "synthetic_model_forward_calls": 3,
+  "additional_synthetic_encoder_only_calls": 2,
+  "student_defense_observed": false,
+  "teacher_acceptance_claimed": false,
+  "R1_technical_verdict_changed": false,
+  "R3_accredited": false,
+  "novel_designs_added": 0,
+  "dependencies": {
+    "numpy": "2.3.5",
+    "torch": "2.8.0+cpu"
+  },
+  "AI_assistance": "AI prepared and executed the teaching checks; no human act is represented",
+  "started_at_utc": "2026-11-22T15:05:49.749569+00:00",
+  "finished_at_utc": "2026-11-22T15:05:51.417984+00:00",
+  "wall_seconds": 1.6684151029912755,
+  "cpu_seconds": 1.796386679,
+  "process_peak_RSS_KiB": 226988,
+  "script_sha256": "ce1c14b3a3c745c941dd341b7a29b0ec6a66b55e67008e94f06b4f9eae7620e6",
+  "executable": "/workspace/e3_engine_clean_cache/venv-cpu-652abf93aba295c3-py312/bin/python"
+}

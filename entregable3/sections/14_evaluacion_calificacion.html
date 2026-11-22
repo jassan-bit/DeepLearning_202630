@@ -421,6 +421,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#razones-por-las-que-el-componente-continua-en-desarrollo">Razones por las que el componente continúa en desarrollo</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-nueva-para-revisar-r1-r2-e-hipotesis-sin-nota-automatica">14.12 Evidencia nueva para revisar R1/R2 e hipótesis, sin nota automática</a></li>
 </ul>
             </nav>
         </div>
@@ -562,12 +563,12 @@
 <h2>14.3 Cálculo de la nota final<a class="headerlink" href="#calculo-de-la-nota-final" title="Link to this heading">#</a></h2>
 <p>Si el evaluador determina un cumplimiento por componente <span class="math notranslate nohighlight">\(q_i\)</span> entre 0 y 100 y aplica los pesos <span class="math notranslate nohighlight">\(w_i\)</span> de la tabla, el puntaje ponderado queda en la escala de 0 a 100:</p>
 <div class="math notranslate nohighlight" id="equation-eq-e3-final-grade">
-<span class="eqno">(51)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
+<span class="eqno">(52)<a class="headerlink" href="#equation-eq-e3-final-grade" title="Link to this equation">#</a></span>\[
 P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 \qquad
 \mathrm{Nota\ final}=\min\left(\mathrm{Tope},\;5{,}0\times\frac{P_{\mathrm{ponderado}}}{100}\right).
 \]</div>
-<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(51)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben equivalencias numéricas automáticas. La aplicación orientativa solicitada se documenta por separado en 14.10, con notas explícitas entre 0 y 5, mientras los campos oficiales del registro histórico permanecen vacíos.</p>
+<p>En la ecuación <a class="reference internal" href="#equation-eq-e3-final-grade">(52)</a>, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben equivalencias numéricas automáticas. La aplicación orientativa solicitada se documenta por separado en 14.10, con notas explícitas entre 0 y 5, mientras los campos oficiales del registro histórico permanecen vacíos.</p>
 </section>
 <section id="niveles-de-desempeno-por-componente">
 <h2>14.4 Niveles de desempeño por componente<a class="headerlink" href="#niveles-de-desempeno-por-componente" title="Link to this heading">#</a></h2>
@@ -1228,6 +1229,16 @@ reescriben al mejorar la herramienta estadística.</p>
 <p>Además faltan predicciones/recibos reales completos de planificación para los cuatro paneles y los 21 sistemas, dimensionamiento suficiente, Tablas A/B completas y calibración probabilística/cobertura propias de la candidata. Las nuevas fuentes son propuestas de desarrollo, no reserva auténtica ni datos confirmados. <strong>R/T/B finales, potencia alcanzada y MDE permanecen nulos.</strong> La implementación y la preparación de una nueva ejecución no acreditan R3.</p>
 </section>
 </section>
+<section id="evidencia-nueva-para-revisar-r1-r2-e-hipotesis-sin-nota-automatica">
+<span id="e3-primary-joint-rubric-scope-20261122"></span><h2>14.12 Evidencia nueva para revisar R1/R2 e hipótesis, sin nota automática<a class="headerlink" href="#evidencia-nueva-para-revisar-r1-r2-e-hipotesis-sin-nota-automatica" title="Link to this heading">#</a></h2>
+<p>La <a class="reference internal" href="06_modelo_original.html#e3-input-only-defense-dossier-20261122"><span class="std std-ref">entrega de 6.21</span></a> aporta un expediente propio de la candidata y una demostración ejecutable. La <a class="reference internal" href="08_verificacion_estadistica.html#e3-primary-joint-repair-20261122"><span class="std std-ref">reparación estadística de 8.31</span></a> implementa inferencia de la media de RMSE por semilla y evalúa la decisión conjunta mediante un protocolo publicado antes de simular. El <a class="reference internal" href="11_informe_tecnico.html#e3-primary-joint-colab-20261122"><span class="std std-ref">cuaderno de 11.15</span></a> conserva fuentes, resultados y alcance. Estas evidencias se corresponden con revisión/diseño8 %, implementación/demostración10 % e hipótesis/adecuación15 %; sus pesos no son puntos concedidos por disponer de archivos o pruebas.</p>
+<p>Para <strong>hipótesis y adecuación 15 %</strong>, existe ahora una ejecución metodológica completa: <strong>4.608 réplicas V1</strong>, protocolo anterior al cálculo y 4.410,373 s CPU observados. Los ocho nulos pasaron el techo de falsa aceptación conjunta, cuya mayor cota simultánea fue <strong>0,03692582</strong>. El control favorable pasó 512/512 veces, con cota inferior de potencia sintética conjunta y mínima por contraste <strong>0,98513395</strong>. Esto aporta evidencia sobre el funcional reparado y la decisión completa en los escenarios fijados; no estima potencia o superioridad de mercado.</p>
+<p>El <a class="reference download internal" download="" href="../_downloads/a2732ea5d8603311390f259b9421c1bf/VALIDATION_REPORT_V1.json"><code class="xref download docutils literal notranslate"><span class="pre">informe</span> <span class="pre">original</span> <span class="pre">V1</span></code></a> conserva <strong><code class="docutils literal notranslate"><span class="pre">accepted=false</span></code></strong>: 16/18 límites de cobertura cumplieron exactamente y dos quedaron en 94,836605 %. La <a class="reference download internal" download="" href="../_downloads/057ca77ca620fc06d0af87be6820877f/ACADEMIC_ROUNDING_DECISION.json"><code class="xref download docutils literal notranslate"><span class="pre">indicación</span> <span class="pre">académica</span> <span class="pre">reportada</span> <span class="pre">después</span> <span class="pre">por</span> <span class="pre">el</span> <span class="pre">autor</span></code></a> permite redondear al porcentaje entero más próximo; aplicada consistentemente a los 18 límites, 18/18 cumplen. Los otros 89 límites permanecen sin redondeo. Se registra cumplimiento metodológico <strong>bajo esa regla académica comunicada</strong>, separado del veredicto científico original y sin inventar una aprobación docente o defensa observada. Los diagnósticos adversos de IC95 permanecen disponibles en 8.31.</p>
+<p>V2 quedó preparada y archivada con 18 pruebas propias y 34 independientes, <strong>sin réplicas formales ni nuevo Monte Carlo después de la instrucción del autor</strong>. Las comprobaciones de software y el redondeo académico no acreditan R1/R2 ni R3 y no asignan puntos automáticamente.</p>
+<p>La valoración numérica de <strong>14.11</strong> conserva su corte: <strong>4,122 antes del tope</strong>, sustentación <strong>4,5 indicada por el autor</strong>, once pesos y otras notas sin modificación. Esta entrega no asigna una nueva nota oficial ni registra una defensa observada. Las nuevas comprobaciones de software no se suman como entrenamientos, y la potencia del control sintético no se atribuye al problema de Bitcoin.</p>
+<p>Con R1/R2 aceptadas y R3 evaluada como no satisfecha, permanece la regla condicional de tope4,0. Si una condición está pendiente, no se convierte automáticamente en un incumplimiento demostrado. Para evaluar R3 siguen siendo necesarios la aceptación correspondiente de R1/R2, un dimensionamiento válido con entradas reales, una reserva adecuada y la evaluación completa de la candidata; la recuperación opcional de pesos sólo aportaría adecuación retrospectiva.</p>
+<p>El alcance de lo que se acredita es verificable: fuente original preservada, cálculo reparado, protocolo y resultados sintéticos auténticos, y material concreto para la defensa. La modalidad de IA declarada para la revisión no inventa un acto humano o una firma, y no transforma el expediente de otro modelo en aprobación de la candidata actual.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1328,6 +1339,7 @@ reescriben al mejorar la herramienta estadística.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#razones-por-las-que-el-componente-continua-en-desarrollo">Razones por las que el componente continúa en desarrollo</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidencia-nueva-para-revisar-r1-r2-e-hipotesis-sin-nota-automatica">14.12 Evidencia nueva para revisar R1/R2 e hipótesis, sin nota automática</a></li>
 </ul>
   </nav></div>
 

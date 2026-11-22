@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "version": "primary-mean-RMSE-joint-validation-v2-fixedb-CI",
+  "kind": "predeclared_synthetic_statistical_validation",
+  "recorded_utc": "2026-11-22T16:07:18.050400+00:00",
+  "publication_status": "FIXED_DESIGN_REQUIRES_PUBLIC_SOURCE_COMMIT_BEFORE_FORMAL_RUN",
+  "estimand": "theta_j=mean_fixed_seed sqrt(E_time squared_error_j,s,t)",
+  "scope": "Finite fixed-DGP computational validation; not a universal theorem, market power, real-data confirmation or R3",
+  "candidate": "input_only_mse",
+  "systems": [
+    "input_only_mse",
+    "FCN-1D",
+    "ResNet-1D",
+    "Inception-1D",
+    "LSTM-autoencoder con predictor",
+    "TimesNet",
+    "TSMixer",
+    "TiDE",
+    "TimeMixer",
+    "PatchTST",
+    "iTransformer",
+    "MLP16",
+    "LSTM32",
+    "GRU32",
+    "Persistence",
+    "SeasonalNaive",
+    "ARIMA",
+    "additive_positive_head",
+    "floor_only",
+    "floor_plus_mean_excess",
+    "global_mse"
+  ],
+  "panels": [
+    "F00",
+    "F01",
+    "F02",
+    "F03"
+  ],
+  "rivals": 20,
+  "methods": 3,
+  "nulls": [
+    "epa",
+    "practical"
+  ],
+  "primary_rule": "all rivals in principal and, for EACH rival, at least two of three additional panels; existing effect/direction/CI and adverse-screen gates retained",
+  "margin": 0.02,
+  "panel_alpha": 0.025,
+  "Holm_slots_per_panel": 120,
+  "additional_adverse_EPA_Holm_slots": 180,
+  "cell": {
+    "R": 10,
+    "T": 768,
+    "B": 8191,
+    "block_length": 32,
+    "hac_lags": 48,
+    "horizon": 1,
+    "reference_reps": 49999
+  },
+  "inner_bootstrap_seed": 2026112203,
+  "reference_seed": 2026112202,
+  "data_seed": 2026112217340917,
+  "inner_randomization_scope": "The bootstrap seed is fixed independently of all data and common to panels and outer replicates. Validation is conditional on this deterministic inner Monte Carlo algorithm; no integration over a varying bootstrap seed is claimed.",
+  "replicates_per_scenario": 512,
+  "scenarios": [
+    {
+      "id": "complete_epa_iid",
+      "kind": "null",
+      "phi": 0.0,
+      "panel_coupling": "independent",
+      "noise": 0.55,
+      "truth_pattern": "complete_epa"
+    },
+    {
+      "id": "complete_epa_ar_shared",
+      "kind": "null",
+      "phi": 0.5,
+      "panel_coupling": "equicorrelation_0.8",
+      "noise": 0.55,
+      "truth_pattern": "complete_epa"
+    },
+    {
+      "id": "main_single_practical_boundary",
+      "kind": "null",
+      "phi": 0.5,
+      "panel_coupling": "equicorrelation_0.8",
+      "noise": 0.05,
+      "truth_pattern": "main_boundary"
+    },
+    {
+      "id": "two_null_additional_boundaries",
+      "kind": "null",
+      "phi": 0.5,
+      "panel_coupling": "independent",
+      "noise": 0.05,
+      "truth_pattern": "additional_boundary"
+    },
+    {
+      "id": "two_null_additional_negative_coupling",
+      "kind": "null",
+      "phi": 0.85,
+      "panel_coupling": "additional_pair_minus_0.8",
+      "noise": 0.55,
+      "truth_pattern": "additional_boundary"
+    },
+    {
+      "id": "conditional_cancellation",
+      "kind": "null",
+      "phi": 0.5,
+      "panel_coupling": "equicorrelation_0.8",
+      "noise": 0.55,
+      "truth_pattern": "main_epa",
+      "conditional_cancellation": true
+    },
+    {
+      "id": "variance_break_adverse",
+      "kind": "null",
+      "phi": 0.5,
+      "panel_coupling": "equicorrelation_0.8",
+      "noise": 0.55,
+      "truth_pattern": "additional_boundary",
+      "variance_break": true
+    },
+    {
+      "id": "positive_risk_ranking_reversal",
+      "kind": "null",
+      "phi": 0.5,
+      "panel_coupling": "equicorrelation_0.8",
+      "noise": 0.55,
+      "truth_pattern": "ranking_reversal"
+    },
+    {
+      "id": "strong_positive_control",
+      "kind": "alternative",
+      "phi": 0.5,
+      "panel_coupling": "equicorrelation_0.8",
+      "noise": 0.55,
+      "truth_pattern": "all_positive"
+    }
+  ],
+  "CPU_budget_seconds": 5400,
+  "max_workers": 4,
+  "scheduling": "Round-robin scenarios within each outer replicate index; parallel execution preserves this ledger order.",
+  "criteria": {
+    "MC_family_confidence_error": 0.05,
+    "MC_total_claims": 107,
+    "MC_claim_inventory": {
+      "null_global_error": 8,
+      "witness_CI99_coverage": 18,
+      "strong_per_contrast_power": 80,
+      "strong_joint_power": 1
+    },
+    "global_type_I_ceiling": 0.05,
+    "CI99_coverage_floor": 0.95,
+    "strong_per_contrast_power_floor": 0.9,
+    "strong_joint_power_floor": 0.8,
+    "CI99_witness_selection": "First population-truth-fixed witness; principal first rival for the strong positive control. Two intervals: raw RMSE difference and relative gain.",
+    "CI95_diagnostic_only": true,
+    "incomplete_is_never_accepted": true,
+    "all_nine_scenarios_must_meet_fixed_numerical_criteria": true,
+    "variance_break_stress": "Outside the stationarity theorem and explicitly adversarial, but NOT excluded from the predeclared pass criteria after observing results."
+  },
+  "DGP_restrictions": [
+    "21 named systems remain in every analysis, all 120 Holm slots retained; only three stochastic rule classes in homogeneous cases, more in two heterogeneous cases.",
+    "Homogeneous cases have perfectly dependent fixed seeds. Conditional-cancellation and ranking-reversal cases have two heterogeneous seed groups; these restricted cases do not certify arbitrary seed heterogeneity.",
+    "The 19 non-witness rival rules have duplicate trajectories by design; they are not 19 statistically independent forecasting algorithms.",
+    "Positive lognormal squared losses have exactly known means; fixed-cohort theta is the mean of their population square roots.",
+    "Predictable instruments use the latent Gaussian factor at t-1, never a future innovation. Conditional GMM has a stronger vector null; its rejection under conditional cancellation is not mislabeled scalar type-I error."
+  ],
+  "composition_scope": "False acceptance of the statistical direction/practical assertions. The witness proof does not certify all scientific adequacy, robustness, novelty or data-reserve requirements.",
+  "cost_policy": "CPU is charged from completed replicas plus parent/worker startup/compiler overhead measured with RUSAGE_CHILDREN. Budget is checked between fixed batches; the final batch can overshoot the soft check. An unclosed session retains uncertainty and a lower-bound cost, never invented exact accounting.",
+  "forecast_training": false,
+  "market_acquisition": false,
+  "new_market_predictions": false,
+  "test_opening": false,
+  "final_R": null,
+  "final_T": null,
+  "final_B": null,
+  "market_power": null,
+  "R3_accredited": false,
+  "AI_assistance_declared": true,
+  "recorded_final_design_utc": "2026-11-22T16:07:18.050400+00:00",
+  "amendment_v2": {
+    "previous_source_commit": "db5a75bb66a0b28b1d05dacc41b66daf161f9120",
+    "previous_protocol_sha256": "55dc350ce1e5252f95231113112b02eababaa6976be1ae288ba09407441b4bd9",
+    "previous_result_accepted": false,
+    "previous_failure": "CI99 simultaneous coverage lower bound0.9483660537506777<0.95 in main practical-boundary scenario",
+    "only_methodological_change": "Operational intervals invert the predeclared scalar fixed-b delta/HAC test for mean-RMSE difference and log ratio; bootstrap-t procedure and diagnostic intervals retained",
+    "outer_data_seed_is_new_and_independent": true,
+    "inner_bootstrap_seed_unchanged": true,
+    "reference_seed_unchanged": true,
+    "unchanged": [
+      "9DGP",
+      "512replicates_each",
+      "R10",
+      "T768",
+      "B8191",
+      "block32",
+      "HAC48",
+      "alpha0.025",
+      "margin0.02",
+      "main_plus_two_of_three",
+      "120Holm_slots",
+      "180adverse_slots",
+      "107MC_claims",
+      "all_numerical_criteria",
+      "5400CPU",
+      "max4workers"
+    ],
+    "no_third_correction_search": true,
+    "formal_run_requires_new_public_anchor": true,
+    "declared_after_observing_v1_result": true,
+    "primary_rmse_source_sha256": "910b65b753b717492bcaf59cb4edd4d59b39f6ca9c4437a8efc67d27042ae590"
+  },
+  "method_version": "temporal-fixed-seeds-mean-rmse-v2",
+  "operational_interval_method": "scalar_fixed_b_mc_plus_one_inversion_v2",
+  "interval_inversion": {
+    "confidence_levels": [
+      0.95,
+      0.99
+    ],
+    "rmse_difference": "Invert scalar fixed-b delta/HAC-HLN test for mean-seed RMSE difference using observed standard error and predeclared reference",
+    "relative_rmse_gain": "Invert scalar fixed-b delta/HAC-HLN test for log(theta_candidate/theta_rival), then map endpoints monotonically by 1-exp(logratio)",
+    "critical_rule": "Closed non-rejection interval of strict p=(1+count(reference>=abs(t)))/(M+1)<alpha, including ties; exact rational confidence determines the reference order statistic",
+    "reference_reps": 49999,
+    "critical_zero_based_index_CI95": 47500,
+    "critical_zero_based_index_CI99": 49500,
+    "HLN_inversion": "CI radius = reference critical * observed standard error / HLN factor",
+    "diagnostic_bootstrap_intervals_retained": true,
+    "diagnostic_bootstrap_intervals_used_for_operational_gate": false,
+    "scope": "Exact inversion of finite MC-reference count rule, not an exact finite-sample population law; assumptions and declared fixed-DGP validation still required"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-11-22T16:08:05.738775+00:00",
+  "status": "SOFTWARE_AND_MATHEMATICAL_REVIEW_PASSED_BEFORE_V2_CALIBRATION",
+  "methods_version": "temporal-fixed-seeds-mean-rmse-v2",
+  "operational_interval_method": "scalar_fixed_b_mc_plus_one_inversion_v2",
+  "source_sha256": "910b65b753b717492bcaf59cb4edd4d59b39f6ca9c4437a8efc67d27042ae590",
+  "kernel_sha256": "50a8179ee653b2683127e9bec2460c2d025669b883d42ea41ab8fc9064446802",
+  "own_software_tests_passed": 18,
+  "independent_mathematical_software_tests_passed": 34,
+  "independent_review_receipt_sha256": "969a7037f526f4cbf5dfe8f823bf91ca217b59eed7b49d8b8249c13898d253a8",
+  "source_S2_changed": false,
+  "formal_calibration_executed_by_this_subtask": false,
+  "market_data_accessed": false,
+  "forecast_models_trained": false,
+  "final_data_opened": false,
+  "previous_version_archived": "versions/mean_rmse_v1",
+  "correction": "Operational nominal95/99 CIs invert the existing scalar fixed-b MC+1 test; V1 bootstrap-t intervals retained as diagnostics; p-values and all decision thresholds unchanged",
+  "retained_pre_freeze_error": "missing temporal 1/T in GMM nuisance derivative, detected independently and corrected before V1 calibration",
+  "files": {
+    "primary_rmse.py": "910b65b753b717492bcaf59cb4edd4d59b39f6ca9c4437a8efc67d27042ae590",
+    "primary_bootstrap.cpp": "50a8179ee653b2683127e9bec2460c2d025669b883d42ea41ab8fc9064446802",
+    "test_primary_rmse.py": "f99bca48296d95507fc9905f5a43e1a8a5779d7c572f2d2e05f96d24e7c50ab1",
+    "test_interval_inversion.py": "d6f66d3784898a221284a0f54fba08b45592e16202d6d34497e302bca1877b50",
+    "DERIVATION.md": "fdeb9eba464d784621577329929bd5da0dc6c12a2e1f9e2d3660a124f469d5a0",
+    "SOFTWARE_TEST_OUTPUT.txt": "066b6af4c82f31eb2cbb91a112137e1b9fee7801465140c05c33507a39019847"
+  }
+}
