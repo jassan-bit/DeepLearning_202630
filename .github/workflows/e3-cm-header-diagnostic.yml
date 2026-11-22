@@ -1,0 +1,60 @@
+name: E3 COIN-M header diagnostic (no training)
+on:
+  push:
+    branches: [e3-cm-header-diagnostic-20261122]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect-public-header:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify public checksum and inspect header without publishing prices
+        shell: bash
+        run: |
+          python - <<'PY'
+          import csv, hashlib, io, json, re, urllib.request, zipfile
+          from datetime import datetime, timezone
+          name="BTCUSD_PERP-1d-2022-01.zip"
+          url="https://data.binance.vision/data/futures/cm/monthly/klines/BTCUSD_PERP/1d/"+name
+          def get(suffix,limit):
+              req=urllib.request.Request(url+suffix,headers={"User-Agent":"E3-schema-diagnostic/1.0"})
+              with urllib.request.urlopen(req,timeout=60) as response:
+                  assert response.status==200
+                  value=response.read(limit+1)
+              assert len(value)<=limit
+              return value
+          checksum=get(".CHECKSUM",4096)
+          pair=checksum.decode().strip().split()
+          assert len(pair)==2 and pair[1].lstrip("*")==name
+          assert re.fullmatch("[0-9a-fA-F]{64}",pair[0])
+          raw=get("",1024*1024)
+          digest=hashlib.sha256(raw).hexdigest()
+          assert digest==pair[0].lower()
+          with zipfile.ZipFile(io.BytesIO(raw)) as z:
+              files=[p for p in z.namelist() if p.endswith(".csv")]
+              assert len(files)==1 and z.getinfo(files[0]).file_size<=2*1024*1024
+              rows=list(csv.reader(io.StringIO(z.read(files[0]).decode("utf-8-sig"))))
+          first=rows[0]
+          has_header=first[0].strip().lower().replace(" ","_")=="open_time"
+          header=[p.strip().lower().replace(" ","_") for p in first] if has_header else None
+          bars=rows[1:] if has_header else rows
+          assert bars and all(len(p)==12 for p in bars)
+          days=[datetime.fromtimestamp(int(p[0])/1000,timezone.utc).date().isoformat() for p in bars]
+          assert days==["2022-01-"+str(d).zfill(2) for d in range(1,32)]
+          report={"kind":"real_public_CM_archive_header_diagnostic_not_training","source_url":url,"archive_name":name,
+          "archive_sha256":digest,"checksum_sha256":hashlib.sha256(checksum).hexdigest(),"archive_bytes":len(raw),
+          "header":header,"bar_count":len(bars),"first_date":days[0],"last_date":days[-1],
+          "S2_rejects_column7_name":bool(header and header[7] not in ("base_volume","base_asset_volume")),
+          "raw_prices_or_volumes_published":False,"real_model_fits":0,"test_opened":False}
+          open("cm-header-diagnostic.json","w").write(json.dumps(report,indent=2)+"\n")
+          print(json.dumps(report,indent=2))
+          
+          PY
+      - name: Preserve schema-only receipt
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: cm-header-diagnostic
+          path: cm-header-diagnostic.json
+          retention-days: 90
