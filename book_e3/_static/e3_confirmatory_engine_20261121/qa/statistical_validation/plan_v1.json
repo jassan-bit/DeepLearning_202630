@@ -1,0 +1,38 @@
+{
+  "version": "synthetic-temporal-validation-v1",
+  "frozen_before_execution": true,
+  "purpose": "Bounded synthetic audit of implemented conditional fixed-seed temporal battery, not market calibration or general proof of validity",
+  "protocol_version": "temporal-fixed-seeds-mse-v1",
+  "seed": 2026112101,
+  "replicates_per_stochastic_scenario": 80,
+  "n_dates": 192,
+  "n_fixed_seeds": 10,
+  "n_rivals": 20,
+  "bootstrap_reps": 4999,
+  "block_length": 12,
+  "hac_lags": 12,
+  "margin": 0.02,
+  "alpha": 0.05,
+  "cpu_budget_seconds": 300,
+  "scenarios": [
+    {"id": "complete_null_ar05", "phi": 0.5, "overlap": 1, "shift": 0.0, "null_rivals": 20, "boundary_null": "epa"},
+    {"id": "partial_null_ar05", "phi": 0.5, "overlap": 1, "shift": 0.75, "null_rivals": 10, "boundary_null": "epa"},
+    {"id": "complete_null_overlap5", "phi": 0.4, "overlap": 5, "shift": 0.0, "null_rivals": 20, "boundary_null": "epa"},
+    {"id": "practical_boundary_ar05", "phi": 0.5, "overlap": 1, "shift": 0.0, "null_rivals": 20, "boundary_null": "practical"},
+    {"id": "strong_alternative_ar05", "phi": 0.5, "overlap": 1, "shift": 0.75, "null_rivals": 0, "boundary_null": null}
+  ],
+  "data_generator": "Stationary bounded AR innovations after burn-in 300; common and idiosyncratic cross-rival differences; moving average for overlap scenario; exogenous lagged AR instrument independent of loss differences; losses positive, square roots used as predictions against y=0; fixed seed offsets cancel in differences. Strong alternative is deliberately large and does not establish power at 3% gain.",
+  "family": "120 two-sided p-values: 20 rivals x 3 methods x EPA/practical; Holm across all 120",
+  "fwer_event": "Any adjusted p<0.05 among the exact null contrasts and the three methods, either direction. Practical tests at a nonzero mean are not counted as equality-null violations. Also report false positive directional superiority.",
+  "coverage": "95% marginal basic stationary-bootstrap CI of MSE loss difference and percentile CI of relative aggregate RMSE gain, for prespecified rival 0; 95% exact Clopper-Pearson intervals across replicates",
+  "power": "Per-rival complete statistical gate and joint all-20 gate; report worst per-rival power with CP95 interval; target 0.90; only large simulated alternative covered",
+  "degeneracies": ["identical predictions", "constant unequal losses", "constant instruments rejected", "missing instrument prevents third test", "inferiority retains small raw p-values"],
+  "acceptance_fixed": {
+    "fwer_demonstrated_in_a_scenario_only_if": "CP95 upper <= 0.05",
+    "nominal_coverage_demonstrated_in_a_scenario_only_if": "CP95 lower >= 0.95",
+    "power_target_demonstrated_only_if": "CP95 lower >= 0.90 for every contrast",
+    "failure_rule": "If CP95 lower for FWER exceeds 0.05, or upper for coverage/power lies below its target, report failure. Otherwise unmet confidence-bound requirements are inconclusive. Never widen criteria after results.",
+    "overall_claim": "No general validation outside the listed DGPs, fixed T and fixed tuning; finite MC may remain inconclusive. No protocol closure from an inconclusive audit."
+  },
+  "budget_rule": "Stop between complete replicates if elapsed CPU reaches 300 seconds; retain all results and label unfinished scenarios incomplete; never reduce uncertainty or silently drop failed replicates."
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "storage_version": "e3-temporal-confirmation-github-1",
+  "executed_at_utc": "2026-11-21T23:40:34.564792+00:00",
+  "python": "3.12.14",
+  "cryptography": "50.0.0",
+  "status": "PASS",
+  "tests": 23,
+  "elapsed_seconds": 20.876,
+  "command": "/workspace/e3_fixed_state_runtime/bin/python -m unittest discover -s tests -p test_storage.py -v",
+  "real_network_requests": 0,
+  "real_remote_writes": 0,
+  "market_fits": 0,
+  "final_test_opened": false,
+  "mock_fixture_largest_file_bytes": 22020113,
+  "mock_shard_max_bytes": 8388608,
+  "scope": [
+    "AESGCM/scrypt/fresh salt and nonce",
+    "source-plan-data-seed-context binding",
+    "private/public allowlists and final seal",
+    "bounded shard restore beyond old 20MiB limit",
+    "unchanged shard reuse",
+    "partial staging and post-ref crash recovery",
+    "lost successful ref reply",
+    "remote permission/rate/transient diagnostics",
+    "stale VM and wrong-key anti-overwrite",
+    "safe paths/symlinks/manifest hashes",
+    "incremental Git subtree updates against 5000 existing root entries"
+  ],
+  "limitations": [
+    "GitHub REST is simulated; real owner credentials and an actual remote roundtrip remain pending",
+    "No market experiment or final evaluation executed",
+    "REST non-force update does not provide an explicit compare-and-swap lease against external force-push",
+    "Git history retains changed encrypted shards; provider quota and measured cost are not demonstrated"
+  ],
+  "files_sha256": {
+    "engine/storage.py": "d9faab29f420ce26fcd90b8fcf691af89ac51e534ce4fa0132d280893b0d56f9",
+    "tests/test_storage.py": "34d130995b2b73dfa4925ebf9e9032e6ba15317683a21a3fefabc16eef410ee7",
+    "docs/GITHUB_STORAGE.md": "256155c87ffebf6b6590654eabbb91f27f48e176f9976e375bb2897c14c2bcd7",
+    "qa/storage/UNITTEST.log": "3cd8b22328775bb4ca845a3bd5801e4fc49c901dc529327bc5714abe03b4e5cb"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "confidence_scope": "Pointwise component CP95 bounds, not simultaneous95% for all conditions, not anytime-valid, not an unselected fresh five-scenario study, not joint four-panel MC.",
+  "created_at_utc": "2026-11-22T00:37:55.715858+00:00",
+  "decision_after_new_results": "Use exactly the four mapped earlier scenario ledgers and the new complete-null ledger. No alternate map, fallback to prior null, additional sampling or changed tolerance after new results. A failed/inconclusive composite criterion prevents admission.",
+  "focal_scenario": "complete_null_ar05",
+  "focal_selection_reason": "Only complete-null AR.5 FWER CP95upper remained unresolved after V4. Four other scenarios established their bounds. Select this independent precision replication before new outcomes; never pool its2048 new draws with earlier512 null draws.",
+  "frozen_before_focal_execution": true,
+  "is_preregistration_of_V4": false,
+  "no_pooling": true,
+  "preserved_but_excluded": {
+    "prior_replicates": [
+      "complete_null_ar05"
+    ]
+  },
+  "prior_report_sha256": "abcb7687bd4311bdc8b7ee1d32478edf102c7f63e8e1a40bb58b99f5e86975c7",
+  "prior_unresolved": {
+    "cp95_upper": 0.05025287955875999,
+    "fwer_count": 16,
+    "replicates": 512,
+    "scenario": "complete_null_ar05",
+    "status": "INCONCLUSIVE; retained and never rounded to admission"
+  },
+  "scenario_sources": {
+    "complete_null_ar05": {
+      "component": "replicates",
+      "replicates": 2048
+    },
+    "complete_null_overlap5": {
+      "component": "prior_replicates",
+      "replicates": 512
+    },
+    "partial_null_ar05": {
+      "component": "prior_replicates",
+      "replicates": 512
+    },
+    "practical_boundary_ar05": {
+      "component": "prior_replicates",
+      "replicates": 512
+    },
+    "strong_alternative_ar05": {
+      "component": "prior_replicates",
+      "replicates": 512
+    }
+  },
+  "selection_is_post_V4": true,
+  "statistics_source_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+  "version": "e3-temporal-v4-independent-precision-dossier-1"
+}

@@ -1,0 +1,53 @@
+{
+  "kind": "INDEPENDENT_BOOTSTRAP_SOFTWARE_REVIEW",
+  "runtime": "/workspace/e3_engine_clean_cache/venv-cpu-652abf93aba295c3-py312/bin/python",
+  "command": [
+    "/workspace/e3_engine_clean_cache/venv-cpu-652abf93aba295c3-py312/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_bootstrap.py"
+  ],
+  "tests": 17,
+  "subtests": 18,
+  "exit_code": 0,
+  "status": "PASS",
+  "fake_HTTP_only": true,
+  "new_market_downloads": 0,
+  "new_market_fits": 0,
+  "reserved_market_test_opened": false,
+  "actual_lock_verification": {
+    "pins": 40,
+    "version_mismatches": 0,
+    "pip_check": "No broken requirements found",
+    "torch": "2.8.0+cpu",
+    "nvidia_distributions": 0,
+    "installation_modified": false,
+    "network_used": false
+  },
+  "demonstrated_bug_and_fix": {
+    "before": "1 failed,16 passed,18 subtests; cpu_env inherited NASDAQ_DATA_LINK_API_KEY used by real collector",
+    "fix": "Added NASDAQ_DATA_LINK_API_KEY to stripped child environment variables; no lock edits",
+    "after": "17 passed,18 subtests"
+  },
+  "covered": [
+    "immutable40hex commit and64hex manifest pin",
+    "exact upstream URLs and commit anchor",
+    "byte sizes and hashes",
+    "exact cache reuse",
+    "corruption retained/refused without overwrite",
+    "traversal/noncanonical/absolute/hidden paths and symlink escape",
+    "byte caps and bounded mocked HTTP retry",
+    "CPU-only child environment and private credentials via stdin",
+    "existing-runtime metadata verification and pipcheck",
+    "isolated new environment identity tied to lock",
+    "default setup only fixture tests andcheck, imports without side effects",
+    "blocked statuses not silently promoted"
+  ],
+  "file_sha256": {
+    "bootstrap_colab.py": "32efbe52be70559eb13efa817fb63b36c8f2e9796e205cfb5ceb557ad6f9b85a",
+    "requirements-cpu.lock.txt": "652abf93aba295c338fa3d25abf12283b2339226ca52905f9044ea8512e393e2",
+    "tests/test_bootstrap.py": "8036e41b89dff08780362c22b9e60d550a68a44965052d2a523217bda136ba45"
+  },
+  "executed_utc": "2026-11-22T00:02:51.958569+00:00"
+}

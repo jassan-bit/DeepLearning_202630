@@ -1,0 +1,32 @@
+.....................FF........................                [100%]
+=================================== FAILURES ===================================
+_______ test_failed_statistical_validation_cannot_freeze_final_protocol ________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-8/test_failed_statistical_valida0')
+
+    def test_failed_statistical_validation_cannot_freeze_final_protocol(tmp_path):
+        p=tmp_path/"failed.json";p.write_text(json.dumps({"admitted":False,"protocol_closure_permitted":False}))
+>       with pytest.raises(ValueError,match="not admitted"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'not admitted'
+E         Actual message: 'Exact final statistical settings are required for method admission'
+
+tests/test_cli.py:47: AssertionError
+_____________________ test_wrong_method_hash_cannot_admit ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-8/test_wrong_method_hash_cannot_0')
+
+    def test_wrong_method_hash_cannot_admit(tmp_path):
+        p=tmp_path/"invented.json";p.write_text(json.dumps({"admitted":True,"protocol_closure_permitted":True,"statistics_sha256":"0"*64}))
+>       with pytest.raises(ValueError,match="another source"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'another source'
+E         Actual message: 'Exact final statistical settings are required for method admission'
+
+tests/test_cli.py:53: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli.py::test_failed_statistical_validation_cannot_freeze_final_protocol
+FAILED tests/test_cli.py::test_wrong_method_hash_cannot_admit - AssertionErro...
+2 failed, 45 passed, 10 subtests passed in 30.85s
