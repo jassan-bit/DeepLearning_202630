@@ -40,9 +40,12 @@ def notebook(source_commit=SOURCE_COMMIT, manifest_sha256=MANIFEST_SHA256,
                                     '/'+PREFIX+'/bootstrap_colab.py')
             if 'SETTINGS = bootstrap.setup(' in source:
                 source = source.replace('SETTINGS = bootstrap.setup(SOURCE_COMMIT, MANIFEST_SHA256, WORK / "cache", run_tests=True)',
-                    'previous_python = globals().get("SETTINGS", {}).get("python")\n'
-                    'if previous_python is not None and not Path(previous_python).is_file():\n'
-                    '    previous_python = None\n'
+                    'previous_info = globals().get("SETTINGS")\n'
+                    'previous_python = None\n'
+                    'if isinstance(previous_info, dict) and previous_info.get("source_commit") in {"c54a2fd3123a1ea8f98c2e56c2acfbe491c8672c", SOURCE_COMMIT}:\n'
+                    '    candidate_python = previous_info.get("python")\n'
+                    '    if isinstance(candidate_python, (str, Path)) and Path(candidate_python).is_file():\n'
+                    '        previous_python = str(candidate_python)\n'
                     'SETTINGS = bootstrap.setup(SOURCE_COMMIT, MANIFEST_SHA256, WORK / "cache", existing_python=previous_python, run_tests=True)')
             if 'def github_credentials():' in source:
                 old = '''    return {"token": private_value("E3_R3_GITHUB_TOKEN", "GitHub Contents read/write token: "),

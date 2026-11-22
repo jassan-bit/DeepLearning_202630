@@ -86,6 +86,43 @@ def command(settings,args,credentials=None,allow_blocked=False):
         assert not (namespace['PRIVATE']/'inputs'/panel/'rights.json').exists()
 
 
+def _first_cell_reuse_fixture(tmp_path,monkeypatch,previous_info):
+    """No interpreter is run; capture the argument passed to verified setup."""
+    bootstrap=f'''
+received=[]
+def setup(commit,manifest,cache,existing_python=None,run_tests=True):
+    received.append(existing_python)
+    return {{"python":"new isolated CPU fixture","source_root":{str(ROOT)!r},"source_commit":commit}}
+'''.encode()
+    book=nb.notebook('a'*40,'b'*64,hashlib.sha256(bootstrap).hexdigest())
+    original=Path.is_dir
+    monkeypatch.setattr(Path,'is_dir',lambda self:False if str(self)=='/content' else original(self))
+    monkeypatch.chdir(tmp_path)
+    namespace={'__name__':'__first_cell_reuse_software_fixture__','SETTINGS':previous_info}
+    with patch('urllib.request.urlopen',return_value=io.BytesIO(bootstrap)),redirect_stdout(io.StringIO()):
+        exec(compile(codes(book)[0],'first_cell_reuse_fixture','exec'),namespace)
+    return namespace['bootstrap'].received
+
+
+def test_unrelated_missing_or_nonmapping_settings_never_reuse_an_interpreter(tmp_path,monkeypatch):
+    foreign_python=tmp_path/'foreign-existing-python';foreign_python.write_text('SOFTWARE FIXTURE ONLY')
+    cases=[{'source_commit':'5'*40,'python':str(foreign_python)},
+           {'source_commit':'2'*40,'python':str(foreign_python)},
+           {'python':str(foreign_python)},None,'not a mapping',[],
+           {'source_commit':'c54a2fd3123a1ea8f98c2e56c2acfbe491c8672c','python':str(tmp_path/'missing')},
+           {'source_commit':'a'*40,'python':object()}]
+    for previous in cases:
+        with monkeypatch.context() as context:
+            assert _first_cell_reuse_fixture(tmp_path,context,previous)==[None]
+
+
+def test_only_known_engine_A_or_current_source_can_reuse_existing_python(tmp_path,monkeypatch):
+    cpu_python=tmp_path/'known-existing-python';cpu_python.write_text('SOFTWARE FIXTURE ONLY')
+    for commit in ('c54a2fd3123a1ea8f98c2e56c2acfbe491c8672c','a'*40):
+        with monkeypatch.context() as context:
+            assert _first_cell_reuse_fixture(tmp_path,context,{'source_commit':commit,'python':str(cpu_python)})==[str(cpu_python)]
+
+
 def test_real_helper_module_is_loaded_only_after_explicit_acquisition_flag():
     stage=next(s for s in codes(generated()) if s.startswith('PREPARE_CRYPTO_DEVELOPMENT ='))
     tree=ast.parse(stage)
