@@ -1,0 +1,208 @@
+{
+  "proof": {
+    "Holm180_role": "Additional adverse EPA screen can remove positive decisions; it cannot enlarge the positive decision event or establish missing marginal super-uniformity.",
+    "alternative_all_three_guard_checks": 240,
+    "alternative_bound": "q for an intersection-union requirement of all panels/all rivals",
+    "alternative_is_implemented": false,
+    "caveat": "Bounds require valid marginal family error assumptions for the actual DGP; finite pointwise simulation intervals do not establish that assumption for arbitrary markets or simultaneous confidence over scenarios.",
+    "current_rule_bound": "max(q_main, max(q_i+q_j for two fixed null additional panels)); <=2q for uniform q",
+    "current_rule_null_witnesses": [
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          true,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          0
+        ],
+        "population_truth": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          1,
+          2
+        ],
+        "population_truth": [
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          1,
+          2
+        ],
+        "population_truth": [
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          1,
+          3
+        ],
+        "population_truth": [
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "fixed_null_panel_witness": [
+          2,
+          3
+        ],
+        "population_truth": [
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    ],
+    "current_two_of_three_checks": 192,
+    "kind": "EXHAUSTIVE_DETERMINISTIC_BOOLEAN_PROOF",
+    "nominal_alpha_per_panel": 0.025,
+    "nominal_bound_if_valid_marginal_size": 0.05
+  },
+  "finite_validation": {
+    "calibration_upper_threshold": 0.05,
+    "composite_no_pooling": true,
+    "confidence_scope": "Pointwise component CP95 bounds, not simultaneous95% for all conditions, not anytime-valid, not an unselected fresh five-scenario study, not joint four-panel MC.",
+    "earlier_full_null_preserved_excluded": 512,
+    "joint_error_control_certified_by_these_diagnostics": false,
+    "new_calibration_replicates_this_audit": 0,
+    "note": "A 2q union diagnostic above .05 does not prove inflation of the actual joint rule; it means these marginal bounds alone do not certify the desired joint bound. Pointwise CP95 bounds are not pooled or presented as a simultaneous95% statement.",
+    "operational_nominal_alpha": 0.025,
+    "scenarios": [
+      {
+        "count": 50,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "complete_null_ar05",
+        "observed_FWER": 0.0244140625,
+        "pointwise_CP95_upper": 0.032061392695628826,
+        "trials": 2048,
+        "two_panel_union_upper_from_this_component": 0.06412278539125765
+      },
+      {
+        "count": 7,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "partial_null_ar05",
+        "observed_FWER": 0.013671875,
+        "pointwise_CP95_upper": 0.027965446339922782,
+        "trials": 512,
+        "two_panel_union_upper_from_this_component": 0.055930892679845565
+      },
+      {
+        "count": 6,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "complete_null_overlap5",
+        "observed_FWER": 0.01171875,
+        "pointwise_CP95_upper": 0.025331281179926293,
+        "trials": 512,
+        "two_panel_union_upper_from_this_component": 0.050662562359852586
+      },
+      {
+        "count": 15,
+        "establishes_component_bound_05": true,
+        "establishes_marginal_size_at_nominal_025": false,
+        "id": "practical_boundary_ar05",
+        "observed_FWER": 0.029296875,
+        "pointwise_CP95_upper": 0.04786087313588523,
+        "trials": 512,
+        "two_panel_union_upper_from_this_component": 0.09572174627177046
+      }
+    ],
+    "scope": "Independent focal precision replication using unchanged frozen V4 method; a provenance composite carries four previously observed V4 scenarios with established bounds. Post-V4 selection is explicit, original inconclusive null retained, no pooling.",
+    "status": "PASSED_PREDECLARED_VALIDATION",
+    "worst_pointwise_upper": 0.04786087313588523,
+    "worst_two_panel_union_diagnostic": 0.09572174627177046
+  }
+}

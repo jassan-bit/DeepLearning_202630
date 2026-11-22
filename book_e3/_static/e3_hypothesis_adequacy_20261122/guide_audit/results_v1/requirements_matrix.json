@@ -1,0 +1,630 @@
+{
+  "schema_version": 1,
+  "scope": "Executed guide/evidence concordance for the15percent component; no academic accreditation or new grade",
+  "started_utc": "2026-11-22T02:58:34.874266+00:00",
+  "finished_utc": "2026-11-22T02:58:35.058834+00:00",
+  "guide_sha256": "d6048aebd7b3db85a59231a5a89b01bc3f8ad8cb581a96b462e341d21ff1f364",
+  "reviewed_source_commit": "fdf697aa870571b4e333a32198aa97fec69c9bad",
+  "baseline_component_score": "2.8",
+  "component_weight_percent": 15,
+  "author_oral_defense_value": "4.5",
+  "oral_defense_observed": false,
+  "new_component_score": null,
+  "official_grade": null,
+  "R3_accredited": false,
+  "matrix_rows_overlap_not_weights": true,
+  "requirements": [
+    {
+      "id": "H01",
+      "requirement": "Estimando, unidad temporal, pareado y familia completa declarados",
+      "citation_ids": [
+        "rubric",
+        "unit"
+      ],
+      "evidence_ids": [
+        "protocol",
+        "methods",
+        "assessment"
+      ],
+      "status": "IMPLEMENTED_NOT_MARKET_EXECUTED",
+      "limitation": "La media de RMSE individuales no es la raíz del MSE agregado ni el RMSE del ensamble; fechas correlacionadas y semillas no crean R×T unidades independientes.",
+      "analysis_or_action_needed": "Conservar ambos estimandos y el pareado por fechas/semillas; adquirir/admitir cuatro paneles y producir planning de la misma familia congelada de 21 sistemas.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli --source-root \"$ENGINE_SOURCE\" check",
+      "command_stage": "source_verification_only",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H02",
+      "requirement": "Tres procedimientos distintos y pertinentes por contraste",
+      "citation_ids": [
+        "rubric",
+        "three",
+        "all_reject"
+      ],
+      "evidence_ids": [
+        "methods",
+        "conditional_validation",
+        "method_probe"
+      ],
+      "status": "CONDITIONALLY_VALIDATED_METHOD_ONLY",
+      "limitation": "DM-HLN/HAC, bootstrap estacionario-t y GW son distintos; variantes de bloques no cuentan como procedimientos nuevos. GW rechaza momentos de forma no direccional.",
+      "analysis_or_action_needed": "Aplicar las tres reglas predefinidas a la familia completa después de datos, potencia y reserva admitidos; no usar sólo la prueba favorable.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_saved_final_predictions_only",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H03",
+      "requirement": "Supuestos, dependencia temporal y alcance del validador",
+      "citation_ids": [
+        "rubric",
+        "assumptions"
+      ],
+      "evidence_ids": [
+        "conditional_validation",
+        "method_probe",
+        "statistics"
+      ],
+      "status": "CONDITIONAL_DGP_EVIDENCE_REUSED",
+      "limitation": "La validación es por panel y ajustes R10/T768/B8191/HAC48/bloque32/alpha0.025, con cuatro escenarios previos y un nulo nuevo; no prueba validez para cualquier mercado ni un Monte Carlo conjunto de cuatro paneles.",
+      "analysis_or_action_needed": "Auditar estacionariedad/dependencia, FCLT/momentos/instrumentos/no singularidad en desarrollo; si cambian ajustes o surge una brecha concreta fijar antes nueva validación. No repetir MC sólo para sumar evidencia.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli --source-root \"$ENGINE_SOURCE\" check",
+      "command_stage": "reuse_executed_method_evidence",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H04",
+      "requirement": "P crudos y ajustados, Holm y familias declaradas",
+      "citation_ids": [
+        "rubric",
+        "raw_adjusted",
+        "holm"
+      ],
+      "evidence_ids": [
+        "protocol",
+        "methods",
+        "new_diagnostics"
+      ],
+      "status": "PARTIAL_REAL_RETROSPECTIVE_EXECUTION",
+      "limitation": "Holm128 nuevo es una familia exploratoria de diagnósticos; no reemplaza principal120 ni adicionalEPA180. Holm no corrige p marginales inválidos. Alphas conservadores actuales no se relajan por resultados.",
+      "analysis_or_action_needed": "Guardar todas las posiciones, estados, p crudos/ajustados y conteos; separar principal, adicionales, ablaciones y sensibilidades, con sus reglas fijadas.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_sealed_family_analysis",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H05",
+      "requirement": "Piloto de al menos cinco semillas para estimar dispersión pareada de cada rival",
+      "citation_ids": [
+        "pilot"
+      ],
+      "evidence_ids": [
+        "power_design",
+        "input_only_previous",
+        "new_retrospective"
+      ],
+      "status": "PLANNING_INPUTS_INCOMPLETE",
+      "limitation": "V5 ofrece cinco semillas y55fechas para seis recetas neuronales/dos controles; no cubre los veinte rivales ni los cuatro paneles del nuevo diseño. No sirve como sizing suficiente.",
+      "analysis_or_action_needed": "Generar y respaldar las predicciones de planificación de todos los21 sistemas en cuatro paneles admitidos, con≥5 semillas neuronales y≥80fechas útiles por panel.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli predict-planning --case \"$PLANNING_CASE\" --source-commit \"$ENGINE_COMMIT\" --panels \"$DEVELOPMENT_MAP\" --repository \"$REPOSITORY\" --branch \"$PLANNING_BRANCH\" --prefix \"$PLANNING_PREFIX\"",
+      "command_stage": "future_after_explicitly_activated_planning_training",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H06",
+      "requirement": "Dimensionamiento suficiente: potencia≥0.90 por contraste, conjunta y MDE; mínimo diez semillas finales",
+      "citation_ids": [
+        "power",
+        "joint",
+        "seeds",
+        "levels"
+      ],
+      "evidence_ids": [
+        "power_design",
+        "protocol"
+      ],
+      "status": "NOT_DIMENSIONED_WITH_REAL_INPUTS",
+      "limitation": "final_R/T/B siguen nulos. La potencia512/512 de una alternativa sintética fuerte no es potencia de mercado. La potencia conjunta debe reportarse; la guía no le impone un mínimo universal0.90.",
+      "analysis_or_action_needed": "Estimar el diseño sobre predicciones reales completas de planificación, contabilizando error Monte Carlo, semilla/tiempo y la regla final efectiva; aumentar semillas o informar MDE si no alcanza.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli dimension --design configs/power_design.json --predictions \"$PLANNING_PREDICTIONS\" --receipts \"$PLANNING_RECEIPT\" --output \"$POWER_RECEIPT\"",
+      "command_stage": "future_real_planning_inputs_required",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H07",
+      "requirement": "Tamaño del efecto, intervalo y relevancia práctica frente a delta",
+      "citation_ids": [
+        "effect"
+      ],
+      "evidence_ids": [
+        "adequacy_config",
+        "input_only_previous",
+        "new_temporal_intervals"
+      ],
+      "status": "REAL_RETROSPECTIVE_PARTIAL",
+      "limitation": "Las ganancias puntuales del piloto son desarrollo. Los IC temporales nuevos vs global contienen cero en ambos bloques; no prueban superar el margen prospectivo. Efectos sobre cinco semillas/calendario fijo no cubren variabilidad temporal futura.",
+      "analysis_or_action_needed": "Conservar efectos descriptivos actuales; en confirmación reportar diferencia, IC y efecto pertinente para cada rival y panel con el margen original y el prospectivo distinguidos.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_confirmatory_effect_analysis",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H08",
+      "requirement": "Intervalos de confianza del95% con remuestreo apropiado a datos temporales",
+      "citation_ids": [
+        "rubric",
+        "effect",
+        "unit"
+      ],
+      "evidence_ids": [
+        "new_temporal_intervals",
+        "new_analysis_plan",
+        "methods"
+      ],
+      "status": "REAL_RETROSPECTIVE_PARTIAL",
+      "limitation": "CBB7/14 de3999réplicas cada uno es puntual, exploratorio y condicionado a cinco trayectorias guardadas. No tiene cobertura finita ni simultánea validada; los bloques son sensibilidad del mismo método.",
+      "analysis_or_action_needed": "Reutilizar esos IC con sus límites. La confirmación necesita la regla temporal admitida, cobertura/alcance declarados y niveles95/99 sin renombrarlos.",
+      "resolution_command": "\"$ENGINE_PYTHON\" experiments/e3_hypothesis_adequacy_20261122/retrospective/audit_saved_adequacy.py --verify-only",
+      "command_stage": "existing_saved_outputs_verification_no_resampling",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H09",
+      "requirement": "Tablas A/B: supera baseline trivial, brecha ajuste-validación menor que margen y consistencia con prueba",
+      "citation_ids": [
+        "adequacy",
+        "gap"
+      ],
+      "evidence_ids": [
+        "new_retrospective",
+        "adequacy_config",
+        "historical_aditive_adequacy"
+      ],
+      "status": "NOT_RECONSTRUCTIBLE_FROM_CURRENT_PILOT",
+      "limitation": "No hay predicciones punto a punto de fit/selection del checkpoint seleccionado ni riesgo final de ajuste. Las curvas mean-batch no son ese riesgo. La auditoría aditiva no certifica input-only.",
+      "analysis_or_action_needed": "Guardar fit/selection/calibration y test desde los mismos checkpoints seleccionados; fijar márgenes antes de la prueba y evaluar todos los criterios. No fabricar una brecha retrospectiva.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_same_selected_state_split_predictions_required",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H10",
+      "requirement": "Diagnósticos temporales de residuos y calibración lineal pertinentes",
+      "citation_ids": [
+        "rubric",
+        "residuals"
+      ],
+      "evidence_ids": [
+        "new_diagnostics",
+        "new_retrospective",
+        "historical_v4"
+      ],
+      "status": "REAL_RETROSPECTIVE_EXECUTED_NOT_ADEQUACY_PASS",
+      "limitation": "Holm128 tiene27rechazosMZ, incluidos2/5input-only; LB/ARCH sin rechazos no certifican estacionariedad, homocedasticidad ni adecuación. Con55fechas las referencias clásicas/HAC son asintóticas, no calibración finita.",
+      "analysis_or_action_needed": "Reportar todos los diagnósticos, tamaños, supuestos, sesgos e IC actuales; aplicar los criterios positivos prospectivos de tolerancia/residuos sólo con el diseño admitido. BDS/JB se justifican por pertinencia, no por acumular pruebas.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "new_retrospective_available_future_confirmatory_assessment",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H11",
+      "requirement": "Calibración apropiada a regresión e intervalos con cobertura por subgrupos",
+      "citation_ids": [
+        "coverage",
+        "adequacy"
+      ],
+      "evidence_ids": [
+        "new_retrospective",
+        "adequacy_config",
+        "assessment"
+      ],
+      "status": "NO_SAVED_CANDIDATE_INTERVALS",
+      "limitation": "La cabeza MSE y los átomos puntuales no definen densidad calibrada. No hay cuantiles/ley guardada para reconstruir cobertura o PIT; ECE/Brier de clasificación no se trasladan mecánicamente a sigma7.",
+      "analysis_or_action_needed": "Ajustar radios/intervalos sólo en calibración antes de test; guardar cuantiles, cobertura nominal/empírica, ancho y subgrupos prefijados. Declarar dependencia/no garantía de intercambiabilidad. No recalibrar sobre el piloto expuesto para certificarlo.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_calibration_then_sealed_coverage_required",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H12",
+      "requirement": "Tabla MCS o diagrama pertinente que incluya el modelo propio",
+      "citation_ids": [
+        "mcs",
+        "mcs_forecast"
+      ],
+      "evidence_ids": [
+        "historical_aditive_mcs",
+        "assessment",
+        "methods"
+      ],
+      "status": "CANDIDATE_MCS_IMPLEMENTATION_GAP",
+      "limitation": "El MCS histórico contiene la aditiva y conserva su alcance; no se transfiere a input-only. La batería moderna de tres pruebas con Holm no produce por sí sola la tabla MCS adicional exigida. La antigua extensión fallida no se revive.",
+      "analysis_or_action_needed": "Implementar y verificar un MCS temporal de la familia/estimando pertinentes, o justificar el producto alternativo admitido; ejecutarlo con predicciones de la candidata y familia completa. Informar membresía, nivel y supuestos sin convertirlo en p direccionales por rival.",
+      "resolution_command": null,
+      "command_stage": "implementation_and_later_real_saved_predictions_required",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H13",
+      "requirement": "Prueba entre conjuntos, resultados por conjunto y consistencia adicional",
+      "citation_ids": [
+        "between",
+        "two_axes",
+        "same_task"
+      ],
+      "evidence_ids": [
+        "protocol",
+        "assessment"
+      ],
+      "status": "IMPLEMENTED_NOT_REAL_FOUR_PANEL_EXECUTED",
+      "limitation": "Friedman/Iman-Davenport y posthoc están implementados, pero las cuatro propuestas carecen de admisiones reales. Paneles cripto/perpetuos pueden ser económicamente dependientes; enumeración de signos exige independencia/simetría no certificadas.",
+      "analysis_or_action_needed": "Justificar dos ejes por adicional antes del desempeño; admitir datos, ejecutar familia completa y reportar diferencias/IC/efectos separados. Justificar validez entre conjuntos; no promediar métricas de escalas distintas ni afirmar independencia por ticker.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_admitted_four_panel_evaluation",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H14",
+      "requirement": "Sensibilidad de la conclusión a prueba, métrica secundaria y subconjunto de semillas",
+      "citation_ids": [
+        "sensitivity",
+        "all_reject"
+      ],
+      "evidence_ids": [
+        "input_only_previous",
+        "new_temporal_intervals",
+        "adequacy_config"
+      ],
+      "status": "DESCRIPTIVE_SENSITIVITY_REUSED_AND_EXTENDED",
+      "limitation": "Leave-out/mes/semillas previos y bloques7/14 nuevos son desarrollo; MAE y RMSE no siempre coinciden. No existen aún una decisión confirmatoria propia ni su estabilidad frente a toda la familia.",
+      "analysis_or_action_needed": "Reutilizar sensibilidades sin escoger regiones favorables. Tras congelar, repetir la conclusión completa con las alternativas prefijadas; justificar Nadeau-Bengio no aplicable a una única reserva cronológica sin particiones repetidas.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_frozen_sensitivity_analysis",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H15",
+      "requirement": "Prueba única, exposición y procedencia de datos/checkpoints sin fuga",
+      "citation_ids": [
+        "sealed",
+        "unit"
+      ],
+      "evidence_ids": [
+        "protocol",
+        "assessment",
+        "new_analysis_plan"
+      ],
+      "status": "SOFTWARE_GUARDS_EXECUTED_AUTHENTIC_FINAL_INPUTS_ABSENT",
+      "limitation": "Las pruebas de software acreditan guardas y recuperación, no una reserva real. El calendarioV5 se examinó y no puede reclasificarse como independiente. Elegir otros archivos/tickers no recupera cegamiento.",
+      "analysis_or_action_needed": "Documentar exposición real, datos/licencias/hash y checkpoints seleccionados; cerrar protocolo y reserva válida antes de activación final. Mantener la consulta única y conservar fallos/adversos.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli --source-root \"$ENGINE_SOURCE\" check",
+      "command_stage": "source_checks_only_then_authentic_final_evidence",
+      "candidate_requirement_closed": false
+    },
+    {
+      "id": "H16",
+      "requirement": "Reporte completo por contraste y conclusión coherente con todas las pruebas",
+      "citation_ids": [
+        "rubric",
+        "raw_adjusted",
+        "all_reject"
+      ],
+      "evidence_ids": [
+        "new_diagnostics",
+        "new_temporal_intervals",
+        "assessment"
+      ],
+      "status": "REAL_EXPLORATORY_TABLES_AVAILABLE_CONFIRMATION_ABSENT",
+      "limitation": "Las tablas nuevas separan p diagnósticos de IC de diferencias; no inventan p de superioridad ni familias completas actuales. El resultado más favorable no determina la decisión R3.",
+      "analysis_or_action_needed": "Conservar estadístico/nulo/supuestos/pcrudo/pajustado/IC/efecto/tamaño y estados no disponibles por contraste; mantener la decisión sobre la peor prueba exigida y todos los rivales.",
+      "resolution_command": "cd \"$ENGINE_SOURCE\" && \"$ENGINE_PYTHON\" -m engine.cli assess --case \"$FINAL_CASE\" --protocol \"$FINAL_PROTOCOL\"",
+      "command_stage": "future_sealed_report_plus_existing_exploratory_tables",
+      "candidate_requirement_closed": false
+    }
+  ],
+  "citations": [
+    {
+      "id": "rubric",
+      "page": 60,
+      "section": "Cuadro 9",
+      "quote": "Tres pruebas por contraste, supuestos verificados",
+      "verified": true
+    },
+    {
+      "id": "unit",
+      "page": 25,
+      "section": "8.6",
+      "quote": "la unidad de remuestreo debe ser la unidad de independencia",
+      "verified": true
+    },
+    {
+      "id": "assumptions",
+      "page": 25,
+      "section": "8.6",
+      "quote": "Verificar los supuestos de cada prueba",
+      "verified": true
+    },
+    {
+      "id": "three",
+      "page": 26,
+      "section": "Cuadro 4",
+      "quote": "Se aplican al menos tres pruebas distintas por contraste",
+      "verified": true
+    },
+    {
+      "id": "raw_adjusted",
+      "page": 25,
+      "section": "8.6",
+      "quote": "reportar siempre el p-valor crudo y el ajustado",
+      "verified": true
+    },
+    {
+      "id": "holm",
+      "page": 27,
+      "section": "8.7.1",
+      "quote": "controlar el FWER con Holm",
+      "verified": true
+    },
+    {
+      "id": "all_reject",
+      "page": 27,
+      "section": "8.7.1",
+      "quote": "todas deben rechazar",
+      "verified": true
+    },
+    {
+      "id": "pilot",
+      "page": 27,
+      "section": "8.7.2",
+      "quote": "Estudio piloto con al menos 5 semillas",
+      "verified": true
+    },
+    {
+      "id": "power",
+      "page": 24,
+      "section": "8.5",
+      "quote": "se exige una potencia de al menos 0.90 por contraste",
+      "verified": true
+    },
+    {
+      "id": "joint",
+      "page": 24,
+      "section": "8.5",
+      "quote": "El equipo debe reportar la potencia conjunta",
+      "verified": true
+    },
+    {
+      "id": "seeds",
+      "page": 45,
+      "section": "14.5.3",
+      "quote": "Mínimo 10 semillas para todos los modelos de la familia",
+      "verified": true
+    },
+    {
+      "id": "effect",
+      "page": 24,
+      "section": "8.4.3",
+      "quote": "el límite inferior del intervalo de confianza del 95 % de la diferencia es mayor que cero",
+      "verified": true
+    },
+    {
+      "id": "adequacy",
+      "page": 24,
+      "section": "8.4.5",
+      "quote": "supera al baseline trivial",
+      "verified": true
+    },
+    {
+      "id": "gap",
+      "page": 24,
+      "section": "8.4.5",
+      "quote": "brecha train-validación menor que el margen",
+      "verified": true
+    },
+    {
+      "id": "residuals",
+      "page": 26,
+      "section": "Cuadro 4/F2",
+      "quote": "Ljung-Box, ARCH-LM, BDS y",
+      "verified": true
+    },
+    {
+      "id": "mcs",
+      "page": 45,
+      "section": "14.5.3",
+      "quote": "Diagrama de diferencia crítica o MCS que incluya el modelo propio",
+      "verified": true
+    },
+    {
+      "id": "mcs_forecast",
+      "page": 29,
+      "section": "8.9",
+      "quote": "la tabla del MCS (pronóstico y regresión)",
+      "verified": true
+    },
+    {
+      "id": "between",
+      "page": 45,
+      "section": "14.5.3",
+      "quote": "Prueba entre conjuntos de datos",
+      "verified": true
+    },
+    {
+      "id": "sensitivity",
+      "page": 45,
+      "section": "14.5.3",
+      "quote": "Análisis de sensibilidad de la conclusión a la prueba",
+      "verified": true
+    },
+    {
+      "id": "coverage",
+      "page": 46,
+      "section": "14.5.5",
+      "quote": "incluida la cobertura por subgrupo",
+      "verified": true
+    },
+    {
+      "id": "same_task",
+      "page": 23,
+      "section": "8.3",
+      "quote": "mantener la misma tarea y la misma métrica primaria",
+      "verified": true
+    },
+    {
+      "id": "two_axes",
+      "page": 23,
+      "section": "8.3",
+      "quote": "cada conjunto debe diferir del principal en al menos dos ejes",
+      "verified": true
+    },
+    {
+      "id": "sealed",
+      "page": 25,
+      "section": "8.6",
+      "quote": "la prueba se evalúa una sola vez, al final",
+      "verified": true
+    },
+    {
+      "id": "levels",
+      "page": 43,
+      "section": "14.4",
+      "quote": "ausencia de análisis de potencia",
+      "verified": true
+    },
+    {
+      "id": "no_power",
+      "page": 42,
+      "section": "14.1",
+      "quote": "un resultado no concluyente sin análisis de potencia",
+      "verified": true
+    }
+  ],
+  "evidence": {
+    "baseline": {
+      "namespace": "repo",
+      "path": "book_e3/_static/e3_btc_scope_assessment_20261121/assessment.json",
+      "bytes": 6711,
+      "sha256": "2092b782af43984b674f75fc4a10a94cd3ae4f956a6c518ee41e66d1b535da59"
+    },
+    "protocol": {
+      "namespace": "engine",
+      "path": "configs/protocol.json",
+      "bytes": 7238,
+      "sha256": "ce567ec69c2879335432ee2123d4b0dbee2a5612f19b1008c97072e662cb1304"
+    },
+    "power_design": {
+      "namespace": "engine",
+      "path": "configs/power_design.json",
+      "bytes": 5517,
+      "sha256": "9a683a53d942f1153fe19ae3fff34a02cb8339edb9ca9d53d3c5fd84e269fee9"
+    },
+    "adequacy_config": {
+      "namespace": "engine",
+      "path": "configs/adequacy.json",
+      "bytes": 3672,
+      "sha256": "10c32ff5da3a273e1071baa5e2d86ed3883c6c0bc2a8860f7b12cb6fb607607e"
+    },
+    "methods": {
+      "namespace": "engine",
+      "path": "docs/TEMPORAL_BATTERY.md",
+      "bytes": 15858,
+      "sha256": "a23c694e352e8817258ff06178ea68bfcfd28577db5e7399a8fa3222e16f7e45"
+    },
+    "statistics": {
+      "namespace": "engine",
+      "path": "engine/statistics.py",
+      "bytes": 25999,
+      "sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95"
+    },
+    "assessment": {
+      "namespace": "engine",
+      "path": "engine/assessment.py",
+      "bytes": 59789,
+      "sha256": "0e56db2e3e561a18339bd28ff195e5cf4d7e27e8ddd05150b4861dfa150dfb24"
+    },
+    "conditional_validation": {
+      "namespace": "engine",
+      "path": "qa/statistical_validation/v4_precision/report.json",
+      "bytes": 35819,
+      "sha256": "869263c9d99c2a127f30f8b4ec8171d74298d688066f53a67f01d6f4c87e3e01"
+    },
+    "method_probe": {
+      "namespace": "engine",
+      "path": "qa/actual_method_admission_probe.json",
+      "bytes": 5482,
+      "sha256": "f0466afc6fb947010ea67daebbbd0420a9227b3faa975a42c5a0f6a95864914e"
+    },
+    "input_only_previous": {
+      "namespace": "repo",
+      "path": "experiments/e3_input_only_candidate_20261121/analysis/AUDIT_SUMMARY.json",
+      "bytes": 12170,
+      "sha256": "96a552acbee42bf19a5abc6b985e87065b37220c8c62135f620cfe921a4840a0"
+    },
+    "historical_v4": {
+      "namespace": "repo",
+      "path": "experiments/e3_statistics_remediation_20261121/retrospective/results/analysis_summary.json",
+      "bytes": 1755,
+      "sha256": "5d024ee93fb56513b0c032bcc22cde952cce7a41eba56525ea30ddae9e5f8f74"
+    },
+    "historical_aditive_adequacy": {
+      "namespace": "repo",
+      "path": "experiments/e3_evidence_close_20261120/adequacy/results/adequacy_receipt.json",
+      "bytes": 16761,
+      "sha256": "92bf593a7970237cd4fdd3bd85c4cf2a7be1a621275f572d63830aac00fa3b75"
+    },
+    "historical_aditive_mcs": {
+      "namespace": "repo",
+      "path": "book_e3/_static/e3_estadistica_posterior_20261117/mcs.json",
+      "bytes": 13252,
+      "sha256": "2cdb54532440f1e9940d6f472662e34208b7e232ff660b8665e906411eeda544"
+    },
+    "new_retrospective": {
+      "namespace": "delivery",
+      "path": "retrospective/results/summary.json",
+      "bytes": 16552,
+      "sha256": "e416b90da15a87bb852599930f34caa48a1bf48f0821bc3162632789950506f7"
+    },
+    "new_diagnostics": {
+      "namespace": "delivery",
+      "path": "retrospective/results/diagnostics_Holm128.csv",
+      "bytes": 23525,
+      "sha256": "c722d8941463987c049f2eafe2937f1442d6bbd54f87fd7ee79088c26c0da0e0"
+    },
+    "new_temporal_intervals": {
+      "namespace": "delivery",
+      "path": "retrospective/results/temporal_RMSE_MAE_intervals.csv",
+      "bytes": 5882,
+      "sha256": "04a0a1990bdb731383238d3bb6458a3470c95c62150520d4ebf847b84d915c04"
+    },
+    "new_analysis_code": {
+      "namespace": "delivery",
+      "path": "retrospective/audit_saved_adequacy.py",
+      "bytes": 16597,
+      "sha256": "cc4af6b4428ad99616607b730683466568d9fb7b85d2875cdf6b7f32e08fbf3e"
+    },
+    "new_analysis_plan": {
+      "namespace": "delivery",
+      "path": "retrospective/analysis_plan.json",
+      "bytes": 2691,
+      "sha256": "f05f6d41dd12192d4cfcd8f8675ab1637fce09684607d65e754355a26e5a1bf3"
+    }
+  },
+  "academic_guardrails": [
+    "A posterior analysis is not a preregistration or independent confirmation",
+    "No seed/date pseudoreplication; no absence-of-rejection adequacy certificate",
+    "The guide requires joint power reporting, not universal joint power>=0.90",
+    "Actions/Nasdaq/1.5x size ratio are not guide mandates",
+    "Adverse results and authorized declared AI review are not grading penalties",
+    "No mandatory independent full retraining is invented for this15percent component"
+  ],
+  "executed_operations": {
+    "guide_citations_checked": 25,
+    "artifact_hashes_checked": 18,
+    "new_market_downloads": 0,
+    "new_model_fits": 0,
+    "new_model_forwards": 0,
+    "new_bootstrap_replicates": 0,
+    "new_final_test_accesses": 0
+  },
+  "AI_assistance_declared": true
+}

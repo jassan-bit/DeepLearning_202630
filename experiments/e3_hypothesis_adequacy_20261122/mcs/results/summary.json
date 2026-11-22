@@ -1,0 +1,92 @@
+{
+  "version": "input-only-fixed-cohort-secondary-MCS-1",
+  "scope": "Retrospective exploratory secondary diagnostic, after development and candidate nomination; no preregistration or confirmation claim",
+  "candidate": "input_only_mse",
+  "loss": "At each date, mean squared error over the fixed fitted seeds of each recipe; deterministic controls once",
+  "primary_endpoint_warning": "This secondary loss is not the primary mean of individual-seed RMSEs. No equivalence or practical RMSE-margin inference is claimed.",
+  "analysis_plan_sha256": "453ac39d41a2c721cefbd917f3a5f8e01d52c89f9530d24f239127945fc0ce0e",
+  "source_zip_sha256": "beabedeb63ff10324b310ba8b86105505c3be783216e38770a092a7be438a17c",
+  "date_start": "2024-09-07",
+  "date_end": "2024-10-31",
+  "calendar_dates": 55,
+  "recipes": 8,
+  "neural_recipe_count": 6,
+  "neural_seed_ids": [
+    20261127,
+    20261128,
+    20261129,
+    20261130,
+    20261131
+  ],
+  "fixed_fitted_trajectories": 32,
+  "forecast_points": 1760,
+  "MCS_confidence": 0.9,
+  "MCS_alpha": 0.1,
+  "analyses": [
+    {
+      "block_length": 7,
+      "status": "completed",
+      "included": [
+        "additive_mse",
+        "floor_plus_mean_excess",
+        "global_crps",
+        "global_mse",
+        "input_only_mse",
+        "output_only_mse",
+        "seoi_mse"
+      ],
+      "excluded_pvalues": {
+        "floor_only": 0.0005
+      },
+      "candidate_included": true,
+      "steps": 2,
+      "Tmax_initial": 5.231565966258906,
+      "initial_EPA_p": 0.0005
+    },
+    {
+      "block_length": 14,
+      "status": "completed",
+      "included": [
+        "additive_mse",
+        "floor_plus_mean_excess",
+        "global_crps",
+        "global_mse",
+        "input_only_mse",
+        "output_only_mse",
+        "seoi_mse"
+      ],
+      "excluded_pvalues": {
+        "floor_only": 0.0005
+      },
+      "candidate_included": true,
+      "steps": 2,
+      "Tmax_initial": 6.603168215497997,
+      "initial_EPA_p": 0.0005
+    }
+  ],
+  "calendar_bootstrap_index_draws": 3998,
+  "draws_each": 1999,
+  "minimum_plus_one_MC_p": 0.0005,
+  "no_Holm_pairwise_decision": true,
+  "no_practical_RMSE_margin_test": true,
+  "not_third_primary_test": true,
+  "coverage_validation_performed": false,
+  "temporal_stability_or_stationarity_verified": false,
+  "seed_population_inference": false,
+  "candidate_selection_uncertainty_included": false,
+  "new_forecast_fits": 0,
+  "new_neural_forwards": 0,
+  "new_market_downloads": 0,
+  "new_predictions": 0,
+  "test_opened": false,
+  "R3_accredited": false,
+  "preregistration_claimed": false,
+  "AI_assistance_declared": true,
+  "limitations": [
+    "Only 55 exposed daily dates; block14 has fewer than four nominal block lengths in the observed calendar",
+    "Weak dependence and temporal stability needed by the block bootstrap remain unverified; neither calibration nor coverage is certified by these data",
+    "Not a third distinct procedure for the primary pairwise family; outside Holm128 residual diagnostics and outside confirmation",
+    "Five fitted seeds remain fixed; neither seeds nor model recipes are new independent datasets",
+    "No training/selection prediction CSVs or interval distributions are reconstructed"
+  ]
+}

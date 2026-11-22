@@ -1,0 +1,87 @@
+{
+  "acceptance_fixed": {
+    "diagnostic_ci95": "Retain CI95 coverage and exact CP95; separately flag definite undercoverage if CP95 upper <0.95. Operational99% interval is a new, named, stricter interval, never evidence that nominal95% has calibrated.",
+    "failure_rule": "FWER CP95 lower>0.05 or operational CI99 coverage CP95 upper<0.95 is failure; any confidence-bound criterion not established is inconclusive. Retain all results. No tolerance widening.",
+    "fwer_demonstrated_in_a_scenario_only_if": "CP95 upper <=0.05, unchanged from V1/V2",
+    "operational_ci99_coverage_demonstrated_in_a_scenario_only_if": "CP95 lower >=0.95 for CI99 MSE difference AND CI99 relative aggregate RMSE gain",
+    "overall_claim": "At most conditional scope admission for these five DGPs/T/K/L and CI99 procedure if ALL prescribed bounds pass; never general finite market validation, actual-data sizing or R3 accreditation.",
+    "power_target_demonstrated_only_if": "CP95 lower >=0.90 for EVERY rival complete gate under the prespecified strong alternative; jointpower reported; no power claim for 3% alternative"
+  },
+  "alpha": 0.05,
+  "benchmark_before_plan": "Deterministic sinusoidal fixture only, no new DGP outcomes: native B8191/T768/m20/lag48 bootstrap0.577 CPU seconds, numpy2.958 seconds before index-slab improvement. Predict roughly600CPU seconds for960 replicates plus fixed reference and reporting;900CPU ceiling.",
+  "block_length": 32,
+  "bootstrap_backend": "native",
+  "bootstrap_reps": 8191,
+  "budget_rule": "Stop between complete replicates if elapsed CPU reaches 300 seconds; retain all results and label unfinished scenarios incomplete; never reduce uncertainty or silently drop failed replicates.",
+  "coverage": "Report real CI95 and CI99 separately. Operational interval is explicitly CI99, studentized stationary bootstrap (log-MSE-ratio delta studentization for gain). Validate its actual coverage against >=0.95 with exact CP95 lower bound; never relabel it CI95 or hide diagnostic CI95 failures. Prespecified rival0, each scenario.",
+  "cpu_budget_seconds": 900,
+  "data_generator": "Stationary bounded AR innovations after burn-in 300; common and idiosyncratic cross-rival differences; moving average for overlap scenario; exogenous lagged AR instrument independent of loss differences; losses positive, square roots used as predictions against y=0; fixed seed offsets cancel in differences. Strong alternative is deliberately large and does not establish power at 3% gain.",
+  "degeneracies": [
+    "identical predictions",
+    "constant unequal losses",
+    "constant instruments rejected",
+    "missing instrument prevents third test",
+    "inferiority retains small raw p-values"
+  ],
+  "family": "120 absolute-tail two-sided p-values (count+1)/(reps+1): 20 rivals x 3 methods x EPA/practical; Holm across all120. Every method exposes MC count/reps/rule. Shared fixed-b reference draw seed independent of temporal synthetic datasets.",
+  "frozen_before_execution": true,
+  "fwer_event": "Any adjusted p<0.05 among the exact null contrasts and the three methods, either direction. Practical tests at a nonzero mean are not counted as equality-null violations. Also report false positive directional superiority.",
+  "gate": "All6 adjustedp<.05, positive EPA and practical means, historical meanRMSE favorable, effect>=0.2, CI95MSElower>0 AND CI99MSElower>0 AND CI99gainlower>margin; all20 rivals forjoint gate.",
+  "hac_lags": 48,
+  "implementation_identity": "Source hashes for statistics.py, native C++ kernel, runner, tests and this plan must be frozen before simulation. Native is exact arithmetic acceleration of numpy algorithm; no RNG/decisions in native kernel.",
+  "margin": 0.02,
+  "n_dates": 768,
+  "n_fixed_seeds": 10,
+  "n_rivals": 20,
+  "power": "Per-rival complete statistical gate and joint all-20 gate; report worst per-rival power with CP95 interval; target 0.90; only large simulated alternative covered",
+  "protocol_version": "temporal-fixed-seeds-mse-v3",
+  "purpose": "Substantive V3 repair of failed V1/V2: fixed-b Gaussian scalar/vector reference instead of t/chi-square; stationary bootstrap-t with replicate HAC; operational CI99 explicitly stronger than retained diagnostic CI95. No market claims.",
+  "reference_reps": 49999,
+  "reference_seed": 2026112103,
+  "replicates_per_stochastic_scenario": 192,
+  "revision_reason": "Finite-HAC sampling variability was omitted by t/chi-square references, and unstudentized centered bootstrap/basic CIs did not cover. Kiefer-Vogelsang2005 Theorem3 motivates scalar/vector fixed-b calibration under FCLT. This changes procedure, not acceptance thresholds.",
+  "scenarios": [
+    {
+      "boundary_null": "epa",
+      "id": "complete_null_ar05",
+      "null_rivals": 20,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": "epa",
+      "id": "partial_null_ar05",
+      "null_rivals": 10,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.75
+    },
+    {
+      "boundary_null": "epa",
+      "id": "complete_null_overlap5",
+      "null_rivals": 20,
+      "overlap": 5,
+      "phi": 0.4,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": "practical",
+      "id": "practical_boundary_ar05",
+      "null_rivals": 20,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": null,
+      "id": "strong_alternative_ar05",
+      "null_rivals": 0,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.75
+    }
+  ],
+  "seed": 2026112103,
+  "version": "synthetic-temporal-validation-v3"
+}

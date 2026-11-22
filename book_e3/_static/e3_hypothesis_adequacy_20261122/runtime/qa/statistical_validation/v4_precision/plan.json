@@ -1,0 +1,115 @@
+{
+  "acceptance_fixed": {
+    "diagnostic_ci95": "Retain CI95 coverage and exact CP95; separately flag definite undercoverage if CP95 upper <0.95. Operational99% interval is a new, named, stricter interval, never evidence that nominal95% has calibrated.",
+    "failure_rule": "FWER CP95 lower>0.05 or operational CI99 coverage CP95 upper<0.95 is failure; any confidence-bound criterion not established is inconclusive. Retain all results. No tolerance widening.",
+    "fwer_demonstrated_in_a_scenario_only_if": "CP95 upper <=0.05, unchanged from V1/V2",
+    "operational_ci99_coverage_demonstrated_in_a_scenario_only_if": "CP95 lower >=0.95 for CI99 MSE difference AND CI99 relative aggregate RMSE gain",
+    "overall_claim": "Conditional one-panel-family composite evidence at exact unchanged V4 settings if mapped sources establish all original pointwise CP95 criteria. Four scenarios already observed in V4; only full-null is new. No anytime/global95 guarantee, pooling, joint four-panel MC, or market/R3 accreditation.",
+    "power_target_demonstrated_only_if": "CP95 lower >=0.90 for EVERY rival complete gate under the prespecified strong alternative; jointpower reported; no power claim for 3% alternative"
+  },
+  "alpha": 0.025,
+  "benchmark_before_plan": "V4 after two-core affinity measured roughly.73-.76CPU seconds/analyze; predict1495-1556CPU for2048 new analyses plus fixed references/reporting under2000CPU. Estimate, not measured new consumption.",
+  "block_length": 32,
+  "bootstrap_backend": "native",
+  "bootstrap_reps": 8191,
+  "budget_rule": "Main/four workers confined to first two permitted CPU cores from start. One process CPU clock includes references and all threads. Stop new starts at1968CPU, reserve32CPU inflight; retain all completed rows; no extension if incomplete.",
+  "coverage": "Report real CI95 and CI99 separately. Operational interval is explicitly CI99, studentized stationary bootstrap (log-MSE-ratio delta studentization for gain). Validate its actual coverage against >=0.95 with exact CP95 lower bound; never relabel it CI95 or hide diagnostic CI95 failures. Prespecified rival0, each scenario.",
+  "cpu_affinity_cores": 2,
+  "cpu_budget_seconds": 2000,
+  "data_generator": "Stationary bounded AR innovations after burn-in 300; common and idiosyncratic cross-rival differences; moving average for overlap scenario; exogenous lagged AR instrument independent of loss differences; losses positive, square roots used as predictions against y=0; fixed seed offsets cancel in differences. Strong alternative is deliberately large and does not establish power at 3% gain.",
+  "degeneracies": [
+    "identical predictions",
+    "constant unequal losses",
+    "constant instruments rejected",
+    "missing instrument prevents third test",
+    "inferiority retains small raw p-values"
+  ],
+  "family": "120 absolute-tail two-sided p-values (count+1)/(reps+1): 20 rivals x 3 methods x EPA/practical; Holm across all120. Every method exposes MC count/reps/rule. Shared fixed-b reference draw seed independent of temporal synthetic datasets.",
+  "final_panels_application": 4,
+  "focal_scenario": "complete_null_ar05",
+  "four_panel_application_note": "Monte Carlo studies one complete temporal120 family, not four joint panels. Application to four admitted real panels is conditional on each panel meeting the stationary/FCLT/predictable-instrument assumptions. Global Holm180 over additional-panel EPA p-values is a mathematical strong-FWER adjustment when those marginal p-values are super-uniform; it requires no panel independence, but these five finite simulations do not establish super-uniformity for all markets or prove joint four-panel validity. Full80contrast power and joint conditional empirical-DGP power are separate genuine-data computations. No copies of one-panel ledger count as four-panel simulations.",
+  "frozen_before_execution": true,
+  "fwer_event": "Any Holm-adjusted p<.025 among exact null contrasts and all three methods, either direction. FWER target remains<=.05 with exactCP95upper; also report false directional superiority.",
+  "gate": "All six adjustedp<.025, positive EPA/practical means, historical mean seedRMSE favorable,effect>=.2,CI95MSElower>0,CI99MSElower>0,CI99gainlower>margin; all20rivals forjoint gate.",
+  "hac_lags": 48,
+  "horizon": 1,
+  "implementation_identity": "Source hashes for statistics.py, native C++ kernel, runner, tests and this plan must be frozen before simulation. Native is exact arithmetic acceleration of numpy algorithm; no RNG/decisions in native kernel.",
+  "inflight_cpu_reserve_seconds": 32,
+  "margin": 0.02,
+  "max_workers": 4,
+  "n_dates": 768,
+  "n_fixed_seeds": 10,
+  "n_rivals": 20,
+  "new_stochastic_replicates_planned": 2048,
+  "panels_per_replicate": 1,
+  "power": "Per-rival complete statistical gate and joint all-20 gate; report worst per-rival power with CP95 interval; target 0.90; only large simulated alternative covered",
+  "prior_study": {
+    "replicates_path": "../v4/replicates.jsonl.gz",
+    "replicates_sha256": "f1b4efc5dd0db58932dea980605e38d62bcf8e3092c678988824cb2e462ae656",
+    "report_path": "../v4/report.json",
+    "report_sha256": "abcb7687bd4311bdc8b7ee1d32478edf102c7f63e8e1a40bb58b99f5e86975c7",
+    "uncompressed_sha256": "30010e6b946e88f15589ddfd8ca1aaead1ab4af76257cd28029c4d1dcf62a514"
+  },
+  "protocol_version": "temporal-fixed-seeds-mse-v4",
+  "purpose": "Independent focal precision replication using unchanged frozen V4 method; a provenance composite carries four previously observed V4 scenarios with established bounds. Post-V4 selection is explicit, original inconclusive null retained, no pooling.",
+  "reference_reps": 49999,
+  "reference_seed": 2026112103,
+  "replicates_per_scenario": {
+    "complete_null_ar05": 2048,
+    "complete_null_overlap5": 512,
+    "partial_null_ar05": 512,
+    "practical_boundary_ar05": 512,
+    "strong_alternative_ar05": 512
+  },
+  "replicates_per_stochastic_scenario": 2048,
+  "reused_stochastic_replicates_in_dossier": 2048,
+  "revision_reason": "V4 full-null CP95upper=.05025287955875999 narrowly exceeds.05; no definite failure. Independent2048-draw replication improves precision without changing method, alpha, B, tuning, criteria or V4 report. No pooling, sample-size extension or global95claim.",
+  "scenario_source_map": {
+    "path": "SCENARIO_SOURCE_MAP.json",
+    "sha256": "d3e2ef7591672b809418a211963474e5c7af9de6f2a8309af6bf07816b46874b"
+  },
+  "scenarios": [
+    {
+      "boundary_null": "epa",
+      "id": "complete_null_ar05",
+      "null_rivals": 20,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": "epa",
+      "id": "partial_null_ar05",
+      "null_rivals": 10,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.75
+    },
+    {
+      "boundary_null": "epa",
+      "id": "complete_null_overlap5",
+      "null_rivals": 20,
+      "overlap": 5,
+      "phi": 0.4,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": "practical",
+      "id": "practical_boundary_ar05",
+      "null_rivals": 20,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.0
+    },
+    {
+      "boundary_null": null,
+      "id": "strong_alternative_ar05",
+      "null_rivals": 0,
+      "overlap": 1,
+      "phi": 0.5,
+      "shift": 0.75
+    }
+  ],
+  "seed": 20261122072000000,
+  "version": "e3-temporal-v4-independent-precision-replication-1"
+}

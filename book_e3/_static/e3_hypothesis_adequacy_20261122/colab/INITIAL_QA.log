@@ -1,0 +1,37 @@
+.......................F.................................... [ 76%]
+..................                                       [100%]
+=================================== FAILURES ===================================
+_ CryptoDataTests.test_frozen_plan_counts_and_two_axes_are_metadata_not_admission _
+
+self = <test_crypto_data_v2.CryptoDataTests testMethod=test_frozen_plan_counts_and_two_axes_are_metadata_not_admission>
+
+    def test_frozen_plan_counts_and_two_axes_are_metadata_not_admission(self):
+>       proposal=json.loads((HERE/'data_panels_v2.json').read_text())
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_crypto_data_v2.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/e3_hypothesis_adequacy_20261122/runtime/tests/data_panels_v2.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/e3_hypothesis_adequacy_20261122/runtime/tests/data_panels_v2.json'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_crypto_data_v2.py::CryptoDataTests::test_frozen_plan_counts_and_two_axes_are_metadata_not_admission
+1 failed, 77 passed, 28 subtests passed in 2.99s

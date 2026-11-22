@@ -1,0 +1,70 @@
+........F............................................. [ 19%]
+............................................................ [ 42%]
+........................................................................ [ 68%]
+.............................................................. [ 91%]
+.......................                                                  [100%]
+=================================== FAILURES ===================================
+_ AssessmentTests.test_current_power_format_recounts_real_counters_after_separate_method_stub _
+
+self = <test_assessment.AssessmentTests testMethod=test_current_power_format_recounts_real_counters_after_separate_method_stub>
+
+    def test_current_power_format_recounts_real_counters_after_separate_method_stub(self):
+        """Only the orthogonal method certificate is stubbed, not CP validation.
+    
+        These manufactured inputs test contract wiring; they are not a real
+        development-power study and cannot admit a final campaign.
+        """
+        from scipy.stats import beta
+        from engine.controller import default_stress_plans
+        design = read_json(ROOT/"configs/power_design.json")
+        cell = {"R": 10, "T": 768, "B": 8191}
+        trials = design["mc_validation_reps"]
+        alternatives = design["alternatives_relative_rmse_gain"]
+        lower = float(beta.ppf(design["mc_confidence_error"]/(2*80*len(alternatives)), trials, 1))
+        self.assertGreater(lower, .9)
+        fixed = {"cell": cell}
+        rule = "finite-B-count-plus-one-actual-Holm-v1"
+        scenarios = [{"alternative_relative_rmse_gain": gain, "joint_statistical_rule_power": 1.,
+            "contrasts": [{"panel": p, "rival": r, "successes": trials, "trials": trials,
+                "simultaneous_mc_lower_bound": lower} for p in self.protocol["panel_ids"] for r in METHODS[1:]]}
+            for gain in alternatives]
+        payload = {"status": "DIMENSIONED_CONDITIONAL_EMPIRICAL_DGP", "temporal_calibration_verified": True,
+            **{"final_"+k: v for k, v in cell.items()}, "fixed_before_validation": fixed,
+            "fixed_before_validation_sha256": digest(fixed), "operational_rule": rule,
+            "methods_sha256": sha(ROOT/"engine/statistics.py"), "design_sha256": digest(design),
+            "validation_result": {"cell": cell, "meets_power_target": True, "operational_rule": rule,
+                "minimum_per_contrast_simultaneous_mc_lower_bound": lower, "scenarios": scenarios}}
+        protocol = deepcopy(self.protocol)
+        protocol["robustness_stress_plans"] = default_stress_plans()
+        protocol["adequacy"] = {"config_path": "configs/adequacy.json", "config_sha256": sha(ROOT/"configs/adequacy.json")}
+        protocol["statistical_settings"] = {"bootstrap_reps": cell["B"], "block_length": design["inner_block_length"],
+            "hac_lags": design["hac_lags"], "horizon": design["horizon"], "margin": design["margin_relative_rmse"],
+            **{k: design[k] for k in ("reference_reps", "reference_seed", "alpha")}}
+        protocol["final"].update(cell, closed=True,
+            test_panels={p: {"count": cell["T"], "start": "2032-01-01", "end": "2035-01-01"} for p in self.protocol["panel_ids"]})
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            fixture = directory/"planning_fixture.json"
+            write_json(fixture, {"software_fixture": True, "market_predictions": 0})
+            payload["planning_evidence"] = {"verified_files": [{"path": str(fixture), "sha256": sha(fixture)}]}
+            path = directory/"power_fixture.json"
+            write_json(path, payload)
+            spec = {"path": str(path), "sha256": sha(path)}
+            protocol["final"]["power_receipt"] = spec
+            with patch("engine.controller._method_admission", return_value={"software_fixture_only": True}):
+                result = _power_evidence(spec, protocol["final"], self.protocol["panel_ids"],
+                    protocol=protocol, protocol_evidence={"sha256": digest(protocol)})
+>           self.assertTrue(result["passed"], result)
+E           AssertionError: False is not true : {'passed': False, 'reason': 'fixed_authentic_reserve_mode_required'}
+
+tests/test_assessment.py:313: AssertionError
+=============================== warnings summary ===============================
+tests/test_models.py::ModelContracts::test_neural_7
+tests/test_training.py::test_real_family_one_epoch_optimizer_selected_prediction[TiDE]
+  /workspace/e3_engine_clean_cache/venv-cpu-652abf93aba295c3-py312/lib/python3.12/site-packages/torch/nn/init.py:582: UserWarning: Initializing zero-element tensors is a no-op
+    warnings.warn("Initializing zero-element tensors is a no-op")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_assessment.py::AssessmentTests::test_current_power_format_recounts_real_counters_after_separate_method_stub
+1 failed, 270 passed, 2 warnings, 40 subtests passed in 87.37s (0:01:27)

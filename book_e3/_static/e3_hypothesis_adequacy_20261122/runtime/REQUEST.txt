@@ -1,0 +1,179 @@
+Actúa como investigador de aprendizaje profundo, estadístico especializado en series temporales e ingeniero experimental del Entregable 3:
+
+https://github.com/jassan-bit/DeepLearning_202630
+
+OBJETIVO
+
+Resolver la batería temporal, preparar la admisión verificable de cuatro paneles y completar el entrenador confirmatorio con checkpoints, recuperación y respaldo en GitHub.
+
+Entrega código funcional, pruebas y un notebook Colab. Actualizar documentación o entregar otro preflight no completa esta tarea.
+
+No ejecutes entrenamientos de mercado ni abras la prueba final durante esta tarea. Sí puedes ejecutar pruebas de software y validaciones estadísticas sintéticas acotadas, con reglas fijadas antes de observar sus resultados.
+
+CONTEXTO Y FUENTES
+
+Consulta la guía original y el estado vigente del repositorio.
+
+Paquete de referencia:
+experiments/e3_input_only_candidate_20261121/
+
+Commit publicado:
+28706b33a6732c8ee709fc69f1ca1b2300bd8149
+
+Candidata:
+input-only-overlap-mse-1
+
+La decisión técnica es CONTINUAR su preparación, con justificación R1 propia y acotada. Conserva su arquitectura, preprocesamiento y pérdida. No reinicies la búsqueda de modelos ni repitas la revisión bibliográfica salvo que identifiques una contradicción concreta.
+
+Preserva:
+- Los 796 trabajos de la arquitectura aditiva.
+- Los 30 ajustes V3 y su resultado adverso.
+- Los 20 ajustes V4 y su abandono.
+- Los 30 ajustes V5 y ABANDON_CURRENT_SEOI_RECIPE.
+- La selección posterior de input_only_mse: mejora exploratoria del 2,7595 % frente a global_mse, cuatro victorias de cinco semillas y 55 fechas expuestas.
+- Sus límites: último puesto en selección, primero en assessment y mayor dispersión entre semillas.
+
+La familia propuesta contiene 20 rivales y 21 sistemas incluida la candidata. Conserva global_mse como comparación principal.
+
+Usa el banco de semillas congelado en FINAL_SEED_BANK.json y la regla de prefijo definida en la identidad. No selecciones semillas por rendimiento.
+
+1. RESUELVE UNA BATERÍA TEMPORAL DEFENDIBLE
+
+Lee los requisitos exactos de R3 y la Tabla 4/F2.
+
+La ruta anterior de t, bootstrap y Wilcoxon sobre semillas condicionadas a un calendario NO quedó admitida como batería temporal. No la presentes como resuelta por cambiar su nombre.
+
+Elige y fundamenta una construcción concreta. Para cada procedimiento documenta:
+- Hipótesis y estimando.
+- Unidad de independencia.
+- Tratamiento de dependencia temporal, solapamiento y semillas.
+- Supuestos, limitaciones y diagnóstico.
+- Multiplicidad y relación con la decisión R3.
+
+Distingue media de RMSE individuales, raíz del MSE agregado y error de un ensamble. Conserva las métricas históricas. Si necesitas cambiar prospectivamente el estimando confirmatorio, justifica y versiona ese cambio antes de resultados nuevos.
+
+Implementa los procedimientos pertinentes exigidos por la guía, con control familiar. No fuerces Clark–West sin anidamiento, no cuentes variantes equivalentes como pruebas distintas ni conviertas un MCS global en p-valores direccionales por rival.
+
+Conserva p crudos, ajustados, estadísticos y direcciones. La regla debe detectar también inferioridad en conjuntos adicionales.
+
+Ejecuta:
+- Pruebas deterministas de corrección.
+- Validación sintética previamente especificada de error familiar, cobertura, degeneraciones y potencia.
+- Casos de nulos completos y parciales, dependencia y alternativas.
+
+Fija presupuesto, tolerancias y criterios antes de ejecutar esa validación. Si falla, conserva el resultado y corrige con una versión nueva; no ensanches tolerancias para aprobar.
+
+No declares validado un método fuera del alcance realmente demostrado.
+
+2. CONSTRUYE LA ADMISIÓN DE CUATRO PANELES
+
+Prepara el panel principal y tres adicionales adecuados para la misma tarea.
+
+Las propuestas existentes son BTCUSDT, AAPL, GLD y TLT. Comprueba procedencia y derechos. Puedes sustituir una fuente inviable por otra justificada antes de examinar sus resultados.
+
+Implementa colectores y validadores reproducibles que registren:
+- Instrumento, proveedor, URL, versión, licencia y hashes.
+- Fechas, zona horaria, frecuencia y convención OHLCV.
+- Ajustes corporativos o reglas de roll cuando correspondan.
+- Faltantes, duplicados y anomalías.
+- Construcción causal de ventanas y etiquetas.
+- Separación de ajuste, selección, planificación, calibración y prueba.
+- Purgas por soporte real de entradas y etiquetas.
+
+No reutilices D00–D03 expuestos como confirmación independiente.
+
+La reserva debe ser auténtica y documentada. No inventes una declaración del propietario o custodio. Si no puede demostrarse que un calendario histórico sigue reservado, prepara una recolección posterior al cierre completo del protocolo.
+
+Verifica integridad sin explorar etiquetas finales para elegir arquitectura, fuentes, márgenes o tamaño de muestra.
+
+Si falta una intervención auténtica del autor, deja preparado el formulario, comando y evidencia exactos que debe aportar. Continúa todo el trabajo independiente de esa intervención.
+
+3. IMPLEMENTA EL ENTRENADOR COMPLETO
+
+Implementa candidata y todos los rivales con identidades verificables. Reutiliza las implementaciones históricas atribuibles cuando sean compatibles; preserva sus versiones.
+
+Incluye:
+- Información disponible y endpoints comparables.
+- Estadísticas de preprocesamiento estimadas sólo en ajuste.
+- Selección y oportunidades de búsqueda documentadas.
+- Presupuesto total por sistema, incluidas fases auxiliares.
+- Checkpoint de modelo, optimizador, RNG, época y mejor estado.
+- Reanudación de trabajos incompletos y omisión de completos verificados.
+- Identidad de datos, fuentes, configuración y protocolo.
+- Registro completo de fallos, intentos, costes y cómputo incierto.
+
+Los métodos deterministas no deben aparecer como múltiples ajustes independientes por repetir una semilla.
+
+Implementa respaldo GitHub sin depender de Drive:
+- Verificación del respaldo inicial antes de entrenar.
+- Checkpoints intermedios y guardado después de cada trabajo.
+- Lectura y verificación remota antes de continuar.
+- Recuperación comprobada.
+- Distinción entre permisos, límites temporales y fallos transitorios.
+- Detención de nuevos ajustes si falla el guardado.
+- Secretos mediante Colab Secrets o entrada privada, nunca publicados.
+
+Adapta correctamente las identidades del controlador anterior; no hagas pasar una campaña nueva por un caso V5.
+
+4. IMPLEMENTA PLANIFICACIÓN Y POTENCIA
+
+El piloto guardado no aporta covarianzas frente a toda la familia en cuatro paneles.
+
+Entrega una etapa ejecutable de planificación sobre desarrollo que permita obtener esos insumos, sin abrir la prueba final. No la ejecutes en esta tarea.
+
+Implementa el dimensionamiento usando:
+- Alternativa relevante y margen práctico justificado.
+- Variabilidad y dependencia compatibles.
+- Familia completa y regla estadística efectiva.
+- Potencia ≥0,90 por contraste.
+- Potencia conjunta reportada.
+- Al menos diez semillas finales, o más cuando sea necesario.
+- Resolución suficiente de pruebas exactas y remuestreos.
+
+No confundas un mínimo aritmético de semillas o remuestreos con potencia suficiente. No inventes R/T/B finales cuando falten insumos.
+
+Genera un presupuesto revisable con número real de trabajos, tiempo, almacenamiento y costes excluidos. Los techos nominales no son consumo medido.
+
+5. PROTEGE LA EVALUACIÓN FINAL
+
+Implementa una etapa separada que:
+- Exija fuentes, protocolo, particiones, métodos y tamaño fijados.
+- Verifique checkpoints seleccionados antes de abrir la prueba.
+- Registre una única evaluación por identidad de protocolo y panel.
+- Permita recuperar/exportar el mismo resultado sin repetir consultas.
+- Conserve todas las predicciones, fallos y resultados adversos.
+
+La decisión final debe comprobar cada requisito de R3: superioridad frente a todos los rivales, pruebas pertinentes, margen, efectos e intervalos, consistencia adicional, adecuación y robustez.
+
+No promociones otra variante ni cambies reglas después del resultado.
+
+6. ENTREGA UN COLAB OPERATIVO
+
+El notebook debe contener etapas reales:
+1. Instalación aislada y fuentes fijadas.
+2. Adquisición/admisión de datos.
+3. Verificaciones sin entrenamiento.
+4. Piloto de planificación.
+5. Dimensionamiento y cierre del protocolo.
+6. Entrenamiento y reanudación de la familia completa.
+7. Evaluación reservada y exportación.
+8. Comprobación de respaldos GitHub.
+
+Las etapas con entrenamiento o apertura del test deben permanecer desactivadas por defecto y requerir activación explícita del autor.
+
+No uses pass, TODO, métricas inventadas ni adaptadores vacíos en las rutas principales. Si una etapa depende de evidencia todavía inexistente, implementa su contrato y explica exactamente qué entrada falta; no finjas que ya se ejecutó.
+
+ENTREGA FINAL
+
+- Decisión sobre la batería temporal y evidencia de validación.
+- Colectores y admisiones: qué está comprobado y qué requiere intervención auténtica.
+- Entrenador, checkpoints y recuperación probados con fixtures.
+- Planificador y dimensionamiento ejecutables.
+- Notebook Colab y celda de inicio fijados por commit y hash.
+- Coste y presupuesto de cada etapa.
+- Comandos exactos para la siguiente ejecución.
+- Resultados de pruebas y limitaciones concretas.
+
+Guarda los cambios en GitHub. Actualiza el libro con lo efectivamente conseguido, constrúyelo, verifica enlaces y comprueba la publicación.
+
+Distingue siempre código implementado, pruebas ejecutadas, datos admitidos y experimentos pendientes. No marques R3 como acreditada sin los resultados confirmatorios exigidos.
