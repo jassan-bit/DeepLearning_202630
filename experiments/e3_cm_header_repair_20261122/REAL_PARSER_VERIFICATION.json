@@ -1,0 +1,72 @@
+{
+  "kind": "real_archive_parser_regression_verification",
+  "source_S2_sha256": "1e64a500a62b3ec803471f87a2a81161a81d0e73d2c4cce7fd17d73b2b044e60",
+  "parser_overlay_sha256": "6aa58bb0883a25c25b562a21a91d52cbfda1db25babd25432dc56eee224c8f99",
+  "parser_commit": "e90acbe327f94221a7c1b81ad4f9d2276ead50df",
+  "cases": [
+    {
+      "archive_name": "BTCUSD_PERP-1d-2022-01.zip",
+      "archive_sha256": "0a2e6d208ebcb0be4a443562031ed59d779284d2c30ccad9988f4d5deb738651",
+      "header": null,
+      "old_parser_error": null,
+      "corrected_rows": 31,
+      "source_OHLC_and_column7_exact": true,
+      "raw_bytes_unchanged": true
+    },
+    {
+      "archive_name": "BTCUSD_PERP-1d-2022-07.zip",
+      "archive_sha256": "2b2c4aa1bb3a312c17c61fb4b7748f137e19eeed9a3c8834a2a6556d1bbaa017",
+      "header": [
+        "open_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "close_time",
+        "quote_volume",
+        "count",
+        "taker_buy_volume",
+        "taker_buy_quote_volume",
+        "ignore"
+      ],
+      "old_parser_error": "Wrong market-volume header",
+      "corrected_rows": 31,
+      "source_OHLC_and_column7_exact": true,
+      "raw_bytes_unchanged": true
+    }
+  ],
+  "normalized_header_events": [
+    {
+      "repair_version": "coinm-exact-generic-header-compat-1",
+      "source_archive_sha256": "2b2c4aa1bb3a312c17c61fb4b7748f137e19eeed9a3c8834a2a6556d1bbaa017",
+      "observed_header": [
+        "open_time",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "close_time",
+        "quote_volume",
+        "count",
+        "taker_buy_volume",
+        "taker_buy_quote_volume",
+        "ignore"
+      ],
+      "interpretation_basis": "Frozen official COIN-M physical schema, not generic CSV field name",
+      "base_volume_column_zero_based": 7,
+      "volume_units": "base_asset",
+      "raw_source_bytes_rewritten": false,
+      "source_data_sha256": "1e64a500a62b3ec803471f87a2a81161a81d0e73d2c4cce7fd17d73b2b044e60"
+    }
+  ],
+  "source_file_unchanged": true,
+  "new_real_market_model_fits": 0,
+  "new_real_forecasts": 0,
+  "test_opened": false,
+  "raw_market_values_published": false,
+  "verification_workflow_commit": "dff45c2303067587631137ad7051cf729095d49d",
+  "run": 45024240754,
+  "job": 137213630161
+}
