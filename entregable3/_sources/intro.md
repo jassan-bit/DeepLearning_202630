@@ -6,6 +6,10 @@
 
 [Abrir el notebook operativo en Colab](https://colab.research.google.com/github/jassan-bit/DeepLearning_202630/blob/7aa5ccff0b881cbad270129d5163011c4429a774/experiments/e3_confirmatory_engine_20261121/E3_R3_Temporal_GitHub.ipynb) · {download}`Notebook <_static/e3_confirmatory_engine_20261121/E3_R3_Temporal_GitHub.ipynb>` · {download}`Código, etapas y presupuesto <_static/e3_confirmatory_engine_20261121/README.md>` · {ref}`Diseño y siguiente ejecución <e3-temporal-engine-design-20261121>`. La instalación no activa adquisición, entrenamiento o test. La candidata conserva su identidad y dictamen propio; V5 completo conserva `ABANDON_CURRENT_SEOI_RECIPE`, sin transferirle resultados aditivos.
 
+**Selección de datos en revisión:** Bitcoin permanece como problema principal. La guía exige tres conjuntos adicionales de la misma tarea y diferencias justificadas en dos ejes; no impone acciones ni Nasdaq. IBM/MSFT/XOM son propuestas del código publicado, todavía sin admisiones reales verificadas. Su adquisición asistida queda en pausa hasta justificar su pertinencia o registrar una sustitución antes de nuevos resultados. Cambiar de moneda o dividir periodos tampoco demuestra automáticamente los dos ejes. El {ref}`apartado de selección de datos <e3-data-selection-review-20261121>` conserva la cita de la guía y el alcance de esta decisión.
+
+**Evaluación orientativa solicitada:** **4,09/5 antes del tope**, con **sustentación 4,5/5** indicada por el autor. Si R1 y R2 se aceptan y R3 no se acredita, el tope de la guía deja la valoración en **4,00/5**. La cifra de sustentación no acredita por sí sola R2 ni constituye una defensa observada. La {ref}`tabla de once componentes, cálculo y justificaciones <e3-evaluation-current-20261121>` permite comprobar cada aporte; la calificación oficial corresponde al docente.
+
 El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guía**, con el desarrollo disponible hasta ahora. La navegación principal reúne los bloques A–G, diseño, evaluación, entrega, sustentación, integridad y conclusiones. Las ampliaciones se integran en esos capítulos; los anexos A–G reúnen plantillas y detalle técnico de apoyo, junto con referencias y trazabilidad. El último anexo conserva reproducibilidad, autoría y bibliografía.
 
 | Sección | Contenido |
@@ -23,7 +27,7 @@ El informe está organizado exclusivamente en los **capítulos 1 a 16 de la guí
 | [11 Bloque G Informe técnico en Jupyter Book](sections/11_informe_tecnico.md) | Estructura científica, mapa del Cuadro 7 y requisitos de reproducción. |
 | [12 Lista de entregables](sections/12_lista_entregables.md) | Trece productos, evidencia existente y pendientes de cierre. |
 | [13 Sustentación](sections/13_sustentacion.md) | Guion de 20 minutos, demostración y preparación de preguntas. |
-| [14 Evaluación y calificación](sections/14_evaluacion_calificacion.md) | Rúbrica de 100 %, topes condicionales y matrices de evidencia, sin nota global oficial. |
+| [14 Evaluación y calificación](sections/14_evaluacion_calificacion.md) | Once componentes, pesos de 100 %, matrices de evidencia y valoración orientativa versionada con sustentación 4,5; topes condicionales y nota oficial separados. |
 | [15 Integridad académica](sections/15_integridad_academica.md) | Atribución, novedad, uso de IA y trazabilidad de decisiones y resultados. |
 | [16 Conclusiones](sections/16_conclusiones.md) | Avances acreditados, límites y capacidades pendientes de demostrar. |
 

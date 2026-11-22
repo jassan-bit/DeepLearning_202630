@@ -1453,6 +1453,15 @@ El {download}`protocolo confirmatorio DRAFT <../_static/e3_input_only_candidate_
 
 La guía original y su Tabla 4/F2 motivan tres procedimientos distintos: **DM-HLN/HAC**, **bootstrap estacionario studentizado** y **Giacomini–White condicional**. No se cuenta Clark–West sin anidamiento ni se transforma un MCS global en p direccionales por rival. La ruta anterior de t/bootstrap/Wilcoxon sobre semillas queda conservada como propuesta anterior, sin renombrarla como batería temporal admitida.
 
+(e3-data-selection-review-20261121)=
+### Bitcoin principal y revisión de los conjuntos adicionales
+
+**El problema principal sigue siendo el pronóstico de volatilidad de Bitcoin.** La guía, **p. 23, §8.3**, exige tres conjuntos adicionales de la misma tarea y naturaleza distinta. Cada uno debe diferir del principal en al menos dos ejes —tamaño, dominio, ruido, desbalance o dimensionalidad— y seleccionarse antes de conocer sus resultados. La guía permite justificar esos ejes sin obligar a usar acciones o Nasdaq.
+
+El código entregado propone BTCUSDT para F00 y **IBM/MSFT/XOM de WIKI/PRICES** para F01–F03. Su finalidad propuesta era contrastar la misma tarea en otro dominio y con mayor tamaño; el umbral de **1,5×** es una elección del protocolo propuesto, no una exigencia del PDF. Esas propuestas **no son paneles admitidos ni evidencia confirmatoria**. La última salida aportada del Colab informa que faltan las cuatro admisiones.
+
+**La adquisición asistida de esta propuesta queda en pausa mientras se revisa su pertinencia con el autor.** Una cuenta y clave de Nasdaq son dependencias del adaptador elegido, no requisitos académicos. WIKI terminó en 2018 y no aporta una reserva futura. Los adicionales pueden revisarse manteniendo el enfoque cripto si se justifican dos diferencias pertinentes por conjunto; cambiar ticker o trocear el histórico no basta. Cualquier sustitución necesita una versión documentada de fuentes, derechos, tarea y reglas antes de entrenar. Esta aclaración no modifica el código, las identidades congeladas ni los resultados anteriores.
+
 ### Estimando y supuestos
 
 La enmienda prospectiva usa la media de errores cuadrados sobre fechas y el conjunto fijo de modelos entrenados. Reporta su raíz como RMSE agregado, conserva además la media de RMSE individuales y exige que ésta sea favorable. Ninguna equivale al RMSE de promediar predicciones como ensamble. Las semillas no multiplican artificialmente las fechas independientes; la inferencia temporal condiciona los modelos y semillas fijados.
