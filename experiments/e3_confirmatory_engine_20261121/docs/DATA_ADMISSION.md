@@ -1,0 +1,108 @@
+# Adquisición y admisión: implementación y evidencia disponible
+
+**Cero paneles de mercado admitidos; cero descargas de observaciones; cero etiquetas finales abiertas.** Se implementaron colectores, validación, construcción causal, separación física de particiones y verificación de hashes. Las pruebas y `qa/data/fixture_panel/` usan exclusivamente números sintéticos. Ese directorio tiene estado `software_fixture`, que no acredita una admisión científica ni puede convertirse en panel confirmado por copiarlo.
+
+## Fuentes y derechos comprobados
+
+La propuesta actual conserva BTCUSDT y sustituye AAPL/GLD/TLT de Stooq por IBM/MSFT/XOM de **WIKI/PRICES**. La sustitución se decidió por derechos y metadatos antes de adquirir precios o examinar resultados. El dominio de los tres adicionales es acciones estadounidenses, con energía en XOM; ninguno es GLD/TLT ni representa directamente oro/tipos. Se propone un segundo eje de tamaño: desarrollo WIKI desde 1996 hasta 2013 frente a BTC desde 2017 hasta 2023. El conteo real debe superar 1,5 veces el principal; no se declara satisfecho sin adquisición y auditoría de metadatos. No son mercados estadísticamente independientes: comparten shocks macro y los tres adicionales comparten calendario y factores de acciones.
+
+| Fuente primaria | Evidencia y alcance | Decisión actual |
+|---|---|---|
+| [Binance Vision, términos](https://github.com/binance/binance-public-data/blob/d571690eb66760763b0bd6e27e8cd35603c7e244/TERMS_AND_CONDITIONS.md) | Texto completo, versión 26-08-2026, y [README](https://github.com/binance/binance-public-data/blob/d571690eb66760763b0bd6e27e8cd35603c7e244/README.md) conservados con hashes. Dataset CC BY-NC-SA 4.0, condicionado a uso no comercial, atribución y licencia idéntica de derivados redistribuidos. El MIT del README no licencia por sí solo los datos. | Procesamiento académico y publicación de derivados potencialmente compatibles; el actor debe documentar aplicabilidad y aceptación reales. Este protocolo no ejerce redistribución de raw por las cláusulas de hosting/feeds. |
+| [Nasdaq Data Link, WIKI Prices](https://data.nasdaq.com/databases/WIKIP) | El propio editor declara los datos WIKI de dominio público. La declaración cubre WIKI, no otros productos Nasdaq. Datos de acciones con dividendos y splits, actualización histórica terminada en 2018. | No se exige permiso escrito adicional para datos de dominio público. Faltan adquisición, integridad, designación de exposición y calendario; sólo para confirmación se exige además reserva auténtica. Cuenta/API key y disponibilidad del endpoint se verifican en la ejecución autorizada. |
+| [Bokeh, inventario de licencias](https://github.com/bokeh/bokeh_sampledata/blob/d15511fb06b9bad0278af177bbcb82648764334c/licenses/README.md) | Confirma la procedencia WIKI para sus series de acciones, separando código BSD de datos. Se conserva como corroboración, no se hereda una supuesta reserva de AAPL D01. | No se descargó ningún fichero de precios Bokeh. |
+| Stooq | No se estableció una concesión primaria de uso/redistribución. La consulta a `stooq.com/tos/` falló con HTTP403 en este entorno; ello no demuestra prohibición ni permiso. | Propuestas originales preservadas como no admitidas. Parser CSV funcional; colector de red desactivado hasta acreditar derechos. |
+| [Alpha Vantage, términos](https://www.alphavantage.co/terms_of_service/) y [API](https://www.alphavantage.co/documentation/#dailyadj) | Los términos limitan la licencia general a uso privado individual; DAILY_ADJUSTED tiene acceso premium. | Adaptador alternativo implementado, no seleccionado. No se atribuye una licencia académica institucional/publicación que no se haya concedido. |
+
+`qa/data/primary/RECEIPT.json` registra URL, UTC de consulta, HTTP, errores y hashes de bytes efectivamente recuperados. `BINANCE_VERSION.json` y `BOKEH_VERSION.json` fijan commits obtenidos por `git ls-remote`. El extracto primario Nasdaq se obtuvo mediante consulta web; **su SHA256 corresponde al extracto conservado, no al HTML completo**, cuya descarga por shell falló con HTTP403. No se inventó una versión de datos: los archivos reales tendrán hashes al adquirirlos. Los metadatos no contienen observaciones financieras.
+
+`configs/data_panels.json` distingue `allow_derived_publication` de `allow_raw_redistribution` y las condiciones por fuente. El respaldo público debe respetarlas; no subir precios, etiquetas, predicciones o pesos derivados de Binance bajo una licencia incompatible ni mezclar el permiso de WIKI con otros datasets. Los recibos aprobados de derechos deben reproducir expresamente esos dos campos, alcance, atribución y evidencia aplicable.
+
+## Colectores operativos, desactivados por defecto
+
+`python -m engine.data collect-development` exige activación explícita, recibos de derechos/exposición y archivos de evidencia existentes cuyos bytes coincidan con sus hashes. El registro del actor no es una verificación criptográfica de su identidad. No se ejecutó este comando contra mercado durante la tarea.
+
+* Binance descarga **archivos diarios acotados**, cada ZIP y su `.CHECKSUM`; verifica el SHA256 upstream antes de conservar bytes. Conserva 12 columnas; el volumen usado es base BTC, no volumen cotizado USDT. La fecha identifica apertura UTC 00:00; cierre es siguiente medianoche menos un tick. Se verifican ms frente a us, incluido el cambio desde 2025, y se rechazan velas aún abiertas. Las revisiones posteriores de archivos son versiones diferentes por hash.
+* Nasdaq WIKI solicita `ticker`, `date.gte`, `date.lte` y recorre `next_cursor_id`, detectando ciclos y respuestas fuera del rango. Sólo IBM/MSFT/XOM están congelados como propuestas de esta implementación. Credencial privada `NASDAQ_DATA_LINK_API_KEY`; el manifiesto redacta la clave. Se verifican instrumento, columnas, duplicados, integridad de páginas y orden antes de admitir. La fuente terminada en 2018 **no puede proporcionar una reserva futura**.
+* El adaptador opcional Alpha Vantage usa `ALPHAVANTAGE_API_KEY`, valida instrumento/timezone y no mezcla adjusted close con OHLC/volumen raw. Su respuesta full no admite filtro de fechas: adquisición directa de desarrollo se permite sólo cuando todo soporte reservado sigue en el futuro. Una reserva histórica exigiría filtrado por el custodio; nunca descargarla primero y descartarla después.
+
+Los errores de red no imprimen URLs que puedan incluir secretos. `acquisition_attempts.jsonl` conserva inicio, finalización/fallo, identidad y volumen de cada intento, sin claves. Se detiene ante error/checksum, no se sobreescriben fuentes ni admisiones, y los archivos parciales quedan para auditoría sin convertirse en una admisión. La disponibilidad/autenticación del proveedor no quedó comprobada por fixtures.
+
+Ejemplo concreto de contrato para un archivo de adquisición del autor, sin fechas finales inventadas:
+
+```json
+{"provider":"nasdaq_wiki","instrument":"IBM","development_start":"1996-01-02","development_end":"2013-03-01"}
+```
+
+Este ejemplo usa `reserve_mode="development_only"`: todo dato adquirido se designa expuesto/desarrollo y no hay fecha reservada ni protocolo final que completar. Con una reserva real ya declarada, el archivo de adquisición debe añadir `first_reserved_raw_session` del recibo auténtico. Para Binance, cambiar proveedor/instrumento y rango conforme a `data_panels.json`. Un recibo de derechos tiene `status="approved"`, `actor_name`, `actor_contact`, `evidence_path`, `evidence_sha256`, `allow_derived_publication`, `allow_raw_redistribution`, `scope`, `source_url` y `license`. Para WIKI la evidencia puede ser el aviso primario de dominio público conservado; no hace falta inventar una carta del proveedor. La aprobación es del actor real que aplica ese aviso a su uso. Un recibo de exposición se genera con el formulario descrito abajo.
+
+```bash
+python -m engine.data collect-development --config private/F01-acquisition.json --rights private/F01-rights.json --exposure private/F01-exposure.json --output private/F01-raw-v1 --enable-market-acquisition
+python -m engine.data prepare-development --manifest private/F01-raw-v1/raw_manifest.json --split-config private/F01-dev-split.json --rights private/F01-rights.json --exposure private/F01-exposure.json --output private/F01-development-v1
+```
+
+`F01-dev-split.json` debe contener `raw_start`, `raw_end`, `calendar`, `raw_bounds` con las cuatro particiones de desarrollo y `embargo_bars` fijado antes de resultados. Los bounds son índices enteros inclusivos del reloj global de barras, no porcentajes inferidos después del resultado. Ejemplo de **software**: `{"raw_start":"2020-01-01","raw_end":"2020-05-19","calendar":"24/7","raw_bounds":{"fit":[0,34],"selection":[35,69],"planning":[70,104],"calibration":[105,139]},"embargo_bars":2}`. No es un split de mercado autorizado ni un tamaño confirmatorio.
+
+## Convención causal y soportes
+
+Para el objetivo en índice de barra `t`, la información de entrada son siete OHLCV `raw[t-7:t]`, conocidos al cierre de `t-1`. La etiqueta es `std(diff(log(close[t-7:t+1])), ddof=0)`: siete retornos sobre ocho cierres, sin anualización. Predice la siguiente **sesión/barra disponible**, no necesariamente el día natural siguiente. Los precios raw no se ajustan retrospectivamente; volumen son unidades originales. En WIKI se usa `split_ratio` para excluir, por una regla prefijada independiente de pérdidas, muestras cuyo soporte local incluya un split; no se mezcla una columna close ajustada con open/high/low o volumen sin ajustar. Los movimientos ex-dividendo permanecen en el retorno de precio. No hay roll: no se utilizan futuros.
+
+Se comparte `known_sigma_history[N,7]`, las siete volatilidades observadas `sigma[t-7:t]`. Esto amplía el soporte local conjunto a **15 cierres**, `[t-14,t]`. `known_floor_A` es `sum((r6-mean(r6))**2)/7`, computado sólo con los seis retornos observables del raw de siete filas. Ningún preprocesamiento o referencia de escala usa etiquetas ajenas a ajuste.
+
+La memoria ARIMA es diferente del soporte finito: `observed_sigma_since_fit` conserva, por compatibilidad de interfaz, la **serie global** de sigmas que empieza en la barra 7, no una serie ya recortada desde fin de fit. `observed_sigma_bar_indices` y `observed_sigma_dates` fijan ese reloj. `history_end_positions[i]` es un stop **exclusivo**: el pronóstico `i` sólo puede consultar `series[:stop]`, terminado en la barra `t-1`. El adaptador ARIMA registra `fit_history_stop=last_fit_stop+1` e incorpora sólo observaciones posteriores con parámetros congelados; no reinicia el estado por partición. Cada NPZ contiene la serie hasta el último origen de esa partición, nunca más allá. El loader comprueba índices, última fecha previa, historial7 y piso A. Debe aplicarse el corte por fila: usar la serie completa en una fila anterior sería una fuga y está cubierto por las pruebas del adaptador.
+
+Las purgas exigen soporte local completo dentro de intervalos raw disjuntos. Con bounds contiguos se descartan los primeros 14 endpoints de la partición posterior; un embargo adicional consume barras de mercado, según la configuración fijada. Viernes→lunes, festivos y cierres especiales conservan el índice de sesión: **no se purga restando días naturales**. Calendarios reales requieren las versiones fijadas de `exchange-calendars` y `pandas`; faltantes, duplicados, precio/volumen no finitos, OHLC incoherentes o sesiones inesperadas se rechazan. No se rellena ni interpola OHLCV. Se preservan/anotan volúmenes cero.
+
+Se comprobó adicionalmente el calendario XNYS 02–23 de enero de 2020 contra una lista prefijada que excluye fines de semana y MLK. La resolución inicial sin pins instaló pandas 3.1.1/numpy 2.5.5 y falló; se conserva `qa/data/CALENDAR_QA_v1_FAILURE.json`. Una cohorte aislada anterior pasó en `CALENDAR_QA_v2.json`. La **cohorte vigente** `/workspace/e3_fixed_state_runtime/bin/python` pasó el mismo criterio con `exchange-calendars==4.11.2`, `pandas==2.2.3`, `numpy==2.3.5`, `torch==2.8.0+cpu`, sin modificar NumPy ni Torch; evidencia en `CALENDAR_QA_v3_ROOT_RUNTIME.json`. Esas son las versiones de calendario/runtime que se fijan para integración. Esto prueba la interfaz del calendario, no la ausencia de faltantes en los paneles aún no adquiridos. No se descargaron precios para ese chequeo.
+
+La disjunción local no prueba independencia temporal; la serie puede mantener dependencia y los pesos, escalas aprendidas y estado causal pueden incorporar pasado de ajuste/desarrollo. La batería estadística trata esa dependencia por separado. Contar toda memoria histórica de un modelo como soporte local haría imposible cualquier split cronológico entrenado; se declara esta distinción, no se finge una unión global disjunta.
+
+## Particiones y reserva verificables
+
+Cada `admission.json` es inmutable, con hash canónico del propio registro, `partition_paths`, `partition_sha256`, `partition_counts`, rangos de fechas y bounds del soporte, procedencia, derechos, exposición y estado de reserva. Cada NPZ es distinto: `fit.npz`, `selection.npz`, `planning.npz`, `calibration.npz` y sólo posteriormente `test.npz`. Arrays numéricos/cadenas; `allow_pickle=False`.
+
+`load_partition(panel_dir, part, *, allow_test=False)` valida metadata y **lee sólo los bytes de esa partición**, por lo que cargar fit no calcula hashes ni lee labels de otra. La ruta no puede escapar del panel. El test se rechaza por defecto. `allow_test=True` es una autorización técnica del controlador final; no reemplaza la aprobación auténtica ni el registro de única evaluación. El hash vincula bytes y detecta alteración accidental; no autentica por sí solo a una persona ni protege contra sustituir a la vez datos y hashes. El cierre de protocolo externo debe fijar el hash de admisión.
+
+Los D00–D03 expuestos y las 55 fechas de la selección histórica siguen siendo desarrollo. Hay dos alcances distintos de declaración:
+
+* **Desarrollo/piloto sin cierre final:** el actor completa `reserve_mode="development_only"`, `all_data_declared_exposed_development=true`, alcance del dataset, `observation_cutoff_utc`, identidad/contacto, origen y bytes/hash de la licencia primaria. Aporta su declaración real designando **todo** el dataset expuesto/desarrollo. No se exige `protocol_sha256`, T, potencia final, fechas reservadas, inventario de filas supuestamente no expuestas ni sello de custodio. El recibo conserva `status="audited"`, `scope="development_only"`, `final_reserve_claim=false` y `reserved_status="not_reserved_all_data_exposed"`. Permite adquirir/admitir desarrollo y ejecutar el piloto; no acredita reserva ni confirmación. No autoriza test y no puede promoverse a prueba final.
+* **Reserva final:** el actor completa `external_custodian` o `post_protocol`, protocolo completo y su inventario de exposición, incluyendo precios/objetivos/predicciones vistos por todas las personas/controladores. Aporta sello/accesos auténticos para historia, o fija todo soporte futuro posterior al cierre. Los requisitos finales no se relajan por disponer de un recibo de desarrollo.
+
+Para desarrollo, usar el mismo formulario con los campos de ese modo y evidencia real del autor:
+
+```bash
+python -m engine.data record-owner-evidence --form private/F01-development-designation.json --evidence private/F01-development-designation.json --output private/F01-development-exposure.json
+```
+
+El JSON completado y suministrado por el actor puede ser su propia declaración de desarrollo; no se exige documento firmado externo, sello ni PDF. El programa registra su origen y no afirma haber autenticado la identidad. Ese recibo sustituye `--exposure private/F01-exposure.json` por `--exposure private/F01-development-exposure.json` en los comandos de adquisición/preparación anteriores. La adquisición no exige `first_reserved_raw_session` en este modo. Para la reserva final, el comando sigue siendo:
+
+```bash
+python -m engine.data record-owner-evidence --form private/F01-owner-completed.json --evidence private/F01-actual-custodian-export.pdf --output private/F01-exposure.json
+```
+
+No se completa ni firma este formulario en nombre del autor. El comando comprueba campos y hashes, conserva contacto/origen y marca `cryptographic_signature_verified=false`. La evidencia puede estar firmada externamente; el programa no simula su verificación. Para reserva histórica exige sello y registro reales del custodio; un calendario rotulado «reserved» no basta. Para reserva posterior al protocolo exige que la **primera barra de soporte**, incluido calentamiento de 14 barras, sea posterior al cierre completo UTC. Se empieza a contar targets después de ese calentamiento y embargo. La selección de fuente, protocolo, métodos, particiones, T y semillas debe cerrarse antes.
+
+**Límite de WIKI:** si no puede acreditarse reserva histórica para IBM/MSFT/XOM, no hay forma honesta de obtener test futuro de una fuente discontinuada. Esos paneles siguen no admitidos; deberán sustituirse por fuente/panel de actualización futura con derechos adecuados antes del cierre del protocolo. La alternativa futura para BTC sí está implementada mediante archivos diarios. No se convierte una declaración pendiente en reserva ni se pide permiso de datos innecesario para WIKI de dominio público.
+
+## Preparación final separada, no ejecutada
+
+`prepare_final_partition(...)` y `python -m engine.data prepare-final` sólo aceptan un manifiesto local del custodio `scope="reserved_final"`, con protocolo hash idéntico al documento real. Requieren activación del autor, autorización y evidencia verificable por bytes, selección de checkpoints fijada por hash y `sources_methods_size_frozen=true`. Comprueban derechos/exposición, archivos raw, calendario, soportes y `fixed_test_count` antes de escribir test en un **directorio nuevo**; no evalúan modelos ni imprimen etiquetas/estadísticas. El controlador final verifica los checkpoints y registra la evaluación única; esta función es sólo la preparación de datos después de ese gate.
+
+Un recibo `development_only` se rechaza en esa ruta, aunque se le suministre después un hash de protocolo. Tampoco crea un archivo test: `load_partition(...,"test")` sigue sellado por defecto y `allow_test=True` no puede cargar una partición inexistente.
+
+La configuración final incluye `protocol_sha256`, `raw_start`, `raw_end`, `target_start`, `target_end`, `calendar`, `raw_bounds={"test":[lo,hi]}`, `embargo_bars` y `fixed_test_count`. El reloj `raw_start`/barra cero debe ser el mismo que en desarrollo, conservando el histórico necesario para que ARIMA continúe sus offsets globales; `raw_bounds.test` sólo admite los soportes finales. El manifiesto del custodio incluye el prefijo histórico de bytes conocidos y la extensión reservada. **No se monta ese manifiesto para desarrollo.** La autorización incluye `status="authorized"`, actor/contacto, `evidence_path/hash`, `authorize_test_preparation=true`, `protocol_path/hash`, `selected_checkpoints_manifest_path`, `selected_checkpoints_sha256` y el flag de cierre indicado. No hay valores reales de T ni reservas ya concedidas en este paquete.
+
+### Origen del reloj de barras comprobado
+
+Los índices de soporte sólo son comparables cuando comparten origen y calendario. La preparación conserva `provenance.bar_index_origin` como la **primera sesión real** del raw validado, en formato ISO, y `bar_index_convention="zero_based_complete_observed_calendar_sessions_v1"`. Un simple número de índice grande no acredita una purga. El calendario completo debe validar desde ese origen, sin huecos o sesiones inventadas.
+
+La autorización de preparación final incorpora `development_bar_index_origin`, copiado mecánicamente de la admisión de desarrollo congelada. El programa lo compara con la primera sesión real del manifiesto final **antes de construir las etiquetas reservadas**. El custodio entrega el histórico completo desde ese mismo origen más la extensión reservada; los bounds y `target_start/target_end` seleccionan únicamente la prueba. Un archivo que comienza en una fecha posterior no puede reiniciar el reloj a cero y aparentar una separación diferente. El controlador vuelve a comparar origen/convención con desarrollo y comprueba fechas y soportes antes de aceptar la consulta final.
+
+El prefijo histórico ya expuesto no se convierte en prueba: sólo permite mantener los índices y el estado causal. En una reserva `post_protocol`, la primera barra **del soporte seleccionado para test**, no la primera barra del prefijo raw, tiene que ser posterior al cierre completo. El contrato no descarga test de manera automática ni crea una declaración de custodia; los bytes y la autorización del custodio siguen siendo entradas auténticas necesarias.
+
+```bash
+python -m engine.data prepare-final --manifest private/F01-custodian/raw_manifest.json --split-config private/F01-final-fixed.json --rights private/F01-rights.json --exposure private/F01-exposure.json --authorization private/F01-final-authorization.json --output private/F01-final-v1 --enable-final-preparation
+python -m unittest discover -s tests -p test_data.py -v
+```
+
+Las pruebas cubren formato Binance ms/us y cierre/volumen, Stooq CSV, Alpha Vantage JSON/error, WIKI JSON/paginación, duplicados/faltantes/anomalías, fines de semana, etiqueta causal, SD poblacional, historia sigma/piso, exclusión de splits, purga por barras, offsets causales, separación de ficheros, hashes y el formulario sin firmas ficticias. Son pruebas de software: no acreditan el calendario concreto, disponibilidad del proveedor, licencia aplicada por el actor o potencia/finalidad científica de ningún panel.

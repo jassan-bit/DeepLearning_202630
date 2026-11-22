@@ -1,0 +1,77 @@
+{
+  "design_sha256": "b0d6821ec3425a1bf77e92ede09d99dc52708a98c75ae7f38174caeb8b311fff",
+  "final_B": null,
+  "final_R": null,
+  "final_T": null,
+  "final_seed_ids": null,
+  "methods_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+  "operational_rule": "finite-B-count-plus-one-actual-Holm-v1",
+  "r3_accredited": false,
+  "reasons": [
+    "supply matching nonempty predictions and receipts paths"
+  ],
+  "reference_budget_R10_T252_not_dimensioned": {
+    "R": 10,
+    "T": 252,
+    "analytic_trajectories": 16,
+    "arima_fits": 4,
+    "caveat": "nominal ceilings and storage assumptions are not measured consumption; SAE phases share each system-seed total budget",
+    "deterministic_independent_seed_replicates": 0,
+    "estimated_storage_bytes": 42981606400,
+    "limit_failures": [],
+    "measured_planning_active_seconds": null,
+    "measured_planning_timed_attempts": 0,
+    "measured_time_is_total_for_observed_attempts_only": true,
+    "neural_fits": 640,
+    "neural_systems": 16,
+    "nominal_compute_money": null,
+    "nominal_neural_active_hours": 21.333333333333332,
+    "nominal_neural_active_seconds": 76800.0,
+    "panels": 4,
+    "planning_active_seconds_charged_total": null,
+    "planning_cost_uncertain_attempts": 0,
+    "planning_observed_interruption_partial_seconds": 0,
+    "planning_receipt_attempts": 0,
+    "prediction_rows": 166320,
+    "storage_assumption_bytes_per_neural_fit": 67108864,
+    "unpriced_or_excluded": [
+      "ARIMA active time",
+      "data acquisition and licensing",
+      "inference/export",
+      "power Monte Carlo CPU time",
+      "GitHub transfers/storage",
+      "Colab waiting and interruptions",
+      "unobserved retries/recovery",
+      "additional HPO outside frozen system budget"
+    ],
+    "within_declared_known_limits": true
+  },
+  "resampling_requirements": {
+    "B_for_requested_expected_tail_exceedances_diagnostic_only": 720000,
+    "additional_adverse_slots": 180,
+    "expected_tail_exceedances": 100,
+    "interpretation": "resolution is necessary arithmetic; expected exceedances are a precision diagnostic, not a universal B gate or a power certificate",
+    "mc_p_rule": "absolute_tail_plus_one",
+    "minimum_B_for_two_sided_resolution": 7199,
+    "p_resolution_numerator": 1,
+    "positive_slots_per_panel": 120,
+    "smallest_family_threshold": 0.0001388888888888889
+  },
+  "source_identity": {
+    "analyzer_source_file": "/workspace/e3_confirmatory_engine_20261121/engine/statistics.py",
+    "analyzer_source_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+    "power_source_sha256": "975ef3b0027f15e4b7cfaa60035a16a8e3ed7a2d54a56482e24090a1ad1bc49a"
+  },
+  "status": "NOT_DIMENSIONED",
+  "temporal_validation_gate_before_planning": {
+    "approved": false,
+    "reason": "temporal validation report missing/checksum mismatch",
+    "report": {
+      "path": "qa/statistical_validation/v4/report.json",
+      "sha256": null,
+      "status": "PENDING_V4_EXECUTION_AND_VERIFIED_BINDING"
+    }
+  },
+  "validation_attempted": false,
+  "version": "development-grouped-calendar-empirical-power-v4"
+}

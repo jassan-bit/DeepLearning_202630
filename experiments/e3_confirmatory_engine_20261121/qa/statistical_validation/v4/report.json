@@ -1,0 +1,1452 @@
+{
+  "admitted": false,
+  "all_scenarios_complete": true,
+  "all_three_methods": true,
+  "complete_and_partial_nulls": true,
+  "conditional_scope_admitted": false,
+  "coverage_validated": false,
+  "cpu_budget_seconds": 2000,
+  "cpu_seconds": 1930.502168259,
+  "criteria": {
+    "diagnostic_ci95": "Retain CI95 coverage and exact CP95; separately flag definite undercoverage if CP95 upper <0.95. Operational99% interval is a new, named, stricter interval, never evidence that nominal95% has calibrated.",
+    "failure_rule": "FWER CP95 lower>0.05 or operational CI99 coverage CP95 upper<0.95 is failure; any confidence-bound criterion not established is inconclusive. Retain all results. No tolerance widening.",
+    "fwer_demonstrated_in_a_scenario_only_if": "CP95 upper <=0.05, unchanged from V1/V2",
+    "operational_ci99_coverage_demonstrated_in_a_scenario_only_if": "CP95 lower >=0.95 for CI99 MSE difference AND CI99 relative aggregate RMSE gain",
+    "overall_claim": "Conditional scope admission for the tested five one-panel DGPs and exact R10/T768/B8191/HAC48/block32/reference49999/alpha.025 if every prespecified bound passes. Never unconditional market validation, four-panel joint MC proof, actual-data sizing or R3 accreditation.",
+    "power_target_demonstrated_only_if": "CP95 lower >=0.90 for EVERY rival complete gate under the prespecified strong alternative; jointpower reported; no power claim for 3% alternative"
+  },
+  "evidence": {
+    "freeze": {
+      "path": "freeze.json",
+      "sha256": "111af940fab757f11d7f3d7447796c5188ef1627472a066affbb16f37a7a70fc"
+    },
+    "plan": {
+      "path": "plan.json",
+      "sha256": "920f1d4eb49c169109487614a8d8c74e1e61f6c91abc3f0eaf130a0eae13d38e"
+    },
+    "replicates": {
+      "path": "replicates.jsonl.gz",
+      "sha256": "f1b4efc5dd0db58932dea980605e38d62bcf8e3092c678988824cb2e462ae656",
+      "uncompressed_sha256": "30010e6b946e88f15589ddfd8ca1aaead1ab4af76257cd28029c4d1dcf62a514"
+    },
+    "runner": {
+      "path": "run_validation.py",
+      "sha256": "9123ca2aed4db776892de6538b66409ba54a234fa0896ce95f9abdbea71b08cf"
+    }
+  },
+  "extreme_tail_validated": false,
+  "failed_scenarios": [],
+  "failure_detected": false,
+  "family_rivals": 20,
+  "final_panels_application": 4,
+  "finished_at_utc": "2026-11-22T00:29:22.944796+00:00",
+  "four_panel_application_note": "Monte Carlo studies one complete temporal120 family, not four joint panels. Application to four admitted real panels is conditional on each panel meeting the stationary/FCLT/predictable-instrument assumptions. Global Holm180 over additional-panel EPA p-values is a mathematical strong-FWER adjustment when those marginal p-values are super-uniform; it requires no panel independence, but these five finite simulations do not establish super-uniformity for all markets or prove joint four-panel validity. Full80contrast power and joint conditional empirical-DGP power are separate genuine-data computations. No copies of one-panel ledger count as four-panel simulations.",
+  "general_validation_established": false,
+  "max_inflight_workers": 4,
+  "panels_per_replicate": 1,
+  "plan_sha256": "920f1d4eb49c169109487614a8d8c74e1e61f6c91abc3f0eaf130a0eae13d38e",
+  "prior_studies": "V1/V2 failed and V3 inconclusive are retained separately; new independent seeds, not pooled or selected to improve a bound.",
+  "protocol_closure_permitted": false,
+  "protocol_version": "temporal-fixed-seeds-mse-v4",
+  "r3_accredited": false,
+  "raw_results_sha256": "30010e6b946e88f15589ddfd8ca1aaead1ab4af76257cd28029c4d1dcf62a514",
+  "replicates_uncompressed_bytes": 33084390,
+  "replicates_uncompressed_sha256": "30010e6b946e88f15589ddfd8ca1aaead1ab4af76257cd28029c4d1dcf62a514",
+  "scenarios": [
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 486,
+        "cp95": [
+          0.9264764030294991,
+          0.966563409948979
+        ],
+        "estimate": 0.94921875,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 486,
+        "cp95": [
+          0.9264764030294991,
+          0.966563409948979
+        ],
+        "estimate": 0.94921875,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 508,
+        "cp95": [
+          0.9801185400285478,
+          0.9978673731594061
+        ],
+        "estimate": 0.9921875,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 508,
+        "cp95": [
+          0.9801185400285478,
+          0.9978673731594061
+        ],
+        "estimate": 0.9921875,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": false,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 6,
+        "cp95": [
+          0.004312383422342904,
+          0.025331281179926293
+        ],
+        "estimate": 0.01171875,
+        "n": 512
+      },
+      "fwer": {
+        "count": 16,
+        "cp95": [
+          0.01796544253286592,
+          0.05025287955875999
+        ],
+        "estimate": 0.03125,
+        "n": 512
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 8,
+          "cp95": [
+            0.006769276942972373,
+            0.030554414950524585
+          ],
+          "estimate": 0.015625,
+          "n": 512
+        },
+        "gw_conditional": {
+          "count": 8,
+          "cp95": [
+            0.006769276942972373,
+            0.030554414950524585
+          ],
+          "estimate": 0.015625,
+          "n": 512
+        },
+        "stationary_bootstrap": {
+          "count": 10,
+          "cp95": [
+            0.009404755122447006,
+            0.035624636181676994
+          ],
+          "estimate": 0.01953125,
+          "n": 512
+        }
+      },
+      "fwer_demonstrated": false,
+      "id": "complete_null_ar05",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.007178950026259453
+        ],
+        "estimate": 0.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 484,
+        "cp95": [
+          0.9219285183624817,
+          0.9633566225795298
+        ],
+        "estimate": 0.9453125,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 484,
+        "cp95": [
+          0.9219285183624817,
+          0.9633566225795298
+        ],
+        "estimate": 0.9453125,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": false,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 3,
+        "cp95": [
+          0.0012099778257548665,
+          0.01702737511683891
+        ],
+        "estimate": 0.005859375,
+        "n": 512
+      },
+      "fwer": {
+        "count": 7,
+        "cp95": [
+          0.00551399998131654,
+          0.027965446339922782
+        ],
+        "estimate": 0.013671875,
+        "n": 512
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 5,
+          "cp95": [
+            0.0031782607998062633,
+            0.02264162068722705
+          ],
+          "estimate": 0.009765625,
+          "n": 512
+        },
+        "gw_conditional": {
+          "count": 3,
+          "cp95": [
+            0.0012099778257548665,
+            0.01702737511683891
+          ],
+          "estimate": 0.005859375,
+          "n": 512
+        },
+        "stationary_bootstrap": {
+          "count": 6,
+          "cp95": [
+            0.004312383422342904,
+            0.025331281179926293
+          ],
+          "estimate": 0.01171875,
+          "n": 512
+        }
+      },
+      "fwer_demonstrated": true,
+      "id": "partial_null_ar05",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.007178950026259453
+        ],
+        "estimate": 0.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 475,
+        "cp95": [
+          0.9017647149108752,
+          0.9486110333449406
+        ],
+        "estimate": 0.927734375,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 475,
+        "cp95": [
+          0.9017647149108752,
+          0.9486110333449406
+        ],
+        "estimate": 0.927734375,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": true,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 4,
+        "cp95": [
+          0.002132626840593874,
+          0.019881459971452173
+        ],
+        "estimate": 0.0078125,
+        "n": 512
+      },
+      "fwer": {
+        "count": 6,
+        "cp95": [
+          0.004312383422342904,
+          0.025331281179926293
+        ],
+        "estimate": 0.01171875,
+        "n": 512
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 4,
+          "cp95": [
+            0.002132626840593874,
+            0.019881459971452173
+          ],
+          "estimate": 0.0078125,
+          "n": 512
+        },
+        "gw_conditional": {
+          "count": 1,
+          "cp95": [
+            4.944762114539528e-05,
+            0.010833656944754487
+          ],
+          "estimate": 0.001953125,
+          "n": 512
+        },
+        "stationary_bootstrap": {
+          "count": 4,
+          "cp95": [
+            0.002132626840593874,
+            0.019881459971452173
+          ],
+          "estimate": 0.0078125,
+          "n": 512
+        }
+      },
+      "fwer_demonstrated": true,
+      "id": "complete_null_overlap5",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.007178950026259453
+        ],
+        "estimate": 0.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 478,
+        "cp95": [
+          0.9084373099877381,
+          0.9535768647607814
+        ],
+        "estimate": 0.93359375,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 478,
+        "cp95": [
+          0.9084373099877381,
+          0.9535768647607814
+        ],
+        "estimate": 0.93359375,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 507,
+        "cp95": [
+          0.9773583793127729,
+          0.9968217392001938
+        ],
+        "estimate": 0.990234375,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": false,
+      "failure_detected": false,
+      "false_favorable_fwer": {
+        "count": 10,
+        "cp95": [
+          0.009404755122447006,
+          0.035624636181676994
+        ],
+        "estimate": 0.01953125,
+        "n": 512
+      },
+      "fwer": {
+        "count": 15,
+        "cp95": [
+          0.01648801460911842,
+          0.04786087313588523
+        ],
+        "estimate": 0.029296875,
+        "n": 512
+      },
+      "fwer_by_method": {
+        "dm_hln_hac": {
+          "count": 5,
+          "cp95": [
+            0.0031782607998062633,
+            0.02264162068722705
+          ],
+          "estimate": 0.009765625,
+          "n": 512
+        },
+        "gw_conditional": {
+          "count": 7,
+          "cp95": [
+            0.00551399998131654,
+            0.027965446339922782
+          ],
+          "estimate": 0.013671875,
+          "n": 512
+        },
+        "stationary_bootstrap": {
+          "count": 10,
+          "cp95": [
+            0.009404755122447006,
+            0.035624636181676994
+          ],
+          "estimate": 0.01953125,
+          "n": 512
+        }
+      },
+      "fwer_demonstrated": true,
+      "id": "practical_boundary_ar05",
+      "joint_power": {
+        "count": 0,
+        "cp95": [
+          0.0,
+          0.007178950026259453
+        ],
+        "estimate": 0.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 1,
+          "cp95": [
+            4.944762114539528e-05,
+            0.010833656944754487
+          ],
+          "estimate": 0.001953125,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 1,
+          "cp95": [
+            4.944762114539528e-05,
+            0.010833656944754487
+          ],
+          "estimate": 0.001953125,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        },
+        {
+          "count": 0,
+          "cp95": [
+            0.0,
+            0.007178950026259453
+          ],
+          "estimate": 0.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": false
+    },
+    {
+      "complete": true,
+      "coverage_ci95_gain": {
+        "count": 477,
+        "cp95": [
+          0.9062082072139883,
+          0.9519266746272725
+        ],
+        "estimate": 0.931640625,
+        "n": 512
+      },
+      "coverage_ci95_mse": {
+        "count": 480,
+        "cp95": [
+          0.9129112275405071,
+          0.9568609173441477
+        ],
+        "estimate": 0.9375,
+        "n": 512
+      },
+      "coverage_ci99_gain": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "coverage_ci99_mse": {
+        "count": 503,
+        "cp95": [
+          0.966894379880058,
+          0.9919314510463899
+        ],
+        "estimate": 0.982421875,
+        "n": 512
+      },
+      "diagnostic_ci95_undercoverage_detected": false,
+      "failure_detected": false,
+      "false_favorable_fwer": null,
+      "fwer": null,
+      "fwer_by_method": null,
+      "fwer_demonstrated": false,
+      "id": "strong_alternative_ar05",
+      "joint_power": {
+        "count": 512,
+        "cp95": [
+          0.9928210499737405,
+          1.0
+        ],
+        "estimate": 1.0,
+        "n": 512
+      },
+      "n": 512,
+      "operational_ci99_coverage_demonstrated": true,
+      "per_rival_power": [
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        },
+        {
+          "count": 512,
+          "cp95": [
+            0.9928210499737405,
+            1.0
+          ],
+          "estimate": 1.0,
+          "n": 512
+        }
+      ],
+      "strong_alternative_power_demonstrated": true
+    }
+  ],
+  "scope": "A new independent, bounded conditional validation of the stricter V4 operational decision alpha=.025 with unchanged V3 statistics/references/kernel and CI99. No market claims. No pooling with V3.",
+  "source_hashes": {
+    "engine/statistics.py": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+    "qa/statistical_validation/runner_v1.py": "3a8cf9058a95d46cc583a883fe7e04d569a32d9b1f7a10b6bd421c98bc31c5e1",
+    "qa/statistical_validation/v3/bootstrap_kernel.cpp": "76d5ed35b1ac107fcec453e4dd9be19fb73505949daf0bddcae6fde51f836886",
+    "qa/statistical_validation/v4/plan.json": "920f1d4eb49c169109487614a8d8c74e1e61f6c91abc3f0eaf130a0eae13d38e",
+    "qa/statistical_validation/v4/run_validation.py": "9123ca2aed4db776892de6538b66409ba54a234fa0896ce95f9abdbea71b08cf",
+    "tests/test_statistics.py": "f45225f6a92931c8d057e789f0dd8b098cfdf19bbe5d76adb4c1000cac031b8d"
+  },
+  "started_at_utc": "2026-11-22T00:12:47.549676+00:00",
+  "statistics_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+  "statistics_source_sha256": "a14e20b74f668404835f0f15e1fe555c5ac718ab886125b2dea20d531df06e95",
+  "status": "INCONCLUSIVE_BOUNDED_VALIDATION",
+  "synthetic_validation_executed": true,
+  "uncertainty": "CP95 intervals are pointwise across declared diagnostics, not simultaneous over MC scenarios or coverage outcomes. Finite DGP scope only.",
+  "validated_settings": [],
+  "validation_scope": "single_panel_temporal_family",
+  "version": "synthetic-temporal-validation-v4",
+  "wall_seconds": 995.3951517079986
+}

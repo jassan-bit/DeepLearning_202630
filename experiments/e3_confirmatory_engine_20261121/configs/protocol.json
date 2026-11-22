@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "version": "e3-r3-temporal-engine-protocol-1",
+  "created_at_utc": "2026-11-21T23:42:03.679995+00:00",
+  "candidate_id": "input-only-overlap-mse-1",
+  "candidate_recipe": "input_only_mse",
+  "candidate_identity_sha256": "d07a106d1bfc8721edbf994b9e4227659d07d6d26a0d32d661c91a747e1592c2",
+  "historical_book_source": "28706b33a6732c8ee709fc69f1ca1b2300bd8149",
+  "AI_assistance_declared": true,
+  "is_preregistration_of_old_results": false,
+  "stage_permissions": {
+    "market_acquisition": false,
+    "planning_training": false,
+    "final_training": false,
+    "test_opening": false
+  },
+  "planning_seed_count": 5,
+  "seed_bank": {
+    "path": "configs/FINAL_SEED_BANK.json",
+    "sha256": "137fe45eca358081307c041ab31dd94efb23f533202438e2eb6888e4e79836ee",
+    "planning_rule": "last five entries, indices4091..4095",
+    "final_rule": "first R entries with R<=4091, chosen from power before final training/test; no outcome-dependent replacement"
+  },
+  "training": {
+    "total_budget_seconds": 120.0,
+    "epoch_reservation_seconds": 5.0,
+    "budget_stop_policy": "best selected state after at least one fully validated epoch per required phase; cooperative nominal active-time budget, not hard wall",
+    "override_historical_hyperparameters": false
+  },
+  "evaluation_endpoint_amendment": {
+    "version": "temporal-fixed-seeds-mse-v4",
+    "prospective_primary": "arithmetic mean of MSE across fixed trained seed replicates and chronological endpoints",
+    "RMSE_reporting": "sqrt of aggregate MSE; not averaging predictions into an ensemble",
+    "historical_mean_seed_RMSE": "preserved and additionally required favorable against every rival; not silently substituted",
+    "reason": "standard temporal loss contrasts have an additive squared-error estimand; root of mean MSE is monotone for this new prospective endpoint",
+    "new_data_examined_to_choose_endpoint": false,
+    "historical_E1_or_pilot_rules_rewritten": false,
+    "academic_acceptance_claimed": false
+  },
+  "statistical_settings": {
+    "bootstrap_reps": 8191,
+    "block_length": 32,
+    "hac_lags": 48,
+    "horizon": 1,
+    "margin": 0.02,
+    "seed": 2026112103,
+    "causal_instruments": "constant plus sqrt(known six-return A)/fit-only reference RMS",
+    "status": "IMPLEMENTED_V4_INDEPENDENT_SYNTHETIC_VALIDATION_IN_PROGRESS",
+    "reference_reps": 49999,
+    "reference_seed": 2026112103,
+    "alpha": 0.025
+  },
+  "method_validation": {
+    "path": "qa/statistical_validation/v4/report.json",
+    "sha256": null,
+    "admitted": false,
+    "status": "IN_PROGRESS_NO_CLOSURE_CLAIM"
+  },
+  "panel_ids": [
+    "F00",
+    "F01",
+    "F02",
+    "F03"
+  ],
+  "family": {
+    "method_order": [
+      "input_only_mse",
+      "FCN-1D",
+      "ResNet-1D",
+      "Inception-1D",
+      "LSTM-autoencoder con predictor",
+      "TimesNet",
+      "TSMixer",
+      "TiDE",
+      "TimeMixer",
+      "PatchTST",
+      "iTransformer",
+      "MLP16",
+      "LSTM32",
+      "GRU32",
+      "Persistence",
+      "SeasonalNaive",
+      "ARIMA",
+      "additive_positive_head",
+      "floor_only",
+      "floor_plus_mean_excess",
+      "global_mse"
+    ],
+    "rival_count": 20,
+    "neural_systems_including_candidate": 16,
+    "deterministic_systems": 5,
+    "no_performance_exclusions": true,
+    "projections": "record raw sigma7 and common max(raw,sqrt(A)) for all methods; selection uses projected loss; primary evaluation uses projected loss"
+  },
+  "fairness": {
+    "information_set": "same OHLCV/endpoints and legally available causal history; intrinsic candidate normalization declared",
+    "benchmarks": "historical validation-selected recipe fixed; no new final-test tuning",
+    "new_panel_HPO": "none; all use frozen recipe and one common per-system total opportunity budget. Report this limitation, never claim new-panel HPO optimality."
+  },
+  "partitions": {
+    "order": [
+      "fit",
+      "selection",
+      "planning",
+      "calibration",
+      "test"
+    ],
+    "local_support": "15 closes for seven known sigma lags and next sigma7 label; purge by observed trading-bar indices",
+    "ARIMA_filter_history": "causal past fitted/filter state can span earlier partitions like learned weights; does not make local purges a claim of disjoint global information"
+  },
+  "publication": {
+    "before_final_training": "final complete protocol plus data identities and method/power reports published and read back",
+    "before_test": "selected checkpoint manifest and calibrator hashes published and read back before labels are opened",
+    "GitHub_checkpoint": "encrypted shards preserve complete checkpoints, saved predictions and analysis; bounded public metadata/receipts plus deterministic inventory; no raw market arrays or plaintext weights",
+    "public_payload_policy": {
+      "version": "bounded-public-metadata-full-encrypted-derivatives-1",
+      "full_prediction_CSVs": "always preserved in encrypted checkpoint and full export; never sampled or discarded for public ZIP size",
+      "public_metadata_file_limit_bytes": 262144,
+      "public_metadata_total_limit_bytes": 2097152,
+      "public_requires_all_panels_allow_derived_publication": true,
+      "full_export": "export_case produces complete saved derived CSV/receipt archive without new model queries"
+    }
+  },
+  "adequacy": {
+    "config_path": "configs/adequacy.json",
+    "status": "DEFINED_PROSPECTIVELY_NOT_EMPIRICALLY_SATISFIED",
+    "config_sha256": "10c32ff5da3a273e1071baa5e2d86ed3883c6c0bc2a8860f7b12cb6fb607607e"
+  },
+  "final": {
+    "closed": false,
+    "power_receipt": null,
+    "method_admission": null,
+    "R": null,
+    "T": null,
+    "B": null,
+    "test_panels": null,
+    "calibration_required": true
+  },
+  "R3_accredited": false,
+  "robustness_stress_plans": {
+    "input_noise": {
+      "version": "close-preserving-OHLV-lognoise-1",
+      "kind": "ohlv_log_measurement_noise",
+      "log_sd": 0.001,
+      "seed": 20261122011,
+      "preserve_close": true,
+      "coherent_OHLC_projection": true,
+      "frozen_before_test": true,
+      "assumption": "multiplicative measurement error on O/H/L/volume; close and true labels/history remain exact; all methods share each disturbed panel",
+      "scenario_sha256": "4c063d83c65d9f0045a02d3ed804e33efa4f7b49a4c80befa88c878bc8dc898b"
+    },
+    "missingness": {
+      "version": "causal-open-volume-carry-1",
+      "kind": "causal_open_volume_carry_forward",
+      "rate": 0.1,
+      "seed": 20261122012,
+      "preserve_close": true,
+      "first_row_preserved": true,
+      "frozen_before_test": true,
+      "assumption": "independent missing O/volume entries after first known window row; causal carry-forward and OHLC clipping; close/labels remain exact",
+      "scenario_sha256": "d1745916c27984fa93c1db9ab521395f586b64744cb73f0df66476a02cbb46da"
+    }
+  },
+  "stage_activation_rule": "stage_permissions records disabled defaults; explicit author activation flags are required for acquisition, planning/final training and test opening; activation never bypasses evidence checks"
+}
