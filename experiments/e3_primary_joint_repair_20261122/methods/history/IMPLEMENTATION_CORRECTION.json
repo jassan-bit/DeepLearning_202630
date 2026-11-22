@@ -1,0 +1,13 @@
+{
+  "detected_at_utc": "2026-11-22T15:09:06.290861+00:00",
+  "kind": "PRE_FREEZE_IMPLEMENTATION_ERROR_NOT_MARKET_RESULT",
+  "detected_by": "independent_review/test_production_api.py and root derivation check",
+  "source_sha256_before": "147dc673764bde8d4bb5ad69b4162370f58cccc274a5c366a914720ee0f7bdc9",
+  "finding": "conditional GMM nuisance derivative used sum rather than temporal mean; missing division by T",
+  "correction": "divide z.T@(centered/mu).T by len(z), retaining full nuisance formula",
+  "formal_calibration_replicates_before_correction": 0,
+  "training_steps": 0,
+  "prior_throughput_only_preserved": "THROUGHPUT_BENCHMARK_PRE_T_FIX.json",
+  "validation_status": "FIX_CONFIRMED_BY_INDEPENDENT_PRODUCTION_API; CURRENT_METHODS_PASS_27_INDEPENDENT_AND_11_OWN_TESTS",
+  "source_sha256_after": "302638ec5d67d906d846d4cc125f90540786161e24aea088688efc1dadaa156c"
+}

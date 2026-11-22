@@ -1,0 +1,35 @@
+{
+  "kind": "SOFTWARE_THROUGHPUT_BENCHMARK_NOT_CALIBRATION",
+  "UTC": "2026-11-22T15:08:08.317405+00:00",
+  "dimensions": [
+    21,
+    10,
+    768
+  ],
+  "B": 8191,
+  "block_length": 32,
+  "hac_lags": 48,
+  "reference_reps": 49999,
+  "measurements": [
+    {
+      "stage": "cold_including_compile_and_reference",
+      "wall_seconds": 5.287788057001308,
+      "parent_cpu_seconds": 4.8789414849999995,
+      "child_cpu_seconds": 0.38634,
+      "backend": "native"
+    },
+    {
+      "stage": "warm_cached_reference",
+      "wall_seconds": 2.889924784001778,
+      "parent_cpu_seconds": 2.886493496,
+      "child_cpu_seconds": 2.7755575615628914e-17,
+      "backend": "native"
+    }
+  ],
+  "benchmark_seed": 202611220987654,
+  "outputs_inspected": "only timing/shape/backend; no p-values, rejection counts or acceptance criteria used",
+  "methods_sha256": "147dc673764bde8d4bb5ad69b4162370f58cccc274a5c366a914720ee0f7bdc9",
+  "kernel_sha256": "50a8179ee653b2683127e9bec2460c2d025669b883d42ea41ab8fc9064446802",
+  "new_market_fits": 0,
+  "new_calibration_replicates": 0
+}
