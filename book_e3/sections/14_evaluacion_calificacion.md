@@ -1,10 +1,10 @@
 # 14 Evaluación y calificación
 
-**Estado: matriz documental de requisitos y evidencia, sin nota ni tope asignados al avance actual.** Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas de evaluación pertenecen a esa guía; describirlas no acredita su cumplimiento ni constituye una evaluación del docente.
+**Estado: reglas de la guía, matriz documental y evaluación orientativa versionada en 14.10; sin calificación oficial asignada.** Este capítulo organiza la sección 14 de la guía —páginas 41–47, Cuadro 8 de la página 59 y Cuadro 9 de la página 60—. Las reglas pertenecen a esa guía. La valoración solicitada distingue el puntaje ponderado, los topes condicionales y el valor de sustentación aportado por el autor; no constituye una evaluación del docente.
 
 La nota se expresa en la escala de **0 a 5** y se determina en dos pasos: primero se obtiene el puntaje ponderado de la rúbrica y después se aplica el tope que corresponda al estado **evaluado** de R1, R2 y R3. Una condición pendiente no se convierte en «no» para fijar ese tope, y una casilla sin evidencia no se marca cumplida para completar la rúbrica.
 
-La evidencia se consulta en las [correcciones de E2](04_correcciones_e2.md), [artefactos](05_configuraciones_exportacion.md), [candidato](06_modelo_original.md), [diseño riguroso](07_diseno_riguroso.md), [verificación estadística](08_verificacion_estadistica.md) y [diseño del dashboard](09_dashboard_predictivo.md). Las actividades pendientes conservan su estado. Este capítulo organiza la evidencia y no asigna una calificación; los nuevos experimentos y validaciones controladas se documentan con sus propios recibos en 8.25.
+La evidencia se consulta en las [correcciones de E2](04_correcciones_e2.md), [artefactos](05_configuraciones_exportacion.md), [candidato](06_modelo_original.md), [diseño riguroso](07_diseno_riguroso.md), [verificación estadística](08_verificacion_estadistica.md) y [diseño del dashboard](09_dashboard_predictivo.md). Las actividades pendientes conservan su estado. Los cortes experimentales históricos y la validación temporal posterior de 8.29 conservan sus propios recibos. La valoración orientativa de 14.10 no modifica esos resultados ni rellena los campos de calificación oficial.
 
 La matriz incorpora el corte posterior del **17 de noviembre de 2026**: diez semillas por red de E2 y de la referencia E3 de 1210 parámetros, tres trayectorias clásicas deterministas y análisis de los 17 sistemas sobre 608 fechas. Actualizar una casilla con evidencia retrospectiva no la convierte en cumplimiento confirmatorio ni transfiere las propiedades del primer módulo de 1211 parámetros a la receta evaluada.
 
@@ -67,7 +67,7 @@ P_{\mathrm{ponderado}}=\sum_{i=1}^{11}\frac{w_iq_i}{100},
 \mathrm{Nota\ final}=\min\left(\mathrm{Tope},\;5{,}0\times\frac{P_{\mathrm{ponderado}}}{100}\right).
 $$ (eq-e3-final-grade)
 
-En la ecuación {eq}`eq-e3-final-grade`, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben aquí equivalencias numéricas inventadas. No se asignan valores a $q_i$, no se estima el puntaje y no se calcula una nota o tope del proyecto.
+En la ecuación {eq}`eq-e3-final-grade`, el tope se obtiene de las condiciones evaluadas de 14.1; no es un componente adicional de la suma. Alcanzar un tope de 5,0 no implica obtener esa nota: se necesita también el 100 % del puntaje ponderado. Los cuatro niveles de 14.4 no reciben equivalencias numéricas automáticas. La aplicación orientativa solicitada se documenta por separado en 14.10, con notas explícitas entre 0 y 5, mientras los campos oficiales del registro histórico permanecen vacíos.
 
 ## 14.4 Niveles de desempeño por componente
 
@@ -136,7 +136,7 @@ Corresponde a R3 y evaluación ampliada/robustez —10 %—.
 
 | Exigencia de la guía | Estado actual | Evidencia disponible | Vacío que impide darla por cumplida |
 |---|---|---|---|
-| Al menos tres conjuntos de naturaleza distinta, elegidos antes de conocer resultados y fuera del diseño. | **Tres archivos admitidos y evaluación completa de la familia**, con independencia por justificar. | {ref}`8.18 <e3-final-extended-audit>`: D01 WIKI/AAPL, D02 ETHUSDT Spot y D03 BTCUSD_PERP, además de D00, completaron los 19 sistemas y el análisis. | Justificar diversidad e independencia pertinentes, exposición previa y potencia. D02/D03 comparten exposición cripto y D03 se solapa con el subyacente BTC; tres archivos no representan automáticamente tres mercados independientes ni demuestran superioridad. |
+| Al menos tres conjuntos de naturaleza distinta, elegidos antes de conocer resultados y fuera del diseño. | **Tres archivos admitidos y evaluación exploratoria aditiva completa**; ninguno acredita confirmación de la candidata actual. | {ref}`8.18 <e3-final-extended-audit>`: D01 WIKI/AAPL, D02 ETHUSDT Spot y D03 BTCUSD_PERP, además de D00, completaron los 19 sistemas y el análisis. | Justificar dos ejes de diferencia por adicional y una evaluación no usada para diseñar, con dependencias y potencia documentadas. F00–F03 siguen sin admisiones verificadas; la {ref}`revisión de selección <e3-data-selection-review-20261121>` pausa la adquisición propuesta de acciones. Tres archivos o tickers distintos no acreditan automáticamente esas condiciones. |
 | Evaluación bajo cambio de distribución: periodo, dominio o fuente. | Comparación exploratoria entre conjuntos disponible. | D01–D03 y diagnósticos temporales/perturbaciones calculados en {ref}`8.18 <e3-final-extended-audit>`, con exposición y dependencia declaradas. | Justificar qué cambio está aislado y qué datos se mantuvieron fuera del diseño; un tramo conocido no adquiere independencia al renombrarlo. |
 | Mejor media en al menos dos de tres adicionales y ausencia de inferioridad significativa frente a cualquier rival en cualquiera. | Resultados por conjunto disponibles; R3 no acreditada. | Métricas y contrastes de la familia completa en {ref}`8.18 <e3-final-extended-audit>`; se conservan resultados favorables, adversos y no concluyentes. | Evaluar el criterio completo con pruebas apropiadas y potencia, sin escoger rivales o conjuntos posteriores. Falta de rechazo de inferioridad no equivale a equivalencia o no inferioridad demostradas. |
 
@@ -148,8 +148,8 @@ Corresponde a pruebas/adecuación —15 %— y correcciones E2 —7 %—. La rut
 |---|---|---|---|
 | Auditoría de fuga: duplicados, unidad de partición, preentrenamiento y exposición del test. | Parcial, con auditoría posterior incorporada. | Cierre de datos E2: **12 PASS, 3 PARTIAL y 1 NA**, con 1316 ventanas y las 608 de prueba disponibles; [sección 4.2](04_correcciones_e2.md). Referencia E3 sin backbone preentrenado y exposición histórica explícita. | Cerrar controles parciales y la auditoría integral del pipeline candidato. Las ventanas verificadas o un control sin fallo no acreditan ausencia integral de fuga ni independencia de calendarios conocidos. |
 | Tablas A y B de ajuste/sobreajuste superadas. | Brechas y diagnósticos retrospectivos disponibles; aprobación formal pendiente. | {ref}`8.20 <e3-existing-adequacy-close-20261120>` añade brechas entre particiones y controles triviales en D00–D03, residuos de los pesos históricos y de la auditoría ampliada, con versiones y familias diagnósticas separadas. | No existía un margen de brecha prospectivo del candidato. Cocientes de RMSE, no rechazar un diagnóstico o un error de prueba menor no completan las tablas ni acreditan potencia/adecuación confirmatoria. |
-| Calibración antes/después de la recalibración, adaptada a la tarea. | Diagnóstico histórico, perfil individual de servicio y calibración exploratoria ampliada disponibles. | [8.11](08_verificacion_estadistica.md) conserva diez cuantiles y 530 forwards CPU; el servicio usa el q existente de 271801. {ref}`8.18 <e3-final-extended-audit>` añade calibradores y evaluación de intervalos en los cuatro conjuntos, separados de esos artefactos históricos. | Completar la calibración probabilística/regresión que exija la salida y su validación temporal confirmatoria, junto con aceptación pública del perfil. Un punto y un intervalo no definen toda una distribución predictiva. |
-| Incertidumbre: cobertura empírica frente a nominal y por subgrupo. | Diagnósticos históricos y ampliados calculados; aceptación pública del servicio pendiente. | El diagnóstico histórico conserva 94,49 % global y 86,22 % en 2026Q1 entre diez semillas; el predictor servido 271801 tiene 94,08 % y 85,56 %. La auditoría nueva aporta cobertura/anchura y subgrupos temporales por conjunto en {ref}`8.18 <e3-final-extended-audit>`. | Justificar subgrupos, dependencia y cambio temporal sin convertir cobertura histórica en garantía futura. Las cifras de la campaña nueva no se atribuyen a los pesos o calibrador históricos del servicio. |
+| Calibración antes/después de la recalibración, adaptada a la tarea. | Diagnóstico histórico, perfil individual de servicio y calibración exploratoria ampliada disponibles. | [8.11](08_verificacion_estadistica.md) conserva diez cuantiles y 530 forwards CPU; el servicio usa el q existente de 271801. {ref}`8.18 <e3-final-extended-audit>` añade calibradores y evaluación de intervalos en los cuatro conjuntos, separados de esos artefactos históricos. | Completar la calibración probabilística/regresión que exija la salida y su validación temporal confirmatoria. La aceptación pública histórica ya está comprobada en 10.10; no sustituye esa validación. Un punto y un intervalo no definen toda una distribución predictiva. |
+| Incertidumbre: cobertura empírica frente a nominal y por subgrupo. | Diagnósticos históricos y ampliados calculados; aceptación pública histórica comprobada para H. | El diagnóstico histórico conserva 94,49 % global y 86,22 % en 2026Q1 entre diez semillas; el predictor servido 271801 tiene 94,08 % y 85,56 %. La auditoría nueva aporta cobertura/anchura y subgrupos temporales por conjunto en {ref}`8.18 <e3-final-extended-audit>`. | Justificar subgrupos, dependencia y cambio temporal sin convertir cobertura histórica en garantía futura. Las cifras de la campaña nueva no se atribuyen a los pesos o calibrador históricos del servicio. |
 
 ### 14.5.6 Análisis que explican el resultado
 
@@ -269,10 +269,52 @@ reescriben al mejorar la herramienta estadística.
 
 
 (e3-r3-route-verdict-20261121)=
-## 14.9 Dictamen de la ruta R3, sin nota automática
+## 14.9 Dictamen histórico de la ruta R3, anterior al motor temporal
 
-La ruta nueva documenta condiciones y bloqueos; **no acredita R3** ni afirma haber refutado toda propuesta futura. La guía condiciona la evaluación de R3 a R1/R2 satisfechas. Aquí no hay candidata admitida, batería confirmatoria plenamente validada, datos futuros admitidos, dimensionamiento final o protocolo real anterior a resultados. Una reparación estadística no revierte la regla fallida de V3 o el abandono de V4.
+La ruta de aquel corte documenta condiciones y bloqueos; **no acredita R3** ni afirma haber refutado toda propuesta futura. La guía condiciona la evaluación de R3 a R1/R2 satisfechas. Entonces no había candidata admitida, batería confirmatoria plenamente validada, datos futuros admitidos, dimensionamiento final o protocolo real anterior a resultados. La nominación input-only y el motor temporal se documentan después, en 8.29 y en la valoración actual de 14.10. Una reparación estadística no revierte la regla fallida de V3 o el abandono de V4.
 
 El método global MCS requiere su propio nivel congelado y una correspondencia defendida con la guía; 0,10 fue una elección de desarrollo, no un valor universal obligatorio. Dos pruebas pareadas más una regla global singleton no se presentan automáticamente como cumplimiento literal de tres procedimientos por contraste con Holm. Se conservan las diferencias entre cobertura del conjunto óptimo, dirección, margen, multiplicidad y potencia de toda la decisión.
 
 Los campos oficiales de nota y tope permanecen sin rellenar. La **sustentación 4,5** sigue siendo un dato indicado por el autor, sin afirmar una defensa observada o acreditar R2 por esa cifra. Los resultados nuevos y sus limitaciones se documentan en {ref}`8.27 <e3-r3-route-statistics-20261121>`; este corte no asigna una nueva nota global ni convierte una condición pendiente en incumplimiento demostrado.
+
+
+(e3-evaluation-current-20261121)=
+## 14.10 Evaluación orientativa vigente, con sustentación 4,5
+
+**Valoración documental por IA del 21 de noviembre de 2026, hora de Bogotá, solicitada por el autor.** Se revisa la evidencia del corte `28a58e22bee25a9ab813afeac272279b91d5663a`, incorporando la aclaración de selección de datos. Es una evaluación orientativa en escala de 0 a 5; no sustituye la decisión académica ni afirma haber observado una sustentación. El **4,5 de sustentación es el valor proporcionado por el autor** y se usa exclusivamente para ese componente.
+
+Se aplican los **once pesos del Cuadro 9, p. 60**, que suman 100 %. Las notas son juicios documentales explícitos por componente; no se inventa una equivalencia automática entre los cuatro niveles de la guía y una cifra. El {download}`registro versionado de notas, aportes y evidencia <../_static/e3_btc_scope_assessment_20261121/assessment.json>` permite repetir el cálculo y comparar futuras revisiones. Los campos oficiales del registro histórico de 14.2 permanecen sin diligenciar.
+
+| Componente | Peso | Nota /5 | Aporte a la nota /5 | Fundamento de esta valoración |
+|---|---:|---:|---:|---|
+| Correcciones del Entregable 2 | 7 % | 4,4 | 0,308 | Trazabilidad, objetivo y auditorías conservados; controles D13–D15 y determinismo entre plataformas parciales. |
+| Mejores configuraciones y artefactos | 7 % | 4,5 | 0,315 | Catorce representantes ONNX verificados; política común de ajuste final y costes comparables todavía parciales. |
+| Dashboard: Contexto y EDA | 8 % | 4,6 | 0,368 | Contenido, interacción y diagnósticos temporales documentados, con límites explícitos. |
+| Dashboard: Modelos | 9 % | 4,4 | 0,396 | Catálogo, perfil14, intervalos y explicaciones disponibles; fidelidad de explicaciones y eficiencia completa limitadas. |
+| Dashboard: diseño, UX y despliegue | 5 % | 4,6 | 0,23 | Aceptación pública de Render H comprobada; capacidad, disponibilidad sostenida y accesibilidad integral no demostradas. |
+| Modelo original: revisión y diseño | 8 % | 4,2 | 0,336 | Justificación propia y acotada de input-only, ecuaciones y antecedentes; nominación posterior al desarrollo declarada. |
+| Modelo original: implementación y demostración | 10 % | 4,1 | 0,41 | Mecanismo, propiedad delimitada, equivalencia y recuperación verificadas; interpretación y evaluación completa de la candidata parciales. |
+| Evaluación ampliada y robustez | 10 % | 3,5 | 0,35 | Auditoría exploratoria real y extensa; falta confirmación de la candidata actual y diversidad admitida para esa evaluación. |
+| Pruebas de hipótesis y adecuación | 15 % | 2,8 | 0,42 | La admisión temporal condicional mejora el método; faltan dimensionamiento suficiente y ejecución confirmatoria de mercado. |
+| Informe en Jupyter Book | 14 % | 4,6 | 0,644 | Evidencias, contenedor, hashes y DOI verificables; reproducción humana pendiente y navegación editorial mejorable. |
+| Sustentación | 7 % | 4,5 | 0,315 | Valor indicado por el autor para esta evaluación; no corresponde a una defensa observada por el revisor. |
+| **Total ponderado** | **100 %** | | **4,092** | **4,09/5 al redondear a dos decimales; antes de aplicar un tope.** |
+
+El cálculo usa $N=\sum_i w_i n_i/100$, con $n_i$ entre 0 y 5. La sustentación aporta exactamente **0,315 puntos**. Primero se suma sin redondear y después se considera el tope; no se suman otra vez los pesos de las matrices de condiciones.
+
+### Puntaje ponderado y regla de tope
+
+El **Cuadro 8, p. 59**, requiere distinguir los escenarios de evaluación:
+
+* **Con R1 y R2 aceptadas y R3 no acreditada:** $\min(4{,}092;4{,}0)=4{,}00$. La **nota orientativa bajo ese supuesto es 4,00/5**.
+* **Si se determina que R1 o R2 no se cumplen:** corresponde el tope 3,0. Una condición pendiente de evaluación no se convierte automáticamente en ese incumplimiento.
+
+La revisión técnica específica de input-only es una evidencia propia; no hereda el dictamen de V3 ni la comparación de la aditiva. La defensa de comprensión y modificación del código para R2 sigue requiriendo el acto auténtico del estudiante. Introducir 4,5 en sustentación no demuestra por sí mismo R2. El puntaje previo de 4,09 tampoco autoriza superar el tope 4,0 del primer escenario.
+
+### Qué se reconoce y qué sigue limitando el resultado
+
+Se reconocen el motor experimental completo, **282 pruebas y 40 subpruebas** del paquete fijado, la recuperación comprobada y la admisión estadística temporal **condicional a los DGP y ajustes documentados**. El asistente de preparación posterior pasó **21 pruebas de software**. Esos avances mejoran implementación y trazabilidad; no son ajustes de mercado, potencia de la campaña o confirmación de superioridad. Los 796 trabajos siguen perteneciendo a la aditiva. V3, V4 y V5 completo conservan sus resultados adversos y decisiones; no se les resta nota por declararlos honestamente ni por la modalidad autorizada de revisión bibliográfica con IA.
+
+Los descuentos principales corresponden a **confirmación propia de la candidata**, **dimensionamiento y batería de mercado suficientes** y **reproducción humana independiente del libro y su tabla principal**. La guía admite precálculos costosos versionados con generadores documentados; no se añade una obligación universal de reentrenar toda la historia. Render H y el DOI del suplemento tienen evidencias públicas previas; no se vuelven a presentar como pendientes de despliegue o publicación.
+
+La {ref}`revisión de conjuntos adicionales <e3-data-selection-review-20261121>` mantiene Bitcoin como principal y pausa la adquisición asistida de IBM/MSFT/XOM hasta justificarla o registrar una sustitución antes de nuevos resultados. La guía exige misma tarea y dos ejes por adicional, no acciones, Nasdaq ni una razón de tamaño 1,5×. Tampoco se da por válida una sustitución por criptomonedas sólo por cambiar ticker o periodo. Esta revisión metodológica no es un resultado experimental adverso ni una penalización por detener una descarga.
