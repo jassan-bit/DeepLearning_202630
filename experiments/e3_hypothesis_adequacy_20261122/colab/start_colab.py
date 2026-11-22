@@ -1,8 +1,8 @@
 from pathlib import Path
 import hashlib, importlib.util, json, re, subprocess, urllib.request
 
-SOURCE_COMMIT = '071e138c5a048893bb7e4a340c4a7fca0f034595'
-MANIFEST_SHA256 = '29b8d5a3fa2a7936d9a2c282d1742d0215fa057dec55a9b60f7464047c5a505e'
+SOURCE_COMMIT = 'db74afd0763596f71bcbafb4b9150a44a2e83339'
+MANIFEST_SHA256 = '2c7dc052d2a53f212688340b50b65bed5fa367ff16fb5ed0a2474d417696715b'
 BOOTSTRAP_SHA256 = '3c78071ea0a25cd771037ef53eea1edd8c63cbc0a586cad1da3cda96b9fe560b'
 assert re.fullmatch(r"[0-9a-f]{40}", SOURCE_COMMIT), "Usar la edición publicada con pins resueltos"
 assert re.fullmatch(r"[0-9a-f]{64}", MANIFEST_SHA256)
@@ -23,9 +23,12 @@ else:
 spec = importlib.util.spec_from_file_location("e3_pinned_bootstrap", bootstrap_path)
 bootstrap = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bootstrap)
-previous_python = globals().get("SETTINGS", {}).get("python")
-if previous_python is not None and not Path(previous_python).is_file():
-    previous_python = None
+previous_info = globals().get("SETTINGS")
+previous_python = None
+if isinstance(previous_info, dict) and previous_info.get("source_commit") in {"c54a2fd3123a1ea8f98c2e56c2acfbe491c8672c", SOURCE_COMMIT}:
+    candidate_python = previous_info.get("python")
+    if isinstance(candidate_python, (str, Path)) and Path(candidate_python).is_file():
+        previous_python = str(candidate_python)
 SETTINGS = bootstrap.setup(SOURCE_COMMIT, MANIFEST_SHA256, WORK / "cache", existing_python=previous_python, run_tests=True)
 SOURCE = Path(SETTINGS["source_root"])
 PRIVATE = WORK / "private"
