@@ -1,0 +1,51 @@
+{
+  "kind": "statistical_validation_Colab_software_QA",
+  "recorded_utc": "2026-11-22T15:32:47.951226+00:00",
+  "source_files_sha256": {
+    "bootstrap_cpu.py": "6645af3889e356ec687ade7a20d63cd4cbfb8689cc4b91c63269aa367d619061",
+    "requirements-validation.lock.txt": "1c9fd342d136ebc44eae1f80d52b1c56c04e9ba80181cb724ebc1b01430cd8d5",
+    "notebook_template.py": "9599e10aea6e96df1120eee084d8f543d2917bae379e432e921534421f9f3481",
+    "test_bootstrap_cpu.py": "ecca6352f44d13476c0178ece11d1976588fc15329e3c629dbb627882fb340fa",
+    "test_notebook_template.py": "6c92a5ce9efee6d28eb10527231eb8e78480db9c0df7f6b4f0b3f5a464b64c7b"
+  },
+  "tests_passed": 29,
+  "pytest_elapsed_seconds": 0.21,
+  "command": "PYTHONDONTWRITEBYTECODE=1 /workspace/e3_engine_clean_cache/venv-cpu-652abf93aba295c3-py312/bin/python -B -m pytest -q e3_primary_joint_repair_20261122/colab/test_bootstrap_cpu.py e3_primary_joint_repair_20261122/colab/test_notebook_template.py",
+  "actual_numerical_interpreter_check": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "environment_mutated": false
+  },
+  "CLI_smoke": {
+    "scope": "Working-tree interface smoke on temporary software-fixture paths; not a formal validation",
+    "commands": [
+      "freeze",
+      "status",
+      "export",
+      "restore",
+      "status"
+    ],
+    "completed_replicates": 0,
+    "final_status": "incomplete",
+    "source_commit_argument": "Software fixture placeholder only; no published source or formal Monte Carlo claim"
+  },
+  "checks": [
+    "source hash and sizes",
+    "safe cache paths and symlinks",
+    "existing interpreter never installed into",
+    "owned venv prefix verified before pip",
+    "no model or market CLI commands",
+    "default no simulation or credentials",
+    "bounded explicit resume",
+    "portable complete-checkpoint inspection",
+    "published ZIP pinned and verdict preserved",
+    "existing cases preserved",
+    "restored source/code/protocol checked by statistical CLI"
+  ],
+  "local_environments_created": 0,
+  "formal_MC_replicates": 0,
+  "market_downloads": 0,
+  "market_fits": 0,
+  "final_notebook_generation": "After source commit P and results commit R; source pins and published complete ZIP pins resolved in a later notebook commit T"
+}
