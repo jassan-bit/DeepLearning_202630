@@ -8,7 +8,7 @@ Sitio publicado: https://jassan-bit.github.io/DeepLearning_202630/bonificacion/i
 
 Siete capítulos: entrenamiento de MLP, derivada de la sigmoide, tamaño de paso para el error cuadrático, gradientes convolucionales, retropropagación, campo receptivo y beneficio de la profundidad. Incluye los enunciados, demostraciones paso a paso, un cuaderno con salidas ejecutadas y las capturas originales del documento proporcionado.
 
-Las seis demostraciones teóricas están completas. La tabla numérica del MLP requiere la página del ejemplo de clase con su arquitectura, entradas, objetivo y pesos iniciales; esos datos no aparecían en el documento original. El capítulo explica el procedimiento y el código está preparado sin inventar esos valores.
+El capítulo del MLP incluye el ejemplo numérico completo del PDF proporcionado *Cinco iteraciones de gradiente descendente*: entradas y pesos iniciales, diez nodos, seis gradientes, primera actualización desarrollada y tabla de los estados 0 a 5. Utiliza la derivada correcta de la pérdida, `2 * (yhat - y)`. La reducción de la pérdida en cinco actualizaciones es del 9.4557004%; el primer cambio consecutivo inferior a `1e-6` ocurre en el estado 255, con 250 actualizaciones adicionales después de las cinco solicitadas. Los resultados se acompañan de un programa específico, una figura y archivos CSV/JSON.
 
 ## Compilar desde el repositorio
 
@@ -31,7 +31,15 @@ python -m pip install -r book_bonificacion/requirements-notebooks.txt
 python book_bonificacion/codigo/comprobaciones.py
 ```
 
-El cuaderno `notebooks/comprobaciones.ipynb` conserva sus salidas. La compilación del sitio no ejecuta notebooks ni entrena modelos.
+Para recalcular el ejemplo del MLP y su criterio de parada:
+
+```bash
+python book_bonificacion/codigo/mlp_ejemplo_clase_v1.py
+```
+
+Las tablas están en `resultados/mlp_cinco_iteraciones_v1.csv`, `resultados/mlp_nodos_v1.csv` y `resultados/mlp_gradientes_v1.csv`; el criterio de parada y sus valores se documentan en `resultados/mlp_tolerancia_v1.json`. `codigo/mlp_cinco_iteraciones.py` se conserva como plantilla general independiente.
+
+El cuaderno actual es [notebooks/comprobaciones_v2.ipynb](notebooks/comprobaciones_v2.ipynb). Conserva todos los cálculos y salidas del inicial y actualiza dos notas para enlazar al ejercicio MLP completo. [notebooks/comprobaciones.ipynb](notebooks/comprobaciones.ipynb) se mantiene sin modificaciones como archivo histórico, disponible en Anexos. La compilación del sitio no ejecuta notebooks ni entrena modelos.
 
 ## Publicación
 
