@@ -145,6 +145,42 @@ def test_execute_is_normal_descendant_and_preserves_checkout(world, tmp_path):
         assert pub.sha256(data).hexdigest() == info['sha256']
 
 
+def test_previous_three_book_publication_can_add_demonstrations(world, tmp_path):
+    """Migrate the previous manifest without weakening preservation or ancestry."""
+    legacy = tmp_path / 'legacy-three-book-site'
+    shutil.copytree(world['site'], legacy)
+    shutil.rmtree(legacy / 'bonificacion')
+    manifest = json.loads((legacy / 'books_manifest.json').read_text())
+    manifest['source_commit'] = world['old']
+    manifest['books'] = [book for book in manifest['books'] if book['id'] != 'bonificacion']
+    (legacy / 'books_manifest.json').write_text(json.dumps(manifest))
+    # This is the historical three-book artifact, not a candidate validated by
+    # the current four-book publisher. Its inventory is retained as old bytes.
+    (legacy / pub.INVENTORY).write_text(json.dumps({
+        'schema_version': 1, 'source_commit': world['old'],
+        'files': pub.file_inventory(legacy),
+    }))
+    repo = world['repo']
+    git(repo, 'checkout', 'gh-pages')
+    git(repo, 'rm', '-r', 'bonificacion')
+    for name in ('books_manifest.json', pub.INVENTORY):
+        shutil.copyfile(legacy / name, repo / name)
+    git(repo, 'add', 'books_manifest.json', pub.INVENTORY)
+    git(repo, 'commit', '-m', 'fixture of previous three-book publication')
+    previous = git(repo, 'rev-parse', 'HEAD')
+    git(repo, 'push', 'origin', 'gh-pages')
+    git(repo, 'checkout', 'main')
+
+    result = publish(world, execute=True)
+    assert result['pushed']
+    assert result['previous_pages_commit'] == previous
+    assert result['previous_source_commit'] == world['old']
+    assert result['unchanged_downloads'] == 2
+    assert git(world['remote'], 'rev-parse', 'gh-pages^') == previous
+    assert git(world['remote'], 'show', 'gh-pages:bonificacion/intro.html')
+    assert not git(repo, 'status', '--porcelain')
+
+
 @cases('branch', ['main', 'gh-pages'])
 def test_requires_existing_branches(world, branch):
     git(world['remote'], 'update-ref', '-d', 'refs/heads/' + branch)
@@ -195,7 +231,7 @@ def test_remote_race_before_final_check(world, monkeypatch, branch):
 
 
 @cases('path', ['intro.html', 'entregable2/index.html', 'entregable3/objects.inv',
-                                 'searchindex.js', 'entregables.html', '.nojekyll'])
+                                 'bonificacion/intro.html', 'searchindex.js', 'entregables.html', '.nojekyll'])
 def test_missing_required_site_file(world, path):
     (world['site'] / path).unlink()
     with expect_error(pub.PublicationError):
@@ -522,19 +558,20 @@ def test_live_verify_exact_artifact_updates_report(world, monkeypatch, tmp_path)
     assert result['web_deployment_verified'] is True
     assert result['verified_source_commit'] == world['sha']
     assert calls == ['books_manifest.json', 'intro.html', 'entregable2/intro.html',
-                     'entregable3/intro.html', 'entregables.html']
+                     'entregable3/intro.html', 'bonificacion/intro.html', 'entregables.html']
     saved = json.loads(report.read_text())
     assert saved['pushed'] and saved['web_deployment_verified'] and saved['preserved'] == 'value'
     assert heads(world) == before
 
 
-@cases('failure', ['old-manifest', 'bad-page', 'network', 'invalid-json', 'non-object-json'])
+@cases('failure', ['old-manifest', 'bad-page', 'bad-demonstrations', 'network', 'invalid-json', 'non-object-json'])
 def test_live_verify_failure_never_claims_delivery_or_changes_remote(world, monkeypatch, tmp_path, failure):
     if failure == 'old-manifest':
         manifest = json.loads((world['site'] / 'books_manifest.json').read_text())
         manifest['source_commit'] = world['old']
         overrides = {'books_manifest.json': json.dumps(manifest).encode()}
     elif failure == 'bad-page': overrides = {'entregable3/intro.html': b'stale page'}
+    elif failure == 'bad-demonstrations': overrides = {'bonificacion/intro.html': b'stale demonstrations'}
     elif failure == 'network': overrides = {'books_manifest.json': OSError('offline')}
     else: overrides = {'books_manifest.json': b'{' if failure == 'invalid-json' else b'[]'}
     calls = mock_web(world, monkeypatch, overrides)

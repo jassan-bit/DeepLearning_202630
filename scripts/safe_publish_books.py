@@ -1,4 +1,4 @@
-"""Fail-closed, fast-forward publication of the complete three-book site.
+"""Fail-closed, fast-forward publication of the complete configured book site.
 
 `inventory` and `validate` never publish. `publish` defaults to a dry run;
 only --execute permits a normal push. No force, branch creation, retry, source
@@ -24,7 +24,8 @@ from check_book_links import check_html
 
 INVENTORY = "publication_inventory.json"
 BOOKS = {"entregable1": ("book", ""), "entregable2": ("book_e2", "entregable2"),
-         "entregable3": ("book_e3", "entregable3")}
+         "entregable3": ("book_e3", "entregable3"),
+         "bonificacion": ("book_bonificacion", "bonificacion")}
 DOWNLOAD_SUFFIXES = {".zip", ".pdf", ".csv", ".tsv", ".xlsx", ".xls", ".ipynb",
                      ".tar", ".gz", ".7z", ".pkl", ".parquet"}
 
@@ -101,8 +102,8 @@ def validate_site(site, source_sha, require_inventory=True, return_inventory=Fal
     if manifest.get("source_commit") != source_sha:
         raise PublicationError("Manifest source differs from the checked-out source")
     records = manifest.get("books", [])
-    if not isinstance(records, list) or len(records) != 3:
-        raise PublicationError("Manifest must contain exactly three books")
+    if not isinstance(records, list) or len(records) != len(BOOKS):
+        raise PublicationError(f"Manifest must contain exactly {len(BOOKS)} books")
     seen = set()
     for book in records:
         if not isinstance(book, dict):
@@ -283,7 +284,7 @@ def publish(repo, site, source_sha, remote="origin", execute=False, report_path=
 
 
 def verify_live(site, source_sha, base_url, attempts=1, interval=30, report_path=None):
-    """Read back the expected manifest and the four entry pages; never roll back."""
+    """Read the expected manifest, book entry pages and selector; never roll back."""
     validate_site(site, source_sha)
     if urlsplit(base_url).scheme not in {"https", "http"} or attempts < 1 or interval < 0:
         raise PublicationError("A HTTP(S) site URL and valid retry bounds are required")

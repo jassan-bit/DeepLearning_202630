@@ -1,11 +1,13 @@
-# Publicación segura de E1, E2 y E3
+# Publicación segura de E1, E2, E3 y bonificación
 
 ## Estado y alcance
 
-Esta propuesta conserva E1 en la raíz, E2 en `entregable2/`, E3 en
-`entregable3/` y el selector `entregables.html`. No modifica fuentes de los
-libros, resultados científicos, experimentos, descargas ni configuración de
-Pages. No entrena modelos.
+La publicación conserva E1 en la raíz, E2 en `entregable2/`, E3 en
+`entregable3/` y el selector `entregables.html`. El libro adicional
+`book_bonificacion` se publica en `bonificacion/` y se enlaza desde E1 y el selector.
+La incorporación amplía la compilación y las verificaciones a cuatro libros,
+sin alterar resultados científicos, experimentos, descargas existentes ni la
+configuración de Pages. No entrena modelos.
 
 La activación autorizada del 09/11/2026 permite publicar **solo en el primer
 intento de un nuevo push a main**. PRs, ejecuciones manuales y reruns compilan
@@ -31,7 +33,7 @@ anclada al commit de Pages `3c539138907ca94c25af20eee6731700054651ea`.
 - Fuente fijada al SHA del run. Verificación de checkout limpio y main vigente
   antes de construir y antes del push. Se rechazan cambios versionados y
   archivos no versionados que no estén ignorados.
-- Los tres libros deben existir completos, con identidades, rutas, manifiesto,
+- Los cuatro libros deben existir completos, con identidades, rutas, manifiesto,
   hashes de las introducciones, selector y `.nojekyll` correctos.
 - Inventario SHA-256 de todos los archivos. Se rechazan enlaces simbólicos,
   hard links, archivos especiales y metadatos de repositorio.
@@ -52,7 +54,7 @@ anclada al commit de Pages `3c539138907ca94c25af20eee6731700054651ea`.
 - Comprobación posterior de ambos refs. Si main avanza durante el push, el
   informe registra que la rama cambió, pero ya no corresponde al main actual.
 - Un push correcto no declara éxito web. `verify-live` exige el manifiesto
-  exacto y hashes de las tres introducciones y del selector servidos por HTTP.
+  exacto y hashes de las cuatro introducciones y del selector servidos por HTTP.
   Las comprobaciones web pueden repetirse; las escrituras no se repiten.
 - El informe distingue `pushed` de `web_deployment_verified`. El artefacto de
   publicación deja `pushed: null` y `push_outcome: unknown` si no puede confirmar
@@ -70,7 +72,7 @@ python -m pip check
 python tests/test_multi_book_publication.py
 python tests/test_safe_publish_books.py
 python tests/test_books_alignment.py
-for book_dir in book book_e2 book_e3; do
+for book_dir in book book_e2 book_e3 book_bonificacion; do
   jupyter-book build "$book_dir" --all --warningiserror --keep-going
   python scripts/check_book_links.py --book-dir "$book_dir"
 done
@@ -143,7 +145,7 @@ exclusivamente repositorios bare temporales locales para ejercitar escrituras.
 - El validador de enlaces revisa href, src y anclas HTML, no URLs dentro de
   CSS/JavaScript ni enlaces externos. Se preservan los archivos anteriores,
   pero no se afirma una prueba visual completa en navegador.
-- La verificación web comprueba manifiesto y cuatro páginas de entrada. Todas
+- La verificación web comprueba manifiesto y cinco páginas de entrada. Todas
   las descargas se validan localmente por hash; no se descargan de nuevo cientos
   de MB desde Pages ni se certifica cada recurso HTTP individual.
 - En las reintentos de entrega web se contemplan hasta 24 observaciones con

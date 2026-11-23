@@ -9,6 +9,10 @@ E1 compara modelos básicos de Deep Learning para pronosticar la volatilidad de 
 
 **La comparación principal vuelve a entrenar GRU32, LSTM32 y MLP16 sobre las mismas 608 fechas**, con HPO equitativa, un piloto propio y **309 inicializaciones por red** dimensionadas antes de sus ajustes definitivos. TCN permanece complementaria. El registro original de diez semillas y la comprobación posterior de sesenta días conservan sus resultados y su cronología.
 
+## Demostraciones de bonificación
+
+El [libro de demostraciones de aprendizaje profundo](https://jassan-bit.github.io/DeepLearning_202630/bonificacion/intro.html) desarrolla el entrenamiento de MLP, la derivada de la sigmoide, el tamaño de paso, los gradientes convolucionales, la retropropagación, el campo receptivo y el beneficio de la profundidad. Incluye las demostraciones paso a paso, un cuaderno de comprobaciones y los enunciados originales.
+
 ## Benchmark principal: HPO común, piloto y 608 fechas
 
 La {ref}`ejecución registrada de 608 fechas <remediation-608-e1>` mantiene las arquitecturas básicas y el periodo **01/01/2025–31/08/2026**. Las tres familias reciben cuatro candidatos LR–dropout, dos semillas comunes y diez folds de enero–octubre de 2024: **480 etapas de HPO**, 160 por familia. **GRU32 es el baseline neuronal elegido con CV**, antes del piloto y de puntuar esta ejecución.

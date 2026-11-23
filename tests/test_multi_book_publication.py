@@ -16,7 +16,7 @@ class MultiBookPublicationTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
-        for number, name in enumerate(("book", "book_e2", "book_e3"), 1):
+        for number, name in enumerate(("book", "book_e2", "book_e3", "book_bonificacion"), 1):
             source = self.root / name
             html = source / "_build" / "html"
             html.mkdir(parents=True)
@@ -34,13 +34,28 @@ class MultiBookPublicationTests(unittest.TestCase):
         output = Path(result["output_dir"])
         self.assertEqual((output / "intro.html").read_bytes(), before)
         self.assertEqual(result["e1_intro_sha256_preserved"], sha256(before).hexdigest())
-        for name, expected in (("entregable2", "E2"), ("entregable3", "E3")):
+        for name, expected in (("entregable2", "E2"), ("entregable3", "E3"), ("bonificacion", "E4")):
             self.assertIn(expected, (output / name / "intro.html").read_text())
         manifest = json.loads((output / "books_manifest.json").read_text())
         self.assertEqual([b["entrypoint"] for b in manifest["books"]],
-                         ["intro.html", "entregable2/intro.html", "entregable3/intro.html"])
+                         ["intro.html", "entregable2/intro.html", "entregable3/intro.html",
+                          "bonificacion/intro.html"])
         self.assertEqual(manifest["new_model_fits"], 0)
-        self.assertEqual(check_html(output)["html_pages"], 7)
+        self.assertEqual(check_html(output)["html_pages"], 9)
+        self.assertIn("Demostraciones de bonificación", (output / "entregables.html").read_text())
+
+    def test_missing_demonstration_book_does_not_create_partial_output(self):
+        (self.root / "book_bonificacion/_build/html/intro.html").unlink()
+        output = self.root / "not-created" / "site"
+        with self.assertRaisesRegex(ValueError, "Incomplete HTML"):
+            assemble(self.root, output)
+        self.assertFalse(output.parent.exists())
+
+    def test_demonstration_prefix_is_reserved_outside_e1(self):
+        (self.root / "book/_build/html/bonificacion").mkdir()
+        with self.assertRaisesRegex(ValueError, "collides with reserved"):
+            assemble(self.root, self.root / "site")
+        self.assertFalse((self.root / "site").exists())
 
     def test_missing_book_does_not_create_partial_output(self):
         (self.root / "book_e3/_build/html/intro.html").unlink()
