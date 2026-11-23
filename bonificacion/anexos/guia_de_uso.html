@@ -62,6 +62,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"tags": "ams"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'anexos/guia_de_uso';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -225,12 +227,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../capitulos/06_campo_receptivo.html">6. Campo receptivo de capas convolucionales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../capitulos/07_beneficio_profundidad.html">7. Beneficio de la profundidad</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones y material original</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones_v2.html">Comprobaciones reproducibles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Comprobaciones reproducibles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="enunciados_originales.html">Enunciados originales</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Cómo leer y editar el libro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Fuentes y documentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Cuaderno inicial (archivo)</a></li>
 </ul>
 
     </div>
@@ -380,7 +386,10 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editar-el-contenido">Editar el contenido</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilar-en-windows">Compilar en Windows</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilar-con-un-entorno-ya-activado">Compilar con un entorno ya activado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-las-comprobaciones">Ejecutar las comprobaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-las-comprobaciones">Ejecutar las comprobaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recalcular-el-ejemplo-del-mlp">Recalcular el ejemplo del MLP</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue-del-sitio">Despliegue del sitio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
 </ul>
@@ -425,11 +434,17 @@
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code></p></td>
 <td><p>Orden de las páginas en el índice</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">notebooks/comprobaciones.ipynb</span></code></p></td>
-<td><p>Comprobaciones ejecutadas y figuras</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">notebooks/comprobaciones_v2.ipynb</span></code></p></td>
+<td><p>Cuaderno actual de comprobaciones ejecutadas y figuras</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">codigo/</span></code></p></td>
-<td><p>Código reproducible y función para las cinco iteraciones del MLP</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">notebooks/comprobaciones.ipynb</span></code></p></td>
+<td><p>Cuaderno inicial conservado como archivo histórico</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">codigo/</span></code></p></td>
+<td><p>Comprobaciones reproducibles, programa del ejemplo MLP y plantilla general</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resultados/</span></code></p></td>
+<td><p>Tablas CSV del MLP y comprobación de su tolerancia en JSON</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">anexos/capturas/</span></code></p></td>
 <td><p>Ocho imágenes originales del documento</p></td>
@@ -472,7 +487,17 @@ python<span class="w"> </span>scripts/check_book_links.py<span class="w"> </span
 python<span class="w"> </span>book_bonificacion/codigo/comprobaciones.py
 </pre></div>
 </div>
-<p>También puedes abrir el cuaderno en VS Code con la extensión Jupyter y seleccionar el entorno que contiene esas dependencias. Las salidas ya están incorporadas al cuaderno y se muestran en el sitio sin ejecutar código durante la compilación.</p>
+<p>También puedes abrir el <a class="reference internal" href="../notebooks/comprobaciones_v2.html"><span class="std std-doc">cuaderno actual</span></a> en VS Code con la extensión Jupyter y seleccionar el entorno que contiene esas dependencias. Las salidas ya están incorporadas al cuaderno y se muestran en el sitio sin ejecutar código durante la compilación.</p>
+<p>La versión actual conserva los cálculos y salidas del <a class="reference internal" href="../notebooks/comprobaciones.html"><span class="std std-doc">cuaderno inicial</span></a> y actualiza dos notas para enlazar al ejercicio MLP completo. El inicial permanece sin modificaciones, accesible en Anexos como «Cuaderno inicial (archivo)».</p>
+<section id="recalcular-el-ejemplo-del-mlp">
+<h3>Recalcular el ejemplo del MLP<a class="headerlink" href="#recalcular-el-ejemplo-del-mlp" title="Link to this heading">#</a></h3>
+<p>El ejemplo del PDF tiene su propio programa:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>book_bonificacion/codigo/mlp_ejemplo_clase_v1.py
+</pre></div>
+</div>
+<p>El <a class="reference internal" href="../capitulos/01_entrenamiento_mlp.html"><span class="std std-doc">capítulo de entrenamiento</span></a> presenta las ecuaciones y los datos utilizados. Allí se pueden descargar el programa, las tablas CSV de pesos, nodos y gradientes, y el JSON que documenta la primera parada en <span class="math notranslate nohighlight">\(t=255\)</span>. Las cinco actualizaciones solicitadas reducen la pérdida aproximadamente un <span class="math notranslate nohighlight">\(9.46\%\)</span>; continuar hasta ese criterio requiere otras <span class="math notranslate nohighlight">\(250\)</span> actualizaciones.</p>
+<p>Las tablas se muestran con seis decimales, pero las actualizaciones conservan la precisión completa. El criterio es <span class="math notranslate nohighlight">\(|L^{(t)}-L^{(t-1)}|&lt;10^{-6}\)</span>. La plantilla general <code class="docutils literal notranslate"><span class="pre">codigo/mlp_cinco_iteraciones.py</span></code> sigue disponible para otras funciones de propagación.</p>
+</section>
 </section>
 <section id="despliegue-del-sitio">
 <h2>Despliegue del sitio<a class="headerlink" href="#despliegue-del-sitio" title="Link to this heading">#</a></h2>
@@ -560,7 +585,10 @@ python<span class="w"> </span>book_bonificacion/codigo/comprobaciones.py
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editar-el-contenido">Editar el contenido</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilar-en-windows">Compilar en Windows</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilar-con-un-entorno-ya-activado">Compilar con un entorno ya activado</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-las-comprobaciones">Ejecutar las comprobaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-las-comprobaciones">Ejecutar las comprobaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recalcular-el-ejemplo-del-mlp">Recalcular el ejemplo del MLP</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#despliegue-del-sitio">Despliegue del sitio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
 </ul>

@@ -20,8 +20,10 @@ Los archivos fuente están en [book_bonificacion dentro del repositorio](https:/
 | `capitulos/` | Enunciados, demostraciones y ecuaciones LaTeX |
 | `_config.yml` | Título, autor, idioma, tema y presentación matemática |
 | `_toc.yml` | Orden de las páginas en el índice |
-| `notebooks/comprobaciones.ipynb` | Comprobaciones ejecutadas y figuras |
-| `codigo/` | Código reproducible y función para las cinco iteraciones del MLP |
+| `notebooks/comprobaciones_v2.ipynb` | Cuaderno actual de comprobaciones ejecutadas y figuras |
+| `notebooks/comprobaciones.ipynb` | Cuaderno inicial conservado como archivo histórico |
+| `codigo/` | Comprobaciones reproducibles, programa del ejemplo MLP y plantilla general |
+| `resultados/` | Tablas CSV del MLP y comprobación de su tolerancia en JSON |
 | `anexos/capturas/` | Ocho imágenes originales del documento |
 | `figuras/` | Gráficas generadas por las comprobaciones |
 | `assets/custom.css` | Estilo del libro |
@@ -60,7 +62,21 @@ python -m pip install -r book_bonificacion/requirements-notebooks.txt
 python book_bonificacion/codigo/comprobaciones.py
 ```
 
-También puedes abrir el cuaderno en VS Code con la extensión Jupyter y seleccionar el entorno que contiene esas dependencias. Las salidas ya están incorporadas al cuaderno y se muestran en el sitio sin ejecutar código durante la compilación.
+También puedes abrir el [cuaderno actual](../notebooks/comprobaciones_v2.ipynb) en VS Code con la extensión Jupyter y seleccionar el entorno que contiene esas dependencias. Las salidas ya están incorporadas al cuaderno y se muestran en el sitio sin ejecutar código durante la compilación.
+
+La versión actual conserva los cálculos y salidas del [cuaderno inicial](../notebooks/comprobaciones.ipynb) y actualiza dos notas para enlazar al ejercicio MLP completo. El inicial permanece sin modificaciones, accesible en Anexos como «Cuaderno inicial (archivo)».
+
+### Recalcular el ejemplo del MLP
+
+El ejemplo del PDF tiene su propio programa:
+
+```bash
+python book_bonificacion/codigo/mlp_ejemplo_clase_v1.py
+```
+
+El [capítulo de entrenamiento](../capitulos/01_entrenamiento_mlp.md) presenta las ecuaciones y los datos utilizados. Allí se pueden descargar el programa, las tablas CSV de pesos, nodos y gradientes, y el JSON que documenta la primera parada en $t=255$. Las cinco actualizaciones solicitadas reducen la pérdida aproximadamente un $9.46\%$; continuar hasta ese criterio requiere otras $250$ actualizaciones.
+
+Las tablas se muestran con seis decimales, pero las actualizaciones conservan la precisión completa. El criterio es $|L^{(t)}-L^{(t-1)}|<10^{-6}$. La plantilla general `codigo/mlp_cinco_iteraciones.py` sigue disponible para otras funciones de propagación.
 
 ## Despliegue del sitio
 

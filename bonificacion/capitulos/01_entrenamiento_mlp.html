@@ -227,12 +227,16 @@
 <li class="toctree-l1"><a class="reference internal" href="06_campo_receptivo.html">6. Campo receptivo de capas convolucionales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_beneficio_profundidad.html">7. Beneficio de la profundidad</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones y material original</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Comprobaciones reproducibles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones_v2.html">Comprobaciones reproducibles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../anexos/enunciados_originales.html">Enunciados originales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anexos/guia_de_uso.html">Cómo leer y editar el libro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anexos/referencias.html">Fuentes y documentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Cuaderno inicial (archivo)</a></li>
 </ul>
 
     </div>
@@ -379,22 +383,37 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enunciado-de-la-seccion-2-7">1.1. Enunciado de la sección 2.7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivada-de-la-perdida">1.2. Derivada de la pérdida</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cinco-actualizaciones">1.3. Cinco actualizaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-calcular-la-propagacion-hacia-adelante">1.3.1. Paso 1 Calcular la propagación hacia adelante</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-la-perdida-de-la-misma-fila">1.3.2. Paso 2 Calcular la pérdida de la misma fila</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-calcular-los-seis-gradientes">1.3.3. Paso 3 Calcular los seis gradientes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-actualizar-simultaneamente-los-pesos">1.3.4. Paso 4 Actualizar simultáneamente los pesos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-evaluar-el-nuevo-estado">1.3.5. Paso 5 Evaluar el nuevo estado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-del-ejercicio">1.2. Datos del ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-hacia-adelante">1.3. Paso hacia adelante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivada-de-la-perdida">1.4. Derivada de la pérdida</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradientes-de-los-pesos-de-salida">1.4.1. Gradientes de los pesos de salida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradientes-de-los-pesos-de-las-neuronas-ocultas">1.4.2. Gradientes de los pesos de las neuronas ocultas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-resultados">1.4. Tabla de resultados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuestas-a-las-preguntas">1.5. Respuestas a las preguntas</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disminuye-la-perdida-en-cada-iteracion">1.5.1. ¿Disminuye la pérdida en cada iteración?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-los-cambios-pueden-ser-pequenos-con-alpha-0-01">1.5.2. ¿Por qué los cambios pueden ser pequeños con <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6">1.5.3. ¿Cuántas iteraciones adicionales hacen falta para una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cinco-actualizaciones">1.5. Cinco actualizaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-calcular-la-propagacion-hacia-adelante">1.5.1. Paso 1 Calcular la propagación hacia adelante</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-la-perdida-de-la-misma-fila">1.5.2. Paso 2 Calcular la pérdida de la misma fila</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-calcular-los-seis-gradientes">1.5.3. Paso 3 Calcular los seis gradientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-actualizar-simultaneamente-los-pesos">1.5.4. Paso 4 Actualizar simultáneamente los pesos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-evaluar-el-nuevo-estado">1.5.5. Paso 5 Evaluar el nuevo estado</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primera-actualizacion-paso-a-paso">1.6. Primera actualización paso a paso</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-hacia-adelante-con-los-pesos-iniciales">1.6.1. Propagación hacia adelante con los pesos iniciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-hacia-atras-en-el-estado-inicial">1.6.2. Propagación hacia atrás en el estado inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sustitucion-en-la-regla-de-actualizacion">1.6.3. Sustitución en la regla de actualización</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-del-paso-hacia-adelante">1.7. Valores del paso hacia adelante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradientes-de-las-cinco-actualizaciones">1.8. Gradientes de las cinco actualizaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-resultados">1.9. Tabla de resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuestas-a-las-preguntas">1.10. Respuestas a las preguntas</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disminuye-la-perdida-en-cada-iteracion">1.10.1. ¿Disminuye la pérdida en cada iteración?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-los-cambios-pueden-ser-pequenos-con-alpha-0-01">1.10.2. ¿Por qué los cambios pueden ser pequeños con <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6">1.10.3. ¿Cuántas iteraciones adicionales hacen falta para una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducir-los-resultados">1.11. Reproducir los resultados</a></li>
 </ul>
             </nav>
         </div>
@@ -416,73 +435,440 @@
 L=(y-\hat y)^2.
 \]</div>
 <p>Se deben calcular los valores intermedios <span class="math notranslate nohighlight">\(p_1,\ldots,p_{10}\)</span>, la predicción, la pérdida, los seis gradientes y la actualización de <span class="math notranslate nohighlight">\(\omega_1,\ldots,\omega_6\)</span>. El ejercicio pide registrar los resultados, graficar la pérdida, explicar el tamaño de los cambios y estudiar una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>.</p>
-<p><strong>Datos que faltan en la captura.</strong> El documento no incluye el ejemplo previo: no aparecen las ecuaciones que definen <span class="math notranslate nohighlight">\(p_1,\ldots,p_{10}\)</span>, las entradas, el valor de <span class="math notranslate nohighlight">\(y\)</span>, las activaciones ni los seis pesos iniciales. Por tanto, no existe una tabla numérica única determinada por este archivo. La captura original puede consultarse en el <a class="reference internal" href="../anexos/enunciados_originales.html#mlp-original"><span class="std std-ref">anexo</span></a>.</p>
+<p>El PDF proporcionado, <em>Cinco iteraciones de gradiente descendente</em>, especifica los datos y el grafo del ejemplo. Este capítulo desarrolla sus cálculos y reproduce sus resultados; la <a class="reference internal" href="../anexos/referencias.html#fuente-mlp-pdf"><span class="std std-ref">fuente del ejemplo</span></a> se describe en las referencias. La captura del enunciado inicial se conserva en el <a class="reference internal" href="../anexos/enunciados_originales.html#mlp-original"><span class="std std-ref">anexo</span></a>.</p>
 </section>
-<section id="derivada-de-la-perdida">
-<h2><span class="section-number">1.2. </span>Derivada de la pérdida<a class="headerlink" href="#derivada-de-la-perdida" title="Link to this heading">#</a></h2>
-<p>El valor observado <span class="math notranslate nohighlight">\(y\)</span> se mantiene fijo al derivar con respecto a los pesos. Aplicando la regla de la cadena,</p>
+<section id="datos-del-ejercicio">
+<h2><span class="section-number">1.2. </span>Datos del ejercicio<a class="headerlink" href="#datos-del-ejercicio" title="Link to this heading">#</a></h2>
+<p>Las entradas, el objetivo y la tasa de aprendizaje son</p>
+<div class="math notranslate nohighlight">
+\[
+y_1=-1,\qquad y_2=2,\qquad y=1,\qquad\alpha=0.01.
+\]</div>
+<p>Los seis pesos iniciales son</p>
+<div class="math notranslate nohighlight">
+\[
+\omega^{(0)}=(-0.33,-0.33,0.57,-0.01,0.07,0.82).
+\]</div>
+<p>Las dos neuronas ocultas utilizan la sigmoide</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma(z)=\frac{1}{1+e^{-z}},
+\qquad
+\sigma'(z)=\sigma(z)\bigl(1-\sigma(z)\bigr).
+\]</div>
+<p>La salida combina linealmente las dos activaciones. El grafo de este ejercicio no incorpora términos de sesgo. El estado <span class="math notranslate nohighlight">\(t=0\)</span> es el inicial, y <span class="math notranslate nohighlight">\(t=1,\ldots,5\)</span> indica cuántas actualizaciones se han completado. Los cálculos conservan su precisión completa; las tablas muestran seis decimales.</p>
+</section>
+<section id="paso-hacia-adelante">
+<h2><span class="section-number">1.3. </span>Paso hacia adelante<a class="headerlink" href="#paso-hacia-adelante" title="Link to this heading">#</a></h2>
+<p>Los diez nodos se calculan en este orden:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-\frac{\partial L}{\partial\omega_j}
-&amp;=\frac{\partial (y-\hat y)^2}{\partial\hat y}
-  \frac{\partial\hat y}{\partial\omega_j}\\
-&amp;=2(y-\hat y)(-1)\frac{\partial\hat y}{\partial\omega_j}\\
-&amp;=2(\hat y-y)\frac{\partial\hat y}{\partial\omega_j},
-\qquad j=1,\ldots,6.
+p_1&amp;=y_1\omega_1=-\omega_1,
+&amp;p_2&amp;=y_2\omega_2=2\omega_2,\\
+p_3&amp;=y_1\omega_3=-\omega_3,
+&amp;p_4&amp;=y_2\omega_4=2\omega_4,\\
+p_5&amp;=p_1+p_2,
+&amp;p_6&amp;=p_3+p_4,\\
+p_7&amp;=\sigma(p_5),
+&amp;p_8&amp;=\sigma(p_6),\\
+p_9&amp;=p_7\omega_5,
+&amp;p_{10}&amp;=p_8\omega_6.
 \end{aligned}
 \end{split}\]</div>
-<p>El factor <span class="math notranslate nohighlight">\(2\)</span> debe conservarse, porque el ejercicio define <span class="math notranslate nohighlight">\(L=(y-\hat y)^2\)</span> sin el factor <span class="math notranslate nohighlight">\(1/2\)</span>. La derivada <span class="math notranslate nohighlight">\(\partial\hat y/\partial\omega_j\)</span> se obtiene recorriendo las dependencias reales de <span class="math notranslate nohighlight">\(p_1,\ldots,p_{10}\)</span>. Si un peso influye en la salida por varias rutas, deben sumarse las contribuciones de todas ellas.</p>
-</section>
-<section id="cinco-actualizaciones">
-<h2><span class="section-number">1.3. </span>Cinco actualizaciones<a class="headerlink" href="#cinco-actualizaciones" title="Link to this heading">#</a></h2>
-<p>La fila <span class="math notranslate nohighlight">\(t=0\)</span> representa el estado inicial. Las cinco actualizaciones llevan sucesivamente a las filas <span class="math notranslate nohighlight">\(t=1,2,3,4,5\)</span>. Para cada <span class="math notranslate nohighlight">\(t=0,\ldots,4\)</span>, se realiza lo siguiente.</p>
-<section id="paso-1-calcular-la-propagacion-hacia-adelante">
-<h3><span class="section-number">1.3.1. </span>Paso 1 Calcular la propagación hacia adelante<a class="headerlink" href="#paso-1-calcular-la-propagacion-hacia-adelante" title="Link to this heading">#</a></h3>
-<p>Con los seis pesos de la fila <span class="math notranslate nohighlight">\(t\)</span>, se evalúan <span class="math notranslate nohighlight">\(p_1^{(t)},\ldots,p_{10}^{(t)}\)</span> en el orden de dependencias de la red. De este cálculo resulta <span class="math notranslate nohighlight">\(\hat y^{(t)}\)</span>.</p>
-</section>
-<section id="paso-2-calcular-la-perdida-de-la-misma-fila">
-<h3><span class="section-number">1.3.2. </span>Paso 2 Calcular la pérdida de la misma fila<a class="headerlink" href="#paso-2-calcular-la-perdida-de-la-misma-fila" title="Link to this heading">#</a></h3>
+<p>Por tanto,</p>
 <div class="math notranslate nohighlight">
 \[
-L^{(t)}=\left(y-\hat y^{(t)}\right)^2.
+\hat y=p_9+p_{10},\qquad L=(1-\hat y)^2.
+\]</div>
+<p>Cada fila de las tablas contiene los nodos, la salida y la pérdida calculados con los pesos de esa misma fila.</p>
+</section>
+<section id="derivada-de-la-perdida">
+<h2><span class="section-number">1.4. </span>Derivada de la pérdida<a class="headerlink" href="#derivada-de-la-perdida" title="Link to this heading">#</a></h2>
+<p>El valor observado <span class="math notranslate nohighlight">\(y=1\)</span> se mantiene fijo al derivar. Aplicando la regla de la cadena,</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial\hat y}
+=2(y-\hat y)(-1)
+=2(\hat y-y)
+=2(\hat y-1).
+\]</div>
+<p>El factor <span class="math notranslate nohighlight">\(2\)</span> debe conservarse, porque el ejercicio define <span class="math notranslate nohighlight">\(L=(y-\hat y)^2\)</span> sin el factor <span class="math notranslate nohighlight">\(1/2\)</span>. Como en el PDF, escribimos</p>
+<div class="math notranslate nohighlight">
+\[
+\delta:=\frac{\partial L}{\partial\hat y}=2(\hat y-1).
+\]</div>
+<p>Para cualquier peso,</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial\omega_j}
+=\delta\frac{\partial\hat y}{\partial\omega_j},
+\qquad j=1,\ldots,6.
+\]</div>
+<section id="gradientes-de-los-pesos-de-salida">
+<h3><span class="section-number">1.4.1. </span>Gradientes de los pesos de salida<a class="headerlink" href="#gradientes-de-los-pesos-de-salida" title="Link to this heading">#</a></h3>
+<p>Como <span class="math notranslate nohighlight">\(\hat y=p_7\omega_5+p_8\omega_6\)</span>, las activaciones <span class="math notranslate nohighlight">\(p_7\)</span> y <span class="math notranslate nohighlight">\(p_8\)</span> no dependen de los pesos de salida. Por ello,</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial\omega_5}=\delta p_7,
+\qquad
+\frac{\partial L}{\partial\omega_6}=\delta p_8.
+\]</div>
+</section>
+<section id="gradientes-de-los-pesos-de-las-neuronas-ocultas">
+<h3><span class="section-number">1.4.2. </span>Gradientes de los pesos de las neuronas ocultas<a class="headerlink" href="#gradientes-de-los-pesos-de-las-neuronas-ocultas" title="Link to this heading">#</a></h3>
+<p>Para <span class="math notranslate nohighlight">\(\omega_1\)</span>, recorremos la dependencia <span class="math notranslate nohighlight">\(\omega_1\to p_1\to p_5\to p_7\to p_9\to\hat y\to L\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\partial L}{\partial\omega_1}
+&amp;=\frac{\partial L}{\partial\hat y}
+  \frac{\partial\hat y}{\partial p_9}
+  \frac{\partial p_9}{\partial p_7}
+  \frac{\partial p_7}{\partial p_5}
+  \frac{\partial p_5}{\partial p_1}
+  \frac{\partial p_1}{\partial\omega_1}\\
+&amp;=\delta\cdot1\cdot\omega_5\cdot p_7(1-p_7)\cdot1\cdot(-1)\\
+&amp;=-\delta\omega_5p_7(1-p_7).
+\end{aligned}
+\end{split}\]</div>
+<p>Para <span class="math notranslate nohighlight">\(\omega_2\)</span>, la última derivada es <span class="math notranslate nohighlight">\(\partial p_2/\partial\omega_2=y_2=2\)</span>. La segunda neurona utiliza <span class="math notranslate nohighlight">\(p_8\)</span> y <span class="math notranslate nohighlight">\(\omega_6\)</span>. Así se obtienen los cuatro gradientes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\partial L}{\partial\omega_1}&amp;=-\delta\omega_5p_7(1-p_7),\\
+\frac{\partial L}{\partial\omega_2}&amp;=2\delta\omega_5p_7(1-p_7),\\
+\frac{\partial L}{\partial\omega_3}&amp;=-\delta\omega_6p_8(1-p_8),\\
+\frac{\partial L}{\partial\omega_4}&amp;=2\delta\omega_6p_8(1-p_8).
+\end{aligned}
+\end{split}\]</div>
+<p>El factor <span class="math notranslate nohighlight">\(2\)</span> de los gradientes de <span class="math notranslate nohighlight">\(\omega_2\)</span> y <span class="math notranslate nohighlight">\(\omega_4\)</span> proviene de la entrada <span class="math notranslate nohighlight">\(y_2=2\)</span>; el factor de la derivada de la pérdida ya está incluido en <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
+</section>
+</section>
+<section id="cinco-actualizaciones">
+<h2><span class="section-number">1.5. </span>Cinco actualizaciones<a class="headerlink" href="#cinco-actualizaciones" title="Link to this heading">#</a></h2>
+<p>Las cinco actualizaciones llevan sucesivamente del estado <span class="math notranslate nohighlight">\(t=0\)</span> a los estados <span class="math notranslate nohighlight">\(t=1,2,3,4,5\)</span>. Para cada <span class="math notranslate nohighlight">\(t=0,\ldots,4\)</span>, se repiten los siguientes pasos.</p>
+<section id="paso-1-calcular-la-propagacion-hacia-adelante">
+<h3><span class="section-number">1.5.1. </span>Paso 1 Calcular la propagación hacia adelante<a class="headerlink" href="#paso-1-calcular-la-propagacion-hacia-adelante" title="Link to this heading">#</a></h3>
+<p>Se evalúan <span class="math notranslate nohighlight">\(p_1^{(t)},\ldots,p_{10}^{(t)}\)</span> con los seis pesos del estado <span class="math notranslate nohighlight">\(t\)</span>, y se obtiene <span class="math notranslate nohighlight">\(\hat y^{(t)}=p_9^{(t)}+p_{10}^{(t)}\)</span>.</p>
+</section>
+<section id="paso-2-calcular-la-perdida-de-la-misma-fila">
+<h3><span class="section-number">1.5.2. </span>Paso 2 Calcular la pérdida de la misma fila<a class="headerlink" href="#paso-2-calcular-la-perdida-de-la-misma-fila" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+L^{(t)}=\left(1-\hat y^{(t)}\right)^2.
 \]</div>
 </section>
 <section id="paso-3-calcular-los-seis-gradientes">
-<h3><span class="section-number">1.3.3. </span>Paso 3 Calcular los seis gradientes<a class="headerlink" href="#paso-3-calcular-los-seis-gradientes" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[
-\left.\frac{\partial L}{\partial\omega_j}\right|_{\omega=\omega^{(t)}}
-=2\left(\hat y^{(t)}-y\right)
-\left.\frac{\partial\hat y}{\partial\omega_j}\right|_{\omega=\omega^{(t)}},
-\qquad j=1,\ldots,6.
-\]</div>
-<p>Todos los gradientes se calculan con los pesos anteriores a la actualización. Usar un peso recién actualizado para calcular otro gradiente produciría un algoritmo distinto.</p>
+<h3><span class="section-number">1.5.3. </span>Paso 3 Calcular los seis gradientes<a class="headerlink" href="#paso-3-calcular-los-seis-gradientes" title="Link to this heading">#</a></h3>
+<p>Se calcula <span class="math notranslate nohighlight">\(\delta^{(t)}=2(\hat y^{(t)}-1)\)</span> y se sustituyen los pesos y activaciones de ese estado en las seis fórmulas anteriores. Todos los gradientes se evalúan antes de modificar cualquier peso.</p>
 </section>
 <section id="paso-4-actualizar-simultaneamente-los-pesos">
-<h3><span class="section-number">1.3.4. </span>Paso 4 Actualizar simultáneamente los pesos<a class="headerlink" href="#paso-4-actualizar-simultaneamente-los-pesos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.5.4. </span>Paso 4 Actualizar simultáneamente los pesos<a class="headerlink" href="#paso-4-actualizar-simultaneamente-los-pesos" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight" id="equation-eq-mlp-update">
 <span class="eqno">(1.1)<a class="headerlink" href="#equation-eq-mlp-update" title="Link to this equation">#</a></span>\[\omega_j^{(t+1)}
 =\omega_j^{(t)}
 -0.01\left.\frac{\partial L}{\partial\omega_j}\right|_{\omega=\omega^{(t)}},
 \qquad j=1,\ldots,6.\]</div>
-<p>Equivalentemente,</p>
-<div class="math notranslate nohighlight">
-\[
-\omega_j^{(t+1)}
-=\omega_j^{(t)}-0.02\left(\hat y^{(t)}-y\right)
-\left.\frac{\partial\hat y}{\partial\omega_j}\right|_{\omega=\omega^{(t)}}.
-\]</div>
+<p>Usar un peso recién actualizado al calcular otro gradiente produciría un algoritmo distinto. En este ejercicio los seis cambios utilizan el mismo estado anterior.</p>
 </section>
 <section id="paso-5-evaluar-el-nuevo-estado">
-<h3><span class="section-number">1.3.5. </span>Paso 5 Evaluar el nuevo estado<a class="headerlink" href="#paso-5-evaluar-el-nuevo-estado" title="Link to this heading">#</a></h3>
-<p>Después de actualizar los seis pesos se vuelve a hacer la propagación hacia adelante. Así, <span class="math notranslate nohighlight">\(\hat y^{(t+1)}\)</span> y <span class="math notranslate nohighlight">\(L^{(t+1)}\)</span> corresponden a los pesos de la fila <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
-<p>No se debe registrar en una misma fila la pérdida anterior y los pesos nuevos. Aunque el ejercicio pide al menos cuatro cifras decimales, es preferible conservar toda la precisión durante los cálculos y redondear únicamente al presentar la tabla.</p>
+<h3><span class="section-number">1.5.5. </span>Paso 5 Evaluar el nuevo estado<a class="headerlink" href="#paso-5-evaluar-el-nuevo-estado" title="Link to this heading">#</a></h3>
+<p>Después de actualizar los seis pesos se vuelve a calcular la propagación hacia adelante. Así, <span class="math notranslate nohighlight">\(\hat y^{(t+1)}\)</span> y <span class="math notranslate nohighlight">\(L^{(t+1)}\)</span> corresponden a los pesos nuevos. Se conserva la precisión completa entre actualizaciones y se redondea únicamente para presentar los resultados.</p>
 </section>
+</section>
+<section id="primera-actualizacion-paso-a-paso">
+<h2><span class="section-number">1.6. </span>Primera actualización paso a paso<a class="headerlink" href="#primera-actualizacion-paso-a-paso" title="Link to this heading">#</a></h2>
+<section id="propagacion-hacia-adelante-con-los-pesos-iniciales">
+<h3><span class="section-number">1.6.1. </span>Propagación hacia adelante con los pesos iniciales<a class="headerlink" href="#propagacion-hacia-adelante-con-los-pesos-iniciales" title="Link to this heading">#</a></h3>
+<p>Sustituyendo <span class="math notranslate nohighlight">\(\omega^{(0)}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p_1&amp;=-(-0.33)=0.33,&amp;p_2&amp;=2(-0.33)=-0.66,\\
+p_3&amp;=-(0.57)=-0.57,&amp;p_4&amp;=2(-0.01)=-0.02.
+\end{aligned}
+\end{split}\]</div>
+<p>Sumamos las entradas de cada neurona:</p>
+<div class="math notranslate nohighlight">
+\[
+p_5=0.33-0.66=-0.33,
+\qquad
+p_6=-0.57-0.02=-0.59.
+\]</div>
+<p>Aplicamos la sigmoide:</p>
+<div class="math notranslate nohighlight">
+\[
+p_7=\frac{1}{1+e^{0.33}}\approx0.4182406232,
+\qquad
+p_8=\frac{1}{1+e^{0.59}}\approx0.3566348543.
+\]</div>
+<p>Multiplicamos por los pesos de salida:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p_9&amp;=p_7\omega_5\approx0.4182406232(0.07)
+\approx0.0292768436,\\
+p_{10}&amp;=p_8\omega_6\approx0.3566348543(0.82)
+\approx0.2924405805.
+\end{aligned}
+\end{split}\]</div>
+<p>Finalmente,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat y^{(0)}=p_9+p_{10}\approx0.3217174242,
+\qquad
+L^{(0)}=(1-\hat y^{(0)})^2\approx0.4600672527.
+\]</div>
+</section>
+<section id="propagacion-hacia-atras-en-el-estado-inicial">
+<h3><span class="section-number">1.6.2. </span>Propagación hacia atrás en el estado inicial<a class="headerlink" href="#propagacion-hacia-atras-en-el-estado-inicial" title="Link to this heading">#</a></h3>
+<p>La sensibilidad respecto de la salida es</p>
+<div class="math notranslate nohighlight">
+\[
+\delta^{(0)}=2(\hat y^{(0)}-1)
+\approx2(0.3217174242-1)
+\approx-1.3565651517.
+\]</div>
+<p>Este es el valor que corresponde a la pérdida del enunciado. El PDF corrige expresamente el valor <span class="math notranslate nohighlight">\(-0.919\)</span> atribuido al ejemplo anterior.</p>
+<p>Por ejemplo, los gradientes de <span class="math notranslate nohighlight">\(\omega_1\)</span> y <span class="math notranslate nohighlight">\(\omega_5\)</span> se calculan como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\left.\frac{\partial L}{\partial\omega_1}\right|_{t=0}
+&amp;\approx-(-1.3565651517)(0.07)(0.4182406232)(1-0.4182406232)\\
+&amp;\approx0.023105124,\\
+\left.\frac{\partial L}{\partial\omega_5}\right|_{t=0}
+&amp;\approx(-1.3565651517)(0.4182406232)\\
+&amp;\approx-0.567370654.
+\end{aligned}
+\end{split}\]</div>
+<p>En el orden <span class="math notranslate nohighlight">\(\omega_1,\ldots,\omega_6\)</span>, los seis gradientes son</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla_{\omega}L^{(0)}\approx
+\begin{pmatrix}
+0.023105124\\
+-0.046210248\\
+0.255232411\\
+-0.510464822\\
+-0.567370654\\
+-0.483798415
+\end{pmatrix}.
+\end{split}\]</div>
+</section>
+<section id="sustitucion-en-la-regla-de-actualizacion">
+<h3><span class="section-number">1.6.3. </span>Sustitución en la regla de actualización<a class="headerlink" href="#sustitucion-en-la-regla-de-actualizacion" title="Link to this heading">#</a></h3>
+<p>Aplicando <a class="reference internal" href="#equation-eq-mlp-update">(1.1)</a> a cada peso,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\omega_1^{(1)}&amp;=-0.33-0.01(0.023105124)\approx-0.330231051,\\
+\omega_2^{(1)}&amp;=-0.33-0.01(-0.046210248)\approx-0.329537898,\\
+\omega_3^{(1)}&amp;=0.57-0.01(0.255232411)\approx0.567447676,\\
+\omega_4^{(1)}&amp;=-0.01-0.01(-0.510464822)\approx-0.004895352,\\
+\omega_5^{(1)}&amp;=0.07-0.01(-0.567370654)\approx0.075673707,\\
+\omega_6^{(1)}&amp;=0.82-0.01(-0.483798415)\approx0.824837984.
+\end{aligned}
+\end{split}\]</div>
+<p>Con los nuevos pesos se repite el paso hacia adelante:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat y^{(1)}\approx0.328256675,
+\qquad
+L^{(1)}\approx0.451239095.
+\]</div>
+<p>La pérdida de la primera actualización es menor que <span class="math notranslate nohighlight">\(L^{(0)}\)</span>.</p>
+</section>
+</section>
+<section id="valores-del-paso-hacia-adelante">
+<h2><span class="section-number">1.7. </span>Valores del paso hacia adelante<a class="headerlink" href="#valores-del-paso-hacia-adelante" title="Link to this heading">#</a></h2>
+<p>La fila <span class="math notranslate nohighlight">\(t\)</span> utiliza los pesos <span class="math notranslate nohighlight">\(\omega^{(t)}\)</span>. Para facilitar la lectura se separan los diez nodos en dos tablas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><span class="math notranslate nohighlight">\(t\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_4\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_5\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_6\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.330000</p></td>
+<td class="text-right"><p>-0.660000</p></td>
+<td class="text-right"><p>-0.570000</p></td>
+<td class="text-right"><p>-0.020000</p></td>
+<td class="text-right"><p>-0.330000</p></td>
+<td class="text-right"><p>-0.590000</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0.330231</p></td>
+<td class="text-right"><p>-0.659076</p></td>
+<td class="text-right"><p>-0.567448</p></td>
+<td class="text-right"><p>-0.009791</p></td>
+<td class="text-right"><p>-0.328845</p></td>
+<td class="text-right"><p>-0.577238</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.330478</p></td>
+<td class="text-right"><p>-0.658086</p></td>
+<td class="text-right"><p>-0.564896</p></td>
+<td class="text-right"><p>0.000417</p></td>
+<td class="text-right"><p>-0.327608</p></td>
+<td class="text-right"><p>-0.564479</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0.330742</p></td>
+<td class="text-right"><p>-0.657033</p></td>
+<td class="text-right"><p>-0.562345</p></td>
+<td class="text-right"><p>0.010620</p></td>
+<td class="text-right"><p>-0.326291</p></td>
+<td class="text-right"><p>-0.551725</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0.331020</p></td>
+<td class="text-right"><p>-0.655919</p></td>
+<td class="text-right"><p>-0.559796</p></td>
+<td class="text-right"><p>0.020816</p></td>
+<td class="text-right"><p>-0.324898</p></td>
+<td class="text-right"><p>-0.538980</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-right"><p>0.331314</p></td>
+<td class="text-right"><p>-0.654745</p></td>
+<td class="text-right"><p>-0.557249</p></td>
+<td class="text-right"><p>0.031003</p></td>
+<td class="text-right"><p>-0.323432</p></td>
+<td class="text-right"><p>-0.526246</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Después de aplicar las sigmoidales y los pesos de salida:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><span class="math notranslate nohighlight">\(t\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_7\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_8\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_9\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(p_{10}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.418241</p></td>
+<td class="text-right"><p>0.356635</p></td>
+<td class="text-right"><p>0.029277</p></td>
+<td class="text-right"><p>0.292441</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0.418522</p></td>
+<td class="text-right"><p>0.359568</p></td>
+<td class="text-right"><p>0.031671</p></td>
+<td class="text-right"><p>0.296586</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.418823</p></td>
+<td class="text-right"><p>0.362512</p></td>
+<td class="text-right"><p>0.034049</p></td>
+<td class="text-right"><p>0.300765</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0.419143</p></td>
+<td class="text-right"><p>0.365464</p></td>
+<td class="text-right"><p>0.036410</p></td>
+<td class="text-right"><p>0.304977</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0.419482</p></td>
+<td class="text-right"><p>0.368425</p></td>
+<td class="text-right"><p>0.038756</p></td>
+<td class="text-right"><p>0.309221</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-right"><p>0.419840</p></td>
+<td class="text-right"><p>0.371393</p></td>
+<td class="text-right"><p>0.041085</p></td>
+<td class="text-right"><p>0.313496</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los valores con mayor precisión se incluyen en <a class="reference download internal" download="" href="../_downloads/14ed8a050716c28edc7a1c72f475cb23/mlp_nodos_v1.csv"><code class="xref download docutils literal notranslate"><span class="pre">mlp_nodos_v1.csv</span></code></a>. Sumar los valores ya redondeados de <span class="math notranslate nohighlight">\(p_9\)</span> y <span class="math notranslate nohighlight">\(p_{10}\)</span> puede cambiar la última cifra mostrada de <span class="math notranslate nohighlight">\(\hat y\)</span>; la predicción se calcula antes de redondear.</p>
+</section>
+<section id="gradientes-de-las-cinco-actualizaciones">
+<h2><span class="section-number">1.8. </span>Gradientes de las cinco actualizaciones<a class="headerlink" href="#gradientes-de-las-cinco-actualizaciones" title="Link to this heading">#</a></h2>
+<p>Los gradientes del estado <span class="math notranslate nohighlight">\(t\)</span> producen los pesos del estado <span class="math notranslate nohighlight">\(t+1\)</span>. Por eso hay cinco filas de gradientes, de <span class="math notranslate nohighlight">\(t=0\)</span> a <span class="math notranslate nohighlight">\(t=4\)</span>, y seis filas de estados, de <span class="math notranslate nohighlight">\(t=0\)</span> a <span class="math notranslate nohighlight">\(t=5\)</span>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><span class="math notranslate nohighlight">\(t\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\partial L/\partial\omega_1\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\partial L/\partial\omega_2\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\partial L/\partial\omega_3\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\partial L/\partial\omega_4\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\partial L/\partial\omega_5\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\partial L/\partial\omega_6\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.023105</p></td>
+<td class="text-right"><p>-0.046210</p></td>
+<td class="text-right"><p>0.255232</p></td>
+<td class="text-right"><p>-0.510465</p></td>
+<td class="text-right"><p>-0.567371</p></td>
+<td class="text-right"><p>-0.483798</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0.024742</p></td>
+<td class="text-right"><p>-0.049483</p></td>
+<td class="text-right"><p>0.255186</p></td>
+<td class="text-right"><p>-0.510371</p></td>
+<td class="text-right"><p>-0.562278</p></td>
+<td class="text-right"><p>-0.483075</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.026326</p></td>
+<td class="text-right"><p>-0.052652</p></td>
+<td class="text-right"><p>0.255078</p></td>
+<td class="text-right"><p>-0.510155</p></td>
+<td class="text-right"><p>-0.557191</p></td>
+<td class="text-right"><p>-0.482276</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0.027858</p></td>
+<td class="text-right"><p>-0.055716</p></td>
+<td class="text-right"><p>0.254908</p></td>
+<td class="text-right"><p>-0.509816</p></td>
+<td class="text-right"><p>-0.552106</p></td>
+<td class="text-right"><p>-0.481399</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0.029339</p></td>
+<td class="text-right"><p>-0.058678</p></td>
+<td class="text-right"><p>0.254675</p></td>
+<td class="text-right"><p>-0.509351</p></td>
+<td class="text-right"><p>-0.547025</p></td>
+<td class="text-right"><p>-0.480443</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Por ejemplo, la segunda actualización de <span class="math notranslate nohighlight">\(\omega_5\)</span> es</p>
+<div class="math notranslate nohighlight">
+\[
+\omega_5^{(2)}
+\approx0.0756737065-0.01(-0.5622783724)
+\approx0.0812964903.
+\]</div>
+<p>Los gradientes con mayor precisión están en <a class="reference download internal" download="" href="../_downloads/6060d44092f0d705db35fd6c4f19d75b/mlp_gradientes_v1.csv"><code class="xref download docutils literal notranslate"><span class="pre">mlp_gradientes_v1.csv</span></code></a>.</p>
 </section>
 <section id="tabla-de-resultados">
-<h2><span class="section-number">1.4. </span>Tabla de resultados<a class="headerlink" href="#tabla-de-resultados" title="Link to this heading">#</a></h2>
-<p>Las celdas quedan pendientes de los datos del ejemplo de clase; el guion no representa un cero.</p>
+<h2><span class="section-number">1.9. </span>Tabla de resultados<a class="headerlink" href="#tabla-de-resultados" title="Link to this heading">#</a></h2>
+<p>Cada fila registra los seis pesos, la salida y la pérdida después de <span class="math notranslate nohighlight">\(t\)</span> actualizaciones simultáneas.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-right"><p><span class="math notranslate nohighlight">\(t\)</span></p></th>
@@ -498,97 +884,162 @@ L^{(t)}=\left(y-\hat y^{(t)}\right)^2.
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-right"><p>0</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>-0.330000</p></td>
+<td class="text-right"><p>-0.330000</p></td>
+<td class="text-right"><p>0.570000</p></td>
+<td class="text-right"><p>-0.010000</p></td>
+<td class="text-right"><p>0.070000</p></td>
+<td class="text-right"><p>0.820000</p></td>
+<td class="text-right"><p>0.321717</p></td>
+<td class="text-right"><p>0.460067</p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p>1</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>-0.330231</p></td>
+<td class="text-right"><p>-0.329538</p></td>
+<td class="text-right"><p>0.567448</p></td>
+<td class="text-right"><p>-0.004895</p></td>
+<td class="text-right"><p>0.075674</p></td>
+<td class="text-right"><p>0.824838</p></td>
+<td class="text-right"><p>0.328257</p></td>
+<td class="text-right"><p>0.451239</p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p>2</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>-0.330478</p></td>
+<td class="text-right"><p>-0.329043</p></td>
+<td class="text-right"><p>0.564896</p></td>
+<td class="text-right"><p>0.000208</p></td>
+<td class="text-right"><p>0.081296</p></td>
+<td class="text-right"><p>0.829669</p></td>
+<td class="text-right"><p>0.334813</p></td>
+<td class="text-right"><p>0.442473</p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p>3</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>-0.330742</p></td>
+<td class="text-right"><p>-0.328517</p></td>
+<td class="text-right"><p>0.562345</p></td>
+<td class="text-right"><p>0.005310</p></td>
+<td class="text-right"><p>0.086868</p></td>
+<td class="text-right"><p>0.834491</p></td>
+<td class="text-right"><p>0.341387</p></td>
+<td class="text-right"><p>0.433771</p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p>4</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>-0.331020</p></td>
+<td class="text-right"><p>-0.327959</p></td>
+<td class="text-right"><p>0.559796</p></td>
+<td class="text-right"><p>0.010408</p></td>
+<td class="text-right"><p>0.092389</p></td>
+<td class="text-right"><p>0.839305</p></td>
+<td class="text-right"><p>0.347977</p></td>
+<td class="text-right"><p>0.425134</p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p>5</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
-<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>-0.331314</p></td>
+<td class="text-right"><p>-0.327373</p></td>
+<td class="text-right"><p>0.557249</p></td>
+<td class="text-right"><p>0.015502</p></td>
+<td class="text-right"><p>0.097860</p></td>
+<td class="text-right"><p>0.844110</p></td>
+<td class="text-right"><p>0.354582</p></td>
+<td class="text-right"><p>0.416565</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>El código <a class="reference download internal" download="" href="../_downloads/58ad8c3e2ae9f9d52b2b04f87c2c1ae1/mlp_cinco_iteraciones.py"><code class="xref download docutils literal notranslate"><span class="pre">mlp_cinco_iteraciones.py</span></code></a> implementa el registro y las actualizaciones simultáneas. Recibe una función que devuelve la predicción, sus seis derivadas respecto de los pesos y los diez valores intermedios del ejemplo original. No asigna una red ni pesos ficticios.</p>
+<p>La tabla coincide a seis decimales con la página 4 del PDF proporcionado. Puede descargarse con mayor precisión en <a class="reference download internal" download="" href="../_downloads/8854e16c4453d3dad0228eb6ba5f54a6/mlp_cinco_iteraciones_v1.csv"><code class="xref download docutils literal notranslate"><span class="pre">mlp_cinco_iteraciones_v1.csv</span></code></a>.</p>
 </section>
 <section id="respuestas-a-las-preguntas">
-<h2><span class="section-number">1.5. </span>Respuestas a las preguntas<a class="headerlink" href="#respuestas-a-las-preguntas" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.10. </span>Respuestas a las preguntas<a class="headerlink" href="#respuestas-a-las-preguntas" title="Link to this heading">#</a></h2>
 <section id="disminuye-la-perdida-en-cada-iteracion">
-<h3><span class="section-number">1.5.1. </span>¿Disminuye la pérdida en cada iteración?<a class="headerlink" href="#disminuye-la-perdida-en-cada-iteracion" title="Link to this heading">#</a></h3>
-<p>Se debe verificar comparando <span class="math notranslate nohighlight">\(L^{(t+1)}\)</span> con <span class="math notranslate nohighlight">\(L^{(t)}\)</span>. La dirección del gradiente negativo es una dirección local de descenso cuando el gradiente no es cero. Un paso fijo de tamaño <span class="math notranslate nohighlight">\(0.01\)</span> no garantiza por sí solo una disminución en cualquier red y en cualquier punto.</p>
-<p>Para una pérdida diferenciable con gradiente localmente Lipschitz, los pasos suficientemente pequeños producen descenso. En puntos donde intervienen activaciones no diferenciables se necesitan las precisiones correspondientes. Sin las funciones del ejemplo no es posible decidir numéricamente qué ocurre en estas cinco iteraciones.</p>
+<h3><span class="section-number">1.10.1. </span>¿Disminuye la pérdida en cada iteración?<a class="headerlink" href="#disminuye-la-perdida-en-cada-iteracion" title="Link to this heading">#</a></h3>
+<p>Sí. En las cinco actualizaciones calculadas,</p>
+<div class="math notranslate nohighlight">
+\[
+L^{(0)}&gt;L^{(1)}&gt;L^{(2)}&gt;L^{(3)}&gt;L^{(4)}&gt;L^{(5)}.
+\]</div>
+<p>La pérdida pasa de <span class="math notranslate nohighlight">\(0.4600672527\)</span> a <span class="math notranslate nohighlight">\(0.4165646716\)</span>. La reducción absoluta es</p>
+<div class="math notranslate nohighlight">
+\[
+L^{(0)}-L^{(5)}\approx0.0435025811,
+\]</div>
+<p>y la reducción porcentual es</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{L^{(0)}-L^{(5)}}{L^{(0)}}\,100
+\approx9.4557004\%\approx9.46\%.
+\]</div>
+<figure class="align-default" id="fig-mlp-cinco-iteraciones">
+<a class="reference internal image-reference" href="../_images/mlp_perdida_cinco_iteraciones_v1.svg"><img alt="Pérdida de la red del ejemplo en los estados de cero a cinco actualizaciones, descendiendo de 0.460067 a 0.416565." src="../_images/mlp_perdida_cinco_iteraciones_v1.svg" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Figura 1.1 </span><span class="caption-text">Pérdida del ejemplo de clase tras cada actualización simultánea, con <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>. El estado inicial corresponde a <span class="math notranslate nohighlight">\(t=0\)</span>.</span><a class="headerlink" href="#fig-mlp-cinco-iteraciones" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Esta disminución está comprobada para los datos y las actualizaciones del ejercicio. Un paso fijo de <span class="math notranslate nohighlight">\(0.01\)</span> no garantiza por sí solo descenso en cualquier red y en cualquier punto.</p>
 </section>
 <section id="por-que-los-cambios-pueden-ser-pequenos-con-alpha-0-01">
-<h3><span class="section-number">1.5.2. </span>¿Por qué los cambios pueden ser pequeños con <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>?<a class="headerlink" href="#por-que-los-cambios-pueden-ser-pequenos-con-alpha-0-01" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.10.2. </span>¿Por qué los cambios pueden ser pequeños con <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>?<a class="headerlink" href="#por-que-los-cambios-pueden-ser-pequenos-con-alpha-0-01" title="Link to this heading">#</a></h3>
 <p>Por la regla de actualización,</p>
 <div class="math notranslate nohighlight">
 \[
-\left|\omega_j^{(t+1)}-\omega_j^{(t)}\right|
-=0.01\left|\left.\frac{\partial L}{\partial\omega_j}\right|_{\omega=\omega^{(t)}}\right|.
+\omega_j^{(t+1)}-\omega_j^{(t)}
+=-0.01\left.\frac{\partial L}{\partial\omega_j}\right|_{\omega=\omega^{(t)}}.
 \]</div>
-<p>El tamaño del cambio depende tanto de <span class="math notranslate nohighlight">\(0.01\)</span> como de la magnitud del gradiente. Si hay activaciones sigmoideas saturadas, sus derivadas pueden reducir aún más el gradiente. Un <span class="math notranslate nohighlight">\(\alpha\)</span> mayor aumenta el desplazamiento para un mismo gradiente, pero también puede provocar oscilaciones o crecimiento de la pérdida. El <a class="reference internal" href="03_tamano_paso.html"><span class="std std-doc">capítulo sobre tamaño de paso</span></a> muestra esta relación de forma exacta en el caso cuadrático.</p>
-</section>
-<section id="cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6">
-<h3><span class="section-number">1.5.3. </span>¿Cuántas iteraciones adicionales hacen falta para una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>?<a class="headerlink" href="#cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6" title="Link to this heading">#</a></h3>
-<p>La interpretación literal de «la pérdida cambie menos que una tolerancia» corresponde al criterio</p>
+<p>La tasa de aprendizaje multiplica el gradiente por una centésima. Por ejemplo, en la primera actualización,</p>
 <div class="math notranslate nohighlight">
 \[
-\left|L^{(t+1)}-L^{(t)}\right|&lt;10^{-6}.
+\omega_5^{(1)}-\omega_5^{(0)}
+\approx-0.01(-0.567370654)
+\approx0.005673707.
 \]</div>
-<p>No equivale a exigir <span class="math notranslate nohighlight">\(L^{(t)}&lt;10^{-6}\)</span> ni a exigir un gradiente menor que <span class="math notranslate nohighlight">\(10^{-6}\)</span>. El número de iteraciones adicionales depende de la red y de su trayectoria; no puede deducirse solamente de <span class="math notranslate nohighlight">\(\alpha=0.01\)</span> o de la existencia de cinco iteraciones iniciales.</p>
-<p>Una vez disponibles los datos, se continúa desde la fila <span class="math notranslate nohighlight">\(5\)</span>, se compara la pérdida entre estados consecutivos y se cuenta el número de actualizaciones adicionales hasta satisfacer el criterio. También se fija un máximo de iteraciones y se comprueba que los valores sean finitos. Un cambio pequeño de pérdida puede indicar estancamiento y, por sí solo, no certifica que se haya alcanzado un mínimo global.</p>
+<p>El tamaño del cambio depende de la tasa y de la magnitud del gradiente. Una tasa mayor produce un desplazamiento mayor para el mismo gradiente, pero también puede provocar oscilaciones o aumentar la pérdida. El <a class="reference internal" href="03_tamano_paso.html"><span class="std std-doc">capítulo sobre tamaño de paso</span></a> desarrolla esta relación en el caso cuadrático.</p>
 </section>
+<section id="cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6">
+<h3><span class="section-number">1.10.3. </span>¿Cuántas iteraciones adicionales hacen falta para una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>?<a class="headerlink" href="#cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6" title="Link to this heading">#</a></h3>
+<p>El criterio del PDF compara las pérdidas de dos estados consecutivos:</p>
+<div class="math notranslate nohighlight">
+\[
+\left|L^{(t)}-L^{(t-1)}\right|&lt;10^{-6},\qquad t\geq1.
+\]</div>
+<p>Continuando el mismo procedimiento desde los datos iniciales, sin redondear entre actualizaciones, el primer estado que satisface el criterio es <span class="math notranslate nohighlight">\(t=255\)</span>. La comprobación recorre los estados anteriores y ninguno de <span class="math notranslate nohighlight">\(t=1,\ldots,254\)</span> satisface la desigualdad. Cerca del punto de parada,</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Estado <span class="math notranslate nohighlight">\(t\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(L^{(t)}\)</span></p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\lvert L^{(t)}-L^{(t-1)}\rvert\)</span></p></th>
+<th class="head text-center"><p>¿Es menor que <span class="math notranslate nohighlight">\(10^{-6}\)</span>?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>254</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(2.2372576354\times10^{-5}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(1.0334580771\times10^{-6}\)</span></p></td>
+<td class="text-center"><p>No</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>255</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(2.1384678736\times10^{-5}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(9.8789761814\times10^{-7}\)</span></p></td>
+<td class="text-center"><p>Sí</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Por tanto, después de las cinco actualizaciones solicitadas se necesitan</p>
+<div class="math notranslate nohighlight">
+\[
+255-5=\boxed{250\text{ actualizaciones adicionales}}.
+\]</div>
+<p>El criterio mide el cambio de la pérdida entre estados consecutivos. En el estado <span class="math notranslate nohighlight">\(255\)</span> la pérdida todavía vale aproximadamente <span class="math notranslate nohighlight">\(2.1385\times10^{-5}\)</span>; no se está exigiendo que <span class="math notranslate nohighlight">\(L^{(t)}&lt;10^{-6}\)</span>. Un cambio pequeño tampoco certifica por sí solo que se haya alcanzado un mínimo global.</p>
+<p>Los valores y el criterio de parada se incluyen en <a class="reference download internal" download="" href="../_downloads/3f923198755e23d5858a1c10466c22cb/mlp_tolerancia_v1.json"><code class="xref download docutils literal notranslate"><span class="pre">mlp_tolerancia_v1.json</span></code></a>.</p>
+</section>
+</section>
+<section id="reproducir-los-resultados">
+<span id="id1"></span><h2><span class="section-number">1.11. </span>Reproducir los resultados<a class="headerlink" href="#reproducir-los-resultados" title="Link to this heading">#</a></h2>
+<p>El programa <a class="reference download internal" download="" href="../_downloads/9d9eaa705cee4ec127f42decefab41e3/mlp_ejemplo_clase_v1.py"><code class="xref download docutils literal notranslate"><span class="pre">mlp_ejemplo_clase_v1.py</span></code></a> implementa este grafo, sus seis gradientes analíticos, las actualizaciones simultáneas y la búsqueda del primer estado que cumple la tolerancia. Desde la raíz del repositorio puede ejecutarse con</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>book_bonificacion/codigo/mlp_ejemplo_clase_v1.py
+</pre></div>
+</div>
+<p>También se conserva la <a class="reference download internal" download="" href="../_downloads/58ad8c3e2ae9f9d52b2b04f87c2c1ae1/mlp_cinco_iteraciones.py"><code class="xref download docutils literal notranslate"><span class="pre">plantilla</span> <span class="pre">general</span> <span class="pre">mlp_cinco_iteraciones.py</span></code></a>. Esta permite suministrar otra función de propagación y sus derivadas; el programa específico anterior reproduce los datos de este capítulo.</p>
 </section>
 </section>
 
@@ -659,22 +1110,37 @@ L^{(t)}=\left(y-\hat y^{(t)}\right)^2.
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enunciado-de-la-seccion-2-7">1.1. Enunciado de la sección 2.7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivada-de-la-perdida">1.2. Derivada de la pérdida</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cinco-actualizaciones">1.3. Cinco actualizaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-calcular-la-propagacion-hacia-adelante">1.3.1. Paso 1 Calcular la propagación hacia adelante</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-la-perdida-de-la-misma-fila">1.3.2. Paso 2 Calcular la pérdida de la misma fila</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-calcular-los-seis-gradientes">1.3.3. Paso 3 Calcular los seis gradientes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-actualizar-simultaneamente-los-pesos">1.3.4. Paso 4 Actualizar simultáneamente los pesos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-evaluar-el-nuevo-estado">1.3.5. Paso 5 Evaluar el nuevo estado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-del-ejercicio">1.2. Datos del ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-hacia-adelante">1.3. Paso hacia adelante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivada-de-la-perdida">1.4. Derivada de la pérdida</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradientes-de-los-pesos-de-salida">1.4.1. Gradientes de los pesos de salida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradientes-de-los-pesos-de-las-neuronas-ocultas">1.4.2. Gradientes de los pesos de las neuronas ocultas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-resultados">1.4. Tabla de resultados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuestas-a-las-preguntas">1.5. Respuestas a las preguntas</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disminuye-la-perdida-en-cada-iteracion">1.5.1. ¿Disminuye la pérdida en cada iteración?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-los-cambios-pueden-ser-pequenos-con-alpha-0-01">1.5.2. ¿Por qué los cambios pueden ser pequeños con <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6">1.5.3. ¿Cuántas iteraciones adicionales hacen falta para una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cinco-actualizaciones">1.5. Cinco actualizaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-calcular-la-propagacion-hacia-adelante">1.5.1. Paso 1 Calcular la propagación hacia adelante</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-la-perdida-de-la-misma-fila">1.5.2. Paso 2 Calcular la pérdida de la misma fila</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-calcular-los-seis-gradientes">1.5.3. Paso 3 Calcular los seis gradientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-actualizar-simultaneamente-los-pesos">1.5.4. Paso 4 Actualizar simultáneamente los pesos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-evaluar-el-nuevo-estado">1.5.5. Paso 5 Evaluar el nuevo estado</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primera-actualizacion-paso-a-paso">1.6. Primera actualización paso a paso</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-hacia-adelante-con-los-pesos-iniciales">1.6.1. Propagación hacia adelante con los pesos iniciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-hacia-atras-en-el-estado-inicial">1.6.2. Propagación hacia atrás en el estado inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sustitucion-en-la-regla-de-actualizacion">1.6.3. Sustitución en la regla de actualización</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-del-paso-hacia-adelante">1.7. Valores del paso hacia adelante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradientes-de-las-cinco-actualizaciones">1.8. Gradientes de las cinco actualizaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-resultados">1.9. Tabla de resultados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuestas-a-las-preguntas">1.10. Respuestas a las preguntas</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disminuye-la-perdida-en-cada-iteracion">1.10.1. ¿Disminuye la pérdida en cada iteración?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-los-cambios-pueden-ser-pequenos-con-alpha-0-01">1.10.2. ¿Por qué los cambios pueden ser pequeños con <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantas-iteraciones-adicionales-hacen-falta-para-una-tolerancia-de-10-6">1.10.3. ¿Cuántas iteraciones adicionales hacen falta para una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducir-los-resultados">1.11. Reproducir los resultados</a></li>
 </ul>
   </nav></div>
 

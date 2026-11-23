@@ -62,10 +62,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"tags": "ams"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'anexos/referencias';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Comprobaciones reproducibles" href="../notebooks/comprobaciones.html" />
     <link rel="prev" title="Cómo leer y editar el libro" href="guia_de_uso.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -224,12 +227,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../capitulos/06_campo_receptivo.html">6. Campo receptivo de capas convolucionales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../capitulos/07_beneficio_profundidad.html">7. Beneficio de la profundidad</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones y material original</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones_v2.html">Comprobaciones reproducibles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Comprobaciones reproducibles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="enunciados_originales.html">Enunciados originales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guia_de_uso.html">Cómo leer y editar el libro</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Fuentes y documentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Cuaderno inicial (archivo)</a></li>
 </ul>
 
     </div>
@@ -376,6 +383,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#material-de-los-enunciados">Material de los enunciados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-numerico-del-mlp">Ejercicio numérico del MLP</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-de-edicion">Herramientas de edición</a></li>
 </ul>
             </nav>
@@ -393,8 +401,14 @@
 <section id="material-de-los-enunciados">
 <h2>Material de los enunciados<a class="headerlink" href="#material-de-los-enunciados" title="Link to this heading">#</a></h2>
 <p><strong>Demostraciones Bonificacion.docx.</strong> Documento proporcionado para elaborar este libro. Contiene ocho imágenes agrupadas en siete temas: entrenamiento de MLP, derivada de la sigmoide, tamaño de paso, gradientes convolucionales, retropropagación, campo receptivo y beneficio de la profundidad.</p>
-<p>Las imágenes se reproducen en el <a class="reference internal" href="enunciados_originales.html"><span class="std std-doc">anexo de enunciados originales</span></a>. Los desarrollos matemáticos de los capítulos son demostraciones elaboradas a partir de esos enunciados. Los datos de las comprobaciones computacionales se identifican como ejemplos didácticos.</p>
+<p>Las imágenes se reproducen en el <a class="reference internal" href="enunciados_originales.html"><span class="std std-doc">anexo de enunciados originales</span></a>. Los desarrollos matemáticos de los capítulos son demostraciones elaboradas a partir de esos enunciados. Las comprobaciones auxiliares del cuaderno se identifican como ejemplos didácticos; los datos del ejercicio MLP proceden del PDF descrito a continuación.</p>
 <p>La captura del tamaño de paso menciona <em>Theodoridis, 2020, sección 5.3</em>. Esa cita forma parte del material original; el recorte no contiene la referencia bibliográfica completa. La prueba del capítulo se presenta de forma autocontenida mediante el gradiente, la Hessiana y la descomposición espectral de la matriz de segundos momentos.</p>
+</section>
+<section id="ejercicio-numerico-del-mlp">
+<span id="fuente-mlp-pdf"></span><h2>Ejercicio numérico del MLP<a class="headerlink" href="#ejercicio-numerico-del-mlp" title="Link to this heading">#</a></h2>
+<p><strong>Cinco iteraciones de gradiente descendente.</strong> PDF de seis páginas proporcionado como material del ejemplo de clase, con nombre de archivo <em>Ejercicio_para_el_estudiante__iteraciones_de_gradiente_descendente (1).pdf</em>.</p>
+<p>La página 1 especifica las entradas <span class="math notranslate nohighlight">\(y_1=-1\)</span>, <span class="math notranslate nohighlight">\(y_2=2\)</span>, el objetivo <span class="math notranslate nohighlight">\(y=1\)</span>, la tasa <span class="math notranslate nohighlight">\(\alpha=0.01\)</span>, los seis pesos iniciales y los diez nodos del grafo. Las páginas 1 y 2 establecen la derivada correcta de <span class="math notranslate nohighlight">\(L=(y-\hat y)^2\)</span> y los seis gradientes. Las páginas 2 y 3 desarrollan la primera actualización; las páginas 3 y 4 contienen las tablas de nodos, gradientes y estados. Las páginas 5 y 6 documentan la reducción de la pérdida y el criterio de parada.</p>
+<p>El <a class="reference internal" href="../capitulos/01_entrenamiento_mlp.html"><span class="std std-doc">capítulo de entrenamiento de MLP</span></a> reproduce estos datos y resultados. Se ha comprobado la coincidencia de la tabla a seis decimales y la primera satisfacción de <span class="math notranslate nohighlight">\(|L^{(t)}-L^{(t-1)}|&lt;10^{-6}\)</span> en <span class="math notranslate nohighlight">\(t=255\)</span>. La implementación y las tablas de mayor precisión se ofrecen como descargas en ese capítulo.</p>
 </section>
 <section id="herramientas-de-edicion">
 <h2>Herramientas de edición<a class="headerlink" href="#herramientas-de-edicion" title="Link to this heading">#</a></h2>
@@ -447,6 +461,15 @@
         <p class="prev-next-title">Cómo leer y editar el libro</p>
       </div>
     </a>
+    <a class="right-next"
+       href="../notebooks/comprobaciones.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Comprobaciones reproducibles</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -466,6 +489,7 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#material-de-los-enunciados">Material de los enunciados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-numerico-del-mlp">Ejercicio numérico del MLP</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-de-edicion">Herramientas de edición</a></li>
 </ul>
   </nav></div>

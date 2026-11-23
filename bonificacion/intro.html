@@ -228,12 +228,16 @@
 <li class="toctree-l1"><a class="reference internal" href="capitulos/06_campo_receptivo.html">6. Campo receptivo de capas convolucionales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="capitulos/07_beneficio_profundidad.html">7. Beneficio de la profundidad</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones y material original</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/comprobaciones.html">Comprobaciones reproducibles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/comprobaciones_v2.html">Comprobaciones reproducibles</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anexos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="anexos/enunciados_originales.html">Enunciados originales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="anexos/guia_de_uso.html">Cómo leer y editar el libro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="anexos/referencias.html">Fuentes y documentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/comprobaciones.html">Cuaderno inicial (archivo)</a></li>
 </ul>
 
     </div>
@@ -400,7 +404,7 @@
 <h2>Bonificación<a class="headerlink" href="#bonificacion" title="Link to this heading">#</a></h2>
 <p><strong>Jassan Alberto Arteta Chavarro</strong></p>
 <p><a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/entregables.html">Volver al selector de entregables</a></p>
-<p>Este libro desarrolla los ejercicios y resultados reunidos en <em>Demostraciones Bonificacion.docx</em>. El recorrido conecta el descenso de gradiente y la derivada de la sigmoide con la retropropagación, los gradientes de una capa convolucional, el campo receptivo y la capacidad de representación de las redes profundas.</p>
+<p>Este libro desarrolla los ejercicios y resultados reunidos en <em>Demostraciones Bonificacion.docx</em> y el ejemplo numérico del PDF <em>Cinco iteraciones de gradiente descendente</em>. El recorrido conecta el descenso de gradiente y la derivada de la sigmoide con la retropropagación, los gradientes de una capa convolucional, el campo receptivo y la capacidad de representación de las redes profundas.</p>
 <p>Cada capítulo presenta el enunciado, establece las condiciones necesarias y muestra los pasos de la demostración. Se conserva la notación de las capturas y su numeración original cuando existe. Las verificaciones numéricas complementan las demostraciones; no sustituyen sus argumentos.</p>
 </section>
 <section id="contenido">
@@ -439,15 +443,18 @@
 </section>
 <section id="dos-precisiones-para-la-lectura">
 <h2>Dos precisiones para la lectura<a class="headerlink" href="#dos-precisiones-para-la-lectura" title="Link to this heading">#</a></h2>
-<p><strong>Ejercicio del MLP.</strong> La captura indica seis pesos, diez valores intermedios, <span class="math notranslate nohighlight">\(\alpha=0.01\)</span> y <span class="math notranslate nohighlight">\(L=(y-\hat y)^2\)</span>, pero remite a un ejemplo anterior que no está en el archivo. El primer capítulo desarrolla el procedimiento y deja preparada la tabla y la función de cálculo. La tabla numérica requiere la arquitectura, las entradas, el objetivo y los pesos iniciales de ese ejemplo.</p>
+<p><strong>Ejercicio del MLP.</strong> El primer capítulo utiliza los datos y el grafo del PDF proporcionado. Incluye los diez nodos, los seis gradientes, la primera actualización paso a paso y la tabla completa de los estados <span class="math notranslate nohighlight">\(t=0,\ldots,5\)</span>. Para <span class="math notranslate nohighlight">\(L=(y-\hat y)^2\)</span> se conserva el factor <span class="math notranslate nohighlight">\(2\)</span> de la derivada: <span class="math notranslate nohighlight">\(\partial L/\partial\hat y=2(\hat y-y)\)</span>. La pérdida disminuye aproximadamente un <span class="math notranslate nohighlight">\(9.46\%\)</span> en cinco actualizaciones; el primer cambio entre pérdidas consecutivas inferior a <span class="math notranslate nohighlight">\(10^{-6}\)</span> se alcanza en <span class="math notranslate nohighlight">\(t=255\)</span>, es decir, tras <span class="math notranslate nohighlight">\(250\)</span> actualizaciones adicionales.</p>
 <p><strong>Convención del tamaño de paso.</strong> El capítulo correspondiente distingue el gradiente de <span class="math notranslate nohighlight">\(J\)</span> del gradiente de <span class="math notranslate nohighlight">\(J/2\)</span>. Esta precisión permite interpretar correctamente el factor dos de la cota del enunciado.</p>
 </section>
 <section id="como-usar-el-libro">
 <h2>Cómo usar el libro<a class="headerlink" href="#como-usar-el-libro" title="Link to this heading">#</a></h2>
-<p>Lee los capítulos en el orden del índice o accede directamente a un resultado. El <a class="reference internal" href="notebooks/comprobaciones.html"><span class="std std-doc">cuaderno de comprobaciones</span></a> contiene cálculos reproducibles. El <a class="reference internal" href="anexos/enunciados_originales.html"><span class="std std-doc">anexo de enunciados originales</span></a> permite contrastar las transcripciones con las capturas del documento.</p>
+<p>Lee los capítulos en el orden del índice o accede directamente a un resultado. El <a class="reference internal" href="notebooks/comprobaciones_v2.html"><span class="std std-doc">cuaderno de comprobaciones actual</span></a> contiene cálculos reproducibles. El <a class="reference internal" href="capitulos/01_entrenamiento_mlp.html#reproducir-los-resultados"><span class="std std-ref">capítulo del MLP</span></a> ofrece además el programa específico del ejemplo, sus tablas CSV y la comprobación de la tolerancia. El <a class="reference internal" href="anexos/enunciados_originales.html"><span class="std std-doc">anexo de enunciados originales</span></a> permite contrastar las transcripciones con las capturas del documento.</p>
+<p>El <a class="reference internal" href="notebooks/comprobaciones.html"><span class="std std-doc">cuaderno inicial</span></a> se conserva en los anexos como archivo histórico. La versión actual mantiene sus cálculos y salidas y actualiza dos notas para enlazar al ejercicio MLP ya completo.</p>
 <p>Los símbolos se interpretan dentro de cada capítulo: por ejemplo, <span class="math notranslate nohighlight">\(L\)</span> representa la pérdida en el ejercicio del MLP y el número de capas en algunos teoremas. Esta diferencia proviene de los enunciados originales.</p>
 <p>La <a class="reference internal" href="anexos/guia_de_uso.html"><span class="std std-doc">guía de edición y compilación</span></a> explica cómo modificar las páginas y reconstruir el sitio.</p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
