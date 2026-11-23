@@ -366,6 +366,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostraciones-de-bonificacion">Demostraciones de bonificación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-principal-hpo-comun-piloto-y-608-fechas">Benchmark principal: HPO común, piloto y 608 fechas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-originales-conservados">Resultados originales conservados</a></li>
 </ul>
@@ -394,6 +395,10 @@
 <strong>Entregable 1 · LSTM–MLP–GRU · benchmark principal de 608 días · cierre de evidencias del 8 de noviembre de 2026 UTC (7 de noviembre en Colombia)</strong></p>
 <p>E1 compara modelos básicos de Deep Learning para pronosticar la volatilidad de <strong>Bitcoin BTCUSDT</strong>, con datos oficiales de Binance Spot. La tarea es <strong>regresión temporal, tipo 4</strong>: cinco covariables OHLCV diarias, volatilidad poblacional de siete retornos logarítmicos y horizonte de un día. Conserva la validación forward chaining de <strong>timeseries-cv</strong>, con coautoría de Filipe R. Ramos, purga temporal y transformaciones aprendidas únicamente del pasado permitido.</p>
 <p><strong>La comparación principal vuelve a entrenar GRU32, LSTM32 y MLP16 sobre las mismas 608 fechas</strong>, con HPO equitativa, un piloto propio y <strong>309 inicializaciones por red</strong> dimensionadas antes de sus ajustes definitivos. TCN permanece complementaria. El registro original de diez semillas y la comprobación posterior de sesenta días conservan sus resultados y su cronología.</p>
+<section id="demostraciones-de-bonificacion">
+<h2>Demostraciones de bonificación<a class="headerlink" href="#demostraciones-de-bonificacion" title="Link to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://jassan-bit.github.io/DeepLearning_202630/bonificacion/intro.html">libro de demostraciones de aprendizaje profundo</a> desarrolla el entrenamiento de MLP, la derivada de la sigmoide, el tamaño de paso, los gradientes convolucionales, la retropropagación, el campo receptivo y el beneficio de la profundidad. Incluye las demostraciones paso a paso, un cuaderno de comprobaciones y los enunciados originales.</p>
+</section>
 <section id="benchmark-principal-hpo-comun-piloto-y-608-fechas">
 <h2>Benchmark principal: HPO común, piloto y 608 fechas<a class="headerlink" href="#benchmark-principal-hpo-comun-piloto-y-608-fechas" title="Link to this heading">#</a></h2>
 <p>La <a class="reference internal" href="sections/11_reejecucion_608.html#remediation-608-e1"><span class="std std-ref">ejecución registrada de 608 fechas</span></a> mantiene las arquitecturas básicas y el periodo <strong>01/01/2025–31/08/2026</strong>. Las tres familias reciben cuatro candidatos LR–dropout, dos semillas comunes y diez folds de enero–octubre de 2024: <strong>480 etapas de HPO</strong>, 160 por familia. <strong>GRU32 es el baseline neuronal elegido con CV</strong>, antes del piloto y de puntuar esta ejecución.</p>
@@ -574,6 +579,7 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostraciones-de-bonificacion">Demostraciones de bonificación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-principal-hpo-comun-piloto-y-608-fechas">Benchmark principal: HPO común, piloto y 608 fechas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-originales-conservados">Resultados originales conservados</a></li>
 </ul>

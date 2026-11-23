@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Retropropagación y regla de la cadena &#8212; Demostraciones de aprendizaje profundo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b0e4577d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=c2101671"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"tags": "ams"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulos/05_retropropagacion';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="6. Campo receptivo de capas convolucionales" href="06_campo_receptivo.html" />
+    <link rel="prev" title="4. Gradientes de una capa convolucional" href="04_gradientes_convolucionales.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Demostraciones de aprendizaje profundo</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Demostraciones de aprendizaje profundo
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demostraciones</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_entrenamiento_mlp.html">1. Entrenamiento de MLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_derivada_sigmoide.html">2. Derivada de la función sigmoidea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_tamano_paso.html">3. Tamaño de paso para el error cuadrático medio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_gradientes_convolucionales.html">4. Gradientes de una capa convolucional</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Retropropagación y regla de la cadena</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_campo_receptivo.html">6. Campo receptivo de capas convolucionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_beneficio_profundidad.html">7. Beneficio de la profundidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones y material original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Comprobaciones reproducibles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/enunciados_originales.html">Enunciados originales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/guia_de_uso.html">Cómo leer y editar el libro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/referencias.html">Fuentes y documentación</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/capitulos/05_retropropagacion.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Retropropagación y regla de la cadena</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-3-3-del-documento">5.1. Teorema 3.3 del documento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convencion-de-gradientes-y-dimensiones">5.2. Convención de gradientes y dimensiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-a-las-activaciones">5.3. Demostración del gradiente respecto a las activaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-comenzar-en-la-ultima-capa">5.3.1. Paso 1. Comenzar en la última capa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-aplicar-la-regla-de-la-cadena-a-una-capa">5.3.2. Paso 2. Aplicar la regla de la cadena a una capa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-repetir-hasta-la-entrada">5.3.3. Paso 3. Repetir hasta la entrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-a-los-parametros">5.4. Demostración del gradiente respecto a los parámetros</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-identificar-por-donde-influye-el-parametro">5.4.1. Paso 1. Identificar por dónde influye el parámetro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-el-diferencial-de-la-perdida">5.4.2. Paso 2. Calcular el diferencial de la pérdida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-basta-un-solo-recorrido-hacia-atras">5.5. Por qué basta un solo recorrido hacia atrás</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#costo-computacional">5.5.1. Costo computacional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-la-construccion-de-jacobianos">5.5.2. Evitar la construcción de jacobianos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-escalar-con-dos-capas">5.6. Ejemplo escalar con dos capas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-resultado">5.7. Lectura del resultado</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="retropropagacion-y-regla-de-la-cadena">
+<h1><span class="section-number">5. </span>Retropropagación y regla de la cadena<a class="headerlink" href="#retropropagacion-y-regla-de-la-cadena" title="Link to this heading">#</a></h1>
+<p>La retropropagación calcula las derivadas de una pérdida recorriendo la red desde su salida hacia su entrada. En cada capa reutiliza la derivada que ya se ha calculado en la capa siguiente. El resultado es una aplicación organizada de la regla de la cadena.</p>
+<section id="teorema-3-3-del-documento">
+<h2><span class="section-number">5.1. </span>Teorema 3.3 del documento<a class="headerlink" href="#teorema-3-3-del-documento" title="Link to this heading">#</a></h2>
+<p>Sea</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal L(\theta)=\ell(a_L),\qquad a_0=x,
+\qquad a_k=f_k(a_{k-1};\theta_k)\in\mathbb R^{n_k},
+\]</div>
+<p>donde cada <span class="math notranslate nohighlight">\(f_k\)</span> es de clase <span class="math notranslate nohighlight">\(C^1\)</span> y <span class="math notranslate nohighlight">\(\ell:\mathbb R^{n_L}\to\mathbb R\)</span> es de clase <span class="math notranslate nohighlight">\(C^1\)</span>. Definimos, desde la última capa hacia la primera,</p>
+<div class="math notranslate nohighlight" id="equation-eq-backprop-recursion">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-eq-backprop-recursion" title="Link to this equation">#</a></span>\[\delta_L=\nabla\ell(a_L),\qquad
+\delta_{k-1}=J_k^T\delta_k,\qquad
+J_k=\frac{\partial f_k}{\partial a_{k-1}}(a_{k-1};\theta_k).\]</div>
+<p>Entonces, para cada capa,</p>
+<div class="math notranslate nohighlight" id="equation-eq-backprop-gradientes">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-eq-backprop-gradientes" title="Link to this equation">#</a></span>\[\nabla_{a_k}\mathcal L=\delta_k,
+\qquad
+\nabla_{\theta_k}\mathcal L
+=\left(\frac{\partial f_k}{\partial\theta_k}\right)^T\delta_k.\]</div>
+<p>La primera identidad se extiende a <span class="math notranslate nohighlight">\(k=0\)</span>. La segunda se aplica a los bloques de parámetros <span class="math notranslate nohighlight">\(\theta_k\)</span> de las capas <span class="math notranslate nohighlight">\(k=1,\ldots,L\)</span>.</p>
+<p>Si los productos <span class="math notranslate nohighlight">\(J_k^T\delta_k\)</span> y <span class="math notranslate nohighlight">\((\partial f_k/\partial\theta_k)^T\delta_k\)</span> se pueden evaluar a un costo acotado por una misma constante multiplicada por el costo de evaluar <span class="math notranslate nohighlight">\(f_k\)</span>, el paso hacia atrás tiene un costo de ese mismo orden que el paso hacia adelante. Los productos pueden calcularse sin construir las matrices jacobianas completas.</p>
+<p><strong>Hipótesis sobre los parámetros.</strong> La expresión por capa supone que <span class="math notranslate nohighlight">\(\theta_k\)</span> es un bloque independiente y que la pérdida no tiene una dependencia adicional directa de ese bloque. Si un parámetro se comparte entre varias capas, sus contribuciones se suman. Si existe una penalización explícita en la pérdida, también se suma su gradiente.</p>
+</section>
+<section id="convencion-de-gradientes-y-dimensiones">
+<h2><span class="section-number">5.2. </span>Convención de gradientes y dimensiones<a class="headerlink" href="#convencion-de-gradientes-y-dimensiones" title="Link to this heading">#</a></h2>
+<p>Escribimos los gradientes como vectores columna. Como <span class="math notranslate nohighlight">\(f_k\)</span> transforma una entrada de dimensión <span class="math notranslate nohighlight">\(n_{k-1}\)</span> en una salida de dimensión <span class="math notranslate nohighlight">\(n_k\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+J_k\in\mathbb R^{n_k\times n_{k-1}},
+\qquad
+\delta_k\in\mathbb R^{n_k}.
+\]</div>
+<p>Por tanto,</p>
+<div class="math notranslate nohighlight">
+\[
+J_k^T\delta_k\in\mathbb R^{n_{k-1}}.
+\]</div>
+<p>La transpuesta hace que el resultado tenga la dimensión de la entrada de la capa. La derivada <span class="math notranslate nohighlight">\(\partial f_k/\partial\theta_k\)</span> tiene una fila por componente de <span class="math notranslate nohighlight">\(f_k\)</span> y una columna por componente de <span class="math notranslate nohighlight">\(\theta_k\)</span>; su transpuesta convierte <span class="math notranslate nohighlight">\(\delta_k\)</span> en un gradiente con una componente por parámetro.</p>
+</section>
+<section id="demostracion-del-gradiente-respecto-a-las-activaciones">
+<h2><span class="section-number">5.3. </span>Demostración del gradiente respecto a las activaciones<a class="headerlink" href="#demostracion-del-gradiente-respecto-a-las-activaciones" title="Link to this heading">#</a></h2>
+<section id="paso-1-comenzar-en-la-ultima-capa">
+<h3><span class="section-number">5.3.1. </span>Paso 1. Comenzar en la última capa<a class="headerlink" href="#paso-1-comenzar-en-la-ultima-capa" title="Link to this heading">#</a></h3>
+<p>Por la definición de la pérdida,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal L=\ell(a_L).
+\]</div>
+<p>Al derivar respecto a <span class="math notranslate nohighlight">\(a_L\)</span> obtenemos directamente</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla_{a_L}\mathcal L=\nabla\ell(a_L)=\delta_L.
+\]</div>
+<p>Esta es la base de la inducción hacia atrás.</p>
+</section>
+<section id="paso-2-aplicar-la-regla-de-la-cadena-a-una-capa">
+<h3><span class="section-number">5.3.2. </span>Paso 2. Aplicar la regla de la cadena a una capa<a class="headerlink" href="#paso-2-aplicar-la-regla-de-la-cadena-a-una-capa" title="Link to this heading">#</a></h3>
+<p>Supongamos que ya sabemos que</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla_{a_k}\mathcal L=\delta_k.
+\]</div>
+<p>Al variar <span class="math notranslate nohighlight">\(a_{k-1}\)</span> y mantener fijos los parámetros de la capa,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm da_k=J_k\,\mathrm da_{k-1}.
+\]</div>
+<p>El diferencial de la pérdida es</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathrm d\mathcal L
+&amp;=(\nabla_{a_k}\mathcal L)^T\mathrm da_k\\
+&amp;=\delta_k^T J_k\,\mathrm da_{k-1}\\
+&amp;=(J_k^T\delta_k)^T\mathrm da_{k-1}.
+\end{aligned}
+\end{split}\]</div>
+<p>Pero la definición del gradiente respecto a <span class="math notranslate nohighlight">\(a_{k-1}\)</span> también da</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm d\mathcal L
+=(\nabla_{a_{k-1}}\mathcal L)^T\mathrm da_{k-1}.
+\]</div>
+<p>Como la igualdad se cumple para cualquier variación <span class="math notranslate nohighlight">\(\mathrm da_{k-1}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla_{a_{k-1}}\mathcal L=J_k^T\delta_k=\delta_{k-1}.
+\]</div>
+</section>
+<section id="paso-3-repetir-hasta-la-entrada">
+<h3><span class="section-number">5.3.3. </span>Paso 3. Repetir hasta la entrada<a class="headerlink" href="#paso-3-repetir-hasta-la-entrada" title="Link to this heading">#</a></h3>
+<p>La identidad es cierta para <span class="math notranslate nohighlight">\(k=L\)</span>, y el paso anterior demuestra que su validez en una capa implica su validez en la capa anterior. Por inducción inversa,</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\nabla_{a_k}\mathcal L=\delta_k},
+\qquad k=0,1,\ldots,L.
+\]</div>
+<p>En particular, <span class="math notranslate nohighlight">\(\delta_0=\nabla_x\mathcal L\)</span> es la sensibilidad de la pérdida respecto a la entrada de la red.</p>
+</section>
+</section>
+<section id="demostracion-del-gradiente-respecto-a-los-parametros">
+<h2><span class="section-number">5.4. </span>Demostración del gradiente respecto a los parámetros<a class="headerlink" href="#demostracion-del-gradiente-respecto-a-los-parametros" title="Link to this heading">#</a></h2>
+<section id="paso-1-identificar-por-donde-influye-el-parametro">
+<h3><span class="section-number">5.4.1. </span>Paso 1. Identificar por dónde influye el parámetro<a class="headerlink" href="#paso-1-identificar-por-donde-influye-el-parametro" title="Link to this heading">#</a></h3>
+<p>Al modificar <span class="math notranslate nohighlight">\(\theta_k\)</span>, manteniendo fijos la entrada y los demás bloques de parámetros, las activaciones anteriores a la capa <span class="math notranslate nohighlight">\(k\)</span> permanecen fijas. La variación en la salida de esta capa es</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm da_k
+=\frac{\partial f_k}{\partial\theta_k}\,\mathrm d\theta_k.
+\]</div>
+<p>Las capas posteriores ya están incorporadas en <span class="math notranslate nohighlight">\(\delta_k=\nabla_{a_k}\mathcal L\)</span>.</p>
+</section>
+<section id="paso-2-calcular-el-diferencial-de-la-perdida">
+<h3><span class="section-number">5.4.2. </span>Paso 2. Calcular el diferencial de la pérdida<a class="headerlink" href="#paso-2-calcular-el-diferencial-de-la-perdida" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathrm d\mathcal L
+&amp;=\delta_k^T\mathrm da_k\\
+&amp;=\delta_k^T\frac{\partial f_k}{\partial\theta_k}
+\,\mathrm d\theta_k\\
+&amp;=\left[
+\left(\frac{\partial f_k}{\partial\theta_k}\right)^T\delta_k
+\right]^T\mathrm d\theta_k.
+\end{aligned}
+\end{split}\]</div>
+<p>Comparando con</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm d\mathcal L
+=(\nabla_{\theta_k}\mathcal L)^T\mathrm d\theta_k,
+\]</div>
+<p>concluimos que</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{
+\nabla_{\theta_k}\mathcal L
+=\left(\frac{\partial f_k}{\partial\theta_k}\right)^T\delta_k
+}.
+\]</div>
+</section>
+</section>
+<section id="por-que-basta-un-solo-recorrido-hacia-atras">
+<h2><span class="section-number">5.5. </span>Por qué basta un solo recorrido hacia atrás<a class="headerlink" href="#por-que-basta-un-solo-recorrido-hacia-atras" title="Link to this heading">#</a></h2>
+<p>Primero se calculan y conservan las activaciones <span class="math notranslate nohighlight">\(a_0,a_1,\ldots,a_L\)</span> durante el recorrido hacia adelante. Después se calcula <span class="math notranslate nohighlight">\(\delta_L\)</span> a partir de la pérdida. En la capa <span class="math notranslate nohighlight">\(k\)</span>, el valor de <span class="math notranslate nohighlight">\(\delta_k\)</span> permite obtener tanto el gradiente de sus parámetros como <span class="math notranslate nohighlight">\(\delta_{k-1}\)</span>. Una vez calculados, se continúa con la capa anterior.</p>
+<p>No hace falta volver a recorrer toda la red por cada parámetro: las dependencias posteriores ya están resumidas en <span class="math notranslate nohighlight">\(\delta_k\)</span>.</p>
+<section id="costo-computacional">
+<h3><span class="section-number">5.5.1. </span>Costo computacional<a class="headerlink" href="#costo-computacional" title="Link to this heading">#</a></h3>
+<p>La hipótesis del teorema exige que exista una cota uniforme para el costo de los productos locales, relativa al costo del paso hacia adelante de la correspondiente capa. Al sumar sobre todas las capas, esa misma cota uniforme acota el costo total del recorrido hacia atrás por una constante multiplicada por el costo total de las capas en el recorrido hacia adelante.</p>
+<p>El costo de evaluar <span class="math notranslate nohighlight">\(\ell\)</span> y <span class="math notranslate nohighlight">\(\nabla\ell\)</span> debe incluirse por separado, o tratarse como una última operación del grafo con una propiedad de costo análoga. La afirmación de complejidad <strong>no se deduce solamente de que las funciones sean diferenciables</strong>: utiliza la hipótesis adicional sobre la eficiencia de los productos locales.</p>
+</section>
+<section id="evitar-la-construccion-de-jacobianos">
+<h3><span class="section-number">5.5.2. </span>Evitar la construcción de jacobianos<a class="headerlink" href="#evitar-la-construccion-de-jacobianos" title="Link to this heading">#</a></h3>
+<p>El algoritmo necesita el producto de cada jacobiano transpuesto por <span class="math notranslate nohighlight">\(\delta_k\)</span>, no todas las entradas de ese jacobiano. Las reglas de derivación de cada operación pueden calcular directamente ese producto. Por eso la notación matricial de la demostración no obliga a almacenar matrices jacobianas completas en una implementación.</p>
+</section>
+</section>
+<section id="ejemplo-escalar-con-dos-capas">
+<h2><span class="section-number">5.6. </span>Ejemplo escalar con dos capas<a class="headerlink" href="#ejemplo-escalar-con-dos-capas" title="Link to this heading">#</a></h2>
+<p>Para comprobar las identidades, consideremos el ejemplo</p>
+<div class="math notranslate nohighlight">
+\[
+a_0=x,\qquad a_1=f_1(a_0;\theta_1)=\theta_1a_0,
+\qquad a_2=f_2(a_1;\theta_2)=\theta_2a_1,
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(\ell(a_2)=\tfrac12a_2^2\)</span>. Entonces</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal L(\theta)=\frac12(\theta_2\theta_1x)^2.
+\]</div>
+<p>En la última capa,</p>
+<div class="math notranslate nohighlight">
+\[
+\delta_2=\ell'(a_2)=a_2,
+\qquad
+\frac{\partial\mathcal L}{\partial\theta_2}
+=a_1\delta_2=a_1a_2.
+\]</div>
+<p>Propagamos hacia la primera capa:</p>
+<div class="math notranslate nohighlight">
+\[
+J_2=\theta_2,\qquad
+\delta_1=\theta_2\delta_2=\theta_2a_2,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial\mathcal L}{\partial\theta_1}
+=a_0\delta_1=x\theta_2a_2.
+\]</div>
+<p>Finalmente,</p>
+<div class="math notranslate nohighlight">
+\[
+\delta_0=J_1\delta_1=\theta_1\theta_2a_2.
+\]</div>
+<p>Si <span class="math notranslate nohighlight">\(x=2\)</span>, <span class="math notranslate nohighlight">\(\theta_1=3\)</span> y <span class="math notranslate nohighlight">\(\theta_2=4\)</span>, obtenemos</p>
+<div class="math notranslate nohighlight">
+\[
+a_1=6,\qquad a_2=24,\qquad\mathcal L=288,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial\mathcal L}{\partial\theta_2}=144,
+\qquad
+\frac{\partial\mathcal L}{\partial\theta_1}=192,
+\qquad
+\frac{\partial\mathcal L}{\partial x}=288.
+\]</div>
+<p>Se obtienen los mismos valores derivando directamente <span class="math notranslate nohighlight">\(\tfrac12(\theta_2\theta_1x)^2\)</span> respecto a cada variable.</p>
+</section>
+<section id="lectura-del-resultado">
+<h2><span class="section-number">5.7. </span>Lectura del resultado<a class="headerlink" href="#lectura-del-resultado" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\delta_k\)</span> mide cómo cambia la pérdida cuando cambia la activación de la capa <span class="math notranslate nohighlight">\(k\)</span>. Para llevar esa sensibilidad a la capa anterior, se aplica <span class="math notranslate nohighlight">\(J_k^T\)</span>. Para llevarla a los parámetros de la capa actual, se aplica <span class="math notranslate nohighlight">\((\partial f_k/\partial\theta_k)^T\)</span>. Ambos cálculos utilizan la misma sensibilidad que llega desde la salida.</p>
+<p>El enunciado supone funciones <span class="math notranslate nohighlight">\(C^1\)</span>. La función ReLU no cumple esa hipótesis en cero: fuera de ese punto puede aplicarse el cálculo usual, y en cero una implementación adopta una regla de derivación que debe especificarse. Esta salvedad no altera la demostración bajo las hipótesis formuladas.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./capitulos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_gradientes_convolucionales.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Gradientes de una capa convolucional</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_campo_receptivo.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Campo receptivo de capas convolucionales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-3-3-del-documento">5.1. Teorema 3.3 del documento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convencion-de-gradientes-y-dimensiones">5.2. Convención de gradientes y dimensiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-a-las-activaciones">5.3. Demostración del gradiente respecto a las activaciones</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-comenzar-en-la-ultima-capa">5.3.1. Paso 1. Comenzar en la última capa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-aplicar-la-regla-de-la-cadena-a-una-capa">5.3.2. Paso 2. Aplicar la regla de la cadena a una capa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-repetir-hasta-la-entrada">5.3.3. Paso 3. Repetir hasta la entrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-a-los-parametros">5.4. Demostración del gradiente respecto a los parámetros</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-identificar-por-donde-influye-el-parametro">5.4.1. Paso 1. Identificar por dónde influye el parámetro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-el-diferencial-de-la-perdida">5.4.2. Paso 2. Calcular el diferencial de la pérdida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-basta-un-solo-recorrido-hacia-atras">5.5. Por qué basta un solo recorrido hacia atrás</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#costo-computacional">5.5.1. Costo computacional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-la-construccion-de-jacobianos">5.5.2. Evitar la construcción de jacobianos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-escalar-con-dos-capas">5.6. Ejemplo escalar con dos capas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-resultado">5.7. Lectura del resultado</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Jassan Alberto Arteta Chavarro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

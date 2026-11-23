@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Gradientes de una capa convolucional &#8212; Demostraciones de aprendizaje profundo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b0e4577d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=c2101671"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"tags": "ams"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulos/04_gradientes_convolucionales';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="5. Retropropagación y regla de la cadena" href="05_retropropagacion.html" />
+    <link rel="prev" title="3. Tamaño de paso para el error cuadrático medio" href="03_tamano_paso.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Demostraciones de aprendizaje profundo</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Demostraciones de aprendizaje profundo
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demostraciones</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_entrenamiento_mlp.html">1. Entrenamiento de MLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_derivada_sigmoide.html">2. Derivada de la función sigmoidea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_tamano_paso.html">3. Tamaño de paso para el error cuadrático medio</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Gradientes de una capa convolucional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_retropropagacion.html">5. Retropropagación y regla de la cadena</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_campo_receptivo.html">6. Campo receptivo de capas convolucionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_beneficio_profundidad.html">7. Beneficio de la profundidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones y material original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Comprobaciones reproducibles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/enunciados_originales.html">Enunciados originales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/guia_de_uso.html">Cómo leer y editar el libro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/referencias.html">Fuentes y documentación</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/capitulos/04_gradientes_convolucionales.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Gradientes de una capa convolucional</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proposicion-3-1-del-documento">4.1. Proposición 3.1 del documento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-al-filtro">4.2. Demostración del gradiente respecto al filtro</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-identificar-la-dependencia">4.2.1. Paso 1. Identificar la dependencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-aplicar-la-regla-de-la-cadena">4.2.2. Paso 2. Aplicar la regla de la cadena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-sustituir-las-derivadas">4.2.3. Paso 3. Sustituir las derivadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-a-la-entrada">4.3. Demostración del gradiente respecto a la entrada</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-determinar-cuando-aparece-la-entrada">4.3.1. Paso 1. Determinar cuándo aparece la entrada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.3.2. Paso 2. Aplicar la regla de la cadena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-despejar-los-indices-de-salida">4.3.3. Paso 3. Despejar los índices de salida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-al-sesgo">4.4. Demostración del gradiente respecto al sesgo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-comprobacion">4.5. Ejemplo de comprobación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-resultado">4.6. Lectura del resultado</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="gradientes-de-una-capa-convolucional">
+<h1><span class="section-number">4. </span>Gradientes de una capa convolucional<a class="headerlink" href="#gradientes-de-una-capa-convolucional" title="Link to this heading">#</a></h1>
+<p>Una misma entrada puede intervenir en varias salidas, y un mismo coeficiente del filtro se utiliza en todas las posiciones de la imagen. Por esta razón, sus derivadas se obtienen <strong>sumando todas las contribuciones</strong> que llegan desde la función de pérdida.</p>
+<section id="proposicion-3-1-del-documento">
+<h2><span class="section-number">4.1. </span>Proposición 3.1 del documento<a class="headerlink" href="#proposicion-3-1-del-documento" title="Link to this heading">#</a></h2>
+<p>Sea</p>
+<div class="math notranslate nohighlight">
+\[
+O(i,j)=\sum_{t=1}^{m}\sum_{r=1}^{m}
+h(t,r)I(i+t-1,j+r-1)+b,
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(I\in\mathbb R^{l\times l}\)</span>, un filtro <span class="math notranslate nohighlight">\(h\in\mathbb R^{m\times m}\)</span>, stride <span class="math notranslate nohighlight">\(1\)</span> y sin padding. Se supone <span class="math notranslate nohighlight">\(1\le m\le l\)</span>. Entonces</p>
+<div class="math notranslate nohighlight">
+\[
+O\in\mathbb R^{k\times k},\qquad k=l-m+1.
+\]</div>
+<p>Sea <span class="math notranslate nohighlight">\(\mathcal L\)</span> una pérdida diferenciable que depende de <span class="math notranslate nohighlight">\(I\)</span>, <span class="math notranslate nohighlight">\(h\)</span> y <span class="math notranslate nohighlight">\(b\)</span> a través de <span class="math notranslate nohighlight">\(O\)</span>, y definamos</p>
+<div class="math notranslate nohighlight">
+\[
+\delta(i,j)=\frac{\partial\mathcal L}{\partial O(i,j)},
+\qquad 1\le i,j\le k.
+\]</div>
+<p>Extendemos <span class="math notranslate nohighlight">\(\delta\)</span> con ceros fuera de <span class="math notranslate nohighlight">\(\{1,\ldots,k\}^2\)</span>. Las identidades que debemos demostrar son</p>
+<div class="math notranslate nohighlight" id="equation-eq-conv-gradiente-filtro">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-conv-gradiente-filtro" title="Link to this equation">#</a></span>\[\frac{\partial\mathcal L}{\partial h(t,r)}
+=\sum_{i=1}^{k}\sum_{j=1}^{k}
+\delta(i,j)I(i+t-1,j+r-1),
+\qquad 1\le t,r\le m,\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-conv-gradiente-entrada">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-eq-conv-gradiente-entrada" title="Link to this equation">#</a></span>\[\frac{\partial\mathcal L}{\partial I(u,v)}
+=\sum_{t=1}^{m}\sum_{r=1}^{m}
+h(t,r)\delta(u-t+1,v-r+1),
+\qquad 1\le u,v\le l,\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-conv-gradiente-sesgo">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-eq-conv-gradiente-sesgo" title="Link to this equation">#</a></span>\[\frac{\partial\mathcal L}{\partial b}
+=\sum_{i=1}^{k}\sum_{j=1}^{k}\delta(i,j).\]</div>
+<p><strong>Convención de la operación.</strong> La fórmula del enunciado utiliza el filtro sin invertirlo. Técnicamente es una correlación cruzada, aunque en redes neuronales se denomina habitualmente convolución. Todas las derivadas siguientes corresponden exactamente a esa fórmula. Si la pérdida contiene además un término que depende directamente de <span class="math notranslate nohighlight">\(h\)</span>, <span class="math notranslate nohighlight">\(I\)</span> o <span class="math notranslate nohighlight">\(b\)</span>, habrá que sumar la derivada de ese término.</p>
+</section>
+<section id="demostracion-del-gradiente-respecto-al-filtro">
+<h2><span class="section-number">4.2. </span>Demostración del gradiente respecto al filtro<a class="headerlink" href="#demostracion-del-gradiente-respecto-al-filtro" title="Link to this heading">#</a></h2>
+<section id="paso-1-identificar-la-dependencia">
+<h3><span class="section-number">4.2.1. </span>Paso 1. Identificar la dependencia<a class="headerlink" href="#paso-1-identificar-la-dependencia" title="Link to this heading">#</a></h3>
+<p>Fijemos <span class="math notranslate nohighlight">\(t,r\in\{1,\ldots,m\}\)</span>. El coeficiente <span class="math notranslate nohighlight">\(h(t,r)\)</span> participa en cada salida <span class="math notranslate nohighlight">\(O(i,j)\)</span> multiplicando a</p>
+<div class="math notranslate nohighlight">
+\[
+I(i+t-1,j+r-1).
+\]</div>
+<p>Como <span class="math notranslate nohighlight">\(O(i,j)\)</span> es lineal en los coeficientes del filtro,</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial O(i,j)}{\partial h(t,r)}
+=I(i+t-1,j+r-1).
+\]</div>
+<p>Los demás términos de la suma no dependen del coeficiente que estamos derivando, y el término <span class="math notranslate nohighlight">\(b\)</span> tampoco.</p>
+</section>
+<section id="paso-2-aplicar-la-regla-de-la-cadena">
+<h3><span class="section-number">4.2.2. </span>Paso 2. Aplicar la regla de la cadena<a class="headerlink" href="#paso-2-aplicar-la-regla-de-la-cadena" title="Link to this heading">#</a></h3>
+<p>La pérdida puede depender de <span class="math notranslate nohighlight">\(h(t,r)\)</span> a través de cualquiera de las <span class="math notranslate nohighlight">\(k^2\)</span> salidas. Por tanto,</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial\mathcal L}{\partial h(t,r)}
+=\sum_{i=1}^{k}\sum_{j=1}^{k}
+\frac{\partial\mathcal L}{\partial O(i,j)}
+\frac{\partial O(i,j)}{\partial h(t,r)}.
+\]</div>
+</section>
+<section id="paso-3-sustituir-las-derivadas">
+<h3><span class="section-number">4.2.3. </span>Paso 3. Sustituir las derivadas<a class="headerlink" href="#paso-3-sustituir-las-derivadas" title="Link to this heading">#</a></h3>
+<p>Usando la definición de <span class="math notranslate nohighlight">\(\delta(i,j)\)</span> y el resultado del paso anterior,</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{
+\frac{\partial\mathcal L}{\partial h(t,r)}
+=\sum_{i=1}^{k}\sum_{j=1}^{k}
+\delta(i,j)I(i+t-1,j+r-1)
+}.
+\]</div>
+<p>La suma aparece porque el parámetro <span class="math notranslate nohighlight">\(h(t,r)\)</span> se comparte entre todas las posiciones de salida.</p>
+</section>
+</section>
+<section id="demostracion-del-gradiente-respecto-a-la-entrada">
+<h2><span class="section-number">4.3. </span>Demostración del gradiente respecto a la entrada<a class="headerlink" href="#demostracion-del-gradiente-respecto-a-la-entrada" title="Link to this heading">#</a></h2>
+<section id="paso-1-determinar-cuando-aparece-la-entrada">
+<h3><span class="section-number">4.3.1. </span>Paso 1. Determinar cuándo aparece la entrada<a class="headerlink" href="#paso-1-determinar-cuando-aparece-la-entrada" title="Link to this heading">#</a></h3>
+<p>Fijemos una posición <span class="math notranslate nohighlight">\((u,v)\)</span> de la entrada. En la salida <span class="math notranslate nohighlight">\(O(i,j)\)</span> aparece <span class="math notranslate nohighlight">\(I(u,v)\)</span> si existe una posición <span class="math notranslate nohighlight">\((t,r)\)</span> del filtro tal que</p>
+<div class="math notranslate nohighlight">
+\[
+u=i+t-1,\qquad v=j+r-1.
+\]</div>
+<p>Cuando esto ocurre, el coeficiente que multiplica a <span class="math notranslate nohighlight">\(I(u,v)\)</span> es <span class="math notranslate nohighlight">\(h(t,r)\)</span>. Si la entrada no pertenece a la ventana de esa salida, la derivada correspondiente es cero. Por ello,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{\partial O(i,j)}{\partial I(u,v)}
+=
+\sum_{\substack{1\le t,r\le m\\
+u=i+t-1,\ v=j+r-1}}h(t,r).
+\end{split}\]</div>
+<p>Esta suma contiene un único término cuando la entrada está dentro de la ventana, y ningún término cuando está fuera.</p>
+</section>
+<section id="id1">
+<h3><span class="section-number">4.3.2. </span>Paso 2. Aplicar la regla de la cadena<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Sumamos las contribuciones de todas las salidas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\partial\mathcal L}{\partial I(u,v)}
+&amp;=\sum_{i=1}^{k}\sum_{j=1}^{k}
+\frac{\partial\mathcal L}{\partial O(i,j)}
+\frac{\partial O(i,j)}{\partial I(u,v)}\\
+&amp;=\sum_{i=1}^{k}\sum_{j=1}^{k}
+\delta(i,j)
+\sum_{\substack{1\le t,r\le m\\
+u=i+t-1,\ v=j+r-1}}h(t,r).
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="paso-3-despejar-los-indices-de-salida">
+<h3><span class="section-number">4.3.3. </span>Paso 3. Despejar los índices de salida<a class="headerlink" href="#paso-3-despejar-los-indices-de-salida" title="Link to this heading">#</a></h3>
+<p>Las igualdades que indican dónde aparece <span class="math notranslate nohighlight">\(I(u,v)\)</span> equivalen a</p>
+<div class="math notranslate nohighlight">
+\[
+i=u-t+1,\qquad j=v-r+1.
+\]</div>
+<p>Como todas las sumas son finitas, podemos agrupar primero por la posición del filtro:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{\partial\mathcal L}{\partial I(u,v)}
+=\sum_{t=1}^{m}\sum_{r=1}^{m}h(t,r)
+\sum_{\substack{1\le i,j\le k\\
+i=u-t+1,\ j=v-r+1}}\delta(i,j).
+\end{split}\]</div>
+<p>Si <span class="math notranslate nohighlight">\((u-t+1,v-r+1)\)</span> es una posición válida de salida, la suma interior vale <span class="math notranslate nohighlight">\(\delta(u-t+1,v-r+1)\)</span>. En caso contrario, vale cero. La extensión de <span class="math notranslate nohighlight">\(\delta\)</span> con ceros permite escribir ambos casos en una sola expresión:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{
+\frac{\partial\mathcal L}{\partial I(u,v)}
+=\sum_{t=1}^{m}\sum_{r=1}^{m}
+h(t,r)\delta(u-t+1,v-r+1)
+}.
+\]</div>
+<p><strong>Por qué aparecen signos negativos en los índices.</strong> No se introducen por una regla arbitraria de inversión del filtro: surgen al despejar <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span> en las relaciones <span class="math notranslate nohighlight">\(u=i+t-1\)</span> y <span class="math notranslate nohighlight">\(v=j+r-1\)</span>.</p>
+</section>
+</section>
+<section id="demostracion-del-gradiente-respecto-al-sesgo">
+<h2><span class="section-number">4.4. </span>Demostración del gradiente respecto al sesgo<a class="headerlink" href="#demostracion-del-gradiente-respecto-al-sesgo" title="Link to this heading">#</a></h2>
+<p>El mismo escalar <span class="math notranslate nohighlight">\(b\)</span> se suma una vez en cada salida. En consecuencia,</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial O(i,j)}{\partial b}=1.
+\]</div>
+<p>Aplicamos la regla de la cadena y sustituimos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\partial\mathcal L}{\partial b}
+&amp;=\sum_{i=1}^{k}\sum_{j=1}^{k}
+\frac{\partial\mathcal L}{\partial O(i,j)}
+\frac{\partial O(i,j)}{\partial b}\\
+&amp;=\sum_{i=1}^{k}\sum_{j=1}^{k}\delta(i,j)\cdot1\\
+&amp;=\boxed{\sum_{i=1}^{k}\sum_{j=1}^{k}\delta(i,j)}.
+\end{aligned}
+\end{split}\]</div>
+<p>Quedan demostradas las tres identidades.</p>
+</section>
+<section id="ejemplo-de-comprobacion">
+<h2><span class="section-number">4.5. </span>Ejemplo de comprobación<a class="headerlink" href="#ejemplo-de-comprobacion" title="Link to this heading">#</a></h2>
+<p>Este ejemplo ilustra las fórmulas anteriores. Tomemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+I=\begin{pmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;9\end{pmatrix},
+\qquad
+h=\begin{pmatrix}1&amp;0\\0&amp;-1\end{pmatrix},
+\qquad b=1.
+\end{split}\]</div>
+<p>Aquí <span class="math notranslate nohighlight">\(l=3\)</span>, <span class="math notranslate nohighlight">\(m=2\)</span> y <span class="math notranslate nohighlight">\(k=2\)</span>. Por ejemplo,</p>
+<div class="math notranslate nohighlight">
+\[
+O(1,1)=1\cdot1+0\cdot2+0\cdot4-1\cdot5+1=-3.
+\]</div>
+<p>Las otras tres salidas también valen <span class="math notranslate nohighlight">\(-3\)</span>. Si elegimos, solo para esta comprobación, la pérdida</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal L=\sum_{i=1}^{2}\sum_{j=1}^{2}O(i,j),
+\]</div>
+<p>entonces <span class="math notranslate nohighlight">\(\delta(i,j)=1\)</span> en las cuatro posiciones. Los gradientes son</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla_h\mathcal L=
+\begin{pmatrix}
+1+2+4+5&amp;2+3+5+6\\
+4+5+7+8&amp;5+6+8+9
+\end{pmatrix}
+=\begin{pmatrix}12&amp;16\\24&amp;28\end{pmatrix},
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{\partial\mathcal L}{\partial b}=4,
+\qquad
+\nabla_I\mathcal L=
+\begin{pmatrix}
+1&amp;1&amp;0\\
+1&amp;0&amp;-1\\
+0&amp;-1&amp;-1
+\end{pmatrix}.
+\end{split}\]</div>
+<p>La entrada central <span class="math notranslate nohighlight">\(I(2,2)\)</span> participa en cuatro ventanas, pero sus coeficientes suman <span class="math notranslate nohighlight">\(-1+0+0+1=0\)</span>. De ahí que su derivada sea cero en este ejemplo.</p>
+</section>
+<section id="lectura-del-resultado">
+<h2><span class="section-number">4.6. </span>Lectura del resultado<a class="headerlink" href="#lectura-del-resultado" title="Link to this heading">#</a></h2>
+<p>El gradiente del filtro acumula los productos entre el error de cada salida y la entrada que multiplicaba a ese coeficiente. El gradiente de la entrada acumula las contribuciones de todas las ventanas que la utilizaron. El gradiente del sesgo suma todos los errores de salida porque ese mismo sesgo afecta a todas las posiciones.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./capitulos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_tamano_paso.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Tamaño de paso para el error cuadrático medio</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_retropropagacion.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Retropropagación y regla de la cadena</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proposicion-3-1-del-documento">4.1. Proposición 3.1 del documento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-al-filtro">4.2. Demostración del gradiente respecto al filtro</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-identificar-la-dependencia">4.2.1. Paso 1. Identificar la dependencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-aplicar-la-regla-de-la-cadena">4.2.2. Paso 2. Aplicar la regla de la cadena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-sustituir-las-derivadas">4.2.3. Paso 3. Sustituir las derivadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-a-la-entrada">4.3. Demostración del gradiente respecto a la entrada</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-determinar-cuando-aparece-la-entrada">4.3.1. Paso 1. Determinar cuándo aparece la entrada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.3.2. Paso 2. Aplicar la regla de la cadena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-despejar-los-indices-de-salida">4.3.3. Paso 3. Despejar los índices de salida</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion-del-gradiente-respecto-al-sesgo">4.4. Demostración del gradiente respecto al sesgo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-comprobacion">4.5. Ejemplo de comprobación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-resultado">4.6. Lectura del resultado</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Jassan Alberto Arteta Chavarro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

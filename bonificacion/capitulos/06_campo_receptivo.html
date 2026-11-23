@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Campo receptivo de capas convolucionales &#8212; Demostraciones de aprendizaje profundo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b0e4577d" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=c2101671"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"tags": "ams"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulos/06_campo_receptivo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="7. Beneficio de la profundidad" href="07_beneficio_profundidad.html" />
+    <link rel="prev" title="5. Retropropagación y regla de la cadena" href="05_retropropagacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Demostraciones de aprendizaje profundo</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Demostraciones de aprendizaje profundo
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demostraciones</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_entrenamiento_mlp.html">1. Entrenamiento de MLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_derivada_sigmoide.html">2. Derivada de la función sigmoidea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_tamano_paso.html">3. Tamaño de paso para el error cuadrático medio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_gradientes_convolucionales.html">4. Gradientes de una capa convolucional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_retropropagacion.html">5. Retropropagación y regla de la cadena</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Campo receptivo de capas convolucionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_beneficio_profundidad.html">7. Beneficio de la profundidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Comprobaciones y material original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/comprobaciones.html">Comprobaciones reproducibles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/enunciados_originales.html">Enunciados originales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/guia_de_uso.html">Cómo leer y editar el libro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexos/referencias.html">Fuentes y documentación</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/capitulos/06_campo_receptivo.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Campo receptivo de capas convolucionales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lema-3-1-del-documento">6.1. Lema 3.1 del documento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-considerar-una-sola-direccion-espacial">6.2. Paso 1. Considerar una sola dirección espacial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-la-separacion-entre-unidades-consecutivas">6.3. Paso 2. Calcular la separación entre unidades consecutivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-obtener-la-recurrencia-del-tamano">6.4. Paso 3. Obtener la recurrencia del tamaño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-desarrollar-la-recurrencia">6.5. Paso 4. Desarrollar la recurrencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-tres-capas">6.6. Ejemplo de tres capas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-de-la-formula">6.7. Alcance de la fórmula</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-y-posiciones-utilizadas">6.7.1. Extensión y posiciones utilizadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bordes-y-padding">6.7.2. Bordes y padding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencia-real-y-campo-teorico">6.7.3. Dependencia real y campo teórico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dilatacion">6.7.4. Dilatación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-resultado">6.8. Lectura del resultado</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="campo-receptivo-de-capas-convolucionales">
+<h1><span class="section-number">6. </span>Campo receptivo de capas convolucionales<a class="headerlink" href="#campo-receptivo-de-capas-convolucionales" title="Link to this heading">#</a></h1>
+<p>El campo receptivo describe qué parte de la entrada puede influir en una unidad de una capa posterior. Su tamaño depende del ancho de cada filtro y de la separación entre las posiciones que se seleccionan al avanzar por la red.</p>
+<section id="lema-3-1-del-documento">
+<h2><span class="section-number">6.1. </span>Lema 3.1 del documento<a class="headerlink" href="#lema-3-1-del-documento" title="Link to this heading">#</a></h2>
+<p>Consideremos <span class="math notranslate nohighlight">\(L\)</span> capas convolucionales sucesivas con filtros cuadrados de lados <span class="math notranslate nohighlight">\(m_1,\ldots,m_L\)</span> y strides <span class="math notranslate nohighlight">\(s_1,\ldots,s_L\)</span>. El lado del campo receptivo teórico de una unidad de la capa <span class="math notranslate nohighlight">\(L\)</span>, medido en coordenadas de la entrada, es</p>
+<div class="math notranslate nohighlight" id="equation-eq-campo-receptivo">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-eq-campo-receptivo" title="Link to this equation">#</a></span>\[r_L=1+\sum_{k=1}^{L}(m_k-1)\prod_{j=1}^{k-1}s_j.\]</div>
+<p>Se supone que no hay dilatación y que cada capa aplica el mismo stride en las dos direcciones espaciales. El producto vacío, que aparece cuando <span class="math notranslate nohighlight">\(k=1\)</span>, se define como</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{j=1}^{0}s_j=1.
+\]</div>
+<p>Aquí el lado del campo receptivo significa la extensión desde la primera posición hasta la última posición que puede influir, contando ambas. Es una propiedad de la arquitectura. No afirma que todas las entradas de ese intervalo tengan un efecto distinto de cero para unos pesos y unas activaciones particulares.</p>
+</section>
+<section id="paso-1-considerar-una-sola-direccion-espacial">
+<h2><span class="section-number">6.2. </span>Paso 1. Considerar una sola dirección espacial<a class="headerlink" href="#paso-1-considerar-una-sola-direccion-espacial" title="Link to this heading">#</a></h2>
+<p>Basta demostrar la fórmula en una dimensión. En una imagen, el mismo argumento se aplica por separado a las filas y a las columnas. Como los filtros son cuadrados y el stride es igual en ambas direcciones, el tamaño resultante es el mismo en cada una.</p>
+<p>En la entrada, una unidad corresponde a una posición. Por tanto, definimos</p>
+<div class="math notranslate nohighlight">
+\[
+r_0=1.
+\]</div>
+<p>En la primera capa, un filtro de ancho <span class="math notranslate nohighlight">\(m_1\)</span> utiliza <span class="math notranslate nohighlight">\(m_1\)</span> posiciones consecutivas. Así,</p>
+<div class="math notranslate nohighlight">
+\[
+r_1=m_1=1+(m_1-1).
+\]</div>
+<p>Este resultado coincide con la fórmula del lema para <span class="math notranslate nohighlight">\(L=1\)</span>.</p>
+</section>
+<section id="paso-2-calcular-la-separacion-entre-unidades-consecutivas">
+<h2><span class="section-number">6.3. </span>Paso 2. Calcular la separación entre unidades consecutivas<a class="headerlink" href="#paso-2-calcular-la-separacion-entre-unidades-consecutivas" title="Link to this heading">#</a></h2>
+<p>Dos unidades consecutivas de la primera capa se obtienen desplazando el filtro <span class="math notranslate nohighlight">\(s_1\)</span> posiciones en la entrada. Por eso sus campos receptivos están desplazados <span class="math notranslate nohighlight">\(s_1\)</span> posiciones entre sí.</p>
+<p>Dos unidades consecutivas de la segunda capa se separan <span class="math notranslate nohighlight">\(s_2\)</span> posiciones en la primera capa. Cada una de esas posiciones representa un desplazamiento de <span class="math notranslate nohighlight">\(s_1\)</span> en la entrada. Por tanto, su separación, medida en la entrada, es <span class="math notranslate nohighlight">\(s_1s_2\)</span>.</p>
+<p>Continuando este razonamiento, dos unidades consecutivas de la capa <span class="math notranslate nohighlight">\(k-1\)</span> corresponden a campos receptivos desplazados</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{j=1}^{k-1}s_j
+\]</div>
+<p>posiciones en la entrada. Para <span class="math notranslate nohighlight">\(k=1\)</span>, esta separación es <span class="math notranslate nohighlight">\(1\)</span>, de acuerdo con la convención del producto vacío.</p>
+</section>
+<section id="paso-3-obtener-la-recurrencia-del-tamano">
+<h2><span class="section-number">6.4. </span>Paso 3. Obtener la recurrencia del tamaño<a class="headerlink" href="#paso-3-obtener-la-recurrencia-del-tamano" title="Link to this heading">#</a></h2>
+<p>Una unidad de la capa <span class="math notranslate nohighlight">\(k\)</span> combina <span class="math notranslate nohighlight">\(m_k\)</span> unidades consecutivas de la capa <span class="math notranslate nohighlight">\(k-1\)</span>.</p>
+<p>El campo receptivo de la primera de esas unidades tiene extensión <span class="math notranslate nohighlight">\(r_{k-1}\)</span>. Desde la primera hasta la última de las <span class="math notranslate nohighlight">\(m_k\)</span> unidades hay <span class="math notranslate nohighlight">\(m_k-1\)</span> desplazamientos. Cada desplazamiento equivale, en coordenadas de la entrada, a</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{j=1}^{k-1}s_j.
+\]</div>
+<p>Por tanto, la extensión total es la del primer campo más el desplazamiento hasta el último:</p>
+<div class="math notranslate nohighlight" id="equation-eq-campo-receptivo-recurrencia">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-campo-receptivo-recurrencia" title="Link to this equation">#</a></span>\[r_k=r_{k-1}+(m_k-1)\prod_{j=1}^{k-1}s_j.\]</div>
+<p><strong>Por qué no aparece <span class="math notranslate nohighlight">\(s_k\)</span> en el incremento de <span class="math notranslate nohighlight">\(r_k\)</span>.</strong> El filtro de la capa <span class="math notranslate nohighlight">\(k\)</span> utiliza <span class="math notranslate nohighlight">\(m_k\)</span> unidades de la capa anterior, cuya separación ya está determinada por <span class="math notranslate nohighlight">\(s_1,\ldots,s_{k-1}\)</span>. El stride <span class="math notranslate nohighlight">\(s_k\)</span> decide la separación entre dos salidas de la capa <span class="math notranslate nohighlight">\(k\)</span>; su efecto sobre el tamaño de un campo receptivo aparecerá al agregar capas posteriores.</p>
+</section>
+<section id="paso-4-desarrollar-la-recurrencia">
+<h2><span class="section-number">6.5. </span>Paso 4. Desarrollar la recurrencia<a class="headerlink" href="#paso-4-desarrollar-la-recurrencia" title="Link to this heading">#</a></h2>
+<p>Para las primeras capas,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+r_1&amp;=1+(m_1-1),\\
+r_2&amp;=r_1+(m_2-1)s_1\\
+&amp;=1+(m_1-1)+(m_2-1)s_1,\\
+r_3&amp;=r_2+(m_3-1)s_1s_2\\
+&amp;=1+(m_1-1)+(m_2-1)s_1+(m_3-1)s_1s_2.
+\end{aligned}
+\end{split}\]</div>
+<p>Al llegar a la capa <span class="math notranslate nohighlight">\(L\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+r_L
+&amp;=1+(m_1-1)+(m_2-1)s_1+\cdots\\
+&amp;\quad +(m_L-1)s_1s_2\cdots s_{L-1}\\
+&amp;=\boxed{1+\sum_{k=1}^{L}(m_k-1)\prod_{j=1}^{k-1}s_j}.
+\end{aligned}
+\end{split}\]</div>
+<p>La misma conclusión puede formalizarse por inducción: la fórmula vale para <span class="math notranslate nohighlight">\(L=1\)</span>; si vale para <span class="math notranslate nohighlight">\(L-1\)</span>, al sumar el incremento de la recurrencia para la capa <span class="math notranslate nohighlight">\(L\)</span> se obtiene exactamente la suma hasta <span class="math notranslate nohighlight">\(L\)</span>. Esto completa la demostración.</p>
+</section>
+<section id="ejemplo-de-tres-capas">
+<h2><span class="section-number">6.6. </span>Ejemplo de tres capas<a class="headerlink" href="#ejemplo-de-tres-capas" title="Link to this heading">#</a></h2>
+<p>Consideremos filtros y strides</p>
+<div class="math notranslate nohighlight">
+\[
+(m_1,m_2,m_3)=(3,3,3),
+\qquad
+(s_1,s_2,s_3)=(1,2,1).
+\]</div>
+<p>Aplicando la recurrencia,</p>
+<div class="math notranslate nohighlight">
+\[
+r_1=1+(3-1)=3,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+r_2=3+(3-1)\cdot1=5,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+r_3=5+(3-1)\cdot1\cdot2=9.
+\]</div>
+<p>La fórmula cerrada da el mismo resultado:</p>
+<div class="math notranslate nohighlight">
+\[
+r_3=1+2\cdot1+2\cdot1+2\cdot(1\cdot2)=9.
+\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Capa</p></th>
+<th class="head text-right"><p>Lado del filtro</p></th>
+<th class="head text-right"><p>Stride</p></th>
+<th class="head text-right"><p>Separación entre salidas en la entrada</p></th>
+<th class="head text-right"><p>Lado del campo receptivo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Entrada</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(5\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(9\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Una unidad interior de la tercera capa tiene un campo receptivo teórico de <span class="math notranslate nohighlight">\(9\times9\)</span> posiciones. Dos unidades vecinas de esa capa tienen campos receptivos desplazados <span class="math notranslate nohighlight">\(2\)</span> posiciones en la entrada.</p>
+</section>
+<section id="alcance-de-la-formula">
+<h2><span class="section-number">6.7. </span>Alcance de la fórmula<a class="headerlink" href="#alcance-de-la-formula" title="Link to this heading">#</a></h2>
+<section id="extension-y-posiciones-utilizadas">
+<h3><span class="section-number">6.7.1. </span>Extensión y posiciones utilizadas<a class="headerlink" href="#extension-y-posiciones-utilizadas" title="Link to this heading">#</a></h3>
+<p>Cuando los strides son grandes, pueden quedar huecos entre las posiciones utilizadas. La fórmula sigue dando la extensión entre extremos, pero esa extensión puede contener posiciones que no participan en el cálculo.</p>
+<p>Por ejemplo, si <span class="math notranslate nohighlight">\(m_1=1\)</span>, <span class="math notranslate nohighlight">\(s_1=2\)</span> y <span class="math notranslate nohighlight">\(m_2=2\)</span>, una unidad de la segunda capa puede utilizar las posiciones <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(3\)</span> de la entrada. La extensión es <span class="math notranslate nohighlight">\(3\)</span>, aunque solo intervienen dos posiciones:</p>
+<div class="math notranslate nohighlight">
+\[
+r_2=1+(1-1)+(2-1)\cdot2=3.
+\]</div>
+</section>
+<section id="bordes-y-padding">
+<h3><span class="section-number">6.7.2. </span>Bordes y padding<a class="headerlink" href="#bordes-y-padding" title="Link to this heading">#</a></h3>
+<p>Sin padding, la fórmula describe las unidades que existen dentro del dominio válido de las convoluciones. Con padding, también describe la extensión teórica sobre la cuadrícula ampliada, pero cerca de los bordes parte de ese campo corresponde a valores añadidos. La cantidad de posiciones de la imagen original que influyen puede ser menor.</p>
+</section>
+<section id="dependencia-real-y-campo-teorico">
+<h3><span class="section-number">6.7.3. </span>Dependencia real y campo teórico<a class="headerlink" href="#dependencia-real-y-campo-teorico" title="Link to this heading">#</a></h3>
+<p>Un peso igual a cero o una activación que anule una trayectoria puede hacer que algunas entradas no influyan para un caso concreto. El lema describe las conexiones posibles de la arquitectura, no el patrón de derivadas efectivamente no nulas para cada ejemplo.</p>
+</section>
+<section id="dilatacion">
+<h3><span class="section-number">6.7.4. </span>Dilatación<a class="headerlink" href="#dilatacion" title="Link to this heading">#</a></h3>
+<p>El enunciado no incluye convoluciones dilatadas. Cuando hay dilatación, la separación entre los elementos de cada filtro también debe incorporarse; no se debe aplicar sin ajustes la fórmula escrita aquí.</p>
+</section>
+</section>
+<section id="lectura-del-resultado">
+<h2><span class="section-number">6.8. </span>Lectura del resultado<a class="headerlink" href="#lectura-del-resultado" title="Link to this heading">#</a></h2>
+<p>Cada capa agrega <span class="math notranslate nohighlight">\((m_k-1)\)</span> veces la separación acumulada de la capa anterior. Por eso un mismo filtro puede aumentar mucho más el campo receptivo cuando se coloca después de capas con stride mayor que uno. La profundidad acumula estos incrementos, mientras que los strides multiplican la escala espacial a la que operan las capas posteriores.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./capitulos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_retropropagacion.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Retropropagación y regla de la cadena</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_beneficio_profundidad.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Beneficio de la profundidad</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lema-3-1-del-documento">6.1. Lema 3.1 del documento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-considerar-una-sola-direccion-espacial">6.2. Paso 1. Considerar una sola dirección espacial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-calcular-la-separacion-entre-unidades-consecutivas">6.3. Paso 2. Calcular la separación entre unidades consecutivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-obtener-la-recurrencia-del-tamano">6.4. Paso 3. Obtener la recurrencia del tamaño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-desarrollar-la-recurrencia">6.5. Paso 4. Desarrollar la recurrencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-tres-capas">6.6. Ejemplo de tres capas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-de-la-formula">6.7. Alcance de la fórmula</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-y-posiciones-utilizadas">6.7.1. Extensión y posiciones utilizadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bordes-y-padding">6.7.2. Bordes y padding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencia-real-y-campo-teorico">6.7.3. Dependencia real y campo teórico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dilatacion">6.7.4. Dilatación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-resultado">6.8. Lectura del resultado</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Jassan Alberto Arteta Chavarro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
