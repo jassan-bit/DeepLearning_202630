@@ -1,12 +1,17 @@
 """Protection and preservation checks for publication; no model/data execution."""
 from hashlib import sha256
+from contextlib import redirect_stdout
+from io import StringIO
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import assemble_books_site as assembler
 from assemble_books_site import assemble
 from check_book_links import check_html
 
@@ -50,6 +55,57 @@ class MultiBookPublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Incomplete HTML"):
             assemble(self.root, output)
         self.assertFalse(output.parent.exists())
+
+    def test_cli_builds_and_checks_demonstrations_before_assembly(self):
+        output = self.root / "cli-site"
+        events = []
+
+        def run_checked(command, *, cwd, check):
+            self.assertEqual(cwd, self.root)
+            self.assertTrue(check)
+            self.assertEqual(command[0], sys.executable)
+            if len(events) == 0:
+                self.assertEqual(command[1:4],
+                                 ["-c", "from jupyter_book.cli.main import main; main()", "build"])
+                self.assertEqual(command[4], str(self.root / "book_bonificacion"))
+                self.assertEqual(command[5:], ["--all", "--warningiserror", "--keep-going"])
+                events.append("build")
+            else:
+                self.assertEqual(Path(command[1]).name, "check_book_links.py")
+                self.assertEqual(command[2:], ["--book-dir", str(self.root / "book_bonificacion")])
+                events.append("links")
+
+        def assemble_checked(*args):
+            self.assertEqual(events, ["build", "links"])
+            events.append("assemble")
+            return assemble(*args)
+
+        with patch.object(assembler.subprocess, "run", side_effect=run_checked), \
+                patch.object(assembler, "assemble", side_effect=assemble_checked), \
+                redirect_stdout(StringIO()):
+            assembler.main(["--project-root", str(self.root), "--output-dir", str(output),
+                            "--source-commit", "a" * 40])
+        self.assertEqual(events, ["build", "links", "assemble"])
+        self.assertTrue((output / "bonificacion/intro.html").is_file())
+
+    def test_cli_build_failure_aborts_without_link_check_or_output(self):
+        output = self.root / "failed-build-site"
+        with patch.object(assembler.subprocess, "run",
+                          side_effect=subprocess.CalledProcessError(1, ["jupyter-book"])) as run:
+            with self.assertRaises(subprocess.CalledProcessError):
+                assembler.main(["--project-root", str(self.root), "--output-dir", str(output)])
+        self.assertEqual(run.call_count, 1)
+        self.assertFalse(output.exists())
+
+    def test_cli_link_failure_aborts_without_output(self):
+        output = self.root / "failed-links-site"
+        with patch.object(assembler.subprocess, "run", side_effect=[
+                None, subprocess.CalledProcessError(1, ["check_book_links.py"]),
+        ]) as run:
+            with self.assertRaises(subprocess.CalledProcessError):
+                assembler.main(["--project-root", str(self.root), "--output-dir", str(output)])
+        self.assertEqual(run.call_count, 2)
+        self.assertFalse(output.exists())
 
     def test_demonstration_prefix_is_reserved_outside_e1(self):
         (self.root / "book/_build/html/bonificacion").mkdir()

@@ -35,6 +35,8 @@ El cuaderno `notebooks/comprobaciones.ipynb` conserva sus salidas. La compilaci�
 
 ## Publicación
 
-El workflow existente `.github/workflows/publish-book.yml` compila este libro junto con `book`, `book_e2` y `book_e3`. El ensamblador conserva E1 en la raíz, E2 en `entregable2/`, E3 en `entregable3/` y coloca este libro en `bonificacion/`.
+El workflow existente `.github/workflows/publish-book.yml` conserva los bytes vinculados al registro científico de E2. Su paso de construcción compila `book`, `book_e2` y `book_e3`; después, la entrada de línea de comandos de `scripts/assemble_books_site.py` compila este libro con advertencias tratadas como errores y comprueba sus enlaces antes de ensamblar los cuatro. Un fallo detiene la publicación.
+
+El ensamblador conserva E1 en la raíz, E2 en `entregable2/`, E3 en `entregable3/` y coloca este libro en `bonificacion/`.
 
 La publicación mantiene los controles descritos en `PUBLICACION_SEGURA.md`: sólo el primer intento de un nuevo push a `main` puede publicar, después de superar todos los jobs requeridos. La verificación HTTP comprueba también la introducción del libro de bonificación. Las ejecuciones manuales y los reintentos no publican.

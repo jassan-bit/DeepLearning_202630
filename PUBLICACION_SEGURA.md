@@ -9,6 +9,14 @@ La incorporación amplía la compilación y las verificaciones a cuatro libros,
 sin alterar resultados científicos, experimentos, descargas existentes ni la
 configuración de Pages. No entrena modelos.
 
+El archivo `.github/workflows/publish-book.yml` conserva exactamente los bytes
+vinculados al registro científico de E2. Su paso de construcción compila los
+tres entregables originales. A continuación, la entrada de línea de comandos de
+`scripts/assemble_books_site.py` compila `book_bonificacion` con
+`--all --warningiserror --keep-going`, comprueba sus enlaces y ensambla los cuatro
+libros. Si falla la compilación o la comprobación, no se genera el sitio para
+publicar. Esta incorporación no modifica huellas ni registros de E2.
+
 La activación autorizada del 09/11/2026 permite publicar **solo en el primer
 intento de un nuevo push a main**. PRs, ejecuciones manuales y reruns compilan
 y verifican, pero no publican.
@@ -72,7 +80,7 @@ python -m pip check
 python tests/test_multi_book_publication.py
 python tests/test_safe_publish_books.py
 python tests/test_books_alignment.py
-for book_dir in book book_e2 book_e3 book_bonificacion; do
+for book_dir in book book_e2 book_e3; do
   jupyter-book build "$book_dir" --all --warningiserror --keep-going
   python scripts/check_book_links.py --book-dir "$book_dir"
 done

@@ -4,6 +4,10 @@ E1 retains its existing root URL. E2, E3 and the demonstrations have their own
 compiled trees below entregable2/, entregable3/ and bonificacion/. Only a new
 or empty output directory is accepted; this command never replaces a previously
 populated directory.
+
+The CLI first builds and verifies the demonstrations. The historical workflow
+builds E1--E3 and is byte-frozen by their scientific registration. The reusable
+assemble() function only copies already-built books and never starts a build.
 """
 from __future__ import annotations
 
@@ -14,6 +18,8 @@ from html import escape
 import json
 from pathlib import Path
 import shutil
+import subprocess
+import sys
 import tempfile
 
 import yaml
@@ -173,12 +179,24 @@ def assemble(project_root=ROOT, output_dir=None, source_commit=None):
             "e1_intro_sha256_preserved": records[0]["intro_sha256"]}
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-root", type=Path, default=ROOT)
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--source-commit")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    project_root = args.project_root.resolve()
+    demonstrations = project_root / "book_bonificacion"
+    # Jupyter Book 1.x has no package __main__. Invoke its installed console
+    # entry point with this interpreter so the pinned environment is preserved.
+    subprocess.run([
+        sys.executable, "-c", "from jupyter_book.cli.main import main; main()",
+        "build", str(demonstrations), "--all", "--warningiserror", "--keep-going",
+    ], cwd=project_root, check=True)
+    subprocess.run([
+        sys.executable, str(Path(__file__).with_name("check_book_links.py").resolve()),
+        "--book-dir", str(demonstrations),
+    ], cwd=project_root, check=True)
     result = assemble(args.project_root, args.output_dir, args.source_commit)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 

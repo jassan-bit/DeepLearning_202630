@@ -64,7 +64,9 @@ También puedes abrir el cuaderno en VS Code con la extensión Jupyter y selecci
 
 ## Despliegue del sitio
 
-El workflow de publicación compila los cuatro libros, comprueba enlaces, ensambla el sitio y verifica su inventario. Después de superar sus jobs requeridos, el primer intento de un nuevo push a `main` puede actualizar `gh-pages` mediante un commit descendiente, conservando las rutas y las descargas anteriores.
+El proceso de publicación compila los cuatro libros, comprueba enlaces, ensambla el sitio y verifica su inventario. El workflow conserva la configuración registrada de E2: primero construye los tres entregables y luego el ensamblador construye y comprueba este libro antes de reunir los cuatro. Cualquier fallo impide publicar.
+
+Después de superar sus jobs requeridos, el primer intento de un nuevo push a `main` puede actualizar `gh-pages` mediante un commit descendiente, conservando las rutas y las descargas anteriores.
 
 Una ejecución manual o un reintento comprueba el proyecto, pero no publica. Los controles y la verificación de la versión servida se describen en [PUBLICACION_SEGURA.md](https://github.com/jassan-bit/DeepLearning_202630/blob/main/PUBLICACION_SEGURA.md).
 

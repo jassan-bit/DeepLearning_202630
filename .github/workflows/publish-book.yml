@@ -1,4 +1,4 @@
-name: Publicar los cuatro Jupyter Books
+name: Publicar los tres Jupyter Books
 on:
   push:
     branches: [main, e2-compute-20261109, e2-gpu-20261109]
@@ -43,10 +43,10 @@ jobs:
           python -m unittest discover -s tests -p test_e2_protocol_amendment.py -v
           python scripts/e2_protocol_amendment.py --check --require-git
           python scripts/e2_search_plan.py --protocol book_e2/_static/search_protocol_20261109/protocol.json --k 40 --final-seeds 30
-      - name: Construir y verificar los cuatro libros independientes
+      - name: Construir y verificar los tres libros independientes
         run: |
           set -euo pipefail
-          for book_dir in book book_e2 book_e3 book_bonificacion; do
+          for book_dir in book book_e2 book_e3; do
             jupyter-book build "$book_dir" --all --warningiserror --keep-going
             python scripts/check_book_links.py --book-dir "$book_dir"
           done
@@ -161,7 +161,7 @@ jobs:
         run: |
           python scripts/safe_publish_books.py publish --source-commit "$GITHUB_SHA" \
             --execute --report publication-report.json
-      - name: Confirmar la versión servida de los cuatro libros
+      - name: Confirmar la versión servida de los tres libros
         run: |
           python scripts/safe_publish_books.py verify-live --source-commit "$GITHUB_SHA" \
             --url "https://jassan-bit.github.io/DeepLearning_202630/" \
