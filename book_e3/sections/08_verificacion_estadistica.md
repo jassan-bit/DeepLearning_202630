@@ -1,5 +1,7 @@
 # 8 Bloque D Verificación estadística y evaluación ampliada
 
+**Actualización del 25 de noviembre de 2026:** {ref}`8.32 <e3-dm-hln-20261125>` añade DM con Bartlett-HAC14 y una sensibilidad HLN aproximada sobre el **MSE diario medio entre semillas**, para los 17 sistemas y 608 fechas del corte histórico. Los 16 contrastes principales rechazan igualdad con Holm16 y con la familia ampliada Holm64; la dirección favorece a **CNN-LSTM-atención**. Se conservan la primaria de RMSE, los 48 contrastes anteriores y el dictamen **R3 no acreditada**. Esta ampliación no analiza la candidata input-only ni crea una prueba prospectiva.
+
 **Corte actual, 21 de noviembre de 2026:** {ref}`8.28 <e3-input-only-audit-20261121>` recalcula el piloto V5 desde predicciones guardadas: input-only mejora **2,7595 %** frente a global y gana **4/5** semillas sobre **55 fechas ya expuestas**. Fue seleccionada después de examinar desarrollo; pasa del rango 6 al 1 entre selección y assessment y presenta SD entre semillas **7,27×** la de global. Se continúa su preparación con identidad propia; V5 completo conserva abandono. El protocolo sigue **DRAFT**, sin métodos aprobados, potencia, tamaño final o prueba sellada; **R3 no acreditada**.
 
 **Corte de la auditoría exploratoria del 19 de noviembre de 2026:** la auditoría exploratoria de 19 sistemas en D00–D03 completó **796 trabajos, 76 paneles, 12 tablas de análisis y 16 figuras**. El [cierre de 8.18](#e3-final-extended-audit) contiene sus resultados y limitaciones. Las secciones anteriores conservan sus cortes históricos; los 48 contrastes retrospectivos descritos a continuación pertenecen a otra comparación y no se trasladan a la auditoría ampliada. Esta última no calculó nuevos valores *p*, ajuste de Holm o tres pruebas confirmatorias por rival.
@@ -1634,3 +1636,164 @@ Validación sintética V1 completa. Se muestran las cotas exactas y los umbrales
 Descargas para comprobar cifras y alcance: {download}`resumen de nueve escenarios CSV <../_static/e3_primary_joint_repair_20261122/results/VALIDATION_SUMMARY_V1.csv>`, {download}`informe V1 JSON <../_static/e3_primary_joint_repair_20261122/results/VALIDATION_REPORT_V1.json>`, {download}`redondeo de los 18 límites CSV <../_static/e3_primary_joint_repair_20261122/results/ACADEMIC_ROUNDING_DECISION.csv>`, {download}`decisión académica JSON <../_static/e3_primary_joint_repair_20261122/results/ACADEMIC_ROUNDING_DECISION.json>` y {download}`respaldo verificado de V1 ZIP <../_static/e3_primary_joint_repair_20261122/results/validation_v1_checkpoint.zip>`.
 
 La evaluación sintética no estima potencia de Bitcoin, no aporta nuevos ajustes de mercado ni abre prueba reservada. R/T/B finales y la potencia de una confirmación real continúan requiriendo entradas auténticas y dimensionamiento compatible con esta primaria. El dimensionador antiguo de MSE y su controlador fijado a S2 no se autorizan automáticamente para la versión nueva. El {ref}`cuaderno y la recuperación opcional de 11.15 <e3-primary-joint-colab-20261122>` distinguen consulta, verificación y ejecución.
+
+(e3-dm-hln-20261125)=
+## 8.32 Diebold–Mariano y HLN: ampliación retrospectiva del 25 de noviembre
+
+Esta actualización compara **CNN-LSTM-atención con los 16 rivales históricos**, sin eliminar modelos por su resultado. Se reutilizan las predicciones guardadas de **608 fechas comunes, del 1 de enero de 2025 al 31 de agosto de 2026**: catorce sistemas neuronales con diez semillas cada uno y tres clásicos con una trayectoria cada uno, **143 trayectorias en total**. No se entrenó, volvió a predecir o recalibró un modelo para obtener estos contrastes.
+
+El protocolo del 25 de noviembre fijó la especificación principal y sus sensibilidades antes de calcular los nuevos valores $p$, pero con conocimiento de las predicciones y resultados históricos. Es un análisis **complementario, retrospectivo y exploratorio**, no un preregistro confirmatorio. Esta sección publica sus definiciones, criterios y resultados; el protocolo histórico de 8.1 conserva su fecha y alcance anteriores.
+
+### Qué se contrasta: una pérdida por fecha, promediada entre semillas
+
+El error cuadrático medio se abrevia **MSE** (*mean squared error*). Para el sistema $m$, con $R_m$ trayectorias, se calcula primero la pérdida diaria:
+
+$$
+\ell_{m,t}=\frac{1}{R_m}\sum_{s=1}^{R_m}
+(y_t-\widehat y_{m,s,t})^2,
+\qquad
+ d_{m,t}=\ell_{c,t}-\ell_{m,t},
+\qquad n=608,
+$$ (eq-e3-dm-daily-loss-20261125)
+
+Aquí $y_t$ es la volatilidad observada, $\widehat y_{m,s,t}$ el pronóstico de la semilla $s$ y $c$ identifica a CNN-LSTM-atención. Las redes tienen $R_m=10$; ARIMA, Persistence y SeasonalNaive tienen $R_m=1$. **Una diferencia negativa favorece a CNN-LSTM-atención.** Se promedian los errores cuadrados de las semillas; no se eleva al cuadrado el error de su pronóstico promedio. Este último cálculo mediría el rendimiento de un ensamble distinto.
+
+La muestra del contraste tiene **608 fechas, no 6080 observaciones independientes**. Las semillas no multiplican el tamaño temporal y una trayectoria clásica no se duplica para simular réplicas. La incertidumbre HAC representa variación temporal del diferencial para este panel de predictores fijados; no incorpora la variabilidad de volver a entrenar con semillas nuevas.
+
+Para cada rival se contrasta bilateralmente:
+
+$$
+H_{0,m}:\mathbb E[d_{m,t}]=0,
+\qquad H_{1,m}:\mathbb E[d_{m,t}]\ne0.
+$$ (eq-e3-dm-null-20261125)
+
+Este estimando difiere de la **media de RMSE individuales** definida en 8.1. El MSE diario medio de CNN-LSTM-atención es $8{,}6422616693\times10^{-6}$; su media de RMSE individuales sigue siendo $0{,}0029394324$. No se sustituyen los contrastes anteriores ni se introduce su margen $\delta$, expresado en unidades de RMSE, en esta diferencia de MSE. Rechazar igualdad en esta sección tampoco contrasta por sí solo aquel margen práctico.
+
+### Prueba principal: DM con Bartlett-HAC de 14 rezagos
+
+La prueba de [Diebold y Mariano (1995)](https://doi.org/10.1080/07350015.1995.10524599) compara la media del diferencial de pérdidas. La estimación **HAC** es robusta a heterocedasticidad y autocorrelación bajo sus condiciones asintóticas. Se usa el kernel de Bartlett, asociado al estimador de [Newey y West](https://www.nber.org/papers/t0055), con $L=14$:
+
+$$
+\overline d_m=\frac1n\sum_{t=1}^{n}d_{m,t},
+\qquad
+\widehat\gamma_{m,k}=\frac1n\sum_{t=k+1}^{n}
+(d_{m,t}-\overline d_m)(d_{m,t-k}-\overline d_m),
+$$ (eq-e3-dm-autocovariance-20261125)
+
+$$
+\widehat\Omega_{m,14}=\widehat\gamma_{m,0}
++2\sum_{k=1}^{14}\left(1-\frac{k}{15}\right)\widehat\gamma_{m,k},
+\qquad
+DM_{m,\mathrm{HAC14}}=
+\frac{\overline d_m}{\sqrt{\widehat\Omega_{m,14}/n}}.
+$$ (eq-e3-dm-hac-statistic-20261125)
+
+El valor $p$ principal es $2\Phi(-|DM_{m,\mathrm{HAC14}}|)$, con referencia normal asintótica y $\alpha=0{,}05$. Se conserva el rezago 14 del protocolo histórico, sin elegirlo según los nuevos $p$. El cálculo divide cada autocovarianza por $n$; el código y la verificación independiente conservan esta convención.
+
+El horizonte de pronóstico es **$h=1$ día**. Los siete retornos de la ventana objetivo de volatilidad no convierten el pronóstico en $h=7$. Su solapamiento y la dinámica de las pérdidas motivan considerar dependencia adicional. HAC requiere una aproximación razonable de estabilidad temporal, dependencia débil y momentos suficientes del diferencial; no garantiza validez ante cualquier cambio de régimen. Las autocorrelaciones de orden uno observadas varían entre **0,056593 y 0,872552**, por lo que la referencia de cero rezagos se conserva sólo como diagnóstico auxiliar.
+
+### Sensibilidad HLN: factor de horizonte uno y referencia t
+
+[Harvey, Leybourne y Newbold (1997)](https://doi.org/10.1016/S0169-2070(96)00719-4) propusieron un ajuste de pequeña muestra. El factor empleado aquí es:
+
+$$
+k_{\mathrm{HLN}}=
+\sqrt{\frac{n+1-2h+h(h-1)/n}{n}}
+=\sqrt{\frac{607}{608}}=0{,}9991772932,
+\qquad
+DM_{m,\mathrm{HLN\ aprox.}}=k_{\mathrm{HLN}}DM_{m,\mathrm{HAC14}}.
+$$ (eq-e3-dm-hln-factor-20261125)
+
+Se calcula el $p$ bilateral con una distribución $t$ de **607 grados de libertad**. **La combinación del factor HLN con HAC14 es una variante aproximada**: no se presenta como una corrección exacta demostrada para ese kernel y número de rezagos. La [documentación oficial de `forecast::dm.test`](https://pkg.robjhyndman.com/forecast/reference/dm.test.html) y su [implementación oficial](https://github.com/robjhyndman/forecast/blob/master/R/DM2.R) usan la truncación $h-1$, que sería cero para $h=1$. Ese resultado canónico auxiliar se incluye en la tabla de sensibilidad; no reemplaza la especificación principal ni permite ignorar dependencia temporal adicional.
+
+DM y esta variante HLN usan el mismo diferencial y la misma estimación HAC14. Son una prueba principal y una sensibilidad estrechamente relacionadas, **no dos confirmaciones independientes**.
+
+### Comparaciones múltiples: familia nueva y control ampliado
+
+Se aplica el procedimiento escalonado de [Holm (1979)](https://doi.org/10.2307/4615733), que controla el error familiar bajo dependencia arbitraria cuando sus valores $p$ marginales son válidos. La [documentación oficial de `p.adjust`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html) precisa ese alcance. Se distinguen las siguientes familias:
+
+| Ajuste | Valores p que entran | Alcance |
+|---|---|---|
+| **Holm16 DM, principal** | Los 16 $p$ brutos de DM-HAC14 con referencia normal. | Una comparación de igualdad de MSE por cada rival histórico. |
+| **Holm64 DM, ampliado** | Los 48 $p$ brutos históricos y los 16 $p$ brutos nuevos de DM normal. | Control ampliado retrospectivo al integrar este análisis en el entregable. |
+| **Holm16 HLN, secundario** | Los 16 $p$ brutos de la variante HLN aproximada. | Sensibilidad de pequeña muestra para la misma familia de rivales. |
+| **Holm64 HLN, alternativo** | Los mismos 48 $p$ brutos históricos y los 16 $p$ brutos de HLN, **en lugar de los 16 DM**. | Familia alternativa de 64; no combina ambas variantes nuevas. |
+
+Los 48 $p$ originales y su ajuste Holm48 conservan sus valores y su estimando de RMSE. La columna ampliada se calcula desde **$p$ brutos**, sin volver a ajustar valores ya corregidos. Las dos familias de 64 **no forman una familia conjunta de 80** ni acreditan control simultáneo de todos los resultados históricos, DM, HLN y sensibilidades. Estas últimas se reportan como comprobaciones secundarias fijadas en el protocolo, sin seleccionar la variante de menor $p$. Holm tampoco corrige la selección retrospectiva o la falta de estabilidad temporal.
+
+### Resultados completos: prueba DM principal
+
+Los 16 estadísticos son negativos y los 16 contrastes rechazan igualdad tras Holm16 y Holm64 a $\alpha=0{,}05$. El mayor $p$ ajustado corresponde a **FCN-1D: 0,01029544** en ambas familias. El signo y el rechazo apoyan menor MSE medio diario de CNN-LSTM-atención **en este análisis histórico y bajo sus supuestos**. Los $p$ no miden el tamaño de esa mejora ni la probabilidad de que el modelo sea superior en datos nuevos.
+
+| Rival | DM-HAC14 | $p$ bruto bilateral | $p$ Holm16 | $p$ Holm64 ampliado |
+|---|---:|---:|---:|---:|
+| LSTM-autoencoder con predictor | -5.157952 | 2.49665e-07 | 2.49665e-06 | 9.73694e-06 |
+| ARIMA | -4.225515 | 2.38394e-05 | 1.43037e-04 | 6.43665e-04 |
+| GRU32 | -6.027565 | 1.66449e-09 | 2.16383e-08 | 7.82309e-08 |
+| Persistence | -3.630971 | 2.82357e-04 | 1.12943e-03 | 2.10000e-03 |
+| Inception-1D | -4.410234 | 1.03259e-05 | 7.22812e-05 | 2.99451e-04 |
+| TimeMixer | -8.151507 | 3.59418e-16 | 5.75069e-15 | 2.26433e-14 |
+| ResNet-1D | -3.333162 | 8.58649e-04 | 2.14400e-03 | 3.60000e-03 |
+| MLP16 | -7.798443 | 6.26756e-15 | 9.40135e-14 | 3.69786e-13 |
+| FCN-1D | -2.565745 | 1.02954e-02 | 1.02954e-02 | 1.02954e-02 |
+| TimesNet | -5.198798 | 2.00581e-07 | 2.20639e-06 | 8.02325e-06 |
+| LSTM32 | -6.157844 | 7.37421e-10 | 1.03239e-08 | 3.53962e-08 |
+| TSMixer | -4.680655 | 2.85959e-06 | 2.28768e-05 | 9.43666e-05 |
+| iTransformer | -5.641921 | 1.68163e-08 | 2.01796e-07 | 7.23102e-07 |
+| TiDE | -4.738424 | 2.15387e-06 | 1.93848e-05 | 7.32315e-05 |
+| PatchTST | -3.933129 | 8.38471e-05 | 4.19235e-04 | 1.84464e-03 |
+| SeasonalNaive | -3.383889 | 7.14668e-04 | 2.14400e-03 | 3.60000e-03 |
+
+La tabla mantiene los 16 rivales, incluidos los resultados menos favorables. Los estadísticos se muestran con seis decimales y los $p$ en notación científica con seis cifras significativas; las decisiones se calculan con los valores completos. La igualdad del máximo Holm16 y Holm64 no implica que todos sus ajustes coincidan: FCN-1D ocupa la última posición por $p$ bruto y otros ajustes ampliados son mayores. La familia ampliada conserva los 48 contrastes de la [tabla histórica publicada](../_static/e3_estadistica_posterior_20261117/primary_contrasts.csv) y añade las 16 filas DM anteriores; no se interpretan como 64 experimentos independientes.
+
+### Resultados completos: variante HLN aproximada
+
+Se conservan **16/16 rechazos**, tanto con Holm16 como en la familia alternativa Holm64. El mayor $p$ ajustado es **0,01059794**, nuevamente para FCN-1D. La conclusión direccional no cambia, pero todos estos valores pertenecen a la sensibilidad **HAC14 + factor HLN + $t_{607}$**, con la limitación metodológica indicada antes.
+
+| Rival | HLN aproximado | $p$ bruto bilateral | $p$ Holm16 | $p$ Holm64 alternativo |
+|---|---:|---:|---:|---:|
+| LSTM-autoencoder con predictor | -5.153709 | 3.45923e-07 | 3.45923e-06 | 1.34910e-05 |
+| ARIMA | -4.222039 | 2.79196e-05 | 1.67517e-04 | 7.25909e-04 |
+| GRU32 | -6.022606 | 2.97445e-09 | 3.86678e-08 | 1.39799e-07 |
+| Persistence | -3.627984 | 3.09685e-04 | 1.23874e-03 | 2.16779e-03 |
+| Inception-1D | -4.406606 | 1.24152e-05 | 8.69065e-05 | 3.60041e-04 |
+| TimeMixer | -8.144800 | 2.16853e-15 | 3.46964e-14 | 1.32280e-13 |
+| ResNet-1D | -3.330420 | 9.19743e-04 | 2.30496e-03 | 3.84160e-03 |
+| MLP16 | -7.792027 | 2.87195e-14 | 4.30792e-13 | 1.66573e-12 |
+| FCN-1D | -2.563635 | 1.05979e-02 | 1.05979e-02 | 1.05979e-02 |
+| TimesNet | -5.194521 | 2.80596e-07 | 3.08656e-06 | 1.12239e-05 |
+| LSTM32 | -6.152778 | 1.38276e-09 | 1.93587e-08 | 6.63726e-08 |
+| TSMixer | -4.676804 | 3.59407e-06 | 2.87526e-05 | 1.18604e-04 |
+| iTransformer | -5.637279 | 2.64819e-08 | 3.17782e-07 | 1.13872e-06 |
+| TiDE | -4.734526 | 2.73549e-06 | 2.46194e-05 | 9.30066e-05 |
+| PatchTST | -3.929894 | 9.47605e-05 | 4.73803e-04 | 2.08473e-03 |
+| SeasonalNaive | -3.381105 | 7.68320e-04 | 2.30496e-03 | 3.84160e-03 |
+
+### Sensibilidad al número de rezagos
+
+Se mantienen los mismos 16 rivales, 608 fechas, pérdidas y nulo. Sólo varía el truncamiento HAC; se informa el máximo $p$ ajustado de cada familia, incluida la variante menos favorable:
+
+| Rezagos y papel | Rechazos DM / 16 | Máximo $p$ Holm16 DM | Rechazos HLN / 16 | Máximo $p$ Holm16 HLN |
+|---|---:|---:|---:|---:|
+| 7, sensibilidad | 16 | 0.0055568277 | 16 | 0.0057672348 |
+| **14, principal** | 16 | 0.010295435 | 16 | 0.010597938 |
+| 28, sensibilidad | 16 | 0.012210565 | 16 | 0.012543246 |
+| 0, referencia auxiliar $h-1$ | 16 | 2.3197491e-06 | 16 | 2.9380553e-06 |
+
+El máximo ajustado aumenta al pasar de 7 a 28 rezagos, pero permanece por debajo de 0,05 en estas variantes. FCN-1D da ese máximo para $L=7,14,28$; en el auxiliar $L=0$ corresponde a Persistence. La estabilidad de la decisión frente a estos tres rezagos no demuestra estacionariedad, potencia prospectiva o validez universal de la aproximación. Los Holm16 de cada fila no ajustan por buscar entre rezagos; la prueba principal sigue siendo **normal-HAC14**. La referencia de cero rezagos se distingue de las sensibilidades temporales de 7 y 28.
+
+### Alcance, verificación del cálculo y dictamen
+
+**La ampliación aporta evidencia estadística retrospectiva favorable en MSE diario contra los 16 rivales.** No sustituye la primaria de RMSE, sus intervalos ni las limitaciones experimentales de 8.2: E2 usó 655 ejemplos de ajuste y la CNN-LSTM histórica 532, con distintas decisiones de selección y presupuesto. Por ello no se identifica un efecto causal aislado de arquitectura. Tampoco se estiman potencia conjunta o diferencia mínima detectable a partir de estos $p$.
+
+El resultado corresponde al panel histórico de **608 fechas**. `input-only-overlap-mse-1`, sus **55 fechas expuestas de desarrollo** y la reparación del funcional de RMSE de 8.31 conservan sus propios resultados y decisiones. No se les transfieren estos rechazos. **R3 permanece sin acreditar**: esta ampliación no aporta un test nuevo reservado, una campaña confirmatoria, admisión adicional de datos o una validación de la regla científica completa.
+
+La reconstrucción reprodujo las métricas RMSE y MAE publicadas de **17/17 sistemas**. Además, una recomputación independiente desde el NPZ, sin importar ni ejecutar `calcular_dm.py`, verificó las pérdidas diarias, la varianza HAC mediante una forma cuadrática matricial, los $p$ normal/t y los ajustes Holm: **72 comprobaciones numéricas, todas aprobadas**. Esta revisión del cálculo no sustituye sus supuestos científicos ni una reproducción humana independiente.
+
+Fuentes históricas públicas y material de sustentación:
+
+- [Extensión E2 a diez semillas, versión congelada](https://github.com/jassan-bit/DeepLearning_202630/tree/5e9023ea821bfa9fb0b92340d518413f6ab89161/runs/e2_extension_10_semillas_v1): conserva los 133 predictores rivales, sus métricas y su plan.
+- [Predicciones históricas de las diez semillas de CNN-LSTM-atención](https://github.com/jassan-bit/DeepLearning_202630/blob/510c3bddfdc9926322e3210ac61ee1f5eeffad2e/runs/estabilidad_aditiva_v1/evaluation_predictions.csv): fuente original ya publicada; su nombre de archivo se conserva por trazabilidad.
+- [Protocolo histórico descrito en 8.1](https://jassan-bit.github.io/DeepLearning_202630/entregable3/_static/e3_estadistica_posterior_20261117/protocol.md) y [48 contrastes históricos](../_static/e3_estadistica_posterior_20261117/primary_contrasts.csv), con sus resultados anteriores intactos.
+- {ref}`Guion de defensa y descargas de la presentación actualizada <e3-dm-hln-defense-20261125>`.
+
