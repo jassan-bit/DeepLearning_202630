@@ -393,6 +393,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-la-demostracion">13.2 Preparación de la demostración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-y-comprobaciones-tecnicas">13.3 Preguntas y comprobaciones técnicas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-tecnica-ensayo-y-trazabilidad">13.4 Práctica técnica, ensayo y trazabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizacion-de-la-defensa-dm-y-hln-del-25-de-noviembre">13.5 Actualización de la defensa: DM y HLN del 25 de noviembre</a></li>
 </ul>
             </nav>
         </div>
@@ -545,6 +546,24 @@
 <p>El ensayo deberá registrar fecha, participantes, versión, duración por bloque, ejemplo usado y fallos/acciones pendientes. Se prepararán comandos concretos en el entorno fijado y con insumos verificados; la prueba de software no se describirá como una campaña científica completa.</p>
 <p>No se afirma que el ensayo o la sustentación hayan ocurrido. El <a class="reference internal" href="cierre_reproducibilidad.html"><span class="std std-doc">anexo final</span></a> mantiene separados el uso de IA, la revisión personal pendiente y las firmas; la <a class="reference internal" href="14_evaluacion_calificacion.html"><span class="std std-doc">sección 14</span></a> conserva los criterios de evaluación sin asignar calificación actual.</p>
 </section>
+<section id="actualizacion-de-la-defensa-dm-y-hln-del-25-de-noviembre">
+<span id="e3-dm-hln-defense-20261125"></span><h2>13.5 Actualización de la defensa: DM y HLN del 25 de noviembre<a class="headerlink" href="#actualizacion-de-la-defensa-dm-y-hln-del-25-de-noviembre" title="Link to this heading">#</a></h2>
+<p>Dedicar <strong>dos minutos a las tablas DM y HLN dentro de los seis minutos del bloque estadístico</strong>, sin ampliar la exposición de veinte minutos. La <a class="reference internal" href="08_verificacion_estadistica.html#e3-dm-hln-20261125"><span class="std std-ref">sección 8.32</span></a> contiene la formulación, los 16 rivales, las tablas completas y los límites. El relato breve para la diapositiva es:</p>
+<ol class="arabic simple">
+<li><p><strong>Qué se compara.</strong> «En las mismas 608 fechas históricas calculamos el error cuadrático diario de cada predictor y después promediamos sus pérdidas entre semillas. Comparamos CNN-LSTM-atención con los 16 rivales; negativo significa menor pérdida de nuestra red». Aclarar que son 608 fechas, no 6080 observaciones independientes, y que MSE no es la media de RMSE individuales.</p></li>
+<li><p><strong>Qué muestra la prueba principal.</strong> «Diebold–Mariano con Bartlett-HAC de 14 rezagos rechaza igualdad frente a los 16 rivales tras Holm16. El mayor p ajustado es 0,01030; también se mantienen los 16 rechazos al ampliar la familia con los 48 contrastes históricos». Mostrar el signo y la corrección múltiple antes de interpretar la diferencia.</p></li>
+<li><p><strong>Qué añade HLN y qué queda abierto.</strong> «La sensibilidad HLN aproximada, con referencia t de 607 grados de libertad, conserva los 16 rechazos; su mayor p Holm16 es 0,01060. Esto apoya menor MSE en el calendario histórico bajo los supuestos del análisis; no confirma generalización ni cierra R3». No presentar DM y HLN como dos evidencias independientes.</p></li>
+</ol>
+<p>Durante las preguntas, explicar que <strong><span class="math notranslate nohighlight">\(h=1\)</span> es el horizonte</strong>, mientras siete es el tamaño de la ventana objetivo; no cambiar <span class="math notranslate nohighlight">\(h\)</span> para obtener 14 rezagos. El HLN canónico a horizonte uno usa truncamiento cero: aplicar su factor sobre HAC14 es una <strong>extensión aproximada</strong>, declarada como sensibilidad. Los rezagos 7 y 28 conservan la decisión, pero no se elige la variante con menor <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Distinguir también <strong>Holm64 principal = 48 p brutos históricos + 16 DM normales</strong> de <strong>Holm64 alternativo = los mismos 48 + 16 HLN</strong>. La segunda familia sustituye los nuevos DM; no es un control conjunto de 80 contrastes. Los resultados de las 608 fechas pertenecen al panel histórico y no se trasladan a <code class="docutils literal notranslate"><span class="pre">input-only-overlap-mse-1</span></code> ni a sus 55 fechas de desarrollo.</p>
+<p>Material actualizado, con <strong>Jassan Arteta</strong> como autor:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/8e21eefb63643d88107207fdf8f251f8/presentacion_deep_learning_jassan.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Presentación</span> <span class="pre">PDF</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/6bf5c08f2799a9bb18d8b136f0d7abf5/presentacion_deep_learning_jassan.tex"><code class="xref download docutils literal notranslate"><span class="pre">Código</span> <span class="pre">LaTeX</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">presentación</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="08_verificacion_estadistica.html#e3-dm-hln-20261125"><span class="std std-ref">Tablas completas DM/HLN, método y fuentes históricas</span></a>.</p></li>
+</ul>
+<p>La disponibilidad de estos materiales prepara la exposición; no registra un ensayo, una defensa realizada o una aprobación del docente.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -617,6 +636,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-de-la-demostracion">13.2 Preparación de la demostración</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preguntas-y-comprobaciones-tecnicas">13.3 Preguntas y comprobaciones técnicas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-tecnica-ensayo-y-trazabilidad">13.4 Práctica técnica, ensayo y trazabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizacion-de-la-defensa-dm-y-hln-del-25-de-noviembre">13.5 Actualización de la defensa: DM y HLN del 25 de noviembre</a></li>
 </ul>
   </nav></div>
 

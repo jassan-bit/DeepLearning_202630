@@ -80,3 +80,25 @@ Esta segunda comprobación sí realiza inferencias CPU de ingeniería sobre peso
 El ensayo deberá registrar fecha, participantes, versión, duración por bloque, ejemplo usado y fallos/acciones pendientes. Se prepararán comandos concretos en el entorno fijado y con insumos verificados; la prueba de software no se describirá como una campaña científica completa.
 
 No se afirma que el ensayo o la sustentación hayan ocurrido. El [anexo final](cierre_reproducibilidad.md) mantiene separados el uso de IA, la revisión personal pendiente y las firmas; la [sección 14](14_evaluacion_calificacion.md) conserva los criterios de evaluación sin asignar calificación actual.
+
+(e3-dm-hln-defense-20261125)=
+## 13.5 Actualización de la defensa: DM y HLN del 25 de noviembre
+
+Dedicar **dos minutos a las tablas DM y HLN dentro de los seis minutos del bloque estadístico**, sin ampliar la exposición de veinte minutos. La {ref}`sección 8.32 <e3-dm-hln-20261125>` contiene la formulación, los 16 rivales, las tablas completas y los límites. El relato breve para la diapositiva es:
+
+1. **Qué se compara.** «En las mismas 608 fechas históricas calculamos el error cuadrático diario de cada predictor y después promediamos sus pérdidas entre semillas. Comparamos CNN-LSTM-atención con los 16 rivales; negativo significa menor pérdida de nuestra red». Aclarar que son 608 fechas, no 6080 observaciones independientes, y que MSE no es la media de RMSE individuales.
+2. **Qué muestra la prueba principal.** «Diebold–Mariano con Bartlett-HAC de 14 rezagos rechaza igualdad frente a los 16 rivales tras Holm16. El mayor p ajustado es 0,01030; también se mantienen los 16 rechazos al ampliar la familia con los 48 contrastes históricos». Mostrar el signo y la corrección múltiple antes de interpretar la diferencia.
+3. **Qué añade HLN y qué queda abierto.** «La sensibilidad HLN aproximada, con referencia t de 607 grados de libertad, conserva los 16 rechazos; su mayor p Holm16 es 0,01060. Esto apoya menor MSE en el calendario histórico bajo los supuestos del análisis; no confirma generalización ni cierra R3». No presentar DM y HLN como dos evidencias independientes.
+
+Durante las preguntas, explicar que **$h=1$ es el horizonte**, mientras siete es el tamaño de la ventana objetivo; no cambiar $h$ para obtener 14 rezagos. El HLN canónico a horizonte uno usa truncamiento cero: aplicar su factor sobre HAC14 es una **extensión aproximada**, declarada como sensibilidad. Los rezagos 7 y 28 conservan la decisión, pero no se elige la variante con menor $p$.
+
+Distinguir también **Holm64 principal = 48 p brutos históricos + 16 DM normales** de **Holm64 alternativo = los mismos 48 + 16 HLN**. La segunda familia sustituye los nuevos DM; no es un control conjunto de 80 contrastes. Los resultados de las 608 fechas pertenecen al panel histórico y no se trasladan a `input-only-overlap-mse-1` ni a sus 55 fechas de desarrollo.
+
+Material actualizado, con **Jassan Arteta** como autor:
+
+- {download}`Presentación PDF <../_static/e3_dm_hln_20261125/presentacion_deep_learning_jassan.pdf>`.
+- {download}`Código LaTeX de la presentación <../_static/e3_dm_hln_20261125/presentacion_deep_learning_jassan.tex>`.
+- {ref}`Tablas completas DM/HLN, método y fuentes históricas <e3-dm-hln-20261125>`.
+
+La disponibilidad de estos materiales prepara la exposición; no registra un ensayo, una defensa realizada o una aprobación del docente.
+
